@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%=render :partial => "misc/head"%> 
+
+    <%=stylesheet_link_merged    :application-%>
+    <%=javascript_include_merged :application-%>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    
+    <%=yield :head%>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      setupDeviceVariables(
+        <%=is_mobile_device? ? true : false%>,
+        <%=is_device_ipad?%>,
+        <%=is_device_iphone?%>);
+    </script>
+
+    <%=yield%>
+
+    <%#render :partial => "misc/ganalytics"%>
+  </body>
+</html>
+
+
+
