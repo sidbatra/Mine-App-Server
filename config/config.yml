@@ -1,0 +1,44 @@
+# Configuration constants for all RAILS environments
+
+# Constants shared across deployment environments
+common: &common
+  :aws_access_id: AKIAJWYCAWDPAAKLNKSQ
+  :aws_secret_key: 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 
+  :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
+
+development: &development
+  <<: *common
+  :host: sbat.tea.ms
+  :s3_bucket: denwen-teams-filesystem
+  :asset_bucket: /
+  :edge_server: http://s3.amazonaws.com/denwen-teams-filesystem
+  :asset_host: /
+  :emails:
+    :noreply_from: Teams <noreply@teams.com>
+    :sender: manager@teams.com
+
+staging: &staging
+  <<: *common
+  :host: staging.tea.ms
+  :s3_bucket: denwen-teams-filesystem
+  :asset_bucket: denwen-teams-staging
+  :edge_server: http://s3.amazonaws.com/denwen-teams-filesystem
+  :asset_host: http://s3.amazonaws.com/denwen-teams-staging
+  :emails:
+    :noreply_from: Teams <noreply@teams.com>
+    :sender: manager@teams.com
+
+production: &production
+  <<: *common
+  :host: tea.ms
+  :s3_bucket: denwen-teams-filesystem
+  :asset_bucket: denwen-teams-production
+  :edge_server: http://edge.teams.com
+  :asset_host: http://static.teams.com
+  :emails:
+    :noreply_from: Teams <noreply@teams.com>
+    :sender: manager@teams.com
+
+
+test: &test
+  <<: *development
