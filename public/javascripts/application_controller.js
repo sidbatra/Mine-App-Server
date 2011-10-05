@@ -22,3 +22,4 @@ function setupDeviceVariables(isMobile,isiPad,isiPhone) {
   isDeviceiPhone    = isiPhone;
   isDeviceiOS       = isiPad || isiPhone;
 }
+
