@@ -28,13 +28,22 @@ class SessionController < ApplicationController
         if params[:code]
           client                    = FB_AUTH.client
           client.authorization_code = params[:code]
-          access_token = client.access_token!
+          access_token              = client.access_token!
 
           if access_token
             fb_user = FbGraph::User.fetch("me?fields=first_name,last_name,"\
-                                          "username,email,birthday",
+                                          "gender,email,birthday",
                                             :access_token => access_token)
+            @user = User.add(fb_user)
           end
+        end
+
+        if @user 
+          self.current_user = @user
+          set_cookie
+          redirect_to root_path
+        else
+          redirect_to root_path
         end
       else
         raise IOError, "Unknown event name"
@@ -43,14 +52,6 @@ class SessionController < ApplicationController
       raise IOError, "Unknown service name"
     end
 
-    if @user 
-      self.current_user = @user
-      set_cookie
-      #redirect_to root_path
-      #redirect_back_or_default root_path
-    else
-      redirect_to root_path
-    end
 
   #rescue => ex
   #  handle_exception(ex)
@@ -63,6 +64,7 @@ class SessionController < ApplicationController
   def destroy
     self.current_user.forget if logged_in?
     delete_cookie
+    self.current_user = nil
     reset_session
 
     redirect_to root_path

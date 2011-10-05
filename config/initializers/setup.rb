@@ -10,6 +10,7 @@
 # Include modules needed through the application lifetime
 #
 include DW
+include CryptoManagement 
 
 FB_AUTH = FbGraph::Auth.new(CONFIG[:fb_app_id],CONFIG[:fb_app_secret])
 

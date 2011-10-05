@@ -3,6 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller  => :home,
            :action      => :show
 
+  map.logout  "/logout",
+              :controller => :session,
+              :action     => :destroy
+
   map.fb_auth 'facebook/authenticate',
                :controller  => :session,
                :action      => :create,

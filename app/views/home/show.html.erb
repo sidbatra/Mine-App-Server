@@ -1,2 +1,10 @@
-HELLO HOME
+
+<%if logged_in?%>
+  <%=self.current_user.first_name%>
+  <%=image_tag self.current_user.image_url, :alt => "user image"%>
+  <%=link_to "LOGOUT",logout_path%>
+<%else%>
+  <%=link_to "SIGN UP",fb_auth_path%>
+<%end%>
+
 
