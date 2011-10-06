@@ -11,35 +11,35 @@ common: &common
 development: &development
   <<: *common
   :host: sbat.tea.ms
-  :s3_bucket: denwen-teams-filesystem
+  :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
-  :edge_server: http://s3.amazonaws.com/denwen-teams-filesystem
+  :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: /
   :emails:
-    :noreply_from: Teams <noreply@teams.com>
-    :sender: manager@teams.com
+    :noreply_from: Hasit <noreply@hasit.com>
+    :sender: manager@hasit.com
 
 staging: &staging
   <<: *common
   :host: staging.tea.ms
-  :s3_bucket: denwen-teams-filesystem
-  :asset_bucket: denwen-teams-staging
-  :edge_server: http://s3.amazonaws.com/denwen-teams-filesystem
-  :asset_host: http://s3.amazonaws.com/denwen-teams-staging
+  :s3_bucket: denwen-hasit-filesystem
+  :asset_bucket: denwen-hasit-staging
+  :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
+  :asset_host: http://s3.amazonaws.com/denwen-hasit-staging
   :emails:
-    :noreply_from: Teams <noreply@teams.com>
-    :sender: manager@teams.com
+    :noreply_from: Teams <noreply@hasit.com>
+    :sender: manager@hasit.com
 
 production: &production
   <<: *common
   :host: tea.ms
-  :s3_bucket: denwen-teams-filesystem
-  :asset_bucket: denwen-teams-production
-  :edge_server: http://edge.teams.com
-  :asset_host: http://static.teams.com
+  :s3_bucket: denwen-hasit-filesystem
+  :asset_bucket: denwen-hasit-production
+  :edge_server: http://edge.hasit.com
+  :asset_host: http://static.hasit.com
   :emails:
-    :noreply_from: Teams <noreply@teams.com>
-    :sender: manager@teams.com
+    :noreply_from: Teams <noreply@hasit.com>
+    :sender: manager@hasit.com
 
 
 test: &test

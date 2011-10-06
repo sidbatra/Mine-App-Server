@@ -1,6 +1,18 @@
   <%=self.current_user.first_name%>
   <%=image_tag self.current_user.image_url, :alt => "user image"%>
 
+   <!--form action="<%=@uploader[:server]%>" method="post" enctype="multipart/form-data">
+    <%=hidden_field_tag :policy,         @uploader[:policy]%>
+    <%=hidden_field_tag :signature,      @uploader[:signature]%>
+    <%=hidden_field_tag :AWSAccessKeyId, @uploader[:aws_id]%>
+    <%=hidden_field_tag :Filename,""%>
+    <%=hidden_field_tag :success_action_status, 201%>
+    <%=hidden_field_tag :acl, "public-read"%>
+    <%=hidden_field_tag :key,"#{@uploader[:key]}_${filename}"%>
+    <%=file_field_tag :file%>
+    <%=submit_tag "done"%>
+  </form-->
+
 
   <%form_for @product, :html => {:multipart => true} do |f|%>
     <%=f.hidden_field :website_url%>
@@ -14,6 +26,9 @@
     <button id="product_search">Search</button> <br>
 
     <%#f.file_field :image%> <br>
+    <span id="uploadButton"></span>
+    <!--input type="button" value="Select Photo" style="width: 150px; height: 22px; font-size: 8pt;" /-->
+    <span id="uploadProgress"></span> <br><br>
 
     <%=submit_tag "Create"%>
   <%end%>
@@ -26,5 +41,100 @@
 
   <script type="text/javascript">
     var newProductViewController = new NewProductViewController();
-  </script>
+
+function generateUploader() {
+
+  var buttonWidth = 50;
+  var buttonHeight = 64;
+  var elementID     = 'uploadButton';
+
+  return new SWFUpload({
+
+          // Backend Settings
+          upload_url: "<%=@uploader[:server]%>",
+          post_params: {"AWSAccessKeyId": "<%=@uploader[:aws_id]%>",
+                        "acl": "public-read",
+                        "key": "<%=@uploader[:key]%>_${filename}",
+                        "policy": "<%=@uploader[:policy]%>",
+                        "signature": "<%=@uploader[:signature]%>",
+                        "success_action_status":"201"},
+          http_success : [201],
+
+          // File Upload Settings
+          file_post_name: 'file',
+          file_size_limit : <%=@uploader[:max]%>,
+          file_types : "<%=@uploader[:extensions]%>",
+
+          file_queued_handler: fileSelected,
+          upload_progress_handler: uploadProgress,
+          upload_error_handler: uploadError,
+          upload_success_handler: uploadSuccess,
+          upload_complete_handler: uploadComplete,
+
+          // Button Settings
+          button_placeholder_id : elementID,
+          button_image_url: "/images/rails.png",
+          button_width: buttonWidth,
+          button_height: buttonHeight,
+          button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+          button_cursor: SWFUpload.CURSOR.HAND,
+          button_action : SWFUpload.BUTTON_ACTION.SELECT_FILE,
+          
+          // Flash Settings
+          flash_url : "/swfs/swfupload.swf",
+          debug: false
+        });
+
+}
+
+// Called when the user selects a file
+//
+function fileSelected(file) {
+  console.log("file selected");
+  this.startUpload(); 
+}
+
+// Called to indicate number of bytes uploaded to server
+//
+function uploadProgress(file, bytesLoaded) {
+    var percent = Math.ceil((bytesLoaded / file.size) * 100);
+    $('#uploadProgress').html(percent + ' %');
+}
+
+// File finishes uploading -- not 100% reliable.
+//
+function uploadSuccess(file, serverData) {
+}
+
+// Always called when a file finishes uploading
+//
+function uploadComplete(file) {
+
+  var filename = file.name;
+  //filename = filename.split("/")[1];
+  //placeCreator.formObject.place_photo_filename.value = filename;
+
+  //placeCreator.formObject.place_submit.disabled = false;
+
+  $('#uploadProgress').html('all done - ' + filename);
+}
+
+// Error handling during the uploading process
+//
+function uploadError(file, errorCode, message) {
+  console.log("upload error - " + errorCode);
+
+    switch (errorCode) {
+    case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
+      break;
+    case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
+    default:
+      console.log("error message - " + message);
+      break;
+    }
+}
+
+var swfu = generateUploader();
+
+</script>
 
