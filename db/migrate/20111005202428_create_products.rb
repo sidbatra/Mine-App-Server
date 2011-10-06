@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string  :endorsement
       t.text    :website_url
       t.text    :image_url
+      t.string  :query
       t.integer :user_id
 
       t.timestamps

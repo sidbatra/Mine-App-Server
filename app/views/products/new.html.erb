@@ -2,3 +2,35 @@
   <%=image_tag self.current_user.image_url, :alt => "user image"%>
 
 
+  <%form_for @product, :html => {:multipart => true ,
+                                  :onsubmit => "return validate();"} do |f|%>
+    <%=f.hidden_field :website_url%>
+    <%=f.hidden_field :image_url%>
+
+
+    Title  <%=f.text_field :title%> <br>
+    Endorsement <%=f.text_field :endorsement%> <br>
+
+    Search  <%=f.text_field :query%> <br>
+    <%#f.file_field :image%> <br>
+
+    <%=submit_tag "Create"%>
+  <%end%>
+
+  <h2>RESULTS</h2>
+  <div id="results"></div>
+
+  <script type="text/javascript">
+    function validate() {
+      return false;
+    }
+
+    function product_selected(id) {
+      $("#product_title").val('Chanel No. 5');
+      $("#product_website_url").val('http://www.styleite.com/beauty/chanel-no-5-new-jersey/');
+      $("#product_image_url").val('http://static02.mediaite.com/styleite/uploads/2010/11/chanel+no.5-350x350.jpg');
+    }
+
+    var newProductViewController = new NewProductViewController();
+  </script>
+

@@ -6,11 +6,13 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
+    @product = Product.new
   end
 
   # Create a new product
   #
   def create
+    raise params.to_yaml
   end
 
   # Display a product
