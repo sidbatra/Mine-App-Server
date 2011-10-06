@@ -19,6 +19,10 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :users,
                 :action     => :create
 
+  map.product 'products/:id/:name',
+                :controller => :products,
+                :action     => :show
+
   # Exception manager
   map.connect 'admin/logged_exceptions/:action/:id', 
               :controller => 'logged_exceptions'
@@ -27,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create]
 
   map.resources :products,
-                :only => [:new,:create,:show]
+                :only => [:new,:create]
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

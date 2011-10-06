@@ -15,19 +15,32 @@ class ProductsController < ApplicationController
   # Create a new product
   #
   def create
-    product = Product.add(params[:product],self.current_user.id);
-    raise params.to_yaml
-  #rescue => ex
-  #  handle_exception(ex)
-  #ensure
+    product     = Product.add(
+                            params[:product],
+                            self.current_user.id);
+
+    target_url  = product_path(
+                   product.id,
+                   product.handle)
+  rescue => ex
+    handle_exception(ex)
+    target_url = new_product_path
+  ensure
+    redirect_to target_url
   end
 
   # Display a product
   #
   def show
+    @product = Product.eager.find(params[:id])
+
+    redirect_to product_path(
+                  @product.id,
+                  @product.handle) if params[:name] != @product.handle
   rescue => ex
     handle_exception(ex)
   ensure
+    redirect_to root_path if @error
   end
 
 end
