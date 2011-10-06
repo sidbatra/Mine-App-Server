@@ -19,6 +19,9 @@ var kImageCount         = 10;
 var kSearchStateInactive    = 0;
 var kSearchStateDone        = 3;
 
+// State for all the images being displayed
+var productHash  = new Array();
+
 
 // Constructor logic
 //
@@ -28,7 +31,7 @@ function NewProductViewController() {
 
   this.offset           = 0;
   this.query            = '';
-  this.searchState     = kSearchStateInactive;
+  this.searchState      = kSearchStateInactive;
 
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
@@ -112,12 +115,21 @@ NewProductViewController.prototype.productQueryKeyPress = function(e) {
     this.query        = $(kProductQuery).val();
     this.offset       = 0;
     this.searchState  = kSearchStateInactive;
+    productHash       = new Array();
 
     this.fetchImages();
 
     return false;
   }
 }
+
+function product_selected(id) {
+  var product = productHash[id];
+  $(kProductTitle).val(product.title);
+  $(kProductWebsiteUrl).val(product.websiteUrl);
+  $(kProductImageUrl).val(product.imageUrl);
+ }
+
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -145,6 +157,8 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
                           images[i]['Width'],
                           images[i]['Height'],
                           images[i]['Url']); //image['Thumbnail']['Url']
+      
+      productHash[product.id] = product;
 
       $(kImagesBox).append(product.imageSearchResultTag());
     }
@@ -180,11 +194,5 @@ NewProductViewController.prototype.resizeEnded = function() {
   this.fillEmptyView();
 }
 
-
-function product_selected(id) {
-  $("#product_title").val('Chanel No. 5');
-  $("#product_website_url").val('http://www.styleite.com/beauty/chanel-no-5-new-jersey/');
-  $("#product_image_url").val('http://static02.mediaite.com/styleite/uploads/2010/11/chanel+no.5-350x350.jpg');
- }
 
 
