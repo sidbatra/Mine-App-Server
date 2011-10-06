@@ -42,20 +42,10 @@ function NewProductViewController() {
                                                     };
 }
 
-NewProductViewController.prototype.productQueryKeyPress = function(e) {
-  if(e.keyCode == 13) {
-    $(kImagesBox).html('');
 
-    this.query        = $(kProductQuery).val();
-    this.offset       = 0;
-    this.searchState  = kSearchStateInactive;
-
-    this.fetchImages();
-
-    return false;
-  }
-}
-
+// Wrapper function for searching bing images to handle
+// pagination and loading images with multiple filters
+//
 NewProductViewController.prototype.fetchImages = function() {
 
     if(this.searchState != kSearchStateInactive)
@@ -69,6 +59,9 @@ NewProductViewController.prototype.fetchImages = function() {
     this.offset += kImageCount;
 }
 
+// Use the bing search api to find images for the given query and
+// pagination information
+//
 NewProductViewController.prototype.searchBingImages = function(query,size,offset) {
 
   var url = [
@@ -107,6 +100,24 @@ NewProductViewController.prototype.fillEmptyView = function() {
     this.fetchImages();
 }
 
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Listeners on new product form elements
+//-----------------------------------------------------------------------------
+
+NewProductViewController.prototype.productQueryKeyPress = function(e) {
+  if(e.keyCode == 13) {
+    $(kImagesBox).html('');
+
+    this.query        = $(kProductQuery).val();
+    this.offset       = 0;
+    this.searchState  = kSearchStateInactive;
+
+    this.fetchImages();
+
+    return false;
+  }
+}
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -116,23 +127,24 @@ NewProductViewController.prototype.fillEmptyView = function() {
 //
 NewProductViewController.prototype.imagesLoaded = function(data) {
 
-    //var query = data['SearchResponse']['Query']['SearchTerms'];
+    var query = data['SearchResponse']['Query']['SearchTerms'];
 
-    //console.log(query);
-    //if(query != this.query)
-    //  return;
+    if(query != this.query)
+      return;
 
     var images = data['SearchResponse']['Image']['Results'];
 
     if(!images)
       return;
     
+
     for(var i=0;i<images.length;i++) {
       var image = images[i];
       //$('#results').append("<h2>" + image['Title'] + "</h2>");
       //$('#results').append("<h4>" + image['Width'] + 'x' + image['Height'] + "</h4>");
       //$('#results').append("<a href='" + image['MediaUrl'] + "'><img height='100' src='" + image['MediaUrl'] + "' /></a>");
-      $(kImagesBox).append("<a href='#' onclick='product_selected(1)'><img height='100' src='" + image['Thumbnail']['Url'] + "' /></a>");
+      //$(kImagesBox).append("<a href='#' onclick='product_selected(1)'><img src='" + image['Thumbnail']['Url'] + "' /></a>");
+      $(kImagesBox).append("<a href='#' onclick='product_selected(1)'><img height='200' src='" + image['MediaUrl'] + "' /></a>");
     }
 
     if(images.length == kImageCount && ++this.searchState == kSearchStateDone)
