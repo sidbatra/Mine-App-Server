@@ -8,6 +8,7 @@ var kProductEndorsement = '#product_endorsement';
 var kProductQuery       = '#product_query';
 var kProductWebsiteUrl  = '#product_website_url';
 var kProductImageUrl    = '#product_image_url';
+var kSelectedImage      = '#selection';
 var kImagesBox          = '#results';
 
 // Bing image search params
@@ -123,11 +124,15 @@ NewProductViewController.prototype.productQueryKeyPress = function(e) {
   }
 }
 
+// Fired when a product is selected from the search results
+//
 function product_selected(id) {
   var product = productHash[id];
+  $(kSelectedImage).html("<img height='300' src='" + product.imageUrl + "' />");
   $(kProductTitle).val(product.title);
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
+  $(kImagesBox).html('');
  }
 
 
