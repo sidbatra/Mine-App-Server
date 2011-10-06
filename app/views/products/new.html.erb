@@ -2,8 +2,7 @@
   <%=image_tag self.current_user.image_url, :alt => "user image"%>
 
 
-  <%form_for @product, :html => {:multipart => true ,
-                                  :onsubmit => "return validate();"} do |f|%>
+  <%form_for @product, :html => {:multipart => true} do |f|%>
     <%=f.hidden_field :website_url%>
     <%=f.hidden_field :image_url%>
 
@@ -24,11 +23,6 @@
   <div id="results"></div>
 
   <script type="text/javascript">
-
-    function validate() {
-      return true;
-    }
-
     var newProductViewController = new NewProductViewController();
   </script>
 

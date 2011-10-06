@@ -37,6 +37,8 @@ function NewProductViewController() {
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
 
+  $(kProductForm).submit(function() { return npvController.validateForm(); });
+
   this.scrollViewController                      = new ScrollViewController();
   this.scrollViewController.scrollEndedCallback  = function(){
                                                     npvController.scrollEnded();
@@ -122,6 +124,23 @@ NewProductViewController.prototype.productQueryKeyPress = function(e) {
 
     return false;
   }
+}
+
+// Validate the product form and display errors before submissions
+//
+NewProductViewController.prototype.validateForm = function() {
+  var valid = true;
+
+  if($(kProductEndorsement).val().length < 1) {
+    valid = false;
+    console.log('improper endorsement');
+  }
+  else if($(kProductTitle).val().length < 1) {
+    valid = false;
+    console.log('improper title');
+  }
+    
+  return valid;
 }
 
 // Fired when a product is selected from the search results
