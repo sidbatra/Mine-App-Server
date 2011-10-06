@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20111005202428) do
 
   create_table "products", :force => true do |t|
     t.string   "title"
+    t.string   "handle"
     t.string   "endorsement"
     t.text     "website_url"
     t.text     "image_url"

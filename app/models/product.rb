@@ -6,6 +6,11 @@ class Product < ActiveRecord::Base
   belongs_to :user
 
   #-----------------------------------------------------------------------------
+  # Callbacks
+  #-----------------------------------------------------------------------------
+  before_save :populate_handle
+
+  #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :title
@@ -19,17 +24,28 @@ class Product < ActiveRecord::Base
 
   # Add a new product
   #
-  def add(attributes)
+  def self.add(attributes,user_id)
     create(
       :title        => attributes['title'],
       :endorsement  => attributes['endorsement'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],
-      :user_id      => attributes['user_id'])
+      :query        => attributes['query'],
+      :user_id      => user_id)
   end
 
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
+
+  # Populate handle from the product title
+  #
+  def populate_handle
+    return unless self.title.present? 
+
+    self.handle = self.title.gsub(/[^a-zA-Z0-9\.]/,'-').
+                              squeeze('-').
+                              chomp('-')
+  end
 
 end

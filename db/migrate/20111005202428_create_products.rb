@@ -2,6 +2,7 @@ class CreateProducts < ActiveRecord::Migration
   def self.up
     create_table :products do |t|
       t.string  :title
+      t.string  :handle
       t.string  :endorsement
       t.text    :website_url
       t.text    :image_url
