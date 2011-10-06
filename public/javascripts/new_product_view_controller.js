@@ -6,8 +6,8 @@ var kProductForm        = '#new_product';
 var kProductTitle       = '#product_title';
 var kProductEndorsement = '#product_endorsement';
 var kProductQuery       = '#product_query';
-var kProductWebsiteURL  = '#product_website_url';
-var kProductImageURL    = '#product_image_url';
+var kProductWebsiteUrl  = '#product_website_url';
+var kProductImageUrl    = '#product_image_url';
 var kImagesBox          = '#results';
 
 // Bing image search params
@@ -139,18 +139,20 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
     
 
     for(var i=0;i<images.length;i++) {
-      var image = images[i];
-      //$('#results').append("<h2>" + image['Title'] + "</h2>");
-      //$('#results').append("<h4>" + image['Width'] + 'x' + image['Height'] + "</h4>");
-      //$('#results').append("<a href='" + image['MediaUrl'] + "'><img height='100' src='" + image['MediaUrl'] + "' /></a>");
-      //$(kImagesBox).append("<a href='#' onclick='product_selected(1)'><img src='" + image['Thumbnail']['Url'] + "' /></a>");
-      $(kImagesBox).append("<a href='#' onclick='product_selected(1)'><img height='200' src='" + image['MediaUrl'] + "' /></a>");
+      var product = new Product(
+                          images[i]['Title'],
+                          images[i]['MediaUrl'],
+                          images[i]['Width'],
+                          images[i]['Height'],
+                          images[i]['Url']); //image['Thumbnail']['Url']
+
+      $(kImagesBox).append(product.imageSearchResultTag());
     }
 
     if(images.length == kImageCount && ++this.searchState == kSearchStateDone)
       this.searchState = kSearchStateInactive;
       
-    //  $('#' + kPaginationElementID + '').hide();
+    //$('#' + kPaginationElementID + '').hide();
 
     this.fillEmptyView();
 }
@@ -177,4 +179,12 @@ NewProductViewController.prototype.scrollEnded = function() {
 NewProductViewController.prototype.resizeEnded = function() {
   this.fillEmptyView();
 }
+
+
+function product_selected(id) {
+  $("#product_title").val('Chanel No. 5');
+  $("#product_website_url").val('http://www.styleite.com/beauty/chanel-no-5-new-jersey/');
+  $("#product_image_url").val('http://static02.mediaite.com/styleite/uploads/2010/11/chanel+no.5-350x350.jpg');
+ }
+
 

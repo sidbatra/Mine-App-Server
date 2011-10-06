@@ -4,6 +4,7 @@ javascripts:
   - jquery-1.4.3.min
   - application_controller
   - scroll_view_controller
+  - product
   - new_product_view_controller
 stylesheets: 
 - application: 
