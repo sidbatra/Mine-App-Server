@@ -6,6 +6,7 @@ var kProductForm        = '#new_product';
 var kProductTitle       = '#product_title';
 var kProductEndorsement = '#product_endorsement';
 var kProductQuery       = '#product_query';
+var kProductSearch      = '#product_search';
 var kProductWebsiteUrl  = '#product_website_url';
 var kProductImageUrl    = '#product_image_url';
 var kSelectedImage      = '#selection';
@@ -37,6 +38,8 @@ function NewProductViewController() {
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
 
+  $(kProductSearch).click(function() { return npvController.productSearchClicked();});
+
   $(kProductForm).submit(function() { return npvController.validateForm(); });
 
   this.scrollViewController                      = new ScrollViewController();
@@ -47,7 +50,6 @@ function NewProductViewController() {
                                                     npvController.resizeEnded();
                                                     };
 }
-
 
 // Wrapper function for searching bing images to handle
 // pagination and loading images with multiple filters
@@ -111,19 +113,29 @@ NewProductViewController.prototype.fillEmptyView = function() {
 // Listeners on new product form elements
 //-----------------------------------------------------------------------------
 
+NewProductViewController.prototype.initiateProductSearch= function() {
+  $(kImagesBox).html('');
+
+  this.query        = $(kProductQuery).val();
+  this.offset       = 0;
+  this.searchState  = kSearchStateInactive;
+  productHash       = new Array();
+
+  this.fetchImages();
+}
+
 NewProductViewController.prototype.productQueryKeyPress = function(e) {
   if(e.keyCode == 13) {
-    $(kImagesBox).html('');
-
-    this.query        = $(kProductQuery).val();
-    this.offset       = 0;
-    this.searchState  = kSearchStateInactive;
-    productHash       = new Array();
-
-    this.fetchImages();
-
+    this.initiateProductSearch();
     return false;
   }
+}
+
+// Fired when the product search button is clicked
+//
+NewProductViewController.prototype.productSearchClicked = function(e) {
+  this.initiateProductSearch();
+  return false;
 }
 
 // Validate the product form and display errors before submissions
