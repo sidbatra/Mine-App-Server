@@ -145,7 +145,7 @@ NewProductViewController.prototype.validateForm = function() {
 
 // Fired when a product is selected from the search results
 //
-function product_selected(id) {
+function productSelected(id) {
   var product = productHash[id];
   $(kSelectedImage).html("<img height='300' src='" + product.imageUrl + "' />");
   $(kProductTitle).val(product.title);
