@@ -47,11 +47,11 @@ function NewProductViewController(uploadSettings) {
 
   $(kProductForm).submit(function() { return npvController.validateForm(); });
 
-  //this.scrollViewController                      = new ScrollViewController();
-  //this.scrollViewController.scrollEndedCallback  = function(){
-  //                                                  npvController.scrollEnded();};
-  //this.scrollViewController.resizeEndedCallback  = function(){
-  //                                                  npvController.resizeEnded();};
+  this.scrollViewController                      = new ScrollViewController();
+  this.scrollViewController.scrollEndedCallback  = function(){
+                                                    npvController.scrollEnded();};
+  this.scrollViewController.resizeEndedCallback  = function(){
+                                                    npvController.resizeEnded();};
 }
 
 // Wrapper function for searching bing images to handle
@@ -210,7 +210,7 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
       
     //$('#' + kPaginationElementID + '').hide();
 
-    //this.fillEmptyView();
+    this.fillEmptyView();
 }
 
 // Fired when there is an error fetching items
