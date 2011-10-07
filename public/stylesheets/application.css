@@ -257,6 +257,15 @@ h1 {
 	border: 1px solid #cccccc;
 }
 
+.closebox {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	background-image: url ('closebox.png') no-repeat;
+}
+
 .photo_choice_cell {
 	width: 160px;
 	height: 160px;
