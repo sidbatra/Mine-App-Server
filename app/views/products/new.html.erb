@@ -20,19 +20,13 @@
 			<div id="left">
 		
 				<div id="item_search">
-          <%=f.text_field :query, 
-                          :value    => "Search for an item by name...",
-                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
-					<input id="go" title="Search" type="image" alt="Go" src="/images/transparent.gif">
-          <!-- TODO: Replace input image with input button. Must have id product_search -->
-          <!--input type="button" value="Search" id="product_search"/-->
-
+		            <%=f.text_field :query,
+		                          :value    => "Search for an item by name...",
+		                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
+					<input id="product_search" value="" title="Search" type="button" alt="Search">
 				</div>
-        <%=image_tag "or.png"%>
-        <!-- TODO: span becomes flash embed, apply css on upload.png to bring it up-->
-        <span id="product_upload"></span>
-        <%=image_tag "upload.png"%>
-				
+        		<%=image_tag "or.png"%>
+        		<span id="product_upload"></span>
 			</div> <!-- left -->
 			
 			<div id="right">
@@ -52,9 +46,7 @@
           <%=f.text_field :endorsement,
                           :value => "Why do you love it?",
                           :onfocus  => "this.value='';this.style.color='#333333'"%> 
-
-          <!-- TODO: Replace image with submit button -->
-					<img id="action_button" class="shadow" src="/images/save_and_share_button.png">
+          			<button id="action_button" class="save_and_share shadow" type="submit"></button>
           <%#submit_tag "Create"%>
 				</div>
 			</div> <!-- right -->

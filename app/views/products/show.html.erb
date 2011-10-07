@@ -38,14 +38,9 @@
           </div> <!--right_titlebox-->
 
           <div id="right_commentbox">
-            <%=image_tag "speechmarks_open.png", 
-                          :id => "speechmarks_open"%>
-            <span>
-              <%=@product.endorsement%>
-            </span>
-
-            <%=image_tag "speechmarks_close.png", 
-                          :id => "speechmarks_close"%>
+          	<div id="speechmarks_open"></div>
+            	<div id="user_comment"><%=@product.endorsement%></div>
+          	<div id="speechmarks_close"></div>
           </div> <!--right_commentbox-->
 
           <%unless logged_in?%>
