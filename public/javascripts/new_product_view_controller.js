@@ -63,7 +63,8 @@ function NewProductViewController(uploadSettings) {
 //
 NewProductViewController.prototype.fetchImages = function() {
 
-    if(this.searchState != kSearchStateInactive)
+    if(this.searchState != kSearchStateInactive || 
+            !$(kImagesBox).is(":visible"))
       return;
 
     this.searchState++;
