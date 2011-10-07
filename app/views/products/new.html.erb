@@ -1,28 +1,80 @@
-  <%=self.current_user.first_name%>
-  <%=image_tag self.current_user.image_url, :alt => "user image"%>
 
-  <%form_for @product, :html => {:multipart => true} do |f|%>
-    <%=f.hidden_field :website_url%>
-    <%=f.hidden_field :image_url%>
-    <%=f.hidden_field :is_hosted%>
+	<!-- item -->
+	<div id="container">
+	
+    <div id="instructions_1" style="display:block">
+      <%=image_tag "instructions_1.png"%>
+    </div>
+    <div id="instructions_2" style="display:block">
+      <%=image_tag "instructions_2.png"%>
+    </div>
+    <div id="instructions_3" style="display:block">
+      <%=image_tag "instructions_3.png"%>
+    </div> <!-- instructions -->
+	
+    <%form_for @product, :html => {:multipart => true} do |f|%>
+      <%=f.hidden_field :website_url%>
+      <%=f.hidden_field :image_url%>
+      <%=f.hidden_field :is_hosted%>
+
+			<div id="left">
+		
+				<div id="item_search">
+          <%=f.text_field :query, 
+                          :value    => "Search for an item by name...",
+                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
+					<input id="go" title="Search" type="image" alt="Go" src="/images/transparent.gif">
+          <!-- TODO: Replace input image with input button. Must have id product_search -->
+          <!--input type="button" value="Search" id="product_search"/-->
+
+				</div>
+        <%=image_tag "or.png"%>
+        <!-- TODO: span becomes flash embed, apply css on upload.png to bring it up-->
+        <span id="product_upload"></span>
+        <%=image_tag "upload.png"%>
+				
+			</div> <!-- left -->
+			
+			<div id="right">
+				<div id="right_new_content">
+					<div id="right_titlebox">	
+            <%=image_tag self.current_user.photo_url, 
+                          :id => "user_photo"%>
+            <span id="user_name" class="is_sharing">
+              <%=user_share_text(self.current_user)%>&hellip;
+            </span>
+					</div>
+							
+          <%=f.text_field :title, 
+                          :value    => "Item name",
+                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
+
+          <%=f.text_field :endorsement,
+                          :value => "Why do you love it?",
+                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
+
+          <!-- TODO: Replace image with submit button -->
+					<img id="action_button" class="shadow" src="/images/save_and_share_button.png">
+          <%#submit_tag "Create"%>
+				</div>
+			</div> <!-- right -->
+			
+		</form>
+
+	</div> <!-- container -->
 
 
-    Title  <%=f.text_field :title%> <br>
-    Endorsement <%=f.text_field :endorsement%> <br>
+	<div id="chooser" class="shadow_overlay" style="display:none">
+		<div class="photo_choice_cell">
+			<img class="photo_choice" src="/images/item_sample.jpeg">
+		</div>
+	</div> <!-- chooser -->
 
-    Search  <%=f.text_field :query%> 
-    <input type="button" value="Search" id="product_search"/>
-
-    <%#f.file_field :image%> <br>
-    <span id="product_upload"></span>
-    <%=submit_tag "Create"%>
   <%end%>
 
   <div id="selection">
   </div>
 
-  <h2>RESULTS</h2>
-  <div id="results"></div>
 
   <script type="text/javascript">
     var newProductViewController = new NewProductViewController(

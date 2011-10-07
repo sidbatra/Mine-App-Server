@@ -12,12 +12,12 @@ var kProductImageUrl    = '#product_image_url';
 var kProductIsHosted    = '#product_is_hosted';
 var kProductUpload      = 'product_upload';
 var kSelectedImage      = '#selection';
-var kImagesBox          = '#results';
+var kImagesBox          = '#chooser';
 
 // Bing image search params
 var kMediumImages       = 'Size:Medium';
 var kLargeImages        = 'Size:Large';
-var kImageCount         = 10;
+var kImageCount         = 12;
 
 // Image search states
 var kSearchStateInactive    = 0;
@@ -47,11 +47,11 @@ function NewProductViewController(uploadSettings) {
 
   $(kProductForm).submit(function() { return npvController.validateForm(); });
 
-  this.scrollViewController                      = new ScrollViewController();
-  this.scrollViewController.scrollEndedCallback  = function(){
-                                                    npvController.scrollEnded();};
-  this.scrollViewController.resizeEndedCallback  = function(){
-                                                    npvController.resizeEnded();};
+  //this.scrollViewController                      = new ScrollViewController();
+  //this.scrollViewController.scrollEndedCallback  = function(){
+  //                                                  npvController.scrollEnded();};
+  //this.scrollViewController.resizeEndedCallback  = function(){
+  //                                                  npvController.resizeEnded();};
 }
 
 // Wrapper function for searching bing images to handle
@@ -179,6 +179,8 @@ function productSelected(id) {
 //
 NewProductViewController.prototype.imagesLoaded = function(data) {
 
+    $(kImagesBox).show();
+
     var query = data['SearchResponse']['Query']['SearchTerms'];
 
     if(query != this.query)
@@ -208,7 +210,7 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
       
     //$('#' + kPaginationElementID + '').hide();
 
-    this.fillEmptyView();
+    //this.fillEmptyView();
 }
 
 // Fired when there is an error fetching items
@@ -269,11 +271,11 @@ NewProductViewController.prototype.setupUploader = function(settings) {
 
           // Button Settings
           button_placeholder_id : kProductUpload,
-          button_image_url: "/images/rails.png",
-          button_width: 50,
-          button_height: 64,
-          button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+          button_image_url: "/images/transparent.gif",
+          button_width: 350,
+          button_height: 46,
           button_cursor: SWFUpload.CURSOR.HAND,
+          button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
           button_action : SWFUpload.BUTTON_ACTION.SELECT_FILE,
           
           // Flash Settings

@@ -21,9 +21,15 @@ function Product(title,imageUrl,imageWidth,imageHeight,websiteUrl) {
 //
 Product.prototype.imageSearchResultTag = function() {
   return [
-          "<a href='javascript:void(0)' ",
+          "<div class='photo_choice_cell' ",
           "onclick=\"productSelected('" + this.id + "')\">",
-          "<img height='200' ",
+          "<img class='photo_choice' ",
           "src='" + this.imageUrl + "' ",
-          "/></a>"].join('');
+          "/></div>"].join('');
+
+          //"<a href='javascript:void(0)' ",
+          //"onclick=\"productSelected('" + this.id + "')\">",
+          //"<img height='200' ",
+          //"src='" + this.imageUrl + "' ",
+          //"/></a>"].join('');
 }
