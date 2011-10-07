@@ -24,9 +24,10 @@
 
         <div id="product_input">
           <div id="item_search">
-                  <%=conditional_clear_field f,
-                              :query,
-                              "Search for an item by name..."%>
+            <%=f.text_field :query,
+                  :value    => "Search for an item by name...",
+                  :class    => "",
+                  :onfocus  => "this.value='';this.color='#333333';"%>
             <input id="product_search" value="" 
                     title="Search" type="button" alt="Search">
           </div>
@@ -45,13 +46,15 @@
             </span>
 					</div>
 							
-          <%=conditional_clear_field f,
-                      :title,
-                      "Item name"%>
+          <%=f.text_field :title,
+                :value    => "Item name",
+                :class    => "",
+                :onfocus  => "this.value='';this.color='#333333';"%>
 
-          <%=conditional_clear_field f,
-                      :endorsement,
-                      "Why do you love it?"%>
+          <%=f.text_field :endorsement,
+                :value    => "Why do you love it?",
+                :class    => "",
+                :onfocus  => "this.value='';this.color='#333333';"%>
 
           <%=submit_tag "", 
                         :id     => "action_button",
