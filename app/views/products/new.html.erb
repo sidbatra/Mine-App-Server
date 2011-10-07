@@ -46,8 +46,9 @@
           <%=f.text_field :endorsement,
                           :value => "Why do you love it?",
                           :onfocus  => "this.value='';this.style.color='#333333'"%> 
-          			<button id="action_button" class="save_and_share shadow" type="submit"></button>
-          <%#submit_tag "Create"%>
+          <%=submit_tag "", 
+                        :id     => "action_button",
+                        :class  => "save_and_share shadow"%>
 				</div>
 			</div> <!-- right -->
 			
@@ -57,9 +58,6 @@
 
 
 	<div id="chooser" class="shadow_overlay" style="display:none">
-		<div class="photo_choice_cell">
-			<img class="photo_choice" src="/images/item_sample.jpeg">
-		</div>
 	</div> <!-- chooser -->
 
   <%end%>
