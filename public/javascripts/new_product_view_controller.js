@@ -63,7 +63,8 @@ function NewProductViewController(uploadSettings) {
 //
 NewProductViewController.prototype.fetchImages = function() {
 
-    if(this.searchState != kSearchStateInactive)
+    if(this.searchState != kSearchStateInactive || 
+            !$(kImagesBox).is(":visible"))
       return;
 
     this.searchState++;
@@ -93,7 +94,7 @@ NewProductViewController.prototype.searchBingImages = function(query,size,offset
               "JsonCallback=?"].join('');
 
 
-  console.log(url);
+  trace(url);
 
   var npvController = this;
 
@@ -154,11 +155,11 @@ NewProductViewController.prototype.validateForm = function() {
 
   if($(kProductEndorsement).val().length < 1) {
     valid = false;
-    console.log('improper endorsement');
+    trace('improper endorsement');
   }
   else if($(kProductTitle).val().length < 1) {
     valid = false;
-    console.log('improper title');
+    trace('improper title');
   }
     
   return valid;
@@ -303,7 +304,7 @@ NewProductViewController.prototype.fileSelected = function(file) {
 //
 NewProductViewController.prototype.uploadProgress = function(file,bytesLoaded) {
     var percent = Math.ceil((bytesLoaded / file.size) * 100);
-    console.log(percent + ' %');
+    trace(percent + ' %');
 }
 
 // File finishes uploading -- not 100% reliable.
@@ -315,7 +316,7 @@ NewProductViewController.prototype.uploadSuccess = function(file,serverData) {
 //
 NewProductViewController.prototype.uploadComplete = function(file) {
   var filename = settings['key'] + '_' + file.name;
-  console.log(filename);
+  trace(filename);
   $(kProductImageUrl).val(filename);
   $(kProductIsHosted).val(1);
   $(kProductInput).hide();
@@ -327,14 +328,14 @@ NewProductViewController.prototype.uploadComplete = function(file) {
 // Error handling during the uploading process
 //
 NewProductViewController.prototype.uploadError = function(errorCode,message) {
-  console.log("upload error");
+  trace("upload error");
 
     switch (errorCode) {
     case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
       break;
     case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
     default:
-      console.log("error message - " + message);
+      trace("error message - " + message);
       break;
     }
 }
