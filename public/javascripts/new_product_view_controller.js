@@ -16,6 +16,7 @@ var kProductImage       = '#product_image';
 var kProductImageBox    = '#left';
 var kProductImageClass  = 'photo';
 var kImagesBox          = '#chooser';
+var kImagesBoxClose     = '#chooser_closebox'
 var kImages             = '#results';
 
 // Bing image search params
@@ -63,6 +64,10 @@ function NewProductViewController(uploadSettings) {
     $(kProductEndorsement).css('color'),
     '#333333');
 
+  // Clear shared items on escape
+  $('html').keydown(function(e) {
+    npvController.globalKeystroke(e);
+  });
 
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
@@ -70,6 +75,9 @@ function NewProductViewController(uploadSettings) {
   $(kProductSearch).click(function() { return npvController.productSearchClicked();});
 
   $(kProductForm).submit(function() { return npvController.validateForm(); });
+
+  $(kImagesBoxClose).click(function() { npvController.closeImagesBox(); });
+
 
   this.scrollViewController                      = new ScrollViewController();
   this.scrollViewController.scrollEndedCallback  = function(){
@@ -84,7 +92,7 @@ function NewProductViewController(uploadSettings) {
 NewProductViewController.prototype.fetchImages = function() {
 
     if(this.searchState != kSearchStateInactive || 
-            !$(kImagesBox).is(":visible"))
+            !this.isSearchActive())
       return;
 
     this.searchState++;
@@ -136,6 +144,13 @@ NewProductViewController.prototype.fillEmptyView = function() {
     this.fetchImages();
 }
 
+// Returns whether search is currently active
+//
+NewProductViewController.prototype.isSearchActive = function() {
+  return $(kImagesBox).is(":visible");
+}
+
+
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 // Listeners on new product form elements
@@ -183,6 +198,17 @@ NewProductViewController.prototype.validateForm = function() {
   }
     
   return valid;
+}
+
+NewProductViewController.prototype.globalKeystroke = function(e) {
+  if(e.which == 27 && this.isSearchActive())
+    this.closeImagesBox();
+}
+
+// Hide the search box
+//
+NewProductViewController.prototype.closeImagesBox = function() {
+  $(kImagesBox).hide();
 }
 
 // Fired when a product is selected from the search results

@@ -64,7 +64,9 @@
 	</div> <!-- container -->
 
 	<div id="chooser" class="shadow_overlay" style="display:none">
-		<img class="closebox" src="/images/closebox.png">
+    <%=image_tag "closebox.png", 
+                  :id     => "chooser_closebox",
+                  :class  => "closebox"%>
 		<div id="results"></div>
 	</div> <!-- chooser -->
 
