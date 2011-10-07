@@ -44,6 +44,26 @@ function NewProductViewController(uploadSettings) {
   settings              = uploadSettings;
   this.uploader         = this.setupUploader(uploadSettings);
 
+
+  make_conditional_field(
+    kProductQuery,
+    $(kProductQuery).val(),
+    $(kProductQuery).css('color'),
+    '#333333');
+
+  make_conditional_field(
+    kProductTitle,
+    $(kProductTitle).val(),
+    $(kProductTitle).css('color'),
+    '#333333');
+
+  make_conditional_field(
+    kProductEndorsement,
+    $(kProductEndorsement).val(),
+    $(kProductEndorsement).css('color'),
+    '#333333');
+
+
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
 
