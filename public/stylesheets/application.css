@@ -1,0 +1,327 @@
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, textarea,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	border-collapse: collapse;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	font-family: Georgia, Times New Roman, serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 16px;
+	background: #edebeb url('../images/bg_strip.png');
+	background-repeat: repeat-x;
+	overflow-x: hidden;
+}
+
+h1 {
+	font-size: 40px;
+	font-weight: normal;
+	color: #791a10;
+}
+
+#logo {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+}
+
+#container {
+	height: 410px;
+	width: 900px;
+	position: relative;
+	top: 240px; /* change dynamically with JS.io */
+	padding: 0px 25px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#instructions_1 {
+	margin: 0 auto;
+	position: absolute;
+	left: 80px;
+	top: -85px;
+	z-index: 0;
+}
+
+#instructions_2 {
+	margin: 0 auto;
+	position: absolute;
+	right: 20px;
+	top: 40px;
+	z-index: 0;
+}
+
+#instructions_3 {
+	margin: 0 auto;
+	position: absolute;
+	right: 150px;
+	top: 370px;
+	z-index: 0;
+}
+
+#left, #right {
+	height: 410px;
+	float: left;
+}
+
+#left {	
+	width: 350px;
+	background:url('../images/photo_frame.png');
+	background-repeat: no-repeat;
+	padding: 30px;
+}
+
+#left_photo {
+	width: 350px;
+	height: 350px;
+	max-width: 350px;
+	max-height: 350px;
+}
+
+#item_search {
+	width:350px;
+	height:46px;
+	width:350px;
+	margin-top: 102px;
+	background:url('../images/search.png') no-repeat;
+	z-index: 5000;
+}
+
+#s {
+	height: 34px;
+	width: 288px;
+	font-family: 'FuturaStdBook', sans-serif;
+	font-size: 20px;
+	color: #999999;
+	line-height: 34px;
+	padding: 4px 6px;
+	background: white;
+	border: none;
+	margin: 2px;
+}
+
+#go {
+	float: right;
+	cursor: pointer;
+	width: 42px;
+	height: 46px;
+}
+
+#upload_button {
+	cursor: pointer;	
+}
+
+#right {
+	width: 490px;
+	position: relative;
+}
+
+#right_content, #right_new_content {
+	border-left: 1px solid #cccccc;
+	margin-top: 135px;
+	margin-left: 50px;
+	padding-left: 20px;
+}
+
+#right_content { margin-top: 135px; }
+#right_new_content { margin-top: 100px; }
+
+#right_titlebox {
+	width: 360px;
+	height: 50px;
+	padding-left: 60px;
+	position: relative;
+	line-height: 150%;
+	margin-bottom: 12px;
+}
+
+#user_photo {
+	width: 50px;
+	height: 50px;
+	max-width: 50px;
+	max-height: 50px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#right_commentbox {
+	width: 300px;
+	height: 50px;
+	padding: 0 60px;
+	position: relative;
+	line-height: 150%;
+	margin-top: 13px;
+}
+
+#speechmarks_open {
+	width: 50px;
+	height: 50px;
+	max-width: 50px;
+	max-height: 50px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#speechmarks_close {
+	width: 50px;
+	height: 50px;
+	max-width: 50px;
+	max-height: 50px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+
+#user_name {
+	font-family: 'FuturaStdBook', sans-serif;
+	color: #999999;
+}
+
+.is_sharing {
+	line-height: 50px;
+}
+
+#item_name {
+	font-family: 'FuturaStdBold', sans-serif;
+}
+
+#right_commentbox {
+	font-family: inherit;
+	color: #78797d;
+	margin-bottom: 10px;
+}
+
+#action_button {
+	position: absolute;
+	bottom: 50px;
+	left: 71px;
+	cursor: pointer;
+}
+
+#new_item_name, #new_item_note {
+	width: 398px;
+	height: 34px;
+	border: 1px solid #cccccc;
+	font-size: 20px;
+	color: #999999;
+	line-height: 34px;
+	padding: 5px;
+}
+
+#new_item_name { font-family: 'FuturaStdBold', sans-serif; 	margin-bottom: 12px; }
+#new_item_note { font-family: Georgia, Times New Roman, serif; }
+
+
+#chooser {
+	position: absolute;
+	top: 0px;
+	margin: 30px;
+	text-align: left;
+	background: white;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	border: 1px solid #cccccc;
+}
+
+.photo_choice_cell {
+	width: 160px;
+	height: 160px;
+	float:left;
+	margin: 15px 15px 0px 0px; 
+	position: relative;
+	cursor: pointer;
+	border: 1px solid #eeeeee;
+}
+
+.photo_choice_cell:hover {
+	background: #f5f5f5;
+}
+
+.photo_choice {
+	max-width: 160px;
+	max-height: 160px;
+	margin-top: 26px; /* change dynamically with JS.io */
+}
+
+.choose_this img {
+	width: 120px;
+	height: 46px;
+	padding: 57px 20px;
+	position: absolute;
+	top:0;
+	left: 0;
+	opacity: 1;
+}
+
+/* ------------------------------ Effects */
+
+.shadow {
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(00, 00, 00, 0.6);
+	-moz-box-shadow: 0px 0px 3px 0px rgba(00, 00, 00, 0.6);
+	box-shadow: 0px 0px 3px 0px rgba(00, 00, 00, 0.6);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')"; /* For IE 8 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999'); 	/* For IE 5.5 - 7 */
+}
+
+.shadow_overlay {
+	-webkit-box-shadow: 0 0 6px 2px rgba(00, 00, 00, 0.1);
+	-moz-box-shadow: 0 0 6px 2px rgba(00, 00, 00, 0.1);
+	box-shadow: 0 0 6px 2px rgba(00, 00, 00, 0.1);
+}
+
+.ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.faded {
+	-moz-opacity: 0.7;
+	opacity: .70;
+	filter: alpha (opacity=70);
+}
+
+/* ------------------------------ Fonts */
+
+@font-face {
+    font-family: 'FuturaStdBold';
+    src: url('type/futurastd-bold-webfont.eot');
+    src: url('type/futurastd-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/futurastd-bold-webfont.woff') format('woff'),
+         url('type/futurastd-bold-webfont.ttf') format('truetype'),
+         url('type/futurastd-bold-webfont.svg#') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'FuturaStdBook';
+    src: url('type/futurastd-book-webfont.eot');
+    src: url('type/futurastd-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('type/futurastd-book-webfont.woff') format('woff'),
+         url('type/futurastd-book-webfont.ttf') format('truetype'),
+         url('type/futurastd-book-webfont.svg#FuturaStdBook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

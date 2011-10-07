@@ -6,8 +6,6 @@
     <%=stylesheet_link_merged    :application-%>
     <%=javascript_include_merged :application-%>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    
     <%=yield :head%>
   </head>
 
@@ -18,6 +16,8 @@
         <%=is_device_ipad?%>,
         <%=is_device_iphone?%>);
     </script>
+
+    <h1 id="logo">Felvy</h1>
 
     <%=yield%>
 
