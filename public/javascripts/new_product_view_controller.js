@@ -117,7 +117,9 @@ NewProductViewController.prototype.fillEmptyView = function() {
 //-----------------------------------------------------------------------------
 
 NewProductViewController.prototype.initiateProductSearch= function() {
+
   $(kImagesBox).html('');
+  $(kImagesBox).show();
 
   this.query        = $(kProductQuery).val();
   this.offset       = 0;
@@ -162,12 +164,12 @@ NewProductViewController.prototype.validateForm = function() {
 //
 function productSelected(id) {
   var product = productHash[id];
-  $(kSelectedImage).html("<img height='300' src='" + product.imageUrl + "' />");
+  $(kSelectedImage).html("<img src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
-  $(kProductTitle).val(product.title);
+  $(kProductTitle).val($(kProductQuery).val());
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
-  $(kImagesBox).html('');
+  $(kImagesBox).hide();
  }
 
 
@@ -178,8 +180,6 @@ function productSelected(id) {
 
 //
 NewProductViewController.prototype.imagesLoaded = function(data) {
-
-    $(kImagesBox).show();
 
     var query = data['SearchResponse']['Query']['SearchTerms'];
 
@@ -195,10 +195,11 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
     for(var i=0;i<images.length;i++) {
       var product = new Product(
                           images[i]['Title'],
+                          images[i]['Thumbnail']['Url'],
                           images[i]['MediaUrl'],
                           images[i]['Width'],
                           images[i]['Height'],
-                          images[i]['Url']); //image['Thumbnail']['Url']
+                          images[i]['Url']); 
       
       productHash[product.id] = product;
 

@@ -2,8 +2,11 @@
 // and view helpers
 //
 
-function Product(title,imageUrl,imageWidth,imageHeight,websiteUrl) {
+function Product(title,thumbUrl,imageUrl,
+                  imageWidth,imageHeight,websiteUrl) {
+
   this.title        = title;
+  this.thumbUrl     = thumbUrl;
   this.imageUrl     = imageUrl;
   this.imageWidth   = imageWidth;
   this.imageHeight  = imageHeight;
@@ -24,7 +27,7 @@ Product.prototype.imageSearchResultTag = function() {
           "<div class='photo_choice_cell' ",
           "onclick=\"productSelected('" + this.id + "')\">",
           "<img class='photo_choice' ",
-          "src='" + this.imageUrl + "' ",
+          "src='" + this.thumbUrl + "' ",
           "/></div>"].join('');
 
           //"<a href='javascript:void(0)' ",
