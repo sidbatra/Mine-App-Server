@@ -12,7 +12,9 @@ var kProductImageUrl    = '#product_image_url';
 var kProductIsHosted    = '#product_is_hosted';
 var kProductUpload      = 'product_upload';
 var kProductInput       = '#product_input';
-var kSelectedImage      = '#left';
+var kProductImage       = '#product_image';
+var kProductImageBox    = '#left';
+var kProductImageClass  = 'photo';
 var kImagesBox          = '#chooser';
 
 // Bing image search params
@@ -166,8 +168,8 @@ NewProductViewController.prototype.validateForm = function() {
 function productSelected(id) {
   var product = productHash[id];
   $(kProductInput).hide();
-  $(kSelectedImage).addClass('photo');
-  $(kSelectedImage).prepend("<img id='left_photo' src='" + product.imageUrl + "' />");
+  $(kProductImageBox).addClass(kProductImageClass);
+  $(kProductImage).html("<img id='left_photo' src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
   $(kProductTitle).val($(kProductQuery).val());
   $(kProductWebsiteUrl).val(product.websiteUrl);
@@ -314,7 +316,9 @@ NewProductViewController.prototype.uploadComplete = function(file) {
   console.log(filename);
   $(kProductImageUrl).val(filename);
   $(kProductIsHosted).val(1);
-  $(kSelectedImage).html("<img height='300' src='" + settings['server'] + filename + "' />");
+  $(kProductInput).hide();
+  $(kProductImageBox).addClass(kProductImageClass);
+  $(kProductImage).html("<img id='left_photo' src='" + settings['server'] + filename + "' />");
 }
 
 // Error handling during the uploading process
