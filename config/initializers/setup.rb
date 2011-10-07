@@ -11,6 +11,7 @@
 #
 include DW
 include CryptoManagement 
+include Storage
 
 FB_AUTH = FbGraph::Auth.new(CONFIG[:fb_app_id],CONFIG[:fb_app_secret])
 

@@ -1,5 +1,5 @@
 
-  <%=image_tag self.current_user.image_url, :alt => "user image"%>
+  <%=image_tag self.current_user.photo_url, :alt => "user image"%>
   <br>
   <%=self.current_user.first_name%>
   <%=self.current_user.last_name%>
@@ -9,4 +9,4 @@
   <%=@product.title%> <br>
   <%=@product.endorsement%> <br>
   <%=link_to @product.website_url,@product.website_url%> <br>
-  <%=image_tag @product.image_url%>
+  <%=image_tag @product.photo_url%>

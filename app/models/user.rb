@@ -46,6 +46,12 @@ class User < ActiveRecord::Base
     "http://graph.facebook.com/" + fb_user_id + "/picture?type=square"
   end
 
+  # Alias for image_url
+  #
+  def photo_url
+    image_url
+  end
+
   # Test if the remember_token for the user cookie has expired
   #
   def remember_token?

@@ -9,6 +9,8 @@ var kProductQuery       = '#product_query';
 var kProductSearch      = '#product_search';
 var kProductWebsiteUrl  = '#product_website_url';
 var kProductImageUrl    = '#product_image_url';
+var kProductIsHosted    = '#product_is_hosted';
+var kProductUpload      = 'product_upload';
 var kSelectedImage      = '#selection';
 var kImagesBox          = '#results';
 
@@ -23,17 +25,20 @@ var kSearchStateDone        = 3;
 
 // State for all the images being displayed
 var productHash  = new Array();
+var settings     = undefined;
 
 
 // Constructor logic
 //
-function NewProductViewController() {
+function NewProductViewController(uploadSettings) {
   
   var npvController     = this;
 
   this.offset           = 0;
   this.query            = '';
   this.searchState      = kSearchStateInactive;
+  settings              = uploadSettings;
+  this.uploader         = this.setupUploader(uploadSettings);
 
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
@@ -44,11 +49,9 @@ function NewProductViewController() {
 
   this.scrollViewController                      = new ScrollViewController();
   this.scrollViewController.scrollEndedCallback  = function(){
-                                                    npvController.scrollEnded();
-                                                    };
+                                                    npvController.scrollEnded();};
   this.scrollViewController.resizeEndedCallback  = function(){
-                                                    npvController.resizeEnded();
-                                                    };
+                                                    npvController.resizeEnded();};
 }
 
 // Wrapper function for searching bing images to handle
@@ -160,6 +163,7 @@ NewProductViewController.prototype.validateForm = function() {
 function productSelected(id) {
   var product = productHash[id];
   $(kSelectedImage).html("<img height='300' src='" + product.imageUrl + "' />");
+  $(kProductIsHosted).val(0);
   $(kProductTitle).val(product.title);
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
@@ -231,4 +235,93 @@ NewProductViewController.prototype.resizeEnded = function() {
 }
 
 
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Upload callbacks and setup
+//-----------------------------------------------------------------------------
 
+// Setup an uploader at the previously designated element
+//
+NewProductViewController.prototype.setupUploader = function(settings) {
+
+  return new SWFUpload({
+
+          // Backend Settings
+          upload_url: settings['server'],
+          post_params: {"AWSAccessKeyId": settings['aws_id'],
+                        "acl": "public-read",
+                        "key": settings['key'] + "_${filename}",
+                        "policy": settings['policy'],
+                        "signature": settings['signature'],
+                        "success_action_status":"201"},
+          http_success : [201],
+
+          // File Upload Settings
+          file_post_name: 'file',
+          file_size_limit : settings['max'],
+          file_types : settings['extensions'],
+
+          file_queued_handler: this.fileSelected,
+          upload_progress_handler: this.uploadProgress,
+          upload_error_handler: this.uploadError,
+          upload_success_handler: this.uploadSuccess,
+          upload_complete_handler: this.uploadComplete,
+
+          // Button Settings
+          button_placeholder_id : kProductUpload,
+          button_image_url: "/images/rails.png",
+          button_width: 50,
+          button_height: 64,
+          button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+          button_cursor: SWFUpload.CURSOR.HAND,
+          button_action : SWFUpload.BUTTON_ACTION.SELECT_FILE,
+          
+          // Flash Settings
+          flash_url : "/swfs/swfupload.swf",
+          debug: false
+        });
+
+}
+
+// Called when the user selects a file
+//
+NewProductViewController.prototype.fileSelected = function(file) {
+  this.startUpload(); 
+}
+
+// Called to indicate number of bytes uploaded to server
+//
+NewProductViewController.prototype.uploadProgress = function(file,bytesLoaded) {
+    var percent = Math.ceil((bytesLoaded / file.size) * 100);
+    console.log(percent + ' %');
+}
+
+// File finishes uploading -- not 100% reliable.
+//
+NewProductViewController.prototype.uploadSuccess = function(file,serverData) {
+}
+
+// Always called when a file finishes uploading
+//
+NewProductViewController.prototype.uploadComplete = function(file) {
+  var filename = settings['key'] + '_' + file.name;
+  console.log(filename);
+  $(kProductImageUrl).val(filename);
+  $(kProductIsHosted).val(1);
+  $(kSelectedImage).html("<img height='300' src='" + settings['server'] + filename + "' />");
+}
+
+// Error handling during the uploading process
+//
+NewProductViewController.prototype.uploadError = function(errorCode,message) {
+  console.log("upload error");
+
+    switch (errorCode) {
+    case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
+      break;
+    case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
+    default:
+      console.log("error message - " + message);
+      break;
+    }
+}

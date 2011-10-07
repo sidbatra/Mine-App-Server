@@ -1,6 +1,19 @@
   <%=self.current_user.first_name%>
   <%=image_tag self.current_user.image_url, :alt => "user image"%>
 
+   <!--form action="settings[:server]%>" method="post" enctype="multipart/form-data">
+    <%=hidden_field_tag :policy,         @uploader[:policy]%>
+    <%=hidden_field_tag :signature,      @uploader[:signature]%>
+    <%=hidden_field_tag :AWSAccessKeyId, @uploader[:aws_id]%>
+    <%=hidden_field_tag :Filename,""%>
+    <%=hidden_field_tag :success_action_status, 201%>
+    <%=hidden_field_tag :acl, "public-read"%>
+    <%=hidden_field_tag :key,"#{@uploader[:key]}_${filename}"%>
+    <%=file_field_tag :file%>
+    <%=submit_tag "done"%>
+  </form-->
+
+
   <%form_for @product, :html => {:multipart => true} do |f|%>
     <%=f.hidden_field :website_url%>
     <%=f.hidden_field :image_url%>
@@ -11,7 +24,7 @@
     Endorsement <%=f.text_field :endorsement%> <br>
 
     Search  <%=f.text_field :query%> 
-    <input type="button" value="Search" id="product_search"/>
+    <button id="product_search">Search</button> <br>
 
     <%#f.file_field :image%> <br>
     <span id="product_upload"></span>

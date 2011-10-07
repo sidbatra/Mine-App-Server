@@ -35,6 +35,7 @@ class Product < ActiveRecord::Base
       :endorsement  => attributes['endorsement'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],
+      :is_hosted    => attributes['is_hosted'],
       :query        => attributes['query'],
       :user_id      => user_id)
   end
@@ -42,6 +43,15 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
+
+  # Generate url for the photo
+  #
+  def photo_url
+    is_hosted ? FileSystem.url(image_url) : image_url
+  end
+
+
+  protected
 
   # Populate handle from the product title
   #

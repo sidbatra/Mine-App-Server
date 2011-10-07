@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20111005202428) do
     t.string   "endorsement"
     t.text     "website_url"
     t.text     "image_url"
+    t.boolean  "is_hosted",   :default => false
     t.string   "query"
     t.integer  "user_id"
     t.datetime "created_at"

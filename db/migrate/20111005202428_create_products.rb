@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string  :endorsement
       t.text    :website_url
       t.text    :image_url
+      t.boolean :is_hosted, :default => false
       t.string  :query
       t.integer :user_id
 
