@@ -26,8 +26,8 @@
           <div id="item_search">
             <%=f.text_field :query,
                   :value    => "Search for an item by name...",
-                  :class    => "",
-                  :onfocus  => "this.value='';this.color='#333333';"%>
+                  :class    => "box_shadow",
+                  :onfocus  => "this.value='';this.style.color='#333333';"%>
             <input id="product_search" value="" 
                     title="Search" type="button" alt="Search">
           </div>
@@ -48,13 +48,13 @@
 							
           <%=f.text_field :title,
                 :value    => "Item name",
-                :class    => "",
-                :onfocus  => "this.value='';this.color='#333333';"%>
+                :class    => "box_shadow",
+                :onfocus  => "this.value='';this.style.color='#333333';"%>
 
-          <%=f.text_field :endorsement,
+          <%=f.text_area :endorsement,
                 :value    => "Why do you love it?",
-                :class    => "",
-                :onfocus  => "this.value='';this.color='#333333';"%>
+                :class    => "box_shadow",
+                :onfocus  => "this.value='';this.style.color='#333333';"%>
 
           <%=submit_tag "", 
                         :id     => "action_button",
