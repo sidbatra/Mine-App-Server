@@ -24,10 +24,11 @@
 
         <div id="product_input">
           <div id="item_search">
-                  <%=f.text_field :query,
-                                :value    => "Search for an item by name...",
-                                :onfocus  => "this.value='';this.style.color='#333333'"%> 
-            <input id="product_search" value="" title="Search" type="button" alt="Search">
+                  <%=conditional_clear_field f,
+                              :query,
+                              "Search for an item by name..."%>
+            <input id="product_search" value="" 
+                    title="Search" type="button" alt="Search">
           </div>
           <%=image_tag "or.png"%>
           <span id="product_upload"></span>
@@ -44,13 +45,14 @@
             </span>
 					</div>
 							
-          <%=f.text_field :title, 
-                          :value    => "Item name",
-                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
+          <%=conditional_clear_field f,
+                      :title,
+                      "Item name"%>
 
-          <%=f.text_field :endorsement,
-                          :value => "Why do you love it?",
-                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
+          <%=conditional_clear_field f,
+                      :endorsement,
+                      "Why do you love it?"%>
+
           <%=submit_tag "", 
                         :id     => "action_button",
                         :class  => "save_and_share shadow"%>
