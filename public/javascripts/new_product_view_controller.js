@@ -58,11 +58,15 @@ function NewProductViewController(uploadSettings) {
     $(kProductTitle).css('color'),
     '#333333');
 
+  restrictFieldSize($(kProductTitle),100,'charsremain');
+
   make_conditional_field(
     kProductEndorsement,
     $(kProductEndorsement).val(),
     $(kProductEndorsement).css('color'),
     '#333333');
+
+  restrictFieldSize($(kProductEndorsement),120,'charsremain');
 
   // Clear shared items on escape
   $('html').keydown(function(e) {
