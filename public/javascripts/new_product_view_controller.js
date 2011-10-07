@@ -11,7 +11,8 @@ var kProductWebsiteUrl  = '#product_website_url';
 var kProductImageUrl    = '#product_image_url';
 var kProductIsHosted    = '#product_is_hosted';
 var kProductUpload      = 'product_upload';
-var kSelectedImage      = '#selection';
+var kProductInput       = '#product_input';
+var kSelectedImage      = '#left';
 var kImagesBox          = '#chooser';
 
 // Bing image search params
@@ -164,7 +165,9 @@ NewProductViewController.prototype.validateForm = function() {
 //
 function productSelected(id) {
   var product = productHash[id];
-  $(kSelectedImage).html("<img src='" + product.imageUrl + "' />");
+  $(kProductInput).hide();
+  $(kSelectedImage).addClass('photo');
+  $(kSelectedImage).prepend("<img id='left_photo' src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
   $(kProductTitle).val($(kProductQuery).val());
   $(kProductWebsiteUrl).val(product.websiteUrl);

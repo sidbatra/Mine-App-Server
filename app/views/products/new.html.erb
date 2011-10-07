@@ -19,14 +19,16 @@
 
 			<div id="left">
 		
-				<div id="item_search">
-		            <%=f.text_field :query,
-		                          :value    => "Search for an item by name...",
-		                          :onfocus  => "this.value='';this.style.color='#333333'"%> 
-					<input id="product_search" value="" title="Search" type="button" alt="Search">
-				</div>
-        		<%=image_tag "or.png"%>
-        		<span id="product_upload"></span>
+        <div id="product_input">
+          <div id="item_search">
+                  <%=f.text_field :query,
+                                :value    => "Search for an item by name...",
+                                :onfocus  => "this.value='';this.style.color='#333333'"%> 
+            <input id="product_search" value="" title="Search" type="button" alt="Search">
+          </div>
+          <%=image_tag "or.png"%>
+          <span id="product_upload"></span>
+        </div>
 			</div> <!-- left -->
 			
 			<div id="right">
