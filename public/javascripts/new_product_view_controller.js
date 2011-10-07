@@ -16,6 +16,7 @@ var kProductImage       = '#product_image';
 var kProductImageBox    = '#left';
 var kProductImageClass  = 'photo';
 var kImagesBox          = '#chooser';
+var kImages             = '#results';
 
 // Bing image search params
 var kMediumImages       = 'Size:Medium';
@@ -121,7 +122,7 @@ NewProductViewController.prototype.fillEmptyView = function() {
 
 NewProductViewController.prototype.initiateProductSearch= function() {
 
-  $(kImagesBox).html('');
+  $(kImages).html('');
   $(kImagesBox).show();
 
   this.query        = $(kProductQuery).val();
@@ -208,7 +209,7 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
       
       productHash[product.id] = product;
 
-      $(kImagesBox).append(product.imageSearchResultTag());
+      $(kImages).append(product.imageSearchResultTag());
     }
 
     if(images.length == kImageCount && ++this.searchState == kSearchStateDone)
