@@ -172,7 +172,8 @@ function productSelected(id) {
   $(kProductImageBox).addClass(kProductImageClass);
   $(kProductImage).html("<img id='left_photo' src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
-  $(kProductTitle).val($(kProductQuery).val());
+  $(kProductTitle).val($(kProductQuery).val().toProperCase());
+  $(kProductTitle).focus();
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
   $(kImagesBox).hide();
@@ -320,6 +321,7 @@ NewProductViewController.prototype.uploadComplete = function(file) {
   $(kProductInput).hide();
   $(kProductImageBox).addClass(kProductImageClass);
   $(kProductImage).html("<img id='left_photo' src='" + settings['server'] + filename + "' />");
+  $(kProductTitle).focus();
 }
 
 // Error handling during the uploading process
