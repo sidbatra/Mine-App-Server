@@ -23,3 +23,7 @@ function setupDeviceVariables(isMobile,isiPad,isiPhone) {
   isDeviceiOS       = isiPad || isiPhone;
 }
 
+function trace(s) {
+  try { console.log(s) } catch (e) {  }
+};
+
