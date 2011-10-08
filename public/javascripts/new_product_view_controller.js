@@ -162,6 +162,10 @@ NewProductViewController.prototype.isSearchActive = function() {
 
 NewProductViewController.prototype.initiateProductSearch= function() {
 
+  if($(kProductQuery).val() == '' || 
+        $(kProductQuery).val() == 'Search for an item by name...')
+    return;
+
   $(kImages).html('');
   $(kImagesBox).show();
 
