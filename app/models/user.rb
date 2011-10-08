@@ -40,6 +40,18 @@ class User < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Share the given product to FB
+  #
+  def share_product(product,product_url)
+    fb_user = FbGraph::User.me(access_token)
+    fb_user.feed!(
+      :message      => product.endorsement,
+      :picture      => product.photo_url,
+      :link         => product_url,
+      :description  => ' ',
+      :name         => product.title)
+  end
+
   # URL for the user photo
   #
   def image_url
