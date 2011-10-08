@@ -39,7 +39,7 @@ h1 {
 
 #logo {
 	position: absolute;
-	top: 30px;
+	top: 37px;
 	left: 30px;
 }
 
@@ -275,7 +275,7 @@ h1 {
 #chooser {
 	position: absolute;
 	top: 0px;
-	margin: 30px;
+	margin: 48px 30px 30px 30px;
 	text-align: left;
 	background: white;
 	padding-bottom: 20px;
@@ -283,12 +283,14 @@ h1 {
 	border: 1px solid #cccccc;
 }
 
-.closebox {
-	width: 30px;
-	height: 30px;
+.cancel_chooser {
+	width: 120px;
+	height: 34px;
 	position: absolute;
-	top: -15px;
-	right: -15px;
+	top: -42px;
+	left: 0px;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .photo_choice_cell {
