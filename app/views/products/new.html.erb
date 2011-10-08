@@ -18,8 +18,12 @@
       <%=f.hidden_field :is_hosted%>
 
 			<div id="left">
+
 		
-        <div id="product_image">
+		<div id="product_selection">
+	        <div id="product_image">
+				<div class="change_photo dark_button rounded faded">Change photo</div>
+	        </div>
         </div>
 
         <div id="product_input">
@@ -64,7 +68,9 @@
 	</div> <!-- container -->
 
 	<div id="chooser" class="shadow_overlay" style="display:none">
-		<img id="chooser_closebox" class="cancel_chooser" src="/images/cancel.png">
+		<div id="chooser_cancel_bar">
+			<div id="chooser_closebox" class="cancel_chooser dark_button">Close</div>
+		</div>
 		<div id="results"></div>
 	</div> <!-- chooser -->
 
