@@ -17,9 +17,10 @@
         <%=is_device_iphone?%>);
     </script>
 
-    <h1 id="logo">
-      <%=link_to "Felvy", root_path%>
-    </h1>
+    <div id="logo">
+      <%=link_to image_tag('felvy_logo.png'),
+      			  root_path%>
+    </div>
 
     <%=yield%>
 

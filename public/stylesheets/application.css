@@ -42,8 +42,10 @@ h1 {
 
 #logo {
 	position: absolute;
-	top: 30px;
-	left: 30px;
+	top: 12px;
+	left: 20px;
+	width: 120px;
+	height: 64px;
 }
 
 #container {
@@ -68,14 +70,14 @@ h1 {
 	margin: 0 auto;
 	position: absolute;
 	right: 20px;
-	top: 40px;
+	top: 10px;
 	z-index: 0;
 }
 
 #instructions_3 {
 	margin: 0 auto;
 	position: absolute;
-	right: 150px;
+	right: 160px;
 	top: 370px;
 	z-index: 0;
 }
@@ -151,13 +153,12 @@ h1 {
 
 #right_content, #right_new_content {
 	border-left: 1px solid #bbbbbb;
-	margin-top: 135px;
 	margin-left: 50px;
 	padding-left: 20px;
 }
 
 #right_content { margin-top: 135px; }
-#right_new_content { margin-top: 100px; }
+#right_new_content { margin-top: 70px; }
 
 #right_titlebox {
 	width: 355px;
@@ -233,12 +234,11 @@ h1 {
 #action_button {
 	width: 216px;
 	height: 46px;
+	cursor: pointer;
+	cursor: hand;
 	position: absolute;
 	bottom: 50px;
 	left: 71px;
-	cursor: pointer;
-	cursor: hand;
-	margin: 0;
   	border: 0;
   	overflow: hidden;
 }
@@ -336,10 +336,10 @@ h1 {
 	font-size: 12px;
 	text-transform: uppercase;
 	color: #bbbbbb;
-	text-align: center;
 	position: absolute;
 	bottom: 0px;
 	z-index: -1000;
+	padding-left: 20px;
 }
 
 /* ------------------------------ Effects */
