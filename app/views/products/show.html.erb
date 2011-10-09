@@ -16,8 +16,12 @@
     
     
     <div id="left" class="photo">
-      <%=image_tag @product.photo_url,
-                    :id => "left_photo"%>
+      <%=link_to_if !@product.is_hosted,
+                    image_tag(
+                      @product.photo_url,
+                      :id => "left_photo"),
+                    @product.website_url,
+                    :target => "_blank" %>
     </div> <!-- left -->
 
     
