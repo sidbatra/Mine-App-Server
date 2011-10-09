@@ -36,7 +36,8 @@ h1 {
 	font-size: 40px;
 	font-weight: normal;
 	color: #791a10;
-	font-family: 'ITCGalliardStdBold', serif;
+	font-family: 'ITCGalliardStdBk', serif;
+	text-transform: uppercase;
 }
 
 #logo {
