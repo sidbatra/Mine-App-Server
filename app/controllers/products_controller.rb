@@ -20,11 +20,6 @@ class ProductsController < ApplicationController
                             params[:product],
                             self.current_user.id)
 
-    #self.current_user.share_product(
-    #                    product,
-    #                    product_url(
-    #                      product.id,
-    #                      product.handle))
 
     target_url  = product_path(
                    product.id,

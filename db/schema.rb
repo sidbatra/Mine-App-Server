@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111005202428) do
+ActiveRecord::Schema.define(:version => 20111009011130) do
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20111005202428) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_shared",   :default => false
   end
 
   add_index "products", ["user_id"], :name => "index_products_on_user_id"

@@ -43,8 +43,16 @@
           	<div id="speechmarks_close"></div>
           </div> <!--right_commentbox-->
 
-          <%unless logged_in?%>
+          <%if !logged_in?%>
             <%=image_tag "login_facebook.png", 
+                          :class  => "shadow",
+                          :id     => "action_button"%>
+          <%elsif self.current_user.id == @product.user.id%>
+            <%=image_tag "done_post_another_button.png", 
+                          :class  => "shadow",
+                          :id     => "action_button"%>
+          <%else%>
+            <%=image_tag "share_own_item.png", 
                           :class  => "shadow",
                           :id     => "action_button"%>
           <%end%>
@@ -54,3 +62,14 @@
 
 
   </div> <!-- container -->
+
+  <script type="text/javascript">
+    var productShowViewController = new ProductShowViewController(
+                                          <%=@product.id%>);
+
+    <%if logged_in?  && 
+          @product.user.id == self.current_user.id && 
+          !@product.is_shared%>
+      productShowViewController.share();
+    <%end%>
+  </script>
