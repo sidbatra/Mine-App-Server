@@ -16,9 +16,12 @@
     
     
     <div id="left" class="photo">
-    	<div class="change_photo dark_button rounded faded">Change photo</div>
-      <%=image_tag @product.photo_url,
-                    :id => "left_photo"%>
+      <%=link_to_if !@product.is_hosted,
+                    image_tag(
+                      @product.photo_url,
+                      :id => "left_photo"),
+                    @product.website_url,
+                    :target => "_blank" %>
     </div> <!-- left -->
 
     
@@ -55,3 +58,16 @@
 
 
   </div> <!-- container -->
+  <script type="text/javascript">
+    var productShowViewController = new ProductShowViewController(
+                                          <%=@product.id%>);
+
+    <%if logged_in?  && 
+          @product.user.id == self.current_user.id && 
+          !@product.is_shared%>
+      productShowViewController.share();
+    <%end%>
+
+    center_based_on_element('#container');
+      
+  </script>

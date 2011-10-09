@@ -51,3 +51,20 @@ function make_conditional_field(id,text,placeholderColor,textColor) {
   });
 }
 
+// Vertically align the page based on the elementID
+//
+function center_based_on_element(elementID) {
+  var min     = 130;
+  var margin  = 20;
+
+  $(document).ready(function() { 
+    $(elementID).css('top',
+      Math.max(min,($(window).height() - $(elementID).height())/2) - margin);
+  });
+
+  var scrollController = new ScrollViewController();
+  scrollController.resizeEndedCallback  = function(){ 
+    $(elementID).css('top',
+      Math.max(min,($(window).height() - $(elementID).height())/2) - margin);
+  }
+}

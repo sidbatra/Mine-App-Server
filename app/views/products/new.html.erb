@@ -79,5 +79,7 @@
   <script type="text/javascript">
     var newProductViewController = new NewProductViewController(
                     {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
+
+    center_based_on_element('#container');
   </script>
 
