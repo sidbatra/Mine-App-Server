@@ -44,17 +44,20 @@
           </div> <!--right_commentbox-->
 
           <%if !logged_in?%>
-            <%=image_tag "login_facebook.png", 
+            <%=link_to image_tag("login_facebook.png", 
                           :class  => "shadow",
-                          :id     => "action_button"%>
+                          :id     => "action_button"),
+                        fb_auth_path%>
           <%elsif self.current_user.id == @product.user.id%>
-            <%=image_tag "done_post_another_button.png", 
+            <%=link_to image_tag("done_post_another_button.png", 
                           :class  => "shadow",
-                          :id     => "action_button"%>
+                          :id     => "action_button"),
+                        new_product_path%>
           <%else%>
-            <%=image_tag "share_own_item.png", 
+            <%=link_to image_tag("share_own_item.png", 
                           :class  => "shadow",
-                          :id     => "action_button"%>
+                          :id     => "action_button"),
+                        new_product_path%>
           <%end%>
 			<div id="blocker"></div>
       </div> <!-- right_content -->
