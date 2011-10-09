@@ -54,7 +54,7 @@ function make_conditional_field(id,text,placeholderColor,textColor) {
 // Vertically align the page based on the elementID
 //
 function center_based_on_element(elementID) {
-  var min = 150;
+  var min = 130;
 
   $(document).ready(function() { 
     $(elementID).css('top',
