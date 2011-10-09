@@ -33,6 +33,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products,
                 :only => [:new,:create]
 
+  map.resource  :share,
+                :controller => 'share',
+                :only       => [:create]
+      
+
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.

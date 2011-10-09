@@ -44,6 +44,13 @@ class Product < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Mark the product as shared
+  #
+  def shared
+    self.is_shared = true
+    save!
+  end
+
   # Generate url for the photo
   #
   def photo_url

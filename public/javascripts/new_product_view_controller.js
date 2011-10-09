@@ -15,6 +15,8 @@ var kProductInput       = '#product_input';
 var kProductImage       = '#product_image';
 var kProductImageBox    = '#left';
 var kProductImageClass  = 'photo';
+var kProductCancel      = '#product_cancel';
+var kProductSelection   = '#product_selection';
 var kImagesBox          = '#chooser';
 var kImagesBoxClose     = '#chooser_closebox'
 var kImages             = '#results';
@@ -77,6 +79,8 @@ function NewProductViewController(uploadSettings) {
                         return npvController.productQueryKeyPress(e); });
 
   $(kProductSearch).click(function() { return npvController.productSearchClicked();});
+
+  $(kProductCancel).click(function() { return npvController.productCancelClicked();});
 
   $(kProductForm).submit(function() { return npvController.validateForm(); });
 
@@ -219,10 +223,19 @@ NewProductViewController.prototype.closeImagesBox = function() {
   $(kImagesBox).hide();
 }
 
+// Fired when the product selection is cancelled
+//
+NewProductViewController.prototype.productCancelClicked = function() {
+  $(kProductImageBox).removeClass(kProductImageClass);
+  $(kProductInput).show();
+  $(kProductSelection).hide();
+}
+
 // Fired when a product is selected from the search results
 //
 function productSelected(id) {
   var product = productHash[id];
+  $(kProductSelection).show();
   $(kProductInput).hide();
   $(kProductImageBox).addClass(kProductImageClass);
   $(kProductImage).html("<img id='left_photo' src='" + product.imageUrl + "' />");
@@ -371,9 +384,10 @@ NewProductViewController.prototype.uploadSuccess = function(file,serverData) {
 NewProductViewController.prototype.uploadComplete = function(file) {
   var filename = settings['key'] + '_' + file.name;
   trace(filename);
+  $(kProductSelection).show();
+  $(kProductInput).hide();
   $(kProductImageUrl).val(filename);
   $(kProductIsHosted).val(1);
-  $(kProductInput).hide();
   $(kProductImageBox).addClass(kProductImageClass);
   $(kProductImage).html("<img id='left_photo' src='" + settings['server'] + filename + "' />");
   $(kProductTitle).focus();
