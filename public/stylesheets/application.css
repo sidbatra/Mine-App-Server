@@ -36,7 +36,8 @@ h1 {
 	font-size: 40px;
 	font-weight: normal;
 	color: #791a10;
-	font-family: 'ITCGalliardStdBold', serif;
+	font-family: 'ITCGalliardStdBk', serif;
+	text-transform: uppercase;
 }
 
 #logo {
@@ -121,6 +122,10 @@ h1 {
 	float: left;
 }
 
+#product_selection {
+  display: none;
+}
+
 #product_search {
 	float: right;
 	width: 46px;
@@ -131,10 +136,6 @@ h1 {
   	overflow: hidden;
   	cursor: pointer;
   	cursor: hand; /* for IE 5.x */
-}
-
-#product_selection {
-  display: none;
 }
 
 .swfupload {
@@ -160,7 +161,6 @@ h1 {
 
 #right_titlebox {
 	width: 355px;
-	height: 50px;
 	padding-left: 65px;
 	position: relative;
 	line-height: 150%;
@@ -179,7 +179,6 @@ h1 {
 
 #right_commentbox {
 	width: 420px;
-	position: relative;
 	line-height: 150%;
 	margin-top: 13px;
 }
@@ -216,6 +215,7 @@ h1 {
 #item_name {
 	font-family: 'FuturaStdBold', sans-serif;
 	font-size: 20px;
+	margin-bottom: 12px;
 }
 
 #right_commentbox {

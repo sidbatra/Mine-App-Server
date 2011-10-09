@@ -32,13 +32,13 @@
             <%=image_tag @product.user.photo_url, 
                           :id => "user_photo"%>
 
-            <span id="user_name">
+            <div id="user_name">
               <%=user_share_text(@product.user)%>
-            </span><br>
+            </div>
 
-            <span id="item_name">
+            <div id="item_name">
               <%=h @product.title%>
-            </span>
+            </div>
           </div> <!--right_titlebox-->
 
           <div id="right_commentbox">
@@ -46,7 +46,6 @@
             	<div id="user_comment"><%=h @product.endorsement%></div>
           	<div id="speechmarks_close"></div>
           </div> <!--right_commentbox-->
-
           <%if !logged_in?%>
             <%=link_to image_tag("login_facebook.png", 
                           :class  => "shadow",
@@ -63,13 +62,13 @@
                           :id     => "action_button"),
                         new_product_path%>
           <%end%>
-			<div id="blocker"></div>
+          <div id="blocker">
+          </div>
       </div> <!-- right_content -->
     </div> <!-- right -->
 
 
   </div> <!-- container -->
-
   <script type="text/javascript">
     var productShowViewController = new ProductShowViewController(
                                           <%=@product.id%>);
