@@ -133,6 +133,10 @@ h1 {
   	cursor: hand; /* for IE 5.x */
 }
 
+#product_selection {
+  display: none;
+}
+
 .swfupload {
 	background: url('/images/upload.png') no-repeat;
 	cursor: pointer;
