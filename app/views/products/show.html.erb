@@ -16,6 +16,7 @@
     
     
     <div id="left" class="photo">
+    	<div class="change_photo dark_button rounded faded">Change photo</div>
       <%=image_tag @product.photo_url,
                     :id => "left_photo"%>
     </div> <!-- left -->
@@ -28,13 +29,13 @@
             <%=image_tag @product.user.photo_url, 
                           :id => "user_photo"%>
 
-            <span id="user_name">
+            <div id="user_name">
               <%=user_share_text(@product.user)%>
-            </span><br>
+            </div>
 
-            <span id="item_name">
+            <div id="item_name">
               <%=@product.title%>
-            </span>
+            </div>
           </div> <!--right_titlebox-->
 
           <div id="right_commentbox">
@@ -43,21 +44,10 @@
           	<div id="speechmarks_close"></div>
           </div> <!--right_commentbox-->
 
-          <%if !logged_in?%>
-            <%=link_to image_tag("login_facebook.png", 
+          <%unless logged_in?%>
+            <%=image_tag "login_facebook.png", 
                           :class  => "shadow",
-                          :id     => "action_button"),
-                        fb_auth_path%>
-          <%elsif self.current_user.id == @product.user.id%>
-            <%=link_to image_tag("done_post_another_button.png", 
-                          :class  => "shadow",
-                          :id     => "action_button"),
-                        new_product_path%>
-          <%else%>
-            <%=link_to image_tag("share_own_item.png", 
-                          :class  => "shadow",
-                          :id     => "action_button"),
-                        new_product_path%>
+                          :id     => "action_button"%>
           <%end%>
 			<div id="blocker"></div>
       </div> <!-- right_content -->
@@ -65,14 +55,3 @@
 
 
   </div> <!-- container -->
-
-  <script type="text/javascript">
-    var productShowViewController = new ProductShowViewController(
-                                          <%=@product.id%>);
-
-    <%if logged_in?  && 
-          @product.user.id == self.current_user.id && 
-          !@product.is_shared%>
-      productShowViewController.share();
-    <%end%>
-  </script>
