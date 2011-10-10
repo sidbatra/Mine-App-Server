@@ -60,7 +60,7 @@ function NewProductViewController(uploadSettings) {
     $(kProductTitle).css('color'),
     '#333333');
 
-  restrictFieldSize($(kProductTitle),120,'charsremain');
+  restrictFieldSize($(kProductTitle),80,'charsremain');
 
   make_conditional_field(
     kProductEndorsement,
