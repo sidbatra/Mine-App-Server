@@ -17,7 +17,8 @@ class ShareController < ApplicationController
       #                    product,
       #                    product_url(
       #                      product.id,
-      #                      product.handle)) 
+      #                      product.handle,
+      #                      :ref => "facebook")) 
       #
     end
   rescue => ex
