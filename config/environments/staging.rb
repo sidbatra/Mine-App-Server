@@ -9,13 +9,15 @@ config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 config.action_view.cache_template_loading            = true
 
+# See everything in the log (default is :info)
+config.log_level = :debug
+
 # Enable threaded mode
 # config.threadsafe!
 
 ActionController::Base.asset_host = File.join(
                                           CONFIG[:asset_host],
                                           CONFIG[:revision])
-
 
 # Cache settings
 #config.cache_store = :mem_cache_store, '10.194.250.118:11211'

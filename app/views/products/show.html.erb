@@ -50,17 +50,20 @@
             <%=link_to image_tag("login_facebook.png", 
                           :class  => "shadow",
                           :id     => "action_button"),
-                        fb_auth_path%>
+                        fb_auth_path,
+                        :id => "action_link" %>
           <%elsif self.current_user.id == @product.user.id%>
             <%=link_to image_tag("done_post_another_button.png", 
                           :class  => "shadow",
                           :id     => "action_button"),
-                        new_product_path%>
+                        new_product_path,
+                        :id => "action_link" %>
           <%else%>
             <%=link_to image_tag("share_own_item.png", 
                           :class  => "shadow",
                           :id     => "action_button"),
-                        new_product_path%>
+                        new_product_path,
+                        :id => "action_link" %>
           <%end%>
           <div id="blocker">
           </div>
@@ -77,6 +80,14 @@
           @product.user.id == self.current_user.id && 
           !@product.is_shared%>
       productShowViewController.share();
+    <%end%>
+
+    <%if !logged_in?%>
+      productShowViewController.setupLoggedOutAnalytics();
+    <%elsif self.current_user.id == @product.user.id%>
+      productShowViewController.setupPostCreationAnalytics();
+    <%else%>
+      productShowViewController.setupLoggedInAnalytics();
     <%end%>
 
     center_based_on_element('#container');

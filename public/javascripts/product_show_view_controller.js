@@ -16,3 +16,21 @@ ProductShowViewController.prototype.share = function() {
     error:      function(r,s,e){trace(r + ' ' + s + ' ' + e);}
     });
 }
+
+//Setup analytics for logged out state
+//
+ProductShowViewController.prototype.setupLoggedOutAnalytics = function() {
+  mpq.track_links($("#action_link"),"FB Connect");
+}
+
+//Setup analytics for logged in state
+//
+ProductShowViewController.prototype.setupLoggedInAnalytics = function() {
+  mpq.track_links($("#action_link"),"Share your own item");
+}
+
+//Setup analytics for post creation page
+//
+ProductShowViewController.prototype.setupPostCreationAnalytics = function() {
+  mpq.track_links($("#action_link"),"Done! Post Another");
+}

@@ -60,7 +60,7 @@ function NewProductViewController(uploadSettings) {
     $(kProductTitle).css('color'),
     '#333333');
 
-  restrictFieldSize($(kProductTitle),120,'charsremain');
+  restrictFieldSize($(kProductTitle),80,'charsremain');
 
   make_conditional_field(
     kProductEndorsement,
@@ -179,6 +179,7 @@ NewProductViewController.prototype.initiateProductSearch= function() {
   productHash       = new Array();
 
   this.fetchImages();
+  mpq.track("Searched for: " + this.query);
 }
 
 NewProductViewController.prototype.productQueryKeyPress = function(e) {
@@ -229,6 +230,8 @@ NewProductViewController.prototype.productCancelClicked = function() {
   $(kProductImageBox).removeClass(kProductImageClass);
   $(kProductInput).show();
   $(kProductSelection).hide();
+
+  mpq.track("product cancelled");
 }
 
 // Fired when a product is selected from the search results
@@ -245,6 +248,8 @@ function productSelected(id) {
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
   $(kImagesBox).hide();
+
+  mpq.track("product selected");
  }
 
 
@@ -347,7 +352,7 @@ NewProductViewController.prototype.setupUploader = function(settings) {
 
           // Button Settings
           button_placeholder_id : kProductUpload,
-          button_image_url: "/images/transparent.gif",
+          button_image_url: '/images/transparent.gif',
           button_width: 350,
           button_height: 46,
           button_cursor: SWFUpload.CURSOR.HAND,
@@ -355,7 +360,7 @@ NewProductViewController.prototype.setupUploader = function(settings) {
           button_action : SWFUpload.BUTTON_ACTION.SELECT_FILE,
           
           // Flash Settings
-          flash_url : "/swfs/swfupload.swf",
+          flash_url : '/swfs/swfupload.swf',
           debug: false
         });
 
@@ -365,6 +370,7 @@ NewProductViewController.prototype.setupUploader = function(settings) {
 //
 NewProductViewController.prototype.fileSelected = function(file) {
   this.startUpload(); 
+  mpq.track("File Selected for upload");
 }
 
 // Called to indicate number of bytes uploaded to server
@@ -407,3 +413,17 @@ NewProductViewController.prototype.uploadError = function(errorCode,message) {
       break;
     }
 }
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Analytics 
+//-----------------------------------------------------------------------------
+
+//Setup analytics for creation page
+//
+NewProductViewController.prototype.setupPreCreationAnalytics = function(username) {
+  mpq.name_tag(username);
+  mpq.track_forms($("#new_product"),"Save and Share it!");
+}
+

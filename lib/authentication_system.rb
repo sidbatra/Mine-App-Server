@@ -51,18 +51,19 @@ module DW
     #
     def access_denied
       store_location
-      respond_to do |format|
-        format.json do
-          render :partial => "json/response",
-                 :locals  => {
-                    :success  => false,
-                    :message  => "Authorization Required",
-                    :body     => nil}
-        end
-        format.html do 
-          redirect_to login_path#(:after_login => request.request_uri)
-        end
-      end
+      redirect_to login_path#(:after_login => request.request_uri)
+      #respond_to do |format|
+      #  format.json do
+      #    render :partial => "json/response",
+      #           :locals  => {
+      #              :success  => false,
+      #              :message  => "Authorization Required",
+      #              :body     => nil}
+      #  end
+      #  format.html do 
+      #    redirect_to login_path#(:after_login => request.request_uri)
+      #  end
+      #end
     end  
     
     # Store the URI of the current request in the session.
