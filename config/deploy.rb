@@ -2,7 +2,7 @@
 set :application,   "felvy"
 
 set :scm,           :git
-set :repository,    "git@github.com:Denwen/Teams-App-Server.git"
+set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"
 set :user,          "manager"  
 set :deploy_via,    :remote_cache
 
