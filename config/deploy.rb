@@ -2,7 +2,7 @@
 set :application,   "felvy"
 
 set :scm,           :git
-set :repository,    "git@github.com:Denwen/Teams-App-Server.git"
+set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"
 set :user,          "manager"  
 set :deploy_via,    :remote_cache
 
@@ -27,20 +27,20 @@ task :staging do
                         :no_release => true
   set :total_workers, 1
   set :environment,   "staging"
-  set :branch,        "development"
+  set :branch,        "master"
   set :apnd_file,     "apns-dev.pem"
   set :apnd_host,     "gateway.sandbox.push.apple.com"
 end
 
 
 task :production do
-  role :web,          "ec2-184-73-131-57.compute-1.amazonaws.com"
-  role :worker,       "ec2-50-19-211-235.compute-1.amazonaws.com"
-  role :db,           "ec2-184-73-131-57.compute-1.amazonaws.com",
+  role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com"
+  role :worker,       "ec2-75-101-204-136.compute-1.amazonaws.com"
+  role :db,           "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :search,       "ec2-50-19-211-235.compute-1.amazonaws.com",  
+  role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :cache,        "ec2-50-19-211-235.compute-1.amazonaws.com",   
+  role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
   set :total_workers, 2
   set :environment,   "production"

@@ -1,9 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.root :controller  => :products,
-           :action      => :show,
-           :id          => 1,
-           :name        => "Diamondback-Insight-Bike"
+  map.root :controller  => :home,
+            :action     => :show
+  #map.root :controller  => :products,
+  #         :action      => :show,
+  #         :id          => 1,
+  #         :name        => "Diamondback-Insight-Bike"
 
   map.login   'facebook/authenticate',
               :controller => :session,

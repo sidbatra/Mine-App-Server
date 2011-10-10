@@ -35,8 +35,8 @@ production: &production
   :host: felvy.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: denwen-hasit-production
-  :edge_server: http://edge.hasit.com
-  :asset_host: http://static.hasit.com
+  :edge_server: http://edge.felvy.com
+  :asset_host: http://static.felvy.com
   :emails:
     :noreply_from: Teams <noreply@hasit.com>
     :sender: manager@hasit.com

@@ -13,7 +13,7 @@ NameVirtualHost *:80
 
   # Index file and Document Root (where the public files are located)
   DocumentRoot /vol/felvy/current/public
-  RailsEnv staging
+  RailsEnv production
   PassengerMinInstances 3
 
   <Directory /vol/felvy/current/public>
