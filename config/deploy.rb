@@ -177,7 +177,8 @@ namespace :apache do
   task :config, :roles => :web do
     run "cd #{current_path} && "\
         "sudo cp config/apache/#{environment} "\
-        "/etc/apache2/sites-available/denwen"
+        "/etc/apache2/sites-available/felvy"
+    run "sudo a2ensite felvy"
   end
 
   desc 'Start the apache server for the first time'
