@@ -27,7 +27,7 @@ task :staging do
                         :no_release => true
   set :total_workers, 1
   set :environment,   "staging"
-  set :branch,        "development"
+  set :branch,        "master"
   set :apnd_file,     "apns-dev.pem"
   set :apnd_host,     "gateway.sandbox.push.apple.com"
 end
