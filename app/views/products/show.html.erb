@@ -1,77 +1,9 @@
 
-    <!-- item -->
+  <!-- item -->
   <div id="container">
-  
-    <%unless logged_in?%>
-      <div id="instructions_1" style="display:block">
-        <%=image_tag "instructions_1.png"%>
-      </div>
-      <div id="instructions_2" style="display:block">
-        <%=image_tag "instructions_2.png"%>
-      </div>
-      <div id="instructions_3" style="display:block">
-        <%=image_tag "instructions_3.png"%>
-      </div> <!-- instructions -->
-    <%end%>
-    
-    
-    <div id="left" class="photo">
-      <%=link_to_if !@product.is_hosted,
-                    image_tag(
-                      @product.photo_url,
-                      :id => "left_photo"),
-                    @product.website_url,
-                    :target => "_blank" %>
-    </div> <!-- left -->
-
-    
-    <div id="right">
-      <div id="right_content">
-
-          <div id="right_titlebox">
-            <%=image_tag @product.user.photo_url, 
-                          :id => "user_photo"%>
-
-            <div id="user_name">
-              <%=user_share_text(@product.user)%>
-            </div>
-
-            <div id="item_name">
-              <%=h @product.title%>
-            </div>
-          </div> <!--right_titlebox-->
-
-          <div id="right_commentbox">
-          	<div id="speechmarks_open"></div>
-            	<div id="user_comment"><%=h @product.endorsement%></div>
-          	<div id="speechmarks_close"></div>
-          </div> <!--right_commentbox-->
-          <%if !logged_in?%>
-            <%=link_to image_tag("login_facebook.png", 
-                          :class  => "shadow",
-                          :id     => "action_button"),
-                        fb_auth_path,
-                        :id => "action_link" %>
-          <%elsif self.current_user.id == @product.user.id%>
-            <%=link_to image_tag("done_post_another_button.png", 
-                          :class  => "shadow",
-                          :id     => "action_button"),
-                        new_product_path,
-                        :id => "action_link" %>
-          <%else%>
-            <%=link_to image_tag("share_own_item.png", 
-                          :class  => "shadow",
-                          :id     => "action_button"),
-                        new_product_path,
-                        :id => "action_link" %>
-          <%end%>
-          <div id="blocker">
-          </div>
-      </div> <!-- right_content -->
-    </div> <!-- right -->
-
-
+    <%=render @product%>
   </div> <!-- container -->
+
   <script type="text/javascript">
     var productShowViewController = new ProductShowViewController(
                                           <%=@product.id%>);
