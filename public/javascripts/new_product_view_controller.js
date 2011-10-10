@@ -347,7 +347,7 @@ NewProductViewController.prototype.setupUploader = function(settings) {
 
           // Button Settings
           button_placeholder_id : kProductUpload,
-          button_image_url: "/images/transparent.gif",
+          button_image_url: '/images/transparent.gif',
           button_width: 350,
           button_height: 46,
           button_cursor: SWFUpload.CURSOR.HAND,
@@ -355,7 +355,7 @@ NewProductViewController.prototype.setupUploader = function(settings) {
           button_action : SWFUpload.BUTTON_ACTION.SELECT_FILE,
           
           // Flash Settings
-          flash_url : "/swfs/swfupload.swf",
+          flash_url : '/swfs/swfupload.swf',
           debug: false
         });
 
