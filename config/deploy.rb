@@ -40,7 +40,7 @@ task :production do
                         :no_release => true
   role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",,
+  role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
   set :total_workers, 2
   set :environment,   "production"
