@@ -10,7 +10,7 @@ common: &common
 
 development: &development
   <<: *common
-  :host: sbat.tea.ms
+  :host: sbat.felvy.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
@@ -21,7 +21,7 @@ development: &development
 
 staging: &staging
   <<: *common
-  :host: staging.tea.ms
+  :host: staging.felvy.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: denwen-hasit-staging
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
@@ -32,7 +32,7 @@ staging: &staging
 
 production: &production
   <<: *common
-  :host: tea.ms
+  :host: felvy.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: denwen-hasit-production
   :edge_server: http://edge.hasit.com

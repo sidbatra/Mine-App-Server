@@ -1,0 +1,31 @@
+# Apache settings for multiple rails application
+# running on the server
+
+NameVirtualHost *:80
+
+  PassengerPoolIdleTime 0
+  PassengerMaxPoolSize 6
+
+<VirtualHost *:80>
+
+  # Admin email, Server Name (domain name) and any aliases
+  ServerName  felvy.com
+
+  # Index file and Document Root (where the public files are located)
+  DocumentRoot /vol/felvy/current/public
+  RailsEnv staging
+  PassengerMinInstances 3
+
+  <Directory /vol/felvy/current/public>
+       AllowOverride all      
+       Options -MultiViews
+  </Directory>
+
+  # Custom log file productions
+  LogLevel warn
+  ErrorLog  /vol/felvy/current/log/error.log
+  CustomLog /vol/felvy/current/log/access.log combined
+
+</VirtualHost>
+
+
