@@ -34,13 +34,13 @@ end
 
 
 task :production do
-  role :web,          "ec2-184-73-131-57.compute-1.amazonaws.com"
-  role :worker,       "ec2-50-19-211-235.compute-1.amazonaws.com"
-  role :db,           "ec2-184-73-131-57.compute-1.amazonaws.com",
+  role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com"
+  role :worker,       "ec2-75-101-204-136.compute-1.amazonaws.com"
+  role :db,           "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :search,       "ec2-50-19-211-235.compute-1.amazonaws.com",  
+  role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :cache,        "ec2-50-19-211-235.compute-1.amazonaws.com",   
+  role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",,
                         :no_release => true
   set :total_workers, 2
   set :environment,   "production"
