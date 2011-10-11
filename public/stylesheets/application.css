@@ -431,7 +431,7 @@ h1 {
 }
 
 .awesome, .awesome:visited {
-	background: #222 url(/images/alert-overlay.png) repeat-x; 
+	background: #222 url('/images/alert-overlay.png') repeat-x; 
 	padding: 0px 10px; 
 	color: #fff; 
 	text-decoration: none;
