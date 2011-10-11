@@ -14,7 +14,7 @@ task :rename_resources_for_deployment,:revision  do |e,args|
   #system "sed -i -e \"s/'\\/type/'#{asset_host.gsub("/","\\/")}"\
   #        "\\/type/g\" public/stylesheets/*.css"
 
-  system "sed -i -e \"s/'\\/type/'#{http://felvy.com}"\
+  system "sed -i -e \"s/'\\/type/'#{"http://felvy.com"}"\
           "\\/type/g\" public/stylesheets/*.css"
 
   system "sed -i -e \"s/'\\/swfs/'#{asset_host.gsub("/","\\/")}"\
