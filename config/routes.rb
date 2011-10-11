@@ -2,10 +2,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller  => :home,
             :action     => :show
-  #map.root :controller  => :products,
-  #         :action      => :show,
-  #         :id          => 1,
-  #         :name        => "Diamondback-Insight-Bike"
 
   map.login   'facebook/authenticate',
               :controller => :session,
@@ -41,6 +37,9 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => 'share',
                 :only       => [:create]
       
+  map.home  '/:id',
+            :controller => :home,
+            :action     => :show
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
