@@ -55,7 +55,9 @@ class User < ActiveRecord::Base
   # URL for the user photo
   #
   def image_url
-    "http://graph.facebook.com/" + fb_user_id + "/picture?type=square"
+    fb_user_id != "" ? 
+      "http://graph.facebook.com/" + fb_user_id + "/picture?type=square" :
+      FileSystem.url(access_token)
   end
 
   # Alias for image_url
