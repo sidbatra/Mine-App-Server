@@ -24,7 +24,7 @@ a {
 }
 
 body {
-	font-family: font-family: 'ITCGalliardStdRoman', Georgia, Times New Roman, serif;
+	font-family: font-family: Georgia, Times New Roman, serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
 	background: #edebeb url('/images/bg_strip.png');
@@ -112,7 +112,7 @@ h1 {
 #product_query {
 	height: 34px;
 	width: 287px;
-	font-family: 'FuturaStdBook', sans-serif;
+	font-family: Century Gothic, Arial, sans-serif; 
 	font-size: 20px;
 	color: #cccccc;
 	line-height: 34px;
@@ -193,7 +193,7 @@ h1 {
 #speechmarks_close { background: url('/images/speechmarks_close.png') no-repeat; }
 
 #user_comment {
-	font-family: Georgia, Times New Roman, serif;
+	font-family: 'Georgia', Times New Roman, serif;
 	float:left;
 	max-width:290px;
 	width: expression(this.width > 290 ? 290: true);
@@ -204,7 +204,7 @@ h1 {
 }
 
 #user_name {
-	font-family: 'FuturaStdBook', sans-serif;
+	font-family: Century Gothic, Arial, sans-serif; 
 	color: #bbbbbb;
 	font-size: 14px;
 }
@@ -214,7 +214,8 @@ h1 {
 }
 
 #item_name {
-	font-family: 'FuturaStdBold', sans-serif;
+	font-family: Century Gothic, Arial, sans-serif; 
+	font-weight: bold;
 	font-size: 16px;
 	margin-bottom: 12px;
 }
@@ -278,7 +279,7 @@ h1 {
 	height: 76px;
 }
 
-#product_title { font-family: 'FuturaStdBold', sans-serif; 	margin-bottom: 12px; }
+#product_title { font-family: Century Gothic, Arial, sans-serif; font-weight: bold; margin-bottom: 12px; }
 #product_endorsement { font-family: Georgia, Times New Roman, serif; }
 
 
@@ -412,7 +413,7 @@ h1 {
 	border: 1px solid #333333;
 	color: white;
 	text-align: center;
-	font-family: 'FuturaStdBook', sans-serif;
+	font-family: Century Gothic, Arial, sans-serif; 
 	cursor: hand;
 	cursor: pointer;
 	background: #6e6e6e; /* Old browsers */
@@ -426,7 +427,8 @@ h1 {
 }
 
 .awesome { 
-	font-family: 'FuturaStdBold', Arial, sans-serif; 
+	font-family: Century Gothic, Arial, sans-serif; 
+	font-weight: bold;
 	font-size: 16px;
 }
 
@@ -449,7 +451,7 @@ h1 {
 	.blue.awesome, .blue.awesome:visited			{ background-color: #24578f; }
 	.blue.awesome:hover								{ background-color: #1e4774; }
 
-/* ------------------------------ Fonts */
+/* ------------------------------ Fonts
 
 @font-face {
     font-family: 'FuturaStdBold';
@@ -494,3 +496,5 @@ h1 {
     font-weight: normal;
     font-style: normal;
 }
+
+*/
