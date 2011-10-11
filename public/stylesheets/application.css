@@ -33,11 +33,10 @@ body {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 48px;
 	font-weight: normal;
 	color: #791a10;
-	font-family: 'ITCGalliardStdBk', serif;
-	text-transform: uppercase;
+	font-family: Georgia;
 }
 
 #logo {
@@ -194,6 +193,7 @@ h1 {
 #speechmarks_close { background: url('/images/speechmarks_close.png') no-repeat; }
 
 #user_comment {
+	font-family: Georgia, Times New Roman, serif;
 	float:left;
 	max-width:290px;
 	width: expression(this.width > 290 ? 290: true);
@@ -241,6 +241,23 @@ h1 {
 	left: 71px;
   	border: 0;
   	overflow: hidden;
+}
+
+.action {
+	position: absolute;
+	bottom: 50px;
+	left: 71px;
+	border: 0;
+	overflow: visible;
+}
+
+.action:active {
+	bottom: 49px;
+}
+
+.f {
+	vertical-align: middle;
+	margin-right: 10px;
 }
 
 .save_and_share {
@@ -407,6 +424,30 @@ h1 {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e6e6e', endColorstr='#5a5a5a',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, #6e6e6e 0%,#5a5a5a 100%); /* W3C */
 }
+
+.awesome { 
+	font-family: 'FuturaStdBold', Arial, sans-serif; 
+	font-size: 16px;
+}
+
+.awesome, .awesome:visited {
+	background: #222 url(/images/alert-overlay.png) repeat-x; 
+	padding: 0px 10px; 
+	color: #fff; 
+	text-decoration: none;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+	.awesome:hover									{ background-color: #111; color: #fff; }
+	.awesome, .awesome:visited,
+	.medium.awesome, .medium.awesome:visited 		{ font-size: 12px; height: 32px; line-height: 32px; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
+	.large.awesome, .large.awesome:visited 			{ font-size: 16px; height: 46px; line-height: 46px; padding: 0px 18px; }
+	
+	.blue.awesome, .blue.awesome:visited			{ background-color: #24578f; }
+	.blue.awesome:hover								{ background-color: #1e4774; }
 
 /* ------------------------------ Fonts */
 
