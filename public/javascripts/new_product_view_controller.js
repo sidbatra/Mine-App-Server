@@ -86,6 +86,12 @@ function NewProductViewController(uploadSettings) {
 
   $(kImagesBoxClose).click(function() { npvController.closeImagesBox(); });
 
+  $(kProductTitle).blur(function() { mpq.track("Item Name: " +
+                                                $(kProductTitle).val());});
+
+  $(kProductEndorsement).blur(function() { mpq.track("Item Endoresement: " +
+                                                $(kProductEndorsement).val());});
+
 
   this.scrollViewController                      = new ScrollViewController();
   this.scrollViewController.scrollEndedCallback  = function(){
