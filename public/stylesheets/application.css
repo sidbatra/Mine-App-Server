@@ -251,6 +251,10 @@ h1 {
 	overflow: visible;
 }
 
+.action:active {
+	bottom: 49px;
+}
+
 .f {
 	vertical-align: middle;
 	margin-right: 10px;
@@ -440,7 +444,7 @@ h1 {
 	.awesome:hover									{ background-color: #111; color: #fff; }
 	.awesome, .awesome:visited,
 	.medium.awesome, .medium.awesome:visited 		{ font-size: 12px; height: 32px; line-height: 32px; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
-	.large.awesome, .large.awesome:visited 			{ font-size: 16px; height: 46px; line-height: 46px; padding: 0px 14px; }
+	.large.awesome, .large.awesome:visited 			{ font-size: 16px; height: 46px; line-height: 46px; padding: 0px 18px; }
 	
 	.blue.awesome, .blue.awesome:visited			{ background-color: #24578f; }
 	.blue.awesome:hover								{ background-color: #1e4774; }
