@@ -2,6 +2,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller  => :home,
             :action     => :show
+
+  map.home  '/:id',
+            :controller => :home,
+            :action     => :show
   #map.root :controller  => :products,
   #         :action      => :show,
   #         :id          => 1,
