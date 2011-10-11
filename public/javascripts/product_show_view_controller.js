@@ -31,6 +31,5 @@ ProductShowViewController.prototype.setupLoggedInAnalytics = function() {
 
 //Setup analytics for post creation page
 //
-ProductShowViewController.prototype.setupPostCreationAnalytics = function() {
-  mpq.track_links($("#action_link"),"Done! Post Another");
-}
+ ProductShowViewController.prototype.setupPostCreationAnalytics = function() { mpq.track_links($("#action_link"),"Done! Post Another");
+ }

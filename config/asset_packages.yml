@@ -2,6 +2,8 @@
 javascripts: 
 - application: 
   - jquery-1.4.3.min
+  - jquery-slides
+  - jquery-easing
   - extensions
   - swfupload
   - scroll_view_controller

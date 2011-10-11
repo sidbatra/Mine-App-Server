@@ -1,10 +1,43 @@
 
-<%if logged_in?%>
-  <%=self.current_user.first_name%>
-  <%=image_tag self.current_user.image_url, :alt => "user image"%>
-  <%=link_to "LOGOUT",logout_path%>
-<%else%>
-  <%=link_to "SIGN UP",fb_auth_path%>
-<%end%>
+  <!-- item -->
+  <div id="container">
+    <div id="instructions_1" style="display:block">
+      <%=image_tag "instructions_1.png"%>
+    </div>
+    <div id="instructions_2" style="display:block">
+      <%=image_tag "instructions_2.png"%>
+    </div>
+    <div id="instructions_3" style="display:block">
+      <%=image_tag "instructions_3.png"%>
+    </div>
+    <div class="slides_container" style="height:100%">
+        <%=render @products%>
+    </div>
+  </div> <!-- container -->
+
+  <script type="text/javascript">
+
+      $(function(){
+        $('#container').slides({
+          preload: true,
+          preloadImage: '<%=image_path "transparent.gif"%>',
+          play: 3500,
+          pause: 1500,
+          hoverPause: true,
+          generatePagination: false,
+          pagination: false,
+          effect: 'slide'
+        });
+      });
+
+    <%if !logged_in?%>
+      mpq.track_links($("#action_link"),"FB Connect - HOME");
+    <%else%>
+      mpq.track_links($("#action_link"),"Done! Post Another - HOME");
+    <%end%>
+
+    center_based_on_element('#container');
+      
+  </script>
 
 
