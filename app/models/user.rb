@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
       :message      => product.endorsement,
       :picture      => product.photo_url,
       :link         => product_url,
-      :description  => ' ',
+      :description  => "#{self.first_name} is using Felvy to share the "\
+                        "things #{self.gender == "male" ? "he" : "she"} "\
+                        "owns with the world. It's free!",
       :name         => product.title)
   end
 
