@@ -30,11 +30,15 @@
         });
       });
 
-    <%if !logged_in?%>
-      mpq.track_links($("#action_link"),"FB Connect - HOME");
-    <%else%>
-      mpq.track_links($("#action_link"),"Done! Post Another - HOME");
-    <%end%>
+    $("#action_link").click(function() {
+      <%if !logged_in?%>
+        //mpq.track_links($("#action_link"),"FB Connect - HOME");
+        _kmq.push(['record', 'FB Connect from HOME']); 
+      <%else%>
+        //mpq.track_links($("#action_link"),"Done! Post Another - HOME");
+        _kmq.push(['record', 'Done! Post Another from HOME']);
+      <%end%>
+    });
 
     center_based_on_element('#container');
       
