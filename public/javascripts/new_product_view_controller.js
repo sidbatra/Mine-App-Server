@@ -41,11 +41,13 @@ function NewProductViewController(uploadSettings) {
   
   var npvController     = this;
 
-  this.offset           = 0;
-  this.query            = '';
-  this.searchState      = kSearchStateInactive;
-  settings              = uploadSettings;
-  this.uploader         = this.setupUploader(uploadSettings);
+  this.offset             = 0;
+  this.query              = '';
+  this.searchState        = kSearchStateInactive;
+  settings                = uploadSettings;
+  this.uploader           = this.setupUploader(uploadSettings);
+  this.defProdTitle       = $(kProductTitle).val();
+  this.defProdEndorsement = $(kProductEndorsement).val();
 
 
   make_conditional_field(
@@ -56,7 +58,7 @@ function NewProductViewController(uploadSettings) {
 
   make_conditional_field(
     kProductTitle,
-    $(kProductTitle).val(),
+    this.defProdTitle,
     $(kProductTitle).css('color'),
     '#333333');
 
@@ -64,7 +66,7 @@ function NewProductViewController(uploadSettings) {
 
   make_conditional_field(
     kProductEndorsement,
-    $(kProductEndorsement).val(),
+    this.defProdEndorsement,
     $(kProductEndorsement).css('color'),
     '#333333');
 
@@ -207,13 +209,19 @@ NewProductViewController.prototype.productSearchClicked = function(e) {
 NewProductViewController.prototype.validateForm = function() {
   var valid = true;
 
-  if($(kProductEndorsement).val().length < 1) {
+  if($(kProductImageUrl).val().length < 1) {
     valid = false;
-    trace('improper endorsement');
+    alert('image');
   }
-  else if($(kProductTitle).val().length < 1) {
+  else if($(kProductTitle).val().length < 1 || 
+      $(kProductTitle).val() == this.defProdTitle) {
     valid = false;
-    trace('improper title');
+    alert('improper title');
+  }
+  else if($(kProductEndorsement).val().length < 1 || 
+      $(kProductEndorsement).val() == this.defProdEndorsement) {
+    valid = false;
+    alert('improper endorsement');
   }
     
   return valid;
