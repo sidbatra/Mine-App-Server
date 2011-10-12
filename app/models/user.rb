@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     fb_user = FbGraph::User.me(access_token)
     fb_user.feed!(
       :message      => product.endorsement,
-      :picture      => product.photo_url,
+      :picture      => product.thumbnail_url,
       :link         => product_url,
       :description  => "#{self.first_name} is using Felvy to share the "\
                         "things #{self.gender == "male" ? "he" : "she"} "\

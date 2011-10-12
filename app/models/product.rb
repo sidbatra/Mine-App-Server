@@ -35,6 +35,7 @@ class Product < ActiveRecord::Base
       :endorsement  => attributes['endorsement'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],
+      :thumb_url    => attributes['thumb_url'],
       :is_hosted    => attributes['is_hosted'],
       :query        => attributes['query'],
       :user_id      => user_id)
@@ -55,6 +56,12 @@ class Product < ActiveRecord::Base
   #
   def photo_url
     is_hosted ? FileSystem.url(image_url) : image_url
+  end
+
+  # Conditional upon hosting and thumb_url status
+  #
+  def thumbnail_url
+    !is_hosted && thumb_url.present? ? thumb_url : photo_url
   end
 
 
