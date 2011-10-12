@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111009011130) do
+ActiveRecord::Schema.define(:version => 20111012203351) do
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20111009011130) do
     t.boolean  "is_admin",                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "campaign"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

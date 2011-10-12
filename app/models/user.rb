@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  has_many :products
+  has_many :products, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations
@@ -19,15 +19,19 @@ class User < ActiveRecord::Base
 
   # Add a new user or find an existing one based on email
   #
-  def self.add(attributes)
-    find_or_create_by_email(
-      :email        => attributes.email,
-      :first_name   => attributes.first_name,
-      :last_name    => attributes.last_name,
-      :gender       => attributes.gender,
-      :birthday     => attributes.birthday,
-      :fb_user_id   => attributes.identifier,
-      :access_token => attributes.access_token.to_s)
+  def self.add(attributes,campaign)
+    user = find_or_initialize_by_email(
+            :email        => attributes.email,
+            :first_name   => attributes.first_name,
+            :last_name    => attributes.last_name,
+            :gender       => attributes.gender,
+            :birthday     => attributes.birthday,
+            :fb_user_id   => attributes.identifier,
+            :campaign     => campaign)
+
+    user.access_token = attributes.access_token.to_s
+    user.save!
+    user
   end
 
   # Find user by the token stored in their cookie

@@ -40,7 +40,7 @@
           
           <%if !logged_in?%>  
             <%=link_to "<img src='/images/f.png' class='f'> Login with Facebook &rsaquo;",
-            			fb_auth_path,
+            			fb_auth_path(@campaign),
             			:class  => "large blue awesome action",
                         :id => "action_link" %>
           <%elsif self.current_user.id == product.user.id%>

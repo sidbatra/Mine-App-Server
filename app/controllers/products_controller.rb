@@ -38,6 +38,7 @@ class ProductsController < ApplicationController
   #
   def show
     @product = Product.eager.find(params[:id])
+    @campaign = "product_" + @product.id.to_s
 
     redirect_to product_path(
                   @product.id,

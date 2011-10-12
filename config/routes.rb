@@ -5,17 +5,18 @@ ActionController::Routing::Routes.draw do |map|
 
   map.login   'facebook/authenticate',
               :controller => :session,
-              :action     => :create
+              :action     => :create,
+              :campaign   => "unknown"
 
   map.logout  '/logout',
               :controller => :session,
               :action     => :destroy
 
-  map.fb_auth 'facebook/authenticate',
+  map.fb_auth 'facebook/authenticate/:campaign',
                :controller  => :session,
                :action      => :create
 
-  map.fb_reply 'facebook/reply',
+  map.fb_reply 'facebook/reply/:campaign',
                 :controller => :users,
                 :action     => :create
 

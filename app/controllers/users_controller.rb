@@ -7,11 +7,12 @@ class UsersController < ApplicationController
   def create
     raise IOError, "User rejected FB connect" unless params[:code]
 
+    campaign                  = params[:campaign]
     fb_auth                   = FbGraph::Auth.new(
                                   CONFIG[:fb_app_id],
                                   CONFIG[:fb_app_secret])
     client                    = fb_auth.client
-    client.redirect_uri       = fb_reply_url
+    client.redirect_uri       = fb_reply_url(campaign)
     client.authorization_code = params[:code]
     access_token              = client.access_token!
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
     fb_user = FbGraph::User.fetch("me?fields=first_name,last_name,"\
                                   "gender,email,birthday",
                                     :access_token => access_token)
-    @user = User.add(fb_user)
+    @user = User.add(fb_user,campaign)
 
     raise IOError, "Error creating user" unless @user
 
