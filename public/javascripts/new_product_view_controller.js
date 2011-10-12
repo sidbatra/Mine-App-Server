@@ -9,6 +9,7 @@ var kProductQuery       = '#product_query';
 var kProductSearch      = '#product_search';
 var kProductWebsiteUrl  = '#product_website_url';
 var kProductImageUrl    = '#product_image_url';
+var kProductThumbUrl    = '#product_thumb_url';
 var kProductIsHosted    = '#product_is_hosted';
 var kProductUpload      = 'product_upload';
 var kProductInput       = '#product_input';
@@ -265,6 +266,7 @@ function productSelected(id) {
   $(kProductTitle).focus();
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
+  $(kProductThumbUrl).val(product.thumbUrl);
   $(kImagesBox).hide();
 
   //mpq.track("product selected");
