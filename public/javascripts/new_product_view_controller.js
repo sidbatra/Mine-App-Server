@@ -214,17 +214,17 @@ NewProductViewController.prototype.validateForm = function() {
 
   if($(kProductImageUrl).val().length < 1) {
     valid = false;
-    alert('image');
+    alert("Please add a photo. You can search for one, or upload one.");
   }
   else if($(kProductTitle).val().length < 1 || 
       $(kProductTitle).val() == this.defProdTitle) {
     valid = false;
-    alert('improper title');
+    alert("Please name your item.");
   }
   else if($(kProductEndorsement).val().length < 1 || 
       $(kProductEndorsement).val() == this.defProdEndorsement) {
     valid = false;
-    alert('improper endorsement');
+    alert("Please add a short comment.");
   }
     
   return valid;
@@ -292,7 +292,7 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
 
     if(this.empty == 2) {
       this.closeImagesBox();
-      alert('Sorry nothing gounf');
+      alert("Oops, no photos for this item. Try a different search, or upload a photo.");
     }
     
     if(!images)
