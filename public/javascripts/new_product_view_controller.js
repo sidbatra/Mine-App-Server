@@ -39,8 +39,9 @@ var settings     = undefined;
 //
 function NewProductViewController(uploadSettings) {
   
-  var npvController     = this;
+  var npvController       = this;
 
+  this.empty              = 0;
   this.offset             = 0;
   this.query              = '';
   this.searchState        = kSearchStateInactive;
@@ -181,6 +182,7 @@ NewProductViewController.prototype.initiateProductSearch= function() {
   $(kImages).html('');
   $(kImagesBox).show();
 
+  this.empty        = 0;
   this.query        = $(kProductQuery).val();
   this.offset       = 0;
   this.searchState  = kSearchStateInactive;
@@ -284,7 +286,16 @@ NewProductViewController.prototype.imagesLoaded = function(data) {
       return;
 
     var images = data['SearchResponse']['Image']['Results'];
+    var offset = data['SearchResponse']['Image']['Offset'];
 
+    if(offset == 0 && !images)
+      this.empty++;
+
+    if(this.empty == 2) {
+      this.closeImagesBox();
+      alert('Sorry nothing gounf');
+    }
+    
     if(!images)
       return;
     
