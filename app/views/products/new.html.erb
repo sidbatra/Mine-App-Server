@@ -83,7 +83,7 @@
                     {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
 
     newProductViewController.setupPreCreationAnalytics(
-                    <%= "'" + user_full_name(self.current_user) + "'" %>);
+                    <%= "'" + self.current_user.email + "'" %>);
     center_based_on_element('#container');
   </script>
 

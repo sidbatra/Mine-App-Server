@@ -86,11 +86,11 @@ function NewProductViewController(uploadSettings) {
 
   $(kImagesBoxClose).click(function() { npvController.closeImagesBox(); });
 
-  $(kProductTitle).blur(function() { mpq.track("Item Name: " +
+  /*$(kProductTitle).blur(function() { mpq.track("Item Name: " +
                                                 $(kProductTitle).val());});
 
   $(kProductEndorsement).blur(function() { mpq.track("Item Endoresement: " +
-                                                $(kProductEndorsement).val());});
+                                                $(kProductEndorsement).val());});*/
 
 
   this.scrollViewController                      = new ScrollViewController();
@@ -185,7 +185,8 @@ NewProductViewController.prototype.initiateProductSearch= function() {
   productHash       = new Array();
 
   this.fetchImages();
-  mpq.track("Searched for: " + this.query);
+  //mpq.track("Searched for: " + this.query);
+  _kmq.push(['record', 'Searched for: ' + this.query]);
 }
 
 NewProductViewController.prototype.productQueryKeyPress = function(e) {
@@ -237,7 +238,8 @@ NewProductViewController.prototype.productCancelClicked = function() {
   $(kProductInput).show();
   $(kProductSelection).hide();
 
-  mpq.track("product cancelled");
+  //mpq.track("product cancelled");
+  _kmq.push(['record', 'product cancel']);
 }
 
 // Fired when a product is selected from the search results
@@ -255,7 +257,8 @@ function productSelected(id) {
   $(kProductImageUrl).val(product.imageUrl);
   $(kImagesBox).hide();
 
-  mpq.track("product selected");
+  //mpq.track("product selected");
+  _kmq.push(['record', 'product select']);
  }
 
 
@@ -376,7 +379,8 @@ NewProductViewController.prototype.setupUploader = function(settings) {
 //
 NewProductViewController.prototype.fileSelected = function(file) {
   this.startUpload(); 
-  mpq.track("File Selected for upload");
+  //mpq.track("File Selected for upload");
+  _kmq.push(['record', 'File Select for upload']);
 }
 
 // Called to indicate number of bytes uploaded to server
@@ -428,8 +432,10 @@ NewProductViewController.prototype.uploadError = function(errorCode,message) {
 
 //Setup analytics for creation page
 //
-NewProductViewController.prototype.setupPreCreationAnalytics = function(username) {
-  mpq.name_tag(username);
-  mpq.track_forms($("#new_product"),"Save and Share it!");
+NewProductViewController.prototype.setupPreCreationAnalytics = function(identifier) {
+  //mpq.name_tag(username);
+  //mpq.track_forms($("#new_product"),"Save and Share it!");
+
+  _kmq.push(['identify', identifier]);
 }
 
