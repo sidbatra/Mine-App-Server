@@ -13,8 +13,6 @@ include DW
 include CryptoManagement 
 include Storage
 
-FB_AUTH = FbGraph::Auth.new(CONFIG[:fb_app_id],CONFIG[:fb_app_secret])
-
 
 REGEX = {}
 REGEX[:url] = /(((http|ftp|https):\/\/){1}([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)+([\S,:\/\.\?=a-zA-Z0-9_-]*[^,.)\s"]))/i
