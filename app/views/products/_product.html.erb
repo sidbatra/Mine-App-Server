@@ -39,7 +39,8 @@
           
           
           <%if !logged_in?%>  
-            <%=link_to "<img src='/images/f.png' class='f'> Login with Facebook &rsaquo;",
+            <%=link_to image_tag('f.png',:class => 'f') + 
+                        " Login with Facebook &rsaquo;",
             			fb_auth_path(@campaign),
             			:class  => "large blue awesome action",
                         :id => "action_link" %>
