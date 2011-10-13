@@ -1,0 +1,7 @@
+<%=image_tag @user.photo_url%>
+
+<br><br>
+
+<%=render :partial    => "products/preview", 
+          :collection => @products, 
+          :as         => :product%>
