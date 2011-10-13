@@ -14,6 +14,16 @@
     <%end%>
 
     <%=render @product%>
+
+    <%if logged_in?%>
+      <%=text_field_tag "comment_data","Type a lovely comment"%>
+        <input id="comment_post" value="Post" 
+                title="Post" type="button" alt="Post">
+    <%end%>
+
+    <div id="comments">
+      <%=render @product.comments.reverse%>
+    </div>
   </div> <!-- container -->
 
   <script type="text/javascript">
