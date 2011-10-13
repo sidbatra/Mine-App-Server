@@ -46,6 +46,26 @@ class Product < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Fetch the next product uploaded by the user
+  # who owns the product
+  #
+  def next
+    self.class.first(
+                :conditions => {
+                    :user_id  => self.user_id,
+                    :id_gt    => self.id})
+  end
+
+  # Fetch the previous product uploaded by the user
+  # who owns the product
+  #
+  def previous
+    self.class.last(
+                :conditions => {
+                    :user_id  => self.user_id,
+                    :id_lt    => self.id})
+  end
+
   # Mark the product as shared
   #
   def shared

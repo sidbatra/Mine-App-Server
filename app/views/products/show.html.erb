@@ -22,9 +22,12 @@
     <%end%>
 
     <div id="comments">
-      <%=render @product.comments.reverse%>
+      <%=render @comments%>
     </div>
   </div> <!-- container -->
+
+  <%=@prev_path ? link_to("PREV",@prev_path) : ""%>
+  <%=@next_path ? link_to("NEXT",@next_path) : ""%>
 
   <script type="text/javascript">
     var productShowViewController = new ProductShowViewController(

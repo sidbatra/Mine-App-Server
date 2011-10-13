@@ -3,8 +3,8 @@
 
 # Include libs that require the environment to be loaded
 #
-#require 'ar-extensions/adapters/mysql'
-#require 'ar-extensions/import/mysql'
+require 'ar-extensions/adapters/mysql'
+require 'ar-extensions/import/mysql'
 #require File.join(RAILS_ROOT,'lib','extensions.rb')
 
 # Include modules needed through the application lifetime

@@ -37,12 +37,25 @@ class ProductsController < ApplicationController
   # Display a product
   #
   def show
-    @product = Product.eager.find(params[:id])
+    @product  = Product.eager.find(params[:id])
+    @comments = Comment.eager.for_product(@product.id)
     @campaign = "product_" + @product.id.to_s
+
+    next_product  = @product.next
+    prev_product  = @product.previous
+
+    @next_path = next_product ? product_path(
+                                  next_product.id,
+                                  next_product.handle) : nil
+
+    @prev_path = prev_product ? product_path(
+                                  prev_product.id,
+                                  prev_product.handle) : nil
 
     redirect_to product_path(
                   @product.id,
                   @product.handle) if params[:name] != @product.handle
+
   rescue => ex
     handle_exception(ex)
   ensure

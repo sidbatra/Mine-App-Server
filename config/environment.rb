@@ -20,6 +20,8 @@ Rails::Initializer.run do |config|
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
   CONFIG[:revision]   = `git rev-parse HEAD`.chomp
 
+  config.gem('ar-extensions', 
+              :version => '0.9.2')
   config.gem('aws',
               :version => '2.5.6')
   config.gem('aws-s3',

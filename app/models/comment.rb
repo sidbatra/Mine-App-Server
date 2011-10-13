@@ -30,6 +30,14 @@ class Comment < ActiveRecord::Base
       :user_id      => user_id)
   end
 
+  # Fetch all comments for the given product 
+  #
+  def self.for_product(product_id)
+    all(
+      :conditions => {:product_id => product_id},
+      :order      => "id DESC")
+  end
+
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
