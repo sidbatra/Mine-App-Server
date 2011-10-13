@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20111013190640) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
     t.string   "controller_name"
