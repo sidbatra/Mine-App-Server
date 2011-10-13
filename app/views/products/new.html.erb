@@ -13,6 +13,7 @@
     </div> <!-- instructions -->
 	
     <%form_for @product, :html => {:multipart => true} do |f|%>
+      <%=f.hidden_field :category, :value => @category%>
       <%=f.hidden_field :website_url%>
       <%=f.hidden_field :image_url%>
       <%=f.hidden_field :thumb_url%>

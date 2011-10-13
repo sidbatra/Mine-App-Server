@@ -34,6 +34,7 @@ class Product < ActiveRecord::Base
     create(
       :title        => attributes['title'],
       :endorsement  => attributes['endorsement'],
+      :category     => attributes['category'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],
       :thumb_url    => attributes['thumb_url'],

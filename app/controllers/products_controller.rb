@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   #
   def new
     @product  = Product.new
+    @category = params[:category] ? params[:category] : ""
     @uploader = generate_uploader
   rescue => ex
     handle_exception(ex)

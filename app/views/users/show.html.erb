@@ -2,6 +2,10 @@
 
 <br><br>
 
+<%=new_product_path(:category => "shoes")%>
+
+<br><br>
+
 <%=render :partial    => "products/preview", 
           :collection => @products, 
           :as         => :product%>

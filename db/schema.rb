@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013190640) do
+ActiveRecord::Schema.define(:version => 20111013225253) do
 
   create_table "comments", :force => true do |t|
     t.string   "data"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20111013190640) do
     t.datetime "updated_at"
     t.boolean  "is_shared",   :default => false
     t.string   "thumb_url"
+    t.string   "category"
   end
 
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
