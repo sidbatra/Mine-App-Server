@@ -1,4 +1,10 @@
-<%=image_tag comment.user.photo_url%>
-<%=h comment.data%>
-<br><br>
+<div class="comment_unit">
+	<%=image_tag comment.user.photo_url,
+		:class => "comment_photo"%>
+	<p class="comment_unit_right">
+		<span class="commenter_name"><%=comment.user.first_name + " " + comment.user.last_name%></span>
+		<span class="comment_time"><%=time_ago_in_words comment.created_at%> ago</span><br>
+		<span class="comment_text"><%=h comment.data%></span>
+	</p>
+</div>
 

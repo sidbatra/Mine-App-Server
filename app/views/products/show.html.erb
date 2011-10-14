@@ -1,6 +1,9 @@
-
-  <!-- item -->
+<!-- item -->
   <div id="container">
+  
+	<%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
+	<%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
+  
     <%unless logged_in?%>
       <div id="instructions_1" style="display:block">
         <%=image_tag "instructions_1.png"%>
@@ -15,19 +18,33 @@
 
     <%=render @product%>
 
-    <%if logged_in?%>
-      <%=text_field_tag "comment_data","Type a lovely comment"%>
-        <input id="comment_post" value="Post" 
-                title="Post" type="button" alt="Post">
-    <%end%>
+	<div id="blocker"></div>
 
-    <div id="comments">
-      <%=render @comments%>
-    </div>
+	<div id="comments_container">
+
+		    <%if logged_in?%>
+		      <%=image_tag self.current_user.photo_url,
+		      	:id => "comment_photo_self"
+		      %>
+		      <%=text_area_tag "comment_data","What do you think of this?…",
+		      	:class => "box_shadow"
+		      %>
+		        <!-- <input id="comment_post" value="Post" title="Post" type="button" alt="Post">-->
+		    <%end%> <!-- comment entry box -->
+
+				<div id="blocker"></div>
+				
+		    <div id="comments">
+		      <%=render @comments%> <!-- existing comments -->
+		    </div>
+		    
+		    <div id="blocker"></div>
+	    
+    </div> <!-- comment_container -->
+    
+    <div id="blocker"></div>
+  
   </div> <!-- container -->
-
-  <%=@prev_path ? link_to("PREV",@prev_path) : ""%>
-  <%=@next_path ? link_to("NEXT",@next_path) : ""%>
 
   <script type="text/javascript">
     var productShowViewController = new ProductShowViewController(
