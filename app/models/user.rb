@@ -44,6 +44,17 @@ class User < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Edit attributes of the model
+  #
+  def edit(attributes)
+    
+    if attributes[:byline].present?
+      self.byline = attributes[:byline]
+    end
+
+    self.save
+  end
+
   # Share the given product to FB
   #
   def share_product(product,product_url)

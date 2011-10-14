@@ -1,6 +1,8 @@
 # Handle requests for the user resource
 #
 class UsersController < ApplicationController
+  before_filter :login_required,  :only => :update
+  before_filter :logged_in?,      :only => :show
 
   # Create a user based on token received from facebook
   #
@@ -43,6 +45,17 @@ class UsersController < ApplicationController
   def show
     @user     = User.find(params[:id])
     @products = @user.products
+  end
+
+  # Update user's byline
+  #
+  def update
+
+    self.current_user.edit(params[:user])
+  
+  rescue => ex
+    handle_exception(ex)
+  ensure
   end
 
 end

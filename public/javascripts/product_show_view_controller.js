@@ -16,7 +16,7 @@ function ProductShowViewController(product_id) {
   make_conditional_field(
     kCommentData,
     this.defCommentData,
-    $(this.defCommentData).css('color'),
+    $(kCommentData).css('color'),
     '#333333');
 
   restrictFieldSize($(kCommentData),254,'charsremain');
@@ -88,7 +88,7 @@ ProductShowViewController.prototype.commentCreated = function(data) {
 // Error creating comment
 //
 ProductShowViewController.prototype.commentError = function(r,s,e) {
-  alert("Error posting comment");
+  alert("An error occured, please try again");
   $(kCommentData).focus();
 }
 
