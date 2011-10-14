@@ -53,7 +53,7 @@ h1 {
 	height: 410px;
 	width: 900px;
 	position: relative;
-	top: 80px; /* change dynamically with JS.io */
+	top: 40px; /* change dynamically with JS.io */
 	padding: 0px 15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -363,19 +363,6 @@ h1 {
 	padding-left: 20px;
 }
 
-.next, .previous {
-	width: 48px;
-	height: 48px;
-	font-family: Times, sans-serif;
-	font-size: 48px;
-	line-height: 40px;
-	color: #cccccc;
-	border: 1px solid #eeeeee;
-	text-align: center;
-	position: absolute;
-	top: 173px;
-}
-
 .navigation {
 	position: relative;
 	top: -16px;
@@ -387,6 +374,20 @@ h1 {
 
 .navigation:hover {
 	text-decoration: underline;
+}
+
+.next, .previous {
+	width: 48px;
+	height: 48px;
+	font-family: Times, sans-serif;
+	font-size: 48px;
+	line-height: 40px;
+	color: #cccccc;
+	border: 1px solid #eeeeee;
+	text-align: center;
+	position: absolute;
+	top: 173px;
+	background: white;
 }
 
 .next {
@@ -409,6 +410,7 @@ h1 {
 	height: 50px;
 	border-bottom: 1px solid #dddddd;
 	padding: 15px;
+	background: white;
 }
 
 #profile_details {
@@ -427,8 +429,8 @@ h1 {
 
 .profile_username {
 	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif;
-	line-height: 32px;
-	font-size: 16px;
+	line-height: 36px;
+	font-size: 24px;
 }
 
 .profile_bio {
@@ -441,12 +443,22 @@ h1 {
 #products {
 	width: 925px;
 	position: absolute;
-	top: 480px;
+	top: 465px;
 	left: 5px;
 	padding-left: 0px;
 }
 
-#products ul li {
+#products, #product_suggestions {
+	width: 925px;
+	position: absolute;
+	left: 5px;
+	padding-left: 0px;
+}
+
+#products { top: 450px; }
+#product_suggestions { top: 0px; cursor: pointer;}
+
+#products ul li, #product_suggestions ul li {
 	float: left;
     margin: 0 0 15px 15px;
     width: 210px;
@@ -462,6 +474,10 @@ h1 {
 	border: 1px solid #dddddd;
 	position: relative;
 /* 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); */
+}
+
+.product:hover {
+	border-color: #791a10;
 }
 
 .product_image {

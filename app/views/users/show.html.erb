@@ -1,13 +1,27 @@
 <div id="profile_header">
 	<div id="profile_details">
 		<%=image_tag @user.photo_url, :class => "profile_user_photo"%>
-			<p class="profile_username"><%=@user.first_name + " " + @user.last_name%></p>
+			<p class="profile_username"><%=@user.first_name + " " + @user.last_name%>'s Collection</p>
 			<p class="profile_bio">Mormon chic, if you know what I mean ;-)</p>
 	</div>
 </div>
 
 <div id="container">
-	<%=render @products.first%>
+	<!--<#=render @products.first%>-->
+	
+	
+	<div id="product_suggestions">
+		<ul>
+			<li><div class="product"><img src="/images/suggestion_bags.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_phone.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_jewellery.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_glasses.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_books.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_makeup.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_clothes.jpg"></div></li>
+			<li><div class="product"><img src="/images/suggestion_shoes.jpg"></div></li>
+		</ul>
+	</div>
 	
 	<div id="products">
 		<ul>

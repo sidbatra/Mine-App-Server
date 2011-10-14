@@ -66,7 +66,7 @@ function make_conditional_field(id,text,placeholderColor,textColor) {
 //
 function center_based_on_element(elementID) {
   var min     = 130;
-  var margin  = 20;
+  var margin  = 100;
 
   $(document).ready(function() { 
     $(elementID).css('top',
