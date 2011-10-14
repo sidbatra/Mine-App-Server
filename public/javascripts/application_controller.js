@@ -14,6 +14,17 @@ var isDeviceiPad    = false;
 var isDeviceiPhone  = false;
 var deviceName      = '';
 
+// Required to bypass rails CSRF protection, works in conjuction with
+// the csrf_meta_tag helper in head section
+//
+$.ajaxSetup({
+  beforeSend: function(xhr) {
+    xhr.setRequestHeader(
+          'X-CSRF-Token', 
+          $('meta[name="csrf-token"]').attr('content'));
+  }
+}); 
+
 // Setup device related global variables
 //
 function setupDeviceVariables(isMobile,isiPad,isiPhone) {

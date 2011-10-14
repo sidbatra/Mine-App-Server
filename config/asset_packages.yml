@@ -11,6 +11,7 @@ javascripts:
   - product
   - new_product_view_controller
   - product_show_view_controller
+  - user_show_view_controller
 stylesheets: 
 - application: 
   - application
