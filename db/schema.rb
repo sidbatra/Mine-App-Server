@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014041114) do
+ActiveRecord::Schema.define(:version => 20111014185953) do
 
   create_table "comments", :force => true do |t|
     t.string   "data"
@@ -39,14 +39,15 @@ ActiveRecord::Schema.define(:version => 20111014041114) do
     t.string   "endorsement"
     t.text     "website_url"
     t.text     "image_url"
-    t.boolean  "is_hosted",   :default => false
+    t.boolean  "is_hosted",      :default => false
     t.string   "query"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_shared",   :default => false
+    t.boolean  "is_shared",      :default => false
     t.string   "thumb_url"
     t.string   "category"
+    t.integer  "comments_count", :default => 0
   end
 
   add_index "products", ["user_id"], :name => "index_products_on_user_id"

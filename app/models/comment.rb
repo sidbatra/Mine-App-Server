@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   # Associations
   #-----------------------------------------------------------------------------
   belongs_to :user
-  belongs_to :product
+  belongs_to :product, :counter_cache => true
 
   #-----------------------------------------------------------------------------
   # Validations
