@@ -1,8 +1,14 @@
 <!-- item -->
-  <div id="container">
+
+<div id="container">
+
+	    <%=link_to "← " + @product.user.first_name + "'s profile",
+    			user_path(@product.user),
+    			:class => "navigation"
+    			%>
   
-	<%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
-	<%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
+		<%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
+		<%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
   
     <%unless logged_in?%>
       <div id="instructions_1" style="display:block">

@@ -374,6 +374,19 @@ h1 {
 	top: 173px;
 }
 
+.navigation {
+	position: relative;
+	top: -16px;
+	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
+	color: #791a10;
+	font-size: 12px;
+	left: 5px;
+}
+
+.navigation:hover {
+	text-decoration: underline;
+}
+
 .next {
 	right: -50px;
 }
@@ -392,7 +405,7 @@ h1 {
 
 
 #comments_container {
-	margin-top: 32px;
+	margin-top: 24px;
 	margin-left: 5px;
 	margin-bottom: 20px; /* this creates space at bottom of page */
 	width: 405px;
