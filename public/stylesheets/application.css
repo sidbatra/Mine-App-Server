@@ -14,6 +14,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	outline: 0;
 	font-size: 100%;
 	border-collapse: collapse;
+	list-style: none;
 }
 
 a {
@@ -29,6 +30,7 @@ body {
 	font-size: 16px;
 	background: #edebeb url('/images/bg_strip.png');
 	background-repeat: repeat-x;
+	background-attachment:fixed;
 	overflow-x: hidden;
 }
 
@@ -51,7 +53,7 @@ h1 {
 	height: 410px;
 	width: 900px;
 	position: relative;
-	top: 200px; /* change dynamically with JS.io */
+	top: 80px; /* change dynamically with JS.io */
 	padding: 0px 15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -112,7 +114,7 @@ h1 {
 #product_query {
 	height: 34px;
 	width: 287px;
-	font-family: Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif; 
 	font-size: 20px;
 	color: #cccccc;
 	line-height: 34px;
@@ -214,7 +216,7 @@ h1 {
 }
 
 #item_name {
-	font-family: 'FuturaStdBold';
+	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif;
 	font-size: 16px;
 	margin-bottom: 12px;
 }
@@ -278,7 +280,7 @@ h1 {
 	height: 76px;
 }
 
-#product_title { font-family: Century Gothic, Arial, sans-serif; font-weight: bold; margin-bottom: 12px; }
+#product_title { font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif; margin-bottom: 12px; }
 #product_endorsement { font-family: Georgia, Times New Roman, serif; }
 
 
@@ -401,6 +403,75 @@ h1 {
 }
 
 
+/* ------------------------------ Profile-specific */
+
+#profile_header {
+	height: 50px;
+	border-bottom: 1px solid #dddddd;
+	padding: 15px;
+}
+
+#profile_details {
+	width: 400px;
+	height: 50px;
+	margin: 0 auto;
+	padding: 0 150px;
+}
+
+.profile_user_photo {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	float: left;
+}
+
+.profile_username {
+	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif;
+	line-height: 32px;
+	font-size: 16px;
+}
+
+.profile_bio {
+	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 8px;
+	color: #999999;
+}
+
+#products {
+	width: 925px;
+	position: absolute;
+	top: 480px;
+	left: 5px;
+	padding-left: 0px;
+}
+
+#products ul li {
+	float: left;
+    margin: 0 0 15px 15px;
+    width: 210px;
+}
+
+.product {
+	width: 180px;
+	height: 180px;
+	line-height: 180px;
+	padding: 14px;
+	background: white;
+	text-align: center;
+	border: 1px solid #dddddd;
+	position: relative;
+/* 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); */
+}
+
+.product_image {
+	max-height: 180px;
+	max-width: 180px;
+	vertical-align: middle;
+}
+
+
+
 /* ------------------------------ Comments */
 
 
@@ -446,12 +517,13 @@ h1 {
 
 .comment_unit_right {
 	line-height: 140%;
+	margin-top: -7px;
 	margin-left: 60px;
 	display: block;
 }
 
 .commenter_name, .comment_time {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 10px;
 	color: #333333;
 }
@@ -468,6 +540,7 @@ h1 {
 	font-size: 14px;
 	color: #999999;
 	font-family: Georgia, serif;
+	font-style: italic; 
 }
 	
 

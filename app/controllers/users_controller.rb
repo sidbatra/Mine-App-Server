@@ -42,7 +42,8 @@ class UsersController < ApplicationController
   #
   def show
     @user     = User.find(params[:id])
-    @products = @user.products
+    @products = @user.products.reverse
+    @campaign = "user_" + @user.id.to_s
   end
 
 end

@@ -1,11 +1,19 @@
-<%=image_tag @user.photo_url%>
+<div id="profile_header">
+	<div id="profile_details">
+		<%=image_tag @user.photo_url, :class => "profile_user_photo"%>
+			<p class="profile_username"><%=@user.first_name + " " + @user.last_name%></p>
+			<p class="profile_bio">Mormon chic, if you know what I mean ;-)</p>
+	</div>
+</div>
 
-<br><br>
-
-<%=new_product_path(:category => "shoes")%>
-
-<br><br>
-
-<%=render :partial    => "products/preview", 
-          :collection => @products, 
-          :as         => :product%>
+<div id="container">
+	<%=render @products.first%>
+	
+	<div id="products">
+		<ul>
+		<%=render :partial    => "products/preview", 
+		          :collection => @products[1..-1], 
+		          :as         => :product%>
+		</ul>
+	</div>
+</div>
