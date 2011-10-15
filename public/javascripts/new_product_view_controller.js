@@ -449,7 +449,8 @@ NewProductViewController.prototype.uploadError = function(errorCode,message) {
 
 //Setup analytics for creation page
 //
-NewProductViewController.prototype.setupPreCreationAnalytics = function(identifier) {
+NewProductViewController.prototype.setupPreCreationAnalytics = function(category,identifier) {
+  mpq.track("Creation Template Opened", {'category':category});
   mpq.name_tag(identifier);
   //mpq.track_forms($("#new_product"),"Save and Share it!");
 }

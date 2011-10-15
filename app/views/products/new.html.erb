@@ -84,8 +84,8 @@
     var newProductViewController = new NewProductViewController(
                     {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
 
-    newProductViewController.setupPreCreationAnalytics(
-                    <%= "'" + self.current_user.email + "'" %>);
+    newProductViewController.setupPreCreationAnalytics('<%=@category%>',
+                                                '<%=self.current_user.email%>');
     center_based_on_element('#container');
   </script>
 
