@@ -60,48 +60,11 @@
 	
 	<div id="products" style="display:block;">
 		<ul>
-			<div id="product_samples">
-
-        <%=render :partial => "products/sample", 
-                  :locals => {
-                    :category     => "bags-sample",
-                    :title        => "Nicole Hobo by Ellington",
-                    :endorsement  => "I love this shoulder bag. Came with a "\
-                                      "leather logo charm that can be used "\
-                                      "for decoration or as a keychain",
-                    :comments     => 3,
-                    :image        => "suggestion_bags.jpg"}%>
-
-        <%=render :partial => "products/sample", 
-                  :locals => {
-                    :category     => "shoes-sample",
-                    :title        => "Zara Court Shoe with Cap-toe",
-                    :endorsement  => "These were on sale at the Newbury "\
-                                      "Street store. Need I say more??",
-                    :comments     => 4,
-                    :image        => "suggestion_shoes.jpg"}%>
-
-        <%=render :partial => "products/sample", 
-                  :locals => {
-                    :category     => "phones-sample",
-                    :title        => "Black iPhone 4",
-                    :endorsement  => "I inherited from my sister when she "\
-                                      "went traveling. If money grew on trees,"\
-                                      " I'd buy her one when she gets back!",
-                    :comments     => 17,
-                    :image        => "suggestion_phone.jpg"}%>
-
-        <%=render :partial => "products/sample", 
-                  :locals => {
-                    :category     => "cosmetics-sample",
-                    :title        => "Diorshow Black Out Mascara",
-                    :endorsement  => "My absolute fave! Like all Dior, "\
-                                      "excellent with a primer beforehand.",
-                    :comments     => 1,
-                    :image        => "suggestion_makeup.jpg"}%>
-
-			</div> <!-- product_samples -->
 		
+      <%if @products.empty?%>
+        <%=render "products/samples"%>
+      <%end%>
+
       <%=render :partial    => "products/preview", 
                 :collection => @products,
                 :as         => :product%>
