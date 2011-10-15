@@ -1,13 +1,18 @@
 
 <div id="profile_header">
 	<div id="profile_details">
-		<%=image_tag @user.photo_url, :class => "profile_user_photo"%>
+
+		<%=image_tag @user.photo_url, 
+        :class => "profile_user_photo"%>
+
     <p class="profile_username">
       <%=@user.first_name + " " + @user.last_name%>'s Collection
     </p>
+
     <p class="profile_bio">
       Mormon chic, if you know what I mean ;-)
     </p>
+
 	</div> <!--profile_details-->
 </div> <!--profile_header-->
 
@@ -20,14 +25,30 @@
 	</div>
 
 	<div id="suggestions">
-		<a class="suggestion" href="/">Add your shoes ›</a>
-		<a class="suggestion" href="/">Add your accessories ›</a>
-		<a class="suggestion" href="/">Add your clothing ›</a>
-		<a class="suggestion" href="/">Add home decor ›</a>
-		<a class="suggestion" href="/">Add your cosmetics ›</a>
-		<a class="suggestion" href="/">Add your electronics ›</a>
-		<a class="suggestion" href="/">Add your jewelry ›</a>
-		<a class="suggestion" href="/">Add anything! ›</a>
+    <%=link_to "Add your shoes ›", 
+        new_product_path(:category => "shoes"),
+        :class => "suggestion"%>
+    <%=link_to "Add your accessories ›", 
+        new_product_path(:category => "accesories"),
+        :class => "suggestion"%>
+    <%=link_to "Add your clothing ›", 
+        new_product_path(:category => "clothing"),
+        :class => "suggestion"%>
+    <%=link_to "Add home decor ›", 
+        new_product_path(:category => "decor"),
+        :class => "suggestion"%>
+    <%=link_to "Add your cosmetics ›", 
+        new_product_path(:category => "cosmetics"),
+        :class => "suggestion"%>
+    <%=link_to "Add your electronics ›", 
+        new_product_path(:category => "electronics"),
+        :class => "suggestion"%>
+    <%=link_to "Add your jewelry ›", 
+        new_product_path(:category => "jewelry"),
+        :class => "suggestion"%>
+    <%=link_to "Add anything! ›", 
+        new_product_path(:category => "anything"),
+        :class => "suggestion"%>
 	</div>
 
 
