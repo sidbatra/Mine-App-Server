@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-git add app/ config/ db/migrate/ lib/ private/ script/ test/ vendor/ public/javascripts public/stylesheets public/images 
-git commit -a
 git push
