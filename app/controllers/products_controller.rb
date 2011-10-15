@@ -25,10 +25,11 @@ class ProductsController < ApplicationController
                             self.current_user.id)
 
 
-    target_url  = product_path(
-                   product.id,
-                   product.handle)
+    #target_url  = product_path(
+    #               product.id,
+    #               product.handle)
 
+    target_url = user_path(self.current_user)
 
   rescue => ex
     handle_exception(ex)
