@@ -12,9 +12,45 @@ common: &common
   :msg:
     :product:
       :shoes:
-        :query: Search your shoe by name...
-        :title: Name your shoe
-        :endorsement: What do you love about your shoe?
+        :query: Search your shoes by name...
+        :title: Name the shoes
+        :endorsement: What do you love about your shoes?
+      :accessories:
+        :query: Search your accessory by name...
+        :title: Name the accessory
+        :endorsement: What do you love about it?
+      :clothing:
+        :query: Search your clothing by name...
+        :title: Name the clothing
+        :endorsement: What do you love about it?
+      :decor:
+        :query: Search home decor by name...
+        :title: Name it
+        :endorsement: What do you love about it?
+      :cosmetics:
+        :query: Search your cosmetics by name...
+        :title: Name it
+        :endorsement: What do you love about it?
+      :electronics:
+        :query: Search your gadget by name...
+        :title: Name it
+        :endorsement: What do you love about it?
+      :jewelry:
+        :query: Search your jewelry by name...
+        :title: Name it
+        :endorsement: What do you love about it?
+      :bags:
+        :query: Search your bag by name...
+        :title: Name your bag
+        :endorsement: What do you love about your bag?
+      :phones:
+        :query: Search your phone by name...
+        :title: Name your phone
+        :endorsement: What do you love about your phone?
+      :anything:
+        :query: Search your item by name...
+        :title: Name it
+        :endorsement: What do you love about it?
 
 development: &development
   <<: *common
