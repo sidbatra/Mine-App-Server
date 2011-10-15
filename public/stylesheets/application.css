@@ -52,6 +52,7 @@ h1 {
 
 #container {
 	width: 900px;
+	height: 410px;
 	position: relative;
 	top: 40px; /* change dynamically with JS.io */
 	padding: 0px 15px;
