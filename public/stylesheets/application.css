@@ -44,10 +44,21 @@ h1 {
 
 #logo {
 	position: absolute;
-	top:29px;
+	top:30px;
 	left: 20px;
-	width: 125px;
-	height: 50px;
+	width: 85px;
+	padding: 6px 12px 5px 13px;
+	height: 37px;
+	border-top: 1px solid #791a10;
+	border-bottom: 1px solid #791a10;
+}
+
+.copyright {
+	font-size: 12px;
+	color: #791a10;
+	width: 110px;
+	line-heigh: 24px;
+	height: 24px;
 }
 
 #container {
@@ -62,7 +73,7 @@ h1 {
 
 .instructions {
 /* 	font-family: 'Permanent Marker', cursive; */
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 20px;
 	color: #999999;
 	padding: 20px 15px 15px;
@@ -125,7 +136,7 @@ h1 {
 #product_query {
 	height: 34px;
 	width: 287px;
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	font-size: 20px;
 	color: #cccccc;
 	line-height: 34px;
@@ -164,12 +175,12 @@ h1 {
 }
 
 #right_content, #right_new_content {
-	border-left: 1px solid #bbbbbb;
+	border-left: 1px solid #dddddd;
 	margin-left: 50px;
 	padding-left: 20px;
 }
 
-#right_content { margin-top: 135px; }
+#right_content { margin-top: 127px; }
 #right_new_content { margin-top: 70px; }
 
 #right_titlebox {
@@ -217,7 +228,7 @@ h1 {
 }
 
 #user_name {
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	color: #bbbbbb;
 	font-size: 14px;
 }
@@ -227,7 +238,7 @@ h1 {
 }
 
 #item_name {
-	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 16px;
 	margin-bottom: 12px;
 }
@@ -291,7 +302,7 @@ h1 {
 	height: 76px;
 }
 
-#product_title { font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif; margin-bottom: 12px; }
+#product_title { font-family: 'FuturaStdBold', Arial, sans-serif; margin-bottom: 12px; }
 #product_endorsement { font-family: Georgia, Times New Roman, serif; }
 
 
@@ -375,8 +386,8 @@ h1 {
 
 .navigation {
 	position: absolute;
-	top: -40px;
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
+	top: -32px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #791a10;
 	font-size: 12px;
 	left: 20px;
@@ -430,9 +441,9 @@ h1 {
 }
 
 #profile_details {
-	width: 1035px;
+	width: 1005px;
 	padding-right: 5px;
-	padding-left: 150px;
+	padding-left: 120px;
 	height: 50px;
 	margin: 0 auto;
 	overflow-y: hidden;
@@ -452,9 +463,9 @@ h1 {
 }
 
 .profile_bio {
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
-	line-height: 8px;
+	line-height: 12px;
 	color: #999999;
 }
 
@@ -560,7 +571,7 @@ h1 {
 	position: absolute;
 	bottom: 14px;
 	right: 14px;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-family: Arial, sans-serif;
 	font-size: 14px;
 	color: #999999;
 }
@@ -614,13 +625,13 @@ h1 {
 
 .comment_unit_right {
 	line-height: 140%;
-	margin-top: -7px;
+	margin-top: -3px;
 	margin-left: 60px;
 	display: block;
 }
 
 .commenter_name, .comment_time {
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-family: Arial, sans-serif;
 	font-size: 10px;
 	color: #333333;
 }
@@ -637,7 +648,7 @@ h1 {
 	font-size: 14px;
 	color: #999999;
 /* 	font-family: Georgia, serif; */
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
 }
 	
 
@@ -694,7 +705,7 @@ h1 {
 	border: 1px solid #333333;
 	color: white;
 	text-align: center;
-	font-family: Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	cursor: hand;
 	cursor: pointer;
 	background: #6e6e6e; /* Old browsers */
@@ -708,7 +719,7 @@ h1 {
 }
 
 .awesome { 
-	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBold', Arial, sans-serif; 
 	font-size: 16px;
 }
 
@@ -774,4 +785,21 @@ h1 {
          url('/type/galliardstd-roman-webfont.svg#ITCGalliardStdRoman') format('svg');
     font-weight: normal;
     font-style: normal;
+}
+
+
+/* ------------------------------ Mozilla-Only fall-back fonts */
+
+/* ------------------------------ Fonts */
+
+@-moz-document url-prefix() {
+    #item_name, 
+    #product_title, 
+    .profile_username, 
+    .suggestion, 
+    .product_title, 
+    .product_title_sample,
+    .awesome { 
+    	font-family: Arial, sans-serif; font-weight: bold; 
+    }
 }
