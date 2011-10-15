@@ -5,6 +5,7 @@
 
     <%=stylesheet_link_merged    :application-%>
     <%=javascript_include_merged :application-%>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
 
 
     <%=yield :head%>
@@ -22,17 +23,26 @@
         <%=is_device_iphone?%>);
     </script>
 
-<div id="logo">
+	<div id="logo">
       <%=link_to image_tag('felvy_logo.png'),
       			  root_path%>
-    </div>
+	</div>
  
     <%=yield%>
+    
+    <div id="blocker"></div>
 
-    
-    <!--<div id="footer">© 2011 FELVY. ALL RIGHTS RESERVED | 
-    <a href="mailto:contact@felvy.com">contact@felvy.com</a></div>-->
-    
+
+
+<!--
+   <div id="footer">© 2011 FELVY. ALL RIGHTS RESERVED | 
+    	<a href="mailto:contact@felvy.com">contact@felvy.com</a>
+    </div>
+-->
+
+
+
+
   </body>
 </html>
 
