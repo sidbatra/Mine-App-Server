@@ -90,11 +90,11 @@ function NewProductViewController(uploadSettings) {
 
   $(kImagesBoxClose).click(function() { npvController.closeImagesBox(); });
 
-  $(kProductTitle).blur(function() { mpq.track("Item Name: " +
-                                                $(kProductTitle).val());});
+  $(kProductQuery).blur(function() { mpq.track("Left Search Box"); }); 
 
-  $(kProductEndorsement).blur(function() { mpq.track("Item Endoresement: " +
-                                                $(kProductEndorsement).val());});
+  $(kProductTitle).blur(function() { mpq.track("Left Item Name"); }); 
+
+  $(kProductEndorsement).blur(function() { mpq.track("Left Item Endoresement"); }); 
 
 
   this.scrollViewController                      = new ScrollViewController();
