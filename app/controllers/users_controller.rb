@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-    target_url = new_product_path
+    target_url = user_path(@user)
 
   rescue => ex
     handle_exception(ex)

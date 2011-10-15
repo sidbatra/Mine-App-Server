@@ -33,6 +33,12 @@ module DW
                           new_user.id
       @current_user   = new_user
     end
+
+    # Test if the given user_id belongs to the current user
+    #
+    def is_current_user(user_id)
+      logged_in? && @current_user.id == user_id
+    end
     
     # Filter method to enforce a login requirement.
     #
@@ -86,7 +92,7 @@ module DW
     # Inclusion hook to make #current_user and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_user, :logged_in?, 
+      base.send :helper_method, :current_user, :logged_in?, :is_current_user,
         :set_cookie, :delete_cookie, :login_required, 
         :admin_required, :access_denied
     end

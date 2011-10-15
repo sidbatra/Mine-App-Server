@@ -1,116 +1,118 @@
+
 <div id="profile_header">
 	<div id="profile_details">
-		<%=image_tag @user.photo_url, :class => "profile_user_photo"%>
-			<p class="profile_username"><%=@user.first_name + " " + @user.last_name%>'s Collection</p>
-			<p class="profile_bio">Mormon chic, if you know what I mean ;-)</p>
-	</div>
-</div>
+
+		<%=image_tag @user.photo_url, 
+        :class => "profile_user_photo"%>
+
+    <p class="profile_username">
+      <%=@user.first_name + " " + @user.last_name%>'s Collection
+    </p>
+
+    <p class="profile_bio">
+      <%if is_current_user(@user.id)%>
+
+          <%=text_field_tag "user_byline",
+              self.current_user.byline,
+              :style => "display:none"%>
+
+          <span id="user_byline_text">
+            <%=self.current_user.byline%>
+          </span>
+		      <input id="user_edit" value="Edit" title="Edit" 
+                type="button" alt="Edit"
+                style="<%=self.current_user.byline.present? ?
+                            '' : 
+                            'display:none'%>">
+
+          <%unless self.current_user.byline.present?%>
+            <%=link_to "Describe your collections's style",
+                "javascript:void(0)",
+                :id => "user_edit_initiate"%>
+          <%end%>
+      <%else%>
+        <%=@user.byline.present? ? 
+            @user.byline : 
+            "collecting since " + @user.created_at.strftime('%B %Y')%>
+      <%end%>
+    </p>
+
+	</div> <!--profile_details-->
+</div> <!--profile_header-->
+
 
 <div id="profile_container">
-	<!--<#=render @products.first%>-->
-	
+
+  <%if is_current_user(@user.id)%>
+    <div class="instructions">
+      <span class="emphasis">Add favorite items you own</span> 
+      to your collection!
+    </div>
+
+    <div id="suggestions">
+      <%=link_to "Add your shoes ›", 
+          new_product_path(:category => "shoes"),
+          :class => "suggestion"%>
+      <%=link_to "Add your accessories ›", 
+          new_product_path(:category => "accesories"),
+          :class => "suggestion"%>
+      <%=link_to "Add your clothing ›", 
+          new_product_path(:category => "clothing"),
+          :class => "suggestion"%>
+      <%=link_to "Add home decor ›", 
+          new_product_path(:category => "decor"),
+          :class => "suggestion"%>
+      <%=link_to "Add your cosmetics ›", 
+          new_product_path(:category => "cosmetics"),
+          :class => "suggestion"%>
+      <%=link_to "Add your electronics ›", 
+          new_product_path(:category => "electronics"),
+          :class => "suggestion"%>
+      <%=link_to "Add your jewelry ›", 
+          new_product_path(:category => "jewelry"),
+          :class => "suggestion"%>
+      <%=link_to "Add anything! ›", 
+          new_product_path(:category => "anything"),
+          :class => "suggestion"%>
+    </div> <!-- suggestions -->
+  <%end%>
+
 
 	<div class="instructions">
-		<span class="emphasis">Add favorite items you own</span> to your collection!
-	</div>
-
-
-
-	<div id="suggestions">
-		<a class="suggestion" href="/">Add your shoes ›</a>
-		<a class="suggestion" href="/">Add your accessories ›</a>
-		<a class="suggestion" href="/">Add your clothing ›</a>
-		<a class="suggestion" href="/">Add home decor ›</a>
-		<a class="suggestion" href="/">Add your cosmetics ›</a>
-		<a class="suggestion" href="/">Add your electronics ›</a>
-		<a class="suggestion" href="/">Add your jewelry ›</a>
-		<a class="suggestion" href="/">Add anything! ›</a>
-	</div>
-
-
-	<div class="instructions">
-		<span class="emphasis">Everything you own</span> appears right here on this page:
+		<span class="emphasis">
+      Everything 
+      <%=is_current_user(@user.id) ? 
+          "you own" : 
+          @user.first_name + " owns"%>
+    </span> 
+    appears right here on this page:
 	</div>
 
 	
 	<div id="products" style="display:block;">
 		<ul>
 		
-			<div id="product_samples">
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_bags.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Nicole Hobo by Ellington</p>
-								<p class="product_endorsement_sample">I love this shoulder bag. Came with a leather logo charm that can be used for decoration or as a keychain</p>
-								<div class="product_comment_count faded">
-								3 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_shoes.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Zara Court Shoe with Cap-toe</p>
-								<p class="product_endorsement_sample">These were on sale at the Newbury Street store. Need I say more??</p>
-								<div class="product_comment_count faded">
-								4 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
+      <%if @products.empty?%>
+        <%=render "products/samples"%>
+      <%end%>
 
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_phone.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Black iPhone 4</p>
-								<p class="product_endorsement_sample">I inherited from my sister when she went traveling. If money grew on trees, I'd buy her one when she gets back!</p>
-								<div class="product_comment_count faded">
-								17 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_makeup.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Diorshow Black Out Mascara</p>
-								<p class="product_endorsement_sample">My absolute fave! Like all Dior, excellent with a primer beforehand.</p>
-								<div class="product_comment_count faded">
-								1 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
-
-				
-				
-			</div>
-		
-	
-		
-		<%=render :partial    => "products/preview", 
-		          :collection => @products[1..-1], 
-		          :as         => :product%>
+      <%=render :partial    => "products/preview", 
+                :collection => @products,
+                :as         => :product%>
 		</ul>
 	</div>
-	<div id="blocker"></div>
+
+	<div id="blocker">
+  </div>
 
 </div> <!-- profile_container -->
+
+
+<script type="text/javascript">
+
+  <%if is_current_user(@user.id)%>
+    var userShowViewController = new UserShowViewController(
+                                          <%=self.current_user.id%>);
+  <%end%>
+    
+</script>
