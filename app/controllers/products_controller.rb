@@ -7,9 +7,11 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
-    @product  = Product.new
-    @category = params[:category] ? params[:category] : ""
-    @uploader = generate_uploader
+    @product      = Product.new
+    @uploader     = generate_uploader
+
+    @category     = params[:category] ? params[:category] : "anything"
+    @placeholders = MSG[:product][@category.gsub("-sample","").to_sym]
   rescue => ex
     handle_exception(ex)
   ensure
