@@ -1,20 +1,23 @@
+
 <div id="profile_header">
 	<div id="profile_details">
 		<%=image_tag @user.photo_url, :class => "profile_user_photo"%>
-			<p class="profile_username"><%=@user.first_name + " " + @user.last_name%>'s Collection</p>
-			<p class="profile_bio">Mormon chic, if you know what I mean ;-)</p>
-	</div>
-</div>
+    <p class="profile_username">
+      <%=@user.first_name + " " + @user.last_name%>'s Collection
+    </p>
+    <p class="profile_bio">
+      Mormon chic, if you know what I mean ;-)
+    </p>
+	</div> <!--profile_details-->
+</div> <!--profile_header-->
+
 
 <div id="profile_container">
-	<!--<#=render @products.first%>-->
-	
 
 	<div class="instructions">
-		<span class="emphasis">Add favorite items you own</span> to your collection!
+		<span class="emphasis">Add favorite items you own</span> 
+    to your collection!
 	</div>
-
-
 
 	<div id="suggestions">
 		<a class="suggestion" href="/">Add your shoes ›</a>
@@ -29,88 +32,62 @@
 
 
 	<div class="instructions">
-		<span class="emphasis">Everything you own</span> appears right here on this page:
+		<span class="emphasis">Everything you own</span> 
+    appears right here on this page:
 	</div>
 
 	
 	<div id="products" style="display:block;">
 		<ul>
-		
 			<div id="product_samples">
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_bags.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Nicole Hobo by Ellington</p>
-								<p class="product_endorsement_sample">I love this shoulder bag. Came with a leather logo charm that can be used for decoration or as a keychain</p>
-								<div class="product_comment_count faded">
-								3 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_shoes.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Zara Court Shoe with Cap-toe</p>
-								<p class="product_endorsement_sample">These were on sale at the Newbury Street store. Need I say more??</p>
-								<div class="product_comment_count faded">
-								4 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
 
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_phone.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Black iPhone 4</p>
-								<p class="product_endorsement_sample">I inherited from my sister when she went traveling. If money grew on trees, I'd buy her one when she gets back!</p>
-								<div class="product_comment_count faded">
-								17 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
+        <%=render :partial => "products/sample", 
+                  :locals => {
+                    :category     => "bags-sample",
+                    :title        => "Nicole Hobo by Ellington",
+                    :endorsement  => "I love this shoulder bag. Came with a "\
+                                      "leather logo charm that can be used "\
+                                      "for decoration or as a keychain",
+                    :comments     => 3,
+                    :image        => "suggestion_bags.jpg"}%>
 
-				<li>
-					<div class="product">
-						<div class="product_left">
-							<a href="/products/159/Say-What">
-								<img class="product_left_image" src="/images/suggestion_makeup.jpg">
-							</a>
-						</div>
-							<div class="product_right">
-								<p class="product_title_sample">Diorshow Black Out Mascara</p>
-								<p class="product_endorsement_sample">My absolute fave! Like all Dior, excellent with a primer beforehand.</p>
-								<div class="product_comment_count faded">
-								1 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
-							</div>
-					</div>
-				</li>
+        <%=render :partial => "products/sample", 
+                  :locals => {
+                    :category     => "shoes-sample",
+                    :title        => "Zara Court Shoe with Cap-toe",
+                    :endorsement  => "These were on sale at the Newbury "\
+                                      "Street store. Need I say more??",
+                    :comments     => 4,
+                    :image        => "suggestion_shoes.jpg"}%>
 
-				
-				
-			</div>
+        <%=render :partial => "products/sample", 
+                  :locals => {
+                    :category     => "phones-sample",
+                    :title        => "Black iPhone 4",
+                    :endorsement  => "I inherited from my sister when she "\
+                                      "went traveling. If money grew on trees,"\
+                                      " I'd buy her one when she gets back!",
+                    :comments     => 17,
+                    :image        => "suggestion_phone.jpg"}%>
+
+        <%=render :partial => "products/sample", 
+                  :locals => {
+                    :category     => "cosmetics-sample",
+                    :title        => "Diorshow Black Out Mascara",
+                    :endorsement  => "My absolute fave! Like all Dior, "\
+                                      "excellent with a primer beforehand.",
+                    :comments     => 1,
+                    :image        => "suggestion_makeup.jpg"}%>
+
+			</div> <!-- product_samples -->
 		
-	
-		
-		<%=render :partial    => "products/preview", 
-		          :collection => @products[1..-1], 
-		          :as         => :product%>
+      <%=render :partial    => "products/preview", 
+                :collection => @products,
+                :as         => :product%>
 		</ul>
 	</div>
-	<div id="blocker"></div>
+
+	<div id="blocker">
+  </div>
 
 </div> <!-- profile_container -->
