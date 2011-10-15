@@ -13,13 +13,13 @@ class ShareController < ApplicationController
 
       product.shared
 
-      self.current_user.share_product(
-                          product,
-                          product_url(
-                            product.id,
-                            product.handle,
-                            :ref => "facebook")) 
-      
+      #self.current_user.share_product(
+      #                    product,
+      #                    product_url(
+      #                      product.id,
+      #                      product.handle,
+      #                      :ref => "facebook")) 
+      #
     end
   rescue => ex
     handle_exception(ex)

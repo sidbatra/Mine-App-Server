@@ -10,7 +10,31 @@
     </p>
 
     <p class="profile_bio">
-      Mormon chic, if you know what I mean ;-)
+      <%if is_current_user(@user.id)%>
+
+          <%=text_field_tag "user_byline",
+              self.current_user.byline,
+              :style => "display:none"%>
+
+          <span id="user_byline_text">
+            <%=self.current_user.byline%>
+          </span>
+		      <input id="user_edit" value="Edit" title="Edit" 
+                type="button" alt="Edit"
+                style="<%=self.current_user.byline.present? ?
+                            '' : 
+                            'display:none'%>">
+
+          <%unless self.current_user.byline.present?%>
+            <%=link_to "Describe your collections's style",
+                "javascript:void(0)",
+                :id => "user_edit_initiate"%>
+          <%end%>
+      <%else%>
+        <%=@user.byline.present? ? 
+            @user.byline : 
+            "collecting since " + @user.created_at.strftime('%B %Y')%>
+      <%end%>
     </p>
 
 	</div> <!--profile_details-->
@@ -19,7 +43,7 @@
 
 <div id="profile_container">
 
-  <%if logged_in? && self.current_user.id == @user.id%>
+  <%if is_current_user(@user.id)%>
     <div class="instructions">
       <span class="emphasis">Add favorite items you own</span> 
       to your collection!
@@ -57,7 +81,7 @@
 	<div class="instructions">
 		<span class="emphasis">
       Everything 
-      <%=logged_in? && self.current_user.id == @user.id ? 
+      <%=is_current_user(@user.id) ? 
           "you own" : 
           @user.first_name + " owns"%>
     </span> 
@@ -82,3 +106,13 @@
   </div>
 
 </div> <!-- profile_container -->
+
+
+<script type="text/javascript">
+
+  <%if is_current_user(@user.id)%>
+    var userShowViewController = new UserShowViewController(
+                                          <%=self.current_user.id%>);
+  <%end%>
+    
+</script>
