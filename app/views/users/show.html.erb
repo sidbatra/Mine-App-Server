@@ -19,41 +19,48 @@
 
 <div id="profile_container">
 
+  <%if logged_in? && self.current_user.id == @user.id%>
+    <div class="instructions">
+      <span class="emphasis">Add favorite items you own</span> 
+      to your collection!
+    </div>
+
+    <div id="suggestions">
+      <%=link_to "Add your shoes ›", 
+          new_product_path(:category => "shoes"),
+          :class => "suggestion"%>
+      <%=link_to "Add your accessories ›", 
+          new_product_path(:category => "accesories"),
+          :class => "suggestion"%>
+      <%=link_to "Add your clothing ›", 
+          new_product_path(:category => "clothing"),
+          :class => "suggestion"%>
+      <%=link_to "Add home decor ›", 
+          new_product_path(:category => "decor"),
+          :class => "suggestion"%>
+      <%=link_to "Add your cosmetics ›", 
+          new_product_path(:category => "cosmetics"),
+          :class => "suggestion"%>
+      <%=link_to "Add your electronics ›", 
+          new_product_path(:category => "electronics"),
+          :class => "suggestion"%>
+      <%=link_to "Add your jewelry ›", 
+          new_product_path(:category => "jewelry"),
+          :class => "suggestion"%>
+      <%=link_to "Add anything! ›", 
+          new_product_path(:category => "anything"),
+          :class => "suggestion"%>
+    </div> <!-- suggestions -->
+  <%end%>
+
+
 	<div class="instructions">
-		<span class="emphasis">Add favorite items you own</span> 
-    to your collection!
-	</div>
-
-	<div id="suggestions">
-    <%=link_to "Add your shoes ›", 
-        new_product_path(:category => "shoes"),
-        :class => "suggestion"%>
-    <%=link_to "Add your accessories ›", 
-        new_product_path(:category => "accesories"),
-        :class => "suggestion"%>
-    <%=link_to "Add your clothing ›", 
-        new_product_path(:category => "clothing"),
-        :class => "suggestion"%>
-    <%=link_to "Add home decor ›", 
-        new_product_path(:category => "decor"),
-        :class => "suggestion"%>
-    <%=link_to "Add your cosmetics ›", 
-        new_product_path(:category => "cosmetics"),
-        :class => "suggestion"%>
-    <%=link_to "Add your electronics ›", 
-        new_product_path(:category => "electronics"),
-        :class => "suggestion"%>
-    <%=link_to "Add your jewelry ›", 
-        new_product_path(:category => "jewelry"),
-        :class => "suggestion"%>
-    <%=link_to "Add anything! ›", 
-        new_product_path(:category => "anything"),
-        :class => "suggestion"%>
-	</div>
-
-
-	<div class="instructions">
-		<span class="emphasis">Everything you own</span> 
+		<span class="emphasis">
+      Everything 
+      <%=logged_in? && self.current_user.id == @user.id ? 
+          "you own" : 
+          @user.first_name + " owns"%>
+    </span> 
     appears right here on this page:
 	</div>
 
