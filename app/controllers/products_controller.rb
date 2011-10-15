@@ -45,11 +45,11 @@ class ProductsController < ApplicationController
     next_product  = @product.next
     prev_product  = @product.previous
 
-    @next_path = next_product ? product_path(
+    @prev_path = next_product ? product_path(
                                   next_product.id,
                                   next_product.handle) : nil
 
-    @prev_path = prev_product ? product_path(
+    @next_path = prev_product ? product_path(
                                   prev_product.id,
                                   prev_product.handle) : nil
 
