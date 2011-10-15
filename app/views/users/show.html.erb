@@ -6,28 +6,111 @@
 	</div>
 </div>
 
-<div id="container">
+<div id="profile_container">
 	<!--<#=render @products.first%>-->
 	
-	
-	<div id="product_suggestions">
-		<ul>
-			<li><div class="product"><img src="/images/suggestion_bags.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_phone.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_jewellery.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_glasses.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_books.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_makeup.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_clothes.jpg"></div></li>
-			<li><div class="product"><img src="/images/suggestion_shoes.jpg"></div></li>
-		</ul>
+
+	<div class="instructions">
+		<span class="emphasis">Add favorite items you own</span> to your collection!
 	</div>
+
+
+
+	<div id="suggestions">
+		<a class="suggestion" href="/">Add your shoes ›</a>
+		<a class="suggestion" href="/">Add your accessories ›</a>
+		<a class="suggestion" href="/">Add your clothing ›</a>
+		<a class="suggestion" href="/">Add home decor ›</a>
+		<a class="suggestion" href="/">Add your cosmetics ›</a>
+		<a class="suggestion" href="/">Add your electronics ›</a>
+		<a class="suggestion" href="/">Add your jewelry ›</a>
+		<a class="suggestion" href="/">Add anything! ›</a>
+	</div>
+
+
+	<div class="instructions">
+		<span class="emphasis">Everything you own</span> appears right here on this page:
+	</div>
+
 	
-	<div id="products">
+	<div id="products" style="display:block;">
 		<ul>
+		
+			<div id="product_samples">
+				<li>
+					<div class="product">
+						<div class="product_left">
+							<a href="/products/159/Say-What">
+								<img class="product_left_image" src="/images/suggestion_bags.jpg">
+							</a>
+						</div>
+							<div class="product_right">
+								<p class="product_title_sample">Nicole Hobo by Ellington</p>
+								<p class="product_endorsement_sample">I love this shoulder bag. Came with a leather logo charm that can be used for decoration or as a keychain</p>
+								<div class="product_comment_count faded">
+								3 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
+							</div>
+					</div>
+				</li>
+				<li>
+					<div class="product">
+						<div class="product_left">
+							<a href="/products/159/Say-What">
+								<img class="product_left_image" src="/images/suggestion_shoes.jpg">
+							</a>
+						</div>
+							<div class="product_right">
+								<p class="product_title_sample">Zara Court Shoe with Cap-toe</p>
+								<p class="product_endorsement_sample">These were on sale at the Newbury Street store. Need I say more??</p>
+								<div class="product_comment_count faded">
+								4 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
+							</div>
+					</div>
+				</li>
+
+				<li>
+					<div class="product">
+						<div class="product_left">
+							<a href="/products/159/Say-What">
+								<img class="product_left_image" src="/images/suggestion_phone.jpg">
+							</a>
+						</div>
+							<div class="product_right">
+								<p class="product_title_sample">Black iPhone 4</p>
+								<p class="product_endorsement_sample">I inherited from my sister when she went traveling. If money grew on trees, I'd buy her one when she gets back!</p>
+								<div class="product_comment_count faded">
+								17 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
+							</div>
+					</div>
+				</li>
+
+				<li>
+					<div class="product">
+						<div class="product_left">
+							<a href="/products/159/Say-What">
+								<img class="product_left_image" src="/images/suggestion_makeup.jpg">
+							</a>
+						</div>
+							<div class="product_right">
+								<p class="product_title_sample">Diorshow Black Out Mascara</p>
+								<p class="product_endorsement_sample">My absolute fave! Like all Dior, excellent with a primer beforehand.</p>
+								<div class="product_comment_count faded">
+								1 <img class="product_comment_bubble faded" src="/images/comment_bubble.png">
+							</div>
+					</div>
+				</li>
+
+				
+				
+			</div>
+		
+	
+		
 		<%=render :partial    => "products/preview", 
 		          :collection => @products[1..-1], 
 		          :as         => :product%>
 		</ul>
 	</div>
-</div>
+	<div id="blocker"></div>
+
+</div> <!-- profile_container -->
