@@ -43,9 +43,9 @@ h1 {
 }
 
 #logo {
-	width: 150px;
-	height: 47px;
-	border: 1px dashed #cccccc;
+	width: 60px;
+	height: 49px;
+	margin-left:-1px;
 	float: left;
 }
 
@@ -84,7 +84,7 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 20px;
 	color: #999999;
-	padding: 20px 15px 15px;
+	padding: 10px 15px 15px;
 }
 
 .emphasis { color: #791a10; }
@@ -462,6 +462,7 @@ h1 {
 	height: 49px;
 	line-height: 49px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
+	font-size: 14px;
 	color: #999999;
 	padding: 0 12px 0 45px;
 	float: right;
@@ -473,11 +474,11 @@ h1 {
 }
 
 .logout_user_photo {
-	width: 25px;
-	height: 25px;
+	width: 24px;
+	height: 24px;
 	display:inline;
 	position: absolute;
-	top: 12px;
+	top: 13px;
 	left: 12px;
 }
 
@@ -535,7 +536,7 @@ li.last_item {
 #profile_details {
 	width: 885px;
 	height: 50px;
-	margin: 30px auto 0;
+	margin: 40px auto 0;
 /* 	background: pink; */
 }
 
@@ -607,6 +608,7 @@ input#user_byline {
 #profile_container {
 	width: 915px;
 	margin: 30px auto 0;
+/* 	background: yellow; */
 }
 
 #suggestions {

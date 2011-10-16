@@ -26,8 +26,8 @@
     <div id="header">
 	    <div id="navbar">
 		    <div id="logo">
-		      <!--<#=link_to image_tag('felvy_logo.png'),
-		      			     logged_in? ? user_path(self.current_user) : root_path%>-->
+		      <%=link_to image_tag('felvy_logo.png'),
+		      			     logged_in? ? user_path(self.current_user) : root_path%>
 			</div>
 			
 			<%if !logged_in?%>  
