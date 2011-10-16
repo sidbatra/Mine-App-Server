@@ -33,7 +33,7 @@
         <div id="product_input">
           <div id="item_search">
             <%=f.text_field :query,
-                  :value    => "Search for an item by name...",
+                  :value    => @placeholders[:query],
                   :class    => "box_shadow"%>
             <input id="product_search" value="" 
                     title="Search" type="button" alt="Search">
@@ -55,11 +55,11 @@
 					</div>
 							
           <%=f.text_field :title,
-                :value    => "Item name",
+                :value    => @placeholders[:title],
                 :class    => "box_shadow"%>
 
           <%=f.text_area :endorsement,
-                :value    => "What do you love about it?",
+                :value    => @placeholders[:endorsement],
                 :class    => "box_shadow"%>
 
           <%=submit_tag "Save and Share it! &rsaquo;", 
@@ -84,8 +84,8 @@
     var newProductViewController = new NewProductViewController(
                     {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
 
-    newProductViewController.setupPreCreationAnalytics(
-                    <%= "'" + self.current_user.email + "'" %>);
+    newProductViewController.setupPreCreationAnalytics('<%=@category%>',
+                                                '<%=self.current_user.email%>');
     center_based_on_element('#container');
   </script>
 

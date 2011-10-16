@@ -7,9 +7,11 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
-    @product  = Product.new
-    @category = params[:category] ? params[:category] : ""
-    @uploader = generate_uploader
+    @product      = Product.new
+    @uploader     = generate_uploader
+
+    @category     = params[:category] ? params[:category] : "anything"
+    @placeholders = MSG[:product][@category.gsub("-sample","").to_sym]
   rescue => ex
     handle_exception(ex)
   ensure
@@ -23,10 +25,11 @@ class ProductsController < ApplicationController
                             self.current_user.id)
 
 
-    target_url  = product_path(
-                   product.id,
-                   product.handle)
+    #target_url  = product_path(
+    #               product.id,
+    #               product.handle)
 
+    target_url = user_path(self.current_user)
 
   rescue => ex
     handle_exception(ex)
@@ -45,11 +48,11 @@ class ProductsController < ApplicationController
     next_product  = @product.next
     prev_product  = @product.previous
 
-    @next_path = next_product ? product_path(
+    @prev_path = next_product ? product_path(
                                   next_product.id,
                                   next_product.handle) : nil
 
-    @prev_path = prev_product ? product_path(
+    @next_path = prev_product ? product_path(
                                   prev_product.id,
                                   prev_product.handle) : nil
 

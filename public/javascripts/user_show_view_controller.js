@@ -19,6 +19,9 @@ function UserShowViewController(user_id) {
   $(kUserByline).keypress(function(e) { 
                         return usvController.userBylineKeyPressed(e); });
 
+  $(kUserByline).blur(function() { 
+                        return usvController.updateUser(); });
+
   $(kUserEdit).click(function() { 
       usvController.userEditClicked();});
 

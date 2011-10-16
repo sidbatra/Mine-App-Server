@@ -32,12 +32,12 @@
         });
       });
 
+    mpq.register({'src' : '<%=@campaign%>'});
+
     <%if !logged_in?%>
-      mpq.track_links($("#action_link"),"FB Connect from HOME", 
-                      {'src' : '<%=@campaign%>'});
+      mpq.track_links($("#action_link"),"FB Connect from HOME"); 
     <%else%>
-      mpq.track_links($("#action_link"),"Share your item - HOME",
-                      {'src' : '<%=@campaign%>'});
+      mpq.track_links($("#action_link"),"Share your item - HOME");
     <%end%>
 
     center_based_on_element('#container');

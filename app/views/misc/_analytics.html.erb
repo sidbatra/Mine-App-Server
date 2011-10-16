@@ -1,4 +1,6 @@
 
+<%if ENV['RAILS_ENV'] == 'production'%>
+
   <!-- Start Mixpanel -->
   <script type="text/javascript">
     var mpq=[];mpq.push(["init","957a671eef60497cdc0087021a6b3bf3"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
@@ -6,7 +8,6 @@
   </script>
   <!-- End Mixpanel -->
 
-<%if ENV['RAILS_ENV'] == 'production'%>
   <!-- Userfly Analytics -->
   <!--script type="text/javascript">
   var userflyHost = (("https:" == document.location.protocol) ? "https://secure.userfly.com" : "http://asset.userfly.com");
@@ -29,4 +30,15 @@
 
   </script>
   <!-- End of Google Analytics -->
+
+<%else%>
+  
+  <!-- Start Mixpanel -->
+  <script type="text/javascript">
+    var mpq=[];mpq.push(["init","ab66b806d303650fd231223bc314e878"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+    mpq.set_config({track_links_timeout: 20000 });
+  </script>
+  <!-- End Mixpanel -->
+
 <%end%>
+

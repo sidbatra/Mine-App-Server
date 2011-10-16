@@ -14,6 +14,7 @@ include CryptoManagement
 include Storage
 
 
+MSG = CONFIG[:msg]
 REGEX = {}
 REGEX[:url] = /(((http|ftp|https):\/\/){1}([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)+([\S,:\/\.\?=a-zA-Z0-9_-]*[^,.)\s"]))/i
 
