@@ -43,14 +43,10 @@ h1 {
 }
 
 #logo {
-	position: absolute;
-	top:30px;
-	left: 20px;
-	width: 85px;
-	padding: 6px 12px 5px 13px;
-	height: 37px;
-	border-top: 1px solid #791a10;
-	border-bottom: 1px solid #791a10;
+	width: 150px;
+	height: 47px;
+	border: 1px dashed #cccccc;
+	float: left;
 }
 
 .copyright {
@@ -59,6 +55,18 @@ h1 {
 	width: 110px;
 	line-heigh: 24px;
 	height: 24px;
+}
+
+#header {
+	height: 49px;
+	background: white;
+	border-bottom: 1px solid #dddddd;
+}
+
+#navbar {
+	width: 885px;
+	margin: 0 auto;
+/* 	background: yellow; */
 }
 
 #container {
@@ -424,29 +432,111 @@ h1 {
 	color: #791a10;
 }
 
+/* ------------------------------ User Log-in, Profile Nav */
+
+#user_nav {
+	width: 879px;
+	height: 50px;
+	padding: 30px 0;
+	margin: auto;
+	left:0; right:0;
+	position: absolute;
+/* 	background: yellow; */
+}
+
+.nav {
+	position: absolute;
+	top: 30px;
+	right: 0px;
+	border: 0;
+	overflow: visible;
+}
+
+.strapline {
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	line-height: 50px;
+	font-size: 24px;
+}
+
+.logout { 
+	height: 49px;
+	line-height: 49px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	color: #999999;
+	padding: 0 12px 0 45px;
+	float: right;
+	position: relative;
+}
+
+.logout:hover {
+	color: #791a10;
+}
+
+.logout_user_photo {
+	width: 25px;
+	height: 25px;
+	display:inline;
+	position: absolute;
+	top: 12px;
+	left: 12px;
+}
+
+.logout_v {
+	height: 9px;
+	width: 9px;
+	background: white url('/images/v_999999.png');
+	background-repeat: no-repeat;
+	float: right;
+	margin: 21px 0px 0px 8px;
+}
+
+.logout:hover div.logout_v {
+	background: url('/images/v_791a10.png');
+}
+
+.logout:hover li.choice {
+	display: block;
+}
+
+.logout li.button {
+	display:block;
+}
+
+.logout li.choice {
+	display: none;
+	width: auto;
+	text-align: left;
+	margin-right: -13px;
+	margin-left: -13px;
+	height: 32px;
+	line-height: 32px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-size: 12px;
+	color: #999999;
+	background: white;
+	padding: 0 12px;
+	border-right: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+}
+
+li.choice:hover {
+	background: #f8f8f8;
+	color: #333333;
+}
+
+li.last_item {
+	border-bottom: 1px solid #dddddd;
+}
+
 
 /* ------------------------------ Profile-specific */
 
-#profile_container {
-	width: 925px;
-	margin: 0 auto 100px;;
-	padding-left: 5px;
-}
-
-#profile_header {
-	height: 50px;
-/* 	border-bottom: 1px solid #dddddd; */
-	padding: 30px;
-/* 	background: white; */
-}
 
 #profile_details {
-	width: 1005px;
-	padding-right: 5px;
-	padding-left: 120px;
+	width: 885px;
 	height: 50px;
-	margin: 0 auto;
-	overflow-y: hidden;
+	margin: 30px auto 0;
+/* 	background: pink; */
 }
 
 .profile_user_photo {
@@ -456,17 +546,67 @@ h1 {
 	float: left;
 }
 
-.profile_username {
-	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif;
+#profile_details_right {
+	height: 80px;
+	width: 500px;
+	margin-left: 66px;
+/* 	background: gray; */
+}
+
+#profile_username {
+	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 36px;
 	font-size: 24px;
 }
 
-.profile_bio {
+#profile_bio {
+	margin-left: -6px;
+	margin-top: -7px;
+}
+
+#user_byline_default {
+	width: 500px;
+	height: 26px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
-	line-height: 12px;
+	line-height: 26px;
+	height: 24px;
 	color: #999999;
+/* 	background: yellow; */
+}
+
+input#user_byline {
+	width: 288px;
+	height: 24px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	color: #999999;
+	border: 1px solid #dddddd;
+	padding: 0 4px;
+	-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin-left: -6px;
+}
+
+#user_edit {
+	width: 40px;
+	height: 24px;
+	border: none;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-size: 12px;
+	color: #cccccc;
+	background: none;
+}
+
+#user_edit:hover {
+	text-decoration: underline;
+}
+
+#profile_container {
+	width: 915px;
+	margin: 30px auto 0;
 }
 
 #suggestions {
@@ -479,17 +619,20 @@ h1 {
 	position: relative; /* needed for button height */
 	overflow: visible;
 	border: 0;
-	float: left;
 	width: 192px;
 	text-align: center;
 	margin: 0 0 15px 15px;
 	border: 1px solid #dddddd;
 	height: 48px;
 	line-height: 48px;
-	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #999999;
 	background: white;
 	padding: 0 8px;
+}
+
+.suggestion {
+	float: left;
 }
 
 .suggestion:hover {
@@ -799,7 +942,9 @@ h1 {
     .suggestion, 
     .product_title, 
     .product_title_sample,
-    .awesome { 
+    .awesome,
+    .strapline,
+    .logout { 
     	font-family: Arial, sans-serif; font-weight: bold; 
     }
 }
