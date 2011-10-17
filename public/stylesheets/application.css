@@ -501,14 +501,14 @@ h1 {
 .logout_v {
 	height: 9px;
 	width: 9px;
-	background: transparent url('/images/v_dddddd.png');
+	background: url('/images/v_dddddd_ffffff.png') 0 0;
 	background-repeat: no-repeat;
 	float: right;
 	margin: 21px 0px 0px 8px;
 }
 
 .logout:hover div.logout_v {
-	background: url('/images/v_ffffff.png');
+	background: url('/images/v_dddddd_ffffff.png') 0 -14px;
 }
 
 .logout:hover li.choice, .add_item:hover li.choice {
