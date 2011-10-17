@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014185953) do
+ActiveRecord::Schema.define(:version => 20111017175006) do
 
   create_table "comments", :force => true do |t|
     t.string   "data"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20111014185953) do
   create_table "products", :force => true do |t|
     t.string   "title"
     t.string   "handle"
-    t.string   "endorsement"
+    t.text     "endorsement"
     t.text     "website_url"
     t.text     "image_url"
     t.boolean  "is_hosted",      :default => false
