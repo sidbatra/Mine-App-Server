@@ -8,8 +8,8 @@
   <div id="container">
 
     <%=link_to "← " + @product.user.first_name + "'s Collection",
-                user_path(@product.user),
-                :class => "navigation" %>
+        user_path(@product.user),
+        :class => "navigation" %>
     
     <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
     <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
@@ -22,10 +22,10 @@
 
       <%if logged_in?%>
         <%=image_tag self.current_user.photo_url,
-                      :id => "comment_photo_self"%>
+            :id => "comment_photo_self"%>
 
         <%=text_area_tag "comment_data","What do you think?",
-                          :class => "box_shadow" %>
+            :class => "box_shadow" %>
           
         <div id="blocker"></div>
         <div class="post_comment">

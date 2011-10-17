@@ -1,69 +1,63 @@
+
 <%=render :partial => "misc/welcome", 
-		  :locals => {
-        :user   => @user,
-        :source => "user_" + @user.id.to_s} unless logged_in?%>
+          :locals => {
+            :user   => @user,
+            :source => "user_" + @user.id.to_s} unless logged_in?%>
 
 <div id="profile_details">
 
 	<%=image_tag @user.photo_url, 
-    :class => "profile_user_photo"%>
-
+      :class => "profile_user_photo"%>
 
 	<div id="profile_details_right">
 	
-	    <div id="profile_username">
-	      <%=@user.first_name + " " + @user.last_name%>'s Collection
-	    </div>
-	
-	    <div id="profile_bio">
-	    
-	    	<div id="user_byline_default">	
-	    	
-		      <%if is_current_user(@user.id)%>
-		      
-		
-		          <%=text_field_tag "user_byline",
-		              self.current_user.byline,
-		              :style => "display:none"%>
-              <input id="user_update" class="small_button" value="Update" 
-                  title="Update" type="button" alt="Update" 
-                  style="display:none">
-		
-		          	<span id="user_byline_text">
-		            	<%=self.current_user.byline%>
-		          	</span>
+    <div id="profile_username">
+      <%=user_full_name(@user)%>'s Collection
+    </div>
 
-
-				     <input id="user_edit" value="‹ Edit" title="Edit" 
-		                type="button" alt="Edit"
-		                style="<%=self.current_user.byline.present? ?
-		                            '' : 
-		                            'display:none'%>">        
-		          
-		
-		
-		
-		          <%unless self.current_user.byline.present?%>
-		            <%=link_to "Describe your collection's style",
-		                "javascript:void(0)",
-		                :id => "user_edit_initiate"%>
-		          <%end%>
-		          
-		          
-		          
-		          
-		          
-			      <%else%>
-			        <%=@user.byline.present? ? 
-			            @user.byline : 
-			            "Collecting since " + @user.created_at.strftime('%B %Y')%>
-			      <%end%>
-	      
-	      </div> <!--user_byline_default-->
-	      
-	  </div> <!--profile_bio-->
+    <div id="profile_bio">
+      <div id="user_byline_default">	
       
-   </div> <!--profile_details_right-->
+        <%if is_current_user(@user.id)%>
+        
+          <!-- byline editing -->
+          <%=text_field_tag "user_byline",
+              self.current_user.byline,
+              :style => "display:none"%>
+          <input id="user_update" class="small_button" value="Update" 
+              title="Update" type="button" alt="Update" 
+              style="display:none">
+
+          
+          <!-- byline display -->
+          <span id="user_byline_text">
+            <%=self.current_user.byline%>
+          </span>
+          <input id="user_edit" value="‹ Edit" title="Edit" 
+              type="button" alt="Edit"
+              style="<%=self.current_user.byline.present? ?
+                          '' : 
+                          'display:none'%>">        
+          
+          <!-- byline empty --> 
+          <%unless self.current_user.byline.present?%>
+            <%=link_to "Describe your collection's style",
+                "javascript:void(0)",
+                :id => "user_edit_initiate"%>
+          <%end%>
+            
+        <%else%>
+
+          <%=@user.byline.present? ? 
+              @user.byline : 
+              "Collecting since " + @user.created_at.strftime('%B %Y')%>
+
+        <%end%> 
+      
+      </div> <!--user_byline_default-->
+    </div> <!--profile_bio-->
+      
+  </div> <!--profile_details_right-->
 
 </div> <!--profile_details-->
 	
@@ -122,11 +116,12 @@
 		
       <%if @products.empty?%>
         <%=render "products/samples"%>
+      <%else%>
+        <%=render :partial    => "products/preview", 
+                  :collection => @products,
+                  :as         => :product%>
       <%end%>
 
-      <%=render :partial    => "products/preview", 
-                :collection => @products,
-                :as         => :product%>
 		</ul>
 	</div>
 
