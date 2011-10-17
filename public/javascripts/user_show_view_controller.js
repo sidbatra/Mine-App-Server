@@ -66,7 +66,7 @@ UserShowViewController.prototype.userUpdated = function(data) {
   var response = jQuery.parseJSON(jQuery.parseJSON(data));
 
   if(response['status'] == 'success') {
-    $(kUserBylineText).html($(kUserByline).val());
+    $(kUserBylineText).html(response['body']['byline']);
     $(kUserByline).hide();
     $(kUserUpdate).hide();
     $(kUserBylineText).show();
