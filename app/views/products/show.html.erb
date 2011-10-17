@@ -1,3 +1,6 @@
+<%=render :partial => "misc/welcome", 
+		  :locals => {:user => @product.user} unless logged_in?%>
+
 <!-- item -->
 
 <div id="container">

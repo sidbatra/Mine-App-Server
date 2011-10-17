@@ -1,3 +1,5 @@
+<%=render :partial => "misc/welcome", 
+		  :locals => {:user => @user} unless logged_in?%>
 
 <div id="profile_details">
 
