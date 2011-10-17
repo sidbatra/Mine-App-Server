@@ -21,80 +21,12 @@
         <%=is_device_iphone?%>);
     </script>
     
-    <div id="header">
-	    <div id="navbar">
-		    <div id="logo">
-		      <%=link_to image_tag('felvy_logo_white.png'),
-		      			     logged_in? ? user_path(self.current_user) : root_path%>
-			</div>
-			
-			
-			<ul class="nav">
-						
-				<%if !logged_in?%>
-				
-				<li class="nav_button">
-					<ul class="login">
-				     		<li class="button">
-					     		<%=link_to "Log In",
-					     		fb_auth_path(:category => "login"),
-						            :id => "action_link" %>
-				        	</li>
-				     </ul>
-				</li>
-			
-				<%else%>
-				
-				<li class="nav_button">
-					<ul class="add_item">
-						<li class="button">
-							Add an Item +
-						</li>
-						<%=link_to "<li class='choice'>Shoes</li>",
-							new_product_path(:category => "shoes")%>
-						<%=link_to "<li class='choice'>Accessories</li>",
-							new_product_path(:category => "accessories")%>
-						<%=link_to "<li class='choice'>Clothing</li>",
-							new_product_path(:category => "clothing")%>
-						<%=link_to "<li class='choice'>Home Decor</li>",
-							new_product_path(:category => "decor")%>
-						<%=link_to "<li class='choice'>Cosmetics</li>",
-							new_product_path(:category => "cosmetics")%>
-						<%=link_to "<li class='choice'>Electronics</li>",
-							new_product_path(:category => "electronics")%>
-						<%=link_to "<li class='choice'>Jewelry</li>",
-							new_product_path(:category => "jewelry")%>
-						<%=link_to "<li class='choice last_item'>Anything!</li>",
-							new_product_path(:category => "anything")%>
-					</ul>
-				</li>
-
-
-			     <li class="nav_button">
-				     <ul class="logout">
-				     		<li class="button">
-						     	<%=image_tag self.current_user.photo_url, 
-						        	:class => "logout_user_photo"%><div class="logout_v"></div>
-						        	<%=self.current_user.first_name + " " + self.current_user.last_name%>
-				        	</li>
-				        	<%=link_to "<li class='choice'>Your Collection</li>", user_path(self.current_user)%>
-				        	<%=link_to "<li class='choice last_item'>Log Out</li>", logout_path%>
-				     </ul>
-				</li>
-				     
-				<%end%>
-				
-		    </ul> <!-- nav -->
-
-	    </div>
-    </div>
-
+    
+    <%=render "misc/header"%>
  
     <%=yield%>
     
     <div id="blocker"></div>
-
-
 
 <!--
    <div id="footer">© 2011 FELVY. ALL RIGHTS RESERVED | 
