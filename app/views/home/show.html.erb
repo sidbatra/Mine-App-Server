@@ -13,35 +13,33 @@
     </div>
 -->
     <div class="slides_container" style="height:100%">
-        <%=render @products%>
+        <%#render @products%>
     </div>
   </div> <!-- container -->
 
   <script type="text/javascript">
 
-      $(function(){
-        $('#container').slides({
-          preload: false,
-          preloadImage: '<%=image_path "transparent.gif"%>',
-          play: 5000,
-          pause: 1500,
-          hoverPause: true,
-          generatePagination: false,
-          pagination: false,
-          effect: 'slide'
-        });
-      });
+    //$(function(){
+    //  $('#container').slides({
+    //    preload: false,
+    //    preloadImage: '<%=image_path "transparent.gif"%>',
+    //    play: 5000,
+    //    pause: 1500,
+    //    hoverPause: true,
+    //    generatePagination: false,
+    //    pagination: false,
+    //    effect: 'slide'
+    //  });
+    //});
 
-    mpq.register({'src' : '<%=@source%>'});
+    //mpq.register({'src' : '<%=@source%>'});
 
-    <%if !logged_in?%>
-      mpq.track_links($("#action_link"),"FB Connect from HOME"); 
-    <%else%>
-      mpq.track_links($("#action_link"),"Share your item - HOME");
-    <%end%>
+    //<%if !logged_in?%>
+    //  mpq.track_links($("#action_link"),"FB Connect from HOME"); 
+    //<%else%>
+    //  mpq.track_links($("#action_link"),"Share your item - HOME");
+    //<%end%>
 
-    center_based_on_element('#container');
-      
   </script>
 
 
