@@ -1,65 +1,50 @@
-<%=render :partial => "misc/welcome", 
-		  :locals => {
-        :user   => @product.user,
-        :source => "product_" + @product.id.to_s} unless logged_in?%>
 
-<!-- item -->
+  <%=render :partial => "misc/welcome", 
+        :locals => {
+          :user   => @product.user,
+          :source => "product_" + @product.id.to_s} unless logged_in?%>
 
-<div id="container">
 
-	    <%=link_to "← " + @product.user.first_name + "'s Collection",
-    			user_path(@product.user),
-    			:class => "navigation"
-    			%>
-  
-		<%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
-		<%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
-  
-    <%unless logged_in?%>
-<!--
-	    <div id="instructions_1" style="display:block">
-	      <#=image_tag "instructions_1.png"%>
-	    </div>
-	    <div id="instructions_2" style="display:block">
-	      <#=image_tag "instructions_2.png"%>
-	    </div>
-	    <div id="instructions_3" style="display:block">
-	      <#=image_tag "instructions_3.png"%>
-	    </div>
--->
-    <%end%>
+  <div id="container">
+
+    <%=link_to "← " + @product.user.first_name + "'s Collection",
+                user_path(@product.user),
+                :class => "navigation" %>
+    
+    <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
+    <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
 
     <%=render @product%>
 
-	<div id="blocker"></div>
-
-	<div id="comments_container">
-
-		    <%if logged_in?%>
-		      <%=image_tag self.current_user.photo_url,
-		      	:id => "comment_photo_self"
-		      %>
-		      <%=text_area_tag "comment_data","What do you think?",
-		      	:class => "box_shadow"
-		      %>
-		      
-		    <%end%> <!-- comment entry box -->
-
-			<div id="blocker"></div>
-			<div class="post_comment">
-		        <input id="comment_post" class="small_button" value="Post Comment" title="Post" type="button" alt="Post">
-		     </div>
-				
-		    <div id="comments">
-		      <%=render @comments%> <!-- existing comments -->
-		    </div>
-		    
-		    <div id="blocker"></div>
-	    
-    </div> <!-- comment_container -->
-    
     <div id="blocker"></div>
-  
+
+    <div id="comments_container">
+
+      <%if logged_in?%>
+        <%=image_tag self.current_user.photo_url,
+                      :id => "comment_photo_self"%>
+
+        <%=text_area_tag "comment_data","What do you think?",
+                          :class => "box_shadow" %>
+          
+        <div id="blocker"></div>
+        <div class="post_comment">
+            <input id="comment_post" class="small_button" 
+                    value="Post Comment" title="Post" type="button" alt="Post">
+        </div>
+      <%end%> <!-- comment entry box -->
+
+
+      <div id="comments">
+        <%=render @comments%> 
+      </div> <!-- comments -->
+        
+      <div id="blocker"></div>
+      
+    </div> <!-- comment_container -->
+      
+      <div id="blocker"></div>
+    
   </div> <!-- container -->
 
   <script type="text/javascript">
