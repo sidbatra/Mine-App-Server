@@ -94,7 +94,7 @@ class Product < ActiveRecord::Base
   def populate_handle
     return unless self.title.present? 
 
-    self.handle = self.title.gsub(/[^a-zA-Z0-9\.]/,'-').
+    self.handle = self.title.gsub(/[^a-zA-Z0-9]/,'-').
                               squeeze('-').
                               chomp('-')
   end
