@@ -1,6 +1,5 @@
 <li>
-  <div class="product" 
-      onclick="window.location='<%=new_product_path(:category => category)%>'">
+  <a class="product" href="<%=new_product_path(:category => category)%>">
     <div class="product_left">
         <%=image_tag image, :class => "product_left_image"%>
     </div>
@@ -16,5 +15,5 @@
           <%=image_tag "comment_bubble.png", 
               :class => "product_comment_bubble faded"%>
       </div>
-  </div>
+  </a>
 </li>

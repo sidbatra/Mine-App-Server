@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-git add app/ config/ db/migrate/ lib/ private/ script/ test/ vendor/ public/javascripts public/stylesheets public/images 
+git add app/ config/ db/migrate/ lib/ private/ script/ test/ vendor/ public/javascripts public/stylesheets public/images  public/type
 git commit -a
