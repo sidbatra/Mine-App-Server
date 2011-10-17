@@ -3,7 +3,7 @@
       :success          => !@error,
       :success_message  => CONFIG[:success],
       :error_message    => CONFIG[:error],
-      :body             => { }
+      :body             => { :byline => h(self.current_user.byline)}
       }-%>
 
 
