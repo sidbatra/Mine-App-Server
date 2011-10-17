@@ -73,8 +73,6 @@ h1 {
 	position: absolute;
 	top: 21px;
 	right: 20px;
-	border: 0;
-	overflow: visible;
 }
 
 #header {
@@ -812,7 +810,34 @@ input#user_byline {
 /* 	font-family: Georgia, serif; */
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
 }
-	
+
+.small_button {
+	height: 26px;
+	line-height: 24px;
+	border-bottom: 1px solid #1d426b;
+	border-top: 1px solid #6895c8;
+	border-left: 0;
+	border-right: 0;
+	font-family: 'FuturaStdBold', Arial, sans-serif; 
+	background: #24578f url('/images/alert-overlay.png') repeat-x; 
+	padding: 0px 8px;
+	overflow: hidden;
+	display:inline;
+	vertical-align: top;
+	color: #fff; 
+	text-decoration: none;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	cursor: pointer;
+}
+
+.small_button:hover {
+	background-color: #1e4774;
+}
+
+.post_comment {
+	margin: 4px 0px 0px;
+	text-align: right;
+}
 
 /* ------------------------------ Effects */
 
@@ -883,6 +908,8 @@ input#user_byline {
 .awesome { 
 	font-family: 'FuturaStdBold', Arial, sans-serif; 
 	font-size: 16px;
+	border: 0;
+	overflow: visible;
 }
 
 .awesome, .awesome:visited {
@@ -977,7 +1004,8 @@ input#user_byline {
     .awesome,
     .strapline,
     .logout,
-    .login { 
+    .login,
+    .small_button { 
     	font-family: Arial, sans-serif; font-weight: bold; 
     }
 }
