@@ -5,8 +5,6 @@
 
     <%=stylesheet_link_merged    :application-%>
     <%=javascript_include_merged :application-%>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-
 
     <%=yield :head%>
 
@@ -22,11 +20,44 @@
         <%=is_device_ipad?%>,
         <%=is_device_iphone?%>);
     </script>
+    
+    <div id="header">
+	    <div id="navbar">
+		    <div id="logo">
+		      <%=link_to image_tag('felvy_logo_white.png'),
+		      			     logged_in? ? user_path(self.current_user) : root_path%>
+			</div>
+			
+			<%if !logged_in?%>
+			
+				<ul class="login">
+			     	
+			     		<li class="button">
+				     		<%=link_to "Log In",
+				     		fb_auth_path(@campaign),
+					            :id => "action_link" %>
+			        	</li>
 
-	<div id="logo">
-      <%=link_to image_tag('felvy_logo.png'),
-      			     logged_in? ? user_path(self.current_user) : root_path%>
-	</div>
+			     </ul>
+	
+		     <%else%>
+		     
+			     <ul class="logout">
+			     	
+			     		<li class="button">
+					     	<%=image_tag self.current_user.photo_url, 
+					        	:class => "logout_user_photo"%><div class="logout_v"></div>
+					        	<%=self.current_user.first_name + " " + self.current_user.last_name%>
+			        	</li>
+			        	<%=link_to "<li class='choice'>Your Collection</li>", user_path(self.current_user)%>
+			        	<%=link_to "<li class='choice last_item'>Log Out</li>", logout_path%>
+			     </ul>
+		
+		    <%end%>
+
+	    </div>
+    </div>
+
  
     <%=yield%>
     
