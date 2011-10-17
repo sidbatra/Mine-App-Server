@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 20111017175006) do
 
   create_table "comments", :force => true do |t|
-    t.string   "data"
+    t.text     "data"
     t.integer  "user_id"
     t.integer  "product_id"
     t.datetime "created_at"

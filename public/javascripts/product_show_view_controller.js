@@ -19,7 +19,7 @@ function ProductShowViewController(product_id) {
     $(kCommentData).css('color'),
     '#333333');
 
-  restrictFieldSize($(kCommentData),254,'charsremain');
+  //restrictFieldSize($(kCommentData),254,'charsremain');
 
   $(kCommentData).keypress(function(e) { 
                         return psvController.commentDataKeyPressed(e); });
@@ -47,7 +47,7 @@ ProductShowViewController.prototype.createComment = function() {
   if($(kCommentData).val().length < 1 || 
       $(kCommentData).val() == this.defCommentData)  {
 
-      alert("Please enter a valid comment");
+      //alert("Please enter a valid comment");
       return;
   }
 
@@ -55,7 +55,8 @@ ProductShowViewController.prototype.createComment = function() {
 
   $.ajax({
     type:       "POST",
-    url:        "/comments.js?comment[product_id]=" + this.product_id + 
+    url:        "/comments.js",
+    data:        "comment[product_id]=" + this.product_id + 
                 "&comment[data]=" + $(kCommentData).val(),
     success:    function(d){psvController.commentCreated(d);},
     error:      function(r,s,e){psvController.commentError(r,s,e);}
@@ -99,8 +100,8 @@ ProductShowViewController.prototype.commentError = function(r,s,e) {
 
 ProductShowViewController.prototype.commentDataKeyPressed = function(e) {
   if(e.keyCode == 13) {
-    this.createComment();
-    return false;
+    //this.createComment();
+    //return false;
   }
 }
 
