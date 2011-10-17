@@ -298,13 +298,13 @@ h1 {
 .action {
 	position: absolute;
 	bottom: 40px;
-	left: 71px;
+	left: 59px;
 	border: 0;
 	overflow: visible;
 }
 
 .action:active {
-	bottom: 49px;
+	bottom: 39px;
 }
 
 .f {

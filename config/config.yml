@@ -12,45 +12,37 @@ common: &common
   :msg:
     :product:
       :shoes:
-        :query: Search your shoes by name...
-        :title: Name the shoes
-        :endorsement: What do you love about your shoes?
+        :query: Search for your shoes...
+        :title: Shoe name and brand
+        :endorsement: What do you love about these shoes?
       :accessories:
-        :query: Search your accessory by name...
-        :title: Name the accessory
-        :endorsement: What do you love about it?
+        :query: Search for your accessory...
+        :title: Accessory name and brand
+        :endorsement: What do you love about this accessory?
       :clothing:
-        :query: Search your clothing by name...
-        :title: Name the clothing
-        :endorsement: What do you love about it?
+        :query: Search for your clothing...
+        :title: Clothing item name and brand
+        :endorsement: What do you love about this item?
       :decor:
-        :query: Search home decor by name...
-        :title: Name it
-        :endorsement: What do you love about it?
+        :query: Search home decor items...
+        :title: Item name and brand
+        :endorsement: What do you love about this item?
       :cosmetics:
-        :query: Search your cosmetics by name...
-        :title: Name it
-        :endorsement: What do you love about it?
+        :query: Search for your cosmetics...
+        :title: Item name and brand
+        :endorsement: What do you love about this item?
       :electronics:
-        :query: Search your gadget by name...
-        :title: Name it
-        :endorsement: What do you love about it?
+        :query: Search for your electronics...
+        :title: Item name and brand
+        :endorsement: What do you love about item item?
       :jewelry:
-        :query: Search your jewelry by name...
-        :title: Name it
-        :endorsement: What do you love about it?
-      :bags:
-        :query: Search your bag by name...
-        :title: Name your bag
-        :endorsement: What do you love about your bag?
-      :phones:
-        :query: Search your phone by name...
-        :title: Name your phone
-        :endorsement: What do you love about your phone?
+        :query: Search for your jewelry...
+        :title: Item name and brand
+        :endorsement: What do you love about this item?
       :anything:
-        :query: Search your item by name...
-        :title: Name it
-        :endorsement: What do you love about it?
+        :query: Search for your item...
+        :title: Item name and brand
+        :endorsement: What do you love about this item?
 
 development: &development
   <<: *common
