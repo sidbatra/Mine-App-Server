@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # Associations
   #-----------------------------------------------------------------------------
   has_many :products, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
 
   # Add a new user or find an existing one based on email
   #
-  def self.add(attributes,campaign)
+  def self.add(attributes,source)
     user = find_or_initialize_by_email(
             :email        => attributes.email,
             :first_name   => attributes.first_name,
@@ -27,7 +28,7 @@ class User < ActiveRecord::Base
             :gender       => attributes.gender,
             :birthday     => attributes.birthday,
             :fb_user_id   => attributes.identifier,
-            :campaign     => campaign)
+            :source       => source)
 
     user.access_token = attributes.access_token.to_s
     user.save!

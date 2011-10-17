@@ -10,12 +10,12 @@ class SessionController < ApplicationController
   # Create a session by asking user to enter via facebook
   #
   def create
-    campaign            = params[:campaign]
+    source              = params[:source] ? params[:source].to_s : "unknown"
     fb_auth             = FbGraph::Auth.new(
                             CONFIG[:fb_app_id],
                             CONFIG[:fb_app_secret])
     client              = fb_auth.client
-    client.redirect_uri = fb_reply_url(campaign)
+    client.redirect_uri = fb_reply_url(:source => source)
 
     target_url          =  client.authorization_uri(
                             :scope => [:email,:user_likes,

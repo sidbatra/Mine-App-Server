@@ -1,5 +1,7 @@
 <%=render :partial => "misc/welcome", 
-		  :locals => {:user => @product.user} unless logged_in?%>
+		  :locals => {
+        :user   => @product.user,
+        :source => "product_" + @product.id.to_s} unless logged_in?%>
 
 <!-- item -->
 

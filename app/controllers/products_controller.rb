@@ -43,7 +43,6 @@ class ProductsController < ApplicationController
   def show
     @product  = Product.eager.find(params[:id])
     @comments = Comment.eager.for_product(@product.id)
-    @campaign = "product_" + @product.id.to_s
 
     next_product  = @product.next
     prev_product  = @product.previous

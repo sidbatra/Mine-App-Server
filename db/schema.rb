@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017175006) do
+ActiveRecord::Schema.define(:version => 20111017193011) do
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20111017175006) do
     t.boolean  "is_admin",                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "campaign"
+    t.string   "source"
     t.string   "byline",                    :default => ""
   end
 

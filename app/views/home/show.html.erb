@@ -32,7 +32,7 @@
         });
       });
 
-    mpq.register({'src' : '<%=@campaign%>'});
+    mpq.register({'src' : '<%=@source%>'});
 
     <%if !logged_in?%>
       mpq.track_links($("#action_link"),"FB Connect from HOME"); 
