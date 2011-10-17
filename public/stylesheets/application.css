@@ -47,6 +47,7 @@ h1 {
 	height: 47px;
 	margin-left:-1px;
 	float: left;
+	position: absolute;
 }
 
 #welcome_box {
@@ -454,50 +455,45 @@ h1 {
 
 /* ------------------------------ User Log-in, Profile Nav */
 
-#user_nav {
-	width: 879px;
-	height: 50px;
-	padding: 30px 0;
-	margin: auto;
-	left:0; right:0;
-	position: absolute;
-/* 	background: yellow; */
-}
-
-.nav {
-	position: absolute;
-	top: 30px;
-	right: 0px;
-	border: 0;
-	overflow: visible;
-}
-
 .strapline {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 50px;
 	font-size: 24px;
 }
 
-.logout, .login { 
+.nav {
+	float: right;
+	height: 49px;
+/* 	background: yellow; */
+	position: relative;
+}
+
+.nav_button {
+	float: left;
+}
+
+.logout, .login, .add_item { 
 	height: 49px;
 	line-height: 49px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 14px;
 	color: #dddddd;
-	padding: 0 12px 0 45px;
-	float: right;
+	padding: 0 12px;
 	position: relative;
 	z-index: 5000;
 }
 
-.logout:hover, .login:hover {
+.logout, .login {
+	padding: 0 12px 0 45px;
+}
+
+.logout:hover, .login:hover, .add_item:hover {
 	color: white;
 }
 
 .logout_user_photo {
 	width: 24px;
 	height: 24px;
-	display:inline;
 	position: absolute;
 	top: 13px;
 	left: 12px;
@@ -516,15 +512,15 @@ h1 {
 	background: url('/images/v_ffffff.png');
 }
 
-.logout:hover li.choice {
+.logout:hover li.choice, .add_item:hover li.choice {
 	display: block;
 }
 
-.logout li.button {
-	display:block;
+.logout li.button, .add_item li.button {
+
 }
 
-.logout li.choice {
+.logout li.choice, .add_item li.choice {
 	display: none;
 	width: auto;
 	text-align: left;
