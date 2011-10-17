@@ -5,6 +5,7 @@
 var kUserEditInitiate   = '#user_edit_initiate';
 var kUserByline         = '#user_byline';
 var kUserEdit           = '#user_edit';
+var kUserUpdate         = '#user_update';
 var kUserBylineText     = '#user_byline_text';
 
 
@@ -14,16 +15,19 @@ function UserShowViewController(user_id) {
   var usvController     = this;
   this.user_id          = user_id;
 
-  restrictFieldSize($(kUserByline),140,'charsremain');
+  restrictFieldSize($(kUserByline),254,'charsremain');
 
   $(kUserByline).keypress(function(e) { 
                         return usvController.userBylineKeyPressed(e); });
 
-  $(kUserByline).blur(function() { 
-                        return usvController.updateUser(); });
+  //$(kUserByline).blur(function() { 
+  //                      return usvController.updateUser(); });
 
   $(kUserEdit).click(function() { 
       usvController.userEditClicked();});
+
+  $(kUserUpdate).click(function() { 
+      usvController.updateUser();});
 
   $(kUserEditInitiate).click(function() { 
       usvController.userEditInitiateClicked(); });
@@ -64,6 +68,7 @@ UserShowViewController.prototype.userUpdated = function(data) {
   if(response['status'] == 'success') {
     $(kUserBylineText).html($(kUserByline).val());
     $(kUserByline).hide();
+    $(kUserUpdate).hide();
     $(kUserBylineText).show();
     $(kUserEdit).show();
   }
@@ -89,7 +94,7 @@ UserShowViewController.prototype.userError = function(r,s,e) {
 //
 UserShowViewController.prototype.userBylineKeyPressed = function(e) {
   if(e.keyCode == 13) {
-    this.updateUser();
+    //this.updateUser();
     return false;
   }
 }
@@ -99,6 +104,7 @@ UserShowViewController.prototype.userBylineKeyPressed = function(e) {
 UserShowViewController.prototype.userEditInitiateClicked = function(e) {
   $(kUserEditInitiate).hide();
   $(kUserByline).show();
+  $(kUserUpdate).show();
   $(kUserByline).focus();
 }
 
@@ -108,6 +114,7 @@ UserShowViewController.prototype.userEditClicked = function(e) {
   $(kUserBylineText).hide();
   $(kUserEdit).hide();
   $(kUserByline).show();
+  $(kUserUpdate).show();
   $(kUserByline).focus();
 }
 
