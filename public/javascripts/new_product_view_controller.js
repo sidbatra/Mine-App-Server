@@ -72,7 +72,7 @@ function NewProductViewController(uploadSettings) {
     $(kProductEndorsement).css('color'),
     '#333333');
 
-  restrictFieldSize($(kProductEndorsement),120,'charsremain');
+  //restrictFieldSize($(kProductEndorsement),120,'charsremain');
 
   // Clear shared items on escape
   $('html').keydown(function(e) {
