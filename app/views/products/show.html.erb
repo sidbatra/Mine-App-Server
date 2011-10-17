@@ -40,10 +40,13 @@
 		      <%=text_area_tag "comment_data","What do you think?",
 		      	:class => "box_shadow"
 		      %>
-		        <input id="comment_post" value="Post" title="Post" type="button" alt="Post">
+		      
 		    <%end%> <!-- comment entry box -->
 
-				<div id="blocker"></div>
+			<div id="blocker"></div>
+			<div class="post_comment">
+		        <input id="comment_post" class="small_button" value="Post Comment" title="Post" type="button" alt="Post">
+		     </div>
 				
 		    <div id="comments">
 		      <%=render @comments%> <!-- existing comments -->
