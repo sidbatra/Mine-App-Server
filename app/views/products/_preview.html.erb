@@ -8,15 +8,15 @@
 
 		<div class="product_right">
 			<p class="product_title">
-				<%=truncate product.title, 
+				<%=h truncate(product.title, 
 							:length 	  => 80, 
-							:omissions 	=> "…"%>
+							:omissions 	=> "…")%>
 			</p>
 
 			<p class="product_endorsement">
-				<%=truncate product.endorsement, 
+				<%=h truncate(product.endorsement, 
 							:length 	  => 100, 
-							:omissions 	=> "…"%>
+							:omissions 	=> "…")%>
 			</p>
 
       <div class="product_comment_count">
