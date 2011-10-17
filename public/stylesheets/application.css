@@ -92,7 +92,7 @@ h1 {
 	width: 885px;
 	height: 400px;
 	position: relative;
-	top: 40px; /* change dynamically with JS.io */
+	top: 50px; /* change dynamically with JS.io */
 	margin-left: auto;
 	margin-right: auto;
 }
