@@ -743,6 +743,11 @@ input#user_byline {
 
 .sample {
 	color: #cccccc;
+	width: 433px;
+	height: 208px;
+	border: 1px solid #dddddd;
+	background: white;
+	display:block;
 }
 
 .product:hover {
