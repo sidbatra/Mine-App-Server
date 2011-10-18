@@ -115,7 +115,8 @@
 		<ul>
 		
       <%if @products.empty?%>
-        <%=render "products/samples"%>
+        <%=render :partial  => "products/samples",
+                  :locals   => {:active => is_current_user(@user.id)}%>
       <%else%>
         <%=render :partial    => "products/preview", 
                   :collection => @products,
