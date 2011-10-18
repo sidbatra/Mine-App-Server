@@ -133,11 +133,19 @@
 
 <script type="text/javascript">
 
-  mpq.register_once({'src' : 'user_<%=@user.id.to_s%>'}); 
+  mpq.register_once({'landed_on' : 'user_<%=@user.id.to_s%>'}); 
 
   <%if is_current_user(@user.id)%>
     var userShowViewController = new UserShowViewController(
                                           <%=self.current_user.id%>);
+  <%end%>
+
+  <%if @source.present? %>
+    <%if @source == "product"%>
+      mpq.track("Item Created");
+    <%elsif @source == "user"%>
+      mpq.track("User Logged In");
+    <%end%>
   <%end%>
 
 </script>
