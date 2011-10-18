@@ -22,12 +22,12 @@
 	</div>
 	
   <div id="slides">
-    <div class="slides_container" style="height:500px">
-      <div><img class="landing_product_image" src="/images/landing_makeup_1.jpg" /></div>
-      <div><img class="landing_product_image" src="/images/landing_bag_1.jpg" /></div>
-      <div><img class="landing_product_image" src="/images/landing_shoe_1.jpg" /></div>
-      <div><img class="landing_product_image" src="/images/landing_jewelry_1.jpg" /></div>
-    </div>  
+    <div id="slideshow" style="position:absolute;top:0px;left:0px;z-index:-100;">
+        <img class="landing_product_image" src="/images/landing_makeup_1.jpg" />
+        <img class="landing_product_image" src="/images/landing_bag_1.jpg" style="display:none"/>
+        <img class="landing_product_image" src="/images/landing_shoe_1.jpg" style="display:none"/>
+        <img class="landing_product_image" src="/images/landing_jewelry_1.jpg"style="display:none" />
+    </div>
   </div>
     
 </div> <!-- landing_container -->
@@ -37,7 +37,11 @@
 </div>
 
 <script type="text/javascript">
- //$(document).ready(function(){
+ $(document).ready(function(){
+  $('#slideshow').cycle({
+    fx: 'fade',
+    timeout: 6000
+    });
  //   $('#slides').slides({
  //     preload: false,
  //     preloadImage: '<%=image_path "transparent.gif"%>',
@@ -48,6 +52,6 @@
  //     pagination: false,
  //     effect: 'fade'
  //   });
- // });
+  });
 </script>
 
