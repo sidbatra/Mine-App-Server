@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-    target_url = user_path(@user)
+    target_url = user_path(@user,:src => "user")
 
   rescue => ex
     handle_exception(ex)
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   def show
     @user     = User.find(params[:id])
     @products = @user.products.reverse
+    @source   = params[:src] ? params[:src].to_s : ""
   end
 
   # Update user's byline
