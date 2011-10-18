@@ -47,6 +47,7 @@ h1 {
 	margin-left:-1px;
 	float: left;
 	position: absolute;
+	margin-top: -3px;
 }
 
 #welcome_box {
@@ -75,7 +76,7 @@ h1 {
 }
 
 #header {
-	height: 49px;
+	height: 45px;
 /* 	background: white; */
 	background: #333333 /*url('/images/alert-overlay.png') repeat-x */;
 	border-bottom: 1px solid #dddddd;
@@ -533,8 +534,8 @@ h1 {
 }
 
 .logout, .login, .add_item { 
-	height: 49px;
-	line-height: 49px;
+	height: 45px;
+	line-height: 45px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 14px;
 	color: #dddddd;
@@ -555,7 +556,7 @@ h1 {
 	width: 24px;
 	height: 24px;
 	position: absolute;
-	top: 13px;
+	top: 11px;
 	left: 12px;
 }
 
@@ -565,7 +566,7 @@ h1 {
 	background: url('/images/v_dddddd_ffffff.png') 0 0;
 	background-repeat: no-repeat;
 	float: right;
-	margin: 21px 0px 0px 8px;
+	margin: 18px 0px 0px 5px;
 }
 
 .logout:hover div.logout_v {
