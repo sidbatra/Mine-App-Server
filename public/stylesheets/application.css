@@ -92,13 +92,13 @@ h1 {
 
 /* ------------------------------ Home Page */
 
-
 #landing_container {
 	width: 885px;
-	height: 560px;
+	height: 403px;
 	margin: 0 auto;
 	padding: 0 15px;
 	position: relative;
+	z-index: 1000;
 }
 
 .landing_heading {
@@ -107,7 +107,7 @@ h1 {
 	color: #791a10;
 	text-align:center;
 	line-height: 40px;
-	padding: 40px;
+	padding: 44px 0 36px;
 }
 
 .landing_subtitle {
@@ -117,6 +117,7 @@ h1 {
 }
 
 .landing_main {
+	height: 235px;
 	padding-left: 420px;
 	font-family: Georgia, serif;
 	color: #666666;
@@ -124,7 +125,7 @@ h1 {
 }
 
 .landing_main ul {
-	padding: 40px 0 24px 24px;
+	padding: 0px 0 28px 24px;
 
 }
 
@@ -137,28 +138,36 @@ h1 {
 	position: absolute;
 }
 
+.landing_lower {
+	width: 100%;
+	height: 900px;
+	background: #eeeeee;
+	border-top: 1px solid #dddddd;
+	overflow: hidden;
+	z-index: -5000;
+}
+
 .landing_product_image {
 	position: absolute;
-	height: 560px;
-	width: 500px;
+	height: 530px;
+	width: 750px;
 	top: 0px;
-	left: 0px;
+	margin-left: 13px;
 	z-index: -1000;
 }
 
 #footer {
     width:885px;
     height:20px;
-    margin: 0 auto;
+    margin: 125px auto 0;
     line-height: 20px;
     font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
 	text-align: center;
 	color: #999999;
 	clear:both;
+	z-index: 5000;
 }
-
-
 
 /* ------------------------------ Product Page */
 
@@ -501,11 +510,11 @@ h1 {
 }
 
 .next {
-	right: -65px;
+	right: -60px;
 }
 
 .previous {
-	left: -65px;
+	left: -60px;
 }
 
 .previous:hover, .next:hover {
