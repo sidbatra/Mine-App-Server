@@ -50,18 +50,12 @@
     var productShowViewController = new ProductShowViewController(
                                           <%=@product.id%>);
 
+    mpq.register_once({'src' : 'product_<%=@product.id.to_s%>'});
+
     <%if logged_in?  && 
           @product.user.id == self.current_user.id && 
           !@product.is_shared%>
       productShowViewController.share();
-    <%end%>
-
-    <%if !logged_in?%>
-      productShowViewController.setupLoggedOutAnalytics();
-    <%elsif self.current_user.id == @product.user.id%>
-      productShowViewController.setupPostCreationAnalytics();
-    <%else%>
-      productShowViewController.setupLoggedInAnalytics();
     <%end%>
 
     center_based_on_element('#container',<%=logged_in? ? 50 : 50%>);

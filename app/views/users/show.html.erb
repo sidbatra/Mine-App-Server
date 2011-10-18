@@ -133,9 +133,11 @@
 
 <script type="text/javascript">
 
+  mpq.register_once({'src' : 'user_<%=@user.id.to_s%>'}); 
+
   <%if is_current_user(@user.id)%>
     var userShowViewController = new UserShowViewController(
                                           <%=self.current_user.id%>);
   <%end%>
-    
+
 </script>

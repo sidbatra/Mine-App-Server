@@ -36,8 +36,6 @@ ProductShowViewController.prototype.share = function() {
     success:    function(d){trace(d);},
     error:      function(r,s,e){trace(r + ' ' + s + ' ' + e);}
     });
-
-  mpq.track("Save and Share it!");
 }
 
 // Create a comment
@@ -105,25 +103,3 @@ ProductShowViewController.prototype.commentDataKeyPressed = function(e) {
   }
 }
 
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-// Analytics helpers
-//-----------------------------------------------------------------------------
-
-//Setup analytics for logged out state
-//
-ProductShowViewController.prototype.setupLoggedOutAnalytics = function() {
-  mpq.track_links($("#action_link"),"FB Connect");
-}
-
-//Setup analytics for logged in state
-//
-ProductShowViewController.prototype.setupLoggedInAnalytics = function() {
-  mpq.track_links($("#action_link"),"Share your own item");
-}
-
-//Setup analytics for post creation page
-//
-ProductShowViewController.prototype.setupPostCreationAnalytics = function() { 
-  mpq.track_links($("#action_link"),"Done! Post Another");
-}
