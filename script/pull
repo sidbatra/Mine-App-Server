@@ -2,3 +2,5 @@
 
 git pull
 touch tmp/restart.txt
+RAILS_ENV=development lib/daemons/processor_ctl stop
+RAILS_ENV=development lib/daemons/processor_ctl start
