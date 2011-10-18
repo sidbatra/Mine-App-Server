@@ -56,20 +56,6 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  # Share the given product to FB
-  #
-  def share_product(product,product_url)
-    fb_user = FbGraph::User.me(access_token)
-    fb_user.feed!(
-      :message      => product.endorsement,
-      :picture      => product.thumbnail_url,
-      :link         => product_url,
-      :description  => "#{self.first_name} is using Felvy to share the "\
-                        "things #{self.gender == "male" ? "he" : "she"} "\
-                        "owns with the world. It's free!",
-      :name         => product.title)
-  end
-
   # URL for the user photo
   #
   def image_url

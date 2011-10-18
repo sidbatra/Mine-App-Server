@@ -47,6 +47,24 @@ class Product < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Share the product to fb via the user who created it
+  #
+  def share(product_url)
+    return if self.is_shared
+
+    fb_user = FbGraph::User.me(self.user.access_token)
+    fb_user.feed!(
+      :message      => self.endorsement,
+      :picture      => self.thumbnail_url,
+      :link         => product_url,
+      :description  => "#{self.user.first_name} is using Felvy to share what "\
+                        "#{self.user.gender == "male" ? "he" : "she"} buys "\
+                        "and owns. It's fun, and free!",
+      :name         => self.title)
+
+      self.shared
+  end
+
   # Fetch the next product uploaded by the user
   # who owns the product
   #
