@@ -22,11 +22,20 @@
 	</div>
 	
   <div id="slides">
-    <div id="slideshow" style="position:absolute;top:0px;left:0px;z-index:-100;">
-        <img class="landing_product_image" src="/images/landing_makeup_1.jpg" />
-        <img class="landing_product_image" src="/images/landing_bag_1.jpg" style="display:none"/>
-        <img class="landing_product_image" src="/images/landing_shoe_1.jpg" style="display:none"/>
-        <img class="landing_product_image" src="/images/landing_jewelry_1.jpg"style="display:none" />
+    <div id="slideshow" 
+          style="position:absolute;top:0px;left:0px;z-index:-100;">
+        <%=image_tag "landing_bag_1.jpg", 
+              :class => "landing_product_image", 
+              :style => "display:none"%>
+        <%=image_tag "landing_shoe_1.jpg", 
+              :class => "landing_product_image", 
+              :style => "display:none"%>
+        <%=image_tag "landing_shoe_1.jpg", 
+              :class => "landing_product_image", 
+              :style => "display:none"%>
+        <%=image_tag "landing_jewelry_1.jpg", 
+              :class => "landing_product_image", 
+              :style => "display:none"%>
     </div>
   </div>
     
