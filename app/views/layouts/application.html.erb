@@ -13,7 +13,7 @@
     <%=csrf_meta_tag%>
   </head>
 
-  <body>
+  <body <%=yield :body_attribute%>>
     <script type="text/javascript">
       setupDeviceVariables(
         <%=is_mobile_device? ? true : false%>,
