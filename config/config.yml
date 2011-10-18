@@ -7,6 +7,8 @@ common: &common
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
+  :queue:
+    :proc: hasit_processing
   :success: success
   :error: error
   :msg:
@@ -52,8 +54,8 @@ development: &development
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: /
   :emails:
-    :noreply_from: Hasit <noreply@hasit.com>
-    :sender: manager@hasit.com
+    :noreply: Hasit <noreply@felvy.com>
+    :contact: Felvy <contact@felvy.com>
 
 staging: &staging
   <<: *common
@@ -63,8 +65,8 @@ staging: &staging
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: http://s3.amazonaws.com/denwen-hasit-staging
   :emails:
-    :noreply_from: Teams <noreply@hasit.com>
-    :sender: manager@hasit.com
+    :noreply: Teams <noreply@felvy.com>
+    :contact: Felvy <contact@felvy.com>
 
 production: &production
   <<: *common
@@ -74,8 +76,8 @@ production: &production
   :edge_server: http://edge.felvy.com
   :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
   :emails:
-    :noreply_from: Teams <noreply@hasit.com>
-    :sender: manager@hasit.com
+    :noreply: Felvy <noreply@felvy.com>
+    :contact: Felvy <contact@felvy.com>
 
 
 test: &test
