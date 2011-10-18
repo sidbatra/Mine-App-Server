@@ -140,12 +140,10 @@
                                           <%=self.current_user.id%>);
   <%end%>
 
-  <%if @source.present? %>
-    <%if @source == "product"%>
-      mpq.track("Item Created");
-    <%elsif @source == "user"%>
-      mpq.track("User Logged In");
-    <%end%>
+  <%if @source == "product"%>
+    mpq.track("Item Created");
+  <%elsif @source == "user"%>
+    mpq.track("User Logged In");
   <%end%>
 
 </script>
