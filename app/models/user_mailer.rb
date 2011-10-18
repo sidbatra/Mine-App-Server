@@ -8,8 +8,6 @@ class UserMailer < ActionMailer::Base
   # thread to which the user belongs
   #
   def new_comment(comment,user)
-    return if comment.user.id == user.id
-
     @owner        = comment.product.user
     @comment      = comment
     @user         = user

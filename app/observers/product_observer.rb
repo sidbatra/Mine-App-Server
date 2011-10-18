@@ -1,4 +1,4 @@
-# Observer events on the Product model
+# Observe events on the Product model
 #
 class ProductObserver < ActiveRecord::Observer
 

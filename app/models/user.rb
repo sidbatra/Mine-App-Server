@@ -41,6 +41,15 @@ class User < ActiveRecord::Base
     find_by_remember_token(token)
   end
 
+  # Fetch all users who have commented on the given product
+  #
+  def self.commented_on_product(product_id)
+    all(
+      :conditions => {:comments => {:product_id => product_id}},
+      :joins      => :comments,
+      :group      => "users.id")
+  end
+
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------

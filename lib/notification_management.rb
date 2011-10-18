@@ -11,6 +11,19 @@ module DW
     #
     class NotificationManager
 
+      # Email all the users on the comment thread
+      #
+      def self.new_comment(comment_id)
+        comment   = Comment.eager.find(comment_id, :include => :product)
+        users     = User.commented_on_product(comment.product.id) 
+        users    << comment.product.user
+
+        users.uniq.each do |user|
+          UserMailer.deliver_new_comment(
+                      comment,
+                      user) unless user.id == comment.user.id
+        end
+      end
       
       # Share the new product on facebook
       #
