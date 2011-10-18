@@ -1,3 +1,7 @@
+<%content_for :body_attribute do%>
+	<%="style='overflow:hidden'"%>
+<%end%>
+
 <div id="landing_container">
 
 	<div class="landing_heading">
@@ -21,19 +25,23 @@
 				:id    => "action_link"%>
 	</div>
 	
+	
   <div id="slides">
     <div id="slideshow" 
           style="position:absolute;top:0px;left:0px;z-index:-100;">
-        <%=image_tag "landing_bag_1.jpg", 
+        <%=image_tag "landing_shoes.jpg", 
               :class => "landing_product_image", 
               :style => "display:none"%>
-        <%=image_tag "landing_shoe_1.jpg", 
+        <%=image_tag "landing_bag.jpg", 
               :class => "landing_product_image", 
               :style => "display:none"%>
-        <%=image_tag "landing_shoe_1.jpg", 
+        <%=image_tag "landing_jewelry.jpg", 
               :class => "landing_product_image", 
               :style => "display:none"%>
-        <%=image_tag "landing_jewelry_1.jpg", 
+        <%=image_tag "landing_cosmetics.jpg", 
+              :class => "landing_product_image", 
+              :style => "display:none"%>
+        <%=image_tag "landing_boots.jpg", 
               :class => "landing_product_image", 
               :style => "display:none"%>
     </div>
@@ -41,9 +49,13 @@
     
 </div> <!-- landing_container -->
 
-<div id="footer">
-	Felvy © 2011 · <a href="mailto:contact@felvy.com">contact@felvy.com</a>
+<div class="landing_lower">
+	<div id="footer">
+		Felvy © 2011 · <a href="mailto:contact@felvy.com">contact@felvy.com</a>
+	</div>
 </div>
+
+
 
 <script type="text/javascript">
  $(document).ready(function(){
