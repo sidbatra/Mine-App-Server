@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
   CONFIG = YAML.load_file("#{RAILS_ROOT}/config/config.yml")[RAILS_ENV]
 
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
-  #CONFIG[:revision]   = `git rev-parse HEAD`.chomp
+  CONFIG[:revision]   = `git rev-parse HEAD`.chomp
 
   config.gem('ar-extensions', 
               :version => '0.9.2')
