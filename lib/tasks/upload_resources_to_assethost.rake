@@ -17,13 +17,13 @@ task :upload_resources_to_assethost,:revision  do |e,args|
       open("public/images/#{file}"))
   end
 
-  #Dir.new('public/type').each do |file|
-  #  next unless file.length > 2
+  Dir.new('public/type').each do |file|
+    next unless file.length > 2
 
-  #  AssetHost.store(
-  #    "#{revision}/type/#{file}",
-  #    open("public/type/#{file}"))
-  #end
+    AssetHost.store(
+      "#{revision}/type/#{file}",
+      open("public/type/#{file}"))
+  end
 
   Dir.new('public/swfs').each do |file|
     next unless file.length > 2

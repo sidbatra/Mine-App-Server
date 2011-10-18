@@ -35,14 +35,14 @@ end
 
 task :production do
   role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com","ec2-67-202-63-102.compute-1.amazonaws.com"
-  role :worker,       "ec2-75-101-204-136.compute-1.amazonaws.com"
+  role :worker,       "ec2-107-22-21-214.compute-1.amazonaws.com"
   role :db,           "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
   role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
   role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  set :total_workers, 2
+  set :total_workers, 3
   set :environment,   "production"
   set :branch,        "master"
   set :apnd_file,     "apple_push_notification_production.pem"
@@ -84,7 +84,7 @@ namespace :deploy do
     #system "cap #{environment}  search:start"
     #system "cap #{environment}  cache:start"
 
-    #system "cap #{environment}  workers:start"
+    system "cap #{environment}  workers:start"
 
     #system "cap #{environment}  misc:apnd"
     #system "cap #{environment}  misc:whenever"
@@ -108,7 +108,7 @@ namespace :deploy do
     system "cap #{environment}  db:migrate"
 
 
-    #system "cap #{environment}  workers:restart"
+    system "cap #{environment}  workers:restart"
     system "cap #{environment}  passenger:restart"
 
     #system "cap #{environment}  search:index"

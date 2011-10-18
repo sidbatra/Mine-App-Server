@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 3 ] ; then
+  echo "bash script/worker <start,stop,restart> <num of workers> <environment>"
+  exit
+else
+  task=$1
+  workers=$2
+  env=$3
+fi
+
+if [ $task = "start" ] ; then
+  for (( i=0; i<$workers; i++ ))
+    do
+      RAILS_ENV=$env lib/daemons/processor_ctl start
+    done
+
+    sleep $workers
+
+
+elif [ $task = "stop" ] ; then
+  RAILS_ENV=$env lib/daemons/processor_ctl stop
+
+
+elif [ $task = "restart" ] ; then
+  RAILS_ENV=$env lib/daemons/processor_ctl stop
+
+  for (( i=0; i<$workers; i++ ))
+    do
+      RAILS_ENV=$env lib/daemons/processor_ctl start
+    done
+
+    sleep $workers
+
+
+else
+  echo "Incorrect task "$task" - start,stop,restart"
+fi
