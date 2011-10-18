@@ -50,7 +50,7 @@
     var productShowViewController = new ProductShowViewController(
                                           <%=@product.id%>);
 
-    mpq.register_once({'src' : 'product_<%=@product.id.to_s%>'});
+    mpq.register_once({'landed_on' : 'product_<%=@product.id.to_s%>'});
 
     <%if logged_in?  && 
           @product.user.id == self.current_user.id && 
