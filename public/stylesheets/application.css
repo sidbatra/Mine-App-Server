@@ -31,7 +31,6 @@ body {
 	background: #edebeb url('/images/bg_strip.png');
 	background-repeat: repeat-x;
 	background-attachment:fixed;
-	overflow-x: hidden;
 	height: 650px;
 }
 
@@ -66,7 +65,7 @@ h1 {
 .welcome_subtitle {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 20px;
-	color: #cccccc;
+	color: #dddddd;
 }
 
 .welcome_button {
@@ -84,9 +83,84 @@ h1 {
 
 #navbar {
 	width: 885px;
+	padding: 0 15px;
 	margin: 0 auto;
 /* 	background: yellow; */
 }
+
+
+/* ------------------------------ Home Page */
+
+
+#landing_container {
+	width: 885px;
+	height: 560px;
+	margin: 0 auto;
+	padding: 0 15px;
+	position: relative;
+}
+
+.landing_heading {
+	font-size: 32px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	color: #791a10;
+	text-align:center;
+	line-height: 40px;
+	padding: 40px;
+}
+
+.landing_subtitle {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #999999;
+	font-size: 24px;
+}
+
+.landing_main {
+	padding-left: 420px;
+	font-family: Georgia, serif;
+	color: #666666;
+	font-size: 24px;
+}
+
+.landing_main ul {
+	padding: 40px 0 24px 24px;
+
+}
+
+.landing_main ul li{
+	list-style-type: disc;
+	line-height: 40px;
+}
+
+.landing_button {
+	position: absolute;
+}
+
+.landing_product_image {
+	position: absolute;
+	height: 560px;
+	width: 500px;
+	top: 0px;
+	left: 0px;
+	z-index: -1000;
+}
+
+#footer {
+    width:885px;
+    height:20px;
+    margin: 0 auto;
+    line-height: 20px;
+    font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-size: 14px;
+	text-align: center;
+	color: #999999;
+	clear:both;
+}
+
+
+
+/* ------------------------------ Product Page */
+
 
 #container {
 	width: 885px;
@@ -399,19 +473,6 @@ h1 {
 	opacity: 1;
 }
 
-#footer {
-    padding-left: 20px;
-    width:100%;
-    height:20px;
-    line-height: 20px;
-	font-size: 12px;
-	text-align: middle;
-	width: 100%;
-	text-transform: uppercase;
-	color: #bbbbbb;
-	clear:both;
-}
-
 .navigation {
 	position: absolute;
 	top: -32px;
@@ -552,6 +613,7 @@ li.last_item {
 #profile_details {
 	width: 885px;
 	height: 50px;
+	padding: 0 15px;
 	margin: 30px auto 0;
 /* 	background: pink; */
 }
@@ -998,6 +1060,7 @@ input#user_byline {
     #item_name, 
     #product_title, 
     #welcomebox,
+    .landing_heading,
     .profile_username, 
     .suggestion, 
     .product_title, 

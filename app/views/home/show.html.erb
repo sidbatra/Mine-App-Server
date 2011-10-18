@@ -1,39 +1,34 @@
+<div id="landing_container">
 
-  <!-- item -->
-  <div id="container">
-<!--
-    <div id="instructions_1" style="display:block">
-      <#=image_tag "instructions_1.png"%>
-    </div>
-    <div id="instructions_2" style="display:block">
-      <#=image_tag "instructions_2.png"%>
-    </div>
-    <div id="instructions_3" style="display:block">
-      <#=image_tag "instructions_3.png"%>
-    </div>
--->
-    <div class="slides_container" style="height:100%">
-        <%#render @products%>
-    </div>
-  </div> <!-- container -->
+	<div class="landing_heading">
+		Share the things you buy and own<br>
+		<span class="landing_subtitle">It's fun, and free!</span>
+	</div>
+	
+	<div class="landing_main">
+		<ul>
+			<li>Catalog the things you own</li>
+			<li>Share and compare with friends</li>
+			<li>Express your style!</li>
+		</ul>
+		
+		<%=link_to image_tag(
+				"f.png",
+				:class => "f",
+				:alt   => "f") + "Sign up with Facebook &rsaquo;",
+				fb_auth_path(:source => @source),
+				:class => "large blue awesome landing_button",
+				:id    => "action_link"%>
+	</div>
+	
+	<img class="landing_product_image" src="/images/landing_makeup_1.jpg">
+	<img class="landing_product_image" src="/images/landing_bag_1.jpg">
+	<img class="landing_product_image" src="/images/landing_shoe_1.jpg">
+	<img class="landing_product_image" src="/images/landing_jewelry_1.jpg">
+	
+</div>
 
-  <script type="text/javascript">
-
-    //$(function(){
-    //  $('#container').slides({
-    //    preload: false,
-    //    preloadImage: '<%=image_path "transparent.gif"%>',
-    //    play: 5000,
-    //    pause: 1500,
-    //    hoverPause: true,
-    //    generatePagination: false,
-    //    pagination: false,
-    //    effect: 'slide'
-    //  });
-    //});
-
-    //mpq.register_once({'src' : '<%=@source%>'});
-
-  </script>
-
+<div id="footer">
+	Felvy © 2011 · <a href="mailto:contact@felvy.com">contact@felvy.com</a>
+</div>
 
