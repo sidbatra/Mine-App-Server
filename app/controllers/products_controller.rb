@@ -40,15 +40,15 @@ class ProductsController < ApplicationController
     @comments = Comment.eager.for_product(@product.id)
 
     next_product  = @product.next
+    next_product  ||= @product.user.products.first
+
     prev_product  = @product.previous
+    prev_product  ||= @product.user.products.last
 
-    @prev_path = next_product ? product_path(
-                                  next_product.id,
-                                  next_product.handle) : nil
-
-    @next_path = prev_product ? product_path(
-                                  prev_product.id,
-                                  prev_product.handle) : nil
+    if next_product.id != prev_product.id
+      @prev_path = product_path(next_product.id,next_product.handle) 
+      @next_path = product_path(prev_product.id,prev_product.handle)
+    end
 
     redirect_to product_path(
                   @product.id,
