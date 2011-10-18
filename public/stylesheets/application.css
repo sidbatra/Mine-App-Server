@@ -320,14 +320,14 @@ h1 {
 #speechmarks_close { background: url('/images/speechmarks_close.png') no-repeat; }
 
 #user_comment {
-	font-family: 'Georgia', Times New Roman, serif;
+	font-family: Georgia, Times New Roman, serif;
 	float:left;
 	max-width:290px;
 	width: expression(this.width > 290 ? 290: true);
 	padding: 0 15px;
 	color: #999999;
 	font-size: 16px;
-	line-height: 140%;
+	line-height: 150%;
 }
 
 #user_name {
