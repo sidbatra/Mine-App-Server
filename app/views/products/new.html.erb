@@ -80,6 +80,8 @@
 
   <%end%>
 
+  <%=render :partial => "misc/feedback"%>
+
   <script type="text/javascript">
     var newProductViewController = new NewProductViewController(
                     {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
