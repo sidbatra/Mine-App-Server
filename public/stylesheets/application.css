@@ -571,10 +571,11 @@ h1 {
 .nav_menu {
 	display: block;
 	height: 45px;
-	line-height: 46px;
+	line-height: 45px;
 	padding: 0 12px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #dddddd;
+	font-size: 14px;
 }
 
 .nav_menu:hover {
@@ -604,7 +605,7 @@ h1 {
 	width: 9px;
 	background: url('/images/v_dddddd_ffffff.png') 0 0;
 	background-repeat: no-repeat;
-	vertical-align: 1px;
+	vertical-align: 0px;
 	zoom: 1; 
 	*display: inline;
 	*vertical-align: middle;

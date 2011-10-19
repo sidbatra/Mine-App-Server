@@ -13,11 +13,10 @@
     	<%if !logged_in?%>
       
 		<li>
-			<a class="nav_menu">
 				<%=link_to "Log In",
                 	fb_auth_path(:source => "login"),
+                	:class => "nav_menu",
                 	:id => "action_link" %>
-            </a>
 		</li>
     
       <%else%>
