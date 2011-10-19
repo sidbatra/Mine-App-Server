@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
     prev_product  = @product.previous
     prev_product  ||= @product.user.products.last
 
-    if next_product.id != prev_product.id
+    unless next_product.id == prev_product.id && next_product.id == @product.id
       @prev_path = product_path(next_product.id,next_product.handle) 
       @next_path = product_path(prev_product.id,prev_product.handle)
     end
