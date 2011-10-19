@@ -1,14 +1,17 @@
 <li>
-	<div class="product" 
-    onclick="if($.browser.msie){window.location='<%=product_path product.id,product.handle%>'}">
+	<div class="product"> 
 	
 		<a class="product_link" href="<%=product_path product.id,product.handle%>">
 				
 			<div class="product_left">
 			
 				<%=image_tag product.thumbnail_url, 
-	            	:class => "product_left_image",
-	            	:alt => ""
+                    :class => "product_left_image",
+                    :alt => "",
+                    :onclick => "if($.browser.msie && "\
+                                "parseInt($.browser.version,10) == 7){"\
+                                "window.location="\
+                                "'#{product_path product.id,product.handle}'}"
 	            %>
                   
 			</div> <!-- product_left -->
