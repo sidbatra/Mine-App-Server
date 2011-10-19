@@ -1,5 +1,6 @@
 <li>
-	<div class="product">
+	<div class="product" 
+    onclick="if($.browser.msie){window.location='<%=product_path product.id,product.handle%>'}">
 	
 		<a class="product_link" href="<%=product_path product.id,product.handle%>">
 				
