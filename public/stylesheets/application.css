@@ -750,8 +750,15 @@ h1 {
 	height: 208px;
 	border: 1px solid #dddddd;
 	background: white;
-	display:block;
 	cursor: pointer;
+}
+
+.product_link {
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	z-index: 5000;
 }
 
 .sample {
@@ -760,7 +767,6 @@ h1 {
 	height: 208px;
 	border: 1px solid #dddddd;
 	background: white;
-	display:block;
 }
 
 .product:hover {

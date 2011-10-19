@@ -1,14 +1,14 @@
 <li>
-	<a class="product" href="<%=product_path product.id,product.handle%>">
+	<div class="product">
 	
-		<span> <!-- spans inside links needed for ie7 -->
-		
+		<a class="product_link" href="<%=product_path product.id,product.handle%>">
+				
 			<div class="product_left">
 			
 				<%=image_tag product.thumbnail_url, 
 	            	:class => "product_left_image",
 	            	:alt => ""
-	            %>		
+	            %>
                   
 			</div> <!-- product_left -->
 	
@@ -35,10 +35,10 @@
 			      </div>
 			      
 			</div> <!-- product_right -->
+			
+		</a> <!-- product_link -->
 
-		</span> <!-- spans inside links needed for ie7 -->
-
-	</a> <!-- product -->
+	</div> <!-- product -->
 </li>
 
 
