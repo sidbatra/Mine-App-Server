@@ -6,6 +6,8 @@ class HomeController < ApplicationController
   #
   def show
     @source    = params[:id] ? params[:id].to_s : "unknown"
+
+    redirect_to user_path(self.current_user) if logged_in?
   end
 
 end
