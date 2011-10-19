@@ -9,6 +9,22 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
   revision = args.revision
 
+  Dir.new('public/stylesheets').each do |file|
+    next unless file.scan('_packaged').present?
+
+    AssetHost.store(
+      "#{revision}/stylesheets/#{file}",
+      open("public/stylesheets/#{file}"))
+  end
+
+  Dir.new('public/javascripts').each do |file|
+    next unless file.scan('_packaged').present?
+
+    AssetHost.store(
+      "#{revision}/javascripts/#{file}",
+      open("public/javascripts/#{file}"))
+  end
+
   Dir.new('public/images').each do |file|
     next unless file.length > 2
 
@@ -31,22 +47,6 @@ task :upload_resources_to_assethost,:revision  do |e,args|
     AssetHost.store(
       "#{revision}/swfs/#{file}",
       open("public/swfs/#{file}"))
-  end
-
-  Dir.new('public/stylesheets').each do |file|
-    next unless file.scan('_packaged').present?
-
-    AssetHost.store(
-      "#{revision}/stylesheets/#{file}",
-      open("public/stylesheets/#{file}"))
-  end
-
-  Dir.new('public/javascripts').each do |file|
-    next unless file.scan('_packaged').present?
-
-    AssetHost.store(
-      "#{revision}/javascripts/#{file}",
-      open("public/javascripts/#{file}"))
   end
 
 end
