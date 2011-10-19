@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @action + " " + rand(10000).to_s
+    subject       @action #+ " " + rand(10000).to_s
   end
 
 end
