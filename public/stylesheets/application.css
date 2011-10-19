@@ -713,7 +713,7 @@ h1 {
 	position: relative; /* needed for button height */
 	overflow: visible;
 	border: 0;
-	width: 192px;
+	width: 200px;
 	text-align: center;
 	margin: 0 0 15px 15px;
 	border: 1px solid #dddddd;
@@ -722,7 +722,7 @@ h1 {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #999999;
 	background: white;
-	padding: 0 8px;
+	padding: 0 4px;
 }
 
 .suggestion {
@@ -809,7 +809,7 @@ h1 {
 	font-family: Georgia, Times New Roman, serif; 
 	color: #999999;
 	font-size: 14px;
-	line-height: 140%;
+	line-height: 150%;
 	height: 80px;
 }
 
@@ -1086,8 +1086,8 @@ h1 {
     #item_name, 
     #product_title, 
     #welcomebox,
-    .landing_heading,
-    .profile_username, 
+    #profile_username,
+    .landing_heading, 
     .suggestion, 
     .product_title, 
     .product_title_sample,
@@ -1097,6 +1097,6 @@ h1 {
     .login,
     .small_button,
     .nav_menu { 
-    	font-family: Arial, sans-serif; font-weight: bold; 
+    	font-family: Arial Black, Arial, sans-serif; font-weight: bold; 
     }
 }
