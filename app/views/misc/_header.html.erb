@@ -2,9 +2,10 @@
 <div id="header">
   <div id="navbar">
 
-    <div id="logo">
-      <%=link_to image_tag('felvy_logo_white.png'),
-                 logged_in? ? user_path(self.current_user) : root_path%>
+    <div id="logo" alt="Felvy">
+      <%=link_to image_tag('felvy_logo_white.png', :alt => "Felvy"),
+                 logged_in? ? user_path(self.current_user) : root_path
+                 %>
     </div> <!-- logo -->
 
 
@@ -69,7 +70,9 @@
 
 			<a class="nav_menu nav_login_button">
 				 <%=image_tag self.current_user.photo_url, 
-                    :class => "nav_login_button_user_photo"%>
+                    :class => "nav_login_button_user_photo",
+                    :alt => ""
+                    %>
 				<%=user_full_name(self.current_user)%>
 				<div class="logout_v"></div>
 			</a>

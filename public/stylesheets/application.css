@@ -17,6 +17,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	list-style: none;
 }
 
+html {
+	overflow-x: hidden;
+}
+
 a {
 	text-decoration: none;
 	color: inherit; 
@@ -31,8 +35,6 @@ body {
 	background: #edebeb url('/images/bg_strip.png');
 	background-repeat: repeat-x;
 	background-attachment:fixed;
-	height: 650px;
-	overflow-x: hidden;
 }
 
 h1 {
@@ -344,7 +346,7 @@ h1 {
 
 #user_name {
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
-	color: #bbbbbb;
+	color: #999999;
 	font-size: 14px;
 }
 
@@ -430,7 +432,7 @@ h1 {
 	padding-bottom: 20px;
 	padding-left: 15px;
 	border: 1px solid #cccccc;
-  z-index: 5000;
+  	z-index: 5000;
 }
 
 #chooser_cancel_bar {
@@ -582,18 +584,20 @@ h1 {
 	color: white;
 }
 
-
+/* Handles the showing and hiding of menu items */
 .nav_add_item_button:hover ~ .nav_add_list, .nav_add_list:hover, .nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover {
 	display: block;
 }
+
+.nav_add_item_button { } /* For FFox / Narrower Arial Font */
 
 .nav_add_list, .nav_login_list {
 	display: none;
 }
 
 .nav_login_button_user_photo {
-	width: 24px;
-	height: 24px;
+	width: 22px;
+	height: 22px;
 	vertical-align:-6px;
 	margin-right: 4px;
 	margin-top: -1px;
@@ -648,7 +652,7 @@ h1 {
 }
 
 #profile_bio {
-	margin-left: -6px;
+/* 	margin-left: -6px; */
 	margin-top: -1px;
 }
 
@@ -663,7 +667,7 @@ h1 {
 /* 	background: yellow; */
 }
 
-input#user_byline {
+#user_byline {
 	width: 288px;
 	height: 24px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
@@ -747,6 +751,7 @@ input#user_byline {
 	border: 1px solid #dddddd;
 	background: white;
 	display:block;
+	cursor: pointer;
 }
 
 .sample {
@@ -759,10 +764,11 @@ input#user_byline {
 }
 
 .product:hover {
-	border-color: #791a10;
+	border-color: #791a10; 
 }
 
 .product_left {
+	display: block;
 	float: left;
 	width: 180px;
 	height: 180px;
@@ -893,12 +899,12 @@ input#user_byline {
 	line-height: 24px;
 	border-bottom: 1px solid #1d426b;
 	border-top: 1px solid #6895c8;
-	border-left: 0;
-	border-right: 0;
+	border-left: 1px solid #6895c8;
+	border-right: 1px solid #6895c8;
 	font-family: 'FuturaStdBold', Arial, sans-serif; 
 	background: #24578f url('/images/alert-overlay.png') repeat-x; 
 	padding: 0px 8px;
-	overflow: hidden;
+	overflow: visible;
 	display:inline;
 	vertical-align: top;
 	color: #fff; 
@@ -1084,7 +1090,7 @@ input#user_byline {
     .logout,
     .login,
     .small_button,
-    .nav_menu .nav_item { 
+    .nav_menu { 
     	font-family: Arial, sans-serif; font-weight: bold; 
     }
 }

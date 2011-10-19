@@ -1,29 +1,40 @@
 <li>
   <%if active%>
     <a class="product" href="<%=new_product_path(:category => category)%>">
+    
+    <span> <!-- spans inside links needed for ie7 -->
+    
   <%else%>
     <div class="sample">
   <%end%>
 	    <div class="product_left">
 	        <%=image_tag image, 
-	        :class => "product_left_image"%>
+	        :class => "product_left_image",
+	        :alt => ""
+	        %>
 	    </div> <!-- product_left -->
 	    
-      <div class="product_right">
-        <p class="product_title_sample">
-          <%=title%>
-        </p>
-        <p class="product_endorsement_sample">
-          <%=endorsement%>
-        </p>
-        <div class="product_comment_count faded">
-          <%=comments%>
-          <%=image_tag "comment_bubble.png", 
-              :class => "product_comment_bubble faded"%>
-        </div>
+      	<div class="product_right">
+	        <p class="product_title_sample">
+	          <%=title%>
+	        </p>
+	        <p class="product_endorsement_sample">
+	          <%=endorsement%>
+	        </p>
+	        <div class="product_comment_count faded">
+	          <%=comments%>
+	          <%=image_tag "comment_bubble.gif", 
+	              :class => "product_comment_bubble faded",
+	              :alt => ""
+	              %>
+	        </div>
       </div> <!-- product_right -->
     <%if active%>
-      </a>
+    
+    </span> <!-- spans inside links needed for ie7 -->
+    
+    </a>
+    
     <%else%>
       </div>
     <%end%>

@@ -5,7 +5,8 @@
       <%=link_to_if !product.is_hosted,
                     image_tag(
                       product.photo_url,
-                      :id => "left_photo"),
+                      :id => "left_photo",
+                      :alt => ""),
                     product.website_url,
                     :target => "_blank" %>
     </div> <!-- left -->
@@ -15,8 +16,11 @@
       <div id="right_content">
 
           <div id="right_titlebox">
-            <%=image_tag product.user.photo_url, 
-                          :id => "user_photo"%>
+          
+            <%=link_to image_tag (product.user.photo_url, 
+                         :id => "user_photo",
+                         :alt => ""),
+                         user_path(product.user)%>
 
             <div id="user_name">
               <%=user_share_text(product.user)%>
