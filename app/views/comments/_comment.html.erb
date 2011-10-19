@@ -1,7 +1,8 @@
 <div class="comment_unit">
 	<%=link_to image_tag(
               comment.user.photo_url,
-              :class => "comment_photo"),
+              :class => "comment_photo",
+              :alt => ""),
               user_path(comment.user)%>
 	<p class="comment_unit_right">
 		<span class="commenter_name">

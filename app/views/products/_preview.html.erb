@@ -1,31 +1,42 @@
 <li>
 	<a class="product" href="<%=product_path product.id,product.handle%>">
-		<div class="product_left">
-			<%=image_tag product.thumbnail_url, 
-            :class => "product_left_image"%>
-		</div> <!-- product_left -->
+	
+		<span> <!-- spans inside links needed for ie7 -->
+		
+			<div class="product_left">
+			
+				<%=image_tag product.thumbnail_url, 
+	            	:class => "product_left_image",
+	            	:alt => ""
+	            %>		
+                  
+			</div> <!-- product_left -->
+	
+			<div class="product_right">
+				<p class="product_title">
+					<%=h truncate(product.title, 
+					:length 	  => 80, 
+					:omissions 	=> "…")%>
+				</p>
+				<p class="product_endorsement">
+					<%=h truncate(product.endorsement, 
+					:length 	  => 100, 
+					:omissions 	=> "…")%>
+				</p>
+	
+			      <div class="product_comment_count">
+			        <%if product.comments_count != 0%>
+			          <%=product.comments_count%>
+			          <%=image_tag "comment_bubble.gif", 
+			              :class => "product_comment_bubble",
+			              :alt => ""
+			          %>
+			        <%end%>
+			      </div>
+			      
+			</div> <!-- product_right -->
 
-		<div class="product_right">
-			<p class="product_title">
-				<%=h truncate(product.title, 
-				:length 	  => 80, 
-				:omissions 	=> "…")%>
-			</p>
-			<p class="product_endorsement">
-				<%=h truncate(product.endorsement, 
-				:length 	  => 100, 
-				:omissions 	=> "…")%>
-			</p>
-
-		      <div class="product_comment_count">
-		        <%if product.comments_count != 0%>
-		          <%=product.comments_count%>
-		          <%=image_tag "comment_bubble.png", 
-		              :class => "product_comment_bubble faded"%>
-		        <%end%>
-		      </div>
-		      
-		</div> <!-- product_right -->
+		</span> <!-- spans inside links needed for ie7 -->
 
 	</a> <!-- product -->
 </li>

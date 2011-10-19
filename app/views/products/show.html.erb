@@ -21,8 +21,10 @@
     <div id="comments_container">
 
       <%if logged_in?%>
+      
         <%=image_tag self.current_user.photo_url,
-            :id => "comment_photo_self"%>
+            :id => "comment_photo_self",
+            :alt => ""%>
 
         <%=text_area_tag "comment_data","What do you think?",
             :class => "box_shadow" %>
@@ -30,7 +32,7 @@
         <div id="blocker"></div>
         <div class="post_comment">
             <input id="comment_post" class="small_button" 
-                    value="Post Comment" title="Post" type="button" alt="Post"></div>
+                    value="Post Comment" title="Post" type="button" alt=""></div>
       <%end%> <!-- comment entry box -->
 
 
