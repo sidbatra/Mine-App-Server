@@ -6,72 +6,93 @@
       <%=link_to image_tag('felvy_logo_white.png'),
                  logged_in? ? user_path(self.current_user) : root_path%>
     </div> <!-- logo -->
-  
-  
+
+
     <ul class="nav">
-          
-      <%if !logged_in?%>
+    
+    	<%if !logged_in?%>
       
-        <li class="nav_button">
-          <ul class="login">
-                <li class="button">
-                  <%=link_to "Log In",
-                        fb_auth_path(:source => "login"),
-                        :id => "action_link" %>
-                  </li>
-             </ul>
-        </li>
+		<li>
+			<a class="nav_menu">
+				<%=link_to "Log In",
+                	fb_auth_path(:source => "login"),
+                	:id => "action_link" %>
+            </a>
+		</li>
     
       <%else%>
-      
-        <li class="nav_button">
-          <ul class="add_item">
-            <li class="button">
-              Add an Item +
-            </li>
-            <%=link_to "<li class='choice'>Shoes</li>",
-              new_product_path(:category => "shoes")%>
-            <%=link_to "<li class='choice'>Accessories</li>",
-              new_product_path(:category => "accessories")%>
-            <%=link_to "<li class='choice'>Clothing</li>",
-              new_product_path(:category => "clothing")%>
-            <%=link_to "<li class='choice'>Home Decor</li>",
-              new_product_path(:category => "decor")%>
-            <%=link_to "<li class='choice'>Cosmetics</li>",
-              new_product_path(:category => "cosmetics")%>
-            <%=link_to "<li class='choice'>Electronics</li>",
-              new_product_path(:category => "electronics")%>
-            <%=link_to "<li class='choice'>Jewelry</li>",
-              new_product_path(:category => "jewelry")%>
-            <%=link_to "<li class='choice last_item'>Anything!</li>",
-              new_product_path(:category => "anything")%>
-          </ul> <!-- add_item -->
-        </li> <!-- nav_button -->
 
+   
+		<li>
+			
+			<a class="nav_menu nav_add_item_button">Add item +</a>
+			
+			<ul class="nav_add_list">
+				
+				<%=link_to "<li>Shoes</li>",
+	              new_product_path(:category => "shoes"),
+	              	:class => "nav_choice"%>
+	              	
+	            <%=link_to "<li>Accessories</li>",
+	              new_product_path(:category => "accessories"),
+	              	:class => "nav_choice"%>
+	              	
+	            <%=link_to "<li>Clothing</li>",
+	              new_product_path(:category => "clothing"),
+	              	:class => "nav_choice"%>
+	              
+	            <%=link_to "<li>Home Decor</li>",
+	              new_product_path(:category => "decor"),
+	              	:class => "nav_choice"%>
+	              	
+	            <%=link_to "<li>Cosmetics</li>",
+	              new_product_path(:category => "cosmetics"),
+	              	:class => "nav_choice"%>
+	              	
+	            <%=link_to "<li>Electronics</li>",
+	              new_product_path(:category => "electronics"),
+	              	:class => "nav_choice"%>
+	              	
+	            <%=link_to "<li>Jewelry</li>",
+	              new_product_path(:category => "jewelry"),
+	              	:class => "nav_choice"%>
+	              	
+	            <%=link_to "<li>Anything!</li>",
+	              new_product_path(:category => "anything"),
+	              	:class => "nav_choice"%>
+				
+			</ul>
+			
+		</li>
+		
 
-        <li class="nav_button">
-           <ul class="logout">
-              <li class="button">
-                <%=image_tag self.current_user.photo_url, 
-                    :class => "logout_user_photo"%>
-                
-                <div class="logout_v">
-                </div>
+		<li>
 
-                <%=user_full_name(self.current_user)%>
-              </li>
-
-              <%=link_to "<li class='choice'>Your Collection</li>", 
-                          user_path(self.current_user)%>
-              <%=link_to "<li class='choice last_item'>Log Out</li>", 
-                          logout_path%>
-
-           </ul> <!-- logout -->
-        </li> <!-- nav_button -->
-           
-      <%end%>
-      
+			<a class="nav_menu nav_login_button">
+				 <%=image_tag self.current_user.photo_url, 
+                    :class => "nav_login_button_user_photo"%>
+				<%=user_full_name(self.current_user)%>
+				<div class="logout_v"></div>
+			</a>
+			
+			<ul class="nav_login_list">
+			
+				<%=link_to "<li>Your Collection</li>", 
+                	user_path(self.current_user),
+                	:class => "nav_choice"%>
+             	<%=link_to "<li>Log Out</li>", 
+                	logout_path,
+                	:class => "nav_choice"%>
+                	
+			</ul>
+			
+		</li>
+         
+         <%end%>
+         
+         
     </ul> <!-- nav -->
+    
 
   </div> <!-- navbar -->
 </div> <!-- header -->
