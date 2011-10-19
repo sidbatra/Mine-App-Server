@@ -1,16 +1,21 @@
 <li>
   <%if active%>
-    <a class="product" href="<%=new_product_path(:category => category)%>">
+    <div class="product">
     
-    <span> <!-- spans inside links needed for ie7 -->
+     <a class="product_link" href="<%=new_product_path(:category => category)%>">
     
   <%else%>
     <div class="sample">
   <%end%>
+  
 	    <div class="product_left">
 	        <%=image_tag image, 
 	        :class => "product_left_image",
-	        :alt => ""
+	        :alt => "",
+	        :onclick => "if(#{active.to_s} && $.browser.msie && "\
+	            "parseInt($.browser.version,10) == 7){"\
+	            "window.location="\
+	            "'#{new_product_path(:category => category)}'}"
 	        %>
 	    </div> <!-- product_left -->
 	    
@@ -29,13 +34,17 @@
 	              %>
 	        </div>
       </div> <!-- product_right -->
+      
+      
     <%if active%>
-    
-    </span> <!-- spans inside links needed for ie7 -->
     
     </a>
     
+    </div>
+    
     <%else%>
-      </div>
+    
+    </div>
+    
     <%end%>
 </li>
