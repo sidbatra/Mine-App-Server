@@ -48,8 +48,9 @@ function make_conditional_field(id,text,placeholderColor,textColor) {
   $(id).focus(function() { 
     if(this.value == text)
       this.value = '';
-    else
-      this.value = this.value;
+    else {
+      //this.value = this.value;
+      }
 
     this.style.color = textColor;
   });
