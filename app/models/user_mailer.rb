@@ -14,13 +14,15 @@ class UserMailer < ActionMailer::Base
     @action       = @comment.user.first_name + " " + @comment.user.last_name
 
     if @owner.id == @user.id
-      @action    += " commented on your item"
+      @action    += " commented on your "
     elsif @owner.id == @comment.user.id 
-      @action    += " also commented on his item"
+      @action    += " also commented on his "
     else
       @action    += " also commented on #{@owner.first_name} "\
-                    " #{@owner.last_name}'s item"
+                    " #{@owner.last_name}'s "
     end
+
+    @action     += comment.product.title
 
     recipients    @user.email
     from          EMAILS[:contact]
