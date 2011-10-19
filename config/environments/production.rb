@@ -12,10 +12,10 @@ config.action_view.cache_template_loading            = true
 # Enable threaded mode
 # config.threadsafe!
 
-#ActionController::Base.asset_host = File.join(
-#                                          CONFIG[:asset_host],
-#                                          CONFIG[:revision])
-#
+ActionController::Base.asset_host = File.join(
+                                          CONFIG[:asset_host],
+                                          CONFIG[:revision])
+
 
 # Cache settings
 #config.cache_store = :mem_cache_store, '10.194.250.118:11211'
