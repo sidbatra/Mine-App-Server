@@ -82,7 +82,6 @@ h1 {
 	height: 45px;
 /* 	background: white; */
 	background: #333333 /*url('/images/alert-overlay.png') repeat-x */;
-	border-bottom: 1px solid #dddddd;
 }
 
 #navbar {
@@ -94,16 +93,19 @@ h1 {
 /* 	background: yellow; */
 }
 
-/* Creation */
+/* ------------------------------ Creation */
 
 #new_product {
-	width: 400px;
+	width: 375px;
 	height: auto;
-	margin: 30px auto 40px;
+	margin: 0px auto;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	font-size: 16px;
 	position: relative;
+	padding: 25px 30px 10px 30px;
+	border: 1px solid #dddddd;
+	background: white;
 }
 
 .step {
@@ -121,18 +123,19 @@ h1 {
 
 .creation_input {
 	height: 26px;
-	width: 388px;
+	width: 363px;
 	margin: 5px 0 3px;
 	border: 1px solid #dddddd;
 	padding: 4px 5px;
 	line-height: 26px;
 	font-size: 16px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	color: #999999;
+	color: #333333;
 	vertical-align: top;
+	background: #f8f8f8;
 }
 
-.creation_search { width: 318px; }
+.creation_search { width: 293px; }
 .creation_endorsement { height: 52px; }
 #product_search { 
 	width: 70px; 
@@ -156,18 +159,20 @@ h1 {
 }
 
 .creation_submit_button {
-	position: absolute;
-	width: 100%;
+	width: 375px;
+	height: 46px;
 	cursor: pointer;
+	margin-bottom: 20px;
 }
 
 #product_selection {
-	width: 400px;
+	width: 375px;
 	height: 150px;
 	line-height: 150px;
 	background: white;
 	text-align: center;
-  display:none;
+  	display:none;
+  	padding: 1px 0;
 }
 
 #product_selection_photo {
@@ -175,19 +180,6 @@ h1 {
 	max-height: 150px;
 	vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ------------------------------ Home Page */

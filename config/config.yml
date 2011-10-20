@@ -15,51 +15,53 @@ common: &common
   :msg:
     :product:
       :shoes:
-        :query: Search for your shoes...
+        :query: Search for a photo of your shoes...
         :query_eg: e.g. 'Zara high heeled boot'
-        :title: Shoe name and brand
+        :title: Name these shoes
         :endorsement: What do you love about these shoes?
         :endorsement_eg: e.g. 'I bought / love these because...'
       :accessories:
-        :query: Search for your accessory...
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Accessory name and brand
+        :query: Search for a photo of your accessory...
+        :query_eg: e.g. 'Longchamp canvas bag'
+        :title: Name this accessory
         :endorsement: What do you love about this accessory?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :endorsement_eg: e.g. 'I bought / love this because...'
       :clothing:
-        :query: Search for your clothing...
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Clothing item name and brand
+        :query: Search for a photo of your clothing item...
+        :query_eg: e.g. 'BB dakota romaine belted coat'
+        :title: Name this item of clothing
         :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :endorsement_eg: e.g. 'I bought / love this because...'
       :decor:
-        :query: Search home decor items...
-        :title: Item name and brand
+        :query: Search for a photo of your home decor item...
+        :query_eg: e.g. 'Amy butler organic pillows'
+        :title: Name this piece of home decor
         :endorsement: What do you love about this item?
+        :endorsement_eg: e.g. 'I bought / love this because...'
       :cosmetics:
-        :query: Search for your cosmetics...
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Item name and brand
+        :query: Search for a photo of your cosmetics item...
+        :query_eg: e.g. 'Jouer mineral face powder'
+        :title: Name this item
         :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :endorsement_eg: e.g. 'I bought / love this because...'
       :electronics:
-        :query: Search for your electronics...
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Item name and brand
-        :endorsement: What do you love about item item?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :query: Search for a photo of your electronics item...
+        :query_eg: e.g. 'White iPad 2 3G'
+        :title: Name this item
+        :endorsement: What do you love about this item?
+        :endorsement_eg: e.g. 'I bought / love this because...'
       :jewelry:
-        :query: Search for your jewelry...
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Item name and brand
-        :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :query: Search for a photo of your jewelry...
+        :query_eg: e.g. 'Tiffany orchid necklace'
+        :title: Name this piece
+        :endorsement: What do you love about this piece?
+        :endorsement_eg: e.g. 'I bought / love this because...'
       :anything:
-        :query: Search for your item...
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Item name and brand
+        :query: Search for a photo of your item...
+        :query_eg: e.g. 'Moleskine notebook'
+        :title: Name this item
         :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :endorsement_eg: e.g. 'I bought / love this because...'
 
 development: &development
   <<: *common
