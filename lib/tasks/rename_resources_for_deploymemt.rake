@@ -5,7 +5,7 @@ task :rename_resources_for_deployment,:revision  do |e,args|
 
   require 'config/environment.rb'
 
-  revision    = args.revision
+  #revision    = args.revision
   asset_host  = ActionController::Base.asset_host
 
   system "sed -i -e \"s/'\\/images/'#{asset_host.gsub("/","\\/")}"\

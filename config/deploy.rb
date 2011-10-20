@@ -241,18 +241,20 @@ namespace :assets do
   task :local, :roles => [:web,:worker] do
   end
 
-  desc 'Install remote assets on S3 on the web servers'
-  task :remote, :roles => :web do
+  desc 'Install remote assets on to S3'
+  task :remote do
 
-    system "RAILS_ENV=#{environment} "\
+    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
             "rake rename_resources_for_deployment[#{current_revision}]" 
 
-    system "RAILS_ENV=#{environment} rake asset:packager:build_all"
+    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
+            "rake asset:packager:build_all"
 
-    system "RAILS_ENV=#{environment} "\
+    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
             "rake upload_resources_to_assethost[#{current_revision}]" 
 
-    system "RAILS_ENV=#{environment} rake asset:packager:delete_all"
+    system "cd #{Dir.pwd} && "\
+            "RAILS_ENV=#{environment} rake asset:packager:delete_all"
 
     system "git checkout ."
   end

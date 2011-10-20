@@ -7,7 +7,8 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
   require 'config/environment.rb'
 
-  revision = args.revision
+  #revision = args.revision
+  revision = CONFIG[:revision]
 
   Dir.new('public/stylesheets').each do |file|
     next unless file.scan('_packaged').present?
