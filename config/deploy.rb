@@ -55,6 +55,8 @@ namespace :deploy do
 
   desc 'Setup the servers for a first time release' 
   task :install do 
+    system "cap #{environment}  assets:remote"
+
     system "cap #{environment}  permissions:remote"
 
     system "cap #{environment}  deploy:setup"
@@ -66,8 +68,6 @@ namespace :deploy do
 
     system "cap #{environment}  gems:install"
 
-    system "cap #{environment}  assets:local"
-    system "cap #{environment}  assets:remote"
 
     if environment == "staging"
       #system "cap #{environment}  db:config" 
@@ -94,12 +94,11 @@ namespace :deploy do
    
   desc 'A delta release across all the servers'
   task :release do 
+    system "cap #{environment}  assets:remote"
+
     system "cap #{environment}  deploy:update"
 
     system "cap #{environment}  gems:install"
-
-    system "cap #{environment}  assets:local"
-    system "cap #{environment}  assets:remote"
 
     if environment == "staging"
       #system "cap #{environment}  db:config" 
@@ -107,9 +106,8 @@ namespace :deploy do
 
     system "cap #{environment}  db:migrate"
 
-
-    system "cap #{environment}  workers:restart"
     system "cap #{environment}  passenger:restart"
+    system "cap #{environment}  workers:restart"
 
     #system "cap #{environment}  search:index"
 
@@ -246,14 +244,17 @@ namespace :assets do
   desc 'Install remote assets on S3 on the web servers'
   task :remote, :roles => :web do
 
-    run "cd #{current_path} && "\
-        "RAILS_ENV=#{environment} "\
-        "rake rename_resources_for_deployment[#{current_revision}]" 
-    run "cd #{current_path} && "\
-        "RAILS_ENV=#{environment} rake asset:packager:build_all"
-    run "cd #{current_path} && "\
-        "RAILS_ENV=#{environment} "\
-        "rake upload_resources_to_assethost[#{current_revision}]" 
+    system "RAILS_ENV=#{environment} "\
+            "rake rename_resources_for_deployment[#{current_revision}]" 
+
+    system "RAILS_ENV=#{environment} rake asset:packager:build_all"
+
+    system "RAILS_ENV=#{environment} "\
+            "rake upload_resources_to_assethost[#{current_revision}]" 
+
+    system "RAILS_ENV=#{environment} rake asset:packager:delete_all"
+
+    system "git checkout ."
   end
 
 end
