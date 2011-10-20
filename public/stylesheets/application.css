@@ -469,23 +469,6 @@ h1 {
 	background: transparent url('/images/save_and_share_button.png') no-repeat;
 }
 
-#product_title, #product_endorsement {
-	width: 398px;
-	height:26px;
-	border: 1px solid #dddddd;
-	font-size: 20px;
-	color: #cccccc;
-	line-height: 26px;
-	padding: 5px 8px;
-}
-
-#product_endorsement {
-	height: 76px;
-}
-
-#product_title { font-family: 'FuturaStdBold', Arial, sans-serif; margin-bottom: 12px; }
-#product_endorsement { font-family: Georgia, Times New Roman, serif; }
-
 
 #chooser {
 	position: absolute;

@@ -24,7 +24,9 @@
 	
 	<div class="step">
 		<p class="step_title">Name these shoes</p>
-		<input class="creation_input box_shadow" type="text" value="">
+		<%=f.text_field :title,
+                :value    => "",
+                :class    => "creation_input box_shadow"%>
 	</div>
 	
 	<div class="step">
