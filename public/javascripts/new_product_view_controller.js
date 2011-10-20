@@ -260,13 +260,13 @@ function productSelected(id) {
   $(kProductSelection).show();
   $(kProductSelection).html("<img id='product_selection_photo' src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
-  $(kProductTitle).val($(kProductQuery).val().toProperCase());
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
   $(kProductThumbUrl).val(product.thumbUrl);
 
   $(kProductExtra).show();
   $(kProductTitle).focus();
+  $(kProductTitle).val($(kProductQuery).val().toProperCase());
   $(kImagesBox).hide();
 
 
