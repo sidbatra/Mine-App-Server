@@ -161,7 +161,7 @@ h1 {
 	cursor: pointer;
 }
 
-#creation_photo_box {
+#product_selection {
 	width: 400px;
 	height: 150px;
 	line-height: 150px;
@@ -169,7 +169,7 @@ h1 {
 	text-align: center;
 }
 
-#creation_photo_box_photo {
+#product_selection_photo {
 	max-width: 150px;
 	max-height: 150px;
 	vertical-align: middle;
@@ -342,10 +342,6 @@ h1 {
 
 #item_search {
 	margin-top: 102px;
-}
-
-#product_selection {
-  display: none;
 }
 
 .swfupload {

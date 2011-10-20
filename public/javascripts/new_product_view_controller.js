@@ -258,7 +258,7 @@ function productSelected(id) {
   $(kProductSelection).show();
   $(kProductInput).hide();
   $(kProductImageBox).addClass(kProductImageClass);
-  $(kProductImage).html("<img id='left_photo' src='" + product.imageUrl + "' />");
+  $(kProductImage).html("<img id='product_selection_photo' src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
   $(kProductTitle).val($(kProductQuery).val().toProperCase());
   $(kProductTitle).focus();
