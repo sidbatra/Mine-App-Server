@@ -25,34 +25,38 @@
 	
 	<div id="product_selection" class="step rounded">
 	</div>
-	
-	<div class="step">
-		<p class="step_title">
-      <%=@placeholders[:title]%>
-    </p>
 
-		<%=f.text_field :title,
-                :value    => "",
-                :class    => "creation_input box_shadow"%>
-	</div> <!-- step -->
+  <div id="product_extra" style="display:none">
 	
-	<div class="step">
-		<p class="step_title">
-      <%=@placeholders[:endorsement]%>
-    </p>
+	  <div class="step">
+	  	<p class="step_title">
+        <%=@placeholders[:title]%>
+      </p>
 
-    <%=f.text_area :endorsement,
-          :value    => "",
-          :class    => "creation_input box_shadow creation_endorsement"%>
+	  	<%=f.text_field :title,
+                  :value    => "",
+                  :class    => "creation_input box_shadow"%>
+	  </div> <!-- step -->
+	  
+	  <div class="step">
+	  	<p class="step_title">
+        <%=@placeholders[:endorsement]%>
+      </p>
 
-		<p class="step_example">
-      <%=@placeholders[:endorsement_eg]%>
-    </p>
-	</div>
-	
-  <%=submit_tag "Save and Share",
-                :name   => :nil,
-                :class  => "large blue awesome creation_submit_button"%>
+      <%=f.text_area :endorsement,
+            :value    => "",
+            :class    => "creation_input box_shadow creation_endorsement"%>
+
+	  	<p class="step_example">
+        <%=@placeholders[:endorsement_eg]%>
+      </p>
+	  </div>
+	  
+    <%=submit_tag "Save and Share",
+                  :name   => :nil,
+                  :class  => "large blue awesome creation_submit_button"%>
+  
+  </div>
 
 <%end%>
 

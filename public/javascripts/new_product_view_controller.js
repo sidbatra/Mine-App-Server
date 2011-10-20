@@ -13,6 +13,7 @@ var kProductThumbUrl    = '#product_thumb_url';
 var kProductIsHosted    = '#product_is_hosted';
 var kProductUpload      = 'product_upload';
 var kProductInput       = '#product_input';
+var kProductExtra       = '#product_extra';
 var kProductImage       = '#product_image';
 var kProductImageBox    = '#left';
 var kProductImageClass  = 'photo';
@@ -95,6 +96,8 @@ function NewProductViewController() {
   $(kProductTitle).blur(function() { mpq.track("Left Item Name"); }); 
 
   $(kProductEndorsement).blur(function() { mpq.track("Left Item Endoresement"); }); 
+
+  $(document).ready(function() { $(kProductQuery).focus(); });
 
 
   this.scrollViewController                      = new ScrollViewController();
@@ -262,7 +265,10 @@ function productSelected(id) {
   $(kProductWebsiteUrl).val(product.websiteUrl);
   $(kProductImageUrl).val(product.imageUrl);
   $(kProductThumbUrl).val(product.thumbUrl);
+
+  $(kProductExtra).show();
   $(kImagesBox).hide();
+
 
   mpq.track("product selected");
  }
