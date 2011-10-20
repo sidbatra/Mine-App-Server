@@ -136,9 +136,9 @@ namespace :db do
         "rake load_db_from_dump[#{db_dump},#{deploy_name}]"
   end
 
-  desc 'Run a migration on the database server'
-  task :migrate, :roles => :db do
-    run "cd #{current_path} && "\
+  desc 'Run a migration'
+  task :migrate do
+    system "cd #{Dir.pwd} && "\
         "RAILS_ENV=#{environment} rake db:migrate" 
   end
 
