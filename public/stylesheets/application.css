@@ -94,6 +94,100 @@ h1 {
 /* 	background: yellow; */
 }
 
+/* Creation */
+
+#creation_container {
+	width: 400px;
+	height: auto;
+	margin: 30px auto 40px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #999999;
+	font-size: 16px;
+	position: relative;
+}
+
+.step {
+	margin-bottom: 16px;
+}
+
+.go_button {
+	width: 70px;
+}
+
+.step_example {
+	font-size: 14px;
+	color: #c6c6c6;
+}
+
+.creation_input {
+	height: 26px;
+	width: 388px;
+	margin: 5px 0 3px;
+	border: 1px solid #dddddd;
+	padding: 4px 5px;
+	line-height: 26px;
+	font-size: 16px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #999999;
+	vertical-align: top;
+}
+
+.creation_search { width: 318px; }
+.creation_endorsement { height: 52px; }
+#creation_search_button { 
+	width: 70px; 
+	height: 36px;
+	background: #525252 url('/images/alert-overlay.png') repeat-x; 
+	color: #fff; 
+	text-decoration: none;
+	overflow: visible;
+	font-size: 16px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	border: 0;
+	overflow: visible;
+	cursor: pointer;
+	display: inline;
+	vertical-align: top;
+	margin-top: 5px;
+}
+
+#creation_search_button:hover {
+	background-color: #323232;
+}
+
+.creation_submit_button {
+	position: absolute;
+	width: 100%;
+	cursor: pointer;
+}
+
+#creation_photo_box {
+	width: 400px;
+	height: 150px;
+	line-height: 150px;
+	background: white;
+	text-align: center;
+}
+
+#creation_photo_box_photo {
+	max-width: 150px;
+	max-height: 150px;
+	vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ------------------------------ Home Page */
 
@@ -1094,6 +1188,6 @@ h1 {
     .login,
     .small_button,
     .nav_menu { 
-    	font-family: Arial Black, Arial, sans-serif; font-weight: bold; 
+    	font-family: Arial, sans-serif; font-weight: bold; 
     }
 }

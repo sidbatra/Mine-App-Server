@@ -1,6 +1,40 @@
 
-	<!-- item -->
-	<div id="container">
+<!-- item -->
+
+<form id="creation_container">
+
+	<div class="step">
+		<p class="step_title">Search for a photo of your shoes…</p>
+		<input class="creation_input box_shadow creation_search" type="text" value=""><input id="creation_search_button" value="Go" title="Search" type="button" alt="Search">
+		<p class="step_example">e.g. 'Zara high heeled boot'</p>
+	</div>
+	
+	<div id="creation_photo_box" class="step rounded">
+		<img id="creation_photo_box_photo" src="http://images.ctv.ca/archives/CTVNews/img2/20111019/800_animals_jack_hanna_ap_111019_225128.jpg">
+	</div>
+	
+	<div class="step">
+		<p class="step_title">Name these shoes</p>
+		<input class="creation_input box_shadow" type="text" value="">
+	</div>
+	
+	<div class="step">
+		<p class="step_title">What do you think of these shoes?</p>
+		<textarea class="creation_input box_shadow creation_endorsement" value=""></textarea>
+		<p class="step_example">e.g. 'I bought / I love these because…'</p>
+	</div>
+	
+	<input class="large blue awesome creation_submit_button" name="commit" type="submit" value="Save and Share">
+
+</form>
+
+
+
+
+	
+	
+	
+	<div id="container" style="margin-top: 500px;">
 	
     <div id="instructions_1" style="display:block" class="unselectable">
       <%=image_tag "instructions_1.png"%>
@@ -82,12 +116,14 @@
 
   <%=render :partial => "misc/feedback"%>
 
-  <script type="text/javascript">
-    var newProductViewController = new NewProductViewController(
+
+<script type="text/javascript">
+    /*var newProductViewController = new NewProductViewController(
                     {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
 
     newProductViewController.setupPreCreationAnalytics('<%=@category%>',
                                                 '<%=self.current_user.email%>');
-    center_based_on_element('#container',90);
+    center_based_on_element('#container',90);*/
   </script>
+
 
