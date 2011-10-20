@@ -24,7 +24,6 @@
 	</div> <!-- step -->
 	
 	<div id="product_selection" class="step rounded">
-		<img id="product_selection_photo" src="http://images.ctv.ca/archives/CTVNews/img2/20111019/800_animals_jack_hanna_ap_111019_225128.jpg">
 	</div>
 	
 	<div class="step">
@@ -61,68 +60,6 @@
 
 
 	
-	
-	
-	<div id="container" style="margin-top: 500px;">
-	
-    <%form_for @product, :html => {:multipart => true} do |f|%>
-      <%=f.hidden_field :category, :value => @category%>
-      <%=f.hidden_field :website_url%>
-      <%=f.hidden_field :image_url%>
-      <%=f.hidden_field :thumb_url%>
-      <%=f.hidden_field :is_hosted%>
-
-			<div id="left">
-
-       <div id="product_selection">
-        s <div id="product_image">
-         </div>
-         <div id="product_cancel" 
-             class="change_photo dark_button">
-           Change photo
-         </div>
-       </div> <!-- product_selection-->
-
-        <div id="product_input">
-          <div id="item_search">
-            <%=f.text_field :query,
-                  :value    => @placeholders[:query],
-                  :class    => "box_shadow"%>
-            <input id="product_search" value="" 
-                    title="Search" type="button" alt="Search">
-          </div>
-          <%=image_tag "or.png"%>
-          <span id="product_upload"></span>
-        </div> <!--product_input-->
-
-			</div> <!-- left -->
-			
-			<div id="right">
-				<div id="right_new_content">
-					<div id="right_titlebox">	
-            <%=image_tag self.current_user.photo_url, 
-                          :id => "user_photo"%>
-            <span id="user_name" class="is_sharing">
-              <%=user_share_text(self.current_user)%>&hellip;
-            </span>
-					</div>
-							
-          <%=f.text_field :title,
-                :value    => @placeholders[:title],
-                :class    => "box_shadow"%>
-
-          <%=f.text_area :endorsement,
-                :value    => @placeholders[:endorsement],
-                :class    => "box_shadow"%>
-
-          <%=submit_tag "Save and Share it! &rsaquo;", 
-                        :class  => "large blue awesome action"%>
-				</div>
-			</div> <!-- right -->
-			
-		</form>
-
-	</div> <!-- container -->
 
 	<div id="chooser" class="shadow_overlay" style="display:none">
 		<div id="chooser_cancel_bar">
@@ -131,18 +68,16 @@
 		<div id="results"></div>
 	</div> <!-- chooser -->
 
-  <%end%>
+	
 
   <%=render :partial => "misc/feedback"%>
 
 
 <script type="text/javascript">
-    /*var newProductViewController = new NewProductViewController(
-                    {<%=@uploader.map{|k,v| "'#{k}':'#{v}'"}.join(",")%>});
+    var newProductViewController = new NewProductViewController();
 
     newProductViewController.setupPreCreationAnalytics('<%=@category%>',
                                                 '<%=self.current_user.email%>');
-    center_based_on_element('#container',90);*/
   </script>
 
 

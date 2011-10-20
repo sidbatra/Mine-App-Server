@@ -167,6 +167,7 @@ h1 {
 	line-height: 150px;
 	background: white;
 	text-align: center;
+  display:none;
 }
 
 #product_selection_photo {

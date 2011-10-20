@@ -38,7 +38,7 @@ var settings     = undefined;
 
 // Constructor logic
 //
-function NewProductViewController(uploadSettings) {
+function NewProductViewController() {
   
   var npvController       = this;
 
@@ -46,31 +46,31 @@ function NewProductViewController(uploadSettings) {
   this.offset             = 0;
   this.query              = '';
   this.searchState        = kSearchStateInactive;
-  settings                = uploadSettings;
-  this.uploader           = this.setupUploader(uploadSettings);
+  //settings                = uploadSettings;
+  //this.uploader           = this.setupUploader(uploadSettings);
   this.defProdTitle       = $(kProductTitle).val();
   this.defProdEndorsement = $(kProductEndorsement).val();
 
 
-  make_conditional_field(
-    kProductQuery,
-    $(kProductQuery).val(),
-    $(kProductQuery).css('color'),
-    '#333333');
+  //make_conditional_field(
+  //  kProductQuery,
+  //  $(kProductQuery).val(),
+  //  $(kProductQuery).css('color'),
+  //  '#333333');
 
-  make_conditional_field(
-    kProductTitle,
-    this.defProdTitle,
-    $(kProductTitle).css('color'),
-    '#333333');
+  //make_conditional_field(
+  //  kProductTitle,
+  //  this.defProdTitle,
+  //  $(kProductTitle).css('color'),
+  //  '#333333');
 
   restrictFieldSize($(kProductTitle),80,'charsremain');
 
-  make_conditional_field(
-    kProductEndorsement,
-    this.defProdEndorsement,
-    $(kProductEndorsement).css('color'),
-    '#333333');
+  //make_conditional_field(
+  //  kProductEndorsement,
+  //  this.defProdEndorsement,
+  //  $(kProductEndorsement).css('color'),
+  //  '#333333');
 
   //restrictFieldSize($(kProductEndorsement),120,'charsremain');
 
@@ -84,7 +84,7 @@ function NewProductViewController(uploadSettings) {
 
   $(kProductSearch).click(function() { return npvController.productSearchClicked();});
 
-  $(kProductCancel).click(function() { return npvController.productCancelClicked();});
+  //$(kProductCancel).click(function() { return npvController.productCancelClicked();});
 
   $(kProductForm).submit(function() { return npvController.validateForm(); });
 
@@ -176,8 +176,7 @@ NewProductViewController.prototype.isSearchActive = function() {
 
 NewProductViewController.prototype.initiateProductSearch= function() {
 
-  if($(kProductQuery).val() == '' || 
-        $(kProductQuery).val() == 'Search for an item by name...')
+  if($(kProductQuery).val() == '')
     return;
 
   $(kImages).html('');
@@ -256,9 +255,7 @@ NewProductViewController.prototype.productCancelClicked = function() {
 function productSelected(id) {
   var product = productHash[id];
   $(kProductSelection).show();
-  $(kProductInput).hide();
-  $(kProductImageBox).addClass(kProductImageClass);
-  $(kProductImage).html("<img id='product_selection_photo' src='" + product.imageUrl + "' />");
+  $(kProductSelection).html("<img id='product_selection_photo' src='" + product.imageUrl + "' />");
   $(kProductIsHosted).val(0);
   $(kProductTitle).val($(kProductQuery).val().toProperCase());
   $(kProductTitle).focus();
