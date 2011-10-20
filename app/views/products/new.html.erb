@@ -11,7 +11,7 @@
       
 	<div class="step">
 		<p class="step_title">
-      Search for a photo of your shoes…
+      <%=@placeholders[:query]%>
     </p>
 
     <%=f.text_field :query,
@@ -19,7 +19,7 @@
         :class    => "creation_input box_shadow creation_search"%><input id="product_search" value="Go" title="Search" type="button" alt="Search">
 		
 		<p class="step_example">
-      e.g. 'Zara high heeled boot'
+      <%=@placeholders[:query_eg]%>
     </p>
 	</div> <!-- step -->
 	
@@ -28,7 +28,7 @@
 	
 	<div class="step">
 		<p class="step_title">
-      Name these shoes
+      <%=@placeholders[:title]%>
     </p>
 
 		<%=f.text_field :title,
@@ -38,7 +38,7 @@
 	
 	<div class="step">
 		<p class="step_title">
-      What do you think of these shoes?
+      <%=@placeholders[:endorsement]%>
     </p>
 
     <%=f.text_area :endorsement,
@@ -46,7 +46,7 @@
           :class    => "creation_input box_shadow creation_endorsement"%>
 
 		<p class="step_example">
-      e.g. 'I bought / I love these because…'
+      <%=@placeholders[:endorsement_eg]%>
     </p>
 	</div>
 	

@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   #
   def new
     @product      = Product.new
-    @uploader     = generate_uploader
+    #@uploader     = generate_uploader
 
     @category     = params[:category] ? params[:category] : "anything"
     @placeholders = MSG[:product][@category.gsub("-sample","").to_sym]
