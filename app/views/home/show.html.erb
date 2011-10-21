@@ -5,13 +5,13 @@
 <div id="landing_container">
 
 	<div class="landing_heading">
-		Felvy is an online closet of everything you own<br>
+		Build your Online Closet<br>
 		<span class="landing_subtitle">It's fun, and free!</span>
 	</div>
 	
 	<div class="landing_main">
 		<ul>
-			<li>Catalog the things you own</li>
+			<li>Collect the things you own</li>
 			<li>Share and compare with friends</li>
 			<li>Express your style!</li>
 		</ul>
@@ -36,6 +36,9 @@
               :class => "landing_product_image", 
               :style => "display:none", :alt => ""%>
         <%=image_tag "landing_jewelry.jpg", 
+              :class => "landing_product_image", 
+              :style => "display:none", :alt => ""%>
+        <%=image_tag "landing_uggs.jpg", 
               :class => "landing_product_image", 
               :style => "display:none", :alt => ""%>
         <%=image_tag "landing_cosmetics.jpg", 
@@ -76,7 +79,6 @@
  //   });
 
    mpq.register_once({'landed_on' : '<%=@source%>'});
-   mpq.track("landed on homepage");
   });
 </script>
 

@@ -13,7 +13,7 @@
 	<div id="profile_details_right">
 	
     <div id="profile_username">
-      <%=user_full_name(@user)%>'s Collection
+      <%=user_full_name(@user)%>'s Closet
     </div>
 
     <div id="profile_bio">
@@ -42,7 +42,7 @@
           
           <!-- byline empty --> 
           <%unless self.current_user.byline.present?%>
-            <%=link_to "Describe your collection's style",
+            <%=link_to "Describe your closet's style",
                 "javascript:void(0)",
                 :id => "user_edit_initiate"%>
           <%end%>
@@ -69,7 +69,7 @@
   <%if is_current_user(@user.id)%>
     <div class="instructions">
       <span class="emphasis">Add favorite items you own</span> 
-      to your collection!
+      to your closet!
     </div>
 
     <div id="suggestions">
@@ -108,7 +108,7 @@
           "you own" : 
           @user.first_name + " owns"%>
     </span> 
-    appears right here on this page:
+    appears right here:
 	</div>
 
 	
