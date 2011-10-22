@@ -18,50 +18,50 @@ common: &common
         :query: Search for a photo of your shoes...
         :query_eg: e.g. 'Zara high heeled boot'
         :title: Name these shoes
-        :endorsement: What do you love about these shoes?
-        :endorsement_eg: e.g. 'I bought / love these because...'
+        :endorsement: A short review about your shoes
+        :endorsement_eg: 
       :accessories:
         :query: Search for a photo of your accessory...
         :query_eg: e.g. 'Longchamp canvas bag'
         :title: Name this accessory
-        :endorsement: What do you love about this accessory?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your accessory
+        :endorsement_eg: 
       :clothing:
         :query: Search for a photo of your clothing item...
         :query_eg: e.g. 'BB dakota romaine belted coat'
         :title: Name this item of clothing
-        :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your item
+        :endorsement_eg: 
       :decor:
         :query: Search for a photo of your home decor item...
         :query_eg: e.g. 'Amy butler organic pillows'
         :title: Name this piece of home decor
-        :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your item
+        :endorsement_eg: 
       :cosmetics:
         :query: Search for a photo of your cosmetics item...
         :query_eg: e.g. 'Jouer mineral face powder'
         :title: Name this item
-        :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your item
+        :endorsement_eg: 
       :electronics:
         :query: Search for a photo of your electronics item...
         :query_eg: e.g. 'White iPad 2 3G'
         :title: Name this item
-        :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your item
+        :endorsement_eg: 
       :jewelry:
         :query: Search for a photo of your jewelry...
         :query_eg: e.g. 'Tiffany orchid necklace'
         :title: Name this piece
-        :endorsement: What do you love about this piece?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your item
+        :endorsement_eg: 
       :anything:
         :query: Search for a photo of your item...
         :query_eg: e.g. 'Moleskine notebook'
         :title: Name this item
-        :endorsement: What do you love about this item?
-        :endorsement_eg: e.g. 'I bought / love this because...'
+        :endorsement: A short review about your item
+        :endorsement_eg: 
 
 development: &development
   <<: *common
