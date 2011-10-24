@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017193011) do
+ActiveRecord::Schema.define(:version => 20111024205905) do
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(:version => 20111017193011) do
   end
 
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
+
+  create_table "searches", :force => true do |t|
+    t.string   "query"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

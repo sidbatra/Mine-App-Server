@@ -36,6 +36,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments,
                 :only => [:create]
 
+  map.resources :searches,
+                :only => [:create]
+
   map.resource  :share,
                 :controller => 'share',
                 :only       => [:create]

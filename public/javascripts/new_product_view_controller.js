@@ -171,6 +171,17 @@ NewProductViewController.prototype.isSearchActive = function() {
   return $(kImagesBox).is(":visible");
 }
 
+// Save the search query to the server
+//
+NewProductViewController.prototype.saveQuery = function() {
+  $.ajax({
+    type:       "POST",
+    url:        "/searches.js?search[query]=" + $(kProductQuery).val(),
+    success:    function(d){trace(d);},
+    error:      function(r,s,e){trace(r + ' ' + s + ' ' + e);}
+    });
+}
+
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -193,6 +204,7 @@ NewProductViewController.prototype.initiateProductSearch= function() {
 
   this.fetchImages();
   mpq.track("Searched a product", {'query':this.query});
+  this.saveQuery();
 }
 
 NewProductViewController.prototype.productQueryKeyPress = function(e) {
