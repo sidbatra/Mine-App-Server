@@ -1,9 +1,9 @@
 
 <div id="container">
   <ul>
-    <%@grouped_users.each do |age,users|%>
+    <%@grouped_users.each do |age_bucket,users|%>
       <ul>
-      <p><b><%=age*5%>--<%=(age+1)*5-1%></b></p>
+      <p><b><%=age_range(age_bucket)%></b></p>
       <%users.each do |user|%>
         <li><%=link_to h(user_full_name(user)), user_path(user) if user %></li>
       <%end%>
