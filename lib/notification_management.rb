@@ -36,6 +36,16 @@ module DW
             :src => "fb",
             :host => CONFIG[:host]))
       end
+      
+      # Create friendships based on FB friends when a user is created
+      #
+      def self.new_user(user_id)
+        user        = User.find(user_id)
+        fb_user     = FbGraph::User.new('me', 
+                                        :access_token => user.access_token) 
+        fb_friends  = fb_user.friends.map(&:identifier)
+        friends     = User.find_all_by_fb_user_id(fb_friends)
+      end
     
     end #notification manager
 

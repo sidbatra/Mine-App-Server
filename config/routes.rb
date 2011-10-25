@@ -23,6 +23,7 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :products,
                 :action     => :show
 
+
   # Exception manager
   map.connect 'admin/logged_exceptions/:action/:id', 
               :controller => 'logged_exceptions'
@@ -42,7 +43,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :share,
                 :controller => 'share',
                 :only       => [:create]
-      
+
+  # Admin routes
+  map.resources :admin_users, 
+                :as         => 'admin/users', 
+                :controller => 'admin/users',
+                :only       => [:index]
+        
   map.home  '/:id',
             :controller => :home,
             :action     => :show
