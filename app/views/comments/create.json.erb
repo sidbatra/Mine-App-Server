@@ -1,0 +1,4 @@
+<%-@comment[:html] = render(
+                      :partial  => "comments/comment.html.erb",
+                      :object   => @comment)-%>
+<%=@comment.to_json(:only => [:html])-%>

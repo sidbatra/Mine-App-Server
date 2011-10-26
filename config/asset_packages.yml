@@ -1,18 +1,18 @@
 --- 
 javascripts: 
 - application: 
-  - jquery-1.4.3.min
+  - jquery-1.4.3
   - jquery-easing
   - jquery-cycle-lite
   - underscore
   - backbone
   - extensions
   - user
+  - comment
   - scroll_view_controller
-  - application_controller
+  - application
   - product
   - new_product_view_controller
-  - product_show_view_controller
 stylesheets: 
 - application: 
   - application

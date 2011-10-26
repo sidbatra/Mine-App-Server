@@ -42,4 +42,12 @@ class Comment < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Override to customize accessible attributes
+  #
+  def to_json(options = {})
+    options[:only] = [] if options[:only].nil?
+    options[:only] += [:id,:data]
+    super(options)
+  end
+
 end

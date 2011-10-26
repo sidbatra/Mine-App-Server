@@ -32,7 +32,8 @@
         <div id="blocker"></div>
         <div class="post_comment">
             <input id="comment_post" class="small_button" 
-                    value="Post Comment" title="Post" type="button" alt=""></div>
+                    value="Post Comment" title="Post" type="button" alt="">
+        </div>
       <%end%> <!-- comment entry box -->
 
 
@@ -49,17 +50,14 @@
   </div> <!-- container -->
 
   <script type="text/javascript">
-    var productShowViewController = new ProductShowViewController(
-                                          <%=@product.id%>);
 
     mpq.register_once({'landed_on' : 'product_<%=@product.id.to_s%>'});
 
-    <%if logged_in?  && 
-          @product.user.id == self.current_user.id && 
-          !@product.is_shared%>
-      productShowViewController.share();
-    <%end%>
-
     center_based_on_element('#container',<%=logged_in? ? 50 : 50%>);
+
+    var comment = new Comment({
+                        'defaultData':$('#comment_data').val(),
+                        'product_id':<%=@product.id%>});
+    var commentInputView = new CommentInputView({model: comment,el:$('#comments_container')});
       
   </script>

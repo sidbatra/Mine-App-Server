@@ -7,10 +7,13 @@ class CommentsController < ApplicationController
   #
   def create
     @comment = Comment.add(
-                        params[:comment],
+                        params,
                         self.current_user.id)
   rescue => ex
     handle_exception(ex)
   ensure
+    respond_to do |format|
+      format.json 
+    end
   end
 end

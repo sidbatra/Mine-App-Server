@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
                   (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
-  # Override the to_json method to customize accessible attributes
+  # Override to customize accessible attributes
   #
   def to_json(options = {})
     super(options.merge(:only => [:id,:byline]))
