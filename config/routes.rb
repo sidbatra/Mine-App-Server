@@ -49,6 +49,10 @@ ActionController::Routing::Routes.draw do |map|
                 :as         => 'admin/users', 
                 :controller => 'admin/users',
                 :only       => [:index]
+  
+  map.canvas    '/canvas',
+                :controller => :canvas,
+                :action     => :show
         
   map.home  '/:id',
             :controller => :home,
