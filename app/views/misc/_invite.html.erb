@@ -1,7 +1,7 @@
 <div id="welcome_box">
-  Felvy is more fun with Friends.<br>
+  See what's in your friends' closets. <br>
 
-	<span class="welcome_subtitle">Invite your friends.</span>
+	<span class="welcome_subtitle">Invite your friends. See what they own!</span>
 	
 	<%=link_to image_tag(
 				"f.png",
@@ -26,10 +26,11 @@
     });
 
     function showInviteDialog() {
-      mpq.track("Invite Clicked");
       FB.ui({method: 'apprequests',
-        message: 'See my online closet on Felvy',
+        message: 'Come join me on Felvy! An online closet for everything you own.',
+        title: 'Invite Your Facebook Friends to Felvy',
       }, requestCallback);
+      mpq.track("Invite Clicked");
     }
 
     function requestCallback(response) {
