@@ -23,14 +23,14 @@ function UserShowViewController(user_id) {
   //$(kUserByline).blur(function() { 
   //                      return usvController.updateUser(); });
 
-  $(kUserEdit).click(function() { 
-      usvController.userEditClicked();});
+  //$(kUserEdit).click(function() { 
+  //    usvController.userEditClicked();});
 
-  $(kUserUpdate).click(function() { 
-      usvController.updateUser();});
+  //$(kUserUpdate).click(function() { 
+  //    usvController.updateUser();});
 
-  $(kUserEditInitiate).click(function() { 
-      usvController.userEditInitiateClicked(); });
+  //$(kUserEditInitiate).click(function() { 
+  //    usvController.userEditInitiateClicked(); });
 }
 
 // Update user
@@ -46,7 +46,7 @@ UserShowViewController.prototype.updateUser = function() {
 
   $.ajax({
     type:       "PUT",
-    url:        "/users/" + this.user_id + ".js?user[byline]=" + 
+    url:        "/users/" + this.user_id + ".js?byline=" + 
                 $(kUserByline).val(),
     success:    function(d){usvController.userUpdated(d);},
     error:      function(r,s,e){usvController.userError(r,s,e);}

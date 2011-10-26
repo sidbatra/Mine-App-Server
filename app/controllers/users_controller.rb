@@ -52,11 +52,16 @@ class UsersController < ApplicationController
   #
   def update
 
-    self.current_user.edit(params[:user])
+    @user = self.current_user
+    @user.edit(params)
   
   rescue => ex
     handle_exception(ex)
   ensure
+    respond_to do |format|
+      format.js 
+      format.json 
+    end
   end
 
 end

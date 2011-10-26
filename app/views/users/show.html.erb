@@ -143,8 +143,8 @@
   mpq.register_once({'landed_on' : 'user_<%=@user.id.to_s%>'}); 
 
   <%if is_current_user(@user.id)%>
-    var userShowViewController = new UserShowViewController(
-                                          <%=self.current_user.id%>);
+    var user        = new User(<%=@user.to_json%>);
+    var bylineView  = new UserBylineView({model: user, el:$('#profile_bio')});
   <%end%>
 
   <%if @source == "product"%>
