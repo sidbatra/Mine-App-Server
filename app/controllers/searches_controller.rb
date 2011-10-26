@@ -7,10 +7,13 @@ class SearchesController < ApplicationController
   #
   def create
     @search = Search.add(
-                        params[:search],
+                        params,
                         self.current_user.id)
   rescue => ex
     handle_exception(ex)
   ensure
+    respond_to do |format|
+      format.json 
+    end
   end
 end

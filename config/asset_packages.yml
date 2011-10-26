@@ -9,6 +9,7 @@ javascripts:
   - extensions
   - user
   - comment
+  - search
   - scroll_view_controller
   - application
   - product

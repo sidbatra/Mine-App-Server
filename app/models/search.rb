@@ -23,4 +23,14 @@ class Search < ActiveRecord::Base
       :user_id      => user_id)
   end
 
+  #-----------------------------------------------------------------------------
+  # Instance methods
+  #-----------------------------------------------------------------------------
+
+  # Override to customize accessible attributes
+  #
+  def to_json(options = {})
+    super(options.merge(:only => [:id,:query]))
+  end
+
 end
