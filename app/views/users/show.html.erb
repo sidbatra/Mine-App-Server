@@ -4,6 +4,10 @@
             :user   => @user,
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
+<%=render :partial => "misc/invite" if logged_in? && 
+                                       is_current_user(@user.id) && 
+                                       @products.present? %>
+
 <div id="profile_details">
 
 	<%=image_tag @user.photo_url, 
