@@ -36,7 +36,9 @@
     function requestCallback(response) {
       if(!response)
         mpq.track("Invite Rejected");
-      else
+      else {
+        $('#welcome_box').fadeOut('fast');
         mpq.track("Invite Completed");
+      }
     }
 </script>
