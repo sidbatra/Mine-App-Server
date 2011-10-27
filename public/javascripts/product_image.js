@@ -142,7 +142,7 @@ var ProductImagesView = Backbone.View.extend({
 
   globalKeystroke: function(e) {
     if(e.which == 27 && this.isSearchActive())
-      $(this.imagesBoxEl).hide();
+      this.stopSearch();
   },
 
   stopSearch: function() {
@@ -156,6 +156,9 @@ var ProductImagesView = Backbone.View.extend({
     $(this.imagesBoxEl).show();
 
     this.images.search(query);
+
+    var search = new Search({query:query});
+    search.save();
   },
 
   added: function(image) {
