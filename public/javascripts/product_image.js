@@ -15,6 +15,7 @@ var ProductImages = Backbone.Collection.extend({
     this.count = 12;
     this.offset = 0;
     this.state  = 0;
+    this.disabled = 0;
   },
 
   url: function() {
@@ -38,17 +39,31 @@ var ProductImages = Backbone.Collection.extend({
     this.reset();
     this.state = 0;
     this.offset = 0;
+    this.disabled = 0;
     this.query = query;
+
+    this.fetchMedium(this.query);
+    this.fetchLarge(this.query);
+
+    //var self = this;
+    //setTimeout(function(){self.searchMore();},1);
+    //setTimeout(function(){self.searchMore();},2000);
+  },
+
+  searchMore: function() {
+    if(this.isSearching() || this.disabled)
+      return;
+
+    this.offset += this.count;
 
     this.fetchMedium(this.query);
     this.fetchLarge(this.query);
   },
 
-  searchMore: function() {
-    this.offset += this.count;
-
-    this.fetchMedium(this.query);
-    this.fetchLarge(this.query);
+  // Disable search to prevent any future searches
+  //
+  disableSearch: function() {
+    this.disabled = 1; 
   },
 
   parse: function(data) {
@@ -96,11 +111,24 @@ var ProductImages = Backbone.Collection.extend({
       error: function(r,s,e){}});
   },
 
+  // Returns true if all active api searches haven't completed
+  //
+  isSearching: function() {
+    return this.state % 2 != 0 || this.state == 0;
+  },
+
   // Test if the requests have ended and the collection
   // is still empty
   //
   isEmpty: function() {
-    return this.state % 2 == 0 && this.length ==0;
+    return !this.isSearching() && this.length ==0;
+  },
+
+  // Test if the search has no more results to pull
+  // from the remote server
+  //
+  isSearchDone: function() {
+    return !this.isSearching() && this.length % this.count != 0;
   }
 
 });
@@ -169,7 +197,11 @@ var ProductImagesView = Backbone.View.extend({
   searched: function() {
     if(this.images.isEmpty()) {
       this.stopSearch();
-      alert("Oops, no photos for this item. Try a different search, or upload a photo.");
+      this.images.disableSearch();
+      alert("Oops, no photos for this item. Try a different search.");
+    }
+    else if(this.images.isSearchDone()) {
+      this.images.disableSearch();
     }
   }
 
