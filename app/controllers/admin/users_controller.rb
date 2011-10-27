@@ -22,10 +22,9 @@ class Admin::UsersController < ApplicationController
   # Display the user's queries and products. 
   #
   def show
-    user      = User.find(params[:id])
-
-    @queries  = user.searches.map(&:query)
-    @products = user.products.map(&:query)
+    user        = User.find(params[:id])
+    @collection = (user.searches + user.products).sort{
+                   |x,y| x.created_at <=> y.created_at}
   end
 
 end

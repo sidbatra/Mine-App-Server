@@ -2,24 +2,20 @@
 <div id="container">
   <table>
     <tr>
-      <td><b>QUERIES</b><br><br></td>
-      <td><b>PRODUCTS</b><br><br></td>
+        <td><i>QUERY</i></td>
+        <td><i>PRODUCT</i></td>
     </tr>
-    <tr>
-      <td width="400">
-        <ul>
-          <%@queries.each do |query|%>
-            <li><%=query%></li>
-          <%end%>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <%@products.each do |query|%>
-            <li><%=query%></li>
-          <%end%>
-        </ul>
-      </td>
-    </tr>
+    <tr height="20"></tr>
+    <%@collection.each do |c| %>
+      <tr>
+        <%if c.class == Product%>
+          <td><b><%=c.query%></b></td>
+          <td><u><%= link_to h(c.title), product_path(c.id,c.handle)%></u></td>
+        <%else%>
+          <td><%=c.query%></td>
+        <%end%>
+        </td>
+      </tr>
+    <%end%>
   </table>
 </div>
