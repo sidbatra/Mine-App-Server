@@ -15,7 +15,9 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
     AssetHost.store(
       "#{revision}/stylesheets/#{file}",
-      open("public/stylesheets/#{file}"))
+      open("public/stylesheets/#{file}"),
+      "Content-Encoding" => 'gzip',
+      "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
   Dir.new('public/javascripts').each do |file|
@@ -23,7 +25,9 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
     AssetHost.store(
       "#{revision}/javascripts/#{file}",
-      open("public/javascripts/#{file}"))
+      open("public/javascripts/#{file}"),
+      "Content-Encoding" => 'gzip',
+      "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
   Dir.new('public/images').each do |file|
@@ -31,7 +35,8 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
     AssetHost.store(
       "#{revision}/images/#{file}",
-      open("public/images/#{file}"))
+      open("public/images/#{file}"),
+      "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
   Dir.new('public/type').each do |file|
@@ -39,7 +44,8 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
     AssetHost.store(
       "#{revision}/type/#{file}",
-      open("public/type/#{file}"))
+      open("public/type/#{file}"),
+      "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
   Dir.new('public/swfs').each do |file|
@@ -47,7 +53,8 @@ task :upload_resources_to_assethost,:revision  do |e,args|
 
     AssetHost.store(
       "#{revision}/swfs/#{file}",
-      open("public/swfs/#{file}"))
+      open("public/swfs/#{file}"),
+      "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
 end
