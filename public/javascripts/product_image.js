@@ -14,6 +14,7 @@ var ProductImages = Backbone.Collection.extend({
     this.query = '';
     this.count = 12;
     this.offset = 0;
+    this.state  = 0;
   },
 
   url: function() {
@@ -35,14 +36,12 @@ var ProductImages = Backbone.Collection.extend({
 
   search: function(query) {
     this.reset();
+    this.state = 0;
     this.offset = 0;
     this.query = query;
 
     this.fetchMedium(this.query);
     this.fetchLarge(this.query);
-
-    var self = this;
-    setTimeout(function(){self.searchMore();},2000);
   },
 
   searchMore: function() {
@@ -53,25 +52,20 @@ var ProductImages = Backbone.Collection.extend({
   },
 
   parse: function(data) {
-    var results = null;
+    var results = [];
     var query   = data['SearchResponse']['Query']['SearchTerms'];
 
     if(query != this.query)
       return results;
 
-    var images = data['SearchResponse']['Image']['Results'];
-    var offset = data['SearchResponse']['Image']['Offset'];
+    var images  = data['SearchResponse']['Image']['Results'];
+    var offset  = data['SearchResponse']['Image']['Offset'];
+    var total   = data['SearchResponse']['Image']['Total'];
 
-    //if(offset == 0 && !images)
-    //  this.empty++;
-
-    //if(this.empty == 2) {
-    //  this.closeImagesBox();
-    //  alert("Oops, no photos for this item. Try a different search, or upload a photo.");
-    //}
+    this.state++;
     
-    //if(!images)
-    //  return results;
+    if(total <=0)
+      return results;
 
     results = images;
     
@@ -100,6 +94,13 @@ var ProductImages = Backbone.Collection.extend({
       dataType: "jsonp",
       success: function(d) { self.trigger('searched');},
       error: function(r,s,e){}});
+  },
+
+  // Test if the requests have ended and the collection
+  // is still empty
+  //
+  isEmpty: function() {
+    return this.state % 2 == 0 && this.length ==0;
   }
 
 });
@@ -166,7 +167,10 @@ var ProductImagesView = Backbone.View.extend({
   },
 
   searched: function() {
-    
+    if(this.images.isEmpty()) {
+      this.stopSearch();
+      alert("Oops, no photos for this item. Try a different search, or upload a photo.");
+    }
   }
 
 });
