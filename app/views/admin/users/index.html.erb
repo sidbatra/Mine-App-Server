@@ -2,12 +2,19 @@
 <div id="container">
   <ul>
     <%@grouped_users.each do |age_bucket,users|%>
-      <ul>
       <p><b><%=age_range(age_bucket)%></b></p>
-      <%users.each do |user|%>
-        <li><%=link_to h(user_full_name(user)), user_path(user) if user %></li>
-      <%end%>
-      </ul>
+      <table>
+        <%users.each do |user|%>
+          <tr>
+            <%if user%>
+              <td width="200"><%=link_to h(user_full_name(user)), 
+                                         user_path(user)%></td>
+              <td><%=link_to h(pluralize user.products_count,'item'), 
+                             admin_user_path(user)%></td> 
+            <%end%>
+          </tr>
+        <%end%>
+      </table>
       <br><br><br>
     <%end%>
   </ul>

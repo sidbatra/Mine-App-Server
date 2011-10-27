@@ -1,0 +1,25 @@
+
+<div id="container">
+  <table>
+    <tr>
+      <td><b>QUERIES</b><br><br></td>
+      <td><b>PRODUCTS</b><br><br></td>
+    </tr>
+    <tr>
+      <td width="400">
+        <ul>
+          <%@queries.each do |query|%>
+            <li><%=query%></li>
+          <%end%>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <%@products.each do |query|%>
+            <li><%=query%></li>
+          <%end%>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>

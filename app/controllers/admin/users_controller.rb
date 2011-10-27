@@ -17,4 +17,15 @@ class Admin::UsersController < ApplicationController
 
     @grouped_users = @grouped_users.sort{|a,b| a[0]<=>b[0]}
   end
+
+
+  # Display the user's queries and products. 
+  #
+  def show
+    user      = User.find(params[:id])
+
+    @queries  = user.searches.map(&:query)
+    @products = user.products.map(&:query)
+  end
+
 end

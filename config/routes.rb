@@ -48,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_users, 
                 :as         => 'admin/users', 
                 :controller => 'admin/users',
-                :only       => [:index]
+                :only       => [:index,:show]
   
   map.canvas    '/canvas',
                 :controller => :canvas,
