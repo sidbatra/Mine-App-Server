@@ -46,6 +46,9 @@ var CommentInputView = Backbone.View.extend({
         success: function(model) {self.created(model)},
         error : function(model,errors) {},
       });
+
+    mpq.track("Comment Created");
+
   },
 
 });
