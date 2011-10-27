@@ -42,12 +42,14 @@ module DW
       # fully in memory | also works if its a stream of bytes in memory
       # permissions - for the stored file, default :public_read
       #
-      def self.store(path,stream,permissions=:public_read)
+      def self.store(path,stream,options={})
+        options[:access] = :public_read if options[:access].nil?
+
         AWS::S3::S3Object.store(
           path,
           stream,
           self.bucket,
-          :access => permissions)
+          options)
       end
 
       # Removes a file from the file filesystem

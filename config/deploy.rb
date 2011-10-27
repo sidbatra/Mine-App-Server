@@ -249,6 +249,11 @@ namespace :assets do
 
     system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
             "rake asset:packager:build_all"
+    
+    system "gzip public/javascripts/application_packaged.js"
+    system "mv public/javascripts/application_packaged.js.gz public/javascripts/application_packaged.js"
+    system "gzip public/stylesheets/application_packaged.css"
+    system "mv public/stylesheets/application_packaged.css.gz public/stylesheets/application_packaged.css"
 
     system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
             "rake upload_resources_to_assethost[#{current_revision}]" 

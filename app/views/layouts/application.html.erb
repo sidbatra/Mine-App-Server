@@ -4,22 +4,14 @@
     <%=render :partial => "misc/head"%> 
 
     <%=stylesheet_link_merged    :application-%>
-    <%=javascript_include_merged :application-%>
 
     <%=yield :head%>
 
-    <%=render :partial => "misc/analytics"%>
 
     <%=csrf_meta_tag%>
   </head>
 
   <body <%=yield :body_attribute%>>
-    <script type="text/javascript">
-      setupDeviceVariables(
-        <%=is_mobile_device? ? true : false%>,
-        <%=is_device_ipad?%>,
-        <%=is_device_iphone?%>);
-    </script>
     
     
     <%=render "misc/header"%>
@@ -33,6 +25,17 @@
     	<a href="mailto:contact@felvy.com">contact@felvy.com</a>
     </div>
 -->
+    <%=render :partial => "misc/analytics"%>
+    <%=javascript_include_merged :application-%>
+
+    <script type="text/javascript">
+      setupDeviceVariables(
+        <%=is_mobile_device? ? true : false%>,
+        <%=is_device_ipad?%>,
+        <%=is_device_iphone?%>);
+    </script>
+
+    <%=yield :javascript%>
   </body>
 </html>
 

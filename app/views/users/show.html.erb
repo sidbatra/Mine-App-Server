@@ -136,21 +136,24 @@
 
 </div> <!-- profile_container -->
 
-<%=render :partial => "misc/feedback"%>
 
-<script type="text/javascript">
+<%content_for :javasript do%>
+  <%=render :partial => "misc/feedback"%>
 
-  mpq.register_once({'landed_on' : 'user_<%=@user.id.to_s%>'}); 
+  <script type="text/javascript">
 
-  <%if is_current_user(@user.id)%>
-    var user        = new User(<%=@user.to_json%>);
-    var bylineView  = new UserBylineView({model: user, el:$('#profile_bio')});
-  <%end%>
+    mpq.register_once({'landed_on' : 'user_<%=@user.id.to_s%>'}); 
 
-  <%if @source == "product"%>
-    mpq.track("Item Created");
-  <%elsif @source == "user"%>
-    mpq.track("User Logged In");
-  <%end%>
+    <%if is_current_user(@user.id)%>
+      var user        = new User(<%=@user.to_json%>);
+      var bylineView  = new UserBylineView({model: user, el:$('#profile_bio')});
+    <%end%>
 
-</script>
+    <%if @source == "product"%>
+      mpq.track("Item Created");
+    <%elsif @source == "user"%>
+      mpq.track("User Logged In");
+    <%end%>
+
+  </script>
+<%end%>

@@ -1,0 +1,21 @@
+
+<div id="container">
+  <table>
+    <tr>
+        <td width="400"><i>QUERY</i></td>
+        <td width="400"><i>PRODUCT</i></td>
+    </tr>
+    <tr height="20"></tr>
+    <%@collection.each do |c| %>
+      <tr>
+        <%if c.class == Product%>
+          <td></td>
+          <td><u><%= link_to h(c.title), product_path(c.id,c.handle)%></u></td>
+        <%else%>
+          <td><%=c.query%></td>
+        <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>

@@ -59,27 +59,31 @@
 </div>
 
 
-<%=render :partial => "misc/feedback"%>
+<%content_for :javascript do%>
 
-<script type="text/javascript">
- $(document).ready(function(){
-  $('#slideshow').cycle({
-    fx: 'fade',
-    timeout: 6000
+  <%=render :partial => "misc/feedback"%>
+
+  <script type="text/javascript">
+   $(document).ready(function(){
+    $('#slideshow').cycle({
+      fx: 'fade',
+      timeout: 6000
+      });
+   //   $('#slides').slides({
+   //     preload: false,
+   //     preloadImage: '<%=image_path "transparent.gif"%>',
+   //     play: 5000,
+   //     pause: 1500,
+   //     hoverPause: true,
+   //     generatePagination: false,
+   //     pagination: false,
+   //     effect: 'fade'
+   //   });
+
+     mpq.register_once({'landed_on' : '<%=@source%>'});
+     mpq.track("landed on homepage");
     });
- //   $('#slides').slides({
- //     preload: false,
- //     preloadImage: '<%=image_path "transparent.gif"%>',
- //     play: 5000,
- //     pause: 1500,
- //     hoverPause: true,
- //     generatePagination: false,
- //     pagination: false,
- //     effect: 'fade'
- //   });
+  </script>
 
-   mpq.register_once({'landed_on' : '<%=@source%>'});
-   mpq.track("landed on homepage");
-  });
-</script>
+<%end%>
 

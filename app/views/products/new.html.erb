@@ -75,6 +75,7 @@
 
 	
 
+<%content_for :javascript do%>
   <%=render :partial => "misc/feedback"%>
 
 
@@ -90,3 +91,4 @@
     var v = new ProductImagesView({el:$('body'),images:p});
 </script>
 
+<%end%>
