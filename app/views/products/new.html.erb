@@ -79,10 +79,14 @@
 
 
 <script type="text/javascript">
-    var newProductViewController = new NewProductViewController();
+    //var newProductViewController = new NewProductViewController();
 
-    newProductViewController.setupPreCreationAnalytics('<%=@category%>',
-                                                '<%=self.current_user.email%>');
-  </script>
+    //newProductViewController.setupPreCreationAnalytics('<%=@category%>',
+    //                                            '<%=self.current_user.email%>');
 
+    //var p = new ProductImages();
+    //p.fetchMedium('diamondback insight');
+    var p = new ProductImages();
+    var v = new ProductImagesView({el:$('body'),images:p});
+</script>
 

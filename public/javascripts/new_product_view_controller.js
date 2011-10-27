@@ -83,13 +83,13 @@ function NewProductViewController() {
   $(kProductQuery).keypress(function(e) { 
                         return npvController.productQueryKeyPress(e); });
 
-  $(kProductSearch).click(function() { return npvController.productSearchClicked();});
+  //$(kProductSearch).click(function() { return npvController.productSearchClicked();});
 
   //$(kProductCancel).click(function() { return npvController.productCancelClicked();});
 
   $(kProductForm).submit(function() { return npvController.validateForm(); });
 
-  $(kImagesBoxClose).click(function() { npvController.closeImagesBox(); });
+  //$(kImagesBoxClose).click(function() { npvController.closeImagesBox(); });
 
   $(kProductQuery).blur(function() { mpq.track("Left Search Box"); }); 
 

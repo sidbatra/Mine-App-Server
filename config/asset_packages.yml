@@ -10,6 +10,7 @@ javascripts:
   - user
   - comment
   - search
+  - product_image
   - scroll_view_controller
   - application
   - product
