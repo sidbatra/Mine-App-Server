@@ -23,20 +23,25 @@
           :omissions 	=> "…")%>
         </p>
         <p class="product_endorsement">
-          <%=h truncate(product.endorsement, 
+          <%#h truncate(product.endorsement, 
           :length 	  => 80, 
           :omissions 	=> "…")%>
         </p>
+
+        <p class="product_endorsement">
+          <%=h product.price%> <br>
+          <%=h product.store ? product.store.name : ""%>
+        </p>
   
-            <div class="product_comment_count">
-              <%if product.comments_count != 0%>
-                <%=product.comments_count%>
-                <%=image_tag "comment_bubble.gif", 
-                    :class => "product_comment_bubble",
-                    :alt => ""
-                %>
-              <%end%>
-            </div>
+        <div class="product_comment_count">
+          <%if product.comments_count != 0%>
+            <%=product.comments_count%>
+            <%=image_tag "comment_bubble.gif", 
+                :class => "product_comment_bubble",
+                :alt => ""
+            %>
+          <%end%>
+        </div>
             
       </div> <!-- product_right -->
       
