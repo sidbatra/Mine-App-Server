@@ -199,6 +199,9 @@ var ProductImagesView = Backbone.View.extend({
 
   search: function() {
     var query = $(this.queryEl).val();
+
+    if(!query.length)
+      return;
     
     $(this.imagesEl).html('');
     $(this.imagesBoxEl).show();

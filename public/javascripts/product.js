@@ -45,7 +45,24 @@ var ProductInputView = Backbone.View.extend({
     $(this.titleEl).val(productHash['query'].toProperCase());
   },
 
+  // Form submitted callback
+  //
   post: function() {
-    console.log("submitted");
+    var valid = true;
+
+    if($(this.imageEl).val().length < 1) {
+      valid = false;
+      alert("Please search for a photo of your item.");
+    }
+    else if($(this.titleEl).val().length < 1) {
+      valid = false;
+      alert("Please name your item.");
+    }
+    else if($(this.endorsementEl).val().length < 1) {
+      valid = false;
+      alert("Please add a short comment.");
+    }
+      
+    return valid;
   }
 });
