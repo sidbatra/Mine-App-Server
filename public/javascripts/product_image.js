@@ -167,7 +167,7 @@ var ProductImagesView = Backbone.View.extend({
     this.images.bind('add',this.added,this);
 
     
-    this.windowListener = new WindowListener();
+    this.windowListener = new Denwen.WindowListener();
     this.windowListener.bind('documentScrolled',this.documentScrolled,this);
     this.windowListener.bind('resizeEnded',this.resizeEnded,this);
 

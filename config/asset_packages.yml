@@ -1,14 +1,15 @@
 --- 
 javascripts: 
 - application: 
-  - jquery-1.4.3
-  - jquery-easing
-  - jquery-cycle-lite
-  - underscore
-  - backbone
+  - libs/jquery-1.4.3
+  - libs/jquery-easing
+  - libs/jquery-cycle-lite
+  - libs/underscore
+  - libs/backbone
   - extensions
-  - window_listener
   - application
+  - global
+  - window_listener
   - user
   - comment
   - search

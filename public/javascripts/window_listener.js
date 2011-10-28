@@ -1,4 +1,4 @@
-var WindowListener = Backbone.View.extend({
+Denwen.WindowListener = Backbone.View.extend({
 
   // Setup event listeners on the window to catch events
   //
