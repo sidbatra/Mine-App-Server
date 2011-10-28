@@ -37,7 +37,8 @@ module DW
             :host => CONFIG[:host]))
       end
       
-      # Create friendships based on FB friends when a user is created
+      # Make a user follow all his Facebook friends in our user base 
+      # and email the friends about his signup.
       #
       def self.new_user(user_id)
         user        = User.find(user_id)
