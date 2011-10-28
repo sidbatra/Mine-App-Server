@@ -1,12 +1,4 @@
-var Product = Backbone.Model.extend({
-
-  initialize: function(){
-  }
-
-});
-
-
-var ProductInputView = Backbone.View.extend({
+Denwen.ProductInputView = Backbone.View.extend({
 
   events: {
     "submit #new_product" : "post"
@@ -22,8 +14,8 @@ var ProductInputView = Backbone.View.extend({
     this.extraEl = '#product_extra';
     this.selectionEl = '#product_selection';
 
-    this.productImages = new ProductImages();
-    this.productImagesView = new ProductImagesView({
+    this.productImages = new Denwen.ProductImages();
+    this.productImagesView = new Denwen.ProductImagesView({
                                   el:$('body'),
                                   images:this.productImages});
     this.productImagesView.bind('productSelected',this.productSelected,this);
@@ -66,3 +58,4 @@ var ProductInputView = Backbone.View.extend({
     return valid;
   }
 });
+

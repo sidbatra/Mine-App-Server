@@ -145,8 +145,10 @@
     mpq.register_once({'landed_on' : 'user_<%=@user.id.to_s%>'}); 
 
     <%if is_current_user(@user.id)%>
-      var user        = new User(<%=@user.to_json%>);
-      var bylineView  = new UserBylineView({model: user, el:$('#profile_bio')});
+      var user        = new Denwen.User(<%=@user.to_json%>);
+      var bylineView  = new Denwen.UserBylineView({
+                              model: user, 
+                              el:$('#profile_bio')});
     <%end%>
 
     <%if @source == "product"%>

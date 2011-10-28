@@ -56,10 +56,10 @@
 
       center_based_on_element('#container',<%=logged_in? ? 50 : 50%>);
 
-      var comment = new Comment({
+      var comment = new Denwen.Comment({
                           'defaultData':$('#comment_data').val(),
                           'product_id':<%=@product.id%>});
-      var commentInputView = new CommentInputView({model: comment,el:$('#comments_container')});
+      var commentInputView = new Denwen.CommentInputView({model: comment,el:$('#comments_container')});
         
     </script>
   <%end%>

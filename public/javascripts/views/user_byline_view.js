@@ -1,19 +1,4 @@
-var User = Backbone.Model.extend({
-  
-  urlRoot: '/users',
-
-  initialize: function() {
-  },
-
-  validate: function(attrs) {
-    if(attrs.byline.length < 1)
-      return "Byline can't be empty";
-  }
-
-});
-
-
-var UserBylineView = Backbone.View.extend({
+Denwen.UserBylineView = Backbone.View.extend({
 
   events: {
     "click #user_edit": "edit",
@@ -61,4 +46,5 @@ var UserBylineView = Backbone.View.extend({
   },
 
 });
+
 

@@ -1,4 +1,4 @@
-var Search = Backbone.Model.extend({
+Denwen.Search = Backbone.Model.extend({
 
   urlRoot: '/searches',
 

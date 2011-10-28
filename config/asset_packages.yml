@@ -10,11 +10,17 @@ javascripts:
   - application
   - global
   - window_listener
-  - user
-  - comment
-  - search
-  - product_image
-  - product
+  - models/user
+  - models/comment
+  - models/search
+  - models/product_image
+  - models/product
+  - collections/product_images
+  - views/user_byline_view
+  - views/comment_input_view
+  - views/product_input_view
+  - views/product_image_view
+  - views/product_images_view
 stylesheets: 
 - application: 
   - application
