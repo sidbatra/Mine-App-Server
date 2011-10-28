@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026232100) do
+ActiveRecord::Schema.define(:version => 20111028214715) do
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20111026232100) do
     t.string   "thumb_url"
     t.string   "category"
     t.integer  "comments_count", :default => 0
+    t.integer  "store_id"
+    t.float    "price"
   end
 
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
@@ -60,6 +62,16 @@ ActiveRecord::Schema.define(:version => 20111026232100) do
   end
 
   add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "products_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -77,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20111026232100) do
     t.string   "source"
     t.string   "byline",                    :default => ""
     t.integer  "products_count",            :default => 0
+    t.float    "products_price",            :default => 0.0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
