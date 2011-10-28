@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
     if params[:product][:store_id].to_i == 0
       params[:product][:store_id] = Store.add(
                                       params[:product][:store],
-                                      self.current_user.id)
+                                      self.current_user.id).id
     end
 
     product     = Product.add(
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   # Display a product
   #
   def show
-    @product  = Product.eager.find(params[:id])
+    @product  = Product.find(params[:id])
     @comments = Comment.eager.for_product(@product.id)
 
     next_product  = @product.next

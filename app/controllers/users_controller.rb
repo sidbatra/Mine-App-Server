@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   #
   def show
     @user     = User.find(params[:id])
-    @products = @user.products.reverse
+    @products = @user.products.eager.reverse
     @source   = params[:src] ? params[:src].to_s : ""
   end
 

@@ -19,7 +19,7 @@ class ProductObserver < ActiveRecord::Observer
   #
   def after_destroy(product)
     user = product.user
-    user.remov_product_worth(product.price)
+    user.remove_product_worth(product.price)
   end
 
 end
