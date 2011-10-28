@@ -1,6 +1,17 @@
 var ProductImage = Backbone.Model.extend({
 
   initialize: function() {
+  },
+
+  // Create a hash with the relevant info needed to
+  // form a product model object
+  //
+  productHash: function() {
+    return {
+      "thumb_url" : this.get('Thumbnail')['Url'],
+      "website_url" : this.get('Url'),
+      "image_url" : this.get('MediaUrl')
+    };
   }
 
 });
@@ -191,7 +202,8 @@ var ProductImagesView = Backbone.View.extend({
   },
 
   added: function(image) {
-    new ProductImageView({model:image,el:$(this.imagesEl)});
+    var imageView =  new ProductImageView({model:image,el:$(this.imagesEl)});
+    imageView.bind('productImageClicked',this.productImageClicked,this);
   },
 
   searched: function() {
@@ -203,6 +215,15 @@ var ProductImagesView = Backbone.View.extend({
     else if(this.images.isSearchDone()) {
       this.images.disableSearch();
     }
+  },
+
+  // Fired when the user selects a product image on a
+  // ProductImageView
+  //
+  productImageClicked: function(productHash) {
+    productHash['query'] = $(this.queryEl).val();
+    this.trigger('productSelected',productHash);
+    this.stopSearch();
   }
 
 });
@@ -229,7 +250,7 @@ var ProductImageView = Backbone.View.extend({
   // Fired when the image is clicked
   //
   clicked: function() {
-    console.log(this.model.get('MediaUrl'));
+    this.trigger('productImageClicked',this.model.productHash());
   }
 });
 

@@ -1,38 +1,51 @@
-// Product provides an interface for storing product data
-// and view helpers
-//
+var Product = Backbone.Model.extend({
 
-function Product(title,thumbUrl,imageUrl,
-                  imageWidth,imageHeight,websiteUrl) {
+  initialize: function(){
+  }
 
-  this.title        = title;
-  this.thumbUrl     = thumbUrl;
-  this.imageUrl     = imageUrl;
-  this.imageWidth   = imageWidth;
-  this.imageHeight  = imageHeight;
-  this.websiteUrl   = websiteUrl;
-  this.id           = this.imageUrl;
+});
 
-  //var link = document.createElement('a');
-  //link.setAttribute('href','javascript:void(0)');
-  //link.setAttribute('onclick',"alert('in')");
-  //link.innerHTML = "<img height='200' src='" + this.imageUrl + "' />";
-}
 
-// Generate an image tag that activates product selection javascript
-// on click
-//
-Product.prototype.imageSearchResultTag = function() {
-  return [
-          "<div class='photo_choice_cell' ",
-          "onclick=\"productSelected('" + this.id + "')\">",
-          "<img class='photo_choice' ",
-          "src='" + this.thumbUrl + "' ",
-          "/></div>"].join('');
+var ProductInputView = Backbone.View.extend({
 
-          //"<a href='javascript:void(0)' ",
-          //"onclick=\"productSelected('" + this.id + "')\">",
-          //"<img height='200' ",
-          //"src='" + this.imageUrl + "' ",
-          //"/></a>"].join('');
-}
+  events: {
+    "submit #new_product" : "post"
+  },
+
+  initialize: function() {
+    this.titleEl = '#product_title';
+    this.endorsementEl = '#product_endorsement';
+    this.queryEl = '#product_query';
+    this.websiteEl = '#product_website_url';
+    this.thumbEl = '#product_thumb_url';
+    this.imageEl = '#product_image_url';
+    this.extraEl = '#product_extra';
+    this.selectionEl = '#product_selection';
+
+    this.productImages = new ProductImages();
+    this.productImagesView = new ProductImagesView({
+                                  el:$('body'),
+                                  images:this.productImages});
+    this.productImagesView.bind('productSelected',this.productSelected,this);
+  },
+
+  // Fired when a product is selected from the ProductImagesView
+  //
+  productSelected: function(productHash) {
+    $(this.selectionEl).show();
+    $(this.selectionEl).html("<img id='product_selection_photo' src='" + productHash['image_url'] + "' />");
+
+    $(this.websiteEl).val(productHash['website_url']);
+    $(this.imageEl).val(productHash['image_url']);
+    $(this.thumbEl).val(productHash['thumb_url']);
+
+    $(this.extraEl).show();
+
+    $(this.titleEl).focus();
+    $(this.titleEl).val(productHash['query'].toProperCase());
+  },
+
+  post: function() {
+    console.log("submitted");
+  }
+});
