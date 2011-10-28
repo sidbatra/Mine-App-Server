@@ -18,7 +18,7 @@ class Search < ActiveRecord::Base
   # Add a new search
   #
   def self.add(attributes,user_id)
-    create(
+    create!(
       :query        => attributes['query'],
       :user_id      => user_id)
   end
