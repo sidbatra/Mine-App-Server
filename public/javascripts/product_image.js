@@ -50,7 +50,7 @@ var ProductImages = Backbone.Collection.extend({
     this.reset();
     this.state = 0;
     this.offset = 0;
-    this.disabled = 0;
+    this.disabled = 1;
     this.query = query;
 
     this.fetchMedium(this.query);
@@ -65,6 +65,7 @@ var ProductImages = Backbone.Collection.extend({
     if(this.isSearching() || this.disabled)
       return;
 
+    this.disabled = 1;
     this.offset += this.count;
 
     this.fetchMedium(this.query);
@@ -89,6 +90,7 @@ var ProductImages = Backbone.Collection.extend({
     var total   = data['SearchResponse']['Image']['Total'];
 
     this.state++;
+    this.disabled = 0;
     
     if(total <=0)
       return results;
@@ -159,10 +161,16 @@ var ProductImagesView = Backbone.View.extend({
     this.queryEl = "#product_query";
     this.imagesBoxEl = "#chooser";
     this.imagesEl = "#results";
-    this.images = this.options.images;
 
+    this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
     this.images.bind('add',this.added,this);
+
+    
+    this.windowListener = new WindowListener();
+    this.windowListener.bind('documentScrolled',this.documentScrolled,this);
+    this.windowListener.bind('resizeEnded',this.resizeEnded,this);
+
 
     $('html').keydown(function(e){self.globalKeystroke(e);});
 
@@ -215,6 +223,9 @@ var ProductImagesView = Backbone.View.extend({
     else if(this.images.isSearchDone()) {
       this.images.disableSearch();
     }
+    else {
+      this.resizeEnded();
+    }
   },
 
   // Fired when the user selects a product image on a
@@ -224,6 +235,20 @@ var ProductImagesView = Backbone.View.extend({
     productHash['query'] = $(this.queryEl).val();
     this.trigger('productSelected',productHash);
     this.stopSearch();
+  },
+
+  // Infinite scroll callback fired when user has 
+  // scrolled to the end of the page
+  //
+  documentScrolled: function() {
+    this.images.searchMore();
+  },
+
+  // Browser window resize ended callback
+  //
+  resizeEnded: function() {
+    if(this.isSearchActive() && this.windowListener.isWindowEmpty()) 
+      this.images.searchMore();
   }
 
 });
