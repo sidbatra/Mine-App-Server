@@ -70,6 +70,24 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  # Updates custom counter cache columns when
+  # a product is added by the user
+  #
+  def add_product_worth(price)
+    self.update_attributes(
+      :products_count => self.products_count + 1,
+      :products_price => self.products_price + price)
+  end
+
+  # Updates custom counter cache columns when
+  # a product is removed by the user
+  #
+  def remove_product_worth(price)
+    self.update_attributes(
+      :products_count => self.products_count - 1,
+      :products_price => self.products_price - price)
+  end
+
   # URL for the user photo
   #
   def image_url

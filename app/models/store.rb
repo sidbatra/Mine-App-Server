@@ -1,36 +1,28 @@
-class Search < ActiveRecord::Base
-
+class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  belongs_to :user
+  belongs_to  :user
+  has_many    :products
 
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
-  validates_presence_of   :query
+  validates_presence_of   :name
   validates_presence_of   :user_id
 
   #-----------------------------------------------------------------------------
   # Class methods
   #-----------------------------------------------------------------------------
-
-  # Add a new search
-  #
-  def self.add(attributes,user_id)
-    create!(
-      :query        => attributes['query'],
-      :user_id      => user_id)
+  def self.add(name,user_id)
+    find_or_create_by_name(
+      :name     => name.titleize,
+      :user_id  => user_id)
   end
+
 
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    super(options.merge(:only => [:id,:query]))
-  end
 
 end

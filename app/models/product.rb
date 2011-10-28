@@ -3,7 +3,8 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  belongs_to  :user, :counter_cache => true
+  belongs_to  :user  
+  belongs_to  :store, :counter_cache => true
   has_many    :comments
 
   #-----------------------------------------------------------------------------
@@ -14,10 +15,12 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
-  validates_presence_of   :title
-  validates_presence_of   :endorsement
-  validates_presence_of   :image_url
-  validates_presence_of   :user_id
+  validates_presence_of     :title
+  validates_presence_of     :price
+  validates_numericality_of :price
+  validates_presence_of     :image_url
+  validates_presence_of     :user_id
+  validates_presence_of     :store_id
 
   #-----------------------------------------------------------------------------
   # Named scopes
@@ -31,15 +34,16 @@ class Product < ActiveRecord::Base
   # Add a new product
   #
   def self.add(attributes,user_id)
-    create(
+    create!(
       :title        => attributes['title'],
-      :endorsement  => attributes['endorsement'],
       :category     => attributes['category'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],
       :thumb_url    => attributes['thumb_url'],
       :is_hosted    => attributes['is_hosted'],
       :query        => attributes['query'],
+      :price        => attributes['price'],
+      :store_id     => attributes['store_id'],
       :user_id      => user_id)
   end
 

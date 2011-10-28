@@ -24,7 +24,7 @@ class Comment < ActiveRecord::Base
   # Add a new comment
   #
   def self.add(attributes,user_id)
-    create(
+    create!(
       :data         => attributes['data'],
       :product_id   => attributes['product_id'],
       :user_id      => user_id)
