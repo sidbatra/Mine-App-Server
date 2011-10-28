@@ -213,17 +213,23 @@ var ProductImageView = Backbone.View.extend({
   },
 
   render: function() {
+    var self = this;
+
     var thumbUrl = this.model.get('Thumbnail')['Url'];
     var id = thumbUrl;
 
-    var html = [
-          "<div class='photo_choice_cell' ",
-          "onclick=\"productSelected('" + id + "')\">",
-          "<img class='photo_choice' ",
-          "src='" + thumbUrl + "' ",
-          "/></div>"].join('');
+    var div = document.createElement("div");
+    div.setAttribute('class','photo_choice_cell');
+    div.innerHTML = "<img class='photo_choice' src='" + thumbUrl + "' />";
 
-    this.el.append(html);
+    div.onclick = function(){self.clicked();};
+    this.el.append(div);
+  },
+
+  // Fired when the image is clicked
+  //
+  clicked: function() {
+    console.log(this.model.get('MediaUrl'));
   }
 });
 
