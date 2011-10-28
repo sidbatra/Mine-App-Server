@@ -8,14 +8,12 @@ javascripts:
   - backbone
   - extensions
   - window_listener
+  - application
   - user
   - comment
   - search
   - product_image
-  - scroll_view_controller
-  - application
   - product
-  - new_product_view_controller
 stylesheets: 
 - application: 
   - application

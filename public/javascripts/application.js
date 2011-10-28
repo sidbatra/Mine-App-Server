@@ -74,9 +74,9 @@ function center_based_on_element(elementID,min) {
   });
 
 
-  var scrollController = new ScrollViewController();
-  scrollController.resizeEndedCallback  = function(){ 
+  var windowListener = new WindowListener();
+  windowListener.bind('resizeEnded',function(){
     $(elementID).css('top',
       Math.max(min,(($(window).height() - $(elementID).height())/2) - margin));
-  }
+    });
 }
