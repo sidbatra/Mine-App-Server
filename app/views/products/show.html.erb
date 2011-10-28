@@ -52,7 +52,9 @@
                   <div id="speechmarks_open">
                   </div>
                   <div id="user_comment">
-                    <%=h @product.endorsement%>
+                    <%#h @product.endorsement%>
+                    <%=h @product.price%> <br>
+                    <%=h @product.store ? @product.store.name : ""%> 
                   </div>
                   <div id="speechmarks_close">
                   </div>
