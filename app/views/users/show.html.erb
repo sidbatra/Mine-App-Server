@@ -55,6 +55,8 @@
               "Collecting since " + @user.created_at.strftime('%B %Y')%>
 
         <%end%> 
+
+        <%=@user.products_count%> " items worth $" <%=@user.products_price%>
       
       </div> <!--user_byline_default-->
     </div> <!--profile_bio-->
