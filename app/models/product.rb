@@ -15,7 +15,6 @@ class Product < ActiveRecord::Base
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :title
-  validates_presence_of   :endorsement
   validates_presence_of   :image_url
   validates_presence_of   :user_id
 
@@ -33,7 +32,6 @@ class Product < ActiveRecord::Base
   def self.add(attributes,user_id)
     create(
       :title        => attributes['title'],
-      :endorsement  => attributes['endorsement'],
       :category     => attributes['category'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],

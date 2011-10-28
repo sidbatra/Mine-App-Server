@@ -6,7 +6,6 @@ Denwen.ProductInputView = Backbone.View.extend({
 
   initialize: function() {
     this.titleEl = '#product_title';
-    this.endorsementEl = '#product_endorsement';
     this.queryEl = '#product_query';
     this.websiteEl = '#product_website_url';
     this.thumbEl = '#product_thumb_url';
@@ -49,10 +48,6 @@ Denwen.ProductInputView = Backbone.View.extend({
     else if($(this.titleEl).val().length < 1) {
       valid = false;
       alert("Please name your item.");
-    }
-    else if($(this.endorsementEl).val().length < 1) {
-      valid = false;
-      alert("Please add a short comment.");
     }
       
     return valid;
