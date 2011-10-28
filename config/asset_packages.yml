@@ -4,6 +4,7 @@ javascripts:
   - libs/jquery-1.4.3
   - libs/jquery-easing
   - libs/jquery-cycle-lite
+  - libs/jquery-autocomplete
   - libs/underscore
   - libs/backbone
   - extensions

@@ -8,7 +8,8 @@ class ProductsController < ApplicationController
   #
   def new
     @product      = Product.new
-    #@uploader     = generate_uploader
+    @stores       = Store.all
+    #@uploader    = generate_uploader
 
     @category     = params[:category] ? params[:category] : "anything"
     @placeholders = MSG[:product][@category.gsub("-sample","").to_sym]
@@ -21,11 +22,9 @@ class ProductsController < ApplicationController
   #
   def create
 
-    if params[:product][:store_id].to_i == 0
-      params[:product][:store_id] = Store.add(
-                                      params[:product][:store],
-                                      self.current_user.id).id
-    end
+    params[:product][:store_id] = Store.add(
+                                    params[:product][:store],
+                                    self.current_user.id).id
 
     product     = Product.add(
                             params[:product],
