@@ -123,9 +123,7 @@
         <%=render :partial  => "products/samples",
                   :locals   => {:active => is_current_user(@user.id)}%>
       <%else%>
-        <%=render :partial    => "products/preview", 
-                  :collection => @products,
-                  :as         => :product%>
+        <%=render @products%>
       <%end%>
 
 		</ul>
