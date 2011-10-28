@@ -4,6 +4,7 @@
 <%form_for @product, :html => {:multipart => true} do |f|%>
 
       <%=f.hidden_field :category, :value => @category%>
+      <%=f.hidden_field :store_id, :value => 0%>
       <%=f.hidden_field :website_url%>
       <%=f.hidden_field :image_url%>
       <%=f.hidden_field :thumb_url%>
@@ -37,6 +38,28 @@
                   :value    => "",
                   :class    => "creation_input box_shadow"%>
 	  </div> <!-- step -->
+
+    <!-- price -->
+	  <div class="step">
+	  	<p class="step_title">
+        How much is it for?
+      </p>
+
+	  	<%=f.text_field :price,
+                  :value    => "",
+                  :class    => "creation_input box_shadow"%>
+	  </div> <!-- price step -->
+
+    <!-- store -->
+	  <div class="step">
+	  	<p class="step_title">
+        Which store did you buy it at?
+      </p>
+
+	  	<%=f.text_field :store,
+                  :value    => "",
+                  :class    => "creation_input box_shadow"%>
+	  </div> <!-- store step -->
 	  
 	  <!--div class="step">
 	  	<p class="step_title">

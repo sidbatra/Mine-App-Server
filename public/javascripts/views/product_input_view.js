@@ -5,8 +5,10 @@ Denwen.ProductInputView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.titleEl = '#product_title';
     this.queryEl = '#product_query';
+    this.titleEl = '#product_title';
+    this.priceEl = '#product_price';
+    this.storeEl = '#product_store';
     this.websiteEl = '#product_website_url';
     this.thumbEl = '#product_thumb_url';
     this.imageEl = '#product_image_url';
@@ -18,6 +20,9 @@ Denwen.ProductInputView = Backbone.View.extend({
                                   el:$('body'),
                                   images:this.productImages});
     this.productImagesView.bind('productSelected',this.productSelected,this);
+
+    restrictFieldSize($(this.priceEl),11,'charsremain');
+    restrictFieldSize($(this.storeEl),254,'charsremain');
   },
 
   // Fired when a product is selected from the ProductImagesView
@@ -48,6 +53,18 @@ Denwen.ProductInputView = Backbone.View.extend({
     else if($(this.titleEl).val().length < 1) {
       valid = false;
       alert("Please name your item.");
+    }
+    else if($(this.priceEl).val().length < 1) {
+      valid = false;
+      alert("Please enter the price of your item.");
+    }
+    else if(isNaN($(this.priceEl).val())) {
+      valid = false;
+      alert("Please enter a valid price.");
+    }
+    else if($(this.storeEl).val().length < 1) {
+      valid = false;
+      alert("Please enter the store where you bought this item.");
     }
       
     return valid;
