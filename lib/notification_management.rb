@@ -37,14 +37,24 @@ module DW
             :host => CONFIG[:host]))
       end
       
-      # Create friendships based on FB friends when a user is created
+      # Make a user follow all his Facebook friends in our user base 
+      # and email the friends about his signup.
       #
       def self.new_user(user_id)
         user        = User.find(user_id)
         fb_user     = FbGraph::User.new('me', 
                                         :access_token => user.access_token) 
         fb_friends  = fb_user.friends.map(&:identifier)
-        friends     = User.find_all_by_fb_user_id(fb_friends)
+        followers   = User.find_all_by_fb_user_id(fb_friends)
+
+        followers.each do |follower|
+          Following.add(user_id,follower.id)
+          Following.add(follower.id,user_id)
+        end
+
+        followers.each do |follower|
+          UserMailer.deliver_new_follower(user,follower)
+        end
       end
     
     end #notification manager

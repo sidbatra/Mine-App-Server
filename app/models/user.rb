@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :searches, :dependent => :destroy
 
+  has_many :followings, :dependent  => :destroy
+  has_many :followers,  :through    => :followings
+  has_many :inverse_followings, :class_name   => "Following", 
+                                :foreign_key  => "follower_id",
+                                :dependent    => :destroy
+
+  has_many :ifollowers, :through => :inverse_followings, :source => :user
+
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
