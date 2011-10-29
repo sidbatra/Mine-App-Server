@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028214715) do
+ActiveRecord::Schema.define(:version => 20111029001442) do
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20111028214715) do
 
   add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "followings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
+  add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -52,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20111028214715) do
     t.float    "price"
   end
 
+  add_index "products", ["category"], :name => "index_products_on_category"
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
   create_table "searches", :force => true do |t|
@@ -90,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20111028214715) do
     t.string   "byline",                    :default => ""
     t.integer  "products_count",            :default => 0
     t.float    "products_price",            :default => 0.0
+    t.integer  "followings_count",          :default => 0
+    t.integer  "inverse_followings_count",  :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -45,7 +45,16 @@ module DW
         fb_user     = FbGraph::User.new('me', 
                                         :access_token => user.access_token) 
         fb_friends  = fb_user.friends.map(&:identifier)
-        friends     = User.find_all_by_fb_user_id(fb_friends)
+        followers   = User.find_all_by_fb_user_id(fb_friends)
+
+        followers.each do |f|
+          Following.add(user_id,f.id)
+          Following.add(f.id,user_id)
+        end
+
+        followers.each do |f|
+          #EMAIL
+        end
       end
     
     end #notification manager
