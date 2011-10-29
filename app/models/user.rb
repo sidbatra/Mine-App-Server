@@ -13,8 +13,7 @@ class User < ActiveRecord::Base
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
 
-  has_many :inverse_followers,  :through  => :inverse_followings, 
-                                :source   => :user
+  has_many :ifollowers, :through => :inverse_followings, :source => :user
 
   #-----------------------------------------------------------------------------
   # Validations
