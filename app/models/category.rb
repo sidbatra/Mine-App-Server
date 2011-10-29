@@ -1,31 +1,35 @@
-class Store < ActiveRecord::Base
+class Category < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  belongs_to  :user
   has_many    :products
 
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :name
-  validates_presence_of   :user_id
+  validates_presence_of   :handle
 
   #-----------------------------------------------------------------------------
   # Class methods
   #-----------------------------------------------------------------------------
 
-  # Add a new store
+  # Add a new category
   #
-  def self.add(name,user_id)
-    find_or_create_by_name(
-      :name     => name.squeeze(' ').strip,
-      :user_id  => user_id)
+  def self.add(name,handle)
+    find_or_create_by_handle(
+      :name     => name,
+      :handle   => handle)
+  end
+
+  # Find category by handle
+  #
+  def self.get(handle)
+    find_by_handle(handle)
   end
 
 
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
-
 end

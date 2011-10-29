@@ -21,6 +21,8 @@ class Product < ActiveRecord::Base
   validates_presence_of     :image_url
   validates_presence_of     :user_id
   validates_presence_of     :store_id
+  validates_presence_of     :category_id
+  validates_inclusion_of    :category_id, :in => 1..8
 
   #-----------------------------------------------------------------------------
   # Named scopes
@@ -36,13 +38,13 @@ class Product < ActiveRecord::Base
   def self.add(attributes,user_id)
     create!(
       :title        => attributes['title'],
-      :category     => attributes['category'],
       :website_url  => attributes['website_url'],
       :image_url    => attributes['image_url'],
       :thumb_url    => attributes['thumb_url'],
       :is_hosted    => attributes['is_hosted'],
       :query        => attributes['query'],
       :price        => attributes['price'],
+      :category_id  => attributes['category_id'],
       :store_id     => attributes['store_id'],
       :user_id      => user_id)
   end
@@ -50,10 +52,10 @@ class Product < ActiveRecord::Base
   # Fetch all the products for the given user 
   # which are under the given category
   #
-  def self.for_user(user_id,category)
+  def self.for_user(user_id,category_id)
     
     conditions = {:user_id => user_id}
-    conditions[:category] = category if category.present? 
+    conditions[:category_id] = category_id if category_id.present? 
 
     all(
       :conditions => conditions,

@@ -78,32 +78,33 @@
       to your closet!
     </div>
 
+    
+    <!-- Pdog, you'll read this and wonder where
+          do category_create_link_text and
+          category_filter_link_text come from.
+          See app/helpers/users_helper.rb -->
+
     <div id="suggestions">
-      <%=link_to "Add your shoes ›", 
-          new_product_path(:category => "shoes"),
-          :class => "suggestion"%>
-      <%=link_to "Add your accessories ›", 
-          new_product_path(:category => "accessories"),
-          :class => "suggestion"%>
-      <%=link_to "Add your clothing ›", 
-          new_product_path(:category => "clothing"),
-          :class => "suggestion"%>
-      <%=link_to "Add home decor ›", 
-          new_product_path(:category => "decor"),
-          :class => "suggestion"%>
-      <%=link_to "Add your cosmetics ›", 
-          new_product_path(:category => "cosmetics"),
-          :class => "suggestion"%>
-      <%=link_to "Add your electronics ›", 
-          new_product_path(:category => "electronics"),
-          :class => "suggestion"%>
-      <%=link_to "Add your jewelry ›", 
-          new_product_path(:category => "jewelry"),
-          :class => "suggestion"%>
-      <%=link_to "Add anything! ›", 
-          new_product_path(:category => "anything"),
-          :class => "suggestion"%>
+      <%@categories.each do |category|%>
+        <%=link_to category_create_link_text(category),
+            new_product_path(:category => category.handle),
+            :class => "suggestion"%>
+      <%end%>
     </div> <!-- suggestions -->
+
+
+    <!-- test filter links -->
+    <div id="suggestions">
+      <%@categories.each do |category|%>
+        <%=link_to category_filter_link_text(
+                    category,
+                    @user),
+              user_path(
+                @user,
+                :category => category.handle),
+              :class => "suggestion"%>
+      <%end%>
+    </div> 
   <%end%>
 
 

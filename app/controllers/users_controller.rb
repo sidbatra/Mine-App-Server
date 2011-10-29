@@ -43,10 +43,15 @@ class UsersController < ApplicationController
   # Display user's profile
   #
   def show
-    @user     = User.find(params[:id])
-    @category = params[:category] ? params[:category] : ""
-    @products = Product.eager.for_user(@user.id,@category)
-    @source   = params[:src] ? params[:src].to_s : ""
+    @source     = params[:src] ? params[:src].to_s : ""
+    @category   = Category.get(params[:category]) 
+
+    @user       = User.find(params[:id])
+    @products   = Product.eager.for_user(
+                            @user.id,
+                            @category ? @category.id : "")
+
+    @categories = Category.all
   end
 
   # Update user's byline
