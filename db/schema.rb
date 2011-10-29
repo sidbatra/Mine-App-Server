@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111029001442) do
+ActiveRecord::Schema.define(:version => 20111029015709) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "handle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -60,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20111029001442) do
     t.integer  "comments_count", :default => 0
     t.integer  "store_id"
     t.float    "price"
+    t.integer  "category_id"
   end
 
   add_index "products", ["category"], :name => "index_products_on_category"
@@ -103,6 +113,14 @@ ActiveRecord::Schema.define(:version => 20111029001442) do
     t.float    "products_price",            :default => 0.0
     t.integer  "followings_count",          :default => 0
     t.integer  "inverse_followings_count",  :default => 0
+    t.integer  "products_1_count",          :default => 0
+    t.integer  "products_2_count",          :default => 0
+    t.integer  "products_3_count",          :default => 0
+    t.integer  "products_4_count",          :default => 0
+    t.integer  "products_5_count",          :default => 0
+    t.integer  "products_6_count",          :default => 0
+    t.integer  "products_7_count",          :default => 0
+    t.integer  "products_8_count",          :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
