@@ -47,6 +47,19 @@ class Product < ActiveRecord::Base
       :user_id      => user_id)
   end
 
+  # Fetch all the products for the given user 
+  # which are under the given category
+  #
+  def self.for_user(user_id,category)
+    
+    conditions = {:user_id => user_id}
+    conditions[:category] = category if category.present? 
+
+    all(
+      :conditions => conditions,
+      :order      => "id DESC")
+  end
+
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
