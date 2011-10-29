@@ -55,6 +55,8 @@
               "Collecting since " + @user.created_at.strftime('%B %Y')%>
 
         <%end%> 
+
+        <%=@user.products_count%> " items worth $" <%=@user.products_price%>
       
       </div> <!--user_byline_default-->
     </div> <!--profile_bio-->
@@ -120,12 +122,10 @@
 		<ul>
 		
       <%if @products.empty?%>
-        <%=render :partial  => "products/samples",
+        <%#render :partial  => "products/samples",
                   :locals   => {:active => is_current_user(@user.id)}%>
       <%else%>
-        <%=render :partial    => "products/preview", 
-                  :collection => @products,
-                  :as         => :product%>
+        <%=render @products%>
       <%end%>
 
 		</ul>

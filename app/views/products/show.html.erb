@@ -14,7 +14,59 @@
     <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
     <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
 
-    <%=render @product%>
+
+    <!-- product -->
+      <div>
+
+          <div id="left" class="photo">
+            <%=link_to_if !@product.is_hosted,
+                          image_tag(
+                            @product.photo_url,
+                            :id => "left_photo",
+                            :alt => ""),
+                          @product.website_url,
+                          :target => "_blank" %>
+          </div> <!-- left -->
+
+          
+          <div id="right">
+            <div id="right_content">
+
+                <div id="right_titlebox">
+                
+                  <%=link_to image_tag (@product.user.photo_url, 
+                               :id => "user_photo",
+                               :alt => ""),
+                               user_path(@product.user)%>
+
+                  <div id="user_name">
+                    <%=user_share_text(@product.user)%>
+                  </div>
+
+                  <div id="item_name">
+                    <%=h @product.title%>
+                  </div>
+                </div> <!--right_titlebox-->
+
+                <div id="right_commentbox">
+                  <div id="speechmarks_open">
+                  </div>
+                  <div id="user_comment">
+                    <%#h @product.endorsement%>
+                    <%=h @product.price%> <br>
+                    <%=h @product.store ? @product.store.name : ""%> 
+                  </div>
+                  <div id="speechmarks_close">
+                  </div>
+                </div> <!--right_commentbox-->
+                
+                <div id="blocker"></div>
+            </div> <!-- right_content -->
+          </div> <!-- right -->
+
+      </div>
+    <!-- end of product -->
+
 
     <div id="blocker"></div>
 
@@ -59,7 +111,9 @@
       var comment = new Denwen.Comment({
                           'defaultData':$('#comment_data').val(),
                           'product_id':<%=@product.id%>});
-      var commentInputView = new Denwen.CommentInputView({model: comment,el:$('#comments_container')});
+      var commentInputView = new Denwen.CommentInputView({
+                                  model: comment,
+                                  el:$('#comments_container')});
         
     </script>
   <%end%>

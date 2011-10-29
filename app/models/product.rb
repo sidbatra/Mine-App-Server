@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
-  named_scope :eager, :include => :user
+  named_scope :eager, :include => [:user,:store]
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -45,6 +45,19 @@ class Product < ActiveRecord::Base
       :price        => attributes['price'],
       :store_id     => attributes['store_id'],
       :user_id      => user_id)
+  end
+
+  # Fetch all the products for the given user 
+  # which are under the given category
+  #
+  def self.for_user(user_id,category)
+    
+    conditions = {:user_id => user_id}
+    conditions[:category] = category if category.present? 
+
+    all(
+      :conditions => conditions,
+      :order      => "id DESC")
   end
 
   #-----------------------------------------------------------------------------

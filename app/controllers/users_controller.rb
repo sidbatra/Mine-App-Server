@@ -44,7 +44,8 @@ class UsersController < ApplicationController
   #
   def show
     @user     = User.find(params[:id])
-    @products = @user.products.reverse
+    @category = params[:category] ? params[:category] : ""
+    @products = Product.eager.for_user(@user.id,@category)
     @source   = params[:src] ? params[:src].to_s : ""
   end
 

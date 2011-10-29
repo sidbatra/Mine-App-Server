@@ -16,7 +16,7 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   def self.add(name,user_id)
     find_or_create_by_name(
-      :name     => name.titleize,
+      :name     => name.squeeze(' ').strip,
       :user_id  => user_id)
   end
 
