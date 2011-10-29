@@ -47,13 +47,13 @@ module DW
         fb_friends  = fb_user.friends.map(&:identifier)
         followers   = User.find_all_by_fb_user_id(fb_friends)
 
-        followers.each do |f|
-          Following.add(user_id,f.id)
-          Following.add(f.id,user_id)
+        followers.each do |follower|
+          Following.add(user_id,follower.id)
+          Following.add(follower.id,user_id)
         end
 
-        followers.each do |f|
-          #EMAIL
+        followers.each do |follower|
+          UserMailer.deliver_new_follower(user,follower)
         end
       end
     

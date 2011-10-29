@@ -13,7 +13,7 @@ class Following < ActiveRecord::Base
   # Add a new following
   #
   def self.add(user_id,follower_id)
-    create(
+    find_or_create_by_user_id_and_follower_id(
       :user_id      => user_id,
       :follower_id  => follower_id)
   end

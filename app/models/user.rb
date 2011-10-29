@@ -6,10 +6,15 @@ class User < ActiveRecord::Base
   has_many :products, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :searches, :dependent => :destroy
-  has_many :followings
-  has_many :followers, :through => :followings
-  has_many :inverse_followings, :class_name => "Following", :foreign_key => "follower_id"
-  has_many :inverse_followers, :through => :inverse_followings, :source => :user
+
+  has_many :followings, :dependent  => :destroy
+  has_many :followers,  :through    => :followings
+  has_many :inverse_followings, :class_name   => "Following", 
+                                :foreign_key  => "follower_id",
+                                :dependent    => :destroy
+
+  has_many :inverse_followers,  :through  => :inverse_followings, 
+                                :source   => :user
 
   #-----------------------------------------------------------------------------
   # Validations
