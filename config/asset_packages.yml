@@ -1,5 +1,9 @@
 --- 
 javascripts: 
+- home: 
+  - libs/jquery-1.4.3
+  - libs/jquery-easing
+  - libs/jquery-cycle-lite
 - application: 
   - libs/jquery-1.4.3
   - libs/jquery-easing
@@ -25,3 +29,5 @@ javascripts:
 stylesheets: 
 - application: 
   - application
+- home: 
+  - home
