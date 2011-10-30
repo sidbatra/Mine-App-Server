@@ -1,6 +1,7 @@
 # Handle requests for the home page
 #
 class HomeController < ApplicationController
+layout 'home'
 
   # Display pre-selected products on the home page
   #
