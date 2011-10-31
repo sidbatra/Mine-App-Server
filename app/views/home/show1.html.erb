@@ -2,61 +2,34 @@
 	<%="style='overflow:hidden'"%>
 <%end%>
 
-<div id="landing_container">
+<div id="container" class="home1">
 
-	<div class="landing_heading">
-		An Online Closet For Everything You Own<br>
-		<span class="landing_subtitle">It's cool, and free!</span>
-	</div>
+	<p id="heading" class="home1">
+		<span class="intro">Create your own</span><br>Online Closet!
+	</p>
 	
-	<div class="landing_main">
 		<ul>
 			<li>Collect the things you own</li>
-			<li>Share and compare with friends</li>
+			<li>Compare with friends</li>
 			<li>Express your style!</li>
 		</ul>
 		
 		<%=link_to image_tag(
 				"f.png",
 				:class => "f",
-				:alt   => "") + "Sign up with Facebook &rsaquo;",
+				:alt   => "") + "Connect with Facebook &rsaquo;",
 				fb_auth_path(:source => @source),
-				:class => "large blue awesome landing_button",
+				:class => "large blue awesome button_home1",
 				:id    => "action_link"%>
-	</div>
-	
-	
-  <div id="slides">
-    <div id="slideshow" 
-          style="position:absolute;top:0px;left:0px;z-index:-100;">
-        <%=image_tag "landing_shoes.jpg", 
-              :class => "landing_product_image", 
-              :style => "display:none", :alt => ""%>
-        <%=image_tag "landing_bag.jpg", 
-              :class => "landing_product_image", 
-              :style => "display:none", :alt => ""%>
-        <%=image_tag "landing_jewelry.jpg", 
-              :class => "landing_product_image", 
-              :style => "display:none", :alt => ""%>
-        <%=image_tag "landing_uggs.jpg", 
-              :class => "landing_product_image", 
-              :style => "display:none", :alt => ""%>
-        <%=image_tag "landing_cosmetics.jpg", 
-              :class => "landing_product_image", 
-              :style => "display:none", :alt => ""%>
-        <%=image_tag "landing_boots.jpg", 
-              :class => "landing_product_image", 
-              :style => "display:none", :alt => ""%>
-    </div>
-  </div>
-    
-</div> <!-- landing_container -->
+				
+	<div id="tiny" class="home1">We’ll never post to Facebook without asking.</div>		
 
-<div class="landing_lower">
-	<div id="footer">
+	<div id="footer" class="home1">
 		Felvy © 2011 · <a href="mailto:contact@felvy.com">contact@felvy.com</a>
 	</div>
-</div>
+   
+</div> <!-- container -->
+
 
 
 <%content_for :javascript do%>

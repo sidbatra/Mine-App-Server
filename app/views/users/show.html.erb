@@ -4,136 +4,142 @@
             :user   => @user,
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
-
-<div id="profile_details">
-
-	<%=image_tag @user.photo_url, 
-      :class => "profile_user_photo",
-      :alt => ""%>
-
-	<div id="profile_details_right">
-	
-    <div id="profile_username">
-      <%=user_full_name(@user)%>'s Closet
-    </div>
-
-    <div id="profile_bio">
-      <div id="user_byline_default">	
-      
-        <%if is_current_user(@user.id)%>
-        
-          <!-- byline editing -->
-          <%=text_field_tag "user_byline",
-              self.current_user.byline,
-              :style => "display:none"%>
-          <input id="user_update" class="small_button" value="Update" 
-              title="Update" type="button" alt="Update" 
-              style="display:none">
-
-          
-          <!-- byline display -->
-          <span id="user_byline_text">
-            <%=h self.current_user.byline%>
-          </span>
-          <input id="user_edit" value="‹ Edit" title="Edit" 
-              type="button" alt="Edit"
-              style="<%=self.current_user.byline.present? ?
-                          '' : 
-                          'display:none'%>">        
-          
-          <!-- byline empty --> 
-          <%unless self.current_user.byline.present?%>
-            <%=link_to "Describe your closet's style",
-                "javascript:void(0)",
-                :id => "user_edit_initiate"%>
-          <%end%>
-            
-        <%else%>
-
-          <%=@user.byline.present? ? 
-              @user.byline : 
-              "Collecting since " + @user.created_at.strftime('%B %Y')%>
-
-        <%end%> 
-
-        <%=@user.products_count%> " items worth $" <%=@user.products_price%>
-      
-      </div> <!--user_byline_default-->
-    </div> <!--profile_bio-->
-      
-  </div> <!--profile_details_right-->
-
-</div> <!--profile_details-->
-	
-<%#render :partial => "misc/invite" if logged_in? && 
-                                       is_current_user(@user.id) && 
-                                       @products.present? %>
-
-
 <div id="profile_container">
 
-  <%if is_current_user(@user.id)%>
-    <div class="instructions">
-      <span class="emphasis">Add favorite items you own</span> 
-      to your closet!
-    </div>
-
-    
-    <!-- Pdog, you'll read this and wonder where
-          do category_create_link_text and
-          category_filter_link_text come from.
-          See app/helpers/users_helper.rb -->
-
-    <div id="suggestions">
-      <%@categories.each do |category|%>
-        <%=link_to category_create_link_text(category),
-            new_product_path(:category => category.handle),
-            :class => "suggestion"%>
-      <%end%>
-    </div> <!-- suggestions -->
-
-
-    <!-- test filter links -->
-    <div id="suggestions">
-      <%@categories.each do |category|%>
-        <%=link_to category_filter_link_text(
-                    category,
-                    @user),
-              user_path(
-                @user,
-                :category => category.handle),
-              :class => "suggestion"%>
-      <%end%>
-    </div> 
-  <%end%>
-
-
-	<div class="instructions">
-		<span class="emphasis">
-      Everything 
-      <%=is_current_user(@user.id) ? 
-          "you own" : 
-          @user.first_name + " owns"%>
-    </span> 
-    appears right here:
-	</div>
-
+	<div id="profile_right">
 	
-	<div id="products" style="display:block;">
-		<ul>
-		
-      <%if @products.empty?%>
-        <%#render :partial  => "products/samples",
-                  :locals   => {:active => is_current_user(@user.id)}%>
-      <%else%>
-        <%=render @products%>
-      <%end%>
+		<!-- sbat: abstract this button shit yo! -->
+	 	<a href="javascript:void(0)" class="large blue awesome invite_friends" id="action_link" onclick="showInviteDialog();">
+	 		<img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">Invite your friends
+	 	</a>
+	 	
+	 	<div class="invite_note">Comparing is a <em><u>lot</u></em> of fun!</div>
+	 	
+	 	<div id="closet_stats">
+	 		<span class="stat_num"><%=@user.products_count%></span> items worth <span class="stat_num">$<%=@user.products_price%></span>
+	 	</div>
+	 	
+	 	<div id="cat_nav">
+	
+		      <%@categories.each do |category|%>
+		        <%=link_to category_filter_link_text(
+		                    category,
+		                    @user),
+		              user_path(
+		                @user,
+		                :category => category.handle)%>
+		      <%end%>
 
-		</ul>
+	 	</div>
+	 	
 	</div>
 
-	<div id="blocker">
-  </div>
+	<div id="profile_main">
+	
+		<div id="profile_details">
+	
+			<%=image_tag @user.photo_url, 
+		      :class => "profile_user_photo",
+		      :alt => ""%>
+		
+			<div id="profile_details_right">
+			
+		    <div id="profile_username">
+		      <%=user_full_name(@user)%>'s Closet
+		    </div>
+		
+		    <div id="profile_bio">
+		      <div id="user_byline_default">	
+		      
+		        <%if is_current_user(@user.id)%>
+		        
+		          <!-- byline editing -->
+		          <%=text_field_tag "user_byline",
+		              self.current_user.byline,
+		              :style => "display:none"%>
+		          <input id="user_update" class="small_button" value="Update" 
+		              title="Update" type="button" alt="Update" 
+		              style="display:none">
+		
+		          
+		          <!-- byline display -->
+		          <span id="user_byline_text">
+		            <%=h self.current_user.byline%>
+		          </span>
+		          <input id="user_edit" value="‹ Edit" title="Edit" 
+		              type="button" alt="Edit"
+		              style="<%=self.current_user.byline.present? ?
+		                          '' : 
+		                          'display:none'%>">        
+		          
+		          <!-- byline empty --> 
+		          <%unless self.current_user.byline.present?%>
+		            <%=link_to "Describe your closet's style",
+		                "javascript:void(0)",
+		                :id => "user_edit_initiate"%>
+		          <%end%>
+		            
+		        <%else%>
+		
+		          <%=@user.byline.present? ? 
+		              @user.byline : 
+		              "Collecting since " + @user.created_at.strftime('%B %Y')%>
+		
+		        <%end%> 
+		      
+		      </div> <!--user_byline_default-->
+		      
+		    </div> <!--profile_bio-->
+		      
+		  </div> <!--profile_details_right-->
+		
+		</div> <!--profile_details-->
+			
+		<%#render :partial => "misc/invite" if logged_in? && 
+		                                       is_current_user(@user.id) && 
+		                                       @products.present? %>
+		
+		
+		  <%if is_current_user(@user.id)%>
+		  
+		  <!-- instructions 1 -->
+		
+		    <div id="suggestions">
+		      <%@categories.each do |category|%>
+		        <%=link_to category_create_link_text(category),
+		            new_product_path(:category => category.handle),
+		            :class => "suggestion"%>
+		      <%end%>
+		    </div> <!-- suggestions -->
+		
+		  <%end%>
+		
+			<!-- instructions 2 -->
+			
+			<div id="closet">
+				<div id="closet_top"></div>
+				
+				<div id="closet_rows">
+					<div id="products">
+						<ul>								
+		
+					      <%if @products.empty?%>
+					        <%#render :partial  => "products/samples",
+					                  :locals   => {:active => is_current_user(@user.id)}%>
+					      <%else%>
+					        <%=render @products%>
+					      <%end%>
+							
+						</ul>
+					</div> <!-- products -->
+				</div> <!-- closet_rows -->
+				
+				<div id="closet_bottom"></div>
+
+
+			</div>
+			
+	</div> <!-- profile_main -->
 
 </div> <!-- profile_container -->
 

@@ -34,13 +34,13 @@ module UsersHelper
             category.name.gsub("Other","Anything") :
             category.name
 
-    "Add your #{name} ›" 
+    "Add #{name} ›" 
   end
 
 
   # Display text for category when used in a filter link
   def category_filter_link_text(category,user)
-    "#{category.name} " + "(#{user.products_category_count(category.id)})" 
+    "#{category.name} " + "<span class='cat_num'>(#{user.products_category_count(category.id)})</span><br>" 
   end
 
 
