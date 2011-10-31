@@ -7,8 +7,8 @@ layout :decide_layout
   #
   def show
     @source   = params[:id] ? params[:id].to_s : "unknown"
-    @layout   = 'home1'
-    @layout   = 'home2' if @source == "home2"
+    @layout   = "home1"
+    @layout   = "home2" if @source == "home2"
 
   
     page = "show1"
