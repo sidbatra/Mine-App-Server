@@ -3,7 +3,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   events: {
     "click #product_search" : "search",
     "keypress #product_query" : "queryKeystroke",
-    "click #chooser_closebox" : "stopSearch"
+    "click #cancel_button" : "stopSearch"
   },
 
   initialize: function() {
@@ -12,6 +12,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     this.queryEl = "#product_query";
     this.imagesBoxEl = "#chooser";
     this.imagesEl = "#results";
+    this.shadowEl = "#shadow";
 
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
@@ -45,7 +46,9 @@ Denwen.ProductImagesView = Backbone.View.extend({
   },
 
   stopSearch: function() {
+    $(this.shadowEl).fadeOut(500);
     $(this.imagesBoxEl).hide();
+    $(this.shadowEl).css("height","100%");
   },
 
   search: function() {
@@ -54,6 +57,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     if(!query.length)
       return;
     
+    $(this.shadowEl).fadeIn(500);
     $(this.imagesEl).html('');
     $(this.imagesBoxEl).show();
 
@@ -71,6 +75,8 @@ Denwen.ProductImagesView = Backbone.View.extend({
   },
 
   searched: function() {
+    $(this.shadowEl).css("height", $(document).height());
+
     if(this.images.isEmpty()) {
       this.stopSearch();
       this.images.disableSearch();
@@ -82,6 +88,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     else {
       this.resizeEnded();
     }
+
   },
 
   // Fired when the user selects a product image on a
