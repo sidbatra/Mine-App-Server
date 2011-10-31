@@ -1,5 +1,10 @@
+// ProductImage represents each individual image
+// returned when searching for a product
+//
 Denwen.ProductImage = Backbone.Model.extend({
 
+  // Construtor logic
+  //
   initialize: function() {
   },
 
