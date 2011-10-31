@@ -34,7 +34,7 @@ module UsersHelper
             category.name.gsub("Other","Anything") :
             category.name
 
-    "Add #{name} ›" 
+    "Add your #{name}" 
   end
 
 
