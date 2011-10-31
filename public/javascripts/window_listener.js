@@ -1,3 +1,6 @@
+// WindowListener catches & packages events related to the
+// DOM window and fires custom triggers
+//
 Denwen.WindowListener = Backbone.View.extend({
 
   // Setup event listeners on the window to catch events
