@@ -1,15 +1,25 @@
+// Collection of ProductImage models holding search results
+// when finding a product
+//
 Denwen.ProductImages = Backbone.Collection.extend({
 
+  // Model name
+  //
   model: Denwen.ProductImage,
 
+  // Constructor logic
+  //
   initialize: function() {
-    this.query = '';
-    this.count = 12;
-    this.offset = 0;
-    this.state  = 0;
+    this.query    = '';
+    this.count    = 12;
+    this.offset   = 0;
+    this.state    = 0;
     this.disabled = 0;
   },
 
+  // Create url to an image search api based on
+  // the query, offset, size and count
+  //
   url: function() {
     var url = [
                 "http://api.bing.net/json.aspx?",
@@ -23,31 +33,34 @@ Denwen.ProductImages = Backbone.Collection.extend({
                 "Image.count=" + this.count + "&",
                 "JsonType=callback&",
                 "JsonCallback=?"].join('');
-    console.log(url);
+
+    trace(url);
+
     return url;
   },
 
+  // Initiate a new search
+  //
   search: function(query) {
     this.reset();
-    this.state = 0;
-    this.offset = 0;
+
+    this.state    = 0;
+    this.offset   = 0;
     this.disabled = 1;
-    this.query = query;
+    this.query    = query;
 
     this.fetchMedium(this.query);
     this.fetchLarge(this.query);
-
-    //var self = this;
-    //setTimeout(function(){self.searchMore();},1);
-    //setTimeout(function(){self.searchMore();},2000);
   },
 
+  // Load more results for the current search
+  //
   searchMore: function() {
     if(this.isSearching() || this.disabled)
       return;
 
     this.disabled = 1;
-    this.offset += this.count;
+    this.offset   += this.count;
 
     this.fetchMedium(this.query);
     this.fetchLarge(this.query);
@@ -59,6 +72,9 @@ Denwen.ProductImages = Backbone.Collection.extend({
     this.disabled = 1; 
   },
 
+  // Parse out the results from the response before passing
+  // it to the collection
+  //
   parse: function(data) {
     var results = [];
     var query   = data['SearchResponse']['Query']['SearchTerms'];
@@ -81,28 +97,34 @@ Denwen.ProductImages = Backbone.Collection.extend({
     return results;
   },
 
+  // Fetch medium sized search results from the images api
+  //
   fetchMedium: function(query) {
-    var self = this;
+    var self    = this;
 
-    this.query = query;
-    this.size = 'Size:Medium';
+    this.query  = query;
+    this.size   = 'Size:Medium';
+
     this.fetch({
-      add: true,
+      add:      true,
       dataType: "jsonp",
-      success: function(d) { self.trigger('searched');},
-      error: function(r,s,e){}});
+      success:  function(d) { self.trigger('searched');},
+      error:    function(r,s,e){}});
   },
 
+  // Fetch large sized search results from the images api
+  //
   fetchLarge: function(query) {
-    var self = this;
+    var self    = this;
 
-    this.query = query;
-    this.size = 'Size:Large';
+    this.query  = query;
+    this.size   = 'Size:Large';
+
     this.fetch({
-      add: true,
+      add:      true,
       dataType: "jsonp",
-      success: function(d) { self.trigger('searched');},
-      error: function(r,s,e){}});
+      success:  function(d) { self.trigger('searched');},
+      error:    function(r,s,e){}});
   },
 
   // Returns true if all active api searches haven't completed
