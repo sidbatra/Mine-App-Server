@@ -1,38 +1,48 @@
+// View for displaying product image results 
+// 
 Denwen.ProductImagesView = Backbone.View.extend({
 
+  // Setup event handlers
+  //
   events: {
-    "click #product_search" : "search",
+    "click #product_search"   : "search",
     "keypress #product_query" : "queryKeystroke",
-    "click #cancel_button" : "stopSearch"
+    "click #cancel_button"    : "stopSearch"
   },
 
+  // Constructor logic
+  //
   initialize: function() {
-    var self = this;
+    var self          = this;
 
-    this.queryEl = "#product_query";
-    this.imagesBoxEl = "#chooser";
-    this.imagesEl = "#results";
-    this.shadowEl = "#shadow";
+    this.queryEl      = "#product_query";
+    this.imagesBoxEl  = "#chooser";
+    this.imagesEl     = "#results";
+    this.shadowEl     = "#shadow";
 
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
     this.images.bind('add',this.added,this);
-
     
     this.windowListener = new Denwen.WindowListener();
     this.windowListener.bind('documentScrolled',this.documentScrolled,this);
     this.windowListener.bind('resizeEnded',this.resizeEnded,this);
-
 
     $('html').keydown(function(e){self.globalKeystroke(e);});
 
     $(this.queryEl).focus();
   },
 
+  // Test if the search box is still visible as a proxy
+  // for search being in progress
+  //
   isSearchActive: function() {
     return $(this.imagesBoxEl).is(":visible");
   },
 
+  // Catch keystrokes on the query input to launch
+  // search on enter
+  //
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
       this.search();
@@ -40,17 +50,24 @@ Denwen.ProductImagesView = Backbone.View.extend({
     }
   },
 
+  // Catch global keystrokes to hide the search box
+  // on escape
+  //
   globalKeystroke: function(e) {
     if(e.which == 27 && this.isSearchActive())
       this.stopSearch();
   },
 
+  // Hide the search UI
+  //
   stopSearch: function() {
     $(this.shadowEl).fadeOut(500);
     $(this.imagesBoxEl).hide();
     $(this.shadowEl).css("height","100%");
   },
 
+  // Launch the search UI
+  //
   search: function() {
     var query = $(this.queryEl).val();
 
@@ -67,6 +84,9 @@ Denwen.ProductImagesView = Backbone.View.extend({
     search.save();
   },
 
+  // Fired when a product image is added to the images
+  // collection. Here its added into the dom via its view
+  //
   added: function(image) {
     var imageView =  new Denwen.ProductImageView({
                           model:image,
@@ -74,6 +94,10 @@ Denwen.ProductImagesView = Backbone.View.extend({
     imageView.bind('productImageClicked',this.productImageClicked,this);
   },
 
+  // Fired when a set of results have been returned to the images
+  // collection. Used to catch edge cases like no results or no
+  // more results
+  //
   searched: function() {
     $(this.shadowEl).css("height", $(document).height());
 
