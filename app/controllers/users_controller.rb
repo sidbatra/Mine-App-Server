@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     @category   = Category.get(params[:category]) 
 
     @user       = User.find(params[:id])
+    @ifollowers = @user.ifollowers
     @products   = Product.eager.for_user(
                             @user.id,
                             @category ? @category.id : "")

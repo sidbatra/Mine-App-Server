@@ -15,6 +15,14 @@
 	 	
 	 	<div class="invite_note">Comparing is a <em><u>lot</u></em> of fun!</div>
 	 	
+    <!-- ifollowers -->
+
+    <%@ifollowers.each do |ifollower|%>
+      <%=image_tag ifollower.photo_url%>
+    <%end%>
+
+    <!-- end of ifollowers -->
+
 	 	<div id="closet_stats">
 	 		<span class="stat_num"><%=@user.products_count%></span> items worth <span class="stat_num">$<%=@user.products_price%></span>
 	 	</div>
