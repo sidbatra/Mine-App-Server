@@ -10,11 +10,15 @@ layout :decide_layout
     @layout   = 'home1'
     @layout   = 'home2' if @source == "home2"
 
-    redirect_to user_path(self.current_user) if logged_in?
   
     page = "show1"
     page = "show2" if @layout == "home2"
-    render page
+
+    if logged_in? 
+      redirect_to user_path(self.current_user) 
+    else
+      render page
+    end
   end
 
   private 
