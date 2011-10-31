@@ -1,18 +1,3 @@
-<div id="welcome_box">
-  See what's in your friends' closets. <br>
-
-	<span class="welcome_subtitle">Invite your friends. See what they own!</span>
-	
-	<%=link_to image_tag(
-				"f.png",
-				:class    => "f",
-				:alt      => "f") + "Invite your Friends &rsaquo;",
-			  "javascript:void(0)",
-				:class    => "large blue awesome welcome_button",
-				:id       => "action_link",
-        :onclick  => "showInviteDialog();"%>
-</div>
-
 <div id="fb-root"></div>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 
@@ -37,7 +22,6 @@
       if(!response)
         mpq.track("Invite Rejected");
       else {
-        $('#welcome_box').fadeOut('fast');
         mpq.track("Invite Completed");
       }
     }
