@@ -1,22 +1,28 @@
+// View for creating a new product
+//
 Denwen.ProductInputView = Backbone.View.extend({
 
+  // Event listeners
+  //
   events: {
     "submit #new_product" : "post"
   },
 
+  // Constructor logic
+  //
   initialize: function() {
-    this.queryEl = '#product_query';
-    this.titleEl = '#product_title';
-    this.priceEl = '#product_price';
-    this.storeEl = '#product_store';
-    this.websiteEl = '#product_website_url';
-    this.thumbEl = '#product_thumb_url';
-    this.imageEl = '#product_image_url';
-    this.extraEl = '#product_extra';
-    this.selectionEl = '#product_selection';
+    this.queryEl      = '#product_query';
+    this.titleEl      = '#product_title';
+    this.priceEl      = '#product_price';
+    this.storeEl      = '#product_store';
+    this.websiteEl    = '#product_website_url';
+    this.thumbEl      = '#product_thumb_url';
+    this.imageEl      = '#product_image_url';
+    this.extraEl      = '#product_extra';
+    this.selectionEl  = '#product_selection';
 
-    this.productImages = new Denwen.ProductImages();
-    this.productImagesView = new Denwen.ProductImagesView({
+    this.productImages      = new Denwen.ProductImages();
+    this.productImagesView  = new Denwen.ProductImagesView({
                                   el:$('body'),
                                   images:this.productImages});
     this.productImagesView.bind('productSelected',this.productSelected,this);
