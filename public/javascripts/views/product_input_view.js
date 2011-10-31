@@ -20,6 +20,7 @@ Denwen.ProductInputView = Backbone.View.extend({
     this.imageEl      = '#product_image_url';
     this.extraEl      = '#product_extra';
     this.selectionEl  = '#product_selection';
+    this.posting      = false;
 
     this.productImages      = new Denwen.ProductImages();
     this.productImagesView  = new Denwen.ProductImagesView({
@@ -50,7 +51,12 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Form submitted callback
   //
   post: function() {
-    var valid = true;
+
+    if(this.posting)
+      return false;
+
+    this.posting  = true;
+    var valid     = true;
 
     if($(this.imageEl).val().length < 1) {
       valid = false;
@@ -72,6 +78,8 @@ Denwen.ProductInputView = Backbone.View.extend({
       valid = false;
       alert("Please enter the store where you bought this item.");
     }
+
+    this.posting = valid;
       
     return valid;
   }
