@@ -1,35 +1,3 @@
-<style>
-  #shadow {
-    position:absolute; 
-    left:0; 
-    top:0; 
-    width:100%; 
-    height: 100%;
-    z-index:4000;
-    -webkit-box-shadow:0 0 18px rgba(0,0,0,0.4);
-    -moz-box-shadow:0 0 18px rgba(0,0,0,0.4);
-    box-shadow:0 0 18px rgba(0,0,0,0.4);
-    background-color:#454545;
-    -moz-opacity: 0.7;
-    opacity: .70;
-    filter: alpha (opacity=70);
-    display: none;
-  }
-  #cancel_button {
-    position:absolute;
-    top:-10px;
-    left:-10px;
-    padding:2px;
-    width: 22px;
-    height: 22px;
-    background-image:url('/images/close_x.png');
-    background-repeat: no-repeat;
-    cursor: pointer;
-  	cursor: hand; /* for IE 5.x */
-    text-decoration: none;
-  }
-</style>
-
 <!-- item -->
 
 <%form_for @product, :html => {:multipart => true} do |f|%>
@@ -118,10 +86,12 @@
 
 	<div id="chooser" class="shadow_overlay" style="display:none">
       <a id="cancel_button" href="javascript:void(0)"><a>
-		<!--div id="chooser_cancel_bar">
-			<div id="chooser_closebox" class="cancel_chooser dark_button">Close</div>
-		</div-->
+		<div id="chooser_title_bar">
+			Choose your item
+		</div>
 		<div id="results"></div>
+	
+		<div id="scroll_for_more_results">Scroll down for more &darr;</div>
 	</div> <!-- chooser -->
 
 

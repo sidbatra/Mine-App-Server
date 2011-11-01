@@ -17,7 +17,7 @@
 	 	
 	 	<div id="follower_box">
 	 	
-	 		<div class="profile_right_title">People you follow</div>  
+	 		<div class="profile_right_title">People <%=is_current_user(@user.id) ? "you follow" : @user.first_name + " follows"%> </div>  
 			
 		    <%@ifollowers.each do |ifollower|%>
 		    	<%=link_to image_tag(ifollower.photo_url,
@@ -114,6 +114,10 @@
 		
 		</div> <!--profile_details-->
 			
+		<%#render :partial => "misc/invite" if logged_in? && 
+		                                       is_current_user(@user.id) && 
+		                                       @products.present? %>
+		
 		
 		  <%if is_current_user(@user.id)%>
 		  
@@ -161,7 +165,6 @@
 
 <%content_for :javascript do%>
   <%=render :partial => "misc/feedback"%>
-  <%=render :partial => "misc/invite"%>
 
   <script type="text/javascript">
 

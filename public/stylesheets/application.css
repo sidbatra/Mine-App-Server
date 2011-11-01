@@ -384,9 +384,6 @@ h1 {
 	margin-right: 8px;
 }
 
-
-
-
 .save_and_share {
 	background: transparent url('/images/save_and_share_button.png') no-repeat;
 }
@@ -394,26 +391,26 @@ h1 {
 
 #chooser {
 	position: absolute;
-	top: 0px;
-	margin: 15px;
+	top: 24px;
+	left: 24px;
+	right: 24px;
 	text-align: left;
 	background: white;
 	padding-bottom: 20px;
 	padding-left: 15px;
-	border: 1px solid #cccccc;
-  z-index: 5000;
+  	z-index: 7000;
+  	overflow: visible;
 }
 
-#chooser_cancel_bar {
-	height: 34px;
+#chooser_title_bar {
+	height: 32px;
+	line-height: 32px;
 	margin-top: 15px;
-}
-
-.cancel_chooser {
-	width: 160px;
-	height: 34px;
-	line-height: 34px;
-	margin-right: 15px;
+	text-align: center;
+	padding-right:15px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #999999;
+	font-size: 24px;
 }
 
 .change_photo {
@@ -429,21 +426,23 @@ h1 {
 .photo_choice_cell {
 	width: 160px;
 	height: 160px;
-	line-height: 160px;
-	float:left;
+	line-height: 158px;
+	float: left;
 	margin: 15px 15px 0px 0px; 
 	position: relative;
 	cursor: pointer;
+	text-align: center;
 	border: 1px solid #eeeeee;
 }
 
 .photo_choice_cell:hover {
-	background: #f5f5f5;
+	border: 1px solid #dddddd;
+	background: #f8f8f8;
 }
 
 .photo_choice {
 	max-width: 160px;
-	max-height: 160px;
+	max-height: 158px;
 	vertical-align: middle;
 }
 
@@ -455,6 +454,23 @@ h1 {
 	top:0;
 	left: 0;
 	opacity: 1;
+}
+
+#scroll_for_more_results {
+	height: 48px;
+	width: auto;
+	line-height: 48px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #999999;
+	border: 1px solid #dddddd;
+	font-size: 20px;
+	text-align: center;
+	position: fixed;
+	background: white;
+	right: 39px;
+	left: 39px;
+	bottom: 0px;
+	z-index: 10000;
 }
 
 .navigation {
@@ -529,14 +545,14 @@ h1 {
 	line-height: 32px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 12px;
-	color: #999999;
+	color: #666666;
 	background: white;
 	padding: 0px 12px 0px;
 }
 
 .nav li ul li:hover {
-	background: #f8f8f8;
-	color: #333333;
+	background: #f8f8f8 url('/images/alert-overlay.png') repeat-x; 
+	color: #791A10;
 }
 
 .nav_menu {
@@ -608,7 +624,7 @@ h1 {
 
 .profile_right_title {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	color: #666666;
 	margin-left: 5px;
 	margin-bottom: 8px;
@@ -763,6 +779,7 @@ h1 {
 
 .suggestion:hover {
 	color: #791a10;
+	background: #f8f8f8 url('/images/alert-overlay.png') repeat-x; 
 }
 
 #closet {
@@ -820,8 +837,8 @@ h1 {
 	display: block;
 	float: left;
 	width: 130px;
-	height: 130px;
-	line-height: 130px;
+	height: 152px;
+	line-height: 152px;
 	text-align: center;
 	position: relative;
 }
@@ -972,6 +989,37 @@ h1 {
 .post_comment {
 	margin: 4px 0px 0px;
 	text-align: right;
+}
+
+
+/* ------------------------------ Box Overlay */
+
+#shadow {
+    position:absolute; 
+    left:0; 
+    top:0; 
+    width:100%; 
+    height: 100%;
+    z-index: 6000;
+    -webkit-box-shadow:0 0 18px rgba(0,0,0,0.4);
+    -moz-box-shadow:0 0 18px rgba(0,0,0,0.4);
+    box-shadow:0 0 18px rgba(0,0,0,0.4);
+    background-color: #333333;
+    display: none;
+  }
+  
+#cancel_button {
+    position:absolute;
+    top:-10px;
+    left:-10px;
+    padding:2px;
+    width: 22px;
+    height: 22px;
+    background-image:url('/images/close_x.png');
+    background-repeat: no-repeat;
+    cursor: pointer;
+  	cursor: hand; /* for IE 5.x */
+    text-decoration: none;
 }
 
 /* ------------------------------ Effects */
@@ -1192,8 +1240,8 @@ h1 {
     #product_title, 
     #welcomebox,
     #profile_username,
+    #chooser_title_bar,
     .landing_heading, 
-    .suggestion, 
     .product_title, 
     .product_title_sample,
     .awesome,

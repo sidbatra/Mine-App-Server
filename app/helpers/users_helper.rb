@@ -30,11 +30,9 @@ module UsersHelper
   # Display name for category when used in a create link
   #
   def category_create_link_text(category)
-    name = category.id == 8 ? 
-            category.name.gsub("Other","Anything") :
-            category.name
-
-    "Add your #{name}" 
+    category.id == 8 ? 
+            "Add anything!" :
+            "Add your #{category.name.downcase}" 
   end
 
 
