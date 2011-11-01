@@ -21,7 +21,7 @@ class SessionController < ApplicationController
                             :scope => [:email,:user_likes,:user_birthday])
   rescue => ex
     handle_exception(ex)
-    target_url = root_path
+    target_url = root_path(:src => "login_error")
   ensure
     redirect_to target_url
   end
@@ -37,7 +37,7 @@ class SessionController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path
+    redirect_to root_path(:src => "logout_error")
   end
 
 end

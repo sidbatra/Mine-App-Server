@@ -8,21 +8,23 @@
 		<span class="intro">Create your own</span><br>Online Closet!
 	</p>
 	
-		<ul>
-			<li>Collect the things you own</li>
-			<li>Compare with friends</li>
-			<li>Express your style!</li>
-		</ul>
-		
-		<%=link_to image_tag(
-				"f.png",
-				:class => "f",
-				:alt   => "") + "Connect with Facebook &rsaquo;",
-				fb_auth_path(:source => @source),
-				:class => "large blue awesome button_home1",
-				:id    => "action_link"%>
+  <ul>
+    <li>Collect the things you own</li>
+    <li>Compare with friends</li>
+    <li>Express your style!</li>
+  </ul>
+  
+  <%=link_to image_tag(
+      "f.png",
+      :class => "f",
+      :alt   => "") + "Connect with Facebook &rsaquo;",
+      fb_auth_path(:source => @origin),
+      :class => "large blue awesome button_home1",
+      :id    => "action_link"%>
 				
-	<div id="tiny" class="home1">We’ll never post to Facebook without asking.</div>		
+	<div id="tiny" class="home1">
+    We’ll never post to Facebook without asking.
+  </div>		
 
 	<div id="footer" class="home1">
 		Felvy © 2011 · <a href="mailto:contact@felvy.com">contact@felvy.com</a>
@@ -38,8 +40,10 @@
 
   <script type="text/javascript">
    $(document).ready(function(){
-     mpq.register_once({'landed_on' : '<%=@source%>'});
-     mpq.track("landed on homepage");
+     mpq.register_once({'landed_on' : '<%=@origin%>'});
+     mpq.track('landed on homepage',{
+      'source'  : '<%=@source%>',
+      'origin'  : '<%=@origin%>'});
     });
   </script>
 

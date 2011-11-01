@@ -6,13 +6,14 @@ layout :decide_layout
   # Display pre-selected products on the home page
   #
   def show
-    @source   = params[:id] ? params[:id].to_s : "unknown"
+    @origin   = params[:id] ? params[:id].to_s : "direct"
+    @source   = params[:src] ? params[:src].to_s : "direct"
     @layout   = "home1"
-    @layout   = "home2" if @source == "home2"
+    @layout   = "home2" if @origin == "home2"
 
   
     page = "show1"
-    page = "show2" if @layout == "home2"
+    page = "show2" if @origin == "home2"
 
     if logged_in? 
       redirect_to user_path(self.current_user) 
