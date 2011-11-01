@@ -106,7 +106,10 @@
 
 <script type="text/javascript">
 
-    var productInputView = new Denwen.ProductInputView({el:$('body')});
+    var productInputView = new Denwen.ProductInputView({
+                                el:$('body'),
+                                category_id:<%=@category.id%>,
+                                category_name:"<%=@category.name%>"});
 
      $(document).ready(function(){
         var stores = "<%=@stores.map(&:name).join('|')%>".split("|");

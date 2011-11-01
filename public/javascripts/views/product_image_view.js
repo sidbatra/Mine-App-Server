@@ -1,13 +1,20 @@
+// View for displaying a single product image result
+//
 Denwen.ProductImageView = Backbone.View.extend({
+
+  // Constructor logic
+  //
   initialize: function() {
     this.render();
   },
 
+  // Override render method for displaying view
+  //
   render: function() {
-    var self = this;
+    var self      = this;
 
-    var thumbUrl = this.model.get('Thumbnail')['Url'];
-    var id = thumbUrl;
+    var thumbUrl  = this.model.get('Thumbnail')['Url'];
+    var id        = thumbUrl;
 
     var div = document.createElement("div");
     div.setAttribute('class','photo_choice_cell');

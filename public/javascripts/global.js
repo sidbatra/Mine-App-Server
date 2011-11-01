@@ -7,7 +7,7 @@
 
 // Global variables
 //
-var itemsStore      = new Array();
+var analytics       = new Denwen.Analytics();
 var isDeviceMobile  = false;
 var isDeviceiOS     = false;
 var isDeviceiPad    = false;

@@ -1,0 +1,86 @@
+// Abstracts the analytics service for a consistent interface
+//
+Denwen.Analytics = Backbone.Model.extend({
+
+  // Constructor logic
+  //
+  initialize: function() {
+  },
+
+  // Identify a user and associate a friendly name tag
+  //
+  identifyUser: function(email,name) {
+    mpq.identify(email);
+    mpq.name_tag(name);
+  },
+  
+  // Track the page the user landed on
+  //
+  userLandsOn: function(page) {
+    mpq.register_once({'landed_on' : page}); 
+  },
+
+  // User signs in
+  userLogin: function() {
+    mpq.track("User Logged In");
+  },
+
+  // User creates a comment
+  //
+  commentCreated: function() {
+    mpq.track("Comment Created");
+  },
+
+  // User clicks the invite friends button
+  //
+  inviteSelected: function() {
+    mpq.track("Invite Clicked");
+  },
+
+  // User opens invite dialog and rejects it
+  //
+  inviteRejected: function() {
+    mpq.track("Invite Rejected");
+  },
+  
+  // User opens invite dialog and completes it
+  //
+  inviteCompleted: function() {
+    mpq.track("Invite Completed");
+  },
+
+  // User opens new products page
+  //
+  productNewOpened: function(category_id,category_name) {
+    mpq.track("Creation Template Opened", 
+      {
+      'id'   : category_id,
+      'name' : category_name
+      });
+  },
+
+  // User searches a product
+  //
+  productSearched: function(query) {
+    mpq.track("Searched a product", {'query':query});
+  },
+
+  // User cancels product search
+  //
+  productSearchCancelled: function() {
+    mpq.track("product cancelled");
+  },
+
+  // User selects a product
+  //
+  productSearchCompleted: function() {
+    mpq.track("product selected");
+  },
+
+  // User creates a product
+  //
+  productCreated: function() {
+    mpq.track("Item Created");
+  }
+
+});

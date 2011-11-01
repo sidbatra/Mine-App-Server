@@ -48,7 +48,7 @@ Denwen.CommentInputView = Backbone.View.extend({
         error:    function(model,errors) {},
       });
 
-    mpq.track("Comment Created");
+    analytics.commentCreated();
   },
 
 });
