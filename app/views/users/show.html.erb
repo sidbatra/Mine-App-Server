@@ -6,6 +6,7 @@
 
 <div id="profile_container">
 
+  <%=render :partial => "misc/fbshare"%>
 
 	<div id="profile_right">
 	
@@ -164,6 +165,10 @@
 <%content_for :javascript do%>
   <%=render :partial => "misc/feedback"%>
   <%=render :partial => "misc/invite"%>
+
+  <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+          type="text/javascript">
+  </script>
 
   <script type="text/javascript">
 
