@@ -7,7 +7,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   events: {
     "click #product_search"   : "search",
     "keypress #product_query" : "queryKeystroke",
-    "click #cancel_button"    : "stopSearch"
+    "click #cancel_button"    : "cancelButtonClicked"
   },
 
   // Constructor logic
@@ -54,8 +54,17 @@ Denwen.ProductImagesView = Backbone.View.extend({
   // on escape
   //
   globalKeystroke: function(e) {
-    if(e.which == 27 && this.isSearchActive())
+    if(e.which == 27 && this.isSearchActive()) {
       this.stopSearch();
+      analytics.productSearchCancelled();
+    }
+  },
+
+  // Fired when the user clicks the cancel butotn
+  //
+  cancelButtonClicked: function() {
+    analytics.productSearchCancelled();
+    this.stopSearch();
   },
 
   // Hide the search UI
@@ -82,6 +91,8 @@ Denwen.ProductImagesView = Backbone.View.extend({
 
     var search = new Denwen.Search({query:query});
     search.save();
+
+    analytics.productSearched(query);
   },
 
   // Fired when a product image is added to the images

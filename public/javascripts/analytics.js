@@ -25,12 +25,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("User Logged In");
   },
 
-  // User creates a product
-  //
-  productCreated: function() {
-    mpq.track("Item Created");
-  },
-
   // User creates a comment
   //
   commentCreated: function() {
@@ -53,6 +47,40 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   inviteCompleted: function() {
     mpq.track("Invite Completed");
+  },
+
+  // User opens new products page
+  //
+  productNewOpened: function(category_id,category_name) {
+    mpq.track("Creation Template Opened", 
+      {
+      'id'   : category_id,
+      'name' : category_name
+      });
+  },
+
+  // User searches a product
+  //
+  productSearched: function(query) {
+    mpq.track("Searched a product", {'query':query});
+  },
+
+  // User cancels product search
+  //
+  productSearchCancelled: function() {
+    mpq.track("product cancelled");
+  },
+
+  // User selects a product
+  //
+  productSearchCompleted: function() {
+    mpq.track("product selected");
+  },
+
+  // User creates a product
+  //
+  productCreated: function() {
+    mpq.track("Item Created");
   }
 
 });

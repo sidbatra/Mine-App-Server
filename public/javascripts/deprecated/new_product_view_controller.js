@@ -192,7 +192,6 @@ NewProductViewController.prototype.initiateProductSearch= function() {
   productHash       = new Array();
 
   this.fetchImages();
-  mpq.track("Searched a product", {'query':this.query});
 
   var search = new Search({query:$(kProductQuery).val()});
   search.save();
@@ -254,8 +253,6 @@ NewProductViewController.prototype.productCancelClicked = function() {
   $(kProductImageBox).removeClass(kProductImageClass);
   $(kProductInput).show();
   $(kProductSelection).hide();
-
-  mpq.track("product cancelled");
 }
 
 // Fired when a product is selected from the search results
@@ -275,7 +272,6 @@ function productSelected(id) {
   $(kImagesBox).hide();
 
 
-  mpq.track("product selected");
  }
 
 
@@ -405,7 +401,6 @@ NewProductViewController.prototype.setupUploader = function(settings) {
 //
 NewProductViewController.prototype.fileSelected = function(file) {
   this.startUpload(); 
-  mpq.track("File Selected for upload");
 }
 
 // Called to indicate number of bytes uploaded to server
@@ -458,7 +453,5 @@ NewProductViewController.prototype.uploadError = function(errorCode,message) {
 //Setup analytics for creation page
 //
 NewProductViewController.prototype.setupPreCreationAnalytics = function(category,identifier) {
-  mpq.track("Creation Template Opened", {'category':category});
-  mpq.name_tag(identifier);
 }
 
