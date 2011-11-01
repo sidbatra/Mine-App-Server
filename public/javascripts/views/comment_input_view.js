@@ -45,10 +45,10 @@ Denwen.CommentInputView = Backbone.View.extend({
       {'data':$(this.inputEl).val()},
       { 
         success:  function(model) {self.created(model)},
-        error:    function(model,errors) {},
+        error:    function(model,errors) {}
       });
 
     analytics.commentCreated();
-  },
+  }
 
 });

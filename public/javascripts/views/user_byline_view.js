@@ -53,9 +53,9 @@ Denwen.UserBylineView = Backbone.View.extend({
       {'byline':$(this.inputEl).val()},
       { 
         success: function() {self.changed();},
-        error : function(model,errors) {},
+        error : function(model,errors) {}
       });
-  },
+  }
 
 });
 
