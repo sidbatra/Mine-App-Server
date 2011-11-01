@@ -104,7 +104,7 @@
   <%content_for :javascript do%>
     <script type="text/javascript">
 
-      mpq.register_once({'landed_on' : 'product_<%=@product.id.to_s%>'});
+      analytics.userLandsOn('product_<%=@product.id.to_s%>');
 
       center_based_on_element('#container',<%=logged_in? ? 50 : 50%>);
 
