@@ -1,7 +1,9 @@
 <li>
   <div class="product"> 
   
-    <a class="product_link" href="<%=product_path product.id,product.handle%>">
+    <a class="product_link" href="<%=product_path product.id,
+                                        product.handle,
+                                        :src => "profile"%>">
         
       <div class="product_left">
       
@@ -11,7 +13,9 @@
                     :onclick => "if($.browser.msie && "\
                                 "parseInt($.browser.version,10) == 7){"\
                                 "window.location="\
-                                "'#{product_path product.id,product.handle}'}"
+                                "'#{product_path product.id,
+                                      product.handle,
+                                      :src => "profile"}'}"
               %>
                   
       </div> <!-- product_left -->

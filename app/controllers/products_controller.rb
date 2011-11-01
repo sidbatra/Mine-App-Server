@@ -44,6 +44,8 @@ class ProductsController < ApplicationController
   # Display a product
   #
   def show
+    @source   = params[:src] ? params[:src].to_s : "direct"
+
     @product  = Product.find(params[:id])
     @comments = Comment.eager.for_product(@product.id)
 
@@ -54,13 +56,22 @@ class ProductsController < ApplicationController
     prev_product  ||= @product.user.products.last
 
     unless next_product.id == prev_product.id && next_product.id == @product.id
-      @prev_path = product_path(next_product.id,next_product.handle) 
-      @next_path = product_path(prev_product.id,prev_product.handle)
+
+      @prev_path = product_path(
+                    next_product.id,
+                    next_product.handle,
+                    :src => "previous") 
+
+      @next_path = product_path(
+                    prev_product.id,
+                    prev_product.handle,
+                    :src => "next")
     end
 
     redirect_to product_path(
                   @product.id,
-                  @product.handle) if params[:name] != @product.handle
+                  @product.handle,
+                  :src => @source) if params[:name] != @product.handle
 
   rescue => ex
     handle_exception(ex)
