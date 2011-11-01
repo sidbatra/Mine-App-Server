@@ -21,6 +21,10 @@
 	 	
 	 		<div class="profile_right_title">People <%=is_current_user(@user.id) ? "you follow" : @user.first_name + " follows"%> </div>  
 			
+        <%if @ifollowers.empty?%>
+          You're such a big loser you can't even follow let alone be followed.
+        <%end%>
+
 		    <%@ifollowers.each do |ifollower|%>
 		    	<%=link_to image_tag(ifollower.photo_url,
 		    					:class => "follow_img"),
