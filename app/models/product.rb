@@ -117,10 +117,18 @@ class Product < ActiveRecord::Base
     "t_" + image_path
   end
 
+  # Path on filesystem for the processed hosted giant image
+  #
+  def giant_path
+    "g_" + image_path
+  end
+
   # Generate url for the photo
   #
   def photo_url
-    is_hosted ? FileSystem.url(image_path) : orig_image_url
+    is_hosted ? 
+      FileSystem.url(is_processed ? giant_path : image_path) : 
+      orig_image_url
   end
 
   # Conditional upon hosting and orig_thumb_url status
@@ -129,6 +137,59 @@ class Product < ActiveRecord::Base
     is_hosted ? 
       FileSystem.url(is_processed ? thumbnail_path : image_path) :
       (orig_thumb_url.present? ? orig_thumb_url : orig_image_url)
+  end
+
+  # Pull image from source and host on S3
+  #
+  def host
+    self.image_path  = Base64.encode64(
+                         SecureRandom.hex(10) + 
+                         Time.now.to_i.to_s).chomp + ".jpg"
+
+    file_path        = Tempfile.new(image_path).path
+
+    system("wget '#{orig_image_url}' --output-document '#{file_path}'")
+
+    if File.exists? file_path
+
+      # Store original image
+      #
+      FileSystem.store(
+        image_path,
+        open(file_path),
+        "Content-Type" => "image/jpeg")
+
+      # Create tiny thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 150,:height => 150})
+
+      FileSystem.store(
+        thumbnail_path,
+        open(image.path),
+        "Content-Type" => "image/jpeg")
+
+      # Create giant thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 350,:height => 350})
+
+      FileSystem.store(
+        giant_path,
+        open(image.path),
+        "Content-Type" => "image/jpeg")
+
+
+      self.is_hosted     = true
+      self.is_processed  = true
+      self.save!
+    end
   end
 
 

@@ -32,6 +32,8 @@ Rails::Initializer.run do |config|
               :version => '0.4.3')
   config.gem('daemons', 
               :version => '1.1.0')
+  config.gem('mini_magick', 
+              :version => '2.1')
   config.gem('fb_graph',
               :version => '2.1.10')
 
