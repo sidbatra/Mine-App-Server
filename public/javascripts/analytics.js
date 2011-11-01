@@ -31,6 +31,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Item Created");
   },
 
+  // User creates a comment
+  //
+  commentCreated: function() {
+    mpq.track("Comment Created");
+  },
+
   // User clicks the invite friends button
   //
   inviteSelected: function() {
