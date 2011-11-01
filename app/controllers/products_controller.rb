@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => "product_error") if @error
+    redirect_to root_path(:src => "product_show_error") if @error
   end
 
 

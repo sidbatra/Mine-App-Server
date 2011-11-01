@@ -37,7 +37,7 @@ class SessionController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => "logout_error")
+    redirect_to root_path(:src => "logout")
   end
 
 end
