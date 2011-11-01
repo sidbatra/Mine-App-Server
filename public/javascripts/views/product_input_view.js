@@ -57,7 +57,7 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Form submitted callback
   //
   post: function() {
-
+	
     if(this.posting)
       return false;
 

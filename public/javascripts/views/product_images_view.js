@@ -6,7 +6,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   //
   events: {
     "click #product_search"   : "search",
-    "keypress #product_query" : "queryKeystroke",
+    "keypress #product_query" 	  : "queryKeystroke",
     "click #cancel_button"    : "cancelButtonClicked"
   },
 
@@ -45,6 +45,8 @@ Denwen.ProductImagesView = Backbone.View.extend({
   //
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
+      //e.cancelBubble = true;
+	  //e.returnValue = false;
       this.search();
       return false;
     }
