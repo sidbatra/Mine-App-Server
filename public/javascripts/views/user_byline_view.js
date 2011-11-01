@@ -30,6 +30,8 @@ Denwen.UserBylineView = Backbone.View.extend({
     $(this.inputEl).hide();
     $(this.textEl).show();
     $(this.editEl).show();
+
+    analytics.bylineEditingCompleted();
   },
 
   // Called when the user wants to edit the byline
@@ -41,6 +43,8 @@ Denwen.UserBylineView = Backbone.View.extend({
     $(this.updateEl).show();
     $(this.inputEl).show();
     $(this.inputEl).focus();
+
+    analytics.bylineEditingSelected();
   },
 
   // Called to save the new byline
@@ -52,8 +56,8 @@ Denwen.UserBylineView = Backbone.View.extend({
     this.model.save(
       {'byline':$(this.inputEl).val()},
       { 
-        success: function() {self.changed();},
-        error : function(model,errors) {}
+        success : function() {self.changed();},
+        error   : function(model,errors) {}
       });
   }
 
