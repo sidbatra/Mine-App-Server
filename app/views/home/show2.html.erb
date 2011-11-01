@@ -14,11 +14,13 @@
 			"f.png",
 			:class => "f",
 			:alt   => "") + "Log in with Facebook &rsaquo;",
-			fb_auth_path(:source => @source),
+			fb_auth_path(:source => @origin),
 			:class => "large blue awesome button_home2",
 			:id    => "action_link"%>
 			
-	<div id="tiny" class="home2">We’ll never post to Facebook without asking.</div>		
+	<div id="tiny" class="home2">
+    We’ll never post to Facebook without asking.
+  </div>		
 			
 	<div id="footer" class="home2">
 	Felvy © 2011 · <a href="mailto:contact@felvy.com">contact@felvy.com</a>
@@ -37,8 +39,10 @@
 
   <script type="text/javascript">
    $(document).ready(function(){
-     mpq.register_once({'landed_on' : '<%=@source%>'});
-     mpq.track("landed on homepage");
+     mpq.register_once({'landed_on' : '<%=@origin%>'});
+     mpq.track("landed on homepage",{
+      'source'  : '<%=@source%>',
+      'origin'  : '<%=@origin%>'});
     });
   </script>
 

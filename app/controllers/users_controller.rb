@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   rescue => ex
     handle_exception(ex)
-    target_url = root_path
+    target_url = root_path(:src => "user_create_error")
   ensure
     redirect_to target_url
   end

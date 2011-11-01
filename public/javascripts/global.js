@@ -37,7 +37,7 @@ function setupDeviceVariables(isMobile,isiPad,isiPhone) {
 // Cross browser replacement of console.log
 //
 function trace(s) {
-  //try { console.log(s) } catch (e) {  }
+  try { console.log(s) } catch (e) {  }
 };
 
 // Conditionally replace and add default text

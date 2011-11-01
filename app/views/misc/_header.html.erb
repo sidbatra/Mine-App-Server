@@ -6,7 +6,9 @@
       <%=link_to image_tag('felvy_logo_white.png', :alt => "Felvy"),
                  logged_in? ? 
                     user_path(self.current_user) : 
-                    home_path(@source && @source != "unknown" ? @source : "")
+                    home_path(
+                      @origin && @origin != "direct" ? @origin : "",
+                      :src => "top")
                  %>
     </div> <!-- logo -->
 
