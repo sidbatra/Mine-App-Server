@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
   validates_presence_of     :title
   validates_presence_of     :price
   validates_numericality_of :price
-  validates_presence_of     :image_url
+  validates_presence_of     :orig_image_url
   validates_presence_of     :user_id
   validates_presence_of     :store_id
   validates_presence_of     :category_id
@@ -37,16 +37,16 @@ class Product < ActiveRecord::Base
   #
   def self.add(attributes,user_id)
     create!(
-      :title        => attributes['title'],
-      :website_url  => attributes['website_url'],
-      :image_url    => attributes['image_url'],
-      :thumb_url    => attributes['thumb_url'],
-      :is_hosted    => attributes['is_hosted'],
-      :query        => attributes['query'],
-      :price        => attributes['price'],
-      :category_id  => attributes['category_id'],
-      :store_id     => attributes['store_id'],
-      :user_id      => user_id)
+      :title            => attributes['title'],
+      :source_url       => attributes['website_url'],
+      :orig_image_url   => attributes['image_url'],
+      :orig_thumb_url   => attributes['thumb_url'],
+      :is_hosted        => attributes['is_hosted'],
+      :query            => attributes['query'],
+      :price            => attributes['price'],
+      :category_id      => attributes['category_id'],
+      :store_id         => attributes['store_id'],
+      :user_id          => user_id)
   end
 
   # Fetch all the products for the given user 
@@ -114,13 +114,13 @@ class Product < ActiveRecord::Base
   # Generate url for the photo
   #
   def photo_url
-    is_hosted ? FileSystem.url(image_url) : image_url
+    is_hosted ? FileSystem.url(orig_image_url) : orig_image_url
   end
 
-  # Conditional upon hosting and thumb_url status
+  # Conditional upon hosting and orig_thumb_url status
   #
   def thumbnail_url
-    !is_hosted && thumb_url.present? ? thumb_url : photo_url
+    !is_hosted && orig_thumb_url.present? ? orig_thumb_url : photo_url
   end
 
 
