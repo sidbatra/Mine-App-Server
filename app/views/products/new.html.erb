@@ -3,9 +3,9 @@
 <%form_for @product, :html => {:multipart => true} do |f|%>
 
       <%=f.hidden_field :category_id, :value => @category.id%>
-      <%=f.hidden_field :website_url%>
-      <%=f.hidden_field :image_url%>
-      <%=f.hidden_field :thumb_url%>
+      <%=f.hidden_field :source_url%>
+      <%=f.hidden_field :orig_image_url%>
+      <%=f.hidden_field :orig_thumb_url%>
       <%=f.hidden_field :is_hosted%>
       
 	<div class="step">
@@ -74,7 +74,6 @@
 	  </div--> <!-- step -->
 
     <%=submit_tag "Save and Share",
-                  :name   => :nil,
                   :class  => "large blue awesome creation_submit_button"%>
   
   </div>

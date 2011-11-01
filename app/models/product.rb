@@ -38,9 +38,9 @@ class Product < ActiveRecord::Base
   def self.add(attributes,user_id)
     create!(
       :title            => attributes['title'],
-      :source_url       => attributes['website_url'],
-      :orig_image_url   => attributes['image_url'],
-      :orig_thumb_url   => attributes['thumb_url'],
+      :source_url       => attributes['source_url'],
+      :orig_image_url   => attributes['orig_image_url'],
+      :orig_thumb_url   => attributes['orig_thumb_url'],
       :is_hosted        => attributes['is_hosted'],
       :query            => attributes['query'],
       :price            => attributes['price'],
