@@ -146,6 +146,7 @@ h1 {
 	overflow: visible;
 	font-size: 16px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
 	border: 0;
 	overflow: visible;
 	cursor: pointer;
@@ -436,8 +437,11 @@ h1 {
 }
 
 .photo_choice_cell:hover {
-	border: 1px solid #dddddd;
 	background: #f8f8f8;
+}
+
+.photo_choice_cell:hover .choose_this {
+	display: block;
 }
 
 .photo_choice {
@@ -446,14 +450,21 @@ h1 {
 	vertical-align: middle;
 }
 
-.choose_this img {
-	width: 120px;
-	height: 46px;
-	padding: 57px 20px;
+.choose_this {
+	display: none;
+	height: 30px;
+	line-height: 30px;
 	position: absolute;
-	top:0;
-	left: 0;
-	opacity: 1;
+	bottom:-1px;
+	left: -1px;
+	right: -1px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-size: 14px;
+	color: white;
+	background: #8E1E16;
+	-moz-opacity: 0.9;
+	opacity: .90;
+	filter: alpha (opacity=90);
 }
 
 #scroll_for_more_results {
@@ -462,7 +473,9 @@ h1 {
 	line-height: 48px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
-	border: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
 	font-size: 20px;
 	text-align: center;
 	position: fixed;
