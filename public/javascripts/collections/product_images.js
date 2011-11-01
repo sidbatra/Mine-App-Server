@@ -94,9 +94,8 @@ Denwen.ProductImages = Backbone.Collection.extend({
     if(total <=0)
       return results;
 
-    if(!offset && this.offset != offset) {
+    if(total - offset <= this.count) {
       this.finished++;
-      return results;
     }
       
     results = images;

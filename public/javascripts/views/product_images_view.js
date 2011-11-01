@@ -6,7 +6,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   //
   events: {
     "click #product_search"   : "search",
-    "keypress #product_query" 	  : "queryKeystroke",
+    "keypress #product_query" : "queryKeystroke",
     "click #cancel_button"    : "cancelButtonClicked"
   },
 
@@ -89,6 +89,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     $(this.shadowEl).fadeIn(500);
     $(this.imagesEl).html('');
     $(this.imagesBoxEl).show();
+    $(this.moreEl).show();
 
     this.images.search(query);
 
@@ -122,6 +123,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     }
     else if(this.images.isSearchDone()) {
       this.images.disableSearch();
+      $(this.moreEl).hide();
     }
     else {
       this.resizeEnded();
