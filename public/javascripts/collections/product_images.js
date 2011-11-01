@@ -15,6 +15,7 @@ Denwen.ProductImages = Backbone.Collection.extend({
     this.offset   = 0;
     this.state    = 0;
     this.disabled = 0;
+    this.finished = 0;
   },
 
   // Create url to an image search api based on
@@ -47,6 +48,7 @@ Denwen.ProductImages = Backbone.Collection.extend({
     this.state    = 0;
     this.offset   = 0;
     this.disabled = 1;
+    this.finished = 0;
     this.query    = query;
 
     this.fetchMedium(this.query);
@@ -92,6 +94,11 @@ Denwen.ProductImages = Backbone.Collection.extend({
     if(total <=0)
       return results;
 
+    if(!offset && this.offset != offset) {
+      this.finished++;
+      return results;
+    }
+      
     results = images;
     
     return results;
@@ -144,7 +151,7 @@ Denwen.ProductImages = Backbone.Collection.extend({
   // from the remote server
   //
   isSearchDone: function() {
-    return !this.isSearching() && this.length % this.count != 0;
+    return !this.isSearching() && this.finished >= 2;
   }
 
 });

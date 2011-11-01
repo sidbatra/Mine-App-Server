@@ -19,6 +19,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     this.imagesBoxEl  = "#chooser";
     this.imagesEl     = "#results";
     this.shadowEl     = "#shadow";
+    this.moreEl       = "#scroll_for_more_results";
 
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
@@ -46,7 +47,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
       //e.cancelBubble = true;
-	  //e.returnValue = false;
+      //e.returnValue = false;
       this.search();
       return false;
     }
