@@ -15,14 +15,16 @@
         message: 'Come join me on Felvy! An online closet for everything you own.',
         title: 'Invite Your Facebook Friends to Felvy',
       }, requestCallback);
-      mpq.track("Invite Clicked");
+
+      analytics.inviteSelected();
     }
 
     function requestCallback(response) {
-      if(!response)
-        mpq.track("Invite Rejected");
+      if(!response) {
+        analytics.inviteRejected();
+      }
       else {
-        mpq.track("Invite Completed");
+        analytics.inviteCompleted();
       }
     }
 </script>

@@ -29,7 +29,24 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   productCreated: function() {
     mpq.track("Item Created");
-  }
+  },
+
+  // User clicks the invite friends button
+  //
+  inviteSelected: function() {
+    mpq.track("Invite Clicked");
+  },
+
+  // User opens invite dialog and rejects it
+  //
+  inviteRejected: function() {
+    mpq.track("Invite Rejected");
+  },
   
+  // User opens invite dialog and completes it
+  //
+  inviteCompleted: function() {
+    mpq.track("Invite Completed");
+  }
 
 });
