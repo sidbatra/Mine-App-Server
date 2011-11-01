@@ -7,6 +7,8 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
+    @source       = params[:src] ? params[:src].to_s : "direct"
+
     @product      = Product.new
     @stores       = Store.all
     #@uploader    = generate_uploader
@@ -23,7 +25,6 @@ class ProductsController < ApplicationController
   # Create a new product
   #
   def create
-
     params[:product][:store_id] = Store.add(
                                     params[:product][:store],
                                     self.current_user.id).id
@@ -36,7 +37,10 @@ class ProductsController < ApplicationController
 
   rescue => ex
     handle_exception(ex)
-    target_url = new_product_path
+    target_url = new_product_path(
+                    :category => Category.find(
+                                    params[:product][:category_id]).handle,
+                    :src      => "error")
   ensure
     redirect_to target_url
   end

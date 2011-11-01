@@ -30,10 +30,6 @@ Denwen.ProductInputView = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
-
-    analytics.productNewOpened(
-        this.options.category_id,
-        this.options.category_name);
   },
 
   // Fired when a product is selected from the ProductImagesView

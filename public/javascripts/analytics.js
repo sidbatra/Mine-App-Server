@@ -60,16 +60,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Invite Completed");
   },
 
-  // User opens new products page
-  //
-  productNewOpened: function(category_id,category_name) {
-    mpq.track("Creation Template Opened", 
-      {
-      'id'   : category_id,
-      'name' : category_name
-      });
-  },
-
   // User searches a product
   //
   productSearched: function(query) {
@@ -108,6 +98,17 @@ Denwen.Analytics = Backbone.Model.extend({
      mpq.track(
       'Product Profile View',
       {'source'  : source});
+  },
+
+  // User opens new products page
+  //
+  productNewView: function(category_id,category_name,source) {
+    mpq.track("Creation Template Opened", 
+      {
+      'id'      : category_id,
+      'name'    : category_name,
+      'source'  : source
+      });
   }
 
 });

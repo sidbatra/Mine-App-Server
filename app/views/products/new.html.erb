@@ -106,15 +106,17 @@
 
 <script type="text/javascript">
 
-    var productInputView = new Denwen.ProductInputView({
-                                el:$('body'),
-                                category_id:<%=@category.id%>,
-                                category_name:"<%=@category.name%>"});
+  var productInputView = new Denwen.ProductInputView({el:$('body')});
 
-     $(document).ready(function(){
-        var stores = "<%=@stores.map(&:name).join('|')%>".split("|");
-        $("#product_store").autocomplete(stores);
-  });
+   $(document).ready(function(){
+      var stores = "<%=@stores.map(&:name).join('|')%>".split("|");
+      $("#product_store").autocomplete(stores);
+    });
+
+  analytics.productNewView(
+      <%=@category.id%>,
+      "<%=@category.name%>",
+      "<%=@source%>");
 </script>
 
 <%end%>
