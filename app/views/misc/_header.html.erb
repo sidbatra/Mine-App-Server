@@ -5,7 +5,7 @@
     <div id="logo" alt="Felvy">
       <%=link_to image_tag('felvy_logo_white.png', :alt => "Felvy"),
                  logged_in? ? 
-                    user_path(self.current_user) : 
+                    user_path(self.current_user,:src => "top") : 
                     home_path(
                       @origin && @origin != "direct" ? @origin : "",
                       :src => "top")
@@ -84,7 +84,7 @@
 			<ul class="nav_login_list">
 			
 				<%=link_to "<li>Your Closet</li>", 
-                	user_path(self.current_user),
+                	user_path(self.current_user,:src => "dropdown"),
                 	:class => "nav_choice"%>
              	<%=link_to "<li>Log Out</li>", 
                 	logout_path,

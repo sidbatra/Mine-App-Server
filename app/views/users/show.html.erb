@@ -24,7 +24,7 @@
 		    <%@ifollowers.each do |ifollower|%>
 		    	<%=link_to image_tag(ifollower.photo_url,
 		    					:class => "follow_img"),
-		    				user_path(ifollower)%>	
+		    				user_path(ifollower,:src => "follow")%>	
 		     <%end%>
 		     
 		     <div id="blocker"></div>
