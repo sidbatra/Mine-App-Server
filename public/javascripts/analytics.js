@@ -78,6 +78,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("product selected");
   },
 
+  // Validation exception 
+  //
+  productException: function(type) {
+    mpq.track("Product Exception",{'type':type});
+  },
+
   // User creates a product
   //
   productCreated: function() {

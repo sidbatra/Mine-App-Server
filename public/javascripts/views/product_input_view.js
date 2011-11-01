@@ -63,22 +63,27 @@ Denwen.ProductInputView = Backbone.View.extend({
     if($(this.imageEl).val().length < 1) {
       valid = false;
       alert("Please search for a photo of your item.");
+      analytics.productException('No Photo');
     }
     else if($(this.titleEl).val().length < 1) {
       valid = false;
       alert("Please name your item.");
+      analytics.productException('No Title');
     }
     else if($(this.priceEl).val().length < 1) {
       valid = false;
       alert("Please enter the price of your item.");
+      analytics.productException('No Price');
     }
     else if(isNaN($(this.priceEl).val())) {
       valid = false;
       alert("Please enter a valid price.");
+      analytics.productException('Invalid Price');
     }
     else if($(this.storeEl).val().length < 1) {
       valid = false;
       alert("Please enter the store where you bought this item.");
+      analytics.productException('No Store');
     }
 
     this.posting = valid;
