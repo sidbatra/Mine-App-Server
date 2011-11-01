@@ -40,7 +40,7 @@
 	 	<div id="cat_nav">
 	 	
 	 		<%=link_to "All <span class='cat_num'>(#{@user.products_count})</span><br />", 
-	 		user_path(@user)%> 
+	 		user_path(@user,:src => "all")%> 
 	
 		      <%@categories.each do |category|%>
 		        <%=link_to category_filter_link_text(
@@ -48,7 +48,8 @@
 		                    @user),
 		              user_path(
 		                @user,
-		                :category => category.handle)%>
+		                :category => category.handle,
+                    :src => category.handle)%>
 		      <%end%>
 
 	 	</div>

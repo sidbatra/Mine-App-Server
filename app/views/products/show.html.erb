@@ -8,7 +8,7 @@
   <div id="container">
 
     <%=link_to "← " + @product.user.first_name + "'s Collection",
-        user_path(@product.user),
+        user_path(@product.user,:src => "collection"),
         :class => "navigation" %>
     
     <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
@@ -37,7 +37,8 @@
                   <%=link_to image_tag (@product.user.photo_url, 
                                :id => "user_photo",
                                :alt => ""),
-                               user_path(@product.user)%>
+                               user_path(@product.user,
+                                  :src => "product_photo")%>
 
                   <div id="user_name">
                     <%=user_share_text(@product.user)%>

@@ -16,7 +16,7 @@ layout :decide_layout
     page = "show2" if @origin == "home2"
 
     if logged_in? 
-      redirect_to user_path(self.current_user) 
+      redirect_to user_path(self.current_user,:src => "home_redirect") 
     else
       render page
     end

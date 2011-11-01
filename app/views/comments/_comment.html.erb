@@ -3,11 +3,11 @@
               comment.user.photo_url,
               :class => "comment_photo",
               :alt => ""),
-              user_path(comment.user)%>
+              user_path(comment.user,:src => "comment_photo")%>
 	<p class="comment_unit_right">
 		<span class="commenter_name">
       <%=link_to comment.user.first_name + " " + comment.user.last_name,
-                  user_path(comment.user)%>
+                  user_path(comment.user,:src => "comment_name")%>
     </span>
 		<span class="comment_time">
       <%=time_ago_in_words comment.created_at%> ago
