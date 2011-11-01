@@ -32,8 +32,16 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Clicked");
   },
 
+  // User successfully edits byline
+  //
   bylineEditingCompleted: function() {
     mpq.track("Byline Editing Completed");
+  },
+
+  // User starts to type a comment
+  //
+  commentSelected: function() {
+    mpq.track("Comment Selected");
   },
 
   // User creates a comment
