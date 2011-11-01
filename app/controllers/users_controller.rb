@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-    target_url = user_path(@user,:src => "user")
+    target_url = user_path(@user,:src => "login")
 
   rescue => ex
     handle_exception(ex)
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   # Display user's profile
   #
   def show
-    @source     = params[:src] ? params[:src].to_s : ""
+    @source     = params[:src] ? params[:src].to_s : "direct"
     @category   = Category.get(params[:category]) 
 
     @user       = User.find(params[:id])

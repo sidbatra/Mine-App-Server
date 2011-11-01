@@ -183,11 +183,13 @@
         "<%=user_full_name(self.current_user)%>");
     <%end%>
 
-    <%if @source == "product"%>
+    <%if @source == "product_create"%>
       analytics.productCreated();
-    <%elsif @source == "user"%>
+    <%elsif @source == "login"%>
       analytics.userLogin();
     <%end%>
 
+    analytics.userProfileView('<%=@source%>');
   </script>
 <%end%>
+

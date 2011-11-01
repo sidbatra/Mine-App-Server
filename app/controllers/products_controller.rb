@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
                             params[:product],
                             self.current_user.id)
 
-    target_url = user_path(self.current_user,:src => "product")
+    target_url = user_path(self.current_user,:src => "product_create")
 
   rescue => ex
     handle_exception(ex)
