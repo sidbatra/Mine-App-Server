@@ -111,16 +111,24 @@ class Product < ActiveRecord::Base
     save!
   end
 
+  # Path on filesystem for the processed hosted image thumbnail
+  #
+  def thumbnail_path
+    "t_" + image_path
+  end
+
   # Generate url for the photo
   #
   def photo_url
-    is_hosted ? FileSystem.url(orig_image_url) : orig_image_url
+    is_hosted ? FileSystem.url(image_path) : orig_image_url
   end
 
   # Conditional upon hosting and orig_thumb_url status
   #
   def thumbnail_url
-    !is_hosted && orig_thumb_url.present? ? orig_thumb_url : photo_url
+    is_hosted ? 
+      FileSystem.url(is_processed ? thumbnail_path : image_path) :
+      (orig_thumb_url.present? ? orig_thumb_url : orig_image_url)
   end
 
 
