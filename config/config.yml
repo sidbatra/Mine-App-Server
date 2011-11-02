@@ -11,6 +11,8 @@ common: &common
   :queue:
     :proc: hasit_processing
   :max_processing_attempts: 3
+  :asset_hosts_count: 4
+  :edge_servers_count: 7
   :success: success
   :error: error
   :msg:
@@ -92,7 +94,7 @@ production: &production
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: denwen-hasit-production
   :edge_server: http://edge%d.felvy.com
-  :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
+  :asset_host: http://static%d.felvy.com
   :emails:
     :noreply: Felvy <noreply@felvy.com>
     :contact: Felvy <contact@felvy.com>
