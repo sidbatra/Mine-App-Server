@@ -698,7 +698,33 @@ h1 {
 	float: left;
 	margin-left: 5px;
 	margin-bottom: 5px;
+	position: relative;
+	display: block;
+	background: pink;
 }
+
+.label_tag {
+	height: 26px;
+	line-height: 22px;
+	color: white;
+	background: #333333;
+	font-size: 11px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: url('/images/label_pointer_down.png') no-repeat;
+	margin-top: 4px;
+	position: absolute;
+	top: -30px;
+	padding: 0 8px;
+	display: none;
+	border: 0;
+	overflow: visible;
+	position: absolute;
+}
+
+.follow_img:hover .label_tag {
+	display:block;
+}
+
 
 #profile_details {
 	height: 50px;
@@ -802,13 +828,13 @@ h1 {
 
 #closet_top {
  	height: 17px;
- 	background-image: url('/images/closet_top_bg.gif');
+ 	background-image: url('/images/closet_top_light_b_bg.gif');
 }
 
 #closet_rows {
 	height: 1%;
 	overflow: hidden;
- 	background-image: url('/images/closet_row_bg.gif');
+ 	background-image: url('/images/closet_row_light_b_bg.gif');
  	background-repeat: repeat-y;
 }
 
@@ -877,19 +903,18 @@ h1 {
 	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif; 
 	font-size: 13px;
 	margin-top: 11px;
-	margin-bottom: 12px; 
+	margin-bottom: 13px; 
 	color: #333333;
 }
 
-.product_endorsement, .product_endorsement_sample { /* as a class, refers to profile page items, as an id, refers to item page items */
-	font-family: Georgia, Times New Roman, serif; 
+.product_particulars, .product_particulars_sample { /* as a class, refers to profile page items, as an id, refers to item page items */
+	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;  
 	color: #999999;
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 150%;
-	height: 80px;
 }
 
-.product_title_sample, .product_endorsement_sample {
+.product_title_sample, .product_particulars_sample {
 	color: #cccccc;
 }
 
@@ -898,7 +923,7 @@ h1 {
 	bottom: 9px;
 	right: 11px;
 	font-family: Arial, sans-serif;
-	font-size: 14px;
+	font-size: 13px;
 	color: #999999;
 }
 

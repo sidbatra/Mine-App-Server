@@ -26,15 +26,10 @@
           :length 	  => 80, 
           :omissions 	=> "…")%>
         </p>
-        <p class="product_endorsement">
-          <%#h truncate(product.endorsement, 
-          :length 	  => 80, 
-          :omissions 	=> "…")%>
-        </p>
-
-        <p class="product_endorsement">
-          <%=h product.price%> <br>
-          <%=h product.store ? product.store.name : ""%>
+ 
+        <p class="product_particulars">
+        	<%=h product.store ? product.store.name : ""%><br />
+        	$<%=h product.price.to_i%>
         </p>
   
         <div class="product_comment_count">
