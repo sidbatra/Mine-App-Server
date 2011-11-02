@@ -9,10 +9,10 @@ class ProductObserver < ActiveRecord::Observer
     user = product.user
     user.add_product_worth(product.price,product.category_id)
 
-    #ProcessingQueue.push(
-    #  NotificationManager,
-    #  :new_product,
-    #  product.id)
+    ProcessingQueue.push(
+      NotificationManager,
+      :new_product,
+      product.id)
   end
 
   # Update custom counter cache values
