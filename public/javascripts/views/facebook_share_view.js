@@ -20,7 +20,8 @@ Denwen.FacebookShareView = Backbone.View.extend({
   //Constructs url for opening the Facebook share dialog
   //
   constructUrl: function() {
-    return "http://www.facebook.com/sharer.php?u=" + this.url;
+    return "http://www.facebook.com/sharer.php?u=" + 
+           encodeURIComponent(this.url);
   },
 
   //Settings for the popup window 
