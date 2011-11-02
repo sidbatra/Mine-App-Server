@@ -157,7 +157,9 @@ class Product < ActiveRecord::Base
       FileSystem.store(
         image_path,
         open(file_path),
-        "Content-Type" => "image/jpeg")
+        "Content-Type"  => "image/jpeg",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
       # Create tiny thumbnail
       #
@@ -170,7 +172,9 @@ class Product < ActiveRecord::Base
       FileSystem.store(
         thumbnail_path,
         open(image.path),
-        "Content-Type" => "image/jpeg")
+        "Content-Type" => "image/jpeg",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
       # Create giant thumbnail
       #
@@ -183,12 +187,14 @@ class Product < ActiveRecord::Base
       FileSystem.store(
         giant_path,
         open(image.path),
-        "Content-Type" => "image/jpeg")
+        "Content-Type" => "image/jpeg",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
 
       self.is_hosted     = true
       self.is_processed  = true
-      self.save!
+      self.save(false)
     end
   end
 
