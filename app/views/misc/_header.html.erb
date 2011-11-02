@@ -19,7 +19,7 @@
       
 		<li>
 				<%=link_to "Log In",
-                	fb_auth_path(:source => "login"),
+                	fb_auth_path(:source => @origin ? @origin : "login"),
                 	:class => "nav_menu",
                 	:id => "action_link" %>
 		</li>
