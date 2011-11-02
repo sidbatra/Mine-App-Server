@@ -77,13 +77,13 @@ Denwen.Analytics = Backbone.Model.extend({
   // User cancels product search
   //
   productSearchCancelled: function() {
-    mpq.track("product cancelled");
+    mpq.track("Product Cancelled");
   },
 
   // User selects a product
   //
   productSearchCompleted: function() {
-    mpq.track("product selected");
+    mpq.track("Product Selected");
   },
 
   // Validation exception 
@@ -126,5 +126,3 @@ Denwen.Analytics = Backbone.Model.extend({
   }
 
 });
-
-

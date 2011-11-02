@@ -4,17 +4,19 @@
             :user   => @user,
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
+<a class="large blue awesome invite_friends" id="profile_fb_share"> 
+  <img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">
+  Share your profile
+</a>
+
 <div id="profile_container">
-
-  <%=render :partial => "misc/fbshare"%>
-
 	<div id="profile_right">
 	
 		<!-- sbat: abstract this button shit yo! -->
 	 	<a href="javascript:void(0)" class="large blue awesome invite_friends" id="action_link" onclick="showInviteDialog();">
 	 		<img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">Invite your friends
 	 	</a>
-	 	
+
 	 	<div class="invite_note">Comparing closets is a <em><u>lot</u></em> of fun!</div>
 	 	
 	 	<div id="follower_box">
@@ -172,10 +174,6 @@
   <%=render :partial => "misc/feedback"%>
   <%=render :partial => "misc/invite"%>
 
-  <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
-          type="text/javascript">
-  </script>
-
   <script type="text/javascript">
 
     analytics.userLandsOn('user_<%=@user.id.to_s%>'); 
@@ -185,6 +183,10 @@
       var bylineView  = new Denwen.UserBylineView({
                               model: user, 
                               el:$('#profile_bio')});
+
+      var fbShare     = new Denwen.FacebookShareView({
+                              id:'#profile_fb_share',
+                             url:'<%=user_url(@user.id,:src => "fb")%>'});	
 
       analytics.identifyUser(
         "<%=self.current_user.email%>",
