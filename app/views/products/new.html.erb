@@ -111,7 +111,13 @@
 
    $(document).ready(function(){
       var stores = "<%=@stores.map(&:name).join('|')%>".split("|");
-      $("#product_store").autocomplete(stores);
+      $("#product_store").autocomplete(
+                            stores,{
+                             formatMatch: function(item){
+                              return item[0].replace(/[^\w]/gi, '');},
+                             formatResult: function(item){
+                              return item[0];}
+                             });
     });
 
   analytics.productNewView(
