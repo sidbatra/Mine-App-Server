@@ -13,20 +13,7 @@ Denwen.FacebookInviteView = Backbone.View.extend({
     var self  = this;
     this.id   = this.options.id;
 
-    $(document).ready(function(){self.initializeFB();});
     $(this.id).click(function(){self.showInviteDialog();});
-  },
-
-
-  // Initialize facebook with the application ID 
-  //
-  initializeFB :function(){
-    FB.init({
-      appId  : '245230762190915',
-      status : true,
-      cookie : true,
-      oauth  : true,
-    });
   },
 
   // Handle callback from the invite dialog

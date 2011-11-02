@@ -5,6 +5,9 @@
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
 <div id="profile_container">
+
+  <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+
 	<div id="profile_right">
 	
 		<!-- sbat: abstract this button shit yo! -->
@@ -169,7 +172,6 @@
 
 <%content_for :javascript do%>
   <%=render :partial => "misc/feedback"%>
-  <%=render :partial => "misc/fbjavascriptsdk"%>
 
   <script type="text/javascript">
 
@@ -180,6 +182,8 @@
       var bylineView  = new Denwen.UserBylineView({
                               model: user, 
                               el:$('#profile_bio')});
+
+      var fb          = new Denwen.FacebookView();
 
       var fbInvite    = new Denwen.FacebookInviteView({
                               id:'#action_link'});
