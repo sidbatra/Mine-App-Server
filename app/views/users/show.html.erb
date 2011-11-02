@@ -42,7 +42,7 @@
 	 	
 	 	<div id="cat_nav">
 	 	
-	 		<%=link_to "All <span class='cat_num'>(#{@user.products_count})</span><br />", 
+	 		<%=link_to "All <span class='cat_num'>#{@user.products_count}</span><br />", 
 	 		user_path(@user,:src => "all")%> 
 	
 		      <%@categories.each do |category|%>

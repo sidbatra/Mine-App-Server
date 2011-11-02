@@ -6,10 +6,6 @@
 
 
   <div id="container">
-
-    <%=link_to "← " + @product.user.first_name + "'s Collection",
-        user_path(@product.user,:src => "collection"),
-        :class => "navigation" %>
     
     <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
     <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
@@ -30,39 +26,28 @@
 
           
           <div id="right">
-            <div id="right_content">
-
-                <div id="right_titlebox">
+          
+          	<div id="right_user_image">
                 
-                  <%=link_to image_tag (@product.user.photo_url, 
-                               :id => "user_photo",
-                               :alt => ""),
-                               user_path(@product.user,
-                                  :src => "product_photo")%>
+              <%=link_to image_tag (@product.user.photo_url, 
+                           :alt => ""),
+                           user_path(@product.user,
+                              :src => "product_photo")%>
+                                  
+           	</div>
 
-                  <div id="user_name">
-                    <%=user_share_text(@product.user)%>
-                  </div>
-
-                  <div id="item_name">
-                    <%=h @product.title%>
-                  </div>
-                </div> <!--right_titlebox-->
-
-                <div id="right_commentbox">
-                  <div id="speechmarks_open">
-                  </div>
-                  <div id="user_comment">
-                    <%#h @product.endorsement%>
-                    <%=h @product.price%> <br>
-                    <%=h @product.store ? @product.store.name : ""%> 
-                  </div>
-                  <div id="speechmarks_close">
-                  </div>
-                </div> <!--right_commentbox-->
-                
-                <div id="blocker"></div>
-            </div> <!-- right_content -->
+            <table id="right_text">
+            	<tr>
+            		<td>
+            			<div>
+	            			<%=user_share_text(@product.user)%><br />
+	               			<span class="right_title"><%=h @product.title%></span><br />
+	                		for <span class="right_price">$<%=h @product.price%></span> at <span class="right_store"><%=h @product.store ? @product.store.name : ""%></span>
+            			</div>
+            		</td>
+            	</tr>
+             </table>
+             
           </div> <!-- right -->
 
       </div>
@@ -72,6 +57,8 @@
     <div id="blocker"></div>
 
     <div id="comments_container">
+    
+     <%=h @product.endorsement%>
 
       <%if logged_in?%>
       
@@ -107,7 +94,7 @@
 
       analytics.userLandsOn('product_<%=@product.id.to_s%>');
 
-      center_based_on_element('#container',<%=logged_in? ? 50 : 50%>);
+      /* center_based_on_element('#container',<#=logged_in? ? 50 : 50%>); */
 
       var comment = new Denwen.Comment({
                           'defaultData':$('#comment_data').val(),

@@ -144,7 +144,7 @@ body.home2 {
 
 .button_home2 {
 	position: absolute;
-	left: 333px;
+	left: 331px;
 }
 
 #tiny.home2 {
@@ -202,7 +202,7 @@ body.home2 {
 /*-------------------- Navbar (Home1 only) --------------------*/
 
 #header {
-	height: 45px;
+	height: 40px;
 	background: #333333;
 }
 
@@ -216,7 +216,7 @@ body.home2 {
 
 #logo {
 	width: 640px;
-	height: 47px;
+	height: 40px;
 	margin-left:-1px;
 	float: left;
 	position: absolute;
@@ -224,7 +224,7 @@ body.home2 {
 }
 
 .nav {
-	height: 45px;
+	height: 40px;
 	position: absolute;
 	right: 15px;
 	cursor: pointer;
@@ -260,8 +260,8 @@ body.home2 {
 
 .nav_menu {
 	display: block;
-	height: 45px;
-	line-height: 45px;
+	height: 40px;
+	line-height: 40px;
 	padding: 0 12px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #dddddd;

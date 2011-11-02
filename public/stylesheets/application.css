@@ -46,7 +46,7 @@ h1 {
 
 #logo {
 	width: 640px;
-	height: 47px;
+	height: 40px;
 	margin-left:-1px;
 	float: left;
 	position: absolute;
@@ -79,7 +79,7 @@ h1 {
 }
 
 #header {
-	height: 45px;
+	height: 40px;
 /* 	background: white; */
 	background: #333333 /*url('/images/alert-overlay.png') repeat-x */;
 }
@@ -190,7 +190,7 @@ h1 {
 	width: 885px;
 	height: 400px;
 	position: relative;
-	top: 50px; /* change dynamically with JS.io */
+	margin-top: 30px; /* change dynamically with JS.io */
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -267,66 +267,46 @@ h1 {
 
 #right {
 	width: 485px;
-	position: relative;
 }
 
-#right_content, #right_new_content {
+#right_text td {
+	height: 400px;
+	vertical-align: middle;
+}
+
+#right_text td div {
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
+	color: #999999;
+	font-size: 14px;
+	line-height: 24px;
+	padding-left: 16px;
 	border-left: 1px solid #dddddd;
-	margin-left: 40px;
-	padding-left: 20px;
 }
 
-#right_content { margin-top: 127px; }
-#right_new_content { margin-top: 70px; }
-
-#right_titlebox {
-	width: 355px;
-	padding-left: 65px;
-	position: relative;
-	line-height: 150%;
-	margin-bottom: 12px;
+#right_user_image {
+	height: 400px;
+	line-height: 400px;
+	float: left;
+	padding: 0px 16px 0px 32px;
 }
 
-#user_photo {
+#right_user_image img {
 	width: 50px;
 	height: 50px;
 	max-width: 50px;
 	max-height: 50px;
-	position: absolute;
-	left: 0;
-	top: 0;
+	vertical-align: middle;
 }
 
-#right_commentbox {
-	width: 420px;
-	line-height: 150%;
-	margin-top: 13px;
-}
-
-#speechmarks_open, #speechmarks_close {
-	width: 50px;
-	height: 30px;
-	float: left;
-}
-
-#speechmarks_open { background: url('/images/speechmarks_open.png') no-repeat; }
-#speechmarks_close { background: url('/images/speechmarks_close.png') no-repeat; }
-
-#user_comment {
-	font-family: Georgia, Times New Roman, serif;
-	float:left;
-	max-width:290px;
-	width: expression(this.width > 290 ? 290: true);
-	padding: 0 15px;
-	color: #999999;
+.right_title {
+	font-family: 'FuturaStdBold', Arial, sans-serif; 
 	font-size: 16px;
-	line-height: 150%;
+	color: #333333;
 }
 
-#user_name {
-	font-family: 'FuturaStdBook', Arial, sans-serif; 
-	color: #999999;
-	font-size: 14px;
+.right_price, .right_store {
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	color: #666666;
 }
 
 .is_sharing {
@@ -336,7 +316,6 @@ h1 {
 #item_name {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 16px;
-	margin-bottom: 12px;
 }
 
 #right_commentbox {
@@ -487,8 +466,6 @@ h1 {
 }
 
 .navigation {
-	position: absolute;
-	top: -32px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #791a10;
 	font-size: 12px;
@@ -508,7 +485,7 @@ h1 {
 	border: 1px solid #dddddd;
 	text-align: center;
 	position: absolute;
-	top: 173px;
+	top: 176px;
 	background: white;
 }
 
@@ -534,7 +511,7 @@ h1 {
 }
 
 .nav {
-	height: 45px;
+	height: 40px;
 	position: absolute;
 	right: 15px;
 	cursor: pointer;
@@ -570,10 +547,10 @@ h1 {
 
 .nav_menu {
 	display: block;
-	height: 45px;
-	line-height: 45px;
+	height: 40px;
+	line-height: 40px;
 	padding: 0 12px;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #dddddd;
 	font-size: 14px;
 }
@@ -651,7 +628,7 @@ h1 {
 #closet_stats {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 150%;
 	padding: 15px 0;
 	border-bottom: 1px solid #dddddd;
@@ -660,21 +637,23 @@ h1 {
 
 .stat_num {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
-	font-size: 20px;
+	font-size: 16px;
 	color: #333333;
 }
 
 #cat_nav {
-	font-family: 'FuturaStdBold', Arial, sans-serif;
-	font-size: 16px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
 	color: #791A10;
-	line-height: 175%;
+	line-height: 220%;
 	padding: 15px 0;
 	border-bottom: 1px solid #dddddd;
 }
 
 .cat_num {
 	font-size: 12px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
 }
 
 .invite_note {
@@ -772,20 +751,20 @@ h1 {
 	border-top: 1px solid #dddddd;
 	border-left: 1px solid #dddddd;
 	margin-bottom: 24px;
-	height: 83px;
+	height: 79px;
 	width: 616px;
 }
 
 .suggestion {
 	float: left;
 	width: 153px;
-	height: 40px;
+	height: 38px;
 	border-right: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 	background: white;
 	text-align: center;
 	font-size: 13px;
-	line-height: 40px;
+	line-height: 38px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 }
@@ -942,8 +921,12 @@ h1 {
 	display: block;
 }
 
+#comments {
+	margin-top: -18px;
+}
+
 .comment_unit {
-	padding-top: 20px;
+	padding-top: 16px;
 	overflow: hidden;
 }
 
@@ -1102,7 +1085,7 @@ h1 {
 
 .awesome { 
 	font-family: 'FuturaStdBold', Arial, sans-serif; 
-	font-size: 16px;
+	font-size: 14px;
 	border: 0;
 	overflow: visible;
 	position: absolute;
