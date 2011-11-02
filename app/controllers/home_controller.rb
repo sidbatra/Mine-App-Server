@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     elsif logged_in? 
       redirect_to user_path(self.current_user,:src => "home_redirect") 
     else
+      @source = params[:src] ? params[:src].to_s : "direct"
       @layout = @origin == "home2" ? "home2" : "home1"
     end
   end
