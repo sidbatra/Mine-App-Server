@@ -4,11 +4,6 @@
             :user   => @user,
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
-<a class="large blue awesome invite_friends" id="profile_fb_share"> 
-  <img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">
-  Share your profile
-</a>
-
 <div id="profile_container">
 	<div id="profile_right">
 	
@@ -28,13 +23,14 @@
         <%end%>
 
 		    <%@ifollowers.each do |ifollower|%>
-		    	<%=link_to "<div class='label_tag'>#{user_full_name(ifollower)}</div>",
-		    				user_path(ifollower,:src => "follow"),
-		    				:class => "follow_img"%>	
-		    				
+		    	<%=link_to image_tag(ifollower.photo_url, 
+		    					:class => "follow_img"),
+		    				user_path(ifollower,:src => "follow")
+		    	%>	
 		     <%end%>
 		     
-		     <div id="blocker"></div>
+		     
+		 <div id="blocker"></div>
 
 	    </div>
 	
@@ -184,10 +180,6 @@
       var bylineView  = new Denwen.UserBylineView({
                               model: user, 
                               el:$('#profile_bio')});
-
-      var fbShare     = new Denwen.FacebookShareView({
-                              id:'#profile_fb_share',
-                             url:'<%=user_url(@user.id,:src => "fb")%>'});	
 
       analytics.identifyUser(
         "<%=self.current_user.email%>",

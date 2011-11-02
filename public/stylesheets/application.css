@@ -693,38 +693,12 @@ h1 {
 }
 
 .follow_img {
-	width: 40px;
-	height: 40px;
 	float: left;
+	height: 40px;
+	width: 40px;
 	margin-left: 5px;
 	margin-bottom: 5px;
-	position: relative;
-	display: block;
-	background: pink;
 }
-
-.label_tag {
-	height: 26px;
-	line-height: 22px;
-	color: white;
-	background: #333333;
-	font-size: 11px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	background: url('/images/label_pointer_down.png') no-repeat;
-	margin-top: 4px;
-	position: absolute;
-	top: -30px;
-	padding: 0 8px;
-	display: none;
-	border: 0;
-	overflow: visible;
-	position: absolute;
-}
-
-.follow_img:hover .label_tag {
-	display:block;
-}
-
 
 #profile_details {
 	height: 50px;
