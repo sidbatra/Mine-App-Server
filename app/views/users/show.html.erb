@@ -8,7 +8,7 @@
 	<div id="profile_right">
 	
 		<!-- sbat: abstract this button shit yo! -->
-	 	<a href="javascript:void(0)" class="large blue awesome invite_friends" id="action_link" onclick="showInviteDialog();">
+	 	<a href="javascript:void(0)" class="large blue awesome invite_friends" id="action_link"> 
 	 		<img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">Invite your friends
 	 	</a>
 
@@ -169,7 +169,7 @@
 
 <%content_for :javascript do%>
   <%=render :partial => "misc/feedback"%>
-  <%=render :partial => "misc/invite"%>
+  <%=render :partial => "misc/fbjavascriptsdk"%>
 
   <script type="text/javascript">
 
@@ -181,6 +181,16 @@
                               model: user, 
                               el:$('#profile_bio')});
 
+<<<<<<< HEAD
+=======
+      var fbShare     = new Denwen.FacebookShareView({
+                              id:'#profile_fb_share',
+                             url:'<%=user_url(@user.id,:src => "fb")%>'});	
+
+      var fbInvite    = new Denwen.FacebookInviteView({
+                              id:'#action_link'});
+
+>>>>>>> 0f65d8d0d25c3476e18f291a7518daf096eb3097
       analytics.identifyUser(
         "<%=self.current_user.email%>",
         "<%=user_full_name(self.current_user)%>");
