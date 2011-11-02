@@ -36,7 +36,7 @@
 	
 	 	<div id="closet_stats">
 	 		<span class="stat_num"><%=@user.products_count%></span> items worth <br />
-	 		<span class="stat_num">$<%=@user.products_price.to_i%></span> 
+	 		<span class="stat_num"><%=display_currency @user.products_price%></span> 
 	 		in <%=is_current_user(@user.id) ? "your" : @user.first_name + "'s"%> closet.
 	 	</div>
 	 	

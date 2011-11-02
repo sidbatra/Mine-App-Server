@@ -42,7 +42,7 @@
             			<div>
 	            			<%=user_share_text(@product.user)%><br />
 	               			<span class="right_title"><%=h @product.title%></span><br />
-	                		for <span class="right_price">$<%=h @product.price%></span> at <span class="right_store"><%=h @product.store ? @product.store.name : ""%></span>
+	                		for <span class="right_price"><%=h display_currency(@product.price)%></span> at <span class="right_store"><%=h @product.store ? @product.store.name : ""%></span>
             			</div>
             		</td>
             	</tr>

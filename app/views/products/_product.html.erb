@@ -29,7 +29,7 @@
  
         <p class="product_particulars">
         	<%=h product.store ? product.store.name : ""%><br />
-        	$<%=h product.price.to_i%>
+        	<%=h display_currency(product.price) if product.price%>
         </p>
   
         <div class="product_comment_count">
