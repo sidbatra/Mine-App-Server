@@ -5,7 +5,8 @@ Denwen.CommentInputView = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #comment_post": "post"
+    "click #comment_post"  : "post",
+    "focus #comment_data"  : "commentFocus"
   },
 
   // Constructor logic
@@ -49,6 +50,11 @@ Denwen.CommentInputView = Backbone.View.extend({
       });
 
     analytics.commentCreated();
+  },
+
+  // Fired when user focuses on comment box
+  //
+  commentFocus: function() {
   }
 
 });

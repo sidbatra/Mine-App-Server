@@ -6,7 +6,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   //
   events: {
     "click #product_search"   : "search",
-    "keypress #product_query" 	  : "queryKeystroke",
+    "keypress #product_query" : "queryKeystroke",
     "click #cancel_button"    : "cancelButtonClicked"
   },
 
@@ -19,6 +19,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     this.imagesBoxEl  = "#chooser";
     this.imagesEl     = "#results";
     this.shadowEl     = "#shadow";
+    this.moreEl       = "#scroll_for_more_results";
 
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
@@ -46,7 +47,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
       //e.cancelBubble = true;
-	  //e.returnValue = false;
+      //e.returnValue = false;
       this.search();
       return false;
     }
@@ -88,6 +89,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     $(this.shadowEl).fadeIn(500);
     $(this.imagesEl).html('');
     $(this.imagesBoxEl).show();
+    $(this.moreEl).show();
 
     this.images.search(query);
 
@@ -121,6 +123,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     }
     else if(this.images.isSearchDone()) {
       this.images.disableSearch();
+      $(this.moreEl).hide();
     }
     else {
       this.resizeEnded();

@@ -18,6 +18,7 @@ require 'ar-extensions/import/mysql'
 #
 include DW
 include CryptoManagement 
+include ImageProcessing
 include NotificationManagement
 include Storage
 include QueueManagement

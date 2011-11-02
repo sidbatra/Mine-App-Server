@@ -28,13 +28,8 @@ module DW
       # Share the new product on facebook
       #
       def self.new_product(product_id)
-        product = Product.find(product_id,:include => :user)
-        product.share(
-          product_url(
-            product.id,
-            product.handle,
-            :src => "fb",
-            :host => CONFIG[:host]))
+        product = Product.find(product_id)
+        product.host
       end
       
       # Make a user follow all his Facebook friends in our user base 

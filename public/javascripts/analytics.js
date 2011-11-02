@@ -32,8 +32,16 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Clicked");
   },
 
+  // User successfully edits byline
+  //
   bylineEditingCompleted: function() {
     mpq.track("Byline Editing Completed");
+  },
+
+  // User starts to type a comment
+  //
+  commentSelected: function() {
+    mpq.track("Comment Selected");
   },
 
   // User creates a comment
@@ -69,13 +77,13 @@ Denwen.Analytics = Backbone.Model.extend({
   // User cancels product search
   //
   productSearchCancelled: function() {
-    mpq.track("product cancelled");
+    mpq.track("Product Cancelled");
   },
 
   // User selects a product
   //
   productSearchCompleted: function() {
-    mpq.track("product selected");
+    mpq.track("Product Selected");
   },
 
   // Validation exception 
@@ -118,5 +126,3 @@ Denwen.Analytics = Backbone.Model.extend({
   }
 
 });
-
-

@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
   validates_presence_of     :title
   validates_presence_of     :price
   validates_numericality_of :price
-  validates_presence_of     :image_url
+  validates_presence_of     :orig_image_url
   validates_presence_of     :user_id
   validates_presence_of     :store_id
   validates_presence_of     :category_id
@@ -37,16 +37,16 @@ class Product < ActiveRecord::Base
   #
   def self.add(attributes,user_id)
     create!(
-      :title        => attributes['title'],
-      :website_url  => attributes['website_url'],
-      :image_url    => attributes['image_url'],
-      :thumb_url    => attributes['thumb_url'],
-      :is_hosted    => attributes['is_hosted'],
-      :query        => attributes['query'],
-      :price        => attributes['price'],
-      :category_id  => attributes['category_id'],
-      :store_id     => attributes['store_id'],
-      :user_id      => user_id)
+      :title            => attributes['title'],
+      :source_url       => attributes['source_url'],
+      :orig_image_url   => attributes['orig_image_url'],
+      :orig_thumb_url   => attributes['orig_thumb_url'],
+      :is_hosted        => attributes['is_hosted'],
+      :query            => attributes['query'],
+      :price            => attributes['price'],
+      :category_id      => attributes['category_id'],
+      :store_id         => attributes['store_id'],
+      :user_id          => user_id)
   end
 
   # Fetch all the products for the given user 
@@ -111,16 +111,91 @@ class Product < ActiveRecord::Base
     save!
   end
 
+  # Path on filesystem for the processed hosted image thumbnail
+  #
+  def thumbnail_path
+    "t_" + image_path
+  end
+
+  # Path on filesystem for the processed hosted giant image
+  #
+  def giant_path
+    "g_" + image_path
+  end
+
   # Generate url for the photo
   #
   def photo_url
-    is_hosted ? FileSystem.url(image_url) : image_url
+    is_hosted ? 
+      FileSystem.url(is_processed ? giant_path : image_path) : 
+      orig_image_url
   end
 
-  # Conditional upon hosting and thumb_url status
+  # Conditional upon hosting and orig_thumb_url status
   #
   def thumbnail_url
-    !is_hosted && thumb_url.present? ? thumb_url : photo_url
+    is_hosted ? 
+      FileSystem.url(is_processed ? thumbnail_path : image_path) :
+      (orig_thumb_url.present? ? orig_thumb_url : orig_image_url)
+  end
+
+  # Pull image from source and host on S3
+  #
+  def host
+    self.image_path  = Base64.encode64(
+                         SecureRandom.hex(10) + 
+                         Time.now.to_i.to_s).chomp + ".jpg"
+
+    file_path        = Tempfile.new(image_path).path
+
+    system("wget '#{orig_image_url}' --output-document '#{file_path}'")
+
+    if File.exists? file_path
+
+      # Store original image
+      #
+      FileSystem.store(
+        image_path,
+        open(file_path),
+        "Content-Type"  => "image/jpeg",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create tiny thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 150,:height => 150})
+
+      FileSystem.store(
+        thumbnail_path,
+        open(image.path),
+        "Content-Type" => "image/jpeg",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create giant thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 350,:height => 350})
+
+      FileSystem.store(
+        giant_path,
+        open(image.path),
+        "Content-Type" => "image/jpeg",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+
+      self.is_hosted     = true
+      self.is_processed  = true
+      self.save(false)
+    end
   end
 
 
