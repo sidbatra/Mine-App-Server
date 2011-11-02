@@ -1,6 +1,3 @@
-<%content_for :body_attribute do%>
-	<%="style='overflow:hidden'"%>
-<%end%>
 
 <div id="container" class="home1">
 
@@ -33,19 +30,4 @@
 </div> <!-- container -->
 
 
-
-<%content_for :javascript do%>
-
-  <%=render :partial => "misc/feedback"%>
-
-  <script type="text/javascript">
-   $(document).ready(function(){
-     mpq.register_once({'landed_on' : '<%=@origin%>'});
-     mpq.track('landed on homepage',{
-      'source'  : '<%=@source%>',
-      'origin'  : '<%=@origin%>'});
-    });
-  </script>
-
-<%end%>
 
