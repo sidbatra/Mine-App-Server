@@ -181,16 +181,9 @@
                               model: user, 
                               el:$('#profile_bio')});
 
-<<<<<<< HEAD
-=======
-      var fbShare     = new Denwen.FacebookShareView({
-                              id:'#profile_fb_share',
-                             url:'<%=user_url(@user.id,:src => "fb")%>'});	
-
       var fbInvite    = new Denwen.FacebookInviteView({
                               id:'#action_link'});
 
->>>>>>> 0f65d8d0d25c3476e18f291a7518daf096eb3097
       analytics.identifyUser(
         "<%=self.current_user.email%>",
         "<%=user_full_name(self.current_user)%>");
