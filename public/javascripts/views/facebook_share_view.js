@@ -30,8 +30,8 @@ Denwen.FacebookShareView = Backbone.View.extend({
     leftPos = (screen.width)  ? (screen.width-w)/2  : 0;
     topPos  = (screen.height) ? (screen.height-h)/2 : 0;
     
-   return 'width='+ w +',height='+ h +',top='+ topPos +',left='+ leftPos +
-          'toolbar=1,status=1,resizable=1,scrollbars=1'
+   return 'width=' + w + ',height=' + h + ',top=' + topPos + ',left=' + 
+          leftPos + ',toolbar=1,status=1,resizable=1,scrollbars=1'
   },
 
   // Opens Facebook share dialog as a popup to share 
