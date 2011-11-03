@@ -34,6 +34,31 @@ class UserPresenter < BasePresenter
     " closet."
   end
 
+  # Generate filter links for the closet
+  #
+  def closet_filter_links(categories)
+    html = h.link_to_if user.products_count != 0,
+                  "All <span class='cat_num'>" + 
+                    user.products_count.to_s +
+                    "</span><br/>",
+                  h.user_path(user,:src => "all")
+
+    categories.each do |category|
+      category_count = user.products_category_count(category.id) 
+
+      html += h.link_to_if category_count != 0,
+                  category.name +  
+                    " <span class='cat_num'>" +
+                    category_count.to_s +
+                    "</span><br/>",
+                  h.user_path(user,
+                    :category => category.handle,
+                    :src      => "filter")
+    end
+
+    html
+  end
+
   # Message displaying people you're following
   #
   def following_message

@@ -29,7 +29,6 @@
 
 
 	<div id="profile_right">
-	
     <%=render "invite"%>
 	 	
 	 	<div id="follower_box">
@@ -49,20 +48,7 @@
 	 	</div>
 	 	
 	 	<div id="cat_nav">
-	 	
-	 		<%=link_to "All <span class='cat_num'>#{@user.products_count}</span><br />", 
-	 		user_path(@user,:src => "all")%> 
-	
-		      <%@categories.each do |category|%>
-		        <%=link_to category_filter_link_text(
-		                    category,
-		                    @user),
-		              user_path(
-		                @user,
-		                :category => category.handle,
-                    :src      => "filter")%>
-		      <%end%>
-
+      <%=@user_presenter.closet_filter_links(@categories)%>
 	 	</div>
 	 	
 	</div>
