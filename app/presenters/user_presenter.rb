@@ -1,4 +1,4 @@
-# Presenter for the User mode
+# Presenter for the User model
 #
 class UserPresenter < BasePresenter
   presents :user

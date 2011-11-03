@@ -1,48 +1,28 @@
+<%product_presenter = presenter_for(product)%>
+
 <li>
-  <div class="product"> 
+  <div class='product'> 
   
-    <a class="product_link" href="<%=product_path product.id,
-                                        product.handle,
-                                        :src => "profile"%>">
+    <a class='product_link' href='<%=product_presenter.url('profile')%>'>
         
-      <div class="product_left">
-      
-        <%=image_tag product.thumbnail_url, 
-                    :class => "product_left_image",
-                    :alt => "",
-                    :onclick => "if($.browser.msie && "\
-                                "parseInt($.browser.version,10) == 7){"\
-                                "window.location="\
-                                "'#{product_path product.id,
-                                      product.handle,
-                                      :src => "profile"}'}"
-              %>
-                  
-      </div> <!-- product_left -->
+      <div class='product_left'>
+        <%=product_presenter.preview_image%>
+      </div> 
   
-      <div class="product_right">
-        <p class="product_title">
-          <%=h truncate(product.title, 
-          :length 	  => 80, 
-          :omissions 	=> "…")%>
+      <div class='product_right'>
+        <p class='product_title'>
+          <%=h product_presenter.preview_title%>
         </p>
  
-        <p class="product_particulars">
-        	<%=h product.store ? product.store.name : ""%><br />
-        	<%=h display_currency(product.price) if product.price%>
+        <p class='product_particulars'>
+        	<%=h product_presenter.store_name%><br />
+        	<%=product_presenter.price%>
         </p>
   
-        <div class="product_comment_count">
-          <%if product.comments_count != 0%>
-            <%=product.comments_count%>
-            <%=image_tag "comment_bubble.gif", 
-                :class => "product_comment_bubble",
-                :alt => ""
-            %>
-          <%end%>
+        <div class='product_comment_count'>
+          <%=product_presenter.comment_bubble%>
         </div>
-            
-      </div> <!-- product_right -->
+      </div>
       
     </a> <!-- product_link -->
 
