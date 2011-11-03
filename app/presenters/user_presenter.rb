@@ -3,10 +3,28 @@
 class UserPresenter < BasePresenter
   presents :user
 
+  # Full name of the user
+  #
+  def full_name
+    user.first_name + " " + user.last_name
+  end
+
+  # Large display picture on the profile
+  #
+  def large_picture
+    h.image_tag user.photo_url, :class => 'profile_user_photo', :alt => ''
+  end
+
   # Display name for the user's closet
   #
   def closet_name
     user.first_name + "'s closet"
+  end
+
+  # Full title of the closet
+  #
+  def closet_title
+    self.full_name + "'s Closet"
   end
 
   # Full url of the user's closet
@@ -30,8 +48,26 @@ class UserPresenter < BasePresenter
     h.content_tag(:span, h.display_currency(user.products_price), 
       :class => 'stat_num') +
     " in " + 
-    (h.is_current_user(user.id) ? 'your' : @user.first_name + "'s") +
+    (h.is_current_user(user.id) ? 'your' : user.first_name + "'s") +
     " closet."
+  end
+
+  # Generate links for creating in different categories
+  #
+  def closet_create_links(categories)
+    text = ""
+
+    categories.each do |category|
+      text += h.link_to category.id == 8 ? 
+                          "Add anything!" :
+                          "Add your #{category.name.downcase} ›",
+                        new_product_path(
+                          :category => category.handle,
+                          :src      => "profile"),
+                        :class => "suggestion"
+    end
+
+    text
   end
 
   # Generate filter links for the closet
