@@ -13,6 +13,12 @@ module ApplicationHelper
     presenter
   end
 
+  # Format price or currency in general
+  #
+  def display_currency(amount)
+    '$' + ('%.2f' % amount).chomp('.00')
+  end
+
   # Blocker tells browser to break float layouts
   #
   def blocker
