@@ -1,3 +1,15 @@
+<%content_for :opengraphtags do%>
+  <meta property="og:site_name" content="Felvy"/>
+  <meta property="og:title" content="<%=@user.first_name + "'s closet"%>"/>
+  <meta property="og:description" 
+        content ="<%=@user.first_name + " is using Felvy to share what " + 
+                  (@user.gender == "male" ? "he" : "she") + 
+                  " buys and owns. Its fun, and free!" %>"/>
+  <meta property="og:url" content="<%=user_url(@user,:src=>"fb")%>"/>
+  <%if @products.present?%>
+  <meta property="og:image" content="<%=@products.first.thumbnail_url%>"/>
+  <%end%>
+<%end%>
 
 <%=render :partial => "misc/welcome", 
           :locals => {
@@ -177,13 +189,13 @@
 
     analytics.userLandsOn('user_<%=@user.id.to_s%>'); 
 
+    var fb = new Denwen.FacebookView();
+
     <%if is_current_user(@user.id)%>
       var user        = new Denwen.User(<%=@user.to_json%>);
       var bylineView  = new Denwen.UserBylineView({
                               model: user, 
                               el:$('#profile_bio')});
-
-      var fb          = new Denwen.FacebookView();
 
       var fbInvite    = new Denwen.FacebookInviteView({
                               id:'#action_link'});
