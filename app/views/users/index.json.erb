@@ -1,0 +1,5 @@
+<%-@response = Hash.new-%>
+<%-@response[:html] = render(
+                        :partial    => "users/user.html.erb",
+                        :collection =>  @ifollowers)-%>
+<%=@response.to_json-%>
