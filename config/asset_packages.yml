@@ -25,7 +25,7 @@ javascripts:
   - views/product_input_view
   - views/product_image_view
   - views/product_images_view
-  - views/facebook_share_view
+  - views/facebook_view
   - views/facebook_invite_view
 stylesheets: 
 - application: 
