@@ -1,38 +1,48 @@
+<%@user_presenter = presenter_for(@user)%>
+
+
+<%content_for :head do%>
+  <%=render :partial  => "facebook/og",
+            :locals   => {
+              :title        => @user_presenter.closet_name,
+              :description  => @user_presenter.usage_description,
+              :url          => @user_presenter.closet_url('fb'),
+              :image        => @user_presenter.closet_image(@products)}%>
+<%end%>
+
 
 <%=render :partial => "misc/welcome", 
           :locals => {
             :user   => @user,
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
+
+
+
 <div id="profile_container">
+
+  <%=render :partial => "facebook/like", 
+            :locals => {
+              :send_button  => true,
+              :width        => 450,
+              :faces        => true}%>
+
+
 	<div id="profile_right">
 	
-		<!-- sbat: abstract this button shit yo! -->
-	 	<a href="javascript:void(0)" class="large blue awesome invite_friends" id="action_link"> 
-	 		<img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">Invite your friends
-	 	</a>
-
-	 	<div class="invite_note">Comparing closets is a <em><u>lot</u></em> of fun!</div>
+    <%=render "invite"%>
 	 	
 	 	<div id="follower_box">
 	 	
-	 		<div class="profile_right_title"><%=is_current_user(@user.id) ? "People you're following" : @user.first_name + " is following"%> </div>  
+	 		<div class="profile_right_title">
+        <%=@user_presenter.following_message%>
+      </div>  
 			
-        <%if @ifollowers.empty?%>
-        	<%=is_current_user(@user.id) ? "Your aren't following anyone yet." : @user.first_name + " isn't following anyone yet."%>
-        <%end%>
+      <%=render @user.ifollowers%> 
 
-		    <%@ifollowers.each do |ifollower|%>
-		    	<%=link_to image_tag(ifollower.photo_url, 
-		    					:class => "follow_img"),
-		    				user_path(ifollower,:src => "follow")
-		    	%>	
-		     <%end%>
-		     
-		     
-		 <div id="blocker"></div>
-
-	    </div>
+		  <%=blocker%>
+    </div> 
+    <!--end of follower_box-->
 	
 	 	<div id="closet_stats">
 	 		<span class="stat_num"><%=@user.products_count%></span> items worth <br />
@@ -52,7 +62,7 @@
 		              user_path(
 		                @user,
 		                :category => category.handle,
-                    :src      => category.handle)%>
+                    :src      => "filter")%>
 		      <%end%>
 
 	 	</div>
@@ -169,11 +179,12 @@
 
 <%content_for :javascript do%>
   <%=render :partial => "misc/feedback"%>
-  <%=render :partial => "misc/fbjavascriptsdk"%>
 
   <script type="text/javascript">
 
     analytics.userLandsOn('user_<%=@user.id.to_s%>'); 
+
+    var fb = new Denwen.FacebookView();
 
     <%if is_current_user(@user.id)%>
       var user        = new Denwen.User(<%=@user.to_json%>);
@@ -195,7 +206,9 @@
       analytics.userLogin();
     <%end%>
 
-    analytics.userProfileView('<%=@source%>');
+    analytics.userProfileView(
+      '<%=@source%>',
+      '<%=@category ? @category.name : ""%>');
   </script>
 <%end%>
 

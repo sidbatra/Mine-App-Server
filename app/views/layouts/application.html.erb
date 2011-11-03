@@ -7,13 +7,13 @@
 
     <%=yield :head%>
 
-
     <%=csrf_meta_tag%>
   </head>
 
   <body <%=yield :body_attribute%>>
     
-    
+    <div id="fb-root"></div>    
+
     <%=render "misc/header"%>
  
     <%=yield%>
