@@ -29,7 +29,10 @@
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
 
-  		<div class="left_delete">Delete this item</div>
+  		<div class="left_delete">
+        <%=@product_presenter.destroy_link%>
+      </div>
+
     
       <!-- navigation to other products -->
       <%=@product_presenter.next(@next_path)%>

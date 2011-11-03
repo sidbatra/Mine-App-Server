@@ -18,6 +18,16 @@ class ProductPresenter < BasePresenter
     h.product_url product.id,product.handle,:src => source
   end
 
+  # Anchor tag for deleting the product
+  #
+  def destroy_link
+    if h.current_user.id == product.user_id
+      h.link_to "Delete this item",
+                {:action => 'destroy',:id => product.id},
+                :method => :delete
+    end
+  end
+
   # Link to the next product
   #
   def next(path)
