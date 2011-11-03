@@ -683,21 +683,23 @@ h1 {
 }
 
 .right_button {
-	height: 28px;
-	width: 173px;
-	line-height: 28px;
+	height: 40px;
+	width: 219px;
+	line-height: 40px;
 	text-align: center;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	color: #333333;
-	font-size: 12px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	color: white;
+	background: #8d1c11 url('/images/alert-overlay.png') repeat-x;
+	font-size: 13px;
 	clear: both;
 	margin-left: 5px;
-/* 	background-image: url('/images/button_chrome_bg.png'); */
-	border-color: #999999 #999999 #888888;
-    border-style: solid;
-    border-width: 1px;
+	border-bottom: 1px solid #5c140c;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+.right_button:hover {
+	background-color: #72190f;
 }
 
 #closet_stats {
@@ -827,20 +829,21 @@ h1 {
 }
 
 #suggestions {
-	border-top: 1px solid #dddddd;
-	border-left: 1px solid #dddddd;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
 	margin-bottom: 24px;
-	height: 79px;
+	height: 78px;
 	width: 616px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .suggestion {
 	float: left;
 	width: 153px;
 	height: 38px;
-	border-right: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
-	background: white;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	background: white url('/images/alert-overlay.png') repeat-x; 
 	text-align: center;
 	font-size: 13px;
 	line-height: 38px;
@@ -850,7 +853,7 @@ h1 {
 
 .suggestion:hover {
 	color: #791a10;
-	background: #f8f8f8 url('/images/alert-overlay.png') repeat-x; 
+	background: #f8f8f8;
 }
 
 #closet {
