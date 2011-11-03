@@ -1,23 +1,39 @@
+<!-- Generate presenters for the view -->
+<%@user_presenter     = presenter_for(@product.user)%>
+<%@product_presenter  = presenter_for(@product)%>
 
-  <%=render :partial => "misc/welcome", 
+
+<!-- Inject facebook og tags into the head -->
+<%content_for :head do%>
+  <%=render :partial  => 'facebook/og',
+            :locals   => {
+              :title        => @product_presenter.page_title(
+                                  @user_presenter.full_name),
+              :description  => @user_presenter.usage_description,
+              :url          => @product_presenter.url('fb'),
+              :image        => @product_presenter.thumbnail_url}%>
+<%end%>
+
+
+<!-- Welcome box to signup if user is not logged in -->
+  <%=render :partial => 'misc/welcome', 
         :locals => {
-          :user   => @product.user,
-          :source => "product_" + @product.id.to_s} unless logged_in?%>
+          :user_presenter => @user_presenter,
+          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
 
 
   <div id="container">
   
   	<div id="product_section">
   	
-			    <%=link_to "← Back to " + @product.user.first_name + "'s closet",
-	        user_path(@product.user,:src => "collection"),
-	        :class => "navigation" %>
-  		
+      <!-- link to closet -->
+      <%=@user_presenter.closet_breadcrumb 'collection'%>
 
   		<div class="left_delete">Delete this item</div>
     
-	    <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
-	    <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
+      <!-- navigation to other products -->
+      <%=@product_presenter.next(@next_path)%>
+      <%=@product_presenter.prev(@prev_path)%>
 	
 	
 	    <!-- product -->
@@ -74,7 +90,7 @@
 	             
 	          </div> <!-- right -->
 	          
-	          <div id="blocker"></div>
+            <%=blocker%>
 	
 	      </div>
 	      
@@ -100,7 +116,7 @@
 	                    
 	      <%end%> <!-- comment entry box -->
 	      
-	      <div id="blocker"></div>
+        <%=blocker%>
       
       </div>
 
@@ -109,11 +125,11 @@
         <%=render @comments%> 
       </div> <!-- comments -->
         
-      <div id="blocker"></div>
+      <%=blocker%>
       
     </div> <!-- comment_container -->
       
-      <div id="blocker"></div>
+    <%=blocker%>
     
   </div> <!-- container -->
 
@@ -121,8 +137,6 @@
     <script type="text/javascript">
 
       analytics.userLandsOn('product_<%=@product.id.to_s%>');
-
-      /* center_based_on_element('#container',<#=logged_in? ? 50 : 50%>); */
 
       var comment = new Denwen.Comment({
                           'defaultData':$('#comment_data').val(),

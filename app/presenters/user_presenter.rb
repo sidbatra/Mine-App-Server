@@ -40,6 +40,20 @@ class UserPresenter < BasePresenter
     h.user_url(user,:src => src)
   end
 
+  # Relative path of the user's closet
+  #
+  def closet_path(src)
+    h.user_path(user,:src => src)
+  end
+
+  # Link to go get back to the closet
+  #
+  def closet_breadcrumb(src)
+    h.link_to "← Back to " + user.first_name + "'s closet",
+              closet_path(src),
+              :class => 'navigation' 
+  end
+
   # Image representing the closet - image of
   # last product uploaded
   #
