@@ -678,35 +678,18 @@ h1 {
 }
 
 .invite_friends {
-	width: 197px;
-	text-align: center;
-}
-
-.right_button {
-	height: 40px;
-	width: 219px;
-	line-height: 40px;
-	text-align: center;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
-	color: white;
-	background: #8d1c11 url('/images/alert-overlay.png') repeat-x;
-	font-size: 13px;
-	clear: both;
-	margin-left: 5px;
-	border-bottom: 1px solid #5c140c;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.right_button:hover {
-	background-color: #72190f;
+	display: block;
+	margin: 3px 0 0 5px;
+	font-size: 12px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #791A10;
 }
 
 #closet_stats {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 	font-size: 14px;
-	line-height: 150%;
+	line-height: 24px;
 	padding: 12px 0;
 	border-bottom: 1px solid #dddddd;
 	border-top: 1px solid #dddddd;
@@ -722,10 +705,20 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	text-transform: uppercase;
 	font-size: 12px;
-	color: #791A10;
+	color: #666666;
 	line-height: 220%;
 	padding: 12px 0;
 	border-bottom: 1px solid #dddddd;
+}
+
+#cat_nav a {
+	color: #791A10;
+}
+
+#cat_add {
+	width: 50px;
+	float:right;
+	text-transform: none;
 }
 
 .cat_num {
@@ -733,18 +726,8 @@ h1 {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 }
 
-.invite_note {
-	margin-top: 53px;
-	text-align: center;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	font-size: 12px;
-	color: #999999;
-	padding-bottom: 15px;
-	border-bottom: 1px solid #dddddd;
-}
-
 #follower_box {
-	padding: 0px 0 12px;
+	padding: 0 0 12px;
 	margin-left:-5px;
 }
 
@@ -778,10 +761,7 @@ h1 {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 31px;
 	font-size: 24px;
-}
-
-.fb-like {
-	display: inline;
+	width: 560px;
 }
 
 #profile_bio {
@@ -795,7 +775,7 @@ h1 {
 	font-size: 14px;
 	line-height: 26px;
 	height: 24px;
-	color: #999999;
+	color: #666666;
 }
 
 #user_byline {
@@ -853,7 +833,7 @@ h1 {
 
 .suggestion:hover {
 	color: #791a10;
-	background: #f8f8f8;
+	background: #f8f8f8 url('/images/alert-overlay.png') repeat-x;
 }
 
 #closet {
@@ -1070,6 +1050,37 @@ h1 {
 	background-color: #323232;
 }
 
+.update {
+	height: 26px;
+	line-height: 24px;
+	padding: 0 8px;
+	background: #525252 url('/images/alert-overlay.png') repeat-x; 
+	color: #fff; 
+	text-decoration: none;
+	overflow: visible;
+	font-size: 10px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+	border: none;
+	cursor: pointer;
+	display: inline;
+	vertical-align: top;
+	margin-left: -5px;
+}
+
+.update:hover {
+	background-color: #323232;
+}
+
+#footer {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+    line-height: 20px;
+	font-size: 14px;
+	color: #cccccc;
+	width: 100%;
+	text-align: center;
+	margin: 20px 0px;
+}
 
 /* ------------------------------ Box Overlay */
 
