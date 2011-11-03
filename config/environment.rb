@@ -47,7 +47,8 @@ Rails::Initializer.run do |config|
   # Add custom folders
   config.autoload_paths +=  [
                               File.join(Rails.root,'app','observers'),
-                              File.join(Rails.root,'app','processors') ]
+                              File.join(Rails.root,'app','processors'),
+                              File.join(Rails.root,'app','presenters')]
 
 
   # Register observers
