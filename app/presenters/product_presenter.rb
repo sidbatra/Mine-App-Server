@@ -3,6 +3,7 @@
 class ProductPresenter < BasePresenter
   presents :product
   delegate :thumbnail_url, :to => :product
+  delegate :title, :to => :product
 
   # Relative path for the product
   #
@@ -64,6 +65,18 @@ class ProductPresenter < BasePresenter
                               "parseInt($.browser.version,10) == 7){"\
                               "window.location="\
                               "'#{path('profile')}'}"
+  end
+
+  # Large product image linked to it's original source
+  #
+  def large_image
+    h.link_to_if !product.is_hosted,
+                  h.image_tag(
+                    product.photo_url,
+                    :id => 'left_photo',
+                    :alt => ''),
+                  product.source_url,
+                  :target => '_blank'
   end
 
   # Generate html for the comment bubble used in the preview
