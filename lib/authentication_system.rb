@@ -34,10 +34,10 @@ module DW
       @current_user   = new_user
     end
 
-    # Test if the given user_id belongs to the current user
+    # Test if the given user is the current user
     #
-    def is_current_user(user_id)
-      logged_in? && @current_user.id == user_id
+    def is_current_user(user)
+      logged_in? && @current_user.id == user.id
     end
     
     # Filter method to enforce a login requirement.

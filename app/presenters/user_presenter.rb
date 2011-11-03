@@ -2,11 +2,18 @@
 #
 class UserPresenter < BasePresenter
   presents :user
+  delegate :first_name, :to => :user
 
   # Full name of the user
   #
   def full_name
-    user.first_name + " " + user.last_name
+    user.first_name + ' ' + user.last_name
+  end
+
+  # He / she
+  #
+  def pronoun
+    user.is_male? ? 'he' : 'she'
   end
 
   # Large display picture on the profile
@@ -48,7 +55,7 @@ class UserPresenter < BasePresenter
     h.content_tag(:span, h.display_currency(user.products_price), 
       :class => 'stat_num') +
     " in " + 
-    (h.is_current_user(user.id) ? 'your' : user.first_name + "'s") +
+    (h.is_current_user(user) ? 'your' : user.first_name + "'s") +
     " closet."
   end
 
@@ -63,8 +70,8 @@ class UserPresenter < BasePresenter
                           "Add your #{category.name.downcase} ›",
                         new_product_path(
                           :category => category.handle,
-                          :src      => "profile"),
-                        :class => "suggestion"
+                          :src      => 'profile'),
+                        :class => 'suggestion'
     end
 
     text
@@ -77,7 +84,7 @@ class UserPresenter < BasePresenter
                   "All <span class='cat_num'>" + 
                     user.products_count.to_s +
                     "</span><br/>",
-                  h.user_path(user,:src => "all")
+                  h.user_path(user,:src => 'all')
 
     categories.each do |category|
       category_count = user.products_category_count(category.id) 
@@ -89,7 +96,7 @@ class UserPresenter < BasePresenter
                     "</span><br/>",
                   h.user_path(user,
                     :category => category.handle,
-                    :src      => "filter")
+                    :src      => 'filter')
     end
 
     html
@@ -101,11 +108,11 @@ class UserPresenter < BasePresenter
     message = ""
 
     if user.ifollowers.present?
-      message = h.is_current_user(user.id) ? 
+      message = h.is_current_user(user) ? 
                   "People you're following" : 
                   user.first_name + " is following"
     else
-      message = h.is_current_user(user.id) ?
+      message = h.is_current_user(user) ?
                   "You aren't following anyone yet." :
                   user.first_name + " isn't following anyone yet."
     end
@@ -118,7 +125,7 @@ class UserPresenter < BasePresenter
   #
   def usage_description
     user.first_name + " is using Felvy to share what " +
-    (user.is_male? ? "he" : "share") +
+    (user.is_male? ? "he" : "she") +
     " buys and owns. Its fun, and free!"
   end
 

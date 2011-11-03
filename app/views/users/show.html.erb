@@ -1,8 +1,10 @@
+<!-- Generate presenters to render this page -->
 <%@user_presenter = presenter_for(@user)%>
 
 
+<!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
-  <%=render :partial  => "facebook/og",
+  <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @user_presenter.closet_name,
               :description  => @user_presenter.usage_description,
@@ -11,73 +13,75 @@
 <%end%>
 
 
-<%=render :partial => "misc/welcome", 
+<!-- Welcome box to signup if user is not logged in -->
+<%=render :partial => 'misc/welcome', 
           :locals => {
-            :user   => @user,
-            :source => @user_presenter.source_id} unless logged_in?%>
+            :user_presenter => @user_presenter,
+            :source         => @user_presenter.source_id} unless logged_in?%>
 
 
 
 
-<div id="profile_container">
+<div id='profile_container'>
 
-  <%=render :partial => "facebook/like", 
+  <!-- like button for the page -->
+  <%=render :partial => 'facebook/like', 
             :locals => {
               :send_button  => true,
               :width        => 450,
               :faces        => false}%>
 
-
-	<div id="profile_right">
-
-    <%=render "invite"%>
-	 	<div id="follower_box">
+  
+  <!-- Right column -->
+	<div id='profile_right'>
+    <%=render 'invite' if is_current_user(@user)%>
 	 	
-	 	<div class="profile_right_title">
-       		<%=@user_presenter.following_message%>
-      	</div>  
+    <!-- Following images and header -->
+	 	<div id='follower_box'>
+
+	 		<div class='profile_right_title'>
+        <%=@user_presenter.following_message%>
+      </div>  
 			
-      	<%=render @user.ifollowers%>
-      	
-      	<div class="right_button">Invite your friends</div>
+      <%=render @user.ifollowers%>
+      
+      <!--div class="right_button">Invite your friends</div-->
 
 		  <%=blocker%>
     </div> 
-    <!--end of follower_box-->
 	
-	 	<div id="closet_stats">
+	 	<div id='closet_stats'>
       <%=@user_presenter.closet_stats%>
 	 	</div>
 	 	
-	 	<div id="cat_nav">
+	 	<div id='cat_nav'>
       <%=@user_presenter.closet_filter_links(@categories)%>
 	 	</div>
 	 	
 	</div>
-  <!-- end of profile_right-->
 
 
 
+  <!-- Left column -->
+	<div id='profile_main'>
 
-	<div id="profile_main">
 
-
-		<div id="profile_details">
+		<div id='profile_details'>
       
       <%=@user_presenter.large_picture%>
 		
-			<div id="profile_details_right">
+			<div id='profile_details_right'>
 			
-		    <div id="profile_username">
+		    <div id='profile_username'>
 		      <%=@user_presenter.closet_title%>
 		    </div>
 		
-		    <div id="profile_bio">
-		      <div id="user_byline_default">	
-            <%=render :partial => "byline",
+		    <div id='profile_bio'>
+		      <div id='user_byline_default'>	
+            <%=render :partial  => 'byline',
                       :locals   => {:user => @user}%>
-		      </div> <!--user_byline_default-->
-		    </div> <!--profile_bio-->
+		      </div>
+		    </div> 
 		      
 		  </div> <!--profile_details_right-->
 
@@ -85,26 +89,26 @@
 			
 
 		
-    <%if is_current_user(@user.id)%>
-      <div id="suggestions">
+    <%if is_current_user(@user)%>
+      <div id='suggestions'>
         <%=@user_presenter.closet_create_links(@categories)%>
-      </div> <!-- suggestions -->
+      </div>
     <%end%>
   
 
-    <div id="closet">
-      <div id="closet_top">
+    <div id='closet'>
+      <div id='closet_top'>
       </div>
       
-      <div id="closet_rows">
-        <div id="products">
+      <div id='closet_rows'>
+        <div id='products'>
           <ul>								
             <%=render @products%>
           </ul>
-        </div> <!-- products -->
-      </div> <!-- closet_rows -->
+        </div>
+      </div> 
       
-      <div id="closet_bottom">
+      <div id='closet_bottom'>
       </div>
     </div>
     <!-- end of closet -->
@@ -125,7 +129,7 @@
 
     var fb = new Denwen.FacebookView();
 
-    <%if is_current_user(@user.id)%>
+    <%if is_current_user(@user)%>
       var user        = new Denwen.User(<%=@user.to_json%>);
       var bylineView  = new Denwen.UserBylineView({
                               model: user, 

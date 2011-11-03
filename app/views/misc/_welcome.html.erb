@@ -1,14 +1,14 @@
-<div id="welcome_box">
-	<%=user.first_name%> is sharing what 
-  <%=user_pronoun(user)%> owns and buys on Felvy.<br>
+<div id='welcome_box'>
+	<%=user_presenter.first_name%> is sharing what 
+  <%=user_presenter.pronoun%> owns and buys on Felvy.<br>
 
-	<span class="welcome_subtitle">It's fun, and free!</span>
+	<span class='welcome_subtitle'>It's fun, and free!</span>
 	
 	<%=link_to image_tag(
-				"f.png",
-				:class => "f",
-				:alt   => "f") + "Sign up with Facebook &rsaquo;",
+				'f.png',
+				:class => 'f',
+				:alt   => 'f') + 'Sign up with Facebook &rsaquo;',
 				fb_auth_path(:source => source),
-				:class => "large blue awesome welcome_button",
-				:id    => "action_link"%>
+				:class => 'large blue awesome welcome_button',
+				:id    => 'action_link'%>
 </div>
