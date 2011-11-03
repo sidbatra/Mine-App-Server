@@ -1,53 +1,48 @@
-<%content_for :opengraphtags do%>
-  <meta property="og:site_name" content="Felvy"/>
-  <meta property="og:title" content="<%=@user.first_name + "'s closet"%>"/>
-  <meta property="og:description" 
-        content ="<%=@user.first_name + " is using Felvy to share what " + 
-                  (@user.gender == "male" ? "he" : "she") + 
-                  " buys and owns. Its fun, and free!" %>"/>
-  <meta property="og:url" content="<%=user_url(@user,:src=>"fb")%>"/>
-  <%if @products.present?%>
-  <meta property="og:image" content="<%=@products.first.thumbnail_url%>"/>
-  <%end%>
+<%@user_presenter = presenter_for(@user)%>
+
+
+<%content_for :head do%>
+  <%=render :partial  => "facebook/og",
+            :locals   => {
+              :title        => @user_presenter.closet_name,
+              :description  => @user_presenter.usage_description,
+              :url          => @user_presenter.closet_url('fb'),
+              :image        => @user_presenter.closet_image(@products)}%>
 <%end%>
+
 
 <%=render :partial => "misc/welcome", 
           :locals => {
             :user   => @user,
             :source => "user_" + @user.id.to_s} unless logged_in?%>
 
+
+
+
 <div id="profile_container">
 
-  <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+  <%=render :partial => "facebook/like", 
+            :locals => {
+              :send_button  => true,
+              :width        => 450,
+              :faces        => true}%>
+
 
 	<div id="profile_right">
 	
-		<!-- sbat: abstract this button shit yo! -->
-	 	<a href="javascript:void(0)" class="large blue awesome invite_friends" id="action_link"> 
-	 		<img alt="invite friends" class="f_friends" src="/images/f_friends.png?1319755601">Invite your friends
-	 	</a>
-
-	 	<div class="invite_note">Comparing closets is a <em><u>lot</u></em> of fun!</div>
+    <%=render "invite"%>
 	 	
 	 	<div id="follower_box">
 	 	
-	 		<div class="profile_right_title"><%=is_current_user(@user.id) ? "People you're following" : @user.first_name + " is following"%> </div>  
+	 		<div class="profile_right_title">
+        <%=@user_presenter.following_message%>
+      </div>  
 			
-        <%if @ifollowers.empty?%>
-        	<%=is_current_user(@user.id) ? "Your aren't following anyone yet." : @user.first_name + " isn't following anyone yet."%>
-        <%end%>
+      <%=render @user.ifollowers%> 
 
-		    <%@ifollowers.each do |ifollower|%>
-		    	<%=link_to image_tag(ifollower.photo_url, 
-		    					:class => "follow_img"),
-		    				user_path(ifollower,:src => "follow")
-		    	%>	
-		     <%end%>
-		     
-		     
-		 <div id="blocker"></div>
-
-	    </div>
+		  <%=blocker%>
+    </div> 
+    <!--end of follower_box-->
 	
 	 	<div id="closet_stats">
 	 		<span class="stat_num"><%=@user.products_count%></span> items worth <br />

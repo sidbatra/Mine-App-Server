@@ -116,6 +116,12 @@ class User < ActiveRecord::Base
     image_url
   end
 
+  # Tests gender to see if user is male
+  #
+  def is_male?
+    gender == "male"
+  end
+
   # Test if the remember_token for the user cookie has expired
   #
   def remember_token?

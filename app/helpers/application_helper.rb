@@ -13,4 +13,10 @@ module ApplicationHelper
     presenter
   end
 
+  # Blocker tells browser to break float layouts
+  #
+  def blocker
+    "<div id='blocker'></div>"
+  end
+
 end
