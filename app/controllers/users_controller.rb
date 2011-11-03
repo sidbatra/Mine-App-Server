@@ -57,6 +57,19 @@ class UsersController < ApplicationController
 
     @categories = Category.all
   end
+  
+  # Get user's iFollowers
+  #
+  def index
+    @ifollowers = User.find(params[:id]).ifollowers
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
 
   # Update user's byline
   #
