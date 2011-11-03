@@ -33,19 +33,14 @@
 
 	 		<div class='profile_right_title'>
         <%=@user_presenter.following_message%>
-     
-      		</div>  
+      </div>  
       	
-				<div>
-      			<%=render @user.ifollowers%>
-      			<%=blocker%>
-      			</div>
+      <div>
+        <%=render @user.ifollowers%>
+        <%=blocker%>
+      </div>
       			
-      			<%=render 'invite' if is_current_user(@user)%>
-      
-
-      
-      <!--div class="right_button">Invite your friends</div-->
+      <%=render 'invite' if is_current_user(@user)%>
 
 		  <%=blocker%>
     </div> 
@@ -56,34 +51,11 @@
 	 	
 	 	<div id='cat_nav'>
 	 	
-	 		<div id="cat_add">
-	 			<br />
-	 			<%=link_to "Add ›<br />",
-	              new_product_path(:category => "shoes",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "accessories",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "clothing",:src => "filters")%>
-	              
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "decor",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "cosmetics",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "electronics",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "jewelry",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "anything",:src => "filters")%>
+	 		<div id='cat_add'><br/>
+        <%=@user_presenter.closet_create_links_near_filters(@categories)%>
 	 		</div>
+
       <%=@user_presenter.closet_filter_links(@categories)%>
-      
 	 	</div>
 	 	
 	</div>

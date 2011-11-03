@@ -107,6 +107,22 @@ class UserPresenter < BasePresenter
     text
   end
 
+  # Generate links for creating in different categories from near
+  # the filter links
+  #
+  def closet_create_links_near_filters(categories)
+	  html = ""
+    
+    categories.each do |category|
+      html += h.link_to "Add ›<br/>",
+                        new_product_path(
+                          :category => category.handle,
+                          :src => "filters")
+    end
+
+    html
+  end
+
   # Generate filter links for the closet
   #
   def closet_filter_links(categories)
