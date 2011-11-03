@@ -1,0 +1,36 @@
+
+		        <%if is_current_user(user.id)%>
+		        
+		          <!-- byline editing -->
+		          <%=text_field_tag "user_byline",
+		              self.current_user.byline,
+		              :style => "display:none"%>
+		          <input id="user_update" class="small_button" value="Update" 
+		              title="Update" type="button" alt="Update" 
+		              style="display:none">
+		
+		          
+		          <!-- byline display -->
+		          <span id="user_byline_text">
+		            <%=h self.current_user.byline%>
+		          </span>
+		          <input id="user_edit" value="‹ Edit" title="Edit" 
+		              type="button" alt="Edit"
+		              style="<%=self.current_user.byline.present? ?
+		                          '' : 
+		                          'display:none'%>">        
+		          
+		          <!-- byline empty --> 
+		          <%unless self.current_user.byline.present?%>
+		            <%=link_to "Describe your closet's style",
+		                "javascript:void(0)",
+		                :id => "user_edit_initiate"%>
+		          <%end%>
+		            
+		        <%else%>
+		
+		          <%=user.byline.present? ? 
+		              user.byline : 
+		              "Collecting since " + user.created_at.strftime('%B %Y')%>
+		
+		        <%end%> 

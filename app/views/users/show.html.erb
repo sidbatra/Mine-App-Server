@@ -14,7 +14,7 @@
 <%=render :partial => "misc/welcome", 
           :locals => {
             :user   => @user,
-            :source => "user_" + @user.id.to_s} unless logged_in?%>
+            :source => @user_presenter.source_id} unless logged_in?%>
 
 
 
@@ -29,9 +29,8 @@
 
 
 	<div id="profile_right">
-	
-    <!--<#=render "invite"%>-->
-	 	
+
+    <%=render "invite"%>
 	 	<div id="follower_box">
 	 	
 	 	<div class="profile_right_title">
@@ -47,136 +46,74 @@
     <!--end of follower_box-->
 	
 	 	<div id="closet_stats">
-	 		<span class="stat_num"><%=@user.products_count%></span> items worth <br />
-	 		<span class="stat_num"><%=display_currency @user.products_price%></span> 
-	 		in <%=is_current_user(@user.id) ? "your" : @user.first_name + "'s"%> closet.
+      <%=@user_presenter.closet_stats%>
 	 	</div>
 	 	
 	 	<div id="cat_nav">
-	 	
-	 		<%=link_to "All <span class='cat_num'>#{@user.products_count}</span><br />", 
-	 		user_path(@user,:src => "all")%> 
-	
-		      <%@categories.each do |category|%>
-		        <%=link_to category_filter_link_text(
-		                    category,
-		                    @user),
-		              user_path(
-		                @user,
-		                :category => category.handle,
-                    :src      => "filter")%>
-		      <%end%>
-
+      <%=@user_presenter.closet_filter_links(@categories)%>
 	 	</div>
 	 	
 	</div>
+  <!-- end of profile_right-->
+
+
+
 
 	<div id="profile_main">
-	
+
+
 		<div id="profile_details">
-	
-			<%=image_tag @user.photo_url, 
-		      :class => "profile_user_photo",
-		      :alt => ""%>
+      
+      <%=@user_presenter.large_picture%>
 		
 			<div id="profile_details_right">
 			
 		    <div id="profile_username">
-		      <%=user_full_name(@user)%>'s Closet
+		      <%=@user_presenter.closet_title%>
 		    </div>
 		
 		    <div id="profile_bio">
 		      <div id="user_byline_default">	
-		      
-		        <%if is_current_user(@user.id)%>
-		        
-		          <!-- byline editing -->
-		          <%=text_field_tag "user_byline",
-		              self.current_user.byline,
-		              :style => "display:none"%>
-		          <input id="user_update" class="small_button" value="Update" 
-		              title="Update" type="button" alt="Update" 
-		              style="display:none">
-		
-		          
-		          <!-- byline display -->
-		          <span id="user_byline_text">
-		            <%=h self.current_user.byline%>
-		          </span>
-		          <input id="user_edit" value="‹ Edit" title="Edit" 
-		              type="button" alt="Edit"
-		              style="<%=self.current_user.byline.present? ?
-		                          '' : 
-		                          'display:none'%>">        
-		          
-		          <!-- byline empty --> 
-		          <%unless self.current_user.byline.present?%>
-		            <%=link_to "Describe your closet's style",
-		                "javascript:void(0)",
-		                :id => "user_edit_initiate"%>
-		          <%end%>
-		            
-		        <%else%>
-		
-		          <%=@user.byline.present? ? 
-		              @user.byline : 
-		              "Collecting since " + @user.created_at.strftime('%B %Y')%>
-		
-		        <%end%> 
-		      
+            <%=render :partial => "byline",
+                      :locals   => {:user => @user}%>
 		      </div> <!--user_byline_default-->
-		      
 		    </div> <!--profile_bio-->
 		      
 		  </div> <!--profile_details_right-->
-		
+
 		</div> <!--profile_details-->
 			
-		
-		  <%if is_current_user(@user.id)%>
-		  
-		  <!-- instructions 1 -->
-		
-		    <div id="suggestions">
-		      <%@categories.each do |category|%>
-		        <%=link_to category_create_link_text(category),
-		            new_product_path(
-                  :category => category.handle,
-                  :src      => "profile"),
-		            :class => "suggestion"%>
-		      <%end%>
-		    </div> <!-- suggestions -->
-		
-		  <%end%>
-		
-			<!-- instructions 2 -->
-			
-			<div id="closet">
-				<div id="closet_top"></div>
-				
-				<div id="closet_rows">
-					<div id="products">
-						<ul>								
-		
-					      <%if @products.empty?%>
-					        <%#render :partial  => "products/samples",
-					                  :locals   => {:active => is_current_user(@user.id)}%>
-					      <%else%>
-					        <%=render @products%>
-					      <%end%>
-							
-						</ul>
-					</div> <!-- products -->
-				</div> <!-- closet_rows -->
-				
-				<div id="closet_bottom"></div>
 
+		
+    <%if is_current_user(@user.id)%>
+      <div id="suggestions">
+        <%=@user_presenter.closet_create_links(@categories)%>
+      </div> <!-- suggestions -->
+    <%end%>
+  
 
-			</div>
-			
+    <div id="closet">
+      <div id="closet_top">
+      </div>
+      
+      <div id="closet_rows">
+        <div id="products">
+          <ul>								
+            <%=render @products%>
+          </ul>
+        </div> <!-- products -->
+      </div> <!-- closet_rows -->
+      
+      <div id="closet_bottom">
+      </div>
+    </div>
+    <!-- end of closet -->
+
 	</div> <!-- profile_main -->
 
+
 </div> <!-- profile_container -->
+
 
 
 <%content_for :javascript do%>
@@ -184,7 +121,7 @@
 
   <script type="text/javascript">
 
-    analytics.userLandsOn('user_<%=@user.id.to_s%>'); 
+    analytics.userLandsOn('<%=@user_presenter.source_id%>');
 
     var fb = new Denwen.FacebookView();
 

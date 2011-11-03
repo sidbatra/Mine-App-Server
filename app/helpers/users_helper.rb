@@ -27,19 +27,4 @@ module UsersHelper
 	user.gender == "male" ? "his" : "her"
   end
 
-  # Display name for category when used in a create link
-  #
-  def category_create_link_text(category)
-    category.id == 8 ? 
-            "Add anything!" :
-            "Add your #{category.name.downcase} ›" 
-  end
-
-
-  # Display text for category when used in a filter link
-  def category_filter_link_text(category,user)
-    "#{category.name} " + "<span class='cat_num'>#{user.products_category_count(category.id)}</span><br>" 
-  end
-
-
 end
