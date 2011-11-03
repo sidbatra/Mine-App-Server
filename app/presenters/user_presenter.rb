@@ -16,6 +16,18 @@ class UserPresenter < BasePresenter
     user.is_male? ? 'he' : 'she'
   end
 
+  # His / her
+  #
+  def possessive_pronoun
+    user.is_male? ? 'his' : 'her'
+  end
+
+  # Generic bought text with
+  #
+  def bought_text
+    full_name + ' bought ' + possessive_pronoun
+  end
+
   # Large display picture on the profile
   #
   def large_picture(klass='profile_user_photo',src='picture')

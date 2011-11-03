@@ -5,19 +5,22 @@
               :class => "comment_photo",
               :alt => ""),
               user_path(comment.user,:src => "comment_photo")%>
+
 	<p class="comment_unit_right">
 		<span class="commenter_name">
-     		 <%=link_to comment.user.first_name + " " + comment.user.last_name,
-                  user_path(comment.user,:src => "comment_name")%>
-    	</span>
+     <%=link_to comment.user.first_name + " " + comment.user.last_name,
+              user_path(comment.user,:src => "comment_name")%>
+    </span>
     	
 		<span class="comment_time">
-     		<%=time_ago_in_words comment.created_at%> ago
-    	</span><br />
+      <%=time_ago_in_words comment.created_at%> ago
+    </span>
+    
+    <br/>
     	
 		<span class="comment_text">
-      		<%=h comment.data%>
-    	</span>
+      <%=h comment.data%>
+    </span>
 	</p>
 	
 </div>
