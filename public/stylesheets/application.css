@@ -189,7 +189,7 @@ h1 {
 #container {
 	width: 885px;
 	position: relative;
-	margin-top: 30px; /* change dynamically with JS.io */
+	margin-top: 48px; /* change dynamically with JS.io */
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 50px;
@@ -508,8 +508,8 @@ h1 {
 	color: #791a10;
 	font-size: 12px;
 	position:absolute;
-	top: 6px;
-	left: 11px;
+	top: -32px;
+	left: 12px;
 	z-index: 9999;
 }
 
@@ -682,12 +682,30 @@ h1 {
 	text-align: center;
 }
 
+.right_button {
+	height: 28px;
+	width: 173px;
+	line-height: 28px;
+	text-align: center;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #333333;
+	font-size: 12px;
+	clear: both;
+	margin-left: 5px;
+/* 	background-image: url('/images/button_chrome_bg.png'); */
+	border-color: #999999 #999999 #888888;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
 #closet_stats {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 	font-size: 14px;
 	line-height: 150%;
-	padding: 15px 0;
+	padding: 12px 0;
 	border-bottom: 1px solid #dddddd;
 	border-top: 1px solid #dddddd;
 }
@@ -704,7 +722,7 @@ h1 {
 	font-size: 12px;
 	color: #791A10;
 	line-height: 220%;
-	padding: 15px 0;
+	padding: 12px 0;
 	border-bottom: 1px solid #dddddd;
 }
 
@@ -724,7 +742,7 @@ h1 {
 }
 
 #follower_box {
-	padding: 15px 0 10px;
+	padding: 0px 0 12px;
 	margin-left:-5px;
 }
 
@@ -758,6 +776,10 @@ h1 {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 31px;
 	font-size: 24px;
+}
+
+.fb-like {
+	display: inline;
 }
 
 #profile_bio {
@@ -948,7 +970,7 @@ h1 {
 	margin-left: 25px;
 	margin-top: 24px;
 	margin-bottom: 20px; /* this creates space at bottom of page */
-	width: 415px;
+	width: 390px;
 /* 	background: #ffffcc; */
 }
 
@@ -959,7 +981,7 @@ h1 {
 }
 
 #comment_data {
-	width: 314px;
+	width: 289px;
 	height: 20px;
 	line-height: 20px;
 	font-family: 'FuturaStdBook', Arial, sans-serif; 

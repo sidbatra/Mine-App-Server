@@ -29,7 +29,7 @@
             :locals => {
               :send_button  => true,
               :width        => 450,
-              :faces        => true}%>
+              :faces        => false}%>
 
   
   <!-- Right column -->
@@ -43,7 +43,9 @@
         <%=@user_presenter.following_message%>
       </div>  
 			
-      <%=render @user.ifollowers%> 
+      <%=render @user.ifollowers%>
+      
+      <!--div class="right_button">Invite your friends</div-->
 
 		  <%=blocker%>
     </div> 
