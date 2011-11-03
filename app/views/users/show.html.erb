@@ -67,7 +67,7 @@
 		              user_path(
 		                @user,
 		                :category => category.handle,
-                    :src      => category.handle)%>
+                    :src      => "filter")%>
 		      <%end%>
 
 	 	</div>
@@ -211,7 +211,9 @@
       analytics.userLogin();
     <%end%>
 
-    analytics.userProfileView('<%=@source%>');
+    analytics.userProfileView(
+      '<%=@source%>',
+      '<%=@category ? @category.name : ""%>');
   </script>
 <%end%>
 
