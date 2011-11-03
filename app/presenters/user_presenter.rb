@@ -18,8 +18,12 @@ class UserPresenter < BasePresenter
 
   # Large display picture on the profile
   #
-  def large_picture
-    h.image_tag user.photo_url, :class => 'profile_user_photo', :alt => ''
+  def large_picture(klass='profile_user_photo',src='picture')
+    h.link_to h.image_tag(
+                user.photo_url, 
+                :class  => klass,
+                :alt    => ''),
+              closet_path(src)
   end
 
   # Display name for the user's closet
@@ -38,6 +42,20 @@ class UserPresenter < BasePresenter
   #
   def closet_url(src)
     h.user_url(user,:src => src)
+  end
+
+  # Relative path of the user's closet
+  #
+  def closet_path(src)
+    h.user_path(user,:src => src)
+  end
+
+  # Link to go get back to the closet
+  #
+  def closet_breadcrumb(src)
+    h.link_to "← Back to " + user.first_name + "'s closet",
+              closet_path(src),
+              :class => 'navigation' 
   end
 
   # Image representing the closet - image of

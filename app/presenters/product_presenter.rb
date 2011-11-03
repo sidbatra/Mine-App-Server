@@ -2,11 +2,37 @@
 #
 class ProductPresenter < BasePresenter
   presents :product
+  delegate :thumbnail_url, :to => :product
+  delegate :title, :to => :product
 
-  # Url for the product
+  # Relative path for the product
   #
-  def url(source)
+  def path(source)
     h.product_path product.id,product.handle,:src => source
+  end
+  
+  # Absolute path for the product
+  # 
+  def url(source)
+    h.product_url product.id,product.handle,:src => source
+  end
+
+  # Link to the next product
+  #
+  def next(path)
+	    path ? h.link_to('&raquo;',path,:class => 'next') : ''
+  end
+
+  # Link to the prev product
+  #
+  def prev(path)
+	    path ? h.link_to('&laquo;',path,:class => 'previous') : ''
+  end
+
+  # Title of the product page
+  #
+  def page_title(user_name)
+    user_name + "'s " + product.title
   end
 
   # Truncated title
@@ -38,7 +64,19 @@ class ProductPresenter < BasePresenter
                 :onclick  => "if($.browser.msie && "\
                               "parseInt($.browser.version,10) == 7){"\
                               "window.location="\
-                              "'#{url('profile')}'}"
+                              "'#{path('profile')}'}"
+  end
+
+  # Large product image linked to it's original source
+  #
+  def large_image
+    h.link_to_if !product.is_hosted,
+                  h.image_tag(
+                    product.photo_url,
+                    :id => 'left_photo',
+                    :alt => ''),
+                  product.source_url,
+                  :target => '_blank'
   end
 
   # Generate html for the comment bubble used in the preview
@@ -54,6 +92,12 @@ class ProductPresenter < BasePresenter
     end
 
     html
+  end
+
+  # id to uniquely identify a product view
+  #
+  def source_id
+    'product_' + product.id.to_s
   end
 
 end
