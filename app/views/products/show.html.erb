@@ -6,75 +6,103 @@
 
 
   <div id="container">
+  
+  	<div id="product_section">
+  	
+			    <%=link_to "← Back to " + @product.user.first_name + "'s closet",
+	        user_path(@product.user,:src => "collection"),
+	        :class => "navigation" %>
+  		
+
+  		<div class="left_delete">Delete this item</div>
     
-    <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
-    <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
-
-
-    <!-- product -->
-      <div>
-
-          <div id="left" class="photo">
-            <%=link_to_if !@product.is_hosted,
-                          image_tag(
-                            @product.photo_url,
-                            :id => "left_photo",
-                            :alt => ""),
-                          @product.source_url,
-                          :target => "_blank"%>
-          </div> <!-- left -->
-
-          
-          <div id="right">
-          
-          	<div id="right_user_image">
-                
-              <%=link_to image_tag (@product.user.photo_url, 
-                           :alt => ""),
-                           user_path(@product.user,
-                              :src => "product_photo")%>
-                                  
-           	</div>
-
-            <table id="right_text">
-            	<tr>
-            		<td>
-            			<div>
-	            			<%=user_share_text(@product.user)%><br />
-	               			<span class="right_title"><%=h @product.title%></span><br />
-	                		for <span class="right_price"><%=h display_currency(@product.price)%></span> at <span class="right_store"><%=h @product.store ? @product.store.name : ""%></span>
-            			</div>
-            		</td>
-            	</tr>
-             </table>
-             
-          </div> <!-- right -->
-
-      </div>
-    <!-- end of product -->
-
-
-    <div id="blocker"></div>
-
+	    <%=@next_path ? link_to("&raquo;",@next_path, :class => "next") : ""%>
+	    <%=@prev_path ? link_to("&laquo;",@prev_path, :class => "previous") : ""%>
+	
+	
+	    <!-- product -->
+	      <div>
+	
+	          <div id="left" class="photo">
+	          	
+	            <%=link_to_if !@product.is_hosted,
+	                          image_tag(
+	                            @product.photo_url,
+	                            :id => "left_photo",
+	                            :alt => ""),
+	                          @product.source_url,
+	                          :target => "_blank"%>
+	          </div> <!-- left -->
+	
+	          
+	          <div id="right">
+	          
+	          	<div id="right_user_image">
+	                
+	              <%=link_to image_tag (@product.user.photo_url, 
+	                           :alt => ""),
+	                           user_path(@product.user,
+	                              :src => "product_photo")%>
+	                                  
+	           	</div>
+	
+	            <table id="right_text">
+	            	<tr>
+	            		<td>
+	            			<div id="right_text_div">
+		            			<%=user_share_text(@product.user)%><br />
+		               			
+		               			<span class="right_title">
+		               				<%=h @product.title%>
+		               			</span><br />
+		                		
+		                		<%if @product.price%>
+			                		for <span class="right_price"><%=h display_currency(@product.price)%></span> 
+			                		at <span class="right_store"><%=h @product.store ? @product.store.name : ""%></span>
+			                	<%end%>
+			      
+			                	<div id="right_relativist">
+			                		<div id="right_extras">
+			                			<!--<#=h @product.endorsement%><br />-->
+			                		</div>
+			                	</div>
+			                	
+	            			</div>
+	            		</td>
+	            	</tr>
+	             </table>
+	             
+	          </div> <!-- right -->
+	          
+	          <div id="blocker"></div>
+	
+	      </div>
+	      
+		</div> <!-- product_section -->
+	      
+	    <!-- end of product -->
+	
     <div id="comments_container">
-    
-     <%=h @product.endorsement%>
+     
+     <div id="add_comment">
 
-      <%if logged_in?%>
+	      <%if logged_in?%>
+	      
+	        <%=image_tag self.current_user.photo_url,
+	            :id => "comment_photo_self",
+	            :alt => ""%>
+	
+	        <%=text_area_tag "comment_data","Add a comment",
+	            :class => "box_shadow" %>
+	          
+	            <input id="comment_post" class="small_button" 
+	                    value="Post" title="Post" type="button" alt=""> 
+	                    
+	      <%end%> <!-- comment entry box -->
+	      
+	      <div id="blocker"></div>
       
-        <%=image_tag self.current_user.photo_url,
-            :id => "comment_photo_self",
-            :alt => ""%>
-
-        <%=text_area_tag "comment_data","What do you think?",
-            :class => "box_shadow" %>
-          
-        <div id="blocker"></div>
-        <div class="post_comment">
-            <input id="comment_post" class="small_button" 
-                    value="Post Comment" title="Post" type="button" alt="">
-        </div>
-      <%end%> <!-- comment entry box -->
+      </div>
 
 
       <div id="comments">

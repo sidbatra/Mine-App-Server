@@ -32,7 +32,7 @@ body {
 	font-family: font-family: Georgia, Times New Roman, serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	background: #edebeb url('/images/bg_strip.png');
+	background: #edebeb url('/images/bg_strip_40.png');
 	background-repeat: repeat-x;
 	background-attachment:fixed;
 }
@@ -140,15 +140,15 @@ h1 {
 #product_search { 
 	width: 70px; 
 	height: 36px;
+	line-height: 34px;
 	background: #525252 url('/images/alert-overlay.png') repeat-x; 
 	color: #fff; 
 	text-decoration: none;
 	overflow: visible;
 	font-size: 16px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
-	border: 0;
-	overflow: visible;
+	border: none;
 	cursor: pointer;
 	display: inline;
 	vertical-align: top;
@@ -188,11 +188,11 @@ h1 {
 
 #container {
 	width: 885px;
-	height: 400px;
 	position: relative;
 	margin-top: 30px; /* change dynamically with JS.io */
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 50px;
 }
 
 .instructions {
@@ -229,20 +229,40 @@ h1 {
 	z-index: 100;
 }
 
+#product_section {
+	background: white;
+	border: 1px solid #dddddd;
+	position: relative;
+}
+
 #left, #right {
 	height: 400px;
 	float: left;
 }
 
 #left {	
-	width: 350px;
+	width: 390px;
 	height: 350px;
-/*	background:url('/images/photo_frame.png');
-	background-repeat: no-repeat; */
-	border: 1px solid #dddddd;
 	background: white;
-	padding: 24px;
+	padding: 25px;
 	text-align: center;
+	position: relative;
+/* 	background: #ffffcc; */
+}
+
+.left_delete {
+	position: absolute;
+	font-size: 12px;
+	color: #cccccc;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	right: 11px;
+	bottom: 6px;
+	display: block;
+	cursor: pointer;
+}
+
+.left_delete:hover {
+	color: #791a10;
 }
 
 .photo {
@@ -266,7 +286,8 @@ h1 {
 }
 
 #right {
-	width: 485px;
+	width: 443px;
+/* 	background: #ffff00; */
 }
 
 #right_text td {
@@ -274,12 +295,13 @@ h1 {
 	vertical-align: middle;
 }
 
-#right_text td div {
+#right_text_div {
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	color: #999999;
+	width: 344px;
 	font-size: 14px;
 	line-height: 24px;
-	padding-left: 16px;
+	padding: 0 16px;
 	border-left: 1px solid #dddddd;
 }
 
@@ -287,7 +309,7 @@ h1 {
 	height: 400px;
 	line-height: 400px;
 	float: left;
-	padding: 0px 16px 0px 32px;
+	padding: 0px 16px 0px 0px;
 }
 
 #right_user_image img {
@@ -309,6 +331,22 @@ h1 {
 	color: #666666;
 }
 
+#right_relativist {
+	position: relative;
+	clear: both;
+	height: 0px;
+}
+
+#right_extras {
+	position: absolute;
+/* 	font-family: Georgia; */
+	left: -17px;
+	color: #999999;
+	top: 21px;
+/* 	border-left: 1px solid #dddddd; */
+	padding: 0 16px;
+}
+
 .is_sharing {
 	line-height: 50px;
 }
@@ -327,7 +365,7 @@ h1 {
 #blocker { /* enables left border of right_content to stretch down to comment height */
 	clear:both;
 	width: 100%;
-	height: 1px;
+	height: 0px;
 }
 
 #action_button {
@@ -469,36 +507,55 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #791a10;
 	font-size: 12px;
+	position:absolute;
+	top: 6px;
+	left: 11px;
+	z-index: 9999;
 }
 
 .navigation:hover {
-	text-decoration: underline;
+/* 	text-decoration: underline; */
+}
+
+.navigation_whitey {
+	width: 150px;
+	height: 11px;
+	background: white;
+	position: absolute;
+	z-index: 10000;
+	top: 16px;
+	left: 19px;
 }
 
 .next, .previous {
-	width: 48px;
+	width: 36px;
 	height: 48px;
 	font-family: Times, sans-serif;
 	font-size: 48px;
 	line-height: 40px;
 	color: #cccccc;
-	border: 1px solid #dddddd;
 	text-align: center;
 	position: absolute;
 	top: 176px;
 	background: white;
+	z-index: 10000;
 }
 
 .next {
-	right: -60px;
+	right: -18px;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
 }
 
 .previous {
-	left: -60px;
+	left: -18px;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
 }
 
 .previous:hover, .next:hover {
-	border: 1px solid #791a10;
 	color: #791a10;
 }
 
@@ -888,41 +945,50 @@ h1 {
 
 
 #comments_container {
-	margin-top: 20px;
+	margin-left: 25px;
+	margin-top: 24px;
 	margin-bottom: 20px; /* this creates space at bottom of page */
-	width: 400px;
+	width: 415px;
+/* 	background: #ffffcc; */
+}
+
+#add_comment {
+	clear:both;
+	height: 32px;
+	margin-bottom: 6px;
 }
 
 #comment_data {
-	width: 336px;
-	height:30px;
+	width: 314px;
+	height: 20px;
+	line-height: 20px;
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	font-size: 14px;
 	color: #cccccc;
-	border-width: 1px;
-	border-color: #dddddd;
-	border-style: solid;
-	margin-left: 10px;
-	padding: 5px;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	margin-left: 8px;
+	padding: 5px 6px;
+	vertical-align: top;
 	float: left;
 }
 
 #comment_photo_self, .comment_photo {
 	float: left;
-	height: 42px;
-	width:42px;
+	height: 32px;
+	width: 32px;
+}
+
+#comments {
 }
 
 .comment_photo {
 	float: left;
-	height: 42px;
-	width: 42px;
-	margin-right: 10px;
+	height: 32px;
+	width: 32px;
+	margin-right: 8px;
 	display: block;
-}
-
-#comments {
-	margin-top: -18px;
 }
 
 .comment_unit {
@@ -931,9 +997,9 @@ h1 {
 }
 
 .comment_unit_right {
-	line-height: 130%;
-	margin-top: -3px;
-	margin-left: 52px;
+	line-height: 21px;
+	margin-top: -5px;
+	margin-left: 40px;
 	display: block;
 }
 
@@ -952,38 +1018,31 @@ h1 {
 }
 
 .comment_text {
+	vertical-align: top;
 	font-size: 14px;
 	color: #999999;
-/* 	font-family: Georgia, serif; */
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
 }
 
 .small_button {
-	height: 26px;
-	line-height: 24px;
-	border-bottom: 1px solid #1d426b;
-	border-top: 1px solid #6895c8;
-	border-left: 1px solid #6895c8;
-	border-right: 1px solid #6895c8;
-	font-family: 'FuturaStdBold', Arial, sans-serif; 
-	background: #24578f url('/images/alert-overlay.png') repeat-x; 
-	padding: 0px 8px;
-	overflow: visible;
-	display:inline;
-	vertical-align: top;
+	height: 32px;
+	width: 48px;
+	line-height: 30px;
+	background: #525252 url('/images/alert-overlay.png') repeat-x; 
 	color: #fff; 
 	text-decoration: none;
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	overflow: visible;
+	font-size: 12px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+	border: none;
 	cursor: pointer;
+	display: inline;
+	vertical-align: top;
 }
 
 .small_button:hover {
-	background-color: #1e4774;
-}
-
-.post_comment {
-	margin: 4px 0px 0px;
-	text-align: right;
+	background-color: #323232;
 }
 
 
