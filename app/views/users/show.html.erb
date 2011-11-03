@@ -14,7 +14,7 @@
 <%=render :partial => "misc/welcome", 
           :locals => {
             :user   => @user,
-            :source => "user_" + @user.id.to_s} unless logged_in?%>
+            :source => @user_presenter.source_id} unless logged_in?%>
 
 
 
@@ -45,9 +45,7 @@
     <!--end of follower_box-->
 	
 	 	<div id="closet_stats">
-	 		<span class="stat_num"><%=@user.products_count%></span> items worth <br />
-	 		<span class="stat_num"><%=display_currency @user.products_price%></span> 
-	 		in <%=is_current_user(@user.id) ? "your" : @user.first_name + "'s"%> closet.
+      <%=@user_presenter.closet_stats%>
 	 	</div>
 	 	
 	 	<div id="cat_nav">
@@ -68,6 +66,10 @@
 	 	</div>
 	 	
 	</div>
+  <!-- end of profile_right-->
+
+
+
 
 	<div id="profile_main">
 	
@@ -182,7 +184,7 @@
 
   <script type="text/javascript">
 
-    analytics.userLandsOn('user_<%=@user.id.to_s%>'); 
+    analytics.userLandsOn('<%=@user_presenter.source_id%>');
 
     var fb = new Denwen.FacebookView();
 

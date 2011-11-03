@@ -22,6 +22,18 @@ class UserPresenter < BasePresenter
     products.present? ? products.first.thumbnail_url : ''
   end
 
+  # Display html for total products count
+  #
+  def closet_stats
+    h.content_tag(:span, user.products_count.to_s, :class => 'stat_num') +
+    " items worth <br />" +
+    h.content_tag(:span, h.display_currency(user.products_price), 
+      :class => 'stat_num') +
+    " in " + 
+    (h.is_current_user(user.id) ? 'your' : @user.first_name + "'s") +
+    " closet."
+  end
+
   # Message displaying people you're following
   #
   def following_message
@@ -47,6 +59,12 @@ class UserPresenter < BasePresenter
     user.first_name + " is using Felvy to share what " +
     (user.is_male? ? "he" : "share") +
     " buys and owns. Its fun, and free!"
+  end
+
+  # Unique identifier to be used a source
+  #
+  def source_id
+    "user_" + user.id.to_s
   end
 
 
