@@ -21,24 +21,26 @@
 
 <div id="profile_container">
 
-  <%=render :partial => "facebook/like", 
+  <!--<#=render :partial => "facebook/like", 
             :locals => {
               :send_button  => true,
               :width        => 450,
-              :faces        => true}%>
+              :faces        => false}%>-->
 
 
 	<div id="profile_right">
 	
-    <%=render "invite"%>
+    <!--<#=render "invite"%>-->
 	 	
 	 	<div id="follower_box">
 	 	
-	 		<div class="profile_right_title">
-        <%=@user_presenter.following_message%>
-      </div>  
+	 	<div class="profile_right_title">
+       		<%=@user_presenter.following_message%>
+      	</div>  
 			
-      <%=render @user.ifollowers%> 
+      	<%=render @user.ifollowers%>
+      	
+      	<div class="right_button">Invite your friends</div>
 
 		  <%=blocker%>
     </div> 
