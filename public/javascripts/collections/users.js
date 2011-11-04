@@ -2,7 +2,7 @@
 //
 Denwen.Users = Backbone.Collection.extend({
 
-  //Url 
+  // Url 
   //
   url:    '/users',
 
@@ -11,15 +11,4 @@ Denwen.Users = Backbone.Collection.extend({
   initialize: function() {
 
   },
-
-  /* Parse out the results from the response before passing
-  // it to the collection
-  //
-  parse: function(data) {
-    var results = [];
-    var images  = data['SearchResponse']['Image']['Results'];
-
-    return results;
-  }*/
-
 });

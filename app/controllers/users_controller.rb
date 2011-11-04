@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   # Get user's iFollowers
   #
   def index
-    @ifollowers = User.find(params[:id]).ifollowers
+    @user = User.find(params[:id])
 
   rescue => ex
     handle_exception(ex)

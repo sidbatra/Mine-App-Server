@@ -32,12 +32,14 @@
     <!-- Following images and header -->
 	 	<div id='follower_box'>
 
-	 		<div class='profile_right_title'>
+	 		<div id='following_msg' class='profile_right_title'>
         <%=@user_presenter.following_message%>
       </div>  
       	
       <div>
-        <%=render @user.ifollowers%>
+        <div id='ifollowers'>
+          <%=render @user.ifollowers%>
+        </div>
         <%=blocker%>
       </div>
       			
@@ -139,13 +141,18 @@
     var fb = new Denwen.FacebookView();
 
     <%if is_current_user(@user)%>
-      var user        = new Denwen.User(<%=@user.to_json%>);
-      var bylineView  = new Denwen.UserBylineView({
-                              model: user, 
-                              el:$('#profile_bio')});
+      var user          = new Denwen.User(<%=@user.to_json%>);
+      var bylineView    = new Denwen.UserBylineView({
+                                model: user, 
+                                el:$('#profile_bio')});
 
-      var fbInvite    = new Denwen.FacebookInviteView({
+      var fbInvite      = new Denwen.FacebookInviteView({
                               id:'#action_link'});
+
+      <%if @user.ifollowers.empty? && @source == "login"%>
+        var ifollowers  = new Denwen.UserIFollowersView({
+                                id:<%=@user.id%>});
+      <%end%>
                               
       analytics.identifyUser(
         "<%=self.current_user.email%>",

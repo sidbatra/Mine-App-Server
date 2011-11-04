@@ -1,6 +1,6 @@
 // User's iFollowers 
 //
-Denwen.UserIfollowersView = Backbone.View.extend({
+Denwen.UserIFollowersView = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -10,13 +10,20 @@ Denwen.UserIfollowersView = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.id = this.options.id;
+    var self            = this;
+    this.id             = this.options.id;
+
+    this.ifollowersEl   = '#ifollowers';
+    this.followingMsgEl = '#following_msg';
+
+    window.setTimeout(function(){self.get();},5000);
   },
 
   // Called when the iFollowers are successfully fetched 
   //
   fetched: function(users) {
-   console.log(users.at(0)); 
+    $(this.ifollowersEl).append(users.at(0).get('html'));
+    $(this.followingMsgEl).html(users.at(0).get('msg'));
   },
 
   // Fetches the iFollowers 
