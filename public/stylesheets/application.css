@@ -79,8 +79,7 @@ h1 {
 
 #header {
 	height: 40px;
-/* 	background: white; */
-	background: #333333 /*url('/images/alert-overlay.png') repeat-x */;
+	background: #333333;
 }
 
 #navbar {
@@ -268,6 +267,7 @@ h1 {
 	background: white;
 	border: 1px solid #dddddd;
 	position: relative;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 #left, #right {
@@ -284,7 +284,7 @@ h1 {
 	position: relative;
 }
 
-.left_delete {
+.left_delete a {
 	position: absolute;
 	font-size: 12px;
 	color: #cccccc;
@@ -293,9 +293,10 @@ h1 {
 	bottom: 6px;
 	display: block;
 	cursor: pointer;
+	z-index: 10000;
 }
 
-.left_delete:hover {
+.left_delete a:hover {
 	color: #791a10;
 }
 
@@ -352,6 +353,7 @@ h1 {
 	max-width: 50px;
 	max-height: 50px;
 	vertical-align: middle;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .right_title {
@@ -377,7 +379,7 @@ h1 {
 	left: -17px;
 	color: #999999;
 	top: 21px;
-/* 	border-left: 1px solid #dddddd; */
+	width: 329px;
 	padding: 0 16px;
 }
 
@@ -563,6 +565,7 @@ h1 {
 	top: 171px;
 	background: white;
 	z-index: 10000;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .next {
@@ -965,7 +968,7 @@ h1 {
 .product_left {
 	display: block;
 	float: left;
-	width: 130px;
+	width: 152px;
 	height: 152px;
 	line-height: 152px;
 	text-align: center;
@@ -983,8 +986,7 @@ h1 {
 	float: left;
 	height: 130px;
 	width: 131px;
-	margin-left: 11px;
-	padding: 11px;
+	padding: 11px 11px 11px 0px;
 	position: relative;
 	overflow: hidden;
 }
@@ -1291,6 +1293,7 @@ h1 {
 }
 
 .ac_results li:hover {
+	background-color: #f8f8f8;
 }
 
 .ac_loading {
@@ -1302,7 +1305,6 @@ h1 {
 }
 
 .ac_over {
-  background-color: #f8f8f8;
 }
 
 /* --------- End of Auto Complete Styles --------- */
