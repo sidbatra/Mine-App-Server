@@ -183,7 +183,8 @@ h1 {
 	width: 275px;
 	height: 150px;
 	line-height: 150px;
-	background: white;
+	background: url('/images/spinner.gif') no-repeat;
+	background-position: center;
 	text-align: center;
   	display:none;
   	padding: 1px 0;
@@ -701,11 +702,21 @@ h1 {
 }
 
 .invite_friends {
+	height: 39px;
+	line-height: 39px;
 	display: block;
-	margin: 3px 0 0 5px;
+	margin: 5px 0 0 5px;
 	font-size: 12px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	color: #791A10;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	background: #791A10;
+	color: white;
+	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.invite_friends:hover {
+	background: #67160e;
 }
 
 #closet_stats {
@@ -760,6 +771,7 @@ h1 {
 	width: 40px;
 	margin-left: 5px;
 	margin-bottom: 5px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 #profile_details {
