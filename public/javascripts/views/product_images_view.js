@@ -46,8 +46,6 @@ Denwen.ProductImagesView = Backbone.View.extend({
   //
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
-      //e.cancelBubble = true;
-      //e.returnValue = false;
       this.search();
       return false;
     }
