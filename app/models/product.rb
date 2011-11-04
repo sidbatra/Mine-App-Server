@@ -167,7 +167,7 @@ class Product < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 150,:height => 150})
+                        {:width => 130,:height => 130})
 
       FileSystem.store(
         thumbnail_path,
@@ -182,7 +182,7 @@ class Product < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 350,:height => 350})
+                        {:width => 370,:height => 350})
 
       FileSystem.store(
         giant_path,

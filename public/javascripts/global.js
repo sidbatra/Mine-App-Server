@@ -40,6 +40,15 @@ function trace(s) {
   //try { console.log(s) } catch (e) {  }
 };
 
+// Extra code to get IE compatability
+//
+function make_ie_compatible() {
+  //Backbone.js gives an error unless json2 is loaded in ie7
+  if($.browser.msie && parseInt($.browser.version,10) < 8) {
+    $.getScript('http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js');
+  }
+}
+
 // Conditionally replace and add default text
 // in the given input field
 //
