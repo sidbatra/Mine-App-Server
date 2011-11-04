@@ -54,14 +54,12 @@ h1 {
 }
 
 #welcome_box {
-	width: 843px;
-	height: 51px;
-	padding: 16px;
+	width: 849px;
+	padding: 16px 16px 14px 20px;
 	margin: 20px auto;
-	background: white;
-	color: #791a10;
-	font-size: 16px;
-	border: 1px solid #dddddd;
+	background: #791a10;
+	color: white;
+	font-size: 18px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 24px;
 	position: relative;
@@ -70,13 +68,13 @@ h1 {
 .welcome_subtitle {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
-	color: #666666;
+	color: #dddddd;
 }
 
 .welcome_button {
 	position: absolute;
 	top: 16px;
-	right: 16px;
+	right: 20px;
 }
 
 #header {
@@ -96,21 +94,23 @@ h1 {
 
 /* ------------------------------ Creation */
 
-#new_product {
-	width: 375px;
-	height: auto;
-	margin: 0px auto;
+.new_product {
+	width: 275px;
+	margin: 0px auto 16px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
-	font-size: 16px;
+	font-size: 14px;
 	position: relative;
-	padding: 25px 30px 10px 30px;
-	border: 1px solid #dddddd;
+	padding: 20px 30px 10px 30px;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
 	background: white;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .step {
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 }
 
 .go_button {
@@ -118,35 +118,54 @@ h1 {
 }
 
 .step_example {
-	font-size: 14px;
+	font-size: 12px;
 	color: #c6c6c6;
 }
 
 .creation_input {
 	height: 26px;
-	width: 363px;
+	width: 263px;
 	margin: 5px 0 3px;
-	border: 1px solid #dddddd;
-	padding: 4px 5px;
+	border: 1px solid #cccccc;
+	padding: 2px 5px;
 	line-height: 26px;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	color: #333333;
+	color: #666666;
 	vertical-align: top;
-	background: #f8f8f8;
+	background: #fbfbfb;
 }
 
-.creation_search { width: 293px; }
+.creation_search { width: 213px; }
 .creation_endorsement { height: 52px; }
+.creation_price {  
+	width: 60px;
+	
+}
+
+#creation_dollar {
+	width: 20px;
+	height: 30px;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	line-height: 30px;
+	text-align: center;
+	background: white;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	float: left;
+	margin-top: 5px;
+}
+
 #product_search { 
-	width: 70px; 
-	height: 36px;
-	line-height: 34px;
+	width: 50px; 
+	height: 32px;
+	line-height: 30px;
 	background: #525252 url('/images/alert-overlay.png') repeat-x; 
 	color: #fff; 
 	text-decoration: none;
 	overflow: visible;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
 	border: none;
@@ -160,15 +179,8 @@ h1 {
 	background-color: #323232;
 }
 
-.creation_submit_button {
-	width: 375px;
-	height: 46px;
-	cursor: pointer;
-	margin-bottom: 20px;
-}
-
 #product_selection {
-	width: 375px;
+	width: 275px;
 	height: 150px;
 	line-height: 150px;
 	background: white;
@@ -178,9 +190,30 @@ h1 {
 }
 
 #product_selection_photo {
-	max-width: 150px;
+	max-width: 275px;
 	max-height: 150px;
 	vertical-align: middle;
+}
+
+.add_to_closet_button {
+	width: 275px;
+	height: 36px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	margin: 5px 0 15px;
+	font-size: 14px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	background: #525252 url('/images/alert-overlay.png') repeat-x; 
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+.add_to_closet_button:hover {
+	background-color: #323232;
 }
 
 
@@ -237,18 +270,17 @@ h1 {
 }
 
 #left, #right {
-	height: 400px;
+	height: 390px;
 	float: left;
 }
 
 #left {	
-	width: 390px;
+	width: 400px;
 	height: 350px;
 	background: white;
-	padding: 25px;
+	padding: 20px;
 	text-align: center;
 	position: relative;
-/* 	background: #ffffcc; */
 }
 
 .left_delete {
@@ -271,7 +303,7 @@ h1 {
 }
 
 #left_photo {
-	max-width: 350px;
+	max-width: 370px;
 	max-height: 350px;
 	vertical-align: middle;
 }
@@ -292,7 +324,7 @@ h1 {
 }
 
 #right_text td {
-	height: 400px;
+	height: 390px;
 	vertical-align: middle;
 }
 
@@ -307,8 +339,8 @@ h1 {
 }
 
 #right_user_image {
-	height: 400px;
-	line-height: 400px;
+	height: 390px;
+	line-height: 390px;
 	float: left;
 	padding: 0px 16px 0px 0px;
 }
@@ -340,7 +372,7 @@ h1 {
 
 #right_extras {
 	position: absolute;
-/* 	font-family: Georgia; */
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	left: -17px;
 	color: #999999;
 	top: 21px;
@@ -430,16 +462,6 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	font-size: 24px;
-}
-
-.change_photo {
-	width: 160px;
-	height: 34px;
-	line-height: 34px;
-	position: absolute;
-	bottom: 20px;
-	left: 120px;
-	z-index: 3000;
 }
 
 .photo_choice_cell {
@@ -537,20 +559,20 @@ h1 {
 	color: #cccccc;
 	text-align: center;
 	position: absolute;
-	top: 176px;
+	top: 171px;
 	background: white;
 	z-index: 10000;
 }
 
 .next {
-	right: -18px;
+	right: -24px;
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 	border-right: 1px solid #dddddd;
 }
 
 .previous {
-	left: -18px;
+	left: -24px;
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 	border-left: 1px solid #dddddd;
@@ -658,7 +680,7 @@ h1 {
 #profile_container {
 	width: 885px;
 	padding: 0 15px;
-	margin: 30px auto;
+	margin: 24px auto;
 }
 
 #profile_main {
@@ -753,7 +775,6 @@ h1 {
 }
 
 #profile_details_right {
-	height: 80px;
 	width: 500px;
 	margin-left: 66px;
 }
@@ -824,7 +845,7 @@ h1 {
 	height: 38px;
 	border-right: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
-	background: white url('/images/alert-overlay.png') repeat-x; 
+	background: white;
 	text-align: center;
 	font-size: 13px;
 	line-height: 38px;
@@ -834,7 +855,6 @@ h1 {
 
 .suggestion:hover {
 	color: #791a10;
-	background: #f8f8f8 url('/images/alert-overlay.png') repeat-x;
 }
 
 #closet {
@@ -1077,9 +1097,10 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
     line-height: 20px;
 	font-size: 12px;
+	text-align: center;
 	color: #cccccc;
 	padding: 0px 0px 10px;
-	width: 885px;
+	width: 360px;
 	margin: 0 auto;
 }
 
@@ -1211,41 +1232,34 @@ h1 {
 /* --------- Auto Complete Styles ------ */
 .ac_results {
   padding: 0px;
-  border: 1px solid black;
+  border: 1px solid #dddddd;
   background-color: white;
-  overflow: hidden;
   z-index: 99999;
 }
 
 .ac_results ul {
-  width: 100%;
   list-style-position: outside;
   list-style: none;
   padding: 0;
   margin: 0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .ac_results li {
-  margin: 0px;
-  padding: 2px 5px;
-  cursor: default;
-  display: block;
-  /* 
-  if width will be 100% horizontal scrollbar will apear 
-  when scroll mode will be used
-  */
-  /*width: 100%;*/
-  /*font: menu;
-  font-size: 12px;*/
-	font-size: 16px;
+	cursor: pointer;
+	color: #666666;
+	margin: 0px;
+	padding: 5px 5px;
+	width: 253px;
+	display: block;
+	font-size: 14px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	color: #333333;
-  /* 
-  it is very important, if line-height not setted or setted 
-  in relative units scroll will be broken in firefox
-  */
-  line-height: 16px;
-  overflow: hidden;
+  	overflow: hidden;
+}
+
+.ac_results li:hover {
+	background-color: #f8f8f8;
 }
 
 .ac_loading {
@@ -1257,8 +1271,6 @@ h1 {
 }
 
 .ac_over {
-  background-color: #00ff00;
-  color: white;
 }
 
 /* --------- End of Auto Complete Styles --------- */

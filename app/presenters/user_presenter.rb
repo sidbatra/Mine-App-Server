@@ -127,7 +127,7 @@ class UserPresenter < BasePresenter
   #
   def closet_filter_links(categories)
     html = h.link_to_if user.products_count != 0,
-                  "All <span class='cat_num'>" + 
+                  "View all <span class='cat_num'>" + 
                     user.products_count.to_s +
                     "</span><br/>",
                   h.user_path(user,:src => 'all')
