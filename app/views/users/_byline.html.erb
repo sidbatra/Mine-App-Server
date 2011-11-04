@@ -6,7 +6,11 @@
 		              self.current_user.byline,
 		              :style => 'display:none'%>
 		          <input id='user_update' class='update' value='Update' 
-		              title='Update' type='button' alt='Update' 
+		              title='Update' type='button' alt='' 
+		              style='display:none'>
+		              
+		          <input id='user_cancel' class='update_cancel' value='Cancel' 
+		              title='Cancel' type='button' alt='' 
 		              style='display:none'>
 		
 		          
@@ -22,7 +26,7 @@
 		          
 		          <!-- byline empty --> 
 		          <%unless self.current_user.byline.present?%>
-		            <%=link_to "Describe your closet's style",
+		            <%=link_to "<img src='/images/pen_791a10.png'> Add your style statement",
 		                'javascript:void(0)',
 		                :id => 'user_edit_initiate'%>
 		          <%end%>
