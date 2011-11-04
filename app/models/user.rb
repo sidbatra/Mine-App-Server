@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   #
   def edit(attributes)
     
-    if attributes[:byline].present?
+    if !attributes[:byline].nil?
       self.byline = attributes[:byline]
     end
 
