@@ -10,5 +10,5 @@ Denwen.Users = Backbone.Collection.extend({
   //
   initialize: function() {
 
-  },
+  }
 });
