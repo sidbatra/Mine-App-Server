@@ -20,6 +20,7 @@ javascripts:
   - models/product_image
   - models/product
   - collections/product_images
+  - collections/users
   - views/user_byline_view
   - views/comment_input_view
   - views/product_input_view
@@ -27,6 +28,7 @@ javascripts:
   - views/product_images_view
   - views/facebook_view
   - views/facebook_invite_view
+  - views/user_ifollowers_view
 stylesheets: 
 - application: 
   - application
