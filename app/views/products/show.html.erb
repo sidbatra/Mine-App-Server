@@ -9,6 +9,7 @@
             :locals   => {
               :title        => @product_presenter.page_title(
                                   @user_presenter.full_name),
+              :type         => 'product',
               :description  => @user_presenter.usage_description,
               :url          => @product_presenter.url('fb'),
               :image        => @product_presenter.thumbnail_url}%>
@@ -29,7 +30,10 @@
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
 
-  		<div class="left_delete">Delete this item</div>
+  		<div class="left_delete">
+        <%=@product_presenter.destroy_link%>
+      </div>
+
     
       <!-- navigation to other products -->
       <%=@product_presenter.next(@next_path)%>
@@ -37,60 +41,59 @@
 	
 	
 	    <!-- product -->
-	      <div>
-	
-	          <div id="left" class="photo">
-              <%=@product_presenter.large_image%>
-	          </div> <!-- left -->
-	
-	          
-	          <div id="right">
-	          
-	          	<div id="right_user_image">
-                <%=@user_presenter.large_picture('','product_user')%>
-	           	</div>
-	
-	            <table id="right_text">
-	            	<tr>
-	            		<td>
-	            			<div id="right_text_div">
-		            			<%=user_share_text(@product.user)%><br/>
-		               			
-		               			<span class="right_title">
-		               				<%=h @product_presenter.title%>
-		               			</span>
-                        
-                        <br/>
-		                		
-		                		<%if @product.price%>
-			                		for <span class="right_price"><%=h display_currency(@product.price)%></span> 
-			                		at <span class="right_store"><%=h @product.store ? @product.store.name : ""%></span>
-			                	<%end%>
-			      
-			                	<div id="right_relativist">
-			                		<div id="right_extras">
-			                			<%=h @product.endorsement%><br />
-			                		</div>
-			                	</div>
-			                	
-	            			</div>
-	            		</td>
-	            	</tr>
-	             </table>
-	             
-	          </div> <!-- right -->
-	          
-            <%=blocker%>
-	
-	      </div>
+      <div>
+
+        <div id="left" class="photo">
+          <%=@product_presenter.large_image%>
+        </div>
+
+        
+        <div id="right">
+        
+          <div id="right_user_image">
+            <%=@user_presenter.large_picture('','product_user')%>
+          </div>
+
+          <table id="right_text">
+            <tr>
+              <td>
+                <div id="right_text_div">
+                  <%=@user_presenter.bought_text%> <br/>
+                    
+                    <span class="right_title">
+                      <%=h @product_presenter.title%>
+                    </span>
+                    
+                    <br/>
+                    
+                    <%=@product_presenter.byline%>
+
+                    <div id="right_relativist">
+                      <div id="right_extras">
+                        <%=h @product_presenter.endorsement%><br/>
+                      </div>
+                    </div>
+                </div>
+              </td>
+            </tr>
+           </table>
+           
+        </div> <!-- right -->
+        
+        <%=blocker%>
+
+      </div> <!-- product -->
 	      
 		</div> <!-- product_section -->
 	      
-	    <!-- end of product -->
+
+
+
+
 	
     <div id="comments_container">
      
-     <div id="add_comment">
+      <div id="add_comment">
 
 	      <%if logged_in?%>
 	      
@@ -101,19 +104,18 @@
 	        <%=text_area_tag "comment_data","Add a comment",
 	            :class => "box_shadow" %>
 	          
-	            <input id="comment_post" class="small_button" 
-	                    value="Post" title="Post" type="button" alt=""> 
+          <input id="comment_post" class="small_button" 
+                  value="Post" title="Post" type="button" alt=""> 
 	                    
 	      <%end%> <!-- comment entry box -->
 	      
         <%=blocker%>
-      
       </div>
 
 
       <div id="comments">
         <%=render @comments%> 
-      </div> <!-- comments -->
+      </div>
         
       <%=blocker%>
       
@@ -122,6 +124,8 @@
     <%=blocker%>
     
   </div> <!-- container -->
+
+
 
   <%content_for :javascript do%>
     <script type="text/javascript">
@@ -138,3 +142,4 @@
       analytics.productProfileView('<%=@source%>');
     </script>
   <%end%>
+

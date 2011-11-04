@@ -92,10 +92,12 @@ class User < ActiveRecord::Base
   def remove_product_worth(price,category_id)
     category_field = "products_#{category_id}_count"
 
-    self.update_attributes(
-      :products_count => self.products_count - 1,
-      :products_price => self.products_price - price,
-      category_field  => self[category_field] - 1)
+    updates = {}
+    updates[:products_count]  = self.products_count - 1
+    updates[:products_price]  = self.products_price - price if price
+    updates[category_field]   = self[category_field] - 1 if category_id
+
+    self.update_attributes(updates)
   end
 
   # Return product count for the given category

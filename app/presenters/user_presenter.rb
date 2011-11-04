@@ -16,6 +16,18 @@ class UserPresenter < BasePresenter
     user.is_male? ? 'he' : 'she'
   end
 
+  # His / her
+  #
+  def possessive_pronoun
+    user.is_male? ? 'his' : 'her'
+  end
+
+  # Generic bought text with
+  #
+  def bought_text
+    full_name + ' bought ' + possessive_pronoun
+  end
+
   # Large display picture on the profile
   #
   def large_picture(klass='profile_user_photo',src='picture')
@@ -93,6 +105,22 @@ class UserPresenter < BasePresenter
     end
 
     text
+  end
+
+  # Generate links for creating in different categories from near
+  # the filter links
+  #
+  def closet_create_links_near_filters(categories)
+	  html = ""
+    
+    categories.each do |category|
+      html += h.link_to "Add ›<br/>",
+                        new_product_path(
+                          :category => category.handle,
+                          :src => "filters")
+    end
+
+    html
   end
 
   # Generate filter links for the closet

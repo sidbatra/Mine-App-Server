@@ -7,6 +7,7 @@
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @user_presenter.closet_name,
+              :type         => 'link',
               :description  => @user_presenter.usage_description,
               :url          => @user_presenter.closet_url('fb'),
               :image        => @user_presenter.closet_image(@products)}%>
@@ -33,19 +34,14 @@
 
 	 		<div class='profile_right_title'>
         <%=@user_presenter.following_message%>
-     
-      		</div>  
+      </div>  
       	
-				<div>
-      			<%=render @user.ifollowers%>
-      			<%=blocker%>
-      			</div>
+      <div>
+        <%=render @user.ifollowers%>
+        <%=blocker%>
+      </div>
       			
-      			<%=render 'invite' if is_current_user(@user)%>
-      
-
-      
-      <!--div class="right_button">Invite your friends</div-->
+      <%=render 'invite' if is_current_user(@user)%>
 
 		  <%=blocker%>
     </div> 
@@ -56,34 +52,11 @@
 	 	
 	 	<div id='cat_nav'>
 	 	
-	 		<div id="cat_add">
-	 			<br />
-	 			<%=link_to "Add ›<br />",
-	              new_product_path(:category => "shoes",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "accessories",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "clothing",:src => "filters")%>
-	              
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "decor",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "cosmetics",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "electronics",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "jewelry",:src => "filters")%>
-	              	
-	            <%=link_to "Add ›<br />",
-	              new_product_path(:category => "anything",:src => "filters")%>
+	 		<div id='cat_add'><br/>
+        <%=@user_presenter.closet_create_links_near_filters(@categories)%>
 	 		</div>
+
       <%=@user_presenter.closet_filter_links(@categories)%>
-      
 	 	</div>
 	 	
 	</div>
@@ -106,6 +79,7 @@
 		      <!-- like button for the page -->
 				  <%=render :partial => 'facebook/like', 
 				            :locals => {
+                      :url          => @user_presenter.closet_url('fb'),
 				              :send_button  => true,
 				              :width        => 200,
 				              :faces        => false}%>

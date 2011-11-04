@@ -4,6 +4,7 @@ class ProductPresenter < BasePresenter
   presents :product
   delegate :thumbnail_url, :to => :product
   delegate :title, :to => :product
+  delegate :endorsement, :to => :product
 
   # Relative path for the product
   #
@@ -15,6 +16,16 @@ class ProductPresenter < BasePresenter
   # 
   def url(source)
     h.product_url product.id,product.handle,:src => source
+  end
+
+  # Anchor tag for deleting the product
+  #
+  def destroy_link
+    if h.current_user.id == product.user_id
+      h.link_to "Delete this item",
+                {:action => 'destroy',:id => product.id},
+                :method => :delete
+    end
   end
 
   # Link to the next product
@@ -53,6 +64,23 @@ class ProductPresenter < BasePresenter
   #
   def price
     product.price ? h.display_currency(product.price) : ''
+  end
+
+  # Byline displayed on the product show page
+  #
+  def byline
+    html = ""
+    
+    if product.price
+      html += "for <span class='right_price'>" + 
+              price +
+              "</span> " +
+              "at <span class='right_store'>" +
+              store_name
+              "</span>"
+    end
+
+    html
   end
 
   # Preview image for the product, along with conditional links in IE
