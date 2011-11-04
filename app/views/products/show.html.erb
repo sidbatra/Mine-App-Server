@@ -70,7 +70,15 @@
 
                     <div id="right_relativist">
                       <div id="right_extras">
-                        <%=h @product_presenter.endorsement%><br/>
+                      	
+	                    <!-- Review empty --> 
+	              		<%=link_to  image_tag('pen_791a10.png') + 
+	                            " Add your review"%>
+
+						<!-- Review exists -->
+                        <%=h @product_presenter.endorsement%>
+                        
+                        
                       </div>
                     </div>
                 </div>
