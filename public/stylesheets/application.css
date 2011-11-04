@@ -322,7 +322,6 @@ h1 {
 
 #right {
 	width: 443px;
-/* 	background: #ffff00; */
 }
 
 #right_text td {
@@ -333,7 +332,7 @@ h1 {
 #right_text_div {
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	color: #999999;
-	width: 344px;
+	width: 296px;
 	font-size: 14px;
 	line-height: 24px;
 	padding: 0 16px;
@@ -379,7 +378,7 @@ h1 {
 	left: -17px;
 	color: #999999;
 	top: 21px;
-	width: 329px;
+	width: 280px;
 	padding: 0 16px;
 }
 
@@ -705,16 +704,16 @@ h1 {
 }
 
 .invite_friends {
-	height: 39px;
+	height: 38px;
 	line-height: 39px;
 	display: block;
-	margin: 5px 0 0 5px;
+	margin: 4px 0 0 5px;
 	font-size: 12px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	background: #791A10;
 	color: white;
 	text-align: center;
-	border-bottom: 1px solid rgba(0,0,0,0.25);
+	border: 1px solid rgba(0,0,0,0.25);
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -832,17 +831,13 @@ h1 {
 
 #user_edit {
 	width: 40px;
-	height: 24px;
+	height: 26px;
 	border: none;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 12px;
 	color: #cccccc;
 	background: none;
 	cursor: pointer;
-}
-
-#user_edit:hover {
-	text-decoration: underline;
 }
 
 #user_edit_initiate {
@@ -874,7 +869,7 @@ h1 {
 .update_cancel {
 	height: 26px;
 	line-height: 26px;
-	padding: 0 8px;
+	padding: 0 5px;
 	color: #791a10;
 	text-decoration: none;
 	background: none;
