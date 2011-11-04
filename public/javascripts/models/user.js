@@ -14,8 +14,8 @@ Denwen.User = Backbone.Model.extend({
   // Validation logic
   //
   validate: function(attrs) {
-    if(attrs.byline.length < 1)
-      return "Byline can't be empty";
+    //if(attrs.byline.length < 1)
+    //  return "Byline can't be empty";
   }
 
 });

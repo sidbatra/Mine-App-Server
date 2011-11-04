@@ -28,12 +28,8 @@ Denwen.UserBylineView = Backbone.View.extend({
   //
   changed: function() {
     $(this.textEl).html(this.model.escape('byline'));
-    $(this.updateEl).hide();
-    $(this.cancelEl).hide();
-    $(this.inputEl).hide();
-    $(this.textEl).show();
-    $(this.editEl).show();
 
+    this.wipe();
     analytics.bylineEditingCompleted();
   },
 
@@ -54,6 +50,13 @@ Denwen.UserBylineView = Backbone.View.extend({
   // User cancel's byline editing
   //
   cancel: function() {
+    this.wipe();
+    analytics.bylineEditingCancelled();
+  },
+
+  // Hides the active editing UI
+  //
+  wipe: function() {
     $(this.updateEl).hide();
     $(this.cancelEl).hide();
     $(this.inputEl).hide();
@@ -65,8 +68,6 @@ Denwen.UserBylineView = Backbone.View.extend({
       $(this.textEl).show();
       $(this.editEl).show();
     }
-
-    analytics.bylineEditingCancelled();
   },
 
   // Called to save the new byline
