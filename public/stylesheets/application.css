@@ -1259,7 +1259,6 @@ h1 {
 }
 
 .ac_results li:hover {
-	background-color: #f8f8f8;
 }
 
 .ac_loading {
@@ -1271,6 +1270,7 @@ h1 {
 }
 
 .ac_over {
+  background-color: #f8f8f8;
 }
 
 /* --------- End of Auto Complete Styles --------- */
