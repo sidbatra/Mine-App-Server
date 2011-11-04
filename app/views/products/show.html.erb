@@ -9,6 +9,7 @@
             :locals   => {
               :title        => @product_presenter.page_title(
                                   @user_presenter.full_name),
+              :type         => 'product',
               :description  => @user_presenter.usage_description,
               :url          => @product_presenter.url('fb'),
               :image        => @product_presenter.thumbnail_url}%>

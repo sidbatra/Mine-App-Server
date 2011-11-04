@@ -7,6 +7,7 @@
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @user_presenter.closet_name,
+              :type         => 'link',
               :description  => @user_presenter.usage_description,
               :url          => @user_presenter.closet_url('fb'),
               :image        => @user_presenter.closet_image(@products)}%>
@@ -78,6 +79,7 @@
 		      <!-- like button for the page -->
 				  <%=render :partial => 'facebook/like', 
 				            :locals => {
+                      :url          => @user_presenter.closet_url('fb'),
 				              :send_button  => true,
 				              :width        => 200,
 				              :faces        => false}%>
