@@ -352,7 +352,7 @@ h1 {
 	max-width: 50px;
 	max-height: 50px;
 	vertical-align: middle;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .right_title {
@@ -714,7 +714,7 @@ h1 {
 	color: white;
 	text-align: center;
 	border: 1px solid rgba(0,0,0,0.25);
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .invite_friends:hover {
@@ -773,7 +773,7 @@ h1 {
 	width: 40px;
 	margin-left: 5px;
 	margin-bottom: 5px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #profile_details {
@@ -786,6 +786,7 @@ h1 {
 	height: 50px;
 	margin-right: 16px;
 	float: left;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #profile_details_right {
@@ -1055,6 +1056,7 @@ h1 {
 	float: left;
 	height: 32px;
 	width: 32px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #comments {
