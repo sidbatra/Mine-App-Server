@@ -32,7 +32,7 @@ Denwen.FacebookInviteView = Backbone.View.extend({
   showInviteDialog: function() {
     FB.ui({method: 'apprequests',
       message: 'Come join me on Felvy! An online closet for everything you own.',
-      title: 'Invite Your Facebook Friends to Felvy',
+      title: 'Invite Your Facebook Friends to Felvy'
     }, this.requestCallback);
 
     analytics.inviteSelected();
