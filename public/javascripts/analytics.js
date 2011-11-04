@@ -32,6 +32,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Clicked");
   },
 
+  // User cancels byline editing
+  //
+  bylineEditingCancelled: function() {
+    mpq.track("Byline Editing Cancelled");
+  },
+
   // User successfully edits byline
   //
   bylineEditingCompleted: function() {

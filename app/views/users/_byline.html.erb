@@ -5,6 +5,7 @@
 		          <%=text_field_tag 'user_byline',
 		              self.current_user.byline,
 		              :style => 'display:none'%>
+
 		          <input id='user_update' class='update' value='Update' 
 		              title='Update' type='button' alt='' 
 		              style='display:none'>
@@ -26,9 +27,10 @@
 		          
 		          <!-- byline empty --> 
 		          <%unless self.current_user.byline.present?%>
-		            <%=link_to "<img src='/images/pen_791a10.png'> Add your style statement",
-		                'javascript:void(0)',
-		                :id => 'user_edit_initiate'%>
+		            <%=link_to  image_tag('pen_791a10.png') + 
+                              " Add your style statement",
+                            'javascript:void(0)',
+                            :id => 'user_edit_initiate'%>
 		          <%end%>
 		            
 		        <%else%>

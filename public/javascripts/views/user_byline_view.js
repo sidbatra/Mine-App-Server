@@ -7,7 +7,8 @@ Denwen.UserBylineView = Backbone.View.extend({
   events: {
     "click #user_edit"          : "edit",
     "click #user_edit_initiate" : "edit",
-    "click #user_update"        : "update"
+    "click #user_update"        : "update",
+    "click #user_cancel"        : "cancel"
   },
 
   // Constructor logic
@@ -17,6 +18,7 @@ Denwen.UserBylineView = Backbone.View.extend({
     this.editEl     = '#user_edit';
     this.startEl    = '#user_edit_initiate';
     this.updateEl   = '#user_update';
+    this.cancelEl   = '#user_cancel';
     this.inputEl    = '#user_byline';
 
     restrictFieldSize($(this.inputEl),254,'charsremain');
@@ -27,6 +29,7 @@ Denwen.UserBylineView = Backbone.View.extend({
   changed: function() {
     $(this.textEl).html(this.model.escape('byline'));
     $(this.updateEl).hide();
+    $(this.cancelEl).hide();
     $(this.inputEl).hide();
     $(this.textEl).show();
     $(this.editEl).show();
@@ -41,10 +44,29 @@ Denwen.UserBylineView = Backbone.View.extend({
     $(this.textEl).hide();
     $(this.editEl).hide();
     $(this.updateEl).show();
+    $(this.cancelEl).show();
     $(this.inputEl).show();
     $(this.inputEl).focus();
 
     analytics.bylineEditingSelected();
+  },
+
+  // User cancel's byline editing
+  //
+  cancel: function() {
+    $(this.updateEl).hide();
+    $(this.cancelEl).hide();
+    $(this.inputEl).hide();
+
+    if(this.model.get('byline') == '') {
+      $(this.startEl).show();
+    }
+    else {
+      $(this.textEl).show();
+      $(this.editEl).show();
+    }
+
+    analytics.bylineEditingCancelled();
   },
 
   // Called to save the new byline
