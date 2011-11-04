@@ -22,8 +22,9 @@ Denwen.UserIFollowersView = Backbone.View.extend({
   // Called when the iFollowers are successfully fetched 
   //
   fetched: function(users) {
-    $(this.ifollowersEl).append(users.at(0).get('html'));
-    $(this.followingMsgEl).html(users.at(0).get('msg'));
+    var followers = users.at(0);
+    $(this.ifollowersEl).append(followers.get('html'));
+    $(this.followingMsgEl).html(followers.get('msg'));
   },
 
   // Fetches the iFollowers 
