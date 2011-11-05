@@ -114,7 +114,7 @@ class ProductPresenter < BasePresenter
 
     if product.comments_count != 0
       html += product.comments_count.to_s + ' '
-      html += h.image_tag 'comment_bubble.gif', 
+      html += h.image_tag 'comment_bubble.png', 
                 :class => 'product_comment_bubble',
                 :alt => ''
     end
