@@ -56,6 +56,24 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Comment Created");
   },
 
+  // User start editing endorsement
+  //
+  endorsementEditingSelected: function() {
+    mpq.track('Endorsement Editing Selected');
+  },
+
+  // User cancelled editing endorsement
+  //
+  endorsementEditingCancelled: function() {
+    mpq.track('Endorsement Editing Cancelled');
+  },
+
+  // User completed editing endorsement
+  //
+  endorsementEditingCompleted: function() {
+    mpq.track('Endorsement Editing Completed');
+  },
+
   // User clicks the invite friends button
   //
   inviteSelected: function() {

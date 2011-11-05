@@ -27,7 +27,7 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
     $(this.textEl).html(this.model.escape('endorsement'));
 
     this.wipe();
-    //analytics.bylineEditingCompleted();
+    analytics.endorsementEditingCompleted();
   },
 
   // Called when the user wants to edit the endorsement
@@ -41,14 +41,14 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
     $(this.inputEl).show();
     $(this.inputEl).focus();
 
-    //analytics.bylineEditingSelected();
+    analytics.endorsementEditingSelected();
   },
 
   // User cancel's endorsement editing
   //
   cancel: function() {
     this.wipe();
-    //analytics.bylineEditingCancelled();
+    analytics.endorsementEditingCancelled();
   },
 
   // Hides the active editing UI
@@ -68,7 +68,7 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
     }
   },
 
-  // Called to save the new byline
+  // Called to save the new endorsement
   //
   update: function() {
 
