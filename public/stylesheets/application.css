@@ -384,15 +384,40 @@ h1 {
 #right_extras {
 	position: absolute;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	left: -17px;
+	left: -6px;
 	color: #999999;
-	top: 21px;
+	top: 16px;
 	width: 280px;
-	padding: 0 16px;
+	height: 74px;
+	padding: 5px;
 }
 
-#right_extras a {
-	color: #791a10;
+#product_endorsement { /* product page textarea */
+	position: relative;
+	left:-6px;
+	top: -6px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #999999;
+	width: 280px;
+	height: 74px;
+	padding: 5px;
+	border: 1px solid #cccccc;
+	line-height: 24px;
+}
+
+#product_edit { /* product page review edit button */
+	margin-top: 5px;
+	color: #cccccc;
+	font-size: 12px;
+	display: block;
+}
+
+#product_cancel, #product_update {
+	position: relative;
+	top: -16px;
+	height: 16px;
+	color: #cccccc;
+	font-size: 12px;
 }
 
 .is_sharing {
@@ -718,14 +743,14 @@ h1 {
 	font-size: 14px;
 	color: #666666;
 	margin-left: 5px;
-	margin-bottom: 8px;
+	margin-bottom: 10px;
 }
 
 .invite_friends {
 	height: 38px;
 	line-height: 38px;
 	display: block;
-	margin: 4px 0 0 5px;
+	margin: 6px 0 0 5px;
 	font-size: 12px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	background: #791A10;
@@ -787,7 +812,7 @@ h1 {
 }
 
 #follower_box {
-	padding: 0 0 12px;
+	padding: 11px 0 12px;
 	margin-left:-5px;
 }
 
@@ -985,7 +1010,6 @@ h1 {
 	width: 294px;
 	height: 152px;
 	background-image: url('/images/closet_product_bg.png');
-	cursor: pointer;
 }
 
 .product_link {
@@ -1024,16 +1048,17 @@ h1 {
 
 .product_title, .product_title_sample { /* as a class, refers to profile page items, as an id, refers to item page items */
 	font-family: 'FuturaStdBold', Arial, sans-serif; 
-	font-size: 13px;
-	margin-top: 11px;
-	margin-bottom: 13px; 
+	font-size: 12px;
+	margin-top: 16px;
+	margin-bottom: 15px; 
 	color: #333333;
+	line-height: 18px;
 }
 
 .product_particulars, .product_particulars_sample { /* as a class, refers to profile page items, as an id, refers to item page items */
 	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;  
 	color: #999999;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 150%;
 }
 
@@ -1043,9 +1068,9 @@ h1 {
 
 .product_comment_count {
 	position: absolute;
-	bottom: 13px;
+	bottom: 11px;
 	right: 10px;
-	font-family: Arial, sans-serif;
+	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
 	font-size: 12px;
 	color: #999999;
 }
@@ -1053,6 +1078,29 @@ h1 {
 .product_comment_bubble {
 	vertical-align: bottom;
 	margin-bottom: 2px;
+}
+
+.product_add_review {
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	padding: 0 6px;
+	color: #999999;
+	border: 1px solid #cccccc;
+	background: white;
+	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
+	position: absolute;
+	bottom: 9px;
+	left: 0px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+}
+
+.product_add_review:hover {
+	background: #f8f8f8;
+	color: #791a10;
 }
 
 /* ------------------------------ Comments */
@@ -1326,7 +1374,7 @@ h1 {
 	display: block;
 	font-size: 14px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-  	overflow: hidden;
+  overflow: hidden;
 }
 
 .ac_results li:hover {

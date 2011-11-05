@@ -11,24 +11,27 @@
           :class  => "box_shadow",
           :style  => edit_style%>
 
-      <input id='product_update' class='update' value='Update' 
-          title='Update' type='button' alt='' 
-          style='<%=edit_style%>'>
-          
-      <input id='product_cancel' class='update_cancel' value='Cancel' 
-          title='Cancel' type='button' alt='' 
-          style='<%=edit_style%>'>
+      <%=link_to 	'Update', 
+      						'javascript:void(0)',
+      						:id			=> 'product_update',
+      						:style	=> edit_style%>
+      						
+      <%=link_to 	' Cancel', 
+      						'javascript:void(0)',
+      						:id			=> 'product_cancel',
+      						:style	=> edit_style%>
 
       <!-- endorsement display-->
       <span id='product_endorsement_text' style='<%=ui_style%>'>
         <%=h product.endorsement.to_s%>
       </span>
 
-      <input id='product_edit' value='‹ Edit' title='Edit' 
-          type='button' alt='Edit'
-          style="<%=product.endorsement.present? && !edit_mode ?
-                      '' : 
-                      'display:none'%>">        
+			<%=link_to '<img src="/images/pen_cccccc.png"> Edit', 'javascript:void(0)',
+									:id			=> 'product_edit',
+          				:style 	=> product.endorsement.present? && !edit_mode ?
+                  		    		'' : 
+	                      			'display:none'%>        
+                   
 
       <!-- endorsement empty-->
       <%=link_to image_tag('pen_791a10.png') + 
