@@ -80,6 +80,9 @@ h1 {
 #header {
 	height: 40px;
 	background: #333333;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #navbar {
@@ -544,7 +547,7 @@ h1 {
 	font-size: 14px;
 	position:absolute;
 	top: -32px;
-	left: 12px;
+	left: 4px;
 	z-index: 9999;
 }
 
@@ -720,7 +723,7 @@ h1 {
 
 .invite_friends {
 	height: 38px;
-	line-height: 39px;
+	line-height: 38px;
 	display: block;
 	margin: 4px 0 0 5px;
 	font-size: 12px;
@@ -766,6 +769,10 @@ h1 {
 
 #cat_nav a {
 	color: #791A10;
+}
+
+#cat_nav a:hover {
+	text-decoration: underline;
 }
 
 #cat_add {
@@ -866,6 +873,10 @@ h1 {
 	color: #791a10;
 }
 
+#user_edit_initiate:hover {
+	text-decoration: underline;
+}
+
 .update {
 	height: 26px;
 	line-height: 24px;
@@ -931,6 +942,7 @@ h1 {
 
 .suggestion:hover {
 	color: #791a10;
+	background: #f8f8f8;
 }
 
 #closet {
@@ -1011,7 +1023,7 @@ h1 {
 }
 
 .product_title, .product_title_sample { /* as a class, refers to profile page items, as an id, refers to item page items */
-	font-family: 'FuturaStdBold', Century Gothic, Arial, sans-serif; 
+	font-family: 'FuturaStdBold', Arial, sans-serif; 
 	font-size: 13px;
 	margin-top: 11px;
 	margin-bottom: 13px; 
@@ -1031,15 +1043,16 @@ h1 {
 
 .product_comment_count {
 	position: absolute;
-	bottom: 9px;
-	right: 11px;
+	bottom: 13px;
+	right: 10px;
 	font-family: Arial, sans-serif;
-	font-size: 13px;
+	font-size: 12px;
 	color: #999999;
 }
 
 .product_comment_bubble {
 	vertical-align: bottom;
+	margin-bottom: 2px;
 }
 
 /* ------------------------------ Comments */
