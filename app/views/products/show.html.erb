@@ -135,10 +135,12 @@
 
       analytics.userLandsOn('product_<%=@product.id.to_s%>');
 
-      var product = new Denwen.Product(<%=@product.to_json%>);
-      var productEndorsementView = new Denwen.ProductEndorsementView({
-                                        model:product,
-                                        el:$('#right_extras')});
+      <%if is_current_user(@product.user)%>
+        var product = new Denwen.Product(<%=@product.to_json%>);
+        var productEndorsementView = new Denwen.ProductEndorsementView({
+                                          model:product,
+                                          el:$('#right_extras')});
+      <%end%>
 
       var comment = new Denwen.Comment({
                           'defaultData':$('#comment_data').val(),
