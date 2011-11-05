@@ -139,7 +139,8 @@
         var product = new Denwen.Product(<%=@product.to_json%>);
         var productEndorsementView = new Denwen.ProductEndorsementView({
                                           model:product,
-                                          el:$('#right_extras')});
+                                          el:$('#right_extras'),
+                                          source:'<%=@source%>'});
       <%end%>
 
       var comment = new Denwen.Comment({

@@ -13,6 +13,8 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
   },
 
   initialize: function() {
+    this.source     = this.options.source;
+
     this.textEl     = '#product_endorsement_text';
     this.editEl     = '#product_edit';
     this.startEl    = '#product_edit_initiate';
@@ -27,7 +29,7 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
     $(this.textEl).html(this.model.escape('endorsement'));
 
     this.wipe();
-    analytics.endorsementEditingCompleted();
+    analytics.endorsementEditingCompleted(this.source);
   },
 
   // Called when the user wants to edit the endorsement
@@ -41,14 +43,14 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
     $(this.inputEl).show();
     $(this.inputEl).focus();
 
-    analytics.endorsementEditingSelected();
+    analytics.endorsementEditingSelected(this.source);
   },
 
   // User cancel's endorsement editing
   //
   cancel: function() {
     this.wipe();
-    analytics.endorsementEditingCancelled();
+    analytics.endorsementEditingCancelled(this.source);
   },
 
   // Hides the active editing UI
@@ -60,6 +62,7 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
 
     if(this.model.get('endorsement') == '' || 
         this.model.get('endorsement') == null) {
+
       $(this.startEl).show();
     }
     else {
