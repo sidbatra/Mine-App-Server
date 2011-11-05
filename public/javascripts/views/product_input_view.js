@@ -5,12 +5,14 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Event listeners
   //
   events: {
-    "submit #new_product" : "post"
   },
 
   // Constructor logic
   //
   initialize: function() {
+    var self          = this;
+
+    this.formEl       = '#new_product';
     this.queryEl      = '#product_query';
     this.titleEl      = '#product_title';
     this.priceEl      = '#product_price';
@@ -27,6 +29,8 @@ Denwen.ProductInputView = Backbone.View.extend({
                                   el:$('body'),
                                   images:this.productImages});
     this.productImagesView.bind('productSelected',this.productSelected,this);
+
+    $(this.formEl).submit(function(){return self.post();});
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');

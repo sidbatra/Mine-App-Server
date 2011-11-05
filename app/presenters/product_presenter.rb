@@ -4,7 +4,6 @@ class ProductPresenter < BasePresenter
   presents :product
   delegate :thumbnail_url, :to => :product
   delegate :title, :to => :product
-  delegate :endorsement, :to => :product
 
   # Relative path for the product
   #
