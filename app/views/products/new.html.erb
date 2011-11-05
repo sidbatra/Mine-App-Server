@@ -54,17 +54,22 @@
 	  	<div class="step">
 		  	<p class="step_title">
 	       		Price
-	      	</p>
+        </p>
 				
 		<div id="creation_dollar">$</div>
 	  	<%=f.text_field :price,
                   :value    => "",
                   :class    => "creation_input creation_price box_shadow"%>
-        	<%=blocker%>
+
+      <%=blocker%>
 
 		</div> <!-- price step -->
-	  
-	  <!--div class="step">
+
+    <%=link_to  'Write an optional review', 
+                'javascript:void(0)',
+                :id => 'endorsement_initiate'%>
+
+	  <div id='endorsement_container' class="step" style='display:none'>
 	  	<p class="step_title">
         <%=@placeholders[:endorsement]%>
       </p>
@@ -76,7 +81,7 @@
 	  	<p class="step_example">
         <%=@placeholders[:endorsement_eg]%>
       </p>
-	  </div--> <!-- step -->
+	  </div> <!-- step -->
 
     <%=submit_tag "Add to your closet",
                   :class  => "add_to_closet_button"%>
