@@ -32,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create,:show,:update,:index]
 
   map.resources :products,
-                :only => [:new,:create,:destroy]
+                :only => [:new,:create,:update,:destroy]
 
   map.resources :comments,
                 :only => [:create]

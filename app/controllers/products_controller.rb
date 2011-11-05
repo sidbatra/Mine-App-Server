@@ -1,7 +1,7 @@
 # Handle requests for the products resource
 #
 class ProductsController < ApplicationController
-  before_filter :login_required,  :only => [:new,:create,:destroy]
+  before_filter :login_required,  :only => [:new,:create,:update,:destroy]
   before_filter :logged_in?,      :only => :show
 
   # Display UI for creating a new product
@@ -81,6 +81,21 @@ class ProductsController < ApplicationController
     handle_exception(ex)
   ensure
     redirect_to root_path(:src => "product_show_error") if @error
+  end
+
+  # Update user's byline
+  #
+  def update
+
+    @product = Product.find(params[:id])
+    @product.edit(params) if @product.user_id == self.current_user.id
+  
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json 
+    end
   end
 
   # Destroy a product if the curernt user has proper permissions

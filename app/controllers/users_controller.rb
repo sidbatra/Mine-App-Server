@@ -82,7 +82,6 @@ class UsersController < ApplicationController
     handle_exception(ex)
   ensure
     respond_to do |format|
-      format.js 
       format.json 
     end
   end

@@ -26,6 +26,7 @@ javascripts:
   - views/product_input_view
   - views/product_image_view
   - views/product_images_view
+  - views/product_endorsement_view
   - views/facebook_view
   - views/facebook_invite_view
   - views/user_ifollowers_view

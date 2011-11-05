@@ -60,27 +60,22 @@
                 <div id="right_text_div">
                   <%=@user_presenter.bought_text%> <br/>
                     
-                    <span class="right_title">
-                      <%=h @product_presenter.title%>
-                    </span>
-                    
-                    <br/>
-                    
-                    <%=@product_presenter.byline%>
+                  <span class="right_title">
+                    <%=h @product_presenter.title%>
+                  </span>
+                  
+                  <br/>
+                  
+                  <%=@product_presenter.byline%>
 
-                    <div id="right_relativist">
-                      <div id="right_extras">
-                      	
-	                    <!-- Review empty --> 
-	              		<%=link_to  image_tag('pen_791a10.png') + 
-	                            " Add your review"%>
-
-						<!-- Review exists -->
-                        <%=h @product_presenter.endorsement%>
-                        
-                        
-                      </div>
-                    </div>
+                  <div id="right_relativist">
+                    <div id="right_extras">
+                        <%=render :partial => 'endorsement',
+                                  :locals   => {
+                                                :source   => @source,
+                                                :product  => @product}%>
+                    </div> <!--right_extras-->
+                  </div> <!--right_relativist-->
                 </div>
               </td>
             </tr>
@@ -139,6 +134,11 @@
     <script type="text/javascript">
 
       analytics.userLandsOn('product_<%=@product.id.to_s%>');
+
+      var product = new Denwen.Product(<%=@product.to_json%>);
+      var productEndorsementView = new Denwen.ProductEndorsementView({
+                                        model:product,
+                                        el:$('#right_extras')});
 
       var comment = new Denwen.Comment({
                           'defaultData':$('#comment_data').val(),

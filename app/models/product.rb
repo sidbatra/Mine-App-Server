@@ -66,6 +66,20 @@ class Product < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Edit attributes of the model
+  #
+  def edit(attributes)
+
+    validate = true
+    
+    if !attributes[:endorsement].nil?
+      self.endorsement = attributes[:endorsement]
+      validate = false
+    end
+
+    self.save(validate)
+  end
+
   # Share the product to fb via the user who created it
   #
   def share(product_url)
@@ -196,6 +210,12 @@ class Product < ActiveRecord::Base
       self.is_processed  = true
       self.save(false)
     end
+  end
+
+  # Override to customize accessible attributes
+  #
+  def to_json(options = {})
+    super(options.merge(:only => [:id,:endorsement]))
   end
 
 
