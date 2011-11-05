@@ -56,6 +56,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Comment Created");
   },
 
+  // User opts in to write a review during creation
+  //
+  endorsementCreationSelected: function() {
+    mpq.track('Endorsement Creation Selected');
+  },
+
   // User start editing endorsement
   //
   endorsementEditingSelected: function(source) {

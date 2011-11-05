@@ -5,6 +5,7 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Event listeners
   //
   events: {
+    "click #endorsement_initiate" : "endorsementInitiated"
   },
 
   // Constructor logic
@@ -12,17 +13,20 @@ Denwen.ProductInputView = Backbone.View.extend({
   initialize: function() {
     var self          = this;
 
-    this.formEl       = '#new_product';
-    this.queryEl      = '#product_query';
-    this.titleEl      = '#product_title';
-    this.priceEl      = '#product_price';
-    this.storeEl      = '#product_store';
-    this.websiteEl    = '#product_source_url';
-    this.thumbEl      = '#product_orig_thumb_url';
-    this.imageEl      = '#product_orig_image_url';
-    this.extraEl      = '#product_extra';
-    this.selectionEl  = '#product_selection';
-    this.posting      = false;
+    this.formEl             = '#new_product';
+    this.queryEl            = '#product_query';
+    this.titleEl            = '#product_title';
+    this.priceEl            = '#product_price';
+    this.storeEl            = '#product_store';
+    this.websiteEl          = '#product_source_url';
+    this.thumbEl            = '#product_orig_thumb_url';
+    this.imageEl            = '#product_orig_image_url';
+    this.extraEl            = '#product_extra';
+    this.selectionEl        = '#product_selection';
+    this.endorsementEl      = '#product_endorsement';
+    this.endorsementBoxEl   = '#endorsement_container';
+    this.endorsementStartEl = '#endorsement_initiate';
+    this.posting            = false;
 
     this.productImages      = new Denwen.ProductImages();
     this.productImagesView  = new Denwen.ProductImagesView({
@@ -34,6 +38,16 @@ Denwen.ProductInputView = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
+  },
+
+  // User initiate creation of endorsement
+  //
+  endorsementInitiated: function() {
+    $(this.endorsementStartEl).hide();
+    $(this.endorsementBoxEl).show();
+    $(this.endorsementEl).focus();
+
+    analytics.endorsementCreationSelected();
   },
 
   // Fired when a product is selected from the ProductImagesView
