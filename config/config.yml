@@ -21,49 +21,41 @@ common: &common
         :query: Search for a photo of your shoes
         :query_eg: e.g. 'Zara high heeled boot'
         :title: Item name
-        :endorsement: A short review about your shoes
         :endorsement_eg: 
       :accessories:
         :query: Search for a photo of your accessory
         :query_eg: e.g. 'Longchamp canvas bag'
         :title: Item name
-        :endorsement: A short review about your accessory
         :endorsement_eg: 
       :clothing:
         :query: Search for a photo of your clothing item
         :query_eg: e.g. 'BB dakota romaine belted coat'
         :title: Item name
-        :endorsement: A short review about your item
         :endorsement_eg: 
       :decor:
         :query: Search for a photo of your decor item
         :query_eg: e.g. 'Amy butler organic pillows'
         :title: Item name
-        :endorsement: A short review about your item
         :endorsement_eg: 
       :cosmetics:
         :query: Search for a photo of your cosmetics
         :query_eg: e.g. 'Jouer mineral face powder'
         :title: Item name
-        :endorsement: A short review about your item
         :endorsement_eg: 
       :electronics:
         :query: Search for a photo of your electronics
         :query_eg: e.g. 'White iPad 2 3G'
         :title: Item name
-        :endorsement: A short review about your item
         :endorsement_eg: 
       :jewelry:
         :query: Search for a photo of your jewelry
         :query_eg: e.g. 'Tiffany orchid necklace'
         :title: Item name
-        :endorsement: A short review about your item
         :endorsement_eg: 
       :anything:
         :query: Search for a photo of your item
         :query_eg: e.g. 'Moleskine notebook'
         :title: Item name
-        :endorsement: A short review about your item
         :endorsement_eg: 
 
 development: &development

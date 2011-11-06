@@ -8,17 +8,19 @@
       <!-- endorsement editing -->
       <%=text_area_tag "product_endorsement",
           product.endorsement.to_s,
-          :class  => "box_shadow",
+          :class  => "product_endorsement box_shadow",
           :style  => edit_style%>
-
-      <%=link_to 	'Update', 
-      						'javascript:void(0)',
-      						:id			=> 'product_update',
-      						:style	=> edit_style%>
       						
-      <%=link_to 	' Cancel', 
+      <%=link_to 	'Cancel', 
       						'javascript:void(0)',
       						:id			=> 'product_cancel',
+      						:class  => 'submit_red_12',
+      						:style	=> edit_style%>
+      						
+      <%=link_to 	'Save', 
+      						'javascript:void(0)',
+      						:id			=> 'product_update',
+      						:class  => 'submit_red_12',
       						:style	=> edit_style%>
 
       <!-- endorsement display-->
@@ -26,18 +28,19 @@
         <%=h product.endorsement.to_s%>
       </span>
 
-			<%=link_to '<img src="/images/pen_cccccc.png"> Edit', 'javascript:void(0)',
+			<%=link_to 'Edit', 'javascript:void(0)',
 									:id			=> 'product_edit',
+									:class  => 'edit_gray_12 inline_nudge',
           				:style 	=> product.endorsement.present? && !edit_mode ?
                   		    		'' : 
 	                      			'display:none'%>        
                    
 
       <!-- endorsement empty-->
-      <%=link_to image_tag('pen_791a10.png') + 
-                  " Add your review",
+      <%=link_to "Add your review",
                   'javascript:void(0)',
                   :id     => 'product_edit_initiate',
+                  :class  => 'edit_red_14',
                   :style  => product.endorsement.present? || edit_mode ?
                               'display:none' :
                               ''%>

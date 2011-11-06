@@ -56,7 +56,7 @@
 	       		Price
         </p>
 				
-		<div id="creation_dollar">$</div>
+		<div id='creation_dollar'>$</div>
 	  	<%=f.text_field :price,
                   :value    => "",
                   :class    => "creation_input creation_price box_shadow"%>
@@ -65,18 +65,20 @@
 
 		</div> <!-- price step -->
 
-    <%=link_to  'Write an optional review', 
+    <%=link_to  'Add an optional review', 
                 'javascript:void(0)',
-                :id => 'endorsement_initiate'%>
+                :id    => 'endorsement_initiate',
+                :class => 'edit_gray_14'
+                %>
 
 	  <div id='endorsement_container' class="step" style='display:none'>
 	  	<p class="step_title">
-        <%=@placeholders[:endorsement]%>
+        Review
       </p>
 
       <%=f.text_area :endorsement,
             :value    => "",
-            :class    => "creation_input box_shadow creation_endorsement"%>
+            :class    => "creation_input creation_endorsement box_shadow"%>
 
 	  	<p class="step_example">
         <%=@placeholders[:endorsement_eg]%>

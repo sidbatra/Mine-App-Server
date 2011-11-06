@@ -30,13 +30,13 @@ class ProductPresenter < BasePresenter
   # Link to the next product
   #
   def next(path)
-	    path ? h.link_to('&raquo;',path,:class => 'next') : ''
+	    path ? h.link_to('',path,:class => 'next') : ''
   end
 
   # Link to the prev product
   #
   def prev(path)
-	    path ? h.link_to('&laquo;',path,:class => 'previous') : ''
+	    path ? h.link_to('',path,:class => 'previous') : ''
   end
 
   # Title of the product page
