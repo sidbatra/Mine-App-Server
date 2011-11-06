@@ -44,7 +44,7 @@ class Product < ActiveRecord::Base
       :is_hosted        => attributes['is_hosted'],
       :query            => attributes['query'],
       :price            => attributes['price'],
-      :endorsement      => attributes['endorsement'],
+      :endorsement      => attributes['endorsement'].strip,
       :category_id      => attributes['category_id'],
       :store_id         => attributes['store_id'],
       :user_id          => user_id)
