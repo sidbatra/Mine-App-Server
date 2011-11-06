@@ -39,6 +39,7 @@
       <div>
         <div id='ifollowers'>
           <%=render @user.ifollowers%>
+          <%=blocker%>
         </div>
         <%=blocker%>
       </div>
@@ -114,7 +115,7 @@
       <div id='closet_rows'>
         <div id='products'>
           <ul>	
-          	<%if @products.present?%>							
+          	<%if !@products.present?%>							
 	            <%=render @products%>
 	          <%else%>
 	          	<img src='/images/onboarding.png'>

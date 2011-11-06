@@ -1,3 +1,7 @@
-<%=link_to image_tag(user.photo_url, 
-              :class => 'follow_img'),
-            user_path(user,:src => 'follow')%>
+<%user_presenter = presenter_for(user)%>
+<div class="follow_box">
+	<%=link_to image_tag(user.photo_url, 
+	              :class => 'follow_img'),
+	            user_path(user,:src => 'follow')%>
+	<span class="tooltip_up_333333"><%=user_presenter.full_name%></span>
+</div>
