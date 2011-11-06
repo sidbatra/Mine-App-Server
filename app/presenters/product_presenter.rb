@@ -87,11 +87,11 @@ class ProductPresenter < BasePresenter
   def preview_image
     h.image_tag product.thumbnail_url, 
                 :class    => 'product_left_image',
-                :alt      => '',
-                :onclick  => "if($.browser.msie && "\
-                              "parseInt($.browser.version,10) == 7){"\
-                              "window.location="\
-                              "'#{path('profile')}'}"
+                :alt      => ''
+                # :onclick  => "if($.browser.msie && "\
+#                               "parseInt($.browser.version,10) == 7){"\
+#                               "window.location="\
+#                               "'#{path('profile')}'}"
   end
 
   # Large product image linked to it's original source

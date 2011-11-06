@@ -2,30 +2,37 @@
 
 <li>
   <div class='product'> 
-  
-    <a class='product_link' href='<%=product_presenter.path('profile')%>'>
         
       <div class='product_left'>
-        <%=product_presenter.preview_image%>
-      </div> 
+        <a href='<%=product_presenter.path('profile')%>'>
+        	<%=product_presenter.preview_image%>
+        </a>
+      </div> <!-- product_left -->
   
       <div class='product_right'>
+      
         <p class='product_title'>
-          <%=h product_presenter.preview_title%>
+          <a href='<%=product_presenter.path('profile')%>'>
+          	<%=h product_presenter.preview_title%>
+          </a>
         </p>
  
         <p class='product_particulars'>
-        	<%=product_presenter.price%><br />
-        	<%=h product_presenter.store_name%>
-
+        	<a href='<%=product_presenter.path('profile')%>'>
+        		Bought for <%=product_presenter.price%><br />
+        		at <%=h product_presenter.store_name%>
+        	</a>
         </p>
+        
+        <!--<a class='product_add_review' href=''>
+        	Add a review ›
+        </a>-->
   
-        <div class='product_comment_count'>
+        <a class='product_comment_count' href='<%=product_presenter.path('profile')%>'>
           <%=product_presenter.comment_bubble%>
-        </div>
-      </div>
-      
-    </a> <!-- product_link -->
+        </a>
+        
+      </div> <!-- product_right -->
 
   </div> <!-- product -->
 </li>
