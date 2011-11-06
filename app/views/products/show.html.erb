@@ -95,25 +95,25 @@
 
 	
     <div id="comments_container">
+    
+    	<%if logged_in?%>
      
-      <div id="add_comment">
-
-	      <%if logged_in?%>
-	      
-	        <%=image_tag self.current_user.photo_url,
-	            :id => "comment_photo_self",
-	            :alt => ""%>
-	
-	        <%=text_area_tag "comment_data","Add a comment",
-	            :class => "box_shadow" %>
-	          
-          <input id="comment_post" class="small_button" 
-                  value="Post" title="Post" type="button" alt=""> 
-	                    
-	      <%end%> <!-- comment entry box -->
-	      
-        <%=blocker%>
-      </div>
+	      <div id="add_comment">
+		      
+		        <%=image_tag self.current_user.photo_url,
+		            :id => "comment_photo_self",
+		            :alt => ""%>
+		
+		        <%=text_area_tag "comment_data","Add a comment",
+		            :class => "box_shadow" %>
+		          
+	          <input id="comment_post" class="small_button" 
+	                  value="Post" title="Post" type="button" alt=""> 
+		      
+	        <%=blocker%>
+	      </div>
+      
+      <%end%> <!-- comment entry box -->
 
 
       <div id="comments">

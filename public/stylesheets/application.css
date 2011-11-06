@@ -141,7 +141,7 @@ h1 {
 }
 
 .creation_search { width: 213px; }
-.creation_endorsement { height: 52px; }
+.creation_endorsement { height: 48px; margin-bottom: -6px; }
 .creation_price {  
 	width: 60px;
 	
@@ -206,7 +206,7 @@ h1 {
 	border: none;
 	color: white;
 	cursor: pointer;
-	margin: 5px 0 15px;
+	margin: 12px 0 15px;
 	font-size: 14px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	background: #525252 url('/images/alert-overlay.png') repeat-x; 
@@ -228,10 +228,10 @@ h1 {
 #container {
 	width: 885px;
 	position: relative;
-	margin-top: 48px; /* change dynamically with JS.io */
+	margin-top: 47px; /* change dynamically with JS.io */
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 50px;
+	margin-bottom: 32px;
 }
 
 .instructions {
@@ -388,44 +388,87 @@ h1 {
 	color: #999999;
 	top: 16px;
 	width: 280px;
-	height: 74px;
-	padding: 5px;
+	height: 72px;
 }
 
-#product_endorsement { /* product page textarea */
+.product_endorsement { /* product page endorsement */
 	position: relative;
-	left:-6px;
+	left:-11px;
 	top: -6px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	width: 280px;
-	height: 74px;
-	padding: 5px;
+	padding: 5px 10px;
+	height: 72px;
 	border: 1px solid #cccccc;
 	line-height: 24px;
 }
 
-#product_edit { /* product page review edit button */
-	margin-top: 5px;
-	color: #cccccc;
-	font-size: 12px;
-	display: block;
+#product_update, #product_cancel {
+	float: right;
+	margin-left: 8px;
+	margin-top: -10px;
 }
 
-#product_cancel, #product_update {
-	position: relative;
-	top: -16px;
+.submit_red_12 {
 	height: 16px;
 	color: #cccccc;
 	font-size: 12px;
+	color: #791a10;
 }
+
+.edit_gray_12 {
+	font-size: 12px;
+	padding-left: 14px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: url('/images/pen_cccccc_791a10_12px.png') no-repeat;
+	color: #cccccc;
+	cursor: pointer;
+}
+
+.edit_gray_12:hover {
+	background: url('/images/pen_cccccc_791a10_12px.png') 0 -20px no-repeat;
+	color: #791a10;
+}
+
+.edit_red_14 {
+	font-size: 14px;
+	padding-left: 14px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: url('/images/pen_791a10_14px.png') no-repeat;
+	color: #791a10;
+	cursor: pointer;
+}
+
+.edit_red_14:hover {
+	text-decoration: underline;
+}
+
+.edit_gray_14 {
+	font-size: 14px;
+	padding-left: 14px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: url('/images/pen_cccccc_791a10.png') no-repeat;
+	color: #cccccc;
+	cursor: pointer;
+}
+
+.edit_gray_14:hover {
+	background: url('/images/pen_cccccc_791a10.png') 0 -34px no-repeat;
+	color: #791a10;
+	cursor: pointer;
+}
+
+.inline_nudge {
+	margin-left: 3px;
+}
+
 
 .is_sharing {
 	line-height: 50px;
 }
 
 #item_name {
-	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 16px;
 }
 
@@ -545,6 +588,9 @@ h1 {
 	-moz-opacity: 0.9;
 	opacity: .90;
 	filter: alpha (opacity=90);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #scroll_for_more_results {
@@ -567,17 +613,27 @@ h1 {
 }
 
 .navigation {
+	height: 30px;
+	line-height: 30px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	color: #791a10;
-	font-size: 14px;
+	color: #666666;
+	font-size: 12px;
 	position:absolute;
-	top: -32px;
-	left: 4px;
+	top: -40px;
+	left: -1px;
 	z-index: 9999;
+	background: white;
+	border: 1px solid #cccccc;
+	padding: 0 18px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .navigation:hover {
-/* 	text-decoration: underline; */
+		color: #791a10;
+		background: #f8f8f8;
+		
 }
 
 .navigation_whitey {
@@ -600,11 +656,11 @@ h1 {
 	text-align: center;
 	position: absolute;
 	top: 171px;
-	background: white;
 	z-index: 10000;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	background: white url('/images/prevnext_cccccc_791a10.png');
 }
 
 .next {
@@ -612,6 +668,7 @@ h1 {
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 	border-right: 1px solid #dddddd;
+	background: white url('/images/prevnext_cccccc_791a10.png') 36px 0;
 }
 
 .previous {
@@ -621,8 +678,12 @@ h1 {
 	border-left: 1px solid #dddddd;
 }
 
-.previous:hover, .next:hover {
-	color: #791a10;
+.previous:hover {
+	background: white url('/images/prevnext_cccccc_791a10.png') 0 -48px;
+}
+
+.next:hover {
+		background: white url('/images/prevnext_cccccc_791a10.png') 36px -48px;
 }
 
 /* ------------------------------ User Log-in, Profile Nav */
@@ -883,61 +944,24 @@ h1 {
 	margin-left: -6px;
 }
 
-#user_edit {
-	width: 40px;
-	height: 26px;
-	border: none;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	font-size: 12px;
-	color: #cccccc;
-	background: none;
-	cursor: pointer;
-}
-
-#user_edit_initiate {
-	color: #791a10;
-}
-
-#user_edit_initiate:hover {
-	text-decoration: underline;
-}
-
 .update {
 	height: 26px;
-	line-height: 24px;
+	line-height: 26px;
 	padding: 0 8px;
 	background: #525252 url('/images/alert-overlay.png') repeat-x; 
-	color: #fff; 
+	color: #fff;
+	display: inline-block;
 	text-decoration: none;
-	overflow: visible;
 	font-size: 10px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
-	border: none;
 	cursor: pointer;
-	display: inline;
 	vertical-align: top;
 	margin-left: -5px;
 }
 
 .update:hover {
 	background-color: #323232;
-}
-
-.update_cancel {
-	height: 26px;
-	line-height: 26px;
-	padding: 0 5px;
-	color: #791a10;
-	text-decoration: none;
-	background: none;
-	overflow: visible;
-	font-size: 10px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	border: none;
-	cursor: pointer;
-	display: inline;
-	vertical-align: top;
 }
 
 #suggestions {
@@ -1109,7 +1133,7 @@ h1 {
 #comments_container {
 	margin-left: 25px;
 	margin-top: 24px;
-	margin-bottom: 20px; /* this creates space at bottom of page */
+	margin-bottom: 0px; /* this creates space at bottom of page */
 	width: 390px;
 /* 	background: #ffffcc; */
 }
@@ -1117,7 +1141,7 @@ h1 {
 #add_comment {
 	clear:both;
 	height: 32px;
-	margin-bottom: 6px;
+	margin-bottom: 22px;
 }
 
 #comment_data {
@@ -1157,7 +1181,7 @@ h1 {
 }
 
 .comment_unit {
-	padding-top: 16px;
+	padding-bottom: 16px;
 	overflow: hidden;
 }
 
