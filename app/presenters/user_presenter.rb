@@ -113,11 +113,13 @@ class UserPresenter < BasePresenter
   def closet_create_links_near_filters(categories)
 	  html = ""
     
-    categories.each do |category|
-      html += h.link_to "Add ›<br/>",
-                        new_product_path(
-                          :category => category.handle,
-                          :src => "filters")
+    if h.is_current_user(user)
+      categories.each do |category|
+        html += h.link_to "Add ›<br/>",
+                          new_product_path(
+                            :category => category.handle,
+                            :src => "filters")
+      end
     end
 
     html
