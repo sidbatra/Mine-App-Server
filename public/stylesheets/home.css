@@ -204,6 +204,9 @@ body.home2 {
 #header {
 	height: 40px;
 	background: #333333;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #navbar {

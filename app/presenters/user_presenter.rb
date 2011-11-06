@@ -41,7 +41,7 @@ class UserPresenter < BasePresenter
   # Display name for the user's closet
   #
   def closet_name
-    user.first_name + "'s closet"
+    user.first_name + "'s Closet"
   end
 
   # Full title of the closet
