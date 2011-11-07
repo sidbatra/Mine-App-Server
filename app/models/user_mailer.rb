@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     @follower     = follower
     @user         = user
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " started following you on Felvy"
+                    " is now following you on Felvy!"
 
     recipients    @user.email
     from          EMAILS[:contact]
