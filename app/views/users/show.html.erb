@@ -115,7 +115,7 @@
       <div id='closet_rows'>
         <div id='products'>
           <ul>	
-          	<%if !@products.present?%>							
+          	<%if @products.present?%>							
 	            <%=render @products%>
 	          <%else%>
 	          	<img src='/images/onboarding.jpg'>
