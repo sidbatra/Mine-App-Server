@@ -26,6 +26,15 @@
   <div id="container">
   
   	<div id="product_section">
+
+
+      <!-- like button for the page -->
+      <%=render :partial => 'facebook/like', 
+                :locals => {
+                  :url          => @product_presenter.url('fb'),
+                  :send_button  => true,
+                  :width        => 200,
+                  :faces        => false}%>
   	
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
@@ -134,6 +143,8 @@
     <script type="text/javascript">
 
       analytics.userLandsOn('product_<%=@product.id.to_s%>');
+
+      var fb = new Denwen.FacebookView();
 
       <%if is_current_user(@product.user)%>
         var product = new Denwen.Product(<%=@product.to_json%>);

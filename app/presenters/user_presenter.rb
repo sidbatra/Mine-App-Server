@@ -128,11 +128,12 @@ class UserPresenter < BasePresenter
   # Generate filter links for the closet
   #
   def closet_filter_links(categories)
-    html = h.link_to_if user.products_count != 0,
-                  "View all <span class='cat_num'>" + 
+    html = ""
+
+    html += h.link_to "View all <span class='cat_num'>" + 
                     user.products_count.to_s +
                     "</span><br/>",
-                  h.user_path(user,:src => 'all')
+                  h.user_path(user,:src => 'all') if user.products_count > 0
 
     categories.each do |category|
       category_count = user.products_category_count(category.id) 
