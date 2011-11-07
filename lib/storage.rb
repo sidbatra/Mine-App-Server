@@ -27,7 +27,8 @@ module DW
       # path - relative path
       #
       def self.url(path)
-        File.join(CONFIG[:edge_server].gsub("%d",rand(7).to_s),URI.encode(path))
+        #File.join(CONFIG[:edge_server].gsub("%d",rand(7).to_s),URI.encode(path))
+        File.join(CONFIG[:edge_server],URI.encode(path))
       end
 
       # Converts a relative path to a full path on the local filesystem
