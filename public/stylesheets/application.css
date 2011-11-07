@@ -808,6 +808,7 @@ h1 {
 
 .invite_friends {
 	height: 38px;
+	width: 219px;
 	line-height: 38px;
 	display: block;
 	margin: 6px 0 0 0;
@@ -872,6 +873,7 @@ h1 {
 }
 
 #follower_box {
+	width: 226px;
 	padding: 11px 0 12px;
 	clear: both;
 }
@@ -879,32 +881,30 @@ h1 {
 .follow_box {
 	position: relative;
 	width: 45px;
-	height: 40px;
+	height: 45px;
 	float: left;
-	margin-bottom: 5px;
+	z-index: 3000;
 }
 
-.tooltip_up_333333 {
+.tooltip_down_333333 {
 	position: absolute;
 	display: none;
-	top: 40px;
+	top: -29px;
 	left: 0px;
 	height: 24px;
 	line-height: 24px;
-	padding: 6px 8px 0px;
-	background: url('/images/tooltip_up_333333.png') no-repeat;
+	padding: 0px 8px 5px;
+	background: url('/images/tooltip_down_333333.png') no-repeat;
 	color: white;
 	font-size: 13px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	white-space: nowrap;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 
-.follow_box:hover .tooltip_up_333333 {
+.follow_box:hover .tooltip_down_333333 {
 	display: block;
+	z-index: 2000;
 }
 
 .follow_img {
@@ -913,6 +913,7 @@ h1 {
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	z-index: 1000;
 }
 
 #profile_details {
@@ -1537,6 +1538,7 @@ h1 {
 
 /* ------------------------------ Fonts */
 
+/*
 @-moz-document url-prefix() {
     #item_name, 
     #product_title, 
@@ -1555,3 +1557,4 @@ h1 {
     	font-family: Arial, sans-serif; font-weight: bold; 
     }
 }
+*/
