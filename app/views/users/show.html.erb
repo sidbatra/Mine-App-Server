@@ -115,10 +115,12 @@
       <div id='closet_rows'>
         <div id='products'>
           <ul>	
-          	<%if !@products.present?%>							
+          	<%if @products.present?%>							
 	            <%=render @products%>
-	          <%else%>
-	          	<img src='/images/onboarding.jpg'>
+	          <%elsif is_current_user(@user)%>
+              <%=image_tag 'onboarding.jpg'%>
+            <%else%>
+              <%=image_tag 'onboarding_empty.jpg'%>
 	          <%end%>
           </ul>
         </div>
