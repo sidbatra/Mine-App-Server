@@ -1154,15 +1154,21 @@ h1 {
 	color: #791a10;
 }
 
+/* ------------------------------ Extras */
+
+#extras_container {
+	margin-left: 25px;
+	margin-top: 24px;
+	width: 835px;
+	position: relative;
+}
+
 /* ------------------------------ Comments */
 
 
 #comments_container {
-	margin-left: 25px;
-	margin-top: 24px;
-	margin-bottom: 0px; /* this creates space at bottom of page */
 	width: 390px;
-/* 	background: #ffffcc; */
+	display: block;
 }
 
 #add_comment {
@@ -1270,6 +1276,29 @@ h1 {
 	padding: 0px 0px 10px;
 	width: 360px;
 	margin: 0 auto;
+}
+
+/* ------------------------------ Facebook Like Buttons */
+
+.fb_like_profile {
+	 display:inline; 
+	 margin-left: 5px; 
+	 position:relative; 
+	 top:-4px;
+}
+
+.fb_like_product {
+	margin-top: 6px;
+}
+
+/* ------------------------------ Product Goodies */
+
+#product_goodies_container {
+	width: 335px;
+	height: 50px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
 }
 
 /* ------------------------------ Box Overlay */

@@ -26,15 +26,6 @@
   <div id="container">
   
   	<div id="product_section">
-
-
-      <!-- like button for the page -->
-      <%=render :partial => 'facebook/like', 
-                :locals => {
-                  :url          => @product_presenter.url('fb'),
-                  :send_button  => true,
-                  :width        => 200,
-                  :faces        => false}%>
   	
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
@@ -97,43 +88,54 @@
       </div> <!-- product -->
 	      
 		</div> <!-- product_section -->
+	  
+	  <div id="extras_container">
+	      	
+	    <div id="comments_container">
+	    
+	    	<%if logged_in?%>
+	     
+		      <div id="add_comment">
+			      
+			        <%=image_tag self.current_user.photo_url,
+			            :id => "comment_photo_self",
+			            :alt => ""%>
+			
+			        <%=text_area_tag "comment_data","Add a comment",
+			            :class => "box_shadow" %>
+			          
+		          <input id="comment_post" class="small_button" 
+		                  value="Post" title="Post" type="button" alt=""> 
+			      
+		        <%=blocker%>
+		      </div>
 	      
-
-
-
-
+	      <%end%> <!-- comment entry box -->
 	
-    <div id="comments_container">
-    
-    	<%if logged_in?%>
-     
-	      <div id="add_comment">
-		      
-		        <%=image_tag self.current_user.photo_url,
-		            :id => "comment_photo_self",
-		            :alt => ""%>
-		
-		        <%=text_area_tag "comment_data","Add a comment",
-		            :class => "box_shadow" %>
-		          
-	          <input id="comment_post" class="small_button" 
-	                  value="Post" title="Post" type="button" alt=""> 
-		      
+	
+	      <div id="comments">
+	        <%=render @comments%> 
 	        <%=blocker%>
 	      </div>
-      
-      <%end%> <!-- comment entry box -->
-
-
-      <div id="comments">
-        <%=render @comments%> 
-      </div>
-        
-      <%=blocker%>
-      
-    </div> <!-- comment_container -->
-      
-    <%=blocker%>
+	      
+	      <%=blocker%>
+	      
+	    </div> <!-- comments_container -->
+	    
+	    <div id="product_goodies_container">
+	    
+			  <!-- like button for the page -->
+	      <%=render :partial => 'facebook/like', 
+	                :locals => {
+	                	:klass				=> 'fb_like_product',
+	                  :url          => @product_presenter.url('fb'),
+	                  :send_button  => true,
+	                  :width        => 200,
+	                  :faces        => false}%>
+	                  
+	    </div> <!-- product_goodies_container -->
+	   
+	   </div> <!-- extras_container -->
     
   </div> <!-- container -->
 
