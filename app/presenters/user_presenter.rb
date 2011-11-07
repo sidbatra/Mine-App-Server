@@ -81,7 +81,7 @@ class UserPresenter < BasePresenter
   #
   def closet_stats
     h.content_tag(:span, user.products_count.to_s, :class => 'stat_num') +
-    " items worth <br />" +
+    " " + (user.products_count == 1 ? 'item' : 'items') + " worth <br />" +
     h.content_tag(:span, h.display_currency(user.products_price), 
       :class => 'stat_num') +
     " in " + 
