@@ -2,6 +2,20 @@
 	<%="style='overflow:hidden'"%>
 <%end%>
 
+<!-- Inject facebook og tags into the head -->
+<%content_for :head do%>
+  <%=render :partial  => 'facebook/og',
+            :locals   => {
+              :title        => "Felvy - Share what you own!",
+              :type         => 'website',
+              :description  => "Create your own Online Closet! Collect the "\
+                                "things you own. Compare with friends. "\
+                                "Express your style!",
+              :url          => root_url,
+              :image        => ''}%>
+<%end%>
+
+
 <%if @layout == "home1"%>
   <%=render "girl"%>
 <%else%>
