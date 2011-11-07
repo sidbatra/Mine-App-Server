@@ -130,12 +130,13 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Page view on user profile
   //
-  userProfileView: function(source,category) {
+  userProfileView: function(source,category,id) {
      mpq.track(
       'User Profile View',
       {
       'source'    : source,
-      'category'  : category
+      'category'  : category,
+      'id'        : id
       });
   },
 

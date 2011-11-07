@@ -189,7 +189,8 @@
 
     analytics.userProfileView(
       '<%=@source%>',
-      '<%=@category ? @category.name : ""%>');
+      '<%=@category ? @category.name : ""%>',
+      <%=@user.id%>);
   </script>
 <%end%>
 
