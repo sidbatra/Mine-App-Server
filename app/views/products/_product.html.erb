@@ -18,10 +18,12 @@
         </p>
  
         <p class='product_particulars'>
-        	<a href='<%=product_presenter.path('profile')%>'>
-        		Bought for <%=product_presenter.price%><br />
-        		at <%=h product_presenter.store_name%>
-        	</a>
+          <%if product.store%>
+            <a href='<%=product_presenter.path('profile')%>'>
+              Bought for <%=product_presenter.price%><br />
+              at <%=h product_presenter.store_name%>
+            </a>
+          <%end%>
         </p>
         
         <!--<a class='product_add_review' href=''>
