@@ -1,5 +1,7 @@
 Hi <%=@user.first_name%>, <br><br>
 
-<%=@action%>. <br><br>
+<%=@action%> <br><br>
 
-<a href="<%=user_url(@follower.id)%>">See His Profile</a>
+<a href="<%=user_url(@follower,:src => 'email')%>">
+  View <%=@follower.first_name%>'s Profile
+</a>
