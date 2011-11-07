@@ -85,7 +85,7 @@ production: &production
   :host: felvy.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: denwen-hasit-production
-  :edge_server: http://edge%d.felvy.com
+  :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://static%d.felvy.com
   :emails:
     :noreply: Felvy <noreply@felvy.com>
