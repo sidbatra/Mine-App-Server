@@ -23,7 +23,8 @@ class ProductPresenter < BasePresenter
     if h.current_user.id == product.user_id
       h.link_to "Delete this item",
                 {:action => 'destroy',:id => product.id},
-                :method => :delete
+                :method => :delete,
+                :confirm  => "Are you sure you want to delete this item?"
     end
   end
 
