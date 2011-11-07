@@ -341,6 +341,7 @@ body.home2 {
 
 /* ------------------------------ Mozilla-Only fall-back fonts */
 
+/*
 @-moz-document url-prefix() {
     #item_name, 
     #product_title, 
@@ -361,4 +362,5 @@ body.home2 {
     	font-family: Arial, sans-serif; font-weight: bold; 
     }
 }
+*/
 
