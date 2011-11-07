@@ -51,6 +51,7 @@ class UsersController < ApplicationController
     @category   = Category.get(params[:category]) 
 
     @user       = User.find(params[:id])
+    @examples   = User.find_all_by_id(CONFIG[:example_users].split(','))
     @products   = Product.eager.for_user(
                             @user.id,
                             @category ? @category.id : "")

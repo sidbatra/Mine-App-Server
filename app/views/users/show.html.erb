@@ -43,13 +43,16 @@
         </div>
         <%=blocker%>
         
-        <%=render 'invite' if is_current_user(@user)%>
-        
-        <div class='profile_right_title'>
-        	Star users
-      	</div> 
-      	
-      	<%=render @user.ifollowers%>
+
+        <%if is_current_user(@user)%>
+          <%=render 'invite'%>
+          
+          <div class='profile_right_title'>
+            Star users
+          </div> 
+          
+          <%=render @examples%>
+        <%end%>
         
       </div>
       			

@@ -163,7 +163,7 @@ class UserPresenter < BasePresenter
                   user.first_name + " is following"
     else
       message = h.is_current_user(user) ?
-                  "You aren't following anyone yet." :
+                  "People you're following" : 
                   user.first_name + " isn't following anyone yet."
     end
 
