@@ -228,14 +228,13 @@ h1 {
 #container {
 	width: 885px;
 	position: relative;
-	margin-top: 47px; /* change dynamically with JS.io */
+	margin-top: 47px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 32px;
 }
 
 .instructions {
-/* 	font-family: 'Permanent Marker', cursive; */
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 20px;
 	color: #999999;
@@ -1160,6 +1159,7 @@ h1 {
 #extras_container {
 	margin-left: 25px;
 	margin-top: 24px;
+	padding-bottom: 30px; /* keeps footer away from goodies */
 	width: 835px;
 	position: relative;
 }
@@ -1169,7 +1169,6 @@ h1 {
 
 #comments_container {
 	width: 390px;
-	display: block;
 }
 
 #add_comment {
@@ -1270,13 +1269,15 @@ h1 {
 
 #footer {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-    line-height: 20px;
+  line-height: 20px;
 	font-size: 12px;
 	text-align: center;
 	color: #cccccc;
 	padding: 0px 0px 10px;
-	width: 360px;
-	margin: 0 auto;
+	width: 885px;
+	margin: 30px auto 0;
+	clear: both;
+	display: block;
 }
 
 /* ------------------------------ Facebook Like Buttons */
@@ -1296,7 +1297,6 @@ h1 {
 
 #product_goodies_container {
 	width: 335px;
-	height: 50px;
 	position: absolute;
 	top: 0px;
 	right: 0px;
