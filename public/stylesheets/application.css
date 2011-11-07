@@ -384,7 +384,7 @@ h1 {
 #right_extras {
 	position: absolute;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	left: -6px;
+	left: 0px;
 	color: #999999;
 	top: 16px;
 	width: 280px;
