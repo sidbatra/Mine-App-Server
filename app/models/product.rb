@@ -163,7 +163,8 @@ class Product < ActiveRecord::Base
 
     file_path        = Tempfile.new(image_path).path
 
-    system("wget '#{orig_image_url}' --output-document '#{file_path}'")
+    system("wget -U '#{CONFIG[:user_agent]}' '#{orig_image_url}' "\
+            "--output-document '#{file_path}'")
 
     if File.exists? file_path
 
