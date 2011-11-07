@@ -82,7 +82,7 @@
 		      <!-- like button for the page -->
 				  <%=render :partial => 'facebook/like', 
 				            :locals => {
-				            	:klass				=> 'fb_like_profile',
+				            	:style				=> 'display:inline; margin-left: 5px; position:relative; top:-4px;',
                       :url          => @user_presenter.closet_url('fb'),
 				              :send_button  => true,
 				              :width        => 200,
