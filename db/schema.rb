@@ -9,16 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111101221542) do
+ActiveRecord::Schema.define(:version => 20111108220125) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "handle"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "weight",     :default => 0
   end
 
   add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
+  add_index "categories", ["weight"], :name => "index_categories_on_weight"
 
   create_table "comments", :force => true do |t|
     t.text     "data"

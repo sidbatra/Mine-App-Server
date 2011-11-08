@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   #
   def show
     @source     = params[:src] ? params[:src].to_s : "direct"
-    @category   = Category.get(params[:category]) 
+    @category   = Category.fetch(params[:category]) 
 
     @user       = User.find(params[:id])
     @examples   = User.find_all_by_id(CONFIG[:example_users].split(','))
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
                             @user.id,
                             @category ? @category.id : "")
 
-    @categories = Category.all
+    @categories = Category.weighted
   end
   
   # Get user's iFollowers

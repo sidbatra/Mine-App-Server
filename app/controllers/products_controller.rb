@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @stores       = Store.all
     #@uploader    = generate_uploader
 
-    @category     = Category.get(
+    @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
 
     @placeholders = MSG[:product][@category.handle.to_sym]
