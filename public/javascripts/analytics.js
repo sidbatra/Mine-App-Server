@@ -142,10 +142,13 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Page view on product profile
   //
-  productProfileView: function(source) {
+  productProfileView: function(source,id) {
      mpq.track(
       'Product Profile View',
-      {'source'  : source});
+      {
+        'source'  : source,
+        'id' : id
+      });
   },
 
   // User opens new products page
