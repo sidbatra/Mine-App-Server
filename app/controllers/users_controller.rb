@@ -55,8 +55,6 @@ class UsersController < ApplicationController
     @products   = Product.eager.for_user(
                             @user.id,
                             @category ? @category.id : "")
-
-    @categories = Category.weighted
   end
   
   # Get user's iFollowers
