@@ -13,7 +13,7 @@ class HomeController < ApplicationController
       redirect_to user_path(self.current_user,:src => "home_redirect") 
     else
       @source = params[:src] ? params[:src].to_s : "direct"
-      @layout = 'home2' #@origin == "home2" ? "home2" : "home1"
+      @layout = @origin == "sbaf2" ? "home2" : "home1"
     end
   end
 
