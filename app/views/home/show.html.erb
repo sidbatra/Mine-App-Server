@@ -28,12 +28,10 @@
   <%=render :partial => "misc/feedback"%>
 
   <script type="text/javascript">
-   $(document).ready(function(){
      mpq.register_once({'landed_on' : '<%=@origin%>'});
      mpq.track('landed on homepage',{
       'source'  : '<%=@source%>',
       'origin'  : '<%=@origin%>'});
-    });
   </script>
 
 <%end%>
