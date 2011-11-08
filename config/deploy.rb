@@ -34,7 +34,7 @@ end
 
 
 task :production do
-  role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com","ec2-67-202-63-102.compute-1.amazonaws.com","ec2-107-22-84-231.compute-1.amazonaws.com"
+  role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com","ec2-67-202-63-102.compute-1.amazonaws.com","ec2-50-19-72-202.compute-1.amazonaws.com"
   role :worker,       "ec2-107-22-21-214.compute-1.amazonaws.com","ec2-184-72-167-21.compute-1.amazonaws.com"
   role :db,           "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
