@@ -44,4 +44,10 @@ class Admin::StoresController < ApplicationController
     end
   end
 
+  # Show all products from a store
+  #
+  def show
+    @store = Store.find(params[:id])
+  end
+
 end

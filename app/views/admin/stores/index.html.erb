@@ -8,11 +8,15 @@
                               :id     => "store_name_#{store.id}",
                               :class  => "creation_input box_shadow"%>
         </td>
-        <td>
+        <td width="200">
           <%=link_to  'Approve', 
                       'javascript:void(0);',
                       :id     => "store_update_#{store.id}",
                       :class  => 'submit_red_12'%>
+        </td>
+        <td width="200">
+          <%=link_to  'Store', 
+                      admin_store_path(store)%>
         </td>
       </tr>
     <%end%>

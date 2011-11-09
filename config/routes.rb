@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_stores, 
                 :as         => 'admin/stores', 
                 :controller => 'admin/stores',
-                :only       => [:index,:update]
+                :only       => [:index,:update,:show]
 
   map.canvas    '/canvas',
                 :controller => :canvas,
