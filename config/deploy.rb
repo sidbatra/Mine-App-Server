@@ -87,7 +87,7 @@ namespace :deploy do
     system "cap #{environment}  workers:start"
 
     #system "cap #{environment}  misc:apnd"
-    #system "cap #{environment}  misc:whenever"
+    system "cap #{environment}  misc:whenever"
 
   end
 
@@ -111,7 +111,7 @@ namespace :deploy do
 
     #system "cap #{environment}  search:index"
 
-    #system "cap #{environment}  misc:whenever"
+    system "cap #{environment}  misc:whenever"
   end
 
 end
@@ -296,7 +296,7 @@ namespace :misc do
         "--apple-host #{apnd_host} && sleep 3"
   end
 
-  task :whenever, :roles => :worker do
+  task :whenever, :roles => :web do
     run "cd #{current_path} && RAILS_ENV=#{environment} whenever -w"
   end
 
