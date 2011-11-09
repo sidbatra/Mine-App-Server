@@ -6,12 +6,14 @@
           <%= text_field_tag  'name',
                               store.name,
                               :id     => "store_name_#{store.id}",
-                              :class  => "creation_input box_shadow"%></td>
+                              :class  => "creation_input box_shadow"%>
+        </td>
         <td>
           <%=link_to  'Approve', 
                       'javascript:void(0);',
                       :id     => "store_update_#{store.id}",
-                      :class  => 'submit_red_12'%></td>
+                      :class  => 'submit_red_12'%>
+        </td>
       </tr>
     <%end%>
   </table>

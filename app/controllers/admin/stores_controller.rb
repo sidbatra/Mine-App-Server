@@ -19,7 +19,7 @@ class Admin::StoresController < ApplicationController
     store           = Store.find(params[:id])
     fetched_store   = Store.fetch(params[:name])
     
-    if fetched_store.nil? || store == fetched_store 
+    if fetched_store.nil? || store.id == fetched_store.id
       store.edit(params)
       @store = store
     else
