@@ -33,8 +33,6 @@
 
 <%content_for :javascript do%>
 
-  <%=render :partial => "misc/feedback"%>
-
   <script type="text/javascript">
      mpq.register_once({'landed_on' : '<%=@origin%>'});
      mpq.track('landed on homepage',{
