@@ -40,7 +40,7 @@ task :production do
                         :no_release => true
   role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",
+  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com",
                         :no_release => true
   set :total_workers, 3
   set :environment,   "production"
@@ -198,7 +198,7 @@ namespace :cache do
   
   desc 'Start the memcached daemon on the cache server'
   task :start, :roles => :cache do
-    run "memcached -d -m 450 -t 6"
+    run "memcached -d -m 450 -t 6 && sleep 3"
   end
 
   desc 'Clear the cache'
