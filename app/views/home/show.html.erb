@@ -1,7 +1,3 @@
-<%content_for :body_attribute do%>
-	<%="style='overflow:hidden'"%>
-<%end%>
-
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
@@ -16,11 +12,15 @@
 <%end%>
 
 
-<%if @layout == "home1"%>
-  <%=render "girl"%>
-<%else%>
-  <%=render "tri"%>
+<%content_for :body_attribute do%>
+  <%if @home ==  'girl'%>
+    <%="style='overflow:hidden' class='home1'"%>
+  <%elsif @home == 'tri'%>
+    <%="style='overflow:hidden' class='home2'"%>
+  <%end%>
 <%end%>
+
+<%=render @home%>
 
 
 <%content_for :javascript do%>
