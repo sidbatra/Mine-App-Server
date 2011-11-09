@@ -18,5 +18,5 @@ ActionController::Base.asset_host = File.join(
 
 
 # Cache settings
-#config.cache_store = :mem_cache_store, '10.194.250.118:11211'
+config.cache_store = :mem_cache_store, '107.20.229.8:11211'
 config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache"
