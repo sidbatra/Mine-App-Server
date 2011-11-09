@@ -17,7 +17,15 @@
     <%="style='overflow:hidden' class='home1'"%>
   <%elsif @home == 'tri'%>
     <%="style='overflow:hidden' class='home2'"%>
-  <%end%>
+  <%elsif @home == 'art'%>
+    <%="style='overflow:hidden' class='home3'"%>
+  <%elsif @home == 'zendesk'%>
+  	<%="style='overflow:hidden' class='home4'"%>
+  <%elsif @home == 'gojee'%>
+  	<%="style='overflow:hidden' class='home5'"%>
+  <%elsif @home == 'gojee1'%>
+  	<%="style='overflow:hidden' class='home6'"%>
+	<%end%>
 <%end%>
 
 <%=render @home%>

@@ -14,7 +14,7 @@
   <body <%=yield :body_attribute%>>
     
     
-    <%=render "misc/header" if @home == 'girl'%>
+    <%=render "misc/header" if @home == 'girl' || @home == 'zendesk'%>
  
     <%=yield%>
     
