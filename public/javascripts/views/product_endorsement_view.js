@@ -42,6 +42,9 @@ Denwen.ProductEndorsementView = Backbone.View.extend({
     $(this.cancelEl).show();
     $(this.inputEl).show();
     $(this.inputEl).focus();
+    
+    var textLength = $(this.inputEl).text().length;
+    $(this.inputEl).selectRange(0,textLength);
 
     analytics.endorsementEditingSelected(this.source);
   },

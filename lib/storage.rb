@@ -96,6 +96,18 @@ module DW
       end
     end
 
+    # Dump stores misc analytics, logs, etc. populated
+    # from multiple services
+    #
+    class Dump < FileSystem
+
+      # Override the bucket used for storing files
+      #
+      def self.bucket
+        CONFIG[:dump_bucket]
+      end
+    end
+
   end #storage
 
 end #dw

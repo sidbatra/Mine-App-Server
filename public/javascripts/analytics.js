@@ -104,6 +104,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Searched a product", {'query':query});
   },
 
+  // Fired when an image selected by the user is broken
+  //
+  productImageBroken: function() {
+    mpq.track("Product Image Broken");
+  },
+
   // User cancels product search
   //
   productSearchCancelled: function() {
@@ -142,10 +148,13 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Page view on product profile
   //
-  productProfileView: function(source) {
+  productProfileView: function(source,id) {
      mpq.track(
       'Product Profile View',
-      {'source'  : source});
+      {
+        'source'  : source,
+        'id' : id
+      });
   },
 
   // User opens new products page

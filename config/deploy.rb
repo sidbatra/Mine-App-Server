@@ -23,7 +23,7 @@ task :staging do
                         :no_release => true
   role :search,       "ec2-107-20-229-8.compute-1.amazonaws.com", 
                         :no_release => true
-  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com", 
+  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com",
                         :no_release => true
   set :total_workers, 1
   set :environment,   "staging"
@@ -34,13 +34,13 @@ end
 
 
 task :production do
-  role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com","ec2-67-202-63-102.compute-1.amazonaws.com","ec2-50-19-72-202.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-22-21-214.compute-1.amazonaws.com","ec2-184-72-167-21.compute-1.amazonaws.com"
+  role :web,          "ec2-75-101-204-136.compute-1.amazonaws.com","ec2-67-202-63-102.compute-1.amazonaws.com","ec2-204-236-192-88.compute-1.amazonaws.com"
+  role :worker,       "ec2-107-22-21-214.compute-1.amazonaws.com","ec2-184-72-167-21.compute-1.amazonaws.com","ec2-50-16-102-47.compute-1.amazonaws.com"
   role :db,           "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
   role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :cache,        "ec2-75-101-204-136.compute-1.amazonaws.com",
+  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com",
                         :no_release => true
   set :total_workers, 3
   set :environment,   "production"
@@ -82,12 +82,12 @@ namespace :deploy do
     system "cap #{environment}  apache:config"
     system "cap #{environment}  apache:start"
     #system "cap #{environment}  search:start"
-    #system "cap #{environment}  cache:start"
+    system "cap #{environment}  cache:start"
 
     system "cap #{environment}  workers:start"
 
     #system "cap #{environment}  misc:apnd"
-    #system "cap #{environment}  misc:whenever"
+    system "cap #{environment}  misc:whenever"
 
   end
 
@@ -106,12 +106,14 @@ namespace :deploy do
 
     system "cap #{environment}  db:migrate"
 
+    system "cap #{environment}  cache:clear"
+
     system "cap #{environment}  passenger:restart"
     system "cap #{environment}  workers:restart"
 
     #system "cap #{environment}  search:index"
 
-    #system "cap #{environment}  misc:whenever"
+    system "cap #{environment}  misc:whenever"
   end
 
 end
@@ -196,7 +198,13 @@ namespace :cache do
   
   desc 'Start the memcached daemon on the cache server'
   task :start, :roles => :cache do
-    run "memcached -d -m 450 -t 6"
+    run "memcached -d -m 450 -t 6 && sleep 3"
+  end
+
+  desc 'Clear the cache'
+  task :clear do
+    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
+            "rake clear_cache"
   end
 
 end
@@ -296,7 +304,7 @@ namespace :misc do
         "--apple-host #{apnd_host} && sleep 3"
   end
 
-  task :whenever, :roles => :worker do
+  task :whenever, :roles => [:web,:worker] do
     run "cd #{current_path} && RAILS_ENV=#{environment} whenever -w"
   end
 

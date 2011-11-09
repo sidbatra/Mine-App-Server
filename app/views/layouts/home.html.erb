@@ -11,17 +11,16 @@
     <%=csrf_meta_tag%>
   </head>
 
-  <body class="home2" <%=yield :body_attribute%>>
+  <body <%=yield :body_attribute%>>
     
     
-    <%#render "misc/header"%>
+    <%=render "misc/header" if @home == 'girl' || @home == 'zendesk'%>
  
     <%=yield%>
     
-    <div id="blocker"></div>
+    <%=blocker%>
 
     <%=render :partial => "misc/analytics"%>
-    <%=javascript_include_merged :home-%>
 
     <%=yield :javascript%>
   </body>

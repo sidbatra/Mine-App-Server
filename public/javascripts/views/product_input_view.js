@@ -53,8 +53,12 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Fired when a product is selected from the ProductImagesView
   //
   productSelected: function(productHash) {
+    var self = this;
+
     $(this.selectionEl).show();
     $(this.selectionEl).html("<img id='product_selection_photo' src='" + productHash['image_url'] + "' />");
+
+    document.getElementById('product_selection_photo').onerror = function(){self.productImageBroken()};
 
     $(this.websiteEl).val(productHash['website_url']);
     $(this.imageEl).val(productHash['image_url']);
@@ -66,6 +70,23 @@ Denwen.ProductInputView = Backbone.View.extend({
     $(this.titleEl).val(productHash['query'].toProperCase());
 
     analytics.productSearchCompleted();
+  },
+
+  // Fired when a product image is broken
+  //
+  productImageBroken: function() {
+    $(this.selectionEl).hide();
+    $(this.selectionEl).html('');
+    $(this.imageEl).val('');
+    $(this.thumbEl).val('');
+
+    $(this.queryEl).focus();
+
+    this.productImagesView.search();
+
+    alert("Sorry, this image no longer exists. Please select again");
+
+    analytics.productImageBroken();
   },
 
   // Form submitted callback

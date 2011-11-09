@@ -16,7 +16,7 @@ class UserMailer < ActionMailer::Base
     if @owner.id == @user.id
       @action    += " commented on your "
     elsif @owner.id == @comment.user.id 
-      @action    += " also commented on his "
+      @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
     else
       @action    += " also commented on #{@owner.first_name} "\
                     " #{@owner.last_name}'s "

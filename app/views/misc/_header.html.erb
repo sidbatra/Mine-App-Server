@@ -28,45 +28,20 @@
 
    
 		<li>
-			
 			<a class="nav_menu nav_add_item_button">Add item +</a>
 			
 			<ul class="nav_add_list">
 				
-				<%=link_to "<li>Shoes</li>",
-	              new_product_path(:category => "shoes",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              	
-	            <%=link_to "<li>Accessories</li>",
-	              new_product_path(:category => "accessories",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              	
-	            <%=link_to "<li>Clothing</li>",
-	              new_product_path(:category => "clothing",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              
-	            <%=link_to "<li>Home Decor</li>",
-	              new_product_path(:category => "decor",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              	
-	            <%=link_to "<li>Cosmetics</li>",
-	              new_product_path(:category => "cosmetics",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              	
-	            <%=link_to "<li>Electronics</li>",
-	              new_product_path(:category => "electronics",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              	
-	            <%=link_to "<li>Jewelry</li>",
-	              new_product_path(:category => "jewelry",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-	              	
-	            <%=link_to "<li>Anything!</li>",
-	              new_product_path(:category => "anything",:src => "dropdown"),
-	              	:class => "nav_choice"%>
-				
+        <%@categories.each do |category|%>
+          <%=link_to "<li>#{category.id == 8 ? 
+                              'Anything!' : 
+                              category.name}</li>",
+                  new_product_path(
+                    :category => category.handle,
+                    :src => 'dropdown'),
+                  :class => 'nav_choice'%>
+        <%end%>
 			</ul>
-			
 		</li>
 		
 
