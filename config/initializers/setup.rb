@@ -17,6 +17,7 @@ require 'ar-extensions/import/mysql'
 # Include modules needed through the application lifetime
 #
 include DW
+include CacheManagement
 include CryptoManagement 
 include ImageProcessing
 include NotificationManagement

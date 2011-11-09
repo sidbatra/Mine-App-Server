@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # Popular categories for the drop down in the header
   #
   def populate_categories
-    @categories = Category.weighted if logged_in?
+    @categories = Category.fetch_all if logged_in?
   end
 
 end

@@ -5,6 +5,6 @@ task :clear_cache do |e,args|
 
   require 'config/environment.rb'
 
-  Rails.cache.clear
+  Cache.clear
 
 end
