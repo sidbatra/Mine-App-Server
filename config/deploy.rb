@@ -23,7 +23,7 @@ task :staging do
                         :no_release => true
   role :search,       "ec2-107-20-229-8.compute-1.amazonaws.com", 
                         :no_release => true
-  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com", 
+  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com",
                         :no_release => true
   set :total_workers, 1
   set :environment,   "staging"
@@ -82,7 +82,7 @@ namespace :deploy do
     system "cap #{environment}  apache:config"
     system "cap #{environment}  apache:start"
     #system "cap #{environment}  search:start"
-    #system "cap #{environment}  cache:start"
+    system "cap #{environment}  cache:start"
 
     system "cap #{environment}  workers:start"
 
@@ -105,6 +105,8 @@ namespace :deploy do
     end
 
     system "cap #{environment}  db:migrate"
+
+    system "cap #{environment}  cache:clear"
 
     system "cap #{environment}  passenger:restart"
     system "cap #{environment}  workers:restart"
@@ -197,6 +199,12 @@ namespace :cache do
   desc 'Start the memcached daemon on the cache server'
   task :start, :roles => :cache do
     run "memcached -d -m 450 -t 6"
+  end
+
+  desc 'Clear the cache'
+  task :clear do
+    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
+            "rake clear_cache"
   end
 
 end
