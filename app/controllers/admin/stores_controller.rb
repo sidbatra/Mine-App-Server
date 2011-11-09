@@ -25,14 +25,7 @@ class Admin::StoresController < ApplicationController
       store.edit(params)
       @store = store
     else
-      products_updated  = Product.update_all(
-                            {:store_id => fetched_store.id},
-                            {:store_id => store.id})
-
-      Store.update_counters(
-              fetched_store.id,
-              :products_count => products_updated)
-
+      store.move_products_to(fetched_store)
       store.destroy
       @store = fetched_store
     end

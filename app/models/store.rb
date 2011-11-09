@@ -50,6 +50,16 @@ class Store < ActiveRecord::Base
     super(options.merge(:only => [:id,:name]))
   end
 
+  # Move all products to an existing store
+  #
+  def move_products_to(store)
+      products_updated  = Product.update_all(
+                            {:store_id => store.id},
+                            {:store_id => self.id})
 
+      Store.update_counters(
+              store.id,
+              :products_count => products_updated)
+  end
 
 end
