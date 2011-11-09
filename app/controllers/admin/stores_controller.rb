@@ -7,7 +7,9 @@ class Admin::StoresController < ApplicationController
   #
   def index
     @approved_stores    = Store.find_all_by_is_approved(true)
-    @unapproved_stores  = Store.find_all_by_is_approved(false)
+    @unapproved_stores  = Store.find_all_by_is_approved(
+                                  false,
+                                  :order => 'name ASC')
   end
 
 
