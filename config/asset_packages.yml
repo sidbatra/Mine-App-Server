@@ -19,6 +19,7 @@ javascripts:
   - models/search
   - models/product_image
   - models/product
+  - models/store
   - collections/product_images
   - collections/users
   - views/user_byline_view
@@ -30,6 +31,7 @@ javascripts:
   - views/facebook_view
   - views/facebook_invite_view
   - views/user_ifollowers_view
+  - views/admin_store_view
 stylesheets: 
 - application: 
   - application

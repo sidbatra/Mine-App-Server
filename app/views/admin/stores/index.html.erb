@@ -1,0 +1,49 @@
+<div id="container">
+  <table>
+    <%@unapproved_stores.each do |store|%>
+      <tr>
+        <td width="400">
+          <%= text_field_tag  'name',
+                              store.name,
+                              :id     => "store_name_#{store.id}",
+                              :class  => "creation_input box_shadow"%></td>
+        <td>
+          <%=link_to  'Approve', 
+                      'javascript:void(0);',
+                      :id     => "store_update_#{store.id}",
+                      :class  => 'submit_red_12'%></td>
+      </tr>
+    <%end%>
+  </table>
+</div>
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+
+      function updateAutocomplete() {
+        <%@unapproved_stores.each do |store|%>
+          $("#store_name_<%=store.id%>").autocomplete(
+                                stores,{
+                                 formatMatch: function(item){
+                                  return item[0].replace(/[^\w]/gi, '');},
+                                 formatResult: function(item){
+                                  return item[0];}
+                                 });
+        <%end%>
+      }
+
+     $(document).ready(function(){
+        stores = "<%=@approved_stores.map(&:name).join('|')%>".split("|");
+
+        <%@unapproved_stores.each do |store|%>
+          store             = new Denwen.Store(<%=store.to_json%>);
+          storeAdminView    = new Denwen.AdminStoreView({
+                                    model:store,
+                                    inputEl:$('#store_name_<%=store.id%>'),
+                                    updateEl:$('#store_update_<%=store.id%>')});
+        <%end%>
+       updateAutocomplete(); 
+      });
+  </script>
+<%end%>

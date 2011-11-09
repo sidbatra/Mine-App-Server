@@ -50,6 +50,11 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => 'admin/users',
                 :only       => [:index,:show]
   
+  map.resources :admin_stores, 
+                :as         => 'admin/stores', 
+                :controller => 'admin/stores',
+                :only       => [:index,:update]
+
   map.canvas    '/canvas',
                 :controller => :canvas,
                 :action     => :show
