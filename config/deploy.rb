@@ -304,7 +304,7 @@ namespace :misc do
         "--apple-host #{apnd_host} && sleep 3"
   end
 
-  task :whenever, :roles => :web do
+  task :whenever, :roles => [:web,:worker] do
     run "cd #{current_path} && RAILS_ENV=#{environment} whenever -w"
   end
 
