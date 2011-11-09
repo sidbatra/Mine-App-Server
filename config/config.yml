@@ -64,6 +64,7 @@ development: &development
   :host: sbat.felvy.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
+  :dump_bucket: denwen-hasit-dumps
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: /
   :example_users: "12,974,977"
@@ -75,6 +76,7 @@ staging: &staging
   <<: *common
   :host: staging.felvy.com
   :s3_bucket: denwen-hasit-filesystem
+  :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-staging
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://s3.amazonaws.com/denwen-hasit-staging
@@ -87,6 +89,7 @@ production: &production
   <<: *common
   :host: felvy.com
   :s3_bucket: denwen-hasit-filesystem
+  :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-production
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
