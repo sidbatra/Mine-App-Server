@@ -25,9 +25,12 @@ class ProductsController < ApplicationController
   # Create a new product
   #
   def create
-    params[:product][:store_id] = Store.add(
-                                    params[:product][:store],
-                                    self.current_user.id).id
+
+    if params[:product][:is_store_unknown] == '0'
+      params[:product][:store_id] = Store.add(
+                                      params[:product][:store],
+                                      self.current_user.id).id
+    end
 
     product     = Product.add(
                             params[:product],

@@ -5,7 +5,9 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Event listeners
   //
   events: {
-    "click #endorsement_initiate" : "endorsementInitiated"
+    "click #endorsement_initiate" : "endorsementInitiated",
+    "change #product_is_gift" : "isGiftChanged",
+    "change #product_is_store_unknown" : "isStoreUnknownChanged"
   },
 
   // Constructor logic
@@ -17,7 +19,9 @@ Denwen.ProductInputView = Backbone.View.extend({
     this.queryEl            = '#product_query';
     this.titleEl            = '#product_title';
     this.priceEl            = '#product_price';
+    this.priceBoxEl         = '#price_box';
     this.storeEl            = '#product_store';
+    this.storeBoxEl         = '#store_box';
     this.websiteEl          = '#product_source_url';
     this.thumbEl            = '#product_orig_thumb_url';
     this.imageEl            = '#product_orig_image_url';
@@ -26,6 +30,8 @@ Denwen.ProductInputView = Backbone.View.extend({
     this.endorsementEl      = '#product_endorsement';
     this.endorsementBoxEl   = '#endorsement_container';
     this.endorsementStartEl = '#endorsement_initiate';
+    this.isGiftEl           = '#product_is_gift';
+    this.isStoreUnknownEl   = '#product_is_store_unknown';
     this.posting            = false;
 
     this.productImages      = new Denwen.ProductImages();
@@ -38,6 +44,42 @@ Denwen.ProductInputView = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
+  },
+
+  // Returns the current state of the gifted check box
+  //
+  isGifted: function() {
+    return $(this.isGiftEl).is(':checked');
+  },
+
+  // Fired when the user toggles the is gift check box
+  //
+  isGiftChanged: function() {
+    if(this.isGifted()) {
+      $(this.priceBoxEl).hide();
+      $(this.priceEl).val('0');
+    }
+    else {
+      $(this.priceEl).val('');
+      $(this.priceBoxEl).show();
+    }
+  },
+
+  // Returns the current state of the is unknown check box
+  //
+  isStoreUnknown: function() {
+    return $(this.isStoreUnknownEl).is(':checked');
+  },
+
+  // Fired when the user toggles the is store unknown check box
+  //
+  isStoreUnknownChanged: function() {
+    if(this.isStoreUnknown()) {
+      $(this.storeBoxEl).hide();
+    }
+    else {
+      $(this.storeBoxEl).show();
+    }
   },
 
   // User initiate creation of endorsement
@@ -109,17 +151,17 @@ Denwen.ProductInputView = Backbone.View.extend({
       alert("Please name your item.");
       analytics.productException('No Title');
     }
-    else if($(this.priceEl).val().length < 1) {
+    else if(!this.isGifted() && $(this.priceEl).val().length < 1) {
       valid = false;
       alert("Please enter the price of your item.");
       analytics.productException('No Price');
     }
-    else if(isNaN($(this.priceEl).val())) {
+    else if(!this.isGifted() && isNaN($(this.priceEl).val())) {
       valid = false;
       alert("Please enter a valid price.");
       analytics.productException('Invalid Price');
     }
-    else if($(this.storeEl).val().length < 1) {
+    else if(!this.isStoreUnknown() && $(this.storeEl).val().length < 1) {
       valid = false;
       alert("Please enter the store where you bought this item.");
       analytics.productException('No Store');

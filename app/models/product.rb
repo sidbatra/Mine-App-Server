@@ -19,8 +19,8 @@ class Product < ActiveRecord::Base
   validates_presence_of     :price
   validates_numericality_of :price
   validates_presence_of     :orig_image_url
+  validates_inclusion_of    :is_gift, :in => [true,false]
   validates_presence_of     :user_id
-  validates_presence_of     :store_id
   validates_presence_of     :category_id
   validates_inclusion_of    :category_id, :in => 1..8
 
@@ -28,6 +28,11 @@ class Product < ActiveRecord::Base
   # Named scopes
   #-----------------------------------------------------------------------------
   named_scope :eager, :include => [:user,:store]
+
+  #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :is_store_unknown
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -45,6 +50,7 @@ class Product < ActiveRecord::Base
       :query            => attributes['query'],
       :price            => attributes['price'],
       :endorsement      => attributes['endorsement'].strip,
+      :is_gift          => attributes['is_gift'],
       :category_id      => attributes['category_id'],
       :store_id         => attributes['store_id'],
       :user_id          => user_id)
