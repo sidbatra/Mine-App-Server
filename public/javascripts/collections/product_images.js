@@ -87,6 +87,11 @@ Denwen.ProductImages = Backbone.Collection.extend({
     var images  = data['SearchResponse']['Image']['Results'];
     var offset  = data['SearchResponse']['Image']['Offset'];
     var total   = data['SearchResponse']['Image']['Total'];
+    var spell   = data['SearchResponse']['Spell'];
+
+    if(spell) {
+      this.trigger('correction',spell['Results'][0]['Value']);
+    }
 
     this.state++;
     this.disabled = 0;

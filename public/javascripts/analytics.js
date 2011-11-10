@@ -134,6 +134,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Item Created");
   },
 
+  // User deletes a product
+  //
+  productDeleted: function() {
+    mpq.track("Item Deleted");
+  },
+
   // Page view on user profile
   //
   userProfileView: function(source,category,id) {

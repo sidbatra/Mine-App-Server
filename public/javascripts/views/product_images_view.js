@@ -5,25 +5,29 @@ Denwen.ProductImagesView = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #product_search"   : "search",
-    "keypress #product_query" : "queryKeystroke",
-    "click #cancel_button"    : "cancelButtonClicked"
+    "click #product_search"           : "search",
+    "click #product_repeat_search"    : "search",
+    "keypress #product_query"         : "queryKeystroke",
+    "keypress #product_repeat_query"  : "queryKeystroke",
+    "click #cancel_button"            : "cancelButtonClicked"
   },
 
   // Constructor logic
   //
   initialize: function() {
-    var self          = this;
+    var self            = this;
 
-    this.queryEl      = "#product_query";
-    this.imagesBoxEl  = "#chooser";
-    this.imagesEl     = "#results";
-    this.shadowEl     = "#shadow";
-    this.moreEl       = "#scroll_for_more_results";
+    this.queryEl        = "#product_query";
+    this.repeatQueryEl  = "#product_repeat_query";
+    this.imagesBoxEl    = "#chooser";
+    this.imagesEl       = "#results";
+    this.shadowEl       = "#shadow";
+    this.moreEl         = "#scroll_for_more_results";
 
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
     this.images.bind('add',this.added,this);
+    this.images.bind('correction',this.queryCorrection,this);
     
     this.windowListener = new Denwen.WindowListener();
     this.windowListener.bind('documentScrolled',this.documentScrolled,this);
@@ -73,21 +77,36 @@ Denwen.ProductImagesView = Backbone.View.extend({
   stopSearch: function() {
     $(this.shadowEl).fadeOut(500);
     $(this.imagesBoxEl).hide();
-    $(this.shadowEl).css("height","100%");
+    $(this.queryEl).val($(this.repeatQueryEl).val());
+    $(this.repeatQueryEl).val('');
+  },
+
+  // Fired from the images collection when there is a correction
+  //
+  queryCorrection: function(correctedQuery) {
+    $(this.repeatQueryEl).val(correctedQuery);
   },
 
   // Launch the search UI
   //
   search: function() {
-    var query = $(this.queryEl).val();
+
+    var query = $(this.repeatQueryEl).val();
+    
+    if(!query.length) {
+      query = $(this.queryEl).val();
+      $(this.repeatQueryEl).val(query);
+    }
 
     if(!query.length)
       return;
-    
+
+    $(this.shadowEl).css("height","100%");
     $(this.shadowEl).fadeIn(500);
     $(this.imagesEl).html('');
     $(this.imagesBoxEl).show();
     $(this.moreEl).show();
+    $(this.repeatQueryEl).focus();
 
     this.images.search(query);
 
@@ -133,7 +152,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
   // ProductImageView
   //
   productImageClicked: function(productHash) {
-    productHash['query'] = $(this.queryEl).val();
+    productHash['query'] = $(this.repeatQueryEl).val();
     this.trigger('productSelected',productHash);
     this.stopSearch();
   },

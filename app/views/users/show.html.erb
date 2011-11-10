@@ -185,6 +185,8 @@
       analytics.productCreated();
     <%elsif @source == "login"%>
       analytics.userLogin();
+    <%elsif @source == "product_deleted"%>
+      analytics.productDeleted();
     <%end%>
 
     analytics.userProfileView(
