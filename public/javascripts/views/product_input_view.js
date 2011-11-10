@@ -18,24 +18,29 @@ Denwen.ProductInputView = Backbone.View.extend({
   initialize: function() {
     var self          = this;
 
-    this.formEl             = '#new_product';
-    this.queryEl            = '#product_query';
-    this.titleEl            = '#product_title';
-    this.priceEl            = '#product_price';
-    this.priceBoxEl         = '#price_box';
-    this.storeEl            = '#product_store';
-    this.storeBoxEl         = '#store_box';
-    this.websiteEl          = '#product_source_url';
-    this.thumbEl            = '#product_orig_thumb_url';
-    this.imageEl            = '#product_orig_image_url';
-    this.extraEl            = '#product_extra';
-    this.selectionEl        = '#product_selection';
-    this.endorsementEl      = '#product_endorsement';
-    this.endorsementBoxEl   = '#endorsement_container';
-    this.endorsementStartEl = '#endorsement_initiate';
-    this.isGiftEl           = '#product_is_gift';
-    this.isStoreUnknownEl   = '#product_is_store_unknown';
-    this.posting            = false;
+    this.formEl               = '#new_product';
+    this.queryEl              = '#product_query';
+    this.titleEl              = '#product_title';
+    this.dollarEL             = '#creation_dollar';
+    this.priceEl              = '#product_price';
+    this.priceTextEl          = '#price_text';
+    this.priceBoxEl           = '#price_box';
+    this.storeEl              = '#product_store';
+    this.storeTextEl          = '#store_text';
+    this.storeBoxEl           = '#store_box';
+    this.websiteEl            = '#product_source_url';
+    this.thumbEl              = '#product_orig_thumb_url';
+    this.imageEl              = '#product_orig_image_url';
+    this.extraEl              = '#product_extra';
+    this.selectionEl          = '#product_selection';
+    this.endorsementEl        = '#product_endorsement';
+    this.endorsementBoxEl     = '#endorsement_container';
+    this.endorsementStartEl   = '#endorsement_initiate';
+    this.isGiftEl             = '#product_is_gift';
+    this.isGiftBoxEl          = '#is_gift_box';
+    this.isStoreUnknownEl     = '#product_is_store_unknown';
+    this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
+    this.posting              = false;
 
     this.productImages      = new Denwen.ProductImages();
     this.productImagesView  = new Denwen.ProductImagesView({
@@ -67,12 +72,18 @@ Denwen.ProductInputView = Backbone.View.extend({
   //
   isGiftChanged: function() {
     if(this.isGifted()) {
-      $(this.priceBoxEl).hide();
+      $(this.priceEl).hide();
+      $(this.dollarEL).hide();
+      $(this.priceTextEl).hide();
       $(this.priceEl).val('0');
+      $(this.isGiftBoxEl).addClass('creation_checkbox_left');
     }
     else {
+      $(this.isGiftBoxEl).removeClass('creation_checkbox_left');
       $(this.priceEl).val('');
-      $(this.priceBoxEl).show();
+      $(this.dollarEL).show();
+      $(this.priceTextEl).show();
+      $(this.priceEl).show();
     }
   },
 
@@ -86,10 +97,14 @@ Denwen.ProductInputView = Backbone.View.extend({
   //
   isStoreUnknownChanged: function() {
     if(this.isStoreUnknown()) {
-      $(this.storeBoxEl).hide();
+      $(this.storeEl).hide();
+      $(this.storeTextEl).hide();
+      $(this.isStoreUnknownBoxEl).addClass('creation_checkbox_left');
     }
     else {
-      $(this.storeBoxEl).show();
+      $(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right');
+      $(this.storeEl).show();
+      $(this.storeTextEl).show();
     }
   },
 
