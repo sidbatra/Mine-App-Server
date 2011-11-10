@@ -40,6 +40,10 @@
 	
 	 <!-- store -->
 	  <div class="step" id='store_box'>
+	  	<div class="creation_checkbox_right">
+      	<%=f.check_box :is_store_unknown%>
+      	<%=f.label :is_store_unknown,"Not sure"%>
+      </div>
 	  	<p class="step_title">
         Store where bought
       </p>
@@ -48,17 +52,16 @@
                   :value    => "",
                   :class    => "creation_input box_shadow"%>
 	  </div> <!-- store step -->  
-
-    <div class="step">
-      <%=f.check_box :is_store_unknown%>
-      <%=f.label :is_store_unknown,"I can't remember :("%>
-    </div>
 	
 
     <!-- price -->
     <div class="step" id='price_box'>
       <p class="step_title">
-          Price
+      	<div class="creation_checkbox_right">
+          <%=f.check_box :is_gift%>
+      		<%=f.label :is_gift,"Gift"%>
+      	</div>
+        Price
       </p>
       
       <div id='creation_dollar'>$</div>
@@ -70,13 +73,6 @@
 
       <%=blocker%>
 		</div> <!-- price step -->
-
-    <div class="step">
-      <%=f.check_box :is_gift%>
-      <%=f.label :is_gift,"I got this as a gift"%>
-    </div>
-
-
 
     <%=link_to  'Add an optional review', 
                 'javascript:void(0)',
