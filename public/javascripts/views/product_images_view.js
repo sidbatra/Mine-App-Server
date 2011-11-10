@@ -27,6 +27,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
     this.images.bind('add',this.added,this);
+    this.images.bind('correction',this.queryCorrection,this);
     
     this.windowListener = new Denwen.WindowListener();
     this.windowListener.bind('documentScrolled',this.documentScrolled,this);
@@ -78,6 +79,12 @@ Denwen.ProductImagesView = Backbone.View.extend({
     $(this.imagesBoxEl).hide();
     $(this.queryEl).val($(this.repeatQueryEl).val());
     $(this.repeatQueryEl).val('');
+  },
+
+  // Fired from the images collection when there is a correction
+  //
+  queryCorrection: function(correctedQuery) {
+    $(this.repeatQueryEl).val(correctedQuery);
   },
 
   // Launch the search UI
