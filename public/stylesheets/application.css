@@ -129,11 +129,28 @@ h1 {
 .creation_input {
 	height: 26px;
 	width: 263px;
-	margin: 5px 0 3px;
+	margin: 0px 0 3px;
 	border: 1px solid #cccccc;
 	padding: 2px 5px;
 	line-height: 26px;
 	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #666666;
+	vertical-align: top;
+	background: #fbfbfb;
+	margin-top: 5px; 
+}
+
+.creation_search_chooser {
+	height: 26px;
+	width: 263px;
+	margin: 0px 0 3px;
+	border: 1px solid #cccccc;
+	padding: 2px 5px;
+	line-height: 26px;
+	font-size: 20px;
+	-webkit-font-smoothing: antialiased;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 	vertical-align: top;
@@ -161,7 +178,7 @@ h1 {
 	margin-top: 5px;
 }
 
-#product_search { 
+#product_search, .product_search_chooser { 
 	width: 50px; 
 	height: 32px;
 	line-height: 30px;
@@ -176,10 +193,13 @@ h1 {
 	cursor: pointer;
 	display: inline;
 	vertical-align: top;
-	margin-top: 5px;
+	-webkit-font-smoothing: antialiased;
 }
 
-#product_search:hover {
+#product_search { margin-top: 5px;}
+.product_search_chooser { margin-left: -7px; margin-right: 52px; }
+
+#product_search:hover, .product_search_chooser:hover {
 	background-color: #323232;
 }
 
@@ -190,8 +210,8 @@ h1 {
 	background: url('/images/spinner.gif') no-repeat;
 	background-position: center;
 	text-align: center;
-  	display:none;
-  	padding: 1px 0;
+  display:none;
+  padding: 1px 0;
 }
 
 #product_selection_photo {
@@ -531,19 +551,30 @@ h1 {
 	background: white;
 	padding-bottom: 20px;
 	padding-left: 15px;
-  	z-index: 7000;
-  	overflow: visible;
+  z-index: 7000;
+  overflow: visible;
+}
+
+#results {
+	margin-top: 33px;
 }
 
 #chooser_title_bar {
+	position: fixed;
+	top: 0px;
+	left: 24px;
+	right: 24px;
 	height: 32px;
+	padding: 8px 0;
 	line-height: 32px;
-	margin-top: 15px;
 	text-align: center;
-	padding-right:15px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
-	font-size: 24px;
+	background: white;
+	font-size: 20px;
+	z-index: 9999;
+	border-top: 24px solid #333333;
+	border-bottom: 1px solid #dddddd;
 }
 
 .photo_choice_cell {
@@ -599,14 +630,12 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	border-top: 1px solid #dddddd;
-	border-right: 1px solid #dddddd;
-	border-left: 1px solid #dddddd;
 	font-size: 20px;
 	text-align: center;
 	position: fixed;
 	background: white;
-	right: 39px;
-	left: 39px;
+	right: 24px;
+	left: 24px;
 	bottom: 0px;
 	z-index: 10000;
 }
@@ -1323,9 +1352,9 @@ h1 {
 }
   
 #cancel_button {
-    position:absolute;
-    top:-10px;
-    left:-10px;
+    position: fixed;
+    top: 13px;
+    right: 13px;
     padding:2px;
     width: 22px;
     height: 22px;
@@ -1334,6 +1363,7 @@ h1 {
     cursor: pointer;
   	cursor: hand; /* for IE 5.x */
     text-decoration: none;
+    z-index: 10000;
 }
 
 /* ------------------------------ Effects */
