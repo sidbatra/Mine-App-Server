@@ -16,7 +16,8 @@
         </td>
         <td width="200">
           <%=link_to  'Store', 
-                      admin_store_path(store)%>
+                      admin_store_path(store),
+                      :id     => "store_link_#{store.id}"%>
         </td>
       </tr>
     <%end%>
@@ -45,9 +46,8 @@
         <%@unapproved_stores.each do |store|%>
           store             = new Denwen.Store(<%=store.to_json%>);
           storeAdminView    = new Denwen.AdminStoreView({
-                                    model:store,
-                                    inputEl:$('#store_name_<%=store.id%>'),
-                                    updateEl:$('#store_update_<%=store.id%>')});
+                                          model:store,
+                                          id:'<%=store.id%>'});
         <%end%>
        updateAutocomplete(); 
       });

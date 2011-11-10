@@ -12,8 +12,10 @@ Denwen.AdminStoreView = Backbone.View.extend({
   initialize: function() {
     var self        = this;
 
-    this.inputEl    = this.options.inputEl;
-    this.updateEl   = this.options.updateEl;
+    this.id         = this.options.id;
+    this.inputEl    = $('#store_name_' + this.id); 
+    this.updateEl   = $('#store_update_' + this.id); 
+    this.linkEl     = $('#store_link_' + this.id);
 
     this.updateEl.click(function(){self.update();});
   },
@@ -31,6 +33,7 @@ Denwen.AdminStoreView = Backbone.View.extend({
   wipe: function() {
     this.inputEl.hide();
     this.updateEl.hide();
+    this.linkEl.hide();
   },
 
   // Called when the admin tried to update a store 
@@ -47,5 +50,3 @@ Denwen.AdminStoreView = Backbone.View.extend({
   }
 
 });
-
-
