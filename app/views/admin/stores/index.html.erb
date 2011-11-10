@@ -35,7 +35,7 @@
       approved_stores   = new Denwen.Stores(<%=@approved_stores.to_json%>);
       unapproved_stores = new Denwen.Stores(<%=@unapproved_stores.to_json%>);
 
-      storesEditView    = new Denwen.StoresEditView({
+      storesEditView    = new Denwen.AdminStoresEditView({
                                   approved_collection   : approved_stores,
                                   unapproved_collection : unapproved_stores});
     });

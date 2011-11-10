@@ -32,8 +32,8 @@ javascripts:
   - views/facebook_view
   - views/facebook_invite_view
   - views/user_ifollowers_view
-  - views/stores_edit_view
-  - views/store_edit_view
+  - views/admin_stores_edit_view
+  - views/admin_store_edit_view
 stylesheets: 
 - application: 
   - application
