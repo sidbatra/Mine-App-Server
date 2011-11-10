@@ -196,6 +196,9 @@ h1 {
 	-webkit-font-smoothing: antialiased;
 }
 
+#store_box, #price_box { position: relative; }
+#price_box { width: 93px; }
+
 .creation_checkbox_right { position: absolute; top: 0px; right: 0px; color: #cccccc; }
 .creation_checkbox_right:hover { color: #999999; }
 .creation_checkbox_right input {
@@ -204,16 +207,8 @@ h1 {
 	filter: alpha (opacity=50);
 }
 
-#store_box, #price_box {
-	position: relative;
-}
-
-#price_box {
-	width: 93px;
-}
-
-
-.creation_checkbox_right:hover input {
+.creation_checkbox_left { position: absolute; top: 0px; left: 0px; color: #999999; }
+.creation_checkbox_right:hover input, .creation_checkbox_left input {
 	-moz-opacity: 1;
 	opacity: 1;
 	filter: alpha (opacity=100);
