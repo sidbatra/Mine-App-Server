@@ -12,6 +12,13 @@ class Store < ActiveRecord::Base
   validates_presence_of   :user_id
 
   #-----------------------------------------------------------------------------
+  # Named scopes
+  #-----------------------------------------------------------------------------
+  named_scope :approved,    :conditions => {:is_approved => true}
+  named_scope :unapproved,  :conditions => {:is_approved => false}
+  named_scope :sorted,      :order      => 'name ASC'
+
+  #-----------------------------------------------------------------------------
   # Class methods
   #-----------------------------------------------------------------------------
 
@@ -23,13 +30,11 @@ class Store < ActiveRecord::Base
       :user_id  => user_id)
   end
 
-
-  # Fetch a store from a name
+  # Fetch a store by name 
   #
   def self.fetch(name)
-    find_by_name(name.squeeze(' ').strip)
+    find_by_name(name.squeeze(' ').strip) 
   end
-
 
   #-----------------------------------------------------------------------------
   # Instance methods
@@ -38,8 +43,14 @@ class Store < ActiveRecord::Base
   # Edit attributes of the model
   #
   def edit(attributes)
-    self.name         = attributes[:name]
-    self.is_approved  = true
+
+    if attributes[:name].present?
+      self.name = attributes[:name]
+    end
+
+    if attributes[:is_approved].present?
+      self.is_approved  = attributes[:is_approved] 
+    end
 
     self.save!
   end

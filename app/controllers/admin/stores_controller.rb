@@ -6,10 +6,8 @@ class Admin::StoresController < ApplicationController
   # Show all stores pending approval with editing options 
   #
   def index
-    @approved_stores    = Store.find_all_by_is_approved(true)
-    @unapproved_stores  = Store.find_all_by_is_approved(
-                                  false,
-                                  :order => 'name ASC')
+    @approved_stores    = Store.approved
+    @unapproved_stores  = Store.unapproved.sorted
   end
 
 
@@ -22,11 +20,14 @@ class Admin::StoresController < ApplicationController
     fetched_store   = Store.fetch(params[:name])
     
     if fetched_store.nil? || store.id == fetched_store.id
+      params[:is_approved] = true
       store.edit(params)
+
       @store = store
     else
       store.move_products_to(fetched_store)
       store.destroy
+
       @store = fetched_store
     end
   rescue => ex
