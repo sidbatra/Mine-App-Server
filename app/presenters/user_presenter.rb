@@ -47,7 +47,14 @@ class UserPresenter < BasePresenter
   # Full title of the closet
   #
   def closet_title
-    self.full_name + "'s Closet"
+    name  = self.full_name
+
+    if name.length >= 20
+      parts = name.split(/ |-/)
+      name  = parts.first + ' ' + parts.last if parts.length > 2
+    end
+
+    name + "'s Closet"
   end
 
   # Full url of the user's closet
