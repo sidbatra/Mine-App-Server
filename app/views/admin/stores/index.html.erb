@@ -1,7 +1,7 @@
 <div id="container">
   <table>
     <%@unapproved_stores.each do |store|%>
-      <tr>
+      <tr id="tr_<%=store.id%>">
         <td width="400">
           <%= text_field_tag  'name',
                               store.name,
@@ -29,28 +29,15 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
 
-      function updateAutocomplete() {
-        <%@unapproved_stores.each do |store|%>
-          $("#store_name_<%=store.id%>").autocomplete(
-                                stores,{
-                                 formatMatch: function(item){
-                                  return item[0].replace(/[^\w]/gi, '');},
-                                 formatResult: function(item){
-                                  return item[0];}
-                                 });
-        <%end%>
-      }
+    $(document).ready(function(){
+      stores = "<%=@approved_stores.map(&:name).join('|')%>".split("|");
 
-     $(document).ready(function(){
-        stores = "<%=@approved_stores.map(&:name).join('|')%>".split("|");
+      approved_stores   = new Denwen.Stores(<%=@approved_stores.to_json%>);
+      unapproved_stores = new Denwen.Stores(<%=@unapproved_stores.to_json%>);
 
-        <%@unapproved_stores.each do |store|%>
-          store             = new Denwen.Store(<%=store.to_json%>);
-          storeAdminView    = new Denwen.AdminStoreView({
-                                          model:store,
-                                          id:'<%=store.id%>'});
-        <%end%>
-       updateAutocomplete(); 
-      });
+      storesEditView    = new Denwen.StoresEditView({
+                                  approved_collection   : approved_stores,
+                                  unapproved_collection : unapproved_stores});
+    });
   </script>
 <%end%>
