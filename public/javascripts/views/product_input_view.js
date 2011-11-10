@@ -6,6 +6,9 @@ Denwen.ProductInputView = Backbone.View.extend({
   //
   events: {
     "click #endorsement_initiate" : "endorsementInitiated",
+    "keypress #product_title" : "inputKeystroke",
+    "keypress #product_store" : "inputKeystroke",
+    "keypress #product_price" : "inputKeystroke",
     "change #product_is_gift" : "isGiftChanged",
     "change #product_is_store_unknown" : "isStoreUnknownChanged"
   },
@@ -44,6 +47,14 @@ Denwen.ProductInputView = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
+  },
+
+  // Catch keystrokes on inputs to stop form submissions
+  //
+  inputKeystroke: function(e) {
+    if(e.keyCode == 13) {
+      return false;
+    }
   },
 
   // Returns the current state of the gifted check box
