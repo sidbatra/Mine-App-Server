@@ -3,6 +3,8 @@
 //
 Denwen.Store = Backbone.Model.extend({
 
+  // Route on the app server
+  //
   urlRoot: '/admin/stores',
 
   // Constructor logic
