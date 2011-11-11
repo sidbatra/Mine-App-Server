@@ -1,4 +1,5 @@
 allow_debugging: off
+template_function:  _.template
 
 javascripts:
   application:
@@ -14,6 +15,8 @@ javascripts:
     - public/javascripts/models/*.js
     - public/javascripts/collections/*.js
     - public/javascripts/views/*.js
+    - app/views/comments/comment.jst
+    - app/views/products/product.jst
 stylesheets:
   application:
     - public/stylesheets/application.css
