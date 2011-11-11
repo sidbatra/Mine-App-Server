@@ -8,7 +8,6 @@
 // Global variables
 //
 var analytics       = new Denwen.Analytics();
-var urlHelper       = new Denwen.UrlHelper();
 
 var isDeviceMobile  = false;
 var isDeviceiOS     = false;
