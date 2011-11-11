@@ -23,6 +23,16 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :products,
                 :action     => :show
 
+  map.connect 'admin/stores/unapproved',
+              :controller   => 'admin/stores',
+              :action       => :index,
+              :filter       => :unapproved
+
+  map.connect 'admin/stores/popular',
+              :controller   => 'admin/stores',
+              :action       => :index,
+              :filter       => :popular
+
 
   # Exception manager
   map.connect 'admin/logged_exceptions/:action/:id', 

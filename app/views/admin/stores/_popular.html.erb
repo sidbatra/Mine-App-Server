@@ -1,0 +1,10 @@
+<%@stores.each do |store|%>
+  <tr>
+    <td width="400">
+      <%=link_to store.name, admin_store_path(store)%>
+    </td>
+    <td width="200">
+      <%=h store.products_count%>
+    </td>
+  </tr>
+<%end%>
