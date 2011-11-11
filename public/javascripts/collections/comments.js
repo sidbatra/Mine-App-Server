@@ -1,6 +1,6 @@
 // Collection of User models
 //
-Denwen.Comments = Backbone.Collection.extend({
+Denwen.Collections.Comments = Backbone.Collection.extend({
 
   // Route on the app server
   //
@@ -8,7 +8,7 @@ Denwen.Comments = Backbone.Collection.extend({
 
   // Base model
   //
-  model: Denwen.Comment,
+  model: Denwen.Models.Comment,
   
   // Constructor logic
   //

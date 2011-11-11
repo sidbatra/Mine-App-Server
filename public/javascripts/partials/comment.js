@@ -1,6 +1,6 @@
 // Render a single comment
 //
-Denwen.CommentView = Backbone.View.extend({
+Denwen.Partials.Comment = Backbone.View.extend({
 
   // Constructor logic
   //

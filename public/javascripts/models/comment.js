@@ -1,7 +1,7 @@
 // The Comment model represents user comments
 // on products
 //
-Denwen.Comment = Backbone.Model.extend({
+Denwen.Models.Comment = Backbone.Model.extend({
 
   // Constructor logic
   //

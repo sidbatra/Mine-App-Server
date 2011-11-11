@@ -1,6 +1,9 @@
 // Setup the namespace for the js MVc setup
 //
 var Denwen = {
-  Views   : {},
-  Models  : {}
+  Models      : {},
+  Views       : {},
+  Partials    : {},
+  Collections : {}
 };
+

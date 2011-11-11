@@ -149,7 +149,7 @@ Denwen.ProductInputView = Backbone.View.extend({
 
     this.productImagesView.search();
 
-    alert("Sorry, this image no longer exists. Please select again");
+    alert("Sorry, this image no longer exists. Please select a different photo.");
 
     analytics.productImageBroken();
   },

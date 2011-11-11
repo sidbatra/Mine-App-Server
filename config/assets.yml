@@ -17,6 +17,7 @@ javascripts:
     - public/javascripts/window_listener.js
     - public/javascripts/models/*.js
     - public/javascripts/collections/*.js
+    - public/javascripts/partials/*.js
     - public/javascripts/views/*.js
     - app/views/comments/comment.jst
     - app/views/products/product.jst
