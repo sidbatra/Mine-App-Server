@@ -14,8 +14,13 @@ Denwen.User = Backbone.Model.extend({
   // Validation logic
   //
   validate: function(attrs) {
-    //if(attrs.byline.length < 1)
-    //  return "Byline can't be empty";
+  },
+
+  // Generate a path to the user profile
+  // with the given source
+  //
+  path: function(src) {
+    return this.urlRoot + '/' + this.id + '?src=' + src;
   }
 
 });

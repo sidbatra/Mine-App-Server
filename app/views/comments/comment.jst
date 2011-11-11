@@ -1,13 +1,14 @@
 <div class="comment_unit">
 
-  <a href="<%=urlHelper.userPath(comment.get('user')['id'],'comment_photo')%>">
-    <img src="<%=comment.get('user')['photo_url']%>" class='comment_photo' alt=''/>
+  <a href="<%=comment.get('user').path('comment_photo')%>">
+    <img src="<%=comment.get('user').get('photo_url')%>" 
+          class='comment_photo' alt=''/>
   </a>
 
 	<p class="comment_unit_right">
 		<span class="commenter_name">
-      <a href="<%=urlHelper.userPath(comment.get('user')['id'],'comment_name')%>">
-        <%=comment.get('user')['first_name'] + ' ' + comment.get('user')['last_name']%>
+      <a href="<%=comment.get('user').path('comment_name')%>">
+        <%=comment.get('user').get('first_name') + ' ' + comment.get('user').get('last_name')%>
       </a>
     </span>
     	

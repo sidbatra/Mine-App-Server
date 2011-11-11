@@ -12,7 +12,6 @@ javascripts:
     - public/javascripts/extensions.js
     - public/javascripts/application.js
     - public/javascripts/analytics.js
-    - public/javascripts/url_helper.js
     - public/javascripts/global.js
     - public/javascripts/window_listener.js
     - public/javascripts/models/*.js
