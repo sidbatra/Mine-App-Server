@@ -21,12 +21,9 @@ Denwen.ProductInputView = Backbone.View.extend({
     this.formEl               = '#new_product';
     this.queryEl              = '#product_query';
     this.titleEl              = '#product_title';
-    this.dollarEL             = '#creation_dollar';
     this.priceEl              = '#product_price';
-    this.priceTextEl          = '#price_text';
     this.priceBoxEl           = '#price_box';
     this.storeEl              = '#product_store';
-    this.storeTextEl          = '#store_text';
     this.storeBoxEl           = '#store_box';
     this.websiteEl            = '#product_source_url';
     this.thumbEl              = '#product_orig_thumb_url';
@@ -71,22 +68,18 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Fired when the user toggles the is gift check box
   //
   isGiftChanged: function() {
-    /*
-if(this.isGifted()) {
-      $(this.priceEl).hide();
-      $(this.dollarEL).hide();
-      $(this.priceTextEl).hide();
-      $(this.priceEl).val('0');
-      $(this.isGiftBoxEl).addClass('creation_checkbox_left');
+    if(this.isGifted()) {
+      $(this.priceEl).removeClass('box_shadow');
+      $(this.priceEl).addClass('creation_input_inactive');
+      $(this.priceEl).attr('disabled','disabled');
+      $(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
     }
     else {
-      $(this.isGiftBoxEl).removeClass('creation_checkbox_left');
-      $(this.priceEl).val('');
-      $(this.dollarEL).show();
-      $(this.priceTextEl).show();
-      $(this.priceEl).show();
+      $(this.priceEl).addClass('box_shadow');
+      $(this.priceEl).removeClass('creation_input_inactive');
+      $(this.priceEl).removeAttr('disabled');
+      $(this.isGiftBoxEl).removeClass('creation_checkbox_right_active');
     }
-*/
   },
 
   // Returns the current state of the is unknown check box
@@ -98,18 +91,18 @@ if(this.isGifted()) {
   // Fired when the user toggles the is store unknown check box
   //
   isStoreUnknownChanged: function() {
-   /*
- if(this.isStoreUnknown()) {
-      $(this.storeEl).hide();
-      $(this.storeTextEl).hide();
-      $(this.isStoreUnknownBoxEl).addClass('creation_checkbox_left');
+   if(this.isStoreUnknown()) {
+      $(this.storeEl).removeClass('box_shadow');
+      $(this.storeEl).addClass('creation_input_inactive');
+      $(this.storeEl).attr('disabled','disabled');
+      $(this.isStoreUnknownBoxEl).addClass('creation_checkbox_right_active');
     }
     else {
-      $(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right');
-      $(this.storeEl).show();
-      $(this.storeTextEl).show();
+      $(this.storeEl).addClass('box_shadow');
+      $(this.storeEl).removeClass('creation_input_inactive');
+      $(this.storeEl).removeAttr('disabled');
+      $(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right_active');
     }
-*/
   },
 
   // User initiate creation of endorsement

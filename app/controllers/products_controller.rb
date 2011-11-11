@@ -32,6 +32,10 @@ class ProductsController < ApplicationController
                                       self.current_user.id).id
     end
 
+    if params[:product][:is_gift] == '1'
+      params[:product][:price] = 0 if params[:product][:price].nil?
+    end
+
     product     = Product.add(
                             params[:product],
                             self.current_user.id)
