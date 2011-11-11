@@ -69,16 +69,18 @@ Denwen.ProductInputView = Backbone.View.extend({
   //
   isGiftChanged: function() {
     if(this.isGifted()) {
-      $(this.priceEl).removeClass('box_shadow');
       $(this.priceEl).addClass('creation_input_inactive');
       $(this.priceEl).attr('disabled','disabled');
       $(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
+      $(this.priceEl).removeClass('box_shadow');
+      $('#creation_dollar').addClass('creation_dollar_inactive');
     }
     else {
-      $(this.priceEl).addClass('box_shadow');
       $(this.priceEl).removeClass('creation_input_inactive');
       $(this.priceEl).removeAttr('disabled');
       $(this.isGiftBoxEl).removeClass('creation_checkbox_right_active');
+      $(this.priceEl).addClass('box_shadow');
+      $('#creation_dollar').removeClass('creation_dollar_inactive');
     }
   },
 
