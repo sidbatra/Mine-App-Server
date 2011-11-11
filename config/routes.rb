@@ -68,6 +68,8 @@ ActionController::Routing::Routes.draw do |map|
   map.canvas    '/canvas',
                 :controller => :canvas,
                 :action     => :show
+  
+  Jammit::Routes.draw(map)
         
   map.home  '/:id',
             :controller => :home,

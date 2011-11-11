@@ -36,6 +36,8 @@ Rails::Initializer.run do |config|
               :version => '2.1')
   config.gem('fb_graph',
               :version => '2.1.10')
+  config.gem('jammit',
+              :version => '0.6.3')
 
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
