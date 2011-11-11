@@ -164,11 +164,15 @@ class User < ActiveRecord::Base
   # User age
   #
   def age
-    dob = self.birthday.utc 
-    now = Time.now.utc.to_date
-    now.year - dob.year - 
-    ((now.month > dob.month || 
-                  (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    if birthday.present?
+      dob = self.birthday.utc 
+      now = Time.now.utc.to_date
+      now.year - dob.year - 
+      ((now.month > dob.month || 
+                    (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    else
+      0
+    end
   end
 
   # Override to customize accessible attributes

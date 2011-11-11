@@ -178,7 +178,8 @@
                               
       analytics.identifyUser(
         "<%=self.current_user.email%>",
-        "<%=user_full_name(self.current_user)%>");
+        "<%=user_full_name(self.current_user)%>",
+        <%=self.current_user.age%>)
     <%end%>
 
     <%if @source == "product_create"%>
