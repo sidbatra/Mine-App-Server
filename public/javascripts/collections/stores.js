@@ -2,6 +2,10 @@
 //
 Denwen.Stores = Backbone.Collection.extend({
 
+  // Model Name
+  //
+  model: Denwen.Store,
+
   // Constructor logic
   //
   initialize: function(models,options) {

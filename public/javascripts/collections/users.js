@@ -2,13 +2,17 @@
 //
 Denwen.Users = Backbone.Collection.extend({
 
-  // Url 
+  // Model name
   //
-  url:    '/users',
+  model: Denwen.User,
+
+  // Route on the app server 
+  //
+  url: '/users',
 
   // Constructor logic
   //
   initialize: function() {
-
   }
+
 });
