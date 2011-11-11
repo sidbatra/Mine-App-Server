@@ -3,11 +3,18 @@
 class Admin::StoresController < ApplicationController
   before_filter :admin_required 
 
-  # Show all stores pending approval with editing options 
+  # Fetch group of stores based on different filters 
   #
   def index
-    @approved_stores    = Store.approved
-    @unapproved_stores  = Store.unapproved.sorted
+    @filter = params[:filter].to_sym
+
+    case @filter
+    when :unapproved
+      @approved_stores  = Store.approved
+      @stores           = Store.unapproved.sorted
+    when :popular
+      @stores           = Store.popular  
+    end
   end
 
 

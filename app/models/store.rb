@@ -17,6 +17,7 @@ class Store < ActiveRecord::Base
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :sorted,      :order      => 'name ASC'
+  named_scope :popular,     :order      => 'products_count DESC'
 
   #-----------------------------------------------------------------------------
   # Class methods

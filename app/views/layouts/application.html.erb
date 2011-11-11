@@ -3,7 +3,7 @@
   <head>
     <%=render :partial => "misc/head"%> 
 
-    <%=stylesheet_link_merged    :application-%>
+    <%=include_stylesheets :application-%>
 
     <%=yield :head%>
 
@@ -26,7 +26,8 @@
    </div>
 
     <%=render :partial => "misc/analytics"%>
-    <%=javascript_include_merged :application-%>
+
+    <%=include_javascripts :application-%>
 
     <script type="text/javascript">
       setupDeviceVariables(
