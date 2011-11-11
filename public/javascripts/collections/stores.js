@@ -2,13 +2,21 @@
 //
 Denwen.Stores = Backbone.Collection.extend({
 
-  // Route on the app server 
-  //
-  url: '/admin/stores',
-
   // Constructor logic
   //
-  initialize: function() {
+  initialize: function(models,options) {
+    this.isAdmin = options['is_admin'];
+  },
 
+  // Custom url logic
+  //
+  url: function() {
+    var url = '/stores';
+
+    if(this.isAdmin)
+      url = '/admin/stores';
+
+    return url;
   }
+
 });

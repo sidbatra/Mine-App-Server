@@ -22,7 +22,7 @@ Denwen.AdminStoresEditView = Backbone.View.extend({
 
   // Initialize and populate all store edit views 
   //
-  populateStoreEditViews: function(){
+  populateStoreEditViews: function() {
     var self = this;
 
     this.unapprovedStores.each(function(store){
@@ -46,7 +46,7 @@ Denwen.AdminStoresEditView = Backbone.View.extend({
 
   // Fired when a model within the collection has been updated
   //
-  storeUpdated: function(store){
+  storeUpdated: function(store) {
     this.approvedStores.add(store);  
     this.setAutocompleteDataSource();
   }

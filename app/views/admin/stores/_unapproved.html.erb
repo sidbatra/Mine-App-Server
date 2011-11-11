@@ -26,8 +26,13 @@
   <script type="text/javascript">
 
     $(document).ready(function(){
-      approved_stores   = new Denwen.Stores(<%=@approved_stores.to_json%>);
-      unapproved_stores = new Denwen.Stores(<%=@stores.to_json%>);
+      approved_stores   = new Denwen.Stores(
+                                        <%=@approved_stores.to_json%>,
+                                        {is_admin:true});
+
+      unapproved_stores = new Denwen.Stores(
+                                        <%=@stores.to_json%>,
+                                        {is_admin:true});
 
       storesEditView    = new Denwen.AdminStoresEditView({
                                   approved_collection   : approved_stores,
