@@ -6,9 +6,7 @@ class CommentsController < ApplicationController
   # Create a new comment
   #
   def create
-    @comment = Comment.add(
-                        params,
-                        self.current_user.id)
+    @comment = Comment.add(params,self.current_user.id)
   rescue => ex
     handle_exception(ex)
   ensure
@@ -20,7 +18,7 @@ class CommentsController < ApplicationController
   # Fetch comments on a particular product
   #
   def index
-    @comments = Comment.on_product(params[:product_id]).by_id.with_user
+    @comments = Comment.on_product(params[:product_id]).with_user
   rescue => ex
     handle_exception(ex)
   ensure

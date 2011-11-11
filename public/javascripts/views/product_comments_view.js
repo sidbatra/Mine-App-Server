@@ -5,22 +5,23 @@ Denwen.ProductCommentsView = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #comment_post"  : "post",
-    "focus #comment_data"  : "commentFocus"
+    "click #comment_post"  : "post"
   },
 
+  // Constructor logic
+  //
   initialize: function() {
-    var self        = this;
-    this.posting    = false;
-    this.inputEl    = '#comment_data';
-    this.commentsEl = '#comments';
-    this.comment    = new Denwen.Comment({
-                            defaultData:$(this.inputEl).val(),
-                            product_id:this.options.product_id});
-    this.comments   = new Denwen.Comments();
+    var self                = this;
 
-    this.comments.fetch(
-          {
+    this.posting            = false;
+    this.productID          = this.options.product_id;
+
+    this.inputEl            = '#comment_data';
+    this.commentsEl         = '#comments';
+    this.commentPlaceholder = $(this.inputEl).val();
+
+    this.comments           = new Denwen.Comments();
+    this.comments.fetch({
             data      : {product_id: this.options.product_id},
             success   : function() { self.render(); },
             error     : function() {}
@@ -39,20 +40,8 @@ Denwen.ProductCommentsView = Backbone.View.extend({
     var self = this;
 
     this.comments.each(function(comment){
-      $(self.commentsEl).append(
-          Denwen.JST['comments/comment']({comment:comment}));
+      new Denwen.CommentView({el:$(self.commentsEl),model:comment});
     });
-  },
-
-  // Called when the comment is successfully created
-  //
-  created: function(comment) {
-    this.posting = false;
-
-    $(this.commentsEl).prepend(
-      Denwen.JST['comments/comment']({comment:comment}));
-    $(this.inputEl).val('');
-    $(this.inputEl).focus();
   },
 
   // Creates a comment
@@ -64,19 +53,31 @@ Denwen.ProductCommentsView = Backbone.View.extend({
     var self      = this;
     this.posting  = true;
 
-    this.comment.clone().save(
-      {'data':$(this.inputEl).val()},
-      { 
-        success:  function(model) {self.created(model)},
-        error:    function(model,errors) {}
+    var comment   = new Denwen.Comment({
+                          data        : $(this.inputEl).val(),
+                          product_id  : this.productID,
+                          defaultData : this.commentPlaceholder});
+
+    this.comments.add(comment);
+
+    comment.save({
+          data    :  $(this.inputEl).val()}, { 
+          success :  function(model) {self.created(model)},
+          error   :  function(model,errors) {}
       });
 
     analytics.commentCreated();
   },
 
-  // Fired when user focuses on comment box
+  // Called when the comment is successfully created
   //
-  commentFocus: function() {
+  created: function(comment) {
+    this.posting = false;
+
+    new Denwen.CommentView({el:$(this.commentsEl),model:comment});
+
+    $(this.inputEl).val('');
+    $(this.inputEl).focus();
   }
 
 });

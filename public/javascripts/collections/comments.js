@@ -5,8 +5,10 @@ Denwen.Comments = Backbone.Collection.extend({
   // Route on the app server
   //
   url: '/comments',
-  model: Denwen.Comment,
 
+  // Base model
+  //
+  model: Denwen.Comment,
   
   // Constructor logic
   //
