@@ -1,4 +1,4 @@
 <div id = "container">
   <%= render  :partial    => '/products/product',
-              :collection => @store.products %>
+              :collection => @store.products.eager %>
 </div>

@@ -1,11 +1,10 @@
-// Store model represents a store that 
-// sells products
+// Store model represents a store on the website 
 //
 Denwen.Store = Backbone.Model.extend({
 
-  // Route on the app server
+  // Route on the app server 
   //
-  urlRoot: '/admin/stores',
+  urlRoot: '/stores',
 
   // Constructor logic
   //
