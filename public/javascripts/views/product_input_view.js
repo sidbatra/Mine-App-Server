@@ -71,7 +71,8 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Fired when the user toggles the is gift check box
   //
   isGiftChanged: function() {
-    if(this.isGifted()) {
+    /*
+if(this.isGifted()) {
       $(this.priceEl).hide();
       $(this.dollarEL).hide();
       $(this.priceTextEl).hide();
@@ -85,6 +86,7 @@ Denwen.ProductInputView = Backbone.View.extend({
       $(this.priceTextEl).show();
       $(this.priceEl).show();
     }
+*/
   },
 
   // Returns the current state of the is unknown check box
@@ -96,7 +98,8 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Fired when the user toggles the is store unknown check box
   //
   isStoreUnknownChanged: function() {
-    if(this.isStoreUnknown()) {
+   /*
+ if(this.isStoreUnknown()) {
       $(this.storeEl).hide();
       $(this.storeTextEl).hide();
       $(this.isStoreUnknownBoxEl).addClass('creation_checkbox_left');
@@ -106,6 +109,7 @@ Denwen.ProductInputView = Backbone.View.extend({
       $(this.storeEl).show();
       $(this.storeTextEl).show();
     }
+*/
   },
 
   // User initiate creation of endorsement
