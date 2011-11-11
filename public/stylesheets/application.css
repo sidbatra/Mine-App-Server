@@ -161,10 +161,9 @@ h1 {
 .creation_endorsement { height: 48px; margin-bottom: -6px; }
 .creation_price {  
 	width: 60px;
-	
 }
 
-#creation_dollar {
+.creation_dollar {
 	width: 20px;
 	height: 30px;
 	border-top: 1px solid #cccccc;
@@ -176,6 +175,13 @@ h1 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	float: left;
 	margin-top: 5px;
+}
+
+.creation_dollar_inactive {
+	border-top: 1px solid #eeeeee;
+	border-bottom: 1px solid #eeeeee;
+	border-left: 1px solid #eeeeee;
+	color: #dddddd;
 }
 
 #product_search, .product_search_chooser { 
@@ -197,14 +203,14 @@ h1 {
 }
 
 #store_box, #price_box { position: relative; }
-#price_box { width: 93px; }
+#price_box { width: 98px; }
 
-.creation_checkbox_right { position: absolute; top: 0px; right: 0px; color: #cccccc; }
+.creation_checkbox_right { position: absolute; top: 0px; right: 5px; color: #dddddd; }
 .creation_checkbox_right:hover, .creation_checkbox_right_active { color: #999999; }
 .creation_checkbox_right input {
-	-moz-opacity: 0.5;
-	opacity: .50;
-	filter: alpha (opacity=50);
+	-moz-opacity: 0.2;
+	opacity: .20;
+	filter: alpha (opacity=20);
 }
 
 .creation_checkbox_right:hover input, .creation_checkbox_right_active input {
@@ -240,6 +246,10 @@ h1 {
 	max-width: 275px;
 	max-height: 150px;
 	vertical-align: middle;
+}
+
+#endorsement_initiate {
+	line-height: 22px;
 }
 
 .add_to_closet_button {
@@ -489,13 +499,28 @@ h1 {
 	font-size: 14px;
 	padding-left: 14px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	background: url('/images/pen_cccccc_791a10.png') no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999.png') no-repeat;
 	color: #cccccc;
 	cursor: pointer;
 }
 
 .edit_gray_14:hover {
-	background: url('/images/pen_cccccc_791a10.png') 0 -34px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999.png') 0 -34px no-repeat;
+	color: #791a10;
+	cursor: pointer;
+}
+
+.edit_dark_gray_14 {
+	font-size: 14px;
+	padding-left: 14px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: url('/images/pen_cccccc_791a10_999999.png') 0 -68px no-repeat;
+	color: #999999;
+	cursor: pointer;
+}
+
+.edit_dark_gray_14:hover {
+	background: url('/images/pen_cccccc_791a10_999999.png') 0 -34px no-repeat;
 	color: #791a10;
 	cursor: pointer;
 }
