@@ -107,6 +107,7 @@ Denwen.ProductImagesView = Backbone.View.extend({
     $(this.imagesBoxEl).show();
     $(this.moreEl).show();
     $(this.repeatQueryEl).focus();
+    $(this.repeatQueryEl).val($(this.repeatQueryEl).val());
 
     this.images.search(query);
 
