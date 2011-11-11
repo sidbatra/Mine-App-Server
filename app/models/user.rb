@@ -58,6 +58,19 @@ class User < ActiveRecord::Base
       :group      => "users.id")
   end
 
+  # Return json options specifiying which attributes and methods
+  # to pass in the json when the model is used within an include
+  # of another model's json
+  #
+  def self.json_options
+    options             = {}
+    options[:only]      = [:id,:first_name,:last_name]
+    options[:methods]   = [:photo_url]
+
+    [self.name.downcase.to_sym,options]
+  end
+
+
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------

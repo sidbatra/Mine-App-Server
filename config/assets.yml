@@ -4,12 +4,14 @@ template_function:  _.template
 javascripts:
   application:
     - public/javascripts/libs/jquery-1.4.3.js
+    - public/javascripts/libs/jquery-timeago.js
     - public/javascripts/libs/jquery-autocomplete.js
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/extensions.js
     - public/javascripts/application.js
     - public/javascripts/analytics.js
+    - public/javascripts/url_helper.js
     - public/javascripts/global.js
     - public/javascripts/window_listener.js
     - public/javascripts/models/*.js

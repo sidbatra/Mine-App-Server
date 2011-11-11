@@ -1,6 +1,6 @@
-// Input box for creating comments
+// View to load and display comments for a product
 //
-Denwen.CommentInputView = Backbone.View.extend({
+Denwen.ProductCommentsView = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -9,12 +9,22 @@ Denwen.CommentInputView = Backbone.View.extend({
     "focus #comment_data"  : "commentFocus"
   },
 
-  // Constructor logic
-  //
   initialize: function() {
+    var self        = this;
     this.posting    = false;
     this.inputEl    = '#comment_data';
     this.commentsEl = '#comments';
+    this.comment    = new Denwen.Comment({
+                            defaultData:$(this.inputEl).val(),
+                            product_id:this.options.product_id});
+    this.comments   = new Denwen.Comments();
+
+    this.comments.fetch(
+          {
+            data      : {product_id: this.options.product_id},
+            success   : function() { self.commentsLoaded(); },
+            error     : function() {}
+          });
 
     make_conditional_field(
       this.inputEl,
@@ -23,12 +33,22 @@ Denwen.CommentInputView = Backbone.View.extend({
       '#333333');
   },
 
+  // Fired when the comments are successfully loaded
+  //
+  commentsLoaded: function() {
+    var self = this;
+
+    this.comments.each(function(comment){
+      $(self.commentsEl).append(JST['comments/comment']({comment:comment}));
+    });
+  },
+
   // Called when the comment is successfully created
   //
   created: function(comment) {
     this.posting = false;
 
-    $(this.commentsEl).prepend(comment.get('html'));
+    $(this.commentsEl).prepend(JST['comments/comment']({comment:comment}));
     $(this.inputEl).val('');
     $(this.inputEl).focus();
   },
@@ -42,7 +62,7 @@ Denwen.CommentInputView = Backbone.View.extend({
     var self      = this;
     this.posting  = true;
 
-    this.model.clone().save(
+    this.comment.clone().save(
       {'data':$(this.inputEl).val()},
       { 
         success:  function(model) {self.created(model)},

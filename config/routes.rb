@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:new,:create,:update,:destroy]
 
   map.resources :comments,
-                :only => [:create]
+                :only => [:create,:index]
 
   map.resources :searches,
                 :only => [:create]

@@ -1,15 +1,24 @@
 <div class="comment_unit">
 
+  <a href="<%=urlHelper.userPath(comment.get('user')['id'],'comment_photo')%>">
+    <img src="<%=comment.get('user')['photo_url']%>" class='comment_photo' alt=''/>
+  </a>
+
 	<p class="comment_unit_right">
 		<span class="commenter_name">
+      <a href="<%=urlHelper.userPath(comment.get('user')['id'],'comment_name')%>">
+        <%=comment.get('user')['first_name'] + ' ' + comment.get('user')['last_name']%>
+      </a>
     </span>
     	
 		<span class="comment_time">
+      <%=jQuery.timeago(comment.get('created_at'))%>
     </span>
     
     <br/>
     	
 		<span class="comment_text">
+      <%=comment.get('data')%>
     </span>
 	</p>
 	

@@ -16,4 +16,17 @@ class CommentsController < ApplicationController
       format.json 
     end
   end
+
+  # Fetch comments on a particular product
+  #
+  def index
+    @comments = Comment.on_product(params[:product_id]).by_id.with_user
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json 
+    end
+  end
+
 end

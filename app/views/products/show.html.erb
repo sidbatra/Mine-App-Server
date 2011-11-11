@@ -113,8 +113,9 @@
 	      <%end%> <!-- comment entry box -->
 	
 	
-	      <div id="comments">
-	        <%=render @comments%> 
+	      <div>
+          <div id="comments">
+          <div>
 	        <%=blocker%>
 	      </div>
 	      
@@ -158,14 +159,12 @@
                                           source:'<%=@source%>'});
       <%end%>
 
-      var comment = new Denwen.Comment({
-                          'defaultData':$('#comment_data').val(),
-                          'product_id':<%=@product.id%>});
-      var commentInputView = new Denwen.CommentInputView({
-                                  model: comment,
-                                  el:$('#comments_container')});
-        
+      var productCommentsView = new Denwen.ProductCommentsView({
+                                            product_id:<%=@product.id%>,
+                                            el:$('#comments_container')});
+
       analytics.productProfileView('<%=@source%>',<%=@product.id%>);
+
     </script>
   <%end%>
 

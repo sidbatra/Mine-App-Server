@@ -15,7 +15,10 @@ class Comment < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
-  named_scope :eager, :include => :user
+  named_scope :with_user, :include => :user
+  named_scope :on_product, lambda {|product_id| 
+                            {:conditions => {:product_id => product_id}}}
+  named_scope :by_id, :order => 'id DESC'
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -30,13 +33,6 @@ class Comment < ActiveRecord::Base
       :user_id      => user_id)
   end
 
-  # Fetch all comments for the given product 
-  #
-  def self.for_product(product_id)
-    all(
-      :conditions => {:product_id => product_id},
-      :order      => "id DESC")
-  end
 
   #-----------------------------------------------------------------------------
   # Instance methods
@@ -45,8 +41,12 @@ class Comment < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    options[:only] = [] if options[:only].nil?
-    options[:only] += [:id,:data]
+    options[:only]  = [] if options[:only].nil?
+    options[:only] += [:id,:data,:created_at]
+
+    options[:include] = {}
+    options[:include].store(*(User.json_options))
+
     super(options)
   end
 

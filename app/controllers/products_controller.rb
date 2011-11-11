@@ -54,7 +54,6 @@ class ProductsController < ApplicationController
     @source   = params[:src] ? params[:src].to_s : "direct"
 
     @product  = Product.find(params[:id])
-    @comments = Comment.eager.for_product(@product.id)
 
     next_product  = @product.next
     next_product  ||= @product.user.products.first
