@@ -1,5 +1,6 @@
 allow_debugging: off
 template_function:  _.template
+template_namespace: Denwen.JST
 
 javascripts:
   application:

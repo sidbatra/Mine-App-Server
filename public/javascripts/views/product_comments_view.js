@@ -22,7 +22,7 @@ Denwen.ProductCommentsView = Backbone.View.extend({
     this.comments.fetch(
           {
             data      : {product_id: this.options.product_id},
-            success   : function() { self.commentsLoaded(); },
+            success   : function() { self.render(); },
             error     : function() {}
           });
 
@@ -33,13 +33,14 @@ Denwen.ProductCommentsView = Backbone.View.extend({
       '#333333');
   },
 
-  // Fired when the comments are successfully loaded
+  // Render the comments collection
   //
-  commentsLoaded: function() {
+  render: function() {
     var self = this;
 
     this.comments.each(function(comment){
-      $(self.commentsEl).append(JST['comments/comment']({comment:comment}));
+      $(self.commentsEl).append(
+          Denwen.JST['comments/comment']({comment:comment}));
     });
   },
 
@@ -48,7 +49,8 @@ Denwen.ProductCommentsView = Backbone.View.extend({
   created: function(comment) {
     this.posting = false;
 
-    $(this.commentsEl).prepend(JST['comments/comment']({comment:comment}));
+    $(this.commentsEl).prepend(
+      Denwen.JST['comments/comment']({comment:comment}));
     $(this.inputEl).val('');
     $(this.inputEl).focus();
   },
