@@ -130,14 +130,6 @@
       
       <div id='closet_rows'>
         <div id='products'>
-          <ul id='products_box'>	
-            <%if @user.products_count > 0%>
-	          <%elsif is_current_user(@user)%>
-              <%=image_tag 'onboarding.jpg'%>
-            <%else%>
-              <%=image_tag 'onboarding_empty.jpg'%>
-	          <%end%>
-          </ul>
         </div>
       </div> 
       
@@ -162,7 +154,7 @@
 
     new Denwen.FacebookView();
     new Denwen.Partials.UserProducts({
-          el:$('#products_box'),
+          el:$('#products'),
           user_id:<%=@user.id%>});
 
     var ifollowers  = new Denwen.Partials.IFollowers({

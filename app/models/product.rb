@@ -29,7 +29,7 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   named_scope :with_user,   :include => :user
   named_scope :with_store,  :include => :store
-  named_scope :by_id,       'id DESC'
+  named_scope :by_id,       :order => 'id DESC'
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
   named_scope :in_category, lambda {|category_id| 

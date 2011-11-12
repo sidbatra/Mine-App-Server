@@ -19,9 +19,9 @@ javascripts:
     - public/javascripts/collections/*.js
     - public/javascripts/partials/*.js
     - public/javascripts/views/*.js
-    - app/views/comments/comment.jst
-    - app/views/products/product.jst
-    - app/views/users/user.jst
+    - app/views/comments/*.jst
+    - app/views/products/*.jst
+    - app/views/users/*.jst
 stylesheets:
   application:
     - public/stylesheets/application.css
