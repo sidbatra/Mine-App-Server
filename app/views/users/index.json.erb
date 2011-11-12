@@ -1,7 +1,1 @@
-<%-@user_presenter = presenter_for(@user)-%>
-<%-@response = Hash.new-%>
-<%-@response[:html] = render(
-                        :partial    => "users/user.html.erb",
-                        :collection =>  @users)-%>
-<%-@response[:msg]  = @user_presenter.following_message-%>
-<%=@response.to_json-%>
+<%=@users.to_json-%>

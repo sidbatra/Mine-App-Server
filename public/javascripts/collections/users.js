@@ -1,14 +1,14 @@
 // Collection of User models holding the user's iFollowers 
 //
-Denwen.Users = Backbone.Collection.extend({
+Denwen.Collections.Users = Backbone.Collection.extend({
 
   // Model name
   //
-  model: Denwen.User,
+  model: Denwen.Models.User,
 
   // Route on the app server 
   //
-  url: '/users/ifollowers',
+  url: '/users',
 
   // Constructor logic
   //
