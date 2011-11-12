@@ -20,6 +20,13 @@ module ApplicationHelper
     "<meta name='asset_host' content='#{CONFIG[:asset_host]}'/>"
   end
 
+  # Generate a meta tag for the current user id 
+  #
+  def current_user_id_meta_tag
+    current_user_id = logged_in? ? self.current_user.id : 0
+    "<meta name='current_user_id' content='#{current_user_id}'/>"
+  end
+
   # Format price or currency in general
   #
   def display_currency(amount)
