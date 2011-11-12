@@ -10,11 +10,7 @@ Denwen.Models.Comment = Backbone.Model.extend({
   // Constructor logic
   //
   initialize: function() {
-    var user = new Denwen.User(this.get('user'));
-    this.unset('user',{silent:true});
-    this.set({user:user},{silent:true});
-
-    user.path('product');
+    this.associate('user',Denwen.User);
   },
 
   // Validation logic
