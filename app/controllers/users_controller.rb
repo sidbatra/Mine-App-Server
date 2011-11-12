@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     when :stars
       @users  = User.all(
                       :order => 'products_count DESC', 
-                      :limit => 10) 
+                      :limit => 20) 
     end
 
   rescue => ex
