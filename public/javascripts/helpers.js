@@ -6,6 +6,7 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   initialize: function() {
     this.assetHost = $('meta[name=asset_host]').attr('content');
+    this.current_user_id = $('meta[name=current_user_id]').attr('content');
   },
 
   // Truncate str to length using omissions
@@ -24,6 +25,12 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   imagePath: function(imgName) {
     return this.assetHost + '/images/' + imgName;
+  },
+
+  // Test if the current user's id is equal to the given id
+  //
+  isCurrentUser: function(userID) {
+    return this.current_user_id == userID;
   }
 
 });

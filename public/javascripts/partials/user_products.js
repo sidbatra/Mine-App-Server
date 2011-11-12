@@ -8,9 +8,11 @@ Denwen.Partials.UserProducts = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
+    this.userID   = this.options.user_id;
     this.products = new Denwen.Collections.Products();
+
     this.products.fetch({
-      data    : {filter: 'user',user_id: this.options.user_id},
+      data    : {filter: 'user',user_id: this.userID},
       success : function() { self.render(); },
       error   : function() {}
     });
@@ -20,7 +22,9 @@ Denwen.Partials.UserProducts = Backbone.View.extend({
   //
   render: function() {
     this.el.prepend(
-      Denwen.JST['products/user_products']({products:this.products}));
+      Denwen.JST['products/user_products']({
+        products  : this.products,
+        userID    : this.userID}));
   }
 
 });
