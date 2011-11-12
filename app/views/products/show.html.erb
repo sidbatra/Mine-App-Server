@@ -160,9 +160,9 @@
                                           source:'<%=@source%>'});
       <%end%>
 
-      var productCommentsView = new Denwen.ProductCommentsView({
-                                            product_id:<%=@product.id%>,
-                                            el:$('#comments_container')});
+      new Denwen.Partials.Comments({
+            product_id:<%=@product.id%>,
+            el:$('#comments_container')});
 
       analytics.productProfileView('<%=@source%>',<%=@product.id%>);
 
