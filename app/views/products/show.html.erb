@@ -152,7 +152,7 @@
       var fb = new Denwen.FacebookView();
 
       <%if is_current_user(@product.user)%>
-        var product = new Denwen.Product(<%=@product.to_json%>);
+        var product = new Denwen.Models.Product(<%=@product.to_json%>);
         var productEndorsementView = new Denwen.ProductEndorsementView({
                                           model:product,
                                           el:$('#right_extras'),

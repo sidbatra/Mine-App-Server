@@ -66,7 +66,7 @@ development: &development
   :asset_bucket: /
   :dump_bucket: denwen-hasit-dumps
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
-  :asset_host: /
+  :asset_host: 
   :example_users: "12,974,977"
   :emails:
     :noreply: Hasit <noreply@felvy.com>

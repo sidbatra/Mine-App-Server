@@ -4,13 +4,14 @@
 
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
+  <!--TODO-->
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @user_presenter.closet_name,
               :type         => 'link',
               :description  => @user_presenter.usage_description,
               :url          => @user_presenter.closet_url('fb'),
-              :image        => @user_presenter.closet_image(@products)}%>
+              :image        => ''}%>
 <%end%>
 
 
@@ -129,14 +130,15 @@
       
       <div id='closet_rows'>
         <div id='products'>
-          <ul>	
+          <ul id='products_box'>	
+            <!--
           	<%if @products.present?%>							
-	            <%=render @products%>
+	            <%#render @products%>
 	          <%elsif is_current_user(@user)%>
               <%=image_tag 'onboarding.jpg'%>
             <%else%>
               <%=image_tag 'onboarding_empty.jpg'%>
-	          <%end%>
+	          <%end%>-->
           </ul>
         </div>
       </div> 
@@ -160,7 +162,10 @@
 
     analytics.userLandsOn('<%=@user_presenter.source_id%>');
 
-    var fb = new Denwen.FacebookView();
+    new Denwen.FacebookView();
+    new Denwen.Partials.UserProducts({
+          el:$('#products_box'),
+          user_id:<%=@user.id%>});
 
     <%if is_current_user(@user)%>
       var user          = new Denwen.User(<%=@user.to_json%>);
@@ -194,6 +199,20 @@
       '<%=@source%>',
       '<%=@category ? @category.name : ""%>',
       <%=@user.id%>);
+
+      //var w = Backbone.Router.extend({
+      //  initialize :function() {
+      //    console.log('INIT');
+      //  },
+      //  routes: {
+      //    ":query" : "search"
+      //  },
+      //  search: function(query) {
+      //    console.log('query - ' + query);
+      //  }
+      //});
+      //new w();
+      //Backbone.history.start();
   </script>
 <%end%>
 
