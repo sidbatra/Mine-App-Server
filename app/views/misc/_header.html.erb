@@ -1,8 +1,8 @@
 
-<div id="header">
-  <div id="navbar">
+<div id='header' class='slim_shadow_dark'>
+  <div id='navbar'>
 
-    <div id="logo" alt="Felvy">
+    <div id='logo' alt='Felvy'>
       <%=link_to image_tag('felvy_logo_white.png', :alt => "Felvy"),
                  logged_in? ? 
                     user_path(self.current_user,:src => "top") : 
@@ -13,7 +13,7 @@
     </div> <!-- logo -->
 
 
-    <ul class="nav">
+    <ul class='nav'>
     
     	<%if !logged_in?%>
       
@@ -28,9 +28,9 @@
 
    
 		<li>
-			<a class="nav_menu nav_add_item_button">Add item +</a>
+			<a class='nav_menu nav_add_item_button'>Add item +</a>
 			
-			<ul class="nav_add_list">
+			<ul class='nav_add_list slim_shadow_light'>
 				
         <%@categories.each do |category|%>
           <%=link_to "<li>#{category.id == 8 ? 
@@ -47,7 +47,7 @@
 
 		<li>
 
-			<a class="nav_menu nav_login_button">
+			<a class='nav_menu nav_login_button'>
 				 <%=image_tag self.current_user.photo_url, 
                     :class => "nav_login_button_user_photo",
                     :alt => ""
@@ -56,7 +56,7 @@
 				<div class="logout_v"></div>
 			</a>
 			
-			<ul class="nav_login_list">
+			<ul class='nav_login_list slim_shadow_light'>
 			
 				<%=link_to "<li>Your Closet</li>", 
                 	user_path(self.current_user,:src => "dropdown"),

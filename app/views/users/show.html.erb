@@ -86,7 +86,7 @@
 
 		<div id='profile_details'>
       
-      <%=@user_presenter.large_picture%>
+      <%=@user_presenter.large_picture('profile_user_photo','picture')%>
 		
 			<div id='profile_details_right'>
 			
@@ -117,7 +117,7 @@
 
 		
     <%if is_current_user(@user)%>
-      <div id='suggestions'>
+      <div id='suggestions' class='slim_shadow_light'>
         <%=@user_presenter.closet_create_links(@categories)%>
       </div>
     <%end%>

@@ -407,7 +407,7 @@ $.Autocompleter = function(input, options) {
 
 $.Autocompleter.defaults = {
 	inputClass: "ac_input",
-	resultsClass: "ac_results",
+	resultsClass: "ac_results slim_shadow_light",
 	loadingClass: "ac_loading",
 	minChars: 1,
 	delay: 400,
