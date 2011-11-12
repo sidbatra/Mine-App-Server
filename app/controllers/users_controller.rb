@@ -62,8 +62,11 @@ class UsersController < ApplicationController
 
     case @filter
     when :ifollowers
-      @user   = User.find(params[:id])
-      @users  = @user.ifollowers
+      @users  = User.find(params[:id]).ifollowers
+    when :stars
+      @users  = User.all(
+                      :order => 'products_count DESC', 
+                      :limit => 5) 
     end
 
   rescue => ex
