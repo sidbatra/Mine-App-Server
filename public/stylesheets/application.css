@@ -32,7 +32,7 @@ body {
 	font-family: font-family: Georgia, Times New Roman, serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	background: #edebeb url('/images/bg_strip_40.png');
+	background: #edebeb url('/images/bg_strip_38.png');
 	background-repeat: repeat-x;
 	background-attachment:fixed;
 }
@@ -680,8 +680,8 @@ h1 {
 }
 
 .navigation:hover {
-		color: #791a10;
-		background: #f8f8f8;
+	color: #791a10;
+	background: #f8f8f8;
 		
 }
 
