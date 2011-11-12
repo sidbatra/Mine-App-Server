@@ -49,6 +49,6 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
     });
 
     //$(this.ifollowersEl).append(followers.get('html'));
-  },
+  }
 
 });

@@ -48,7 +48,6 @@ class UsersController < ApplicationController
   #
   def show
     @source       = params[:src] ? params[:src].to_s : "direct"
-    @category     = Category.fetch(params[:category]) 
     @categories ||= Category.fetch_all
 
     @user         = User.find(params[:id])
@@ -66,7 +65,7 @@ class UsersController < ApplicationController
     when :stars
       @users  = User.all(
                       :order => 'products_count DESC', 
-                      :limit => 5) 
+                      :limit => 10) 
     end
 
   rescue => ex

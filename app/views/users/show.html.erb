@@ -51,7 +51,8 @@
             <%=image_tag 'star_12_666666.png'%> Star Users
           </div> 
           
-          <%=render @examples%>
+          <div id='star_users'>
+          </div>
         <%end%>
         
       </div>
@@ -175,6 +176,9 @@
 
       var fbInvite      = new Denwen.FacebookInviteView({
                               id:'#action_link'});
+
+      var starUsers     = new Denwen.Partials.StarUsers();
+                              
 
       <%if @user.ifollowers.empty? && @source == "login"%>
         ifollowers.getAfterTimeout();
