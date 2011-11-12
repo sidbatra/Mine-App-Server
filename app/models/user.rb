@@ -179,7 +179,7 @@ class User < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]    = [] if options[:only].nil?
-    options[:only]    = [:id,:byline,:first_name,:last_name];
+    options[:only]    = [:id,:first_name,:last_name];
 
     options[:methods] = [:photo_url]
 
