@@ -55,10 +55,16 @@ class UsersController < ApplicationController
     @examples     = User.find_all_by_id(CONFIG[:example_users].split(','))
   end
   
-  # Get user's iFollowers
+  # Fetch group of users based on different filters 
   #
   def index
-    @user = User.find(params[:id])
+    @filter = params[:filter].to_sym
+
+    case @filter
+    when :ifollowers
+      @user   = User.find(params[:id])
+      @users  = @user.ifollowers
+    end
 
   rescue => ex
     handle_exception(ex)

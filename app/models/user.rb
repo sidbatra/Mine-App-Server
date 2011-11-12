@@ -178,7 +178,12 @@ class User < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    super(options.merge(:only => [:id,:byline]))
+    options[:only]    = [] if options[:only].nil?
+    options[:only]    = [:id,:byline,:first_name,:last_name];
+
+    options[:methods] = [:photo_url]
+
+    super(options)
   end
 
 end
