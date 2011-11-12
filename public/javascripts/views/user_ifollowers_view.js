@@ -16,7 +16,8 @@ Denwen.UserIFollowersView = Backbone.View.extend({
     this.ifollowersEl   = '#ifollowers';
     this.followingMsgEl = '#following_msg';
 
-    window.setTimeout(function(){self.get();},5000);
+    //window.setTimeout(function(){self.get();},5000);
+    this.get();
   },
 
   // Called when the iFollowers are successfully fetched 

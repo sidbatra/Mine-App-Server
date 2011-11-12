@@ -8,7 +8,7 @@ Denwen.Users = Backbone.Collection.extend({
 
   // Route on the app server 
   //
-  url: '/users',
+  url: '/users/ifollowers',
 
   // Constructor logic
   //

@@ -2,6 +2,6 @@
 <%-@response = Hash.new-%>
 <%-@response[:html] = render(
                         :partial    => "users/user.html.erb",
-                        :collection =>  @user.ifollowers)-%>
+                        :collection =>  @users)-%>
 <%-@response[:msg]  = @user_presenter.following_message-%>
 <%=@response.to_json-%>
