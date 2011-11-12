@@ -131,14 +131,12 @@
       <div id='closet_rows'>
         <div id='products'>
           <ul id='products_box'>	
-            <!--
-          	<%if @products.present?%>							
-	            <%#render @products%>
+            <%if @user.products_count > 0%>
 	          <%elsif is_current_user(@user)%>
               <%=image_tag 'onboarding.jpg'%>
             <%else%>
               <%=image_tag 'onboarding_empty.jpg'%>
-	          <%end%>-->
+	          <%end%>
           </ul>
         </div>
       </div> 
