@@ -37,6 +37,18 @@ class Store < ActiveRecord::Base
     find_by_name(name.squeeze(' ').strip) 
   end
 
+  # Return json options specifiying which attributes and methods
+  # to pass in the json when the model is used within an include
+  # of another model's json
+  #
+  def self.json_options
+    options             = {}
+    options[:only]      = [:id,:name]
+    options[:methods]   = []
+
+    [self.name.downcase.to_sym,options]
+  end
+
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------

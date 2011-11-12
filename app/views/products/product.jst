@@ -1,0 +1,45 @@
+<li>
+  <div class='product'> 
+        
+      <div class='product_left'>
+        <a href="<%=product.path('profile')%>">
+          <img src="<%=product.get('thumbnail_url')%>" 
+              class='product_left_image'
+              alt=''/>
+        </a>
+      </div> <!-- product_left -->
+  
+      <div class='product_right'>
+      
+        <p class='product_title'>
+          <a href="<%=product.path('profile')%>">
+            <%=helpers.truncate(product.escape('title'),80,'...')%>
+          </a>
+        </p>
+ 
+        <p class='product_particulars'>
+          <%if(product.get('store') != undefined) { %>
+            <a href="<%=product.path('profile')%>">
+              Bought for $<%=product.get('price')%><br/>
+              at <%=product.get('store').escape('name')%>
+            </a>
+          <%}%>
+        </p>
+        
+        <a class='product_comment_count' href="<%=product.path('profile')%>">
+          <%if (product.get('comments_count')) {%>
+            <%=product.get('comments_count') + ' ' %>
+            <img src="<%=helpers.imagePath('comment_bubble.png')%>" 
+                  class='product_comment_bubble'
+                  alt=''/>
+          <%}%>
+        </a>
+        
+      </div> <!-- product_right -->
+
+  </div> <!-- product -->
+</li>
+
+
+
+

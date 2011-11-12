@@ -1,6 +1,6 @@
 // Store model represents a store on the website 
 //
-Denwen.Store = Backbone.Model.extend({
+Denwen.Models.Store = Backbone.Model.extend({
 
   // Route on the app server 
   //
