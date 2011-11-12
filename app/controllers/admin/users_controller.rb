@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   # Show all the users who have created a product
   # 
   def index 
-    @users            = Product.eager.all.map(&:user).uniq
+    @users            = Product.with_store.with_user.all.map(&:user).uniq
     @grouped_users    = {} 
 
     @users.each do |user| 

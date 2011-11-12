@@ -53,9 +53,6 @@ class UsersController < ApplicationController
 
     @user         = User.find(params[:id])
     @examples     = User.find_all_by_id(CONFIG[:example_users].split(','))
-    @products     = Product.eager.for_user(
-                              @user.id,
-                              @category ? @category.id : "")
   end
   
   # Get user's iFollowers

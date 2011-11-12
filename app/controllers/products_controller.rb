@@ -52,6 +52,25 @@ class ProductsController < ApplicationController
     redirect_to target_url
   end
 
+  # Fetch multiple products
+  #
+  def index
+    @filter = params[:filter].to_sym
+
+    case @filter
+    when :user
+      @products = Product.with_store.for_user(params[:user_id]).by_id
+    else
+      raise IOError, "Invalid option"
+    end
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json 
+    end
+  end
+
   # Display a product
   #
   def show

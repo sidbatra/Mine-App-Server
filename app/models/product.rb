@@ -27,7 +27,14 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
-  named_scope :eager, :include => [:user,:store]
+  named_scope :with_user,   :include => :user
+  named_scope :with_store,  :include => :store
+  named_scope :by_id,       'id DESC'
+  named_scope :for_user,    lambda {|user_id| 
+                              {:conditions => {:user_id => user_id}}}
+  named_scope :in_category, lambda {|category_id| 
+                              {:conditions => {:category_id => category_id}}}
+
 
   #-----------------------------------------------------------------------------
   # Attributes
@@ -54,19 +61,6 @@ class Product < ActiveRecord::Base
       :category_id      => attributes['category_id'],
       :store_id         => attributes['store_id'],
       :user_id          => user_id)
-  end
-
-  # Fetch all the products for the given user 
-  # which are under the given category
-  #
-  def self.for_user(user_id,category_id)
-    
-    conditions = {:user_id => user_id}
-    conditions[:category_id] = category_id if category_id.present? 
-
-    all(
-      :conditions => conditions,
-      :order      => "id DESC")
   end
 
   #-----------------------------------------------------------------------------
@@ -224,7 +218,15 @@ class Product < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    super(options.merge(:only => [:id,:endorsement]))
+    options[:only]      = [] if options[:only].nil?
+    options[:only]     += [:id,:title,:endorsement,:handle,:price,:comments_count]
+
+    options[:methods]   = [:thumbnail_url]
+
+    options[:include] = {}
+    options[:include].store(*(Store.json_options))
+
+    super(options)
   end
 
 
