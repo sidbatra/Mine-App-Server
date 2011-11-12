@@ -1,6 +1,6 @@
 <!-- item -->
 
-<%form_for @product, :html => {:multipart => true} do |f|%>
+<%form_for @product, :html => {:multipart => true, :class => 'new_product slim_shadow_light'} do |f|%>
 
       <%=f.hidden_field :category_id, :value => @category.id%>
       <%=f.hidden_field :source_url%>
@@ -36,12 +36,6 @@
                   :value    => "",
                   :class    => "creation_input box_shadow"%>
 	  </div> <!-- step -->
-	  
-	
-	
-	
-	
-	
 	
 	 <!-- store -->
 	  <div class="step" id='store_box'>
@@ -60,13 +54,6 @@
                   :class    => "creation_input box_shadow"%>
 	  </div> <!-- store step -->  
 	
-
-
-
-
-
-
-
     <!-- price -->
     <div class="step" id='price_box'>
 
@@ -109,7 +96,7 @@
 	  </div> <!-- step -->
 
     <%=submit_tag "Add to your closet",
-                  :class  => "add_to_closet_button"%>
+                  :class  => "add_to_closet_button slim_shadow_dark"%>
     
     <%=blocker%>
   

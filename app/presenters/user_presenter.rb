@@ -30,10 +30,10 @@ class UserPresenter < BasePresenter
 
   # Large display picture on the profile
   #
-  def large_picture(klass='profile_user_photo',src='picture')
+  def large_picture(klass,src='picture')
     h.link_to h.image_tag(
                 user.photo_url, 
-                :class  => klass,
+                :class  => "#{klass} slim_shadow_dark",
                 :alt    => ''),
               closet_path(src)
   end
@@ -74,7 +74,7 @@ class UserPresenter < BasePresenter
   def closet_breadcrumb(src)
     h.link_to "← Back to " + user.first_name + "'s closet",
               closet_path(src),
-              :class => 'navigation' 
+              :class => 'navigation slim_shadow_light' 
   end
 
   # Image representing the closet - image of
