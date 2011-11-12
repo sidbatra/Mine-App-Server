@@ -13,6 +13,13 @@ module ApplicationHelper
     presenter
   end
 
+  # Generate a meta tag to declare the asset host for use by
+  # javascript
+  #
+  def asset_host_meta_tag
+    "<meta name='asset_host' content='#{CONFIG[:asset_host]}'/>"
+  end
+
   # Format price or currency in general
   #
   def display_currency(amount)

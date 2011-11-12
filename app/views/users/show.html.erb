@@ -4,13 +4,14 @@
 
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
+  <!--TODO-->
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @user_presenter.closet_name,
               :type         => 'link',
               :description  => @user_presenter.usage_description,
               :url          => @user_presenter.closet_url('fb'),
-              :image        => @user_presenter.closet_image(@products)}%>
+              :image        => ''}%>
 <%end%>
 
 
@@ -38,7 +39,6 @@
       	
       <div>
         <div id='ifollowers'>
-          <%=render @user.ifollowers%>
           <%=blocker%>
         </div>
         <%=blocker%>
@@ -51,7 +51,8 @@
             <%=image_tag 'star_12_666666.png'%> Star Users
           </div> 
           
-          <%=render @examples%>
+          <div id='star_users'>
+          </div>
         <%end%>
         
       </div>
@@ -129,15 +130,6 @@
       
       <div id='closet_rows'>
         <div id='products'>
-          <ul>	
-          	<%if @products.present?%>							
-	            <%=render @products%>
-	          <%elsif is_current_user(@user)%>
-              <%=image_tag 'onboarding.jpg'%>
-            <%else%>
-              <%=image_tag 'onboarding_empty.jpg'%>
-	          <%end%>
-          </ul>
         </div>
       </div> 
       
@@ -160,10 +152,16 @@
 
     analytics.userLandsOn('<%=@user_presenter.source_id%>');
 
-    var fb = new Denwen.FacebookView();
+    new Denwen.FacebookView();
+    new Denwen.Partials.UserProducts({
+          el:$('#products'),
+          user_id:<%=@user.id%>});
 
+    var ifollowers  = new Denwen.Partials.IFollowers({
+                                            id:<%=@user.id%>});
+    
     <%if is_current_user(@user)%>
-      var user          = new Denwen.User(<%=@user.to_json%>);
+      var user          = new Denwen.Models.User(<%=@user.to_json%>);
       var bylineView    = new Denwen.UserBylineView({
                                 model: user, 
                                 el:$('#profile_bio')});
@@ -171,9 +169,11 @@
       var fbInvite      = new Denwen.FacebookInviteView({
                               id:'#action_link'});
 
+      var starUsers     = new Denwen.Partials.StarUsers();
+                              
+
       <%if @user.ifollowers.empty? && @source == "login"%>
-        var ifollowers  = new Denwen.UserIFollowersView({
-                                id:<%=@user.id%>});
+        ifollowers.getAfterTimeout();
       <%end%>
                               
       analytics.identifyUser(
@@ -194,6 +194,20 @@
       '<%=@source%>',
       '<%=@category ? @category.name : ""%>',
       <%=@user.id%>);
+
+      //var w = Backbone.Router.extend({
+      //  initialize :function() {
+      //    console.log('INIT');
+      //  },
+      //  routes: {
+      //    ":query" : "search"
+      //  },
+      //  search: function(query) {
+      //    console.log('query - ' + query);
+      //  }
+      //});
+      //new w();
+      //Backbone.history.start();
   </script>
 <%end%>
 

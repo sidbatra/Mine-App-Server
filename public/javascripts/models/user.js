@@ -1,6 +1,6 @@
 // User model represents a user of the site
 //
-Denwen.User = Backbone.Model.extend({
+Denwen.Models.User = Backbone.Model.extend({
   
   // Route on the app server
   //

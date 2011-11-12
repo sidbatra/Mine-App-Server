@@ -4,7 +4,7 @@ Denwen.Stores = Backbone.Collection.extend({
 
   // Model Name
   //
-  model: Denwen.Store,
+  model: Denwen.Models.Store,
 
   // Constructor logic
   //

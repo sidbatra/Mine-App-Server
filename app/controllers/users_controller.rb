@@ -48,20 +48,25 @@ class UsersController < ApplicationController
   #
   def show
     @source       = params[:src] ? params[:src].to_s : "direct"
-    @category     = Category.fetch(params[:category]) 
     @categories ||= Category.fetch_all
 
     @user         = User.find(params[:id])
     @examples     = User.find_all_by_id(CONFIG[:example_users].split(','))
-    @products     = Product.eager.for_user(
-                              @user.id,
-                              @category ? @category.id : "")
   end
   
-  # Get user's iFollowers
+  # Fetch group of users based on different filters 
   #
   def index
-    @user = User.find(params[:id])
+    @filter = params[:filter].to_sym
+
+    case @filter
+    when :ifollowers
+      @users  = User.find(params[:id]).ifollowers
+    when :stars
+      @users  = User.all(
+                      :order => 'products_count DESC', 
+                      :limit => 10) 
+    end
 
   rescue => ex
     handle_exception(ex)

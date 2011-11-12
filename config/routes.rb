@@ -33,7 +33,6 @@ ActionController::Routing::Routes.draw do |map|
               :action       => :index,
               :filter       => :popular
 
-
   # Exception manager
   map.connect 'admin/logged_exceptions/:action/:id', 
               :controller => 'logged_exceptions'
@@ -42,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create,:show,:update,:index]
 
   map.resources :products,
-                :only => [:new,:create,:update,:destroy]
+                :only => [:new,:create,:index,:update,:destroy]
 
   map.resources :comments,
                 :only => [:create,:index]
