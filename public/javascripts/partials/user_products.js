@@ -19,11 +19,8 @@ Denwen.Partials.UserProducts = Backbone.View.extend({
   // Render the products collection
   //
   render: function() {
-    var self = this;
-
-    this.products.each(function(product){
-      new Denwen.Partials.Product({el:self.el,model:product});
-    });
+    this.el.prepend(
+      Denwen.JST['products/user_products']({products:this.products}));
   }
 
 });
