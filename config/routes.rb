@@ -33,11 +33,6 @@ ActionController::Routing::Routes.draw do |map|
               :action       => :index,
               :filter       => :popular
 
-  map.connect '/users/ifollowers',
-              :controller   => :users, 
-              :action       => :index,
-              :filter       => :ifollowers
-
   # Exception manager
   map.connect 'admin/logged_exceptions/:action/:id', 
               :controller => 'logged_exceptions'
