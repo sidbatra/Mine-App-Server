@@ -80,9 +80,6 @@ h1 {
 #header {
 	height: 38px;
 	background: #333333;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #navbar {
@@ -91,7 +88,6 @@ h1 {
 	margin: 0 auto;
 	position: relative;
 	z-index: 5000;
-/* 	background: yellow; */
 }
 
 /* ------------------------------ Creation */
@@ -108,9 +104,6 @@ h1 {
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	background: white;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .step {
@@ -248,10 +241,6 @@ h1 {
 	vertical-align: middle;
 }
 
-#endorsement_initiate {
-	line-height: 22px;
-}
-
 .add_to_closet_button {
 	width: 275px;
 	height: 36px;
@@ -262,9 +251,6 @@ h1 {
 	font-size: 14px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	background: #525252 url('/images/alert-overlay.png') repeat-x; 
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	border-bottom: 1px solid rgba(0,0,0,0.25);
 }
@@ -323,9 +309,6 @@ h1 {
 	background: white;
 	border: 1px solid #dddddd;
 	position: relative;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.1);
 }
 
 #left, #right {
@@ -410,9 +393,6 @@ h1 {
 	max-width: 50px;
 	max-height: 50px;
 	vertical-align: middle;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .right_title {
@@ -665,9 +645,6 @@ h1 {
 	-moz-opacity: 0.9;
 	opacity: .90;
 	filter: alpha (opacity=90);
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #scroll_for_more_results {
@@ -700,9 +677,6 @@ h1 {
 	background: white;
 	border: 1px solid #cccccc;
 	padding: 0 18px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .navigation:hover {
@@ -732,9 +706,6 @@ h1 {
 	position: absolute;
 	top: 171px;
 	z-index: 10000;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 	background: white url('/images/prevnext_cccccc_791a10.png');
 }
 
@@ -827,9 +798,6 @@ h1 {
 
 .nav_add_list, .nav_login_list {
 	display: none;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .nav_login_button_user_photo {
@@ -895,9 +863,6 @@ h1 {
 	text-align: center;
 	border: 1px solid rgba(0,0,0,0.25);
 	border-top: 1px solid rgba(255,255,255,0.4);
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	clear:both;
 }
 
@@ -989,9 +954,6 @@ h1 {
 .follow_img {
 	height: 40px;
 	width: 40px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	z-index: 1000;
 }
 
@@ -1005,9 +967,6 @@ h1 {
 	height: 50px;
 	margin-right: 16px;
 	float: left;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #profile_details_right {
@@ -1075,17 +1034,14 @@ h1 {
 	border-top: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	margin-bottom: 24px;
-	height: 74px;
+	height: 78px;
 	width: 616px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .suggestion {
 	float: left;
 	width: 153px;
-	height: 36px;
+	height: 38px;
 	border-right: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
 	background: white;
@@ -1211,7 +1167,7 @@ h1 {
 	margin-bottom: 2px;
 }
 
-.product_add_review {
+.product_add_review { /* unused - profile product button */
 	height: 20px;
 	line-height: 20px;
 	font-size: 12px;
@@ -1219,13 +1175,10 @@ h1 {
 	color: #999999;
 	border: 1px solid #cccccc;
 	background: white;
-	font-family: 'FuturaStdBook', Century Gothic, Arial, sans-serif;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	position: absolute;
 	bottom: 9px;
 	left: 0px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   z-index: 10000;
 }
 
@@ -1277,9 +1230,6 @@ h1 {
 	float: left;
 	height: 32px;
 	width: 32px;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 #comments {
@@ -1357,7 +1307,6 @@ h1 {
 	width: 885px;
 	margin: 30px auto 0;
 	clear: both;
-	display: block;
 }
 
 /* ------------------------------ Facebook Like Buttons */
@@ -1414,6 +1363,18 @@ h1 {
 }
 
 /* ------------------------------ Effects */
+
+.slim_shadow_light {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.slim_shadow_dark {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
 
 .shadow {
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(00, 00, 00, 0.6);
@@ -1511,7 +1472,7 @@ h1 {
 /* --------- Auto Complete Styles ------ */
 .ac_results {
   padding: 0px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   background-color: white;
   z-index: 99999;
 }
@@ -1521,9 +1482,6 @@ h1 {
   list-style: none;
   padding: 0;
   margin: 0;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -1611,31 +1569,4 @@ h1 {
          url('/type/mistralstd-webfont.svg#MistralStdRoman') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
-
-
-/* ------------------------------ Mozilla-Only fall-back fonts */
-
-/* ------------------------------ Fonts */
-
-/*
-@-moz-document url-prefix() {
-    #item_name, 
-    #product_title, 
-    #welcomebox,
-    #profile_username,
-    #chooser_title_bar,
-    .landing_heading, 
-    .product_title, 
-    .product_title_sample,
-    .awesome,
-    .strapline,
-    .logout,
-    .login,
-    .small_button,
-    .nav_menu { 
-    	font-family: Arial, sans-serif; font-weight: bold; 
-    }
-}
-*/

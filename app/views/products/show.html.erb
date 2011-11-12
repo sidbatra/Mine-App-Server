@@ -25,7 +25,7 @@
 
   <div id="container">
   
-  	<div id="product_section">
+  	<div id="product_section" class="slim_shadow_light">
   	
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
@@ -99,6 +99,7 @@
 			      
 			        <%=image_tag self.current_user.photo_url,
 			            :id => "comment_photo_self",
+			            :class => "slim_shadow_dark",
 			            :alt => ""%>
 			
 			        <%=text_area_tag "comment_data","Add a comment",
@@ -159,9 +160,9 @@
                                           source:'<%=@source%>'});
       <%end%>
 
-      var productCommentsView = new Denwen.ProductCommentsView({
-                                            product_id:<%=@product.id%>,
-                                            el:$('#comments_container')});
+      new Denwen.Partials.Comments({
+            product_id:<%=@product.id%>,
+            el:$('#comments_container')});
 
       analytics.productProfileView('<%=@source%>',<%=@product.id%>);
 
