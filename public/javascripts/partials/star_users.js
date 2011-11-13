@@ -10,7 +10,7 @@ Denwen.Partials.StarUsers = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.starUsersEl  = '#star_users';
+    this.el = '#star_users_box';
     this.get();
   },
 
@@ -32,9 +32,9 @@ Denwen.Partials.StarUsers = Backbone.View.extend({
   render: function() {
     var self = this;
 
-    this.users.each(function(user){
-      new Denwen.Partials.User({el:$(self.starUsersEl),model:user});
-    });
+    $(this.el).html(
+      Denwen.JST['users/star_users']({
+        users : this.users}));
   }
 
 });

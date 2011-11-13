@@ -1,0 +1,10 @@
+<div id='following_msg' class='profile_right_title'>
+  <%=helpers.following_message(userID,users.length)%>
+</div>
+
+<div ='ifollowers'>
+  <%users.each(function(user){%>
+    <%=Denwen.JST['users/user']({user:user})%>
+  <%});%>
+  <%=helpers.blocker()%>
+</div>
