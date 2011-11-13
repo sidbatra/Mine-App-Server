@@ -97,6 +97,13 @@ Denwen.Views.UsersShow = Backbone.View.extend({
       //
       filter: function(category) {
         self.userProducts.filter(category);
+
+        if(category != undefined && category.length) {
+          analytics.userProfileFiltered(
+                      category,
+                      self.isCurrentUser,
+                      self.user.get('id'));
+        }
       }
     });
 

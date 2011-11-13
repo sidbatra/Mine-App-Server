@@ -140,6 +140,15 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Item Deleted");
   },
 
+  // Product's on a user's profile are filtered
+  //
+  userProfileFiltered: function(category,isCurrentUser,id) {
+    mpq.track('User Profile Filtered',{
+          "Category"         : category,
+          "Is Own Profile"   : isCurrentUser,
+          "id"               : id});
+  },
+
   // Page view on user profile
   //
   userProfileView: function(source,id) {
