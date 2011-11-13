@@ -1,0 +1,10 @@
+<div class='profile_right_title'>
+  <img src = "<%=helpers.imagePath('star_12_666666.png')%>"/> Star Users
+</div>
+   
+<div id='star_users'>
+  <%users.each(function(user){%>
+    <%=Denwen.JST['users/user']({user:user})%>
+  <%});%>
+  <%=helpers.blocker()%>
+</div>

@@ -11,10 +11,9 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
   //
   initialize: function() {
     var self                = this;
-    this.id                 = this.options.id;
 
-    this.ifollowersEl       = '#ifollowers';
-    this.followingMsg       = '#following_msg';
+    this.id                 = this.options.id;
+    this.el                 = '#ifollowers_with_msg';
 
     this.get();
   },
@@ -44,11 +43,10 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
   render: function() {
     var self = this;
 
-    this.users.each(function(user){
-      new Denwen.Partials.User({el:$(self.ifollowersEl),model:user});
-    });
-
-    //$(this.ifollowersEl).append(followers.get('html'));
+    $(this.el).html(
+      Denwen.JST['users/ifollowers']({
+        users   : this.users,
+        userID  : this.options.id}));
   }
 
 });

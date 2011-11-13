@@ -31,6 +31,12 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   isCurrentUser: function(userID) {
     return this.current_user_id == userID;
+  },
+
+  // Empty div blocker used throughout the app
+  //
+  blocker: function() {
+    return "<div id='blocker'></div>";
   }
 
 });
