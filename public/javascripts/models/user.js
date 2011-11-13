@@ -21,6 +21,13 @@ Denwen.Models.User = Backbone.Model.extend({
   //
   path: function(src) {
     return this.urlRoot + '/' + this.id + '?src=' + src;
+  },
+
+  // Unique key to identify the unique combination of the
+  // model name and the id
+  //
+  uniqueKey: function() {
+    return 'user_' + this.get('id');
   }
 
 });

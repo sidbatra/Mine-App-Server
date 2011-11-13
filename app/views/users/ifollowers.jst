@@ -1,22 +1,23 @@
-<div id='following_msg' class='profile_right_title'>
-  <%if(users.length) {%>
-    <%if(helpers.isCurrentUser(userID)){%> 
-      People you're following 
-    <%} else {%>
-      TODO is following
-    <%}%>
-  <%} else {%>
-    <%if(helpers.isCurrentUser(userID)){%> 
-      People you're following 
-    <%} else {%>
-      TODO isn't following anyone yet.
-    <%}%>
-  <%}%>
-</div>
 
-<div ='ifollowers'>
-  <%users.each(function(user){%>
-    <%=Denwen.JST['users/user']({user:user})%>
-  <%});%>
-  <%=helpers.blocker()%>
-</div>
+  <div id='following_msg' class='profile_right_title'>
+    <%if(users.length) {%>
+      <%if(helpers.isCurrentUser(leader.get('id'))){%> 
+        People you're following 
+      <%} else {%>
+        <%=leader.get('first_name')%> is following
+      <%}%>
+    <%} else {%>
+      <%if(helpers.isCurrentUser(leader.get('id'))){%> 
+        People you're following 
+      <%} else {%>
+        <%=leader.get('first_name')%> isn't following anyone yet.
+      <%}%>
+    <%}%>
+  </div>
+
+  <div ='ifollowers'>
+    <%users.each(function(user){%>
+      <%=Denwen.JST['users/user']({user:user})%>
+    <%});%>
+    <%=helpers.blocker()%>
+  </div>

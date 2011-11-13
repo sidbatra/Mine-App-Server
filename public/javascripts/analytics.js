@@ -9,8 +9,7 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Identify a user and associate a friendly name tag
   //
-  identifyUser: function(email,name,age) {
-    //mpq.identify(email);
+  identifyUser: function(email,age) {
     mpq.name_tag(email);
     mpq.register_once({'age' : age}); 
   },
@@ -143,12 +142,11 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Page view on user profile
   //
-  userProfileView: function(source,category,id) {
+  userProfileView: function(source,id) {
      mpq.track(
       'User Profile View',
       {
       'source'    : source,
-      'category'  : category,
       'id'        : id
       });
   },

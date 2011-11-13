@@ -178,10 +178,11 @@ class User < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    options[:only]    = [] if options[:only].nil?
-    options[:only]    = [:id,:first_name,:last_name];
+    options[:only]      = [] if options[:only].nil?
+    options[:only]     += [:id,:first_name,:last_name];
 
-    options[:methods] = [:photo_url]
+    options[:methods]   = [] if options[:methods].nil?
+    options[:methods]  += [:photo_url]
 
     super(options)
   end

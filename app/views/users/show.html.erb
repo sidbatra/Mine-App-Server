@@ -134,47 +134,13 @@
 
   <script type="text/javascript">
 
-    analytics.userLandsOn('<%=@user_presenter.source_id%>');
-
-    new Denwen.Views.UsersShow({user_id:<%=@user.id%>});
-
-    var ifollowers  = new Denwen.Partials.IFollowers({
-                                            id:<%=@user.id%>});
-    
-    <%if is_current_user(@user)%>
-      var user          = new Denwen.Models.User(<%=@user.to_json%>);
-      var bylineView    = new Denwen.UserBylineView({
-                                model: user, 
-                                el:$('#profile_bio')});
-
-      var fbInvite      = new Denwen.FacebookInviteView({
-                              id:'#action_link'});
-
-      var starUsers     = new Denwen.Partials.StarUsers();
-                              
-
-      <%if @user.ifollowers.empty? && @source == "login"%>
-        ifollowers.getAfterTimeout();
-      <%end%>
-                              
-      analytics.identifyUser(
-        "<%=self.current_user.email%>",
-        "<%=user_full_name(self.current_user)%>",
-        <%=self.current_user.age%>)
-    <%end%>
-
-    <%if @source == "product_create"%>
-      analytics.productCreated();
-    <%elsif @source == "login"%>
-      analytics.userLogin();
-    <%elsif @source == "product_deleted"%>
-      analytics.productDeleted();
-    <%end%>
-
-    analytics.userProfileView(
-      '<%=@source%>',
-      '<%=@category ? @category.name : ""%>',
-      <%=@user.id%>);
+    new Denwen.Views.UsersShow({
+          userJSON        : <%=@user.to_json(
+                                      :only => [:followings_count])%>,
+          currentUserJSON : <%=self.current_user.to_json(
+                                      :only    => [:email],
+                                      :methods => [:age])%>,
+          source          : "<%=@source%>"});
 
   </script>
 <%end%>

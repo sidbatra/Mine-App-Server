@@ -10,12 +10,13 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self                = this;
+    var self    = this;
+    this.user   = this.options.user;
 
-    this.id                 = this.options.id;
-    this.el                 = '#ifollowers_with_msg';
-
-    this.get();
+    if(this.options.delay)
+      window.setTimeout(function(){self.get();},5000);
+    else
+      this.get();
   },
 
   // Fetches the iFollowers 
@@ -25,17 +26,10 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
     this.users  = new Denwen.Collections.Users();
 
     this.users.fetch({
-            data:     {id: this.id, filter: 'ifollowers'},
+            data:     {id: this.user.get('id'), filter: 'ifollowers'},
             success:  function(collection){self.render();},
             error:    function(collection,errors){}
             });
-  },
-
-  // Fetches the iFollowers after timeout
-  //
-  getAfterTimeout: function() {
-    var self = this;
-    window.setTimeout(function(){self.get();},5000);
   },
 
   // Render the users collection
@@ -46,7 +40,7 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
     $(this.el).html(
       Denwen.JST['users/ifollowers']({
         users   : this.users,
-        userID  : this.options.id}));
+        leader  : this.user}));
   }
 
 });
