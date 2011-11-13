@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110003840) do
+ActiveRecord::Schema.define(:version => 20111113010843) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(:version => 20111110003840) do
     t.datetime "updated_at"
     t.boolean  "is_shared",      :default => false
     t.string   "orig_thumb_url"
-    t.string   "category"
     t.integer  "comments_count", :default => 0
     t.integer  "store_id"
     t.float    "price"
@@ -77,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20111110003840) do
     t.boolean  "is_gift",        :default => false
   end
 
-  add_index "products", ["category"], :name => "index_products_on_category"
+  add_index "products", ["category_id"], :name => "index_products_on_category_id"
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 

@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   belongs_to  :user  
   belongs_to  :store, :counter_cache => true
+  belongs_to  :category
   has_many    :comments
 
   #-----------------------------------------------------------------------------
@@ -33,7 +34,7 @@ class Product < ActiveRecord::Base
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
   named_scope :in_category, lambda {|category_id| 
-                              {:conditions => {:category_id => category_id}}}
+                              {:conditions => {:category_id => category_id}} if category_id}
 
 
   #-----------------------------------------------------------------------------

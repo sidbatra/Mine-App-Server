@@ -59,7 +59,11 @@ class ProductsController < ApplicationController
 
     case @filter
     when :user
-      @products = Product.with_store.for_user(params[:user_id]).by_id
+      @category = Category.fetch(params[:category]) if params[:category]
+      @products = Product.with_store.
+                    for_user(params[:user_id]).
+                    in_category(@category ? @category.id : nil).
+                    by_id
     else
       raise IOError, "Invalid option"
     end
