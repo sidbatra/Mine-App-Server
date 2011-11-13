@@ -150,7 +150,7 @@
 
       analytics.userLandsOn('product_<%=@product.id.to_s%>');
 
-      var fb = new Denwen.FacebookView();
+      var fb = new Denwen.Partials.Facebook();
 
       <%if is_current_user(@product.user)%>
         var product = new Denwen.Models.Product(<%=@product.to_json%>);
