@@ -922,6 +922,10 @@ h1 {
 	clear: both;
 }
 
+#star_users_box {
+	width: 226px;
+}
+
 .follow_box {
 	position: relative;
 	width: 45px;

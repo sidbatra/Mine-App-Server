@@ -29,55 +29,55 @@
   
   <!-- Right column -->
 	<div id='profile_right'>
-	 	
-    <!-- Following images and header -->
+	
+	
 	 	<div id='follower_box'>
 
 	 		<div id='following_msg' class='profile_right_title'>
         <%=@user_presenter.following_message%>
       </div>  
       	
-      <div>
-        <div id='ifollowers'>
-          <%=blocker%>
-        </div>
+      <div id='ifollowers'>
         <%=blocker%>
-        
-
-        <%if is_current_user(@user)%>
-          <%=render 'invite'%>
-          
-          <div class='profile_right_title'>
-            <%=image_tag 'star_12_666666.png'%> Star Users
-          </div> 
-          
-          <div id='star_users'>
-          </div>
-        <%end%>
-        
       </div>
-      			
       
-      
-      
+      <%if is_current_user(@user)%>
+      	<%=render 'invite'%>
+      <%end%>
 
-		  <%=blocker%>
-    </div> 
-	
-	 	<div id='closet_stats'>
+    </div> <!-- follower_box -->
+    
+    <div id='closet_stats'>
       <%=@user_presenter.closet_stats%>
-	 	</div>
-	 	
-	 	<div id='cat_nav'>
+	 	</div> <!-- closet_stats -->
+    
+    <div id='cat_nav'>
 	 	
 	 		<div id='cat_add'><br/>
         <%=@user_presenter.closet_create_links_near_filters(@categories)%>
 	 		</div>
 
       <%=@user_presenter.closet_filter_links(@categories)%>
-	 	</div>
+	 	</div> <!-- cat_nav -->
+    
+    
+    <%if is_current_user(@user)%>
+    
+	    <div id='star_users_box'>
+	        
+	        <div class='profile_right_title'>
+	          <%=image_tag 'star_12_666666.png'%> Star Users
+	        </div> 
+	        
+	        <div id='star_users'>
+	        	<%=blocker%>
+	        </div>
+	        
+	    </div> <!-- star_users_box -->
+	    
+	   <%end%>	 	
 	 	
-	</div>
+	</div> <!-- profile_right -->
 
 
 
