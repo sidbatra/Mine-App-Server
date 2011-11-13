@@ -4,7 +4,6 @@
 
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
-  <!--TODO-->
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @user_presenter.closet_name,
@@ -140,7 +139,6 @@
 
 	</div> <!-- profile_main -->
 
-
 </div> <!-- profile_container -->
 
 
@@ -152,10 +150,7 @@
 
     analytics.userLandsOn('<%=@user_presenter.source_id%>');
 
-    new Denwen.FacebookView();
-    new Denwen.Partials.UserProducts({
-          el:$('#products'),
-          user_id:<%=@user.id%>});
+    new Denwen.Views.UsersShow({user_id:<%=@user.id%>});
 
     var ifollowers  = new Denwen.Partials.IFollowers({
                                             id:<%=@user.id%>});
@@ -195,19 +190,6 @@
       '<%=@category ? @category.name : ""%>',
       <%=@user.id%>);
 
-      //var w = Backbone.Router.extend({
-      //  initialize :function() {
-      //    console.log('INIT');
-      //  },
-      //  routes: {
-      //    ":query" : "search"
-      //  },
-      //  search: function(query) {
-      //    console.log('query - ' + query);
-      //  }
-      //});
-      //new w();
-      //Backbone.history.start();
   </script>
 <%end%>
 

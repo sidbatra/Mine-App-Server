@@ -6,25 +6,40 @@ Denwen.Partials.UserProducts = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self = this;
-
     this.userID   = this.options.user_id;
     this.products = new Denwen.Collections.Products();
-
-    this.products.fetch({
-      data    : {filter: 'user',user_id: this.userID},
-      success : function() { self.render(); },
-      error   : function() {}
-    });
   },
 
   // Render the products collection
   //
   render: function() {
+    this.el.html('');
     this.el.prepend(
       Denwen.JST['products/user_products']({
         products  : this.products,
         userID    : this.userID}));
+  },
+
+  // Filter products based on the given category
+  //
+  filter: function(category) {
+    this.fetch(category);
+  },
+
+  // Fetch products filtered by the given category
+  //
+  fetch: function(category) {
+    var self  = this;
+    var data  = {filter: 'user',user_id: this.userID};
+
+    if(category != undefined && category.length) 
+      data['category']  = category;
+
+    this.products.fetch({
+      data    : data,
+      success : function() { self.render(); },
+      error   : function() {}
+    });
   }
 
 });

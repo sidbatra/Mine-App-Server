@@ -141,7 +141,7 @@ class UserPresenter < BasePresenter
                     "View all <span class='cat_num'>" + 
                     (user.products_count > 0 ? user.products_count.to_s : '') +
                     "</span><br/>",
-                  h.user_path(user,:src => 'all') 
+                  '#all' 
 
     categories.each do |category|
       category_count = user.products_category_count(category.id) 
@@ -151,9 +151,7 @@ class UserPresenter < BasePresenter
                     " <span class='cat_num'>" +
                     category_count.to_s +
                     "</span><br/>",
-                  h.user_path(user,
-                    :category => category.handle,
-                    :src      => 'filter')
+                    "##{category.handle}"
     end
 
     html
