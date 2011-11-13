@@ -1,6 +1,6 @@
 // Render a single comment
 //
-Denwen.Partials.Comment = Backbone.View.extend({
+Denwen.Partials.Comments.Comment = Backbone.View.extend({
 
   // Constructor logic
   //
@@ -11,7 +11,7 @@ Denwen.Partials.Comment = Backbone.View.extend({
   // Render the comment
   //
   render: function() {
-    $(this.el).prepend(Denwen.JST['comments/comment']({comment:this.model}));
+    //$(this.el).prepend(Denwen.JST['comments/comment']({comment:this.model}));
   }
 
 });

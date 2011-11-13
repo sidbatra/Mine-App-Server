@@ -1,6 +1,6 @@
 // Partial to load and display star users 
 //
-Denwen.Partials.StarUsers = Backbone.View.extend({
+Denwen.Partials.Users.Stars = Backbone.View.extend({
 
   // Setup event handlers
   //

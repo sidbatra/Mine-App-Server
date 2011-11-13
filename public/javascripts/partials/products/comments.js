@@ -1,6 +1,6 @@
 // Partial to load and display comments for a product
 //
-Denwen.Partials.Comments = Backbone.View.extend({
+Denwen.Partials.Products.Comments = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -40,7 +40,8 @@ Denwen.Partials.Comments = Backbone.View.extend({
     var self = this;
 
     this.comments.each(function(comment){
-      new Denwen.Partials.Comment({el:$(self.commentsEl),model:comment});
+      $(self.commentsEl).prepend(Denwen.JST['comments/comment']({
+                                    comment:comment}));
     });
   },
 
@@ -74,7 +75,8 @@ Denwen.Partials.Comments = Backbone.View.extend({
   created: function(comment) {
     this.posting = false;
 
-    new Denwen.Partials.Comment({el:$(this.commentsEl),model:comment});
+    $(this.commentsEl).prepend(Denwen.JST['comments/comment']({
+                                  comment:comment}));
 
     $(this.inputEl).val('');
     $(this.inputEl).focus();

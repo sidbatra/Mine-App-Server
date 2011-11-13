@@ -1,6 +1,6 @@
 // Render a single user 
 //
-Denwen.Partials.User = Backbone.View.extend({
+Denwen.Partials.Users.User = Backbone.View.extend({
 
   // Constructor logic
   //

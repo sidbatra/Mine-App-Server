@@ -1,6 +1,6 @@
 // Partial to load and display user's iFollowers 
 //
-Denwen.Partials.IFollowers = Backbone.View.extend({
+Denwen.Partials.Users.IFollowers = Backbone.View.extend({
 
   // Setup event handlers
   //

@@ -1,7 +1,7 @@
 // Partial to load and display products for a user.
 // Also handles filters on the products via a Router
 //
-Denwen.Partials.UserProducts = Backbone.View.extend({
+Denwen.Partials.Users.Products = Backbone.View.extend({
 
   // Constructor logic
   //

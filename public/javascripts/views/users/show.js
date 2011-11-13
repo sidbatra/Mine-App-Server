@@ -1,6 +1,6 @@
 // View js for the Users/Show route
 //
-Denwen.Views.UsersShow = Backbone.View.extend({
+Denwen.Views.Users.Show = Backbone.View.extend({
   
   // Constructor logic
   //
@@ -13,7 +13,7 @@ Denwen.Views.UsersShow = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.userProducts   = new Denwen.Partials.UserProducts({
+    this.userProducts   = new Denwen.Partials.Users.Products({
                                 el      : $('#products'),
                                 user_id : this.user.get('id')});
     
@@ -21,7 +21,7 @@ Denwen.Views.UsersShow = Backbone.View.extend({
     this.routing();
 
     // -----
-    new Denwen.Partials.IFollowers({
+    new Denwen.Partials.Users.IFollowers({
                           el    : $('#ifollowers_with_msg'),
                           user  : this.user,
                           delay : this.isCurrentUser && 
@@ -29,11 +29,11 @@ Denwen.Views.UsersShow = Backbone.View.extend({
                                   && this.source == 'login'});
     // -----
     if(this.isCurrentUser)
-      new Denwen.Partials.StarUsers();
+      new Denwen.Partials.Users.Stars();
 
     // -----
     if(this.isCurrentUser)
-      new Denwen.Partials.UserByline({
+      new Denwen.Partials.Users.Byline({
                     model: this.user, 
                     el:$('#profile_bio')});
 
@@ -48,10 +48,10 @@ Denwen.Views.UsersShow = Backbone.View.extend({
   // Load facebook code via partials
   //
   loadFacebookPlugs: function() {
-    new Denwen.Partials.Facebook();
+    new Denwen.Partials.Facebook.Base();
 
     if(this.isCurrentUser)
-      new Denwen.Partials.FacebookInvite({id:'#action_link'});
+      new Denwen.Partials.Facebook.Invite({id:'#action_link'});
   },
 
   // Fire various tracking events 

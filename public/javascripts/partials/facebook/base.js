@@ -1,7 +1,7 @@
 // Initializes and loads the fb javascript sdk
 // and is used whenever a fb feature is required on the page
 //
-Denwen.Partials.Facebook = Backbone.View.extend({
+Denwen.Partials.Facebook.Base = Backbone.View.extend({
 
   // Setup event handlers
   //

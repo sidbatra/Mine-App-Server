@@ -1,6 +1,6 @@
 // Render a single product
 //
-Denwen.Partials.Product = Backbone.View.extend({
+Denwen.Partials.Products.Product = Backbone.View.extend({
   
   // Constructor logic
   //
