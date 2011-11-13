@@ -51,7 +51,7 @@ Denwen.Views.UsersShow = Backbone.View.extend({
     new Denwen.Partials.Facebook();
 
     if(this.isCurrentUser)
-      new Denwen.FacebookInviteView({id:'#action_link'});
+      new Denwen.Partials.FacebookInvite({id:'#action_link'});
   },
 
   // Fire various tracking events 

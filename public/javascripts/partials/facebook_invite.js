@@ -1,6 +1,6 @@
 // Dialog for inviting facebook friends 
 //
-Denwen.FacebookInviteView = Backbone.View.extend({
+Denwen.Partials.FacebookInvite = Backbone.View.extend({
 
   // Setup event handlers
   //
