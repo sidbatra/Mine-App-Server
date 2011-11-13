@@ -48,10 +48,7 @@ class UsersController < ApplicationController
   #
   def show
     @source       = params[:src] ? params[:src].to_s : "direct"
-    @categories ||= Category.fetch_all
-
     @user         = User.find(params[:id])
-    @examples     = User.find_all_by_id(CONFIG[:example_users].split(','))
   end
   
   # Fetch group of users based on different filters 
