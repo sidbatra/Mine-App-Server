@@ -1,6 +1,6 @@
 // View for modifying the user byline
 //
-Denwen.UserBylineView = Backbone.View.extend({
+Denwen.Partials.UserByline = Backbone.View.extend({
 
   // Event listeners
   //

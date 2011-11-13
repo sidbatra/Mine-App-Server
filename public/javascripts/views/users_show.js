@@ -33,7 +33,7 @@ Denwen.Views.UsersShow = Backbone.View.extend({
 
     // -----
     if(this.isCurrentUser)
-      new Denwen.UserBylineView({
+      new Denwen.Partials.UserByline({
                     model: this.user, 
                     el:$('#profile_bio')});
 
