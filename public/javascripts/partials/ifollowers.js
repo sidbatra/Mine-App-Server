@@ -34,7 +34,6 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
   // Fetches the iFollowers after timeout
   //
   getAfterTimeout: function() {
-    console.log("in get After Timeout");
     var self = this;
     window.setTimeout(function(){self.get();},5000);
   },
@@ -42,8 +41,6 @@ Denwen.Partials.IFollowers = Backbone.View.extend({
   // Render the users collection
   //
   render: function() {
-    console.log("i followers rendered");
-    console.log(this.users.length);
     var self = this;
 
     $(this.el).html(
