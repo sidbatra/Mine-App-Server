@@ -33,7 +33,7 @@ Denwen.Partials.StarUsers = Backbone.View.extend({
     var self = this;
 
     $(this.el).html(
-      Denwen.JST['users/star_users']({
+      Denwen.JST['users/stars']({
         users : this.users}));
   }
 

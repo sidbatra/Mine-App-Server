@@ -1,5 +1,17 @@
 <div id='following_msg' class='profile_right_title'>
-  <%=helpers.following_message(userID,users.length)%>
+  <%if(users.length) {%>
+    <%if(helpers.isCurrentUser(userID)){%> 
+      People you're following 
+    <%} else {%>
+      TODO is following
+    <%}%>
+  <%} else {%>
+    <%if(helpers.isCurrentUser(userID)){%> 
+      People you're following 
+    <%} else {%>
+      TODO isn't following anyone yet.
+    <%}%>
+  <%}%>
 </div>
 
 <div ='ifollowers'>

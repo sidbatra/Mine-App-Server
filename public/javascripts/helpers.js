@@ -37,23 +37,6 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   blocker: function() {
     return "<div id='blocker'></div>";
-  },
-
-  // Message displaying people the user is following
-  //
-  following_message: function(userID,ifollowersCount) {
-    var message;
-
-    if(ifollowersCount)
-      message = this.isCurrentUser(userID) ? 
-                  "People you're following" : 
-                  "TODO is following";
-    else
-      message = this.isCurrentUser(userID) ? 
-                  "People you're following" : 
-                  "TODO isn't following anyone yet.";
-    
-    return message;
   }
 
 });
