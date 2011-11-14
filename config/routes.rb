@@ -43,6 +43,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products,
                 :only => [:new,:create,:index,:update,:destroy]
 
+  map.resources :stores,
+                :only => [:show]
+
   map.resources :comments,
                 :only => [:create,:index]
 
