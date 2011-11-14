@@ -1,11 +1,10 @@
-// Collection of ProductImage models holding search results
-// when finding a product
+// Collection of ImageResult models holding image search results
 //
-Denwen.ProductImages = Backbone.Collection.extend({
+Denwen.Collections.ImageResults = Backbone.Collection.extend({
 
   // Model name
   //
-  model: Denwen.ProductImage,
+  model: Denwen.Models.ImageResult,
 
   // Constructor logic
   //

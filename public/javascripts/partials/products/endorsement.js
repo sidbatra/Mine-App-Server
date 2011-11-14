@@ -1,6 +1,6 @@
 // View for modifying the product endorsement
 //
-Denwen.ProductEndorsementView = Backbone.View.extend({
+Denwen.Partials.Products.Endorsement = Backbone.View.extend({
 
 
   // Event listeners

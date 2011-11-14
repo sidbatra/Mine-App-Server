@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
   def show
     @source   = params[:src] ? params[:src].to_s : "direct"
 
-    @product  = Product.find(params[:id])
+    @product  = Product.with_store.with_user.find(params[:id])
 
     next_product  = @product.next
     next_product  ||= @product.user.products.first

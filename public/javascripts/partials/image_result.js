@@ -1,6 +1,6 @@
-// View for displaying a single product image result
+// Partial for displaying a single image result
 //
-Denwen.ProductImageView = Backbone.View.extend({
+Denwen.Partials.ImageResult = Backbone.View.extend({
 
   // Constructor logic
   //
@@ -32,7 +32,7 @@ Denwen.ProductImageView = Backbone.View.extend({
   // Fired when the image is clicked
   //
   clicked: function() {
-    this.trigger('productImageClicked',this.model.productHash());
+    this.trigger('productImageClicked',this.model.infoHash());
   }
 });
 

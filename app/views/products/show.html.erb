@@ -148,23 +148,10 @@
   <%content_for :javascript do%>
     <script type="text/javascript">
 
-      analytics.userLandsOn('product_<%=@product.id.to_s%>');
-
-      var fb = new Denwen.Partials.Facebook.Base();
-
-      <%if is_current_user(@product.user)%>
-        var product = new Denwen.Models.Product(<%=@product.to_json%>);
-        var productEndorsementView = new Denwen.ProductEndorsementView({
-                                          model:product,
-                                          el:$('#right_extras'),
-                                          source:'<%=@source%>'});
-      <%end%>
-
-      new Denwen.Partials.Products.Comments({
-            product_id:<%=@product.id%>,
-            el:$('#comments_container')});
-
-      analytics.productProfileView('<%=@source%>',<%=@product.id%>);
+      new Denwen.Views.Products.Show({
+                        productJSON : <%=@product.to_json(
+                                            :only => [:user_id])%>,
+                        source      : '<%=@source%>'});
 
     </script>
   <%end%>

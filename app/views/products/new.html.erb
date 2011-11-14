@@ -129,7 +129,10 @@
 
 <script type="text/javascript">
 
-  var productInputView = new Denwen.ProductInputView({el:$('body')});
+  new Denwen.Views.Products.New({
+                      el            : $('body'),
+                      categoryJSON  : <%=@category.to_json%>,
+                      source        : '<%=@source%>'});
 
    $(document).ready(function(){
       var stores = "<%=@stores.map(&:name).join('|')%>".split("|");
@@ -141,11 +144,6 @@
                               return item[0];}
                              });
     });
-
-  analytics.productNewView(
-      <%=@category.id%>,
-      "<%=@category.name%>",
-      "<%=@source%>");
 </script>
 
 <%end%>
