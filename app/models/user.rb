@@ -58,6 +58,18 @@ class User < ActiveRecord::Base
       :group      => "users.id")
   end
 
+  # Fetch all the star users
+  #
+  def self.stars 
+    Cache.fetch('star_users'){
+        all(
+          :joins      => :products,
+          :conditions => {:products => {:created_at => 7.days.ago..Time.now}},
+          :group      => "users.id", 
+          :order      => "count(user_id) DESC",
+          :limit      => 20)}
+  end
+
   # Return json options specifiying which attributes and methods
   # to pass in the json when the model is used within an include
   # of another model's json
