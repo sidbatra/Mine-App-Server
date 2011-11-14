@@ -16,6 +16,16 @@ class User < ActiveRecord::Base
   has_many :ifollowers, :through => :inverse_followings, :source => :user
 
   #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :generate_handle
+
+  #-----------------------------------------------------------------------------
+  # Callbacks
+  #-----------------------------------------------------------------------------
+  before_save :populate_handle
+
+  #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :first_name
@@ -64,7 +74,7 @@ class User < ActiveRecord::Base
   #
   def self.json_options
     options             = {}
-    options[:only]      = [:id,:first_name,:last_name]
+    options[:only]      = [:id,:first_name,:last_name,:handle]
     options[:methods]   = [:photo_url]
 
     [self.name.downcase.to_sym,options]
@@ -179,12 +189,43 @@ class User < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:first_name,:last_name];
+    options[:only]     += [:id,:first_name,:last_name,:handle];
 
     options[:methods]   = [] if options[:methods].nil?
     options[:methods]  += [:photo_url]
 
     super(options)
+  end
+
+
+  protected
+
+  # Populate handle from the product title
+  #
+  def populate_handle
+    return unless !self.handle.present? || self.generate_handle
+
+    self.handle = (self.first_name + ' ' + self.last_name).
+                              gsub(/[^a-zA-Z0-9]/,'-').
+                              squeeze('-').
+                              chomp('-')
+    
+    self.handle = rand(1000000) if self.handle.empty?
+
+
+    base  = self.handle
+    tries = 1
+
+    # Create uniqueness
+    while(true)
+      match = self.class.find_by_handle(base)
+      break unless match.present? && match.id != self.id
+
+      base = self.handle + '-' + tries.to_s
+      tries += 1
+    end
+
+    self.handle = base
   end
 
 end
