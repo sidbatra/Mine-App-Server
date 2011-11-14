@@ -1,7 +1,7 @@
-// ProductImage represents each individual image
-// returned when searching for a product
+// ImageResult represents an image
+// returned when searching for images
 //
-Denwen.ProductImage = Backbone.Model.extend({
+Denwen.Models.ImageResult = Backbone.Model.extend({
 
   // Construtor logic
   //
@@ -9,9 +9,9 @@ Denwen.ProductImage = Backbone.Model.extend({
   },
 
   // Create a hash with the relevant info needed to
-  // form a product model object
+  // process the image result
   //
-  productHash: function() {
+  infoHash: function() {
     return {
       "thumb_url" : this.get('Thumbnail')['Url'],
       "website_url" : this.get('Url'),
