@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
                             params[:product],
                             self.current_user.id)
 
-    target_url = user_path(self.current_user,:src => "product_create")
+    target_url = user_path(self.current_user.handle,:src => "product_create")
 
   rescue => ex
     handle_exception(ex)
@@ -135,7 +135,7 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to user_path(self.current_user,:src => "product_deleted")
+    redirect_to user_path(self.current_user.handle,:src => "product_deleted")
   end
 
 

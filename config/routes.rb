@@ -3,6 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller  => :home,
             :action     => :show
 
+  map.home  '/home/:id',
+            :controller => :home,
+            :action     => :show
+
   map.login   'facebook/authenticate',
               :controller => :session,
               :action     => :create
@@ -38,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
               :controller => 'logged_exceptions'
 
   map.resources :users,
-                :only => [:create,:show,:update,:index]
+                :only => [:create,:update,:index]
 
   map.resources :products,
                 :only => [:new,:create,:index,:update,:destroy]
@@ -73,8 +77,9 @@ ActionController::Routing::Routes.draw do |map|
   
   Jammit::Routes.draw(map)
         
-  map.home  '/:id',
-            :controller => :home,
+
+  map.user  '/:handle',
+            :controller => :users,
             :action     => :show
 
   # Install the default routes as the lowest priority.

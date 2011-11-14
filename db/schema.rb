@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111113010843) do
+ActiveRecord::Schema.define(:version => 20111114202626) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -128,9 +128,11 @@ ActiveRecord::Schema.define(:version => 20111113010843) do
     t.integer  "products_6_count",          :default => 0
     t.integer  "products_7_count",          :default => 0
     t.integer  "products_8_count",          :default => 0
+    t.string   "handle"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
 
 end

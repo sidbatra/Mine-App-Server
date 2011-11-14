@@ -20,7 +20,7 @@ Denwen.Models.User = Backbone.Model.extend({
   // with the given source
   //
   path: function(src) {
-    return this.urlRoot + '/' + this.id + '?src=' + src;
+    return '/' + this.get('handle') + '?src=' + src;
   },
 
   // Unique key to identify the unique combination of the
