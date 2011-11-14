@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-    target_url = user_path(@user,:src => "login")
+    target_url = user_path(@user.handle,:src => "login")
 
   rescue => ex
     handle_exception(ex)
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   #
   def show
     @source       = params[:src] ? params[:src].to_s : "direct"
-    @user         = User.find(params[:id])
+    @user         = User.find_by_handle(params[:handle])
   end
   
   # Fetch group of users based on different filters 

@@ -60,13 +60,13 @@ class UserPresenter < BasePresenter
   # Full url of the user's closet
   #
   def closet_url(src)
-    h.user_url(user,:src => src)
+    h.user_url(user.handle,:src => src)
   end
 
   # Relative path of the user's closet
   #
   def closet_path(src)
-    h.user_path(user,:src => src)
+    h.user_path(user.handle,:src => src)
   end
 
   # Link to go get back to the closet
