@@ -149,7 +149,8 @@
     <script type="text/javascript">
 
       new Denwen.Views.Products.Show({
-                        productJSON : <%=@product.to_json(:only => [:user_id])%>,
+                        productJSON : <%=@product.to_json(
+                                            :only => [:user_id])%>,
                         source      : '<%=@source%>'});
 
     </script>
