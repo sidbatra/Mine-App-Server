@@ -1,6 +1,6 @@
 // View for creating a new product
 //
-Denwen.ProductInputView = Backbone.View.extend({
+Denwen.Views.Products.New = Backbone.View.extend({
 
   // Event listeners
   //
@@ -16,7 +16,11 @@ Denwen.ProductInputView = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self          = this;
+    var self                  = this;
+
+    this.category             = new Denwen.Models.Category(
+                                            this.options.categoryJSON);
+    this.source               = this.options.source;
 
     this.formEl               = '#new_product';
     this.queryEl              = '#product_query';
@@ -49,6 +53,18 @@ Denwen.ProductInputView = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
+
+    this.setAnalytics();
+  },
+
+  // Fire various tracking events
+  //
+  setAnalytics: function() {
+
+    analytics.productNewView(
+        this.category.get('id'),
+        this.category.get('name'),
+        this.source);
   },
 
   // Catch keystrokes on inputs to stop form submissions
