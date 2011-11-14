@@ -1,6 +1,6 @@
 // Partial for displaying a single image result
 //
-Denwen.Partials.ImageResult = Backbone.View.extend({
+Denwen.Partials.Products.ImageResult = Backbone.View.extend({
 
   // Constructor logic
   //

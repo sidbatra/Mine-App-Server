@@ -1,6 +1,6 @@
 // Partial for displaying image results 
 // 
-Denwen.Partials.ImageResults = Backbone.View.extend({
+Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -121,7 +121,7 @@ Denwen.Partials.ImageResults = Backbone.View.extend({
   // collection. Here its added into the dom via its view
   //
   added: function(image) {
-    var imageView =  new Denwen.Partials.ImageResult({
+    var imageView =  new Denwen.Partials.Products.ImageResult({
                           model:image,
                           el:$(this.imagesEl)});
     imageView.bind('productImageClicked',this.productImageClicked,this);

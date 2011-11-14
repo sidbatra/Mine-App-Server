@@ -44,7 +44,7 @@ Denwen.Views.Products.New = Backbone.View.extend({
     this.posting              = false;
 
     this.productImages      = new Denwen.Collections.ImageResults();
-    this.productImagesView  = new Denwen.Partials.ImageResults({
+    this.productImagesView  = new Denwen.Partials.Products.ImageResults({
                                   el:$('body'),
                                   images:this.productImages});
     this.productImagesView.bind('productSelected',this.productSelected,this);
