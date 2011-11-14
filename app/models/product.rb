@@ -222,6 +222,7 @@ class Product < ActiveRecord::Base
     options[:only]      = [] if options[:only].nil?
     options[:only]     += [:id,:title,:endorsement,:handle,:price,:comments_count]
 
+    options[:methods]   = [] if options[:methods].nil?
     options[:methods]   = [:thumbnail_url]
 
     options[:include] = {}

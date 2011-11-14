@@ -18,7 +18,15 @@ Denwen.Models.Product = Backbone.Model.extend({
   path: function(src) {
     return this.urlRoot + '/' + this.get('id') + '/' + 
             this.get('handle') + '?src=' + src;
+  },
+
+  // Unique key to identify the unique combination of the
+  // model name and the id
+  //
+  uniqueKey: function() {
+    return 'product_' + this.get('id');
   }
+
 
 });
 
