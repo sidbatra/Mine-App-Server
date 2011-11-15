@@ -9,6 +9,11 @@ class Product < ActiveRecord::Base
   has_many    :comments
 
   #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :generate_handle
+
+  #-----------------------------------------------------------------------------
   # Callbacks
   #-----------------------------------------------------------------------------
   before_save :populate_handle
@@ -220,7 +225,8 @@ class Product < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:title,:endorsement,:handle,:price,:comments_count]
+    options[:only]     += [:id,:title,:endorsement,:handle,:price,
+                            :comments_count]
 
     options[:methods]   = [] if options[:methods].nil?
     options[:methods]   = [:thumbnail_url]
@@ -237,11 +243,29 @@ class Product < ActiveRecord::Base
   # Populate handle from the product title
   #
   def populate_handle
-    return unless self.title.present? 
+    return unless !self.handle.present? || self.generate_handle
 
-    self.handle = self.title.gsub(/[^a-zA-Z0-9]/,'-').
-                              squeeze('-').
-                              chomp('-')
+    self.handle = (self.title).
+                        gsub(/[^a-zA-Z0-9]/,'-').
+                        squeeze('-').
+                        chomp('-')
+  
+    self.handle = rand(1000000) if self.handle.empty?
+
+
+    base  = self.handle
+    tries = 1
+
+    # Create uniqueness
+    while(true)
+      match = self.class.find_by_handle_and_user_id(base,self.user_id)
+      break unless match.present? && match.id != self.id
+
+      base = self.handle + '-' + tries.to_s
+      tries += 1
+    end
+
+    self.handle = base
   end
 
 end

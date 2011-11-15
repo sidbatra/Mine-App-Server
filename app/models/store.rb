@@ -99,7 +99,7 @@ class Store < ActiveRecord::Base
 
   protected
 
-  # Populate handle from the product title
+  # Populate handle for the store
   #
   def populate_handle
     return unless !self.handle.present? || self.generate_handle
