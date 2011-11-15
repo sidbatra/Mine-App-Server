@@ -41,4 +41,16 @@ class UserMailer < ActionMailer::Base
     from          EMAILS[:contact]
     subject       @action
   end
+
+  # Alert user whenever he/she is featured as a star user 
+  #
+  def star_user(user)
+    @user         = user
+    @action       = "You are now the star user on Felvy"
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
 end

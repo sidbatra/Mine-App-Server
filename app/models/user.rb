@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
           :joins      => :products,
           :conditions => {:products => {:created_at => 7.days.ago..Time.now}},
           :group      => "users.id", 
-          :order      => "count(user_id) DESC",
+          :order      => "count(users.id) DESC",
           :limit      => 20)}
   end
 
