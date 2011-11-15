@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
     case @filter
     when :user
       @category = Category.fetch(params[:category]) if params[:category]
-      @products = Product.with_store.
+      @products = Product.with_store.with_user.
                     for_user(params[:user_id]).
                     in_category(@category ? @category.id : nil).
                     by_id

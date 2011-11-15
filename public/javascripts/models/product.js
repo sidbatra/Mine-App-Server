@@ -11,12 +11,13 @@ Denwen.Models.Product = Backbone.Model.extend({
   //
   initialize: function(){
     this.associate('store',Denwen.Models.Store);
+    this.associate('user',Denwen.Models.User);
   },
 
   // Path to the product with the originating source
   //
   path: function(src) {
-    return this.urlRoot + '/' + this.get('id') + '/' + 
+    return this.get('user').get('handle') + '/products/' + 
             this.get('handle') + '?src=' + src;
   },
 

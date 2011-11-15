@@ -233,6 +233,7 @@ class Product < ActiveRecord::Base
 
     options[:include] = {}
     options[:include].store(*(Store.json_options))
+    options[:include].store(*(User.json_options))
 
     super(options)
   end
