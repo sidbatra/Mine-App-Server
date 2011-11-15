@@ -47,6 +47,11 @@ class UsersController < ApplicationController
   # Display user's profile
   #
   def show
+
+    if params[:id].present?
+      redirect_to user_path(User.find(params[:id]).handle)
+    end
+
     @source       = params[:src] ? params[:src].to_s : "direct"
     @user         = User.find_by_handle(params[:handle])
   end

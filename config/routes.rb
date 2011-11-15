@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
               :controller => 'logged_exceptions'
 
   map.resources :users,
-                :only => [:create,:update,:index]
+                :only => [:create,:show,:update,:index]
 
   map.resources :products,
                 :only => [:new,:create,:index,:update,:destroy]
