@@ -6,6 +6,16 @@ class Store < ActiveRecord::Base
   has_many    :products
 
   #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :generate_handle
+
+  #-----------------------------------------------------------------------------
+  # Callbacks
+  #-----------------------------------------------------------------------------
+  before_save :populate_handle
+
+  #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :name
@@ -68,12 +78,6 @@ class Store < ActiveRecord::Base
     self.save!
   end
 
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    super(options.merge(:only => [:id,:name]))
-  end
-
   # Move all products to an existing store
   #
   def move_products_to(store)
@@ -84,6 +88,43 @@ class Store < ActiveRecord::Base
       Store.update_counters(
               store.id,
               :products_count => products_updated)
+  end
+
+  # Override to customize accessible attributes
+  #
+  def to_json(options = {})
+    super(options.merge(:only => [:id,:name]))
+  end
+
+
+  protected
+
+  # Populate handle from the product title
+  #
+  def populate_handle
+    return unless !self.handle.present? || self.generate_handle
+
+    self.handle = (self.name).
+                      gsub(/[^a-zA-Z0-9]/,'-').
+                      squeeze('-').
+                      chomp('-')
+    
+    self.handle = rand(1000000) if self.handle.empty?
+
+
+    base  = self.handle
+    tries = 1
+
+    # Create uniqueness
+    while(true)
+      match = self.class.find_by_handle(base)
+      break unless match.present? && match.id != self.id
+
+      base = self.handle + '-' + tries.to_s
+      tries += 1
+    end
+
+    self.handle = base
   end
 
 end
