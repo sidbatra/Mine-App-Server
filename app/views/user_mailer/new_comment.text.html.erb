@@ -5,7 +5,7 @@ Hi <%=@user.first_name%>, <br><br>
 <%=@comment.user.first_name%> wrote: "<%=h @comment.data%>" <br><br>
 
 <a href="<%=product_url(
-              @comment.product.id,
+              @comment.product.user.handle,
               @comment.product.handle,
               :src => "email")%>">
 See comment thread</a>

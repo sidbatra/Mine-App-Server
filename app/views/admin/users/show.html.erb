@@ -10,7 +10,7 @@
       <tr>
         <%if c.class == Product%>
           <td></td>
-          <td><u><%= link_to h(c.title), product_path(c.id,c.handle)%></u></td>
+          <td><u><%= link_to h(c.title), product_path(c.user.handle,c.handle)%></u></td>
         <%else%>
           <td><%=c.query%></td>
         <%end%>

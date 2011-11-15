@@ -8,13 +8,13 @@ class ProductPresenter < BasePresenter
   # Relative path for the product
   #
   def path(source)
-    h.product_path product.id,product.handle,:src => source
+    h.product_path product.user.handle,product.handle,:src => source
   end
   
   # Absolute path for the product
   # 
   def url(source)
-    h.product_url product.id,product.handle,:src => source
+    h.product_url product.user.handle,product.handle,:src => source
   end
 
   # Anchor tag for deleting the product
