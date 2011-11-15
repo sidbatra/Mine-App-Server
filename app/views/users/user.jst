@@ -4,7 +4,7 @@
     <%=user.get('first_name') + ' ' + user.get('last_name')%>
   </span>
 
-  <a href="<%=user.path('follow')%>">
+  <a href="<%=user.path(src)%>">
     <img src="<%=user.get('photo_url')%>"
           class = 'follow_img slim_shadow_dark'/>
   </a>
