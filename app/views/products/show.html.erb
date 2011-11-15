@@ -36,8 +36,13 @@
 
     
       <!-- navigation to other products -->
-      <%=@product_presenter.next(@next_path)%>
-      <%=@product_presenter.prev(@prev_path)%>
+      <%unless @next_product.id == @prev_product.id && 
+                @next_product.id == @product.id%>
+
+        <%=@product_presenter.next(@prev_product,@product.user)%>
+        <%=@product_presenter.prev(@next_product,@product.user)%>
+      
+      <%end%>
 	
 	
 	    <!-- product -->

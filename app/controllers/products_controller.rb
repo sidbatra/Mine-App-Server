@@ -78,38 +78,32 @@ class ProductsController < ApplicationController
   # Display a product
   #
   def show
-    @source   = params[:src] ? params[:src].to_s : "direct"
 
-    @product  = Product.with_store.with_user.find(params[:id])
-
-    next_product  = @product.next
-    next_product  ||= @product.user.products.first
-
-    prev_product  = @product.previous
-    prev_product  ||= @product.user.products.last
-
-    unless next_product.id == prev_product.id && next_product.id == @product.id
-
-      @prev_path = product_path(
-                    next_product.id,
-                    next_product.handle,
-                    :src => "previous") 
-
-      @next_path = product_path(
-                    prev_product.id,
-                    prev_product.handle,
-                    :src => "next")
+    if params[:id].present?
+      product = Product.find(params[:id])
+      redirect_to product_path(product.user.handle,product.handle)
+      return
     end
 
-    redirect_to product_path(
-                  @product.id,
-                  @product.handle,
-                  :src => @source) if params[:name] != @product.handle
+
+    @source   = params[:src] ? params[:src].to_s : "direct"
+
+    user      = User.find_by_handle(params[:user_handle])
+    @product  = Product.with_store.with_user.find_by_user_id_and_handle(
+                          user.id,
+                          params[:product_handle])
+
+
+    @next_product  = @product.next
+    @next_product  ||= @product.user.products.first
+
+    @prev_product  = @product.previous
+    @prev_product  ||= @product.user.products.last
 
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => "product_show_error") if @error
+    redirect_to root_path(:src => 'product_show_error') if @error
   end
 
   # Update user's byline

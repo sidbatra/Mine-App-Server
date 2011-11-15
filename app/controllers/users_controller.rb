@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
     if params[:id].present?
       redirect_to user_path(User.find(params[:id]).handle)
+      return
     end
 
     @source       = params[:src] ? params[:src].to_s : "direct"
