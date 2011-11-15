@@ -65,9 +65,7 @@ class UsersController < ApplicationController
     when :ifollowers
       @users  = User.find(params[:id]).ifollowers
     when :stars
-      @users  = User.all(
-                      :order => 'products_count DESC', 
-                      :limit => 20) 
+      @users  = User.stars
     end
 
   rescue => ex
