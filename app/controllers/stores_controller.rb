@@ -6,7 +6,7 @@ class StoresController < ApplicationController
   # Display a store
   #
   def show
-    @store  = Store.find(params[:id])
+    @store  = Store.find_by_handle(params[:handle])
   end
   
 end

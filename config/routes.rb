@@ -27,6 +27,10 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :products,
                 :action     => :show
 
+  map.store   'stores/:handle',
+                :controller => :stores,
+                :action     => :show
+
   map.connect 'admin/stores/unapproved',
               :controller   => 'admin/stores',
               :action       => :index,
@@ -46,9 +50,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :products,
                 :only => [:new,:create,:index,:update,:destroy]
-
-  map.resources :stores,
-                :only => [:show]
 
   map.resources :comments,
                 :only => [:create,:index]
