@@ -82,7 +82,8 @@ class Product < ActiveRecord::Base
       Product.for_store(store_id).
               created(10.days.ago..Time.now).
               by_comments.
-              limit(15)
+              with_user.
+              limit(10)
     end
   end
 

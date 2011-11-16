@@ -78,6 +78,8 @@ class ProductsController < ApplicationController
       @options[:with_user] = true
     when :top
       @products = Product.top_for_store(params[:owner_id])
+
+      @options[:with_user] = true
     else
       raise IOError, "Invalid option"
     end
