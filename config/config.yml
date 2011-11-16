@@ -21,6 +21,7 @@ common: &common
     :user_price: user_%d_products_price
     :store_category_count: store_%d_category_%d_count
     :store_price: store_%d_products_price
+    :store_top_shoppers: store_%d_top_shoppers
   :msg:
     :product:
       :shoes:
