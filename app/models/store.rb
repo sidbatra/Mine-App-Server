@@ -26,6 +26,7 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
+  named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
 
@@ -45,6 +46,12 @@ class Store < ActiveRecord::Base
   #
   def self.fetch(name)
     find_by_name(name.squeeze(' ').strip) 
+  end
+
+  # Fetch sorted list of top stores
+  #
+  def self.top
+    Cache.fetch('top_stores') {Store.processed.popular.all(:limit => 20)}
   end
 
   # Return json options specifiying which attributes and methods
@@ -194,7 +201,13 @@ class Store < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    super(options.merge(:only => [:id,:name]))
+    options[:only]      = [] if options[:only].nil?
+    options[:only]     += [:id,:name,:handle]
+
+    options[:methods]   = [] if options[:methods].nil?
+    options[:methods]  += [:thumbnail_url]
+
+    super(options)
   end
 
 

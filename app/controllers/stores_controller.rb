@@ -8,5 +8,23 @@ class StoresController < ApplicationController
   def show
     @store  = Store.find_by_handle(params[:handle])
   end
+
+  # Fetch list of stores
+  #
+  def index
+    @filter = params[:filter].to_sym
+
+    case @filter
+    when :top
+      @stores  = Store.top
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
   
 end
