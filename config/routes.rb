@@ -24,15 +24,15 @@ ActionController::Routing::Routes.draw do |map|
                 :action     => :create
 
   # Deprecate in next version
- map.product_d 'products/:id/:name',
+  map.product_d 'products/:id/:name',
                 :controller => :products,
                 :action     => :show
 
-  map.product ':user_handle/products/:product_handle',
+  map.product ':user_handle/p/:product_handle',
                 :controller => :products,
                 :action     => :show
 
-  map.store   'stores/:handle',
+  map.store   's/:handle',
                 :controller => :stores,
                 :action     => :show
 
