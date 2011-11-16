@@ -3,6 +3,7 @@
 
 MSG         = CONFIG[:msg]
 EMAILS      = CONFIG[:emails]
+KEYS        = CONFIG[:keys]
 Q           = CONFIG[:queue]
 REGEX       = {}
 REGEX[:url] = /(((http|ftp|https):\/\/){1}([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)+([\S,:\/\.\?=a-zA-Z0-9_-]*[^,.)\s"]))/i

@@ -19,7 +19,20 @@ NameVirtualHost *:80
   <Directory /vol/felvy/current/public>
        AllowOverride all      
        Options -MultiViews
+
+    <FilesMatch "\.(ico|eot|svg|ttf|woff)$">
+       FileETag none
+    </FilesMatch>
   </Directory>
+
+  <ifModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault A0
+
+    <FilesMatch "\.(ico|eot|svg|ttf|woff)$">
+     ExpiresDefault "access plus 1 year"
+    </FilesMatch>
+  </ifModule>
 
   # Custom log file productions
   LogLevel warn

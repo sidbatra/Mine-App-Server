@@ -865,7 +865,7 @@ h1 {
 }
 
 #profile_right .title .detail { 
-	width: 20px;
+	width: 18px;
 	color: #791a10;
 	position: absolute;
 	top: 0px;
@@ -902,7 +902,7 @@ h1 {
 #profile_right .invite_5 { background: url('/images/invite_numbers.gif') 0px -200px no-repeat; }
 
 #profile_right .tile_frame:hover .tooltip_down_333333,  
-#profile_right .title .detail:hover .tooltip_down_333333 {
+#profile_right .title .detail:hover .tooltip_down_right_333333 {
 	display: block;
 	z-index: 2000;
 }
@@ -962,6 +962,22 @@ h1 {
 	line-height: 24px;
 	padding: 0px 8px 5px;
 	background: url('/images/tooltip_down_333333.png') no-repeat;
+	color: white;
+	font-size: 13px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	white-space: nowrap;
+}
+
+.tooltip_down_right_333333 {
+	position: absolute;
+	display: none;
+	top: -29px;
+	right: -11px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px 8px 5px;
+	background: url('/images/tooltip_down_right_333333.png') no-repeat;
+	background-position: right bottom;
 	color: white;
 	font-size: 13px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;

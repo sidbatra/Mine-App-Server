@@ -1,8 +1,8 @@
 <div class='title'>
   Top Closets
   <span class="detail">
-  	<span class="tooltip_down_333333">
-    	Caitlin Hogan
+  	<span class="tooltip_down_right_333333">
+    	Most active right now!
   	</span>
   	?
   </span>
@@ -10,7 +10,7 @@
    
 <div id='star_users'>
   <%users.each(function(user){%>
-    <%=Denwen.JST['users/user']({user:user})%>
+    <%=Denwen.JST['users/user']({user:user, src:'star'})%>
   <%});%>
   <%=helpers.blocker()%>
 </div>

@@ -28,8 +28,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   this.user.get('followings_count') <= 0 
                                   && this.source == 'login'});
     // -----
-    if(this.isCurrentUser)
-      new Denwen.Partials.Users.Stars();
+    new Denwen.Partials.Users.Stars();
 
     // -----
     if(this.isCurrentUser)

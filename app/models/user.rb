@@ -108,36 +108,20 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  # Updates custom counter cache columns when
-  # a product is added by the user
-  #
-  def add_product_worth(price,category_id)
-    category_field = "products_#{category_id}_count"
-
-    self.update_attributes(
-      :products_count => self.products_count + 1,
-      :products_price => self.products_price + price,
-      category_field  => self[category_field] + 1)
-  end
-
-  # Updates custom counter cache columns when
-  # a product is removed by the user
-  #
-  def remove_product_worth(price,category_id)
-    category_field = "products_#{category_id}_count"
-
-    updates = {}
-    updates[:products_count]  = self.products_count - 1
-    updates[:products_price]  = self.products_price - price if price
-    updates[category_field]   = self[category_field] - 1 if category_id
-
-    self.update_attributes(updates)
-  end
-
   # Return product count for the given category
   #
   def products_category_count(category_id)
-    self["products_#{category_id}_count"]
+    Cache.fetch(KEYS[:user_category_count] % [self.id,category_id]) do
+      Product.for_user(self.id).in_category(category_id).count 
+    end
+  end
+
+  # Total price of all the products
+  #
+  def products_price
+    Cache.fetch(KEYS[:user_price] % self.id) do
+      Product.for_user(self.id).sum(:price) 
+    end
   end
 
   # URL for the user photo

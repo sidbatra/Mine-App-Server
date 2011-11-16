@@ -17,7 +17,7 @@ Denwen.Models.Product = Backbone.Model.extend({
   // Path to the product with the originating source
   //
   path: function(src) {
-    return this.get('user').get('handle') + '/products/' + 
+    return this.get('user').get('handle') + '/p/' + 
             this.get('handle') + '?src=' + src;
   },
 

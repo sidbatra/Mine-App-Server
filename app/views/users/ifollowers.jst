@@ -17,7 +17,7 @@
 
   <div ='ifollowers'>
     <%users.each(function(user){%>
-      <%=Denwen.JST['users/user']({user:user})%>
+      <%=Denwen.JST['users/user']({user:user, src:'follow'})%>
     <%});%>
     <%=helpers.blocker()%>
   </div>
