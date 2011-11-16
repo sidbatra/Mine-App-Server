@@ -26,6 +26,7 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
+  named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
 
@@ -45,6 +46,12 @@ class Store < ActiveRecord::Base
   #
   def self.fetch(name)
     find_by_name(name.squeeze(' ').strip) 
+  end
+
+  # Fetch sorted list of top stores
+  #
+  def self.top
+    Cache.fetch('top_stores') {Store.processed.popular.all(:limit => 20)}
   end
 
   # Return json options specifiying which attributes and methods
@@ -107,10 +114,100 @@ class Store < ActiveRecord::Base
               :products_count => products_updated)
   end
 
+  # Relative path on the filesystem for the processed image thumbnail
+  #
+  def thumbnail_path
+    't_' + image_path
+  end
+
+  # Relative path on the filesystem for the processed large image
+  #
+  def large_path
+    'l_' + image_path
+  end
+
+  # Full url of the thumbnail of the image
+  #
+  def thumbnail_url
+    is_processed ? FileSystem.url(thumbnail_path) : image_url
+  end
+
+  # Full url of the large copy of the image
+  #
+  def large_url
+    is_processed ? FileSystem.url(large_path) : image_url
+  end
+
+  # Full url of the original image
+  #
+  def image_url
+    FileSystem.url(image_path)
+  end
+
+  # Save store image to filesystem and create smaller copies
+  #
+  def host(file_path)
+    self.image_path  = Base64.encode64(
+                         SecureRandom.hex(10) + 
+                         Time.now.to_i.to_s).chomp + ".gif"
+
+    if File.exists? file_path
+
+      # Store original image
+      #
+      FileSystem.store(
+        image_path,
+        open(file_path),
+        "Content-Type"  => "image/gif",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create tiny thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 40,:height => 40})
+
+      FileSystem.store(
+        thumbnail_path,
+        open(image.path),
+        "Content-Type"  => "image/gif",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create large thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 50,:height => 50})
+
+      FileSystem.store(
+        large_path,
+        open(image.path),
+        "Content-Type" => "image/gif",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+
+      self.is_processed  = true
+      self.save(false)
+    end
+  end
+
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    super(options.merge(:only => [:id,:name]))
+    options[:only]      = [] if options[:only].nil?
+    options[:only]     += [:id,:name,:handle]
+
+    options[:methods]   = [] if options[:methods].nil?
+    options[:methods]  += [:thumbnail_url]
+
+    super(options)
   end
 
 

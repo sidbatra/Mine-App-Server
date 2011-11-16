@@ -1,0 +1,11 @@
+<div class='title'>
+  Top Stores
+</div>
+   
+<div>
+  <%stores.each(function(store){%>
+    <%=Denwen.JST['stores/store']({store:store, src:'star'})%>
+  <%});%>
+  <%=helpers.blocker()%>
+</div>
+

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116033648) do
+ActiveRecord::Schema.define(:version => 20111116185335) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -99,10 +99,13 @@ ActiveRecord::Schema.define(:version => 20111116033648) do
     t.datetime "updated_at"
     t.boolean  "is_approved",    :default => false
     t.string   "handle"
+    t.string   "image_path"
+    t.boolean  "is_processed",   :default => false
   end
 
   add_index "stores", ["handle"], :name => "index_stores_on_handle", :unique => true
   add_index "stores", ["is_approved"], :name => "index_stores_on_is_approved"
+  add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
 
   create_table "users", :force => true do |t|

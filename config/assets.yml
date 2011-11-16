@@ -22,6 +22,7 @@ javascripts:
     - app/views/comments/*.jst
     - app/views/products/*.jst
     - app/views/users/*.jst
+    - app/views/stores/*.jst
 stylesheets:
   application:
     - public/stylesheets/application.css
