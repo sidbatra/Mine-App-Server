@@ -39,6 +39,14 @@ Denwen.Helpers = Backbone.Model.extend({
     return this.current_user_id == userID;
   },
 
+  // Get the ordinal from an integer
+  //
+  ordinal: function(n) {
+    var s=["th","st","nd","rd"],
+       v=n%100;
+    return n+(s[(v-20)%10]||s[v]||s[0]); 
+  },
+
   // Empty div blocker used throughout the app
   //
   blocker: function() {

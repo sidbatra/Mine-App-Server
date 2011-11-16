@@ -957,6 +957,24 @@ h1 {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 }
 
+#profile_right ol li {
+	list-style: decimal outside;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	color: #999999;
+	margin-left: 32px;
+}
+
+#profile_right ol li .item {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+}
+
+#profile_right ol li a .item { color: #791a10; }
+#profile_right ol li a:hover .item { text-decoration: underline; }
+
+
+
 .tooltip_down_333333 {
 	position: absolute;
 	display: none;
