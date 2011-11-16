@@ -18,7 +18,8 @@ class SessionController < ApplicationController
     client.redirect_uri = fb_reply_url(:source => source)
 
     target_url          =  client.authorization_uri(
-                            :scope => [:email,:user_likes,:user_birthday])
+                            :scope => [:email,:user_likes,
+                                        :user_birthday,:user_location])
   rescue => ex
     handle_exception(ex)
     target_url = root_path(:src => "login_error")
