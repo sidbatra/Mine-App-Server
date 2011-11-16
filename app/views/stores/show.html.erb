@@ -1,3 +1,7 @@
 <div id="container">
-  <%=@store.name%>
+  <%=@store.name%> <br>
+  <%=@store.products_price%> <br>
+  <%Category.fetch_all.each do |category|%>
+    <%=@store.products_category_count(category.id)%>
+  <%end%>
 </div>

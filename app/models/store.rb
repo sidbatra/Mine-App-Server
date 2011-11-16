@@ -78,6 +78,23 @@ class Store < ActiveRecord::Base
     self.save!
   end
 
+  # Return product count for the given category
+  #
+  def products_category_count(category_id)
+    Cache.fetch(KEYS[:store_category_count] % [self.id,category_id]) do
+      Product.for_store(self.id).in_category(category_id).count 
+    end
+  end
+
+  # Total price of all the products
+  #
+  def products_price
+    Cache.fetch(KEYS[:store_price] % self.id) do
+      Product.for_store(self.id).sum(:price) 
+    end
+  end
+
+
   # Move all products to an existing store
   #
   def move_products_to(store)

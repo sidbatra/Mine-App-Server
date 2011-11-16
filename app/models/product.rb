@@ -38,6 +38,8 @@ class Product < ActiveRecord::Base
   named_scope :by_id,       :order => 'id DESC'
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
+  named_scope :for_store,   lambda {|store_id| 
+                              {:conditions => {:store_id => store_id}}}
   named_scope :in_category, lambda {|category_id| 
                               {:conditions => {:category_id => category_id}} if category_id}
 

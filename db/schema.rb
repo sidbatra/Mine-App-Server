@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115234204) do
+ActiveRecord::Schema.define(:version => 20111116033648) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -121,17 +121,8 @@ ActiveRecord::Schema.define(:version => 20111115234204) do
     t.string   "source"
     t.string   "byline",                    :default => ""
     t.integer  "products_count",            :default => 0
-    t.float    "products_price",            :default => 0.0
     t.integer  "followings_count",          :default => 0
     t.integer  "inverse_followings_count",  :default => 0
-    t.integer  "products_1_count",          :default => 0
-    t.integer  "products_2_count",          :default => 0
-    t.integer  "products_3_count",          :default => 0
-    t.integer  "products_4_count",          :default => 0
-    t.integer  "products_5_count",          :default => 0
-    t.integer  "products_6_count",          :default => 0
-    t.integer  "products_7_count",          :default => 0
-    t.integer  "products_8_count",          :default => 0
     t.string   "handle"
   end
 
