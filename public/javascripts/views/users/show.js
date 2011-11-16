@@ -13,9 +13,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.userProducts   = new Denwen.Partials.Users.Products({
-                                el      : $('#products'),
-                                user_id : this.user.get('id')});
+    this.products   = new Denwen.Partials.Products.Products({
+                                el        : $('#products'),
+                                owner_id  : this.user.get('id'),
+                                filter    : 'user',
+                                jst       : 'products/user_products'});
     
     // -----
     this.routing();
@@ -100,7 +102,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       // Called when a filter route is fired
       //
       filter: function(category) {
-        self.userProducts.filter(category);
+        self.products.fetch(category);
 
         if(category != undefined && category.length) {
           analytics.userProfileFiltered(

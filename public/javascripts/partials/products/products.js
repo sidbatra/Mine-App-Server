@@ -1,13 +1,14 @@
-// Partial to load and display products for a user.
-// Also handles filters on the products via a Router
+// Partial to load and display products for an owner.
 //
-Denwen.Partials.Users.Products = Backbone.View.extend({
+Denwen.Partials.Products.Products = Backbone.View.extend({
 
   // Constructor logic
   //
   initialize: function() {
-    this.userID   = this.options.user_id;
-    this.products = new Denwen.Collections.Products();
+    this.ownerID    = this.options.owner_id;
+    this.filter     = this.options.filter;
+    this.jst        = this.options.jst;
+    this.products   = new Denwen.Collections.Products();
   },
 
   // Render the products collection
@@ -15,22 +16,16 @@ Denwen.Partials.Users.Products = Backbone.View.extend({
   render: function() {
     this.el.html('');
     this.el.prepend(
-      Denwen.JST['products/user_products']({
+      Denwen.JST[this.jst]({
         products  : this.products,
-        userID    : this.userID}));
-  },
-
-  // Filter products based on the given category
-  //
-  filter: function(category) {
-    this.fetch(category);
+        ownerID   : this.ownerID}));
   },
 
   // Fetch products filtered by the given category
   //
   fetch: function(category) {
     var self  = this;
-    var data  = {filter: 'user',user_id: this.userID};
+    var data  = {filter: this.filter,owner_id: this.ownerID};
 
     if(category != undefined && category.length) 
       data['category']  = category;
