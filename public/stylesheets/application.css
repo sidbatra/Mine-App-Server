@@ -849,7 +849,7 @@ h1 {
 	border-bottom: 1px solid #dddddd;
 }
 
-#profile_right .highlight {
+#profile_right .highlighted {
 	margin-left: -12px;
 	background: #dddddd;
 	padding-left: 12px;
@@ -912,10 +912,13 @@ h1 {
 	height: 32px;
 	width: 221px;
 	display: block;
-	margin-top: 5px;
 	line-height: 32px;
 	font-size: 14px;
 	text-align: center;
+}
+
+#profile_right .invite {
+	margin-top: 6px;
 }
 
 #profile_right .button_dark:hover {

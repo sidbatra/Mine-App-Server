@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
           :conditions => {:products => {:created_at => 7.days.ago..Time.now}},
           :group      => "users.id", 
           :order      => "count(users.id) DESC",
-          :limit      => 20)}
+          :limit      => 25)}
   end
 
   # Return json options specifiying which attributes and methods

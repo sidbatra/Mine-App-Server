@@ -51,7 +51,7 @@ class Store < ActiveRecord::Base
   # Fetch sorted list of top stores
   #
   def self.top
-    Cache.fetch('top_stores') {Store.processed.popular.all(:limit => 20)}
+    Cache.fetch('top_stores') {Store.processed.popular.all(:limit => 25)}
   end
 
   # Return json options specifiying which attributes and methods

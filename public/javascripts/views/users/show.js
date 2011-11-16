@@ -32,8 +32,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           el  : '#star_users_box'});
 
     // -----
-    //new Denwen.Partials.Stores.Top({
-    //                      el  : '#top_stores_box'});
+    new Denwen.Partials.Stores.Top({
+                          el  : '#top_stores_box'});
 
     // -----
     if(this.isCurrentUser)
