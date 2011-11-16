@@ -36,12 +36,16 @@ class Product < ActiveRecord::Base
   named_scope :with_user,   :include => :user
   named_scope :with_store,  :include => :store
   named_scope :by_id,       :order => 'id DESC'
+  named_scope :by_comments, :order => 'comments_count DESC'
+  named_scope :limit,       lambda {|limit| {:limit => limit}}
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
   named_scope :for_store,   lambda {|store_id| 
                               {:conditions => {:store_id => store_id}}}
   named_scope :in_category, lambda {|category_id| 
                               {:conditions => {:category_id => category_id}} if category_id}
+  named_scope :created,     lambda {|range| 
+                              {:conditions => {:created_at => range}}}
 
 
   #-----------------------------------------------------------------------------
@@ -69,6 +73,17 @@ class Product < ActiveRecord::Base
       :category_id      => attributes['category_id'],
       :store_id         => attributes['store_id'],
       :user_id          => user_id)
+  end
+    
+  # Fetch top products for the given store
+  #
+  def self.top_for_store(store_id)
+    Cache.fetch(KEYS[:store_top_products] % store_id) do
+      Product.for_store(store_id).
+              created(10.days.ago..Time.now).
+              by_comments.
+              limit(15)
+    end
   end
 
   #-----------------------------------------------------------------------------
