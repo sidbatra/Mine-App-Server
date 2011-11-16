@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   # Fetch all the star users
   #
   def self.stars 
-    Cache.fetch('star_users'){
+    Cache.fetch(KEYS[:star_users]){
         all(
           :joins      => :products,
           :conditions => {:products => {:created_at => 7.days.ago..Time.now}},
