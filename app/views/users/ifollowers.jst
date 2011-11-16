@@ -19,5 +19,8 @@
     <%users.each(function(user){%>
       <%=Denwen.JST['users/user']({user:user, src:'follow'})%>
     <%});%>
+    <%for(i=users.length+1; i<=5; i++) {%>
+      <%=Denwen.JST['users/user']({src:'invite', index:i})%>
+    <%}%>
     <%=helpers.blocker()%>
   </div>
