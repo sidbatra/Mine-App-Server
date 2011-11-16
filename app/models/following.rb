@@ -24,6 +24,13 @@ class Following < ActiveRecord::Base
 
     following
   end
+
+  # Find a following
+  #
+  def self.fetch(user_id,follower_id)
+    find_by_user_id_and_follower_id(user_id,follower_id)
+  end
+
   
   #-----------------------------------------------------------------------------
   # Instance Methods 
@@ -35,5 +42,15 @@ class Following < ActiveRecord::Base
     self.is_active = false
     self.save!
   end
+
+  # Override to customize accessible attributes
+  #
+  def to_json(options = {})
+    options[:only]      = [] if options[:only].nil?
+    options[:only]     += [:id,:is_active]
+
+    super(options)
+  end
+
 
 end

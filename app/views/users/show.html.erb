@@ -27,12 +27,10 @@
   <!-- Right column -->
 	<div id='profile_right'>
 	
-		<div class="box highlighted">
-			<%=link_to  'Follow this closet',
-            'javascript:void(0);',
-            :class  => 'button button_dark',
-            :id     => ''%>
-		</div>
+    <%if !is_current_user(@user) && logged_in?%>
+      <div id='following_box' class="box highlighted">
+      </div>
+    <%end%>
 	
 		<div class="box highlighted tiled">
 		

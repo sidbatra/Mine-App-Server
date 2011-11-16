@@ -27,6 +27,12 @@ Denwen.Helpers = Backbone.Model.extend({
     return this.assetHost + '/images/' + imgName;
   },
 
+  // Tests if a user is currently logged in
+  //
+  isLoggedIn: function() {
+    return this.current_user_id != 0;
+  },
+
   // Test if the current user's id is equal to the given id
   //
   isCurrentUser: function(userID) {
