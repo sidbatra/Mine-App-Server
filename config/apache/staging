@@ -21,6 +21,15 @@ NameVirtualHost *:80
        Options -MultiViews
   </Directory>
 
+  <ifModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault A0
+
+    <FilesMatch "\.(ico|eot|svg|ttf|woff)$">
+     ExpiresDefault "access plus 1 year"
+    </FilesMatch>
+  </ifModule>
+
   # Custom log file productions
   LogLevel warn
   ErrorLog  /vol/felvy/current/log/error.log
