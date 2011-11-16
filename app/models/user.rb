@@ -71,19 +71,20 @@ class User < ActiveRecord::Base
   # Fetch all the star users
   #
   def self.stars 
-    Cache.fetch(KEYS[:star_users]){
+    Cache.fetch(KEYS[:star_users]) do
         all(
           :joins      => :products,
           :conditions => {:products => {:created_at => 7.days.ago..Time.now}},
           :group      => "users.id", 
           :order      => "count(users.id) DESC, users.id",
-          :limit      => 20)}
+          :limit      => 20)
+    end
   end
 
   # Fetch all top shoppers for a store
   #
   def self.top_shoppers(store_id)
-    Cache.fetch(KEYS[:store_top_shoppers] % store_id){
+    Cache.fetch(KEYS[:store_top_shoppers] % store_id) do
         all(
           :joins      => :products,
           :conditions => {:products => {
@@ -91,7 +92,8 @@ class User < ActiveRecord::Base
                             :created_at => 10.days.ago..Time.now}},
           :group      => "users.id", 
           :order      => "count(users.id) DESC, users.id",
-          :limit      => 20)}
+          :limit      => 20)
+    end
   end
 
   # Return json options specifiying which attributes and methods
