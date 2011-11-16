@@ -1,0 +1,10 @@
+<div class='title'>
+  Top shoppers at this store
+</div>
+
+<div>
+  <%users.each(function(user){%>
+    <%=Denwen.JST['users/user']({user:user, src:store_handle+'_top_shoppers'})%>
+  <%});%>
+  <%=helpers.blocker()%>
+</div>

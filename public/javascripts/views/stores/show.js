@@ -21,6 +21,11 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
 
     // -----
+    new Denwen.Partials.Users.TopShoppers({
+                          el    : $('#top_shoppers_box'),
+                          store : this.store});
+
+    // -----
     this.setAnalytics();
   },
 
