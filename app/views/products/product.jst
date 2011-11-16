@@ -2,7 +2,7 @@
   <div class='product'> 
         
       <div class='left'>
-        <a href="<%=product.path('profile')%>">
+        <a href="<%=product.path(src)%>">
           <img src="<%=product.get('thumbnail_url')%>" 
               class='image'
               alt=''/>
@@ -12,14 +12,14 @@
       <div class='right'>
       
         <p class='details'>
-          <a class="title" href="<%=product.path('profile')%>">
+          <a class="title" href="<%=product.path(src)%>">
             <%=helpers.truncate(product.escape('title'),80,'...')%>
           </a>
           
           <br />
 
           <%if(product.get('store') != undefined) { %>
-            <a href="<%=product.path('profile')%>">
+            <a href="<%=product.path(src)%>">
               Bought for $<%=product.get('price')%>
               
             	<br/>
@@ -43,7 +43,7 @@
      				want
      			</div>
      			
-     			<a href="<%=product.path('profile')%>">
+     			<a href="<%=product.path(src)%>">
 	     			<%if (product.get('comments_count')) {%>
 	     				<div class='button comments_some hover_shadow_light'></div>
 	     			<%} else {%>

@@ -29,6 +29,7 @@ class Store < ActiveRecord::Base
   named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
+  named_scope :limit,       lambda {|limit| {:limit => limit}}
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -51,7 +52,7 @@ class Store < ActiveRecord::Base
   # Fetch sorted list of top stores
   #
   def self.top
-    Cache.fetch('top_stores') {Store.processed.popular.all(:limit => 25)}
+    Cache.fetch('top_stores') {Store.processed.popular.limit(20)}
   end
 
   # Return json options specifiying which attributes and methods

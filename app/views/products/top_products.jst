@@ -1,0 +1,8 @@
+
+  <ul>
+      <%var i=1;%>
+      <%products.each(function(product){%>
+        <%=Denwen.JST['products/product_text']({product:product,i:i,src:'list'})%>
+        <%i++;%>
+      <%});%>
+  </ul>
