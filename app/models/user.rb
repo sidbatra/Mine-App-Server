@@ -84,10 +84,9 @@ class User < ActiveRecord::Base
   # to pass in the json when the model is used within an include
   # of another model's json
   #
-  def self.json_options
-    options             = {}
+  def self.json_options(options={})
     options[:only]      = [:id,:first_name,:last_name,:handle]
-    options[:methods]   = [:photo_url]
+    options[:methods]   = [:photo_url] if options[:methods].nil?
 
     [self.name.downcase.to_sym,options]
   end
