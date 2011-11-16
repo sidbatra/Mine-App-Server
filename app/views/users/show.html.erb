@@ -21,47 +21,36 @@
             :source         => @user_presenter.source_id} unless logged_in?%>
 
 
-
-
 <div id='profile_container'>
 
   
   <!-- Right column -->
 	<div id='profile_right'>
 	
-	
-	 	<div id='follower_box'>
-
-      <div id = 'ifollowers_with_msg'>
-      </div><!-- ifollowers with msg box-->
+		<div class="box highlight tiled">
+		
+			<div id = "ifollowers_with_msg">
+      </div>
       
       <%if is_current_user(@user)%>
       	<%=render 'invite'%>
       <%end%>
-
-    </div> <!-- follower_box -->
-    
-    <div id='closet_stats'>
+			
+		</div>
+		
+		<div class="box stats">
       <%=@user_presenter.closet_stats%>
-	 	</div> <!-- closet_stats -->
-    
-    <div id='cat_nav'>
-	 	
-	 		<div id='cat_add'><br/>
-        <%=@user_presenter.closet_create_links_near_filters(@categories)%>
-	 		</div>
-
+		</div> <!-- closet_stats -->
+		
+		<div class="box cat_nav">
       <%=@user_presenter.closet_filter_links(@categories)%>
+      <%=blocker%>
 	 	</div> <!-- cat_nav -->
-    
-    
-    <%if is_current_user(@user)%>
-    
-	    <div id='star_users_box'>
-	    </div> <!-- star_users_box -->
-	    
-	  <%end%>	 	
 	 	
+	 	<div id="star_users_box" class="box tiled">
+	  </div> <!-- star_users_box -->
+
+	 		 	
 	</div> <!-- profile_right -->
 
 

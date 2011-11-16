@@ -143,16 +143,21 @@ class UserPresenter < BasePresenter
                     "</span><br/>",
                   '#all' 
 
+		html += "<ul>"
+		
     categories.each do |category|
       category_count = user.products_category_count(category.id) 
 
       html += h.link_to_if category_count != 0,
-                  category.name +  
+      							"<li>" +
+                  	category.name +  
                     " <span class='cat_num'>" +
                     category_count.to_s +
-                    "</span><br/>",
+                    "</span></li>",
                     "##{category.handle}"
     end
+    
+    html += "</ul>"
 
     html
   end
