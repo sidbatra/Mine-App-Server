@@ -71,23 +71,36 @@ class User < ActiveRecord::Base
   # Fetch all the star users
   #
   def self.stars 
-    Cache.fetch('star_users'){
+    Cache.fetch(KEYS[:star_users]){
         all(
           :joins      => :products,
           :conditions => {:products => {:created_at => 7.days.ago..Time.now}},
           :group      => "users.id", 
-          :order      => "count(users.id) DESC",
-          :limit      => 25)}
+          :order      => "count(users.id) DESC, users.id",
+          :limit      => 20)}
+  end
+
+  # Fetch all top shoppers for a store
+  #
+  def self.top_shoppers(store_id)
+    Cache.fetch(KEYS[:store_top_shoppers] % store_id){
+        all(
+          :joins      => :products,
+          :conditions => {:products => {
+                            :store_id   => store_id,
+                            :created_at => 10.days.ago..Time.now}},
+          :group      => "users.id", 
+          :order      => "count(users.id) DESC, users.id",
+          :limit      => 20)}
   end
 
   # Return json options specifiying which attributes and methods
   # to pass in the json when the model is used within an include
   # of another model's json
   #
-  def self.json_options
-    options             = {}
+  def self.json_options(options={})
     options[:only]      = [:id,:first_name,:last_name,:handle]
-    options[:methods]   = [:photo_url]
+    options[:methods]   = [:photo_url] if options[:methods].nil?
 
     [self.name.downcase.to_sym,options]
   end

@@ -160,6 +160,25 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // Product's on a store's profile are filtered
+  //
+  storeProfileFiltered: function(category,id) {
+    mpq.track('Store Profile Filtered',{
+          "Category"         : category,
+          "id"               : id});
+  },
+
+  // Page view on store profile
+  //
+  storeProfileView: function(source,id) {
+     mpq.track(
+      'Store Profile View',
+      {
+      'source'    : source,
+      'id'        : id
+      });
+  },
+
   // Page view on product profile
   //
   productProfileView: function(source,id) {
@@ -167,7 +186,7 @@ Denwen.Analytics = Backbone.Model.extend({
       'Product Profile View',
       {
         'source'  : source,
-        'id' : id
+        'id'      : id
       });
   },
 
