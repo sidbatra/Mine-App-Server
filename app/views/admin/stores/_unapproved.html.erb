@@ -26,11 +26,11 @@
   <script type="text/javascript">
 
     $(document).ready(function(){
-      approved_stores   = new Denwen.Stores(
+      approved_stores   = new Denwen.Collections.Stores(
                                         <%=@approved_stores.to_json%>,
                                         {is_admin:true});
 
-      unapproved_stores = new Denwen.Stores(
+      unapproved_stores = new Denwen.Collections.Stores(
                                         <%=@stores.to_json%>,
                                         {is_admin:true});
 

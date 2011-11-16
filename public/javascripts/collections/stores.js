@@ -1,6 +1,6 @@
 // Collection of Store models 
 //
-Denwen.Stores = Backbone.Collection.extend({
+Denwen.Collections.Stores = Backbone.Collection.extend({
 
   // Model Name
   //
@@ -9,7 +9,10 @@ Denwen.Stores = Backbone.Collection.extend({
   // Constructor logic
   //
   initialize: function(models,options) {
-    this.isAdmin = options['is_admin'];
+    if(options != undefined)
+      this.isAdmin = options['is_admin'];
+    else
+      this.isAdmin = false;
   },
 
   // Custom url logic

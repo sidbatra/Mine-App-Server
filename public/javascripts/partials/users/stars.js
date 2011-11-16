@@ -10,7 +10,7 @@ Denwen.Partials.Users.Stars = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.el = '#star_users_box';
+    this.users  = new Denwen.Collections.Users();
     this.get();
   },
 
@@ -18,7 +18,6 @@ Denwen.Partials.Users.Stars = Backbone.View.extend({
   //
   get: function() {
     var self    = this;
-    this.users  = new Denwen.Collections.Users();
 
     this.users.fetch({
             data:     {filter: 'stars'},
@@ -30,8 +29,6 @@ Denwen.Partials.Users.Stars = Backbone.View.extend({
   // Render the users collection
   //
   render: function() {
-    var self = this;
-
     $(this.el).html(
       Denwen.JST['users/stars']({
         users : this.users}));
