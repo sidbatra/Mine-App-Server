@@ -19,12 +19,12 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     this.routing();
 
     // -----
-    //this.topProducts   = new Denwen.Partials.Products.Products({
-    //                            el        : $('#top_products'),
-    //                            owner_id  : this.store.get('id'),
-    //                            filter    : 'top',
-    //                            jst       : 'products/top_products'});
-    //this.topProducts.fetch();
+    this.topProducts   = new Denwen.Partials.Products.Products({
+                                el        : $('#top_products'),
+                                owner_id  : this.store.get('id'),
+                                filter    : 'top',
+                                jst       : 'products/top_products'});
+    this.topProducts.fetch();
 
     new Denwen.Partials.Facebook.Base();
 
