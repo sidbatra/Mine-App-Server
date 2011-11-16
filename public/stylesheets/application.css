@@ -29,7 +29,7 @@ a {
 }
 
 body {
-	font-family: font-family: Georgia, Times New Roman, serif;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
 	background: #edebeb url('/images/bg_strip_38.png');
@@ -840,98 +840,117 @@ h1 {
 #profile_right {
 	width: 221px;
 	float: right;
-	margin-top: -14px;
+/* 	background: #ffffcc; */
 }
 
-.profile_right_title {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
+#profile_right .box {
+	width: 221px;
+	padding: 12px 0;
+	border-bottom: 1px solid #dddddd;
+}
+
+#profile_right .highlight {
+	margin-left: -12px;
+	background: #dddddd;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-bottom: none;
+}
+
+#profile_right .title {
 	font-size: 14px;
 	color: #666666;
-	margin: 14px 0 10px;
+	margin: 0px 0 10px;
+	position: relative;
 }
 
-.invite_friends {
-	height: 38px;
-	width: 219px;
-	line-height: 38px;
+#profile_right .title .detail { 
+	width: 18px;
+	color: #791a10;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	text-align: right;
+	cursor: pointer;
+	margin-right: 7px;
+}
+
+#profile_right .tiled {
+	width: 226px;
+	padding-right: 7px;
+}
+
+#profile_right .tile {
+	height: 40px;
+	width: 40px;
+	z-index: 1000;
+}
+
+#profile_right .tile_frame {
+	position: relative;
+	width: 45px;
+	height: 45px;
+	float: left;
+	cursor: pointer;
+	z-index: 3000;
+}
+
+#profile_right .invite_1 { background: url('/images/invite_numbers.gif') 0px 0px no-repeat; }
+#profile_right .invite_2 { background: url('/images/invite_numbers.gif') 0px -50px no-repeat; }
+#profile_right .invite_3 { background: url('/images/invite_numbers.gif') 0px -100px no-repeat; }
+#profile_right .invite_4 { background: url('/images/invite_numbers.gif') 0px -150px no-repeat; }
+#profile_right .invite_5 { background: url('/images/invite_numbers.gif') 0px -200px no-repeat; }
+
+#profile_right .tile_frame:hover .tooltip_down_333333,  
+#profile_right .title .detail:hover .tooltip_down_right_333333 {
 	display: block;
-	margin: 6px 0 0 0;
-	font-size: 12px;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
-	background: #791A10 url('/images/alert-overlay.png') repeat-x;
-	color: white;
+	z-index: 2000;
+}
+
+#profile_right .button {
+	height: 32px;
+	width: 221px;
+	display: block;
+	margin-top: 5px;
+	line-height: 32px;
+	font-size: 14px;
 	text-align: center;
-	border: 1px solid rgba(0,0,0,0.25);
-	border-top: 1px solid rgba(255,255,255,0.4);
-	clear:both;
 }
 
-.invite_friends:hover {
-	background-color: #67160e;
+#profile_right .button_dark:hover {
+	background-color: #323232;
 }
 
-#closet_stats {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
+#profile_right .stats {
 	color: #666666;
 	font-size: 14px;
 	line-height: 24px;
-	padding: 12px 0;
-	border-bottom: 1px solid #dddddd;
-	border-top: 1px solid #dddddd;
-	clear:both;
 }
 
-.stat_num {
+#profile_right .stats .stat_num {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 16px;
 	color: #333333;
 }
 
-#cat_nav {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
+#profile_right .cat_nav {
 	text-transform: uppercase;
 	font-size: 12px;
 	color: #666666;
 	line-height: 220%;
-	padding: 12px 0;
-	border-bottom: 1px solid #dddddd;
 }
 
-#cat_nav a {
-	color: #791A10;
+#profile_right .cat_nav a { color: #791A10; }
+#profile_right .cat_nav a:hover { text-decoration: underline; }
+#profile_right .cat_nav ul li { 
+	float: left; 
+	width: 110px;
+	cursor: pointer;
 }
 
-#cat_nav a:hover {
-	text-decoration: underline;
-}
-
-#cat_add {
-	width: 50px;
-	float:right;
-	text-transform: none;
-}
-
-.cat_num {
+#profile_right .cat_nav .cat_num { 
 	font-size: 12px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
-}
-
-#follower_box {
-	width: 226px;
-	padding: 11px 0 12px;
-	clear: both;
-}
-
-#star_users_box {
-	width: 226px;
-}
-
-.follow_box {
-	position: relative;
-	width: 45px;
-	height: 45px;
-	float: left;
-	z-index: 3000;
 }
 
 .tooltip_down_333333 {
@@ -949,17 +968,22 @@ h1 {
 	white-space: nowrap;
 }
 
-
-.follow_box:hover .tooltip_down_333333 {
-	display: block;
-	z-index: 2000;
+.tooltip_down_right_333333 {
+	position: absolute;
+	display: none;
+	top: -29px;
+	right: -11px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px 8px 5px;
+	background: url('/images/tooltip_down_right_333333.png') no-repeat;
+	background-position: right bottom;
+	color: white;
+	font-size: 13px;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	white-space: nowrap;
 }
 
-.follow_img {
-	height: 40px;
-	width: 40px;
-	z-index: 1000;
-}
 
 #profile_details {
 	height: 50px;
@@ -1100,7 +1124,9 @@ h1 {
 .product {
 	width: 294px;
 	height: 152px;
-	background-image: url('/images/closet_product_bg.png');
+	background: url('/images/closet_product_bg.png');
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
 }
 
 .product_link {
@@ -1366,6 +1392,23 @@ h1 {
     z-index: 10000;
 }
 
+/* ------------------------------ Buttons */
+
+.button_light {
+	background: white url('/images/alert-overlay-inverse.png') repeat-x;
+	color: #666666;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid #cccccc;
+}
+
+.button_dark {
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	background: #525252 url('/images/alert-overlay.png') repeat-x;
+	color: white;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+	border-bottom: 1px solid #444444;
+}
+
 /* ------------------------------ Effects */
 
 .slim_shadow_light {
@@ -1414,9 +1457,8 @@ h1 {
 }
 
 .rounded {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	margin-right: 15px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 .unselectable {

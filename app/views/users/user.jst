@@ -1,4 +1,4 @@
-<div class="follow_box">
+<div class="tile_frame invite_1"> <!-- change _1 to _2,3,4,5 etc -->
 
 	<span class="tooltip_down_333333">
     <%=user.get('first_name') + ' ' + user.get('last_name')%>
@@ -6,6 +6,6 @@
 
   <a href="<%=user.path(src)%>">
     <img src="<%=user.get('photo_url')%>"
-          class = 'follow_img slim_shadow_dark'/>
+          class = 'tile slim_shadow_dark'/>
   </a>
 </div>
