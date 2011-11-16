@@ -249,8 +249,8 @@ class Product < ActiveRecord::Base
     options[:methods]   = [:thumbnail_url]
 
     options[:include] = {}
-    options[:include].store(*(Store.json_options))
-    options[:include].store(*(User.json_options(:methods => [])))
+    options[:include].store(*(Store.json_options)) if options[:with_store]
+    options[:include].store(*(User.json_options(:methods => []))) if options[:with_user]
 
     super(options)
   end

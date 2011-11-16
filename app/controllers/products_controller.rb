@@ -55,7 +55,8 @@ class ProductsController < ApplicationController
   # Fetch multiple products
   #
   def index
-    @filter = params[:filter].to_sym
+    @filter   = params[:filter].to_sym
+    @options  = {}
 
     case @filter
     when :user
@@ -64,12 +65,19 @@ class ProductsController < ApplicationController
                     for_user(params[:owner_id]).
                     in_category(@category ? @category.id : nil).
                     by_id
+
+      @options[:with_store] = true
+      @options[:with_user]  = true
     when :store
       @category = Category.fetch(params[:category]) if params[:category]
-      @products = Product.with_store.with_user.
+      @products = Product.with_user.
                     for_store(params[:owner_id]).
                     in_category(@category ? @category.id : nil).
                     by_id
+
+      @options[:with_user] = true
+    when :top
+      @products = Product.top_for_store(params[:owner_id])
     else
       raise IOError, "Invalid option"
     end
