@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  belongs_to  :user  
+  belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
   has_many    :comments

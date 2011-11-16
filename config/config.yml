@@ -16,6 +16,9 @@ common: &common
   :edge_servers_count: 7
   :success: success
   :error: error
+  :keys:
+    :user_category_count: user_%d_category_%d_count
+    :user_price: user_%d_products_price
   :msg:
     :product:
       :shoes:

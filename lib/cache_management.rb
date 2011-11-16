@@ -18,6 +18,12 @@ module DW
         end
       end
 
+      # Delete particular key from the cache
+      #
+      def self.delete(key)
+        Rails.cache.delete(key)
+      end
+
       # Wraps around rails cache clear
       #
       def self.clear

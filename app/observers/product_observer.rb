@@ -3,11 +3,11 @@
 class ProductObserver < ActiveRecord::Observer
 
   # Alert notification manager about a new product
-  # Update custom counter cache values
+  # Delete affected cache values
   #
   def after_create(product)
-    user = product.user
-    user.add_product_worth(product.price,product.category_id)
+    Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
+    Cache.delete(KEYS[:user_price] % product.user_id)
 
     ProcessingQueue.push(
       NotificationManager,
@@ -15,11 +15,11 @@ class ProductObserver < ActiveRecord::Observer
       product.id)
   end
 
-  # Update custom counter cache values
+  # Delete affected cache values
   #
   def after_destroy(product)
-    user = product.user
-    user.remove_product_worth(product.price,product.category_id)
+    Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
+    Cache.delete(KEYS[:user_price] % product.user_id)
   end
 
 end
