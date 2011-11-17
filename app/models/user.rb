@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
 
   #-----------------------------------------------------------------------------
+  # Mixins
+  #-----------------------------------------------------------------------------
+  include DW::Handler
+
+  #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
   has_many :products, :dependent => :destroy
@@ -16,15 +21,6 @@ class User < ActiveRecord::Base
   has_many :ifollowers, :through => :inverse_followings, 
               :source => :user, :conditions => 'is_active = 1'
 
-  #-----------------------------------------------------------------------------
-  # Attributes
-  #-----------------------------------------------------------------------------
-  attr_accessor :generate_handle
-
-  #-----------------------------------------------------------------------------
-  # Callbacks
-  #-----------------------------------------------------------------------------
-  before_save :populate_handle
 
   #-----------------------------------------------------------------------------
   # Validations
@@ -209,35 +205,19 @@ class User < ActiveRecord::Base
     super(options)
   end
 
-
+  
   protected
 
-  # Populate handle for the user
+  # Required by Handler mixin to create base handle
   #
-  def populate_handle
-    return unless !self.handle.present? || self.generate_handle
+  def handle_base
+    first_name + ' ' + last_name
+  end
 
-    self.handle = (self.first_name + ' ' + self.last_name).
-                              gsub(/[^a-zA-Z0-9]/,'-').
-                              squeeze('-').
-                              chomp('-')
-    
-    self.handle = rand(1000000) if self.handle.empty?
-
-
-    base  = self.handle
-    tries = 1
-
-    # Create uniqueness
-    while(true)
-      match = self.class.find_by_handle(base)
-      break unless match.present? && match.id != self.id
-
-      base = self.handle + '-' + tries.to_s
-      tries += 1
-    end
-
-    self.handle = base
+  # Required by Handler mixin to test uniqueness of handle
+  #
+  def handle_uniqueness_query(handle)
+    self.class.find_by_handle(handle)
   end
 
 end
