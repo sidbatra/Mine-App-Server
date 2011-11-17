@@ -36,6 +36,9 @@ Denwen.Partials.Users.IFollowers = Backbone.View.extend({
   //
   render: function() {
     var self = this;
+    
+    if(this.users.length == 0 && !helpers.isCurrentUser(this.user.get('id')))
+      $(this.el).parent().remove();
 
     $(this.el).html(
       Denwen.JST['users/ifollowers']({
