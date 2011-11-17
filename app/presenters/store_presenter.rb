@@ -10,7 +10,7 @@ class StorePresenter < BasePresenter
     " " + (store.products_count == 1 ? 'item' : 'items') + " worth <br />" +
     h.content_tag(:span, h.display_currency(store.products_price), 
       :class => 'stat_num') +
-    " bought at this store"
+    " bought at this store."
   end
 
   # Generate filter links for the closet
