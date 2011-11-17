@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116223800) do
+ActiveRecord::Schema.define(:version => 20111117015820) do
+
+  create_table "actions", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "actions", ["product_id", "name", "user_id"], :name => "index_actions_on_product_id_and_name_and_user_id", :unique => true
+  add_index "actions", ["user_id", "name"], :name => "index_actions_on_user_id_and_name"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -76,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20111116223800) do
     t.string   "image_path"
     t.boolean  "is_processed",   :default => false
     t.boolean  "is_gift",        :default => false
+    t.integer  "actions_count",  :default => 0
   end
 
   add_index "products", ["category_id"], :name => "index_products_on_category_id"

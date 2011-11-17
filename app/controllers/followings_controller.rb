@@ -20,7 +20,7 @@ class FollowingsController < ApplicationController
   #
   def show
     @following = Following.fetch(params[:id],self.current_user.id)
-    @following = nil unless @following.is_active
+    @following = nil unless @following.present? && @following.is_active
   rescue => ex
     handle_exception(ex)
   ensure
