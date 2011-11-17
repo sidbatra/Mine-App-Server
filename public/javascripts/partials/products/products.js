@@ -8,6 +8,7 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
     this.ownerID    = this.options.owner_id;
     this.filter     = this.options.filter;
     this.jst        = this.options.jst;
+    this.active     = this.options.active;
     this.products   = new Denwen.Collections.Products();
   },
 
@@ -19,6 +20,12 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
       Denwen.JST[this.jst]({
         products  : this.products,
         ownerID   : this.ownerID}));
+
+    if(this.active) {
+      this.products.each(function(product){
+        new Denwen.Partials.Products.Product({model:product});
+      });
+    }
   },
 
   // Fetch products filtered by the given category

@@ -17,7 +17,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                 el        : $('#products'),
                                 owner_id  : this.user.get('id'),
                                 filter    : 'user',
-                                jst       : 'products/user_products'});
+                                jst       : 'products/user_products',
+                                active    : true});
     
     // -----
     this.routing();
