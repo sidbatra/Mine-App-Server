@@ -19,13 +19,16 @@
           <br />
 
           <%if(product.get('store') != undefined) { %>
-            <a href="<%=product.path(src)%>">
               Bought for $<%=product.get('price')%>
               
             	<br/>
             	
-              at <%=product.get('store').escape('name')%>
-            </a>
+              at <%=product.get('store').escape('name')%> <br>
+              by <a href="<%=product.get('user').path('store')%>">
+                  <%=product.get('user').escape('first_name')%> 
+                  <%=product.get('user').escape('last_name')%>
+              </a>
+
           <%}%>
         </p>
 

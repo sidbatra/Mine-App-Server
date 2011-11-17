@@ -1,3 +1,6 @@
+<!-- Generate presenters to render this page -->
+<%@store_presenter = presenter_for(@store)%>
+
 <div id='profile_container'>
 
 	<!-- Right column -->
@@ -5,6 +8,15 @@
 	
   	<div id='top_shoppers_box' class='box tiled'>
   	</div>
+  	
+  	<div class='box stats'>
+  		<%=@store_presenter.closet_stats%>
+		</div> <!-- closet_stats -->
+		
+		<div class='box cat_nav'>
+      <%=@store_presenter.closet_filter_links(@categories)%>
+      <%=blocker%>
+	 	</div> <!-- cat_nav -->
   	
 		<div id='top_products' class='box'>
 		</div>
@@ -17,7 +29,7 @@
 
 		<div id='profile_details'>
       
-      <img class='profile_user_photo slim_shadow_dark' src='<%=@store.large_url%>' />
+      <img class='profile_user_photo slim_shadow_light' src='<%=@store.large_url%>' />
 		
 			<div id='profile_details_right'>
 			
@@ -54,17 +66,6 @@
 	</div> <!-- profile_main -->
 
 </div> <!-- profile_container -->
-
-
-
-
-
-<%=@store.products_price%> <br>
-  <%Category.fetch_all.each do |category|%>
-    <%=@store.products_category_count(category.id)%>
-  <%end%>
-
-
 
 
 
