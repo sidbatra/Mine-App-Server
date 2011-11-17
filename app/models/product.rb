@@ -244,7 +244,7 @@ class Product < ActiveRecord::Base
   def to_json(options = {})
     options[:only]      = [] if options[:only].nil?
     options[:only]     += [:id,:title,:endorsement,:handle,:price,
-                            :comments_count]
+                            :comments_count,:user_id]
 
     options[:methods]   = [] if options[:methods].nil?
     options[:methods]   = [:thumbnail_url]

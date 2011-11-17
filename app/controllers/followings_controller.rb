@@ -7,7 +7,7 @@ class FollowingsController < ApplicationController
   # the given user
   #
   def create
-    @following = Following.add(self.current_user.id,params[:user_id])
+    @following = Following.add(params[:user_id],self.current_user.id)
   rescue => ex
     handle_exception(ex)
   ensure
@@ -19,7 +19,7 @@ class FollowingsController < ApplicationController
   # Fetch the status of a following 
   #
   def show
-    @following = Following.fetch(self.current_user.id,params[:id])
+    @following = Following.fetch(params[:id],self.current_user.id)
     @following = nil unless @following.is_active
   rescue => ex
     handle_exception(ex)
@@ -33,7 +33,7 @@ class FollowingsController < ApplicationController
   #
   def destroy
     following = Following.find(params[:id])
-    following.remove if following.user_id == self.current_user.id
+    following.remove if following.follower_id == self.current_user.id
   rescue => ex
     handle_exception(ex)
   ensure

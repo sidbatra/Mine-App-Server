@@ -960,10 +960,10 @@ h1 {
 #profile_right ol li {
 	list-style: decimal outside;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
-	font-size: 14px;
-	line-height: 24px;
+	font-size: 12px;
+	line-height: 21px;
 	color: #999999;
-	margin-left: 32px;
+	margin-left: 28px;
 }
 
 #profile_right ol li .item {
@@ -1188,6 +1188,10 @@ h1 {
 	line-height: 18px;
 }
 
+#products .product .right .details a { 
+	color: #791a10;
+}
+
 #products .product .right .details .title { 
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #333333;
@@ -1225,6 +1229,20 @@ h1 {
 
 #products .product .right .feedback .comments_some {
 	background: url('/images/comment_bubbles.png') 0px -24px no-repeat; 
+}
+
+#products .product .right .feedback .comments_none:hover,
+#products .product .right .feedback .comments_some:hover {
+	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
+}
+
+#products .product .right .feedback .pushed {
+	border: 1px solid #dddddd;
+	background: url('/images/slim_shadow_light.png') repeat-x;
+}
+
+#products .product .right .feedback .pushed:hover {
+	color: #cccccc;
 }
 
 .product_add_review { /* unused - profile product button */

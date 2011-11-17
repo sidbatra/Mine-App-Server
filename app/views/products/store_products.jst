@@ -2,7 +2,7 @@
   <ul>
     <%if(products.length > 0) {%>
       <%products.each(function(product){%>
-        <%=Denwen.JST['products/product']({product:product,src:'store'})%>
+        <%=Denwen.JST['products/product']({type:'store',product:product,src:'store'})%>
       <%});%>
     <%} else {%>
       <img src="<%=helpers.imagePath('onboarding_empty.jpg')%>"/>
