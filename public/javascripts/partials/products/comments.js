@@ -1,4 +1,4 @@
-// Partial to load and display comments for a product
+// Partial to load, display and create comments for a product
 //
 Denwen.Partials.Products.Comments = Backbone.View.extend({
 
