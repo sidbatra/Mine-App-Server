@@ -1240,6 +1240,10 @@ h1 {
 	color: #791a10;
 }
 
+#products .product .right .feedback .button:active {
+	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+}
+
 #products .product .right .feedback .comments_none {
 	background: url('/images/comment_bubbles.png') 0px 0px no-repeat; 
 }
@@ -1255,7 +1259,7 @@ h1 {
 
 #products .product .right .feedback .pushed {
 	border: 1px solid #dddddd;
-	background: url('/images/slim_shadow_light.png') repeat-x;
+	background: white url('/images/slim_shadow_light.png') repeat-x;
 }
 
 #products .product .right .feedback .pushed:hover {
@@ -1280,16 +1284,6 @@ h1 {
 .product_add_review:hover {
 	background: #f8f8f8;
 	color: #791a10;
-}
-
-/* ------------------------------ Extras */
-
-#extras_container {
-	margin-left: 25px;
-	margin-top: 24px;
-	padding-bottom: 30px; /* keeps footer away from goodies */
-	width: 835px;
-	position: relative;
 }
 
 /* ------------------------------ Comments */
@@ -1404,26 +1398,55 @@ h1 {
 	clear: both;
 }
 
-/* ------------------------------ Facebook Like Buttons */
+/* ------------------------------ Extras */
 
-.fb_like_profile {
-	 display:inline; 
-	 margin-left: 5px; 
-	 position:relative; 
-	 top:-4px;
+#extras {
+	margin-left: 25px;
+	margin-top: 24px;
+	padding-bottom: 30px; /* keeps footer away from goodies */
+	width: 834px;
+	position: relative;
+	background: pink;
 }
 
-.fb_like_product {
-	margin-top: 6px;
-}
-
-/* ------------------------------ Product Goodies */
-
-#product_goodies_container {
-	width: 335px;
+#extras .feedback {
+	width: 352px;
 	position: absolute;
+	font-size: 14px;
+	color: #999999;
 	top: 0px;
 	right: 0px;
+	margin-bottom: 22px;
+}
+
+#extras .feedback .buttons {
+	height: 32px;
+	background: yellow;
+	margin-bottom: 22px;
+}
+
+#extras .feedback .buttons .button {
+	width: 62px;
+	height: 30px;
+	display: block;
+	background-color: white;
+	line-height: 29px;
+	text-align: center;
+	float: left;
+	border: 1px solid #cccccc;
+	margin-left: -1px;
+}
+
+#extras .feedback .buttons .button:hover {
+	cursor: pointer;
+	background: #f8f8f8;
+	color: #791a10;
+	z-index: 10000;
+}
+
+#extras .feedback .buttons .button:active {
+	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	line-height: 30px;
 }
 
 /* ------------------------------ Box Overlay */
