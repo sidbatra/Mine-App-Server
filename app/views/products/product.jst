@@ -41,16 +41,16 @@
         <%if(helpers.isLoggedIn()) {%>
           <div class='feedback'>
           
-            <div class='button hover_shadow_light'>
+            <div id="like_product_<%=product.get('id')%>" class='button hover_shadow_light'>
               like
             </div>
               
             <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
-              <div class='button hover_shadow_light'>
+              <div id="own_product_<%=product.get('id')%>" class='button hover_shadow_light'>
                 own
               </div>
               
-              <div class='button hover_shadow_light'>
+              <div id="want_product_<%=product.get('id')%>" class='button hover_shadow_light'>
                 want
               </div>
             <%}%>
