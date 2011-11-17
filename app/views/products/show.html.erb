@@ -25,6 +25,16 @@
 
   <div id="container">
   
+  	<!-- like button for the page -->
+    <%=render :partial => 'facebook/like', 
+              :locals => {
+              	:style				=> 'position: absolute; top: -42px; right: 0px;',
+                :url          => @product_presenter.url('fb'),
+                :send_button  => true,
+                :width        => 180,
+                :faces        => false}%>
+
+  
   	<div id="product_section" class="slim_shadow_light">
   	
       <!-- link to closet -->
@@ -130,16 +140,7 @@
 	    </div> <!-- comments_container -->
 	    
 	    <div id="product_goodies_container">
-	    
-			  <!-- like button for the page -->
-	      <%=render :partial => 'facebook/like', 
-	                :locals => {
-	                	:style				=> 'margin-top: 6px;',
-	                  :url          => @product_presenter.url('fb'),
-	                  :send_button  => true,
-	                  :width        => 200,
-	                  :faces        => false}%>
-	                  
+	                    
 	    </div> <!-- product_goodies_container -->
 	   
 	   </div> <!-- extras_container -->
