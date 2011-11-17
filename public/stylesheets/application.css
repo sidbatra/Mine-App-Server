@@ -851,7 +851,7 @@ h1 {
 
 #profile_right .highlighted {
 	margin-left: -12px;
-	background: #dddddd;
+	background: url('/images/slim_shadow_light.png');
 	padding-left: 12px;
 	padding-right: 12px;
 	border-bottom: none;
@@ -1252,10 +1252,12 @@ h1 {
 	background: url('/images/comment_bubbles.png') 0px -24px no-repeat; 
 }
 
+/*
 #products .product .right .feedback .comments_none:hover,
 #products .product .right .feedback .comments_some:hover {
 	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
 }
+*/
 
 #products .product .right .feedback .pushed {
 	border: 1px solid #dddddd;
@@ -1264,21 +1266,6 @@ h1 {
 
 #products .product .right .feedback .pushed:hover {
 	color: #cccccc;
-}
-
-.product_add_review { /* unused - profile product button */
-	height: 20px;
-	line-height: 20px;
-	font-size: 12px;
-	padding: 0 6px;
-	color: #999999;
-	border: 1px solid #cccccc;
-	background: white;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	position: absolute;
-	bottom: 9px;
-	left: 0px;
-  z-index: 10000;
 }
 
 .product_add_review:hover {
@@ -1291,6 +1278,7 @@ h1 {
 
 #comments_container {
 	width: 390px;
+	float: left;
 }
 
 #add_comment {
@@ -1309,16 +1297,16 @@ h1 {
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 	border-left: 1px solid #dddddd;
-	margin-left: 8px;
 	padding: 5px 6px;
 	vertical-align: top;
 	float: left;
 }
 
-#comment_photo_self, .comment_photo {
+.comment_photo_self, .comment_photo {
 	float: left;
 	height: 32px;
 	width: 32px;
+	margin-right: 8px;
 }
 
 #comments {
@@ -1406,22 +1394,17 @@ h1 {
 	padding-bottom: 30px; /* keeps footer away from goodies */
 	width: 834px;
 	position: relative;
-	background: pink;
 }
 
 #extras .feedback {
 	width: 352px;
-	position: absolute;
+	float: right;
 	font-size: 14px;
 	color: #999999;
-	top: 0px;
-	right: 0px;
-	margin-bottom: 22px;
 }
 
 #extras .feedback .buttons {
 	height: 32px;
-	background: yellow;
 	margin-bottom: 22px;
 }
 
@@ -1448,6 +1431,23 @@ h1 {
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 	line-height: 30px;
 }
+
+#extras .feedback .feed_item {
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+#extras .feedback .feed_item a {
+	color: #791a10;
+}
+
+#extras .feedback .feed_item a:hover {
+	text-decoration: underline;
+}
+
 
 /* ------------------------------ Box Overlay */
 
