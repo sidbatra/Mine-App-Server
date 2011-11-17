@@ -16,6 +16,7 @@ class Comment < ActiveRecord::Base
   # Named scopes
   #-----------------------------------------------------------------------------
   named_scope :with_user, :include => :user
+  named_scope :with_product, :include => :product
   named_scope :on_product, lambda {|product_id| 
                             {:conditions => {:product_id => product_id}}}
   named_scope :by_id, :order => 'id DESC'

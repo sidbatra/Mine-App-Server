@@ -14,7 +14,7 @@ module DW
       # Email all the users on the comment thread
       #
       def self.new_comment(comment_id)
-        comment   = Comment.eager.find(comment_id, :include => :product)
+        comment   = Comment.with_user.with_product.find(comment_id)
         users     = User.commented_on_product(comment.product.id) 
         users    << comment.product.user
 

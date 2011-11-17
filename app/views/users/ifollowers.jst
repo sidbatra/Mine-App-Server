@@ -6,10 +6,8 @@
       <%} else {%>
         <%=leader.get('first_name')%> is following
       <%}%>
-    <%} else {%>
-      <%if(helpers.isCurrentUser(leader.get('id'))){%>
+    <%} else if(helpers.isCurrentUser(leader.get('id'))){%>
         People you're following
-      <%}%>
     <%}%>
   </div>
 

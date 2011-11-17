@@ -106,59 +106,23 @@
 	  
 	  <div id="extras">
 	  
-	  	 <div class='feedback'>
-        
+	  	 <div id='feedback' class='feedback'>
         	<div class='buttons'>
-        
-            <a class='button hover_shadow_light'>
-              like
-            </a>
-            
-            <a class='button hover_shadow_light'>
-              want
-            </a>
-              
-            <a class='button hover_shadow_light'>
-              own
-            </a>
-          
+            <a id='like_product' 
+                href='javascript:void(0)' 
+                class='button hover_shadow_light'>like</a>
+            <%unless is_current_user(@product.user)%>
+              <a id='want_product' 
+                  href='javascript:void(0)' 
+                  class='button hover_shadow_light'>want</a>
+              <a id='own_product'  
+                  href='javascript:void(0)' 
+                  class='button hover_shadow_light'>own</a>
+            <%end%>
           </div>
-          
-          <div class='feed_item'>
-          
-          	<%=image_tag self.current_user.photo_url,
-            	:class => "comment_photo_self slim_shadow_dark",
-            	:alt => ""%>
-            
-             <a href=''>Pierre Legrain</a> also owns this.
-          
+          <div id='feed_items'>
           </div>
-          
-         	<div class='feed_item'>
-          
-          	<%=image_tag self.current_user.photo_url,
-            	:class => "comment_photo_self slim_shadow_dark",
-            	:alt => ""%>
-            
-            <a href=''>Pierre Legrain</a> likes this.
-          
-          </div>
-          
-          <div class='feed_item'>
-          
-          	<%=image_tag self.current_user.photo_url,
-            	:class => "comment_photo_self slim_shadow_dark",
-            	:alt => ""%>
-            
-            <a href=''>Pierre Legrain</a> wants this.
-          
-          </div>
-          
-         
-          
         </div> <!-- feedback -->
-	  
-	  
 	  
 	      	
 	    <div id="comments_container">
