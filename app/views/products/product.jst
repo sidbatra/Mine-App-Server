@@ -18,33 +18,42 @@
           
           <br />
 
-          <%if(product.get('store') != undefined) { %>
-              Bought for $<%=product.get('price')%>
-              
+              <%if(product.has('price')) { %>
+                Bought for $<%=product.get('price')%>
+              <%}%>
+
             	<br/>
             	
-              at <%=product.get('store').escape('name')%> <br>
-              by <a href="<%=product.get('user').path('store')%>">
-                  <%=product.get('user').escape('first_name')%> 
-                  <%=product.get('user').escape('last_name')%>
-              </a>
+              <%if(type == 'user' && product.has('store')) { %>
+                at <%=product.get('store').escape('name')%> <br>
+              <%}%>
+              
+              <%if(type == 'store') { %>
+                by <a href="<%=product.get('user').path('store')%>">
+                    <%=product.get('user').escape('first_name')%> 
+                    <%=product.get('user').escape('last_name')%>
+                </a>
+              <%}%>
 
-          <%}%>
         </p>
 
      		<div class='feedback'>
      		
-     			<div class='button hover_shadow_light'>
-     				like
-     			</div>
-     			
-     			<div class='button hover_shadow_light'>
-     				own
-     			</div>
-     			
-     			<div class='button hover_shadow_light'>
-     				want
-     			</div>
+          <%if(helpers.isLoggedIn()) {%>
+            <div class='button hover_shadow_light'>
+              like
+            </div>
+            
+            <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+              <div class='button hover_shadow_light'>
+                own
+              </div>
+              
+              <div class='button hover_shadow_light'>
+                want
+              </div>
+            <%}%>
+          <%}%>
      			
      			<a href="<%=product.path(src)%>">
 	     			<%if (product.get('comments_count')) {%>
