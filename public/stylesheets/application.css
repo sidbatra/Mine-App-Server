@@ -845,23 +845,25 @@ h1 {
 
 #profile_right .box {
 	width: 221px;
-	padding: 12px 0;
+	padding: 10px 0;
+}
+
+#profile_right .bordered {
 	border-bottom: 1px solid #dddddd;
 }
 
 #profile_right .highlighted {
-	margin-left: -12px;
+	margin-left: -10px;
 	background: url('/images/slim_shadow_light.png');
-	padding-left: 12px;
-	padding-right: 12px;
-	border-bottom: none;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #profile_right .title {
 	width: 221px;
-	font-size: 14px;
+	font-size: 12px;
 	color: #666666;
-	margin: 0px 0 10px;
+	margin: 0px 0 8px;
 	position: relative;
 }
 
@@ -909,11 +911,11 @@ h1 {
 }
 
 #profile_right .button {
-	height: 32px;
+	height: 28px;
 	width: 221px;
 	display: block;
-	line-height: 32px;
-	font-size: 14px;
+	line-height: 28px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -939,19 +941,19 @@ h1 {
 
 #profile_right .stats {
 	color: #666666;
-	font-size: 14px;
-	line-height: 24px;
+	font-size: 12px;
+	line-height: 21px;
 }
 
 #profile_right .stats .stat_num {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	color: #333333;
 }
 
 #profile_right .cat_nav {
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 11px;
 	color: #666666;
 	line-height: 220%;
 }
@@ -1252,6 +1254,11 @@ h1 {
 	background: url('/images/comment_bubbles.png') 0px -24px no-repeat; 
 }
 
+#products .product .right .feedback .comments_none:active,
+#products .product .right .feedback .comments_some:active {
+	background: #f8f8f8 url('/images/comment_bubbles.png') 0px -48px no-repeat; 
+}
+
 /*
 #products .product .right .feedback .comments_none:hover,
 #products .product .right .feedback .comments_some:hover {
@@ -1261,16 +1268,23 @@ h1 {
 
 #products .product .right .feedback .pushed {
 	border: 1px solid #dddddd;
-	background: white url('/images/slim_shadow_light.png') repeat-x;
+	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 }
 
 #products .product .right .feedback .pushed:hover {
 	color: #cccccc;
 }
 
-.product_add_review:hover {
-	background: #f8f8f8;
-	color: #791a10;
+#products .product .right .feedback span.in {
+	display: none;
+}
+
+#products .product .right .feedback .pushed span.out {
+	display: none;
+}
+
+#products .product .right .feedback .pushed span.in {
+	display: block;
 }
 
 /* ------------------------------ Comments */
@@ -1438,6 +1452,7 @@ h1 {
 	line-height: 32px;
 	display: block;
 	margin-bottom: 5px;
+	font-size: 12px;
 }
 
 #extras .feedback .feed_item a {

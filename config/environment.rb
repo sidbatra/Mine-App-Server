@@ -55,7 +55,8 @@ Rails::Initializer.run do |config|
 
   # Register observers
   config.active_record.observers  = :product_observer, :comment_observer, 
-                                    :user_observer, :following_observer
+                                    :user_observer, :following_observer,
+                                    :action_observer
 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
