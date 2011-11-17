@@ -51,6 +51,15 @@ module DW
           UserMailer.deliver_new_follower(user,follower)
         end
       end
+
+      # Email the owner about any action taken on his product
+      #
+      def self.new_action(action_id)
+        action  = Action.find(action_id)
+
+        UserMailer.deliver_new_action(
+                    action) unless action.user_id == action.product.user_id
+      end
     
     end #notification manager
 

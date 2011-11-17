@@ -65,4 +65,25 @@ class UserMailer < ActionMailer::Base
     from          EMAILS[:contact]
     subject       @action
   end
+
+  # Alert the owner whenever an action is taken 
+  # on his/her product
+  #
+  def new_action(action)
+    action_map    = {'like' => 'liked',
+                     'own'  => 'owned',
+                     'want' => 'wants'}
+
+    @owner        = action.product.user 
+    @user         = action.user 
+    @product      = action.product
+
+    @action       = "#{@user.first_name} #{@user.last_name} 
+                     #{action_map[action.name]} your product on Felvy!"
+
+    recipients    @owner.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
 end
