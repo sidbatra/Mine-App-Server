@@ -56,6 +56,37 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Comment Created");
   },
 
+  // User likes a product
+  //
+  likeCreated: function(source,sourceID,productID,productUserID) {
+    mpq.track('Like Created', {
+      'Source'          : source,
+      'Source ID'       : sourceID,
+      'Product ID'      : productID,
+      'User ID'         : helpers.currentUserID(),
+      'Is Own Product'  : helpers.isCurrentUser(productUserID)});
+  },
+
+  // User owns a product
+  //
+  ownCreated: function(source,sourceID,productID) {
+    mpq.track('Own Created', {
+      'Source'          : source,
+      'Source ID'       : sourceID,
+      'Product ID'      : productID,
+      'User ID'         : helpers.currentUserID()});
+  },
+
+  // User wants a product
+  //
+  wantCreated: function(source,sourceID,productID) {
+    mpq.track('Want Created', {
+      'Source'          : source,
+      'Source ID'       : sourceID,
+      'Product ID'      : productID,
+      'User ID'         : helpers.currentUserID()});
+  },
+
   // User opts in to write a review during creation
   //
   endorsementCreationSelected: function() {

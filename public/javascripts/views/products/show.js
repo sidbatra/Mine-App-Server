@@ -13,8 +13,9 @@ Denwen.Views.Products.Show = Backbone.View.extend({
           el          : $('#comments_container')});
 
     new Denwen.Partials.Products.Actions({
-          product_id  : this.product.get('id'),
-          el          : $('#feedback')});
+          product_id      : this.product.get('id'),
+          product_user_id : this.product.get('user_id'),
+          el              : $('#feedback')});
 
     new Denwen.Partials.Facebook.Base();
 

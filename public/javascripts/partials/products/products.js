@@ -22,8 +22,12 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
         ownerID   : this.ownerID}));
 
     if(this.active) {
+      var self = this;
       this.products.each(function(product){
-        new Denwen.Partials.Products.Product({model:product});
+        new Denwen.Partials.Products.Product({
+              model     : product,
+              source    : self.filter,
+              sourceID  : self.ownerID});
       });
     }
   },

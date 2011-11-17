@@ -13,13 +13,14 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self        = this;
-    this.actionsEl  = $('#feed_items');
-    this.productID  = this.options.product_id;
+    var self            = this;
+    this.actionsEl      = $('#feed_items');
+    this.productID      = this.options.product_id;
+    this.productUserID  = this.options.product_user_id;
 
-    this.likes      = false;
-    this.owns       = false;
-    this.wants      = false;
+    this.likes          = false;
+    this.owns           = false;
+    this.wants          = false;
 
     this.actions  = new Denwen.Collections.Actions();
     this.actions.fetch({
@@ -68,6 +69,12 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
 
     this.createAction('like');
     this.likes = true;
+
+    analytics.likeCreated(
+                'product',
+                this.productID,
+                this.productID,
+                this.productUserID);
   },
 
   // Own action clicked
@@ -78,6 +85,11 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
 
     this.createAction('own');
     this.owns = true;
+
+    analytics.ownCreated(
+                'product',
+                this.productID,
+                this.productID);
   },
 
   // Want action clicked
@@ -88,5 +100,10 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
 
     this.createAction('want');
     this.wants = true;
+
+    analytics.wantCreated(
+                'product',
+                this.productID,
+                this.productID);
   }
 });

@@ -33,6 +33,12 @@ Denwen.Helpers = Backbone.Model.extend({
     return this.current_user_id != 0;
   },
 
+  // Returns the current user id
+  //
+  currentUserID: function() {
+    return this.current_user_id;
+  },
+
   // Test if the current user's id is equal to the given id
   //
   isCurrentUser: function(userID) {
