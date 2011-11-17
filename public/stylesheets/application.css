@@ -921,6 +921,18 @@ h1 {
 	margin-top: 6px;
 }
 
+#profile_right .follow .unfollow {
+	display: none;
+}
+
+#profile_right .follow:hover .following {
+	display: none;
+}
+#profile_right .follow:hover .unfollow {
+	display: block;
+}
+
+
 #profile_right .button_dark:hover {
 	background-color: #323232;
 }
