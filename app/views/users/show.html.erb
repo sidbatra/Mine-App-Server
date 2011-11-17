@@ -31,7 +31,11 @@
       </div>
     <%end%>
 	
+    <%if is_current_user(@user)%>
 		<div class="box highlighted tiled">
+    <%else%>
+    <div class="box tiled">
+    <%end%>
 		
 			<div id = "ifollowers_with_msg">
       </div>

@@ -14,7 +14,7 @@
       <%=Denwen.JST['users/user']({user:user, src:'follow'})%>
     <%});%>
     <%if(helpers.isCurrentUser(leader.get('id'))){%>
-      <%for(i=users.length+1; i<=5; i++) {%>
+      <%for(var i=users.length+1; i<=5; i++) {%>
         <%=Denwen.JST['users/user']({src:'invite', index:i})%>
       <%}%>
     <%}%>
