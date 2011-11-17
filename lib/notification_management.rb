@@ -57,8 +57,8 @@ module DW
       def self.new_action(action_id)
         action  = Action.find(action_id)
 
-        UserMailer.deliver_new_action(
-                    action) unless action.user_id == action.product.user_id
+        #UserMailer.deliver_new_action(
+        #            action) unless action.user_id == action.product.user_id
       end
     
     end #notification manager

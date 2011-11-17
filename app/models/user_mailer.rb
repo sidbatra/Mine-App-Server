@@ -79,7 +79,7 @@ class UserMailer < ActionMailer::Base
     @product      = action.product
 
     @action       = "#{@user.first_name} #{@user.last_name} 
-                     #{action_map[action.name]} your product on Felvy!"
+                    #{action_map[action.name]} your #{@product.title} on Felvy!"
 
     recipients    @owner.email
     from          EMAILS[:contact]
