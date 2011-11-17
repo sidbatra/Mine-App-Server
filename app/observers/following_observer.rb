@@ -10,6 +10,11 @@ class FollowingObserver < ActiveRecord::Observer
 
     User.increment_counter(:followings_count,user_id)
     User.increment_counter(:inverse_followings_count,user_id)
+
+    ProcessingQueue.push(
+      NotificationManager,
+      :new_following,
+      following.id) if following.send_email
   end
 
   # Decrement counter cache value for user's 

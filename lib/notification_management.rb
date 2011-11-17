@@ -43,12 +43,8 @@ module DW
         followers   = User.find_all_by_fb_user_id(fb_friends)
 
         followers.each do |follower|
-          Following.add(user_id,follower.id)
+          Following.add(user_id,follower.id,false)
           Following.add(follower.id,user_id)
-        end
-
-        followers.each do |follower|
-          UserMailer.deliver_new_follower(user,follower)
         end
       end
 
@@ -59,6 +55,17 @@ module DW
 
         #UserMailer.deliver_new_action(
         #            action) unless action.user_id == action.product.user_id
+      end
+
+      # Email the user whenever someone follows him/her
+      # 
+      def self.new_following(following_id)
+        following = Following.find(following_id)
+
+        user      = following.user
+        follower  = following.follower
+
+        #UserMailer.deliver_new_follower(follower,user) 
       end
     
     end #notification manager
