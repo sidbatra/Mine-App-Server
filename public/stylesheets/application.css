@@ -1236,6 +1236,15 @@ h1 {
 	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
 }
 
+#products .product .right .feedback .pushed {
+	border: 1px solid #dddddd;
+	background: url('/images/slim_shadow_light.png') repeat-x;
+}
+
+#products .product .right .feedback .pushed:hover {
+	color: #cccccc;
+}
+
 .product_add_review { /* unused - profile product button */
 	height: 20px;
 	line-height: 20px;
