@@ -1,21 +1,15 @@
-<div class="comment_unit">
+<div class="feed_item">
 
   <a href="<%=action.get('user').path('action_photo')%>">
     <img src="<%=action.get('user').get('photo_url')%>" 
-          class='comment_photo slim_shadow_dark' alt=''/>
+          class='comment_photo_self slim_shadow_dark' alt=''/>
   </a>
 
-	<p class="comment_unit_right">
-		<span class="commenter_name">
-      <a href="<%=action.get('user').path('action_name')%>">
-        <%=action.get('user').get('first_name') + ' ' + action.get('user').get('last_name')%>
-      </a>
-    </span>
-    	
-		<span class="action_text">
-      <%=action.get('name') + 's this'%>
-    </span>
-	</p>
-	
+  <a href="<%=action.get('user').path('action_name')%>">
+    <%=action.get('user').get('first_name') + ' ' + action.get('user').get('last_name')%>
+  </a>
+
+  <%=action.get('name') == 'own' ? ' also ' : ''%>
+  <%=action.get('name') + 's this.'%>
 </div>
 

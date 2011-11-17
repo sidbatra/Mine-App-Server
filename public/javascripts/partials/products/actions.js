@@ -14,7 +14,7 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   //
   initialize: function() {
     var self        = this;
-    this.actionsEl  = $('#comments');
+    this.actionsEl  = $('#feed_items');
     this.productID  = this.options.product_id;
 
     this.likes      = false;
