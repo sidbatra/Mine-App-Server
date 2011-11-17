@@ -7,15 +7,21 @@ class Following < ActiveRecord::Base
   belongs_to :follower, :class_name => "User"
 
   #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :send_email
+
+  #-----------------------------------------------------------------------------
   # Class Methods 
   #-----------------------------------------------------------------------------
 
   # Add a new following
   #
-  def self.add(user_id,follower_id)
+  def self.add(user_id,follower_id,send_email = true)
     following = find_or_create_by_user_id_and_follower_id(
                   :user_id      => user_id,
-                  :follower_id  => follower_id)
+                  :follower_id  => follower_id,
+                  :send_email   => send_email)
 
     unless following.is_active
       following.is_active = true
