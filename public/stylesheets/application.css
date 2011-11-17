@@ -1441,9 +1441,28 @@ h1 {
 	z-index: 10000;
 }
 
-#extras .feedback .buttons .button:active {
+#extras .feedback .buttons .button:active,
+#extras .feedback .buttons .pushed:active {
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 	line-height: 30px;
+}
+
+#extras .feedback .buttons .pushed {
+	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	line-height: 30px;
+}
+
+#extras .feedback .buttons .pushed:hover {
+	color: #666666;
+	line-height: 29px;
+}
+
+#extras .feedback .buttons .button span.in {
+	display: none;
+}
+
+#extras .feedback .buttons .pushed span.in {
+	display: inline-block;
 }
 
 #extras .feedback .feed_item {

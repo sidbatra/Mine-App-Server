@@ -110,14 +110,20 @@
         	<div class='buttons'>
             <a id='like_product' 
                 href='javascript:void(0)' 
-                class='button hover_shadow_light'>like</a>
+                class='button hover_shadow_light'>
+                <span class='in'>✓ </span> like
+            </a>
             <%unless is_current_user(@product.user)%>
-              <a id='want_product' 
+            	<a id='want_product' 
                   href='javascript:void(0)' 
-                  class='button hover_shadow_light'>want</a>
+                  class='button hover_shadow_light'>
+                  <span class='in'>✓ </span> want
+             	</a>
               <a id='own_product'  
                   href='javascript:void(0)' 
-                  class='button hover_shadow_light'>own</a>
+                  class='button hover_shadow_light'>
+                 	<span class='in'>✓ </span> own
+              </a>
             <%end%>
           </div>
           <div id='feed_items'>
