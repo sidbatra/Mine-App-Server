@@ -37,33 +37,34 @@
 
         </p>
 
-     		<div class='feedback'>
-     		
-          <%if(helpers.isLoggedIn()) {%>
-            <div class='button hover_shadow_light'>
-              like
-            </div>
-            
-            <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+
+        <%if(helpers.isLoggedIn()) {%>
+          <div class='feedback'>
+          
               <div class='button hover_shadow_light'>
-                own
+                like
               </div>
               
-              <div class='button hover_shadow_light'>
-                want
-              </div>
-            <%}%>
-          <%}%>
-     			
-     			<a href="<%=product.path(src)%>">
-	     			<%if (product.get('comments_count')) {%>
-	     				<div class='button comments_some hover_shadow_light'></div>
-	     			<%} else {%>
-	     				<div class='button comments_none hover_shadow_light'></div>
-	     			<%}%>
-	     		</a>
-	     			
-      	</div> <!-- feedback -->
+              <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+                <div class='button hover_shadow_light'>
+                  own
+                </div>
+                
+                <div class='button hover_shadow_light'>
+                  want
+                </div>
+              <%}%>
+            
+            <a href="<%=product.path(src)%>">
+              <%if (product.get('comments_count')) {%>
+                <div class='button comments_some hover_shadow_light'></div>
+              <%} else {%>
+                <div class='button comments_none hover_shadow_light'></div>
+              <%}%>
+            </a>
+              
+          </div> <!-- feedback -->
+        <%}%>
         
       </div> <!-- right -->
      
