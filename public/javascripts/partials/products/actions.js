@@ -18,6 +18,10 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
     this.productID      = this.options.product_id;
     this.productUserID  = this.options.product_user_id;
 
+    this.likeEl         = '#like_product';
+    this.ownEl          = '#own_product';
+    this.wantEl         = '#want_product';
+
     this.likes          = false;
     this.owns           = false;
     this.wants          = false;
@@ -70,6 +74,8 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
     this.createAction('like');
     this.likes = true;
 
+    $(this.likeEl).addClass('pushed');
+
     analytics.likeCreated(
                 'product',
                 this.productID,
@@ -86,6 +92,8 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
     this.createAction('own');
     this.owns = true;
 
+    $(this.ownEl).addClass('pushed');
+
     analytics.ownCreated(
                 'product',
                 this.productID,
@@ -100,6 +108,8 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
 
     this.createAction('want');
     this.wants = true;
+
+    $(this.wantEl).addClass('pushed');
 
     analytics.wantCreated(
                 'product',

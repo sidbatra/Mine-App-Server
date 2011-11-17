@@ -1,19 +1,15 @@
 class Store < ActiveRecord::Base
+
+  #-----------------------------------------------------------------------------
+  # Mixins
+  #-----------------------------------------------------------------------------
+  include DW::Handler
+
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
   belongs_to  :user
   has_many    :products
-
-  #-----------------------------------------------------------------------------
-  # Attributes
-  #-----------------------------------------------------------------------------
-  attr_accessor :generate_handle
-
-  #-----------------------------------------------------------------------------
-  # Callbacks
-  #-----------------------------------------------------------------------------
-  before_save :populate_handle
 
   #-----------------------------------------------------------------------------
   # Validations
@@ -214,32 +210,16 @@ class Store < ActiveRecord::Base
 
   protected
 
-  # Populate handle for the store
+  # Required by Handler mixin to create base handle
   #
-  def populate_handle
-    return unless !self.handle.present? || self.generate_handle
+  def handle_base
+    name
+  end
 
-    self.handle = (self.name).
-                      gsub(/[^a-zA-Z0-9]/,'-').
-                      squeeze('-').
-                      chomp('-')
-    
-    self.handle = rand(1000000) if self.handle.empty?
-
-
-    base  = self.handle
-    tries = 1
-
-    # Create uniqueness
-    while(true)
-      match = self.class.find_by_handle(base)
-      break unless match.present? && match.id != self.id
-
-      base = self.handle + '-' + tries.to_s
-      tries += 1
-    end
-
-    self.handle = base
+  # Required by Handler mixin to test uniqueness of handle
+  #
+  def handle_uniqueness_query(handle)
+    self.class.find_by_handle(handle)
   end
 
 end
