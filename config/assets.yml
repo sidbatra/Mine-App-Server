@@ -23,6 +23,7 @@ javascripts:
     - app/views/products/*.jst
     - app/views/users/*.jst
     - app/views/stores/*.jst
+    - app/views/followings/*.jst
 stylesheets:
   application:
     - public/stylesheets/application.css

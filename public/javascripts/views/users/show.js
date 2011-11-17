@@ -37,6 +37,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     new Denwen.Partials.Stores.Top({
                           el  : '#top_stores_box'});
 
+    if(!this.isCurrentUser && helpers.isLoggedIn())
+      new Denwen.Partials.Users.Following({
+                            el  : $('#following_box'),
+                            user_id : this.user.get('id')});
+                          
+
     // -----
     if(this.isCurrentUser)
       new Denwen.Partials.Users.Byline({

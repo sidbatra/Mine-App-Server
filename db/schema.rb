@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116211822) do
+ActiveRecord::Schema.define(:version => 20111116223800) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(:version => 20111116211822) do
     t.integer  "follower_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",   :default => true
   end
 
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
+  add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
 
   create_table "logged_exceptions", :force => true do |t|
