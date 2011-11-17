@@ -1,4 +1,4 @@
-// Collection of User models
+// Collection of Comment models
 //
 Denwen.Collections.Comments = Backbone.Collection.extend({
 
