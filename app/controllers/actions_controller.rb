@@ -18,7 +18,7 @@ class ActionsController < ApplicationController
   # Fetch actions on a particular product
   #
   def index
-    @actions = Action.on_product(params[:product_id]).with_user
+    @actions = Action.on_product(params[:product_id]).with_user.by_id
   rescue => ex
     handle_exception(ex)
   ensure
