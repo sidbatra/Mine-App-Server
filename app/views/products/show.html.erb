@@ -104,7 +104,62 @@
 	      
 		</div> <!-- product_section -->
 	  
-	  <div id="extras_container">
+	  <div id="extras">
+	  
+	  	 <div class='feedback'>
+        
+        	<div class='buttons'>
+        
+            <a class='button hover_shadow_light'>
+              like
+            </a>
+            
+            <a class='button hover_shadow_light'>
+              want
+            </a>
+              
+            <a class='button hover_shadow_light'>
+              own
+            </a>
+          
+          </div>
+          
+          <div class='feed_item'>
+          
+          	<%=image_tag self.current_user.photo_url,
+            	:class => "comment_photo_self slim_shadow_dark",
+            	:alt => ""%>
+            
+             <a href=''>Pierre Legrain</a> also owns this.
+          
+          </div>
+          
+         	<div class='feed_item'>
+          
+          	<%=image_tag self.current_user.photo_url,
+            	:class => "comment_photo_self slim_shadow_dark",
+            	:alt => ""%>
+            
+            <a href=''>Pierre Legrain</a> likes this.
+          
+          </div>
+          
+          <div class='feed_item'>
+          
+          	<%=image_tag self.current_user.photo_url,
+            	:class => "comment_photo_self slim_shadow_dark",
+            	:alt => ""%>
+            
+            <a href=''>Pierre Legrain</a> wants this.
+          
+          </div>
+          
+         
+          
+        </div> <!-- feedback -->
+	  
+	  
+	  
 	      	
 	    <div id="comments_container">
 	    
@@ -113,8 +168,7 @@
 		      <div id="add_comment">
 			      
 			        <%=image_tag self.current_user.photo_url,
-			            :id => "comment_photo_self",
-			            :class => "slim_shadow_dark",
+			            :class => "comment_photo_self slim_shadow_dark",
 			            :alt => ""%>
 			
 			        <%=text_area_tag "comment_data","Add a comment",
@@ -138,12 +192,8 @@
 	      <%=blocker%>
 	      
 	    </div> <!-- comments_container -->
-	    
-	    <div id="product_goodies_container">
-	                    
-	    </div> <!-- product_goodies_container -->
 	   
-	   </div> <!-- extras_container -->
+	   </div> <!-- extras -->
 	   
 	   <%=blocker%>
     
