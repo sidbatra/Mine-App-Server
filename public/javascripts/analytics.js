@@ -56,6 +56,22 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Comment Created");
   },
 
+  // User creates a following
+  //
+  followingCreated: function(followedID) {
+    mpq.track("Following Created",{
+          'Followed ID'  : followedID,
+          'User ID'      : helpers.currentUserID()});
+  },
+
+  // User destroys a following
+  //
+  followingDestroyed: function(followedID) {
+    mpq.track("Following Destroyed",{
+          'Followed ID'  : followedID,
+          'User ID'      : helpers.currentUserID()});
+  },
+
   // User likes a product
   //
   likeCreated: function(source,sourceID,productID,productUserID) {
