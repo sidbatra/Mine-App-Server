@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117015820) do
+ActiveRecord::Schema.define(:version => 20111118003816) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20111117015820) do
     t.integer  "actions_count",  :default => 0
   end
 
+  add_index "products", ["actions_count"], :name => "index_products_on_actions_count"
   add_index "products", ["category_id"], :name => "index_products_on_category_id"
   add_index "products", ["comments_count"], :name => "index_products_on_comments_count"
   add_index "products", ["created_at"], :name => "index_products_on_created_at"

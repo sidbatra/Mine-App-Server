@@ -28,7 +28,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           el    : $('#ifollowers_with_msg'),
                           user  : this.user,
                           delay : this.isCurrentUser && 
-                                  this.user.get('followings_count') <= 0 
+                                  this.user.get('inverse_followings_count') <= 0
                                   && this.source == 'login'});
     // -----
     new Denwen.Partials.Users.Stars({

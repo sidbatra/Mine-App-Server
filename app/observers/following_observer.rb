@@ -2,14 +2,12 @@
 #
 class FollowingObserver < ActiveRecord::Observer
 
-  # Increment counter cache value for user's 
-  # followers and following count.
+  # Increment counter cache value for user's followings_count
+  # and follower's inverse following count
   #
   def after_create(following)
-    user_id = following.user_id
-
-    User.increment_counter(:followings_count,user_id)
-    User.increment_counter(:inverse_followings_count,user_id)
+    User.increment_counter(:followings_count,following.user_id)
+    User.increment_counter(:inverse_followings_count,following.follower_id)
 
     ProcessingQueue.push(
       NotificationManager,
@@ -17,14 +15,26 @@ class FollowingObserver < ActiveRecord::Observer
       following.id) if following.send_email
   end
 
-  # Decrement counter cache value for user's 
-  # followers and following count.
+  # Decrement counter cache value for user's followings_count
+  # and follower's inverse following count
   #
   def after_destroy(following)
-    user_id = following.user_id
+    User.decrement_counter(:followings_count,following.user_id)
+    User.decrement_counter(:inverse_followings_count,following.follower_id)
+  end
 
-    User.decrement_counter(:followings_count,user_id)
-    User.decrement_counter(:inverse_followings_count,user_id)
+  # Update the counter cache value for user's followings_count
+  # and follower's inverse following count whenever a follow/unfollow
+  # action takes place
+  #
+  def after_update(following)
+    if following.is_active
+      User.increment_counter(:followings_count,following.user_id)
+      User.increment_counter(:inverse_followings_count,following.follower_id) 
+    else
+      User.decrement_counter(:followings_count,following.user_id)
+      User.decrement_counter(:inverse_followings_count,following.follower_id) 
+    end
   end
 
 end
