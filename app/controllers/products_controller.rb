@@ -127,7 +127,10 @@ class ProductsController < ApplicationController
   def update
 
     @product = Product.find(params[:id])
-    @product.edit(params) if @product.user_id == self.current_user.id
+
+    if @product.user_id == self.current_user.id
+      @product.update_attributes(params[:product]) 
+    end
   
   rescue => ex
     handle_exception(ex)

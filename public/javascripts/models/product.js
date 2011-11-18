@@ -26,8 +26,13 @@ Denwen.Models.Product = Backbone.Model.extend({
   //
   uniqueKey: function() {
     return 'product_' + this.get('id');
-  }
+  },
 
+  // Override the toJSON implementation
+  //
+  toJSON: function() {
+    return {product:{endorsement:this.get('endorsement')}};
+  },
 
 });
 
