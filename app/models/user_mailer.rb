@@ -70,16 +70,18 @@ class UserMailer < ActionMailer::Base
   # on his/her product
   #
   def new_action(action)
-    action_map    = {'like' => 'liked',
-                     'own'  => 'owned',
+    action_map    = {'like' => 'likes',
+                     'own'  => 'also owns',
                      'want' => 'wants'}
 
     @owner        = action.product.user 
     @user         = action.user 
     @product      = action.product
+    @action_name  = action.name
 
     @action       = "#{@user.first_name} #{@user.last_name} 
-                    #{action_map[action.name]} your #{@product.title} on Felvy!"
+                    #{action_map[@action_name]} your #{@product.title} 
+                    on Felvy!"
 
     recipients    @owner.email
     from          EMAILS[:contact]
