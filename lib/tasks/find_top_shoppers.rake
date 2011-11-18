@@ -9,7 +9,7 @@ task :find_top_shoppers do |e,args|
     users = User.top_shoppers(store.id)
 
     users.each do |user|
-      #UserMailer.deliver_top_shopper(user,store)    
+      UserMailer.decide_top_shopper(user,store)    
     end
   end
 
