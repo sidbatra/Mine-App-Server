@@ -3,25 +3,29 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller  => :home,
             :action     => :show
 
-  map.home  '/home/:id',
-            :controller => :home,
-            :action     => :show
+  map.home      '/home/:id',
+                :controller => :home,
+                :action     => :show
 
-  map.login   'facebook/authenticate',
-              :controller => :session,
-              :action     => :create
+  map.login     'facebook/authenticate',
+                :controller => :session,
+                :action     => :create
 
-  map.logout  '/logout',
-              :controller => :session,
-              :action     => :destroy
+  map.logout    '/logout',
+                :controller => :session,
+                :action     => :destroy
 
-  map.fb_auth 'facebook/authenticate',
-               :controller  => :session,
-               :action      => :create
+  map.fb_auth   'facebook/authenticate',
+                :controller => :session,
+                :action     => :create
 
-  map.fb_reply 'facebook/reply',
+  map.fb_reply  'facebook/reply',
                 :controller => :users,
                 :action     => :create
+
+  map.invites   '/invites',
+                :controller => :invites,
+                :action     => :index
 
   # Deprecate in next version
   map.product_d 'products/:id/:name',
