@@ -72,7 +72,7 @@ class UserPresenter < BasePresenter
   # Link to go get back to the closet
   #
   def closet_breadcrumb(src)
-    h.link_to "← Back to " + user.first_name + "'s closet",
+    h.link_to "← " + user.first_name + "'s closet",
               closet_path(src),
               :class => 'navigation slim_shadow_light' 
   end

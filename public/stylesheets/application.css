@@ -1017,13 +1017,19 @@ h1 {
 	margin-left: 66px;
 }
 
-#profile_username {
+.profile_username {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 31px;
 	font-size: 24px;
 	width: 560px;
 	height: 32px;
 	position: relative;
+}
+
+.store_username {
+	font-size: 32px;
+	line-height: 32px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
 }
 
 #profile_bio {
@@ -1093,7 +1099,7 @@ h1 {
 	border-bottom: 1px solid #cccccc;
 	background: white;
 	text-align: center;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 38px;
 	color: #666666;
 }
