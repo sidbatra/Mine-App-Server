@@ -12,7 +12,8 @@ Denwen.Views.Products.New = Backbone.View.extend({
   initialize: function() {
     var self         = this;
     this.category    = new Denwen.Models.Category(this.options.categoryJSON);
-    this.input       = new Denwen.Partials.Products.Input({el:$('body')});
+    this.input       = new Denwen.Partials.Products.Input({
+                                            el:$('body'),mode:'new'});
     this.source      = this.options.source;
 
     this.setAnalytics();

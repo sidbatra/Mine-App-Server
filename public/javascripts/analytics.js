@@ -105,8 +105,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User opts in to write a review during creation
   //
-  endorsementCreationSelected: function() {
-    mpq.track('Endorsement Creation Selected');
+  endorsementCreationSelected: function(mode) {
+    mpq.track('Endorsement Creation Selected',{'Mode':mode});
   },
 
   // User start editing endorsement
@@ -147,32 +147,32 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User searches a product
   //
-  productSearched: function(query) {
-    mpq.track("Searched a product", {'query':query});
+  productSearched: function(query,mode) {
+    mpq.track("Searched a product", {'query':query,'Mode':mode});
   },
 
   // Fired when an image selected by the user is broken
   //
-  productImageBroken: function() {
-    mpq.track("Product Image Broken");
+  productImageBroken: function(mode) {
+    mpq.track("Product Image Broken",{'Mode':mode});
   },
 
   // User cancels product search
   //
-  productSearchCancelled: function(source) {
-    mpq.track("Product Cancelled",{'Source':source});
+  productSearchCancelled: function(source,mode) {
+    mpq.track("Product Cancelled",{'Source':source,'Mode':mode});
   },
 
   // User selects a product
   //
-  productSearchCompleted: function() {
-    mpq.track("Product Selected");
+  productSearchCompleted: function(mode) {
+    mpq.track("Product Selected",{'Mode':mode});
   },
 
   // Validation exception 
   //
-  productException: function(type) {
-    mpq.track("Product Exception",{'type':type});
+  productException: function(type,mode) {
+    mpq.track("Product Exception",{'type':type,'Mode':mode});
   },
 
   // User creates a product
