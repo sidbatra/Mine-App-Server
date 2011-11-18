@@ -46,6 +46,8 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
     this.render(true);
 
     this.following.save({user_id : this.userID});
+
+    analytics.followingCreated(this.userID);
   },
 
   // Destroy the current following
@@ -60,6 +62,8 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
 
     this.following.destroy();
     this.following = new Denwen.Models.Following();
+
+    analytics.followingDestroyed(this.userID);
   },
 
   // Fired when the mouse leaves either create or destroy
