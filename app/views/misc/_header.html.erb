@@ -47,7 +47,8 @@
 
 		<li>
 
-			<a class='nav_menu nav_user_button'>
+			<a href="<%=user_path(self.current_user.handle,:src => 'bar')%>" 
+          class='nav_menu nav_user_button'>
 				 <%=image_tag self.current_user.photo_url, 
                     :class => "nav_user_button_user_photo",
                     :alt => ""
