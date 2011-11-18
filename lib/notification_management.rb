@@ -19,7 +19,7 @@ module DW
         users    << comment.product.user
 
         users.uniq.each do |user|
-          UserMailer.deliver_new_comment(
+          UserMailer.decide_new_comment(
                       comment,
                       user) unless user.id == comment.user.id
         end
@@ -53,8 +53,8 @@ module DW
       def self.new_action(action_id)
         action  = Action.find(action_id)
 
-        #UserMailer.deliver_new_action(
-        #            action) unless action.user_id == action.product.user_id
+        UserMailer.decide_new_action(
+                    action) unless action.user_id == action.product.user_id
       end
 
       # Email the user whenever someone follows him/her
@@ -65,7 +65,7 @@ module DW
         user      = following.user
         follower  = following.follower
 
-        #UserMailer.deliver_new_follower(follower,user) 
+        UserMailer.decide_new_follower(follower,user) 
       end
     
     end #notification manager
