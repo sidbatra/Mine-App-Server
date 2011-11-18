@@ -66,7 +66,6 @@ h1 {
 }
 
 .welcome_subtitle {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
 	color: #dddddd;
 }
@@ -95,7 +94,6 @@ h1 {
 .new_product {
 	width: 275px;
 	margin: 0px auto 16px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	font-size: 14px;
 	position: relative;
@@ -128,7 +126,6 @@ h1 {
 	line-height: 26px;
 	font-size: 14px;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 	vertical-align: top;
 	background: #fbfbfb;
@@ -144,7 +141,6 @@ h1 {
 	line-height: 26px;
 	font-size: 20px;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 	vertical-align: top;
 	background: #fbfbfb;
@@ -165,7 +161,6 @@ h1 {
 	line-height: 30px;
 	text-align: center;
 	background: white;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	float: left;
 	margin-top: 5px;
 }
@@ -273,7 +268,6 @@ h1 {
 }
 
 .instructions {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 20px;
 	color: #999999;
 	padding: 0px 15px 10px;
@@ -329,7 +323,6 @@ h1 {
 	position: absolute;
 	font-size: 12px;
 	color: #cccccc;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	right: 11px;
 	bottom: 6px;
 	display: block;
@@ -371,7 +364,6 @@ h1 {
 }
 
 #right_text_div {
-	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	color: #999999;
 	width: 296px;
 	font-size: 14px;
@@ -414,7 +406,6 @@ h1 {
 
 #right_extras {
 	position: absolute;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	left: 0px;
 	color: #999999;
 	top: 16px;
@@ -426,7 +417,6 @@ h1 {
 	position: relative;
 	left:-11px;
 	top: -6px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	width: 280px;
 	padding: 5px 10px;
@@ -451,7 +441,6 @@ h1 {
 .edit_gray_12 {
 	font-size: 12px;
 	padding-left: 14px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	background: url('/images/pen_cccccc_791a10_12px.png') no-repeat;
 	color: #cccccc;
 	cursor: pointer;
@@ -465,7 +454,6 @@ h1 {
 .edit_red_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	background: url('/images/pen_791a10_14px.png') no-repeat;
 	color: #791a10;
 	cursor: pointer;
@@ -478,7 +466,6 @@ h1 {
 .edit_gray_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	background: url('/images/pen_cccccc_791a10_999999.png') no-repeat;
 	color: #cccccc;
 	cursor: pointer;
@@ -493,7 +480,6 @@ h1 {
 .edit_dark_gray_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	background: url('/images/pen_cccccc_791a10_999999.png') 0 -68px no-repeat;
 	color: #999999;
 	cursor: pointer;
@@ -595,7 +581,6 @@ h1 {
 	padding: 8px 0;
 	line-height: 32px;
 	text-align: center;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	background: white;
 	font-size: 20px;
@@ -638,7 +623,6 @@ h1 {
 	bottom:-1px;
 	left: -1px;
 	right: -1px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
 	color: white;
 	background: #8E1E16;
@@ -651,7 +635,6 @@ h1 {
 	height: 48px;
 	width: auto;
 	line-height: 48px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #999999;
 	border-top: 1px solid #dddddd;
 	font-size: 20px;
@@ -667,7 +650,6 @@ h1 {
 .navigation {
 	height: 30px;
 	line-height: 30px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 	font-size: 12px;
 	position:absolute;
@@ -763,7 +745,6 @@ h1 {
 	float: none;
 	width: auto;
 	line-height: 32px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 12px;
 	color: #666666;
 	background: white;
@@ -780,7 +761,6 @@ h1 {
 	height: 38px;
 	line-height: 38px;
 	padding: 0 12px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #dddddd;
 	font-size: 14px;
 	position: relative;
@@ -1002,7 +982,6 @@ h1 {
 	background: url('/images/tooltip_down_333333.png') no-repeat;
 	color: white;
 	font-size: 13px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	white-space: nowrap;
 }
 
@@ -1018,7 +997,6 @@ h1 {
 	background-position: right bottom;
 	color: white;
 	font-size: 13px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	white-space: nowrap;
 }
 
@@ -1055,7 +1033,6 @@ h1 {
 #user_byline_default {
 	width: 500px;
 	height: 26px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
 	line-height: 26px;
 	height: 24px;
@@ -1065,7 +1042,6 @@ h1 {
 #user_byline {
 	width: 288px;
 	height: 24px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 14px;
 	line-height: 24px;
 	color: #999999;
@@ -1119,7 +1095,6 @@ h1 {
 	text-align: center;
 	font-size: 13px;
 	line-height: 38px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #666666;
 }
 
@@ -1221,7 +1196,7 @@ h1 {
 #products .product .right .feedback {
 	position: absolute;
 	left: 0px;
-	bottom: 11px;
+	bottom: 10px;
 	width: 128px;
 	height: 26px;
 	font-size: 12px;
@@ -1307,7 +1282,6 @@ h1 {
 	width: 289px;
 	height: 20px;
 	line-height: 20px;
-	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	font-size: 14px;
 	color: #cccccc;
 	border-top: 1px solid #dddddd;
@@ -1366,7 +1340,6 @@ h1 {
 	vertical-align: top;
 	font-size: 14px;
 	color: #999999;
-	font-family: 'FuturaStdBook', Arial, sans-serif; 
 }
 
 .small_button {
@@ -1391,7 +1364,6 @@ h1 {
 }
 
 #footer {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
   line-height: 20px;
 	font-size: 12px;
 	text-align: center;
@@ -1615,7 +1587,6 @@ h1 {
 	border: 1px solid #333333;
 	color: white;
 	text-align: center;
-	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	cursor: hand;
 	cursor: pointer;
 	background: #6e6e6e; /* Old browsers */
@@ -1681,7 +1652,6 @@ h1 {
 	width: 253px;
 	display: block;
 	font-size: 14px;
-	font-family: 'FuturaStdBook', Arial, sans-serif;
   overflow: hidden;
 }
 
