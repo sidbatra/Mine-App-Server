@@ -7,7 +7,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   events: {
     "click #endorsement_initiate" : "endorsementInitiated",
     "keypress #product_title" : "inputKeystroke",
-    "keypress #product_store" : "inputKeystroke",
+    "keypress #product_store_name" : "inputKeystroke",
     "keypress #product_price" : "inputKeystroke",
     "change #product_is_gift" : "isGiftChanged",
     "change #product_is_store_unknown" : "isStoreUnknownChanged"
@@ -25,7 +25,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.priceEl              = '#product_price';
     this.priceDollarEl        = '#creation_dollar';
     this.priceBoxEl           = '#price_box';
-    this.storeEl              = '#product_store';
+    this.storeEl              = '#product_store_name';
     this.storeBoxEl           = '#store_box';
     this.websiteEl            = '#product_source_url';
     this.thumbEl              = '#product_orig_thumb_url';

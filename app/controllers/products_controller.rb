@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
 
     if params[:product][:is_store_unknown] == '0'
       params[:product][:store_id] = Store.add(
-                                      params[:product][:store],
+                                      params[:product][:store_name],
                                       self.current_user.id).id
     end
 

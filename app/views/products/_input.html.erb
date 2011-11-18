@@ -50,7 +50,7 @@
       Store where bought
     </p>
 
-    <%=f.text_field :store,
+    <%=f.text_field :store_name,
                 :class    => "creation_input box_shadow"%>
   </div> 
   <!-- store step -->  
@@ -114,7 +114,7 @@
 
        $(document).ready(function(){
           var stores = "<%=stores.map(&:name).join('|')%>".split("|");
-          $("#product_store").autocomplete(
+          $("#product_store_name").autocomplete(
                                 stores,{
                                  formatMatch: function(item){
                                   return item[0].replace(/[^\w]/gi, '');},
