@@ -22,6 +22,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.queryEl              = '#product_query';
     this.titleEl              = '#product_title';
     this.priceEl              = '#product_price';
+    this.priceDollarEl        = '#creation_dollar';
     this.priceBoxEl           = '#price_box';
     this.storeEl              = '#product_store';
     this.storeBoxEl           = '#store_box';
@@ -30,6 +31,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.imageEl              = '#product_orig_image_url';
     this.extraEl              = '#product_extra';
     this.selectionEl          = '#product_selection';
+    this.photoSelectionEl     = 'product_selection_photo';
     this.endorsementEl        = '#product_endorsement';
     this.endorsementBoxEl     = '#endorsement_container';
     this.endorsementStartEl   = '#endorsement_initiate';
@@ -76,14 +78,14 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.priceEl).attr('disabled','disabled');
       $(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
       $(this.priceEl).removeClass('box_shadow');
-      $('#creation_dollar').addClass('creation_dollar_inactive');
+      $(this.priceDollarEl).addClass('creation_dollar_inactive');
     }
     else {
       $(this.priceEl).removeClass('creation_input_inactive');
       $(this.priceEl).removeAttr('disabled');
       $(this.isGiftBoxEl).removeClass('creation_checkbox_right_active');
       $(this.priceEl).addClass('box_shadow');
-      $('#creation_dollar').removeClass('creation_dollar_inactive');
+      $(this.priceDollarEl).removeClass('creation_dollar_inactive');
     }
   },
 
@@ -126,9 +128,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     var self = this;
 
     $(this.selectionEl).show();
-    $(this.selectionEl).html("<img id='product_selection_photo' src='" + productHash['image_url'] + "' />");
+    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + productHash['image_url'] + "' />");
 
-    document.getElementById('product_selection_photo').onerror = function(){self.productImageBroken()};
+    document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
 
     $(this.websiteEl).val(productHash['website_url']);
     $(this.imageEl).val(productHash['image_url']);
