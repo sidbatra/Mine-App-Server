@@ -779,18 +779,16 @@ h1 {
 	display: block;
 	height: 38px;
 	line-height: 38px;
-	padding: 0 11px;
+	padding: 0 12px;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	color: #dddddd;
 	font-size: 14px;
-	border-left: 1px solid transparent;
-	border-right: 1px solid transparent;
+	position: relative;
 }
 
 .nav_menu:hover {
 	color: white;
 	background-color: #444444;
-	border-color: #333333;
 }
 
 /* Handles the showing and hiding of menu items */
@@ -798,17 +796,11 @@ h1 {
 	display: block;
 }
 
-.nav_add_item_button { } /* For FFox / Narrower Arial Font */
-.nav_login_button {
-	background: pink;
-	padding-right: 42px;
-}
-
 .nav_add_list, .nav_login_list {
 	display: none;
 }
 
-.nav_login_button_user_photo {
+.nav_user_button_user_photo {
 	width: 22px;
 	height: 22px;
 	vertical-align:-6px;
@@ -816,20 +808,22 @@ h1 {
 	margin-top: -1px;
 }
 
-.logout_v {
-	display: inline-block;
-	height: 9px;
-	width: 9px;
-	padding-left: 11px;
-	background: yellow /* url('/images/v_dddddd_ffffff.png') 0 0 no-repeat */;
-	vertical-align: 0px;
-	zoom: 1; 
-	*display: inline;
-	*vertical-align: middle;
+.nav_login_button {
+	width: 6px;
+	background: url('/images/v_dddddd_ffffff.png') 0 0 no-repeat;
 }
 
-.nav_login_button:hover div.logout_v {
-	background: yellow /* url('/images/v_dddddd_ffffff.png') 0 -14px */;
+.nav_login_button:hover {
+	background: #444444 url('/images/v_dddddd_ffffff.png') 0 -38px no-repeat;
+}
+
+.nav_login_list {
+	position: absolute;
+	right: 0px;
+}
+
+.nav_login_button:hover .nav_user_button:hover {
+	background: #333333;
 }
 
 
@@ -1429,7 +1423,6 @@ h1 {
 	height: 32px;
 	width: 189px;
 	margin-bottom: 22px;
-	background: yellow;
 }
 
 #extras .feedback .buttons .button {

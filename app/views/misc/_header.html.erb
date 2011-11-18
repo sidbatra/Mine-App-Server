@@ -47,26 +47,26 @@
 
 		<li>
 
-			<a class='nav_menu nav_login_button'>
+			<a class='nav_menu nav_user_button'>
 				 <%=image_tag self.current_user.photo_url, 
-                    :class => "nav_login_button_user_photo",
+                    :class => "nav_user_button_user_photo",
                     :alt => ""
                     %>
 				<%=user_full_name(self.current_user)%>
-				<!-- <div class="logout_v"></div> -->
 			</a>
 			
+			
+		</li>
+		<li>
+		
+			<a class='nav_menu nav_login_button'></a>
+			
 			<ul class='nav_login_list slim_shadow_light'>
-			
-				<%=link_to "<li>Your Closet</li>", 
-                	user_path(self.current_user.handle,:src => "dropdown"),
-                	:class => "nav_choice"%>
-             	<%=link_to "<li>Log Out</li>", 
-                	logout_path,
-                	:class => "nav_choice"%>
-                	
+       	<%=link_to "<li>Log Out</li>", 
+          	logout_path,
+          	:class => "nav_choice"%>
 			</ul>
-			
+		
 		</li>
          
          <%end%>
