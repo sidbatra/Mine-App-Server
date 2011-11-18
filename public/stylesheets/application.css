@@ -17,9 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	list-style: none;
 }
 
-html {
-	overflow-x: hidden;
-}
+html {}
 
 a {
 	text-decoration: none;
@@ -118,6 +116,7 @@ h1 {
 }
 
 .creation_input {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	height: 26px;
 	width: 263px;
 	margin: 0px 0 3px;
@@ -1285,6 +1284,7 @@ h1 {
 }
 
 #comment_data {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	width: 289px;
 	height: 20px;
 	line-height: 20px;
