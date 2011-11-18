@@ -1,0 +1,31 @@
+<!-- item -->
+
+  <%form_for @product,:url => "/products/#{@product.id}",
+        :html => {:class => 'new_product slim_shadow_light'} do |f|%>
+
+    <%=render :partial  => 'input', 
+              :locals   => {
+                :f            => f,
+                :category     => @category,
+                :stores       => @stores,
+                :placeholders => @placeholders}%>
+
+  <%end%> <!-- form -->
+
+
+  <%=render 'chooser'%>	
+
+
+
+  <%content_for :javascript do%>
+
+    <script type="text/javascript">
+
+      new Denwen.Views.Products.Edit({
+                          el            : $('body'),
+                          productJSON   : <%=@product.to_json%>,
+                          categoryJSON  : <%=@category.to_json%>,
+                          source        : '<%=@source%>'});
+    </script>
+
+  <%end%>

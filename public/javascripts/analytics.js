@@ -237,7 +237,7 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
-  // User opens new products page
+  // User opens new product page
   //
   productNewView: function(category_id,category_name,source) {
     mpq.track("Creation Template Opened", 
@@ -246,6 +246,18 @@ Denwen.Analytics = Backbone.Model.extend({
       'name'    : category_name,
       'source'  : source
       });
+  },
+
+  // User opens edit product page
+  //
+  productEditView: function(product_id,source) {
+    mpq.track("Product Editing View", 
+      {
+      'Product ID'  : product_id,
+      'User ID'     : helpers.currentUserID(),
+      'Source'      : source
+      });
   }
 
 });
+

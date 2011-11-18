@@ -74,6 +74,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   isGiftChanged: function() {
     if(this.isGifted()) {
+      $(this.priceEl).val('');
       $(this.priceEl).addClass('creation_input_inactive');
       $(this.priceEl).attr('disabled','disabled');
       $(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
@@ -115,11 +116,23 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // User initiate creation of endorsement
   //
   endorsementInitiated: function() {
+    this.displayEndorsement(false,'');
+  },
+
+  // Display the endorsement UI without optional text and analytics
+  //
+  displayEndorsement: function(isRobot,endorsement) {
+
     $(this.endorsementStartEl).hide();
     $(this.endorsementBoxEl).show();
-    $(this.endorsementEl).focus();
 
-    analytics.endorsementCreationSelected(this.mode);
+    if(endorsement)
+      $(this.endorsementEl).val(endorsement);
+    else
+      $(this.endorsementEl).focus();
+
+    if(!isRobot)
+      analytics.endorsementCreationSelected(this.mode);
   },
 
   // Fired when a product is selected from the ProductImagesView

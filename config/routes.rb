@@ -32,6 +32,10 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :products,
                 :action     => :show
 
+  map.edit_product ':user_handle/p/:product_handle/edit',
+                    :controller => :products,
+                    :action     => :edit
+
   map.store   's/:handle',
                 :controller => :stores,
                 :action     => :show

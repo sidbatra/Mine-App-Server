@@ -1,7 +1,7 @@
 # Handle requests for the products resource
 #
 class ProductsController < ApplicationController
-  before_filter :login_required,  :only => [:new,:create,:update,:destroy]
+  before_filter :login_required,  :only => [:new,:create,:edit,:update,:destroy]
   before_filter :logged_in?,      :only => :show
 
   # Display UI for creating a new product
@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
 
     @product      = Product.new
     @stores       = Store.all
-    #@uploader    = generate_uploader
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
@@ -120,6 +119,39 @@ class ProductsController < ApplicationController
     handle_exception(ex)
   ensure
     redirect_to root_path(:src => 'product_show_error') if @error
+  end
+
+  # Display form for editing a product
+  #
+  def edit
+    @source       = params[:src] ? params[:src].to_s : "direct"
+
+    user          = User.find_by_handle(params[:user_handle])
+
+    raise IOError, "Unauthorized Access" if user.id != self.current_user.id
+
+
+    @product      = Product.with_store.find_by_user_id_and_handle(
+                              user.id,
+                              params[:product_handle])
+
+    if @product.store
+      @product.store_name = @product.store.name 
+      @product.is_store_unknown = false
+    else
+      @product.store_name = ''
+      @product.is_store_unknown = true
+    end
+
+
+    @stores       = Store.all
+    @category     = @product.category
+    @placeholders = MSG[:product][@category.handle.to_sym]
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to root_path(:src => 'product_edit_error') if @error
   end
 
   # Update user's byline
