@@ -22,9 +22,7 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
     this.ownEl          = '#own_product';
     this.wantEl         = '#want_product';
 
-    this.likes          = false;
-    this.owns           = false;
-    this.wants          = false;
+    this.checked        = {'like' : false,'own' : false, 'want' : false};
 
     this.actions  = new Denwen.Collections.Actions();
     this.actions.fetch({
@@ -36,9 +34,16 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   // Render the actions collection
   //
   render: function() {
-    var self = this;
+    var self          = this;
+    var currentUserID = helpers.currentUserID();
 
     this.actions.each(function(action){
+
+      if(action.get('user_id') == currentUserID) {
+        $('#' + action.get('name') + '_product').addClass('pushed');
+        self.checked[action.get('name')] = true;
+      }
+
       $(self.actionsEl).append(Denwen.JST['actions/action']({
                                       action:action}));
     });
@@ -68,11 +73,11 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   // Like action clicked
   //
   likeClicked: function() {
-    if(this.likes)
+    if(this.checked['like'])
       return;
 
     this.createAction('like');
-    this.likes = true;
+    this.checked['like'] = true;
 
     $(this.likeEl).addClass('pushed');
 
@@ -86,11 +91,11 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   // Own action clicked
   //
   ownClicked: function() {
-    if(this.owns)
+    if(this.checked['own'])
       return;
 
     this.createAction('own');
-    this.owns = true;
+    this.checked['own'] = true;
 
     $(this.ownEl).addClass('pushed');
 
@@ -103,11 +108,11 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   // Want action clicked
   //
   wantClicked: function() {
-    if(this.wants)
+    if(this.checked['want'])
       return;
 
     this.createAction('want');
-    this.wants = true;
+    this.checked['want'] = true;
 
     $(this.wantEl).addClass('pushed');
 

@@ -43,7 +43,7 @@ class Action < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id,:name]
+    options[:only] += [:id,:name,:user_id]
 
     options[:include] = {}
     options[:include].store(*(User.json_options))
