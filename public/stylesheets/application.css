@@ -350,7 +350,6 @@ h1 {
 .swfupload {
 	background: url('/images/upload.png') no-repeat;
 	cursor: pointer;
-  	cursor: hand; /* for IE 5.x */
 }
 
 #right {
@@ -404,6 +403,7 @@ h1 {
 }
 
 #right_extras {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	position: absolute;
 	left: 0px;
 	color: #999999;
@@ -413,6 +413,7 @@ h1 {
 }
 
 .product_endorsement { /* product page endorsement */
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	position: relative;
 	left:-11px;
 	top: -6px;
@@ -686,7 +687,7 @@ h1 {
 	text-align: center;
 	position: absolute;
 	top: 171px;
-	z-index: 10000;
+	z-index: 50;
 	background: white url('/images/prevnext_cccccc_791a10.png');
 }
 
@@ -892,10 +893,10 @@ h1 {
 }
 
 #profile_right .button {
-	height: 28px;
+	height: 32px;
 	width: 221px;
 	display: block;
-	line-height: 28px;
+	line-height: 32px;
 	font-size: 12px;
 	text-align: center;
 }
@@ -903,18 +904,6 @@ h1 {
 #profile_right .invite {
 	margin-top: 6px;
 }
-
-#profile_right .follow .unfollow {
-	display: none;
-}
-
-#profile_right .follow:hover .following {
-	display: none;
-}
-#profile_right .follow:hover .unfollow {
-	display: block;
-}
-
 
 #profile_right .button_dark:hover {
 	background-color: #323232;
@@ -1085,7 +1074,7 @@ h1 {
 #suggestions {
 	border-top: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
-	margin-bottom: 24px;
+	margin-bottom: 18px;
 	height: 78px;
 	width: 616px;
 }
