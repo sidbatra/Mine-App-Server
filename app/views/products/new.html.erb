@@ -7,61 +7,24 @@
               :locals   => {
                 :f            => f,
                 :category     => @category,
+                :stores       => @stores,
                 :placeholders => @placeholders}%>
 
   <%end%> <!-- form -->
 
 
-	<div id="chooser" class="shadow_overlay" style="display:none">
-    <a id="cancel_button" href="javascript:void(0)"><a>
+  <%=render 'chooser'%>	
 
-		<div id="chooser_title_bar">
-			Select your 
-			<input class="box_shadow creation_search_chooser" 
-              id="product_repeat_query" 
-              name="products[query]" 
-              type="text" 
-              value="">
-			<input id="product_repeat_search" 
-              class="product_search_chooser" 
-              value="Go" 
-              title="Search" 
-              type="button" 
-              alt="Search">
-		</div>
 
-		<div id="results">
-    </div>
-	
-		<div id="scroll_for_more_results">
-      Scroll down for more &darr;
-    </div>
-	</div> <!-- chooser -->
 
-  <!-- background shadow -->
-  <div id="shadow">
-  </div>
-	
+  <%content_for :javascript do%>
 
-<%content_for :javascript do%>
+    <script type="text/javascript">
 
-<script type="text/javascript">
+      new Denwen.Views.Products.New({
+                          el            : $('body'),
+                          categoryJSON  : <%=@category.to_json%>,
+                          source        : '<%=@source%>'});
+    </script>
 
-  new Denwen.Views.Products.New({
-                      el            : $('body'),
-                      categoryJSON  : <%=@category.to_json%>,
-                      source        : '<%=@source%>'});
-
-   $(document).ready(function(){
-      var stores = "<%=@stores.map(&:name).join('|')%>".split("|");
-      $("#product_store").autocomplete(
-                            stores,{
-                             formatMatch: function(item){
-                              return item[0].replace(/[^\w]/gi, '');},
-                             formatResult: function(item){
-                              return item[0];}
-                             });
-    });
-</script>
-
-<%end%>
+  <%end%>
