@@ -31,7 +31,7 @@ class Product < ActiveRecord::Base
   named_scope :with_user,   :include => :user
   named_scope :with_store,  :include => :store
   named_scope :by_id,       :order => 'id DESC'
-  named_scope :by_comments, :order => 'comments_count DESC'
+  named_scope :by_actions,  :order => 'actions_count DESC,id DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
@@ -76,7 +76,7 @@ class Product < ActiveRecord::Base
     Cache.fetch(KEYS[:store_top_products] % store_id) do
       Product.for_store(store_id).
               created(10.days.ago..Time.now).
-              by_comments.
+              by_actions.
               with_user.
               limit(10)
     end
