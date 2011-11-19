@@ -11,7 +11,8 @@ class Product < ActiveRecord::Base
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
-  has_many    :comments
+  has_many    :comments, :dependent => :destroy
+  has_many    :actions,  :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations
