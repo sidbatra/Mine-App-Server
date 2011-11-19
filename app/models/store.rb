@@ -42,8 +42,8 @@ class Store < ActiveRecord::Base
   # Fetch all the stores
   #
   def self.fetch_all
-    Store.all
     #Cache.fetch(KEYS[:store_all]){Store.all};
+    Store.all
   end
 
   # Fetch a store by name 
@@ -211,11 +211,9 @@ class Store < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:name,:handle]
 
-    options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += [:thumbnail_url]
+    options[:only]    = [:id,:name,:handle] if options[:only].nil?
+    options[:methods] = [:thumbnail_url]    if options[:methods].nil?
 
     super(options)
   end
