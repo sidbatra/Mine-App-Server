@@ -15,7 +15,7 @@
 
     <%=f.text_field :query,
         :value 	=> "",			
-        :class    => "creation_input box_shadow creation_search"%><input id="product_search" value="Go" title="Search" type="button" alt="Search">
+        :class    => "creation_input creation_search"%><input id="product_search" value="Go" title="Search" type="button" alt="Search">
 		
 		<p class="step_example">
       <%=@placeholders[:query_eg]%>
@@ -34,7 +34,7 @@
 
 	  	<%=f.text_field :title,
                   :value    => "",
-                  :class    => "creation_input box_shadow"%>
+                  :class    => "creation_input"%>
 	  </div> <!-- step -->
 	
 	 <!-- store -->
@@ -51,7 +51,7 @@
 
 	  	<%=f.text_field :store,
                   :value    => "",
-                  :class    => "creation_input box_shadow"%>
+                  :class    => "creation_input"%>
 	  </div> <!-- store step -->  
 	
     <!-- price -->
@@ -70,7 +70,7 @@
 
 	  	<%=f.text_field :price,
                   :value    => "",
-                  :class    => "creation_input creation_price box_shadow"%>
+                  :class    => "creation_input creation_price"%>
 
 
 		</div> <!-- price step -->
@@ -88,7 +88,7 @@
 
       <%=f.text_area :endorsement,
             :value    => "",
-            :class    => "creation_input creation_endorsement box_shadow"%>
+            :class    => "creation_input creation_endorsement"%>
 
 	  	<p class="step_example">
         <%=@placeholders[:endorsement_eg]%>

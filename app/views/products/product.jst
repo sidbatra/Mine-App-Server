@@ -40,37 +40,67 @@
 
         <%if(helpers.isLoggedIn()) {%>
           <div class='feedback'>
-          
-            <div id="like_product_<%=product.get('id')%>" class='button hover_shadow_light'>
-              <span class="out">like</span><span class="in">✓</span>
-            </div>
-              
-            <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
-            	<div id="want_product_<%=product.get('id')%>" class='button hover_shadow_light'>
-                <span class="out">want</span><span class="in">✓</span>
-              </div>
-              <div id="own_product_<%=product.get('id')%>" class='button hover_shadow_light'>
-              	<span class="out">own</span><span class="in">✓</span>
-              </div>
-            <%}%>
-            
-            <a href="<%=product.path(src)%>">
-              <%if (product.get('comments_count')) {%>
-                <div class='button comments_some hover_shadow_light'></div>
-              <%} else {%>
-                <div class='button comments_none hover_shadow_light'></div>
-              <%}%>
-            </a>
-              
+	          <div class='buttons'>
+	          
+	            <div id="like_product_<%=product.get('id')%>" class='button hover_shadow_light like'>
+	              <span class="out">like</span><span class="in">✓</span>
+	            </div>
+	              
+	            <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+	            	<div id="want_product_<%=product.get('id')%>" class='button hover_shadow_light want'>
+	                <span class="out">want</span><span class="in">✓</span>
+	              </div>
+	              <div id="own_product_<%=product.get('id')%>" class='button hover_shadow_light own'>
+	              	<span class="out">own</span><span class="in">✓</span>
+	              	
+	            	  <!-- context box -->
+	               	<div class='context_box slim_shadow_light'>
+	               		<div class='title'>
+	               			Store where bought
+	               		<span class='option'>
+	               			<input class='checkbox' id='' name='' type='checkbox' value='1'>
+	               			<label for=''>Unsure</label>
+	               		</span>
+	               		</div>
+	               		<input class='textfield' type='text'>
+	               		<div class='title'>
+	               			Price 
+	               			<span class='option'>
+	               				<input class='checkbox' id='' name='' type='checkbox' value='1'>
+	               				<label for=''>Gift</label>
+	               			</span>
+	               		</div>
+	               		
+	               		<div class='price_container'>
+	               			<input class='textfield price' type='text'>
+	               			<div class='dollar'>$</div>
+	               		</div>
+	               		
+	               		<input class='button_dark but slim_shadow_light' type='submit' value='Add to your closet ›'>
+	               	</div> <!-- context_box -->
+	              	
+	              </div> <!-- own_product -->
+	            <%}%>
+	            
+	            <a href="<%=product.path(src)%>">
+	              <%if (product.get('comments_count')) {%>
+	                <div class='button comments_some hover_shadow_light'></div>
+	              <%} else {%>
+	                <div class='button comments_none hover_shadow_light'></div>
+	              <%}%>
+	            </a>
+	            
+	          </div>  <!-- buttons -->
           </div> <!-- feedback -->
+          
         <%}%>
         
       </div> <!-- right -->
-     
 
   </div> <!-- product -->
-</li>
 
+    
+</li>
 
 
 
