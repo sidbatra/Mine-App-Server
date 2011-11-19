@@ -27,11 +27,11 @@
 	<div id='profile_right'>
 	
     <%if !is_current_user(@user) && logged_in?%>
-      <div id='following_box' class="box highlighted bordered">
+      <div id='following_box' class="box shaded">
       </div>
     <%end%>
 	
-    <div class="box <%=is_current_user(@user) ? 'highlighted' : ''%> tiled bordered">
+    <div class="box <%=is_current_user(@user) ? 'highlighted' : ''%> tiled shaded">
 		
 			<div id = "ifollowers_with_msg">
       </div>
@@ -42,19 +42,19 @@
 			
 		</div>
 		
-		<div class="box stats bordered">
+		<div class="box stats shaded">
       <%=@user_presenter.closet_stats%>
 		</div> <!-- closet_stats -->
 		
-		<div class="box cat_nav bordered">
+		<div class="box cat_nav shaded">
       <%=@user_presenter.closet_filter_links(@categories)%>
       <%=blocker%>
 	 	</div> <!-- cat_nav -->
 	 	
-	 	<div id="star_users_box" class="box tiled bordered">
+	 	<div id="star_users_box" class="box tiled shaded">
 	  </div> <!-- star_users_box -->
 	  
-	 	<div id="top_stores_box" class="box tiled">
+	 	<div id="top_stores_box" class="box tiled shaded">
 	  </div> <!-- star_users_box -->
 
 	 		 	

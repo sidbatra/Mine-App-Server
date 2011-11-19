@@ -132,6 +132,7 @@ h1 {
 }
 
 .creation_search_chooser {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	height: 26px;
 	width: 263px;
 	margin: 0px 0 3px;
@@ -780,6 +781,12 @@ h1 {
 	display: none;
 }
 
+.nav_add_list {
+	position: absolute;
+	left: 0px;
+	width: 100px;
+}
+
 .nav_user_button_user_photo {
 	width: 22px;
 	height: 22px;
@@ -842,6 +849,10 @@ h1 {
 	padding-right: 10px;
 }
 
+#profile_right .shaded {
+	background: url('/images/right_shade.png') no-repeat;
+}
+
 #profile_right .title {
 	width: 221px;
 	font-size: 12px;
@@ -898,7 +909,7 @@ h1 {
 	width: 221px;
 	display: block;
 	line-height: 32px;
-	font-size: 12px;
+	font-size: 13px;
 	text-align: center;
 }
 
@@ -1188,6 +1199,7 @@ h1 {
 #products .product .right .details .title { 
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #333333;
+	font-size: 13px;
 }
 
 #products .product .right .feedback {
@@ -1280,6 +1292,7 @@ h1 {
 
 #comment_data {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: white url('/images/slim_shadow_light.png') repeat-x;
 	width: 289px;
 	height: 20px;
 	line-height: 20px;
