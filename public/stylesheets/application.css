@@ -1455,15 +1455,26 @@ h1 {
 }
 
 .button .context_box .but {
-	width: 172px;
 	height: 28px;
 	font-size: 12px;
+	margin-left: 0px;
+}
+
+.button .context_box .add_to_closet {
+	width: 172px;
 }
 
 .button .context_box .cancel {
+	margin-top: 8px;
 	width: 172px;
-	height: 26px;
-	font-size: 12px;
+	color: #cccccc;
+	text-align: center;
+	display: block;
+	cursor: pointer;
+}
+
+.button .context_box .cancel:hover {
+	color: #791a10;
 }
 
 /* ------------------------------ Extras */
@@ -1583,11 +1594,14 @@ h1 {
 /* ------------------------------ Buttons */
 
 .button_light {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	background: white url('/images/alert-overlay-inverse.png') repeat-x;
 	color: #666666;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 	border-bottom: 1px solid #cccccc;
 	cursor: pointer;
+	border: 0;
+	text-align: center;
 }
 
 .button_dark {
@@ -1597,6 +1611,7 @@ h1 {
 	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
 	cursor: pointer;
 	border: 0;
+	text-align: center;
 }
 
 .button_dark:hover {
