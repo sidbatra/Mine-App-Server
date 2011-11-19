@@ -178,7 +178,16 @@ Denwen.Analytics = Backbone.Model.extend({
   // User creates a product
   //
   productCreated: function() {
-    mpq.track("Item Created");
+    mpq.track("Item Created",{
+          'User ID'    : helpers.currentUserID()});
+  },
+
+  // User updates a product
+  //
+  productUpdated: function(productID) {
+    mpq.track("Product Updated",{
+          'Product ID' : productID,
+          'User ID'    : helpers.currentUserID()});
   },
 
   // User deletes a product

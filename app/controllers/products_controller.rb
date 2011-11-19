@@ -169,6 +169,12 @@ class ProductsController < ApplicationController
   ensure
     respond_to do |format|
       format.json 
+      format.html do 
+        redirect_to product_path(
+                    @product.user.handle,
+                    @product.handle,
+                    :src => 'product_updated')
+      end
     end
   end
 
