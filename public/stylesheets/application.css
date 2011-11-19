@@ -848,6 +848,10 @@ h1 {
 	padding-right: 10px;
 }
 
+#profile_right .shaded {
+	background: url('/images/right_shade.png') no-repeat;
+}
+
 #profile_right .title {
 	width: 221px;
 	font-size: 12px;
@@ -1396,6 +1400,7 @@ h1 {
 	font-size: 12px;
 	cursor: default;
 	z-index: 5000;
+	display: none;
 }
 
 .button .context_box .title {
