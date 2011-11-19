@@ -100,6 +100,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   isStoreUnknownChanged: function() {
    if(this.isStoreUnknown()) {
+      $(this.storeEl).val('');
       $(this.storeEl).removeClass('box_shadow');
       $(this.storeEl).addClass('creation_input_inactive');
       $(this.storeEl).attr('disabled','disabled');

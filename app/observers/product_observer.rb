@@ -18,12 +18,22 @@ class ProductObserver < ActiveRecord::Observer
       product.id)
   end
 
-  # Mark if particular fields have been modified
+  # Test modifications to particular columns that require changes in
+  # states of other tables or post processing on the current table
   #
   def before_update(product)
+
     if product.orig_image_url_changed?
       product.rehost    = true
       product.is_hosted = false
+    end
+
+    if product.price_changed?
+      Cache.delete(KEYS[:user_price] % product.user_id)
+      Cache.delete(KEYS[:store_price] % product.store_id)
+    end
+
+    if product.store_id_changed? 
     end
   end
 
