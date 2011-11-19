@@ -34,6 +34,14 @@ class ProductObserver < ActiveRecord::Observer
     end
 
     if product.store_id_changed? 
+      Store.increment_counter(:products_count,product.store_id)
+      Store.decrement_counter(:products_count,product.store_id_was)
+
+      Cache.delete(KEYS[:store_price] % product.store_id)
+      Cache.delete(KEYS[:store_price] % product.store_id_was)
+
+      Cache.delete(KEYS[:store_category_count] % [product.store_id_was,product.category_id])
+      Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id])
     end
   end
 
