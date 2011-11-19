@@ -135,13 +135,19 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       analytics.endorsementCreationSelected(this.mode);
   },
 
+  // Display product image 
+  //
+  displayProductImage: function(imageURL) {
+    $(this.selectionEl).show();
+    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
+  },
+
   // Fired when a product is selected from the ProductImagesView
   //
   productSelected: function(productHash) {
     var self = this;
-
-    $(this.selectionEl).show();
-    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + productHash['image_url'] + "' />");
+    
+    this.displayProductImage(productHash['image_url']);
 
     document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
 
