@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   #
   def create
     
-    if params[:product][:source_id]
+    if params[:product][:source_product_id]
       params[:product] = populate_params_from_product(params[:product])
     end
 
@@ -222,7 +222,7 @@ class ProductsController < ApplicationController
   # Populate params from the given product's source id
   #
   def populate_params_from_product(params)
-    product = Product.find(params[:source_id])
+    product = Product.find(params[:source_product_id])
 
     params[:title]          = product.title
     params[:source_url]     = product.source_url

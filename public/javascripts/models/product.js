@@ -32,7 +32,7 @@ Denwen.Models.Product = Backbone.Model.extend({
   //
   toJSON: function() {
     var names   = ['endorsement','price','store_name',
-                    'is_gift','is_store_unknown','source_id'];
+                    'is_gift','is_store_unknown','source_product_id'];
     var params  = {};
 
     for(i in names) {

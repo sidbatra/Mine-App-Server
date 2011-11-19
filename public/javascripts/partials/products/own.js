@@ -61,7 +61,7 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     var params = {
                   is_gift:this.isGifted() ? '1' : '0',
                   is_store_unknown:this.isStoreUnknown() ? '1' : '0',
-                  source_id:this.productID};
+                  source_product_id:this.productID};
 
     if(!this.isGifted())
       params['price'] = this.priceEl.val();
