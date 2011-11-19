@@ -162,12 +162,13 @@ class ProductsController < ApplicationController
 
     product_params[:user_id] = self.current_user.id
 
-    if product_params[:is_store_unknown] && 
-        product_params[:is_store_unknown] == '0'
 
-      product_params[:store_id] = Store.add(
-                                      product_params[:store_name],
-                                      self.current_user.id).id
+    if product_params[:is_store_unknown] 
+      product_params[:store_id] = product_params[:is_store_unknown] == '0' ? 
+                                    Store.add(
+                                        product_params[:store_name],
+                                        self.current_user.id).id :
+                                    nil
     end
 
     if product_params[:is_gift] && 
