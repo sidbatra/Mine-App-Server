@@ -12,9 +12,23 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    var self        = this;
     this.productID  = this.options.product_id;
-    this.boxEl      = '#own_box_' + this.productID;
+
     this.render();
+
+    this.boxEl                = $('#own_box_' + this.productID);
+    this.priceEl              = $('#product_price_' + this.productID);
+    this.priceDollarEl        = $('#creation_dollar_' + this.productID);
+    this.storeEl              = $('#product_store_name_' + this.productID);
+    this.isGiftEl             = $('#product_is_gift_' + this.productID);
+    //this.isGiftBoxEl          = $('#is_gift_box');
+    this.isStoreUnknownEl     = $('#product_is_store_unknown_' + this.productID);
+    //this.isStoreUnknownBoxEl  = $('#is_store_unknown_box');
+
+
+    this.isGiftEl.change(function(){self.isGiftChanged();});
+    this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
   },
 
   // Display the UI for claiming ownership
@@ -27,8 +41,12 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Create ownership
   //
   create: function() {
-    //$(this.boxEl).remove();
-    //this.trigger('ownCreated');
+    
+   if(!this.isValid())
+     return;
+
+   $(this.boxEl).remove();
+   this.trigger('ownCreated');
   },
 
   // Cancel ownership creation
@@ -36,6 +54,78 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   cancel: function() {
     $(this.boxEl).remove();
     this.trigger('ownCancelled');
+  },
+
+  isValid: function() {
+    var valid = true;
+
+    if(!this.isGifted() && this.priceEl.val().length < 1) {
+      valid = false;
+      alert("Please enter the price of your item.");
+      //analytics.productException('No Price',this.mode);
+    }
+    else if(!this.isGifted() && isNaN(this.priceEl.val())) {
+      valid = false;
+      alert("Please enter a valid price.");
+      //analytics.productException('Invalid Price',this.mode);
+    }
+    else if(!this.isStoreUnknown() && this.storeEl.val().length < 1) {
+      valid = false;
+      alert("Please enter the store where you bought this item.");
+      //analytics.productException('No Store',this.mode);
+    }
+
+    return valid;
+  },
+
+  // Returns the current state of the gifted check box
+  //
+  isGifted: function() {
+    return this.isGiftEl.is(':checked');
+  },
+
+  // Fired when the user toggles the is gift check box
+  //
+  isGiftChanged: function() {
+    if(this.isGifted()) {
+      this.priceEl.val('');
+      //$(this.priceEl).addClass('creation_input_inactive');
+      this.priceEl.attr('disabled','disabled');
+      //$(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
+      //$(this.priceEl).removeClass('box_shadow');
+      //$(this.priceDollarEl).addClass('creation_dollar_inactive');
+    }
+    else {
+      //$(this.priceEl).removeClass('creation_input_inactive');
+      $(this.priceEl).removeAttr('disabled');
+      //$(this.isGiftBoxEl).removeClass('creation_checkbox_right_active');
+      //$(this.priceEl).addClass('box_shadow');
+      //$(this.priceDollarEl).removeClass('creation_dollar_inactive');
+    }
+  },
+
+  // Returns the current state of the is unknown check box
+  //
+  isStoreUnknown: function() {
+    return this.isStoreUnknownEl.is(':checked');
+  },
+
+  // Fired when the user toggles the is store unknown check box
+  //
+  isStoreUnknownChanged: function() {
+   if(this.isStoreUnknown()) {
+      $(this.storeEl).val('');
+      //$(this.storeEl).removeClass('box_shadow');
+      //$(this.storeEl).addClass('creation_input_inactive');
+      this.storeEl.attr('disabled','disabled');
+      //$(this.isStoreUnknownBoxEl).addClass('creation_checkbox_right_active');
+    }
+    else {
+      //$(this.storeEl).addClass('box_shadow');
+      //$(this.storeEl).removeClass('creation_input_inactive');
+      this.storeEl.removeAttr('disabled');
+      //$(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right_active');
+    }
   }
 
 });
