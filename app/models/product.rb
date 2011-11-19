@@ -231,7 +231,7 @@ class Product < ActiveRecord::Base
                             :comments_count,:user_id]
 
     options[:methods]   = [] if options[:methods].nil?
-    options[:methods]   = [:thumbnail_url]
+    options[:methods]  += [:thumbnail_url]
 
     options[:include] = {}
     options[:include].store(*(Store.json_options)) if options[:with_store]

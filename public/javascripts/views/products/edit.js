@@ -26,7 +26,7 @@ Denwen.Views.Products.Edit = Backbone.View.extend({
   //
   updateUI: function() {
 
-    this.input.displayProductImage(this.product.get('thumbnail_url'));
+    this.input.displayProductImage(this.product.get('photo_url'));
 
     this.input.isGiftChanged();
     this.input.isStoreUnknownChanged();

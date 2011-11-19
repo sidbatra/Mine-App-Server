@@ -23,7 +23,8 @@
 
       new Denwen.Views.Products.Edit({
                           el            : $('body'),
-                          productJSON   : <%=@product.to_json%>,
+                          productJSON   : <%=@product.to_json(
+                                                :methods => [:photo_url])%>,
                           categoryJSON  : <%=@category.to_json%>,
                           source        : '<%=@source%>'});
     </script>
