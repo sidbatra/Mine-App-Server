@@ -95,21 +95,22 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   //
   isValid: function() {
     var valid = true;
+    var mode  = 'Own Box';
 
     if(!this.isGifted() && this.priceEl.val().length < 1) {
       valid = false;
       alert("Please enter the price of your item.");
-      //analytics.productException('No Price',this.mode);
+      analytics.productException('No Price',mode);
     }
     else if(!this.isGifted() && isNaN(this.priceEl.val())) {
       valid = false;
       alert("Please enter a valid price.");
-      //analytics.productException('Invalid Price',this.mode);
+      analytics.productException('Invalid Price',mode);
     }
     else if(!this.isStoreUnknown() && this.storeEl.val().length < 1) {
       valid = false;
       alert("Please enter the store where you bought this item.");
-      //analytics.productException('No Store',this.mode);
+      analytics.productException('No Store',mode);
     }
 
     return valid;
