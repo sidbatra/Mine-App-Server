@@ -27,11 +27,11 @@
 	<div id='profile_right'>
 	
     <%if !is_current_user(@user) && logged_in?%>
-      <div id='following_box' class="box highlighted">
+      <div id='following_box' class="box shaded">
       </div>
     <%end%>
 	
-    <div class="box <%=is_current_user(@user) ? 'highlighted' : ''%> tiled">
+    <div class="box <%=is_current_user(@user) ? 'highlighted' : ''%> tiled shaded">
 		
 			<div id = "ifollowers_with_msg">
       </div>

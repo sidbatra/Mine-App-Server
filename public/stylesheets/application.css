@@ -132,6 +132,7 @@ h1 {
 }
 
 .creation_search_chooser {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	height: 26px;
 	width: 263px;
 	margin: 0px 0 3px;
@@ -1291,6 +1292,7 @@ h1 {
 
 #comment_data {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
+	background: white url('/images/slim_shadow_light.png') repeat-x;
 	width: 289px;
 	height: 20px;
 	line-height: 20px;
@@ -1400,7 +1402,6 @@ h1 {
 	font-size: 12px;
 	cursor: default;
 	z-index: 5000;
-	display: none;
 }
 
 .button .context_box .title {
