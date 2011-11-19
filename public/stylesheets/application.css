@@ -1388,7 +1388,6 @@ h1 {
 	text-align: left;
 	font-size: 12px;
 	cursor: default;
-	display: none;
 	z-index: 5000;
 }
 
@@ -1489,11 +1488,6 @@ h1 {
 	width: 190px;
 	margin-bottom: 22px;
 }
-
-.buttons .button:active .context_box { 
- display: block;
-}
-
 
 #extras .feedback .buttons .button {
 	width: 62px;
