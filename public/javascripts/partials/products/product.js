@@ -66,6 +66,11 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.owns = true;
 
     this.ownBox.display();
+
+    analytics.ownInitiated(
+                this.source,
+                this.sourceID,
+                this.model.get('id'));
   },
 
   // Callback from ownBox when an own is created
@@ -86,6 +91,11 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   //
   ownCancelled: function() {
     this.owns = false;
+
+    analytics.ownCancelled(
+                this.source,
+                this.sourceID,
+                this.model.get('id'));
   },
 
   // Fired when the want button is clicked

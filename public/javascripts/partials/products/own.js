@@ -95,7 +95,7 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   //
   isValid: function() {
     var valid = true;
-    var mode  = 'Own Box';
+    var mode  = 'own';
 
     if(!this.isGifted() && this.priceEl.val().length < 1) {
       valid = false;

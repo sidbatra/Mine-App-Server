@@ -83,6 +83,26 @@ Denwen.Analytics = Backbone.Model.extend({
       'Is Own Product'  : helpers.isCurrentUser(productUserID)});
   },
 
+  // User initiates the product ownership process
+  //
+  ownInitiated: function(source,sourceID,productID) {
+    mpq.track('Own Initiated', {
+      'Source'          : source,
+      'Source ID'       : sourceID,
+      'Product ID'      : productID,
+      'User ID'         : helpers.currentUserID()});
+  },
+
+  // User cancels the product ownership process
+  //
+  ownCancelled: function(source,sourceID,productID) {
+    mpq.track('Own Cancelled', {
+      'Source'          : source,
+      'Source ID'       : sourceID,
+      'Product ID'      : productID,
+      'User ID'         : helpers.currentUserID()});
+  },
+
   // User owns a product
   //
   ownCreated: function(source,sourceID,productID) {
