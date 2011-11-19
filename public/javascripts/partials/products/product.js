@@ -8,6 +8,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     var self      = this;
     this.source   = this.options.source;
     this.sourceID = this.options.sourceID;
+    this.ownBox   = null;
 
     this.likes    = false;
     this.owns     = false;
@@ -54,16 +55,34 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     if(this.owns)
       return;
     
+    this.owns = true;
+
+    this.ownBox = new Denwen.Partials.Products.Own({
+                              el          : $(this.ownEl),
+                              product_id  : this.model.get('id')});
+
+    this.ownBox.bind('ownCreated',this.ownCreated,this);
+    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
+  },
+
+  // Callback from ownBox when an own is created
+  //
+  ownCreated: function() {
     $(this.ownEl).removeClass('hover_shadow_light');
     $(this.ownEl).addClass('pushed');
 
     this.createAction('own');
-    this.owns = true;
 
     analytics.ownCreated(
                 this.source,
                 this.sourceID,
                 this.model.get('id'));
+  },
+
+  // Callback from ownBox when an own is cancelled
+  //
+  ownCancelled: function() {
+    this.owns = false;
   },
 
   // Fired when the want button is clicked
