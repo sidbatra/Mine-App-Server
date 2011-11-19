@@ -1,4 +1,4 @@
-// View for modifying the product endorsement
+// Partial for modifying the product endorsement
 //
 Denwen.Partials.Products.Endorsement = Backbone.View.extend({
 
@@ -12,6 +12,8 @@ Denwen.Partials.Products.Endorsement = Backbone.View.extend({
     "click #product_cancel"        : "cancel"
   },
 
+  // Constructor logic
+  //
   initialize: function() {
     this.source     = this.options.source;
 
