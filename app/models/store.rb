@@ -109,6 +109,12 @@ class Store < ActiveRecord::Base
       Store.update_counters(
               store.id,
               :products_count => products_updated)
+
+    Category.fetch_all.each do |category|
+      Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
+    end
+
+    Cache.delete(KEYS[:store_price] % store.id)
   end
 
   # Relative path on the filesystem for the processed image thumbnail
