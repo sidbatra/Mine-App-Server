@@ -35,20 +35,25 @@ class ProductsController < ApplicationController
       params[:product][:price] = 0 if params[:product][:price].nil?
     end
 
-    product     = Product.add(
-                            params[:product],
-                            self.current_user.id)
-
-    target_url = user_path(self.current_user.handle,:src => "product_create")
+    @product  = Product.add(params[:product],self.current_user.id)
 
   rescue => ex
     handle_exception(ex)
-    target_url = new_product_path(
-                    :category => Category.find(
-                                    params[:product][:category_id]).handle,
-                    :src      => "error")
   ensure
-    redirect_to target_url
+    respond_to do |format|
+      format.json 
+      format.html do
+        redirect_to  @error ? 
+                      new_product_path(
+                        :category => Category.find(
+                                        params[:product][:category_id]).handle,
+                        :src      => 'error') :
+                      user_path(
+                        self.current_user.handle,
+                        :src => 'product_create')
+
+      end
+    end
   end
 
   # Fetch multiple products
