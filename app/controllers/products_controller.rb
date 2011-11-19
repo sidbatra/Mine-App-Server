@@ -157,11 +157,28 @@ class ProductsController < ApplicationController
   # Update user's byline
   #
   def update
+    @product        = Product.find(params[:id])
+    product_params  = params[:product]
 
-    @product = Product.find(params[:id])
+    product_params[:user_id] = self.current_user.id
+
+    if product_params[:is_store_unknown] && 
+        product_params[:is_store_unknown] == '0'
+
+      product_params[:store_id] = Store.add(
+                                      product_params[:store_name],
+                                      self.current_user.id).id
+    end
+
+    if product_params[:is_gift] && 
+        product_params[:is_gift] == '1'
+
+      product_params[:price] = 0 if product_params[:price].nil?
+    end
+
 
     if @product.user_id == self.current_user.id
-      @product.update_attributes(params[:product]) 
+      @product.update_attributes(product_params) 
     end
   
   rescue => ex
@@ -171,7 +188,7 @@ class ProductsController < ApplicationController
       format.json 
       format.html do 
         redirect_to product_path(
-                    @product.user.handle,
+                    self.current_user.handle,
                     @product.handle,
                     :src => 'product_updated')
       end
