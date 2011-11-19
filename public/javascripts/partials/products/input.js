@@ -54,6 +54,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
+
+    new Denwen.Partials.Stores.Autocomplete({el:$(this.storeEl)});
   },
 
   // Catch keystrokes on inputs to stop form submissions
