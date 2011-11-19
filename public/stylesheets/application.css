@@ -780,6 +780,12 @@ h1 {
 	display: none;
 }
 
+.nav_add_list {
+	position: absolute;
+	left: 0px;
+	width: 100px;
+}
+
 .nav_user_button_user_photo {
 	width: 22px;
 	height: 22px;
@@ -898,7 +904,7 @@ h1 {
 	width: 221px;
 	display: block;
 	line-height: 32px;
-	font-size: 12px;
+	font-size: 13px;
 	text-align: center;
 }
 
@@ -1188,6 +1194,7 @@ h1 {
 #products .product .right .details .title { 
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	color: #333333;
+	font-size: 13px;
 }
 
 #products .product .right .feedback {
