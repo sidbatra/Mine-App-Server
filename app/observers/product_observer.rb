@@ -77,6 +77,11 @@ class ProductObserver < ActiveRecord::Observer
   # Delete affected cache values
   #
   def after_destroy(product)
+    action = Action.fetch_own_for_product_and_user(
+                        product.source_product_id,
+                        product.user_id)
+    action.destroy if action
+
     Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
     Cache.delete(KEYS[:user_price] % product.user_id)
 
