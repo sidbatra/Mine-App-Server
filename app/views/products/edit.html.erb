@@ -1,6 +1,6 @@
 <!-- item -->
 
-  <%form_for @product,
+  <%form_for @product,:url => "/products/#{@product.id}",
         :html => {:class => 'new_product slim_shadow_light'} do |f|%>
 
     <%=render :partial  => 'input', 
@@ -13,7 +13,7 @@
   <%end%> <!-- form -->
 
 
-  <%=render 'chooser'%> 
+  <%=render 'chooser'%>	
 
 
 
@@ -21,8 +21,10 @@
 
     <script type="text/javascript">
 
-      new Denwen.Views.Products.New({
+      new Denwen.Views.Products.Edit({
                           el            : $('body'),
+                          productJSON   : <%=@product.to_json(
+                                                :methods => [:photo_url])%>,
                           categoryJSON  : <%=@category.to_json%>,
                           source        : '<%=@source%>'});
     </script>

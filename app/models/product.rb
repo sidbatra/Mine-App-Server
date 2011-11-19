@@ -46,7 +46,10 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Attributes
   #-----------------------------------------------------------------------------
-  attr_accessor :is_store_unknown
+  attr_accessor :is_store_unknown, :store_name, :rehost
+  attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
+                  :query,:price,:endorsement,:is_gift,:category_id,
+                  :store_id,:user_id
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -85,20 +88,6 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
-
-  # Edit attributes of the model
-  #
-  def edit(attributes)
-
-    validate = true
-    
-    if !attributes[:endorsement].nil?
-      self.endorsement = attributes[:endorsement]
-      validate = false
-    end
-
-    self.save(validate)
-  end
 
   # Share the product to fb via the user who created it
   #
@@ -242,7 +231,7 @@ class Product < ActiveRecord::Base
                             :comments_count,:user_id]
 
     options[:methods]   = [] if options[:methods].nil?
-    options[:methods]   = [:thumbnail_url]
+    options[:methods]  += [:thumbnail_url]
 
     options[:include] = {}
     options[:include].store(*(Store.json_options)) if options[:with_store]

@@ -61,15 +61,15 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   globalKeystroke: function(e) {
     if(e.which == 27 && this.isSearchActive()) {
       this.stopSearch();
-      analytics.productSearchCancelled();
+      this.trigger('productSearchCancelled','escape');
     }
   },
 
   // Fired when the user clicks the cancel butotn
   //
   cancelButtonClicked: function() {
-    analytics.productSearchCancelled();
     this.stopSearch();
+    this.trigger('productSearchCancelled','cross');
   },
 
   // Hide the search UI
@@ -114,7 +114,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     var search = new Denwen.Search({query:query});
     search.save();
 
-    analytics.productSearched(query);
+    this.trigger('productSearched',query);
   },
 
   // Fired when a product image is added to the images

@@ -1,7 +1,7 @@
 # Handle requests for the products resource
 #
 class ProductsController < ApplicationController
-  before_filter :login_required,  :only => [:new,:create,:update,:destroy]
+  before_filter :login_required,  :only => [:new,:create,:edit,:update,:destroy]
   before_filter :logged_in?,      :only => :show
 
   # Display UI for creating a new product
@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
 
     @product      = Product.new
     @stores       = Store.all
-    #@uploader    = generate_uploader
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
@@ -28,7 +27,7 @@ class ProductsController < ApplicationController
 
     if params[:product][:is_store_unknown] == '0'
       params[:product][:store_id] = Store.add(
-                                      params[:product][:store],
+                                      params[:product][:store_name],
                                       self.current_user.id).id
     end
 
@@ -122,18 +121,78 @@ class ProductsController < ApplicationController
     redirect_to root_path(:src => 'product_show_error') if @error
   end
 
+  # Display form for editing a product
+  #
+  def edit
+    @source       = params[:src] ? params[:src].to_s : "direct"
+
+    user          = User.find_by_handle(params[:user_handle])
+
+    raise IOError, "Unauthorized Access" if user.id != self.current_user.id
+
+
+    @product      = Product.with_store.find_by_user_id_and_handle(
+                              user.id,
+                              params[:product_handle])
+
+    if @product.store
+      @product.store_name = @product.store.name 
+      @product.is_store_unknown = false
+    else
+      @product.store_name = ''
+      @product.is_store_unknown = true
+    end
+
+
+    @stores       = Store.all
+    @category     = @product.category
+    @placeholders = MSG[:product][@category.handle.to_sym]
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to root_path(:src => 'product_edit_error') if @error
+  end
+
   # Update user's byline
   #
   def update
+    @product        = Product.find(params[:id])
+    product_params  = params[:product]
 
-    @product = Product.find(params[:id])
-    @product.edit(params) if @product.user_id == self.current_user.id
+    product_params[:user_id] = self.current_user.id
+
+
+    if product_params[:is_store_unknown] 
+      product_params[:store_id] = product_params[:is_store_unknown] == '0' ? 
+                                    Store.add(
+                                        product_params[:store_name],
+                                        self.current_user.id).id :
+                                    nil
+    end
+
+    if product_params[:is_gift] && 
+        product_params[:is_gift] == '1'
+
+      product_params[:price] = 0 if product_params[:price].nil?
+    end
+
+
+    if @product.user_id == self.current_user.id
+      @product.update_attributes(product_params) 
+    end
   
   rescue => ex
     handle_exception(ex)
   ensure
     respond_to do |format|
       format.json 
+      format.html do 
+        redirect_to product_path(
+                    self.current_user.handle,
+                    @product.handle,
+                    :src => 'product_updated')
+      end
     end
   end
 

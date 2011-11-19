@@ -8,7 +8,7 @@ task :find_star_users do |e,args|
   users = User.stars
 
   users.each do |user|
-    #UserMailer.deliver_star_user(user)    
+    UserMailer.decide_star_user(user)    
   end
 
 end

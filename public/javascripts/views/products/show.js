@@ -34,5 +34,8 @@ Denwen.Views.Products.Show = Backbone.View.extend({
   setAnalytics: function() {
     analytics.userLandsOn(this.product.uniqueKey());
     analytics.productProfileView(this.source,this.product.get('id'));
+
+    if(this.source == 'product_updated')
+      analytics.productUpdated(this.product.get('id'));
   }
 });
