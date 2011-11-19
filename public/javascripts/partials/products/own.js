@@ -5,8 +5,6 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Event listeners
   //
   events: {
-    "click #create_own" : "create",
-    "click #cancel_own" : "cancel"
   },
 
   // Constructor logic
@@ -14,10 +12,13 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   initialize: function() {
     var self        = this;
     this.productID  = this.options.product_id;
+    this.posting    = false;
 
     this.render();
 
     this.boxEl                = $('#own_box_' + this.productID);
+    this.createEl             = $('#create_own_' + this.productID);
+    this.cancelEl             = $('#cancel_own_' + this.productID);
     this.priceEl              = $('#product_price_' + this.productID);
     this.priceDollarEl        = $('#creation_dollar_' + this.productID);
     this.storeEl              = $('#product_store_name_' + this.productID);
@@ -26,7 +27,9 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.isStoreUnknownEl     = $('#product_is_store_unknown_' + this.productID);
     //this.isStoreUnknownBoxEl  = $('#is_store_unknown_box');
 
-
+    
+    this.createEl.click(function(){self.create();});
+    this.cancelEl.click(function(){self.cancel();});
     this.isGiftEl.change(function(){self.isGiftChanged();});
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
   },
@@ -34,25 +37,41 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Display the UI for claiming ownership
   //
   render: function() {
-    this.el.append(Denwen.JST['products/own']({
-                                    id:this.productID}));
+    this.el.append(Denwen.JST['products/own']({id:this.productID}));
   },
 
   // Create ownership
   //
   create: function() {
     
-   if(!this.isValid())
-     return;
+    if(this.posting || !this.isValid())
+      return;
 
-   $(this.boxEl).remove();
-   this.trigger('ownCreated');
+    this.posting = true;
+
+    var params = {
+                  is_gift:this.isGifted() ? '1' : '0',
+                  is_store_unknown:this.isStoreUnknown() ? '1' : '0',
+                  source_id:this.productID};
+
+    if(!this.isGifted())
+      params['price'] = this.priceEl.val();
+
+    if(!this.isStoreUnknown())
+      params['store_name'] = this.storeEl.val();
+
+
+    var product = new Denwen.Models.Product(params); 
+    product.save();
+
+    this.boxEl.remove();
+    this.trigger('ownCreated');
   },
 
   // Cancel ownership creation
   //
   cancel: function() {
-    $(this.boxEl).remove();
+    this.boxEl.remove();
     this.trigger('ownCancelled');
   },
 
