@@ -42,8 +42,7 @@ class Store < ActiveRecord::Base
   # Fetch all the stores
   #
   def self.fetch_all
-    #Cache.fetch(KEYS[:store_all]){Store.all};
-    Store.all
+    Cache.fetch(KEYS[:store_all]){Store.all};
   end
 
   # Fetch a store by name 
