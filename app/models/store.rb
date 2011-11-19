@@ -39,6 +39,13 @@ class Store < ActiveRecord::Base
       :user_id  => user_id)
   end
 
+  # Fetch all the stores
+  #
+  def self.fetch_all
+    Store.all
+    #Cache.fetch(KEYS[:store_all]){Store.all};
+  end
+
   # Fetch a store by name 
   #
   def self.fetch(name)
@@ -48,7 +55,7 @@ class Store < ActiveRecord::Base
   # Fetch sorted list of top stores
   #
   def self.top
-    Cache.fetch('top_stores') {Store.processed.popular.limit(20)}
+    Cache.fetch(KEYS[:store_top]) {Store.processed.popular.limit(20)}
   end
 
   # Return json options specifiying which attributes and methods

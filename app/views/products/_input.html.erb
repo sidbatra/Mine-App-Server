@@ -107,22 +107,3 @@
   
   <%=blocker%>
 
-
-
-  <%content_for :javascript do%>
-
-    <script type="text/javascript">
-
-       $(document).ready(function(){
-          var stores = "<%=stores.map(&:name).join('|')%>".split("|");
-          $("#product_store_name").autocomplete(
-                                stores,{
-                                 formatMatch: function(item){
-                                  return item[0].replace(/[^\w]/gi, '');},
-                                 formatResult: function(item){
-                                  return item[0];}
-                                 });
-        });
-    </script>
-
-  <%end%>

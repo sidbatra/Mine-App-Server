@@ -18,6 +18,8 @@ class StoresController < ApplicationController
     case @filter
     when :top
       @stores  = Store.top
+    when :all
+      @stores = Store.fetch_all
     end
 
   rescue => ex

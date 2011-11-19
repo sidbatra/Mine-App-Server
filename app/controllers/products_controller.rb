@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
     @source       = params[:src] ? params[:src].to_s : "direct"
 
     @product      = Product.new
-    @stores       = Store.all
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
@@ -153,7 +152,6 @@ class ProductsController < ApplicationController
     end
 
 
-    @stores       = Store.all
     @category     = @product.category
     @placeholders = MSG[:product][@category.handle.to_sym]
 
