@@ -5,20 +5,21 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Event listeners
   //
   events: {
+    "click #create_own" : "create",
+    "click #cancel_own" : "cancel"
   },
 
   // Constructor logic
   //
   initialize: function() {
     var self        = this;
+
     this.productID  = this.options.product_id;
     this.posting    = false;
 
     this.render();
 
     this.boxEl                = $('#own_box_' + this.productID);
-    this.createEl             = $('#create_own_' + this.productID);
-    this.cancelEl             = $('#cancel_own_' + this.productID);
     this.priceEl              = $('#product_price_' + this.productID);
     this.priceDollarEl        = $('#creation_dollar_' + this.productID);
     this.storeEl              = $('#product_store_name_' + this.productID);
@@ -27,9 +28,6 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.isStoreUnknownEl     = $('#product_is_store_unknown_' + this.productID);
     //this.isStoreUnknownBoxEl  = $('#is_store_unknown_box');
 
-    
-    this.createEl.click(function(){self.create();});
-    this.cancelEl.click(function(){self.cancel();});
     this.isGiftEl.change(function(){self.isGiftChanged();});
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
   },
@@ -40,12 +38,23 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.el.append(Denwen.JST['products/own']({id:this.productID}));
   },
 
+  // Display the own box
+  //
+  display: function() {
+    this.boxEl.show();
+  },
+
+  // Hide the own box
+  //
+  vanish: function() {
+    this.boxEl.hide();
+  },
+
   // Create ownership
   //
   create: function() {
-    
     if(this.posting || !this.isValid())
-      return;
+      return false;
 
     this.posting = true;
 
@@ -64,17 +73,26 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     var product = new Denwen.Models.Product(params); 
     product.save();
 
-    this.boxEl.remove();
+    this.vanish();
     this.trigger('ownCreated');
+
+    return false;
   },
 
   // Cancel ownership creation
   //
   cancel: function() {
-    this.boxEl.remove();
+    if(this.posting)
+      return false;
+
+    this.vanish();
     this.trigger('ownCancelled');
+
+    return false;
   },
 
+  // Perform validation on the inputs
+  //
   isValid: function() {
     var valid = true;
 
@@ -106,6 +124,7 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Fired when the user toggles the is gift check box
   //
   isGiftChanged: function() {
+
     if(this.isGifted()) {
       this.priceEl.val('');
       //$(this.priceEl).addClass('creation_input_inactive');

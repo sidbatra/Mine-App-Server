@@ -21,6 +21,14 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     $(this.likeEl).click(function(){self.likeClicked();});
     $(this.ownEl).click(function(){self.ownClicked();});
     $(this.wantEl).click(function(){self.wantClicked();});
+
+
+    this.ownBox = new Denwen.Partials.Products.Own({
+                              el          : $(this.ownEl),
+                              product_id  : this.model.get('id')});
+
+    this.ownBox.bind('ownCreated',this.ownCreated,this);
+    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
   },
 
   // Create the action initiated by the user
@@ -57,12 +65,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     
     this.owns = true;
 
-    this.ownBox = new Denwen.Partials.Products.Own({
-                              el          : $(this.ownEl),
-                              product_id  : this.model.get('id')});
-
-    this.ownBox.bind('ownCreated',this.ownCreated,this);
-    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
+    this.ownBox.display();
   },
 
   // Callback from ownBox when an own is created

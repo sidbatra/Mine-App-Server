@@ -30,6 +30,14 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
           data    : {product_id:this.productID},
           success : function(){self.render();},
           error   : function(){}});
+
+
+    this.ownBox = new Denwen.Partials.Products.Own({
+                              el          : $(this.ownEl),
+                              product_id  : this.productID});
+
+    this.ownBox.bind('ownCreated',this.ownCreated,this);
+    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
   },
 
   // Render the actions collection
@@ -97,12 +105,7 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
 
     this.checked['own'] = true;
 
-    this.ownBox = new Denwen.Partials.Products.Own({
-                              el          : $(this.ownEl),
-                              product_id  : this.productID});
-
-    this.ownBox.bind('ownCreated',this.ownCreated,this);
-    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
+    this.ownBox.display();
   },
 
   // Callback from ownBox when an own is created
