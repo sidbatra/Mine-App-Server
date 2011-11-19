@@ -106,23 +106,54 @@
 	  
 	  <div id="extras">
 	  
-	  	 <div id='feedback' class='feedback'>
+	  	 <div class='feedback' class='feedback'>
         	<div class='buttons'>
             <a id='like_product' 
                 href='javascript:void(0)' 
-                class='button hover_shadow_light'>
+                class='button hover_shadow_light like'>
                 <span class='in'>✓ </span> like
             </a>
             <%unless is_current_user(@product.user)%>
             	<a id='want_product' 
                   href='javascript:void(0)' 
-                  class='button hover_shadow_light'>
+                  class='button hover_shadow_light want'>
                   <span class='in'>✓ </span> want
              	</a>
               <a id='own_product'  
                   href='javascript:void(0)' 
-                  class='button hover_shadow_light'>
+                  class='button hover_shadow_light own'>
                  	<span class='in'>✓ </span> own
+                 	
+                 	
+                 	
+                 	<!-- context box -->
+                 	<div class='context_box slim_shadow_light'>
+                 		<div class='title'>
+                 			Store where bought
+                 		<span class='option'>
+                 			<input class='checkbox' id='' name='' type='checkbox' value='1'>
+                 			<label for=''>Unsure</label>
+                 		</span>
+                 		</div>
+                 		<input class='textfield' type='text'>
+                 		<div class='title'>
+                 			Price 
+                 			<span class='option'>
+                 				<input class='checkbox' id='' name='' type='checkbox' value='1'>
+                 				<label for=''>Gift</label>
+                 			</span>
+                 		</div>
+                 		
+                 		<div class='price_container'>
+                 			<input class='textfield price' type='text'>
+                 			<div class='dollar'>$</div>
+                 		</div>
+                 		
+                 		<input class='button_dark but slim_shadow_light' type='submit' value='Add to your closet ›'>
+                 	</div> <!-- context_box -->
+
+
+
               </a>
             <%end%>
           </div>

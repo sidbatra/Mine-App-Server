@@ -127,7 +127,7 @@ h1 {
 	-webkit-font-smoothing: antialiased;
 	color: #666666;
 	vertical-align: top;
-	background: #fbfbfb;
+	background: #fbfbfb url('/images/slim_shadow_light.png') repeat-x;
 	margin-top: 5px; 
 }
 
@@ -192,7 +192,7 @@ h1 {
 #store_box, #price_box { position: relative; }
 #price_box { width: 98px; }
 
-.creation_checkbox_right { position: absolute; top: 0px; right: 5px; color: #dddddd; }
+.creation_checkbox_right { position: absolute; top: 0px; right: 5px; color: #cccccc; }
 .creation_checkbox_right:hover, .creation_checkbox_right_active { color: #999999; }
 .creation_checkbox_right input {
 	-moz-opacity: 0.2;
@@ -817,6 +817,7 @@ h1 {
 
 #profile_main {
 	width: 664px;
+	float: left;
 }
 
 #profile_right {
@@ -1110,8 +1111,10 @@ h1 {
 }
 
 #closet .rows {
+/*
 	height: 1%;
 	overflow: hidden;
+*/
  	background-image: url('/images/closet_row_light_b_bg.gif');
  	background-repeat: repeat-y;
 }
@@ -1168,7 +1171,7 @@ h1 {
 	width: 131px;
 	padding: 11px 11px 11px 0px;
 	position: relative;
-	overflow: hidden;
+	overflow: visible;
 }
 
 #products .product .right .details { 
@@ -1191,14 +1194,17 @@ h1 {
 	position: absolute;
 	left: 0px;
 	bottom: 10px;
-	width: 128px;
-	height: 26px;
 	font-size: 12px;
 	line-height: 24px;
 	color: #cccccc;
 }
 
-#products .product .right .feedback .button {
+#products .product .right .feedback .buttons {
+	height: 26px;
+	width: 128px;
+}
+
+#products .product .right .feedback .buttons .button {
 	width: 30px;
 	height: 24px;
 	text-align: center;
@@ -1207,26 +1213,26 @@ h1 {
 	background: white;
 }
 
-#products .product .right .feedback .button:hover {
+#products .product .right .feedback .buttons .button:hover {
 	border: 1px solid #cccccc;
 	cursor: pointer;
 	color: #791a10;
 }
 
-#products .product .right .feedback .button:active {
+#products .product .right .feedback .buttons .button:active {
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 }
 
-#products .product .right .feedback .comments_none {
+#products .product .right .feedback .buttons .comments_none {
 	background: url('/images/comment_bubbles.png') 0px 0px no-repeat; 
 }
 
-#products .product .right .feedback .comments_some {
+#products .product .right .feedback .buttons .comments_some {
 	background: url('/images/comment_bubbles.png') 0px -24px no-repeat; 
 }
 
-#products .product .right .feedback .comments_none:active,
-#products .product .right .feedback .comments_some:active {
+#products .product .right .feedback .buttons .comments_none:active,
+#products .product .right .feedback .buttons .comments_some:active {
 	background: #f8f8f8 url('/images/comment_bubbles.png') 0px -48px no-repeat; 
 }
 
@@ -1237,24 +1243,24 @@ h1 {
 }
 */
 
-#products .product .right .feedback .pushed {
+#products .product .right .feedback .buttons .pushed {
 	border: 1px solid #dddddd;
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 }
 
-#products .product .right .feedback .pushed:hover {
+#products .product .right .feedback .buttons .pushed:hover {
 	color: #cccccc;
 }
 
-#products .product .right .feedback span.in {
+#products .product .right .feedback .buttons span.in {
 	display: none;
 }
 
-#products .product .right .feedback .pushed span.out {
+#products .product .right .feedback .buttons .pushed span.out {
 	display: none;
 }
 
-#products .product .right .feedback .pushed span.in {
+#products .product .right .feedback .buttons .pushed span.in {
 	display: block;
 }
 
@@ -1369,6 +1375,98 @@ h1 {
 	clear: both;
 }
 
+/* ------------------------------ Button Context Box */
+
+.button .context_box {
+	width: 172px;
+	position: absolute;
+	right: -1px;
+	background: #f8f8f8;
+	padding: 10px 8px;
+	border: 1px solid #cccccc;
+	line-height: 100%;
+	text-align: left;
+	font-size: 12px;
+	cursor: default;
+	display: none;
+	z-index: 5000;
+}
+
+.button .context_box .title {
+	color: #999999;
+	margin-bottom: 4px;
+}
+
+.button .context_box .title {
+	color: #999999;
+	margin-bottom: 4px;
+}
+
+.button .context_box .title .option .checkbox { 
+	margin-left: 8px; 
+	-moz-opacity: 0.2;
+	opacity: .20;
+	filter: alpha (opacity=20);
+}
+
+.button .context_box .title .option label { 
+	color: #cccccc;
+	margin-left: -2px;
+}
+
+.button .context_box .title .option:hover label,
+.button .context_box .title .option:hover .checkbox {
+	-moz-opacity: 1;
+	opacity: 1;
+	filter: alpha (opacity=100);
+	color: #999999;
+}
+
+
+.button .context_box .textfield {
+	font-size: 12px;
+	color: #666666;
+	width: 162px;
+	height: 22px;
+	padding: 0px 4px;
+	border: 1px solid #cccccc;
+	margin-bottom: 8px;
+	background: white url('/images/slim_shadow_light.png') repeat-x;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	line-height: 22px;
+}
+
+.button .context_box .price {
+	width: 58px;
+	padding-left: 11px;
+}
+
+.button .context_box .price_container {
+	position: relative;
+}
+
+.button .context_box .price_container .dollar {
+	position: absolute;
+	top: 1px;
+	left: 4px;
+	height: 22px;
+	width: 8px;
+	line-height: 22px;
+	color: #666666;
+}
+
+.button .context_box .but {
+	width: 172px;
+	height: 28px;
+	font-size: 12px;
+}
+
+.button .context_box .cancel {
+	width: 172px;
+	height: 26px;
+	font-size: 12px;
+}
+
 /* ------------------------------ Extras */
 
 #extras {
@@ -1388,27 +1486,32 @@ h1 {
 
 #extras .feedback .buttons {
 	height: 32px;
-	width: 189px;
+	width: 190px;
 	margin-bottom: 22px;
 }
+
+.buttons .button:active .context_box { 
+ display: block;
+}
+
 
 #extras .feedback .buttons .button {
 	width: 62px;
 	height: 30px;
 	display: block;
 	background-color: white;
-	line-height: 29px;
+	line-height: 30px;
 	text-align: center;
 	float: left;
 	border: 1px solid #cccccc;
-	margin-left: -1px;
+	margin-right: -1px;
+	position: relative;
 }
 
 #extras .feedback .buttons .button:hover {
 	cursor: pointer;
 	background: #f8f8f8;
 	color: #791a10;
-	z-index: 10000;
 }
 
 #extras .feedback .buttons .button:active,
@@ -1490,6 +1593,7 @@ h1 {
 	color: #666666;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 	border-bottom: 1px solid #cccccc;
+	cursor: pointer;
 }
 
 .button_dark {
@@ -1497,7 +1601,12 @@ h1 {
 	background: #525252 url('/images/alert-overlay.png') repeat-x;
 	color: white;
 	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
-	border-bottom: 1px solid #444444;
+	cursor: pointer;
+	border: 0;
+}
+
+.button_dark:hover {
+	background-color: #323232;
 }
 
 /* ------------------------------ Effects */
