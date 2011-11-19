@@ -46,7 +46,7 @@ class Product < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Attributes
   #-----------------------------------------------------------------------------
-  attr_accessor :is_store_unknown, :store_name
+  attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
                   :query,:price,:endorsement,:is_gift,:category_id,
                   :store_id,:user_id

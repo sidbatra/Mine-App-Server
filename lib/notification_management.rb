@@ -25,9 +25,16 @@ module DW
         end
       end
       
-      # Share the new product on facebook
+      # Host the new product image
       #
       def self.new_product(product_id)
+        product = Product.find(product_id)
+        product.host
+      end
+
+      # Host the updated product image
+      #
+      def self.update_product(product_id)
         product = Product.find(product_id)
         product.host
       end
