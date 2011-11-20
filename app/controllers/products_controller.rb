@@ -175,7 +175,7 @@ class ProductsController < ApplicationController
                                     Store.add(
                                         product_params[:store_name],
                                         self.current_user.id).id :
-                                    nil
+                                    0
     end
 
     if product_params[:is_gift] && 
