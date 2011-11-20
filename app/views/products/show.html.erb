@@ -75,7 +75,7 @@
             <tr>
               <td>
                 <div id="right_text_div">
-                  <%=@user_presenter.bought_text%> <br/>
+                  <%=@user_presenter.bought_text(@product.is_gift)%> <br/>
                     
                   <span class="right_title">
                     <%=h @product_presenter.title%>
