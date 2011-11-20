@@ -1441,6 +1441,21 @@ h1 {
 	z-index: 500;
 }
 
+.button .context_box .step {
+	margin-bottom: 8px;
+}
+
+.button .context_box .inactive .textfield {
+	-moz-opacity: 0.4;
+	opacity: .40;
+	filter: alpha (opacity=40);
+	background-image: none;
+}
+
+.button .context_box .inactive .dollar {
+	display: none;
+}
+
 .button .context_box .title {
 	color: #999999;
 	margin-bottom: 4px;
@@ -1463,8 +1478,10 @@ h1 {
 	margin-left: -2px;
 }
 
-.button .context_box .title .option:hover label,
-.button .context_box .title .option:hover .checkbox {
+.button .context_box .title .option:hover label, /* same on hover as when step deactivated */
+.button .context_box .title .option:hover .checkbox,
+.button .context_box .inactive .title .option .checkbox,
+.button .context_box .inactive .title .option label {
 	-moz-opacity: 1;
 	opacity: 1;
 	filter: alpha (opacity=100);
@@ -1479,7 +1496,6 @@ h1 {
 	height: 22px;
 	padding: 0px 4px;
 	border: 1px solid #cccccc;
-	margin-bottom: 8px;
 	background: white url('/images/slim_shadow_light.png') repeat-x;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	line-height: 22px;
