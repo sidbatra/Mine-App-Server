@@ -108,7 +108,7 @@ class UserPresenter < BasePresenter
                         new_product_path(
                           :category => category.handle,
                           :src      => 'profile'),
-                        :class => 'suggestion hover_shadow_light'
+                        :class => 'suggestion'
     end
 
     text
