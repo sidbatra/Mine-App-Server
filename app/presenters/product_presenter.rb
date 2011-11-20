@@ -92,7 +92,7 @@ class ProductPresenter < BasePresenter
     html = ""
     
     if product.is_gift
-      html += "gift "
+      html += "as a gift "
     elsif product.price
       html += "for <span class='right_price'>" + 
               price +
