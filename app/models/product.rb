@@ -80,7 +80,7 @@ class Product < ActiveRecord::Base
   def self.top_for_store(store_id)
     Cache.fetch(KEYS[:store_top_products] % store_id) do
       Product.for_store(store_id).
-              created(10.days.ago..Time.now).
+              created(20.days.ago..Time.now).
               by_actions.
               with_user.
               limit(10)
