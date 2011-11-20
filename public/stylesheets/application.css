@@ -1087,26 +1087,26 @@ h1 {
 	border-top: 1px solid #dddddd;
 	border-left: 1px solid #dddddd;
 	margin-bottom: 18px;
-	height: 78px;
+	height: 66px;
 	width: 616px;
 }
 
 .suggestion {
 	float: left;
 	width: 153px;
-	height: 38px;
+	height: 32px;
+	background: white;
 	border-right: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
-	background: white;
 	text-align: center;
 	font-size: 12px;
-	line-height: 38px;
+	line-height: 32px;
 	color: #666666;
 }
 
 .suggestion:hover {
-	color: #791a10;
 	background: #f8f8f8;
+	color: #791a10;
 }
 
 /* ------------------------------ Closet */
@@ -1697,8 +1697,8 @@ h1 {
 }
 
 .rounded {
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 .unselectable {
