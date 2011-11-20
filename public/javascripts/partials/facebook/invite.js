@@ -10,10 +10,15 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self  = this;
-    this.id   = this.options.id;
+    this.hookUp();
+  },
 
-    $(this.id).click(function(){self.showInviteDialog();});
+  // Hooked up the FB dialog on all designated links
+  //
+  hookUp: function() {
+    var self      = this;
+    $('body').find('#fb_invite_link').click(
+              function(){self.showInviteDialog();});
   },
 
   // Handle callback from the invite dialog
