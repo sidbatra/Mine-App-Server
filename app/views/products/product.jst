@@ -18,14 +18,19 @@
           
           <br />
 
-              <%if(product.has('price')) { %>
+              <%if(product.get('is_gift')) { %>
+                Gift
+              <%} else if(product.has('price')) { %>
                 Bought for $<%=product.get('price')%>
               <%}%>
 
             	<br/>
             	
               <%if(type == 'user' && product.has('store')) { %>
-                at <%=product.get('store').escape('name')%> <br>
+                <%if(product.get('is_gift')) { %>
+                  bought 
+                <%}%>
+                  at <%=product.get('store').escape('name')%> <br>
               <%}%>
               
               <%if(type == 'store') { %>
