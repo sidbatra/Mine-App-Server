@@ -77,11 +77,18 @@ class ProductPresenter < BasePresenter
   def byline
     html = ""
     
-    if product.price
+    if product.is_gift
+      html += "gift "
+    elsif product.price
       html += "for <span class='right_price'>" + 
               price +
-              "</span> " +
-              "at <span class='right_store'>" +
+              "</span> " 
+    end
+
+    if product.store
+      html += "bought " if product.is_gift
+
+      html += "at <span class='right_store'>" +
               store_name
               "</span>"
     end
