@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
     @source       = params[:src] ? params[:src].to_s : "direct"
 
     @product      = Product.new
-    @stores       = Store.all
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
@@ -24,6 +23,10 @@ class ProductsController < ApplicationController
   # Create a new product
   #
   def create
+    
+    if params[:product][:source_product_id]
+      params[:product] = populate_params_from_product(params[:product])
+    end
 
     if params[:product][:is_store_unknown] == '0'
       params[:product][:store_id] = Store.add(
@@ -149,7 +152,6 @@ class ProductsController < ApplicationController
     end
 
 
-    @stores       = Store.all
     @category     = @product.category
     @placeholders = MSG[:product][@category.handle.to_sym]
 
@@ -214,6 +216,23 @@ class ProductsController < ApplicationController
 
 
   protected
+
+  # Populate params from the given product's source id
+  #
+  def populate_params_from_product(params)
+    product = Product.find(params[:source_product_id])
+
+    params[:title]          = product.title
+    params[:source_url]     = product.source_url
+    params[:orig_image_url] = product.orig_image_url
+    params[:orig_thumb_url] = product.orig_thumb_url
+    params[:is_hosted]      = 0
+    params[:query]          = product.query
+    params[:category_id]    = product.category_id
+    params[:endorsement]    = ''
+
+    params
+  end
 
   # Prepare parameters for the image uploder
   #

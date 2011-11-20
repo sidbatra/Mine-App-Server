@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118003816) do
+ActiveRecord::Schema.define(:version => 20111119221943) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -73,21 +73,22 @@ ActiveRecord::Schema.define(:version => 20111118003816) do
     t.text     "endorsement"
     t.text     "source_url"
     t.text     "orig_image_url"
-    t.boolean  "is_hosted",      :default => false
+    t.boolean  "is_hosted",         :default => false
     t.string   "query"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_shared",      :default => false
+    t.boolean  "is_shared",         :default => false
     t.string   "orig_thumb_url"
-    t.integer  "comments_count", :default => 0
+    t.integer  "comments_count",    :default => 0
     t.integer  "store_id"
     t.float    "price"
     t.integer  "category_id"
     t.string   "image_path"
-    t.boolean  "is_processed",   :default => false
-    t.boolean  "is_gift",        :default => false
-    t.integer  "actions_count",  :default => 0
+    t.boolean  "is_processed",      :default => false
+    t.boolean  "is_gift",           :default => false
+    t.integer  "actions_count",     :default => 0
+    t.integer  "source_product_id"
   end
 
   add_index "products", ["actions_count"], :name => "index_products_on_actions_count"

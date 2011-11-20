@@ -1,13 +1,14 @@
 <!-- item -->
 
   <%form_for @product,:url => "/products/#{@product.id}",
-        :html => {:class => 'new_product slim_shadow_light'} do |f|%>
+        :html => {
+          :class  => 'new_product slim_shadow_light',
+          :id     => 'edit_product'} do |f|%>
 
     <%=render :partial  => 'input', 
               :locals   => {
                 :f            => f,
                 :category     => @category,
-                :stores       => @stores,
                 :placeholders => @placeholders}%>
 
   <%end%> <!-- form -->

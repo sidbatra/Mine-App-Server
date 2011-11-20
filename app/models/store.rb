@@ -39,6 +39,12 @@ class Store < ActiveRecord::Base
       :user_id  => user_id)
   end
 
+  # Fetch all the stores
+  #
+  def self.fetch_all
+    Cache.fetch(KEYS[:store_all]){Store.all};
+  end
+
   # Fetch a store by name 
   #
   def self.fetch(name)
@@ -48,7 +54,7 @@ class Store < ActiveRecord::Base
   # Fetch sorted list of top stores
   #
   def self.top
-    Cache.fetch('top_stores') {Store.processed.popular.limit(20)}
+    Cache.fetch(KEYS[:store_top]) {Store.processed.popular.limit(20)}
   end
 
   # Return json options specifiying which attributes and methods
@@ -109,6 +115,12 @@ class Store < ActiveRecord::Base
       Store.update_counters(
               store.id,
               :products_count => products_updated)
+
+    Category.fetch_all.each do |category|
+      Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
+    end
+
+    Cache.delete(KEYS[:store_price] % store.id)
   end
 
   # Relative path on the filesystem for the processed image thumbnail
@@ -198,11 +210,9 @@ class Store < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:name,:handle]
 
-    options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += [:thumbnail_url]
+    options[:only]    = [:id,:name,:handle] if options[:only].nil?
+    options[:methods] = [:thumbnail_url]    if options[:methods].nil?
 
     super(options)
   end

@@ -14,6 +14,7 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
   //
   initialize: function() {
     var self            = this;
+    this.ownBox         = null;
     this.actionsEl      = $('#feed_items');
     this.productID      = this.options.product_id;
     this.productUserID  = this.options.product_user_id;
@@ -29,6 +30,14 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
           data    : {product_id:this.productID},
           success : function(){self.render();},
           error   : function(){}});
+
+
+    this.ownBox = new Denwen.Partials.Products.Own({
+                              el          : $(this.ownEl),
+                              product_id  : this.productID});
+
+    this.ownBox.bind('ownCreated',this.ownCreated,this);
+    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
   },
 
   // Render the actions collection
@@ -94,12 +103,35 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
     if(this.checked['own'])
       return;
 
-    this.createAction('own');
     this.checked['own'] = true;
 
+    this.ownBox.display();
+
+    analytics.ownInitiated(
+                'product',
+                this.productID,
+                this.productID);
+  },
+
+  // Callback from ownBox when an own is created
+  //
+  ownCreated: function() {
     $(this.ownEl).addClass('pushed');
 
+    this.createAction('own');
+
     analytics.ownCreated(
+                'product',
+                this.productID,
+                this.productID);
+  },
+
+  // Callback from ownBox when an own is cancelled
+  //
+  ownCancelled: function() {
+    this.checked['own'] = false;
+
+    analytics.ownCancelled(
                 'product',
                 this.productID,
                 this.productID);

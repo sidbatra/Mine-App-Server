@@ -34,6 +34,12 @@ class Action < ActiveRecord::Base
       :user_id      => user_id)
   end
 
+  # Fetch an ownership entry for a product by a user
+  # return nil if not found
+  def self.fetch_own_for_product_and_user(product_id,user_id)
+    find_by_product_id_and_name_and_user_id(product_id,'own',user_id)
+  end
+
 
   #-----------------------------------------------------------------------------
   # Instance methods

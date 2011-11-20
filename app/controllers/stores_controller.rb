@@ -18,6 +18,10 @@ class StoresController < ApplicationController
     case @filter
     when :top
       @stores  = Store.top
+      @options = {}
+    when :all
+      @stores  = Store.fetch_all
+      @options = {:only => [:id,:name],:methods => []}
     end
 
   rescue => ex

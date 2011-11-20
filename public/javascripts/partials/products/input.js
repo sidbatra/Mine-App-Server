@@ -19,7 +19,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     var self                  = this;
     this.mode                 = this.options.mode;
 
-    this.formEl               = '#new_product';
+    this.formEl               = '#' + this.mode + '_product';
     this.queryEl              = '#product_query';
     this.titleEl              = '#product_title';
     this.priceEl              = '#product_price';
@@ -54,6 +54,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
+
+    new Denwen.Partials.Stores.Autocomplete({el:$(this.storeEl)});
   },
 
   // Catch keystrokes on inputs to stop form submissions
