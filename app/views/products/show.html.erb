@@ -39,13 +39,11 @@
   	
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
-
-  		<div class="">
-        <%=@product_presenter.edit_link%>
-      </div>
-
-  		<div class="left_delete">
-        <%=@product_presenter.destroy_link%>
+      
+      
+			<div class="buttons">
+        	<%=@product_presenter.edit_link%>
+        	<%=@product_presenter.destroy_link%>
       </div>
 
     
