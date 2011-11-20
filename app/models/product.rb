@@ -148,6 +148,14 @@ class Product < ActiveRecord::Base
     "g_" + image_path
   end
 
+  # Url of the largest copy of the image
+  #
+  def image_url
+    is_hosted ?
+      FileSystem.url(image_path) : 
+      orig_image_url
+  end
+
   # Generate url for the photo
   #
   def photo_url
