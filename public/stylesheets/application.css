@@ -1290,6 +1290,13 @@ h1 {
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 }
 
+#products .product .right .feedback .buttons .held,
+#products .product .right .feedback .buttons .held:hover {
+	border: 1px solid #cccccc;
+	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	color: #999999;
+}
+
 #products .product .right .feedback .buttons .pushed:hover {
 	color: #cccccc;
 }
@@ -1431,7 +1438,7 @@ h1 {
 	text-align: left;
 	font-size: 12px;
 	cursor: default;
-	z-index: 5000;
+	z-index: 500;
 }
 
 .button .context_box .title {
@@ -1585,6 +1592,13 @@ h1 {
 	display: inline-block;
 }
 
+#extras .feedback .buttons .held,
+#extras .feedback .buttons .held:hover {
+	border: 1px solid #cccccc;
+	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	color: #999999;
+}
+
 #extras .feedback .feed_item {
 	width: 100%;
 	height: 32px;
@@ -1649,6 +1663,7 @@ h1 {
 
 .button_dark {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
 	background: #525252 url('/images/alert-overlay.png') repeat-x;
 	color: white;
 	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
