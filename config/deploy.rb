@@ -62,7 +62,7 @@ namespace :deploy do
     if environment == "staging"
       #system "cap #{environment}  db:config" 
       #system "cap #{environment}  db:populate" 
-      run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
+      #run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
       #system "cap #{environment}  db:migrate"
     else
       system "cap #{environment}  db:migrate"
@@ -76,7 +76,6 @@ namespace :deploy do
     system "cap #{environment}  workers:start"
 
     system "cap #{environment}  misc:whenever"
-
   end
 
    
