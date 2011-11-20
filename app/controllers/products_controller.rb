@@ -224,8 +224,8 @@ class ProductsController < ApplicationController
 
     params[:title]          = product.title
     params[:source_url]     = product.source_url
-    params[:orig_image_url] = product.orig_image_url
-    params[:orig_thumb_url] = product.orig_thumb_url
+    params[:orig_image_url] = product.image_url
+    params[:orig_thumb_url] = product.thumbnail_url
     params[:is_hosted]      = 0
     params[:query]          = product.query
     params[:category_id]    = product.category_id
