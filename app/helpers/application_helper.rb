@@ -17,7 +17,7 @@ module ApplicationHelper
   # javascript
   #
   def asset_host_meta_tag
-    "<meta name='asset_host' content='#{CONFIG[:asset_host]}'/>"
+    "<meta name='asset_host' content='#{ActionController::Base.asset_host}'/>"
   end
 
   # Generate a meta tag for the current user id 
