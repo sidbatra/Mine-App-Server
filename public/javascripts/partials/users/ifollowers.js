@@ -44,6 +44,9 @@ Denwen.Partials.Users.IFollowers = Backbone.View.extend({
       Denwen.JST['users/ifollowers']({
         users   : this.users,
         leader  : this.user}));
+
+    if(helpers.isCurrentUser(this.user.get('id')))
+      new Denwen.Partials.Facebook.Invite();
   }
 
 });
