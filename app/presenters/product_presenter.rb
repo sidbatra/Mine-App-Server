@@ -19,6 +19,18 @@ class ProductPresenter < BasePresenter
 
   # Anchor tag for deleting the product
   #
+  def edit_link
+    if h.current_user.id == product.user_id
+      h.link_to "Edit",
+                edit_product_path(
+                  product.user.handle,
+                  product.handle,
+                  :src => 'product')
+    end
+  end
+
+  # Anchor tag for deleting the product
+  #
   def destroy_link
     if h.current_user.id == product.user_id
       h.link_to "Delete this item",
