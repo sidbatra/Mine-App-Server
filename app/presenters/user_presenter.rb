@@ -24,8 +24,8 @@ class UserPresenter < BasePresenter
 
   # Generic bought text with
   #
-  def bought_text
-    full_name + ' bought ' + possessive_pronoun
+  def bought_text(is_gift)
+    full_name + (is_gift ? ' received ' : ' bought ') + possessive_pronoun
   end
 
   # Large display picture on the profile

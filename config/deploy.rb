@@ -9,8 +9,6 @@ set :deploy_via,    :remote_cache
 set :deploy_to,     "/vol/#{application}"
 set :use_sudo,      false
 
-set :db_dump,       "private/denwen_production_1305869864.sql"
-
 default_run_options[:pty]   = true
 ssh_options[:forward_agent] = true
 
@@ -23,13 +21,9 @@ task :staging do
                         :no_release => true
   role :search,       "ec2-107-20-229-8.compute-1.amazonaws.com", 
                         :no_release => true
-  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com",
-                        :no_release => true
   set :total_workers, 1
   set :environment,   "staging"
   set :branch,        "master"
-  set :apnd_file,     "apns-dev.pem"
-  set :apnd_host,     "gateway.sandbox.push.apple.com"
 end
 
 
@@ -40,13 +34,9 @@ task :production do
                         :no_release => true
   role :search,       "ec2-75-101-204-136.compute-1.amazonaws.com",
                         :no_release => true
-  role :cache,        "ec2-107-20-229-8.compute-1.amazonaws.com",
-                        :no_release => true
   set :total_workers, 3
   set :environment,   "production"
   set :branch,        "master"
-  set :apnd_file,     "apple_push_notification_production.pem"
-  set :apnd_host,     "gateway.push.apple.com"
 end
 
 
@@ -72,7 +62,7 @@ namespace :deploy do
     if environment == "staging"
       #system "cap #{environment}  db:config" 
       #system "cap #{environment}  db:populate" 
-      run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
+      #run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
       #system "cap #{environment}  db:migrate"
     else
       system "cap #{environment}  db:migrate"
@@ -82,13 +72,10 @@ namespace :deploy do
     system "cap #{environment}  apache:config"
     system "cap #{environment}  apache:start"
     #system "cap #{environment}  search:start"
-    system "cap #{environment}  cache:start"
 
     system "cap #{environment}  workers:start"
 
-    #system "cap #{environment}  misc:apnd"
     system "cap #{environment}  misc:whenever"
-
   end
 
    
@@ -105,8 +92,6 @@ namespace :deploy do
     end
 
     system "cap #{environment}  db:migrate"
-
-    system "cap #{environment}  cache:clear"
 
     system "cap #{environment}  passenger:restart"
     system "cap #{environment}  workers:restart"
@@ -133,9 +118,6 @@ namespace :db do
   task :populate, :roles => :db do
     run "cd #{current_path} && RAILS_ENV=#{environment} rake db:create"
     run "cd #{current_path} && RAILS_ENV=#{environment} rake db:schema:load"
-    run "cd #{current_path} && "\
-        "RAILS_ENV=#{environment} "\
-        "rake load_db_from_dump[#{db_dump},#{deploy_name}]"
   end
 
   desc 'Run a migration'
@@ -195,11 +177,6 @@ end
 
 
 namespace :cache do
-  
-  desc 'Start the memcached daemon on the cache server'
-  task :start, :roles => :cache do
-    run "memcached -d -m 450 -t 6 && sleep 3"
-  end
 
   desc 'Clear the cache'
   task :clear do
@@ -253,27 +230,8 @@ namespace :assets do
   task :remote do
 
     system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake rename_resources_for_deployment[#{current_revision}]" 
+            "rake upload_resources_to_assethost" 
 
-    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake asset:packager:build_all"
-    
-    system "gzip public/javascripts/application_packaged.js"
-    system "mv public/javascripts/application_packaged.js.gz public/javascripts/application_packaged.js"
-    system "gzip public/stylesheets/application_packaged.css"
-    system "mv public/stylesheets/application_packaged.css.gz public/stylesheets/application_packaged.css"
-    system "gzip public/javascripts/home_packaged.js"
-    system "mv public/javascripts/home_packaged.js.gz public/javascripts/home_packaged.js"
-    system "gzip public/stylesheets/home_packaged.css"
-    system "mv public/stylesheets/home_packaged.css.gz public/stylesheets/home_packaged.css"
-
-    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake upload_resources_to_assethost[#{current_revision}]" 
-
-    system "cd #{Dir.pwd} && "\
-            "RAILS_ENV=#{environment} rake asset:packager:delete_all"
-
-    system "git checkout ."
   end
 
 end
@@ -296,14 +254,6 @@ end
 
 namespace :misc do
   
-  desc 'Turn on apnd for sending push notifications'
-  task :apnd, :roles => :worker do
-    run "sudo apnd "\
-        "--apple-cert #{current_path}/config/#{apnd_file} "\
-        "--daemon-timer 2 --daemon-bind localhost "\
-        "--apple-host #{apnd_host} && sleep 3"
-  end
-
   task :whenever, :roles => [:web,:worker] do
     run "cd #{current_path} && RAILS_ENV=#{environment} whenever -w"
   end
