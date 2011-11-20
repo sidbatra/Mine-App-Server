@@ -66,6 +66,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.owns = true;
 
     this.ownBox.display();
+    $(this.ownEl).addClass('held');
 
     analytics.ownInitiated(
                 this.source,
@@ -76,6 +77,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // Callback from ownBox when an own is created
   //
   ownCreated: function() {
+    $(this.ownEl).removeClass('held');
     $(this.ownEl).removeClass('hover_shadow_light');
     $(this.ownEl).addClass('pushed');
 
@@ -90,6 +92,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // Callback from ownBox when an own is cancelled
   //
   ownCancelled: function() {
+    $(this.ownEl).removeClass('held');
     this.owns = false;
 
     analytics.ownCancelled(
