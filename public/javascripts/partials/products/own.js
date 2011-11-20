@@ -14,8 +14,9 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   initialize: function() {
     var self        = this;
 
-    this.productID  = this.options.product_id;
-    this.posting    = false;
+    this.productID    = this.options.product_id;
+    this.posting      = false;
+    this.autocomplete = null;
 
     this.render();
 
@@ -42,6 +43,11 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   //
   display: function() {
     this.boxEl.show();
+    this.storeEl.focus();
+
+    if(this.autocomplete == null)
+      this.autocomplete = new Denwen.Partials.Stores.Autocomplete({
+                                el:this.storeEl});
   },
 
   // Hide the own box
