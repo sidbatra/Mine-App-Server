@@ -22,12 +22,12 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
 
     this.boxEl                = $('#own_box_' + this.productID);
     this.priceEl              = $('#product_price_' + this.productID);
+    this.priceBoxEl           = $('#product_price_box_' + this.productID);
     this.priceDollarEl        = $('#creation_dollar_' + this.productID);
     this.storeEl              = $('#product_store_name_' + this.productID);
+    this.storeBoxEl           = $('#product_store_box_' + this.productID);
     this.isGiftEl             = $('#product_is_gift_' + this.productID);
-    //this.isGiftBoxEl          = $('#is_gift_box');
-    this.isStoreUnknownEl     = $('#product_is_store_unknown_' + this.productID);
-    //this.isStoreUnknownBoxEl  = $('#is_store_unknown_box');
+    this.isStoreUnknownEl     = $('#product_is_store_unknown_'+ this.productID);
 
     this.isGiftEl.change(function(){self.isGiftChanged();});
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
@@ -134,18 +134,12 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
 
     if(this.isGifted()) {
       this.priceEl.val('');
-      //$(this.priceEl).addClass('creation_input_inactive');
+      this.priceBoxEl.addClass('inactive');
       this.priceEl.attr('disabled','disabled');
-      //$(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
-      //$(this.priceEl).removeClass('box_shadow');
-      //$(this.priceDollarEl).addClass('creation_dollar_inactive');
     }
     else {
-      //$(this.priceEl).removeClass('creation_input_inactive');
+      this.priceBoxEl.removeClass('inactive');
       $(this.priceEl).removeAttr('disabled');
-      //$(this.isGiftBoxEl).removeClass('creation_checkbox_right_active');
-      //$(this.priceEl).addClass('box_shadow');
-      //$(this.priceDollarEl).removeClass('creation_dollar_inactive');
     }
   },
 
@@ -160,16 +154,12 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   isStoreUnknownChanged: function() {
    if(this.isStoreUnknown()) {
       $(this.storeEl).val('');
-      //$(this.storeEl).removeClass('box_shadow');
-      //$(this.storeEl).addClass('creation_input_inactive');
+      this.storeBoxEl.addClass('inactive');
       this.storeEl.attr('disabled','disabled');
-      //$(this.isStoreUnknownBoxEl).addClass('creation_checkbox_right_active');
     }
     else {
-      //$(this.storeEl).addClass('box_shadow');
-      //$(this.storeEl).removeClass('creation_input_inactive');
+      this.storeBoxEl.removeClass('inactive');
       this.storeEl.removeAttr('disabled');
-      //$(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right_active');
     }
   }
 
