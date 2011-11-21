@@ -248,6 +248,7 @@ h1 {
 	margin: 12px 0 15px;
 	font-size: 14px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
 	background: #525252 url('/images/alert-overlay.png') repeat-x; 
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	border-bottom: 1px solid rgba(0,0,0,0.25);
