@@ -39,4 +39,11 @@ module ApplicationHelper
     "<div id='blocker'></div>"
   end
 
+  # Link to the contact email
+  #
+  def email_link
+    "<a href='mailto:#{EMAILS[:contact]}'>" +
+      EMAILS[:contact].split(' ').last[1..-2]
+  end
+
 end
