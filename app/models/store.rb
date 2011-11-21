@@ -150,7 +150,7 @@ class Store < ActiveRecord::Base
   # Full url of the original image
   #
   def image_url
-    FileSystem.url(image_path)
+    FileSystem.url(image_path ? image_path : "")
   end
 
   # Save store image to filesystem and create smaller copies
