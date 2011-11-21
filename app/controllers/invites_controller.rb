@@ -8,7 +8,7 @@ class InvitesController < ApplicationController
   def index
     fb_user   = FbGraph::User.new(
                               'me', 
-                              :access_token => self.current_user.access_token)          
+                              :access_token => self.current_user.access_token)
     @friends  = fb_user.friends.sort{|x,y| x.name <=> y.name}
   rescue => ex
     handle_exception(ex)
