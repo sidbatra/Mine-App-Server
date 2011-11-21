@@ -79,7 +79,8 @@ class UserMailer < ActionMailer::Base
     @product      = action.product
     @action_name  = action.name
 
-    @action       = "#{@user.first_name} #{@user.last_name} #{action_map[@action_name]} your #{@product.title}!"
+    @action       = "#{@user.first_name} #{@user.last_name} " + 
+                    "#{action_map[@action_name]} your #{@product.title}!"
 
     recipients    @owner.email
     from          EMAILS[:contact]
