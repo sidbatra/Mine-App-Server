@@ -16,6 +16,7 @@ common: &common
   :edge_servers_count: 7
   :success: success
   :error: error
+  :name: OnCloset
   :keys:
     :user_category_count: user_%d_category_%d_count
     :user_price: user_%d_products_price
@@ -71,39 +72,39 @@ common: &common
 
 development: &development
   <<: *common
-  :host: sbat.felvy.com
+  :host: sbat.oncloset.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
   :dump_bucket: denwen-hasit-dumps
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: 
   :emails:
-    :noreply: Hasit <noreply@felvy.com>
-    :contact: Felvy <contact@felvy.com>
+    :noreply: OnCloset <noreply@oncloset.com>
+    :contact: OnCloset <contact@oncloset.com>
 
 staging: &staging
   <<: *common
-  :host: staging.felvy.com
+  :host: staging.oncloset.com
   :s3_bucket: denwen-hasit-filesystem
   :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-staging
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://s3.amazonaws.com/denwen-hasit-staging
   :emails:
-    :noreply: Teams <noreply@felvy.com>
-    :contact: Felvy <contact@felvy.com>
+    :noreply: OnCloset <noreply@oncloset.com>
+    :contact: OnCloset <contact@oncloset.com>
 
 production: &production
   <<: *common
-  :host: felvy.com
+  :host: oncloset.com
   :s3_bucket: denwen-hasit-filesystem
   :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-production
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
   :emails:
-    :noreply: Felvy <noreply@felvy.com>
-    :contact: Felvy <contact@felvy.com>
+    :noreply: OnCloset <noreply@oncloset.com>
+    :contact: OnCloset <contact@oncloset.com>
 
 
 test: &test

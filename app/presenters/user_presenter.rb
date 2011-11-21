@@ -184,9 +184,9 @@ class UserPresenter < BasePresenter
   # the app. 
   #
   def usage_description
-    user.first_name + " is using Felvy to share what " +
-    (user.is_male? ? "he" : "she") +
-    " buys and owns. Its fun, and free!"
+    user.first_name + " is using #{CONFIG[:name]} to share " +
+    (user.is_male? ? "his" : "her") +
+    " online closet. It's fun, and free!"
   end
 
   # Unique identifier to be used a source

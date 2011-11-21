@@ -80,7 +80,7 @@ class Product < ActiveRecord::Base
   def self.top_for_store(store_id)
     Cache.fetch(KEYS[:store_top_products] % store_id) do
       Product.for_store(store_id).
-              created(10.days.ago..Time.now).
+              created(20.days.ago..Time.now).
               by_actions.
               with_user.
               limit(10)
@@ -101,9 +101,9 @@ class Product < ActiveRecord::Base
       :message      => self.endorsement,
       :picture      => self.thumbnail_url,
       :link         => product_url,
-      :description  => "#{self.user.first_name} is using Felvy to share what "\
-                        "#{self.user.gender == "male" ? "he" : "she"} buys "\
-                        "and owns. It's fun, and free!",
+      :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
+                        (user.is_male? ? "his" : "her") +
+                        " online closet. It's fun, and free!",
       :name         => self.title)
 
       self.shared

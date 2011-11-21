@@ -36,8 +36,8 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   //
   showInviteDialog: function() {
     FB.ui({method: 'apprequests',
-      message: 'Come join me on Felvy! An online closet for everything you own.',
-      title: 'Invite Your Facebook Friends to Felvy'
+      message: "Come check out my online closet!",
+      title: 'Compare closets with friends'
     }, this.requestCallback);
 
     analytics.inviteSelected();

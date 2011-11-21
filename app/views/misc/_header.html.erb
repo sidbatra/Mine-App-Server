@@ -2,8 +2,8 @@
 <div id='header' class='slim_shadow_dark'>
   <div id='navbar'>
 
-    <div id='logo' alt='Felvy'>
-      <%=link_to image_tag('oncloset_logo_white.png', :alt => "Felvy"),
+    <div id='logo' alt='<%=CONFIG[:name]%>'>
+      <%=link_to image_tag('oncloset_logo_white.png', :alt => CONFIG[:name]),
                  logged_in? ? 
                     user_path(self.current_user.handle,:src => "top") : 
                     home_path(

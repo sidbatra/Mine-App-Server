@@ -17,7 +17,7 @@ module ApplicationHelper
   # javascript
   #
   def asset_host_meta_tag
-    "<meta name='asset_host' content='#{CONFIG[:asset_host]}'/>"
+    "<meta name='asset_host' content='#{ActionController::Base.asset_host}'/>"
   end
 
   # Generate a meta tag for the current user id 
@@ -37,6 +37,13 @@ module ApplicationHelper
   #
   def blocker
     "<div id='blocker'></div>"
+  end
+
+  # Link to the contact email
+  #
+  def email_link
+    "<a href='mailto:#{EMAILS[:contact]}'>" +
+      EMAILS[:contact].split(' ').last[1..-2]
   end
 
 end
