@@ -18,6 +18,7 @@
 		<p class="step_example">
       <%=placeholders[:query_eg]%>
     </p>
+    <%=blocker%>
 	</div> 
   <!-- query step -->
 	
@@ -34,7 +35,9 @@
 
     <%=f.text_field :title,
                 :class    => "creation_input"%>
+  	<%=blocker%>
   </div> 
+
   <!-- title step -->
 
 
@@ -52,6 +55,7 @@
 
     <%=f.text_field :store_name,
                 :class    => "creation_input"%>
+    <%=blocker%>
   </div> 
   <!-- store step -->  
 
@@ -74,6 +78,7 @@
 
     <%=f.text_field :price,
                 :class    => "creation_input creation_price"%>
+    <%=blocker%>
   </div> 
   <!-- price step -->
 

@@ -104,6 +104,7 @@ h1 {
 
 .step {
 	margin-bottom: 8px;
+	clear: both;
 }
 
 .go_button {
@@ -113,6 +114,7 @@ h1 {
 .step_example {
 	font-size: 12px;
 	color: #c6c6c6;
+	clear: both;
 }
 
 .creation_input {
@@ -129,6 +131,7 @@ h1 {
 	vertical-align: top;
 	background: #fbfbfb url('/images/slim_shadow_light.png') repeat-x;
 	margin-top: 5px; 
+	float: left;
 }
 
 .creation_search_chooser {
