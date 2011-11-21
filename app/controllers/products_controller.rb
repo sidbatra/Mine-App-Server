@@ -44,7 +44,6 @@ class ProductsController < ApplicationController
     handle_exception(ex)
   ensure
     respond_to do |format|
-      format.json 
       format.html do
         redirect_to  @error ? 
                       new_product_path(
@@ -56,6 +55,7 @@ class ProductsController < ApplicationController
                         :src => 'product_create')
 
       end
+      format.json 
     end
   end
 
@@ -193,13 +193,13 @@ class ProductsController < ApplicationController
     handle_exception(ex)
   ensure
     respond_to do |format|
-      format.json 
       format.html do 
         redirect_to product_path(
                     self.current_user.handle,
                     @product.handle,
                     :src => 'product_updated')
       end
+      format.json 
     end
   end
 
