@@ -1076,6 +1076,7 @@ h1 {
 }
 
 #user_byline {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
 	width: 288px;
 	height: 24px;
 	font-size: 14px;
@@ -1187,6 +1188,7 @@ h1 {
 	background: url('/images/closet_product_bg.png');
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
+	position: relative;
 }
 
 #products .product .left {
@@ -1204,6 +1206,17 @@ h1 {
 	max-height: 130px;
 	max-width: 130px;
 	vertical-align: middle;
+	position: relative;
+}
+
+#products .product .left .view { /* on hold */
+	width: 130px;
+	height: 26px;
+	background: url('/images/product_view.png');
+	position: absolute;
+	bottom: 10px;
+	left: 11px;
+	z-index: 500;
 }
 
 #products .product .right {
