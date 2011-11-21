@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     @follower     = follower
     @user         = user
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " is now following you on #{CONFIG[:name]}!"
+                    " is now following you!"
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -46,7 +46,7 @@ class UserMailer < ActionMailer::Base
   #
   def star_user(user)
     @user         = user
-    @action       = "You are now the star user on #{CONFIG[:name]}"
+    @action       = "You are now a star user!"
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -59,7 +59,7 @@ class UserMailer < ActionMailer::Base
   def top_shopper(user,store)
     @user         = user
     @store        = store
-    @action       = "You are now the top shopper at #{@store.name}" 
+    @action       = "You are now a top shopper at #{@store.name}" 
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -80,8 +80,7 @@ class UserMailer < ActionMailer::Base
     @action_name  = action.name
 
     @action       = "#{@user.first_name} #{@user.last_name} 
-                    #{action_map[@action_name]} your #{@product.title} 
-                    on #{CONFIG[:name]}!"
+                    #{action_map[@action_name]} your #{@product.title}!"
 
     recipients    @owner.email
     from          EMAILS[:contact]
