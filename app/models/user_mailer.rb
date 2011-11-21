@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     @follower     = follower
     @user         = user
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " is now following you on Felvy!"
+                    " is now following you on #{CONFIG[:name]}!"
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -46,7 +46,7 @@ class UserMailer < ActionMailer::Base
   #
   def star_user(user)
     @user         = user
-    @action       = "You are now the star user on Felvy"
+    @action       = "You are now the star user on #{CONFIG[:name]}"
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -81,7 +81,7 @@ class UserMailer < ActionMailer::Base
 
     @action       = "#{@user.first_name} #{@user.last_name} 
                     #{action_map[@action_name]} your #{@product.title} 
-                    on Felvy!"
+                    on #{CONFIG[:name]}!"
 
     recipients    @owner.email
     from          EMAILS[:contact]
