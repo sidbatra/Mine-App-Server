@@ -184,7 +184,7 @@ class UserPresenter < BasePresenter
   # the app. 
   #
   def usage_description
-    user.first_name + " is using OnCloset to share " +
+    user.first_name + " is using #{CONFIG[:name]} to share " +
     (user.is_male? ? "his" : "her") +
     " online closet. It's fun, and free!"
   end
