@@ -10,7 +10,9 @@
               :type         => 'link',
               :description  => @user_presenter.usage_description,
               :url          => @user_presenter.closet_url('fb'),
-              :image        => ''}%>
+              :image        => @user.products_count > 0 ? 
+                                @user.products.last.thumbnail_url : 
+                                ''}%>
 <%end%>
 
 
