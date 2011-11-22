@@ -28,9 +28,9 @@ end
 
 
 task :production do
-  role :web,          "ec2-107-20-7-220.compute-1.amazonaws.com","ec2-107-20-63-54.compute-1.amazonaws.com","ec2-50-19-159-178.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-22-134-141.compute-1.amazonaws.com","ec2-107-20-29-82.compute-1.amazonaws.com"
-  role :db,           "ec2-107-20-7-220.compute-1.amazonaws.com",
+  role :web,          "ec2-107-20-21-44.compute-1.amazonaws.com","ec2-107-20-21-44.compute-1.amazonaws.com","ec2-75-101-232-97.compute-1.amazonaws.com","ec2-107-20-26-21.compute-1.amazonaws.com","ec2-50-19-159-178.compute-1.amazonaws.com","ec2-50-17-73-21.compute-1.amazonaws.com","ec2-107-22-132-8.compute-1.amazonaws.com","ec2-107-20-3-237.compute-1.amazonaws.com","ec2-107-20-7-220.compute-1.amazonaws.com","ec2-50-16-135-42.compute-1.amazonaws.com"
+  role :worker,       "ec2-107-22-134-141.compute-1.amazonaws.com","ec2-107-20-29-82.compute-1.amazonaws.com","ec2-107-22-18-211.compute-1.amazonaws.com","ec2-50-16-13-143.compute-1.amazonaws.com","ec2-184-73-34-249.compute-1.amazonaws.com"
+  role :db,           "ec2-107-22-18-211.compute-1.amazonaws.comec2-107-20-7-220.compute-1.amazonaws.com",
                         :no_release => true
   role :search,       "ec2-107-20-7-220.compute-1.amazonaws.com",
                         :no_release => true
