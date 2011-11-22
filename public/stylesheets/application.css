@@ -817,6 +817,7 @@ h1 {
 
 .nav_add_list {
 	position: absolute;
+	top: 38px;
 	left: 0px;
 	width: 100px;
 }
