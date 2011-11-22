@@ -20,7 +20,7 @@ class ProductPresenter < BasePresenter
   # Anchor tag for deleting the product
   #
   def edit_link
-    if h.current_user.id == product.user_id
+    if h.logged_in? && h.current_user.id == product.user_id
       h.link_to "Edit",
                 edit_product_path(
                   product.user.handle,
@@ -33,7 +33,7 @@ class ProductPresenter < BasePresenter
   # Anchor tag for deleting the product
   #
   def destroy_link
-    if h.current_user.id == product.user_id
+    if h.logged_in? && h.current_user.id == product.user_id
       h.link_to "Delete",
                 {:action => 'destroy',:id => product.id},
                 :method => :delete,
