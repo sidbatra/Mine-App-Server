@@ -23,9 +23,9 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :users,
                 :action     => :create
 
-  map.invites   '/invites',
-                :controller => :invites,
-                :action     => :index
+  #map.invites   '/invites',
+  #              :controller => :invites,
+  #              :action     => :index
 
   # Deprecate in next version
   map.product_d 'products/:id/:name',
