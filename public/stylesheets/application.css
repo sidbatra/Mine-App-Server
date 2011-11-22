@@ -980,7 +980,6 @@ h1 {
 #profile_right .cat_nav ul li { 
 	float: left; 
 	width: 110px;
-	cursor: pointer;
 }
 
 #profile_right .cat_nav .cat_num { 
