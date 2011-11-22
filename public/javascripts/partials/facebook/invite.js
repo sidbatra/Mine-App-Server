@@ -28,7 +28,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
       analytics.inviteRejected();
     }
     else {
-      analytics.inviteCompleted();
+      analytics.inviteCompleted(response['to'].length);
     }
   },
 

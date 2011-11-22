@@ -161,8 +161,8 @@ Denwen.Analytics = Backbone.Model.extend({
   
   // User opens invite dialog and completes it
   //
-  inviteCompleted: function() {
-    mpq.track("Invite Completed");
+  inviteCompleted: function(count) {
+    mpq.track("Invite Completed", {'count':count});
   },
 
   // User searches a product
