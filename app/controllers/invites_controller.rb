@@ -3,7 +3,7 @@
 class InvitesController < ApplicationController
   before_filter :login_required, :only => [:index]
 
-  # Fetch the user's facebook friends 
+  # Fetch the list of facebook friends a user can invite. 
   #
   def index
     fb_user   = FbGraph::User.new(
