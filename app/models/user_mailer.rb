@@ -46,7 +46,7 @@ class UserMailer < ActionMailer::Base
   #
   def star_user(user)
     @user         = user
-    @action       = "You are now a star user!"
+    @action       = "Your closet is now featured as a Top Closet!"
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -59,7 +59,7 @@ class UserMailer < ActionMailer::Base
   def top_shopper(user,store)
     @user         = user
     @store        = store
-    @action       = "You are now a top shopper at #{@store.name}" 
+    @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -72,7 +72,7 @@ class UserMailer < ActionMailer::Base
   def new_action(action)
     action_map    = {'like' => 'likes',
                      'own'  => 'also owns',
-                     'want' => 'wants'}
+                     'want' => 'just added'}
 
     @owner        = action.product.user 
     @user         = action.user 
@@ -80,7 +80,13 @@ class UserMailer < ActionMailer::Base
     @action_name  = action.name
 
     @action       = "#{@user.first_name} #{@user.last_name} " + 
-                    "#{action_map[@action_name]} your #{@product.title}!"
+    								"#{action_map[@action_name]} your #{@product.title}"
+    
+    if @action_name == 'want'
+    	@action			+= " to #{@user.is_male? ? 'his' : 'her'} wishlist!"
+    else
+    	@action			+= "!"
+    end
 
     recipients    @owner.email
     from          EMAILS[:contact]
