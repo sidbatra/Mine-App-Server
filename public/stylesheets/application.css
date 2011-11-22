@@ -1059,6 +1059,7 @@ h1 {
 	height: 32px;
 	position: relative;
 	overflow-x: visible;
+	white-space: nowrap;
 }
 
 .store_username {
