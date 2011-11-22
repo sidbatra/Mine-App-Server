@@ -123,6 +123,22 @@ class Store < ActiveRecord::Base
     Cache.delete(KEYS[:store_price] % store.id)
   end
 
+  # Change all products to gift
+  #
+  def change_products_to_gift
+    self.products.each do |product|
+      product.make_gift
+    end
+  end
+
+  # Change the store to unknown for all products 
+  #
+  def change_products_store_to_unknown
+    self.products.each do |product|
+      product.make_store_unknown
+    end
+  end
+
   # Relative path on the filesystem for the processed image thumbnail
   #
   def thumbnail_path

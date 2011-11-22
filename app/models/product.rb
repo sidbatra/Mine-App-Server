@@ -109,6 +109,22 @@ class Product < ActiveRecord::Base
       self.shared
   end
 
+  # Mark the product as gift
+  #
+  def make_gift
+    self.is_gift  = true
+    self.price    = 0
+    self.store_id = nil
+    save!
+  end
+
+  # Mark the store as unknown
+  #
+  def make_store_unknown
+    self.store_id = nil
+    save!
+  end
+
   # Fetch the next product uploaded by the user
   # who owns the product
   #

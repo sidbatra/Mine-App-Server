@@ -19,6 +19,7 @@ class StoreObserver < ActiveRecord::Observer
   #
   def after_destroy(store)
     Cache.delete(KEYS[:store_all])
+    Cache.delete(KEYS[:store_top])
   end
 
 
