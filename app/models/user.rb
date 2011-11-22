@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     Cache.fetch(KEYS[:star_users]) do
         all(
           :joins      => :products,
-          :conditions => {:products => {:created_at => 20.days.ago..Time.now}},
+          :conditions => {:products => {:created_at => 2.days.ago..Time.now}},
           :group      => "users.id", 
           :order      => "count(users.id) DESC, users.id",
           :limit      => 20)
