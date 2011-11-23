@@ -722,7 +722,7 @@ h1 {
 	position: absolute;
 	top: 171px;
 	z-index: 50;
-	background: white url('/images/prevnext_cccccc_791a10.png');
+	background: white url('/images/prevnext_cccccc_791a10.png') 0 -48px;
 }
 
 .next {
@@ -730,7 +730,7 @@ h1 {
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 	border-right: 1px solid #dddddd;
-	background: white url('/images/prevnext_cccccc_791a10.png') 36px 0;
+	background: white url('/images/prevnext_cccccc_791a10.png') 36px -48px;
 }
 
 .previous {
@@ -740,6 +740,7 @@ h1 {
 	border-left: 1px solid #dddddd;
 }
 
+/*
 .previous:hover {
 	background: white url('/images/prevnext_cccccc_791a10.png') 0 -48px;
 }
@@ -747,6 +748,7 @@ h1 {
 .next:hover {
 		background: white url('/images/prevnext_cccccc_791a10.png') 36px -48px;
 }
+*/
 
 /* ------------------------------ User Log-in, Profile Nav */
 
