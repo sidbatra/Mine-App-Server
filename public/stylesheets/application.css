@@ -685,7 +685,7 @@ h1 {
 .navigation {
 	height: 30px;
 	line-height: 30px;
-	color: #666666;
+	color: #791a10;
 	font-size: 12px;
 	position:absolute;
 	top: -50px;
@@ -1138,12 +1138,11 @@ h1 {
 	text-align: center;
 	font-size: 12px;
 	line-height: 32px;
-	color: #666666;
+	color: #791a10;
 }
 
 .suggestion:hover {
 	background: #f8f8f8;
-	color: #791a10;
 }
 
 /* ------------------------------ Closet */
@@ -1257,7 +1256,7 @@ h1 {
 	bottom: 10px;
 	font-size: 12px;
 	line-height: 24px;
-	color: #cccccc;
+	color: #999999;
 }
 
 #products .product .right .feedback .buttons {
