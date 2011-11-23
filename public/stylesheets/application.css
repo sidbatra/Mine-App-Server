@@ -343,12 +343,12 @@ h1 {
 	border: 1px solid transparent;
 	background: white;
 	display: block;
+	color: #791a10;
 }
 
 #product_section .buttons .button:hover {
 	border: 1px solid #cccccc;
 	cursor: pointer;
-	color: #791a10;
 }
 
 #product_section .buttons .button:active {
@@ -697,7 +697,6 @@ h1 {
 }
 
 .navigation:hover {
-	color: #791a10;
 	background: #f8f8f8;
 		
 }
@@ -1250,13 +1249,17 @@ h1 {
 	font-size: 13px;
 }
 
+#products .product .right .details .title:hover { 
+	color: #791a10;
+}
+
 #products .product .right .feedback {
 	position: absolute;
 	left: 0px;
 	bottom: 10px;
 	font-size: 12px;
 	line-height: 24px;
-	color: #999999;
+	color: #791a10;
 }
 
 #products .product .right .feedback .buttons {
@@ -1284,7 +1287,7 @@ h1 {
 }
 
 #products .product .right .feedback .buttons .comments_none {
-	background: url('/images/comment_bubbles.png') 0px 0px no-repeat; 
+	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
 }
 
 #products .product .right .feedback .buttons .comments_some {
@@ -1306,6 +1309,7 @@ h1 {
 #products .product .right .feedback .buttons .pushed {
 	border: 1px solid #dddddd;
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	color: #cccccc;
 }
 
 #products .product .right .feedback .buttons .held,
@@ -1316,7 +1320,7 @@ h1 {
 }
 
 #products .product .right .feedback .buttons .pushed:hover {
-	color: #cccccc;
+	color: #999999;
 }
 
 #products .product .right .feedback .buttons span.in {
@@ -1595,6 +1599,7 @@ h1 {
 	border: 1px solid #cccccc;
 	margin-right: -1px;
 	position: relative;
+	color: #791a10;
 }
 
 #extras .feedback .buttons .button:hover {
@@ -1612,6 +1617,7 @@ h1 {
 #extras .feedback .buttons .pushed {
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 	line-height: 30px;
+	color: #999999;
 }
 
 #extras .feedback .buttons .pushed:hover {
