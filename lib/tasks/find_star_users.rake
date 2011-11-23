@@ -8,7 +8,12 @@ task :find_star_users do |e,args|
   users = User.stars
 
   users.each do |user|
-    UserMailer.decide_star_user(user)    
-  end
+    begin
+      UserMailer.decide_star_user(user)    
+      sleep 2
+    rescue => ex
+      LoggedException.add(__FILE__,__method__,ex)    
+    end#begin
+  end#user
 
 end
