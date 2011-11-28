@@ -247,7 +247,7 @@ namespace :permissions do
   desc 'Setup proper permissions for new files'
   task :setup, :roles => [:web,:worker] do
     run "sudo touch #{current_path}/log/#{environment}.log"
-    run "sudo chown -R manager:svn #{current_path}/log/#{environment}.log"
+    run "sudo chown -R manager:manager #{current_path}/log/#{environment}.log"
   end
 
 end
