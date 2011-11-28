@@ -400,6 +400,16 @@ body.home6 {
 	margin: 0px auto 0px;
 }
 
+/*-------------------- Home 6 (Gojee1) --------------------*/
+
+body.home7 {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 16px;
+	background: black url('/images/home7.jpg') no-repeat;
+	background-position: center top;
+	overflow: hidden;
+}
 
 /*-------------------- Awesome Button --------------------*/
 
