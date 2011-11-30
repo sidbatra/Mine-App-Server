@@ -89,7 +89,7 @@ staging: &staging
   :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-staging
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
-  :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
+  :asset_host: http://de04moj4hdgby.cloudfront.net 
   :emails:
     :noreply: OnCloset <noreply@oncloset.com>
     :contact: OnCloset <contact@oncloset.com>
