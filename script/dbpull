@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
+if [ $# -lt 1 ] ; then
+  echo "bash script/dbpull <target database>"
+  exit
+else
+  target=$1
+fi
+
 mysqldump -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p hasit_production > production.sql
 
-mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p hasit_development < production.sql
+mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p $target < production.sql
 
 rm production.sql
