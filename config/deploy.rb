@@ -15,15 +15,15 @@ ssh_options[:forward_agent] = true
 
 
 task :staging do 
-  role :web,          "ec2-107-20-229-8.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-20-229-8.compute-1.amazonaws.com"
-  role :db,           "ec2-107-20-229-8.compute-1.amazonaws.com", 
+  role :web,          "ec2-174-129-148-194.compute-1.amazonaws.com",
+  role :worker,       "ec2-50-16-157-51.compute-1.amazonaws.com"
+  role :db,           "ec2-174-129-148-194.compute-1.amazonaws.com",
                         :no_release => true
-  role :search,       "ec2-107-20-229-8.compute-1.amazonaws.com", 
+  role :search,       "ec2-174-129-148-194.compute-1.amazonaws.com",
                         :no_release => true
-  set :total_workers, 1
+  set :total_workers, 3
   set :environment,   "staging"
-  set :branch,        "master"
+  set :branch,        "v1.5"
 end
 
 
@@ -86,10 +86,6 @@ namespace :deploy do
     system "cap #{environment}  deploy:update"
 
     system "cap #{environment}  gems:install"
-
-    if environment == "staging"
-      #system "cap #{environment}  db:config" 
-    end
 
     system "cap #{environment}  db:migrate"
 
