@@ -28,8 +28,8 @@ end
 
 
 task :production do
-  role :web,          "ec2-50-17-6-62.compute-1.amazonaws.com","ec2-184-73-53-110.compute-1.amazonaws.com","ec2-50-16-97-66.compute-1.amazonaws.com","ec2-107-20-29-221.compute-1.amazonaws.com","ec2-184-73-129-130.compute-1.amazonaws.com","ec2-107-22-145-226.compute-1.amazonaws.com","ec2-107-20-41-89.compute-1.amazonaws.com","ec2-174-129-120-103.compute-1.amazonaws.com","ec2-107-22-136-48.compute-1.amazonaws.com","ec2-184-73-52-215.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-22-156-23.compute-1.amazonaws.com","ec2-107-22-2-208.compute-1.amazonaws.com","ec2-174-129-137-137.compute-1.amazonaws.com","ec2-50-16-64-29.compute-1.amazonaws.com","ec2-75-101-200-29.compute-1.amazonaws.com","ec2-75-101-252-15.compute-1.amazonaws.com","ec2-174-129-129-54.compute-1.amazonaws.com","ec2-107-20-15-233.compute-1.amazonaws.com","ec2-107-22-122-204.compute-1.amazonaws.com","ec2-50-16-16-51.compute-1.amazonaws.com"
+  role :web,          "ec2-107-22-94-58.compute-1.amazonaws.com","ec2-184-72-160-132.compute-1.amazonaws.com","ec2-184-72-160-132.compute-1.amazonaws.com"
+  role :worker,       "ec2-107-22-135-187.compute-1.amazonaws.com","ec2-107-20-31-136.compute-1.amazonaws.com","ec2-50-16-130-178.compute-1.amazonaws.com"
   role :db,           "ec2-107-22-18-211.compute-1.amazonaws.com",
                         :no_release => true
   role :search,       "ec2-107-20-7-220.compute-1.amazonaws.com",
