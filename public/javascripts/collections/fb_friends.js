@@ -18,7 +18,7 @@ Denwen.Collections.FBFriends = Backbone.Collection.extend({
   url: function() {
     var url = 
             "https://graph.facebook.com/me/friends?access_token=" + 
-            this.accessToken + ;  
+            this.accessToken;  
 
     console.log(url);
 
