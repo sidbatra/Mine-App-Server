@@ -15,7 +15,7 @@ ssh_options[:forward_agent] = true
 
 
 task :staging do 
-  role :web,          "ec2-174-129-148-194.compute-1.amazonaws.com",
+  role :web,          "ec2-174-129-148-194.compute-1.amazonaws.com"
   role :worker,       "ec2-50-16-157-51.compute-1.amazonaws.com"
   role :db,           "ec2-174-129-148-194.compute-1.amazonaws.com",
                         :no_release => true
