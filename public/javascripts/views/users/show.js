@@ -74,6 +74,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.source,
       this.user.get('id'));
 
+    if(this.source.slice(0,6) == 'email_')
+      analytics.emailClicked(this.source.slice(6,this.source.length));
+
     if(this.isCurrentUser) {
 
       if(this.source == 'product_create')
