@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :products, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :searches, :dependent => :destroy
+  has_many :contacts, :dependent => :destroy
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings
