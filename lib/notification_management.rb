@@ -40,12 +40,14 @@ module DW
       end
       
       # Make a user follow all his Facebook friends in our user base 
-      # and email the friends about his signup.
+      # and email the friends about his signup. Also store all their
+      # friends in the contacts table
       #
       def self.new_user(user_id)
         user        = User.find(user_id)
         fb_user     = FbGraph::User.new('me', 
                                         :access_token => user.access_token) 
+
         fb_friends  = fb_user.friends.map(&:identifier)
         followers   = User.find_all_by_fb_user_id(fb_friends)
 
@@ -53,6 +55,11 @@ module DW
           Following.add(user_id,follower.id,false)
           Following.add(follower.id,user_id)
         end
+
+        fields  = [:user_id, :third_party_id] 
+        data    = ([user_id]*fb_friends.length).zip(fb_friends)
+
+        Contact.import fields,data
       end
 
       # Email the owner about any action taken on his product
