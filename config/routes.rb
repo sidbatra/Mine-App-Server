@@ -79,6 +79,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searches,
                 :only => [:create]
 
+  map.resources :invites,
+                :only => [:create]
+
   map.resource  :share,
                 :controller => 'share',
                 :only       => [:create]

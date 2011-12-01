@@ -1,4 +1,4 @@
-class Contact < ActiveRecord::Base
+class Invite < ActiveRecord::Base
   
   #-----------------------------------------------------------------------------
   # Associations
@@ -9,12 +9,12 @@ class Contact < ActiveRecord::Base
   # Class Methods 
   #-----------------------------------------------------------------------------
 
-  # Add a new contact 
+  # Add a new invite 
   #
-  def self.add(user_id,third_party_id)
-    find_or_create_by_user_id_and_third_party_id(
-      :user_id          => user_id,
-      :third_party_id   => third_party_id)
+  def self.add(user_id,recipient_id)
+    find_or_create_by_user_id_and_recipient_id(
+      :user_id        => user_id,
+      :recipient_id   => recipient_id)
   end
 
 end
