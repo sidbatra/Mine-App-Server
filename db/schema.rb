@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201211131) do
+ActiveRecord::Schema.define(:version => 20111201221406) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(:version => 20111201211131) do
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
+
+  create_table "invites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
+  add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id", :unique => true
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
