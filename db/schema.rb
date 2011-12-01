@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119221943) do
+ActiveRecord::Schema.define(:version => 20111118003816) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
   add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "third_party_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
+
   create_table "followings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "follower_id"
@@ -73,22 +83,21 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
     t.text     "endorsement"
     t.text     "source_url"
     t.text     "orig_image_url"
-    t.boolean  "is_hosted",         :default => false
+    t.boolean  "is_hosted",      :default => false
     t.string   "query"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_shared",         :default => false
+    t.boolean  "is_shared",      :default => false
     t.string   "orig_thumb_url"
-    t.integer  "comments_count",    :default => 0
+    t.integer  "comments_count", :default => 0
     t.integer  "store_id"
     t.float    "price"
     t.integer  "category_id"
     t.string   "image_path"
-    t.boolean  "is_processed",      :default => false
-    t.boolean  "is_gift",           :default => false
-    t.integer  "actions_count",     :default => 0
-    t.integer  "source_product_id"
+    t.boolean  "is_processed",   :default => false
+    t.boolean  "is_gift",        :default => false
+    t.integer  "actions_count",  :default => 0
   end
 
   add_index "products", ["actions_count"], :name => "index_products_on_actions_count"
