@@ -165,6 +165,14 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Invite Completed", {'count':count});
   },
 
+  // User visits the site from an email
+  //
+  emailClicked: function(source) {
+    mpq.track("Email Clicked", {
+      'Source'  : source,
+      'User ID' : helpers.currentUserID()});
+  },
+
   // User searches a product
   //
   productSearched: function(query,mode) {

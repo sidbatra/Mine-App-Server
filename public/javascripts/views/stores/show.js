@@ -48,6 +48,9 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     analytics.storeProfileView(
       this.source,
       this.store.get('id'));
+
+    if(this.source.slice(0,6) == 'email_')
+      analytics.emailClicked(this.source.slice(6,this.source.length));
   },
   
   // Use Backbone router for reacting to changes in URL
