@@ -37,16 +37,17 @@ class User < ActiveRecord::Base
   # Add a new user or find an existing one based on email
   #
   def self.add(attributes,source)
-    user = find_or_initialize_by_email(
-            :email        => attributes.email,
-            :first_name   => attributes.first_name,
-            :last_name    => attributes.last_name,
-            :gender       => attributes.gender,
-            :birthday     => attributes.birthday,
+    user = find_or_initialize_by_fb_user_id(
             :fb_user_id   => attributes.identifier,
             :source       => source)
 
+    user.email        = attributes.email
+    user.gender       = attributes.gender
+    user.birthday     = attributes.birthday
+    user.first_name   = attributes.first_name
+    user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
+      
     user.save!
     user
   end
