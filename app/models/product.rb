@@ -201,6 +201,8 @@ class Product < ActiveRecord::Base
             "-T 30 -t 3 "\
             "--output-document '#{file_path}'")
 
+    sleep 0.1 # 100 ms sleep to test if it helps with missing files
+
     if File.exists? file_path
 
       # Store original image
