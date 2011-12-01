@@ -2,6 +2,7 @@
 
 # Automatically deploy releases when a change is detected
 #
+# RAILS_PATH=/vol/staging RAILS_ENV=staging lib/daemons/deploy_ctl start
 
 $running = true
 Signal.trap("TERM") do 
@@ -19,5 +20,5 @@ while($running) do
     LoggedException.add(__FILE__,__method__,ex)
   end
 
-  sleep 10
+  sleep 60
 end
