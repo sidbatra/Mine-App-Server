@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119221943) do
+ActiveRecord::Schema.define(:version => 20111201003818) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
 
   add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "third_party_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
 
   create_table "followings", :force => true do |t|
     t.integer  "user_id"
@@ -148,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
 
