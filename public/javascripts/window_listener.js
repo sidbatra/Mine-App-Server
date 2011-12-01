@@ -37,7 +37,7 @@ Denwen.WindowListener = Backbone.View.extend({
   isWindowEmpty: function() {
     var state = false;
 
-    if($(window).height() >= $(document).height())
+    if($(window).height() >= $(document).height() - 150)
       state = true;
 
     return state;
