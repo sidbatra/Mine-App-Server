@@ -13,7 +13,7 @@ while($running) do
 
   begin 
     if `cd #{ENV['RAILS_PATH']} && git pull`.chomp != "Already up-to-date."
-      `cd #{ENV['RAILS_PATH']} && cap #{ENV['RAILS_ENV']} deploy:release`
+      `cd #{ENV['RAILS_PATH']} && ruby script/deploy release #{ENV['RAILS_ENV']}`
       puts "Released at - #{Time.now}"
     end
   rescue => ex

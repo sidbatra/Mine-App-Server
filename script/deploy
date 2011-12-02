@@ -7,7 +7,13 @@ require "AWS"
 
 # Test validitiy of arguments
 if ARGV.length < 2
-  puts "ruby script/deploy <install/release> <environment>"
+  puts "ruby script/deploy <type> <environment>"
+  exit
+elsif !['install','release'].include? ARGV[0]
+  puts "deployment types are - install,release"
+  exit
+elsif !['staging','production'].include? ARGV[1]
+  puts "deployment environments are - staging,production"
   exit
 end
 
@@ -76,6 +82,6 @@ ENV['web_servers'] = web_servers.map(&:dnsName).join(",")
 ENV['proc_servers'] = proc_servers.map(&:dnsName).join(",")
 
 
-system("cap #{environment} misc:ls")
+system("cap #{environment} deploy:#{task}")
 
 
