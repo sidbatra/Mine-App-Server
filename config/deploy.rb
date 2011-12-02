@@ -56,11 +56,12 @@ namespace :deploy do
 
     system "cap #{environment}  permissions:setup"
 
+    system "cap #{environment}  db:config" 
+
     system "cap #{environment}  gems:install"
 
 
     if environment == "staging"
-      #system "cap #{environment}  db:config" 
       #system "cap #{environment}  db:populate" 
       #run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
       #system "cap #{environment}  db:migrate"
@@ -85,6 +86,8 @@ namespace :deploy do
 
     system "cap #{environment}  deploy:update"
 
+    system "cap #{environment}  db:config" 
+
     system "cap #{environment}  gems:install"
 
     system "cap #{environment}  db:migrate"
@@ -103,11 +106,10 @@ end
 namespace :db do 
 
   desc 'Setup database.yml'
-  task :config, :role => :db do
-    run "cd #{current_path} && "\
-        "sed -i -e "\
-        "'s/denwen_#{environment}/denwen_#{environment}_#{deploy_name}/g' "\
-        "config/database.yml"
+  task :config, :role => [:web,:worker] do
+    run "ln -s "\
+        "#{current_path}/config/database/#{environment}.yml "\
+        "#{current_path}/config/database.yml"
   end
 
   desc 'Create database, load scehma and populate database from sql dump'
