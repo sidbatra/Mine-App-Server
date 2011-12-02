@@ -34,7 +34,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
           });
   },
 
-  // Render the entire contacts collection
+  // Render the contacts collection
   //
   render: function(contacts) {
     $(this.contactsEl).html(
