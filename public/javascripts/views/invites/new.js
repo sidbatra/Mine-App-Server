@@ -6,7 +6,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //
   initialize: function() {
 
-    new Denwen.Partials.Users.Contacts({el:$('#contacts_container')});
+    new Denwen.Partials.Users.Contacts({el:$('#container')});
                         
     // -----
     this.setAnalytics();
