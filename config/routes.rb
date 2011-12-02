@@ -3,6 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller  => :home,
             :action     => :show
 
+  map.welcome   '/welcome',
+                :controller => :welcome,
+                :action     => :show
+
   map.home      '/home/:id',
                 :controller => :home,
                 :action     => :show
