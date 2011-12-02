@@ -29,7 +29,8 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     }
     else {
       var invites = response['to'];
-      new Denwen.Partials.Invites.Invite({fb_user_ids : invites});
+
+      new Denwen.Partials.Invites.BatchInvite({fb_user_ids : invites});
       analytics.inviteCompleted(invites.length);
     }
   },
