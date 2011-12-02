@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202021233) do
+ActiveRecord::Schema.define(:version => 20111202022914) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20111202021233) do
     t.string   "name"
   end
 
+  add_index "contacts", ["name"], :name => "index_contacts_on_name"
   add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
   add_index "contacts", ["user_id", "third_party_id"], :name => "index_contacts_on_user_id_and_third_party_id", :unique => true
 
