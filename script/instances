@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+# Load libraries
+require "rubygems"
+require "yaml"
+require "AWS"
+
+if ARGV.length < 4
+  puts "ruby script/instances <environment> <task> <type> <count>"
+  exit
+elsif !['staging','production'].include? ARGV[0]
+  puts "instance environments are - staging,production"
+  exit
+elsif !['create','destroy'].include? ARGV[1]
+  puts "instance tasks are - create,release"
+  exit
+elsif !['web','proc'].include? ARGV[2]
+  puts "instance types are - web,proc"
+  exit
+end
+
+# Move command line arguments into named variables
+environment = ARGV[0]
+task        = ARGV[1]
+type        = ARGV[2]
+count       = ARGV[3]
+
+puts environment
+puts task
+puts type
+puts count
+
+# Load rails config
+config = YAML.load_file("config/config.yml")[environment]
+
+# Create object for interfacing with AWS EC2 api
+ec2 = AWS::EC2::Base.new(
+        :access_key_id      => config[:aws_access_id],
+        :secret_access_key  => config[:aws_secret_key])
+
+# Create object for interfacing with AWS ELB api
+elb = AWS::ELB::Base.new(
+        :access_key_id      => config[:aws_access_id],
+        :secret_access_key  => config[:aws_secret_key])
+
+
+case task
+when "create"
+
+  response = ec2.run_instances(
+    :image_id           => 'ami-11cf0478',
+    :min_count          => count,
+    :instance_type      => 't1.micro',
+    :availability_zone  => 'us-east-1b',
+    :security_group     => 'sg-7c5fca15')
+
+  instances = response.instancesSet.item
+  ec2.create_tags(
+    :resource_id  => instances.map(&:instanceId),
+    :tag          => [
+                      {'Name' => "Closet #{environment.capitalize} "\
+                                  "#{type.capitalize}"},
+                      {'Installed' => '0'}])
+
+when "destroy"
+else
+end
