@@ -62,8 +62,8 @@ NameVirtualHost *:80
   ErrorLog  /vol/felvy/current/log/error.log
   CustomLog /vol/felvy/current/log/access.log combined
   SSLEngine on
-  SSLCertificateFile /vol/felvy/current/private/ssl/felvy.com.crt
-  SSLCertificateKeyFile /vol/felvy/current/private/ssl/felvy.com.key
+  SSLCertificateFile /vol/felvy/current/private/ssl/oncloset.com.crt
+  SSLCertificateKeyFile /vol/felvy/current/private/ssl/oncloset.com.key
   SSLCertificateChainFile /vol/felvy/current/private/ssl/gd_bundle.crt
 </VirtualHost>
 
