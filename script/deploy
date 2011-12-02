@@ -87,9 +87,8 @@ system("cap #{environment} deploy:#{task}")
 
 # Update tags on servers after a fresh install
 #
-if install_requirement == '0'
-  resource_ids = (web_servers.map(&:instanceId) + 
-                    proc_servers.map(&:instanceId)).flatten
+if install_requirement == '0' && instances.length > 0
+  resource_ids = instances.map(&:instanceId)  
   ec2.create_tags(
     :resource_id  => resource_ids,
     :tag          => [{'Installed' => '1'}])
