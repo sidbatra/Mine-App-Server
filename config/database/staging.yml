@@ -1,0 +1,11 @@
+staging:
+  adapter: mysql
+  encoding: utf8
+  reconnect: true
+  database: hasit_staging
+  pool: 5
+  username: root
+  password: s8mtime7rooT
+  host: denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
+  port: 3306
+
