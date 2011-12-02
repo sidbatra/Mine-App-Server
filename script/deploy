@@ -24,8 +24,13 @@ environment = ARGV[1]
 # Load rails config
 config = YAML.load_file("config/config.yml")[environment]
 
-# Create object for interfacing with AWS api
+# Create object for interfacing with AWS EC2 api
 ec2 = AWS::EC2::Base.new(
+        :access_key_id      => config[:aws_access_id],
+        :secret_access_key  => config[:aws_secret_key])
+
+# Create object for interfacing with AWS ELB api
+elb = AWS::ELB::Base.new(
         :access_key_id      => config[:aws_access_id],
         :secret_access_key  => config[:aws_secret_key])
 
@@ -78,10 +83,36 @@ proc_servers = instances.select do |instance|
                 true
               end
 
-ENV['web_servers'] = web_servers.map(&:dnsName).join(",")
+ENV['web_servers']  = web_servers.map(&:dnsName).join(",")
 ENV['proc_servers'] = proc_servers.map(&:dnsName).join(",")
 
 
 system("cap #{environment} deploy:#{task}")
 
+
+# Extra operations for freshly installed instanves
+#
+if install_requirement == '0' && instances.length > 0
+
+  # Update tags to mark them as installed
+  resource_ids = instances.map(&:instanceId)  
+  ec2.create_tags(
+    :resource_id  => resource_ids,
+    :tag          => [{'Installed' => '1'}])
+
+  # Add new web servers to their environment's load balancer
+  if web_servers.length > 0
+    balancers = elb.describe_load_balancers.DescribeLoadBalancersResult.
+                  LoadBalancerDescriptions.member
+    balancer  = balancers.select{|b| b.LoadBalancerName.
+                            scan(environment).length > 0}.first
+
+    if balancer
+      elb.register_instances_with_load_balancer(
+        :instances          => web_servers.map(&:instanceId),
+        :load_balancer_name => balancer.LoadBalancerName)
+    end # if balancer found
+
+  end # if web servers
+end # if freshly installed
 
