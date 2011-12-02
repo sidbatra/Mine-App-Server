@@ -23,7 +23,7 @@ end
 environment = ARGV[0]
 task        = ARGV[1]
 type        = ARGV[2]
-count       = ARGV[3]
+count       = ARGV[3].to_i
 
 puts environment
 puts task
@@ -63,5 +63,27 @@ when "create"
                       {'Installed' => '0'}])
 
 when "destroy"
-else
+    case type
+    when "web"
+      balancers = elb.describe_load_balancers.DescribeLoadBalancersResult.
+                    LoadBalancerDescriptions.member
+      balancer  = balancers.select{|b| b.LoadBalancerName.
+                              scan(environment).length > 0}.first
+
+      raise IOError, "No elb found for environment" if balancer.nil?
+
+      instances = balancer.Instances.member.map(&:InstanceId)
+
+      raise IOError, "Too few instances on elb" if count > instances.length
+
+      selected_instances = instances[0..count-1]
+
+      elb.deregister_instances_from_load_balancer(
+        :instances          => selected_instances,
+        :load_balancer_name => balancer.LoadBalancerName)
+
+      ec2.terminate_instances(:instance_id => selected_instances)
+
+    when "proc"
+    end
 end
