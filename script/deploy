@@ -85,3 +85,13 @@ ENV['proc_servers'] = proc_servers.map(&:dnsName).join(",")
 system("cap #{environment} deploy:#{task}")
 
 
+# Update tags on servers after a fresh install
+#
+if install_requirement == '0'
+  resource_ids = (web_servers.map(&:instanceId) + 
+                    proc_servers.map(&:instanceId)).flatten
+  ec2.create_tags(
+    :resource_id  => resource_ids,
+    :tag          => [{'Installed' => '1'}])
+end
+
