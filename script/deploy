@@ -111,7 +111,7 @@ if install_requirement == '0' && instances.length > 0
       elb.register_instances_with_load_balancer(
         :instances          => web_servers.map(&:instanceId),
         :load_balancer_name => balancer.LoadBalancerName)
-    end
+    end # if balancer found
 
   end # if web servers
 end # if freshly installed
