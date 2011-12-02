@@ -12,7 +12,6 @@ Denwen.Partials.Users.IFollowers = Backbone.View.extend({
   initialize: function() {
     var self            = this;
     this.user           = this.options.user;
-    this.fbInviteBox    = new Denwen.Partials.Facebook.Invite();
 
     if(this.options.delay)
       window.setTimeout(function(){self.get();},5000);
@@ -45,9 +44,6 @@ Denwen.Partials.Users.IFollowers = Backbone.View.extend({
       Denwen.JST['users/ifollowers']({
         users   : this.users,
         leader  : this.user}));
-
-    if(helpers.isCurrentUser(this.user.get('id')))
-      this.fbInviteBox.hookUp();
   }
 
 });
