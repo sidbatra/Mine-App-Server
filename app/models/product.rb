@@ -195,13 +195,13 @@ class Product < ActiveRecord::Base
                          SecureRandom.hex(10) + 
                          Time.now.to_i.to_s).chomp + ".jpg"
 
-    file_path        = Tempfile.new(image_path).path
+    tempfile         = Tempfile.new(image_path)
+    file_path        = tempfile.path
 
     system("wget -U '#{CONFIG[:user_agent]}' '#{orig_image_url}' "\
             "-T 30 -t 3 "\
             "--output-document '#{file_path}'")
 
-    sleep 0.1 # 100 ms sleep to test if it helps with missing files
 
     if File.exists? file_path
 

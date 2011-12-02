@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 git pull
+RAILS_ENV=development rake db:migrate
 touch tmp/restart.txt
 RAILS_ENV=development lib/daemons/processor_ctl stop
 RAILS_ENV=development lib/daemons/processor_ctl start

@@ -63,7 +63,6 @@ namespace :deploy do
 
     if environment == "staging"
       #system "cap #{environment}  db:populate" 
-      #run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
       #system "cap #{environment}  db:migrate"
     else
       system "cap #{environment}  db:migrate"
@@ -114,14 +113,14 @@ namespace :db do
 
   desc 'Create database, load scehma and populate database from sql dump'
   task :populate, :roles => :db do
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake db:create"
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake db:schema:load"
+    run "cd #{current_path} && rake db:create RAILS_ENV=#{environment}"
+    run "cd #{current_path} && rake db:schema:load RAILS_ENV=#{environment}"
   end
 
   desc 'Run a migration'
   task :migrate do
     system "cd #{Dir.pwd} && "\
-        "RAILS_ENV=#{environment} rake db:migrate" 
+        "rake db:migrate RAILS_ENV=#{environment}" 
   end
 
 end
@@ -130,13 +129,13 @@ namespace :search do
   
   desc 'Start the sphinx machines'
   task :start, :roles => :search do
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake ts:index"
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake ts:start"
+    run "cd #{current_path} && rake ts:index RAILS_ENV=#{environment}"
+    run "cd #{current_path} && rake ts:start RAILS_ENV=#{environment}"
   end
 
   desc 'Reindex the sphinx machines'
   task :index, :roles => :search do
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake ts:index"
+    run "cd #{current_path} && rake ts:index RAILS_ENV=#{environment}"
   end
 end
 
@@ -178,8 +177,8 @@ namespace :cache do
 
   desc 'Clear the cache'
   task :clear do
-    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake clear_cache"
+    system "cd #{Dir.pwd} && "\
+            "rake clear_cache RAILS_ENV=#{environment}"
   end
 
 end
@@ -212,7 +211,7 @@ namespace :gems do
 
   desc 'Install required gems on the web and worker servers'
   task :install, :roles => [:web,:worker] do
-    run "cd #{current_path} && RAILS_ENV=#{environment} sudo rake gems:install" 
+    run "cd #{current_path} && sudo rake gems:install RAILS_ENV=#{environment}" 
   end
 
 end
