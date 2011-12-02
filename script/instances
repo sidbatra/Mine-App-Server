@@ -50,6 +50,7 @@ when "create"
   response = ec2.run_instances(
     :image_id           => 'ami-11cf0478',
     :min_count          => count,
+    :max_count          => count,
     :instance_type      => 't1.micro',
     :availability_zone  => 'us-east-1b',
     :security_group     => 'sg-7c5fca15')
@@ -85,5 +86,42 @@ when "destroy"
       ec2.terminate_instances(:instance_id => selected_instances)
 
     when "proc"
+      instances = ec2.describe_instances.reservationSet.item.map do |group| 
+                    group.instancesSet.item
+                  end.flatten
+      instances = instances.select do |instance|
+                      next unless instance.instanceState.code == "16"
+
+                      tags = instance.tagSet.item
+                      next unless tags.length > 0
+
+                      install_tag = tags.select{|t| t.key == "Installed"}
+                      next unless install_tag.length > 0
+
+                      install_status = install_tag.first.value
+                      next unless install_status == '1'
+                      
+                      true
+                  end
+
+      proc_server_regex = Regexp.new("Closet #{environment.capitalize} "\
+                                      "Proc")
+      proc_servers = instances.select do |instance| 
+                      tags = instance.tagSet.item
+                      next unless tags.length > 0
+
+                      name_tag = tags.select{|t| t.key == "Name"}
+                      next unless name_tag.length > 0
+
+                      name = name_tag.first.value
+                      next unless name.scan(proc_server_regex).length > 0
+
+                      true
+                    end
+      
+      raise IOError, "Too few proc instances" if count > proc_servers.length
+
+      ec2.terminate_instances(
+        :instance_id => proc_servers.map(&:instanceId)[0..count-1])
     end
 end
