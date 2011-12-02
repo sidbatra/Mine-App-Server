@@ -23,9 +23,6 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :users,
                 :action     => :create
 
-  #map.invites   '/invites',
-  #              :controller => :invites,
-  #              :action     => :index
 
   # Deprecate in next version
   map.product_d 'products/:id/:name',
@@ -80,7 +77,10 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create]
 
   map.resources :invites,
-                :only => [:create]
+                :only => [:create,:new]
+
+  map.resources :contacts,
+                :only => [:index]
 
   map.resource  :share,
                 :controller => 'share',

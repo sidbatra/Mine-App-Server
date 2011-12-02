@@ -1,7 +1,13 @@
-# Handle requests for user invites
+# Handle requests for the invites resource
 #
 class InvitesController < ApplicationController
   before_filter :login_required
+
+  # Display UI for creating one or multiple invites
+  #
+  def new
+
+  end
 
   # Create an invite 
   #
