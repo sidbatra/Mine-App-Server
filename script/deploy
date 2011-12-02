@@ -42,6 +42,8 @@ instances = ec2.describe_instances.reservationSet.item.map do |group|
             end.flatten
 
 instances = instances.select do |instance|
+                next unless instance.instanceState.code == "16"
+
                 tags = instance.tagSet.item
                 next unless tags.length > 0
 
