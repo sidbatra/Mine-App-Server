@@ -29,7 +29,10 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     this.contacts = new Denwen.Collections.Contacts();
 
     this.contacts.fetch({
-          success:  function(collection){self.render(self.contacts.toArray());},
+          success:  function(collection){
+                      self.render(self.contacts.toArray());
+                      $(self.queryEl).show();
+                      },
           error:    function(collection,errors){}
           });
   },

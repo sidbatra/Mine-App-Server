@@ -17,30 +17,13 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   hookUp: function() {
     var self = this;
 
-    $('body').find('#fb_invite_link').click(
-              function(){self.showMultiInviteDialog();});
-
     $('body').find('#fb_single_invite_link').click(
-              function(e){self.showSingleInviteDialog(e);});
+              function(e){self.showInviteDialog(e);});
   },
 
-  // Handle callback from the multi invite dialog
+  // Handle callback from the invite dialog
   //
-  requestCallbackFromMultiInvite: function(response) {
-    if(!response) {
-      analytics.inviteRejected();
-    }
-    else {
-      var invites = response['to'];
-
-      new Denwen.Partials.Invites.BatchInvite({fb_user_ids : invites});
-      analytics.inviteCompleted(invites.length);
-    }
-  },
-
-  // Handle callback from the single invite dialog
-  //
-  requestCallbackFromSingleInvite: function(response) {
+  requestCallback: function(response) {
     if(!response) {
       analytics.inviteRejected();
       this.trigger('inviteCancelled');
@@ -54,27 +37,16 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     }
   },
 
-  // Show facebook multi invite dialog 
+  // Show facebook invite dialog 
   //
-  showMultiInviteDialog: function() {
-    FB.ui({method: 'apprequests',
-      message: "Come check out my online closet!",
-      title: 'Compare closets with friends'
-    }, this.requestCallbackFromMultiInvite.bind(this));
-
-    analytics.inviteSelected();
-  },
-
-  // Show facebook single invite dialog 
-  //
-  showSingleInviteDialog: function(e) {
+  showInviteDialog: function(e) {
     var fb_id = $(e.target).attr('fb_id');
 
     FB.ui({method: 'apprequests',
       message: "Come check out my online closet!",
       title: 'Compare closets with friends',
       to: fb_id
-    }, this.requestCallbackFromSingleInvite.bind(this));
+    }, this.requestCallback.bind(this));
 
     analytics.inviteSelected();
   }
