@@ -15,12 +15,10 @@ ssh_options[:forward_agent] = true
 
 
 task :staging do 
-  role :web,          "ec2-174-129-148-194.compute-1.amazonaws.com"
-  role :worker,       "ec2-50-16-157-51.compute-1.amazonaws.com"
-  role :db,           "ec2-174-129-148-194.compute-1.amazonaws.com",
-                        :no_release => true
-  role :search,       "ec2-174-129-148-194.compute-1.amazonaws.com",
-                        :no_release => true
+  role(:web)          { ENV['web_servers'].split(',') }
+  role(:worker)       { ENV['proc_servers'].split(',') }
+  #role :search,       "ec2-174-129-148-194.compute-1.amazonaws.com",
+  #                      :no_release => true
   set :total_workers, 3
   set :environment,   "staging"
   set :branch,        "v1.5"
@@ -28,18 +26,14 @@ end
 
 
 task :production do
-  role :web,          "ec2-107-22-94-58.compute-1.amazonaws.com","ec2-75-101-208-180.compute-1.amazonaws.com","ec2-107-20-10-44.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-22-135-187.compute-1.amazonaws.com","ec2-107-20-31-136.compute-1.amazonaws.com","ec2-50-16-130-178.compute-1.amazonaws.com"
-  role :db,           "ec2-107-22-94-58.compute-1.amazonaws.com",
-                        :no_release => true
-  role :search,       "ec2-107-22-94-58.compute-1.amazonaws.com",
-                        :no_release => true
+  role(:web)          { ENV['web_servers'].split(',') }
+  role(:worker)       { ENV['proc_servers'].split(',') }
+  #role :search,       "ec2-107-22-94-58.compute-1.amazonaws.com",
+  #                      :no_release => true
   set :total_workers, 3
   set :environment,   "production"
   set :branch,        "master"
 end
-
-
 
 namespace :deploy do
 
@@ -112,7 +106,7 @@ namespace :db do
   end
 
   desc 'Create database, load scehma and populate database from sql dump'
-  task :populate, :roles => :db do
+  task :populate do
     run "cd #{current_path} && rake db:create RAILS_ENV=#{environment}"
     run "cd #{current_path} && rake db:schema:load RAILS_ENV=#{environment}"
   end

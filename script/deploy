@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+
+# Load libraries
+require "rubygems"
+require "yaml"
+require "AWS"
+
+# Test validitiy of arguments
+if ARGV.length < 2
+  puts "ruby script/deploy <install/release> <environment>"
+  exit
+end
+
+# Move command line arguments into named variables
+task        = ARGV[0]
+environment = ARGV[1]
+
+# Load rails config
+config = YAML.load_file("config/config.yml")[environment]
+
+# Create object for interfacing with AWS api
+ec2 = AWS::EC2::Base.new(
+        :access_key_id      => config[:aws_access_id],
+        :secret_access_key  => config[:aws_secret_key])
+
+
+install_requirement = task == "install" ? "0" : "1"
+
+instances = ec2.describe_instances.reservationSet.item.map do |group| 
+              group.instancesSet.item
+            end.flatten
+
+instances = instances.select do |instance|
+                tags = instance.tagSet.item
+                next unless tags.length > 0
+
+                install_tag = tags.select{|t| t.key == "Installed"}
+                next unless install_tag.length > 0
+
+                install_status = install_tag.first.value
+                next unless install_status == install_requirement
+                
+                true
+            end
+
+web_server_regex = Regexp.new("Closet #{environment.capitalize} Web Server")
+web_servers = instances.select do |instance| 
+                tags = instance.tagSet.item
+                next unless tags.length > 0
+
+                name_tag = tags.select{|t| t.key == "Name"}
+                next unless name_tag.length > 0
+
+                name = name_tag.first.value
+                next unless name.scan(web_server_regex).length > 0
+
+                true
+              end
+
+proc_server_regex = Regexp.new("Closet #{environment.capitalize} "\
+                                "Processing Server")
+proc_servers = instances.select do |instance| 
+                tags = instance.tagSet.item
+                next unless tags.length > 0
+
+                name_tag = tags.select{|t| t.key == "Name"}
+                next unless name_tag.length > 0
+
+                name = name_tag.first.value
+                next unless name.scan(proc_server_regex).length > 0
+
+                true
+              end
+
+ENV['web_servers'] = web_servers.map(&:dnsName).join(",")
+ENV['proc_servers'] = proc_servers.map(&:dnsName).join(",")
+
+
+system("cap #{environment} misc:ls")
+
+
