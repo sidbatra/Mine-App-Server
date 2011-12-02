@@ -1,15 +1,19 @@
-// Partial to load and display user's contacts 
+// Partial to load, display and search user's contacts 
 //
 Denwen.Partials.Users.Contacts = Backbone.View.extend({
 
   // Setup event handlers
   //
   events: {
+    "keyup #search_box" : "filter"
   },
 
   // Constructor logic
   //
   initialize: function() {
+    this.contactsEl = '#contacts';
+    this.queryEl    = '#search_box';
+
     this.get();
   },
 
@@ -28,8 +32,23 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   // Render the contacts collection
   //
   render: function() {
-    $(this.el).html(
-      Denwen.JST['users/contacts']({contacts : this.contacts}));
+    $(this.contactsEl).html(
+      Denwen.JST['users/contacts']({contacts : this.contacts.toArray()}));
+  },
+
+  // Filter contacts based on the query
+  //
+  filter: function(e){
+    var query             = $(this.queryEl).val();
+    var regex             = new RegExp(query,'i');
+
+    var filteredContacts  = this.contacts.filter(
+                              function(contact){
+                                return contact.get('name').search(regex) == 0;
+                              });
+    
+    $(this.contactsEl).html(
+      Denwen.JST['users/contacts']({contacts : filteredContacts}));
   }
 
 });
