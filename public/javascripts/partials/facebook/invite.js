@@ -10,20 +10,23 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.hookUp();
   },
 
   // Hooked up the FB dialog on all designated links
   //
   hookUp: function() {
-    var self      = this;
+    var self = this;
+
     $('body').find('#fb_invite_link').click(
-              function(){self.showInviteDialog();});
+              function(){self.showMultiInviteDialog();});
+
+    $('body').find('#fb_single_invite_link').click(
+              function(e){self.showSingleInviteDialog(e);});
   },
 
-  // Handle callback from the invite dialog
+  // Handle callback from the multi invite dialog
   //
-  requestCallback: function(response) {
+  requestCallbackFromMultiInvite: function(response) {
     if(!response) {
       analytics.inviteRejected();
     }
@@ -35,14 +38,45 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     }
   },
 
-  // Show facebook invite dialog 
+  // Handle callback from the single invite dialog
   //
-  showInviteDialog: function() {
+  requestCallbackFromSingleInvite: function(response) {
+    if(!response) {
+      analytics.inviteRejected();
+      this.trigger('inviteCancelled');
+    }
+    else {
+      var invites = response['to'];
+      new Denwen.Partials.Invites.BatchInvite({fb_user_ids : invites});
+
+      analytics.inviteCompleted(1);
+      this.trigger('inviteCompleted',invites[0]);
+    }
+  },
+
+  // Show facebook multi invite dialog 
+  //
+  showMultiInviteDialog: function() {
     FB.ui({method: 'apprequests',
       message: "Come check out my online closet!",
       title: 'Compare closets with friends'
-    }, this.requestCallback);
+    }, this.requestCallbackFromMultiInvite.bind(this));
+
+    analytics.inviteSelected();
+  },
+
+  // Show facebook single invite dialog 
+  //
+  showSingleInviteDialog: function(e) {
+    var fb_id = $(e.target).attr('fb_id');
+
+    FB.ui({method: 'apprequests',
+      message: "Come check out my online closet!",
+      title: 'Compare closets with friends',
+      to: fb_id
+    }, this.requestCallbackFromSingleInvite.bind(this));
 
     analytics.inviteSelected();
   }
+
 });

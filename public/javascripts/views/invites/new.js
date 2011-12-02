@@ -9,13 +9,13 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     new Denwen.Partials.Users.Contacts({el:$('#container')});
                         
     // -----
-    this.setAnalytics();
+    this.loadFacebookPlugs();
   },
 
-  // Fire various tracking events 
+  // Load facebook code via partials
   //
-  setAnalytics: function() {
-
+  loadFacebookPlugs: function() {
+    new Denwen.Partials.Facebook.Base();
   }
-  
+
 });

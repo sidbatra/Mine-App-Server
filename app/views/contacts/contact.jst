@@ -1,4 +1,10 @@
 <div> 
   <img src=<%=contact.imageURL()%> />
   <%=contact.get('name')%>
+  <a  href='javaScript:void(0);' 
+        id='fb_single_invite_link'
+     class='button button_dark invite' 
+     fb_id=<%=contact.get('third_party_id')%>> 
+    Invite 
+  </a> 
 </div>
