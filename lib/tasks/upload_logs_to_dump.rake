@@ -32,4 +32,6 @@ task :upload_logs_to_dump do |e,args|
     end
   end
 
+  puts "Logs farmed for #{CONFIG[:machine_id]} at #{folder} with "\
+        "prefix #{prefix}"
 end
