@@ -206,6 +206,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  # List of facebook friends
+  #
+  def fb_friends
+    fb_user = FbGraph::User.new('me', :access_token => self.access_token)
+    fb_user.friends
+  end
+
   # Override to customize accessible attributes
   #
   def to_json(options = {})
