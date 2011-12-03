@@ -45,10 +45,8 @@ module DW
       #
       def self.new_user(user_id)
         user              = User.find(user_id)
-        fb_user           = FbGraph::User.new('me', 
-                                            :access_token => user.access_token) 
+        fb_friends        = user.fb_friends
 
-        fb_friends        = fb_user.friends
         fb_friends_ids    = fb_friends.map(&:identifier)
         fb_friends_names  = fb_friends.map(&:name)
 
@@ -69,10 +67,8 @@ module DW
       #
       def self.update_user(user_id)
         user              = User.find(user_id)
-        fb_user           = FbGraph::User.new('me', 
-                                            :access_token => user.access_token) 
+        fb_friends        = user.fb_friends
 
-        fb_friends        = fb_user.friends
         fb_friends_ids    = fb_friends.map(&:identifier)
         fb_friends_names  = fb_friends.map(&:name)
 

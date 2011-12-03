@@ -12,19 +12,11 @@ class ContactsController < ApplicationController
                                       :order => :name)
     else
       @contacts         = []
-      fb_user           = FbGraph::User.new('me', 
-                                :access_token => self.current_user.access_token)
+      fb_friends        = self.current_user.fb_friends
 
-      fb_friends        = fb_user.friends
-
-      fb_friends.each do |fb_friend|
-        @contacts << Contact.new({
-                          :user_id        => self.current_user.id,
-                          :third_party_id => fb_friend.identifier,
-                          :name           => fb_friend.name})
-
-        @contacts.sort!{|x,y| x.name <=> y.name}
-      end
+      @contacts         = fb_friends.map{|f| 
+                              Contact.from_fb_friend(self.current_user.id,f)}
+      @contacts.sort!{|x,y| x.name <=> y.name}
     end
   rescue => ex
     handle_exception(ex)
