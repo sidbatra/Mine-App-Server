@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+# Load libraries
+require 'rubygems'
+require 'yaml'
+require 'aws/s3'
+
+environment = ENV['RAILS_ENV'] 
+environment ||= 'production'
+
+folder = ARGV[0]
+folder ||= Time.now.strftime('%m-%d-%Y')
+
+# Load rails config
+config = YAML.load_file("config/config.yml")[environment]
+
+AWS::S3::Base.establish_connection!(
+  :access_key_id      => config[:aws_access_id],
+  :secret_access_key  => config[:aws_secret_key])
+
+objects = AWS::S3::Bucket.objects('denwen-hasit-dumps',:prefix => folder)
+regex = Regexp.new("#{folder}/.*_#{environment}.log")
+
+Dir.mkdir(folder) unless File.directory?(folder)
+
+objects.each do |object|
+  unless object.key.scan(regex).empty?
+    puts object.key
+    File.open(object.key,'w'){|f| f.write object.value}
+  end
+end
+
+system("request-log-analyzer #{folder}/*")
