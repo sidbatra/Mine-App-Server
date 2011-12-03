@@ -5,7 +5,8 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "keyup #search_box" : "filter"
+    "keyup #search_box" : "filter",
+    "click #x_button"   : "reset"
   },
 
   // Constructor logic
@@ -14,6 +15,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     this.contactsEl     = '#contacts';
     this.queryEl        = '#search_box';
     this.multiInviteEl  = '#multi_invite_box';
+    this.cancelSearchEl = '#x_button';
 
     this.fbInviteBox    = new Denwen.Partials.Facebook.Invite();
 
@@ -70,12 +72,18 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
                               });
     
     this.render(filteredContacts);
+
+    if($(this.queryEl).val())
+      $(this.cancelSearchEl).show();
+    else
+      $(this.cancelSearchEl).hide();
   },
 
   // Reset the search box and the contacts list 
   //
   reset :function() {
     $(this.queryEl).val('');
+    $(this.cancelSearchEl).hide();
     this.render(this.contacts.toArray());
   },
 
