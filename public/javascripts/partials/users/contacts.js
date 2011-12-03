@@ -13,6 +13,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   initialize: function() {
     this.contactsEl     = '#contacts';
     this.queryEl        = '#search_box';
+    this.multiInviteEl  = '#multi_invite_box';
 
     this.fbInviteBox    = new Denwen.Partials.Facebook.Invite();
 
@@ -29,12 +30,23 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     this.contacts = new Denwen.Collections.Contacts();
 
     this.contacts.fetch({
-          success:  function(collection){
-                      self.render(self.contacts.toArray());
-                      $(self.queryEl).show();
-                      },
+          success:  function(collection){self.fetched();},
           error:    function(collection,errors){}
           });
+  },
+
+  // Fired when the contacts json has been fetched from
+  // the server
+  //
+  fetched: function(){
+    if(this.contacts.length){
+      this.render(this.contacts.toArray());
+      $(this.queryEl).show();
+    }
+    else {
+      this.fbInviteBox.showMultiInviteDialog();
+      $(this.multiInviteEl).show();
+    }
   },
 
   // Render the contacts collection

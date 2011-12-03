@@ -9,7 +9,7 @@ class InvitesController < ApplicationController
 
   end
 
-  # Create an invite 
+  # Create one or more invites 
   #
   def create
     @invite = nil
