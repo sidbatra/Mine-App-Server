@@ -55,7 +55,6 @@ class UsersController < ApplicationController
       return
     end
 
-    @source       = params[:src] ? params[:src].to_s : "direct"
     @user         = User.find_by_handle(params[:handle])
   end
   

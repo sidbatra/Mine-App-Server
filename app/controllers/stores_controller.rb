@@ -6,7 +6,6 @@ class StoresController < ApplicationController
   # Display a store
   #
   def show
-    @source = params[:src] ? params[:src].to_s : "direct"
     @store  = Store.find_by_handle(params[:handle])
   end
 

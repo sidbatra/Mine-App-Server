@@ -7,8 +7,6 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
-    @source       = params[:src] ? params[:src].to_s : "direct"
-
     @product      = Product.new
 
     @category     = Category.fetch(
@@ -109,8 +107,6 @@ class ProductsController < ApplicationController
     end
 
 
-    @source   = params[:src] ? params[:src].to_s : "direct"
-
     user      = User.find_by_handle(params[:user_handle])
     @product  = Product.with_store.with_user.find_by_user_id_and_handle(
                           user.id,
@@ -132,8 +128,6 @@ class ProductsController < ApplicationController
   # Display form for editing a product
   #
   def edit
-    @source       = params[:src] ? params[:src].to_s : "direct"
-
     user          = User.find_by_handle(params[:user_handle])
 
     raise IOError, "Unauthorized Access" if user.id != self.current_user.id
