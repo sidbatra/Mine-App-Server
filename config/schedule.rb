@@ -20,6 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 
 set :output, "#{Dir.pwd}/log/cron.log"
+set :environment, ENV['RAILS_ENV']
 
 #every 1.day, :at => '10:00am' do
 every 5.minutes do
