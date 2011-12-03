@@ -23,6 +23,12 @@ Denwen.Analytics = Backbone.Model.extend({
   // User signs in
   //
   userLogin: function() {
+    mpq.track("User Logged In Again");
+  },
+
+  // User created
+  //
+  userCreated: function() {
     mpq.track("User Logged In");
   },
 

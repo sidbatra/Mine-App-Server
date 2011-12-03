@@ -1,12 +1,33 @@
-<div id="container">
-  <%=text_field_tag 'search_box', 
-                    nil, 
-                    :placeholder => 'Search Friends', 
-                    :hidden => :true%>
+<div id="pic_bg">
 
-  <div id="contacts">
-  </div>
-</div>
+	<div id="container">
+	
+		<div id="box" class="rounded_5">
+		
+			<a href="" class="continue_top_right_corner"></a>
+		
+			<p class="heading">
+				<span class="title">Show your friends</span><br />
+				Adding items to your closet is fun,<br />
+				showing it to your friends is even better!
+			</p>
+
+		
+		  <%=text_field_tag 'search_box', 
+		                    nil, 
+		                    :placeholder => 'Search for friends by name', 
+		                    :class => 'textfield x-text',
+		                    :style => 'margin-top: 6px;',
+		                    :hidden => :true%>
+		
+		  <div id="contacts">
+		  </div>
+		  
+		</div> <!-- box -->
+		 
+	</div> <!-- container -->
+	
+</div> <!-- pic_bg -->
 
 
 <%content_for :javascript do%>
