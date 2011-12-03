@@ -143,6 +143,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Test is the user was created very recently
+  #
+  def is_fresh
+    (Time.now - self.created_at) < 60
+  end
+
   # URL for the user photo
   #
   def image_url
