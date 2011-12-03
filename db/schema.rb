@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202230820) do
+ActiveRecord::Schema.define(:version => 20111203235048) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20111202230820) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
+  add_index "users", ["has_contacts_mined"], :name => "index_users_on_has_contacts_mined"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
 
 end
