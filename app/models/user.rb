@@ -23,13 +23,17 @@ class User < ActiveRecord::Base
   has_many :ifollowers, :through => :inverse_followings, 
               :source => :user, :conditions => 'is_active = 1'
 
-
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :first_name
   validates_presence_of   :last_name
   validates_presence_of   :email
+
+  #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :mine_contacts
 
   #-----------------------------------------------------------------------------
   # Class methods

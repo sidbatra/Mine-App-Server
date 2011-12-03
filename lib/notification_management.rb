@@ -59,12 +59,27 @@ module DW
           Following.add(follower.id,user_id)
         end
 
-        fields  = [:user_id, :third_party_id, :name] 
-        data    = ([user_id]*fb_friends.length).zip(
-                                                  fb_friends_ids,
-                                                  fb_friends_names)
+        Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)
 
-        Contact.import fields,data
+        user.has_contacts_mined = true
+        user.save!
+      end
+
+      # Store all the user friends in the contacts table 
+      #
+      def self.update_user(user_id)
+        user              = User.find(user_id)
+        fb_user           = FbGraph::User.new('me', 
+                                            :access_token => user.access_token) 
+
+        fb_friends        = fb_user.friends
+        fb_friends_ids    = fb_friends.map(&:identifier)
+        fb_friends_names  = fb_friends.map(&:name)
+
+        Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)
+
+        user.has_contacts_mined = true
+        user.save!
       end
 
       # Email the owner about any action taken on his product

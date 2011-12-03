@@ -87,6 +87,75 @@ h1 {
 	z-index: 5000;
 }
 
+/* ------------------------------ Onboarding */
+
+#bg {
+	width: 100%;
+	position: absolute;
+	top: 38px;
+	bottom: 0px;
+	-webkit-font-smoothing: antialiased;
+	color: white;
+	font-size: 14px;
+	line-height: 150%;
+	background: #e9e9e9 url('/images/home5.jpg') no-repeat;
+	background-position: center -38px;
+	overflow-x: hidden;
+}
+
+#bg #container {
+	width: 480px;
+	height: 475px;
+	padding-top: 67px;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+
+#bg #container #box {
+	width: 420px;
+	background: url('/images/black_65.png');
+	margin: 0 auto;
+	position: relative;
+	padding: 30px;
+}
+
+#bg #container #box .heading {
+	margin-bottom: 8px;
+}
+
+#bg #container #box .heading .title {
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	font-size: 24px;
+	line-height: 150%;
+}
+
+#bg #container #box .continue_wide {
+	width: 340px;
+	height: 38px;
+	margin-top: 5px;
+	background: url('/images/continue_wide.gif') no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+#bg #container #box .continue_wide:hover {
+	background: url('/images/continue_wide.gif') 0 -50px no-repeat;
+}
+
+#bg #container #footer {
+	color: #666666;
+  line-height: 20px;
+	font-size: 12px;
+	color: #999999;
+	width: 480px;
+	text-align: center;
+	margin: 20px auto 0px;
+}
+
 /* ------------------------------ Creation */
 
 .new_product {

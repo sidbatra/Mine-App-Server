@@ -17,6 +17,16 @@ class Contact < ActiveRecord::Base
       :third_party_id   => third_party_id)
   end
 
+  # Batch insert of user's facebook contacts
+  #
+  def self.batch_insert(user_id,fb_friends_ids,fb_friends_names)
+    fields  = [:user_id, :third_party_id, :name] 
+    data    = ([user_id]*fb_friends_ids.length).zip(
+                                              fb_friends_ids,
+                                              fb_friends_names)
+    
+    import fields,data
+  end
 
   #-----------------------------------------------------------------------------
   # Instance methods
