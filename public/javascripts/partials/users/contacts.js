@@ -64,7 +64,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   //
   filter: function(e) {
     var query             = $(this.queryEl).val();
-    var regex             = new RegExp(query,'i');
+    var regex             = new RegExp('(^|.* )' + query,'i');
 
     var filteredContacts  = this.contacts.filter(
                               function(contact){
