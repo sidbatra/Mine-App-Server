@@ -16,7 +16,7 @@ task :upload_logs_to_dump do |e,args|
   prefix = [ENV['RAILS_ENV'],CONFIG[:machine_id],Time.now.to_i].join('_')
   folder = Time.now.strftime('%m-%d-%Y')
 
-  ['access.log','error.log','production.log',
+  ['access.log','error.log','production.log','staging.log',
       'processor.rb.log','cron.log'].each do |file|
 
     path    = File.join(folder,[prefix,file].join('_'))
@@ -32,4 +32,6 @@ task :upload_logs_to_dump do |e,args|
     end
   end
 
+  puts "Logs farmed for #{CONFIG[:machine_id]} at #{folder} with "\
+        "prefix #{prefix}"
 end

@@ -12,7 +12,7 @@ elsif !['staging','production'].include? ARGV[0]
   puts "instance environments are - staging,production"
   exit
 elsif !['create','destroy'].include? ARGV[1]
-  puts "instance tasks are - create,release"
+  puts "instance tasks are - create,destroy"
   exit
 elsif !['web','proc'].include? ARGV[2]
   puts "instance types are - web,proc"
@@ -56,6 +56,9 @@ when "create"
     :security_group     => 'sg-7c5fca15')
 
   instances = response.instancesSet.item
+
+  sleep 3
+
   ec2.create_tags(
     :resource_id  => instances.map(&:instanceId),
     :tag          => [
