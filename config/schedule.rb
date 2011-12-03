@@ -22,5 +22,6 @@
 set :output, "#{Dir.pwd}/log/cron.log"
 
 #every 1.day, :at => '10:00am' do
-#  rake "upload_logs_to_dump"
-#end
+every 5.minutes do
+  rake "upload_logs_to_dump"
+end
