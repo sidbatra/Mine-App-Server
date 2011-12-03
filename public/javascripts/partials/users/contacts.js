@@ -82,7 +82,6 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   // Fired when the user cancels an invite
   //
   inviteCancelled: function() {
-    this.reset();
   } 
 
 });
