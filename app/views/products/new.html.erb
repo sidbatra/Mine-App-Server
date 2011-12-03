@@ -1,29 +1,50 @@
-<!-- item -->
+<div id="pic_bg">
 
-  <%form_for @product,
-        :html => {:class => 'new_product slim_shadow_light'} do |f|%>
+	<div id="container">
 
-    <%=render :partial  => 'input', 
-              :locals   => {
-                :f            => f,
-                :category     => @category,
-                :placeholders => @placeholders}%>
+		<div id="box" class="rounded_5">
+		
+			<p class="heading">
+					<span class="title">Add your first item</span><br />
+					What shoes are you wearing <u>right now?</u>
+			</p>
+		
 
-  <%end%> <!-- form -->
+		<!-- item -->
+		
+		  <%form_for @product,
+		        :html => {:class => 'new_product'} do |f|%>
+		
+		    <%=render :partial  => 'input', 
+		              :locals   => {
+		                :f            => f,
+		                :category     => @category,
+		                :placeholders => @placeholders}%>
+		
+		  <%end%> <!-- form -->
+  
+		</div> <!-- box -->
+
+		<div id="footer">
+			<%=CONFIG[:name]%> © 2011 · <%=email_link%>
+		</div>
+	
+	</div> <!-- container -->
+   
+</div> <!-- pic_bg -->
 
 
-  <%=render 'chooser'%> 
+<%=render 'chooser'%> 
 
+<%content_for :javascript do%>
 
+  <script type="text/javascript">
 
-  <%content_for :javascript do%>
+    new Denwen.Views.Products.New({
+                        el            : $('body'),
+                        categoryJSON  : <%=@category.to_json%>,
+                        source        : '<%=@source%>'});
+  </script>
 
-    <script type="text/javascript">
+<%end%>
 
-      new Denwen.Views.Products.New({
-                          el            : $('body'),
-                          categoryJSON  : <%=@category.to_json%>,
-                          source        : '<%=@source%>'});
-    </script>
-
-  <%end%>
