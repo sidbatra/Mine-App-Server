@@ -280,6 +280,13 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // Page view on the invite page
+  //
+  inviteView: function(source) {
+     mpq.track(
+      'Invite View',{'source' : source});
+  },
+
   // User opens new product page
   //
   productNewView: function(category_id,category_name,source) {
