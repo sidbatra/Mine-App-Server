@@ -111,7 +111,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       filter: function(category) {
         self.products.fetch(category);
 
-        if(category != undefined && category.length) {
+        if(category != undefined && category.length && category != '_=_') {
           analytics.userProfileFiltered(
                       category,
                       self.isCurrentUser,
