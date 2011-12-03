@@ -246,7 +246,7 @@ end
 namespace :misc do
   
   task :whenever, :roles => [:web,:worker] do
-    run "cd #{current_path} && whenever -w RAILS_ENV=#{environment}"
+    run "cd #{current_path} && RAILS_ENV=#{environment} whenever -w"
   end
 
   desc 'Setup the diretory structure of the release directory'
