@@ -101,7 +101,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   inviteCompleted: function(fb_id) {
     var contact = this.contacts.find(
                         function(contact){ 
-                          return contact.get('third_party_id')==fb_id
+                          return contact.get('third_party_id')==fb_id;
                         });
 
     this.contacts.remove(contact);
