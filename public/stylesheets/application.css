@@ -625,6 +625,7 @@ h1 {
 	color: #cccccc;
 	font-size: 12px;
 	color: #791a10;
+	cursor: pointer;
 }
 
 .edit_gray_12 {
@@ -632,12 +633,12 @@ h1 {
 	padding-left: 14px;
 	background: url('/images/pen_cccccc_791a10_12px.png') no-repeat;
 	color: #cccccc;
-	cursor: pointer;
 }
 
 .edit_gray_12:hover {
 	background: url('/images/pen_cccccc_791a10_12px.png') 0 -20px no-repeat;
 	color: #791a10;
+	cursor: pointer;
 }
 
 .edit_red_14 {
@@ -645,23 +646,22 @@ h1 {
 	padding-left: 14px;
 	background: url('/images/pen_791a10_14px.png') no-repeat;
 	color: #791a10;
-	cursor: pointer;
 }
 
 .edit_red_14:hover {
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .edit_gray_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	background: url('/images/pen_cccccc_791a10_999999.png') no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') no-repeat;
 	color: #cccccc;
-	cursor: pointer;
 }
 
 .edit_gray_14:hover {
-	background: url('/images/pen_cccccc_791a10_999999.png') 0 -34px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -34px no-repeat;
 	color: #791a10;
 	cursor: pointer;
 }
@@ -669,16 +669,29 @@ h1 {
 .edit_dark_gray_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	background: url('/images/pen_cccccc_791a10_999999.png') 0 -68px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -68px no-repeat;
 	color: #999999;
-	cursor: pointer;
 }
 
 .edit_dark_gray_14:hover {
-	background: url('/images/pen_cccccc_791a10_999999.png') 0 -34px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -34px no-repeat;
 	color: #791a10;
 	cursor: pointer;
 }
+
+.edit_light_gray_inverse_14 {
+	font-size: 14px;
+	padding-left: 14px;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 0 no-repeat;
+	color: #cccccc;
+}
+
+.edit_light_gray_inverse_14:hover {
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -102px no-repeat;
+	color: white;
+	cursor: pointer;
+}
+
 
 .inline_nudge {
 	margin-left: 3px;
