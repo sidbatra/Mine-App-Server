@@ -46,4 +46,10 @@ module ApplicationHelper
       EMAILS[:contact].split(' ').last[1..-2]
   end
 
+  # Whether the user is undergoing onboarding 
+  #
+  def is_onboarding?
+    @source == 'login'
+  end
+
 end
