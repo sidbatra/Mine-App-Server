@@ -1,4 +1,4 @@
-<div id="pic_bg">
+<div id="pic_bg" class="fixed_bg">
 
 	<div id="container">
 	
@@ -7,23 +7,24 @@
 			<a href="" class="continue_top_right_corner"></a>
 		
 			<p class="heading">
-				<span class="title">Show your friends</span><br />
+				<span class="title">Show your friends!</span><br />
 				Adding items to your closet is fun,<br />
 				showing it to your friends is even better!
 			</p>
 
-		
-		  <%=text_field_tag 'search_box', 
-		                    nil, 
-		                    :placeholder => 'Search for friends by name', 
-		                    :class => 'textfield x-text',
-		                    :style => 'margin-top: 6px;',
-		                    :hidden => :true%>
-
-      <%=link_to  'X',
-                  'javascript:void(0)',
-                  :id => 'x_button',
-                  :hidden => :true%> <!-- X button -->
+			<div class="invite_search_enclosure">
+			  <%=text_field_tag 'search_box', 
+			                    nil, 
+			                    :placeholder => 'Search for friends by name', 
+			                    :class => 'textfield',
+			                    :hidden => :true%>
+	
+	      <%=link_to  '',
+	                  'javascript:void(0)',
+	                  :id => 'x_button',
+	                  :class => 'x-text',
+	                  :hidden => :true%> <!-- X button -->
+      </div>        
 		
 		  <div id="contacts">
 		  </div>

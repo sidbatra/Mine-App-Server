@@ -102,6 +102,10 @@ h1 {
 	background-position: center -38px;
 }
 
+#pic_bg.fixed_bg {
+ 	overflow-x: hidden;
+}
+
 #pic_bg #container {
 	width: 480px;
 	height: 475px;
@@ -155,17 +159,39 @@ h1 {
 	display: block;
 }
 
+#pic_bg #container #box .invite_search_enclosure {
+	width: 326px;
+	height: 32px;
+	margin: 6px auto 0;
+	position: relative;
+}
+
+
 #pic_bg #container #box .textfield {
 	width: 308px;
 	height: 28px;
 	padding: 2px 8px;
 	font-size: 14px;
 	line-height: 32px;
+	vertical-align: top;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	color: #333333;
 	border: 1px solid #999999;
 	background: white url('/images/slim_shadow_light.png') repeat-x;
+}
+
+#pic_bg #container #box .x-text {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background: url('/images/x-text.gif') no-repeat;
+}
+
+#pic_bg #container #box .x-text:hover {
+	background: url('/images/x-text.gif') 0px -30px no-repeat;
 }
 
 #pic_bg #container #box .invite_list {
