@@ -27,14 +27,22 @@
 	                  'javascript:void(0)',
 	                  :id    => 'x_button',
 	                  :class => 'x-text',
-	                  :style => 'display:none'%> <!-- X button -->
+	                  :style => 'display:none'%>
       </div>        
 		
 		  <div id="contacts">
+		  	<div class="loading">
+		  		<img src='/images/spinner_dark_bg.gif' />
+		  	</div>
 		  </div>
 
       <div id='multi_invite_box' style="display:none">
-        <%=render '/users/invite'%> 
+      
+				<%=link_to  '',
+	        'javascript:void(0)',
+          :id    => 'invite_backup_button',
+          :class => 'view_friends_list_wide'%>
+
         <!-- fb multi invite dialog for edge cases -->
       <div>
 		  

@@ -124,6 +124,10 @@ h1 {
 	padding: 30px;
 }
 
+#pic_bg #container #box #contacts .loading {
+	margin-top: 24px;
+}
+
 #pic_bg #container #box .heading {
 	margin-bottom: 16px;
 }
@@ -134,11 +138,11 @@ h1 {
 	line-height: 150%;
 }
 
-#pic_bg #container #box .continue_wide {
+#pic_bg #container #box .continue_wide,
+#pic_bg #container #box .view_friends_list_wide  {
 	width: 340px;
 	height: 38px;
 	margin-top: 10px;
-	background: url('/images/continue_wide.gif') no-repeat;
 	cursor: pointer;
 	display: inline-block;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -146,8 +150,17 @@ h1 {
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-#pic_bg #container #box .continue_wide:hover {
-	background: url('/images/continue_wide.gif') 0 -50px no-repeat;
+#pic_bg #container #box .continue_wide {
+	background: url('/images/continue_wide.gif') no-repeat;
+}
+
+#pic_bg #container #box .view_friends_list_wide {
+	background: url('/images/view_friends_list_wide.gif') no-repeat;
+}
+
+#pic_bg #container #box .continue_wide:hover,
+#pic_bg #container #box .view_friends_list_wide:hover {
+	background-position: 0 -50px;
 }
 
 #pic_bg #container #box .continue_top_right_corner {
