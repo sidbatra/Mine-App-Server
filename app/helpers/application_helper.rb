@@ -52,4 +52,11 @@ module ApplicationHelper
     @source == 'login'
   end
 
+  # Whether the user is on the onboarding create view
+  #
+  def is_onboarding_create?
+    @source == 'login' && @controller.controller_name == 'products' &&
+      @controller.action_name == 'new'
+  end
+
 end

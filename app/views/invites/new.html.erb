@@ -4,9 +4,11 @@
 	
 		<div id="box" class="rounded_5">
 		
-      <%=link_to '',
-                  new_product_path(:category => 'shoes',:src => 'login'),
-                  :class => 'continue_top_right_corner'%>
+      <%if is_onboarding?%>
+        <%=link_to '',
+                    new_product_path(:category => 'shoes',:src => 'login'),
+                    :class => 'continue_top_right_corner'%>
+      <%end%>
 		
 			<p class="heading">
 				<span class="title">Show your friends!</span><br />
