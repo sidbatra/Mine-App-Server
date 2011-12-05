@@ -98,7 +98,7 @@ h1 {
 	color: white;
 	font-size: 14px;
 	line-height: 150%;
-	background: #f8f8f8 url('/images/home_pink_4.jpg') no-repeat;
+	background: #f8f8f8 url('/images/home5.jpg') no-repeat;
 	background-position: center -38px;
 }
 
@@ -204,7 +204,7 @@ h1 {
 	height: 32px;
 	width: 324px;
 	line-height: 32px;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 	display: block;
 }
 
@@ -231,7 +231,10 @@ h1 {
 	cursor: pointer;
 }
 
-#pic_bg #container #box .invite_list .invite_row .name {}
+#pic_bg #container #box .invite_list .invite_row img.invite_user:hover,
+#pic_bg #container #box .invite_list .invite_row .name:hover {
+	cursor: pointer;
+}
 
 #pic_bg #container #footer {
 	color: #666666;
