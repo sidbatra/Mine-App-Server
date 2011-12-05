@@ -124,10 +124,6 @@ h1 {
 	padding: 30px;
 }
 
-#pic_bg #container #box #contacts .loading {
-	margin-top: 24px;
-}
-
 #pic_bg #container #box .heading {
 	margin-bottom: 16px;
 }
@@ -136,6 +132,10 @@ h1 {
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 24px;
 	line-height: 150%;
+}
+
+#pic_bg #container #box #contacts .loading {
+	margin-top: 24px;
 }
 
 #pic_bg #container #box .continue_wide,
@@ -176,10 +176,15 @@ h1 {
 #pic_bg #container #box .invite_search_enclosure {
 	width: 326px;
 	height: 32px;
-	margin: 6px auto 0;
+	margin: 0 auto;
 	position: relative;
 }
 
+#pic_bg #container #box .textfield_title {
+	margin: 0 auto 4px;
+	width: 326px;
+	text-align: left;
+}
 
 #pic_bg #container #box .textfield {
 	width: 308px;
