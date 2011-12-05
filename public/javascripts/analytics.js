@@ -288,6 +288,12 @@ Denwen.Analytics = Backbone.Model.extend({
       'Invite View',{'source' : source});
   },
 
+  // Fired when the invite view is opened during onboarding
+  //
+  inviteViewOnboarding: function() {
+    mpq.track("Onboarding Invite View");
+  },
+
   // User opens new product page
   //
   productNewView: function(category_id,category_name,source) {

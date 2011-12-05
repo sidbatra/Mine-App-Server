@@ -27,8 +27,10 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   setAnalytics: function() {
     analytics.inviteView(this.source);
 
-    if(this.source == 'login')
+    if(this.source == 'login') {
       analytics.userCreated(); 
+      analytics.inviteViewOnboarding();
+    }
   }
 
 });
