@@ -204,7 +204,7 @@ h1 {
 	height: 32px;
 	width: 324px;
 	line-height: 32px;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 	display: block;
 }
 
@@ -231,7 +231,10 @@ h1 {
 	cursor: pointer;
 }
 
-#pic_bg #container #box .invite_list .invite_row .name {}
+#pic_bg #container #box .invite_list .invite_row img.invite_user:hover,
+#pic_bg #container #box .invite_list .invite_row .name:hover {
+	cursor: pointer;
+}
 
 #pic_bg #container #footer {
 	color: #666666;
@@ -302,10 +305,10 @@ h1 {
 }
 
 .creation_search { width: 213px; }
-.creation_endorsement { height: 48px; margin-bottom: -6px; }
+.creation_endorsement { height: 48px; line-height: 150%; margin-bottom: -6px; }
 .creation_price {  
 	width: 66px;
-	border-left: none;
+	border-left: transparent;
 }
 
 .creation_dollar {
