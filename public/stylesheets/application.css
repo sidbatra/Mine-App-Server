@@ -87,6 +87,9 @@ h1 {
 	z-index: 5000;
 }
 
+.futura_bold { font-family: 'FuturaStdBold', Arial, sans-serif; }
+.futura_book { font-family: 'FuturaStdBook', Arial, sans-serif; }
+
 /* ------------------------------ Onboarding */
 
 #pic_bg {
