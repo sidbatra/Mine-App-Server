@@ -98,7 +98,7 @@ h1 {
 	color: white;
 	font-size: 14px;
 	line-height: 150%;
-	background: #f8f8f8 url('/images/home5.jpg') no-repeat;
+	background: #f8f8f8 url('/images/home_pink_4.jpg') no-repeat;
 	background-position: center -38px;
 }
 
@@ -302,10 +302,10 @@ h1 {
 }
 
 .creation_search { width: 213px; }
-.creation_endorsement { height: 48px; margin-bottom: -6px; }
+.creation_endorsement { height: 48px; line-height: 150%; margin-bottom: -6px; }
 .creation_price {  
 	width: 66px;
-	border-left: none;
+	border-left: transparent;
 }
 
 .creation_dollar {
