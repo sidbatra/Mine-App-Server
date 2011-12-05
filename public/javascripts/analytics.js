@@ -156,8 +156,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User clicks the invite friends button
   //
-  inviteSelected: function() {
-    mpq.track("Invite Clicked");
+  inviteSelected: function(type) {
+    mpq.track("Invite Clicked", {'type':type});
   },
 
   // User opens invite dialog and rejects it
@@ -178,6 +178,18 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Email Clicked", {
       'Source'  : source,
       'User ID' : helpers.currentUserID()});
+  },
+
+  // User searches a friend for inviting 
+  //
+  friendSearched: function(query) {
+    mpq.track("Friend Searched", {'query':query});
+  },
+
+  // User cancels a friend search 
+  //
+  friendSearchCancelled: function() {
+    mpq.track("Friend Search Cancelled"); 
   },
 
   // User searches a product
