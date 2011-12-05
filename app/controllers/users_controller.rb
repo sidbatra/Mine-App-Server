@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     self.current_user = @user
     set_cookie
     target_url = @user.is_fresh ? 
-                  new_invite_path(:src => 'login') :
+                  welcome_path(:src => 'login') :
                   user_path(@user.handle,:src => 'login')
 
   rescue => ex

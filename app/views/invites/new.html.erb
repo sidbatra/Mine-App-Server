@@ -4,7 +4,9 @@
 	
 		<div id="box" class="rounded_5">
 		
-			<a href="" class="continue_top_right_corner"></a>
+      <%=link_to '',
+                  new_product_path(:category => 'shoes',:src => 'login'),
+                  :class => 'continue_top_right_corner'%>
 		
 			<p class="heading">
 				<span class="title">Show your friends!</span><br />
@@ -30,7 +32,8 @@
 		  </div>
 
       <div id='multi_invite_box' style="display:none">
-      <%=render '/users/invite'%> <!-- fb multi invite dialog for edge cases -->
+        <%=render '/users/invite'%> 
+        <!-- fb multi invite dialog for edge cases -->
       <div>
 		  
 		</div> <!-- box -->

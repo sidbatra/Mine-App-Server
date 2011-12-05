@@ -294,6 +294,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Onboarding Invite View");
   },
 
+  // Page view on the welcome view
+  //
+  welcomeView: function() {
+    mpq.track("Onboarding Welcome");
+  },
+
   // User opens new product page
   //
   productNewView: function(category_id,category_name,source) {

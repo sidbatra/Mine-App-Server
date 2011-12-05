@@ -10,7 +10,9 @@
 			</p>
 			<img src="/images/welcome.jpg" style="margin-top:-10px;"/>
 			
-			<a class="continue_wide"></a>
+      <%=link_to '',
+                  new_invite_path(:src => 'login'),
+                  :class => 'continue_wide'%>
 		
 		</div> <!-- box -->
 
@@ -21,3 +23,9 @@
 	</div> <!-- container -->
    
 </div> <!-- pic_bg -->
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Welcome.Show({source:'<%=@source%>'});
+  </script>
+<%end%>
