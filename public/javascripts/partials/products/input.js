@@ -213,7 +213,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       alert("Please name your item.");
       analytics.productException('No Title',this.mode);
     }
-    else if(!this.isGifted() && $(this.priceEl).val().length < 1) {
+    else if(!this.isGifted() && 
+            $(this.priceEl).val().replace(/ /g,'').length < 1) {
       valid = false;
       alert("Please enter the price of your item.");
       analytics.productException('No Price',this.mode);
