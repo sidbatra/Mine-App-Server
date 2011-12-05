@@ -62,13 +62,14 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   // Show facebook single invite dialog 
   //
   showSingleInviteDialog: function(e) {
+    var self  = this;
     var fb_id = $(e.target).attr('fb_id');
 
     FB.ui({method: 'apprequests',
       message: "Come check out my online closet!",
       title: 'Compare closets with friends',
-      to: fb_id
-    }, this.inviteCallback.bind(this));
+      to: fb_id}, 
+      function(response) {self.inviteCallback(response)});
 
     analytics.inviteSelected('single');
   },
@@ -76,10 +77,12 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   // Show facebook multi invite dialog 
   //
   showMultiInviteDialog: function() {
+    var self = this;
+
     FB.ui({method: 'apprequests',
       message: "Come check out my online closet!",
       title: 'Compare closets with friends'}, 
-      this.multiInviteCallback.bind(this));
+      function(response) {self.multiInviteCallback(response)});
 
     analytics.inviteSelected('multi');
   }
