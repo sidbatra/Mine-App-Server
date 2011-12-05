@@ -18,6 +18,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     this.cancelSearchEl       = '#x_button';
     this.spinnerEl            = '#loading_spinner';
     this.searchContainerEl    = '#invite_search_container';
+    this.textFieldTitleEl     = '#invite_textfield_title';
 
     this.fbInviteBox    = new Denwen.Partials.Facebook.Invite();
 
@@ -46,6 +47,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     if(this.contacts.length) {
       $(this.queryEl).show();
       $(this.queryEl).focus();
+      $(this.textFieldTitleEl).show();
 
       this.render(this.contacts);
     }
