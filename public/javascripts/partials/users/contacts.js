@@ -12,10 +12,12 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.contactsEl     = '#contacts';
-    this.queryEl        = '#search_box';
-    this.multiInviteEl  = '#multi_invite_box';
-    this.cancelSearchEl = '#x_button';
+    this.contactsEl           = '#contacts';
+    this.queryEl              = '#search_box';
+    this.multiInviteEl        = '#multi_invite_box';
+    this.cancelSearchEl       = '#x_button';
+    this.spinnerEl            = '#loading_spinner';
+    this.searchContainerEl    = '#invite_search_container';
 
     this.fbInviteBox    = new Denwen.Partials.Facebook.Invite();
 
@@ -41,13 +43,19 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   // the server
   //
   fetched: function(){
-    if(this.contacts.length){
-      this.render(this.contacts);
+    if(this.contacts.length) {
       $(this.queryEl).show();
+      $(this.queryEl).focus();
+
+      this.render(this.contacts);
     }
     else {
+      this.fbInviteBox.hookUp();
       this.fbInviteBox.showMultiInviteDialog();
+
       $(this.multiInviteEl).show();
+      $(this.spinnerEl).hide();
+      $(this.searchContainerEl).hide();
     }
   },
 
@@ -85,7 +93,9 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   //
   reset :function() {
     $(this.queryEl).val('');
+    $(this.queryEl).focus();
     $(this.cancelSearchEl).hide();
+
     this.render(this.contacts);
   },
 
@@ -111,6 +121,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   // Fired when the user cancels an invite
   //
   inviteCancelled: function() {
+    $(this.queryEl).focus();
   } 
 
 });

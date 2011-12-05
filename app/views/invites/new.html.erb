@@ -16,7 +16,7 @@
 				showing it to your friends is even better!
 			</p>
 
-			<div class="invite_search_enclosure">
+			<div class="invite_search_enclosure" id="invite_search_container">
 			  <%=text_field_tag 'search_box', 
 			                    nil, 
 			                    :placeholder => 'Search for friends by name', 
@@ -31,7 +31,7 @@
       </div>        
 		
 		  <div id="contacts">
-		  	<div class="loading">
+		  	<div class="loading" id="loading_spinner">
 		  		<img src='/images/spinner_dark_bg.gif' />
 		  	</div>
 		  </div>

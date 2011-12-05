@@ -17,7 +17,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   hookUp: function() {
     var self = this;
 
-    $('body').find('#fb_invite_link').click(
+    $('body').find('#invite_backup_button').click(
               function(e){self.showMultiInviteDialog();});
 
     $('body').find('#fb_single_invite_link').click(
