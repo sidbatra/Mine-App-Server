@@ -6,7 +6,6 @@ class InvitesController < ApplicationController
   # Display UI for creating one or multiple invites
   #
   def new
-
   end
 
   # Create one or more invites 
