@@ -82,8 +82,8 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   showMultiInviteDialog: function() {
     FB.ui({method: 'apprequests',
       message: "Come check out my online closet!",
-      title: 'Compare closets with friends',
-    }, this.multiInviteCallback.bind(this));
+      title: 'Compare closets with friends'}, 
+      this.multiInviteCallback.bind(this));
 
     analytics.inviteSelected();
   }

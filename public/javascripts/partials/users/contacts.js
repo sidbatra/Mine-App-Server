@@ -42,7 +42,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   //
   fetched: function(){
     if(this.contacts.length){
-      this.render(this.contacts.toArray());
+      this.render(this.contacts);
       $(this.queryEl).show();
     }
     else {
@@ -71,7 +71,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
                                 return contact.get('name').search(regex) == 0;
                               });
     
-    this.render(filteredContacts);
+    this.render(new Denwen.Collections.Contacts(filteredContacts));
 
     if($(this.queryEl).val())
       $(this.cancelSearchEl).show();
@@ -84,7 +84,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   reset :function() {
     $(this.queryEl).val('');
     $(this.cancelSearchEl).hide();
-    this.render(this.contacts.toArray());
+    this.render(this.contacts);
   },
 
   // Fired when the user completes an invite
