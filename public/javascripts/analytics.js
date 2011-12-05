@@ -301,7 +301,7 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User lands on product new view during onboarding
   //
-  productNewOnboarding: function() {
+  productNewViewOnboarding: function() {
     mpq.track("Onboarding Creation Template Opened");
   },
 

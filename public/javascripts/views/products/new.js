@@ -29,7 +29,7 @@ Denwen.Views.Products.New = Backbone.View.extend({
         this.source);
 
     if(this.source == 'login')
-      analytics.productNewOnboarding();
+      analytics.productNewViewOnboarding();
   }
 
 });
