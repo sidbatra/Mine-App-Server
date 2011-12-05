@@ -53,13 +53,9 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   multiInviteCallback: function(response) {
     if(!response) {
       analytics.inviteRejected();
-      // TODO may be trigger something based on whats
-      // decided after the invite is cancelled 
     }
     else {
       this.save(response);
-      // TODO may be trigger something based on whats
-      // decided after the invite is completed
     }
   },
 
@@ -74,7 +70,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
       to: fb_id
     }, this.inviteCallback.bind(this));
 
-    analytics.inviteSelected();
+    analytics.inviteSelected('single');
   },
 
   // Show facebook multi invite dialog 
@@ -85,7 +81,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
       title: 'Compare closets with friends'}, 
       this.multiInviteCallback.bind(this));
 
-    analytics.inviteSelected();
+    analytics.inviteSelected('multi');
   }
 
 });

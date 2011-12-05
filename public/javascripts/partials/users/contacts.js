@@ -6,7 +6,7 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
   //
   events: {
     "keyup #search_box" : "filter",
-    "click #x_button"   : "reset"
+    "click #x_button"   : "searchCancelled"
   },
 
   // Constructor logic
@@ -73,8 +73,10 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     
     this.render(new Denwen.Collections.Contacts(filteredContacts));
 
-    if($(this.queryEl).val())
+    if(query){
       $(this.cancelSearchEl).show();
+      analytics.friendSearched(query);
+    }
     else
       $(this.cancelSearchEl).hide();
   },
@@ -85,6 +87,13 @@ Denwen.Partials.Users.Contacts = Backbone.View.extend({
     $(this.queryEl).val('');
     $(this.cancelSearchEl).hide();
     this.render(this.contacts);
+  },
+
+  // Fired when the user cancels a friend search
+  //
+  searchCancelled: function() {
+    this.reset();
+    analytics.friendSearchCancelled();
   },
 
   // Fired when the user completes an invite
