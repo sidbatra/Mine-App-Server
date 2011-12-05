@@ -109,7 +109,7 @@ h1 {
 #pic_bg #container {
 	width: 480px;
 	height: 475px;
-	padding-top: 42px;
+	padding-top: 24px;
 	margin: 0 auto;
 	position: relative;
 	text-align: center;
@@ -240,7 +240,7 @@ h1 {
 	color: #999999;
 	width: 480px;
 	text-align: center;
-	margin: 20px auto 0px;
+	margin: 6px auto 0px;
 }
 
 /* ------------------------------ Creation */
@@ -379,19 +379,19 @@ h1 {
 }
 
 #product_selection {
-	width: 275px;
-	height: 150px;
-	line-height: 150px;
+	width: 265px;
+	height: 140px;
+	line-height: 140px;
 	background: white url('/images/spinner.gif') no-repeat;
 	background-position: center;
 	text-align: center;
   display:none;
-  padding: 1px 0;
+  padding: 5px;
 }
 
 #product_selection_photo {
-	max-width: 275px;
-	max-height: 150px;
+	max-width: 265px;
+	max-height: 140px;
 }
 
 .add_to_closet_button {
