@@ -63,21 +63,6 @@ module DW
         user.save!
       end
 
-      # Store all the user friends in the contacts table 
-      #
-      def self.update_user(user_id)
-        user              = User.find(user_id)
-        fb_friends        = user.fb_friends
-
-        fb_friends_ids    = fb_friends.map(&:identifier)
-        fb_friends_names  = fb_friends.map(&:name)
-
-        Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)
-
-        user.has_contacts_mined = true
-        user.save!
-      end
-
       # Email the owner about any action taken on his product
       #
       def self.new_action(action_id)
