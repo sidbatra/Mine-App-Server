@@ -103,7 +103,8 @@ h1 {
 }
 
 #pic_bg.fixed_bg {
- 	overflow-x: hidden;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 #pic_bg #container {
@@ -205,7 +206,7 @@ h1 {
 	width: 324px;
 	line-height: 32px;
 	margin-bottom: 4px;
-	display: block;
+	position: relative;
 }
 
 #pic_bg #container #box .invite_list .invite_row img.invite_user {
@@ -218,9 +219,10 @@ h1 {
 #pic_bg #container #box .invite_list .invite_row .invite {
 	width: 60px;
 	height: 26px;
-	margin-top: 3px;
 	background: url('/images/invite_button.gif') no-repeat;
-	float: right;
+	position: absolute;
+	top: 3px;
+	right: 0px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
