@@ -102,10 +102,14 @@ h1 {
 	background-position: center -38px;
 }
 
+#pic_bg.fixed_bg {
+ 	overflow-x: hidden;
+}
+
 #pic_bg #container {
 	width: 480px;
 	height: 475px;
-	padding-top: 42px;
+	padding-top: 24px;
 	margin: 0 auto;
 	position: relative;
 	text-align: center;
@@ -155,17 +159,39 @@ h1 {
 	display: block;
 }
 
+#pic_bg #container #box .invite_search_enclosure {
+	width: 326px;
+	height: 32px;
+	margin: 6px auto 0;
+	position: relative;
+}
+
+
 #pic_bg #container #box .textfield {
 	width: 308px;
 	height: 28px;
 	padding: 2px 8px;
 	font-size: 14px;
 	line-height: 32px;
+	vertical-align: top;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	color: #333333;
 	border: 1px solid #999999;
 	background: white url('/images/slim_shadow_light.png') repeat-x;
+}
+
+#pic_bg #container #box .x-text {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background: url('/images/x-text.gif') no-repeat;
+}
+
+#pic_bg #container #box .x-text:hover {
+	background: url('/images/x-text.gif') 0px -30px no-repeat;
 }
 
 #pic_bg #container #box .invite_list {
@@ -214,7 +240,7 @@ h1 {
 	color: #999999;
 	width: 480px;
 	text-align: center;
-	margin: 20px auto 0px;
+	margin: 6px auto 0px;
 }
 
 /* ------------------------------ Creation */
@@ -353,19 +379,19 @@ h1 {
 }
 
 #product_selection {
-	width: 275px;
-	height: 150px;
-	line-height: 150px;
+	width: 265px;
+	height: 140px;
+	line-height: 140px;
 	background: white url('/images/spinner.gif') no-repeat;
 	background-position: center;
 	text-align: center;
   display:none;
-  padding: 1px 0;
+  padding: 5px;
 }
 
 #product_selection_photo {
-	max-width: 275px;
-	max-height: 150px;
+	max-width: 265px;
+	max-height: 140px;
 }
 
 .add_to_closet_button {
@@ -599,6 +625,7 @@ h1 {
 	color: #cccccc;
 	font-size: 12px;
 	color: #791a10;
+	cursor: pointer;
 }
 
 .edit_gray_12 {
@@ -606,12 +633,12 @@ h1 {
 	padding-left: 14px;
 	background: url('/images/pen_cccccc_791a10_12px.png') no-repeat;
 	color: #cccccc;
-	cursor: pointer;
 }
 
 .edit_gray_12:hover {
 	background: url('/images/pen_cccccc_791a10_12px.png') 0 -20px no-repeat;
 	color: #791a10;
+	cursor: pointer;
 }
 
 .edit_red_14 {
@@ -619,23 +646,22 @@ h1 {
 	padding-left: 14px;
 	background: url('/images/pen_791a10_14px.png') no-repeat;
 	color: #791a10;
-	cursor: pointer;
 }
 
 .edit_red_14:hover {
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .edit_gray_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	background: url('/images/pen_cccccc_791a10_999999.png') no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') no-repeat;
 	color: #cccccc;
-	cursor: pointer;
 }
 
 .edit_gray_14:hover {
-	background: url('/images/pen_cccccc_791a10_999999.png') 0 -34px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -34px no-repeat;
 	color: #791a10;
 	cursor: pointer;
 }
@@ -643,16 +669,29 @@ h1 {
 .edit_dark_gray_14 {
 	font-size: 14px;
 	padding-left: 14px;
-	background: url('/images/pen_cccccc_791a10_999999.png') 0 -68px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -68px no-repeat;
 	color: #999999;
-	cursor: pointer;
 }
 
 .edit_dark_gray_14:hover {
-	background: url('/images/pen_cccccc_791a10_999999.png') 0 -34px no-repeat;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -34px no-repeat;
 	color: #791a10;
 	cursor: pointer;
 }
+
+.edit_light_gray_inverse_14 {
+	font-size: 14px;
+	padding-left: 14px;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 0 no-repeat;
+	color: #cccccc;
+}
+
+.edit_light_gray_inverse_14:hover {
+	background: url('/images/pen_cccccc_791a10_999999_ffffff.png') 0 -102px no-repeat;
+	color: white;
+	cursor: pointer;
+}
+
 
 .inline_nudge {
 	margin-left: 3px;
