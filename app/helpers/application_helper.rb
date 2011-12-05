@@ -49,7 +49,7 @@ module ApplicationHelper
   # Whether the user is undergoing onboarding 
   #
   def is_onboarding?
-    @source == 'login'
+    @source == 'login' && @controller.controller_name != 'users'
   end
 
   # Whether the user is on the onboarding create view
