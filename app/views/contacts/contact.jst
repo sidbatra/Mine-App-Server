@@ -1,6 +1,13 @@
 <div class='invite_row'> 
-  <img class='invite_user' src='<%=contact.imageURL()%>' />
-  <span class='name'><%=contact.get('name')%></span>
+  <img class='invite_user' 
+        src='<%=contact.imageURL()%>' 
+        id='fb_single_invite_link' 
+        fb_id='<%=contact.get('third_party_id')%>'/>
+  <span class='name' 
+        id='fb_single_invite_link' 
+        fb_id='<%=contact.get('third_party_id')%>'>
+      <%=contact.get('name')%>
+  </span>
   <a href='javaScript:void(0);' 
      id='fb_single_invite_link'
      class='invite' 
