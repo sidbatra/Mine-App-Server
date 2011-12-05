@@ -26,7 +26,7 @@ class UserObserver < ActiveRecord::Observer
     if user.mine_contacts
       ProcessingQueue.push(
         NotificationManager,
-        :update_user,
+        :new_user,
         user.id) 
       user.mine_contacts = false
     end
