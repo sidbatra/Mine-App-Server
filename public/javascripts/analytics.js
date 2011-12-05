@@ -299,6 +299,12 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // User lands on product new view during onboarding
+  //
+  productNewOnboarding: function() {
+    mpq.track("Onboarding Creation Template Opened");
+  },
+
   // User opens edit product page
   //
   productEditView: function(product_id,source) {

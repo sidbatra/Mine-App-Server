@@ -27,6 +27,9 @@ Denwen.Views.Products.New = Backbone.View.extend({
         this.category.get('id'),
         this.category.get('name'),
         this.source);
+
+    if(this.source == 'login')
+      analytics.productNewOnboarding();
   }
 
 });
