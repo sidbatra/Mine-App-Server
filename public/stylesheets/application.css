@@ -101,7 +101,7 @@ h1 {
 	color: white;
 	font-size: 14px;
 	line-height: 150%;
-	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat;
+	background: #f8f8f8 url('/images/tile35.jpg');
 	background-position: center -38px;
 }
 
@@ -121,7 +121,7 @@ h1 {
 
 #pic_bg #container #box {
 	width: 420px;
-	background: url('/images/black_65.png');
+	background: url('/images/black_75.png');
 	margin: 0 auto;
 	position: relative;
 	padding: 30px;

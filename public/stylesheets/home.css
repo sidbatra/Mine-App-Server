@@ -273,7 +273,7 @@ body.home5 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat;
+	background: #f8f8f8 url('/images/tile35.jpg');
 	background-position: center top;
 	overflow: hidden;
 }
@@ -290,7 +290,7 @@ body.home5 {
 #box_home5 {
 	width: 480px;
 	height: 321px;
-	background: url('/images/black_65.png');
+	background: url('/images/black_75.png');
 	margin: 0 auto;
 	position: relative;
 }
