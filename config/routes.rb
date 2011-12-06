@@ -3,6 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller  => :home,
             :action     => :show
 
+  map.welcome   '/welcome',
+                :controller => :welcome,
+                :action     => :show
+
   map.home      '/home/:id',
                 :controller => :home,
                 :action     => :show
@@ -23,9 +27,6 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :users,
                 :action     => :create
 
-  #map.invites   '/invites',
-  #              :controller => :invites,
-  #              :action     => :index
 
   # Deprecate in next version
   map.product_d 'products/:id/:name',
@@ -78,6 +79,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :searches,
                 :only => [:create]
+
+  map.resources :invites,
+                :only => [:create,:new]
+
+  map.resources :contacts,
+                :only => [:index]
 
   map.resource  :share,
                 :controller => 'share',

@@ -48,6 +48,9 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     analytics.storeProfileView(
       this.source,
       this.store.get('id'));
+
+    if(this.source.slice(0,6) == 'email_')
+      analytics.emailClicked(this.source.slice(6,this.source.length));
   },
   
   // Use Backbone router for reacting to changes in URL
@@ -69,7 +72,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       filter: function(category) {
         self.products.fetch(category);
 
-        if(category != undefined && category.length) {
+        if(category != undefined && category.length && category != '_=_') {
           analytics.storeProfileFiltered(
                       category,
                       self.store.get('id'));

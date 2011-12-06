@@ -23,6 +23,13 @@ Denwen.Analytics = Backbone.Model.extend({
   // User signs in
   //
   userLogin: function() {
+    mpq.track("User Logged In Again");
+  },
+
+  // User created
+  //
+  userCreated: function() {
+    mpq.track("$born");
     mpq.track("User Logged In");
   },
 
@@ -149,8 +156,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User clicks the invite friends button
   //
-  inviteSelected: function() {
-    mpq.track("Invite Clicked");
+  inviteSelected: function(type) {
+    mpq.track("Invite Clicked", {'type':type});
   },
 
   // User opens invite dialog and rejects it
@@ -163,6 +170,26 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   inviteCompleted: function(count) {
     mpq.track("Invite Completed", {'count':count});
+  },
+
+  // User visits the site from an email
+  //
+  emailClicked: function(source) {
+    mpq.track("Email Clicked", {
+      'Source'  : source,
+      'User ID' : helpers.currentUserID()});
+  },
+
+  // User searches a friend for inviting 
+  //
+  friendSearched: function(query) {
+    mpq.track("Friend Searched", {'query':query});
+  },
+
+  // User cancels a friend search 
+  //
+  friendSearchCancelled: function() {
+    mpq.track("Friend Search Cancelled"); 
   },
 
   // User searches a product
@@ -266,6 +293,25 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // Page view on the invite page
+  //
+  inviteView: function(source) {
+     mpq.track(
+      'Invite View',{'source' : source});
+  },
+
+  // Fired when the invite view is opened during onboarding
+  //
+  inviteViewOnboarding: function() {
+    mpq.track("Onboarding Invite View");
+  },
+
+  // Page view on the welcome view
+  //
+  welcomeView: function() {
+    mpq.track("Onboarding Welcome");
+  },
+
   // User opens new product page
   //
   productNewView: function(category_id,category_name,source) {
@@ -275,6 +321,12 @@ Denwen.Analytics = Backbone.Model.extend({
       'name'    : category_name,
       'source'  : source
       });
+  },
+
+  // User lands on product new view during onboarding
+  //
+  productNewViewOnboarding: function() {
+    mpq.track("Onboarding Creation Template Opened");
   },
 
   // User opens edit product page

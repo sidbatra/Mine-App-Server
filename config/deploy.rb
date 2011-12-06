@@ -15,31 +15,25 @@ ssh_options[:forward_agent] = true
 
 
 task :staging do 
-  role :web,          "ec2-107-20-229-8.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-20-229-8.compute-1.amazonaws.com"
-  role :db,           "ec2-107-20-229-8.compute-1.amazonaws.com", 
-                        :no_release => true
-  role :search,       "ec2-107-20-229-8.compute-1.amazonaws.com", 
-                        :no_release => true
-  set :total_workers, 1
+  role(:web)          { ENV['web_servers'].split(',') }
+  role(:worker)       { ENV['proc_servers'].split(',') }
+  #role :search,       "ec2-174-129-148-194.compute-1.amazonaws.com",
+  #                      :no_release => true
+  set :total_workers, 3
   set :environment,   "staging"
-  set :branch,        "master"
+  set :branch,        "v1.5"
 end
 
 
 task :production do
-  role :web,          "ec2-107-22-94-58.compute-1.amazonaws.com","ec2-75-101-208-180.compute-1.amazonaws.com","ec2-107-20-10-44.compute-1.amazonaws.com"
-  role :worker,       "ec2-107-22-135-187.compute-1.amazonaws.com","ec2-107-20-31-136.compute-1.amazonaws.com","ec2-50-16-130-178.compute-1.amazonaws.com"
-  role :db,           "ec2-107-22-94-58.compute-1.amazonaws.com",
-                        :no_release => true
-  role :search,       "ec2-107-22-94-58.compute-1.amazonaws.com",
-                        :no_release => true
+  role(:web)          { ENV['web_servers'].split(',') }
+  role(:worker)       { ENV['proc_servers'].split(',') }
+  #role :search,       "ec2-107-22-94-58.compute-1.amazonaws.com",
+  #                      :no_release => true
   set :total_workers, 3
   set :environment,   "production"
   set :branch,        "master"
 end
-
-
 
 namespace :deploy do
 
@@ -56,13 +50,13 @@ namespace :deploy do
 
     system "cap #{environment}  permissions:setup"
 
+    system "cap #{environment}  db:config" 
+
     system "cap #{environment}  gems:install"
 
 
     if environment == "staging"
-      #system "cap #{environment}  db:config" 
       #system "cap #{environment}  db:populate" 
-      #run "cd #{current_path} && RAILS_ENV=#{environment} rake db:reset"
       #system "cap #{environment}  db:migrate"
     else
       system "cap #{environment}  db:migrate"
@@ -85,11 +79,9 @@ namespace :deploy do
 
     system "cap #{environment}  deploy:update"
 
-    system "cap #{environment}  gems:install"
+    system "cap #{environment}  db:config" 
 
-    if environment == "staging"
-      #system "cap #{environment}  db:config" 
-    end
+    system "cap #{environment}  gems:install"
 
     system "cap #{environment}  db:migrate"
 
@@ -107,23 +99,22 @@ end
 namespace :db do 
 
   desc 'Setup database.yml'
-  task :config, :role => :db do
-    run "cd #{current_path} && "\
-        "sed -i -e "\
-        "'s/denwen_#{environment}/denwen_#{environment}_#{deploy_name}/g' "\
-        "config/database.yml"
+  task :config, :role => [:web,:worker] do
+    run "ln -s "\
+        "#{current_path}/config/database/#{environment}.yml "\
+        "#{current_path}/config/database.yml"
   end
 
   desc 'Create database, load scehma and populate database from sql dump'
-  task :populate, :roles => :db do
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake db:create"
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake db:schema:load"
+  task :populate do
+    run "cd #{current_path} && rake db:create RAILS_ENV=#{environment}"
+    run "cd #{current_path} && rake db:schema:load RAILS_ENV=#{environment}"
   end
 
   desc 'Run a migration'
   task :migrate do
     system "cd #{Dir.pwd} && "\
-        "RAILS_ENV=#{environment} rake db:migrate" 
+        "rake db:migrate RAILS_ENV=#{environment}" 
   end
 
 end
@@ -132,13 +123,13 @@ namespace :search do
   
   desc 'Start the sphinx machines'
   task :start, :roles => :search do
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake ts:index"
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake ts:start"
+    run "cd #{current_path} && rake ts:index RAILS_ENV=#{environment}"
+    run "cd #{current_path} && rake ts:start RAILS_ENV=#{environment}"
   end
 
   desc 'Reindex the sphinx machines'
   task :index, :roles => :search do
-    run "cd #{current_path} && RAILS_ENV=#{environment} rake ts:index"
+    run "cd #{current_path} && rake ts:index RAILS_ENV=#{environment}"
   end
 end
 
@@ -180,8 +171,8 @@ namespace :cache do
 
   desc 'Clear the cache'
   task :clear do
-    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake clear_cache"
+    system "cd #{Dir.pwd} && "\
+            "rake clear_cache RAILS_ENV=#{environment}"
   end
 
 end
@@ -214,7 +205,7 @@ namespace :gems do
 
   desc 'Install required gems on the web and worker servers'
   task :install, :roles => [:web,:worker] do
-    run "cd #{current_path} && RAILS_ENV=#{environment} sudo rake gems:install" 
+    run "cd #{current_path} && sudo rake gems:install RAILS_ENV=#{environment}" 
   end
 
 end

@@ -1,28 +1,37 @@
 desc "Upload app logs to the dump filesystem"
 
+ENV['RAILS_PATH'] = Dir.pwd
+  
+# Load rails config
+CONFIG = YAML.load_file("config/config.yml")[ENV['RAILS_ENV']]
+CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
+
+require 'rubygems'
+require 'aws/s3'
+require ENV['RAILS_PATH'] + '/lib/storage.rb'
 
 task :upload_logs_to_dump do |e,args|
 
-  require 'config/environment.rb'
 
-  prefix = [RAILS_ENV,CONFIG[:machine_id],Time.now.to_i].join('_')
-  folder = Time.zone.now.strftime('%m-%d-%Y')
+  prefix = [ENV['RAILS_ENV'],CONFIG[:machine_id],Time.now.to_i].join('_')
+  folder = Time.now.strftime('%m-%d-%Y')
 
-  ['access.log','error.log','production.log',
+  ['access.log','error.log','production.log','staging.log',
       'processor.rb.log','cron.log'].each do |file|
 
     path    = File.join(folder,[prefix,file].join('_'))
-    source  = File.join(RAILS_ROOT,'log',file)
+    source  = File.join(ENV['RAILS_PATH'],'log',file)
 
     next unless File.exists?(source) && File.size(source) != 0
 
-
-    response = Dump.store(path,open(source),:access => :private)
+    response = DW::Storage::Dump.store(path,open(source),:access => :private)
 
     if response.code == 200
-      system("sudo chown manager:svn #{source}")
-      system("echo '' > #{source}")
+      system("sudo chown manager:manager #{source}")
+      system("sudo echo '' > #{source}")
     end
   end
 
+  puts "Logs farmed for #{CONFIG[:machine_id]} at #{folder} with "\
+        "prefix #{prefix}"
 end

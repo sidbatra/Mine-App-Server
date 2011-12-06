@@ -10,36 +10,81 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.hookUp();
   },
 
   // Hooked up the FB dialog on all designated links
   //
   hookUp: function() {
-    var self      = this;
-    $('body').find('#fb_invite_link').click(
-              function(){self.showInviteDialog();});
+    var self = this;
+
+    $('body').find('#invite_backup_button').click(
+              function(e){self.showMultiInviteDialog();});
+
+    $('body').find('#fb_single_invite_link').click(
+              function(e){self.showSingleInviteDialog(e);});
   },
 
-  // Handle callback from the invite dialog
+  // Save the sent invites to the server
   //
-  requestCallback: function(response) {
+  save: function(response) {
+    var invites = response['to'];
+
+    new Denwen.Partials.Invites.BatchInvite({fb_user_ids : invites});
+    analytics.inviteCompleted(invites.length);
+    
+    return invites;
+  },
+
+  // Handle callback from the single invite dialog
+  //
+  inviteCallback: function(response) {
+    if(!response) {
+      analytics.inviteRejected();
+      this.trigger('inviteCancelled');
+    }
+    else {
+      var invites = this.save(response);
+      this.trigger('inviteCompleted',invites[0]);
+    }
+  },
+
+  // Handle callback from the multi invite dialog
+  //
+  multiInviteCallback: function(response) {
     if(!response) {
       analytics.inviteRejected();
     }
     else {
-      analytics.inviteCompleted(response['to'].length);
+      this.save(response);
     }
   },
 
-  // Show facebook invite dialog 
+  // Show facebook single invite dialog 
   //
-  showInviteDialog: function() {
+  showSingleInviteDialog: function(e) {
+    var self  = this;
+    var fb_id = $(e.target).attr('fb_id');
+
     FB.ui({method: 'apprequests',
       message: "Come check out my online closet!",
-      title: 'Compare closets with friends'
-    }, this.requestCallback);
+      title: 'Compare closets with friends',
+      to: fb_id}, 
+      function(response) {self.inviteCallback(response)});
 
-    analytics.inviteSelected();
+    analytics.inviteSelected('single');
+  },
+
+  // Show facebook multi invite dialog 
+  //
+  showMultiInviteDialog: function() {
+    var self = this;
+
+    FB.ui({method: 'apprequests',
+      message: "Come check out my online closet!",
+      title: 'Compare closets with friends'}, 
+      function(response) {self.multiInviteCallback(response)});
+
+    analytics.inviteSelected('multi');
   }
+
 });

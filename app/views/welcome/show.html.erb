@@ -1,0 +1,34 @@
+<div id="pic_bg">
+
+	<div id="container">
+
+		<div id="box" class="rounded_5">
+			<p class="heading">
+				<span class="title">
+          Welcome to OnCloset, <%=current_user.first_name%>!
+        </span><br />
+
+				A virtual showcase of what you own —<br />
+				your shoes, clothes, accessories and more!
+			</p>
+			<img src="/images/welcome_tile35.jpg" style="margin-top:-10px;"/>
+			
+      <%=link_to '',
+                  new_invite_path(:src => 'login'),
+                  :class => 'continue_wide'%>
+		
+		</div> <!-- box -->
+
+		<div id="footer">
+			<%=CONFIG[:name]%> © 2011 · <%=email_link%>
+		</div>
+	
+	</div> <!-- container -->
+   
+</div> <!-- pic_bg -->
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Welcome.Show({source:'<%=@source%>'});
+  </script>
+<%end%>

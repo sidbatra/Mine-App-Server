@@ -122,7 +122,7 @@ module DW
     #
     class ProcessingQueue < Queue
 
-      if Rails.env == 'production'
+      if Rails.env != 'development'
         @@queue = QueueManager.fetch_global_queue(Q[:proc],90)
       else
         @@queue = QueueManager.fetch_local_queue(Q[:proc],90)

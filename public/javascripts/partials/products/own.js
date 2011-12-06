@@ -103,7 +103,8 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     var valid = true;
     var mode  = 'own';
 
-    if(!this.isGifted() && this.priceEl.val().length < 1) {
+    if(!this.isGifted() && 
+            $(this.priceEl).val().replace(/ /g,'').length < 1) {
       valid = false;
       alert("Please enter the price of your item.");
       analytics.productException('No Price',mode);

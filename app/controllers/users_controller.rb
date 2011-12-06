@@ -35,11 +35,13 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-    target_url = user_path(@user.handle,:src => "login")
+    target_url = @user.is_fresh ? 
+                  welcome_path(:src => 'login') :
+                  user_path(@user.handle,:src => 'login')
 
   rescue => ex
     handle_exception(ex)
-    target_url = root_path(:src => "user_create_error")
+    target_url = root_path(:src => 'user_create_error')
   ensure
     redirect_to target_url
   end
@@ -53,7 +55,6 @@ class UsersController < ApplicationController
       return
     end
 
-    @source       = params[:src] ? params[:src].to_s : "direct"
     @user         = User.find_by_handle(params[:handle])
   end
   

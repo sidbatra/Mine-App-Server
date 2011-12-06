@@ -25,6 +25,7 @@ javascripts:
     - app/views/users/*.jst
     - app/views/stores/*.jst
     - app/views/followings/*.jst
+    - app/views/contacts/*.jst
 stylesheets:
   application:
     - public/stylesheets/application.css

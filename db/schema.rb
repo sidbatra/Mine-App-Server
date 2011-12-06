@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119221943) do
+ActiveRecord::Schema.define(:version => 20111206001437) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
   add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "third_party_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "contacts", ["name"], :name => "index_contacts_on_name"
+  add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
+  add_index "contacts", ["user_id", "third_party_id"], :name => "index_contacts_on_user_id_and_third_party_id", :unique => true
+
   create_table "followings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "follower_id"
@@ -55,6 +67,16 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
+
+  create_table "invites", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
+  add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id", :unique => true
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -145,10 +167,13 @@ ActiveRecord::Schema.define(:version => 20111119221943) do
     t.integer  "followings_count",          :default => 0
     t.integer  "inverse_followings_count",  :default => 0
     t.string   "handle"
+    t.boolean  "has_contacts_mined",        :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
+  add_index "users", ["has_contacts_mined"], :name => "index_users_on_has_contacts_mined"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
 
 end

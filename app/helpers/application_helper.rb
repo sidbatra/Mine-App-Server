@@ -46,4 +46,17 @@ module ApplicationHelper
       EMAILS[:contact].split(' ').last[1..-2]
   end
 
+  # Whether the user is undergoing onboarding 
+  #
+  def is_onboarding?
+    @source == 'login' && @controller.controller_name != 'users'
+  end
+
+  # Whether the user is on the onboarding create view
+  #
+  def is_onboarding_create?
+    @source == 'login' && @controller.controller_name == 'products' &&
+      @controller.action_name == 'new'
+  end
+
 end

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :products, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :searches, :dependent => :destroy
+  has_many :contacts, :dependent => :destroy
+  has_many :invites,  :dependent => :destroy
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings
@@ -21,7 +23,6 @@ class User < ActiveRecord::Base
   has_many :ifollowers, :through => :inverse_followings, 
               :source => :user, :conditions => 'is_active = 1'
 
-
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
@@ -30,22 +31,28 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
 
   #-----------------------------------------------------------------------------
+  # Attributes
+  #-----------------------------------------------------------------------------
+  attr_accessor :mine_contacts
+
+  #-----------------------------------------------------------------------------
   # Class methods
   #-----------------------------------------------------------------------------
 
   # Add a new user or find an existing one based on email
   #
   def self.add(attributes,source)
-    user = find_or_initialize_by_email(
-            :email        => attributes.email,
-            :first_name   => attributes.first_name,
-            :last_name    => attributes.last_name,
-            :gender       => attributes.gender,
-            :birthday     => attributes.birthday,
+    user = find_or_initialize_by_fb_user_id(
             :fb_user_id   => attributes.identifier,
             :source       => source)
 
+    user.email        = attributes.email
+    user.gender       = attributes.gender
+    user.birthday     = attributes.birthday
+    user.first_name   = attributes.first_name
+    user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
+      
     user.save!
     user
   end
@@ -136,6 +143,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Test is the user was created very recently
+  #
+  def is_fresh
+    (Time.now - self.created_at) < 60
+  end
+
   # URL for the user photo
   #
   def image_url
@@ -191,6 +204,13 @@ class User < ActiveRecord::Base
     else
       0
     end
+  end
+
+  # List of facebook friends
+  #
+  def fb_friends
+    fb_user = FbGraph::User.new('me', :access_token => self.access_token)
+    fb_user.friends
   end
 
   # Override to customize accessible attributes

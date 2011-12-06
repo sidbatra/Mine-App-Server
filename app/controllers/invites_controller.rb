@@ -1,18 +1,27 @@
-# Handle requests for user invites
+# Handle requests for the invites resource
 #
 class InvitesController < ApplicationController
-  before_filter :login_required, :only => [:index]
+  before_filter :login_required
 
-  # Fetch the list of facebook friends a user can invite. 
+  # Display UI for creating one or multiple invites
   #
-  def index
-    fb_user   = FbGraph::User.new(
-                              'me', 
-                              :access_token => self.current_user.access_token)
-    @friends  = fb_user.friends.sort{|x,y| x.name <=> y.name}
+  def new
+  end
+
+  # Create one or more invites 
+  #
+  def create
+    @invite = nil
+
+    params[:fb_user_ids].each do |fb_user_id|
+      Invite.add(self.current_user.id,fb_user_id)
+    end
   rescue => ex
     handle_exception(ex)
   ensure
+    respond_to do |format|
+      format.json
+    end
   end
 
 end
