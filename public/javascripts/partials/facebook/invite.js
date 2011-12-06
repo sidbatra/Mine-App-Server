@@ -66,8 +66,8 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     var fb_id = $(e.target).attr('fb_id');
 
     FB.ui({method: 'apprequests',
-      message: "Come check out my online closet!",
-      title: 'Compare closets with friends',
+      message: "I'm building my online closet. Come check it out!",
+      title: 'Invite a friend',
       to: fb_id}, 
       function(response) {self.inviteCallback(response)});
 
@@ -80,8 +80,8 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     var self = this;
 
     FB.ui({method: 'apprequests',
-      message: "Come check out my online closet!",
-      title: 'Compare closets with friends'}, 
+      message: "I'm building my online closet. Come check it out!",
+      title: 'Invite a friend'},
       function(response) {self.multiInviteCallback(response)});
 
     analytics.inviteSelected('multi');
