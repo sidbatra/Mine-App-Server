@@ -21,7 +21,7 @@ task :staging do
   #                      :no_release => true
   set :total_workers, 3
   set :environment,   "staging"
-  set :branch,        "v1.5"
+  set :branch,        "develop"
 end
 
 
