@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203235048) do
+ActiveRecord::Schema.define(:version => 20111206001437) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20111203235048) do
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "recipient_id"
+    t.string   "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
