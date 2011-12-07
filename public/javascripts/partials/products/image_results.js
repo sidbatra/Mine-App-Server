@@ -16,6 +16,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   //
   initialize: function() {
     var self            = this;
+    this.mode           = this.options.mode;
 
     this.queryEl        = "#product_query";
     this.repeatQueryEl  = "#product_repeat_query";
@@ -90,7 +91,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // Launch the search UI
   //
   search: function() {
-
     var query = $(this.repeatQueryEl).val();
     
     if(!query.length) {
@@ -111,7 +111,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     this.images.search(query);
 
-    var search = new Denwen.Search({query:query});
+    var search = new Denwen.Search({query:query,source:this.mode});
     search.save();
 
     this.trigger('productSearched',query);
