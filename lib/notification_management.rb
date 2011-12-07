@@ -14,11 +14,11 @@ module DW
       # Email all the users on the comment thread
       #
       def self.new_comment(comment_id)
-        comment   = Comment.with_user.with_product.find(comment_id)
-        users     = User.commented_on_product(comment.product.id) 
-        users    << comment.product.user
+        comment   = Comment.with_user.find(comment_id)
+        user_ids  = Comment.user_ids_in_thread_with(comment)
+        users     = User.find_all_by_id(user_ids)
 
-        users.uniq.each do |user|
+        users.each do |user|
           UserMailer.decide_new_comment(
                       comment,
                       user) unless user.id == comment.user.id

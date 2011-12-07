@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   # thread to which the user belongs
   #
   def new_comment(comment,user)
-    @owner        = comment.product.user
+    @owner        = comment.commentable.user
     @comment      = comment
     @user         = user
     @action       = @comment.user.first_name + " " + @comment.user.last_name
@@ -22,7 +22,10 @@ class UserMailer < ActionMailer::Base
                     " #{@owner.last_name}'s "
     end
 
-    @action     += comment.product.title
+    if(comment.commentable_type == 'Product')
+      @action     += comment.commentable.title
+    end
+
 
     recipients    @user.email
     from          EMAILS[:contact]
