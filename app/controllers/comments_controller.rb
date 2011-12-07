@@ -18,7 +18,9 @@ class CommentsController < ApplicationController
   # Fetch comments on a particular product
   #
   def index
-    @comments = Comment.on_product(params[:product_id]).with_user
+    @comments = Comment.on(
+                  params[:source_type],
+                  params[:source_id]).with_user
   rescue => ex
     handle_exception(ex)
   ensure

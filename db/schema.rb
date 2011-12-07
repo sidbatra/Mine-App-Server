@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207020210) do
+ActiveRecord::Schema.define(:version => 20111207025147) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(:version => 20111207020210) do
   create_table "comments", :force => true do |t|
     t.text     "data"
     t.integer  "user_id"
-    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
   end
 
-  add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "contacts", :force => true do |t|

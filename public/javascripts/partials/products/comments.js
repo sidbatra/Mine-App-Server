@@ -22,7 +22,9 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
 
     this.comments           = new Denwen.Collections.Comments();
     this.comments.fetch({
-            data      : {product_id: this.options.product_id},
+            data      : {
+                          source_id   : this.options.product_id,
+                          source_type : 'product'},
             success   : function() { self.render(); },
             error     : function() {}
           });
@@ -56,7 +58,8 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
 
     var comment   = new Denwen.Models.Comment({
                           data        : $(this.inputEl).val(),
-                          product_id  : this.productID,
+                          source_id   : this.productID,
+                          source_type : 'product',
                           defaultData : this.commentPlaceholder});
 
     this.comments.add(comment);
