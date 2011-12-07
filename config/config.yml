@@ -20,6 +20,7 @@ common: &common
   :keys:
     :user_category_count: user_%d_category_%d_count
     :user_price: user_%d_products_price
+    :user_top_stores: user_%d_top_stores
     :store_category_count: store_%d_category_%d_count
     :store_price: store_%d_products_price
     :store_top_products: store_%d_top_products

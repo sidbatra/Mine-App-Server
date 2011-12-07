@@ -26,6 +26,11 @@ class Store < ActiveRecord::Base
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
+  named_scope :for_user,    lambda {|user_id| {
+                                      :joins      => :products,
+                                      :conditions => {:products => {
+                                                        :user_id => user_id}},
+                                      :group      => 'stores.id'}}
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -55,6 +60,15 @@ class Store < ActiveRecord::Base
   #
   def self.top
     Cache.fetch(KEYS[:store_top]) {Store.processed.popular.limit(20)}
+  end
+
+  # Fetch a list of processed stores at which the user 
+  # has bought/received a product
+  #
+  def self.top_for_user(user_id)
+    Cache.fetch(KEYS[:user_top_stores] % user_id) do
+      processed.for_user(user_id)
+    end
   end
 
   # Return json options specifiying which attributes and methods

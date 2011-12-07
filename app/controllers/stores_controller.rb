@@ -21,6 +21,9 @@ class StoresController < ApplicationController
     when :all
       @stores  = Store.fetch_all
       @options = {:only => [:id,:name],:methods => []}
+    when :for_user
+      @stores  = Store.top_for_user(params[:user_id])
+      @options = {}
     end
 
   rescue => ex
