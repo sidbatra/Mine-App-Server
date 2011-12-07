@@ -53,6 +53,12 @@ Denwen.Helpers = Backbone.Model.extend({
     return n+(s[(v-20)%10]||s[v]||s[0]); 
   },
 
+  // Currency string for price
+  //
+  displayCurrency: function(price) {
+    return '$' + price.toFixed(2).replace(/\.00$/,'');
+  },
+
   // Empty div blocker used throughout the app
   //
   blocker: function() {

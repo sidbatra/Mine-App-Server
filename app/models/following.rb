@@ -7,6 +7,11 @@ class Following < ActiveRecord::Base
   belongs_to :follower, :class_name => "User"
 
   #-----------------------------------------------------------------------------
+  # Validations 
+  #-----------------------------------------------------------------------------
+  validates_inclusion_of :source, :in => %w(manual auto)
+
+  #-----------------------------------------------------------------------------
   # Attributes
   #-----------------------------------------------------------------------------
   attr_accessor :send_email
@@ -17,10 +22,11 @@ class Following < ActiveRecord::Base
 
   # Add a new following
   #
-  def self.add(user_id,follower_id,send_email = true)
+  def self.add(user_id,follower_id,source = 'manual',send_email = true)
     following = find_or_create_by_user_id_and_follower_id(
                   :user_id      => user_id,
                   :follower_id  => follower_id,
+                  :source       => source,
                   :send_email   => send_email)
 
     unless following.is_active
