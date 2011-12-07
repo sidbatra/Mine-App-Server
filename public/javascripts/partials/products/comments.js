@@ -42,7 +42,7 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
     var self = this;
 
     this.comments.each(function(comment){
-      $(self.commentsEl).prepend(Denwen.JST['comments/comment']({
+      $(self.commentsEl).append(Denwen.JST['comments/comment']({
                                     comment:comment}));
     });
   },
@@ -78,7 +78,7 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
   created: function(comment) {
     this.posting = false;
 
-    $(this.commentsEl).prepend(Denwen.JST['comments/comment']({
+    $(this.commentsEl).append(Denwen.JST['comments/comment']({
                                   comment:comment}));
 
     $(this.inputEl).val('');
