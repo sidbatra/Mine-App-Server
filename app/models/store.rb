@@ -47,7 +47,7 @@ class Store < ActiveRecord::Base
   # Fetch all the stores
   #
   def self.fetch_all
-    Cache.fetch(KEYS[:store_all]){Store.all};
+    Cache.fetch(KEYS[:store_all]){all};
   end
 
   # Fetch a store by name 
@@ -59,7 +59,7 @@ class Store < ActiveRecord::Base
   # Fetch sorted list of top stores
   #
   def self.top
-    Cache.fetch(KEYS[:store_top]) {Store.processed.popular.limit(20)}
+    Cache.fetch(KEYS[:store_top]) {processed.popular.limit(20)}
   end
 
   # Fetch a list of processed stores at which the user 
