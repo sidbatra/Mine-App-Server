@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207185022) do
+ActiveRecord::Schema.define(:version => 20111207214159) do
 
   create_table "actions", :force => true do |t|
     t.integer  "user_id"
@@ -63,10 +63,12 @@ ActiveRecord::Schema.define(:version => 20111207185022) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active",   :default => true
+    t.string   "source"
   end
 
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
+  add_index "followings", ["source"], :name => "index_followings_on_source"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
 
   create_table "invites", :force => true do |t|
