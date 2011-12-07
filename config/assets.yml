@@ -10,6 +10,7 @@ javascripts:
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/extensions.js
+    - public/javascripts/config.js
     - public/javascripts/application.js
     - public/javascripts/analytics.js
     - public/javascripts/helpers.js
