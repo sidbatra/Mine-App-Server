@@ -13,7 +13,7 @@ class MakeActionsPolymorphic < ActiveRecord::Migration
     remove_column :actions, :product_id
 
     add_index :actions, [:actionable_id,:actionable_type,:name,:user_id], :unique => true, :name => "index_actionable_name_user_id"
-    remove_index :actions, [:name,:user_id]
+    remove_index :actions, [:user_id,:name]
   end
 
   def self.down
