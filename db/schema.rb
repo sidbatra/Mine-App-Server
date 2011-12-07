@@ -9,18 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207025147) do
+ActiveRecord::Schema.define(:version => 20111207185022) do
 
   create_table "actions", :force => true do |t|
-    t.integer  "product_id"
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "actionable_type"
+    t.integer  "actionable_id"
   end
 
-  add_index "actions", ["product_id", "name", "user_id"], :name => "index_actions_on_product_id_and_name_and_user_id", :unique => true
-  add_index "actions", ["user_id", "name"], :name => "index_actions_on_user_id_and_name"
+  add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
 
   create_table "categories", :force => true do |t|
     t.string   "name"

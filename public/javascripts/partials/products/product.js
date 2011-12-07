@@ -35,7 +35,10 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   //
   createAction: function(name) {
     var action = new Denwen.Models.Action();
-    action.save({name:name,product_id:this.model.get('id')});
+    action.save({
+      name        : name,
+      source_id   : this.model.get('id'),
+      source_type : 'product'});
   },
 
   // Fired when the like button is clicked

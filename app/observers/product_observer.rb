@@ -83,7 +83,8 @@ class ProductObserver < ActiveRecord::Observer
   # Delete affected cache values
   #
   def after_destroy(product)
-    action = Action.fetch_own_for_product_and_user(
+    action = Action.fetch_own_on_for_user(
+                        product.class.name,
                         product.source_product_id,
                         product.user_id)
     action.destroy if action

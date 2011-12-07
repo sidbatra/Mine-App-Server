@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
   has_many    :comments, :as => :commentable, :dependent => :destroy
-  has_many    :actions,  :dependent => :destroy
+  has_many    :actions,  :as => :actionable, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations

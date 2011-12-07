@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # Fetch comments on a particular product
+  # Fetch comments on a commentable entity
   #
   def index
     @comments = Comment.on(

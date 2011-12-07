@@ -15,10 +15,12 @@ class ActionsController < ApplicationController
     end
   end
 
-  # Fetch actions on a particular product
+  # Fetch actions on an actionable entity
   #
   def index
-    @actions = Action.on_product(params[:product_id]).with_user.by_id
+    @actions = Action.on(
+                params[:source_type],
+                params[:source_id]).with_user.by_id
   rescue => ex
     handle_exception(ex)
   ensure
