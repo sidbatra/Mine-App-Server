@@ -31,6 +31,11 @@ Denwen.Partials.Users.Stores = Backbone.View.extend({
   // Render the top stores
   //
   render: function() {
+    if(this.stores.isEmpty()) {
+      $(this.el).hide();
+      return;
+    }
+
     $(this.el).html(
       Denwen.JST['users/stores']({
         stores  : this.stores,
