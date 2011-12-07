@@ -92,21 +92,17 @@ class Product < ActiveRecord::Base
 
   # Share the product to fb via the user who created it
   #
-  def share(product_url)
-    return if self.is_shared
-
-    fb_user = FbGraph::User.me(self.user.access_token)
-    fb_user.feed!(
-      :message      => self.endorsement,
-      :picture      => self.thumbnail_url,
-      :link         => product_url,
-      :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
-                        (user.is_male? ? "his" : "her") +
-                        " online closet. It's fun, and free!",
-      :name         => self.title)
-
-      self.shared
-  end
+  #def share(product_url)
+  #  fb_user = FbGraph::User.me(self.user.access_token)
+  #  fb_user.feed!(
+  #    :message      => self.endorsement,
+  #    :picture      => self.thumbnail_url,
+  #    :link         => product_url,
+  #    :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
+  #                      (user.is_male? ? "his" : "her") +
+  #                      " online closet. It's fun, and free!",
+  #    :name         => self.title)
+  #end
 
   # Mark the product as gift
   #
@@ -142,13 +138,6 @@ class Product < ActiveRecord::Base
                 :conditions => {
                     :user_id  => self.user_id,
                     :id_lt    => self.id})
-  end
-
-  # Mark the product as shared
-  #
-  def shared
-    self.is_shared = true
-    save!
   end
 
   # Path on filesystem for the processed hosted image thumbnail

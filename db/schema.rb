@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206001437) do
+ActiveRecord::Schema.define(:version => 20111207013413) do
 
   create_table "actions", :force => true do |t|
     t.integer  "product_id"
@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(:version => 20111206001437) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_shared",         :default => false
     t.string   "orig_thumb_url"
     t.integer  "comments_count",    :default => 0
     t.integer  "store_id"
