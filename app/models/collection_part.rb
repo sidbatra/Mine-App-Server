@@ -9,6 +9,5 @@ class CollectionPart < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
-  validates_presence_of   :collection_id
   validates_presence_of   :product_id
 end

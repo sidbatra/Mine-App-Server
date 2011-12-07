@@ -18,7 +18,17 @@ class Collection < ActiveRecord::Base
 
   # Add a new collection
   #
-  def self.add
+  def self.add(product_ids,user_id)
+    collection = Collection.new(:user_id => user_id)
+
+    raise IOError, "No products added to collection" unless product_ids.present?
+
+    product_ids.uniq.each do |product_id|
+      collection.collection_parts.build(:product_id => product_id)
+    end
+
+    collection.save!
+    collection
   end
 
 
