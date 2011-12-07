@@ -69,7 +69,7 @@ module DW
         action  = Action.find(action_id)
 
         UserMailer.decide_new_action(
-                    action) unless action.user_id == action.product.user_id
+                    action) unless action.user_id == action.actionable.user_id
       end
 
       # Email the user whenever someone follows him/her

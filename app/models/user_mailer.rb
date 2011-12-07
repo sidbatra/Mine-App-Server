@@ -77,13 +77,17 @@ class UserMailer < ActionMailer::Base
                      'own'  => 'also owns',
                      'want' => 'just added'}
 
-    @owner        = action.product.user 
+    @actionable   = action.actionable
+    @owner        = @actionable.user 
     @user         = action.user 
-    @product      = action.product
     @action_name  = action.name
 
     @action       = "#{@user.first_name} #{@user.last_name} " + 
-    								"#{action_map[@action_name]} your #{@product.title}"
+    								"#{action_map[@action_name]} your "
+
+    if(@actionable.class.name == 'Product')
+      @action     +=  @actionable.title
+    end
     
     if @action_name == 'want'
     	@action			+= " to #{@user.is_male? ? 'his' : 'her'} wishlist!"
