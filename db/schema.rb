@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(:version => 20111207220614) do
   add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
   add_index "categories", ["weight"], :name => "index_categories_on_weight"
 
+  create_table "collection_parts", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collection_parts", ["collection_id"], :name => "index_collection_parts_on_collection_id"
+  add_index "collection_parts", ["product_id"], :name => "index_collection_parts_on_product_id"
+
+  create_table "collections", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
+
   create_table "comments", :force => true do |t|
     t.text     "data"
     t.integer  "user_id"
