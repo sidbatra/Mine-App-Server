@@ -20,7 +20,7 @@
               <%if(product.get('is_gift')) { %>
                 Gift
               <%} else if(product.has('price')) { %>
-                Bought for $<%=product.get('price')%>
+                Bought for <%=helpers.displayCurrency(product.get('price'))%>
               <%}%>
 
             	<br/>
