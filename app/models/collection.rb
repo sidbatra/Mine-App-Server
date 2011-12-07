@@ -4,6 +4,8 @@ class Collection < ActiveRecord::Base
   # Associations
   #-----------------------------------------------------------------------------
   belongs_to :user
+  has_many :collection_parts, :dependent => :destroy
+  has_many :products, :through => :collection_parts
 
   #-----------------------------------------------------------------------------
   # Validations

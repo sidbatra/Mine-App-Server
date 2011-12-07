@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
   belongs_to  :category
   has_many    :comments, :as => :commentable, :dependent => :destroy
   has_many    :actions,  :as => :actionable, :dependent => :destroy
+  has_many    :collection_parts, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations

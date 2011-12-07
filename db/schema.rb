@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207213212) do
+ActiveRecord::Schema.define(:version => 20111207215611) do
 
   create_table "actions", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20111207213212) do
 
   add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
   add_index "categories", ["weight"], :name => "index_categories_on_weight"
+
+  create_table "collection_parts", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collection_parts", ["collection_id"], :name => "index_collection_parts_on_collection_id"
+  add_index "collection_parts", ["product_id"], :name => "index_collection_parts_on_product_id"
 
   create_table "collections", :force => true do |t|
     t.integer  "user_id"
