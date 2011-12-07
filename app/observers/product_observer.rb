@@ -43,6 +43,8 @@ class ProductObserver < ActiveRecord::Observer
 
       Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id])
       Cache.delete(KEYS[:store_category_count] % [product.store_id_was,product.category_id_was])
+
+      Cache.delete(KEYS[:user_top_stores] % product.user_id)
     end
 
     if product.user_id_changed? 
@@ -54,6 +56,9 @@ class ProductObserver < ActiveRecord::Observer
 
       Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
       Cache.delete(KEYS[:user_category_count] % [product.user_id_was,product.category_id_was])
+
+      Cache.delete(KEYS[:user_top_stores] % product.user_id)
+      Cache.delete(KEYS[:user_top_stores] % product.user_id_was)
     end
 
     if product.category_id_changed?
