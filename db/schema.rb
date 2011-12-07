@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207185022) do
+ActiveRecord::Schema.define(:version => 20111207213212) do
 
   create_table "actions", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20111207185022) do
 
   add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
   add_index "categories", ["weight"], :name => "index_categories_on_weight"
+
+  create_table "collections", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.text     "data"
