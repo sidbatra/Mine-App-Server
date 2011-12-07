@@ -1,0 +1,14 @@
+<div class='title'>
+  <%if(helpers.isCurrentUser(user.get('id'))){%> 
+    Your stores
+  <%} else {%>
+    <%=user.get('first_name')%>'s stores
+  <%}%>
+</div>
+   
+<div>
+  <%stores.each(function(store){%>
+    <%=Denwen.JST['stores/store']({store:store, src:'user_stores'})%>
+  <%});%>
+  <%=helpers.blocker()%>
+</div>

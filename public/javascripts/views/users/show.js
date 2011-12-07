@@ -31,6 +31,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   this.user.get('inverse_followings_count') <= 0
                                   && this.source == 'login'});
     // -----
+    new Denwen.Partials.Users.Stores({
+                          el    : '#user_stores_box',
+                          user  : this.user});
+
+    // -----
     new Denwen.Partials.Users.Stars({
                           el  : '#star_users_box'});
 
