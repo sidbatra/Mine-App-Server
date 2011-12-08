@@ -4,10 +4,14 @@ task :find_star_users do |e,args|
   
   require 'config/environment.rb'
   
+  old_stars = User.stars
   Rails.cache.delete(KEYS[:star_users])
-  users = User.stars
 
-  users.each do |user|
+  new_stars       = User.stars
+  users_to_email  = new_stars - old_stars
+
+  users_to_email.each do |user|
+    puts user.handle
     begin
       UserMailer.decide_star_user(user)    
       sleep 2
