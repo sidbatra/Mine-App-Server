@@ -20,6 +20,7 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
+  named_scope :unfiltered,  ''
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
@@ -44,31 +45,10 @@ class Store < ActiveRecord::Base
       :user_id  => user_id)
   end
 
-  # Fetch all the stores
-  #
-  def self.fetch_all
-    Cache.fetch(KEYS[:store_all]){all};
-  end
-
   # Fetch a store by name 
   #
   def self.fetch(name)
     find_by_name(name.squeeze(' ').strip) 
-  end
-
-  # Fetch sorted list of top stores
-  #
-  def self.top
-    Cache.fetch(KEYS[:store_top]) {processed.popular.limit(20)}
-  end
-
-  # Fetch a list of processed stores at which the user 
-  # has bought/received a product
-  #
-  def self.top_for_user(user_id)
-    Cache.fetch(KEYS[:user_top_stores] % user_id) do
-      processed.for_user(user_id)
-    end
   end
 
   # Return json options specifiying which attributes and methods

@@ -16,14 +16,17 @@ class StoresController < ApplicationController
 
     case @filter
     when :top
-      @stores  = Store.top
-      @options = {}
+      @stores   = Store.processed.popular.limit(20)
+      @options  = {}
+      @key      = KEYS[:store_top]
     when :all
-      @stores  = Store.fetch_all
-      @options = {:only => [:id,:name],:methods => []}
+      @stores   = Store.unfiltered
+      @options  = {:only => [:id,:name],:methods => []}
+      @key      = KEYS[:store_all]
     when :for_user
-      @stores  = Store.top_for_user(params[:user_id])
-      @options = {}
+      @stores   = Store.processed.for_user(params[:user_id])
+      @options  = {}
+      @key      = KEYS[:user_top_stores] % params[:user_id]
     end
 
   rescue => ex
