@@ -1,6 +1,6 @@
 // View for editing a store in the admin UI 
 //
-Denwen.AdminStoreEditView = Backbone.View.extend({
+Denwen.Views.Admin.StoreEditView = Backbone.View.extend({
 
   // Event listeners
   //

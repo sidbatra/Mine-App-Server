@@ -92,11 +92,12 @@ class Store < ActiveRecord::Base
   def edit(attributes)
 
     if attributes[:name].present?
-      self.name = attributes[:name]
+      self.name             = attributes[:name]
+      self.generate_handle  = true
     end
 
     if attributes[:is_approved].present?
-      self.is_approved  = attributes[:is_approved] 
+      self.is_approved      = attributes[:is_approved] 
     end
 
     self.save!

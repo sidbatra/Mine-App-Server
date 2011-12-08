@@ -1,6 +1,6 @@
 // View for editing/approving stores in the admin UI 
 //
-Denwen.AdminStoresEditView = Backbone.View.extend({
+Denwen.Views.Admin.StoresEditView = Backbone.View.extend({
 
   // Event listeners
   //
@@ -26,7 +26,7 @@ Denwen.AdminStoresEditView = Backbone.View.extend({
     var self = this;
 
     this.unapprovedStores.each(function(store){
-        var storeEditView = new Denwen.AdminStoreEditView({model:store});
+        var storeEditView = new Denwen.Views.Admin.StoreEditView({model:store});
 
         storeEditView.bind('storeUpdated',self.storeUpdated,self);
         self.storeEditViews.push(storeEditView);
