@@ -20,6 +20,7 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
+  named_scope :unfiltered,  ''
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
@@ -42,12 +43,6 @@ class Store < ActiveRecord::Base
     find_or_create_by_name(
       :name     => name.squeeze(' ').strip,
       :user_id  => user_id)
-  end
-
-  # Fetch all the stores
-  #
-  def self.fetch_all
-    Cache.fetch(KEYS[:store_all]){all};
   end
 
   # Fetch a store by name 

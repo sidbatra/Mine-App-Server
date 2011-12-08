@@ -20,8 +20,9 @@ class StoresController < ApplicationController
       @options  = {}
       @key      = KEYS[:store_top]
     when :all
-      @stores  = Store.fetch_all
-      @options = {:only => [:id,:name],:methods => []}
+      @stores   = Store.unfiltered
+      @options  = {:only => [:id,:name],:methods => []}
+      @key      = KEYS[:store_all]
     when :for_user
       @stores  = Store.top_for_user(params[:user_id])
       @options = {}
