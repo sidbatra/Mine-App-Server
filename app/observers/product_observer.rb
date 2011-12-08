@@ -6,12 +6,6 @@ class ProductObserver < ActiveRecord::Observer
   # Delete affected cache values
   #
   def after_create(product)
-    Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
-    Cache.delete(KEYS[:user_price] % product.user_id)
-
-    Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id])
-    Cache.delete(KEYS[:store_price] % product.store_id)
-
     ProcessingQueue.push(
       NotificationManager,
       :new_product,
@@ -28,42 +22,20 @@ class ProductObserver < ActiveRecord::Observer
       product.is_hosted = false
     end
 
-    if product.price_changed?
-      Cache.delete(KEYS[:user_price] % product.user_id)
-      Cache.delete(KEYS[:store_price] % product.store_id)
-    end
-
     if product.store_id_changed? 
-      Store.increment_counter(:products_count,product.store_id) if product.store_id
-      Store.decrement_counter(:products_count,product.store_id_was) if product.store_id_was
+      if product.store_id
+        Store.increment_counter(:products_count,product.store_id) 
+      end
 
-      Cache.delete(KEYS[:store_price] % product.store_id)
-      Cache.delete(KEYS[:store_price] % product.store_id_was)
-
-      Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id])
-      Cache.delete(KEYS[:store_category_count] % [product.store_id_was,product.category_id_was])
-
+      if product.store_id_was
+        Store.decrement_counter(:products_count,product.store_id_was) 
+      end
     end
 
     if product.user_id_changed? 
       User.increment_counter(:products_count,product.user_id)
       User.decrement_counter(:products_count,product.user_id_was)
-
-      Cache.delete(KEYS[:user_price] % product.user_id)
-      Cache.delete(KEYS[:user_price] % product.user_id_was)
-
-      Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
-      Cache.delete(KEYS[:user_category_count] % [product.user_id_was,product.category_id_was])
     end
-
-    if product.category_id_changed?
-      Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id])
-      Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id_was])
-
-      Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
-      Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id_was])
-    end
-
   end
 
   # Post process based on the flags set in before_update
@@ -83,12 +55,6 @@ class ProductObserver < ActiveRecord::Observer
                         product.source_product_id,
                         product.user_id)
     action.destroy if action
-
-    Cache.delete(KEYS[:user_category_count] % [product.user_id,product.category_id])
-    Cache.delete(KEYS[:user_price] % product.user_id)
-
-    Cache.delete(KEYS[:store_category_count] % [product.store_id,product.category_id])
-    Cache.delete(KEYS[:store_price] % product.store_id)
   end
 
 end
