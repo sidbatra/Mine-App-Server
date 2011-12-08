@@ -6,6 +6,8 @@ task :find_top_shoppers do |e,args|
  
     Store.top.each do |store|
       old_shoppers    = User.top_shoppers(store.id)
+
+      # TODO: The cache key :store_top_shopper has been deprecated
       Rails.cache.delete(KEYS[:store_top_shoppers] % store.id)
 
       new_shoppers    = User.top_shoppers(store.id)

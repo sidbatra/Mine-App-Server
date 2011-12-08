@@ -40,6 +40,15 @@ class User < ActiveRecord::Base
                       :group      => "users.id", 
                       :order      => "count(users.id) DESC, users.id",
                       :limit      => 20
+  named_scope :top_shoppers, lambda {|store_id| {
+                              :joins      => :products,
+                              :conditions => {
+                                :products => {
+                                  :store_id   => store_id,
+                                  :created_at => 20.days.ago..Time.now}},
+                              :group      => "users.id", 
+                              :order      => "count(users.id) DESC, users.id",
+                              :limit      => 20}}
 
   #-----------------------------------------------------------------------------
   # Attributes
@@ -72,21 +81,6 @@ class User < ActiveRecord::Base
   #
   def self.find_by_cookie(token)
     find_by_remember_token(token)
-  end
-
-  # Fetch all top shoppers for a store
-  #
-  def self.top_shoppers(store_id)
-    Cache.fetch(KEYS[:store_top_shoppers] % store_id) do
-        all(
-          :joins      => :products,
-          :conditions => {:products => {
-                            :store_id   => store_id,
-                            :created_at => 20.days.ago..Time.now}},
-          :group      => "users.id", 
-          :order      => "count(users.id) DESC, users.id",
-          :limit      => 20)
-    end
   end
 
   # Return json options specifiying which attributes and methods
