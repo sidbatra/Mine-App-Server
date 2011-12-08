@@ -50,13 +50,15 @@ Rails::Initializer.run do |config|
   config.autoload_paths +=  [
                               File.join(Rails.root,'app','observers'),
                               File.join(Rails.root,'app','processors'),
-                              File.join(Rails.root,'app','presenters')]
+                              File.join(Rails.root,'app','presenters'),
+                              File.join(Rails.root,'app','sweepers')]
 
 
   # Register observers
   config.active_record.observers  = :product_observer, :comment_observer, 
                                     :user_observer, :following_observer,
-                                    :action_observer, :store_observer
+                                    :action_observer, :store_observer,
+                                    :store_sweeper
 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
