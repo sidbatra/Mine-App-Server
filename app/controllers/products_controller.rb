@@ -73,6 +73,7 @@ class ProductsController < ApplicationController
 
       @options[:with_store] = true
       @options[:with_user]  = true
+
     when :store
       @category = Category.fetch(params[:category]) if params[:category]
       @products = Product.with_user.
@@ -81,10 +82,16 @@ class ProductsController < ApplicationController
                     by_id
 
       @options[:with_user] = true
+
     when :top
       @products = Product.top_for_store(params[:owner_id])
 
       @options[:with_user] = true
+
+    when :collection
+      collection = Collection.fresh_for_user(params[:owner_id])
+      @products = []
+      @products = Product.find_all_by_id(collection.product_ids) if collection
     else
       raise IOError, "Invalid option"
     end
