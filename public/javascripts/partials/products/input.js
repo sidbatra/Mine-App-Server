@@ -44,7 +44,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.productImages      = new Denwen.Collections.ImageResults();
     this.productImagesView  = new Denwen.Partials.Products.ImageResults({
                                   el:this.el,
-                                  images:this.productImages});
+                                  images:this.productImages,
+                                  mode:this.mode});
     this.productImagesView.bind('productSelected',this.productSelected,this);
     this.productImagesView.bind('productSearched',this.productSearched,this);
     this.productImagesView.bind('productSearchCancelled',

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207215611) do
+ActiveRecord::Schema.define(:version => 20111207220614) do
 
   create_table "actions", :force => true do |t|
     t.integer  "user_id"
@@ -147,8 +147,10 @@ ActiveRecord::Schema.define(:version => 20111207215611) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source"
   end
 
+  add_index "searches", ["source"], :name => "index_searches_on_source"
   add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
 
   create_table "stores", :force => true do |t|
