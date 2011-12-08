@@ -15,7 +15,9 @@ class ProductSweeper < ActionController::Caching::Sweeper
 
     expire_user_top_stores(product.user_id)
     expire_store_top_products(product.store_id)
+
     expire_user_products_in_category(product.user_id,product.category_id)
+    expire_store_products_in_category(product.store_id,product.category_id)
   end
 
   # Before a product is updated
@@ -38,6 +40,9 @@ class ProductSweeper < ActionController::Caching::Sweeper
 
       expire_store_top_products(product.store_id)
       expire_store_top_products(product.store_id_was)
+    
+      expire_store_products_in_category(product.store_id,product.category_id)
+      expire_store_products_in_category(product.store_id_was,product.category_id_was)
     end
 
     if product.user_id_changed?
@@ -63,9 +68,14 @@ class ProductSweeper < ActionController::Caching::Sweeper
 
       expire_user_products_in_category(product.user_id,product.category_id)
       expire_user_products_in_category(product.user_id,product.category_id_was)
+
+      expire_store_products_in_category(product.store_id,product.category_id)
+      expire_store_products_in_category(product.store_id,product.category_id_was)
     end
 
+      expire_store_top_products(product.store_id)
       expire_user_products_in_category(product.user_id,product.category_id)
+      expire_store_products_in_category(product.store_id,product.category_id)
   end
 
   # Product is updated
@@ -84,8 +94,11 @@ class ProductSweeper < ActionController::Caching::Sweeper
 
     expire_user_top_stores(product.user_id)
     expire_store_top_products(product.store_id)
+
     expire_user_products_in_category(product.user_id,product.category_id)
+    expire_store_products_in_category(product.store_id,product.category_id)
   end
+
 
   # Expire category count cache for a user's product category
   #
@@ -128,6 +141,13 @@ class ProductSweeper < ActionController::Caching::Sweeper
   #
   def expire_store_top_products(store_id)
     expire_cache KEYS[:store_top_products] % store_id
+  end
+
+  # Expire cache fragment for store's products in a category
+  #
+  def expire_store_products_in_category(store_id,category_id)
+    expire_cache KEYS[:store_products_in_category] % [store_id,category_id]
+    expire_cache KEYS[:store_products_in_category] % [store_id,0]
   end
 end
 
