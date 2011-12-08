@@ -5,10 +5,15 @@ if [ $# -lt 1 ] ; then
   exit
 else
   target=$1
+  passwd=$2
 fi
 
-mysqldump -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p hasit_production > production.sql
+mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p$passwd -e "drop database $target" 
 
-mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p $target < production.sql
+mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p$passwd -e "create database $target" 
+
+mysqldump -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p$passwd hasit_production > production.sql
+
+mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p$passwd $target < production.sql
 
 rm production.sql
