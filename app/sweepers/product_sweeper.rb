@@ -14,6 +14,7 @@ class ProductSweeper < ActionController::Caching::Sweeper
     expire_store_price(product.store_id)
 
     expire_user_top_stores(product.user_id)
+    expire_store_top_products(product.store_id)
   end
 
   # Before a product is updated
@@ -33,6 +34,9 @@ class ProductSweeper < ActionController::Caching::Sweeper
 
       expire_store_price(product.store_id)
       expire_store_price(product.store_id_was)
+
+      expire_store_top_products(product.store_id)
+      expire_store_top_products(product.store_id_was)
     end
 
     if product.user_id_changed?
@@ -70,6 +74,7 @@ class ProductSweeper < ActionController::Caching::Sweeper
     expire_store_price(product.store_id)
 
     expire_user_top_stores(product.user_id)
+    expire_store_top_products(product.store_id)
   end
 
   # Expire the top stores for a user
@@ -100,6 +105,12 @@ class ProductSweeper < ActionController::Caching::Sweeper
   #
   def expire_store_price(store_id)
     Cache.delete(KEYS[:store_price] % store_id)
+  end
+
+  # Expire top products at the given store
+  #
+  def expire_store_top_products(store_id)
+    expire_cache KEYS[:store_top_products] % store_id
   end
 end
 

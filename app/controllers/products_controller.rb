@@ -84,9 +84,14 @@ class ProductsController < ApplicationController
       @options[:with_user] = true
 
     when :top
-      @products = Product.top_for_store(params[:owner_id])
+      @products = Product.for_store(params[:owner_id]).
+                    created(20.days.ago..Time.now).
+                    by_actions.
+                    with_user.
+                    limit(10)
 
       @options[:with_user] = true
+      @key = KEYS[:store_top_products] % params[:owner_id]
 
     when :collection
       collection = Collection.fresh_for_user(params[:owner_id])

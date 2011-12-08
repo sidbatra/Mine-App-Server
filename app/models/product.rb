@@ -74,18 +74,7 @@ class Product < ActiveRecord::Base
       :source_product_id  => attributes['source_product_id'],
       :user_id            => user_id)
   end
-    
-  # Fetch top products for the given store
-  #
-  def self.top_for_store(store_id)
-    Cache.fetch(KEYS[:store_top_products] % store_id) do
-      Product.for_store(store_id).
-              created(20.days.ago..Time.now).
-              by_actions.
-              with_user.
-              limit(10)
-    end
-  end
+
 
   #-----------------------------------------------------------------------------
   # Instance methods
