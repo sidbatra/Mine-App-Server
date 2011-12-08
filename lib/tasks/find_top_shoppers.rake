@@ -4,20 +4,24 @@ task :find_top_shoppers do |e,args|
   
   require 'config/environment.rb'
  
-    Store.top.each do |store|
-      old_shoppers    = User.top_shoppers(store.id)
+    Store.processed.popular.limit(20).each do |store|
+      key = "views/#{KEYS[:store_top_shoppers] % store.id}"
 
-      # TODO: The cache key :store_top_shopper has been deprecated
-      Rails.cache.delete(KEYS[:store_top_shoppers] % store.id)
+      cached_json   = Rails.cache.fetch(key)
+      old_shoppers  = cached_json ? JSON.parse(cached_json).map{|u| u['id']} : []
 
-      new_shoppers    = User.top_shoppers(store.id)
-      users_to_email  = new_shoppers - old_shoppers
-      
+      Rails.cache.delete(key)
+
+      users_to_email = User.top_shoppers(store.id).reject{|u| old_shoppers.include?(u.id)}
+      puts store.name
+
       users_to_email.each do |user|
         begin 
           UserMailer.decide_top_shopper(user,store)    
+          puts user.handle
           sleep 2
         rescue => ex
+          puts "exception for #{user.handle}"
           LoggedException.add(__FILE__,__method__,ex)    
         end#begin
       end#user

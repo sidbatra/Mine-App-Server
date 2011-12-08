@@ -3,24 +3,23 @@ desc "Find star users"
 task :find_star_users do |e,args|
   
   require 'config/environment.rb'
+
+  key = "views/#{KEYS[:star_users]}"
   
-  old_stars = User.stars
+  cached_json     = Rails.cache.fetch(key)
+  old_stars       = cached_json ? JSON.parse(cached_json).map{|u| u['id']} : []
 
-  ##TODO: Deprecated. KEYS[:star_users] no longer contains
-  # User model objects. Instead it contains a json array of
-  # the same User models.
-  #
-  Rails.cache.delete(KEYS[:star_users])
+  Rails.cache.delete(key)
 
-  new_stars       = User.stars
-  users_to_email  = new_stars - old_stars
+  users_to_email  = User.stars.reject{|u| old_stars.include?(u.id)}
 
   users_to_email.each do |user|
-    puts user.handle
     begin
       UserMailer.decide_star_user(user)    
+      puts user.handle
       sleep 2
     rescue => ex
+      puts "exception for #{user.handle}"
       LoggedException.add(__FILE__,__method__,ex)    
     end#begin
   end#user
