@@ -56,12 +56,6 @@ class Store < ActiveRecord::Base
     find_by_name(name.squeeze(' ').strip) 
   end
 
-  # Fetch sorted list of top stores
-  #
-  def self.top
-    Cache.fetch(KEYS[:store_top]) {processed.popular.limit(20)}
-  end
-
   # Fetch a list of processed stores at which the user 
   # has bought/received a product
   #

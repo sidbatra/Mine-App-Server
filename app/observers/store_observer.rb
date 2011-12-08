@@ -12,14 +12,12 @@ class StoreObserver < ActiveRecord::Observer
   #
   def after_update(store)
     Cache.delete(KEYS[:store_all])
-    Cache.delete(KEYS[:store_top])
   end
 
   # A store is delted
   #
   def after_destroy(store)
     Cache.delete(KEYS[:store_all])
-    Cache.delete(KEYS[:store_top])
   end
 
 
