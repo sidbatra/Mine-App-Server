@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [ $# -lt 1 ] ; then
-  echo "bash script/dbpull <target database>"
+if [ $# -lt 2 ] ; then
+  echo "bash script/dbpull <target database> <mysql password>"
   exit
 else
   target=$1
