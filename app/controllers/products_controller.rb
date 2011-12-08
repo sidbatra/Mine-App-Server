@@ -65,14 +65,17 @@ class ProductsController < ApplicationController
 
     case @filter
     when :user
-      @category = Category.fetch(params[:category]) if params[:category]
-      @products = Product.with_store.with_user.
-                    for_user(params[:owner_id]).
-                    in_category(@category ? @category.id : nil).
-                    by_id
+      category    = Category.fetch(params[:category]) if params[:category]
+      category_id = category ? category.id : nil
+
+      @products   = Product.with_store.with_user.
+                      for_user(params[:owner_id]).
+                      in_category(category_id).
+                      by_id
 
       @options[:with_store] = true
       @options[:with_user]  = true
+      @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
 
     when :store
       @category = Category.fetch(params[:category]) if params[:category]
