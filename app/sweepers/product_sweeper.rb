@@ -1,5 +1,5 @@
-# Observe events on various models to keep the Product Cache
-# stores persistent
+# Oberve events on Product models to keep various cache
+# stores persistent 
 #
 class ProductSweeper < ActionController::Caching::Sweeper
   observe Product

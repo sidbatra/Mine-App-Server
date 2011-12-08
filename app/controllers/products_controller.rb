@@ -102,7 +102,14 @@ class ProductsController < ApplicationController
     when :collection
       collection = Collection.fresh_for_user(params[:owner_id])
       @products = []
-      @products = Product.find_all_by_id(collection.product_ids) if collection
+
+      if collection
+        @products = Product.for_ids(collection.product_ids) 
+        @key = KEYS[:collection_products] % collection.id
+      else
+        @key = KEYS[:collection_products] % 0
+      end
+
     else
       raise IOError, "Invalid option"
     end

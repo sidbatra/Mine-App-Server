@@ -31,6 +31,7 @@ common: &common
     :store_all: store_all
     :store_top: store_top
     :star_users: star_users
+    :collection_products: collection_%d_products
   :msg:
     :product:
       :shoes:

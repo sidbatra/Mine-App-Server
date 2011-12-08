@@ -34,6 +34,7 @@ class Product < ActiveRecord::Base
   named_scope :by_id,       :order => 'id DESC'
   named_scope :by_actions,  :order => 'actions_count DESC,id DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
+  named_scope :for_ids,     lambda {|ids| {:conditions => {:id => ids}}}
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
   named_scope :for_store,   lambda {|store_id| 
