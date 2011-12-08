@@ -86,9 +86,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contacts,
                 :only => [:index]
 
-  map.resource  :share,
-                :controller => 'share',
-                :only       => [:create]
+  map.resources :collections,
+                :only => [:create]
+
 
   # Admin routes
   map.resources :admin_users, 

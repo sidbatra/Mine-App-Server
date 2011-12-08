@@ -13,6 +13,13 @@ class Collection < ActiveRecord::Base
   validates_presence_of   :user_id
 
   #-----------------------------------------------------------------------------
+  # Named scopes
+  #-----------------------------------------------------------------------------
+  named_scope :for_user, lambda {|user_id| {:conditions => {
+                                              :user_id => user_id},
+                                            :limit => 1}}
+
+  #-----------------------------------------------------------------------------
   # Class methods
   #-----------------------------------------------------------------------------
 
@@ -31,10 +38,30 @@ class Collection < ActiveRecord::Base
     collection
   end
 
+  # Fetch the last fresh collection for the given user_id
+  #
+  def self.fresh_for_user(user_id)
+    collection = for_user(user_id).last
+    collection = nil unless collection && collection.is_fresh
+    collection
+  end
+
 
   #-----------------------------------------------------------------------------
   # Instance methods
   #-----------------------------------------------------------------------------
+
+  # Test is the collection is less than a day old
+  #
+  def is_fresh
+    (Time.now - self.created_at) < 86400
+  end
+
+  # Fetch product ids for the products in the collection
+  #
+  def product_ids
+    collection_parts.map(&:product_id)
+  end
 
   # Override to customize accessible attributes
   #
