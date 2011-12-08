@@ -2,7 +2,8 @@
 
 RAILS_LOC = Dir.pwd
 
-ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV']    ||= 'production'
+ENV['CACHE_IN_DEV'] ||= 'false'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION

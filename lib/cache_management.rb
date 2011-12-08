@@ -11,7 +11,7 @@ module DW
       # Wraps around rails cache fetch
       #
       def self.fetch(key,&block)
-        if RAILS_ENV != 'development'
+        if RAILS_ENV != 'development' || ENV['CACHE_IN_DEV'] == 'true'
           Rails.cache.fetch(key,&block)
         else
           yield if block_given?
