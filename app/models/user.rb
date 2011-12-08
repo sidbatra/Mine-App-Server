@@ -32,6 +32,16 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
 
   #-----------------------------------------------------------------------------
+  # Named scopes
+  #-----------------------------------------------------------------------------
+  named_scope :stars, :joins => :products, 
+                      :conditions => {
+                        :products => {:created_at => 2.days.ago..Time.now}},
+                      :group      => "users.id", 
+                      :order      => "count(users.id) DESC, users.id",
+                      :limit      => 20
+
+  #-----------------------------------------------------------------------------
   # Attributes
   #-----------------------------------------------------------------------------
   attr_accessor :mine_contacts
@@ -62,19 +72,6 @@ class User < ActiveRecord::Base
   #
   def self.find_by_cookie(token)
     find_by_remember_token(token)
-  end
-
-  # Fetch all the star users
-  #
-  def self.stars 
-    Cache.fetch(KEYS[:star_users]) do
-        all(
-          :joins      => :products,
-          :conditions => {:products => {:created_at => 2.days.ago..Time.now}},
-          :group      => "users.id", 
-          :order      => "count(users.id) DESC, users.id",
-          :limit      => 20)
-    end
   end
 
   # Fetch all top shoppers for a store

@@ -1,1 +1,3 @@
-<%=@users.to_json-%>
+<%-cache @key do-%>
+  <%=@users.to_json-%>
+<%-end-%>

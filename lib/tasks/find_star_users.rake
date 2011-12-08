@@ -5,6 +5,11 @@ task :find_star_users do |e,args|
   require 'config/environment.rb'
   
   old_stars = User.stars
+
+  ##TODO: Deprecated. KEYS[:star_users] no longer contains
+  # User model objects. Instead it contains a json array of
+  # the same User models.
+  #
   Rails.cache.delete(KEYS[:star_users])
 
   new_stars       = User.stars

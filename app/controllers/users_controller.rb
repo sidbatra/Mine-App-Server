@@ -68,6 +68,7 @@ class UsersController < ApplicationController
       @users  = User.find(params[:id]).ifollowers
     when :stars
       @users  = User.stars
+      @key    = KEYS[:star_users]
     when :top_shoppers
       @users  = User.top_shoppers(params[:store_id])
     end
