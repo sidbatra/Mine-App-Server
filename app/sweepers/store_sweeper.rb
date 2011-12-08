@@ -1,5 +1,5 @@
 # Oberve events on various models to keep the Store cache
-# persistent 
+# stores persistent 
 #
 class StoreSweeper < ActionController::Caching::Sweeper
   observe Store
