@@ -24,8 +24,9 @@ class StoresController < ApplicationController
       @options  = {:only => [:id,:name],:methods => []}
       @key      = KEYS[:store_all]
     when :for_user
-      @stores  = Store.top_for_user(params[:user_id])
-      @options = {}
+      @stores   = Store.processed.for_user(params[:user_id])
+      @options  = {}
+      @key      = KEYS[:user_top_stores] % params[:user_id]
     end
 
   rescue => ex

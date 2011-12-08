@@ -51,15 +51,6 @@ class Store < ActiveRecord::Base
     find_by_name(name.squeeze(' ').strip) 
   end
 
-  # Fetch a list of processed stores at which the user 
-  # has bought/received a product
-  #
-  def self.top_for_user(user_id)
-    Cache.fetch(KEYS[:user_top_stores] % user_id) do
-      processed.for_user(user_id)
-    end
-  end
-
   # Return json options specifiying which attributes and methods
   # to pass in the json when the model is used within an include
   # of another model's json
