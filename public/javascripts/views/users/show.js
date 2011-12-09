@@ -13,16 +13,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.products   = new Denwen.Partials.Products.Products({
-                                el        : $('#products'),
-                                owner_id  : this.user.get('id'),
-                                filter    : 'user',
-                                jst       : 'products/user_products',
-                                active    : true});
+    this.products   = new Denwen.Partials.Users.Shelves({
+                                el        : $('#shelves'),
+                                owner_id  : this.user.get('id')});
     
-    // -----
-    this.routing();
-
     // -----
     new Denwen.Partials.Users.IFollowers({
                           el    : $('#ifollowers_with_msg'),
@@ -97,36 +91,4 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     }
   },
   
-  // Use Backbone router for reacting to changes in URL
-  // fragments
-  //
-  routing: function() {
-    var self = this;
-
-    var router = Backbone.Router.extend({
-
-      // Listen to routes
-      //
-      routes: {
-        ":category" : "filter"
-      },
-
-      // Called when a filter route is fired
-      //
-      filter: function(category) {
-        self.products.fetch(category);
-
-        if(category != undefined && category.length && category != '_=_') {
-          analytics.userProfileFiltered(
-                      category,
-                      self.isCurrentUser,
-                      self.user.get('id'));
-        }
-      }
-    });
-
-    new router();
-    Backbone.history.start();
-  }
-
 });
