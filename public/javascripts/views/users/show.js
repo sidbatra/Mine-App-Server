@@ -13,7 +13,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.products   = new Denwen.Partials.Users.Shelves({
+    this.shelves = new Denwen.Partials.Users.Shelves({
                                 el        : $('#shelves'),
                                 owner_id  : this.user.get('id')});
     

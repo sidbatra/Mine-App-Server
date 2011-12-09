@@ -1,13 +1,18 @@
 <div class="row">
-  <%=shelf.get('category').get('name')%>
-  <div class="shade">
-  </div>
+
+  <%if(!on){%>
+    <%=shelf.get('category').get('name')%>
+    <div class="shade">
+    </div>
+  <%}%>
 
   <div id="products">
     <%if(shelf.get('products').length > 0) {%>
       <%shelf.get('products').each(function(product){%>
         <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
       <%});%>
+    <%} else {%>
+      EMPTY
     <%}%>
     <%=helpers.blocker()%>
   </div>

@@ -7,9 +7,11 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   initialize: function() {
     this.ownerID    = this.options.owner_id;
     this.products   = new Denwen.Collections.Products();
+    this.onProducts = new Denwen.Collections.Products();
     this.shelves    = new Denwen.Collections.Shelves();
 
-    this.fetch();
+    this.fetchOnProducts();
+    //this.fetch();
   },
 
   // Render the products collection
@@ -21,8 +23,11 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
     this.shelves.each(function(shelf) {
       self.el.prepend(
-         Denwen.JST['products/shelf']({shelf : shelf}));
+         Denwen.JST['products/shelf']({shelf: shelf, on: false}));
     });
+
+    this.el.prepend(
+      Denwen.JST['products/shelf']({shelf: this.topShelf, on: true}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
@@ -36,11 +41,22 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   //
   fetch: function() {
     var self  = this;
-    var data  = {filter: 'user',owner_id: this.ownerID};
 
     this.products.fetch({
-      data    : data,
+      data    : {filter: 'user',owner_id: this.ownerID},
       success : function() { self.assemble(); },
+      error   : function() {}
+    });
+  },
+
+  // Fetch on products 
+  //
+  fetchOnProducts: function() {
+    var self  = this;
+
+    this.onProducts.fetch({
+      data    : {filter: 'collection',owner_id: this.ownerID},
+      success : function() { self.fetch(); },
       error   : function() {}
     });
   },
@@ -50,17 +66,22 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   assemble: function() {
     var self = this;
 
+    this.topShelf = new Denwen.Models.Shelf({id:1,products:this.onProducts});
+
     this.products.each(function(product){
+      
+      if(self.onProducts.get(product.get('id')) == undefined) {
 
-      var category_id = product.get('category_id');
-      var shelf       = self.shelves.get(category_id);
+        var category_id = product.get('category_id');
+        var shelf       = self.shelves.get(category_id);
 
-      if(shelf == undefined) {
-        shelf = new Denwen.Models.Shelf({id:category_id});
-        self.shelves.add(shelf);
+        if(shelf == undefined) {
+          shelf = new Denwen.Models.Shelf({id:category_id});
+          self.shelves.add(shelf);
+        }
+
+        shelf.addProduct(product);
       }
-
-      shelf.addProduct(product);
     });
 
 

@@ -105,6 +105,8 @@ class ProductsController < ApplicationController
 
       if collection
         @products = Product.for_ids(collection.product_ids) 
+        @options[:with_store] = true
+        @options[:with_user]  = true
         @key = KEYS[:collection_products] % collection.id
       else
         @key = KEYS[:collection_products] % 0
