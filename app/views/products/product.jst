@@ -1,83 +1,77 @@
-<li>
-  <div class='product'> 
-      <div class='left'>
-        <a href="<%=product.path(src)%>">
-          <img src="<%=product.get('thumbnail_url')%>" 
-              class='image'
-              alt=''/>
-        </a>
-      </div> <!-- left -->
+
+<div class='product rounded_3'> 
+  <div class='top'>
+    <a href="<%=product.path(src)%>">
+      <img src="<%=product.get('thumbnail_url')%>" 
+          class='image'
+          alt=''/>
+    </a>
+  </div> <!-- top -->
+
+  <div class='bottom'>
   
-      <div class='right'>
+    <p class='details'>
+      <a class="title" href="<%=product.path(src)%>">
+        <%=helpers.truncate(product.escape('title'),80,'...')%>
+      </a>
       
-        <p class='details'>
-          <a class="title" href="<%=product.path(src)%>">
-            <%=helpers.truncate(product.escape('title'),80,'...')%>
-          </a>
+      <br />
+        	
+          <%if(type == 'user' && product.has('store')) { %>
+            <%if(product.get('is_gift')) { %>
+              Bought 
+            <%}%>
+              from <%=product.get('store').escape('name')%>
+          <%}%>
           
-          <br />
-
-              <%if(product.get('is_gift')) { %>
-                Gift
-              <%} else if(product.has('price')) { %>
-                Bought for <%=helpers.displayCurrency(product.get('price'))%>
-              <%}%>
-
-            	<br/>
-            	
-              <%if(type == 'user' && product.has('store')) { %>
-                <%if(product.get('is_gift')) { %>
-                  Bought 
-                <%}%>
-                  at <%=product.get('store').escape('name')%> <br>
-              <%}%>
-              
-              <%if(type == 'store') { %>
-                by <a href="<%=product.get('user').path('store')%>">
-                    <%=product.get('user').escape('first_name')%> 
-                    <%=product.get('user').escape('last_name')%>
-                </a>
-              <%}%>
-
-        </p>
-
-
-        <%if(helpers.isLoggedIn()) {%>
-          <div class='feedback'>
-	          <div class='buttons'>
-	          
-	            <div id="like_product_<%=product.get('id')%>" class='button hover_shadow_light like'>
-	              <span class="out">like</span><span class="in">✓</span>
-	            </div>
-	              
-	            <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
-	            	<div id="want_product_<%=product.get('id')%>" class='button hover_shadow_light want'>
-	                <span class="out">want</span><span class="in">✓</span>
-	              </div>
-	              <div id="own_product_<%=product.get('id')%>" class='button hover_shadow_light own'>
-	              	<span class="out">own</span><span class="in">✓</span>
-	              </div>
-	            <%}%>
-	            
-	            <a href="<%=product.path(src)%>">
-	              <%if (product.get('comments_count')) {%>
-	                <div class='button comments_some hover_shadow_light'></div>
-	              <%} else {%>
-	                <div class='button comments_none hover_shadow_light'></div>
-	              <%}%>
-	            </a>
-	            
-	          </div>  <!-- buttons -->
-          </div> <!-- feedback -->
+          <%if(type == 'store') { %>
+            by <a href="<%=product.get('user').path('store')%>">
+                <%=product.get('user').escape('first_name')%> 
+                <%=product.get('user').escape('last_name')%>
+            </a>
+          <%}%>
           
-        <%}%>
-        
-      </div> <!-- right -->
+          <%if(product.get('is_gift')) { %>
+            Gift
+          <%} else if(product.has('price')) { %>
+            <%=helpers.displayCurrency(product.get('price'))%>
+          <%}%>
 
-  </div> <!-- product -->
-
+    </p>
     
-</li>
+  </div> <!-- bottom -->
+
+	<%if(helpers.isLoggedIn()) {%>
+      <div class='feedback'>
+          <div class='buttons'>
+          
+            <div id="like_product_<%=product.get('id')%>" class='button hover_shadow_light like'>
+              <span class="out">like</span><span class="in">✓</span>
+            </div>
+              
+            <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+            	<div id="want_product_<%=product.get('id')%>" class='button hover_shadow_light want'>
+                <span class="out">want</span><span class="in">✓</span>
+              </div>
+              <div id="own_product_<%=product.get('id')%>" class='button hover_shadow_light own'>
+              	<span class="out">own</span><span class="in">✓</span>
+              </div>
+            <%}%>
+            
+            <a href="<%=product.path(src)%>">
+              <%if (product.get('comments_count')) {%>
+                <div class='button comments_some hover_shadow_light'></div>
+              <%} else {%>
+                <div class='button comments_none hover_shadow_light'></div>
+              <%}%>
+            </a>
+            
+          </div>  <!-- buttons -->
+      </div> <!-- feedback -->
+      
+    <%}%>
+
+</div> <!-- product -->
 
 
 

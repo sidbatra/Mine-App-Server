@@ -30,10 +30,8 @@ body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-/*
 	background: #f8f8f8 url('/images/tile35.jpg');
 	background-position: center -38px;
-*/
 }
 
 h1 {
@@ -1063,6 +1061,7 @@ h1 {
 	z-index: 4999;
 	color: white;
 	background-image: url('/images/333333_90.png');
+/* 	background: #333333; */
 }
 
 #profile_right .box {
@@ -1143,7 +1142,7 @@ h1 {
 
 #profile_right .button {
 	height: 32px;
-	width: 221px;
+	width: 180px;
 	display: block;
 	line-height: 32px;
 	font-size: 13px;
@@ -1271,7 +1270,6 @@ h1 {
 #closet {
 	width: 100%;
 	color: white;
-	background: #ffffcc;
 }
 
 #closet .title_box {
@@ -1279,25 +1277,24 @@ h1 {
 	padding: 14px 0px 0px 12px;
 	background-image: url('/images/wood.jpg');
 	background-position: left center;
-	text-shadow: #795b3a 0px 1px 0px;
 }
 
 .profile_user_photo {
 	width: 50px;
 	height: 50px;
-	margin-right: 14px;
+	margin-right: 12px;
 	float: left;
 }
 
 .profile_username {
-	line-height: 31px;
+	/* font-family: 'FuturaStdBold', Arial, sans-serif;  */
+	line-height: 34px;
 	font-size: 26px;
 	width: 560px;
 	height: 32px;
 	color: white;
 	position: relative;
-	overflow-x: visible;
-	white-space: nowrap;
+	text-shadow: #795b3a 0px -1px 0px;
 }
 
 .store_username {
@@ -1314,8 +1311,7 @@ h1 {
 	width: 500px;
 	height: 26px;
 	font-size: 14px;
-	line-height: 26px;
-	height: 24px;
+	line-height: 21px;
 }
 
 #user_byline {
@@ -1362,134 +1358,126 @@ h1 {
  padding: 0px 6px 12px 6px;
  background-image: url('/images/wood.jpg');
  background-position: left bottom;
+ overflow-x: hidden;
+ position: relative;
+}
+
+#closet .row .shade {
+ height: 44px;
+ width: 100%;
+ background: url('/images/shadow.png') repeat-x;
+ position: absolute;
+ top: 0px;
+ left: 0px;
 }
 
 
 /* ------------------------------ Products */
 
 #products {
-	width: 600px;
-	padding-left: 27px;
-	padding-right: 21px;
-}
-
-#products ul li {
-	float: left;
-	margin-right: 6px;
-	height: 152px;
-	padding-bottom: 12px;
+	overflow-x: hidden;
+	white-space: nowrap;
+	width: 10000px;
+	position: absolute;
+	bottom: 22px;
+	left: 6px;
+	background-attachment: fixed;
 }
 
 #products .product {
-	width: 294px;
-	height: 152px;
-	background: url('/images/closet_product_bg.png');
-	border-top: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
+	float: left;
+	width: 130px;
+	height: 202px;
+	padding: 10px;
+	margin-right: 6px;
 	position: relative;
+	font-size: 11px;
+	line-height: 15px;
+/* 	border-bottom: 1px solid #b59264; */
+	background: white;
 }
 
-#products .product .left {
+#products .product .top {
 	display: block;
-	float: left;
-	width: 152px;
-	height: 152px;
-	line-height: 152px;
+	width: 130px;
+	height: 130px;
+	line-height: 130px;
 	text-align: center;
 	position: relative;
 }
 
-#products .product .left .image {
-	padding: 11px;
+#products .product .top .image {
 	max-height: 130px;
 	max-width: 130px;
 	vertical-align: middle;
 	position: relative;
 }
 
-#products .product .left .view { /* on hold */
+#products .product .bottom {
+	white-space: normal;
+	font-size: 11px;
+	line-height: 16px;
 	width: 130px;
-	height: 26px;
-	background: url('/images/product_view.png');
-	position: absolute;
-	bottom: 10px;
-	left: 11px;
-	z-index: 500;
-}
-
-#products .product .right {
-	float: left;
-	height: 130px;
-	width: 131px;
-	padding: 11px 11px 11px 0px;
+	margin-top: 4px;
 	position: relative;
-	overflow: visible;
 }
 
-#products .product .right .details { 
-	font-size: 12px;
-	margin-top: 16px; 
+#products .product .bottom .details { 
 	color: #999999;
-	line-height: 18px;
 }
 
-#products .product .right .details a { 
+#products .product .bottom .details a { 
 	color: #791a10;
 }
 
-#products .product .right .details .title { 
-	font-family: 'FuturaStdBold', Arial, sans-serif;
+#products .product .bottom .details .title {
 	color: #333333;
-	font-size: 13px;
 }
 
-#products .product .right .details .title:hover { 
+#products .product .bottom .details .title:hover { 
 	color: #791a10;
 }
 
-#products .product .right .feedback {
+#products .product .feedback {
 	position: absolute;
-	left: 0px;
-	bottom: 10px;
-	font-size: 12px;
-	line-height: 24px;
-	color: #791a10;
+	bottom: 0px;
+	font-size: 11px;
+	line-height: 22px;
+	color: #AD2217;
 }
 
-#products .product .right .feedback .buttons {
-	height: 26px;
-	width: 128px;
+#products .product .feedback .buttons {
+	height: 25px;
 }
 
-#products .product .right .feedback .buttons .button {
-	width: 30px;
+#products .product .feedback .buttons .button {
+	width: 33px;
+	border-top: 1px solid transparent;
 	height: 24px;
 	text-align: center;
 	float: left;
-	border: 1px solid transparent;
-	background: white;
 }
 
-#products .product .right .feedback .buttons .button:hover {
-	border: 1px solid #cccccc;
+#products .product .feedback .buttons .button:hover {
 	cursor: pointer;
-	color: #791a10;
+	background: #f8f8f8;
+	color: #AD2217;
 }
 
-#products .product .right .feedback .buttons .button:active {
-	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+#products .product .feedback .buttons .button:active {
+	border-top: 1px solid #dddddd;
 }
 
-#products .product .right .feedback .buttons .comments_none {
+#products .product .feedback .buttons .comments_none {
 	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
 }
 
-#products .product .right .feedback .buttons .comments_some {
+#products .product .feedback .buttons .comments_some {
 	background: url('/images/comment_bubbles.png') 0px -24px no-repeat; 
 }
 
-#products .product .right .feedback .buttons .comments_none:active,
-#products .product .right .feedback .buttons .comments_some:active {
+#products .product .feedback .buttons .comments_none:active,
+#products .product .feedback .buttons .comments_some:active {
 	background: #f8f8f8 url('/images/comment_bubbles.png') 0px -48px no-repeat; 
 }
 
@@ -1500,32 +1488,32 @@ h1 {
 }
 */
 
-#products .product .right .feedback .buttons .pushed {
-	border: 1px solid #dddddd;
-	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
-	color: #cccccc;
+#products .product .feedback .buttons .pushed {
+	border-top: 1px solid #dddddd;
+	background: #f8f8f8;
+	color: #999999;
 }
 
-#products .product .right .feedback .buttons .held,
-#products .product .right .feedback .buttons .held:hover {
+#products .product .feedback .buttons .held,
+#products .product .feedback .buttons .held:hover {
 	border: 1px solid #cccccc;
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 	color: #999999;
 }
 
-#products .product .right .feedback .buttons .pushed:hover {
+#products .product .feedback .buttons .pushed:hover {
 	color: #999999;
 }
 
-#products .product .right .feedback .buttons span.in {
+#products .product .feedback .buttons span.in {
 	display: none;
 }
 
-#products .product .right .feedback .buttons .pushed span.out {
+#products .product .feedback .buttons .pushed span.out {
 	display: none;
 }
 
-#products .product .right .feedback .buttons .pushed span.in {
+#products .product .feedback .buttons .pushed span.in {
 	display: block;
 }
 
@@ -1636,7 +1624,6 @@ h1 {
 	text-align: center;
 	color: #cccccc;
 	padding: 0px 0px 10px;
-	width: 885px;
 	margin: 30px auto 0;
 	clear: both;
 }

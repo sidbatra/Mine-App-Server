@@ -25,6 +25,15 @@
 <!-- Right column -->
 <div id='profile_right'>
 
+  <!-- like button for the page -->
+  <%=render :partial => 'facebook/like', 
+            :locals => {
+            	:style				=> 'position: absolute; right: 230px; top: 75px',
+          :url          => @user_presenter.closet_url('fb'),
+              :send_button  => true,
+              :width        => 125,
+              :faces        => false}%>
+
   <%if !is_current_user(@user) && logged_in?%>
     <div id='following_box' class="box">
     </div>
@@ -57,15 +66,6 @@
 <!-- Main -->
 <div id='closet'>
 
-	<!-- like button for the page -->
-		  <%=render :partial => 'facebook/like', 
-		            :locals => {
-		            	:style				=> 'position: absolute; right: 230px; top: 75px',
-                  :url          => @user_presenter.closet_url('fb'),
-		              :send_button  => true,
-		              :width        => 125,
-		              :faces        => false}%>
-
 	<div class='title_box'>
 		<%=@user_presenter.large_picture('profile_user_photo','picture')%>
 		
@@ -88,12 +88,26 @@
    </div> 
    
    <div class="row">
+     <div class="shade"></div>
    </div>
-   
    <div class="row">
-   </div> 
-   
-   
+     <div class="shade"></div>
+   </div>
+   <div class="row">
+     <div class="shade"></div>
+   </div>
+   <div class="row">
+     <div class="shade"></div>
+   </div>
+   <div class="row">
+     <div class="shade"></div>
+   </div>
+   <div class="row">
+     <div class="shade"></div>
+   </div>
+   <div class="row">
+     <div class="shade"></div>
+   </div>
 
 </div> <!-- closet -->
 
