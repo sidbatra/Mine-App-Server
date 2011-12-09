@@ -38,8 +38,8 @@
         <%=is_device_iphone?%>);
 
       <%if @categories%>
-        var Categories = 
-          new Denwen.Collections.Categories(<%=@categories.to_json%>);
+        var Categories = new Denwen.Collections.Categories(
+                              <%=@categories.to_json%>);
       <%end%>
     </script>
 
