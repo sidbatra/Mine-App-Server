@@ -17,7 +17,8 @@ while($running) do
       puts "Released at - #{Time.now}"
     end
   rescue => ex
-    LoggedException.add(__FILE__,__method__,ex)
+    puts "Exception - " + ex.message + " - "
+    puts "Backtrace - " + ex.backtrace.join("\n")
   end
 
   sleep 60
