@@ -14,7 +14,7 @@
     <%if logged_in?%>
     	<div class='buttons'>
 		    <div class='button'>
-		    	Invite friends
+		    	<%=link_to "Invite friends",new_invite_path(:src => 'bar')%>
 		    </div>
 		  </div>
     <%end%>
