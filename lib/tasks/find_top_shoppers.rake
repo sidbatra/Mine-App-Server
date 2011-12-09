@@ -7,10 +7,10 @@ task :find_top_shoppers do |e,args|
     Store.processed.popular.limit(20).each do |store|
       key = "views/#{KEYS[:store_top_shoppers] % store.id}"
 
-      cached_json   = Rails.cache.fetch(key)
+      cached_json   = Cache.fetch(key)
       old_shoppers  = cached_json ? JSON.parse(cached_json).map{|u| u['id']} : []
 
-      Rails.cache.delete(key)
+      Cache.delete(key)
 
       users_to_email = User.top_shoppers(store.id).reject{|u| old_shoppers.include?(u.id)}
       puts store.name
