@@ -1,6 +1,5 @@
 
 <div id='header' class='slim_shadow_dark'>
-  <div id='navbar'>
 
     <div id='logo' alt='<%=CONFIG[:name]%>'>
       <%=link_to_if !is_onboarding?,
@@ -11,8 +10,15 @@
                           @origin && @origin != "direct" ? @origin : "",
                           :src => "top") %>
     </div> <!-- logo -->
-
-
+    
+    <%if logged_in?%>
+    	<div class='buttons'>
+		    <div class='button'>
+		    	Invite friends
+		    </div>
+		  </div>
+    <%end%>
+    
     <ul class='nav'>
     
     	<%if !logged_in?%>
@@ -40,7 +46,7 @@
                     new_product_path(
                       :category => category.handle,
                       :src => is_onboarding_create? ? 'login' : 'dropdown'),
-                    :class => 'nav_choice'%>
+                    :class => ''%>
           <%end%>
         </ul>
       <%end%>
@@ -69,7 +75,7 @@
         <ul class='nav_login_list slim_shadow_light'>
           <%=link_to "<li>Log Out</li>", 
               logout_path,
-              :class => "nav_choice"%>
+              :class => "login_list_item"%>
         </ul>
       <%end%> 
 		</li>
@@ -79,6 +85,4 @@
          
     </ul> <!-- nav -->
     
-
-  </div> <!-- navbar -->
 </div> <!-- header -->
