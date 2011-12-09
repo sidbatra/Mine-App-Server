@@ -22,112 +22,84 @@
             :user_presenter => @user_presenter,
             :source         => @user_presenter.source_id} unless logged_in?%>
 
+<!-- Right column -->
+<div id='profile_right'>
 
-<div id='profile_container'>
-
-  <!-- Right column -->
-	<div id='profile_right'>
-	
-    <%if !is_current_user(@user) && logged_in?%>
-      <div id='following_box' class="box highlighted">
-      </div>
-    <%end%>
-	
-    <div class="box <%=is_current_user(@user) ? 'highlighted' : ''%> tiled">
-		
-			<div id = "ifollowers_with_msg">
-      </div>
-      
-      <%if is_current_user(@user)%>
-      	<%=render 'invite'%>
-      <%end%>
-			
-		</div>
-		
-		<div class="box stats shaded">
-      <%=@user_presenter.closet_stats%>
-		</div> <!-- closet_stats -->
-		
-		<div class="box cat_nav shaded">
-      <%=@user_presenter.closet_filter_links(@categories)%>
-      <%=blocker%>
-	 	</div> <!-- cat_nav -->
-	 	
-	 	<div id="user_stores_box" class="box tiled shaded">
-	  </div> <!-- your_stores_box -->
-
-	 	<div id="star_users_box" class="box tiled shaded">
-	  </div> <!-- star_users_box -->
-	  
-	 	<div id="top_stores_box" class="box tiled shaded">
-	  </div> <!-- top_stores_box -->
-
-	 		 	
-	</div> <!-- profile_right -->
-
-
-
-  <!-- Left column -->
-	<div id='profile_main'>
-
-
-		<div id='profile_details'>
-      
-      <%=@user_presenter.large_picture('profile_user_photo','picture')%>
-		
-			<div id='profile_details_right'>
-			
-		    <div class='profile_username'>
-		      <%=@user_presenter.closet_title%>
-		      
-		      <!-- like button for the page -->
-				  <%=render :partial => 'facebook/like', 
-				            :locals => {
-				            	:style				=> 'display: inline; position: relative; left: 5px; top: -4px;',
-                      :url          => @user_presenter.closet_url('fb'),
-				              :send_button  => true,
-				              :width        => 125,
-				              :faces        => false}%>
-		    </div>
-		
-		    <div id='profile_bio'>
-		      <div id='user_byline_default'>	
-            <%=render :partial  => 'byline',
-                      :locals   => {:user => @user}%>
-		      </div>
-		    </div> 
-		      
-		  </div> <!--profile_details_right-->
-
-		</div> <!--profile_details-->
-			
-
-		
-    <%if is_current_user(@user)%>
-      <div id='suggestions' class='slim_shadow_light'>
-        <%=@user_presenter.closet_create_links(@categories)%>
-      </div>
-    <%end%>
-  
-
-    <div id="closet">
-      <div class="top">
-      </div>
-      
-      <div class="rows">
-        <div id="products">
-        
-        </div>
-      </div> 
-      
-      <div class="bottom">
-      </div>
+  <%if !is_current_user(@user) && logged_in?%>
+    <div id='following_box' class="box">
     </div>
-    <!-- end of closet -->
+  <%end%>
 
-	</div> <!-- profile_main -->
+  <div class="box tiled">
+	
+		<div id = "ifollowers_with_msg">
+    </div>
+		
+	</div>
+ 	
+ 	<div id="user_stores_box" class="box tile_listed">
+  </div> <!-- your_stores_box -->
 
-</div> <!-- profile_container -->
+	<!--
+ 	<div id="star_users_box" class="box tiled">
+  </div> <!-- star_users_box 
+  
+ 	<div id="top_stores_box" class="box tiled">
+  </div> <!-- top_stores_box -->
+
+
+ 		 	
+</div> <!-- profile_right -->
+	
+	
+	
+
+<!-- Main -->
+<div id='closet'>
+
+	<!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
+		            :locals => {
+		            	:style				=> 'position: absolute; right: 230px; top: 75px',
+                  :url          => @user_presenter.closet_url('fb'),
+		              :send_button  => true,
+		              :width        => 125,
+		              :faces        => false}%>
+
+	<div class='title_box'>
+		<%=@user_presenter.large_picture('profile_user_photo','picture')%>
+		
+		<div class='profile_username'>
+      <%=@user_presenter.closet_title%>
+    </div>
+
+    <div id='profile_bio'>
+      <div id='user_byline_default'>	
+        <%=render :partial  => 'byline',
+                  :locals   => {:user => @user}%>
+      </div>
+    </div> 
+
+	</div>
+    
+   <div class="row">
+     <div id="products">
+     </div>
+   </div> 
+   
+   <div class="row">
+   </div>
+   
+   <div class="row">
+   </div> 
+   
+   
+
+</div> <!-- closet -->
+
+
+
+
 
 
 

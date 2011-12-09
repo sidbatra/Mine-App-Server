@@ -1,14 +1,14 @@
 <div class='title'>
   <%if(helpers.isCurrentUser(user.get('id'))){%> 
-    Your stores
+    Your Stores
   <%} else {%>
-    <%=user.get('first_name')%>'s stores
+    <%=user.get('first_name')%>'s Stores
   <%}%>
 </div>
    
 <div>
   <%stores.each(function(store){%>
-    <%=Denwen.JST['stores/store']({store:store, src:'user'})%>
+    <%=Denwen.JST['stores/tiled_list']({store:store, src:'user'})%>
   <%});%>
   <%=helpers.blocker()%>
 </div>

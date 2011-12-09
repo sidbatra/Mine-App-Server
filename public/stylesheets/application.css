@@ -30,9 +30,10 @@ body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	background: #f8f8f8;
-	background-repeat: repeat-x;
-	background-attachment:fixed;
+/*
+	background: #f8f8f8 url('/images/tile35.jpg');
+	background-position: center -38px;
+*/
 }
 
 h1 {
@@ -473,30 +474,6 @@ h1 {
 }
 
 .emphasis { color: #791a10; }
-
-#instructions_1 {
-	margin: 0 auto;
-	position: absolute;
-	left: 60px;
-	top: -70px;
-	z-index: 100;
-}
-
-#instructions_2 {
-	margin: 0 auto;
-	position: absolute;
-	right: 20px;
-	top: 0px;
-	z-index: 100;
-}
-
-#instructions_3 {
-	margin: 0 auto;
-	position: absolute;
-	right: 270px;
-	top: 370px;
-	z-index: 100;
-}
 
 #product_section {
 	background: white;
@@ -1019,7 +996,7 @@ h1 {
 
 .nav_menu:hover {
 	color: white;
-	background-color: #444444;
+	background: #444444;
 }
 
 /* Handles the showing and hiding of menu items */
@@ -1076,54 +1053,32 @@ h1 {
 
 /* ------------------------------ Profile-specific */
 
-#profile_container {
-	width: 885px;
-	padding: 0 15px;
-	margin: 24px auto;
-}
-
-#profile_main {
-	width: 664px;
-	float: left;
-}
-
 #profile_right {
-	width: 221px;
-	float: right;
-/* 	background: #ffffcc; */
+	width: 185px;
+	padding: 12px 5px 0px 10px;
+	position: absolute;
+	right: 0px;
+	top: 38px;
+	height: 50000px;
+	z-index: 4999;
+	color: white;
+	background-image: url('/images/333333_90.png');
 }
 
 #profile_right .box {
-	width: 221px;
+	width: 185px;
 	padding: 10px 0;
 }
 
-#profile_right .bordered {
-	border-bottom: 1px solid #dddddd;
-}
-
-#profile_right .highlighted {
-	margin-left: -10px;
-	background: url('/images/slim_shadow_light.png');
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-#profile_right .shaded {
-	background: url('/images/right_shade.png') no-repeat;
-}
-
 #profile_right .title {
-	width: 221px;
+	width: 180px;
 	font-size: 12px;
-	color: #666666;
 	margin: 0px 0 8px;
 	position: relative;
 }
 
 #profile_right .title .detail { 
 	width: 18px;
-	color: #791a10;
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -1132,25 +1087,45 @@ h1 {
 	margin-right: 2px;
 }
 
-#profile_right .tiled {
-	width: 226px;
-	padding-right: 7px;
-}
+#profile_right .tile_listed { width: 180px; }
+#profile_right .tiled { width: 185px; }
 
 #profile_right .tile {
-	height: 40px;
-	width: 40px;
+	height: 32px;
+	width: 32px;
 	z-index: 1000;
+}
+
+#profile_right .tile_list {
+	height: 24px;
+	width: 24px;
+	z-index: 1000;
+	float: left; 
+	margin-right: 8px;
 }
 
 #profile_right .tile_frame {
 	position: relative;
-	width: 45px;
-	height: 45px;
+	width: 37px;
+	height: 37px;
 	float: left;
 	cursor: pointer;
 	z-index: 3000;
 }
+
+#profile_right .tile_list_frame {
+	font-size: 12px;
+	position: relative;
+	width: 180px;
+	height: 24px;
+	line-height: 24px;
+	margin-bottom: 2px;
+	z-index: 3000;
+	cursor: pointer;
+	display: block;
+}
+
+#profile_right .tile_list_frame:hover {}
 
 #profile_right .invite_1 { background: url('/images/invite_numbers.gif') 0px 0px no-repeat; }
 #profile_right .invite_2 { background: url('/images/invite_numbers.gif') 0px -50px no-repeat; }
@@ -1158,7 +1133,9 @@ h1 {
 #profile_right .invite_4 { background: url('/images/invite_numbers.gif') 0px -150px no-repeat; }
 #profile_right .invite_5 { background: url('/images/invite_numbers.gif') 0px -200px no-repeat; }
 
-#profile_right .tile_frame:hover .tooltip_down_333333,  
+#profile_right .tile_frame:hover .tooltip_down_333333,
+#profile_right .tile_frame:hover .tooltip_down_ffffff,
+#profile_right .tile_frame:hover .tooltip_down_right_ffffff,   
 #profile_right .title .detail:hover .tooltip_down_right_333333 {
 	display: block;
 	z-index: 2000;
@@ -1240,7 +1217,37 @@ h1 {
 	padding: 0px 8px 5px;
 	background: url('/images/tooltip_down_333333.png') no-repeat;
 	color: white;
-	font-size: 13px;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.tooltip_down_ffffff {
+	position: absolute;
+	display: none;
+	top: -29px;
+	left: 0px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px 8px 5px;
+	background: url('/images/tooltip_down_ffffff.png') no-repeat;
+	color: #666666;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+
+.tooltip_down_right_ffffff {
+	position: absolute;
+	display: none;
+	top: -28px;
+	right: 5px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px 8px 5px;
+	background: url('/images/tooltip_down_right_ffffff.png') no-repeat;
+	background-position: right bottom;
+	color: #333333;
+	font-size: 12px;
 	white-space: nowrap;
 }
 
@@ -1255,33 +1262,39 @@ h1 {
 	background: url('/images/tooltip_down_right_333333.png') no-repeat;
 	background-position: right bottom;
 	color: white;
-	font-size: 13px;
+	font-size: 12px;
 	white-space: nowrap;
 }
 
+/* ---------------- Closet */
 
-#profile_details {
+#closet {
+	width: 100%;
+	color: white;
+	background: #ffffcc;
+}
+
+#closet .title_box {
 	height: 50px;
-	margin: 0px auto 24px;
+	padding: 14px 0px 0px 12px;
+	background-image: url('/images/wood.jpg');
+	background-position: left center;
+	text-shadow: #795b3a 0px 1px 0px;
 }
 
 .profile_user_photo {
 	width: 50px;
 	height: 50px;
-	margin-right: 16px;
+	margin-right: 14px;
 	float: left;
 }
 
-#profile_details_right {
-	margin-left: 66px;
-}
-
 .profile_username {
-	font-family: 'FuturaStdBold', Arial, sans-serif;
 	line-height: 31px;
-	font-size: 24px;
+	font-size: 26px;
 	width: 560px;
 	height: 32px;
+	color: white;
 	position: relative;
 	overflow-x: visible;
 	white-space: nowrap;
@@ -1303,7 +1316,6 @@ h1 {
 	font-size: 14px;
 	line-height: 26px;
 	height: 24px;
-	color: #999999;
 }
 
 #user_byline {
@@ -1345,57 +1357,13 @@ h1 {
 	background-color: #323232;
 }
 
-#suggestions {
-	border-top: 1px solid #dddddd;
-	border-left: 1px solid #dddddd;
-	margin-bottom: 18px;
-	height: 66px;
-	width: 616px;
+#closet .row {
+ height: 270px;
+ padding: 0px 6px 12px 6px;
+ background-image: url('/images/wood.jpg');
+ background-position: left bottom;
 }
 
-.suggestion {
-	float: left;
-	width: 153px;
-	height: 32px;
-	background: white;
-	border-right: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
-	text-align: center;
-	font-size: 12px;
-	line-height: 32px;
-	color: #791a10;
-}
-
-.suggestion:hover {
-	background: #f8f8f8;
-}
-
-/* ------------------------------ Closet */
-
-#closet {
-	width: 648px;
-	margin-left: -16px;
-}
-
-#closet .top {
- 	height: 17px;
- 	background-image: url('/images/closet_top_light_b_bg.gif');
-}
-
-#closet .rows {
-/*
-	height: 1%;
-	overflow: hidden;
-*/
- 	background-image: url('/images/closet_row_light_b_bg.gif');
- 	background-repeat: repeat-y;
-}
-
-#closet .bottom {
-	height: 11px;
- 	background-image: url('/images/closet_bottom_bg.png');
- 	background-repeat: repeat-x;
-}
 
 /* ------------------------------ Products */
 

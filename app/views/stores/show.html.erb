@@ -6,19 +6,19 @@
 	<!-- Right column -->
 	<div id='profile_right'>
 	
-  	<div id='top_shoppers_box' class='box tiled shaded'>
+  	<div id='top_shoppers_box' class='box tiled'>
   	</div>
   	
-  	<div class='box stats shaded'>
+  	<div class='box stats'>
   		<%=@store_presenter.closet_stats%>
 		</div> <!-- closet_stats -->
 		
-		<div class='box cat_nav shaded'>
+		<div class='box cat_nav'>
       <%=@store_presenter.closet_filter_links(@categories)%>
       <%=blocker%>
 	 	</div> <!-- cat_nav -->
   	
-		<div id='top_products' class='box shaded'>
+		<div id='top_products' class='box'>
 		</div>
 	
 	</div>
