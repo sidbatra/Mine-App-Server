@@ -43,12 +43,11 @@ h1 {
 }
 
 #logo {
-	width: 640px;
-	height: 40px;
-	margin-left:-1px;
+	width: 81px;
+	height: 38px;
 	float: left;
+	margin-left: 12px;
 	position: absolute;
-	margin-top: -1px;
 }
 
 #welcome_box {
@@ -76,15 +75,30 @@ h1 {
 
 #header {
 	height: 38px;
-	background: #333333;
-}
-
-#navbar {
-	width: 885px;
-	padding: 0 15px;
-	margin: 0 auto;
+	background: black url('/images/header_bg.gif') repeat-x;
 	position: relative;
 	z-index: 5000;
+}
+
+#header .buttons {
+	position: absolute;
+	top: 0px;
+	right: 288px;
+	text-align: right;
+}
+
+#header .buttons .button {
+	height: 38px;
+	line-height: 38px;
+	padding: 0 12px;
+	color: #dddddd;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+#header .buttons .button:hover {
+	color: white;
+	background-color: #444444;
 }
 
 .futura_bold { font-family: 'FuturaStdBold', Arial, sans-serif; }
@@ -955,7 +969,7 @@ h1 {
 .nav {
 	height: 38px;
 	position: absolute;
-	right: 15px;
+	right: 0px;
 	cursor: pointer;
 }
 
@@ -981,6 +995,13 @@ h1 {
 	padding: 0px 12px 0px;
 }
 
+/* login (v) list items for when adding settings etc.
+.nav li ul a.login_list_item li {
+	width: 100%;
+}
+*/
+
+
 .nav li ul li:hover {
 	background: #f8f8f8 url('/images/alert-overlay.png') repeat-x; 
 	color: #791A10;
@@ -990,7 +1011,7 @@ h1 {
 	display: block;
 	height: 38px;
 	line-height: 38px;
-	padding: 0 12px;
+	padding: 0 10px;
 	color: #dddddd;
 	font-size: 14px;
 	position: relative;
@@ -1006,6 +1027,15 @@ h1 {
 	display: block;
 }
 
+.nav_add_item_button {
+	width: 72px;
+	text-align: center;
+}
+
+.nav_user_button {
+	width: 150px;
+}
+
 .nav_add_list, .nav_login_list {
 	display: none;
 }
@@ -1014,7 +1044,7 @@ h1 {
 	position: absolute;
 	top: 38px;
 	left: 0px;
-	width: 100px;
+	width: 90px;
 }
 
 .nav_user_button_user_photo {
@@ -1026,7 +1056,7 @@ h1 {
 }
 
 .nav_login_button {
-	width: 6px;
+	width: 10px;
 	background: url('/images/v_dddddd_ffffff.png') 0 0 no-repeat;
 }
 
