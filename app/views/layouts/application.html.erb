@@ -36,6 +36,11 @@
         <%=is_mobile_device? ? true : false%>,
         <%=is_device_ipad?%>,
         <%=is_device_iphone?%>);
+
+      <%if @categories%>
+        var Categories = 
+          new Denwen.Collections.Categories(<%=@categories.to_json%>);
+      <%end%>
     </script>
 
     <%=yield :javascript%>

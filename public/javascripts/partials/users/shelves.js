@@ -15,34 +15,39 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   //
   render: function() {
     var self        = this;
-    var categories  = new Array();
-    var sortMethod  = function(a,b) { return b.length > a.length;};
+    var shelves     = new Denwen.Collections.Shelves();
 
     this.products.each(function(product){
       var category_id = product.get('category_id');
+      var shelf = shelves.get(category_id);
 
-      if(categories[category_id] == undefined) {
-        categories[category_id] = [product];
+      if(shelf == undefined) {
+        shelf = new Denwen.Models.Shelf({id:category_id});
+        shelves.add(shelf);
       }
-      else {
-        categories[category_id].push(product);
-      }
+
+      shelf.addProduct(product);
     });
 
 
     this.el.html('');
 
-    
-    categories = categories.sort(sortMethod);
+    shelves.sort();
 
-    for(i in categories) {
-      var subset = new Denwen.Collections.Products(categories[i]);
+    shelves.each(function(shelf) {
+      self.el.prepend(
+         Denwen.JST['products/shelf']({shelf : shelf}));
+    });
 
-      this.el.append(
-        Denwen.JST['products/shelf']({
-          products  : subset}));
-    }
-      
+    Categories.each(function(category){
+      var category_id = category.get('id');
+
+      if(shelves.get(category_id) == undefined) {
+        var shelf = new Denwen.Models.Shelf({id:category_id});
+        self.el.append(
+          Denwen.JST['products/shelf']({shelf: shelf}));
+      }
+    });
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
