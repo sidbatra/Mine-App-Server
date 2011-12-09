@@ -6,10 +6,10 @@ task :find_star_users do |e,args|
 
   key = "views/#{KEYS[:star_users]}"
   
-  cached_json     = Rails.cache.fetch(key)
+  cached_json     = Cache.fetch(key)
   old_stars       = cached_json ? JSON.parse(cached_json).map{|u| u['id']} : []
 
-  Rails.cache.delete(key)
+  Cache.delete(key)
 
   users_to_email  = User.stars.reject{|u| old_stars.include?(u.id)}
 
