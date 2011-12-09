@@ -48,7 +48,7 @@ case task
 when "create"
 
   response = ec2.run_instances(
-    :image_id           => 'ami-11cf0478',
+    :image_id           => 'ami-41bf7528',
     :min_count          => count,
     :max_count          => count,
     :instance_type      => 't1.micro',
