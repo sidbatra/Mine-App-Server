@@ -1,29 +1,45 @@
 #!/usr/bin/env ruby
 
+# Load libraries
+require "yaml"
+
 # Test valdidity of arguments
 if ARGV.length < 2
-  puts "ruby script/dbpull <target database> <mysql password>"
+  puts "ruby script/dbpull <target environment> <mysql password>"
+  exit
+elsif !['staging','development'].include? ARGV[0]
+  puts "target environments are - staging,development"
   exit
 else
-  target_db = ARGV[0]
-  password  = ARGV[1]
-  host      = "denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com"
-  user      = "root"
-  source_db = "hasit_production"
-  sql_file  = "production_#{rand(10000)}.sql"
+  target_env  = ARGV[0]
+  password    = ARGV[1]
 end
 
-# Drop the source database to ensure a clean copy
-system("mysql -u #{user} -h #{host} -p#{password} -e 'drop database #{target_db}'")
+user        = 'root'
+source_env  = 'production'
+sql_file    = "#{source_env}_#{rand(10000)}.sql"
 
-# Recreate the source database
-system("mysql -u #{user} -h #{host} -p#{password} -e 'create database #{target_db}'")
+# Load database config
+config = YAML.load_file("config/database.yml")
 
-# Dump the production database into a sql file
-system("mysqldump -u #{user} -h #{host} -p#{password} #{source_db} > #{sql_file}")
+source_host = config[source_env]['host']
+source_db   = config[source_env]['database']
+
+target_host = config[target_env]['host']
+target_db   = config[target_env]['database']
+
+
+# Drop the target database to ensure a clean copy
+system("mysql -u #{user} -h #{target_host} -p#{password} -e 'drop database #{target_db}'")
+
+# Recreate the target database
+system("mysql -u #{user} -h #{target_host} -p#{password} -e 'create database #{target_db}'")
+
+# Dump the source database into a sql file
+system("mysqldump -u #{user} -h #{source_host} -p#{password} #{source_db} > #{sql_file}")
 
 # Copy the production databse into the source database via the sql file
-system("mysql -u #{user} -h #{host} -p#{password} #{target_db} < #{sql_file}")
+system("mysql -u #{user} -h #{target_host} -p#{password} #{target_db} < #{sql_file}")
 
 # Clean up
 system("rm #{sql_file}")
