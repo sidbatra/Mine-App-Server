@@ -10,8 +10,11 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
     this.onProducts = new Denwen.Collections.Products();
     this.shelves    = new Denwen.Collections.Shelves();
 
+    this.productsLoaded   = false;
+    this.onProductsLoaded = false;
+
     this.fetchOnProducts();
-    //this.fetch();
+    this.fetch();
   },
 
   // Render the products collection
@@ -44,7 +47,7 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
     this.products.fetch({
       data    : {filter: 'user',owner_id: this.ownerID},
-      success : function() { self.assemble(); },
+      success : function() { self.productsLoaded = true; self.assemble(); },
       error   : function() {}
     });
   },
@@ -56,7 +59,7 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
     this.onProducts.fetch({
       data    : {filter: 'collection',owner_id: this.ownerID},
-      success : function() { self.fetch(); },
+      success : function() { self.onProductsLoaded = true; self.assemble(); },
       error   : function() {}
     });
   },
@@ -64,6 +67,9 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   // Assemble shelves from products before rendering
   //
   assemble: function() {
+    if(!this.productsLoaded || !this.onProductsLoaded)
+      return;
+
     var self = this;
 
     this.topShelf = new Denwen.Models.Shelf({id:1,products:this.onProducts});
