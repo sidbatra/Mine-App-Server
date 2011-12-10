@@ -41,6 +41,12 @@ h1 {
 	font-family: Georgia;
 }
 
+#contain {
+	width: 1024px;
+	position: relative;
+	margin: 0 auto;
+}
+
 #logo {
 	width: 81px;
 	height: 38px;
@@ -1056,7 +1062,7 @@ h1 {
 	padding: 12px 5px 0px 10px;
 	position: absolute;
 	right: 0px;
-	top: 38px;
+	top: 0px;
 	height: 50000px;
 	z-index: 4999;
 	color: white;
@@ -1294,7 +1300,7 @@ h1 {
 	height: 32px;
 	color: white;
 	position: relative;
-	text-shadow: #795b3a 0px -1px 0px;
+	text-shadow: #795b3a 0px 1px 0px;
 }
 
 .store_username {
@@ -1354,7 +1360,7 @@ h1 {
 }
 
 #closet .row {
- height: 270px;
+ height: 268px;
  padding: 0px 6px 12px 6px;
  background-image: url('/images/wood.jpg');
  background-position: left bottom;

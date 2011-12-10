@@ -15,81 +15,82 @@
                                 ''}%>
 <%end%>
 
+<div id="contain">
 
-<!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => 'misc/welcome', 
-          :locals => {
-            :user_presenter => @user_presenter,
-            :source         => @user_presenter.source_id} unless logged_in?%>
-
-<!-- Right column -->
-<div id='profile_right'>
-
-  <!-- like button for the page -->
-  <%=render :partial => 'facebook/like', 
-            :locals => {
-            	:style				=> 'position: absolute; right: 230px; top: 75px',
-          :url          => @user_presenter.closet_url('fb'),
-              :send_button  => true,
-              :width        => 125,
-              :faces        => false}%>
-
-  <%if !is_current_user(@user) && logged_in?%>
-    <div id='following_box' class="box">
-    </div>
-  <%end%>
-
-  <div class="box tiled">
+	<!-- Welcome box to signup if user is not logged in -->
+	<%=render :partial => 'misc/welcome', 
+	          :locals => {
+	            :user_presenter => @user_presenter,
+	            :source         => @user_presenter.source_id} unless logged_in?%>
 	
-		<div id = "ifollowers_with_msg">
-    </div>
+	<!-- Right column -->
+	<div id='profile_right'>
+	
+	  <!-- like button for the page -->
+	  <%=render :partial => 'facebook/like', 
+	            :locals => {
+	            	:style				=> 'position: absolute; right: 230px; top: 75px',
+	          :url          => @user_presenter.closet_url('fb'),
+	              :send_button  => true,
+	              :width        => 125,
+	              :faces        => false}%>
+	
+	  <%if !is_current_user(@user) && logged_in?%>
+	    <div id='following_box' class="box">
+	    </div>
+	  <%end%>
+	
+	  <div class="box tiled">
 		
-	</div>
- 	
- 	<div id="user_stores_box" class="box tile_listed">
-  </div> <!-- your_stores_box -->
-
+			<div id = "ifollowers_with_msg">
+	    </div>
+			
+		</div>
+	 	
+	 	<div id="user_stores_box" class="box tile_listed">
+	  </div> <!-- your_stores_box -->
 	
- 	<!--div id="star_users_box" class="box tiled">
-  </div--> <!-- star_users_box -->
-  
- 	<!--div id="top_stores_box" class="box tiled">
-  </div--> <!-- top_stores_box -->
-
-
- 		 	
-</div> <!-- profile_right -->
-	
-	
-	
-
-<!-- Main -->
-<div id='closet'>
-
-	<div class='title_box'>
-		<%=@user_presenter.large_picture('profile_user_photo','picture')%>
 		
-		<div class='profile_username'>
-      <%=@user_presenter.closet_title%>
-    </div>
+	 	<!--div id="star_users_box" class="box tiled">
+	  </div--> <!-- star_users_box -->
+	  
+	 	<!--div id="top_stores_box" class="box tiled">
+	  </div--> <!-- top_stores_box -->
+	
+	
+	 		 	
+	</div> <!-- profile_right -->
+		
+		
+		
+	
+	<!-- Main -->
+	<div id='closet'>
+	
+		<div class='title_box'>
+			<%=@user_presenter.large_picture('profile_user_photo','picture')%>
+			
+			<div class='profile_username'>
+	      <%=@user_presenter.closet_title%>
+	    </div>
+	
+	    <div id='profile_bio'>
+	      <div id='user_byline_default'>	
+	        <%=render :partial  => 'byline',
+	                  :locals   => {:user => @user}%>
+	      </div>
+	    </div> 
+	
+		</div>
+	    
+	   <div id="shelves">
+	   </div>
+	
+	
+	</div> <!-- closet -->
 
-    <div id='profile_bio'>
-      <div id='user_byline_default'>	
-        <%=render :partial  => 'byline',
-                  :locals   => {:user => @user}%>
-      </div>
-    </div> 
 
-	</div>
-    
-   <div id="shelves">
-   </div>
-
-
-</div> <!-- closet -->
-
-
-
+</div> <!-- contain -->
 
 
 
