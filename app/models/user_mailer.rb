@@ -109,8 +109,7 @@ class UserMailer < ActionMailer::Base
       mail = self.send("create_#{$1}".to_sym,*args) 
 
       if RAILS_ENV != 'development'
-        aws_ses   = @@custom_amazon_ses_mailer
-        response  = aws_ses.send_raw_email(mail) 
+        response  = @@custom_amazon_ses_mailer.send_raw_email(mail) 
         # TODO store the response message if in db 
       else
         ActiveRecord::Base.logger.info "Preview of email generated \n\n" + 
