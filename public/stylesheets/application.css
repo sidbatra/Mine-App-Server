@@ -23,14 +23,13 @@ a {
 	text-decoration: none;
 	color: inherit; 
 	//color: expression(this.parentNode.currentStyle['color']);
-
 }
 
 body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
+
 	font-size: 16px;
-	background: #f8f8f8 url('/images/tile35.jpg');
+	background: #f8f8f8 /* url('/images/tile35.jpg') */;
 	background-position: center -38px;
 }
 
@@ -85,14 +84,20 @@ h1 {
 	z-index: 5000;
 }
 
-#header .buttons {
+#navbar {
+	width: 1024px;
+	position: relative;
+	margin: 0 auto;
+}
+
+#navbar .buttons {
 	position: absolute;
 	top: 0px;
 	right: 288px;
 	text-align: right;
 }
 
-#header .buttons .button {
+#navbar .buttons .button {
 	height: 38px;
 	line-height: 38px;
 	padding: 0 12px;
@@ -101,7 +106,7 @@ h1 {
 	cursor: pointer;
 }
 
-#header .buttons .button:hover {
+#navbar .buttons .button:hover {
 	color: white;
 	background-color: #444444;
 }
@@ -1280,9 +1285,10 @@ h1 {
 
 #closet .title_box {
 	height: 50px;
-	padding: 14px 0px 0px 12px;
+	padding: 20px 0px 20px 12px;
 	background-image: url('/images/wood.jpg');
 	background-position: left center;
+	z-index: 5000;
 }
 
 .profile_user_photo {
@@ -1294,10 +1300,10 @@ h1 {
 
 .profile_username {
 	/* font-family: 'FuturaStdBold', Arial, sans-serif;  */
-	line-height: 34px;
+	line-height: 50px;
 	font-size: 26px;
 	width: 560px;
-	height: 32px;
+	height: 50px;
 	color: white;
 	position: relative;
 	text-shadow: #795b3a 0px 1px 0px;
@@ -1359,14 +1365,21 @@ h1 {
 	background-color: #323232;
 }
 
+#shelves {
+	position: relative;
+	top: -15px;
+	z-index: 1;
+}
+
 #closet .row {
- height: 268px;
+ height: 274px;
  padding: 0px 6px 12px 6px;
  background-image: url('/images/wood.jpg');
  background-position: left bottom;
  overflow-x: hidden;
  position: relative;
 }
+
 
 #closet .row .shade {
  height: 44px;
