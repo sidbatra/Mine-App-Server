@@ -1,0 +1,5 @@
+
+  # Deploy
+  check process deploy with pidfile /vol/staging/log/deploy.rb_monitor.pid 
+    start program = "/bin/bash -c 'cd /vol/staging && RAILS_PATH=/vol/staging RAILS_ENV=staging /usr/local/bin/ruby lib/daemons/deploy_ctl start'" with timeout 30 seconds
+    stop program = "/bin/bash -c 'cd /vol/staging && RAILS_PATH=/vol/staging RAILS_ENV=staging /usr/local/bin/ruby lib/daemons/deploy_ctl stop'" 
