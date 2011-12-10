@@ -72,7 +72,7 @@ namespace :deploy do
     system "cap #{environment}  misc:whenever"
 
     system "cap #{environment} monit:config_web"
-    system "cap #{environment} monit:config_proc"
+    system "cap #{environment} monit:config_worker"
     system "cap #{environment} monit:restart"
   end
 
@@ -97,7 +97,7 @@ namespace :deploy do
     system "cap #{environment}  misc:whenever"
 
     system "cap #{environment} monit:config_web"
-    system "cap #{environment} monit:config_proc"
+    system "cap #{environment} monit:config_worker"
     system "cap #{environment} monit:restart"
   end
 
@@ -184,22 +184,22 @@ namespace :monit do
 
   
   desc 'Install the monit configuration file for proc servers'
-  task :config_proc, :roles => :proc do
+  task :config_worker, :roles => :worker do
     run "sudo cp #{current_path}/config/monit/#{environment}_proc /etc/monit.d/"
   end
 
   desc 'Start the monit daemon'
-  task :start, :roles => [:web,:proc] do
+  task :start, :roles => [:web,:worker] do
     run "sudo /etc/init.d/monit start"
   end
 
   desc 'Restart the monit daemon'
-  task :start, :roles => [:web,:proc] do
+  task :restart, :roles => [:web,:worker] do
     run "sudo /etc/init.d/monit restart"
   end
 
   desc 'Stop the monit daemon'
-  task :stop, :roles => [:web,:proc] do
+  task :stop, :roles => [:web,:worker] do
     run "sudo /etc/init.d/monit stop"
   end
 end
