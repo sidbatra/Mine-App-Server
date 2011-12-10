@@ -73,7 +73,7 @@ namespace :deploy do
 
     system "cap #{environment} monit:config_web"
     system "cap #{environment} monit:config_proc"
-    system "cap #{environment} monit:start"
+    system "cap #{environment} monit:restart"
   end
 
    
