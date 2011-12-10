@@ -17,7 +17,7 @@ task :find_top_shoppers do |e,args|
 
       users_to_email.each do |user|
         begin 
-          UserMailer.decide_top_shopper(user,store)    
+          UserMailer.deliver_top_shopper(user,store)    
           puts user.handle
           sleep 2
         rescue => ex

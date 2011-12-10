@@ -15,7 +15,7 @@ task :find_star_users do |e,args|
 
   users_to_email.each do |user|
     begin
-      UserMailer.decide_star_user(user)    
+      UserMailer.deliver_star_user(user)    
       puts user.handle
       sleep 2
     rescue => ex

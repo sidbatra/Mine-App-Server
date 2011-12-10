@@ -103,18 +103,18 @@ class UserMailer < ActionMailer::Base
   # Extend the method_missing method to enable email
   # delivery only in production environment
   #
-  def self.method_missing(method,*arguments)
-    method_name   = method.to_s
-    regex         = Regexp.new('\Adecide')
+  def self.method_missing(method,*args)
 
-    if method_name.scan(regex).present?
+    if method.to_s.match(/^deliver_(.*)/)
+      mail = self.send("create_#{$1}".to_sym,*args) 
+
       if RAILS_ENV != 'development'
-        new_method = method_name.gsub(regex,'deliver')
-        self.send(new_method.to_sym,*arguments)
+        aws_ses   = @@custom_amazon_ses_mailer
+        response  = aws_ses.send_raw_email(mail) 
+        # TODO store the response message if in db 
       else
-        new_method = method_name.gsub(regex,'create')
         ActiveRecord::Base.logger.info "Preview of email generated \n\n" + 
-                                    self.send(new_method.to_sym,*arguments).to_s
+                                        mail.to_s 
       end
     else
       super

@@ -19,7 +19,7 @@ module DW
         users     = User.find_all_by_id(user_ids)
 
         users.each do |user|
-          UserMailer.decide_new_comment(
+          UserMailer.deliver_new_comment(
                       comment,
                       user) unless user.id == comment.user.id
         end
@@ -68,7 +68,7 @@ module DW
       def self.new_action(action_id)
         action  = Action.find(action_id)
 
-        UserMailer.decide_new_action(
+        UserMailer.deliver_new_action(
                     action) unless action.user_id == action.actionable.user_id
       end
 
@@ -80,7 +80,7 @@ module DW
         user      = following.user
         follower  = following.follower
 
-        UserMailer.decide_new_follower(follower,user) 
+        UserMailer.deliver_new_follower(follower,user) 
       end
     
     end #notification manager
