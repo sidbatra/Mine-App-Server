@@ -9,14 +9,14 @@ NameVirtualHost *:80
 <VirtualHost *:80>
 
   # Admin email, Server Name (domain name) and any aliases
-  ServerName  felvy.com
+  ServerName  closet.com
 
   # Index file and Document Root (where the public files are located)
-  DocumentRoot /vol/felvy/current/public
+  DocumentRoot /vol/closet/current/public
   RailsEnv staging
   PassengerMinInstances 3
 
-  <Directory /vol/felvy/current/public>
+  <Directory /vol/closet/current/public>
        AllowOverride all      
        Options -MultiViews
 
@@ -36,8 +36,8 @@ NameVirtualHost *:80
 
   # Custom log file productions
   LogLevel warn
-  ErrorLog  /vol/felvy/current/log/error.log
-  CustomLog /vol/felvy/current/log/access.log combined
+  ErrorLog  /vol/closet/current/log/error.log
+  CustomLog /vol/closet/current/log/access.log combined
 
 </VirtualHost>
 

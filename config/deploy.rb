@@ -1,5 +1,5 @@
 
-set :application,   "felvy"
+set :application,   "closet"
 
 set :scm,           :git
 set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"
@@ -150,8 +150,8 @@ namespace :apache do
   task :config, :roles => :web do
     run "cd #{current_path} && "\
         "sudo cp config/apache/#{environment} "\
-        "/etc/apache2/sites-available/felvy"
-    run "sudo a2ensite felvy"
+        "/etc/apache2/sites-available/#{application}"
+    run "sudo a2ensite #{application}"
   end
 
   desc 'Start the apache server for the first time'
