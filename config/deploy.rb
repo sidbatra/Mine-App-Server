@@ -1,5 +1,5 @@
 
-set :application,   "felvy"
+set :application,   "closet"
 
 set :scm,           :git
 set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"
@@ -70,6 +70,10 @@ namespace :deploy do
     system "cap #{environment}  workers:start"
 
     system "cap #{environment}  misc:whenever"
+
+    system "cap #{environment} monit:config_web"
+    system "cap #{environment} monit:config_worker"
+    system "cap #{environment} monit:restart"
   end
 
    
@@ -91,6 +95,10 @@ namespace :deploy do
     #system "cap #{environment}  search:index"
 
     system "cap #{environment}  misc:whenever"
+
+    system "cap #{environment} monit:config_web"
+    system "cap #{environment} monit:config_worker"
+    system "cap #{environment} monit:restart"
   end
 
 end
@@ -150,8 +158,8 @@ namespace :apache do
   task :config, :roles => :web do
     run "cd #{current_path} && "\
         "sudo cp config/apache/#{environment} "\
-        "/etc/apache2/sites-available/felvy"
-    run "sudo a2ensite felvy"
+        "/etc/apache2/sites-available/#{application}"
+    run "sudo a2ensite #{application}"
   end
 
   desc 'Start the apache server for the first time'
@@ -164,6 +172,36 @@ namespace :apache do
     run "sudo /etc/init.d/apache2 restart"
   end
 
+end
+
+
+namespace :monit do
+  
+  desc 'Install the monit configuration file for web servers'
+  task :config_web, :roles => :web do
+    run "sudo cp #{current_path}/config/monit/#{environment}_web /etc/monit.d/"
+  end
+
+  
+  desc 'Install the monit configuration file for proc servers'
+  task :config_worker, :roles => :worker do
+    run "sudo cp #{current_path}/config/monit/#{environment}_proc /etc/monit.d/"
+  end
+
+  desc 'Start the monit daemon'
+  task :start, :roles => [:web,:worker] do
+    run "sudo /etc/init.d/monit start"
+  end
+
+  desc 'Restart the monit daemon'
+  task :restart, :roles => [:web,:worker] do
+    run "sudo /etc/init.d/monit restart"
+  end
+
+  desc 'Stop the monit daemon'
+  task :stop, :roles => [:web,:worker] do
+    run "sudo /etc/init.d/monit stop"
+  end
 end
 
 
