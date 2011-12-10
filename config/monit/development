@@ -1,0 +1,15 @@
+
+  # Apache
+  check process apache with pidfile /var/run/apache2.pid
+    start program = "/etc/init.d/apache2 start" with timeout 30 seconds
+    stop program  = "/etc/init.d/apache2 stop"
+
+  # Memcached
+  check process memcached with pidfile /var/run/memcached.pid
+    start program = "/etc/init.d/memcached start" with timeout 30 seconds
+    stop program  = "/etc/init.d/memcached stop"
+  
+  # Processor
+  check process processor with pidfile /vol/closet/log/processor.rb_monitor.pid
+    start program = "/bin/bash -c 'cd /vol/closet && /bin/bash script/workers start 1 development'" with timeout 30 seconds
+    stop program = "/bin/bash -c 'cd /vol/closet && /bin/bash script/workers stop 1 development'" 
