@@ -70,6 +70,10 @@ namespace :deploy do
     system "cap #{environment}  workers:start"
 
     system "cap #{environment}  misc:whenever"
+
+    system "cap #{environment} monit:config_web"
+    system "cap #{environment} monit:config_proc"
+    system "cap #{environment} monit:start"
   end
 
    
@@ -91,6 +95,10 @@ namespace :deploy do
     #system "cap #{environment}  search:index"
 
     system "cap #{environment}  misc:whenever"
+
+    system "cap #{environment} monit:config_web"
+    system "cap #{environment} monit:config_proc"
+    system "cap #{environment} monit:restart"
   end
 
 end
@@ -164,6 +172,36 @@ namespace :apache do
     run "sudo /etc/init.d/apache2 restart"
   end
 
+end
+
+
+namespace :monit do
+  
+  desc 'Install the monit configuration file for web servers'
+  task :config_web, :roles => :web do
+    run "sudo cp #{current_path}/config/monit/#{environment}_web /etc/monit.d/"
+  end
+
+  
+  desc 'Install the monit configuration file for proc servers'
+  task :config_proc, :roles => :proc do
+    run "sudo cp #{current_path}/config/monit/#{environment}_proc /etc/monit.d/"
+  end
+
+  desc 'Start the monit daemon'
+  task :start, :roles => [:web,:proc] do
+    run "sudo /etc/init.d/monit start"
+  end
+
+  desc 'Restart the monit daemon'
+  task :start, :roles => [:web,:proc] do
+    run "sudo /etc/init.d/monit restart"
+  end
+
+  desc 'Stop the monit daemon'
+  task :stop, :roles => [:web,:proc] do
+    run "sudo /etc/init.d/monit stop"
+  end
 end
 
 
