@@ -1,19 +1,18 @@
-<div class="row">
+<div><!--Container for making horizontal scrolling work-->
+  <div class="row">
 
-  <%if(!on){%>
-    <%=shelf.get('category').get('name')%>
-    <div class="shade">
+    <a class="prev">Previous</a>
+    <a class="next_arrow">Next</a>
+
+    <div id="products">
+      <%if(shelf.get('products').length > 0) {%>
+        <%shelf.get('products').each(function(product){%>
+          <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
+        <%});%>
+      <%} else {%>
+        EMPTY
+      <%}%>
+      <%=helpers.blocker()%>
     </div>
-  <%}%>
-
-  <div id="products">
-    <%if(shelf.get('products').length > 0) {%>
-      <%shelf.get('products').each(function(product){%>
-        <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
-      <%});%>
-    <%} else {%>
-      EMPTY
-    <%}%>
-    <%=helpers.blocker()%>
   </div>
 </div>

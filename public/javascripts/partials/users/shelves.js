@@ -10,11 +10,23 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
     this.onProducts = new Denwen.Collections.Products();
     this.shelves    = new Denwen.Collections.Shelves();
 
+    this.shelfEl    = '.row';
+    this.productsEl = '#products';
+    this.nextEl     = '.next_arrow';
+    this.prevEl     = '.prev';
+
     this.productsLoaded   = false;
     this.onProductsLoaded = false;
 
     this.fetchOnProducts();
     this.fetch();
+  },
+
+  hookUpScrolling: function() {
+   $(this.shelfEl).scrollable({
+                      items   : this.productsEl,
+                      next    : this.nextEl,
+                      prev    : this.prevEl});
   },
 
   // Render the products collection
@@ -38,6 +50,8 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
             source    : 'user',
             sourceID  : self.ownerID});
     });
+
+    this.hookUpScrolling();
   },
 
   // Fetch products 
