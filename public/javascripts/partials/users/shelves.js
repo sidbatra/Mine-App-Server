@@ -2,6 +2,13 @@
 //
 Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
+  //Setup event handlers
+  //
+  events: {
+    "click .next_arrow" : "scrollRight", 
+    "click .prev"       : "scrollLeft" 
+  },
+
   // Constructor logic
   //
   initialize: function() {
@@ -12,21 +19,35 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
     this.shelfEl    = '.row';
     this.productsEl = '#products';
-    this.nextEl     = '.next_arrow';
-    this.prevEl     = '.prev';
 
     this.productsLoaded   = false;
     this.onProductsLoaded = false;
+    this.scrollingOffset  =  5;
 
     this.fetchOnProducts();
     this.fetch();
   },
 
+  // Hooks up the scrolling plugin with custom options
+  //
   hookUpScrolling: function() {
    $(this.shelfEl).scrollable({
-                      items   : this.productsEl,
-                      next    : this.nextEl,
-                      prev    : this.prevEl});
+                      items     : this.productsEl,
+                      prev      : "",
+                      nest      : "",
+                      keyboard  : false});
+  },
+
+  // Scrolls the shelf items right 
+  //
+  scrollRight: function(event) {
+    $(event.target).parent().data("scrollable").move(this.scrollingOffset);
+  },
+
+  // Scrolls the shelf items left 
+  //
+  scrollLeft: function(event) {
+    $(event.target).parent().data("scrollable").move(-this.scrollingOffset);
   },
 
   // Render the products collection
