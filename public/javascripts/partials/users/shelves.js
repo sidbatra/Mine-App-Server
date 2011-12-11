@@ -34,7 +34,7 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
    $(this.shelfEl).scrollable({
                       items     : this.productsEl,
                       prev      : "",
-                      nest      : "",
+                      next      : "",
                       keyboard  : false});
   },
 
