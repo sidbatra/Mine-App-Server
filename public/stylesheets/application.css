@@ -1245,40 +1245,49 @@ body {
 	height: 50px;
 }
 
-.profile_user_photo {
+#inner_main .title_box .user_photo {
 	width: 50px;
 	height: 50px;
 	margin-right: 10px;
 	float: left;
 }
 
-.profile_username {
+#inner_main .title_box .username {
 	height: 50px;
+	width: 547px;
+	float: left;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
-	line-height: 50px;
+	line-height: 35px;
 	font-size: 24px;
 	color: #333333;;
 }
 
-.store_username {
+#inner_main .title_box .store_username {
 	font-size: 32px;
 	line-height: 32px;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 }
 
-#profile_bio {
+
+#inner_main .title_box .store_byline { color: #999999; }
+
+#inner_main .title_box #profile_bio {
+	position: absolute;
+	top: 45px;
+	left: 72px;
 	margin-top: -1px;
 }
 
-#user_byline_default {
+#inner_main .title_box #user_byline_default {
 	width: 500px;
 	height: 26px;
 	font-size: 14px;
 	line-height: 21px;
+	color: #999999;
 }
 
-#user_byline {
+#inner_main .title_box #user_byline {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	width: 288px;
 	height: 24px;
@@ -1291,10 +1300,6 @@ body {
 	-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
 	box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
 	margin-left: -6px;
-}
-
-.store_byline {
-	color: #999999;
 }
 
 .update {

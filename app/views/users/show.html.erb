@@ -27,20 +27,19 @@
 	<div id='inner_main'>
 	
 		<div class='title_box'>
-			<%=@user_presenter.large_picture('profile_user_photo','picture')%>
+			<%=@user_presenter.large_picture('user_photo','picture')%>
 			
-			<div class='profile_username'>
+			<div class='username'>
 	      <%=@user_presenter.closet_title%>
 	    </div>
 	
-	    <!--<div id='profile_bio'>
-	      <div id='user_byline_default'>	
-	        <#=render :partial  => 'byline',
-	                  :locals   => {:user => @user}%>
-	      </div>
-	    </div>--> 
-	    
-	    
+			<div id='profile_bio'>
+		    <div id='user_byline_default'>	
+		        <%=render :partial  => 'byline',
+		                  :locals   => {:user => @user}%>
+		    </div>
+	    </div>
+	       
 		  <!-- like button for the page -->
 		  <%=render :partial => 'facebook/like', 
 		            :locals  => {
