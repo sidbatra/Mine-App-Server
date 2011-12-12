@@ -12,14 +12,6 @@
                           :src => "top") %>
     </div> <!-- logo -->
     
-    <%if logged_in?%>
-    	<div class='buttons'>
-		    <div class='button'>
-		    	<%=link_to "Invite friends",new_invite_path(:src => 'bar')%>
-		    </div>
-		  </div>
-    <%end%>
-    
     <ul class='nav'>
     
     	<%if !logged_in?%>
@@ -33,9 +25,20 @@
     
       <%else%>
 
+   	<li>
+   	
+   	  <div class='buttons'>
+		    <div class='button'>
+		    	<%=link_to "Invite friends",new_invite_path(:src => 'bar')%>
+		    </div>
+		  </div>
+   	
+   	</li>
+   
    
 		<li>
       <%if !is_onboarding? || is_onboarding_create?%>
+      
         <a class='nav_menu nav_add_item_button'>Add item +</a>
         
         <ul class='nav_add_list slim_shadow_light'>
