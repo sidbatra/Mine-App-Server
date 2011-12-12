@@ -28,8 +28,10 @@ a {
 body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 16px;
-	background: #333333 url('/images/tiles_small.jpg');
-	background-position: center -38px;
+	background: #f8f8f8;
+	/* background: #f8f8f8 url('/images/home_pink.jpg') no-repeat; */
+	/* background: #666666 url('/images/tiles_small.jpg'); */
+	background-position: center 38px;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -65,8 +67,10 @@ body {
 #header {
 	-webkit-font-smoothing: subpixel-antialiased;
 	height: 38px;
+	width: 100%;
 	background: black url('/images/header_bg.gif') repeat-x;
-	position: relative;
+	position: fixed;
+	top: 0px;
 	z-index: 5000;
 }
 
@@ -1038,7 +1042,7 @@ body {
 	width: 835px;
 	padding: 15px;
 	background: url('/images/333333_90.png');
-	margin: 0 auto;
+	margin: 38px auto 0;
 }
 
 #outer:after {
@@ -1249,13 +1253,14 @@ body {
 	background: white;
 }
 
-#inner_main .module .title {
+#inner_main .module .heading {
 		font-family: 'FuturaStdBold', Arial, sans-serif;
 		font-size: 14px;
 		color: #333333;
+		height: 32px;
 }
 
-#inner_main .module .title a {
+#inner_main .module .heading a {
 		font-family: 'FuturaStdBold', Arial, sans-serif;
 		font-size: 14px;
 		color: #AD2217;
@@ -1339,37 +1344,29 @@ body {
 
 #shelves {}
 
-#inner_main .row {
- height: 274px;
- padding: 0px 6px 12px 6px;
-}
-
 /* ------------------------------ Products */
 
-#products {
-	overflow-x: hidden;
-	white-space: nowrap;
-	width: 10000px;
-	position: absolute;
-	bottom: 22px;
-	left: 6px;
-	background-attachment: fixed;
+.products {
+/* 	background: #f8f8f8; */
+	width: 604px;
+	margin-left: 1px;
 }
 
-#products .product {
+.products .product {
 	float: left;
 	width: 130px;
-	height: 202px;
+	height: 186px;
 	padding: 10px;
-	margin-right: 6px;
+	margin-left: -1px;
+	margin-top: -1px;
 	position: relative;
-	font-size: 11px;
-	line-height: 15px;
-/* 	border-bottom: 1px solid #b59264; */
+	font-size: 12px;
+	line-height: 18px;
 	background: white;
+	border: 1px solid #eeeeee;
 }
 
-#products .product .top {
+.products .product .top {
 	display: block;
 	width: 130px;
 	height: 130px;
@@ -1378,114 +1375,106 @@ body {
 	position: relative;
 }
 
-#products .product .top .image {
+.products .product .top .image {
 	max-height: 130px;
 	max-width: 130px;
 	vertical-align: middle;
 	position: relative;
 }
 
-#products .product .bottom {
-	white-space: normal;
-	font-size: 11px;
-	line-height: 16px;
+.products .product .bottom {
 	width: 130px;
-	margin-top: 4px;
+	margin-top: 5px;
 	position: relative;
 }
 
-#products .product .bottom .details { 
-	color: #999999;
-}
+.products .product .bottom .details { color: #cccccc; }
+.products .product .bottom .details a { color: #AD2217; }
 
-#products .product .bottom .details a { 
-	color: #AD2217;
-}
+.products .product .bottom .details a.title { color: #333333; }
+.products .product .bottom .details .title:hover { color: #AD2217; }
 
-#products .product .bottom .details .title {
-	color: #333333;
-}
-
-#products .product .bottom .details .title:hover { 
-	color: #AD2217;
-}
-
-#products .product .feedback {
+.products .product .feedback {
 	position: absolute;
-	bottom: 0px;
-	font-size: 11px;
-	line-height: 22px;
-	color: #AD2217;
+	top: 10px;
+	left: 10px;
+	display: none;
 }
 
-#products .product .feedback .buttons {
-	height: 25px;
+.product:hover .feedback {
+	display: block;
 }
 
-#products .product .feedback .buttons .button {
-	width: 33px;
-	border-top: 1px solid transparent;
-	height: 24px;
+.products .product .feedback .buttons {
+	height: 20px;
+	line-height: 20px;
+	color: #666666;
+	border: 1px solid #eeeeee;
+	background: white;
+}
+
+.products .product .feedback .buttons .button {
+	width: 32px;
+	height: 20px;
 	text-align: center;
 	float: left;
 }
 
-#products .product .feedback .buttons .button:hover {
+.products .product .feedback .buttons .button:hover {
 	cursor: pointer;
-	background: #f8f8f8;
 	color: #AD2217;
 }
 
-#products .product .feedback .buttons .button:active {
+.products .product .feedback .buttons .button:active {
 	border-top: 1px solid #dddddd;
 }
 
-#products .product .feedback .buttons .comments_none {
-	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
+.products .product .feedback .buttons .comments_none {
+	background: url('/images/bubbles_12.png') -3px -64px no-repeat; 
 }
 
-#products .product .feedback .buttons .comments_some {
-	background: url('/images/comment_bubbles.png') 0px -24px no-repeat; 
+.products .product .feedback .buttons .comments_some {
+	background: url('/images/bubbles_12.png') -3px -64px no-repeat; 
 }
 
-#products .product .feedback .buttons .comments_none:active,
-#products .product .feedback .buttons .comments_some:active {
-	background: #f8f8f8 url('/images/comment_bubbles.png') 0px -48px no-repeat; 
+.products .product .feedback .buttons .comments_none:active,
+.products .product .feedback .buttons .comments_some:active {
+	background: #f8f8f8 url('/images/bubbles_12.png') -3px -114px no-repeat; 
 }
 
-/*
-#products .product .right .feedback .comments_none:hover,
-#products .product .right .feedback .comments_some:hover {
-	background: url('/images/comment_bubbles.png') 0px -48px no-repeat; 
-}
-*/
 
-#products .product .feedback .buttons .pushed {
+.products .product .feedback .buttons .comments_none:hover,
+.products .product .feedback .buttons .comments_some:hover {
+	background: url('/images/bubbles_12.png') -3px -114px no-repeat; 
+}
+
+
+.products .product .feedback .buttons .pushed {
 	border-top: 1px solid #dddddd;
 	background: #f8f8f8;
 	color: #999999;
 }
 
-#products .product .feedback .buttons .held,
-#products .product .feedback .buttons .held:hover {
+.products .product .feedback .buttons .held,
+.products .product .feedback .buttons .held:hover {
 	border: 1px solid #cccccc;
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
 	color: #999999;
 }
 
-#products .product .feedback .buttons .pushed:hover {
+.products .product .feedback .buttons .pushed:hover {
 	color: #999999;
 }
 
-#products .product .feedback .buttons span.in {
+.products .product .feedback .buttons span.in {
 	display: none;
 }
 
-#products .product .feedback .buttons .pushed span.out {
+.products .product .feedback .buttons .pushed span.out {
 	display: none;
 }
 
-#products .product .feedback .buttons .pushed span.in {
+.products .product .feedback .buttons .pushed span.in {
 	display: block;
 }
 

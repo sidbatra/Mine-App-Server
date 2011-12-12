@@ -1,16 +1,22 @@
-  <div class="row">
-    <%if(!on){%>
-      <%=shelf.get('category').get('name')%>
-    <%}%>
-
-    <div id="pleg_this_is_the_issue">
-      <%if(shelf.get('products').length > 0) {%>
-        <%shelf.get('products').each(function(product){%>
-          <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
-        <%});%>
-      <%} else {%>
-        EMPTY
-      <%}%>
-      <%=helpers.blocker()%>
-    </div>
+<div class="module">
+	<div class="heading">
+		<%if(!on){%>
+	    Add <%=shelf.get('category').get('name')%> +
+	  <%}%>
   </div>
+
+	<div class="products">
+	
+    <%if(shelf.get('products').length > 0) {%>
+      <%shelf.get('products').each(function(product){%>
+        <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
+      <%});%>
+    <%} else {%>
+      Empty
+    <%}%>
+    
+    <%=helpers.blocker()%>
+    
+  </div> <!-- products -->
+  
+</div> <!-- module -->

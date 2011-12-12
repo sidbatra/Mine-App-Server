@@ -1,5 +1,5 @@
+<div class='product'> 
 
-<div class='product rounded_3 slim_shadow_dark'> 
   <div class='top'>
     <a href="<%=product.path(src)%>">
       <img src="<%=product.get('thumbnail_url')%>" 
@@ -19,9 +19,9 @@
         	
           <%if(type == 'user' && product.has('store')) { %>
             <%if(product.get('is_gift')) { %>
-              Bought 
+              <!-- Bought -->
             <%}%>
-              from <%=product.get('store').escape('name')%>
+              <!-- from --> <%=product.get('store').escape('name')%>
           <%}%>
           
           <%if(type == 'store') { %>
@@ -43,7 +43,7 @@
 
 	<%if(helpers.isLoggedIn()) {%>
       <div class='feedback'>
-          <div class='buttons'>
+          <div class='buttons slim_shadow_light'>
           
             <div id="like_product_<%=product.get('id')%>" class='button hover_shadow_light like'>
               <span class="out">like</span><span class="in">✓</span>
