@@ -17,24 +17,51 @@
 
 <div id="outer">
 
-	<!-- Welcome box to signup if user is not logged in -->
+		<!-- Welcome box to signup if user is not logged in -->
 	<%=render :partial => 'misc/welcome', 
 	          :locals => {
 	            :user_presenter => @user_presenter,
 	            :source         => @user_presenter.source_id} unless logged_in?%>
+		
+	<!-- Main -->
+	<div id='inner_main'>
 	
+		<div class='title_box'>
+			<%=@user_presenter.large_picture('profile_user_photo','picture')%>
+			
+			<div class='profile_username'>
+	      <%=@user_presenter.closet_title%>
+	    </div>
+	
+	    <!--<div id='profile_bio'>
+	      <div id='user_byline_default'>	
+	        <#=render :partial  => 'byline',
+	                  :locals   => {:user => @user}%>
+	      </div>
+	    </div>--> 
+	    
+	    
+		  <!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => 'position: absolute; left: 520px; top: 23px',
+		            :url     => @user_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 125,
+		            :faces        => false}%>
+
+	
+		</div>
+	    
+	   <!--<div id="shelves">
+	   </div>-->
+	
+	</div> <!-- inner_main -->
+	
+		
 	<!-- Right column -->
-	<div id='profile_right'>
-	
-	  <!-- like button for the page -->
-	  <%=render :partial => 'facebook/like', 
-	            :locals => {
-	            	:style				=> 'position: absolute; right: 230px; top: 75px',
-	          :url          => @user_presenter.closet_url('fb'),
-	              :send_button  => true,
-	              :width        => 125,
-	              :faces        => false}%>
-	
+	<div id='inner_right'>
+		
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box' class="box">
 	    </div>
@@ -56,41 +83,11 @@
 	  
 	 	<!--div id="top_stores_box" class="box tiled">
 	  </div--> <!-- top_stores_box -->
-	
-	
 	 		 	
-	</div> <!-- profile_right -->
-		
-		
-		
-	
-	<!-- Main -->
-	<div id='closet'>
-	
-		<div class='title_box'>
-			<%=@user_presenter.large_picture('profile_user_photo','picture')%>
-			
-			<div class='profile_username'>
-	      <%=@user_presenter.closet_title%>
-	    </div>
-	
-	    <!--<div id='profile_bio'>
-	      <div id='user_byline_default'>	
-	        <#=render :partial  => 'byline',
-	                  :locals   => {:user => @user}%>
-	      </div>
-	    </div>--> 
-	
-		</div>
-	    
-	   <div id="shelves">
-	   </div>
-	
-	
-	</div> <!-- closet -->
+	</div> <!-- inner_right -->	
 
 
-</div> <!-- contain -->
+</div> <!-- outer -->
 
 
 
