@@ -59,11 +59,17 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
     this.shelves.each(function(shelf) {
       self.el.prepend(
-         Denwen.JST['products/shelf']({shelf: shelf, on: false}));
+         Denwen.JST['products/shelf']({
+          shelf: shelf, 
+          on: false, 
+          user_id: self.ownerID}));
     });
 
     this.el.prepend(
-      Denwen.JST['products/shelf']({shelf: this.topShelf, on: true}));
+      Denwen.JST['products/shelf']({
+        shelf: this.topShelf, 
+        on: true,
+        user_id :this.ownerID}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({

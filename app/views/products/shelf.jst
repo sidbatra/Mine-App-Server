@@ -1,7 +1,14 @@
 <div class="module">
+
 	<div class="heading">
 		<%if(!on){%>
-	    Add <%=shelf.get('category').get('name')%> +
+      <%if(helpers.isCurrentUser(user_id)){%>
+        <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile">
+          Add <%=shelf.get('category').get('name')%> +
+        </a>
+      <%}else{%>
+        <%=shelf.get('category').get('name')%>
+      <%}%>
 	  <%}%>
   </div>
 
@@ -12,11 +19,9 @@
         <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
       <%});%>
     <%} else {%>
-      Empty
     <%}%>
-    
+
     <%=helpers.blocker()%>
     
   </div> <!-- products -->
-  
 </div> <!-- module -->
