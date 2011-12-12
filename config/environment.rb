@@ -60,7 +60,8 @@ Rails::Initializer.run do |config|
                                     :user_observer, :following_observer,
                                     :action_observer, :store_observer,
                                     :store_sweeper, :following_sweeper,
-                                    :product_sweeper, :collection_part_sweeper
+                                    :product_sweeper, :collection_part_sweeper,
+                                    :user_sweeper
 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
