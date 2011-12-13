@@ -3,7 +3,7 @@ class AchievementSet < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  has_many :achievements, :dependent => destroy
+  has_many :achievements, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations

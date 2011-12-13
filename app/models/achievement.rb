@@ -41,7 +41,7 @@ class Achievement < ActiveRecord::Base
   #
   def self.star_users
     achievement_set = AchievementSet.find_last_by_type('star_users')
-    Achievement.achievers(achievement_set.id)
+    achievers(achievement_set.id)
   end
 
 end
