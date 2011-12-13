@@ -8,8 +8,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     "click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
     "keypress #product_query"         : "queryKeystroke",
-    "keypress #product_repeat_query"  : "queryKeystroke",
-    "click #cancel_button"            : "cancelButtonClicked"
+    "keypress #product_repeat_query"  : "queryKeystroke"
+    //"click #cancel_button"            : "cancelButtonClicked"
   },
 
   // Constructor logic
@@ -36,7 +36,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     $('html').keydown(function(e){self.globalKeystroke(e);});
 
-    $(this.queryEl).focus();
+    //$(this.queryEl).focus();
+    $(this.repeatQueryEl).focus();
   },
 
   // Test if the search box is still visible as a proxy
@@ -61,8 +62,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   //
   globalKeystroke: function(e) {
     if(e.which == 27 && this.isSearchActive()) {
-      this.stopSearch();
-      this.trigger('productSearchCancelled','escape');
+      //this.stopSearch();
+      //this.trigger('productSearchCancelled','escape');
     }
   },
 

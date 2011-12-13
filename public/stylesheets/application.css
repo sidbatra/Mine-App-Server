@@ -872,6 +872,7 @@ body {
 	left: 24px;
 	bottom: 0px;
 	z-index: 10000;
+  display: none;
 }
 
 .navigation {
@@ -1869,7 +1870,6 @@ body {
     -moz-box-shadow:0 0 18px rgba(0,0,0,0.4);
     box-shadow:0 0 18px rgba(0,0,0,0.4);
     background-color: #333333;
-    display: none;
 }
   
 #cancel_button {
