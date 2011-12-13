@@ -77,10 +77,7 @@ module DW
       def self.new_following(following_id)
         following = Following.find(following_id)
 
-        user      = following.user
-        follower  = following.follower
-
-        UserMailer.deliver_new_follower(follower,user) 
+        UserMailer.deliver_new_follower(following) 
       end
     
     end #notification manager

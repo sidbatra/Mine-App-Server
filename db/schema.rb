@@ -9,7 +9,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208043431) do
+ActiveRecord::Schema.define(:version => 20111213023537) do
+
+  create_table "achievement_sets", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "type"
+    t.datetime "expired_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "achievement_sets", ["owner_id"], :name => "index_achievement_sets_on_owner_id"
+  add_index "achievement_sets", ["type"], :name => "index_achievement_sets_on_type"
+
+  create_table "achievements", :force => true do |t|
+    t.integer  "achievable_id"
+    t.string   "achievable_type"
+    t.integer  "user_id"
+    t.integer  "achievement_set_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
+  add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
 
   create_table "actions", :force => true do |t|
     t.integer  "user_id"
@@ -74,6 +97,25 @@ ActiveRecord::Schema.define(:version => 20111208043431) do
   add_index "contacts", ["name"], :name => "index_contacts_on_name"
   add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
   add_index "contacts", ["user_id", "third_party_id"], :name => "index_contacts_on_user_id_and_third_party_id", :unique => true
+
+  create_table "emails", :force => true do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.integer  "emailable_id"
+    t.string   "emailable_type"
+    t.string   "message_id"
+    t.string   "request_id"
+    t.string   "purpose"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "emails", ["emailable_id", "emailable_type"], :name => "index_emails_on_emailable_id_and_emailable_type"
+  add_index "emails", ["message_id"], :name => "index_emails_on_message_id", :unique => true
+  add_index "emails", ["purpose"], :name => "index_emails_on_purpose"
+  add_index "emails", ["recipient_id"], :name => "index_emails_on_recipient_id"
+  add_index "emails", ["request_id"], :name => "index_emails_on_request_id", :unique => true
+  add_index "emails", ["sender_id"], :name => "index_emails_on_sender_id"
 
   create_table "followings", :force => true do |t|
     t.integer  "user_id"

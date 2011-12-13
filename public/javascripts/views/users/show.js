@@ -89,6 +89,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         this.currentUser.get('email'),
         this.currentUser.get('age'));
     }
-  },
+  }
   
 });

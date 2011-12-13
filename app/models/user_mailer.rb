@@ -3,7 +3,7 @@
 #
 class UserMailer < ActionMailer::Base
   layout 'email'
-  
+
   # Alert user when a new comment is added on a 
   # thread to which the user belongs
   #
@@ -26,6 +26,7 @@ class UserMailer < ActionMailer::Base
       @action     += comment.commentable.title
     end
 
+    generate_attributes(@user.id,@comment.user.id,@comment,'new_comment')
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -34,11 +35,14 @@ class UserMailer < ActionMailer::Base
 
   # Alert user when someone starts following him/her
   #
-  def new_follower(follower,user) 
-    @follower     = follower
-    @user         = user
+  def new_follower(following) 
+    @follower     = following.follower 
+    @user         = following.user
+
     @action       = @follower.first_name + " " + @follower.last_name + 
                     " is now following you!"
+
+    generate_attributes(@user.id,@follower.id,following,'new_follower')
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -50,6 +54,8 @@ class UserMailer < ActionMailer::Base
   def star_user(user)
     @user         = user
     @action       = "Your closet is now featured as a Top Closet!"
+
+    generate_attributes(@user.id,0,@user,'star_user')
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -63,6 +69,8 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @store        = store
     @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
+
+    generate_attributes(@user.id,0,@store,'top_shopper')
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -78,11 +86,11 @@ class UserMailer < ActionMailer::Base
                      'want' => 'just added'}
 
     @actionable   = action.actionable
-    @owner        = @actionable.user 
-    @user         = action.user 
+    @user         = @actionable.user 
+    @actor        = action.user 
     @action_name  = action.name
 
-    @action       = "#{@user.first_name} #{@user.last_name} " + 
+    @action       = "#{@actor.first_name} #{@actor.last_name} " + 
     								"#{action_map[@action_name]} your "
 
     if(@actionable.class.name == 'Product')
@@ -90,12 +98,14 @@ class UserMailer < ActionMailer::Base
     end
     
     if @action_name == 'want'
-    	@action			+= " to #{@user.is_male? ? 'his' : 'her'} wishlist!"
+    	@action			+= " to #{@actor.is_male? ? 'his' : 'her'} wishlist!"
     else
     	@action			+= "!"
     end
 
-    recipients    @owner.email
+    generate_attributes(@user.id,@actor.id,action,'new_action')
+
+    recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
   end
@@ -109,8 +119,13 @@ class UserMailer < ActionMailer::Base
       mail = self.send("create_#{$1}".to_sym,*args) 
 
       if RAILS_ENV != 'development'
-        response  = @@custom_amazon_ses_mailer.send_raw_email(mail) 
-        # TODO store the response message if in db 
+        response    = @@custom_amazon_ses_mailer.send_raw_email(mail)
+        xml         = XmlSimple.xml_in(response.to_s)
+
+        message_id  = xml['SendRawEmailResult'][0]['MessageId'][0]
+        request_id  = xml['ResponseMetadata'][0]['RequestId'][0]
+
+        Email.add(@@attributes,message_id,request_id)
       else
         ActiveRecord::Base.logger.info "Preview of email generated \n\n" + 
                                         mail.to_s 
@@ -118,6 +133,20 @@ class UserMailer < ActionMailer::Base
     else
       super
     end
+  end
+
+
+  protected 
+
+  # Generate email attributes to store in the database
+  #
+  def generate_attributes(recipient_id,sender_id,source,purpose)
+    @@attributes = {
+                  :recipient_id   => recipient_id,
+                  :sender_id      => sender_id,
+                  :emailable_id   => source.id,
+                  :emailable_type => source.class.name,
+                  :purpose        => purpose}
   end
 
 end
