@@ -29,15 +29,37 @@
 			<div id="shelves"></div>
 	
 	</div> <!-- inner_main -->
+		
+	<!-- Side column -->
+	<div id='inner_side'>
 	
-		
-	<!-- Right column -->
-	<div id='inner_right'>
-		
+			<%=@user_presenter.large_picture('user_photo','picture')%>
+			
+			<div class='username'>
+	      <%=@user_presenter.closet_title%>
+	    </div>
+	    
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box' class='top_action_button'>
 	    </div>
 	  <%end%>
+	
+			<div id='profile_bio'>
+		    <div id='user_byline_default'>	
+		        <%=render :partial  => 'byline',
+		                  :locals   => {:user => @user}%>
+		    </div>
+	    </div>
+	       
+		  <!-- like button for the page 
+		  <#=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => 'position: absolute; top:5px; left: 5px;',
+		            :url     => @user_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 125,
+		            :faces        => false}%>-->
+	
 	
 	  <div class="box tiled">
 		
