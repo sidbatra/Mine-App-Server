@@ -96,6 +96,14 @@ class User < ActiveRecord::Base
     [self.name.downcase.to_sym,options]
   end
 
+  # Fetch the star users from the database. This set of users is the
+  # one which will be displayed on the website at any given time
+  #
+  def self.fetch_stars
+    achievement_set = AchievementSet.find_last_by_type('star_users')
+    Achievement.achievers(achievement_set.id).map(&:achievables)
+  end
+
 
   #-----------------------------------------------------------------------------
   # Instance methods

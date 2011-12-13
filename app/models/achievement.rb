@@ -16,6 +16,13 @@ class Achievement < ActiveRecord::Base
   validates_presence_of   :achievement_set_id
 
   #-----------------------------------------------------------------------------
+  # Named scopes
+  #-----------------------------------------------------------------------------
+  named_scope :achievers, lambda {|achievement_set_id| {
+                    :conditions => {:achievement_set_id => achievement_set_id},
+                    :include    => :achievables}}
+
+  #-----------------------------------------------------------------------------
   # Class methods
   #-----------------------------------------------------------------------------
 
