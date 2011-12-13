@@ -28,16 +28,6 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
     this.fetch();
   },
 
-  // Hooks up the scrolling plugin with custom options
-  //
-  hookUpScrolling: function() {
-   $(this.shelfEl).scrollable({
-                      items     : this.productsEl,
-                      prev      : "",
-                      next      : "",
-                      keyboard  : false});
-  },
-
   // Scrolls the shelf items right 
   //
   scrollRight: function(event) {
@@ -77,8 +67,6 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
             source    : 'user',
             sourceID  : self.ownerID});
     });
-
-    this.hookUpScrolling();
   },
 
   // Fetch products 
