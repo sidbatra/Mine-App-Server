@@ -8,8 +8,7 @@ class CreateAchievementSets < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :achievement_sets,  :owner_id
-    add_index :achievement_sets,  :type
+    add_index :achievement_sets, [:type,:owner_id]
   end
 
   def self.down
