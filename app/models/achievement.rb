@@ -36,4 +36,12 @@ class Achievement < ActiveRecord::Base
       :user_id              => user_id)
   end
 
+  # Fetch the star users from the database. This set of users is the
+  # one which will be displayed on the website at any given time
+  #
+  def self.star_users
+    achievement_set = AchievementSet.find_last_by_type('star_users')
+    Achievement.achievers(achievement_set.id)
+  end
+
 end
