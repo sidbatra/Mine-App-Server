@@ -9,7 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111212194843) do
+ActiveRecord::Schema.define(:version => 20111213022821) do
+
+  create_table "achievements", :force => true do |t|
+    t.integer  "achievable_id"
+    t.string   "achievable_type"
+    t.integer  "user_id"
+    t.integer  "achievement_set_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
+  add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
 
   create_table "actions", :force => true do |t|
     t.integer  "user_id"
