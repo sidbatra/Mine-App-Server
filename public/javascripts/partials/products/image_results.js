@@ -5,9 +5,9 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #product_search"           : "search",
+    //"click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
-    "keypress #product_query"         : "queryKeystroke",
+    //"keypress #product_query"         : "queryKeystroke",
     "keypress #product_repeat_query"  : "queryKeystroke"
     //"click #cancel_button"            : "cancelButtonClicked"
   },
@@ -18,7 +18,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     var self            = this;
     this.mode           = this.options.mode;
 
-    this.queryEl        = "#product_query";
+    //this.queryEl        = "#product_query";
     this.repeatQueryEl  = "#product_repeat_query";
     this.imagesBoxEl    = "#chooser";
     this.imagesEl       = "#results";
@@ -79,8 +79,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   stopSearch: function() {
     $(this.shadowEl).fadeOut(500);
     $(this.imagesBoxEl).hide();
-    $(this.queryEl).val($(this.repeatQueryEl).val());
-    $(this.repeatQueryEl).val('');
+    //$(this.queryEl).val($(this.repeatQueryEl).val());
+    //$(this.repeatQueryEl).val('');
   },
 
   // Fired from the images collection when there is a correction
@@ -94,10 +94,10 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   search: function() {
     var query = $(this.repeatQueryEl).val();
     
-    if(!query.length) {
-      query = $(this.queryEl).val();
-      $(this.repeatQueryEl).val(query);
-    }
+    //if(!query.length) {
+    //  query = $(this.queryEl).val();
+    //  $(this.repeatQueryEl).val(query);
+    //}
 
     if(!query.length)
       return;
