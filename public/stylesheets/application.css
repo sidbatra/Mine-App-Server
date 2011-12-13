@@ -28,10 +28,15 @@ a {
 body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 16px;
-	background: #f8f8f8;
-	/* background: #f8f8f8 url('/images/home_pink.jpg') no-repeat; */
-	/* background: #666666 url('/images/tiles_small.jpg'); */
-	background-position: center 38px;
+/* 	background: #999999; */
+/* 	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; */
+	background: url('/images/home_gold.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+/* 	background: #666666 url('/images/tiles_small.jpg') fixed; */
+/* 	background-position: center 38px; */
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -65,9 +70,9 @@ body {
 }
 
 #header {
-	-webkit-font-smoothing: subpixel-antialiased;
 	height: 38px;
 	width: 100%;
+/* 	background: #262626; */
 	background: black url('/images/header_bg.gif') repeat-x;
 	position: fixed;
 	top: 0px;
@@ -75,8 +80,8 @@ body {
 }
 
 #navbar {
-	width: 841px;
-	padding: 0 12px;
+	width: 835px;
+	padding: 0 15px;
 	position: relative;
 	margin: 0 auto;
 }
@@ -84,17 +89,23 @@ body {
 #navbar .buttons {}
 
 #navbar .buttons .button {
-	height: 38px;
-	line-height: 38px;
-	padding: 0 12px;
-	color: #dddddd;
-	font-size: 14px;
+	height: 27px;
+	line-height: 28px;
+	margin: 5px 10px;
+	padding: 0px 12px;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	color: white;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+	-webkit-font-smoothing: antialiased;
+	background: #0d549c url('/images/alert-overlay.png') repeat-x;
+	font-size: 12px;
 	cursor: pointer;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
 }
 
 #navbar .buttons .button:hover {
 	color: white;
-	background-color: #444444;
+	background-color: #1e4774;
 }
 
 .futura_bold { font-family: 'FuturaStdBold', Arial, sans-serif; }
@@ -111,8 +122,15 @@ body {
 	color: white;
 	font-size: 14px;
 	line-height: 150%;
+/*
 	background: #f8f8f8 url('/images/tiles_small.jpg');
 	background-position: center -38px;
+*/
+	background: url('/images/home_gold.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 #pic_bg.fixed_bg {
@@ -131,6 +149,7 @@ body {
 
 #pic_bg #container #box {
 	width: 420px;
+	/* background: url('/images/black_75.png'); */
 	background: url('/images/black_75.png');
 	margin: 0 auto;
 	position: relative;
@@ -493,7 +512,6 @@ body {
 #product_section .buttons .button {
 	width: 47px;
 	height: 30px;
-	background: yellow;
 	color: #cccccc;
 	font-size: 12px;
 	line-height: 30px;
@@ -1042,6 +1060,8 @@ body {
 	width: 835px;
 	padding: 15px;
 	background: url('/images/333333_90.png');
+/* 	background: url('/images/black_30.png'); */
+/* 	background: url('/images/white_30.png'); */
 	margin: 38px auto 0;
 }
 
@@ -1057,7 +1077,7 @@ body {
 
 #inner_right {
 	width: 180px;
-	padding: 12px;
+	padding: 14px 12px 12px 12px;
 	float: right;
 	z-index: 4999;
 	color: white;
@@ -1140,11 +1160,15 @@ body {
 	z-index: 2000;
 }
 
+#inner_right .top_action_button {
+	padding-bottom: 10px;
+}
+
 #inner_right .button {
-	height: 32px;
+	height: 36px;
 	width: 180px;
 	display: block;
-	line-height: 32px;
+	line-height: 36px;
 	font-size: 13px;
 	text-align: center;
 }
@@ -1192,10 +1216,11 @@ body {
 	display: none;
 	top: -29px;
 	left: 0px;
-	height: 24px;
-	line-height: 24px;
-	padding: 0px 8px 5px;
+	height: 22px;
+	line-height: 22px;
+	padding: 0px 6px 5px;
 	background: url('/images/tooltip_down_ffffff.png') no-repeat;
+	background-position: left bottom;
 	color: #666666;
 	font-size: 12px;
 	white-space: nowrap;
@@ -1250,19 +1275,29 @@ body {
 }
 
 #inner_main .module {
+/* 	background: #e9e9e9; */
 	background: white;
+	margin: 0px 0px 0px;
+	position: relative;
+/* 	border-top: 1px solid #d9d9d9; */
 }
 
 #inner_main .module .heading {
 		font-family: 'FuturaStdBold', Arial, sans-serif;
 		font-size: 14px;
 		color: #333333;
-		height: 32px;
+		height: 12px;
+		padding: 10px;
+		line-height: 12px;
+		/* background: #e9e9e9; */
+		background: white;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
 }
 
 #inner_main .module .heading a {
-		font-family: 'FuturaStdBold', Arial, sans-serif;
-		font-size: 14px;
 		color: #AD2217;
 }
 
@@ -1281,7 +1316,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	line-height: 33px;
 	font-size: 24px;
-	color: #333333;;
+	color: #333333;
 }
 
 #inner_main .title_box .store_username {
@@ -1295,7 +1330,7 @@ body {
 
 #inner_main .title_box #profile_bio {
 	position: absolute;
-	top: 45px;
+	top: 43px;
 	left: 72px;
 }
 
@@ -1350,6 +1385,7 @@ body {
 /* 	background: #f8f8f8; */
 	width: 604px;
 	margin-left: 1px;
+	margin-top: 33px;
 }
 
 .products .product {
@@ -1363,7 +1399,8 @@ body {
 	font-size: 12px;
 	line-height: 18px;
 	background: white;
-	border: 1px solid #eeeeee;
+	border: 1px solid #d9d9d9;
+/* 	border: 1px solid transparent; */
 }
 
 .products .product .top {
@@ -1391,7 +1428,11 @@ body {
 .products .product .bottom .details { color: #cccccc; }
 .products .product .bottom .details a { color: #AD2217; }
 
-.products .product .bottom .details a.title { color: #333333; }
+.products .product .bottom .details a.title { 
+	color: #333333;
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
+	
+}
 .products .product .bottom .details .title:hover { color: #AD2217; }
 
 .products .product .feedback {
@@ -1409,8 +1450,12 @@ body {
 	height: 20px;
 	line-height: 20px;
 	color: #666666;
-	border: 1px solid #eeeeee;
-	background: white;
+	background: url('/images/feedback_button_bg.png') center repeat-x;
+	border: 1px solid #cccccc;
+}
+
+.products .product .feedback .buttons:hover {
+	border-color: #b2b2b2;
 }
 
 .products .product .feedback .buttons .button {
@@ -1425,8 +1470,10 @@ body {
 	color: #AD2217;
 }
 
-.products .product .feedback .buttons .button:active {
-	border-top: 1px solid #dddddd;
+.products .product .feedback .buttons .button:active,
+.products .product .feedback .buttons .pushed {
+	background: #f8f8f8;
+	color: #666666;
 }
 
 .products .product .feedback .buttons .comments_none {
@@ -1448,23 +1495,13 @@ body {
 	background: url('/images/bubbles_12.png') -3px -114px no-repeat; 
 }
 
-
-.products .product .feedback .buttons .pushed {
-	border-top: 1px solid #dddddd;
-	background: #f8f8f8;
-	color: #999999;
-}
-
 .products .product .feedback .buttons .held,
 .products .product .feedback .buttons .held:hover {
-	border: 1px solid #cccccc;
 	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
-	color: #999999;
+	color: #666666;
 }
 
-.products .product .feedback .buttons .pushed:hover {
-	color: #999999;
-}
+.products .product .feedback .buttons .pushed:hover { color: #666666; }
 
 .products .product .feedback .buttons span.in {
 	display: none;
@@ -1597,7 +1634,7 @@ body {
 	right: -1px;
 	background: #f8f8f8;
 	padding: 10px 8px;
-	border: 1px solid #cccccc;
+	border: 1px solid #999999;
 	line-height: 100%;
 	text-align: left;
 	font-size: 12px;
@@ -1852,10 +1889,28 @@ body {
 	cursor: pointer;
 	border: 0;
 	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
 }
 
 .button_dark:hover {
 	background-color: #323232;
+}
+
+
+.button_blue {
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background: #0d549c url('/images/alert-overlay.png') repeat-x;
+	color: white;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	border: 0;
+	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+.button_blue:hover {
+	background-color: #1e4774;
 }
 
 /* ------------------------------ Effects */
@@ -1935,10 +1990,40 @@ body {
 	border-radius: 3px;
 }
 
+.rounded_5_top {
+	-moz-border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.rounded_3_top {
+	-moz-border-radius: 3px 3px 0px 0px;
+	-webkit-border-radius: 3px 3px 0px 0px;
+	border-radius: 3px 3px 0px 0px;
+}
+
+.rounded_3_bottom {
+	-moz-border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0px 0px 3px 3px;;
+	border-radius: 0px 0px 3px 3px;
+}
+
 .rounded_3_left {
 	-moz-border-radius: 3px 0px 0px 3px;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
+}
+
+.rounded_6 {
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+}
+
+.rounded_6_top {
+	-moz-border-radius: 6px 6px 0px 0px;
+	-webkit-border-radius: 6px 6px 0px 0px;
+	border-radius: 6px 6px 0px 0px;
 }
 
 .unselectable {
