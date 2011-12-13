@@ -134,14 +134,20 @@ class User < ActiveRecord::Base
 
   # URL for the user photo
   #
-  def image_url
-    "http://graph.facebook.com/" + fb_user_id + "/picture?type=square" 
+  def image_url(type=square)
+    "http://graph.facebook.com/" + fb_user_id + "/picture?type=#{type}" 
   end
 
   # Alias for image_url
   #
   def photo_url
     image_url
+  end
+
+  # Alias for large image url
+  #
+  def large_photo_url
+    image_url('large')
   end
 
   # Tests gender to see if user is male
