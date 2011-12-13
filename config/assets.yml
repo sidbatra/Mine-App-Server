@@ -9,7 +9,6 @@ javascripts:
     - public/javascripts/libs/jquery-autocomplete.js
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
-    - public/javascripts/libs/jquery.tools.min.js
     - public/javascripts/extensions.js
     - public/javascripts/config.js
     - public/javascripts/application.js
