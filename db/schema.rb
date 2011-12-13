@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(:version => 20111213023537) do
     t.datetime "updated_at"
   end
 
-  add_index "achievement_sets", ["type", "owner_id"], :name => "index_achievement_sets_on_type_and_owner_id"
+  add_index "achievement_sets", ["owner_id"], :name => "index_achievement_sets_on_owner_id"
+  add_index "achievement_sets", ["type"], :name => "index_achievement_sets_on_type"
 
   create_table "achievements", :force => true do |t|
     t.integer  "achievable_id"

@@ -1,21 +1,5 @@
 <div class="module">
 
-	<div class="heading">
-		<%if(!on){%>
-      <%if(helpers.isCurrentUser(user_id)){%>
-        <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile">
-          Add <%=shelf.get('category').get('name')%> +
-        </a>
-      <%}else{%>
-        <%=shelf.get('category').get('name')%>
-      <%}%>
-     <%}else{%>
-     	On Today
-	  <%}%>
-  </div>
-
-
-
 	<div class="products">
 	
     <%if(shelf.get('products').length > 0) {%>
