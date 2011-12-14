@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111214010648) do
+ActiveRecord::Schema.define(:version => 20111214052147) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111214010648) do
     t.string   "for"
   end
 
+  add_index "achievement_sets", ["created_at"], :name => "index_achievement_sets_on_created_at"
   add_index "achievement_sets", ["for", "owner_id"], :name => "index_achievement_sets_on_for_and_owner_id"
   add_index "achievement_sets", ["owner_id"], :name => "index_achievement_sets_on_owner_id"
 

@@ -906,18 +906,16 @@ body {
 	position: absolute;
 	top: 172px;
 	z-index: 50;
-	background: white url('/images/prevnext_cccccc_791a10.png') 0 -48px;
+	background: white url('/images/prevnext_cccccc_791a10_d33e3f.png') 0 -96px;
 }
 
 .next {
 	right: -10px;
-	border-bottom: 1px solid #dddddd;
-	background: white url('/images/prevnext_cccccc_791a10.png') 36px -48px;
+	background: white url('/images/prevnext_cccccc_791a10_d33e3f.png') 36px -96px;
 }
 
 .previous {
 	left: -10px;
-	border-bottom: 1px solid #dddddd;
 }
 
 /*
@@ -1489,7 +1487,6 @@ body {
 	color: #d33e3f;
 }
 
-.products .product .feedback .buttons .button:active,
 .products .product .feedback .buttons .pushed {
 	background: #d33e3f /* url('/images/black_30.png') repeat-x */;
 	color: white;
@@ -1500,9 +1497,13 @@ body {
 	width: 38px;
 }
 
-.products .product .feedback .buttons .comments_some,
-.products .product .feedback .buttons .comments_some:active {
-	background: #d33e3f url('/images/bubbles_12.png') 0px -149px no-repeat; 
+.products .product .feedback .buttons .comments_some {
+	background: white url('/images/bubbles_12.png') 0px -174px no-repeat; 
+	width: 38px;
+}
+
+.products .product .feedback .buttons .comments_some:hover {
+	background: white url('/images/bubbles_12.png') 0px -199px no-repeat; 
 	width: 38px;
 }
 
