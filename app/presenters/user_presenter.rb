@@ -84,7 +84,7 @@ class UserPresenter < BasePresenter
   def closet_breadcrumb(src)
     h.link_to "← " + user.first_name + "'s closet",
               closet_path(src),
-              :class => 'navigation slim_shadow_light' 
+              :class => 'navigation' 
   end
 
   # Image representing the closet - image of
