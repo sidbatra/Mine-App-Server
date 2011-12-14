@@ -1,3 +1,7 @@
 <%-cache @key do-%>
-  <%=@users.to_json-%>
+  <%if @filter != :stars%>
+    <%=@users.to_json-%>
+  <%else%>
+    <%=@achievers.map(&:achievable).to_json-%>
+  <%end%>
 <%-end-%>

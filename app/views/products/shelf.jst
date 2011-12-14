@@ -1,5 +1,21 @@
 <div class="module">
 
+	<div class="heading">
+		<%if(!on){%>
+      <%if(helpers.isCurrentUser(user_id)){%>
+        	<div class="title"><%=shelf.get('category').get('name')%></div>
+          <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile" class="button_silver button slim_shadow_light">Add +</a>
+        </a>
+      <%}else{%>
+        <div class="title"><%=shelf.get('category').get('name')%></div>
+      <%}%>
+     <%}else{%>
+     	<div class="title">On Today</div>
+     	<a href="" class="button_silver button slim_shadow_light">Clear</a>
+			<a href="" class="button_silver button slim_shadow_light">Done</a>
+	  <%}%>
+  </div>
+
 	<div class="products">
 	
     <%if(shelf.get('products').length > 0) {%>

@@ -48,7 +48,7 @@ class ProductPresenter < BasePresenter
 	    next_product ? 
         h.link_to('',
                   product_path(user.handle,next_product.handle,:src => 'next'),
-                  :class => 'next slim_shadow_light') : ''
+                  :class => 'next') : ''
   end
 
   # Link to the prev product
@@ -57,7 +57,7 @@ class ProductPresenter < BasePresenter
 	    prev_product ? 
         h.link_to('',
                   product_path(user.handle,prev_product.handle,:src => 'previous'),
-                  :class => 'previous slim_shadow_light') : ''
+                  :class => 'previous') : ''
   end
 
   # Title of the product page
