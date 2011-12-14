@@ -5,8 +5,6 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   //Setup event handlers
   //
   events: {
-    "click .next_arrow" : "scrollRight", 
-    "click .prev"       : "scrollLeft" 
   },
 
   // Constructor logic
@@ -17,27 +15,11 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
     this.onProducts = new Denwen.Collections.Products();
     this.shelves    = new Denwen.Collections.Shelves();
 
-    this.shelfEl    = '.row';
-    this.productsEl = '#products';
-
     this.productsLoaded   = false;
     this.onProductsLoaded = false;
-    this.scrollingOffset  =  5;
 
     this.fetchOnProducts();
     this.fetch();
-  },
-
-  // Scrolls the shelf items right 
-  //
-  scrollRight: function(event) {
-    $(event.target).parent().data("scrollable").move(this.scrollingOffset);
-  },
-
-  // Scrolls the shelf items left 
-  //
-  scrollLeft: function(event) {
-    $(event.target).parent().data("scrollable").move(-this.scrollingOffset);
   },
 
   // Render the products collection
