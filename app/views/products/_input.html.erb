@@ -1,5 +1,6 @@
 
   <%=f.hidden_field :category_id, :value => category.id%>
+  <%=f.hidden_field :query%>
   <%=f.hidden_field :source_url%>
   <%=f.hidden_field :orig_image_url%>
   <%=f.hidden_field :orig_thumb_url%>
@@ -7,19 +8,19 @@
   
 
   <!-- query -->
-	<div class="step">
+	<!--div class="step">
 		<p class="step_title">
-      <%=placeholders[:query]%>
+      <%#placeholders[:query]%>
     </p>
 
-    <%=f.text_field :query,
+    <%#f.text_field :query,
         :class    => "creation_input creation_search"%><input id="product_search" value="Go" title="Search" type="button" alt="Search">
 		
 		<p class="step_example">
-      <%=placeholders[:query_eg]%>
+      <%#placeholders[:query_eg]%>
     </p>
-    <%=blocker%>
-	</div> 
+    <%#blocker%>
+	</div--> 
   <!-- query step -->
 	
 
