@@ -57,8 +57,8 @@ class Store < ActiveRecord::Base
   #
   def self.json_options
     options             = {}
-    options[:only]      = [:id,:name]
-    options[:methods]   = []
+    options[:only]      = [:id,:name,:handle]
+    options[:methods]   = [:is_top]
 
     [self.name.downcase.to_sym,options]
   end

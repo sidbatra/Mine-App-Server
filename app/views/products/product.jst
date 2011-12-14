@@ -21,7 +21,8 @@
             <%if(product.get('is_gift')) { %>
               <!-- Bought -->
             <%}%>
-              <!-- from --> <%=product.get('store').escape('name')%>
+              <!-- from --> 
+              <%=product.get('store').conditionalLink('user_profile')%>
           <%}%>
           
           <%if(type == 'store') { %>
