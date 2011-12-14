@@ -80,6 +80,20 @@ class ProductPresenter < BasePresenter
     product.store ? product.store.name : ''
   end
 
+  # Link to the store if it is a top store
+  #
+  def store_link
+    link = ""
+
+    if product.store 
+      link += h.link_to_if product.store.is_top,
+                store_name,
+                store_path(product.store.handle)
+    end
+
+    link
+  end
+
   # Price of the product
   #
   def price
@@ -103,7 +117,7 @@ class ProductPresenter < BasePresenter
       html += "bought " if product.is_gift
 
       html += "at <span class='right_store'>" +
-              store_name
+              store_link
               "</span>"
     end
 

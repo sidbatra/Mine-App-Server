@@ -99,6 +99,12 @@ class Store < ActiveRecord::Base
     end
   end
 
+  # Flag if the store is a top store
+  #
+  def is_top
+    is_processed
+  end
+
 
   # Move all products to an existing store
   #
