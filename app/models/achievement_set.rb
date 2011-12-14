@@ -74,6 +74,17 @@ class AchievementSet < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Find the achivement set of the same kind created just before
+  #
+  def previous
+    self.class.last(
+      :conditions => {
+        :for            => self.for,
+        :owner_id       => self.owner_id,
+        :created_at_lte => self.created_at,
+        :id_ne          => self.id})
+  end
+
   # Add an expiry date to the achivement set
   #
   def expire
