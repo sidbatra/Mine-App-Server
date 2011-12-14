@@ -9,17 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111213232442) do
+ActiveRecord::Schema.define(:version => 20111214010648) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
-    t.string   "type"
     t.datetime "expired_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "for"
   end
 
-  add_index "achievement_sets", ["type", "owner_id"], :name => "index_achievement_sets_on_type_and_owner_id"
+  add_index "achievement_sets", ["for", "owner_id"], :name => "index_achievement_sets_on_for_and_owner_id"
 
   create_table "achievements", :force => true do |t|
     t.integer  "achievable_id"

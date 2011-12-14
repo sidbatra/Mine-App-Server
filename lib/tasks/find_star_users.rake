@@ -4,14 +4,12 @@ task :find_star_users do |e,args|
   
   require 'config/environment.rb'
 
-  key = "views/#{KEYS[:star_users]}"
-  
-  cached_json     = Cache.fetch(key)
-  old_stars       = cached_json ? JSON.parse(cached_json).map{|u| u['id']} : []
+  old_stars       = AchievementSet.star_users.map(&:achievable).map(&:id)
+  new_stars       = User.stars
 
-  Cache.delete(key)
+  AchievementSet.add_star_users(new_stars)
 
-  users_to_email  = User.stars.reject{|u| old_stars.include?(u.id)}
+  users_to_email  = new_stars.reject{|u| old_stars.include?(u.id)}
 
   users_to_email.each do |user|
     begin

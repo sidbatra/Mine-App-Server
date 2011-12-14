@@ -13,27 +13,12 @@ class Achievement < ActiveRecord::Base
   validates_presence_of   :achievable_type
   validates_inclusion_of  :achievable_type, :in => %w(User Product)
   validates_presence_of   :user_id
-  validates_presence_of   :achievement_set_id
 
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
   named_scope :achievers, lambda {|achievement_set_id| {
                     :conditions => {:achievement_set_id => achievement_set_id},
-                    :include    => :achievables}}
-
-  #-----------------------------------------------------------------------------
-  # Class methods
-  #-----------------------------------------------------------------------------
-
-  # Add a new achievement 
-  #
-  def self.add(entity,achievement_set_id,user_id)
-    create!(
-      :achievable_id        => entity.id,
-      :achievable_type      => entity.class.name,
-      :achievement_set_id   => achievement_set_id,
-      :user_id              => user_id)
-  end
+                    :include    => :achievable}}
 
 end
