@@ -23,7 +23,7 @@
           :source         => 'product_' + @product.id.to_s} unless logged_in?%>
 
 
-  <div id="container">
+  <div id="outer" class="slim_shadow_dark">
   
   	<!-- like button for the page -->
     <%=render :partial => 'facebook/like', 
@@ -35,7 +35,7 @@
                 :faces        => false}%>
 
   
-  	<div id="product_section" class="slim_shadow_light">
+  	<div id="product_section">
   	
       <!-- link to closet -->
       <%=@user_presenter.closet_breadcrumb 'product'%>
@@ -146,7 +146,7 @@
 		      <div id="add_comment">
 			      
 			        <%=image_tag self.current_user.photo_url,
-			            :class => "comment_photo_self slim_shadow_dark",
+			            :class => "comment_photo_self slim_shadow_light",
 			            :alt => ""%>
 			
 			        <%=text_area_tag "comment_data","Add a comment",
@@ -170,7 +170,7 @@
 	   
 	   <%=blocker%>
     
-  </div> <!-- container -->
+  </div> <!-- outer -->
 
 
 
