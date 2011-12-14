@@ -26,7 +26,7 @@ class Collection < ActiveRecord::Base
   # Add a new collection
   #
   def self.add(product_ids,user_id)
-    collection = Collection.new(:user_id => user_id)
+    collection = new(:user_id => user_id)
 
     raise IOError, "No products added to collection" unless product_ids.present?
 

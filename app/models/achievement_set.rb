@@ -19,9 +19,9 @@ class AchievementSet < ActiveRecord::Base
   # Add a new achievement set 
   #
   def self.add(owner_id,type,entities,user_ids)
-    achievement_set = AchievementSet.new(
-                                      :owner_id => owner_id,
-                                      :for      => type)
+    achievement_set = new(
+                        :owner_id => owner_id,
+                        :for      => type)
 
     entities.zip(user_ids).each do |entity,user_id|
       achievement_set.achievements.build(
