@@ -25,21 +25,19 @@
 
   <div id="outer" class="slim_shadow_dark">
   
-  	<!-- like button for the page -->
-    <%=render :partial => 'facebook/like', 
-              :locals => {
-              	:style				=> 'position: absolute; top: -42px; right: 0px;',
-                :url          => @product_presenter.url('fb'),
-                :send_button  => true,
-                :width        => 378,
-                :faces        => false}%>
-
-  
   	<div id="product_section">
-  	
-      <!-- link to closet -->
-      <%=@user_presenter.closet_breadcrumb 'product'%>
-      
+  		<div class="product_top_bar">
+      	<%=@user_presenter.closet_breadcrumb 'product'%>
+      	
+      	<!-- like button for the page -->
+		    <%=render :partial => 'facebook/like', 
+		              :locals => {
+		              	:style				=> 'position: absolute; left: 485px; top:4px',
+		                :url          => @product_presenter.url('fb'),
+		                :send_button  => true,
+		                :width        => 200,
+		                :faces        => false}%>
+  		</div>
       
 			<div class="buttons">
         	<%=@product_presenter.edit_link%>
