@@ -7,9 +7,7 @@ class AchievementSetSweeper < ActionController::Caching::Sweeper
   # AchievementSet is created
   #
   def after_create(achievement_set)
-    if achievement_set.for == 'star_users'
-      expire_top_users
-    end
+    expire_relevant_cache(achievement_set)
   end
 
   # AchievementSet is updated
@@ -20,8 +18,18 @@ class AchievementSetSweeper < ActionController::Caching::Sweeper
   # AchievementSet is deleted
   #
   def after_destroy(achievement_set)
+    expire_relevant_cache(achievement_set)
+  end
+
+
+  # Expire cache based on the type of the achievement set 
+  #
+  def expire_relevant_cache(achievement_set)
+
     if achievement_set.for == 'star_users'
       expire_top_users
+    elsif achievement_set.for == 'top_shoppers'
+      expire_top_shoppers(achievement_set.owner_id)
     end
   end
 
@@ -29,6 +37,12 @@ class AchievementSetSweeper < ActionController::Caching::Sweeper
   #
   def expire_top_users
     expire_cache KEYS[:star_users]
+  end
+
+  # Expire cache fragment for top shoppers 
+  #
+  def expire_top_shoppers(store_id)
+    expire_cache KEYS[:store_top_shoppers] % store_id 
   end
 
 end

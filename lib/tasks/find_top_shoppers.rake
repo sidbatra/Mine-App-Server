@@ -5,14 +5,13 @@ task :find_top_shoppers do |e,args|
   require 'config/environment.rb'
  
     Store.processed.popular.limit(20).each do |store|
-      key = "views/#{KEYS[:store_top_shoppers] % store.id}"
 
-      cached_json   = Cache.fetch(key)
-      old_shoppers  = cached_json ? JSON.parse(cached_json).map{|u| u['id']} : []
+      old_shoppers    = AchievementSet.top_shoppers(store.id).map(&:achievable).map(&:id)
+      new_shoppers    = User.top_shoppers(store.id)
 
-      Cache.delete(key)
+      AchievementSet.add_top_shoppers(store.id,new_shoppers)
 
-      users_to_email = User.top_shoppers(store.id).reject{|u| old_shoppers.include?(u.id)}
+      users_to_email  = new_shoppers.reject{|u| old_shoppers.include?(u.id)}
       puts store.name
 
       users_to_email.each do |user|
