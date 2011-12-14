@@ -13,12 +13,13 @@ class AchievementSetSweeper < ActionController::Caching::Sweeper
   # AchievementSet is updated
   #
   def after_update(achievement_set)
+    expire_relevant_cache(achievement_set) unless achievement_set.expired?
   end
 
   # AchievementSet is deleted
   #
   def after_destroy(achievement_set)
-    expire_relevant_cache(achievement_set)
+    expire_relevant_cache(achievement_set) unless achievement_set.expired?
   end
 
 
