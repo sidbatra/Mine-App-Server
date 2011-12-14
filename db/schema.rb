@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20111214052147) do
 
   add_index "achievement_sets", ["created_at"], :name => "index_achievement_sets_on_created_at"
   add_index "achievement_sets", ["for", "owner_id"], :name => "index_achievement_sets_on_for_and_owner_id"
-  add_index "achievement_sets", ["owner_id"], :name => "index_achievement_sets_on_owner_id"
 
   create_table "achievements", :force => true do |t|
     t.integer  "achievable_id"
