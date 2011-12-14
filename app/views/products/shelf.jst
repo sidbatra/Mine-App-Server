@@ -24,7 +24,7 @@
     
       <%if(shelf.get('products').length > 0) {%>
         <%shelf.get('products').each(function(product){%>
-          <%=Denwen.JST['products/product']({type:'user',product:product,src:'profile'})%>
+          <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
         <%});%>
       <%} else if(on){%>
         Wow a lovely placeholder goes here

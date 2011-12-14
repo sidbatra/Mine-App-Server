@@ -40,6 +40,8 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
          Denwen.JST['products/shelf']({
           shelf     : shelf, 
           on        : false, 
+          type      : self.filter,
+          src       : self.filter == 'user' ? 'profile' : self.filter,
           isActive  : self.isActive}));
     });
 
@@ -47,6 +49,8 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
       Denwen.JST['products/shelf']({
         shelf     : this.topShelf, 
         on        : true,
+        type      : self.filter,
+        src       : self.filter == 'user' ? 'profile' : self.filter,
         isActive  : this.isActive}));
 
     this.products.each(function(product){
