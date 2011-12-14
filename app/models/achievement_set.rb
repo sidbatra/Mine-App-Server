@@ -1,6 +1,12 @@
 class AchievementSet < ActiveRecord::Base
 
   #-----------------------------------------------------------------------------
+  # Constants
+  #-----------------------------------------------------------------------------
+  STAR_USERS    = 'star_users'
+  TOP_SHOPPERS  = 'top_shoppers'
+
+  #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
   has_many :achievements, :dependent => :destroy
@@ -10,7 +16,7 @@ class AchievementSet < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   validates_presence_of   :owner_id
   validates_presence_of   :for
-  validates_inclusion_of  :for, :in => %w(star_users top_shoppers)
+  validates_inclusion_of  :for, :in => [STAR_USERS,TOP_SHOPPERS]
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -19,9 +25,9 @@ class AchievementSet < ActiveRecord::Base
   # Add a new achievement set 
   #
   def self.add(owner_id,type,entities,user_ids)
-    achievement_set = AchievementSet.new(
-                                      :owner_id => owner_id,
-                                      :for      => type)
+    achievement_set = new(
+                        :owner_id => owner_id,
+                        :for      => type)
 
     entities.zip(user_ids).each do |entity,user_id|
       achievement_set.achievements.build(
@@ -37,21 +43,21 @@ class AchievementSet < ActiveRecord::Base
   # Add an achievement set for star users
   #
   def self.add_star_users(users)
-    add(0,'star_users',users,users.map(&:id))
+    add(0,STAR_USERS,users,users.map(&:id))
   end
 
   # Add an achievement set for top shoppers 
   # of a given store
   #
   def self.add_top_shoppers(store_id,users)
-    add(store_id,'top_shoppers',users,users.map(&:id))
+    add(store_id,TOP_SHOPPERS,users,users.map(&:id))
   end
 
   # Fetch the star users from the database. This set of users is the
   # one which will be displayed on the website at any given time
   #
   def self.star_users
-    achievement_set = find_last_by_for('star_users')
+    achievement_set = find_last_by_for(STAR_USERS)
     achievement_set ? Achievement.achievers(achievement_set.id) : []
   end
 
@@ -59,7 +65,7 @@ class AchievementSet < ActiveRecord::Base
   # top shoppers will be displayed on the website at any given time
   #
   def self.top_shoppers(store_id)
-    achievement_set = find_last_by_for_and_owner_id('top_shoppers',store_id)
+    achievement_set = find_last_by_for_and_owner_id(TOP_SHOPPERS,store_id)
     achievement_set ? Achievement.achievers(achievement_set.id) : []
   end
 
@@ -68,11 +74,34 @@ class AchievementSet < ActiveRecord::Base
   # Instance methods
   #-----------------------------------------------------------------------------
 
+  # Find the achivement set of the same kind created just before
+  #
+  def previous
+    self.class.last(
+      :conditions => {
+        :for            => self.for,
+        :owner_id       => self.owner_id,
+        :created_at_lte => self.created_at,
+        :id_ne          => self.id})
+  end
+
   # Add an expiry date to the achivement set
   #
   def expire
     self.expired_at = Time.now
     self.save!
+  end
+
+  # Is set for star users
+  #
+  def for_star_users?
+    self.for == STAR_USERS
+  end
+
+  # Is set for top shoppers
+  #
+  def for_top_shoppers?
+    self.for == TOP_SHOPPERS
   end
 
 end

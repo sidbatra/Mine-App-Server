@@ -26,16 +26,16 @@ class AchievementSetSweeper < ActionController::Caching::Sweeper
   #
   def expire_relevant_cache(achievement_set)
 
-    if achievement_set.for == 'star_users'
-      expire_top_users
-    elsif achievement_set.for == 'top_shoppers'
+    if achievement_set.for_star_users?
+      expire_star_users
+    elsif achievement_set.for_top_shoppers?
       expire_top_shoppers(achievement_set.owner_id)
     end
   end
 
-  # Expire cache fragment for top users
+  # Expire cache fragment for star users
   #
-  def expire_top_users
+  def expire_star_users
     expire_cache KEYS[:star_users]
   end
 

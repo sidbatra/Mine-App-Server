@@ -7,11 +7,8 @@ class AchievementSetObserver < ActiveRecord::Observer
   # owner id
   #
   def after_create(achievement_set)
-    achievement_sets = AchievementSet.find_all_by_for_and_owner_id(
-                                                      achievement_set.for,
-                                                      achievement_set.owner_id)
-
-    achievement_sets[-2].expire if achievement_sets.length > 1
+    previous = achievement_set.previous
+    previous.expire if previous
   end
 
 end

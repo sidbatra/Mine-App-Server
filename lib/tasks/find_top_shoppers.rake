@@ -4,7 +4,7 @@ task :find_top_shoppers do |e,args|
   
   require 'config/environment.rb'
  
-    Store.processed.popular.limit(20).each do |store|
+    Store.processed.popular.each do |store|
 
       old_shoppers    = AchievementSet.top_shoppers(store.id).map(&:achievable).map(&:id)
       new_shoppers    = User.top_shoppers(store.id)
@@ -24,6 +24,7 @@ task :find_top_shoppers do |e,args|
           LoggedException.add(__FILE__,__method__,ex)    
         end#begin
       end#user
+    
     end#store
 
 end
