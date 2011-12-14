@@ -57,8 +57,8 @@ class Store < ActiveRecord::Base
   #
   def self.json_options
     options             = {}
-    options[:only]      = [:id,:name]
-    options[:methods]   = []
+    options[:only]      = [:id,:name,:handle]
+    options[:methods]   = [:is_top]
 
     [self.name.downcase.to_sym,options]
   end
@@ -97,6 +97,12 @@ class Store < ActiveRecord::Base
     Cache.fetch(KEYS[:store_price] % self.id) do
       Product.for_store(self.id).sum(:price) 
     end
+  end
+
+  # Flag if the store is a top store
+  #
+  def is_top
+    is_processed
   end
 
 
