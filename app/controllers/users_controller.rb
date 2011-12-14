@@ -68,10 +68,10 @@ class UsersController < ApplicationController
       @users      = User.find(params[:id]).ifollowers
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :stars
-      @achievers  = AchievementSet.star_users
+      @achievers  = User.stars #AchievementSet.star_users
       @key        = KEYS[:star_users]
     when :top_shoppers
-      @users      = AchievementSet.top_shoppers(params[:store_id])
+      @users      = User.top_shoppers(params[:store_id])#AchievementSet.top_shoppers(params[:store_id])
       @key        = KEYS[:store_top_shoppers] % params[:store_id]
     end
 
