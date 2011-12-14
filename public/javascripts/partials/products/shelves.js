@@ -1,6 +1,6 @@
 // Partial to load and display products on different shelves
 //
-Denwen.Partials.Users.Shelves = Backbone.View.extend({
+Denwen.Partials.Products.Shelves = Backbone.View.extend({
 
   //Setup event handlers
   //

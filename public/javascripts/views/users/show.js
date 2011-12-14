@@ -13,7 +13,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.shelves = new Denwen.Partials.Users.Shelves({
+    this.shelves = new Denwen.Partials.Products.Shelves({
                         el        : $('#shelves'),
                         filter    : 'user',
                         onFilter  : 'collection',

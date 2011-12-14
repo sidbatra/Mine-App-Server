@@ -9,17 +9,13 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     this.source   = this.options.source;
 
     // -----
-    //this.products   = new Denwen.Partials.Products.Products({
-    //                            el        : $('#products'),
-    //                            owner_id  : this.store.get('id'),
-    //                            filter    : 'store',
-    //                            jst       : 'products/store_products',
-    //                            active    : true});
-    // -----
-    this.shelves = new Denwen.Partials.Users.Shelves({
-                                el        : $('#shelves'),
-                                owner_id  : this.store.get('id')});
-
+    this.shelves = new Denwen.Partials.Products.Shelves({
+                        el        : $('#shelves'),
+                        filter    : 'store',
+                        onFilter  : '',
+                        ownerID   : this.store.get('id'),
+                        isActive  : false});
+    
     // -----
     this.topProducts   = new Denwen.Partials.Products.Products({
                                 el        : $('#top_products'),
