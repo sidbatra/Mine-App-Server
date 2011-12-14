@@ -14,8 +14,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.shelves = new Denwen.Partials.Users.Shelves({
-                                el        : $('#shelves'),
-                                owner_id  : this.user.get('id')});
+                        el        : $('#shelves'),
+                        filter    : 'user',
+                        onFilter  : 'collection',
+                        ownerID   : this.user.get('id'),
+                        isActive  : helpers.isCurrentUser(this.user.get('id'))});
     
     // -----
     new Denwen.Partials.Users.IFollowers({

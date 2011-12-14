@@ -1,4 +1,4 @@
-// Partial to load and display products for a user
+// Partial to load and display products on different shelves
 //
 Denwen.Partials.Users.Shelves = Backbone.View.extend({
 
@@ -10,15 +10,21 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.ownerID    = this.options.owner_id;
+    this.ownerID    = this.options.ownerID;
+    this.isActive   = this.options.isActive;
+    this.filter     = this.options.filter;
+    this.onFilter   = this.options.onFilter;
+
     this.products   = new Denwen.Collections.Products();
     this.onProducts = new Denwen.Collections.Products();
     this.shelves    = new Denwen.Collections.Shelves();
 
     this.productsLoaded   = false;
-    this.onProductsLoaded = false;
+    this.onProductsLoaded = this.onFilter.length == 0;
 
-    this.fetchOnProducts();
+    if(!this.onProductsLoaded)
+      this.fetchOnProducts();
+
     this.fetch();
   },
 
@@ -32,21 +38,21 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
     this.shelves.each(function(shelf) {
       self.el.prepend(
          Denwen.JST['products/shelf']({
-          shelf: shelf, 
-          on: false, 
-          user_id: self.ownerID}));
+          shelf     : shelf, 
+          on        : false, 
+          isActive  : self.isActive}));
     });
 
     this.el.prepend(
       Denwen.JST['products/shelf']({
-        shelf: this.topShelf, 
-        on: true,
-        user_id :this.ownerID}));
+        shelf     : this.topShelf, 
+        on        : true,
+        isActive  : this.isActive}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
             model     : product,
-            source    : 'user',
+            source    : self.filter,
             sourceID  : self.ownerID});
     });
   },
@@ -57,7 +63,7 @@ Denwen.Partials.Users.Shelves = Backbone.View.extend({
     var self  = this;
 
     this.products.fetch({
-      data    : {filter: 'user',owner_id: this.ownerID},
+      data    : {filter: self.filter,owner_id: this.ownerID},
       success : function() { self.productsLoaded = true; self.assemble(); },
       error   : function() {}
     });
