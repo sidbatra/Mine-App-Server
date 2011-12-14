@@ -22,9 +22,11 @@ Denwen.Models.Store = Backbone.Model.extend({
   // path only if the store is a top store
   //
   conditionalLink: function(src) {
+    var name = helpers.truncate(this.get('name'),19,'...');
+    
     return this.get('is_top') ?  
-      "<a href='" + this.path(src) + "'>" + this.escape('name') + "</a>" :
-      this.escape('name');
+      "<a href='" + this.path(src) + "'>" + name + "</a>" :
+      name;
   },
 
   // Unique key to identify the unique combination of the
