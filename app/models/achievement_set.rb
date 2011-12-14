@@ -94,6 +94,12 @@ class AchievementSet < ActiveRecord::Base
     self.save!
   end
 
+  # Check if the achievement set has expired
+  #
+  def expired?
+    self.expired_at.present?
+  end
+
   # Is set for star users
   #
   def for_star_users?
