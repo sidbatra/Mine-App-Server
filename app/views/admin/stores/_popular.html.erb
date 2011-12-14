@@ -1,9 +1,10 @@
 <ol style="width: 300px">
 	<%@stores.each do |store|%>
 	<li style="list-style-type:decimal; white-space: nowrap;">
-  	<%=link_to store.name, admin_store_path(store)%>
-    <!--span style="float:right"><%=h store.products_count%></span-->
-    <span style="float:right"><%=store.id%></span>
+  	<%=link_to store.name, store_path(store.handle)%>
+    &nbsp;&nbsp;
+    <span><%=store.id%></span>
+    <span style="float:right"><%=h store.products_count%></span>
   </li>
 	<%end%>
 </ol>
