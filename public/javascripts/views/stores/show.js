@@ -9,15 +9,16 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     this.source   = this.options.source;
 
     // -----
-    this.products   = new Denwen.Partials.Products.Products({
-                                el        : $('#products'),
-                                owner_id  : this.store.get('id'),
-                                filter    : 'store',
-                                jst       : 'products/store_products',
-                                active    : true});
-
+    //this.products   = new Denwen.Partials.Products.Products({
+    //                            el        : $('#products'),
+    //                            owner_id  : this.store.get('id'),
+    //                            filter    : 'store',
+    //                            jst       : 'products/store_products',
+    //                            active    : true});
     // -----
-    this.routing();
+    this.shelves = new Denwen.Partials.Users.Shelves({
+                                el        : $('#shelves'),
+                                owner_id  : this.store.get('id')});
 
     // -----
     this.topProducts   = new Denwen.Partials.Products.Products({
@@ -32,7 +33,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
 
     // -----
     new Denwen.Partials.Users.TopShoppers({
-                          el    : $('#top_shoppers_box'),
+                          el    : $('#top_shoppers'),
                           store : this.store});
 
     // -----
@@ -52,36 +53,5 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     if(this.source.slice(0,6) == 'email_')
       analytics.emailClicked(this.source.slice(6,this.source.length));
   },
-  
-  // Use Backbone router for reacting to changes in URL
-  // fragments
-  //
-  routing: function() {
-    var self = this;
-
-    var router = Backbone.Router.extend({
-
-      // Listen to routes
-      //
-      routes: {
-        ":category" : "filter"
-      },
-
-      // Called when a filter route is fired
-      //
-      filter: function(category) {
-        self.products.fetch(category);
-
-        if(category != undefined && category.length && category != '_=_') {
-          analytics.storeProfileFiltered(
-                      category,
-                      self.store.get('id'));
-        }
-      }
-    });
-
-    new router();
-    Backbone.history.start();
-  }
 
 });

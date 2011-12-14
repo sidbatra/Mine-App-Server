@@ -1,71 +1,56 @@
 <!-- Generate presenters to render this page -->
 <%@store_presenter = presenter_for(@store)%>
 
-<div id='profile_container'>
+<div id="outer">
 
-	<!-- Right column -->
-	<div id='profile_right'>
-	
-  	<div id='top_shoppers_box' class='box tiled'>
-  	</div>
-  	
-  	<div class='box stats'>
-  		<%=@store_presenter.closet_stats%>
-		</div> <!-- closet_stats -->
-		
-		<div class='box cat_nav'>
-      <%=@store_presenter.closet_filter_links(@categories)%>
-      <%=blocker%>
-	 	</div> <!-- cat_nav -->
-  	
-		<div id='top_products' class='box'>
-		</div>
-	
-	</div>
-	
-	
-	<!-- Left column -->
-	<div id='profile_main'>
-
-		<div id='profile_details'>
+    <!-- Welcome box to signup if user is not logged in -->
+  <%=render :partial => 'misc/welcome', 
+            :locals => {
+              :user_presenter => @user_presenter,
+              :source         => @user_presenter.source_id} unless logged_in?%>
+    
+  <!-- Main -->
+  <div id='inner_main'>
       
-      <img class='profile_user_photo slim_shadow_light' src='<%=@store.large_url%>' />
-		
-			<div id='profile_details_right'>
-			
-		    <div class='store_username'>
-		      <%=@store.name%>
-		    </div>
-		
-		    <div id='profile_bio'>
-		      <div id='user_byline_default'>	
-           	<span class='store_byline'>
-           		Recently bought items
-           	</span>
-		      </div>
-		    </div> 
-		      
-		  </div> <!--profile_details_right-->
-
-		</div> <!--profile_details-->
-		
-		<div id='closet'>
-     	<div class='top'>
-    	</div>
+      <div id="shelves"></div>
+  
+  </div> <!-- inner_main -->
+    
+  <!-- Side column -->
+  <div id='inner_side'>
+  
+      <%=@store_presenter.large_picture('picture')%>
       
-	    <div class='rows'>
-	      <div id='products'>
-	      </div>
-	    </div> 
-      
-    	<div class='bottom'>
+      <div class='username'>
+        <%=@store_presenter.name%>
       </div>
-    </div>
-    <!-- end of closet -->
-	
-	</div> <!-- profile_main -->
+      
+      <div id='profile_bio'>
+        <div id='user_byline_default'>	
+          Recently bought items
+        </div>
+      </div>
+         
+      <!-- like button for the page 
+      <#=render :partial => 'facebook/like', 
+                :locals  => {
+                :style	 => 'position: absolute; top:5px; left: 5px;',
+                :url     => @user_presenter.closet_url('fb'),
+                :send_button  => false,
+                :width        => 125,
+                :faces        => false}%>-->
+  
+  
+    <div id="top_shoppers" class="box tiled">
+    </div> <!-- top shoppers at this store -->
+    
+    <div id="top_products" class="box">
+    </div> <!-- top products at this store -->
+    
+  </div> <!-- inner_right -->	
 
-</div> <!-- profile_container -->
+
+</div> <!-- outer -->
 
 
 

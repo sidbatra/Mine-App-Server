@@ -2,6 +2,13 @@
 #
 class StorePresenter < BasePresenter
   presents :store
+  delegate :name, :to => :store
+
+  # Relative path of the store's closet
+  #
+  def closet_path(src)
+    h.store_path(store.handle,:src => src)
+  end
 
   # Display html for total products count
   #
@@ -13,34 +20,14 @@ class StorePresenter < BasePresenter
     " bought at this store."
   end
 
-  # Generate filter links for the closet
+  # Link to larger store photo
   #
-  def closet_filter_links(categories)
-    html = ""
-
-    html += h.link_to_if store.products_count > 0,
-                    "View all <span class='cat_num'>" + 
-                    (store.products_count > 0 ? store.products_count.to_s : '') +
-                    "</span><br/>",
-                  '#all' 
-
-		html += "<ul>"
-		
-    categories.each do |category|
-      category_count = store.products_category_count(category.id) 
-
-      html += h.link_to(
-      							"<li>" +
-                  	category.name +  
-                    " <span class='cat_num'>" +
-                    category_count.to_s +
-                    "</span></li>",
-                    "##{category.handle}") if category_count != 0
-    end
-    
-    html += "</ul>"
-
-    html
+  def large_picture(src)
+    h.link_to h.image_tag(
+                store.large_url, 
+                :class  => "user_photo slim_shadow_light",
+                :alt    => ''),
+              closet_path(src)
   end
 
 end
