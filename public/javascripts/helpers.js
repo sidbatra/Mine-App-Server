@@ -42,7 +42,7 @@ Denwen.Helpers = Backbone.Model.extend({
   // Test if the current user's id is equal to the given id
   //
   isCurrentUser: function(userID) {
-    return this.current_user_id == userID;
+    return this.current_user_id && this.current_user_id == userID;
   },
 
   // Get the ordinal from an integer
