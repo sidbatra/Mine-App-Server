@@ -92,4 +92,16 @@ class AchievementSet < ActiveRecord::Base
     self.save!
   end
 
+  # Is set for star users
+  #
+  def for_star_users?
+    self.for == STAR_USERS
+  end
+
+  # Is set for top shoppers
+  #
+  def for_top_shoppers?
+    self.for == TOP_SHOPPERS
+  end
+
 end
