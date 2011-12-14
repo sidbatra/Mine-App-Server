@@ -29,6 +29,8 @@ class AchievementSet < ActiveRecord::Base
                         :owner_id => owner_id,
                         :for      => type)
 
+    raise IOError, "No achievements added to set" unless user_ids.present?
+
     entities.zip(user_ids).each do |entity,user_id|
       achievement_set.achievements.build(
                                     :achievable_id        => entity.id,
