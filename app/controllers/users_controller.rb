@@ -65,14 +65,14 @@ class UsersController < ApplicationController
 
     case @filter
     when :ifollowers
-      @users  = User.find(params[:id]).ifollowers
-      @key    = KEYS[:user_ifollowers] % params[:id]
+      @users      = User.find(params[:id]).ifollowers
+      @key        = KEYS[:user_ifollowers] % params[:id]
     when :stars
-      @users  = User.stars
-      @key    = KEYS[:star_users]
+      @achievers  = AchievementSet.star_users
+      @key        = KEYS[:star_users]
     when :top_shoppers
-      @users  = User.top_shoppers(params[:store_id])
-      @key    = KEYS[:store_top_shoppers] % params[:store_id]
+      @users      = User.top_shoppers(params[:store_id])
+      @key        = KEYS[:store_top_shoppers] % params[:store_id]
     end
 
   rescue => ex
