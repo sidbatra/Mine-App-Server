@@ -28,12 +28,22 @@ class UserPresenter < BasePresenter
     full_name + (is_gift ? ' received ' : ' bought ') + possessive_pronoun
   end
 
-  # Large display picture on the profile
+  # Link to larger user photo
   #
-  def large_picture(klass,src='picture')
+  def large_picture(src)
     h.link_to h.image_tag(
                 user.large_photo_url, 
-                :class  => "#{klass} slim_shadow_light",
+                :class  => "user_photo slim_shadow_light",
+                :alt    => ''),
+              closet_path(src)
+  end
+
+  # Link to small square user photo
+  #
+  def small_picture(src)
+    h.link_to h.image_tag(
+                user.photo_url, 
+                :class  => "slim_shadow_light",
                 :alt    => ''),
               closet_path(src)
   end
