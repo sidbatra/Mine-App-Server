@@ -71,7 +71,7 @@ class UsersController < ApplicationController
       @achievers  = AchievementSet.star_users
       @key        = KEYS[:star_users]
     when :top_shoppers
-      @users      = User.top_shoppers(params[:store_id])#AchievementSet.top_shoppers(params[:store_id])
+      @users      = AchievementSet.top_shoppers(params[:store_id])
       @key        = KEYS[:store_top_shoppers] % params[:store_id]
     end
 
