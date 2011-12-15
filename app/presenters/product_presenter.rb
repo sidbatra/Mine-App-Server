@@ -117,7 +117,7 @@ class ProductPresenter < BasePresenter
       html += "bought " if product.is_gift
 
       html += "at <span class='right_store'>" +
-              store_link
+              store_link +
               "</span>"
     end
 

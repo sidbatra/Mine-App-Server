@@ -32,7 +32,7 @@
       	<!-- like button for the page -->
 		    <%=render :partial => 'facebook/like', 
 		              :locals => {
-		              	:style				=> 'position: absolute; left: 485px; top:4px',
+		              	:style				=> 'position: absolute; left: 485px; top:5px',
 		                :url          => @product_presenter.url('fb'),
 		                :send_button  => true,
 		                :width        => 200,
@@ -111,7 +111,7 @@
             <a id='like_product' 
                 href='javascript:void(0)' 
                 class='button hover_shadow_light like'>
-                <span class='in'>✓ </span> like
+                <span class='in'>♥ </span><span class='out'>♥ </span> like
             </a>
             <%unless is_current_user(@product.user)%>
             	<a id='want_product' 
