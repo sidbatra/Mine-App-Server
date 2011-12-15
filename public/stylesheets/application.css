@@ -175,7 +175,7 @@ body {
 #pic_bg #container #box .continue_wide,
 #pic_bg #container #box .view_friends_list_wide  {
 	width: 340px;
-	height: 38px;
+	height: 37px;
 	margin-top: 10px;
 	cursor: pointer;
 	display: inline-block;
@@ -185,11 +185,11 @@ body {
 }
 
 #pic_bg #container #box .continue_wide {
-	background: url('/images/continue_wide.gif') no-repeat;
+	background: url('/images/continue_wide_red.gif') no-repeat;
 }
 
 #pic_bg #container #box .view_friends_list_wide {
-	background: url('/images/view_friends_list_wide.gif') no-repeat;
+	background: url('/images/view_friends_list_wide_red.gif') no-repeat;
 }
 
 #pic_bg #container #box .continue_wide:hover,
@@ -200,7 +200,7 @@ body {
 #pic_bg #container #box .continue_top_right_corner {
 	width: 105px;
 	height: 28px;
-	background: url('/images/continue_top_right_corner.png') no-repeat;
+	background: url('/images/continue_top_right_corner_red.png') no-repeat;
 	position: absolute;
 	top: 0px;
 	right: 0px;
