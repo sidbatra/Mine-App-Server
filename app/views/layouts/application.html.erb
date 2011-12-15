@@ -15,7 +15,7 @@
   <body <%=yield :body_attribute%>>
   
   	<div id="background">
-  		<img src="/images/home_gold.jpg" class="stretch" />
+      <%=image_tag 'home_gold.jpg', :class => 'stretch'%>
   	</div>
     
     <div id="fb-root"></div>    
@@ -27,9 +27,11 @@
     <div id="blocker"></div>
 
 
-   <div id="footer">
-   	<%=CONFIG[:name]%> © 2011 · <%=email_link%>
-   </div>
+    <%unless is_onboarding?%>
+      <div id="footer">
+       <%=CONFIG[:name]%> © 2011 · <%=email_link%>
+      </div>
+    <%end%>
 
     <%=render :partial => "misc/analytics"%>
 
