@@ -1528,8 +1528,8 @@ body {
 }
 
 .products .product .feedback .buttons .pushed {
-	background: #d33e3f /* url('/images/black_30.png') repeat-x */;
-	color: white;
+	/* background: white url('/images/black_30.png') repeat-x; */
+	color: #d33e3f;
 }
 
 .products .product .feedback .buttons .comments_none {
