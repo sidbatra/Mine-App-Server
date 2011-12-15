@@ -1274,10 +1274,9 @@ body {
 
 #inner_side ol li {
 	list-style: decimal outside;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 12px;
 	line-height: 21px;
-	color: #999999;
+	color: white;
 	margin-left: 28px;
 }
 
@@ -1285,8 +1284,8 @@ body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 }
 
-#inner_side ol li a .item { color: #d33e3f; }
-#inner_side ol li a:hover .item { text-decoration: underline; }
+#inner_side ol li a .item { color: #cccccc; }
+#inner_side ol li a .item:hover { color: white; }
 
 .tooltip_down_333333 {
 	position: absolute;
