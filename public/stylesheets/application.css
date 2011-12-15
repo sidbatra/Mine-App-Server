@@ -1090,7 +1090,7 @@ body {
 	position: relative;
 }
 
-.like_this_closet_box {
+.like_this_closet_box, .like_this_store_box {
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
@@ -1098,12 +1098,20 @@ body {
 	right: 0px;
 	width: 180px;
 	z-index: 4000;
-	background: url('/images/like_this_closet_bg_50.png');
 	display: none;
 	cursor: pointer;
 }
 
-.profile_picture_box:hover .like_this_closet_box {
+.like_this_closet_box {
+	background: url('/images/like_this_closet_bg_50.png');
+}
+
+.like_this_store_box {
+	background: url('/images/like_this_store_bg_50.png');
+}
+
+.profile_picture_box:hover .like_this_closet_box,
+.profile_picture_box:hover .like_this_store_box {
 	display: block;
 }
 

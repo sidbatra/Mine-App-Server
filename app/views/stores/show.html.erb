@@ -31,11 +31,25 @@
   <!-- Side column -->
   <div id='inner_side'>
   
-      <%=@store_presenter.large_picture('picture')%>
+		<div class="profile_picture_box">
+			
+  		<!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 6px;',
+		            :url     => @store_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 80,
+		            :faces        => false}%>	
+			
+			<div class='like_this_store_box'></div>
+   	  <%=@store_presenter.large_picture('picture')%>
+   	 
+   	</div>
       
-      <div class='username'>
-        <%=@store_presenter.name%>
-      </div>
+    <div class='username'>
+      <%=@store_presenter.name%>
+    </div>
       
       <div id='profile_bio'>
         <div id='user_byline_default'>	

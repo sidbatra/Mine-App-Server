@@ -46,12 +46,12 @@
 
 			<div class='like_this_closet_box'></div>
 			<%=@user_presenter.large_picture('picture')%>
+			
 		</div>
 			
-			<div class='username'>
-	      <%=@user_presenter.closet_title%>
-
-	    </div>
+		<div class='username'>
+      <%=@user_presenter.closet_title%>
+    </div>
 	    
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box' class='top_action_button'>
