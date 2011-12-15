@@ -119,6 +119,7 @@
 	  <div id="extras">
 	  
 	  	 <div id='feedback' class='feedback'>
+        <%if logged_in?%>
         	<div class='buttons'>
             <a id='like_product' 
                 href='javascript:void(0)' 
@@ -138,9 +139,11 @@
               </a>
             <%end%>
           </div>
-          <div id='feed_items'>
-          </div>
-        </div> <!-- feedback -->
+        <%end%>
+
+        <div id='feed_items'>
+        </div>
+       </div> <!-- feedback -->
 	  
 	      	
 	    <div id="comments_container">
