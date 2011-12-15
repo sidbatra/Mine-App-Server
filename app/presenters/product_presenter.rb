@@ -88,7 +88,7 @@ class ProductPresenter < BasePresenter
     if product.store 
       link += h.link_to_if product.store.is_top,
                 store_name,
-                store_path(product.store.handle)
+                store_path(product.store.handle,:src => 'product_store')
     end
 
     link
