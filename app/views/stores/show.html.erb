@@ -15,12 +15,6 @@
 
 <div id="outer">
 
-    <!-- Welcome box to signup if user is not logged in -->
-  <%=render :partial => 'misc/welcome', 
-            :locals => {
-              :user_presenter => @user_presenter,
-              :source         => @user_presenter.source_id} unless logged_in?%>
-    
   <!-- Main -->
   <div id='inner_main'>
       
