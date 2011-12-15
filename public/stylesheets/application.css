@@ -1662,15 +1662,14 @@ body {
 	clear: both;
 }
 
-/* ------------------------------ Button Context Box */
+/* ------------------------------ Profile Page Closet Own Button Context Box */
 
-.button .context_box {
+.products .product .feedback .buttons .button .context_box {
 	width: 130px;
 	height: 197px;
 	position: absolute;
 	top: -207px;
 	right: 0px;
-/* 	background: url('/images/white_80.png'); */
 	background: white;
 	padding: 40px 10px 0px;
 	line-height: 100%;
@@ -1680,50 +1679,53 @@ body {
 	z-index: 500;
 }
 
-.button .context_box .step {
+.products .product .feedback .buttons .button .context_box .step {
 	margin-bottom: 10px;
 }
 
-.button .context_box .inactive .textfield {
+.products .product .feedback .buttons .button .context_box .inactive .textfield {
 	-moz-opacity: 0.4;
 	opacity: .40;
 	filter: alpha (opacity=40);
 	background-image: none;
 }
 
-.button .context_box .inactive .dollar {
+.products .product .feedback .buttons .button .context_box .inactive .dollar {
 	display: none;
 }
 
-.button .context_box .title {
+.products .product .feedback .buttons .button .context_box .title {
 	color: #666666;
 	margin-bottom: 4px;
 }
 
-.button .context_box .title .option .checkbox { 
+.products .product .feedback .buttons .button .context_box .title .option .checkbox { 
 	margin-left: 8px; 
 	-moz-opacity: 0.2;
 	opacity: .20;
 	filter: alpha (opacity=20);
 }
 
-.button .context_box .title .option label { 
+.products .product .feedback .buttons .button .context_box .title .option label { 
 	color: #cccccc;
 	margin-left: -2px;
 }
 
-.button .context_box .title .option:hover label, /* same on hover as when step deactivated */
-.button .context_box .title .option:hover .checkbox,
-.button .context_box .inactive .title .option .checkbox,
-.button .context_box .inactive .title .option label {
+.products .product .feedback .buttons .button .context_box .title .option:hover label, /* same on hover as when step deactivated */
+.products .product .feedback .buttons .button .context_box .title .option:hover .checkbox,
+.products .product .feedback .buttons .button .context_box .inactive .title .option .checkbox,
+.products .product .feedback .buttons .button .context_box .inactive .title .option label {
 	-moz-opacity: 1;
 	opacity: 1;
 	filter: alpha (opacity=100);
 	color: #999999;
 }
 
+.products .product .feedback .buttons .button .context_box .title span.longer_title {
+	display: none;
+}
 
-.button .context_box .textfield {
+.products .product .feedback .buttons .button .context_box .textfield {
 	font-size: 12px;
 	color: #666666;
 	width: 120px;
@@ -1735,16 +1737,16 @@ body {
 	line-height: 22px;
 }
 
-.button .context_box .price {
+.products .product .feedback .buttons .button .context_box .price {
 	width: 58px;
 	padding-left: 11px;
 }
 
-.button .context_box .price_container {
+.products .product .feedback .buttons .button .context_box .price_container {
 	position: relative;
 }
 
-.button .context_box .price_container .dollar {
+.products .product .feedback .buttons .button .context_box .price_container .dollar {
 	position: absolute;
 	top: 1px;
 	left: 4px;
@@ -1754,18 +1756,18 @@ body {
 	color: #666666;
 }
 
-.button .context_box .but {
+.products .product .feedback .buttons .button .context_box .but {
 	height: 28px;
 	line-height: 24px;
 	font-size: 12px;
 	margin-left: 0px;
 }
 
-.button .context_box .add_to_closet {
+.products .product .feedback .buttons .button .context_box .add_to_closet {
 	width: 130px;
 }
 
-.button .context_box .cancel {
+.products .product .feedback .buttons .button .context_box .cancel {
 	margin-top: 27px;
 	width: 150px;
 	margin-left: -10px;
@@ -1778,9 +1780,129 @@ body {
 	cursor: pointer;
 }
 
-.button .context_box .cancel:hover {
+.products .product .feedback .buttons .button .context_box .cancel:hover {
 	color: #d33e3f;
 }
+
+/* ------------------------------ Item Page Own Button Context Box */
+
+#extras .feedback .buttons .button .context_box {
+	width: 172px;
+	position: absolute;
+	right: -1px;
+	background: #f8f8f8;
+	padding: 10px 8px;
+	border: 1px solid #cccccc;
+	line-height: 100%;
+	text-align: left;
+	font-size: 12px;
+	cursor: default;
+	z-index: 500;
+}
+
+#extras .feedback .buttons .button .context_box .step {
+	margin-bottom: 8px;
+}
+
+#extras .feedback .buttons .button .context_box .inactive .textfield {
+	-moz-opacity: 0.4;
+	opacity: .40;
+	filter: alpha (opacity=40);
+	background-image: none;
+}
+
+#extras .feedback .buttons .button .context_box .inactive .dollar {
+	display: none;
+}
+
+#extras .feedback .buttons .button .context_box .title {
+	color: #999999;
+	margin-bottom: 4px;
+}
+
+#extras .feedback .buttons .button .context_box .title {
+	color: #999999;
+	margin-bottom: 4px;
+}
+
+#extras .feedback .buttons .button .context_box .title .option .checkbox { 
+	margin-left: 8px; 
+	-moz-opacity: 0.2;
+	opacity: .20;
+	filter: alpha (opacity=20);
+}
+
+#extras .feedback .buttons .button .context_box .title .option label { 
+	color: #cccccc;
+	margin-left: -2px;
+}
+
+#extras .feedback .buttons .button .context_box .title .option:hover label, /* same on hover as when step deactivated */
+#extras .feedback .buttons .button .context_box .title .option:hover .checkbox,
+#extras .feedback .buttons .button .context_box .inactive .title .option .checkbox,
+#extras .feedback .buttons .button .context_box .inactive .title .option label {
+	-moz-opacity: 1;
+	opacity: 1;
+	filter: alpha (opacity=100);
+	color: #999999;
+}
+
+
+#extras .feedback .buttons .button .context_box .textfield {
+	font-size: 12px;
+	color: #666666;
+	width: 162px;
+	height: 22px;
+	padding: 0px 4px;
+	border: 1px solid #cccccc;
+	background: white url('/images/slim_shadow_light.png') repeat-x;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	line-height: 22px;
+}
+
+#extras .feedback .buttons .button .context_box .price {
+	width: 58px;
+	padding-left: 11px;
+}
+
+#extras .feedback .buttons .button .context_box .price_container {
+	position: relative;
+}
+
+#extras .feedback .buttons .button .context_box .price_container .dollar {
+	position: absolute;
+	top: 1px;
+	left: 4px;
+	height: 22px;
+	width: 8px;
+	line-height: 22px;
+	color: #666666;
+}
+
+#extras .feedback .buttons .button .context_box .but {
+	height: 28px;
+	line-height: 24px;
+	font-size: 12px;
+	margin-left: 0px;
+}
+
+#extras .feedback .buttons .button .context_box .add_to_closet {
+	width: 172px;
+}
+
+#extras .feedback .buttons .button .context_box .cancel {
+	margin-top: 8px;
+	width: 172px;
+	color: #666666;
+	text-align: center;
+	display: block;
+	cursor: pointer;
+}
+
+#extras .feedback .buttons .button .context_box .cancel:hover {
+	color: #d33e3f;
+}
+
 
 /* ------------------------------ Extras */
 
