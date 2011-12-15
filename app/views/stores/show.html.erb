@@ -1,6 +1,18 @@
 <!-- Generate presenters to render this page -->
 <%@store_presenter = presenter_for(@store)%>
 
+<!-- Inject facebook og tags into the head -->
+<%content_for :head do%>
+  <%=render :partial  => 'facebook/og',
+            :locals   => {
+              :title        => @store_presenter.name,
+              :type         => 'link',
+              :description  => @store_presenter.usage_description,
+              :url          => @store_presenter.closet_url('fb'),
+              :image        => @store.large_url}%>
+<%end%>
+
+
 <div id="outer">
 
     <!-- Welcome box to signup if user is not logged in -->

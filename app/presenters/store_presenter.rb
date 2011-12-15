@@ -10,6 +10,12 @@ class StorePresenter < BasePresenter
     h.store_path(store.handle,:src => src)
   end
 
+  # Absolute url of the store's closet
+  #
+  def closet_url(src)
+    h.store_url(store.handle,:src => src)
+  end
+
   # Display html for total products count
   #
   def closet_stats
@@ -28,6 +34,15 @@ class StorePresenter < BasePresenter
                 :class  => "user_photo slim_shadow_light",
                 :alt    => ''),
               closet_path(src)
+  end
+
+  # Description message for the store's use of
+  # the app. 
+  #
+  def usage_description
+    "#{CONFIG[:name]} shows the latest products from #{name} "\
+    "that people have in their closets! "\
+    "Come check it out!"
   end
 
 end
