@@ -28,18 +28,34 @@ a {
 body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 16px;
-/* 	background: #999999; */
-/* 	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; */
-	background: url('/images/home_gold.jpg') no-repeat center center fixed;
+/*background: #999999; 
+	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; 
+	
+	background: url('/images/home_gold.jpg') no-repeat top center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-/*
+
 	background: #666666 url('/images/tiles_small.jpg') fixed;
 	background-position: center 38px;
 */
 	-webkit-font-smoothing: antialiased;
+
+}
+
+#background {
+	width: 100%; 
+  height: 100%; 
+  position: fixed; 
+  left: 0px; 
+  top: 0px; 
+  z-index: -1;
+}
+
+.stretch { /* for cross-browser stretching bg */
+	 width:100%;
+   height:100%;
 }
 
 #logo {
@@ -127,12 +143,12 @@ body {
 /*
 	background: #f8f8f8 url('/images/tiles_small.jpg');
 	background-position: center -38px;
-*/
+
 	background: url('/images/home_gold.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 #pic_bg.fixed_bg {
