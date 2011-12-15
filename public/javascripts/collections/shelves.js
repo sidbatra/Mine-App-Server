@@ -12,10 +12,12 @@ Denwen.Collections.Shelves = Backbone.Collection.extend({
   },
 
   // Comparator function for sorting on the basis
-  // of total number of products
+  // of shelf with the most recent product
   //
   comparator: function(shelf) {
-    return shelf.get('products').length;
+    return shelf.get('products').isEmpty() ? 
+                  0 : 
+                  shelf.get('products').first().get('id');
   }
 
 });
