@@ -7,9 +7,8 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   initialize: function() {
     var self        = this;
 
-    this.el         = $('#product_' + this.model.get('id'));
-
     this.onboarding = this.options.onboarding;
+    this.onMode     = this.options.onMode;
     this.source     = this.options.source;
     this.sourceID   = this.options.sourceID;
     this.ownBox     = null;
@@ -17,6 +16,10 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.likes      = false;
     this.owns       = false;
     this.wants      = false;
+
+    this.el         = $('#product_' + this.model.get('id'));
+    this.onEl       = '#on_' + this.model.get('id');
+
 
     this.likeEl     = '#like_product_' + this.model.get('id');
     this.ownEl      = '#own_product_' + this.model.get('id');
@@ -41,6 +44,11 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // User enters the main product div
   //
   onMouseEnter: function() {
+    if(!this.onMode)
+      return;
+    
+    $(this.onEl).show();
+
     if(this.onboarding)
       console.log('Wow fancy onboarding');
   },
@@ -48,6 +56,11 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // User exits the main product div
   //
   onMouseLeave: function() {
+    if(!this.onMode)
+      return;
+
+    $(this.onEl).hide();
+
     if(this.onboarding)
       console.log('Do not leave');
   },
