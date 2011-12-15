@@ -28,6 +28,18 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
     this.fetch();
   },
 
+  // Flag if the shelves are being created for a user
+  //
+  forUser: function() {
+    return this.filter == 'user';
+  },
+
+  // Source string for analytics when a product is clicked
+  //
+  productSource: function() {
+    return this.forUser() ? 'profile' : this.filter;
+  },
+
   // Render the products collection
   //
   render: function() {
@@ -41,7 +53,7 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
           shelf     : shelf, 
           on        : false, 
           type      : self.filter,
-          src       : self.filter == 'user' ? 'profile' : self.filter,
+          src       : self.productSource(),
           isActive  : self.isActive}));
     });
 
@@ -50,14 +62,17 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
         shelf     : this.topShelf, 
         on        : true,
         type      : self.filter,
-        src       : self.filter == 'user' ? 'profile' : self.filter,
-        isActive  : this.isActive}));
+        src       : self.productSource(),
+        isActive  : false}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
-            model     : product,
-            source    : self.filter,
-            sourceID  : self.ownerID});
+            model       : product,
+            source      : self.filter,
+            sourceID    : self.ownerID,
+            onboarding  : self.forUser() && 
+                          helpers.isCurrentUser(self.ownerID) &&
+                          self.onProducts.isEmpty()});
     });
   },
 

@@ -41,9 +41,7 @@ class Collection < ActiveRecord::Base
   # Fetch the last fresh collection for the given user_id
   #
   def self.fresh_for_user(user_id)
-    collection = for_user(user_id).last
-    collection = nil unless collection && collection.is_fresh
-    collection
+    for_user(user_id).last
   end
 
 

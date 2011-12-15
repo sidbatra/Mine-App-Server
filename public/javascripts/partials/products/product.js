@@ -5,18 +5,25 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self      = this;
-    this.source   = this.options.source;
-    this.sourceID = this.options.sourceID;
-    this.ownBox   = null;
+    var self        = this;
 
-    this.likes    = false;
-    this.owns     = false;
-    this.wants    = false;
+    this.el         = $('#product_' + this.model.get('id'));
 
-    this.likeEl   = '#like_product_' + this.model.get('id');
-    this.ownEl    = '#own_product_' + this.model.get('id');
-    this.wantEl   = '#want_product_' + this.model.get('id');
+    this.onboarding = this.options.onboarding;
+    this.source     = this.options.source;
+    this.sourceID   = this.options.sourceID;
+    this.ownBox     = null;
+
+    this.likes      = false;
+    this.owns       = false;
+    this.wants      = false;
+
+    this.likeEl     = '#like_product_' + this.model.get('id');
+    this.ownEl      = '#own_product_' + this.model.get('id');
+    this.wantEl     = '#want_product_' + this.model.get('id');
+
+    this.el.mouseenter(function(){self.onMouseEnter();});
+    this.el.mouseleave(function(){self.onMouseLeave();});
 
     $(this.likeEl).click(function(){self.likeClicked();});
     $(this.ownEl).click(function(){self.ownClicked();});
@@ -29,6 +36,20 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
 
     this.ownBox.bind('ownCreated',this.ownCreated,this);
     this.ownBox.bind('ownCancelled',this.ownCancelled,this);
+  },
+
+  // User enters the main product div
+  //
+  onMouseEnter: function() {
+    if(this.onboarding)
+      console.log('Wow fancy onboarding');
+  },
+
+  // User exits the main product div
+  //
+  onMouseLeave: function() {
+    if(this.onboarding)
+      console.log('Do not leave');
   },
 
   // Create the action initiated by the user

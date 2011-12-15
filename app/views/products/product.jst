@@ -1,4 +1,4 @@
-<div class='product'> 
+<div id="product_<%=product.get('id')%>" class='product'> 
 
   <div class='top'>
     <a href="<%=product.path(src)%>">
@@ -15,28 +15,28 @@
         <%=helpers.truncate(product.escape('title'),40,'...')%>
       </a>
       
-      <br />
+      <br/>
         	
-          <%if(type == 'user' && product.has('store')) { %>
-            <%if(product.get('is_gift')) { %>
-              <!-- Bought -->
-            <%}%>
-              <!-- from --> 
-              <%=product.get('store').conditionalLink('user_profile')%>
-          <%}%>
-          
-          <%if(type == 'store') { %>
-            by <a href="<%=product.get('user').path('store')%>">
-                <%=product.get('user').escape('first_name')%> 
-                <%=product.get('user').escape('last_name')%>
-            </a>
-          <%}%>
-          
-          <%if(product.get('is_gift')) { %>
-            Gift
-          <%} else if(product.has('price')) { %>
-            <%=helpers.displayCurrency(product.get('price'))%>
-          <%}%>
+      <%if(type == 'user' && product.has('store')) { %>
+        <%if(product.get('is_gift')) { %>
+          <!-- Bought -->
+        <%}%>
+          <!-- from --> 
+          <%=product.get('store').conditionalLink('user_profile')%>
+      <%}%>
+      
+      <%if(type == 'store') { %>
+        by <a href="<%=product.get('user').path('store')%>">
+            <%=product.get('user').escape('first_name')%> 
+            <%=product.get('user').escape('last_name')%>
+        </a>
+      <%}%>
+      
+      <%if(product.get('is_gift')) { %>
+        Gift
+      <%} else if(product.has('price')) { %>
+        <%=helpers.displayCurrency(product.get('price'))%>
+      <%}%>
 
     </p>
     
