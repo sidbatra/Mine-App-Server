@@ -83,9 +83,12 @@
             <tr>
               <td>
                 <div id="right_text_div">
-                  <%=@user_presenter.bought_text(
-                        @product.is_gift,
-                        'product_name')%> <br/>
+
+                  <span class="right_user">
+                    <%=@user_presenter.bought_text(
+                          @product.is_gift,
+                          'product_name')%> 
+                  </span><br/>
                     
                   <span class="right_title">
                     <%=h @product_presenter.title%>
