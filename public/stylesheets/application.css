@@ -1083,12 +1083,6 @@ body {
 	max-width: 180px;
 }
 
-.like_my_closet {
-	position: absolute;
-	z-index: 5000;
-	display: none;
-}
-
 .profile_picture_box { 
 	background: black; 
 	vertical-align: top;
@@ -1096,16 +1090,22 @@ body {
 	position: relative;
 }
 
-.profile_picture_box:hover {
-	-moz-opacity: 0.5;
-	opacity: .50;
-	filter: alpha (opacity=50);
+.like_this_closet_box {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 180px;
+	z-index: 4000;
+	background: url('/images/like_this_closet_bg_50.png');
+	display: none;
+	cursor: pointer;
 }
 
-.profile_picture_box:hover .like_my_closet {
+.profile_picture_box:hover .like_this_closet_box {
 	display: block;
 }
-
 
 #inner_side .username {
 	-webkit-font-smoothing: antialiased;
