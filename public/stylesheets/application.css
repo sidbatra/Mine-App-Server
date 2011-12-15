@@ -611,7 +611,7 @@ body {
 	color: #333333;
 }
 
-.right_price a, .right_store a {
+.right_user a, .right_price a, .right_store a {
 	color: #d33e3f;
 }
 
