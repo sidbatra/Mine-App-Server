@@ -30,11 +30,13 @@
 
         <%if @source == 'store' && @product.store%>
           <%@store_presenter = presenter_for(@product.store)%>
-          <%=@product_presenter.breadcrumb @store_presenter.name,
-                @store_presenter.closet_path('product')%>
+          <%=@product_presenter.breadcrumb(
+                @store_presenter.name,
+                @store_presenter.closet_path('product'))%>
         <%else%>
-          <%=@product_presenter.breadcrumb @user_presenter.closet_title(true),
-                @user_presenter.closet_path('product')%>
+          <%=@product_presenter.breadcrumb(
+                @user_presenter.closet_title(true),
+                @user_presenter.closet_path('product'))%>
         <%end%>
       	
       	<!-- like button for the page -->
@@ -81,7 +83,9 @@
             <tr>
               <td>
                 <div id="right_text_div">
-                  <%=@user_presenter.bought_text(@product.is_gift)%> <br/>
+                  <%=@user_presenter.bought_text(
+                        @product.is_gift,
+                        'product_name')%> <br/>
                     
                   <span class="right_title">
                     <%=h @product_presenter.title%>

@@ -24,8 +24,9 @@ class UserPresenter < BasePresenter
 
   # Generic bought text with
   #
-  def bought_text(is_gift)
-    full_name + (is_gift ? ' received ' : ' bought ') + possessive_pronoun
+  def bought_text(is_gift,src='')
+    h.link_to_if(src.present?,full_name,closet_path(src)) + 
+      (is_gift ? ' received ' : ' bought ') + possessive_pronoun
   end
 
   # Link to larger user photo
