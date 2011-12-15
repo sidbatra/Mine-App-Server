@@ -50,16 +50,15 @@
 		                  :locals   => {:user => @user}%>
 		    </div>
 	    </div>
-	       
-		  <!-- like button for the page 
-		  <#=render :partial => 'facebook/like', 
+	    
+	   			<!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
 		            :locals  => {
-		            :style	 => 'position: absolute; top:5px; left: 5px;',
+		            :style	 => 'padding: 0 0 10px;',
 		            :url     => @user_presenter.closet_url('fb'),
 		            :send_button  => false,
 		            :width        => 125,
-		            :faces        => false}%>-->
-	
+		            :faces        => false}%>
 	
 	  <div class="box tiled">
 		

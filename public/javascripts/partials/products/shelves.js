@@ -69,10 +69,7 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
       new Denwen.Partials.Products.Product({
             model       : product,
             source      : self.filter,
-            sourceID    : self.ownerID,
-            onboarding  : self.forUser() && 
-                          helpers.isCurrentUser(self.ownerID) &&
-                          self.onProducts.isEmpty()});
+            sourceID    : self.ownerID})
     });
   },
 
