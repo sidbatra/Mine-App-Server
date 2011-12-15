@@ -5,25 +5,27 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self        = this;
+    var self          = this;
 
-    this.onboarding = this.options.onboarding;
-    this.onMode     = this.options.onMode;
-    this.source     = this.options.source;
-    this.sourceID   = this.options.sourceID;
-    this.ownBox     = null;
+    this.forceOnMode  = false;
 
-    this.likes      = false;
-    this.owns       = false;
-    this.wants      = false;
+    this.onboarding   = this.options.onboarding;
+    this.onMode       = this.options.onMode;
+    this.source       = this.options.source;
+    this.sourceID     = this.options.sourceID;
+    this.ownBox       = null;
 
-    this.el         = $('#product_' + this.model.get('id'));
-    this.onEl       = '#on_' + this.model.get('id');
+    this.likes        = false;
+    this.owns         = false;
+    this.wants        = false;
+
+    this.el           = $('#product_' + this.model.get('id'));
+    this.onEl         = '#on_' + this.model.get('id');
 
 
-    this.likeEl     = '#like_product_' + this.model.get('id');
-    this.ownEl      = '#own_product_' + this.model.get('id');
-    this.wantEl     = '#want_product_' + this.model.get('id');
+    this.likeEl       = '#like_product_' + this.model.get('id');
+    this.ownEl        = '#own_product_' + this.model.get('id');
+    this.wantEl       = '#want_product_' + this.model.get('id');
 
     this.el.mouseenter(function(){self.onMouseEnter();});
     this.el.mouseleave(function(){self.onMouseLeave();});
@@ -41,6 +43,24 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.ownBox.bind('ownCancelled',this.ownCancelled,this);
   },
 
+  // Enter forced on mode which always displays
+  // the on button and disables onboarding
+  //
+  enterForceOnMode: function() {
+    $(this.onEl).show();
+    this.onboarding   = false;
+    this.forceOnMode  = true;
+  },
+
+  // Exit forced on mode and set onboarding status
+  // using an argument
+  //
+  exitForceOnMode: function(onboarding) {
+    $(this.onEl).hide();
+    this.onboarding   = onboarding;
+    this.forceOnMode  = false;
+  },
+
   // User enters the main product div
   //
   onMouseEnter: function() {
@@ -56,7 +76,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // User exits the main product div
   //
   onMouseLeave: function() {
-    if(!this.onMode)
+    if(!this.onMode || this.forceOnMode)
       return;
 
     $(this.onEl).hide();
