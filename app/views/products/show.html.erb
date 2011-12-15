@@ -27,7 +27,15 @@
   
   	<div id="product_section">
   		<div class="product_top_bar">
-      	<%=@user_presenter.closet_breadcrumb 'product'%>
+
+        <%if @source == 'store' && @product.store%>
+          <%@store_presenter = presenter_for(@product.store)%>
+          <%=@product_presenter.breadcrumb @store_presenter.name,
+                @store_presenter.closet_path('product')%>
+        <%else%>
+          <%=@product_presenter.breadcrumb @user_presenter.closet_title(true),
+                @user_presenter.closet_path('product')%>
+        <%end%>
       	
       	<!-- like button for the page -->
 		    <%=render :partial => 'facebook/like', 

@@ -169,4 +169,13 @@ class ProductPresenter < BasePresenter
     'product_' + product.id.to_s
   end
 
+  # Link to go get back to the source url
+  #
+  def breadcrumb(title,path)
+    h.link_to "← " + title,
+              path,
+              :class => 'navigation' 
+  end
+
+
 end
