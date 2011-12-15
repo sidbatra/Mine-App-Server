@@ -1,23 +1,23 @@
-# Observe events on AchievementSet models to keep various cache
-# achivement sets persistent 
+# Observe events on Achievement models to keep various cache
+# achivement persistent 
 #
-class AchievementSetSweeper < ActionController::Caching::Sweeper
-  observe AchievementSet 
+class AchievementSweeper < ActionController::Caching::Sweeper
+  observe Achievement 
 
-  # AchievementSet is created
+  # Achievement is created
   #
-  def after_create(achievement_set)
-    expire_relevant_cache(achievement_set)
+  def after_create(achievement)
   end
 
-  # AchievementSet is updated
+  # Achievement is updated
   #
-  def after_update(achievement_set)
+  def after_update(achievement)
   end
 
-  # AchievementSet is deleted
+  # Achievement is deleted
   #
-  def after_destroy(achievement_set)
+  def after_destroy(achievement)
+    achievement_set = achievement.achievement_set
     expire_relevant_cache(achievement_set) unless achievement_set.expired?
   end
 
