@@ -32,19 +32,19 @@
 		
 	<!-- Side column -->
 	<div id='inner_side'>
-		
-		<!-- like button for the page -->
-	  <%=render :partial => 'facebook/like', 
-	            :locals  => {
-	            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 5px;',
-	            :url     => @user_presenter.closet_url('fb'),
-	            :send_button  => false,
-	            :width        => 125,
-	            :faces        => false}%>	
-	            
-	  <img class='like_my_closet' src='/images/like_my_closet.png' />
-	
+
 		<div class="profile_picture_box">
+		
+			<!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 6px;',
+		            :url     => @user_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 80,
+		            :faces        => false}%>	
+
+			<div class='like_this_closet_box'></div>
 			<%=@user_presenter.large_picture('picture')%>
 		</div>
 			
