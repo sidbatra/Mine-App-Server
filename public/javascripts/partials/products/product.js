@@ -8,6 +8,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     var self          = this;
 
     this.forceOnMode  = false;
+    this.on           = false;
 
     this.onboarding   = this.options.onboarding;
     this.onMode       = this.options.onMode;
@@ -29,6 +30,8 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
 
     this.el.mouseenter(function(){self.onMouseEnter();});
     this.el.mouseleave(function(){self.onMouseLeave();});
+
+    $(this.onEl).click(function(){self.onClicked();});
 
     $(this.likeEl).click(function(){self.likeClicked();});
     $(this.ownEl).click(function(){self.ownClicked();});
@@ -59,6 +62,20 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     $(this.onEl).hide();
     this.onboarding   = onboarding;
     this.forceOnMode  = false;
+  },
+
+  // On button clicked
+  //
+  onClicked: function() {
+    if(this.on) {
+      this.on = false;
+      $(this.onEl).html('Off');
+    }
+    else {
+      this.on = true;
+      $(this.onEl).html('On');
+      this.enterForceOnMode();
+    }
   },
 
   // User enters the main product div
