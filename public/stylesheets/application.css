@@ -65,26 +65,17 @@ body {
 }
 
 #welcome_box {
-	width: 849px;
-	padding: 16px 16px 14px 20px;
-	margin: 20px auto;
-	background: #d33e3f;
+	padding: 10px 8px 6px;
+	margin: 0px auto 15px;
 	color: white;
-	font-size: 18px;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
+	font-size: 24px;
 	line-height: 24px;
 	position: relative;
+/* 	background: url('/images/black_65.png'); */
 }
 
 .welcome_subtitle {
 	font-size: 14px;
-	color: #dddddd;
-}
-
-.welcome_button {
-	position: absolute;
-	top: 16px;
-	right: 20px;
 }
 
 #header {
@@ -2269,6 +2260,21 @@ body {
 	background: -ms-linear-gradient(top, #6e6e6e 0%,#5a5a5a 100%); /* IE10+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e6e6e', endColorstr='#5a5a5a',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, #6e6e6e 0%,#5a5a5a 100%); /* W3C */
+}
+
+.log_in_with_facebook_no_shadow {
+	width: 250px;
+	height: 47px;
+	background: url('/images/log_in_with_facebook_no_shadow.png') no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.log_in_with_facebook_no_shadow:hover {
+	background: url('/images/log_in_with_facebook_no_shadow.png') 0 -50px no-repeat;
 }
 
 .awesome { 

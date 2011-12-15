@@ -16,15 +16,14 @@
 <%end%>
 
 
-<!-- Welcome box to signup if user is not logged in -->
-  <%=render :partial => 'misc/welcome', 
-        :locals => {
-          :user_presenter => @user_presenter,
-          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
-
-
   <div id="outer" class="slim_shadow_dark">
   
+	  <!-- Welcome box to signup if user is not logged in -->
+	  <%=render :partial => 'misc/welcome', 
+	        :locals => {
+	          :user_presenter => @user_presenter,
+	          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
+	  
   	<div id="product_section">
   		<div class="product_top_bar">
 
