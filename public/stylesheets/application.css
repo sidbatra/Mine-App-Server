@@ -678,6 +678,19 @@ body {
 	cursor: pointer;
 }
 
+.edit_gray_to_red_12 {
+	font-size: 12px;
+	padding-left: 14px;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff_d33e3f.png') 0 -2px no-repeat;
+	color: #cccccc;
+}
+
+.edit_gray_to_red_12:hover {
+	background: url('/images/pen_cccccc_791a10_999999_ffffff_d33e3f.png') 0 -138px no-repeat;
+	color: #d33e3f;
+	cursor: pointer;
+}
+
 .edit_red_14 {
 	font-size: 14px;
 	padding-left: 14px;
