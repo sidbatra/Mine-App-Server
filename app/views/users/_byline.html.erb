@@ -2,7 +2,7 @@
       <%if is_current_user(user)%>
       
           <!-- byline editing -->
-          <%=text_field_tag 'user_byline',
+          <%=text_area_tag 'user_byline',
               self.current_user.byline,
               :style => 'display:none'%>
           
