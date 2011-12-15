@@ -273,9 +273,25 @@ body.home5 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
+/*
 	background: #f8f8f8 url('/images/tile35.jpg');
 	background-position: center top;
 	overflow: hidden;
+*/
+}
+
+#background {
+	width: 100%; 
+  height: 100%; 
+  position: fixed; 
+  left: 0px; 
+  top: 0px; 
+  z-index: -1;
+}
+
+.stretch { /* for cross-browser stretching bg */
+	 width:100%;
+   height:100%;
 }
 
 #container.home5 {
@@ -290,7 +306,7 @@ body.home5 {
 #box_home5 {
 	width: 480px;
 	height: 321px;
-	background: url('/images/black_75.png');
+	background: url('/images/333333_90.png');
 	margin: 0 auto;
 	position: relative;
 }
