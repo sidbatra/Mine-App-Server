@@ -175,7 +175,7 @@ class Store < ActiveRecord::Base
   def host(file_path)
     self.image_path  = Base64.encode64(
                          SecureRandom.hex(10) + 
-                         Time.now.to_i.to_s).chomp + ".gif"
+                         Time.now.to_i.to_s).chomp + ".png"
 
     if File.exists? file_path
 
@@ -184,7 +184,7 @@ class Store < ActiveRecord::Base
       FileSystem.store(
         image_path,
         open(file_path),
-        "Content-Type"  => "image/gif",
+        "Content-Type"  => "image/png",
         "Expires"       => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
@@ -194,12 +194,12 @@ class Store < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 40,:height => 40})
+                        {:width => 35,:height => 35})
 
       FileSystem.store(
         thumbnail_path,
         open(image.path),
-        "Content-Type"  => "image/gif",
+        "Content-Type"  => "image/png",
         "Expires"       => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
@@ -209,12 +209,12 @@ class Store < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 50,:height => 50})
+                        {:width => 180,:height => 180})
 
       FileSystem.store(
         large_path,
         open(image.path),
-        "Content-Type" => "image/gif",
+        "Content-Type" => "image/png",
         "Expires"       => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
