@@ -1083,6 +1083,30 @@ body {
 	max-width: 180px;
 }
 
+.like_my_closet {
+	position: absolute;
+	z-index: 5000;
+	display: none;
+}
+
+.profile_picture_box { 
+	background: black; 
+	vertical-align: top;
+	line-height: 0px;
+	position: relative;
+}
+
+.profile_picture_box:hover {
+	-moz-opacity: 0.5;
+	opacity: .50;
+	filter: alpha (opacity=50);
+}
+
+.profile_picture_box:hover .like_my_closet {
+	display: block;
+}
+
+
 #inner_side .username {
 	-webkit-font-smoothing: antialiased;
 	padding: 6px 0px 9px;
@@ -1090,6 +1114,7 @@ body {
 	font-size: 26px;
 	color: white;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	position: relative;
 }
 
 #inner_side .store_username {
@@ -1108,11 +1133,9 @@ body {
 	font-size: 14px;
 	line-height: 21px;
 	color: white;
-/*
 	padding: 7px 0px;
 	border-top: 1px solid #555555;
 	border-bottom: 1px solid #555555;
-*/
 	margin-bottom: 14px;
 	
 }
@@ -1421,6 +1444,8 @@ body {
 .products .product .bottom {
 	width: 130px;
 	margin-top: 5px;
+	height: 56px;
+	overflow: hidden;
 	position: relative;
 }
 

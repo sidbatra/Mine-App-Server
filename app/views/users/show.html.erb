@@ -32,11 +32,25 @@
 		
 	<!-- Side column -->
 	<div id='inner_side'>
+		
+		<!-- like button for the page -->
+	  <%=render :partial => 'facebook/like', 
+	            :locals  => {
+	            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 5px;',
+	            :url     => @user_presenter.closet_url('fb'),
+	            :send_button  => false,
+	            :width        => 125,
+	            :faces        => false}%>	
+	            
+	  <img class='like_my_closet' src='/images/like_my_closet.png' />
 	
+		<div class="profile_picture_box">
 			<%=@user_presenter.large_picture('picture')%>
+		</div>
 			
 			<div class='username'>
 	      <%=@user_presenter.closet_title%>
+
 	    </div>
 	    
 	  <%if !is_current_user(@user) && logged_in?%>
@@ -51,15 +65,6 @@
 		    </div>
 	    </div>
 	    
-	   			<!-- like button for the page -->
-		  <%=render :partial => 'facebook/like', 
-		            :locals  => {
-		            :style	 => 'padding: 0 0 10px;',
-		            :url     => @user_presenter.closet_url('fb'),
-		            :send_button  => false,
-		            :width        => 125,
-		            :faces        => false}%>
-	
 	  <div class="box tiled">
 		
 			<div id = "ifollowers_with_msg"></div>
