@@ -30,4 +30,4 @@ objects.each do |object|
   end
 end
 
-system("request-log-analyzer #{folder}/*")
+system("request-log-analyzer --report-width 150 #{folder}/*")
