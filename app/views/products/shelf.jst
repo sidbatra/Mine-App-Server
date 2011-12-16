@@ -15,8 +15,10 @@
         <%}%>
        <%}else{%>
         <div class="title">On Today</div>
-        <a href="" class="button_silver button slim_shadow_light">Clear</a>
-        <a href="" class="button_silver button slim_shadow_light">Done</a>
+
+        <%if(isActive){%>
+          <a href="/collections/new?src=profile" class="button_silver button slim_shadow_light">New</a>
+        <%}%>
       <%}%>
     </div>
 

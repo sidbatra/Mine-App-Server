@@ -51,6 +51,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // User creates a collection
+  //
+  collectionCreated: function() {
+    mpq.track("Collection Created");
+  },
+
   // User starts to type a comment
   //
   commentSelected: function() {
@@ -298,6 +304,13 @@ Denwen.Analytics = Backbone.Model.extend({
   inviteView: function(source) {
      mpq.track(
       'Invite View',{'source' : source});
+  },
+
+  // Page view on the collections new page
+  //
+  collectionNewView: function(source) {
+     mpq.track(
+      'Collection New View',{'source' : source});
   },
 
   // Fired when the invite view is opened during onboarding
