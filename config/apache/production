@@ -20,6 +20,10 @@ NameVirtualHost *:80
        AllowOverride all      
        Options -MultiViews
 
+       RewriteEngine on
+       RewriteCond %{HTTP_HOST} www.oncloset.com
+       RewriteRule ^(.*)$ http://oncloset.com/$1 [L,R=permanent]
+
     <FilesMatch "\.(ico|eot|svg|ttf|woff)$">
        FileETag none
     </FilesMatch>
@@ -55,6 +59,10 @@ NameVirtualHost *:80
   <Directory /vol/closet/current/public>
        AllowOverride all      
        Options -MultiViews
+
+       RewriteEngine on
+       RewriteCond %{HTTP_HOST} www.oncloset.com
+       RewriteRule ^(.*)$ https://oncloset.com/$1 [L,R=permanent]
   </Directory>
 
   # Custom log file productions
