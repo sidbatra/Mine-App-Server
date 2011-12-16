@@ -1350,7 +1350,69 @@ body {
 	white-space: nowrap;
 }
 
-#inner_main {
+#inner {} /* for full-width mains */
+
+#inner .title_box, 
+#inner .module {
+	padding: 12px 12px 6px 12px;
+	position: relative;
+}
+
+#inner .module {
+	margin: 0px 0px 0px;
+	position: relative;
+	background: #eeeeee;
+}
+
+#inner .module .heading {
+		color: #333333;
+		height: 24px;
+		padding: 4px 4px 4px 8px;
+		line-height: 24px;
+		margin-bottom: 8px;
+		text-align: left;
+		background: #dddddd;
+}
+
+#inner .module .heading .title {
+	font-size: 14px; 
+	color: white;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	float: left;
+}
+
+
+#inner .module .heading .button {
+	line-height: 22px; 
+	font-size: 12px; 
+	padding: 0 8px;
+	height: 22px;
+	float: right;
+	text-align: center;
+	white-space: nowrap;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 4px;
+}
+
+
+#inner .module .items .item {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#inner_main { /* for profiles */
 	width: 643px;
 	float: right;
 }
@@ -1390,7 +1452,6 @@ body {
 	padding: 0 8px;
 	height: 22px;
 	float: right;
-	width: 42px;
 	text-align: center;
 	white-space: nowrap;
 	position: relative;

@@ -14,7 +14,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
 
     this.source         = this.options.source;
 
-    this.productsEl     = '#products';
+    this.productsEl     = '#items';
     this.formEl         = '#new_collection';
     this.productIdsEl   = '#collection_product_ids';
 
