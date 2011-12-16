@@ -461,20 +461,9 @@ body {
 .add_to_closet_button {
 	width: 275px;
 	height: 36px;
-	border: none;
-	color: white;
-	cursor: pointer;
 	margin: 12px 0 6px;
 	font-size: 14px;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
-	background: #24578f url('/images/alert-overlay.png') repeat-x; 
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-	border-bottom: 1px solid rgba(0,0,0,0.25);
-}
-
-.add_to_closet_button:hover {
-	background-color: #1e4774;
 }
 
 /* ------------------------------ Product Page */
@@ -1119,7 +1108,6 @@ body {
 	width: 180px;
 	z-index: 4000;
 	display: none;
-	cursor: pointer;
 }
 
 .like_this_closet_box {
