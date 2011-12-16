@@ -63,7 +63,7 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
         on        : true,
         type      : self.filter,
         src       : self.productSource(),
-        isActive  : false}));
+        isActive  : self.isActive}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
