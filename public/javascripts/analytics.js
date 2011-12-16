@@ -51,10 +51,29 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // User turns on a product
+  //
+  productTurnedOn: function() {
+    mpq.track("Product Turned On");
+  },
+
+  // User turns off a product
+  //
+  productTurnedOff: function() {
+    mpq.track("Product Turned Off");
+  },
+
   // User creates a collection
   //
   collectionCreated: function() {
     mpq.track("Collection Created");
+  },
+
+  // User tried to create a collection without
+  // adding any products
+  // 
+  collectionException: function() {
+    mpq.track("Collection Exception");
   },
 
   // User starts to type a comment
