@@ -80,9 +80,10 @@ body {
 
 #header {
 	height: 38px;
+	padding-bottom: 2px;
 	width: 100%;
 /* 	background: #262626; */
-	background: black url('/images/header_bg.gif') repeat-x;
+	background: url('/images/header_bg_shadow.png') repeat-x;
 	position: fixed;
 	top: 0px;
 	z-index: 5000;
@@ -1108,6 +1109,7 @@ body {
 	width: 180px;
 	z-index: 4000;
 	display: none;
+	cursor: default;
 }
 
 .like_this_closet_box {
