@@ -1,21 +1,34 @@
-<div id="pic_bg" class="fixed_bg">
+<div id="outer">
 
-	<div id="container">
+	<div id="inner">
 	
-	  <%form_for @collection,
-		      :html => {:class => 'new_product', :style => 'display:none'} do |f|%>
-      <%=f.hidden_field :product_ids%>
-      <%=submit_tag 'Done',
-                    :class  => 'add_to_closet_button slim_shadow_dark',
-                    :name   => nil%>
-    <%end%>
-      
-    <div id="products">
-    </div>
+		<div class="module">
+		
+			<div class="heading">
+			
+				<div class="title">
+					Pick the items you have on today!
+				</div>
 
-	</div> <!-- container -->
+			  <%form_for @collection,
+				      :html => {:class => '', :style => 'display:none'} do |f|%>
+		      <%=f.hidden_field :product_ids%>
+		      <%=submit_tag 'Done',
+		                    :class  => 'button button_silver slim_shadow_light',
+		                    :name   => nil%>
+		    <%end%>
+	    
+	    </div>
+	      
+	    <div id="items">
+	    </div>
+	    
+    	</div>
+
+	</div> <!-- inner --
+
+</div> <!-- outer -->
 	
-</div> <!-- pic_bg -->
 
 
 <%content_for :javascript do%>

@@ -14,7 +14,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
 
     this.source         = this.options.source;
 
-    this.productsEl     = '#products';
+    this.productsEl     = '#items';
     this.formEl         = '#new_collection';
     this.productIdsEl   = '#collection_product_ids';
 
@@ -90,6 +90,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
     if(this.productsPicked.length < 1) {
       valid = false;
       alert("Please add atleast one item.");
+      analytics.collectionException();
     }
     else {
       $(this.productIdsEl).val(this.productsPicked.join(","));

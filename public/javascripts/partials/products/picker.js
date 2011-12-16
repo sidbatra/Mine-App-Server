@@ -33,10 +33,12 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
     if(this.picked) {
       this.trigger('addToProductsPicked',this.model.get('id'));
       $(this.toggleEl).html('Turn Off');
+      analytics.productTurnedOn();
     }
     else {
       this.trigger('removeFromProductsPicked',this.model.get('id'));
       $(this.toggleEl).html('Turn On');
+      analytics.productTurnedOff();
     }
   }
 
