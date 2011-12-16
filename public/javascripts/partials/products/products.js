@@ -15,6 +15,9 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
   // Render the products collection
   //
   render: function() {
+    if(this.products.isEmpty())
+      $(this.el).hide();
+
     this.el.html('');
     this.el.prepend(
       Denwen.JST[this.jst]({
