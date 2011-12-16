@@ -61,7 +61,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     }
     else {
       this.fbInviteBox.hookUp();
-      this.fbInviteBox.showMultiInviteDialog();
+      //this.fbInviteBox.showMultiInviteDialog();
 
       $(this.multiInviteEl).show();
       $(this.spinnerEl).hide();
