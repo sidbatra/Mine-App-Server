@@ -1,1 +1,3 @@
-<%=@products.to_json(@options)%>
+<%-cache @key do-%>
+  <%=@products.to_json(@options)-%>
+<%-end-%>

@@ -1,14 +1,45 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-if [ $# -lt 1 ] ; then
-  echo "bash script/dbpull <target database>"
+# Load libraries
+require "yaml"
+
+# Test valdidity of arguments
+if ARGV.length < 2
+  puts "ruby script/dbpull <target environment> <mysql password>"
+  exit
+elsif !['staging','development'].include? ARGV[0]
+  puts "target environments are - staging,development"
   exit
 else
-  target=$1
-fi
+  target_env  = ARGV[0]
+  password    = ARGV[1]
+end
 
-mysqldump -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p hasit_production > production.sql
+user        = 'root'
+source_env  = 'production'
+sql_file    = "#{source_env}_#{rand(10000)}.sql"
 
-mysql -u root -h denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com -p $target < production.sql
+# Load database config
+config = YAML.load_file("config/database.yml")
 
-rm production.sql
+source_host = config[source_env]['host']
+source_db   = config[source_env]['database']
+
+target_host = config[target_env]['host']
+target_db   = config[target_env]['database']
+
+
+# Drop the target database to ensure a clean copy
+system("mysql -u #{user} -h #{target_host} -p#{password} -e 'drop database #{target_db}'")
+
+# Recreate the target database
+system("mysql -u #{user} -h #{target_host} -p#{password} -e 'create database #{target_db}'")
+
+# Dump the source database into a sql file
+system("mysqldump -u #{user} -h #{source_host} -p#{password} #{source_db} > #{sql_file}")
+
+# Copy the production databse into the source database via the sql file
+system("mysql -u #{user} -h #{target_host} -p#{password} #{target_db} < #{sql_file}")
+
+# Clean up
+system("rm #{sql_file}")

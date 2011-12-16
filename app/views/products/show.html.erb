@@ -16,30 +16,37 @@
 <%end%>
 
 
-<!-- Welcome box to signup if user is not logged in -->
-  <%=render :partial => 'misc/welcome', 
-        :locals => {
-          :user_presenter => @user_presenter,
-          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
-
-
-  <div id="container">
+  <div id="outer" class="slim_shadow_dark">
   
-  	<!-- like button for the page -->
-    <%=render :partial => 'facebook/like', 
-              :locals => {
-              	:style				=> 'position: absolute; top: -42px; right: 0px;',
-                :url          => @product_presenter.url('fb'),
-                :send_button  => true,
-                :width        => 378,
-                :faces        => false}%>
+	  <!-- Welcome box to signup if user is not logged in -->
+	  <%=render :partial => 'misc/welcome', 
+	        :locals => {
+	          :user_presenter => @user_presenter,
+	          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
+	  
+  	<div id="product_section">
+  		<div class="product_top_bar">
 
-  
-  	<div id="product_section" class="slim_shadow_light">
-  	
-      <!-- link to closet -->
-      <%=@user_presenter.closet_breadcrumb 'product'%>
-      
+        <%if @source == 'store' && @product.store%>
+          <%@store_presenter = presenter_for(@product.store)%>
+          <%=@product_presenter.breadcrumb(
+                @store_presenter.name,
+                @store_presenter.closet_path('product'))%>
+        <%else%>
+          <%=@product_presenter.breadcrumb(
+                @user_presenter.closet_title(true),
+                @user_presenter.closet_path('product'))%>
+        <%end%>
+      	
+      	<!-- like button for the page -->
+		    <%=render :partial => 'facebook/like', 
+		              :locals => {
+		              	:style				=> 'position: absolute; left: 485px; top:5px',
+		                :url          => @product_presenter.url('fb'),
+		                :send_button  => true,
+		                :width        => 200,
+		                :faces        => false}%>
+  		</div>
       
 			<div class="buttons">
         	<%=@product_presenter.edit_link%>
@@ -68,14 +75,19 @@
         <div id="right">
         
           <div id="right_user_image">
-            <%=@user_presenter.large_picture('','product_user')%>
+            <%=@user_presenter.small_picture('product_user')%>
           </div>
 
           <table id="right_text">
             <tr>
               <td>
                 <div id="right_text_div">
-                  <%=@user_presenter.bought_text(@product.is_gift)%> <br/>
+
+                  <span class="right_user">
+                    <%=@user_presenter.bought_text(
+                          @product.is_gift,
+                          'product_name')%> 
+                  </span><br/>
                     
                   <span class="right_title">
                     <%=h @product_presenter.title%>
@@ -109,11 +121,12 @@
 	  <div id="extras">
 	  
 	  	 <div id='feedback' class='feedback'>
+        <%if logged_in?%>
         	<div class='buttons'>
             <a id='like_product' 
                 href='javascript:void(0)' 
                 class='button hover_shadow_light like'>
-                <span class='in'>✓ </span> like
+                <span class='in'>♥ </span><span class='out'>♥ </span> like
             </a>
             <%unless is_current_user(@product.user)%>
             	<a id='want_product' 
@@ -128,19 +141,27 @@
               </a>
             <%end%>
           </div>
-          <div id='feed_items'>
-          </div>
-        </div> <!-- feedback -->
+        <%end%>
+
+        <div id='feed_items'>
+        </div>
+       </div> <!-- feedback -->
 	  
 	      	
 	    <div id="comments_container">
+
+	      <div>
+          <div id="comments">
+          </div>
+	        <%=blocker%>
+	      </div>
 	    
 	    	<%if logged_in?%>
 	     
 		      <div id="add_comment">
 			      
 			        <%=image_tag self.current_user.photo_url,
-			            :class => "comment_photo_self slim_shadow_dark",
+			            :class => "comment_photo_self slim_shadow_light",
 			            :alt => ""%>
 			
 			        <%=text_area_tag "comment_data","Add a comment",
@@ -155,11 +176,6 @@
 	      <%end%> <!-- comment entry box -->
 	
 	
-	      <div>
-          <div id="comments">
-          <div>
-	        <%=blocker%>
-	      </div>
 	      
 	      <%=blocker%>
 	      
@@ -169,7 +185,7 @@
 	   
 	   <%=blocker%>
     
-  </div> <!-- container -->
+  </div> <!-- outer -->
 
 
 
@@ -178,7 +194,7 @@
 
       new Denwen.Views.Products.Show({
                         productJSON : <%=@product.to_json(
-                                            :only => [:user_id])%>,
+                                            :only => [:endorsement])%>,
                         source      : '<%=@source%>'});
 
     </script>

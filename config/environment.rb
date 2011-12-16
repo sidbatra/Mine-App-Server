@@ -2,7 +2,8 @@
 
 RAILS_LOC = Dir.pwd
 
-ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV']    ||= 'production'
+ENV['CACHE_IN_DEV'] = 'false'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
@@ -50,13 +51,20 @@ Rails::Initializer.run do |config|
   config.autoload_paths +=  [
                               File.join(Rails.root,'app','observers'),
                               File.join(Rails.root,'app','processors'),
-                              File.join(Rails.root,'app','presenters')]
+                              File.join(Rails.root,'app','presenters'),
+                              File.join(Rails.root,'app','sweepers')]
 
 
   # Register observers
   config.active_record.observers  = :product_observer, :comment_observer, 
                                     :user_observer, :following_observer,
-                                    :action_observer, :store_observer
+                                    :action_observer, :store_observer,
+                                    :achievement_set_observer,
+                                    :store_sweeper, :following_sweeper,
+                                    :product_sweeper, :collection_part_sweeper,
+                                    :user_sweeper, :achievement_set_sweeper,
+                                    :achievement_sweeper, :comment_sweeper,
+                                    :action_sweeper
 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

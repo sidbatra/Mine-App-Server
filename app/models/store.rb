@@ -9,7 +9,7 @@ class Store < ActiveRecord::Base
   # Associations
   #-----------------------------------------------------------------------------
   belongs_to  :user
-  has_many    :products
+  has_many    :products, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations
@@ -20,12 +20,18 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
+  named_scope :unfiltered,  ''
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
+  named_scope :for_user,    lambda {|user_id| {
+                                      :joins      => :products,
+                                      :conditions => {:products => {
+                                                        :user_id => user_id}},
+                                      :group      => 'stores.id'}}
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -39,22 +45,10 @@ class Store < ActiveRecord::Base
       :user_id  => user_id)
   end
 
-  # Fetch all the stores
-  #
-  def self.fetch_all
-    Cache.fetch(KEYS[:store_all]){Store.all};
-  end
-
   # Fetch a store by name 
   #
   def self.fetch(name)
     find_by_name(name.squeeze(' ').strip) 
-  end
-
-  # Fetch sorted list of top stores
-  #
-  def self.top
-    Cache.fetch(KEYS[:store_top]) {Store.processed.popular.limit(20)}
   end
 
   # Return json options specifiying which attributes and methods
@@ -63,8 +57,8 @@ class Store < ActiveRecord::Base
   #
   def self.json_options
     options             = {}
-    options[:only]      = [:id,:name]
-    options[:methods]   = []
+    options[:only]      = [:id,:name,:handle]
+    options[:methods]   = [:is_top]
 
     [self.name.downcase.to_sym,options]
   end
@@ -78,11 +72,12 @@ class Store < ActiveRecord::Base
   def edit(attributes)
 
     if attributes[:name].present?
-      self.name = attributes[:name]
+      self.name             = attributes[:name]
+      self.generate_handle  = true
     end
 
     if attributes[:is_approved].present?
-      self.is_approved  = attributes[:is_approved] 
+      self.is_approved      = attributes[:is_approved] 
     end
 
     self.save!
@@ -102,6 +97,12 @@ class Store < ActiveRecord::Base
     Cache.fetch(KEYS[:store_price] % self.id) do
       Product.for_store(self.id).sum(:price) 
     end
+  end
+
+  # Flag if the store is a top store
+  #
+  def is_top
+    is_processed
   end
 
 
@@ -174,7 +175,7 @@ class Store < ActiveRecord::Base
   def host(file_path)
     self.image_path  = Base64.encode64(
                          SecureRandom.hex(10) + 
-                         Time.now.to_i.to_s).chomp + ".gif"
+                         Time.now.to_i.to_s).chomp + ".png"
 
     if File.exists? file_path
 
@@ -183,7 +184,7 @@ class Store < ActiveRecord::Base
       FileSystem.store(
         image_path,
         open(file_path),
-        "Content-Type"  => "image/gif",
+        "Content-Type"  => "image/png",
         "Expires"       => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
@@ -193,12 +194,12 @@ class Store < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 40,:height => 40})
+                        {:width => 35,:height => 35})
 
       FileSystem.store(
         thumbnail_path,
         open(image.path),
-        "Content-Type"  => "image/gif",
+        "Content-Type"  => "image/png",
         "Expires"       => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
@@ -208,12 +209,12 @@ class Store < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 50,:height => 50})
+                        {:width => 180,:height => 180})
 
       FileSystem.store(
         large_path,
         open(image.path),
-        "Content-Type" => "image/gif",
+        "Content-Type" => "image/png",
         "Expires"       => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 

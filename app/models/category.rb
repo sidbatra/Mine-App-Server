@@ -50,7 +50,7 @@ class Category < ActiveRecord::Base
   # Override to customize accessible attributes
   #
   def to_json(options = {})
-    super(options.merge(:only => [:id,:name]))
+    super(options.merge(:only => [:id,:name,:handle]))
   end
 
 end

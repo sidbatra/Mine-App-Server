@@ -65,26 +65,53 @@ class ProductsController < ApplicationController
 
     case @filter
     when :user
-      @category = Category.fetch(params[:category]) if params[:category]
-      @products = Product.with_store.with_user.
-                    for_user(params[:owner_id]).
-                    in_category(@category ? @category.id : nil).
-                    by_id
+      category    = Category.fetch(params[:category]) if params[:category]
+      category_id = category ? category.id : nil
+
+      @products   = Product.with_store.with_user.
+                      for_user(params[:owner_id]).
+                      in_category(category_id).
+                      by_id
 
       @options[:with_store] = true
       @options[:with_user]  = true
+      @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
+
     when :store
-      @category = Category.fetch(params[:category]) if params[:category]
-      @products = Product.with_user.
-                    for_store(params[:owner_id]).
-                    in_category(@category ? @category.id : nil).
-                    by_id
+      category    = Category.fetch(params[:category]) if params[:category]
+      category_id = category ? category.id : nil
+
+      @products   = Product.with_user.
+                      for_store(params[:owner_id]).
+                      in_category(category_id).
+                      by_id
 
       @options[:with_user] = true
+      @key = KEYS[:store_products_in_category] % [params[:owner_id],category_id]
+
     when :top
-      @products = Product.top_for_store(params[:owner_id])
+      @products = Product.for_store(params[:owner_id]).
+                    created(20.days.ago..Time.now).
+                    by_actions.
+                    with_user.
+                    limit(10)
 
       @options[:with_user] = true
+      @key = KEYS[:store_top_products] % params[:owner_id]
+
+    when :collection
+      collection = Collection.fresh_for_user(params[:owner_id])
+      @products = []
+
+      if collection
+        @products = Product.for_ids(collection.product_ids) 
+        @options[:with_store] = true
+        @options[:with_user]  = true
+        @key = KEYS[:collection_products] % collection.id
+      else
+        @key = KEYS[:collection_products] % 0
+      end
+
     else
       raise IOError, "Invalid option"
     end

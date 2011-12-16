@@ -21,6 +21,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     this.formEl               = '#' + this.mode + '_product';
     this.queryEl              = '#product_query';
+    this.extraEl              = '#extra_steps';
+    this.onboardingEl         = '#onboarding';
     this.titleEl              = '#product_title';
     this.priceEl              = '#product_price';
     this.priceDollarEl        = '#creation_dollar';
@@ -44,7 +46,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.productImages      = new Denwen.Collections.ImageResults();
     this.productImagesView  = new Denwen.Partials.Products.ImageResults({
                                   el:this.el,
-                                  images:this.productImages});
+                                  images:this.productImages,
+                                  mode:this.mode});
     this.productImagesView.bind('productSelected',this.productSelected,this);
     this.productImagesView.bind('productSearched',this.productSearched,this);
     this.productImagesView.bind('productSearchCancelled',
@@ -157,6 +160,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.websiteEl).val(productHash['website_url']);
     $(this.imageEl).val(productHash['image_url']);
     $(this.thumbEl).val(productHash['thumb_url']);
+
+    $(this.extraEl).show();
+    $(this.onboardingEl).hide();
 
     $(this.titleEl).focus();
     $(this.titleEl).val(productHash['query'].toProperCase());

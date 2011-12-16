@@ -34,7 +34,7 @@
                                         <%=@stores.to_json%>,
                                         {is_admin:true});
 
-      storesEditView    = new Denwen.AdminStoresEditView({
+      storesEditView    = new Denwen.Views.Admin.StoresEditView({
                                   approved_collection   : approved_stores,
                                   unapproved_collection : unapproved_stores});
     });

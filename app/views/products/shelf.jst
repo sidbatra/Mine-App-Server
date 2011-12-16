@@ -1,0 +1,37 @@
+<%if(shelf.get('products').length || isActive){%>
+  <div class="module">
+
+    <div class="heading">
+      <%if(!on){%>
+        <%if(isActive){%>
+            <div class="title"><%=shelf.get('category').get('name')%></div>
+            <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile" class="button_silver button slim_shadow_light">
+              Add +
+            </a>
+        <%}else{%>
+          <div class="title">
+            <%=shelf.get('category').get('name')%>
+          </div>
+        <%}%>
+       <%}else{%>
+        <div class="title">On Today</div>
+        <a href="" class="button_silver button slim_shadow_light">Clear</a>
+        <a href="" class="button_silver button slim_shadow_light">Done</a>
+      <%}%>
+    </div>
+
+    <div class="products">
+    
+      <%if(shelf.get('products').length > 0) {%>
+        <%shelf.get('products').each(function(product){%>
+          <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
+        <%});%>
+      <%} else if(on){%>
+        Wow a lovely placeholder goes here
+      <%}%>
+
+      <%=helpers.blocker()%>
+      
+    </div> <!-- products -->
+  </div> <!-- module -->
+<%}%>

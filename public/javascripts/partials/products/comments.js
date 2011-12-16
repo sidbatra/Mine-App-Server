@@ -22,7 +22,9 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
 
     this.comments           = new Denwen.Collections.Comments();
     this.comments.fetch({
-            data      : {product_id: this.options.product_id},
+            data      : {
+                          source_id   : this.options.product_id,
+                          source_type : 'product'},
             success   : function() { self.render(); },
             error     : function() {}
           });
@@ -40,7 +42,7 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
     var self = this;
 
     this.comments.each(function(comment){
-      $(self.commentsEl).prepend(Denwen.JST['comments/comment']({
+      $(self.commentsEl).append(Denwen.JST['comments/comment']({
                                     comment:comment}));
     });
   },
@@ -56,7 +58,8 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
 
     var comment   = new Denwen.Models.Comment({
                           data        : $(this.inputEl).val(),
-                          product_id  : this.productID,
+                          source_id   : this.productID,
+                          source_type : 'product',
                           defaultData : this.commentPlaceholder});
 
     this.comments.add(comment);
@@ -75,7 +78,7 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
   created: function(comment) {
     this.posting = false;
 
-    $(this.commentsEl).prepend(Denwen.JST['comments/comment']({
+    $(this.commentsEl).append(Denwen.JST['comments/comment']({
                                   comment:comment}));
 
     $(this.inputEl).val('');

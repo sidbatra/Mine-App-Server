@@ -13,16 +13,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.products   = new Denwen.Partials.Products.Products({
-                                el        : $('#products'),
-                                owner_id  : this.user.get('id'),
-                                filter    : 'user',
-                                jst       : 'products/user_products',
-                                active    : true});
+    this.shelves = new Denwen.Partials.Products.Shelves({
+                        el        : $('#shelves'),
+                        filter    : 'user',
+                        onFilter  : 'collection',
+                        ownerID   : this.user.get('id'),
+                        isActive  : helpers.isCurrentUser(this.user.get('id'))});
     
-    // -----
-    this.routing();
-
     // -----
     new Denwen.Partials.Users.IFollowers({
                           el    : $('#ifollowers_with_msg'),
@@ -30,6 +27,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           delay : this.isCurrentUser && 
                                   this.user.get('inverse_followings_count') <= 0
                                   && this.source == 'login'});
+    // -----
+    new Denwen.Partials.Users.Stores({
+                          el    : '#user_stores_box',
+                          user  : this.user});
+
     // -----
     new Denwen.Partials.Users.Stars({
                           el  : '#star_users_box'});
@@ -90,38 +92,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         this.currentUser.get('email'),
         this.currentUser.get('age'));
     }
-  },
-  
-  // Use Backbone router for reacting to changes in URL
-  // fragments
-  //
-  routing: function() {
-    var self = this;
-
-    var router = Backbone.Router.extend({
-
-      // Listen to routes
-      //
-      routes: {
-        ":category" : "filter"
-      },
-
-      // Called when a filter route is fired
-      //
-      filter: function(category) {
-        self.products.fetch(category);
-
-        if(category != undefined && category.length && category != '_=_') {
-          analytics.userProfileFiltered(
-                      category,
-                      self.isCurrentUser,
-                      self.user.get('id'));
-        }
-      }
-    });
-
-    new router();
-    Backbone.history.start();
   }
-
+  
 });

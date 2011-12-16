@@ -30,7 +30,7 @@
 
 			<%=link_to 'Edit', 'javascript:void(0)',
 									:id			=> 'product_edit',
-									:class  => 'edit_gray_12 inline_nudge',
+									:class  => 'edit_gray_to_red_12 inline_nudge',
           				:style 	=> product.endorsement.present? && !edit_mode ?
                   		    		'' : 
 	                      			'display:none'%>        
@@ -40,7 +40,7 @@
       <%=link_to "Add your review",
                   'javascript:void(0)',
                   :id     => 'product_edit_initiate',
-                  :class  => 'edit_red_14',
+                  :class  => 'edit_gray_to_red_12',
                   :style  => product.endorsement.present? || edit_mode ?
                               'display:none' :
                               ''%>

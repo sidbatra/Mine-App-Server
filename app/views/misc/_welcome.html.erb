@@ -1,14 +1,13 @@
-<div id='welcome_box' class='rounded_5'>
-	<%=user_presenter.first_name%> is using <%=CONFIG[:name]%> as
-  <%=user_presenter.possessive_pronoun%> online closet.<br>
+<div id='welcome_box'>
 
-	<span class='welcome_subtitle'>It's fun, and free!</span>
-	
-	<%=link_to image_tag(
-				'f.png',
-				:class => 'f',
-				:alt   => 'f') + 'Connect with Facebook &rsaquo;',
-				fb_auth_path(:source => source),
-				:class => 'large blue awesome welcome_button',
-				:id    => 'action_link'%>
+	 <%=link_to 	'', 
+  						fb_auth_path(:source => source), 
+  						:class => 'log_in_with_facebook_no_shadow',
+  						:style => 'float:right;'%>
+  						
+	<%=user_presenter.first_name%> is using <%=CONFIG[:name]%> as
+  <%=user_presenter.possessive_pronoun%> online closet!<br>
+
+	<span class='welcome_subtitle'>It's fun, and free :)</span>
+
 </div>

@@ -2,7 +2,7 @@
 
 	<div id="container">
 	
-		<div id="box" class="rounded_5">
+		<div id="box" class="">
 		
       <%if is_onboarding?%>
         <%=link_to '',
@@ -38,7 +38,7 @@
 		
 		  <div id="contacts">
 		  	<div class="loading" id="loading_spinner">
-		  		<img src='/images/spinner_dark_bg.gif' />
+          <%=image_tag 'spinner_dark_bg.gif'%>
 		  	</div>
 		  </div>
 
@@ -60,11 +60,11 @@
 
 
 <%content_for :javascript do%>
-  <%=render :partial => "misc/feedback" unless is_onboarding?%>
+  <%#render :partial => "misc/feedback" unless is_onboarding?%>
 
   <script type="text/javascript">
 
-    new Denwen.Views.Invites.New({source:'<%=@source%>'});
+    new Denwen.Views.Invites.New({source:'<%=@source%>',el:'#container'});
 
   </script>
 <%end%>

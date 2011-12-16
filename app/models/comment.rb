@@ -1,24 +1,27 @@
 class Comment < ActiveRecord::Base
+
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
   belongs_to :user
-  belongs_to :product, :counter_cache => true
+  belongs_to :commentable, :polymorphic => true, :counter_cache => true
 
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :data
   validates_presence_of   :user_id
-  validates_presence_of   :product_id
+  validates_presence_of   :commentable_id
+  validates_presence_of   :commentable_type
+  validates_inclusion_of  :commentable_type, :in => %w(Product)
 
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
   named_scope :with_user, :include => :user
-  named_scope :with_product, :include => :product
-  named_scope :on_product, lambda {|product_id| 
-                            {:conditions => {:product_id => product_id}}}
+  named_scope :on, lambda {|klass,id| {:conditions => {
+                              :commentable_id   => id,
+                              :commentable_type => klass.capitalize}}}
   named_scope :by_id, :order => 'id DESC'
 
   #-----------------------------------------------------------------------------
@@ -29,9 +32,23 @@ class Comment < ActiveRecord::Base
   #
   def self.add(attributes,user_id)
     create!(
-      :data         => attributes['data'],
-      :product_id   => attributes['product_id'],
-      :user_id      => user_id)
+      :data             => attributes['data'],
+      :commentable_id   => attributes['source_id'],
+      :commentable_type => attributes['source_type'].capitalize,
+      :user_id          => user_id)
+  end
+
+  # Fetch all the user ids participating in the comment thread on
+  # for the given commentable details
+  #
+  def self.user_ids_in_thread_with(comment)
+    user_ids = all(
+                :select     => 'user_id',
+                :conditions => {
+                  :commentable_type => comment.commentable_type,
+                  :commentable_id   => comment.commentable_id}).map(&:user_id)
+    user_ids << comment.commentable.user_id
+    user_ids.uniq
   end
 
 

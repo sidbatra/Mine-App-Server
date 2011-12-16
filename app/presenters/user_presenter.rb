@@ -24,16 +24,27 @@ class UserPresenter < BasePresenter
 
   # Generic bought text with
   #
-  def bought_text(is_gift)
-    full_name + (is_gift ? ' received ' : ' bought ') + possessive_pronoun
+  def bought_text(is_gift,src='')
+    h.link_to_if(src.present?,full_name,closet_path(src)) + 
+      (is_gift ? ' received ' : ' bought ') + possessive_pronoun
   end
 
-  # Large display picture on the profile
+  # Link to larger user photo
   #
-  def large_picture(klass,src='picture')
+  def large_picture(src)
+    h.link_to h.image_tag(
+                user.large_photo_url, 
+                :class  => "user_photo",
+                :alt    => ''),
+              closet_path(src)
+  end
+
+  # Link to small square user photo
+  #
+  def small_picture(src)
     h.link_to h.image_tag(
                 user.photo_url, 
-                :class  => "#{klass} slim_shadow_dark",
+                :class  => "slim_shadow_light",
                 :alt    => ''),
               closet_path(src)
   end
@@ -46,8 +57,8 @@ class UserPresenter < BasePresenter
 
   # Full title of the closet
   #
-  def closet_title
-    name  = self.full_name
+  def closet_title(casual=false)
+    name  = casual ? self.first_name : self.full_name
 
     if name.length >= 20
       parts = name.split(/ |-/)
@@ -67,14 +78,6 @@ class UserPresenter < BasePresenter
   #
   def closet_path(src)
     h.user_path(user.handle,:src => src)
-  end
-
-  # Link to go get back to the closet
-  #
-  def closet_breadcrumb(src)
-    h.link_to "← " + user.first_name + "'s closet",
-              closet_path(src),
-              :class => 'navigation slim_shadow_light' 
   end
 
   # Image representing the closet - image of

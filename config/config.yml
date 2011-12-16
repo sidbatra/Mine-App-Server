@@ -20,13 +20,20 @@ common: &common
   :keys:
     :user_category_count: user_%d_category_%d_count
     :user_price: user_%d_products_price
+    :user_ifollowers: user_%d_ifollowers
+    :user_top_stores: user_%d_top_stores
+    :user_products_in_category: user_%d_category_%d_products
     :store_category_count: store_%d_category_%d_count
     :store_price: store_%d_products_price
     :store_top_products: store_%d_top_products
     :store_top_shoppers: store_%d_top_shoppers
+    :store_products_in_category: store_%d_category_%d_products
     :store_all: store_all
     :store_top: store_top
     :star_users: star_users
+    :collection_products: collection_%d_products
+    :comment_commentable: comment_commentable_%d_%s
+    :action_actionable: action_actionable_%d_%s
   :msg:
     :product:
       :shoes:

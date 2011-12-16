@@ -27,7 +27,7 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
 
     this.actions  = new Denwen.Collections.Actions();
     this.actions.fetch({
-          data    : {product_id:this.productID},
+          data    : {source_id:this.productID,source_type:'product'},
           success : function(){self.render();},
           error   : function(){}});
 
@@ -67,7 +67,7 @@ Denwen.Partials.Products.Actions = Backbone.View.extend({
     this.actions.add(action);
 
     action.save(
-        {name:name,product_id:this.productID},{
+        {name:name,source_id:this.productID,source_type:'product'},{
         success : function(model) { self.created(model);},
         error   : function(model,errors) {}});
   },

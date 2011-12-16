@@ -11,15 +11,16 @@ class Product < ActiveRecord::Base
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
-  has_many    :comments, :dependent => :destroy
-  has_many    :actions,  :dependent => :destroy
+  has_many    :comments,      :as => :commentable,  :dependent => :destroy
+  has_many    :actions,       :as => :actionable,   :dependent => :destroy
+  has_many    :achievements,  :as => :achievable,   :dependent => :destroy
+  has_many    :collection_parts, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of     :title
   validates_presence_of     :price
-  validates_numericality_of :price
   validates_presence_of     :orig_image_url
   validates_inclusion_of    :is_gift, :in => [true,false]
   validates_presence_of     :user_id
@@ -34,6 +35,7 @@ class Product < ActiveRecord::Base
   named_scope :by_id,       :order => 'id DESC'
   named_scope :by_actions,  :order => 'actions_count DESC,id DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
+  named_scope :for_ids,     lambda {|ids| {:conditions => {:id => ids}}}
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
   named_scope :for_store,   lambda {|store_id| 
@@ -74,18 +76,7 @@ class Product < ActiveRecord::Base
       :source_product_id  => attributes['source_product_id'],
       :user_id            => user_id)
   end
-    
-  # Fetch top products for the given store
-  #
-  def self.top_for_store(store_id)
-    Cache.fetch(KEYS[:store_top_products] % store_id) do
-      Product.for_store(store_id).
-              created(20.days.ago..Time.now).
-              by_actions.
-              with_user.
-              limit(10)
-    end
-  end
+
 
   #-----------------------------------------------------------------------------
   # Instance methods
@@ -93,21 +84,17 @@ class Product < ActiveRecord::Base
 
   # Share the product to fb via the user who created it
   #
-  def share(product_url)
-    return if self.is_shared
-
-    fb_user = FbGraph::User.me(self.user.access_token)
-    fb_user.feed!(
-      :message      => self.endorsement,
-      :picture      => self.thumbnail_url,
-      :link         => product_url,
-      :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
-                        (user.is_male? ? "his" : "her") +
-                        " online closet. It's fun, and free!",
-      :name         => self.title)
-
-      self.shared
-  end
+  #def share(product_url)
+  #  fb_user = FbGraph::User.me(self.user.access_token)
+  #  fb_user.feed!(
+  #    :message      => self.endorsement,
+  #    :picture      => self.thumbnail_url,
+  #    :link         => product_url,
+  #    :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
+  #                      (user.is_male? ? "his" : "her") +
+  #                      " online closet. It's fun, and free!",
+  #    :name         => self.title)
+  #end
 
   # Mark the product as gift
   #
@@ -143,13 +130,6 @@ class Product < ActiveRecord::Base
                 :conditions => {
                     :user_id  => self.user_id,
                     :id_lt    => self.id})
-  end
-
-  # Mark the product as shared
-  #
-  def shared
-    self.is_shared = true
-    save!
   end
 
   # Path on filesystem for the processed hosted image thumbnail
@@ -255,8 +235,8 @@ class Product < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:title,:is_gift,:endorsement,:handle,:price,
-                            :comments_count,:user_id]
+    options[:only]     += [:id,:title,:is_gift,:handle,:price,
+                            :comments_count,:user_id,:category_id]
 
     options[:methods]   = [] if options[:methods].nil?
     options[:methods]  += [:thumbnail_url]

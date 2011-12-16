@@ -1,0 +1,6 @@
+
+  # Apache
+  check process apache with pidfile /var/run/apache2.pid
+    start program = "/etc/init.d/apache2 start" with timeout 30 seconds
+    stop program  = "/etc/init.d/apache2 stop"
+

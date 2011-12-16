@@ -8,11 +8,14 @@ class User < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  has_many :products, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
-  has_many :searches, :dependent => :destroy
-  has_many :contacts, :dependent => :destroy
-  has_many :invites,  :dependent => :destroy
+  has_many :products,     :dependent => :destroy
+  has_many :comments,     :dependent => :destroy
+  has_many :actions,      :dependent => :destroy
+  has_many :searches,     :dependent => :destroy
+  has_many :contacts,     :dependent => :destroy
+  has_many :invites,      :dependent => :destroy
+  has_many :collections,  :dependent => :destroy
+  has_many :achievements, :dependent => :destroy
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings
@@ -29,6 +32,25 @@ class User < ActiveRecord::Base
   validates_presence_of   :first_name
   validates_presence_of   :last_name
   validates_presence_of   :email
+
+  #-----------------------------------------------------------------------------
+  # Named scopes
+  #-----------------------------------------------------------------------------
+  named_scope :stars, :joins => :products, 
+                      :conditions => {
+                        :products => {:created_at => 20.days.ago..Time.now}},
+                      :group      => "users.id", 
+                      :order      => "count(users.id) DESC, users.id",
+                      :limit      => 20
+  named_scope :top_shoppers, lambda {|store_id| {
+                              :joins      => :products,
+                              :conditions => {
+                                :products => {
+                                  :store_id   => store_id,
+                                  :created_at => 20.days.ago..Time.now}},
+                              :group      => "users.id", 
+                              :order      => "count(users.id) DESC, users.id",
+                              :limit      => 20}}
 
   #-----------------------------------------------------------------------------
   # Attributes
@@ -61,43 +83,6 @@ class User < ActiveRecord::Base
   #
   def self.find_by_cookie(token)
     find_by_remember_token(token)
-  end
-
-  # Fetch all users who have commented on the given product
-  #
-  def self.commented_on_product(product_id)
-    all(
-      :conditions => {:comments => {:product_id => product_id}},
-      :joins      => :comments,
-      :group      => "users.id")
-  end
-
-  # Fetch all the star users
-  #
-  def self.stars 
-    Cache.fetch(KEYS[:star_users]) do
-        all(
-          :joins      => :products,
-          :conditions => {:products => {:created_at => 2.days.ago..Time.now}},
-          :group      => "users.id", 
-          :order      => "count(users.id) DESC, users.id",
-          :limit      => 20)
-    end
-  end
-
-  # Fetch all top shoppers for a store
-  #
-  def self.top_shoppers(store_id)
-    Cache.fetch(KEYS[:store_top_shoppers] % store_id) do
-        all(
-          :joins      => :products,
-          :conditions => {:products => {
-                            :store_id   => store_id,
-                            :created_at => 20.days.ago..Time.now}},
-          :group      => "users.id", 
-          :order      => "count(users.id) DESC, users.id",
-          :limit      => 20)
-    end
   end
 
   # Return json options specifiying which attributes and methods
@@ -151,14 +136,20 @@ class User < ActiveRecord::Base
 
   # URL for the user photo
   #
-  def image_url
-    "http://graph.facebook.com/" + fb_user_id + "/picture?type=square" 
+  def image_url(type='square')
+    "http://graph.facebook.com/" + fb_user_id + "/picture?type=#{type}" 
   end
 
   # Alias for image_url
   #
   def photo_url
     image_url
+  end
+
+  # Alias for large image url
+  #
+  def large_photo_url
+    image_url('large')
   end
 
   # Tests gender to see if user is male

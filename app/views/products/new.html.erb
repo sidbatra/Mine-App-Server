@@ -2,7 +2,7 @@
 
 	<div id="container">
 
-		<div id="box" class="rounded_5">
+		<div id="box">
 		
       <%if is_onboarding? && @category.name == 'Shoes'%>
         <p class="heading">
@@ -21,7 +21,8 @@
 		              :locals   => {
 		                :f            => f,
 		                :category     => @category,
-		                :placeholders => @placeholders}%>
+		                :placeholders => @placeholders,
+                    :onboarding   => is_onboarding?}%>
 		
 		  <%end%> <!-- form -->
   

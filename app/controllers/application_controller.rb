@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # Popular categories for the drop down in the header
   #
   def populate_categories
-    @categories = Category.fetch_all if @controller != :home
+    @categories = Category.fetch_all if @controller != :home && !is_json?
   end
 
   # Populate the source variable for analytics before
@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
   #
   def track_source
     @source       = params[:src] ? params[:src].to_s : 'direct'
+  end
+
+  # Test is the format of the current request is json
+  #
+  def is_json?
+    request.format == Mime::JSON
   end
 
 end

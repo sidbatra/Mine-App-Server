@@ -42,7 +42,7 @@ Denwen.Helpers = Backbone.Model.extend({
   // Test if the current user's id is equal to the given id
   //
   isCurrentUser: function(userID) {
-    return this.current_user_id == userID;
+    return this.current_user_id && this.current_user_id == userID;
   },
 
   // Get the ordinal from an integer
@@ -51,6 +51,12 @@ Denwen.Helpers = Backbone.Model.extend({
     var s=["th","st","nd","rd"],
        v=n%100;
     return n+(s[(v-20)%10]||s[v]||s[0]); 
+  },
+
+  // Currency string for price
+  //
+  displayCurrency: function(price) {
+    return '$' + price.toFixed(2).replace(/\.00$/,'');
   },
 
   // Empty div blocker used throughout the app

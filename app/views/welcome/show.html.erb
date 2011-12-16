@@ -2,7 +2,7 @@
 
 	<div id="container">
 
-		<div id="box" class="rounded_5">
+		<div id="box" class="">
 			<p class="heading">
 				<span class="title">
           Welcome to OnCloset, <%=current_user.first_name%>!
@@ -11,7 +11,8 @@
 				A virtual showcase of what you own —<br />
 				your shoes, clothes, accessories and more!
 			</p>
-			<img src="/images/welcome_tile35.jpg" style="margin-top:-10px;"/>
+
+      <%=image_tag 'welcome_gold.gif', :style => "margin-top:-10px;"%>
 			
       <%=link_to '',
                   new_invite_path(:src => 'login'),

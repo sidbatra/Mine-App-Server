@@ -14,12 +14,12 @@ module DW
       # Email all the users on the comment thread
       #
       def self.new_comment(comment_id)
-        comment   = Comment.with_user.with_product.find(comment_id)
-        users     = User.commented_on_product(comment.product.id) 
-        users    << comment.product.user
+        comment   = Comment.with_user.find(comment_id)
+        user_ids  = Comment.user_ids_in_thread_with(comment)
+        users     = User.find_all_by_id(user_ids)
 
-        users.uniq.each do |user|
-          UserMailer.decide_new_comment(
+        users.each do |user|
+          UserMailer.deliver_new_comment(
                       comment,
                       user) unless user.id == comment.user.id
         end
@@ -53,8 +53,8 @@ module DW
         followers         = User.find_all_by_fb_user_id(fb_friends_ids)
 
         followers.each do |follower|
-          Following.add(user_id,follower.id,false)
-          Following.add(follower.id,user_id)
+          Following.add(user_id,follower.id,'auto',false)
+          Following.add(follower.id,user_id,'auto')
         end
 
         Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)
@@ -68,8 +68,8 @@ module DW
       def self.new_action(action_id)
         action  = Action.find(action_id)
 
-        UserMailer.decide_new_action(
-                    action) unless action.user_id == action.product.user_id
+        UserMailer.deliver_new_action(
+                    action) unless action.user_id == action.actionable.user_id
       end
 
       # Email the user whenever someone follows him/her
@@ -77,10 +77,7 @@ module DW
       def self.new_following(following_id)
         following = Following.find(following_id)
 
-        user      = following.user
-        follower  = following.follower
-
-        UserMailer.decide_new_follower(follower,user) 
+        UserMailer.deliver_new_follower(following) 
       end
     
     end #notification manager

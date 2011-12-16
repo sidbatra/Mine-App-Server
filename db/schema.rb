@@ -9,18 +9,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206001437) do
+ActiveRecord::Schema.define(:version => 20111214235658) do
 
-  create_table "actions", :force => true do |t|
-    t.integer  "product_id"
+  create_table "achievement_sets", :force => true do |t|
+    t.integer  "owner_id"
+    t.datetime "expired_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "for"
+  end
+
+  add_index "achievement_sets", ["created_at"], :name => "index_achievement_sets_on_created_at"
+  add_index "achievement_sets", ["for", "owner_id"], :name => "index_achievement_sets_on_for_and_owner_id"
+
+  create_table "achievements", :force => true do |t|
+    t.integer  "achievable_id"
+    t.string   "achievable_type"
     t.integer  "user_id"
-    t.string   "name"
+    t.integer  "achievement_set_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "actions", ["product_id", "name", "user_id"], :name => "index_actions_on_product_id_and_name_and_user_id", :unique => true
-  add_index "actions", ["user_id", "name"], :name => "index_actions_on_user_id_and_name"
+  add_index "achievements", ["achievable_id", "achievable_type"], :name => "index_achievements_on_achievable_id_and_achievable_type"
+  add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
+  add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
+
+  create_table "actions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "actionable_type"
+    t.integer  "actionable_id"
+  end
+
+  add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -33,15 +57,34 @@ ActiveRecord::Schema.define(:version => 20111206001437) do
   add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
   add_index "categories", ["weight"], :name => "index_categories_on_weight"
 
-  create_table "comments", :force => true do |t|
-    t.text     "data"
-    t.integer  "user_id"
+  create_table "collection_parts", :force => true do |t|
+    t.integer  "collection_id"
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["product_id"], :name => "index_comments_on_product_id"
+  add_index "collection_parts", ["collection_id"], :name => "index_collection_parts_on_collection_id"
+  add_index "collection_parts", ["product_id"], :name => "index_collection_parts_on_product_id"
+
+  create_table "collections", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
+
+  create_table "comments", :force => true do |t|
+    t.text     "data"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "contacts", :force => true do |t|
@@ -56,16 +99,37 @@ ActiveRecord::Schema.define(:version => 20111206001437) do
   add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
   add_index "contacts", ["user_id", "third_party_id"], :name => "index_contacts_on_user_id_and_third_party_id", :unique => true
 
+  create_table "emails", :force => true do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.integer  "emailable_id"
+    t.string   "emailable_type"
+    t.string   "message_id"
+    t.string   "request_id"
+    t.string   "purpose"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "emails", ["emailable_id", "emailable_type"], :name => "index_emails_on_emailable_id_and_emailable_type"
+  add_index "emails", ["message_id"], :name => "index_emails_on_message_id", :unique => true
+  add_index "emails", ["purpose"], :name => "index_emails_on_purpose"
+  add_index "emails", ["recipient_id"], :name => "index_emails_on_recipient_id"
+  add_index "emails", ["request_id"], :name => "index_emails_on_request_id", :unique => true
+  add_index "emails", ["sender_id"], :name => "index_emails_on_sender_id"
+
   create_table "followings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "follower_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active",   :default => true
+    t.string   "source"
   end
 
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
+  add_index "followings", ["source"], :name => "index_followings_on_source"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
 
   create_table "invites", :force => true do |t|
@@ -100,7 +164,6 @@ ActiveRecord::Schema.define(:version => 20111206001437) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_shared",         :default => false
     t.string   "orig_thumb_url"
     t.integer  "comments_count",    :default => 0
     t.integer  "store_id"
@@ -127,8 +190,10 @@ ActiveRecord::Schema.define(:version => 20111206001437) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source"
   end
 
+  add_index "searches", ["source"], :name => "index_searches_on_source"
   add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
 
   create_table "stores", :force => true do |t|

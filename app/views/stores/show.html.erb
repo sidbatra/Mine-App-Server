@@ -1,77 +1,82 @@
 <!-- Generate presenters to render this page -->
 <%@store_presenter = presenter_for(@store)%>
 
-<div id='profile_container'>
+<!-- Inject facebook og tags into the head -->
+<%content_for :head do%>
+  <%=render :partial  => 'facebook/og',
+            :locals   => {
+              :title        => @store_presenter.name,
+              :type         => 'link',
+              :description  => @store_presenter.usage_description,
+              :url          => @store_presenter.closet_url('fb'),
+              :image        => @store.large_url}%>
+<%end%>
 
-	<!-- Right column -->
-	<div id='profile_right'>
-	
-  	<div id='top_shoppers_box' class='box tiled shaded'>
-  	</div>
-  	
-  	<div class='box stats shaded'>
-  		<%=@store_presenter.closet_stats%>
-		</div> <!-- closet_stats -->
-		
-		<div class='box cat_nav shaded'>
-      <%=@store_presenter.closet_filter_links(@categories)%>
-      <%=blocker%>
-	 	</div> <!-- cat_nav -->
-  	
-		<div id='top_products' class='box shaded'>
-		</div>
-	
-	</div>
-	
-	
-	<!-- Left column -->
-	<div id='profile_main'>
 
-		<div id='profile_details'>
+<div id="outer">
+
+  <!-- Main -->
+  <div id='inner_main'>
       
-      <img class='profile_user_photo slim_shadow_light' src='<%=@store.large_url%>' />
-		
-			<div id='profile_details_right'>
+      <div id="shelves"></div>
+  
+  </div> <!-- inner_main -->
+    
+  <!-- Side column -->
+  <div id='inner_side'>
+  
+		<div class="profile_picture_box">
 			
-		    <div class='store_username'>
-		      <%=@store.name%>
-		    </div>
-		
-		    <div id='profile_bio'>
-		      <div id='user_byline_default'>	
-           	<span class='store_byline'>
-           		Recently bought items
-           	</span>
-		      </div>
-		    </div> 
-		      
-		  </div> <!--profile_details_right-->
-
-		</div> <!--profile_details-->
-		
-		<div id='closet'>
-     	<div class='top'>
-    	</div>
+  		<!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 5px;',
+		            :url     => @store_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 80,
+		            :faces        => false}%>	
+			
+			<div class='like_this_store_box'></div>
+   	  <%=@store_presenter.large_picture('picture')%>
+   	 
+   	</div>
       
-	    <div class='rows'>
-	      <div id='products'>
-	      </div>
-	    </div> 
-      
-    	<div class='bottom'>
-      </div>
+    <div class='username'>
+      <%=@store_presenter.name%>
     </div>
-    <!-- end of closet -->
-	
-	</div> <!-- profile_main -->
+      
+      <div id='profile_bio'>
+        <div id='user_byline_default'>	
+          Recently bought items
+        </div>
+      </div>
+         
+      <!-- like button for the page 
+      <#=render :partial => 'facebook/like', 
+                :locals  => {
+                :style	 => 'position: absolute; top:5px; left: 5px;',
+                :url     => @user_presenter.closet_url('fb'),
+                :send_button  => false,
+                :width        => 125,
+                :faces        => false}%>-->
+  
+  
+    <div id="top_shoppers" class="box tiled">
+    </div> <!-- top shoppers at this store -->
+    
+    <div id="top_products" class="box">
+    </div> <!-- top products at this store -->
+    
+  </div> <!-- inner_right -->	
 
-</div> <!-- profile_container -->
+
+</div> <!-- outer -->
 
 
 
 
 <%content_for :javascript do%>
-  <%=render :partial => "misc/feedback"%>
+  <%#render :partial => "misc/feedback"%>
 
   <script type='text/javascript'>
 
