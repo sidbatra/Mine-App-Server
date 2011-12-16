@@ -1,0 +1,30 @@
+<div id="pic_bg" class="fixed_bg">
+
+	<div id="container">
+	
+	  <%form_for @collection,
+		      :html => {:class => 'new_product', :style => 'display:none'} do |f|%>
+      <%=f.hidden_field :product_ids%>
+      <%=submit_tag 'Done',
+                    :class  => 'add_to_closet_button slim_shadow_dark',
+                    :name   => nil%>
+    <%end%>
+      
+    <div id="products">
+    </div>
+
+	</div> <!-- container -->
+	
+</div> <!-- pic_bg -->
+
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+
+    new Denwen.Views.Collections.New({
+            currentUserJSON : <%=self.current_user.to_json%>,
+                         el : $('#container')});
+
+  </script>
+<%end%>
