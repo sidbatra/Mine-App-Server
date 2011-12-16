@@ -28,18 +28,34 @@ a {
 body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 16px;
-/* 	background: #999999; */
-/* 	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; */
-	background: url('/images/home_gold.jpg') no-repeat center center fixed;
+/*background: #999999; 
+	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; 
+	
+	background: url('/images/home_gold.jpg') no-repeat top center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-/*
+
 	background: #666666 url('/images/tiles_small.jpg') fixed;
 	background-position: center 38px;
 */
 	-webkit-font-smoothing: antialiased;
+
+}
+
+#background {
+	width: 100%; 
+  height: 100%; 
+  position: fixed; 
+  left: 0px; 
+  top: 0px; 
+  z-index: -1;
+}
+
+.stretch { /* for cross-browser stretching bg */
+	 width:100%;
+   height:100%;
 }
 
 #logo {
@@ -49,26 +65,17 @@ body {
 }
 
 #welcome_box {
-	width: 849px;
-	padding: 16px 16px 14px 20px;
-	margin: 20px auto;
-	background: #d33e3f;
+	padding: 10px 8px 6px;
+	margin: 0px auto 15px;
 	color: white;
-	font-size: 18px;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
+	font-size: 24px;
 	line-height: 24px;
 	position: relative;
+/* 	background: url('/images/black_65.png'); */
 }
 
 .welcome_subtitle {
 	font-size: 14px;
-	color: #dddddd;
-}
-
-.welcome_button {
-	position: absolute;
-	top: 16px;
-	right: 20px;
 }
 
 #header {
@@ -127,12 +134,12 @@ body {
 /*
 	background: #f8f8f8 url('/images/tiles_small.jpg');
 	background-position: center -38px;
-*/
+
 	background: url('/images/home_gold.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 #pic_bg.fixed_bg {
@@ -175,7 +182,7 @@ body {
 #pic_bg #container #box .continue_wide,
 #pic_bg #container #box .view_friends_list_wide  {
 	width: 340px;
-	height: 38px;
+	height: 37px;
 	margin-top: 10px;
 	cursor: pointer;
 	display: inline-block;
@@ -185,11 +192,11 @@ body {
 }
 
 #pic_bg #container #box .continue_wide {
-	background: url('/images/continue_wide.gif') no-repeat;
+	background: url('/images/continue_wide_red.gif') no-repeat;
 }
 
 #pic_bg #container #box .view_friends_list_wide {
-	background: url('/images/view_friends_list_wide.gif') no-repeat;
+	background: url('/images/view_friends_list_wide_red.gif') no-repeat;
 }
 
 #pic_bg #container #box .continue_wide:hover,
@@ -200,7 +207,7 @@ body {
 #pic_bg #container #box .continue_top_right_corner {
 	width: 105px;
 	height: 28px;
-	background: url('/images/continue_top_right_corner.png') no-repeat;
+	background: url('/images/continue_top_right_corner_red.png') no-repeat;
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -611,7 +618,7 @@ body {
 	color: #333333;
 }
 
-.right_price a, .right_store a {
+.right_user a, .right_price a, .right_store a {
 	color: #d33e3f;
 }
 
@@ -668,6 +675,19 @@ body {
 .edit_gray_12:hover {
 	background: url('/images/pen_cccccc_791a10_999999_ffffff_d33e3f.png') 0 -104px no-repeat;
 	color: white;
+	cursor: pointer;
+}
+
+.edit_gray_to_red_12 {
+	font-size: 12px;
+	padding-left: 14px;
+	background: url('/images/pen_cccccc_791a10_999999_ffffff_d33e3f.png') 0 -2px no-repeat;
+	color: #cccccc;
+}
+
+.edit_gray_to_red_12:hover {
+	background: url('/images/pen_cccccc_791a10_999999_ffffff_d33e3f.png') 0 -138px no-repeat;
+	color: #d33e3f;
 	cursor: pointer;
 }
 
@@ -1083,6 +1103,38 @@ body {
 	max-width: 180px;
 }
 
+.profile_picture_box { 
+	background: black; 
+	vertical-align: top;
+	line-height: 0px;
+	position: relative;
+}
+
+.like_this_closet_box, .like_this_store_box {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 180px;
+	z-index: 4000;
+	display: none;
+	cursor: pointer;
+}
+
+.like_this_closet_box {
+	background: url('/images/like_this_closet_bg_50.png');
+}
+
+.like_this_store_box {
+	background: url('/images/like_this_store_bg_50.png');
+}
+
+.profile_picture_box:hover .like_this_closet_box,
+.profile_picture_box:hover .like_this_store_box {
+	display: block;
+}
+
 #inner_side .username {
 	-webkit-font-smoothing: antialiased;
 	padding: 6px 0px 9px;
@@ -1090,6 +1142,7 @@ body {
 	font-size: 26px;
 	color: white;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	position: relative;
 }
 
 #inner_side .store_username {
@@ -1108,11 +1161,9 @@ body {
 	font-size: 14px;
 	line-height: 21px;
 	color: white;
-/*
 	padding: 7px 0px;
 	border-top: 1px solid #555555;
 	border-bottom: 1px solid #555555;
-*/
 	margin-bottom: 14px;
 	
 }
@@ -1236,10 +1287,9 @@ body {
 
 #inner_side ol li {
 	list-style: decimal outside;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
 	font-size: 12px;
 	line-height: 21px;
-	color: #999999;
+	color: white;
 	margin-left: 28px;
 }
 
@@ -1247,8 +1297,8 @@ body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 }
 
-#inner_side ol li a .item { color: #d33e3f; }
-#inner_side ol li a:hover .item { text-decoration: underline; }
+#inner_side ol li a .item { color: #cccccc; }
+#inner_side ol li a .item:hover { color: white; }
 
 .tooltip_down_333333 {
 	position: absolute;
@@ -1421,6 +1471,8 @@ body {
 .products .product .bottom {
 	width: 130px;
 	margin-top: 5px;
+	height: 56px;
+	overflow: hidden;
 	position: relative;
 }
 
@@ -1476,8 +1528,8 @@ body {
 }
 
 .products .product .feedback .buttons .pushed {
-	background: #d33e3f /* url('/images/black_30.png') repeat-x */;
-	color: white;
+	/* background: white url('/images/black_30.png') repeat-x; */
+	color: #d33e3f;
 }
 
 .products .product .feedback .buttons .comments_none {
@@ -1629,15 +1681,14 @@ body {
 	clear: both;
 }
 
-/* ------------------------------ Button Context Box */
+/* ------------------------------ Profile Page Closet Own Button Context Box */
 
-.button .context_box {
+.products .product .feedback .buttons .button .context_box {
 	width: 130px;
 	height: 197px;
 	position: absolute;
 	top: -207px;
 	right: 0px;
-/* 	background: url('/images/white_80.png'); */
 	background: white;
 	padding: 40px 10px 0px;
 	line-height: 100%;
@@ -1647,50 +1698,53 @@ body {
 	z-index: 500;
 }
 
-.button .context_box .step {
+.products .product .feedback .buttons .button .context_box .step {
 	margin-bottom: 10px;
 }
 
-.button .context_box .inactive .textfield {
+.products .product .feedback .buttons .button .context_box .inactive .textfield {
 	-moz-opacity: 0.4;
 	opacity: .40;
 	filter: alpha (opacity=40);
 	background-image: none;
 }
 
-.button .context_box .inactive .dollar {
+.products .product .feedback .buttons .button .context_box .inactive .dollar {
 	display: none;
 }
 
-.button .context_box .title {
+.products .product .feedback .buttons .button .context_box .title {
 	color: #666666;
 	margin-bottom: 4px;
 }
 
-.button .context_box .title .option .checkbox { 
+.products .product .feedback .buttons .button .context_box .title .option .checkbox { 
 	margin-left: 8px; 
 	-moz-opacity: 0.2;
 	opacity: .20;
 	filter: alpha (opacity=20);
 }
 
-.button .context_box .title .option label { 
+.products .product .feedback .buttons .button .context_box .title .option label { 
 	color: #cccccc;
 	margin-left: -2px;
 }
 
-.button .context_box .title .option:hover label, /* same on hover as when step deactivated */
-.button .context_box .title .option:hover .checkbox,
-.button .context_box .inactive .title .option .checkbox,
-.button .context_box .inactive .title .option label {
+.products .product .feedback .buttons .button .context_box .title .option:hover label, /* same on hover as when step deactivated */
+.products .product .feedback .buttons .button .context_box .title .option:hover .checkbox,
+.products .product .feedback .buttons .button .context_box .inactive .title .option .checkbox,
+.products .product .feedback .buttons .button .context_box .inactive .title .option label {
 	-moz-opacity: 1;
 	opacity: 1;
 	filter: alpha (opacity=100);
 	color: #999999;
 }
 
+.products .product .feedback .buttons .button .context_box .title span.longer_title {
+	display: none;
+}
 
-.button .context_box .textfield {
+.products .product .feedback .buttons .button .context_box .textfield {
 	font-size: 12px;
 	color: #666666;
 	width: 120px;
@@ -1702,16 +1756,16 @@ body {
 	line-height: 22px;
 }
 
-.button .context_box .price {
+.products .product .feedback .buttons .button .context_box .price {
 	width: 58px;
 	padding-left: 11px;
 }
 
-.button .context_box .price_container {
+.products .product .feedback .buttons .button .context_box .price_container {
 	position: relative;
 }
 
-.button .context_box .price_container .dollar {
+.products .product .feedback .buttons .button .context_box .price_container .dollar {
 	position: absolute;
 	top: 1px;
 	left: 4px;
@@ -1721,18 +1775,18 @@ body {
 	color: #666666;
 }
 
-.button .context_box .but {
+.products .product .feedback .buttons .button .context_box .but {
 	height: 28px;
 	line-height: 24px;
 	font-size: 12px;
 	margin-left: 0px;
 }
 
-.button .context_box .add_to_closet {
+.products .product .feedback .buttons .button .context_box .add_to_closet {
 	width: 130px;
 }
 
-.button .context_box .cancel {
+.products .product .feedback .buttons .button .context_box .cancel {
 	margin-top: 27px;
 	width: 150px;
 	margin-left: -10px;
@@ -1745,9 +1799,129 @@ body {
 	cursor: pointer;
 }
 
-.button .context_box .cancel:hover {
+.products .product .feedback .buttons .button .context_box .cancel:hover {
 	color: #d33e3f;
 }
+
+/* ------------------------------ Item Page Own Button Context Box */
+
+#extras .feedback .buttons .button .context_box {
+	width: 172px;
+	position: absolute;
+	right: -1px;
+	background: #f8f8f8;
+	padding: 10px 8px;
+	border: 1px solid #cccccc;
+	line-height: 100%;
+	text-align: left;
+	font-size: 12px;
+	cursor: default;
+	z-index: 500;
+}
+
+#extras .feedback .buttons .button .context_box .step {
+	margin-bottom: 8px;
+}
+
+#extras .feedback .buttons .button .context_box .inactive .textfield {
+	-moz-opacity: 0.4;
+	opacity: .40;
+	filter: alpha (opacity=40);
+	background-image: none;
+}
+
+#extras .feedback .buttons .button .context_box .inactive .dollar {
+	display: none;
+}
+
+#extras .feedback .buttons .button .context_box .title {
+	color: #999999;
+	margin-bottom: 4px;
+}
+
+#extras .feedback .buttons .button .context_box .title {
+	color: #999999;
+	margin-bottom: 4px;
+}
+
+#extras .feedback .buttons .button .context_box .title .option .checkbox { 
+	margin-left: 8px; 
+	-moz-opacity: 0.2;
+	opacity: .20;
+	filter: alpha (opacity=20);
+}
+
+#extras .feedback .buttons .button .context_box .title .option label { 
+	color: #cccccc;
+	margin-left: -2px;
+}
+
+#extras .feedback .buttons .button .context_box .title .option:hover label, /* same on hover as when step deactivated */
+#extras .feedback .buttons .button .context_box .title .option:hover .checkbox,
+#extras .feedback .buttons .button .context_box .inactive .title .option .checkbox,
+#extras .feedback .buttons .button .context_box .inactive .title .option label {
+	-moz-opacity: 1;
+	opacity: 1;
+	filter: alpha (opacity=100);
+	color: #999999;
+}
+
+
+#extras .feedback .buttons .button .context_box .textfield {
+	font-size: 12px;
+	color: #666666;
+	width: 162px;
+	height: 22px;
+	padding: 0px 4px;
+	border: 1px solid #cccccc;
+	background: white url('/images/slim_shadow_light.png') repeat-x;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	line-height: 22px;
+}
+
+#extras .feedback .buttons .button .context_box .price {
+	width: 58px;
+	padding-left: 11px;
+}
+
+#extras .feedback .buttons .button .context_box .price_container {
+	position: relative;
+}
+
+#extras .feedback .buttons .button .context_box .price_container .dollar {
+	position: absolute;
+	top: 1px;
+	left: 4px;
+	height: 22px;
+	width: 8px;
+	line-height: 22px;
+	color: #666666;
+}
+
+#extras .feedback .buttons .button .context_box .but {
+	height: 28px;
+	line-height: 24px;
+	font-size: 12px;
+	margin-left: 0px;
+}
+
+#extras .feedback .buttons .button .context_box .add_to_closet {
+	width: 172px;
+}
+
+#extras .feedback .buttons .button .context_box .cancel {
+	margin-top: 8px;
+	width: 172px;
+	color: #666666;
+	text-align: center;
+	display: block;
+	cursor: pointer;
+}
+
+#extras .feedback .buttons .button .context_box .cancel:hover {
+	color: #d33e3f;
+}
+
 
 /* ------------------------------ Extras */
 
@@ -2098,6 +2272,21 @@ body {
 	background: -ms-linear-gradient(top, #6e6e6e 0%,#5a5a5a 100%); /* IE10+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e6e6e', endColorstr='#5a5a5a',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, #6e6e6e 0%,#5a5a5a 100%); /* W3C */
+}
+
+.log_in_with_facebook_no_shadow {
+	width: 250px;
+	height: 47px;
+	background: url('/images/log_in_with_facebook_no_shadow.png') no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.log_in_with_facebook_no_shadow:hover {
+	background: url('/images/log_in_with_facebook_no_shadow.png') 0 -50px no-repeat;
 }
 
 .awesome { 

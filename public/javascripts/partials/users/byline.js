@@ -61,7 +61,9 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     $(this.cancelEl).hide();
     $(this.inputEl).hide();
 
-    if(this.model.get('byline') == undefined || this.model.get('byline') == '') {
+    if(this.model.get('byline') == '' || 
+        this.model.get('byline') == null) {
+
       $(this.startEl).show();
     }
     else {

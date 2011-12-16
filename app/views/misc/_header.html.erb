@@ -27,11 +27,13 @@
 
    	<li>
    	
-   	  <div class='buttons'>
-		    <div class='button slim_shadow_dark'>
-		    	<%=link_to "Invite friends",new_invite_path(:src => 'bar')%>
-		    </div>
-		  </div>
+      <%if !is_onboarding?%>
+        <div class='buttons'>
+          <div class='button slim_shadow_dark'>
+            <%=link_to "Invite friends",new_invite_path(:src => 'bar')%>
+          </div>
+        </div>
+      <%end%>
    	
    	</li>
    

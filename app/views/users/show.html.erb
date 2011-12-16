@@ -32,12 +32,26 @@
 		
 	<!-- Side column -->
 	<div id='inner_side'>
-	
+
+		<div class="profile_picture_box">
+		
+			<!-- like button for the page -->
+		  <%=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 5px;',
+		            :url     => @user_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 80,
+		            :faces        => false}%>	
+
+			<div class='like_this_closet_box'></div>
 			<%=@user_presenter.large_picture('picture')%>
 			
-			<div class='username'>
-	      <%=@user_presenter.closet_title%>
-	    </div>
+		</div>
+			
+		<div class='username'>
+      <%=@user_presenter.closet_title%>
+    </div>
 	    
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box' class='top_action_button'>
@@ -51,15 +65,6 @@
 		    </div>
 	    </div>
 	    
-	   			<!-- like button for the page -->
-		  <%=render :partial => 'facebook/like', 
-		            :locals  => {
-		            :style	 => 'padding: 0 0 10px;',
-		            :url     => @user_presenter.closet_url('fb'),
-		            :send_button  => false,
-		            :width        => 125,
-		            :faces        => false}%>
-	
 	  <div class="box tiled">
 		
 			<div id = "ifollowers_with_msg"></div>
@@ -88,7 +93,8 @@
 
     new Denwen.Views.Users.Show({
           userJSON        : <%=@user.to_json(
-                                      :only => [:inverse_followings_count])%>,
+                                      :only => [:byline,
+                                                  :inverse_followings_count])%>,
           currentUserJSON : <%=self.current_user.to_json(
                                       :only    => [:email],
                                       :methods => [:age])%>,

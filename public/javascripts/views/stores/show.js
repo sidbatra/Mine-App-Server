@@ -48,6 +48,6 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
 
     if(this.source.slice(0,6) == 'email_')
       analytics.emailClicked(this.source.slice(6,this.source.length));
-  },
+  }
 
 });

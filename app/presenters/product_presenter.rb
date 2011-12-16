@@ -88,7 +88,7 @@ class ProductPresenter < BasePresenter
     if product.store 
       link += h.link_to_if product.store.is_top,
                 store_name,
-                store_path(product.store.handle)
+                store_path(product.store.handle,:src => 'product_store')
     end
 
     link
@@ -168,5 +168,14 @@ class ProductPresenter < BasePresenter
   def source_id
     'product_' + product.id.to_s
   end
+
+  # Link to go get back to the source url
+  #
+  def breadcrumb(title,path)
+    h.link_to "← " + title,
+              path,
+              :class => 'navigation' 
+  end
+
 
 end

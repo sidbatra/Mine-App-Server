@@ -21,6 +21,8 @@ class ActionsController < ApplicationController
     @actions = Action.on(
                 params[:source_type],
                 params[:source_id]).with_user.by_id
+    @key     = KEYS[:action_actionable] % 
+                [params[:source_id],params[:source_type].capitalize]
   rescue => ex
     handle_exception(ex)
   ensure

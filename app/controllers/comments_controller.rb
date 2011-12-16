@@ -21,6 +21,8 @@ class CommentsController < ApplicationController
     @comments = Comment.on(
                   params[:source_type],
                   params[:source_id]).with_user
+    @key      = KEYS[:comment_commentable] % 
+                  [params[:source_id],params[:source_type].capitalize]
   rescue => ex
     handle_exception(ex)
   ensure

@@ -1,1 +1,3 @@
-<%=@comments.to_json-%>
+<%-cache @key do-%>
+  <%=@comments.to_json-%>
+<%-end-%>
