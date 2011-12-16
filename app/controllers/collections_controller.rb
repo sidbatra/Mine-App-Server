@@ -1,7 +1,7 @@
 # Handle requests for the collections resource
 #
 class CollectionsController < ApplicationController
-  before_filter :login_required,  :only => [:create]
+  before_filter :login_required
 
   # Display UI for creating a new collection
   #
@@ -16,7 +16,10 @@ class CollectionsController < ApplicationController
   #
   def create
     product_ids = params[:collection][:product_ids].split(',')
-    @collection = Collection.add(product_ids,self.current_user.id)
+
+    @collection = Collection.add(
+                    product_ids,
+                    self.current_user.id)
   rescue => ex
     handle_exception(ex)
   ensure
