@@ -12,6 +12,8 @@ Denwen.Views.Collections.New = Backbone.View.extend({
   initialize: function() {
     var self            = this;
 
+    this.source         = this.options.source;
+
     this.productsEl     = '#products';
     this.formEl         = '#new_collection';
     this.productIdsEl   = '#collection_product_ids';
@@ -101,6 +103,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
+    analytics.collectionNewView(this.source);
   }
 
 });
