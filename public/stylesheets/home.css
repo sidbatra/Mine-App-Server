@@ -273,7 +273,8 @@ body.home5 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	background: #fafafa url('/images/home5.jpg') no-repeat;
+/* 	background: #fafafa url('/images/home5.jpg') no-repeat; */
+	background: url('/images/tile35.jpg');
 	background-position: center top;
 	overflow: hidden;
 }
