@@ -76,6 +76,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Exception");
   },
 
+  // User cancels a collection
+  //
+  collectionCancelled: function() {
+    mpq.track("Collection Cancelled");
+  },
+
   // User starts to type a comment
   //
   commentSelected: function() {
