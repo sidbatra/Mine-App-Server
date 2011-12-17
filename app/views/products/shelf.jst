@@ -1,37 +1,50 @@
 <%if(shelf.get('products').length || isActive){%>
   <div class="module">
 
-    <div class="heading">
-      <%if(!on){%>
-        <%if(isActive){%>
-            <div class="title"><%=shelf.get('category').get('name')%></div>
-            <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile" class="button_silver button slim_shadow_light">
-              Add +
-            </a>
-        <%}else{%>
+    <%if(!on){%>
+      <%if(isActive){%>
+        <div class="heading">
           <div class="title">
             <%=shelf.get('category').get('name')%>
           </div>
-        <%}%>
-       <%}else{%>
-        <div class="title">On Today</div>
-        <a href="" class="button_silver button slim_shadow_light">Clear</a>
-        <a href="" class="button_silver button slim_shadow_light">Done</a>
+          <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile" class="button_dark button slim_shadow_light">
+            Add +
+          </a>
+        </div>
+      <%}else{%>
+        <div class="heading">
+          <div class="title">
+            <%=shelf.get('category').get('name')%>
+          </div>
+        </div>
       <%}%>
-    </div>
+    <%}else{%>
+      <div class="heading on">
+        <div class="title_on">
+          <span class="red">On</span> <%=onTitle%>
+        </div>
+
+        <%if(isActive){%>
+          <a href="/collections/new?src=profile" 
+              class="button_red button slim_shadow_light">
+            <%=shelf.get('products').length ? 'Change' : 'Start'%>
+          </a>
+        <%}%>
+      </div>
+    <%}%>
+
 
     <div class="products">
-    
       <%if(shelf.get('products').length > 0) {%>
         <%shelf.get('products').each(function(product){%>
           <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
         <%});%>
       <%} else if(on){%>
-        Wow a lovely placeholder goes here
+        <img src="<%=helpers.imagePath('on_intro.jpg')%>" />
       <%}%>
 
       <%=helpers.blocker()%>
-      
     </div> <!-- products -->
+
   </div> <!-- module -->
 <%}%>

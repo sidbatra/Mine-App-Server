@@ -1,0 +1,50 @@
+<div id="outer">
+
+	<div id="inner">
+	
+		<div class="module">
+		
+			<div class="heading">
+			
+				<div class="title">
+					Select the items you have <span class="red">On</span> today:
+				</div>
+
+			  <%form_for @collection,
+				      :html => {:class => '', :style => 'display:'} do |f|%>
+		      <%=f.hidden_field :product_ids%>
+		      <%=submit_tag 'Done',
+		                    :class  => 'button button_red slim_shadow_light submit',
+		                    :name   => nil%>
+		    <%end%>
+		    
+		    <div class="button button_dark slim_shadow_light cancel">
+					<%=link_to 'Cancel',
+                      user_path(
+                        self.current_user.handle,:src => 'collection_cancel')%>
+				</div>
+	    
+	    </div>
+	      
+	    <div id="items">
+	    </div>
+	    
+    	</div>
+
+	</div> <!-- inner --
+
+</div> <!-- outer -->
+	
+
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+
+    new Denwen.Views.Collections.New({
+            currentUserJSON : <%=self.current_user.to_json%>,
+                     source : '<%=@source%>',
+                         el : $('#container')});
+
+  </script>
+<%end%>

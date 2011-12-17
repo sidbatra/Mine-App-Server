@@ -87,7 +87,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:index]
 
   map.resources :collections,
-                :only => [:create]
+                :only => [:create,:new]
 
 
   # Admin routes

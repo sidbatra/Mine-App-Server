@@ -31,6 +31,9 @@ Denwen.Partials.Users.TopShoppers = Backbone.View.extend({
   // Render the users collection
   //
   render: function() {
+    if(this.users.isEmpty())
+      $(this.el).hide();
+
     $(this.el).html(
       Denwen.JST['users/top_shoppers']({
         users         : this.users, 
