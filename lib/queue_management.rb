@@ -13,7 +13,7 @@ module DW
       @@sqs = Aws::Sqs.new(
                 CONFIG[:aws_access_id],
                 CONFIG[:aws_secret_key],
-                {:multi_thread => true})
+                {:connection_mode => :single})
       
 
       # Returns a local queue object based on the given suffix. Local queues
