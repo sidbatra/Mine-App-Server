@@ -7,16 +7,20 @@
 			<div class="heading">
 			
 				<div class="title">
-					Pick the items you have on today!
+					Select the items you have <span class="red">On</span> today:
 				</div>
 
 			  <%form_for @collection,
 				      :html => {:class => '', :style => 'display:none'} do |f|%>
 		      <%=f.hidden_field :product_ids%>
 		      <%=submit_tag 'Done',
-		                    :class  => 'button button_silver slim_shadow_light',
+		                    :class  => 'button button_red slim_shadow_light submit',
 		                    :name   => nil%>
 		    <%end%>
+		    
+		    <div class="button button_dark slim_shadow_light cancel">
+					Cancel
+				</div>
 	    
 	    </div>
 	      

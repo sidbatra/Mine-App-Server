@@ -1,23 +1,25 @@
 <%if(shelf.get('products').length || isActive){%>
   <div class="module">
 
-    <div class="heading">
       <%if(!on){%>
         <%if(isActive){%>
+        	<div class="heading">
             <div class="title"><%=shelf.get('category').get('name')%></div>
-            <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile" class="button_silver button slim_shadow_light">
+            <a href="/products/new?category=<%=shelf.get('category').get('handle')%>&src=profile" class="button_dark button slim_shadow_light">
               Add +
             </a>
         <%}else{%>
-          <div class="title">
-            <%=shelf.get('category').get('name')%>
-          </div>
+          <div class="heading">
+	          <div class="title">
+	            <%=shelf.get('category').get('name')%>
+	          </div>
         <%}%>
        <%}else{%>
-        <div class="title">On Today</div>
+       	<div class="heading on">
+        	<div class="title_on"><span class="red">On</span> Pierre today</div>
 
         <%if(isActive){%>
-          <a href="/collections/new?src=profile" class="button_silver button slim_shadow_light">New</a>
+          <a href="/collections/new?src=profile" class="button_red button slim_shadow_light">Start</a>
         <%}%>
       <%}%>
     </div>

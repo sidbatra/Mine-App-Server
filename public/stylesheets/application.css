@@ -120,6 +120,7 @@ body {
 
 .futura_bold { font-family: 'FuturaStdBold', Arial, sans-serif; }
 .futura_book { font-family: 'FuturaStdBook', Arial, sans-serif; }
+.red { color: #d33e3f; }
 
 /* ------------------------------ Onboarding */
 
@@ -1356,37 +1357,43 @@ body {
 #inner .module {
 	padding: 12px 12px 6px 12px;
 	position: relative;
-}
-
-#inner .module {
 	margin: 0px 0px 0px;
 	position: relative;
 	background: #eeeeee;
 }
 
+#inner .module:after {
+	clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: ".";
+  font-size: 0;
+}
+
 #inner .module .heading {
 		color: #333333;
 		height: 24px;
-		padding: 4px 4px 4px 8px;
+		padding: 4px 0px 4px 8px;
 		line-height: 24px;
 		margin-bottom: 8px;
 		text-align: left;
-		background: #dddddd;
+/* 		background: #dddddd; */
 }
 
 #inner .module .heading .title {
 	font-size: 14px; 
-	color: white;
 	font-family: 'FuturaStdBold', Arial, sans-serif;
 	float: left;
 }
 
 
 #inner .module .heading .button {
-	line-height: 22px; 
+	line-height: 24px;
 	font-size: 12px; 
 	padding: 0 8px;
-	height: 22px;
+	height: 23px;
 	float: right;
 	text-align: center;
 	white-space: nowrap;
@@ -1394,63 +1401,95 @@ body {
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 4px;
+	width: 60px;
+}
+
+#inner .module .heading .submit {
+	height: 24px;
+	width: 76px;
+}
+
+#inner .module #items {
+	margin-left: -10px;
+}
+
+#inner .module #items .item {
+	width: 130px;
+	height: 130px;
+	padding: 12px;
+	background: white;
+	float: left;
+	position: relative;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	line-height: 130px;
+}
+
+#inner .module #items .item img {
+	vertical-align: middle;
+}
+
+#inner .module #items .item .button_picker {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 154px;
+	height: 154px;
+	background: url('/images/on.png') no-repeat;
+	cursor: pointer;
+	display: none;
 }
 
 
-#inner .module .items .item {
-
+#inner .module #items .item:hover .button_picker {
+	display: block;
 }
 
+#inner .module #items .item .pushed {
+display:block;
+}
 
-
-
-
-
-
-
-
-
-
+#inner .module #items .item .button_picker:active,
+#inner .module #items .item .pushed,
+#inner .module #items .item .pushed:hover {
+	background-position: 0 -154px;
+}
 
 #inner_main { /* for profiles */
 	width: 643px;
 	float: right;
 }
 
-#inner_main .title_box, 
 #inner_main .module {
 	width: 619px;
 	padding: 12px 12px 6px 12px;
 	position: relative;
-}
-
-#inner_main .module {
-/* 	background: #e9e9e9; */
-/* 	background: white; */
 	margin: 0px 0px 0px;
 	position: relative;
 	background: #eeeeee;
-	/* 	background: url('/images/white_80.png'); */
-/* 	border-top: 1px solid #d9d9d9; */
 }
 
 #inner_main .module .heading {
-		color: #333333;
-		height: 24px;
-		padding: 4px 4px 4px 8px;
-		line-height: 24px;
-		margin-bottom: 8px;
-		text-align: left;
-		background: #dddddd;
+	color: #333333;
+	height: 24px;
+	padding: 4px 4px 4px 8px;
+	line-height: 24px;
+	margin-bottom: 8px;
+	text-align: left;
+	background: #dddddd;
 }
 
-/* #inner_main .module .heading a { color: #d33e3f; } */
+#inner_main .module .on {
+	background: none;
+	padding: 0px;
+}
 
 #inner_main .module .heading .button {
-	line-height: 22px; 
+	line-height: 24px;
 	font-size: 12px; 
 	padding: 0 8px;
-	height: 22px;
+	height: 23px;
 	float: right;
 	text-align: center;
 	white-space: nowrap;
@@ -1458,6 +1497,7 @@ body {
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 4px;
+	width: 60px;
 }
 
 #inner_main .module .heading .title {
@@ -1468,13 +1508,13 @@ body {
 /* 	text-shadow: 0 1px 1px rgba(0,0,0,0.2); */
 }
 
-.on_alert_box {
-	height: 50px;
-	background: #d13c40;
+#inner_main .module .heading .title_on {
+	font-size: 14px; 
+	color: #333333;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	float: left;
+/* 	text-shadow: 0 1px 1px rgba(0,0,0,0.2); */
 }
-
-
-#shelves {}
 
 /* ------------------------------ Products */
 
