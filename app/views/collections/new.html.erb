@@ -19,7 +19,9 @@
 		    <%end%>
 		    
 		    <div class="button button_dark slim_shadow_light cancel">
-					Cancel
+					<%=link_to 'Cancel',
+                      user_path(
+                        self.current_user.handle,:src => 'collection_cancel')%>
 				</div>
 	    
 	    </div>
