@@ -63,9 +63,9 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
       Denwen.JST['products/shelf']({
         shelf     : this.topShelf, 
         on        : true,
-        type      : self.filter,
-        src       : self.productSource(),
-        isActive  : self.isActive,
+        type      : this.filter,
+        src       : this.productSource(),
+        isActive  : this.isActive && this.products.length > 3,
         onTitle   : this.onTitle}));
 
     this.products.each(function(product){
