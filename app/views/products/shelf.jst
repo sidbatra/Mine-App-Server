@@ -25,7 +25,10 @@
         </div>
 
         <%if(isActive){%>
-          <a href="/collections/new?src=profile" class="button_red button slim_shadow_light">Start</a>
+          <a href="/collections/new?src=profile" 
+              class="button_red button slim_shadow_light">
+            <%=shelf.get('products').length ? 'Change' : 'Start'%>
+          </a>
         <%}%>
       </div>
     <%}%>
