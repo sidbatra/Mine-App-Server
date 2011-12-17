@@ -24,14 +24,11 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
 
     this.el.append(Denwen.JST['products/product_picker']({product:this.model}));
     $(this.toggleEl).click(function(){self.clicked();});
-    
-    //$(this.onEl).addClass('pushed');
   },
 
   // Fired when the product is clicked to turn on or off
   //
   clicked: function() {
-  	console.log('clicked');
     this.picked = this.picked ? false : true;
 
     if(this.picked) {
