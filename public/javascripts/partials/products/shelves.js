@@ -14,6 +14,7 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
     this.isActive   = this.options.isActive;
     this.filter     = this.options.filter;
     this.onFilter   = this.options.onFilter;
+    this.onTitle    = this.options.onTitle;
 
     this.products   = new Denwen.Collections.Products();
     this.onProducts = new Denwen.Collections.Products();
@@ -54,7 +55,8 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
           on        : false, 
           type      : self.filter,
           src       : self.productSource(),
-          isActive  : self.isActive}));
+          isActive  : self.isActive,
+          onTitle   : ''}));
     });
 
     this.el.prepend(
@@ -63,7 +65,8 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
         on        : true,
         type      : self.filter,
         src       : self.productSource(),
-        isActive  : self.isActive}));
+        isActive  : self.isActive,
+        onTitle   : this.onTitle}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
