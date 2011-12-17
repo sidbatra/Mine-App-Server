@@ -925,12 +925,12 @@ body {
 }
 
 .next {
-	right: -10px;
+	right: -11px;
 	background: white url('/images/prevnext_cccccc_791a10_d33e3f.png') 36px -96px;
 }
 
 .previous {
-	left: -10px;
+	left: -11px;
 }
 
 /*
