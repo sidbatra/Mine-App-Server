@@ -30,4 +30,7 @@ objects.each do |object|
   end
 end
 
-system("request-log-analyzer --report-width 150 #{folder}/*")
+date = folder.split('-')
+date[0],date[1] = date[1],date[0]
+date = date.join('-')
+system("request-log-analyzer --report-width 150 --after #{date} #{folder}/*")
