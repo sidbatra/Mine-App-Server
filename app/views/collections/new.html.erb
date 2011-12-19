@@ -11,7 +11,7 @@
 				</div>
 
 			  <%form_for @collection,
-				      :html => {:class => '', :style => 'display:none'} do |f|%>
+				      :html => {:class => '', :style => 'display:'} do |f|%>
 		      <%=f.hidden_field :product_ids%>
 		      <%=submit_tag 'Done',
 		                    :class  => 'button button_red slim_shadow_light submit',
@@ -19,7 +19,9 @@
 		    <%end%>
 		    
 		    <div class="button button_dark slim_shadow_light cancel">
-					Cancel
+					<%=link_to 'Cancel',
+                      user_path(
+                        self.current_user.handle,:src => 'collection_cancel')%>
 				</div>
 	    
 	    </div>

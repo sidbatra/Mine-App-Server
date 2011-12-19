@@ -17,6 +17,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                         el        : $('#shelves'),
                         filter    : 'user',
                         onFilter  : 'collection',
+                        onTitle   : (this.isCurrentUser ? 
+                                      'you' : 
+                                      this.user.get('first_name')) + ' today',
                         ownerID   : this.user.get('id'),
                         isActive  : helpers.isCurrentUser(this.user.get('id'))});
     
@@ -89,6 +92,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         analytics.productDeleted();
       else if(this.source == 'collection_create')
         analytics.collectionCreated();
+      else if(this.source == 'collection_cancel')
+        analytics.collectionCancelled();
 
       analytics.identifyUser(
         this.currentUser.get('email'),

@@ -925,12 +925,12 @@ body {
 }
 
 .next {
-	right: -10px;
+	right: -11px;
 	background: white url('/images/prevnext_cccccc_791a10_d33e3f.png') 36px -96px;
 }
 
 .previous {
-	left: -10px;
+	left: -11px;
 }
 
 /*
@@ -1428,6 +1428,8 @@ body {
 
 #inner .module #items .item img {
 	vertical-align: middle;
+	max-height: 130px;
+	max-width: 130px;
 }
 
 #inner .module #items .item .button_picker {

@@ -13,6 +13,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
                         el        : $('#shelves'),
                         filter    : 'store',
                         onFilter  : '',
+                        onTitle   : '',
                         ownerID   : this.store.get('id'),
                         isActive  : false});
     
