@@ -110,6 +110,18 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Revive a dormant user
+  #
+  def dormant(user)
+    @user = user
+
+    generate_attributes(@user.id,0,@user,'dormant')
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", your online closet is waiting!"
+  end
+
   # Extend the method_missing method to enable email
   # delivery only in production environment
   #
