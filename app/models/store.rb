@@ -9,7 +9,7 @@ class Store < ActiveRecord::Base
   # Associations
   #-----------------------------------------------------------------------------
   belongs_to  :user
-  has_many    :products, :dependent => :destroy
+  has_many    :products
 
   #-----------------------------------------------------------------------------
   # Validations
