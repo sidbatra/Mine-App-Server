@@ -64,6 +64,9 @@ class UsersController < ApplicationController
     @filter = params[:filter].to_sym
 
     case @filter
+    when :followers
+      @users      = User.find(params[:id]).followers
+      @key        = KEYS[:user_followers] % params[:id]
     when :ifollowers
       @users      = User.find(params[:id]).ifollowers
       @key        = KEYS[:user_ifollowers] % params[:id]
