@@ -22,7 +22,7 @@
 		                :f            => f,
 		                :category     => @category,
 		                :placeholders => @placeholders,
-                    :onboarding   => is_onboarding?}%>
+                    :onboarding   => is_onboarding? && @category.name == 'Shoes'}%>
 		
 		  <%end%> <!-- form -->
   
