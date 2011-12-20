@@ -98,6 +98,7 @@ body {
 
 #navbar .buttons {}
 
+/*
 #navbar .buttons .button {
 	height: 27px;
 	line-height: 28px;
@@ -117,6 +118,22 @@ body {
 	color: white;
 	background-color: #9f1414;
 }
+*/
+
+#navbar .buttons .invite {
+	width: 105px;
+	height: 28px;
+	margin: 5px 10px;
+	background: url('/images/profile_images.png') 0 0;
+	cursor: pointer;
+	display: block;
+}
+
+#navbar .buttons .invite:hover {
+	background-position: 0 -28px;
+	cursor: pointer;
+}
+
 
 .futura_bold { font-family: 'FuturaStdBold', Arial, sans-serif; }
 .futura_book { font-family: 'FuturaStdBook', Arial, sans-serif; }
@@ -1259,6 +1276,7 @@ body {
 	padding: 0 0 14px;
 }
 
+/*
 #inner_side .button {
 	height: 36px;
 	width: 180px;
@@ -1267,6 +1285,20 @@ body {
 	font-size: 13px;
 	text-align: center;
 }
+*/
+
+#inner_side .follow_off,
+#inner_side .follow_on { 
+	width: 180px;
+	height: 37px;
+	background: url('/images/profile_images.png'); 
+	display: block;
+}
+
+#inner_side .follow_off       { background-position: 0 -56px;  }
+#inner_side .follow_off:hover { background-position: 0 -93px;  }
+#inner_side .follow_on        { background-position: 0 -130px; }
+#inner_side .follow_on:hover  { background-position: 0 -167px; }
 
 #inner_side .invite {
 	margin-top: 6px;
