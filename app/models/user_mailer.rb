@@ -134,6 +134,18 @@ class UserMailer < ActionMailer::Base
     subject       @user.first_name + ", come see an amazing update to your online closet!"
   end
 
+  # Message to users to keep creating collections
+  #
+  def collect_more(user)
+    @user = user
+
+    generate_attributes(@user.id,0,@user,'collect_more')
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", a Thank You message from OnCloset"
+  end
+
   # Extend the method_missing method to enable email
   # delivery only in production environment
   #

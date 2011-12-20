@@ -16,7 +16,7 @@ class Email < ActiveRecord::Base
   validates_presence_of   :message_id
   validates_presence_of   :request_id
   validates_presence_of   :purpose
-  validates_inclusion_of  :purpose, :in => %w(new_comment new_follower new_action star_user top_shopper dormant ontoday)
+  validates_inclusion_of  :purpose, :in => %w(new_comment new_follower new_action star_user top_shopper dormant ontoday collect_more)
 
   #-----------------------------------------------------------------------------
   # Class methods
