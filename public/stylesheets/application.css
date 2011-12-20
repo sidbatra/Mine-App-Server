@@ -1242,7 +1242,7 @@ body {
 	z-index: 3000;
 }
 
-#inner_side .tile_list_frame {
+#inner_side a.tile_list_frame {
 	font-size: 12px;
 	position: relative;
 	width: 180px;
@@ -1255,8 +1255,8 @@ body {
 	display: block;
 }
 
-#inner_side .tile_list_frame:hover { background: url('/images/black_10.png'); }
-#inner_side .tile_list_frame:active { background: url('/images/black_30.png'); }
+#inner_side a.tile_list_frame:hover { background: url('/images/black_10.png'); }
+#inner_side a.tile_list_frame:active { background: url('/images/black_30.png'); }
 
 #inner_side .invite_1 { background: url('/images/invite_numbers_32.png') 0px 0px no-repeat; }
 #inner_side .invite_2 { background: url('/images/invite_numbers_32.png') 0px -50px no-repeat; }
