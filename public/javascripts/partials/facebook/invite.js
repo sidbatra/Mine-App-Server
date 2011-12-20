@@ -20,11 +20,11 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     $('body').find('#invite_backup_button').click(
               function(e){self.showMultiInviteDialog();});
 
-    /*$('body').find('#fb_single_invite_link').click(
-              function(e){self.showSingleInviteDialog(e);});*/
-
     $('body').find('#fb_single_invite_link').click(
-              function(e){self.showSendDialog(e);});
+              function(e){self.showSingleInviteDialog(e);});
+
+    /*$('body').find('#fb_single_invite_link').click(
+              function(e){self.showSendDialog(e);})*/;
   },
 
   // Save the sent invites to the server
