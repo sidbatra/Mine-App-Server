@@ -29,9 +29,11 @@
    	
       <%if !is_onboarding?%>
         <div class='buttons'>
-          <div class='button slim_shadow_dark'>
-            <%=link_to "Invite friends",new_invite_path(:src => 'bar')%>
-          </div>
+        
+        
+        	<a href="<%=new_invite_path(:src => 'bar')%>" 
+          class='invite slim_shadow_dark'></a>
+        
         </div>
       <%end%>
    	

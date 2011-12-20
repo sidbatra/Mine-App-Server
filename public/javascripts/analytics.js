@@ -51,6 +51,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // Collection onboarding of a certain type viewed
+  //
+  collectionOnboardingViewed: function(type) {
+    mpq.track("Collection Onboarding Viewed",{'type':type});
+  },
+
   // User turns on a product
   //
   productTurnedOn: function() {
