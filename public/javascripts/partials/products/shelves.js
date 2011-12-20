@@ -137,6 +137,18 @@ Denwen.Partials.Products.Shelves = Backbone.View.extend({
     this.shelves.sort();
 
     this.render();
+
+    this.setAnalytics();
+  },
+
+  // Track analytics for the collection  onboarding
+  //
+  setAnalytics: function() {
+    if(this.forUser() && this.isActive && this.products.length > 3 && 
+        !this.onProducts.length) {
+      
+      analytics.collectionOnboardingViewed('yellow-bag');
+    }
   }
 
 });
