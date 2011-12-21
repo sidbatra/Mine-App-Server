@@ -66,10 +66,14 @@
 	    </div>
 	    
 	  <div class="box tiled">
-		
-			<div id = "ifollowers_with_msg"></div>
-			
-		</div>
+			<div id = "ifollowers_with_msg">
+      </div>
+		</div> <!-- user is following-->
+
+	  <div class="box tiled">
+			<div id = "followers_with_msg">
+      </div>
+		</div> <!-- user is followed by-->
 	 	
 	 	<div id="user_stores_box" class="box tile_listed">
 	  </div> <!-- your_stores_box -->
@@ -93,7 +97,7 @@
 
     new Denwen.Views.Users.Show({
           userJSON        : <%=@user.to_json(
-                                      :only => [:byline,
+                                      :only => [:byline,:followings_count,
                                                   :inverse_followings_count])%>,
           currentUserJSON : <%=self.current_user.to_json(
                                       :only    => [:email],

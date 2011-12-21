@@ -31,23 +31,34 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   this.user.get('inverse_followings_count') <= 0
                                   && this.source == 'login'});
     // -----
+    new Denwen.Partials.Users.Followers({
+                          el    : $('#followers_with_msg'),
+                          user  : this.user,
+                          delay : this.isCurrentUser && 
+                                  this.user.get('followings_count') <= 0
+                                  && this.source == 'login'});
+    // -----
     new Denwen.Partials.Users.Stores({
                           el    : '#user_stores_box',
                           user  : this.user});
 
     // -----
-    new Denwen.Partials.Users.Stars({
+    window.setTimeout(function() {
+              new Denwen.Partials.Users.Stars({
                           el  : '#star_users_box'});
+                          },500);
 
     // -----
-    new Denwen.Partials.Stores.Top({
+    window.setTimeout(function() {
+              new Denwen.Partials.Stores.Top({
                           el  : '#top_stores_box'});
+                          },500);
 
+    // -----
     if(!this.isCurrentUser && helpers.isLoggedIn())
       new Denwen.Partials.Users.Following({
                             el  : $('#following_box'),
                             user_id : this.user.get('id')});
-                          
 
     // -----
     if(this.isCurrentUser)
