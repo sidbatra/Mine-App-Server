@@ -134,7 +134,7 @@ class UserMailer < ActionMailer::Base
     subject       @user.first_name + ", come see an amazing update to your online closet!"
   end
 
-  # Message to users to keep creating collections
+  # Message user to keep creating collections
   #
   def collect_more(user)
     @user = user
@@ -144,6 +144,17 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @user.first_name + ", a Thank You message from OnCloset"
+  end
+
+  # Message user to invite more friends
+  #
+  def invite_more(user)
+    @user = user
+    generate_attributes(@user.id,0,@user,'invite_more')
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", your Closet is feeling lonely :o("
   end
 
   # Extend the method_missing method to enable email
