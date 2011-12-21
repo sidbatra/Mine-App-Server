@@ -37,12 +37,12 @@ class User < ActiveRecord::Base
   # Named scopes
   #-----------------------------------------------------------------------------
   named_scope :stars, 
-                  :joins => :products, 
+                  :joins      => :products, 
                   :conditions => {
                     :products   => {:created_at => 1.day.ago..Time.now},
                     :gender_ne  => 'male'},
                   :group      => "users.id", 
-                  :order      => "count(users.id) DESC,users.created_at DESC",
+                  :order      => "count(users.id) DESC, users.created_at DESC",
                   :limit      => 20
   named_scope :top_shoppers, lambda {|store_id| {
                               :joins      => :products,
@@ -53,6 +53,12 @@ class User < ActiveRecord::Base
                               :group      => "users.id", 
                               :order      => "count(users.id) DESC, users.id",
                               :limit      => 20}}
+
+  named_scope :to_follow, :conditions => {
+                                :products_count_gte => 15, 
+                                :updated_at         => 30.days.ago..Time.now,
+                                :gender_ne          => 'male',
+                                :birthday_gte       => 26.years.ago}
 
   #-----------------------------------------------------------------------------
   # Attributes
