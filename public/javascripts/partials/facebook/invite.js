@@ -21,10 +21,10 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
               function(e){self.showMultiInviteDialog();});
 
     $('body').find('#fb_single_invite_link').click(
-              function(e){self.showSingleInviteDialog(e);});
+              function(e){self.showSendDialog(e);});
 
     /*$('body').find('#fb_single_invite_link').click(
-              function(e){self.showSendDialog(e);})*/;
+              function(e){self.showSingleInviteDialog(e);});*/
   },
 
   // Save the sent invites to the server
@@ -76,7 +76,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     } 
   },
 
-  // Show facebook single invite dialog 
+  // Show facebook send message dialog 
   //
   showSendDialog: function(e) {
     var self  = this;
