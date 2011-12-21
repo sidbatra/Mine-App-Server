@@ -22,6 +22,9 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
 
     $('body').find('#fb_single_invite_link').click(
               function(e){self.showSingleInviteDialog(e);});
+
+    /*$('body').find('#fb_single_invite_link').click(
+              function(e){self.showSendDialog(e);})*/;
   },
 
   // Save the sent invites to the server
@@ -57,6 +60,36 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     else {
       this.save(response);
     }
+  },
+
+  // Handle callback from the send dialog
+  //
+  sendCallback: function(response) {
+    if(!response) {
+      analytics.inviteRejected();
+      this.trigger('inviteCancelled');
+    }
+    else {
+      new Denwen.Partials.Invites.BatchInvite({fb_user_ids : new Array(this.fbID)});
+      analytics.inviteCompleted(1);
+      this.trigger('inviteCompleted',this.fbID);
+    } 
+  },
+
+  // Show facebook single invite dialog 
+  //
+  showSendDialog: function(e) {
+    var self  = this;
+    this.fbID = $(e.target).attr('fb_id');
+
+    FB.ui({method: 'send',
+      message: CONFIG['fb_invite_msg'], 
+      title: CONFIG['fb_invite_title'],
+      link: 'http://oncloset.com/home/fb',
+      to: this.fbID}, 
+      function(response) {self.sendCallback(response)});
+
+    analytics.inviteSelected('single');
   },
 
   // Show facebook single invite dialog 
