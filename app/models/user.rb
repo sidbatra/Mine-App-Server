@@ -36,12 +36,14 @@ class User < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
-  named_scope :stars, :joins => :products, 
-                      :conditions => {
-                        :products => {:created_at => 20.days.ago..Time.now}},
-                      :group      => "users.id", 
-                      :order      => "count(users.id) DESC, users.id",
-                      :limit      => 20
+  named_scope :stars, 
+                  :joins => :products, 
+                  :conditions => {
+                    :products   => {:created_at => 1.day.ago..Time.now},
+                    :gender_ne  => 'male'},
+                  :group      => "users.id", 
+                  :order      => "count(users.id) DESC,users.created_at DESC",
+                  :limit      => 20
   named_scope :top_shoppers, lambda {|store_id| {
                               :joins      => :products,
                               :conditions => {
