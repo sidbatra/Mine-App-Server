@@ -7,7 +7,16 @@ class FollowingsController < ApplicationController
   # a pre-selected pool
   #
   def new
-    @users = User.to_follow[0..9]
+    @users = Cache.fetch(KEYS[:to_follow_users]){User.to_follow}.shuffle[0..9]
+    @followings = []
+
+    @users.each do |user|
+      @followings << Following.add(
+                      user.id,
+                      self.current_user.id,
+                      'suggestion',
+                      false)
+    end
   rescue => ex
     handle_exception(ex)
   ensure

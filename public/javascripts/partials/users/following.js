@@ -24,7 +24,7 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
         });
     }
     else {
-      this.following = this.options.following;
+      this.following = new Denwen.Models.Following(this.options.following);
       this.preprocess(this.following);
     }
   },

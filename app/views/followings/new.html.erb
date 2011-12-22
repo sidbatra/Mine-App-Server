@@ -18,7 +18,7 @@
 
 		  <div id="users">
         <div class="invite_list" style="width:400px">
-          <%@users.each do |user|%>
+          <%@users.each_with_index do |user,i|%>
             <div class='invite_row' 
                   style="height:50px;line-height:50px;width:400px;"> 
               <img class='follow_user' 
@@ -26,16 +26,25 @@
               <span class='name'>
                   <%=user.first_name + ' ' + user.last_name%>
               </span>
-              <div id='follow_side'>
-                <a href="javascript:void(0)" 
-                    class="follow_on slim_shadow_dark" 
-                    style="position:absolute;top:6px;right:0px"
-                    id="destroy_following"></a>
+              <div id='follow_side'
+                    style="position:absolute;top:6px;right:0px">
+                <div id='following_box_<%=user.id%>'>
+                </div>
               </div>
             </div> <!--invite_row-->
 
             <div style="height:3px">
             </div>
+
+            <%content_for :javascript do%>
+              <script type="text/javascript">
+                  new Denwen.Partials.Users.Following({
+                        el        : $('#following_box_<%=user.id%>'),
+                        user_id   : <%=user.id%>,
+                        following : <%=@followings[i].to_json%>});
+              </script>
+            <%end%>
+
           <%end%>
         </div> <!--invite_list-->
 		  </div> <!--users-->
@@ -46,13 +55,3 @@
 	
 </div> <!-- pic_bg -->
 
-
-<%content_for :javascript do%>
-  <script type="text/javascript">
-    <%@users.each do |user|%>
-      //new Denwen.Partials.Users.Following({
-      //                      el  : $('#following_box_<%=user.id%>'),
-      //                      user_id : <%=user.id%>});
-    <%end%>
-  </script>
-<%end%>
