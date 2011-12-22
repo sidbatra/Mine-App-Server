@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   named_scope :top_shoppers, lambda {|store_id| {
                               :joins        => :products,
                               :conditions   => {
-                                    :products => {
+                                :products   => {
                                     :store_id   => store_id,
                                     :created_at => 20.days.ago..Time.now},
                                 :gender_ne  => 'male'},
