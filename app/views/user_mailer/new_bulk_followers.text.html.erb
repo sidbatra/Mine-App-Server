@@ -1,0 +1,6 @@
+Hi <%=@user.first_name%>, <br /><br />
+
+<%=@action%> <br /><br />
+
+<a href="<%=user_url(@followers.first.handle,:src => 'email_bulk_followers')%>">
+  View <%=@followers.first.first_name%>'s closet</a>

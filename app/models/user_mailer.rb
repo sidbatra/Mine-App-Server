@@ -40,9 +40,25 @@ class UserMailer < ActionMailer::Base
     @user         = following.user
 
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " is now following you!"
+                    " is now following your Closet!"
 
     generate_attributes(@user.id,@follower.id,following,'new_follower')
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert user about new bulk followers
+  #
+  def new_bulk_followers(user,followings) 
+    @user         = user
+    @followers    = followings.map(&:follower) 
+
+    @action       = "#{@followers.length} new people are now following "\
+                    "your Closet!" 
+                    
+    generate_attributes(@user.id,0,@user,'new_bulk_followers')
 
     recipients    @user.email
     from          EMAILS[:contact]
