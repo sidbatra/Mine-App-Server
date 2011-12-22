@@ -15,7 +15,8 @@ task :email_new_followers_to_suggested_users do |e,args|
         followings  = Following.find_all_by_user_id(user.id,
                                   :conditions => {
                                     :source     => 'suggestion',
-                                    :created_at => time_from..Time.now},
+                                    :created_at => time_from..Time.now,
+                                    :is_active  => true},
                                   :include    => :follower)
                                           
         if followings.present?
