@@ -11,7 +11,7 @@ class Following < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   validates_presence_of   :user_id
   validates_presence_of   :follower_id
-  validates_inclusion_of  :source, :in => %w(manual auto)
+  validates_inclusion_of  :source, :in => %w(suggestion manual auto)
 
   #-----------------------------------------------------------------------------
   # Attributes
