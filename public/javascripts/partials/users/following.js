@@ -11,13 +11,22 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
     var self        = this;
     this.disabled   = false;
     this.userID     = this.options.user_id;
-    this.following  = new Denwen.Models.Following({id:this.userID});
 
-    this.following.fetch(
-      { 
-        success : function(result) {self.preprocess(result);},
-        error   : function(model,errors) {}
-      });
+    this.createEl   = "#create_following_" + this.userID;
+    this.destroyEl  = "#destroy_following_" + this.userID;
+
+    if(!this.options.following) {
+      this.following  = new Denwen.Models.Following({id:this.userID});
+      this.following.fetch(
+        { 
+          success : function(result) {self.preprocess(result);},
+          error   : function(model,errors) {}
+        });
+    }
+    else {
+      this.following = this.options.following;
+      this.preprocess(this.following);
+    }
   },
 
   // Based on the result of the show request
@@ -79,19 +88,20 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
   render: function(isFollowing) {
     var self = this;
 
-    $('#create_following').unbind('click');
-    $('#destroy_following').unbind('click');
-    $('#create_following').unbind('mouseout');
-    $('#destroy_following').unbind('mouseout');
+    $(this.createEl).unbind('click');
+    $(this.destroyEl).unbind('click');
+    $(this.createEl).unbind('mouseout');
+    $(this.destroyEl).unbind('mouseout');
 
     this.el.html(
       Denwen.JST['followings/following']({
-        isFollowing  : isFollowing}));
+        isFollowing  : isFollowing,
+        userID       : this.userID}));
 
-    $('#create_following').click(function() {self.create();});
-    $('#destroy_following').click(function() {self.destroy();});
-    $('#create_following').mouseout(function() {self.mouseOut();});
-    $('#destroy_following').mouseout(function() {self.mouseOut();});
+    $(this.createEl).click(function() {self.create();});
+    $(this.destroyEl).click(function() {self.destroy();});
+    $(this.createEl).mouseout(function() {self.mouseOut();});
+    $(this.destroyEl).mouseout(function() {self.mouseOut();});
   }
 
 });

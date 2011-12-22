@@ -54,7 +54,7 @@
     </div>
 	    
 	  <%if !is_current_user(@user) && logged_in?%>
-	    <div id='following_box' class='top_action_button'>
+	    <div id='following_box_<%=@user.id%>' class='top_action_button'>
 	    </div>
 	  <%end%>
 	
