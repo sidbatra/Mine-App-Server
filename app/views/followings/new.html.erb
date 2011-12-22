@@ -1,0 +1,67 @@
+<div id="pic_bg" class="fixed_bg">
+
+	<div id="container">
+	
+		<div id="box" class="">
+		
+      <%if is_onboarding?%>
+        <%=link_to '',
+                    new_invite_path(:src => 'login'),
+                    :class => 'continue_top_right_corner'%>
+      <%end%>
+		
+			<p class="heading">
+				<span class="title">Closets you'll like!</span><br />
+        <%=CONFIG[:name]%> is way more fun when you follow closets. <br/>
+				You're now following some closets we think you’ll like. <br/>
+			</p>
+
+		  <div id="users">
+        <div class="invite_list" style="width:400px">
+          <%@users.each_with_index do |user,i|%>
+            <div class='invite_row' 
+                  style="height:50px;line-height:50px;width:400px;"> 
+              <img class='follow_user' 
+                    src='<%=user.photo_url%>'>
+              <span class='name'>
+                  <%=user.first_name + ' ' + user.last_name%>
+              </span>
+              <div id='follow_side'
+                    style="position:absolute;top:6px;right:0px">
+                <div id='following_box_<%=user.id%>'>
+                </div>
+              </div>
+            </div> <!--invite_row-->
+
+            <div style="height:3px">
+            </div>
+
+            <%content_for :javascript do%>
+              <script type="text/javascript">
+                  new Denwen.Partials.Users.Following({
+                        el        : $('#following_box_<%=user.id%>'),
+                        user_id   : <%=user.id%>,
+                        following : <%=@followings[i].to_json%>});
+              </script>
+            <%end%>
+
+          <%end%>
+        </div> <!--invite_list-->
+		  </div> <!--users-->
+
+		</div> <!-- box -->
+		 
+	</div> <!-- container -->
+	
+</div> <!-- pic_bg -->
+
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+     mpq.track('Onboarding Following View',{
+      'source'  : '<%=@source%>'});
+  </script>
+
+<%end%>
+

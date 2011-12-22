@@ -57,7 +57,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     // -----
     if(!this.isCurrentUser && helpers.isLoggedIn())
       new Denwen.Partials.Users.Following({
-                            el  : $('#following_box'),
+                            el  : $('#following_box_' + this.user.get('id')),
                             user_id : this.user.get('id')});
 
     // -----

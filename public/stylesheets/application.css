@@ -292,6 +292,12 @@ body {
 	float: left;
 	margin-right: 12px;
 }
+#pic_bg #container #box .invite_list .invite_row img.follow_user {
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 12px;
+}
 
 #pic_bg #container #box .invite_list .invite_row .invite {
 	width: 60px;
@@ -1299,6 +1305,22 @@ body {
 #inner_side .follow_off:hover { background-position: 0 -93px;  }
 #inner_side .follow_on        { background-position: 0 -130px; }
 #inner_side .follow_on:hover  { background-position: 0 -167px; }
+
+
+#follow_side .follow_off,
+#follow_side .follow_on { 
+	width: 180px;
+	height: 37px;
+	background: url('/images/profile_images.png'); 
+	display: block;
+}
+
+#follow_side .follow_off       { background-position: 0 -56px;  }
+#follow_side .follow_off:hover { background-position: 0 -93px;  }
+#follow_side .follow_on        { background-position: 0 -130px; }
+#follow_side .follow_on:hover  { background-position: 0 -167px; }
+
+
 
 #inner_side .invite {
 	margin-top: 6px;
