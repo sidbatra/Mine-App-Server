@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111222004125) do
+ActiveRecord::Schema.define(:version => 20111222223138) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -195,6 +195,18 @@ ActiveRecord::Schema.define(:version => 20111222004125) do
 
   add_index "searches", ["source"], :name => "index_searches_on_source"
   add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
+
+  create_table "shoppings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.integer  "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
+  add_index "shoppings", ["store_id"], :name => "index_shoppings_on_store_id"
+  add_index "shoppings", ["user_id"], :name => "index_shoppings_on_user_id"
 
   create_table "stores", :force => true do |t|
     t.string   "name"

@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :invites,      :dependent => :destroy
   has_many :collections,  :dependent => :destroy
   has_many :achievements, :dependent => :destroy
+  has_many :shoppings,    :dependent => :destroy
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings
