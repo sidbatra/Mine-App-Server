@@ -18,7 +18,10 @@ class ShoppingsController < ApplicationController
     store_ids = params[:shopping][:store_ids].split(',')
 
     store_ids.each do |store_id|
-      Shopping.add(self.current_user.id,store_id,ShoppingSource::User)
+      Shopping.add(
+        self.current_user.id,
+        store_id,
+        ShoppingSource::User)
     end
   rescue => ex
     handle_exception(ex)
@@ -31,7 +34,6 @@ class ShoppingsController < ApplicationController
                       new_following_path(
                         :src => 'login')
       end
-      format.json 
     end
   end
 
