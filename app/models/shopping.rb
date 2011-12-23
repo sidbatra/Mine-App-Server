@@ -12,7 +12,7 @@ class Shopping < ActiveRecord::Base
   validates_presence_of   :user_id
   validates_presence_of   :store_id
   validates_presence_of   :source
-  validates_inclusion_of  :source, :in => ShoppingSource.range 
+  validates_inclusion_of  :source, :in => ShoppingSource.values
 
   #-----------------------------------------------------------------------------
   # Attributes

@@ -8,13 +8,12 @@ module DW
     #
     class Enumeration
       
-      # Return a range starting at 0 and till the
-      # total length of constants in the class. This is useful
-      # if the Enumeration holds types that map to ActiveRecord
-      # columns that require validation for inclusion
+      # Return an array of values of the constants of the class.
+      # This is useful if the Enumeration holds types that map 
+      # to ActiveRecord columns that require validation for inclusion
       #
-      def self.range
-        (0..constants.length-1)
+      def self.values
+        constants.map{|constant| class_eval constant}
       end
     end
 
