@@ -89,6 +89,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :collections,
                 :only => [:create,:new]
 
+  map.resources :shoppings,
+                :only => [:create,:new]
 
   # Admin routes
   map.resources :admin_users, 
