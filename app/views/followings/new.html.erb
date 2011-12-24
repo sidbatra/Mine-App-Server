@@ -4,7 +4,7 @@
 	
 		<div id="box" class="rounded_3">
 		
-      <%if is_onboarding?%>
+      <%if is_onboarding?%> <!-- remove this -->
         <%=link_to '',
                     new_invite_path(:src => 'login'),
                     :class => 'continue_top_right_corner'%>
@@ -15,32 +15,35 @@
         People and closets we think you'll like!
        	<br/>
 			</p>
+			
+		      <%=submit_tag '',
+		                    :class  => 'continue_wide',
+		                    :style  => 'margin-top: 0px;',
+		                    :name   => nil%>
 
 		  <div id="users">
+		  	<div class='follow_list'>
           <%@users.each_with_index do |user,i|%>
-            <div class='follow_row'> 
-              <img class='follow_user' 
-                    src='<%=user.photo_url%>'>
-              <span class='follow_name'>
-                  <%=user.first_name + ' ' + user.last_name%>
-              </span> · 134 items from:
-            
-              <div class='follow_stores'>
-	              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_N2VmNjM5YjhiYzkwNTc2ZTU4NTUxMzIzOTA3ODU3.png' />
-	              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OWU1YWRmZGY4M2VhYTUwYWEyZTkxMzIzOTA3ODYw.png' />
-								<img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_NzEzMGVmYjQzNDgxODNmOGUzOTgxMzI0MDcwMzEx.png' />
-								<img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OTkzMjdiMzA3MGY3YmUzNDM1MzgxMzIzOTA3OTQx.png' />
-	              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_MmFjNmE4NzdiZmQwZjNkZmRmMDYxMzIzOTA3OTM5.png' />
-
-                <!--<div class='follow_button button button_dark slim_shadow_dark'>
-              		✓ Following
-              	</div>-->
-              
-              </div>
-              
-
-            </div> <!--follow_row-->
-            
+	            <div class='follow_row'> 
+	              <img class='follow_user' 
+	                    src='<%=user.photo_url%>'>
+	              <span class='follow_name'>
+	                  <%=user.first_name + ' ' + user.last_name%>
+	              </span> · 134 items from:
+	            
+	              <div class='follow_stores'>
+		              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_N2VmNjM5YjhiYzkwNTc2ZTU4NTUxMzIzOTA3ODU3.png' />
+		              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OWU1YWRmZGY4M2VhYTUwYWEyZTkxMzIzOTA3ODYw.png' />
+									<img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_NzEzMGVmYjQzNDgxODNmOGUzOTgxMzI0MDcwMzEx.png' />
+									<img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OTkzMjdiMzA3MGY3YmUzNDM1MzgxMzIzOTA3OTQx.png' />
+		              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_MmFjNmE4NzdiZmQwZjNkZmRmMDYxMzIzOTA3OTM5.png' />
+	
+									<!-- as with following.jst: follow_on, follow_off -->
+		              <a class='follow_off'></a>
+	              
+	              </div>
+	              
+	            </div> <!--follow_row-->
             
 
             <div style="height:3px">
@@ -58,6 +61,8 @@
             <%end%>
 
           <%end%>
+          
+         </div> <!--follow_list-->
 
 
 

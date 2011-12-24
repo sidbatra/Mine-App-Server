@@ -186,7 +186,7 @@ body {
 }
 
 #pic_bg #container #box .heading {
-	margin-bottom: 20px;
+	margin-bottom: 16px;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 }
 
@@ -413,11 +413,15 @@ body {
 	display: block;
 }
 
+#pic_bg #container #box .follow_list {
+	margin-top: 24px;
+}
+
 #pic_bg #container #box .follow_row {
 	height: 50px;
 	width: 370px;
 	line-height: 21px;
-	margin-left: 85px;
+	margin-left: 65px;
 	margin-bottom: 20px;
 	position: relative;
 	text-align: left;
@@ -453,11 +457,34 @@ body {
 	margin-right: 1px;
 }
 
-#pic_bg #container #box .follow_row .follow_button {
-	padding: 0px 6px;
-	height: 24px;
-	line-height: 24px;
-float: left;
+#pic_bg #container #box .follow_row a.follow_off,
+#pic_bg #container #box .follow_row a.follow_on {
+	width: 82px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	float: left;
+	display: block;
+	cursor: pointer;
+	font-size: 10px;
+	margin-left: 20px;
+	background-image: url('/images/button_follow_25.png');
+}
+
+#pic_bg #container #box .follow_row a.follow_off {
+	background-position: 0 0;
+}
+
+#pic_bg #container #box .follow_row a.follow_off:hover {
+	background-position: 0 -25px;
+}
+
+#pic_bg #container #box .follow_row a.follow_on {
+	background-position: 0 -50px;
+}
+
+#pic_bg #container #box .follow_row a.follow_on:hover {
+	background-position: 0 -75px;
 }
 
 /* ------------------------------ Creation */
