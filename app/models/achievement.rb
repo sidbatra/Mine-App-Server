@@ -10,9 +10,8 @@ class Achievement < ActiveRecord::Base
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :achievable_id
-  validates_presence_of   :achievable_type
-  validates_inclusion_of  :achievable_type, :in => %w(User Product)
   validates_presence_of   :user_id
+  validates_inclusion_of  :achievable_type, :in => %w(User Product)
 
   #-----------------------------------------------------------------------------
   # Named scopes
