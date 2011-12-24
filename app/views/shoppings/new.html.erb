@@ -1,33 +1,31 @@
-<div id="outer">
+<div id="pic_bg">
 
-	<div id="inner">
-	
-		<div class="module">
-		
-			<div class="heading">
-			
-				<div class="title">
-					Select atleast 3 stores you shop at.
-				</div>
+	<div id="container">
 
-			  <%form_for @shopping,
-				      :html => {:class => '', :style => 'display:'} do |f|%>
-		      <%=f.hidden_field :store_ids%>
-		      <%=submit_tag 'Done',
-		                    :class  => 'button button_red slim_shadow_light submit',
-		                    :name   => nil%>
-		    <%end%>
-		    
-	    </div>
+		<div id="box" class="rounded_3">
+			<p class="heading">
+				<span class="title">
+          Click 3 of your favorite stores
+        </span><br />
+				So we can suggest other shoppers to follow!
+			</p>
 	      
 	    <div id="stores">
 	    </div>
 	    
-    	</div>
+	    	<%form_for @shopping,
+				      :html => {:class => '', :style => 'display:'} do |f|%>
+		      <%=f.hidden_field :store_ids%>
+		      <%=submit_tag '',
+		                    :class  => 'continue_wide',
+		                    :name   => nil%>
+		    <%end%>
+	    
+    	</div> <!-- box -->
 
-	</div> <!-- inner -->
+	</div> <!-- container -->
 
-</div> <!-- outer -->
+</div> <!-- pic_bg -->
 	
 
 
