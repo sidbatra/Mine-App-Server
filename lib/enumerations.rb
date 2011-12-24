@@ -53,6 +53,13 @@ module DW
       Suggestion  = 2
     end
 
+    # Source for the creation of the Search model
+    #
+    class SearchSource < Enumeration
+      New   = 0
+      Edit  = 1
+    end
+
     # Sources of creation for the Shopping model
     #
     class ShoppingSource < Enumeration
