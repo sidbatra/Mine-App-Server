@@ -17,7 +17,20 @@ module DW
       end
     end
 
-    # Types of sources for the Shopping model
+    # Reasons for creation for the AchievementSet model
+    #
+    class AchievementSetFor < Enumeration
+      StarUsers   = 0
+      TopShoppers = 1
+    end
+
+    # Edge case owner ids for the AchivementSet model
+    #
+    class AchievementSetOwner < Enumeration
+      Automated = 0
+    end
+
+    # Sources of creation for the Shopping model
     #
     class ShoppingSource < Enumeration
       User    = 0

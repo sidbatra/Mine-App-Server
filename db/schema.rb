@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111223012749) do
+ActiveRecord::Schema.define(:version => 20111224025137) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
     t.datetime "expired_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "for"
+    t.integer  "for"
   end
 
   add_index "achievement_sets", ["created_at"], :name => "index_achievement_sets_on_created_at"
@@ -248,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20111223012749) do
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
+  add_index "users", ["created_at"], :name => "index_users_on_created_at"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
   add_index "users", ["gender"], :name => "index_users_on_gender"
