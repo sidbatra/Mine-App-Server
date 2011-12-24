@@ -2,7 +2,7 @@
 
 	<div id="container">
 	
-		<div id="box" class="">
+		<div id="box" class="rounded_3">
 		
       <%if is_onboarding?%>
         <%=link_to '',
@@ -11,42 +11,56 @@
       <%end%>
 		
 			<p class="heading">
-				<span class="title">Closets you'll like!</span><br />
-        <%=CONFIG[:name]%> is way more fun when you follow closets. <br/>
-				You're now following some closets we think you’ll like. <br/>
+				<span class="title">You're now following</span><br />
+        People and closets we think you'll like!
+       	<br/>
 			</p>
 
 		  <div id="users">
-        <div class="invite_list" style="width:400px">
           <%@users.each_with_index do |user,i|%>
-            <div class='invite_row' 
-                  style="height:50px;line-height:50px;width:400px;"> 
+            <div class='follow_row'> 
               <img class='follow_user' 
                     src='<%=user.photo_url%>'>
-              <span class='name'>
+              <span class='follow_name'>
                   <%=user.first_name + ' ' + user.last_name%>
-              </span>
-              <div id='follow_side'
-                    style="position:absolute;top:6px;right:0px">
-                <div id='following_box_<%=user.id%>'>
-                </div>
+              </span> · 134 items from:
+            
+              <div class='follow_stores'>
+	              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_N2VmNjM5YjhiYzkwNTc2ZTU4NTUxMzIzOTA3ODU3.png' />
+	              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OWU1YWRmZGY4M2VhYTUwYWEyZTkxMzIzOTA3ODYw.png' />
+								<img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_NzEzMGVmYjQzNDgxODNmOGUzOTgxMzI0MDcwMzEx.png' />
+								<img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OTkzMjdiMzA3MGY3YmUzNDM1MzgxMzIzOTA3OTQx.png' />
+	              <img src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_MmFjNmE4NzdiZmQwZjNkZmRmMDYxMzIzOTA3OTM5.png' />
+
+                <!--<div class='follow_button button button_dark slim_shadow_dark'>
+              		✓ Following
+              	</div>-->
+              
               </div>
-            </div> <!--invite_row-->
+              
+
+            </div> <!--follow_row-->
+            
+            
 
             <div style="height:3px">
             </div>
 
             <%content_for :javascript do%>
               <script type="text/javascript">
-                  new Denwen.Partials.Users.Following({
+ /*
+                 new Denwen.Partials.Users.Following({
                         el        : $('#following_box_<%=user.id%>'),
                         user_id   : <%=user.id%>,
                         following : <%=@followings[i].to_json%>});
+*/
               </script>
             <%end%>
 
           <%end%>
-        </div> <!--invite_list-->
+
+
+
 		  </div> <!--users-->
 
 		</div> <!-- box -->

@@ -182,10 +182,11 @@ body {
 	margin: 0 auto;
 	position: relative;
 	padding: 30px;
+/* 	background: #333333 */
 }
 
 #pic_bg #container #box .heading {
-	margin-bottom: 16px;
+	margin-bottom: 20px;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 }
 
@@ -407,6 +408,57 @@ body {
 	display: block;
 }
 
+#pic_bg .following_list {
+	background-position: 0 -108px;
+	display: block;
+}
+
+#pic_bg #container #box .follow_row {
+	height: 50px;
+	width: 370px;
+	line-height: 21px;
+	margin-left: 85px;
+	margin-bottom: 20px;
+	position: relative;
+	text-align: left;
+/* 	background: url('/images/white_10.png'); */
+	font-size: 12px;
+	color: #cccccc;
+}
+
+#pic_bg #container #box .follow_row img.follow_user {
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 10px;
+}
+
+#pic_bg #container #box .follow_row .follow_name {
+/* 	font-family: 'FuturaStdBold', Arial, sans-serif; */
+	font-size: 14px;
+	color: white;
+}
+
+#pic_bg #container #box .follow_row .follow_stores {
+	position: absolute;
+	left: 60px;;
+	bottom: 0px;
+	height:24px;
+}
+
+#pic_bg #container #box .follow_row .follow_stores img {
+	width: 24px;
+	height: 24px;
+	float: left;
+	margin-right: 1px;
+}
+
+#pic_bg #container #box .follow_row .follow_button {
+	padding: 0px 6px;
+	height: 24px;
+	line-height: 24px;
+float: left;
+}
 
 /* ------------------------------ Creation */
 
