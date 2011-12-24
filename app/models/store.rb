@@ -230,7 +230,7 @@ class Store < ActiveRecord::Base
   def to_json(options = {})
 
     options[:only]    = [:id,:name,:handle] if options[:only].nil?
-    options[:methods] = [:thumbnail_url]    if options[:methods].nil?
+    options[:methods] = [:large_url,:thumbnail_url]    if options[:methods].nil?
 
     super(options)
   end

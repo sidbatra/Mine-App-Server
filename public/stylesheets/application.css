@@ -186,6 +186,7 @@ body {
 
 #pic_bg #container #box .heading {
 	margin-bottom: 16px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 }
 
 #pic_bg #container #box .heading .title {
@@ -205,6 +206,7 @@ body {
 	margin-top: 10px;
 	cursor: pointer;
 	display: inline-block;
+	border: 0;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -330,6 +332,81 @@ body {
 	text-align: center;
 	margin: 6px auto 0px;
 }
+
+#pic_bg #stores {
+	width: 390px;
+	margin: 0 auto;
+/* 	background: pink; */
+	padding-left: 30px;
+}
+
+#pic_bg #stores:after {
+	clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: ".";
+  font-size: 0;
+}
+
+#pic_bg .picker_choice {
+	width: 68px;
+	height: 92px;
+	margin-left: -5px;
+	margin-right: 12px;
+	margin-bottom: 2px;
+	float: left;
+	position: relative;
+	cursor:pointer;
+}
+
+#pic_bg .picker_choice .choice_name {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 24px;
+	text-align: center;
+	line-height: 24px;
+	color: #cccccc;
+	background: none;
+	font-size: 10px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+
+#pic_bg .picker_choice img {
+	width: 68px;
+	height: 68px;
+}
+
+#pic_bg .picker_choice .button_picker {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 68px;
+	height: 68px;
+	background: url('/images/picked_white_68.png') no-repeat;
+	cursor: pointer;
+	display: none;
+}
+
+#pic_bg .picker_choice:hover .button_picker {
+	display: block;
+}
+
+#pic_bg .picker_choice .pushed {
+	display:block;
+}
+
+#pic_bg .picker_choice .button_picker:active,
+#pic_bg .picker_choice .pushed,
+#pic_bg .picker_choice .item .pushed:hover {
+	background-position: 0 -108px;
+	display: block;
+}
+
 
 /* ------------------------------ Creation */
 
