@@ -11,7 +11,7 @@ class MoveEmailPurposeToInteger < ActiveRecord::Migration
 
     Email.update_all(
       {:purpose => EmailPurpose::NewBulkFollowers},
-      {:purpose => 'new_bulk_follower'})
+      {:purpose => 'new_bulk_followers'})
 
     Email.update_all(
       {:purpose => EmailPurpose::StarUser},
@@ -56,7 +56,7 @@ class MoveEmailPurposeToInteger < ActiveRecord::Migration
       {:purpose => EmailPurpose::NewFollower})
 
     Email.update_all(
-      {:purpose => 'new_bulk_follower'},
+      {:purpose => 'new_bulk_followers'},
       {:purpose => EmailPurpose::NewBulkFollowers})
 
     Email.update_all(
