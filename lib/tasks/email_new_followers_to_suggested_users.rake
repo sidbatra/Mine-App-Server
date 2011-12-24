@@ -7,8 +7,8 @@ task :email_new_followers_to_suggested_users do |e,args|
     User.to_follow.each do |user|
       begin
         last_email  = Email.find_last_by_purpose_and_recipient_id(
-                                                        'new_bulk_followers',
-                                                        user.id)
+                        EmailPurpose::NewBulkFollowers,
+                        user.id)
 
         time_from   = last_email ? last_email.created_at : 1.day.ago 
 

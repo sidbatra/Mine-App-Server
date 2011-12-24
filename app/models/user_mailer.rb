@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
       @action     += comment.commentable.title
     end
 
-    generate_attributes(@user.id,@comment.user.id,@comment,'new_comment')
+    generate_attributes(@user.id,@comment.user.id,@comment,EmailPurpose::NewComment)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -42,7 +42,7 @@ class UserMailer < ActionMailer::Base
     @action       = @follower.first_name + " " + @follower.last_name + 
                     " is now following your Closet!"
 
-    generate_attributes(@user.id,@follower.id,following,'new_follower')
+    generate_attributes(@user.id,@follower.id,following,EmailPurpose::NewFollower)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -58,7 +58,7 @@ class UserMailer < ActionMailer::Base
     @action       = "#{@followers.length} new people are now following "\
                     "your Closet!" 
                     
-    generate_attributes(@user.id,0,@user,'new_bulk_followers')
+    generate_attributes(@user.id,0,@user,EmailPurpose::NewBulkFollowers)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -71,7 +71,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Your closet is now featured as a Top Closet!"
 
-    generate_attributes(@user.id,0,@user,'star_user')
+    generate_attributes(@user.id,0,@user,EmailPurpose::StarUser)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -86,7 +86,7 @@ class UserMailer < ActionMailer::Base
     @store        = store
     @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
 
-    generate_attributes(@user.id,0,@store,'top_shopper')
+    generate_attributes(@user.id,0,@store,EmailPurpose::TopShopper)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -119,7 +119,7 @@ class UserMailer < ActionMailer::Base
     	@action			+= "!"
     end
 
-    generate_attributes(@user.id,@actor.id,action,'new_action')
+    generate_attributes(@user.id,@actor.id,action,EmailPurpose::NewAction)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -131,7 +131,7 @@ class UserMailer < ActionMailer::Base
   def dormant(user)
     @user = user
 
-    generate_attributes(@user.id,0,@user,'dormant')
+    generate_attributes(@user.id,0,@user,EmailPurpose::Dormant)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -143,7 +143,7 @@ class UserMailer < ActionMailer::Base
   def ontoday(user)
     @user = user
 
-    generate_attributes(@user.id,0,@user,'ontoday')
+    generate_attributes(@user.id,0,@user,EmailPurpose::OnToday)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -155,7 +155,7 @@ class UserMailer < ActionMailer::Base
   def collect_more(user)
     @user = user
 
-    generate_attributes(@user.id,0,@user,'collect_more')
+    generate_attributes(@user.id,0,@user,EmailPurpose::CollectMore)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -166,7 +166,7 @@ class UserMailer < ActionMailer::Base
   #
   def invite_more(user)
     @user = user
-    generate_attributes(@user.id,0,@user,'invite_more')
+    generate_attributes(@user.id,0,@user,EmailPurpose::InviteMore)
 
     recipients    @user.email
     from          EMAILS[:contact]

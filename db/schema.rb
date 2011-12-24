@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224025137) do
+ActiveRecord::Schema.define(:version => 20111224031735) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20111224025137) do
     t.string   "emailable_type"
     t.string   "message_id"
     t.string   "request_id"
-    t.string   "purpose"
+    t.integer  "purpose"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
