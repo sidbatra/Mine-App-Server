@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224031735) do
+ActiveRecord::Schema.define(:version => 20111224043232) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20111224031735) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_active",   :default => true
-    t.string   "source"
+    t.integer  "source"
   end
 
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"

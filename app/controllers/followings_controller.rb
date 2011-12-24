@@ -14,7 +14,7 @@ class FollowingsController < ApplicationController
       @followings << Following.add(
                       user.id,
                       self.current_user.id,
-                      'suggestion',
+                      FollowingSource::Suggestion,
                       false)
     end
   rescue => ex

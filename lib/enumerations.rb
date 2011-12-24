@@ -45,6 +45,14 @@ module DW
       NewBulkFollowers  = 9
     end
 
+    # Sources for the Following model
+    #
+    class FollowingSource < Enumeration
+      Auto        = 0
+      Manual      = 1
+      Suggestion  = 2
+    end
+
     # Sources of creation for the Shopping model
     #
     class ShoppingSource < Enumeration
