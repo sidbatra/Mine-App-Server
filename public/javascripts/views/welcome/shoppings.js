@@ -16,7 +16,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
 
     this.storesEl       = '#stores';
     this.formEl         = '#new_shopping';
-    this.storeIdsEl     = '#shopping_store_ids';
+    this.storeIdsEl     = '#store_ids';
 
     this.posting        = false;
 

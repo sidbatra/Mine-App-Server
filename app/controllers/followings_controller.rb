@@ -3,28 +3,6 @@
 class FollowingsController < ApplicationController
   before_filter :login_required
 
-  # Automatically add ifollowers for the current user from
-  # a pre-selected pool
-  #
-  def new
-    @users = Cache.fetch(KEYS[:to_follow_users]){User.to_follow}[0..9]
-    @followings = []
-
-    @users.each do |user|
-      @followings << Following.add(
-                      user.id,
-                      self.current_user.id,
-                      FollowingSource::Suggestion,
-                      false)
-    end
-  rescue => ex
-    handle_exception(ex)
-  ensure
-    respond_to do |format|
-      format.html
-    end
-  end
-
   # Create a new following from the current user towards
   # the given user
   #

@@ -4,12 +4,6 @@
 	
 		<div id="box" class="rounded_3">
 		
-      <%if is_onboarding?%> <!-- remove this -->
-        <%=link_to '',
-                    new_invite_path(:src => 'login'),
-                    :class => 'continue_top_right_corner'%>
-      <%end%>
-		
 			<p class="heading">
 				<span class="title">You're now following</span><br />
         People and closets we think you'll like!
@@ -54,8 +48,8 @@
  /*
                  new Denwen.Partials.Users.Following({
                         el        : $('#following_box_<%=user.id%>'),
-                        user_id   : <%=user.id%>,
-                        following : <%=@followings[i].to_json%>});
+                        user_id   : <%#user.id%>,
+                        following : <%#@followings[i].to_json%>});
 */
               </script>
             <%end%>

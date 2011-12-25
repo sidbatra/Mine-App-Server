@@ -13,9 +13,11 @@
 	    <div id="stores">
 	    </div>
 	    
-	    	<%form_for @shopping,
-				      :html => {:class => '', :style => 'display:'} do |f|%>
-		      <%=f.hidden_field :store_ids%>
+	    	<%form_tag '/welcome',
+              :id   => 'new_shopping' do |f|%>
+
+		      <%=hidden_field_tag :id, WelcomeFilter::Stores%>
+		      <%=hidden_field_tag :store_ids%>
 		      <%=submit_tag '',
 		                    :class  => 'continue_wide',
 		                    :name   => nil%>

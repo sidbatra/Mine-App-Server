@@ -66,6 +66,15 @@ module DW
       User    = 0
       Product = 1
     end
+
+    # Different screens for the welcoem controller
+    #
+    class WelcomeFilter < Enumeration
+      Learn   = 'intro'
+      Stores  = 'stores'
+      Follow  = 'follow'
+      Create  = 'create'
+    end
   end
 
 end

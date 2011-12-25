@@ -15,7 +15,7 @@
       <%=image_tag 'welcome_gold.gif', :style => "margin-top:-10px;"%>
 			
       <%=link_to '',
-                  new_following_path(:src => 'login'),
+                  welcome_path(WelcomeFilter::Stores),
                   :class => 'continue_wide'%>
 		
 		</div> <!-- box -->
