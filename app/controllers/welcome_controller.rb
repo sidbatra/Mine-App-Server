@@ -15,7 +15,22 @@ class WelcomeController < ApplicationController
       @view     = "shoppings/new"
 
     when WelcomeFilter::Follow
-      @users    = Cache.fetch(KEYS[:to_follow_users]){User.to_follow}[0..9]
+      follows = 10
+      stores  = self.current_user.stores
+
+      raise IOError, "No stores found" unless stores.present?
+
+      @users    = []
+      per_store = follows / stores.length 
+
+      stores.each do |store|
+        @users += AchievementSet.current_top_shoppers(store.id).
+                    map(&:achievable).
+                    shuffle[0..per_store] 
+      end
+
+      @users = @users.uniq.shuffle[0..follows-1]
+
       @view     = "followings/new"
     else
       raise IOError, "Incorrect welcome show ID"

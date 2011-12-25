@@ -60,12 +60,6 @@ class User < ActiveRecord::Base
 
   named_scope :limit, lambda {|limit| {:limit => limit}}
 
-  named_scope :to_follow, :conditions => {
-                                :products_count_gte => 15, 
-                                :updated_at         => 30.days.ago..Time.now,
-                                :gender_ne          => 'male',
-                                :birthday_gte       => 26.years.ago}
-
   #-----------------------------------------------------------------------------
   # Attributes
   #-----------------------------------------------------------------------------

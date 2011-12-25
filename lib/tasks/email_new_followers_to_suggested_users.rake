@@ -3,6 +3,8 @@ desc "Email new followers to suggested users"
 task :email_new_followers_to_suggested_users do |e,args|
   
   require 'config/environment.rb'
+
+    puts "DEPRECATED - User.to_follow isn't used anymore"
  
     User.to_follow.each do |user|
       begin
