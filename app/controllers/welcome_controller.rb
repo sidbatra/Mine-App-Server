@@ -64,12 +64,14 @@ class WelcomeController < ApplicationController
       @success_target = welcome_path(WelcomeFilter::Create,:category => 'shoes')
       @error_target   = welcome_path(WelcomeFilter::Follow)
 
-      @users.each do |user|
-        @followings << Following.add(
-                        user.id,
-                        self.current_user.id,
-                        FollowingSource::Suggestion,
-                        false)
+      user_ids        = params[:user_ids].split(',')
+
+      user_ids.each do |user_id|
+        Following.add(
+          user_id,
+          self.current_user.id,
+          FollowingSource::Suggestion,
+          false)
       end
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)
