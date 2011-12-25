@@ -37,7 +37,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
     this.stores     = new Denwen.Collections.Stores();
 
     this.stores.fetch({
-          data:     {filter: 'top'},
+          data:     {filter: 'suggest'},
           success:  function(collection){self.fetched();},
           error:    function(collection,errors){}
           });
