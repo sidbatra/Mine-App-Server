@@ -8,7 +8,7 @@ task :find_star_users do |e,args|
                         map(&:achievable).
                         map(&:id)
 
-  new_stars       = User.stars
+  new_stars       = User.stars.limit(20)
 
   AchievementSet.add(
     AchievementSetOwner::Automated,

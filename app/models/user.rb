@@ -44,18 +44,21 @@ class User < ActiveRecord::Base
                     :products   => {:created_at => 1.day.ago..Time.now},
                     :gender_ne  => 'male'},
                   :group      => "users.id", 
-                  :order      => "count(users.id) DESC, users.created_at DESC",
-                  :limit      => 20
+                  :order      => "count(users.id) DESC, users.created_at DESC"
+
   named_scope :top_shoppers, lambda {|store_id| {
-                              :joins        => :products,
-                              :conditions   => {
-                                :products   => {
-                                    :store_id   => store_id,
-                                    :created_at => 20.days.ago..Time.now},
-                                :gender_ne  => 'male'},
-                              :group        => "users.id", 
-                              :order        => "count(users.id) DESC, users.id",
-                              :limit        => 20}}
+                :select       => "users.*,count(users.id) as products_at_store",
+                :joins        => :products,
+                :conditions   => {
+                  :products_count_gt => 9,
+                  :products   => {
+                      :store_id   => store_id,
+                      :created_at => 30.days.ago..Time.now},
+                  :gender_ne  => 'male'},
+                :group        => "users.id HAVING products_at_store > 1", 
+                :order        => "products_at_store DESC,users.id"}}
+
+  named_scope :limit, lambda {|limit| {:limit => limit}}
 
   named_scope :to_follow, :conditions => {
                                 :products_count_gte => 15, 

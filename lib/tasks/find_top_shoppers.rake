@@ -9,7 +9,7 @@ task :find_top_shoppers do |e,args|
         old_shoppers = AchievementSet.current_top_shoppers(store.id).
                         map(&:achievable).
                         map(&:id)
-        new_shoppers = User.top_shoppers(store.id)
+        new_shoppers = User.top_shoppers(store.id).limit(20)
 
         AchievementSet.add(
           store.id,
