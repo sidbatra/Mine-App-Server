@@ -9,6 +9,8 @@ class WelcomeController < ApplicationController
     @filter = params[:id]
 
     case @filter
+    when WelcomeFilter::Learn
+      @view     = "show"
     when WelcomeFilter::Stores
       @view     = "shoppings/new"
 
@@ -16,13 +18,13 @@ class WelcomeController < ApplicationController
       @users    = Cache.fetch(KEYS[:to_follow_users]){User.to_follow}[0..9]
       @view     = "followings/new"
     else
-      @view     = "show"
+      raise IOError, "Incorrect welcome show ID"
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
-    render @view
+    @error ? redirect_to(home_path) : render(@view)
   end
 
   # Handle onboarding related post requests
@@ -44,7 +46,7 @@ class WelcomeController < ApplicationController
           ShoppingSource::User)
       end
     when WelcomeFilter::Follow
-      @success_target = welcome_path(WelcomeFilter::Create)
+      @success_target = welcome_path(WelcomeFilter::Create,:category => 'shoes')
       @error_target   = welcome_path(WelcomeFilter::Follow)
 
       @users.each do |user|
@@ -57,6 +59,8 @@ class WelcomeController < ApplicationController
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)
       @error_target    = welcome_path(WelcomeFilter::Learn)
+
+      raise IOError, "Incorrect welcome create ID"
     end
 
   rescue => ex
