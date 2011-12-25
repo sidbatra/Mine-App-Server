@@ -29,10 +29,9 @@ class Store < ActiveRecord::Base
   named_scope :popular,     :order      => 'products_count DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
   named_scope :for_user,    lambda {|user_id| {
-                                      :joins      => :products,
-                                      :conditions => {:products => {
-                                                        :user_id => user_id}},
-                                      :group      => 'stores.id'}}
+                                      :joins      => :shoppings,
+                                      :conditions => {:shoppings => {
+                                                        :user_id => user_id}} }}
 
   #-----------------------------------------------------------------------------
   # Class methods
