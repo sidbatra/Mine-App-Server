@@ -1,0 +1,44 @@
+<div id="pic_bg">
+
+	<div id="container">
+
+		<div id="box" class="rounded_3">
+			<p class="heading">
+				<span class="title">
+          Click 3 of your favorite stores
+        </span><br />
+				So we can suggest other shoppers to follow!
+			</p>
+	      
+	    <div id="stores">
+	    </div>
+	    
+	    	<%form_tag '/welcome',
+              :id   => 'new_shopping' do |f|%>
+
+		      <%=hidden_field_tag :id, WelcomeFilter::Stores%>
+		      <%=hidden_field_tag :store_ids%>
+		      <%=submit_tag '',
+		                    :class  => 'continue_wide',
+		                    :name   => nil%>
+		    <%end%>
+	    
+    	</div> <!-- box -->
+
+	</div> <!-- container -->
+
+</div> <!-- pic_bg -->
+	
+
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+
+    new Denwen.Views.Welcome.Shoppings({
+            currentUserJSON : <%=self.current_user.to_json%>,
+                     source : '<%=@source%>',
+                         el : $('#container')});
+
+  </script>
+<%end%>

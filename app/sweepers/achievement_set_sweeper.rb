@@ -2,23 +2,24 @@
 # achivement sets persistent 
 #
 class AchievementSetSweeper < ActionController::Caching::Sweeper
-  observe AchievementSet 
+  observe AchievementSet, Achievement
 
-  # AchievementSet is created
+  # AchievementSet or Achievement is created
   #
-  def after_create(achievement_set)
-    expire_relevant_cache(achievement_set)
+  def after_create(entity)
+    expire_relevant_cache(entity) if entity.is_a?(AchievementSet)
   end
 
-  # AchievementSet is updated
+  # AchievementSet or Achievement is updated
   #
-  def after_update(achievement_set)
+  def after_update(entity)
   end
 
-  # AchievementSet is deleted
+  # AchievementSet or Achievement is deleted
   #
-  def after_destroy(achievement_set)
-    expire_relevant_cache(achievement_set) unless achievement_set.expired?
+  def after_destroy(entity)
+    set = entity.is_a?(AchievementSet) ? entity : entity.achievement_set
+    expire_relevant_cache(set) unless set.expired?
   end
 
 
@@ -26,9 +27,10 @@ class AchievementSetSweeper < ActionController::Caching::Sweeper
   #
   def expire_relevant_cache(achievement_set)
 
-    if achievement_set.for_star_users?
+    case achievement_set.for
+    when AchievementSetFor::StarUsers
       expire_star_users
-    elsif achievement_set.for_top_shoppers?
+    when AchievementSetFor::TopShoppers
       expire_top_shoppers(achievement_set.owner_id)
     end
   end

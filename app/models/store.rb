@@ -10,6 +10,7 @@ class Store < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   belongs_to  :user
   has_many    :products
+  has_many    :shoppings, :dependent => :destroy
 
   #-----------------------------------------------------------------------------
   # Validations
@@ -28,10 +29,9 @@ class Store < ActiveRecord::Base
   named_scope :popular,     :order      => 'products_count DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
   named_scope :for_user,    lambda {|user_id| {
-                                      :joins      => :products,
-                                      :conditions => {:products => {
-                                                        :user_id => user_id}},
-                                      :group      => 'stores.id'}}
+                                      :joins      => :shoppings,
+                                      :conditions => {:shoppings => {
+                                                        :user_id => user_id}} }}
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -109,13 +109,11 @@ class Store < ActiveRecord::Base
   # Move all products to an existing store
   #
   def move_products_to(store)
-      products_updated  = Product.update_all(
-                            {:store_id => store.id},
-                            {:store_id => self.id})
 
-      Store.update_counters(
-              store.id,
-              :products_count => products_updated)
+    self.products.each do |product|
+      product.store_id = store.id
+      product.save!
+    end
 
     Category.fetch_all.each do |category|
       Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
@@ -228,8 +226,10 @@ class Store < ActiveRecord::Base
   #
   def to_json(options = {})
 
-    options[:only]    = [:id,:name,:handle] if options[:only].nil?
-    options[:methods] = [:thumbnail_url]    if options[:methods].nil?
+    options[:only]     = [] if options[:only].nil?
+    options[:only]    += [:id,:name]
+
+    options[:methods]  = [] if options[:methods].nil?
 
     super(options)
   end

@@ -14,6 +14,7 @@ class StoreSweeper < ActionController::Caching::Sweeper
   #
   def after_update(store)
     expire_top_store
+    expire_suggest_store
     expire_all_store
   end
 
@@ -21,6 +22,7 @@ class StoreSweeper < ActionController::Caching::Sweeper
   #
   def after_destroy(store)
     expire_top_store
+    expire_suggest_store
     expire_all_store
   end
 
@@ -28,6 +30,12 @@ class StoreSweeper < ActionController::Caching::Sweeper
   #
   def expire_top_store
     expire_cache KEYS[:store_top]
+  end
+
+  # Expire cache fragment for suggested stores
+  #
+  def expire_suggest_store
+    expire_cache KEYS[:store_suggest]
   end
 
   # Expire cache fragment for all stores

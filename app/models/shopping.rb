@@ -1,23 +1,30 @@
-class Achievement < ActiveRecord::Base
-
+class Shopping < ActiveRecord::Base
+  
   #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
-  belongs_to  :achievement_set
-  belongs_to  :achievable, :polymorphic => true
+  belongs_to :user
+  belongs_to :store
 
   #-----------------------------------------------------------------------------
-  # Validations
+  # Validations 
   #-----------------------------------------------------------------------------
-  validates_presence_of   :achievable_id
   validates_presence_of   :user_id
-  validates_inclusion_of  :achievable_type, :in => %w(User Product)
+  validates_presence_of   :store_id
+  validates_presence_of   :source
+  validates_inclusion_of  :source, :in => ShoppingSource.values
 
   #-----------------------------------------------------------------------------
-  # Named scopes
+  # Class Methods 
   #-----------------------------------------------------------------------------
-  named_scope :achievers, lambda {|achievement_set_id| {
-                    :conditions => {:achievement_set_id => achievement_set_id},
-                    :include    => :achievable}}
+
+  # Add a new shopping 
+  #
+  def self.add(user_id,store_id,source)
+    shopping = find_or_create_by_user_id_and_store_id(
+                  :user_id      => user_id,
+                  :store_id     => store_id,
+                  :source       => source)
+  end
 
 end

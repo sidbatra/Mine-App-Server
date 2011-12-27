@@ -182,10 +182,12 @@ body {
 	margin: 0 auto;
 	position: relative;
 	padding: 30px;
+/* 	background: #333333 */
 }
 
 #pic_bg #container #box .heading {
 	margin-bottom: 16px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
 }
 
 #pic_bg #container #box .heading .title {
@@ -205,6 +207,7 @@ body {
 	margin-top: 10px;
 	cursor: pointer;
 	display: inline-block;
+	border: 0;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -329,6 +332,159 @@ body {
 	width: 480px;
 	text-align: center;
 	margin: 6px auto 0px;
+}
+
+#pic_bg #stores {
+	width: 390px;
+	margin: 0 auto;
+/* 	background: pink; */
+	padding-left: 30px;
+}
+
+#pic_bg #stores:after {
+	clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: ".";
+  font-size: 0;
+}
+
+#pic_bg .picker_choice {
+	width: 68px;
+	height: 92px;
+	margin-left: -5px;
+	margin-right: 12px;
+	margin-bottom: 2px;
+	float: left;
+	position: relative;
+	cursor:pointer;
+}
+
+#pic_bg .picker_choice .choice_name {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 24px;
+	text-align: center;
+	line-height: 24px;
+	color: #cccccc;
+	background: none;
+	font-size: 10px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+
+#pic_bg .picker_choice img {
+	width: 68px;
+	height: 68px;
+}
+
+#pic_bg .picker_choice .button_picker {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 68px;
+	height: 68px;
+	background: url('/images/picked_white_68.png') no-repeat;
+	cursor: pointer;
+	display: none;
+}
+
+#pic_bg .picker_choice:hover .button_picker {
+	display: block;
+}
+
+#pic_bg .picker_choice .pushed {
+	display:block;
+}
+
+#pic_bg .picker_choice .button_picker:active,
+#pic_bg .picker_choice .pushed,
+#pic_bg .picker_choice .item .pushed:hover {
+	background-position: 0 -108px;
+	display: block;
+}
+
+#pic_bg .following_list {
+	background-position: 0 -108px;
+	display: block;
+}
+
+#pic_bg #container #box .follow_list {
+	margin-top: 24px;
+}
+
+#pic_bg #container #box .follow_row {
+	height: 50px;
+	width: 370px;
+	line-height: 21px;
+	margin-left: 65px;
+	margin-bottom: 20px;
+	position: relative;
+	text-align: left;
+/* 	background: url('/images/white_10.png'); */
+	font-size: 12px;
+	color: #cccccc;
+}
+
+#pic_bg #container #box .follow_row img.follow_user {
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 10px;
+}
+
+#pic_bg #container #box .follow_row .follow_name {
+/* 	font-family: 'FuturaStdBold', Arial, sans-serif; */
+	font-size: 14px;
+	color: white;
+}
+
+#pic_bg #container #box .follow_row .follow_stores {
+	position: absolute;
+	left: 60px;;
+	bottom: 0px;
+	height:24px;
+}
+
+#pic_bg #container #box .follow_row .follow_stores img {
+	width: 24px;
+	height: 24px;
+	float: left;
+	margin-right: 1px;
+}
+
+#pic_bg #container #box .follow_row a.follow_off,
+#pic_bg #container #box .follow_row a.follow_on {
+	width: 82px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	float: left;
+	display: block;
+	cursor: pointer;
+	font-size: 10px;
+	margin-left: 20px;
+	background-image: url('/images/button_follow_25.png');
+}
+
+#pic_bg #container #box .follow_row a.follow_off {
+	background-position: 0 0;
+}
+
+#pic_bg #container #box .follow_row a.follow_off:hover {
+	background-position: 0 -25px;
+}
+
+#pic_bg #container #box .follow_row a.follow_on {
+	background-position: 0 -50px;
+}
+
+#pic_bg #container #box .follow_row a.follow_on:hover {
+	background-position: 0 -75px;
 }
 
 /* ------------------------------ Creation */

@@ -31,8 +31,8 @@ common: &common
     :store_products_in_category: store_%d_category_%d_products
     :store_all: store_all
     :store_top: store_top
+    :store_suggest: store_suggest
     :star_users: star_users
-    :to_follow_users: to_follow_users
     :collection_products: collection_%d_products
     :comment_commentable: comment_commentable_%d_%s
     :action_actionable: action_actionable_%d_%s

@@ -1,6 +1,6 @@
-// Partial for a single product picker
+// Partial for a single store picker
 //
-Denwen.Partials.Products.Picker = Backbone.View.extend({
+Denwen.Partials.Stores.Picker = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -11,7 +11,7 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
   //
   initialize: function() {
     this.picked   = false;
-    this.toggleEl = '#product_picker_' + this.model.get('id');
+    this.toggleEl = '#store_picker_' + this.model.get('id');
     this.onEl			= '#button_picker_' + this.model.get('id');
 
     this.render();
@@ -22,26 +22,26 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
   render: function() {
     var self = this;
 
-    this.el.append(Denwen.JST['products/picker']({product:this.model}));
+    this.el.append(Denwen.JST['stores/picker']({store:this.model}));
     $(this.toggleEl).click(function(){self.clicked();});
   },
 
-  // Fired when the product is clicked to turn on or off
+  // Fired when the store is clicked to select/unselect 
   //
   clicked: function() {
-    this.picked = this.picked ? false : true;
+    this.picked = !this.picked;
 
     if(this.picked) {
       $(this.onEl).addClass('pushed');
       
-      this.trigger('addToProductsPicked',this.model.get('id'));
-      analytics.productTurnedOn();
+      this.trigger('addToStoresPicked',this.model.get('id'));
+      //analytics.storePicked();
     }
     else {
       $(this.onEl).removeClass('pushed');
       
-      this.trigger('removeFromProductsPicked',this.model.get('id'));
-      analytics.productTurnedOff();
+      this.trigger('removeFromStoresPicked',this.model.get('id'));
+      //analytics.storeUnPicked();
     }
   }
 

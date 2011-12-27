@@ -1,0 +1,13 @@
+<div class='picker_choice' id="store_picker_<%=store.get('id')%>"> 
+
+	<div class="button_picker" id="button_picker_<%=store.get('id')%>">
+	</div>
+
+	<div class="choice_name">
+		<%=helpers.truncate(store.get('name'),12,".")%>
+	</div>
+	
+  <img src="<%=store.get('large_url')%>" 
+      class='slim_shadow_dark'/>
+
+</div> <!-- store picker -->

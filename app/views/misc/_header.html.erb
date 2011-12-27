@@ -51,9 +51,12 @@
             <%=link_to "<li>#{category.id == 8 ? 
                                 'Anything!' : 
                                 category.name}</li>",
-                    new_product_path(
-                      :category => category.handle,
-                      :src => is_onboarding_create? ? 'login' : 'dropdown'),
+                    (is_onboarding_create? ?
+                      welcome_create_path(
+                        :category => category.handle) :
+                      new_product_path(
+                        :category => category.handle,
+                        :src      => 'dropdown')),
                     :class => ''%>
           <%end%>
         </ul>

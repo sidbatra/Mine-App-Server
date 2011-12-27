@@ -6,6 +6,11 @@ class ProductObserver < ActiveRecord::Observer
   # Delete affected cache values
   #
   def after_create(product)
+
+    if product.store_id
+      Shopping.add(product.user_id,product.store_id,ShoppingSource::Product)
+    end
+
     ProcessingQueue.push(
       NotificationManager,
       :new_product,
@@ -25,6 +30,7 @@ class ProductObserver < ActiveRecord::Observer
     if product.store_id_changed? 
       if product.store_id
         Store.increment_counter(:products_count,product.store_id) 
+        Shopping.add(product.user_id,product.store_id,ShoppingSource::Product)
       end
 
       if product.store_id_was
