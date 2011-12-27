@@ -22,7 +22,7 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
   render: function() {
     var self = this;
 
-    this.el.append(Denwen.JST['products/product_picker']({product:this.model}));
+    this.el.append(Denwen.JST['products/picker']({product:this.model}));
     $(this.toggleEl).click(function(){self.clicked();});
   },
 
