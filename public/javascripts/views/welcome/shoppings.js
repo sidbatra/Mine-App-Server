@@ -69,14 +69,12 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
   //
   addToStoresPicked: function(storeID) {
     this.storesPicked.push(storeID);
-    console.log(this.storesPicked);
   },
 
   // Fired when a store is unpicked
   //
   removeFromStoresPicked: function(storeID) {
     this.storesPicked = _.without(this.storesPicked,storeID);
-    console.log(this.storesPicked);
   },
 
   // Form submitted callback
