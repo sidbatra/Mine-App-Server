@@ -179,10 +179,11 @@ class UserMailer < ActionMailer::Base
   def self.method_missing(method,*args)
 
     if method.to_s.match(/^deliver_(.*)/)
-      mail      = self.send("create_#{$1}".to_sym,*args) 
-      recipient = User.find_by_email(mail['to'].to_s)
+      mail = self.send("create_#{$1}".to_sym,*args) 
 
-      if RAILS_ENV == 'production' || recipient.is_admin
+      if RAILS_ENV == 'production' || 
+                       User.find_by_email(mail['to'].to_s).is_admin
+
         response    = @@custom_amazon_ses_mailer.send_raw_email(mail)
         xml         = XmlSimple.xml_in(response.to_s)
 
