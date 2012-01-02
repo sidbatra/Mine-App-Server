@@ -28,7 +28,7 @@ a {
 body {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	font-size: 16px;
-	background: #666666 url('/images/home_glow_tiled.jpg') fixed;
+	background: #666666 url('/images/home_glow_dark_tiled.jpg') fixed;
 	background-position: center 38px;
 	-webkit-font-smoothing: antialiased;
 	
