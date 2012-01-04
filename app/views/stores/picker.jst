@@ -3,11 +3,11 @@
 	<div class="button_picker" id="button_picker_<%=store.get('id')%>">
 	</div>
 
-	<div class="choice_name">
-		<%=helpers.truncate(store.get('name'),12,".")%>
+	<div class="right">
+		<%=helpers.truncate(store.get('name'),30,".")%>
 	</div>
 	
-  <img src="<%=store.get('large_url')%>" 
-      class='slim_shadow_dark'/>
+  <img src="<%=store.get('large_url')%>" class="left_img"/>
+
 
 </div> <!-- store picker -->

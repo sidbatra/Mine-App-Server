@@ -1,15 +1,35 @@
-<div id="pic_bg">
+<div id="background">
+	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
+</div>
+
+<div id="pic_bg" class="fixed_bg">
+
+	<div id='header_onboarding'>
+	
+		<div class='navbar'>
+	
+			 <%=image_tag('oncloset_logo_30_white.png', 
+			 		:alt => CONFIG[:name],
+			 		:class => "logo")%>
+			 		
+			<ol id='indicators'>
+	        <li class='first on'></li>
+	        <li class='second'></li>
+	        <li class='third'></li>
+	    </ol> 		
+	
+		</div>
+	
+	</div>
 
 	<div id="container">
 
-		<div id="box" class="rounded_3">
-			<p class="heading">
-				<span class="title">
-          Click 3 of your favorite stores
-        </span><br />
-				So we can suggest other shoppers to follow!
-			</p>
+			<div class="heading">
+				Click a few stores you shop at <br />
+				so we can suggest other shoppers to follow:
+			</div>
 	      
+	    <table> 
 	    <div id="stores">
 	    </div>
 	    
@@ -19,16 +39,14 @@
 		      <%=hidden_field_tag :id, WelcomeFilter::Stores%>
 		      <%=hidden_field_tag :store_ids%>
 		      <%=submit_tag '',
-		                    :class  => 'continue_wide',
+		                    :class  => 'follow_people',
 		                    :name   => nil%>
+		      <div class="button_shadow"></div>
 		    <%end%>
-	    
-    	</div> <!-- box -->
 
 	</div> <!-- container -->
 
 </div> <!-- pic_bg -->
-	
 
 
 <%content_for :javascript do%>
