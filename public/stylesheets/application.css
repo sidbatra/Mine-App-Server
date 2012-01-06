@@ -512,13 +512,15 @@ body {
 #pic_bg #container .follow_people:hover { background-position: 0 -240px; }
 #pic_bg #container .follow_people:active { background-position: 0 -300px; }
 
+#pic_bg #container .follow_people.disactivated { background-position: 0 -360px; }
+
 #pic_bg #container .add_1st_item { 
-	background-position: 0 -360px;
+	background-position: 0 -420px;
 	margin-bottom: 40px;  
 
 }
-#pic_bg #container .add_1st_item:hover { background-position: 0 -420px; }
-#pic_bg #container .add_1st_item:active { background-position: 0 -480px; }
+#pic_bg #container .add_1st_item:hover { background-position: 0 -480px; }
+#pic_bg #container .add_1st_item:active { background-position: 0 -540px; }
 
 #pic_bg #container #users .picker_choice .tiles {
 	position: absolute;
