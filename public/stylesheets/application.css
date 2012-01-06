@@ -473,7 +473,7 @@ body {
 	display: block;
 }
 
-#pic_bg #container .continue,
+#pic_bg #container .pick_top_stores,
 #pic_bg #container .follow_people,
 #pic_bg #container .add_1st_item  {
 	width: 320px;
@@ -489,14 +489,14 @@ body {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
 }
 
-#pic_bg #container .continue { 
+#pic_bg #container .pick_top_stores { 
 	background-position: 0 0;
 	margin-top: 20px; 
 	margin-bottom: 80px; 
 }
 
-#pic_bg #container .continue:hover { background-position: 0 -60px; }
-#pic_bg #container .continue:active { background-position: 0 -120px; }
+#pic_bg #container .pick_top_stores:hover { background-position: 0 -60px; }
+#pic_bg #container .pick_top_stores:active { background-position: 0 -120px; }
 
 #pic_bg #container .follow_people { 
 	background-position: 0 -180px;

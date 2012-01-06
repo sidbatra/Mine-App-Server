@@ -28,15 +28,16 @@
 
 			<div class="heading unselectable">
         Welcome to OnCloset, <%=current_user.first_name%>!<br />
-				A showcase of what you and your friends are buying:
+				A showcase of what you and your friends are buying
 				<!-- your shoes, clothes, accessories and more! -->
 			</div>
 
-      <%=image_tag 'welcome_gold.gif', :style => "margin-top:-10px;"%>
+      <%=image_tag 'welcome.png', :style => 'margin: -10px 0px 0px -50px;'%>
 			
       <%=link_to '',
                   welcome_path(WelcomeFilter::Stores),
-                  :class => 'continue'%>
+                  :class => 'pick_top_stores',
+                  :style => 'position: relative; top: -230px;'%>
 	
 	</div> <!-- container -->
    
