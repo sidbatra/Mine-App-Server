@@ -29,9 +29,17 @@
 			<div class="heading unselectable">
 				Success! Here are a few shoppers<br />
 				you're following to get you started.</div>
+
+	    	<%form_tag '/welcome',
+              :id   => 'new_followings' do |f|%>
+
+		      <%=hidden_field_tag :id, WelcomeFilter::Follow%>
+		      <%=hidden_field_tag :user_ids%>
 		      <%=submit_tag '',
 		                    :class  => 'add_1st_item',
 		                    :name   => nil%>
+		    <%end%>
+
 
 		  <div id="users">
 			  <%@users.each_with_index do |user,i|%>
@@ -58,39 +66,11 @@
                 <%end%>
 							</div>
 			
-							<div class="action_bar">
-							
-								 <!-- <#if(isFollowing) {%> -->
-									<a href="javascript:void(0)" id="destroy_following">
-									  <div class="checkmark_09_666666"></div> Following
-									</a>
-								<!-- <#} else {%>
-									<a href="javascript:void(0)" class="" id="create_following">
-									  Follow
-									</a>
-								<#}%> -->
-								
-							</div>
+							<div class='action_bar' id='following_box_<%=user.id%>'>
+							</div><!--suggested following box-->
 	              
 				  </div>
-
-
-            <%content_for :javascript do%>
-              <script type="text/javascript">
- /*
-                 new Denwen.Partials.Users.Following({
-                        el        : $('#following_box_<%=user.id%>'),
-                        user_id   : <%#user.id%>,
-                        following : <%#@followings[i].to_json%>});
-*/
-              </script>
-            <%end%>
-
-          <%end%>
-          
-
-
-
+        <%end%>
 		  </div> <!--users-->
 
 		</div> <!-- box -->
@@ -103,8 +83,12 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
-     mpq.track('Onboarding Following View',{
-      'source'  : '<%=@source%>'});
+
+    new Denwen.Views.Welcome.Followings({
+                     users  : <%=@users.map(&:id).to_json%>,
+                     source : '<%=@source%>',
+                         el : $('#container')});
+
   </script>
 
 <%end%>
