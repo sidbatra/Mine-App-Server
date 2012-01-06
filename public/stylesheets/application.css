@@ -473,15 +473,6 @@ body {
 	display: block;
 }
 
-#pic_bg .picker_choice:hover .button_picker.pushed {
-/* 	background-position: 0 -26px; */
-}
-
-
-
-
-
-
 #pic_bg #container .continue,
 #pic_bg #container .follow_people,
 #pic_bg #container .add_1st_item  {
@@ -518,7 +509,7 @@ body {
 
 #pic_bg #container .follow_people.disactivated { 
 	background-position: 0 -360px; 
-	cursor: normal;
+	cursor: default;
 }
 
 #pic_bg #container .add_1st_item { 
