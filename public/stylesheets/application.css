@@ -478,6 +478,7 @@ body {
 
 
 
+#pic_bg #container .continue,
 #pic_bg #container .follow_people,
 #pic_bg #container .add_1st_item  {
 	width: 320px;
@@ -493,36 +494,31 @@ body {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
 }
 
-#pic_bg #container .follow_people { 
+#pic_bg #container .continue { 
 	background-position: 0 0;
 	margin-top: 20px; 
 	margin-bottom: 80px; 
 }
 
-#pic_bg #container .follow_people:hover { background-position: 0 -60px; }
-#pic_bg #container .follow_people:active { background-position: 0 -120px; }
+#pic_bg #container .continue:hover { background-position: 0 -60px; }
+#pic_bg #container .continue:active { background-position: 0 -120px; }
+
+#pic_bg #container .follow_people { 
+	background-position: 0 -180px;
+	margin-top: 20px; 
+	margin-bottom: 80px; 
+}
+
+#pic_bg #container .follow_people:hover { background-position: 0 -240px; }
+#pic_bg #container .follow_people:active { background-position: 0 -300px; }
 
 #pic_bg #container .add_1st_item { 
-	background-position: 0 -180px;
+	background-position: 0 -360px;
 	margin-bottom: 40px;  
 
 }
-#pic_bg #container .add_1st_item:hover { background-position: 0 -240px; }
-#pic_bg #container .add_1st_item:active { background-position: 0 -300px; }
-
-
-#pic_bg #container .button_shadow {
-	width: 320px;
-	height: 6px;
-	background: url('/images/home_batch_login_shadow.png') repeat-x;
-	margin: 0 auto;
-	-moz-opacity: 0.4;
-	opacity: .40;
-	filter: alpha (opacity=40);
-}
-
-
-
+#pic_bg #container .add_1st_item:hover { background-position: 0 -420px; }
+#pic_bg #container .add_1st_item:active { background-position: 0 -480px; }
 
 #pic_bg #container #users .picker_choice .tiles {
 	position: absolute;
