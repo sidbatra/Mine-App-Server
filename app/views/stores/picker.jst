@@ -3,7 +3,9 @@
 	<div class="button_picker" id="button_picker_<%=store.get('id')%>">
 	</div>
 	
-	<img src="<%=store.get('large_url')%>" class="left_img"/>
+	<div class="left">
+		<img src="<%=store.get('large_url')%>" class="left_img"/>
+	</div>
 
 	<div class="right">
 		<%=helpers.truncate(store.get('name'),30,".")%>

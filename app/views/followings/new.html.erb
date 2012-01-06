@@ -8,7 +8,7 @@
 
 	<div id='header_onboarding'>
 	
-		<div class='navbar'>
+		<div class='navbar unselectable'>
 	
 			 <%=image_tag('oncloset_logo_30_white.png', 
 			 		:alt => CONFIG[:name],
@@ -26,7 +26,7 @@
 
 	<div id="container">
 		
-			<div class="heading">
+			<div class="heading unselectable">
 				Success! Here are a few shoppers<br />
 				you're following to get you started.</div>
 		      <%=submit_tag '',
@@ -37,7 +37,8 @@
 			  <%@users.each_with_index do |user,i|%>
 				  <div class='picker_choice unselectable'>
 		
-				  		<img src="<%=user.large_photo_url%>" class="left_img">
+				  		<div class="left" style="background-image: url('<%=user.large_photo_url%>');">
+				  		</div>
 		
 							<div class="right">
 								<%=user.first_name + ' ' + user.last_name%>

@@ -428,13 +428,17 @@ body {
 	-webkit-box-shadow: none;
 }
 
+#pic_bg .picker_choice .left {
+	width: 100px;
+	height: 100px;
+	float: left;
+	background-position: center center; /* for user imgs */
+}
+
 
 #pic_bg .picker_choice .left_img {
 	width: 100px;
 	height: 100px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
 	z-index: 1;
 }
 
@@ -512,7 +516,10 @@ body {
 #pic_bg #container .follow_people:hover { background-position: 0 -240px; }
 #pic_bg #container .follow_people:active { background-position: 0 -300px; }
 
-#pic_bg #container .follow_people.disactivated { background-position: 0 -360px; }
+#pic_bg #container .follow_people.disactivated { 
+	background-position: 0 -360px; 
+	cursor: normal;
+}
 
 #pic_bg #container .add_1st_item { 
 	background-position: 0 -420px;
