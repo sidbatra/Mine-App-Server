@@ -17,6 +17,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
     this.storesEl       = '#stores';
     this.formEl         = '#new_shopping';
     this.storeIdsEl     = '#store_ids';
+    this.buttonEl       = '#stores_picked_button';
 
     this.posting        = false;
 
@@ -69,12 +70,22 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
   //
   addToStoresPicked: function(storeID) {
     this.storesPicked.push(storeID);
+
+    if(this.storesPicked.length >= 3) { 
+      $(this.buttonEl).removeClass('disactivated');
+      $(this.buttonEl).removeAttr('disabled'); 
+    }
   },
 
   // Fired when a store is unpicked
   //
   removeFromStoresPicked: function(storeID) {
     this.storesPicked = _.without(this.storesPicked,storeID);
+
+    if(this.storesPicked.length < 3) { 
+      $(this.buttonEl).addClass('disactivated');
+      $(this.buttonEl).attr('disabled',true); 
+    }
   },
 
   // Form submitted callback
@@ -90,7 +101,6 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
     if(this.storesPicked.length < 3) {
       valid = false;
       alert("Please select atleast three stores.");
-      //analytics.StorePickerException();
     }
     else {
       $(this.storeIdsEl).val(this.storesPicked.join(","));

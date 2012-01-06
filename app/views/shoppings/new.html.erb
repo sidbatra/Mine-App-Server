@@ -35,13 +35,15 @@
 	    </div>
 	    
 	    	<%form_tag '/welcome',
-              :id   => 'new_shopping' do |f|%>
+              :id   => 'new_shopping', :hidden => true do |f|%>
 
 		      <%=hidden_field_tag :id, WelcomeFilter::Stores%>
 		      <%=hidden_field_tag :store_ids%>
 		      <%=submit_tag '',
-		                    :class  => 'follow_people disactivated',
-		                    :name   => nil%>
+		                    :class      => 'follow_people disactivated',
+                        :id         => 'stores_picked_button',
+		                    :name       => nil,
+                        :disabled   => true %>
 		    <%end%>
 
 	</div> <!-- container -->
