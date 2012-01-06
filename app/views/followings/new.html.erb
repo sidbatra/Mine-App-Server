@@ -49,10 +49,18 @@
 							</div>
 			
 							<div class="action_bar">
-								<b>✓</b> Following
+							
+								 <!-- <#if(isFollowing) {%> -->
+									<a href="javascript:void(0)" id="destroy_following">
+									  <div class="checkmark_09_666666"></div> Following
+									</a>
+								<!-- <#} else {%>
+									<a href="javascript:void(0)" class="" id="create_following">
+									  Follow
+									</a>
+								<#}%> -->
+								
 							</div>
-								<!-- as with following.jst: follow_on, follow_off 
-	              <a class='follow_off'></a>-->
 	              
 				  </div>
 
