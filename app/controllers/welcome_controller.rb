@@ -29,7 +29,13 @@ class WelcomeController < ApplicationController
                     shuffle[0..per_store] 
       end
 
-      @users = @users.uniq.shuffle[0..follows-1]
+      @users      = @users.uniq.shuffle[0..follows-1]
+
+      @shoppings  = Shopping.find_all_by_user_id(
+                              @users.map(&:id),
+                              :include    => :store,
+                              :conditions => {'stores.is_processed' => true}
+                              ).group_by{|s| s.user_id}
 
       @view     = "followings/new"
     else

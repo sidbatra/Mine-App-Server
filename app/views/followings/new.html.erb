@@ -35,17 +35,24 @@
 			  <%@users.each_with_index do |user,i|%>
 				  <div class='picker_choice unselectable'>
 		
-				  		<img src="<%=user.photo_url%>" class="left_img">
+				  		<img src="<%=user.large_photo_url%>" class="left_img">
 		
 							<div class="right">
 								<%=user.first_name + ' ' + user.last_name%>
 							</div>
 							
 							<div class="tiles">
-	              <img class="tile" src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_N2VmNjM5YjhiYzkwNTc2ZTU4NTUxMzIzOTA3ODU3.png' />
-	              <img class="tile" src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OWU1YWRmZGY4M2VhYTUwYWEyZTkxMzIzOTA3ODYw.png' />
-								<img class="tile" src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_NzEzMGVmYjQzNDgxODNmOGUzOTgxMzI0MDcwMzEx.png' />
-								<img class="tile" src='http://s3.amazonaws.com/denwen-hasit-filesystem/l_OTkzMjdiMzA3MGY3YmUzNDM1MzgxMzIzOTA3OTQx.png' />
+                <%stores = @shoppings[user.id].map(&:store)%>
+                <%subset = self.current_user.stores.select{|s| stores.include?(s)}%>
+
+                <%subset[0..3].each do |store|%>
+                  <img class="tile" src=<%=store.image_url%> />
+                <%end%>
+                <%if subset.length <= 3%>
+                  <%(stores-subset)[0..(3-subset.length)].each do |store|%>
+                    <img class="tile" src=<%=store.image_url%> />
+                  <%end%>
+                <%end%>
 							</div>
 			
 							<div class="action_bar">
