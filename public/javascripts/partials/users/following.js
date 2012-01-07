@@ -8,14 +8,16 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self        = this;
-    this.disabled   = false;
-    this.userID     = this.options.user_id;
+    var self          = this;
+    this.disabled     = false;
 
-    this.createEl   = "#create_following_" + this.userID;
-    this.destroyEl  = "#destroy_following_" + this.userID;
+    this.isSuggested  = this.options.is_suggested ? true : false; 
+    this.userID       = this.options.user_id;
 
-    if(!this.options.following) {
+    this.createEl     = "#create_following_" + this.userID;
+    this.destroyEl    = "#destroy_following_" + this.userID;
+
+    if(!this.isSuggested) {
       this.following  = new Denwen.Models.Following({id:this.userID});
       this.following.fetch(
         { 
@@ -24,8 +26,7 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
         });
     }
     else {
-      this.following = new Denwen.Models.Following(this.options.following);
-      this.preprocess(this.following);
+      this.render(true);
     }
   },
 
@@ -54,9 +55,13 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
     this.disabled = true;
     this.render(true);
 
-    this.following.save({user_id : this.userID});
-
-    analytics.followingCreated(this.userID);
+    if(!this.isSuggested) {
+      this.following.save({user_id : this.userID});
+      analytics.followingCreated(this.userID);
+    }
+    else {
+      this.trigger('addToUsersFollowed',this.userID);
+    }
   },
 
   // Destroy the current following
@@ -69,8 +74,13 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
     this.disabled = true;
     this.render(false);
 
-    this.following.destroy();
-    this.following = new Denwen.Models.Following();
+    if(!this.isSuggested) {
+      this.following.destroy();
+      this.following = new Denwen.Models.Following();
+    }
+    else {
+      this.trigger('removeFromUsersFollowed',this.userID);
+    }
 
     analytics.followingDestroyed(this.userID);
   },
@@ -96,6 +106,7 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
     this.el.html(
       Denwen.JST['followings/following']({
         isFollowing  : isFollowing,
+        isSuggested  : this.isSuggested,
         userID       : this.userID}));
 
     $(this.createEl).click(function() {self.create();});

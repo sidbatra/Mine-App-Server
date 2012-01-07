@@ -96,19 +96,9 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
       return false;
 
     this.posting  = true;
-    var valid     = true;
-    
-    if(this.storesPicked.length < 3) {
-      valid = false;
-      alert("Please select atleast three stores.");
-    }
-    else {
-      $(this.storeIdsEl).val(this.storesPicked.join(","));
-    }
+    $(this.storeIdsEl).val(this.storesPicked.join(","));
 
-    this.posting = valid;
-
-    return valid;
+    return true;
   },
 
   // Fire tracking events

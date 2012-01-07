@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   has_many :stores,       :through   => :shoppings
 
   has_many :followings, :dependent  => :destroy
-  has_many :followers,  :through    => :followings
+  has_many :followers,  :through    => :followings,
+              :source => :follower, :conditions => 'is_active = 1'
+
   has_many :inverse_followings, :class_name   => "Following", 
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
