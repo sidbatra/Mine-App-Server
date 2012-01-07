@@ -67,7 +67,6 @@ Denwen.Views.Welcome.Followings = Backbone.View.extend({
       return false;
 
     this.posting = true;
-    
     $(this.userIdsEl).val(this.userIds.join(","));
 
     return true;
