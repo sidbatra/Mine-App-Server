@@ -1169,6 +1169,7 @@ body {
 
 #chooser_title_bar {
 	position: fixed;
+	height: 32px;
 	top: 0px;
 	left: 24px;
 	right: 24px;
@@ -1185,8 +1186,17 @@ body {
 
 #chooser_title_bar .error {
 	color: #cc3333;
-	margin-top: 4px;
-	display: none;
+	font-family: 'FuturaStdBold', Arial, sans-serif;
+	height: 28px;
+	font-size: 16px;
+	position: absolute;
+	top: 48px;
+	left: 0px;
+	right: 0px;
+	line-height: 28px;
+	z-index: 9999;
+	background: url('/images/white_90.png');
+/* 	display: none; */
 }
 
 .photo_choice_cell {
@@ -1226,9 +1236,6 @@ body {
 	font-size: 14px;
 	color: white;
 	background: #cc3333;
-	-moz-opacity: 0.9;
-	opacity: .90;
-	filter: alpha (opacity=90);
 }
 
 #scroll_for_more_results {
@@ -2803,7 +2810,9 @@ display:block;
 /* --------- Auto Complete Styles ------ */
 .ac_results {
   padding: 0px;
-  border: 1px solid #cccccc;
+  border-right: 2px solid #cccccc;
+  border-bottom: 2px solid #cccccc;
+  border-left: 2px solid #cccccc;
   background-color: white;
   z-index: 99999;
 }
@@ -2814,17 +2823,22 @@ display:block;
   padding: 0;
   margin: 0;
   overflow: hidden;
+  position: relative;
 }
 
 .ac_results li {
 	cursor: pointer;
 	color: #666666;
 	margin: 0px;
-	padding: 5px 5px;
-	width: 253px;
+	padding: 5px;
 	display: block;
-	font-size: 14px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 22px;
   overflow: hidden;
+  position: relative;
+  left: 0px;
+  right: 0px;
 }
 
 .ac_results li:hover {
@@ -2839,7 +2853,7 @@ display:block;
 }
 
 .ac_over {
-	background-color: #dddddd;
+	background-color: #eeeeee;
 }
 
 /* --------- End of Auto Complete Styles --------- */
