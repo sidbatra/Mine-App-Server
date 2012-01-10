@@ -240,7 +240,7 @@ body {
 }
 
 #pic_bg #container #contacts .loading {
-	margin-top: 24px;
+	text-align: center;
 }
 
 #pic_bg #container .continue_wide,
