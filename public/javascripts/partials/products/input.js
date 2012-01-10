@@ -264,6 +264,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.priceTextEl).addClass('incomplete');
       $(this.priceDollarEl).addClass('incomplete');
 
+      $(this.priceInvalidMsgEl).html('Your best guess is fine.');
+      $(this.priceInvalidMsgEl).show();
+
       analytics.productException('No Price',this.mode);
     }
     else if(!this.isGifted() && isNaN($(this.priceEl).val())) {
@@ -273,6 +276,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.priceTextEl).addClass('incomplete');
       $(this.priceDollarEl).addClass('incomplete');
 
+      $(this.priceInvalidMsgEl).html('Invalid price.');
       $(this.priceInvalidMsgEl).show();
 
       analytics.productException('Invalid Price',this.mode);
