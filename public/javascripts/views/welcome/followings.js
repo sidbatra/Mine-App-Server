@@ -32,7 +32,7 @@ Denwen.Views.Welcome.Followings = Backbone.View.extend({
   setup: function(){
     var self = this;
 
-    this.userIds.forEach(function(userID){
+   $.each(this.userIds,function(i,userID){
       var following = new Denwen.Partials.Users.Following({
                         el           : $('#following_box_' + userID.toString()),
                         user_id      : userID,
