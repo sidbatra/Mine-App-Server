@@ -241,32 +241,7 @@ body {
 
 #pic_bg #container #contacts .loading {
 	text-align: center;
-}
-
-#pic_bg #container .continue_wide,
-#pic_bg #container .view_friends_list_wide  {
-	width: 340px;
-	height: 37px;
-	margin-top: 10px;
-	cursor: pointer;
-	display: inline-block;
-	border: 0;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-#pic_bg #container .continue_wide {
-	background: url('/images/continue_wide_red.gif') no-repeat;
-}
-
-#pic_bg #container .view_friends_list_wide {
-	background: url('/images/view_friends_list_wide_red.gif') no-repeat;
-}
-
-#pic_bg #container .continue_wide:hover,
-#pic_bg #container .view_friends_list_wide:hover {
-	background-position: 0 -50px;
+	margin-top: 32px;
 }
 
 /*
@@ -345,7 +320,7 @@ body {
 #pic_bg #container .invite_list .invite_row .invite {
 	width: 72px;
 	height: 32px;
-	background: url('/images/invite_button.png') no-repeat;
+	background: url('/images/invite_buttons.png') no-repeat;
 	position: absolute;
 	top: 4px;
 	right: 0px;
@@ -353,7 +328,7 @@ body {
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color='#999999')";
 }
 
 #pic_bg #container .invite_list .invite_row .invite:hover { background-position: 0 -32px; }
@@ -363,6 +338,24 @@ body {
 #pic_bg #container .invite_list .invite_row .name:hover {
 	cursor: pointer;
 }
+
+#pic_bg #container .view_friends_list {
+	width: 320px;
+	height: 60px;
+	cursor: pointer;
+	display: block;
+	border: none;
+	margin: 0 auto;
+	background: url('/images/invite_buttons.png') 0 -96px no-repeat;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')";
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+#pic_bg #container .view_friends_list:hover { background-position: 0 -156px; }
+#pic_bg #container .view_friends_list:active { background-position: 0 -216px; }
+
 
 #pic_bg #container #footer {
 	color: #666666;
@@ -482,7 +475,7 @@ body {
 	border: none;
 	margin-left: 270px;
 	background: url('/images/onboarding_buttons.png') no-repeat;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')";
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
@@ -815,7 +808,7 @@ body {
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')";
 }
 
 .add_to_closet:hover { background-position: 0 -210px; }
