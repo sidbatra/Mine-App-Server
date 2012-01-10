@@ -1196,7 +1196,7 @@ body {
 	line-height: 28px;
 	z-index: 9999;
 	background: url('/images/white_90.png');
-/* 	display: none; */
+	display: none;
 }
 
 .photo_choice_cell {
