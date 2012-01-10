@@ -12,8 +12,6 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
   initialize: function() {
     var self            = this;
 
-    this.source         = this.options.source;
-
     this.storesEl       = '#stores';
     this.formEl         = '#new_shopping';
     this.storeIdsEl     = '#store_ids';
@@ -75,6 +73,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
       $(this.buttonEl).removeClass('disactivated');
       $(this.buttonEl).removeAttr('disabled'); 
     }
+    analytics.storePicked();
   },
 
   // Fired when a store is unpicked
@@ -86,6 +85,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
       $(this.buttonEl).addClass('disactivated');
       $(this.buttonEl).attr('disabled',true); 
     }
+    analytics.storeUnpicked();
   },
 
   // Form submitted callback
@@ -104,7 +104,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-
+    analytics.onboardingStoresView();
   }
 
 });

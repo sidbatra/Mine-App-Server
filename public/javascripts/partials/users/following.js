@@ -57,11 +57,12 @@ Denwen.Partials.Users.Following = Backbone.View.extend({
 
     if(!this.isSuggested) {
       this.following.save({user_id : this.userID});
-      analytics.followingCreated(this.userID);
     }
     else {
       this.trigger('addToUsersFollowed',this.userID);
     }
+
+    analytics.followingCreated(this.userID);
   },
 
   // Destroy the current following

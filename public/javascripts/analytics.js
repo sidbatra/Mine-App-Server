@@ -280,6 +280,18 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Item Deleted");
   },
 
+  // User picks a store on the store onboarding page 
+  //
+  storePicked: function() {
+    mpq.track("Store Picked");
+  },
+
+  // User unpicks a store on the store onboarding page 
+  //
+  storeUnpicked: function() {
+    mpq.track("Store Unpicked");
+  },
+
   // Product's on a user's profile are filtered
   //
   userProfileFiltered: function(category,isCurrentUser,id) {
@@ -365,6 +377,18 @@ Denwen.Analytics = Backbone.Model.extend({
       'name'    : category_name,
       'source'  : source
       });
+  },
+
+  // User lands on stores picker view during onboarding
+  //
+  onboardingStoresView: function() {
+    mpq.track("Onboarding Stores View");
+  },
+
+  // User lands on followings view during onboarding
+  //
+  onboardingFollowingView: function() {
+    mpq.track("Onboarding Following View");
   },
 
   // User lands on product new view during onboarding

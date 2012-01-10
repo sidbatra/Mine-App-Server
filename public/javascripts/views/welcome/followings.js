@@ -12,7 +12,6 @@ Denwen.Views.Welcome.Followings = Backbone.View.extend({
   initialize: function() {
     var self            = this;
 
-    this.source         = this.options.source;
     this.userIds        = $.makeArray(this.options.users);
 
     this.formEl         = '#new_followings';
@@ -75,7 +74,7 @@ Denwen.Views.Welcome.Followings = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-
+    analytics.onboardingFollowingView();
   }
 
 });
