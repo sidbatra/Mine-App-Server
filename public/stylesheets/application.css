@@ -476,10 +476,10 @@ body {
 	border: none;
 	margin-left: 270px;
 	background: url('/images/onboarding_buttons.png') no-repeat;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#999999')";
 }
 
 #pic_bg #container .pick_top_stores { 
@@ -622,9 +622,27 @@ body {
 	float: left;
 }
 
-.creation_input.incomplete, .step_title.incomplete {
+/* incomplete exception styling */
+.creation_input.incomplete { 
+	border-color: #cc3333; 
+	background: #f5d6d6;
+}
+.step_title.incomplete { color: #cc3333; }
+.creation_dollar.incomplete {
 	border-color: #cc3333;
 	color: #cc3333;
+	background: #f5d6d6;
+}
+
+.price_invalid {
+	height: 50px;
+	line-height: 50px;
+	color: #cc3333;
+	width: 150px;
+	padding-left: 12px;
+	float: left;
+	margin-top: 8px;
+	display: none;
 }
 
 .creation_search_chooser {
@@ -696,7 +714,7 @@ body {
 }
 
 #store_box, #price_box { position: relative; }
-#price_box { width: 150px; }
+#price_box { width: 500px; }
 
 .creation_checkbox_right { position: absolute; top: 0px; right: 5px; color: #999999; }
 .creation_checkbox_right:hover, .creation_checkbox_right_active { color: #666666; }
@@ -1153,7 +1171,6 @@ body {
 	top: 0px;
 	left: 24px;
 	right: 24px;
-	height: 32px;
 	padding: 8px 0;
 	line-height: 32px;
 	text-align: center;
@@ -1163,6 +1180,12 @@ body {
 	z-index: 9999;
 	border-top: 24px solid #333333;
 	border-bottom: 1px solid #dddddd;
+}
+
+#chooser_title_bar .error {
+	color: #cc3333;
+	margin-top: 3px;
+	display: none;
 }
 
 .photo_choice_cell {
