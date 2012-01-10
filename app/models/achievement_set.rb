@@ -1,12 +1,6 @@
 class AchievementSet < ActiveRecord::Base
 
   #-----------------------------------------------------------------------------
-  # Constants
-  #-----------------------------------------------------------------------------
-  STAR_USERS    = 'star_users'
-  TOP_SHOPPERS  = 'top_shoppers'
-
-  #-----------------------------------------------------------------------------
   # Associations
   #-----------------------------------------------------------------------------
   has_many :achievements, :dependent => :destroy
@@ -15,8 +9,7 @@ class AchievementSet < ActiveRecord::Base
   # Validations
   #-----------------------------------------------------------------------------
   validates_presence_of   :owner_id
-  validates_presence_of   :for
-  validates_inclusion_of  :for, :in => [STAR_USERS,TOP_SHOPPERS]
+  validates_inclusion_of  :for, :in => AchievementSetFor.values
 
   #-----------------------------------------------------------------------------
   # Class methods
@@ -29,7 +22,9 @@ class AchievementSet < ActiveRecord::Base
                         :owner_id => owner_id,
                         :for      => type)
 
-    raise IOError, "No achievements added to set" unless user_ids.present?
+    raise IOError, "Malformed arguments" unless user_ids.present? && 
+                                                entities.present? && 
+                                                entities.length == user_ids.length
 
     entities.zip(user_ids).each do |entity,user_id|
       achievement_set.achievements.build(
@@ -42,33 +37,30 @@ class AchievementSet < ActiveRecord::Base
     achievement_set
   end
 
-  # Add an achievement set for star users
+  # Fetch achievers for last set owned by the given id and for the given
+  # purpose
   #
-  def self.add_star_users(users)
-    add(0,STAR_USERS,users,users.map(&:id))
+  def self.achievers_for_set_owned_by(achievement_set_for,owner_id)
+    set = find_last_by_for_and_owner_id(achievement_set_for,owner_id)
+    set ? Achievement.achievers(set.id) : []
   end
 
-  # Add an achievement set for top shoppers 
-  # of a given store
+  # Extend the method_missing method for a uniform interface
+  # to fetch achievers of current achievement sets
   #
-  def self.add_top_shoppers(store_id,users)
-    add(store_id,TOP_SHOPPERS,users,users.map(&:id))
-  end
+  def self.method_missing(method,*args)
 
-  # Fetch the star users from the database. This set of users is the
-  # one which will be displayed on the website at any given time
-  #
-  def self.star_users
-    achievement_set = find_last_by_for(STAR_USERS)
-    achievement_set ? Achievement.achievers(achievement_set.id) : []
-  end
+    if method.to_s.match(/^current_(.*)/)
+      type = AchievementSetFor.class_eval($1.titleize.gsub(' ',''))
 
-  # Fetch the top shoppers for a given store from the database. This set of
-  # top shoppers will be displayed on the website at any given time
-  #
-  def self.top_shoppers(store_id)
-    achievement_set = find_last_by_for_and_owner_id(TOP_SHOPPERS,store_id)
-    achievement_set ? Achievement.achievers(achievement_set.id) : []
+      achievers_for_set_owned_by(
+        type,
+        type == AchievementSetFor::StarUsers ? 
+                  AchievementSetOwner::Automated : 
+                  args.first)
+    else
+      super
+    end
   end
 
 
@@ -98,18 +90,6 @@ class AchievementSet < ActiveRecord::Base
   #
   def expired?
     self.expired_at.present?
-  end
-
-  # Is set for star users
-  #
-  def for_star_users?
-    self.for == STAR_USERS
-  end
-
-  # Is set for top shoppers
-  #
-  def for_top_shoppers?
-    self.for == TOP_SHOPPERS
   end
 
 end

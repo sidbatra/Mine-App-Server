@@ -7,36 +7,46 @@
   
 
   <!-- query -->
-	<div class="step">
-		<p class="step_title">
-      <%=placeholders[:query]%>
-    </p>
+	<div class='step' id='query_box'>
+	
+		<%if !onboarding%>
+			<p id='query_text' class='step_title'>
+	      <%=placeholders[:query]%>
+	    </p>
+	  <%end%>
 
     <%=f.text_field :query,
-        :class    => "creation_input creation_search"%><input id="product_search" value="Go" title="Search" type="button" alt="Search">
+        :class    => "creation_input creation_search"%><input id='product_search' class='find_photo' value='' title='Search' type='button' alt='Search'>
 		
-		<p class="step_example">
-      <%=placeholders[:query_eg]%>
-    </p>
+		<%if !onboarding%>
+			<p class='step_example'>
+	      <%=placeholders[:query_eg]%>
+	    </p>
+	  <%end%>
+	  
     <%=blocker%>
+    
 	</div> 
   <!-- query step -->
-	
 
-	<div id="product_selection" class="step rounded_3">
+	<div class='create_photo_box'>
+		<div class='change_photo_overlay' id='product_change_photo'>
+		</div>
+		<div id='product_selection' class='step rounded_3'>
+		</div>
 	</div>
 
   <%if onboarding%>
     <div id='onboarding'>
-      <%=image_tag 'create_suggestion.png',:height => 130%>
+      <%=image_tag 'create_suggestion.png', :class => "create_suggestion unselectable"%>
     </div>
   <%end%>
 
-  <div id='extra_steps' style="display:<%=onboarding ? 'none' : ''%>">
+  <div id='extra_steps' style='display:<%=onboarding ? 'none' : ''%>'>
 
     <!-- title -->
-    <div class="step">
-      <p class="step_title">
+    <div class='step'>
+      <p id='title_text' class='step_title'>
         <%=placeholders[:title]%>
       </p>
 
@@ -49,7 +59,7 @@
 
 
     <!-- store -->
-    <div class="step" id='store_box'>
+    <div class='step' id='store_box'>
     
       <div id='is_store_unknown_box' class='creation_checkbox_right'>
         <%=f.check_box :is_store_unknown%>
@@ -62,7 +72,9 @@
 
       <%=f.text_field :store_name,
                   :class    => "creation_input"%>
+      
       <%=blocker%>
+                        
     </div> 
     <!-- store step -->  
 
@@ -70,12 +82,12 @@
     <!-- price -->
     <div class="step" id='price_box'>
 
-      <div id='is_gift_box' class="creation_checkbox_right">
+      <div id='is_gift_box' class='creation_checkbox_right gift'>
         <%=f.check_box :is_gift%>
         <%=f.label :is_gift,"Gift"%>
       </div>
 
-      <p id='price_text' class="step_title">
+      <p id='price_text' class='step_title'>
         Price
       </p>
       
@@ -85,6 +97,10 @@
 
       <%=f.text_field :price,
                   :class    => "creation_input creation_price"%>
+                  
+      <div id='price_invalid_msg' class='price_invalid'>
+      </div>
+                 
       <%=blocker%>
     </div> 
     <!-- price step -->
@@ -93,7 +109,7 @@
     <%=link_to  'Add an optional review', 
                 'javascript:void(0)',
                 :id    => 'endorsement_initiate',
-                :class => 'edit_light_gray_inverse_14'
+                :class => 'edit_555555_18 add_review'
                 %>
 
     <!-- endorsement step-->
@@ -113,8 +129,8 @@
     <!-- endorsement step -->
 
 
-    <%=submit_tag "Add to your closet",
-                  :class  => "add_to_closet_button button_red slim_shadow_dark",
+    <%=submit_tag "",
+                  :class  => "add_to_closet",
                   :name   => nil%>
     
     <%=blocker%>

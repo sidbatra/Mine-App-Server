@@ -7,6 +7,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   events: {
     "click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
+    "click #product_change_photo"     : "search",
     "keypress #product_query"         : "queryKeystroke",
     "keypress #product_repeat_query"  : "queryKeystroke",
     "click #cancel_button"            : "cancelButtonClicked"
@@ -111,7 +112,9 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     this.images.search(query);
 
-    var search = new Denwen.Search({query:query,source:this.mode});
+    var search = new Denwen.Models.Search({
+                      query   : query,
+                      source  : this.mode == 'new' ? 0 : 1});
     search.save();
 
     this.trigger('productSearched',query);

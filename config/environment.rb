@@ -63,8 +63,7 @@ Rails::Initializer.run do |config|
                                     :store_sweeper, :following_sweeper,
                                     :product_sweeper, :collection_part_sweeper,
                                     :user_sweeper, :achievement_set_sweeper,
-                                    :achievement_sweeper, :comment_sweeper,
-                                    :action_sweeper
+                                    :comment_sweeper, :action_sweeper
 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

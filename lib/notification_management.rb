@@ -53,8 +53,8 @@ module DW
         followers         = User.find_all_by_fb_user_id(fb_friends_ids)
 
         followers.each do |follower|
-          Following.add(user_id,follower.id,'auto',false)
-          Following.add(follower.id,user_id,'auto')
+          Following.add(user_id,follower.id,FollowingSource::Auto,false)
+          Following.add(follower.id,user_id,FollowingSource::Auto)
         end
 
         Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)

@@ -1,70 +1,68 @@
+<!--
+<div id="background">
+	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
+</div>
+-->
+
 <div id="pic_bg" class="fixed_bg">
 
 	<div id="container">
-	
-		<div id="box" class="">
-		
-      <%if is_onboarding?%>
-        <%=link_to '',
-                    new_product_path(:category => 'shoes',:src => 'login'),
-                    :class => 'continue_top_right_corner'%>
-      <%end%>
-		
-			<p class="heading">
-				<span class="title">Show your friends!</span><br />
-				Adding items to your closet is cool,<br />
-				showing it to your friends is much more fun!
-			</p>
-
-			<div class="textfield_title" 
-              id="invite_textfield_title" 
-           style="display:none">
-				Search for friends by name:
+			
+			<div class="temporary_redesign_blocker" style="height: 64px">
 			</div>
 
-			<div class="invite_search_enclosure" id="invite_search_container">
-			  <%=text_field_tag 'search_box', 
-			                    nil, 
-			                    :placeholder => '', 
-			                    :class => 'textfield',
-			                    :hidden => :true%>
+			<p class="heading">
+				Invite your friends to OnCloset!<br />
+				You'll follow each other automatically.
+			</p>
+			
+			<div class="new_invite">
+
+				<div class="textfield_title" 
+	              id="invite_textfield_title" 
+	           style="display:none">
+					Search for friends by name:
+				</div>
 	
-	      <%=link_to  '',
-	                  'javascript:void(0)',
-	                  :id    => 'x_button',
-	                  :class => 'x-text',
-	                  :style => 'display:none'%>
-      </div>        
+				<div class="invite_search_enclosure" id="invite_search_container">
+				  <%=text_field_tag 'search_box', 
+				                    nil, 
+				                    :placeholder => '', 
+				                    :class => 'textfield',
+				                    :hidden => :true%>
 		
-		  <div id="contacts">
-		  	<div class="loading" id="loading_spinner">
-          <%=image_tag 'spinner_dark_bg.gif'%>
-		  	</div>
-		  </div>
-
-      <div id='multi_invite_box' style="display:none">
+		      <%=link_to  '',
+		                  'javascript:void(0)',
+		                  :id    => 'x_button',
+		                  :class => 'x-text',
+		                  :style => 'display:none'%>
+	      </div>        
+			
+			  <div id="contacts">
+			  	<div class="loading" id="loading_spinner">
+	          <%=image_tag 'spinner_light_bg.gif'%>
+			  	</div>
+			  </div>
+	
+	      <div id='multi_invite_box' style="display:none">
+	      
+					<%=link_to  '',
+		        'javascript:void(0)',
+	          :id    => 'invite_backup_button',
+	          :class => 'view_friends_list'%>
+	
+	        <!-- fb multi invite dialog for edge cases -->
+	      </div>
       
-				<%=link_to  '',
-	        'javascript:void(0)',
-          :id    => 'invite_backup_button',
-          :class => 'view_friends_list_wide'%>
-
-        <!-- fb multi invite dialog for edge cases -->
-      <div>
-		  
-		</div> <!-- box -->
-		 
+      </div> <!-- new_invite -->		
+       
 	</div> <!-- container -->
 	
 </div> <!-- pic_bg -->
 
 
 <%content_for :javascript do%>
-  <%#render :partial => "misc/feedback" unless is_onboarding?%>
-
   <script type="text/javascript">
-
     new Denwen.Views.Invites.New({source:'<%=@source%>',el:'#container'});
-
   </script>
 <%end%>

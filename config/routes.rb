@@ -3,9 +3,9 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller  => :home,
             :action     => :show
 
-  map.welcome   '/welcome',
-                :controller => :welcome,
-                :action     => :show
+  map.welcome_create '/welcome/create',
+                :controller => :products,
+                :action     => :new
 
   map.home      '/home/:id',
                 :controller => :home,
@@ -75,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create,:index]
 
   map.resources :followings,
-                :only => [:new,:create,:show,:destroy]
+                :only => [:create,:show,:destroy]
 
   map.resources :searches,
                 :only => [:create]
@@ -89,6 +89,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :collections,
                 :only => [:create,:new]
 
+  map.resources :welcome,
+                :only       => [:show,:create],
+                :controller => :welcome
 
   # Admin routes
   map.resources :admin_users, 

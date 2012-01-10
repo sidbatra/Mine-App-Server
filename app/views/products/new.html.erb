@@ -1,21 +1,50 @@
-<div id="pic_bg">
+<!--
+<div id="background">
+	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
+</div>
+-->
 
-	<div id="container">
+<div id="pic_bg" class="fixed_bg">
+	
+		<%if is_onboarding? && @category.name == 'Shoes'%>
+			<div id='header_onboarding'>
+			
+				<div class='navbar unselectable'>
+			
+					 <%=image_tag('oncloset_logo_30_white.png', 
+					 		:alt => CONFIG[:name],
+					 		:class => "logo")%>
+					 		
+					<ol id='indicators'>
+			        <li class='first'></li>
+			        <li class='second'></li>
+			        <li class='third on'></li>
+			    </ol> 		
+			
+				</div>
+			
+			</div>
+		<%end%>
+			
+			<div id='container'>
 
-		<div id="box">
-		
-      <%if is_onboarding? && @category.name == 'Shoes'%>
-        <p class="heading">
-            <span class="title">Add your first item!</span><br />
-            
-        </p>
-      <%end%>
-		
+		<%if is_onboarding? && @category.name == 'Shoes'%>
+      <div class='heading unselectable' id = 'onboarding_create_msg'>
+      	To start your closet, type the name<br /> 
+      	of the favorite pair of shoes you own:
+      </div>
+    <%else%>
+    
+    	<div class="temporary_redesign_blocker" style="height: 72px">
+			</div>
+			
+		<%end%>
+
 
 		<!-- item -->
 		
 		  <%form_for @product,
-		        :html => {:class => 'new_product'} do |f|%>
+		        :html => {:class => 'new_product unselectable'} do |f|%>
 		
 		    <%=render :partial  => 'input', 
 		              :locals   => {
@@ -25,13 +54,7 @@
                     :onboarding   => is_onboarding? && @category.name == 'Shoes'}%>
 		
 		  <%end%> <!-- form -->
-  
-		</div> <!-- box -->
-
-		<div id="footer">
-			<%=CONFIG[:name]%> © 2011 · <%=email_link%>
-		</div>
-	
+		
 	</div> <!-- container -->
    
 </div> <!-- pic_bg -->

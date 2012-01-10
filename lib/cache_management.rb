@@ -11,7 +11,7 @@ module DW
       # Wraps around rails cache fetch
       #
       def self.fetch(key,&block)
-        if RAILS_ENV != 'development' || ENV['CACHE_IN_DEV'] == 'true'
+        if active?
           Rails.cache.fetch(key,&block)
         else
           yield if block_given?
@@ -21,13 +21,27 @@ module DW
       # Delete particular key from the cache
       #
       def self.delete(key)
-        Rails.cache.delete(key)
+        if active?
+          Rails.cache.delete(key)
+        else
+          ActiveRecord::Base.logger.info "Expired : " + key
+        end
       end
 
       # Wraps around rails cache clear
       #
       def self.clear
-        Rails.cache.clear
+        if active?
+          Rails.cache.clear
+        else
+          ActiveRecord::Base.logger.info "Expired : all"
+        end
+      end
+
+      # Decides whether caching is on 
+      #
+      def self.active?
+        RAILS_ENV != 'development' || ENV['CACHE_IN_DEV'] == 'true'
       end
 
     end #cache

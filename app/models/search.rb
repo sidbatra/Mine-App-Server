@@ -11,7 +11,7 @@ class Search < ActiveRecord::Base
   validates_presence_of   :query
   validates_presence_of   :user_id
   validates_presence_of   :source
-  validates_inclusion_of  :source, :in => %w(new edit)
+  validates_inclusion_of  :source, :in => SearchSource.values
 
   #-----------------------------------------------------------------------------
   # Class methods

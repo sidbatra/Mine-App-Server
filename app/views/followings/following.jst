@@ -1,9 +1,21 @@
-<%if(isFollowing) {%>
-	<a href="javascript:void(0)" 
-      class="follow_on slim_shadow_dark" 
-      id="destroy_following_<%=userID%>"></a>
+<%if(!isSuggested) {%>
+  <%if(isFollowing) {%>
+    <a href="javascript:void(0)" 
+        class="follow_on slim_shadow_dark" 
+        id="destroy_following_<%=userID%>"></a>
+  <%} else {%>
+    <a href="javascript:void(0)" 
+        class="follow_off slim_shadow_dark" 
+        id="create_following_<%=userID%>"></a>
+  <%}%>
 <%} else {%>
-	<a href="javascript:void(0)" 
-      class="follow_off slim_shadow_dark" 
-      id="create_following_<%=userID%>"></a>
+  <%if(isFollowing) {%>
+    <a href="javascript:void(0)" id="destroy_following_<%=userID%>">
+      <div class="checkmark_09_666666"></div> Following
+    </a>
+  <%} else {%>
+    <a href="javascript:void(0)" id="create_following_<%=userID%>">
+      Follow
+    </a>
+  <%}%>
 <%}%>

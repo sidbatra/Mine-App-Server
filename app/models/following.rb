@@ -11,7 +11,7 @@ class Following < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   validates_presence_of   :user_id
   validates_presence_of   :follower_id
-  validates_inclusion_of  :source, :in => %w(suggestion manual auto)
+  validates_inclusion_of  :source, :in => FollowingSource.values
 
   #-----------------------------------------------------------------------------
   # Attributes
@@ -24,7 +24,12 @@ class Following < ActiveRecord::Base
 
   # Add a new following
   #
-  def self.add(user_id,follower_id,source = 'manual',send_email = true)
+  def self.add(
+        user_id,
+        follower_id,
+        source = FollowingSource::Manual,
+        send_email = true)
+
     following = find_or_create_by_user_id_and_follower_id(
                   :user_id      => user_id,
                   :follower_id  => follower_id,

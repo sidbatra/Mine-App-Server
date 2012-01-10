@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     self.current_user = @user
     set_cookie
     target_url = @user.is_fresh ? 
-                  welcome_path(:src => 'login') :
+                  welcome_path(WelcomeFilter::Learn) :
                   user_path(@user.handle,:src => 'login')
 
   rescue => ex
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
       return
     end
 
-    @user         = User.find_by_handle(params[:handle])
+    @user = User.find_by_handle(params[:handle])
   end
   
   # Fetch group of users based on different filters 
@@ -71,10 +71,10 @@ class UsersController < ApplicationController
       @users      = User.find(params[:id]).ifollowers
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :stars
-      @achievers  = AchievementSet.star_users
+      @achievers  = AchievementSet.current_star_users
       @key        = KEYS[:star_users]
     when :top_shoppers
-      @achievers  = AchievementSet.top_shoppers(params[:store_id])
+      @achievers  = AchievementSet.current_top_shoppers(params[:store_id])
       @key        = KEYS[:store_top_shoppers] % params[:store_id]
     end
 

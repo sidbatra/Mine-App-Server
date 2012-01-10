@@ -16,9 +16,13 @@ class User < ActiveRecord::Base
   has_many :invites,      :dependent => :destroy
   has_many :collections,  :dependent => :destroy
   has_many :achievements, :dependent => :destroy
+  has_many :shoppings,    :dependent => :destroy
+  has_many :stores,       :through   => :shoppings
 
   has_many :followings, :dependent  => :destroy
-  has_many :followers,  :through    => :followings
+  has_many :followers,  :through    => :followings,
+              :source => :follower, :conditions => 'is_active = 1'
+
   has_many :inverse_followings, :class_name   => "Following", 
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
@@ -42,24 +46,21 @@ class User < ActiveRecord::Base
                     :products   => {:created_at => 1.day.ago..Time.now},
                     :gender_ne  => 'male'},
                   :group      => "users.id", 
-                  :order      => "count(users.id) DESC, users.created_at DESC",
-                  :limit      => 20
-  named_scope :top_shoppers, lambda {|store_id| {
-                              :joins        => :products,
-                              :conditions   => {
-                                :products   => {
-                                    :store_id   => store_id,
-                                    :created_at => 20.days.ago..Time.now},
-                                :gender_ne  => 'male'},
-                              :group        => "users.id", 
-                              :order        => "count(users.id) DESC, users.id",
-                              :limit        => 20}}
+                  :order      => "count(users.id) DESC, users.created_at DESC"
 
-  named_scope :to_follow, :conditions => {
-                                :products_count_gte => 15, 
-                                :updated_at         => 30.days.ago..Time.now,
-                                :gender_ne          => 'male',
-                                :birthday_gte       => 26.years.ago}
+  named_scope :top_shoppers, lambda {|store_id| {
+                :select       => "users.*,count(users.id) as products_at_store",
+                :joins        => :products,
+                :conditions   => {
+                  :products_count_gt => 9,
+                  :products   => {
+                      :store_id   => store_id,
+                      :created_at => 30.days.ago..Time.now},
+                  :gender_ne  => 'male'},
+                :group        => "users.id HAVING products_at_store > 1", 
+                :order        => "products_at_store DESC,users.id"}}
+
+  named_scope :limit, lambda {|limit| {:limit => limit}}
 
   #-----------------------------------------------------------------------------
   # Attributes

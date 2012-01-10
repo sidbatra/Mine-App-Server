@@ -1,0 +1,27 @@
+<div class="darken unselectable"></div>
+
+<div id="background">
+	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
+</div>
+
+<div id="container" class="home7 unselectable">
+	<img src="/images/home_batch_text.png" class="unselectable" />
+
+  
+     <%=link_to 	'', 
+  						fb_auth_path(:source => @origin), 
+  						:class => 'login_button',
+  						:style => ''%>
+  	
+  	<div class="login_shadow" class="unselectable">
+  		For quick sign up. No posting without asking, ever.
+  	</div>
+   
+</div> <!-- container -->
+
+<div id="footer" class="home7 unselectable">
+	<%=CONFIG[:name]%> © 2011 · <%=email_link%>
+</div>
+
+
+

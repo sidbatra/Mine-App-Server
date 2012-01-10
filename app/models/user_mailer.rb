@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
       @action     += comment.commentable.title
     end
 
-    generate_attributes(@user.id,@comment.user.id,@comment,'new_comment')
+    generate_attributes(@user.id,@comment.user.id,@comment,EmailPurpose::NewComment)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -40,9 +40,25 @@ class UserMailer < ActionMailer::Base
     @user         = following.user
 
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " is now following you!"
+                    " is now following your Closet!"
 
-    generate_attributes(@user.id,@follower.id,following,'new_follower')
+    generate_attributes(@user.id,@follower.id,following,EmailPurpose::NewFollower)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert user about new bulk followers
+  #
+  def new_bulk_followers(user,followings) 
+    @user         = user
+    @followers    = followings.map(&:follower) 
+
+    @action       = "#{@followers.length} new people are now following "\
+                    "your Closet!" 
+                    
+    generate_attributes(@user.id,0,@user,EmailPurpose::NewBulkFollowers)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -55,7 +71,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Your closet is now featured as a Top Closet!"
 
-    generate_attributes(@user.id,0,@user,'star_user')
+    generate_attributes(@user.id,0,@user,EmailPurpose::StarUser)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -70,7 +86,7 @@ class UserMailer < ActionMailer::Base
     @store        = store
     @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
 
-    generate_attributes(@user.id,0,@store,'top_shopper')
+    generate_attributes(@user.id,0,@store,EmailPurpose::TopShopper)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -103,7 +119,7 @@ class UserMailer < ActionMailer::Base
     	@action			+= "!"
     end
 
-    generate_attributes(@user.id,@actor.id,action,'new_action')
+    generate_attributes(@user.id,@actor.id,action,EmailPurpose::NewAction)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -115,7 +131,7 @@ class UserMailer < ActionMailer::Base
   def dormant(user)
     @user = user
 
-    generate_attributes(@user.id,0,@user,'dormant')
+    generate_attributes(@user.id,0,@user,EmailPurpose::Dormant)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -127,7 +143,7 @@ class UserMailer < ActionMailer::Base
   def ontoday(user)
     @user = user
 
-    generate_attributes(@user.id,0,@user,'ontoday')
+    generate_attributes(@user.id,0,@user,EmailPurpose::OnToday)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -139,7 +155,7 @@ class UserMailer < ActionMailer::Base
   def collect_more(user)
     @user = user
 
-    generate_attributes(@user.id,0,@user,'collect_more')
+    generate_attributes(@user.id,0,@user,EmailPurpose::CollectMore)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -150,7 +166,7 @@ class UserMailer < ActionMailer::Base
   #
   def invite_more(user)
     @user = user
-    generate_attributes(@user.id,0,@user,'invite_more')
+    generate_attributes(@user.id,0,@user,EmailPurpose::InviteMore)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -165,7 +181,9 @@ class UserMailer < ActionMailer::Base
     if method.to_s.match(/^deliver_(.*)/)
       mail = self.send("create_#{$1}".to_sym,*args) 
 
-      if RAILS_ENV == 'production'
+      if RAILS_ENV == 'production' || 
+                       User.find_by_email(mail['to'].to_s).is_admin
+
         response    = @@custom_amazon_ses_mailer.send_raw_email(mail)
         xml         = XmlSimple.xml_in(response.to_s)
 

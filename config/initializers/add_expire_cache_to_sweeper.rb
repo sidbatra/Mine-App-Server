@@ -8,6 +8,10 @@ class ActionController::Caching::Sweeper
   # dupicating ActionController::Base.new 
   #
   def expire_cache(key)
-    ActionController::Base.new.expire_fragment(key)
+    if Cache.active?
+      ActionController::Base.new.expire_fragment(key)
+    else
+      ActiveRecord::Base.logger.info "Expired Fragment : " + key
+    end
   end
 end

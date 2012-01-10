@@ -1,28 +1,43 @@
-<div id="pic_bg">
+<!--
+<div id="background">
+	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
+</div>
+-->
+
+<div id="pic_bg" class="fixed_bg">
+
+	<div id='header_onboarding'>
+	
+		<div class='navbar unselectable'>
+	
+			 <%=image_tag('oncloset_logo_30_white.png', 
+			 		:alt => CONFIG[:name],
+			 		:class => "logo")%>
+			 		
+			<ol id='indicators'>
+	        <li class='first'></li>
+	        <li class='second'></li>
+	        <li class='third'></li>
+	    </ol> 		
+	
+		</div>
+	
+	</div>
 
 	<div id="container">
 
-		<div id="box" class="">
-			<p class="heading">
-				<span class="title">
-          Welcome to OnCloset, <%=current_user.first_name%>!
-        </span><br />
+			<div class="heading unselectable">
+        Welcome to OnCloset, <%=current_user.first_name%>!<br />
+				A showcase of what you and your friends are buying
+				<!-- your shoes, clothes, accessories and more! -->
+			</div>
 
-				A virtual showcase of what you own —<br />
-				your shoes, clothes, accessories and more!
-			</p>
-
-      <%=image_tag 'welcome_gold.gif', :style => "margin-top:-10px;"%>
+      <%=image_tag 'welcome.png', :style => 'margin: -20px 0px 0px 0px;'%>
 			
       <%=link_to '',
-                  new_following_path(:src => 'login'),
-                  :class => 'continue_wide'%>
-		
-		</div> <!-- box -->
-
-		<div id="footer">
-			<%=CONFIG[:name]%> © 2011 · <%=email_link%>
-		</div>
+                  welcome_path(WelcomeFilter::Stores),
+                  :class => 'pick_top_stores',
+                  :style => 'position: relative; top: -210px;'%>
 	
 	</div> <!-- container -->
    

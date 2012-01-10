@@ -1,7 +1,7 @@
 // Search model stores queries made by the user
 // while searching for products
 //
-Denwen.Search = Backbone.Model.extend({
+Denwen.Models.Search = Backbone.Model.extend({
 
   // Route on the app server
   //
