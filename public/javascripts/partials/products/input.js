@@ -21,7 +21,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     this.formEl               = '#' + this.mode + '_product';
     this.queryEl              = '#product_query';
-    this.queryBoxEl           = '#product_query_box';
+    this.queryBoxEl           = '#query_box';
+    this.queryTextEl          = '#query_text';
     this.extraEl              = '#extra_steps';
     this.onboardingEl         = '#onboarding';
     this.onboardingMsgEl      = '#onboarding_create_msg';
@@ -31,12 +32,14 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.priceDollarEl        = '#creation_dollar';
     this.priceBoxEl           = '#price_box';
     this.priceTextEl          = '#price_text';
+    this.priceInvalidMsgEl    = '#price_invalid_msg';
     this.storeEl              = '#product_store_name';
     this.storeBoxEl           = '#store_box';
     this.storeTextEl          = '#store_text';
     this.websiteEl            = '#product_source_url';
     this.thumbEl              = '#product_orig_thumb_url';
     this.imageEl              = '#product_orig_image_url';
+    this.imageBrokenMsgEl     = '#product_image_broken_msg';
     this.selectionEl          = '#product_selection';
     this.photoSelectionEl     = 'product_selection_photo';
     this.endorsementEl        = '#product_endorsement';
@@ -169,6 +172,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
     $(this.onboardingMsgEl).hide();
+    $(this.imageBrokenMsgEl).hide();
 
     $(this.extraEl).show();
     $(this.titleEl).focus();
@@ -198,10 +202,10 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.thumbEl).val('');
 
     $(this.queryEl).focus();
+    $(this.queryBoxEl).show();
+    $(this.imageBrokenMsgEl).show();
 
     this.productImagesView.search();
-
-    alert("Sorry, this image no longer exists. Please select a different photo.");
 
     analytics.productImageBroken(this.mode);
   },
@@ -218,8 +222,14 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     if($(this.imageEl).val().length < 1) {
       valid = false;
-      alert("Please search for a photo of your item.");
+
+      $(this.queryEl).addClass('incomplete');
+      $(this.queryTextEl).addClass('incomplete');
       analytics.productException('No Photo',this.mode);
+    }
+    else {
+      $(this.queryEl).removeClass('incomplete');
+      $(this.queryTextEl).removeClass('incomplete');
     }
 
     if($(this.titleEl).val().length < 1) {
@@ -253,6 +263,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.priceEl).addClass('incomplete');
       $(this.priceTextEl).addClass('incomplete');
       $(this.priceDollarEl).addClass('incomplete');
+
       analytics.productException('No Price',this.mode);
     }
     else if(!this.isGifted() && isNaN($(this.priceEl).val())) {
@@ -261,12 +272,17 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.priceEl).addClass('incomplete');
       $(this.priceTextEl).addClass('incomplete');
       $(this.priceDollarEl).addClass('incomplete');
+
+      $(this.priceInvalidMsgEl).show();
+
       analytics.productException('Invalid Price',this.mode);
     }
     else {
       $(this.priceEl).removeClass('incomplete');
       $(this.priceTextEl).removeClass('incomplete');
       $(this.priceDollarEl).removeClass('incomplete');
+
+      $(this.priceInvalidMsgEl).hide();
     }
 
     this.posting = valid;
