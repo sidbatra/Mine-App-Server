@@ -86,7 +86,6 @@
 
     new Denwen.Views.Welcome.Followings({
                      users  : <%=@users.map(&:id).to_json%>,
-                     source : '<%=@source%>',
                          el : $('#container')});
 
   </script>
