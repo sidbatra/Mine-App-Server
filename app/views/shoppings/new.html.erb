@@ -35,7 +35,7 @@
 	    </div>
 	    
 	    	<%form_tag '/welcome',
-              :id   => 'new_shopping', :hidden => true do |f|%>
+              :id   => 'new_shopping', :style => 'display:none' do |f|%>
 
 		      <%=hidden_field_tag :id, WelcomeFilter::Stores%>
 		      <%=hidden_field_tag :store_ids%>
