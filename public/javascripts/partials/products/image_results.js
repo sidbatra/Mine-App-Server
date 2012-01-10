@@ -7,6 +7,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   events: {
     "click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
+    "click #product_change_photo"     : "search",
     "keypress #product_query"         : "queryKeystroke",
     "keypress #product_repeat_query"  : "queryKeystroke",
     "click #cancel_button"            : "cancelButtonClicked"

@@ -21,14 +21,19 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     this.formEl               = '#' + this.mode + '_product';
     this.queryEl              = '#product_query';
+    this.queryBoxEl           = '#product_query_box';
     this.extraEl              = '#extra_steps';
     this.onboardingEl         = '#onboarding';
+    this.onboardingMsgEl      = '#onboarding_create_msg';
     this.titleEl              = '#product_title';
+    this.titleTextEl          = '#title_text';
     this.priceEl              = '#product_price';
     this.priceDollarEl        = '#creation_dollar';
     this.priceBoxEl           = '#price_box';
+    this.priceTextEl          = '#price_text';
     this.storeEl              = '#product_store_name';
     this.storeBoxEl           = '#store_box';
+    this.storeTextEl          = '#store_text';
     this.websiteEl            = '#product_source_url';
     this.thumbEl              = '#product_orig_thumb_url';
     this.imageEl              = '#product_orig_image_url';
@@ -161,9 +166,11 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.imageEl).val(productHash['image_url']);
     $(this.thumbEl).val(productHash['thumb_url']);
 
-    $(this.extraEl).show();
+    $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
+    $(this.onboardingMsgEl).hide();
 
+    $(this.extraEl).show();
     $(this.titleEl).focus();
     $(this.titleEl).val(productHash['query'].toProperCase());
 
@@ -214,26 +221,52 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       alert("Please search for a photo of your item.");
       analytics.productException('No Photo',this.mode);
     }
-    else if($(this.titleEl).val().length < 1) {
+
+    if($(this.titleEl).val().length < 1) {
       valid = false;
-      alert("Please name your item.");
+
+      $(this.titleEl).addClass('incomplete');
+      $(this.titleTextEl).addClass('incomplete');
       analytics.productException('No Title',this.mode);
     }
-    else if(!this.isGifted() && 
+    else {
+      $(this.titleEl).removeClass('incomplete');
+      $(this.titleTextEl).removeClass('incomplete');
+    }
+
+    if(!this.isStoreUnknown() && $(this.storeEl).val().length < 1) {
+      valid = false;
+
+      $(this.storeEl).addClass('incomplete');
+      $(this.storeTextEl).addClass('incomplete');
+      analytics.productException('No Store',this.mode);
+    }
+    else {
+      $(this.storeEl).removeClass('incomplete');
+      $(this.storeTextEl).removeClass('incomplete');
+    }
+
+    if(!this.isGifted() && 
             $(this.priceEl).val().replace(/ /g,'').length < 1) {
       valid = false;
-      alert("Please enter the price of your item.");
+
+      $(this.priceEl).addClass('incomplete');
+      $(this.priceTextEl).addClass('incomplete');
+      $(this.priceDollarEl).addClass('incomplete');
       analytics.productException('No Price',this.mode);
     }
     else if(!this.isGifted() && isNaN($(this.priceEl).val())) {
       valid = false;
-      alert("Please enter a valid price.");
+
+      $(this.priceEl).addClass('incomplete');
+      $(this.priceTextEl).addClass('incomplete');
+      $(this.priceDollarEl).addClass('incomplete');
       analytics.productException('Invalid Price',this.mode);
     }
-    else if(!this.isStoreUnknown() && $(this.storeEl).val().length < 1) {
-      valid = false;
-      alert("Please enter the store where you bought this item.");
-      analytics.productException('No Store',this.mode);
+    else {
+      $(this.priceEl).removeClass('incomplete');
+      $(this.priceTextEl).removeClass('incomplete');
+      $(this.priceDollarEl).removeClass('incomplete');
     }
 
     this.posting = valid;

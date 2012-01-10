@@ -7,7 +7,7 @@
   
 
   <!-- query -->
-	<div class='step'>
+	<div class='step' id='product_query_box'>
 	
 		<%if !onboarding%>
 			<p class='step_title'>
@@ -28,8 +28,9 @@
     
 	</div> 
   <!-- query step -->
+
 	<div class='create_photo_box'>
-		<div class='change_photo_overlay'>
+		<div class='change_photo_overlay' id='product_change_photo'>
 		</div>
 		<div id='product_selection' class='step rounded_3'>
 		</div>
@@ -45,7 +46,7 @@
 
     <!-- title -->
     <div class='step'>
-      <p class='step_title'>
+      <p id='title_text' class='step_title'>
         <%=placeholders[:title]%>
       </p>
 
@@ -65,12 +66,12 @@
         <%=f.label :is_store_unknown,"Not sure"%>
       </div>
 
-      <p id='store_text' class='step_title incomplete'>
+      <p id='store_text' class='step_title'>
         Store where bought
       </p>
 
       <%=f.text_field :store_name,
-                  :class    => "creation_input incomplete"%>
+                  :class    => "creation_input"%>
       
       <%=blocker%>
                         
