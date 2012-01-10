@@ -31,6 +31,9 @@ body {
 	background: #666666 url('/images/home_glow_lite_tiled.jpg') fixed;
 	background-position: center 38px;
 	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-font-feature-settings: "kern=1";
+	-ms-font-feature-settings: "kern" 1;
 /*
 	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; 
 	background: url('/images/home_gold.jpg') no-repeat top center fixed;
