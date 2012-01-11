@@ -10,11 +10,11 @@ Denwen.Views.Products.New = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self         = this;
-    this.category    = new Denwen.Models.Category(this.options.categoryJSON);
-    this.input       = new Denwen.Partials.Products.Input({
-                                            el:$('body'),mode:'new'});
-    this.source      = this.options.source;
+    var self          = this;
+    this.category     = new Denwen.Models.Category(this.options.categoryJSON);
+    this.input        = new Denwen.Partials.Products.Input({
+                                              el:$('body'),mode:'new'});
+    this.isOnboarding = this.options.is_onboarding;
 
     this.setAnalytics();
   },
@@ -28,9 +28,8 @@ Denwen.Views.Products.New = Backbone.View.extend({
         this.category.get('name'),
         this.source);
 
-    if(this.source == 'login')
+    if(this.isOnboarding)
       analytics.productNewViewOnboarding();
   }
 
 });
-

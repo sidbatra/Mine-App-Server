@@ -67,9 +67,7 @@ class WelcomeController < ApplicationController
           ShoppingSource::User)
       end
     when WelcomeFilter::Follow
-      @success_target = welcome_path(WelcomeFilter::Create,
-                                      :category => 'shoes',
-                                      :src      => 'login')
+      @success_target = welcome_path(WelcomeFilter::Create,:category => 'shoes')
       @error_target   = welcome_path(WelcomeFilter::Follow)
 
       user_ids        = params[:user_ids].split(',')
