@@ -82,8 +82,8 @@ class WelcomeController < ApplicationController
           false)
       end
     else
-      @success_target  = welcome_path(WelcomeFilter::Learn)
-      @error_target    = welcome_path(WelcomeFilter::Learn)
+      @success_target  = welcome_path(WelcomeFilter::Stores)
+      @error_target    = welcome_path(WelcomeFilter::Stores)
 
       raise IOError, "Incorrect welcome create ID"
     end
