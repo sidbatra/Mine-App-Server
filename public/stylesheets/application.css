@@ -467,7 +467,8 @@ body {
 
 #pic_bg #container .pick_top_stores,
 #pic_bg #container .follow_people,
-#pic_bg #container .add_1st_item  {
+#pic_bg #container .add_1st_item,
+#pic_bg #container .invite_friends {
 	width: 320px;
 	height: 60px;
 	cursor: pointer;
@@ -515,6 +516,14 @@ body {
 }
 #pic_bg #container .add_1st_item:hover { background-position: 0 -480px; }
 #pic_bg #container .add_1st_item:active { background-position: 0 -540px; }
+
+#pic_bg #container .invite_friends { 
+	background-position: 0 -600px;
+	margin-bottom: 40px;  
+
+}
+#pic_bg #container .invite_friends:hover { background-position: 0 -660px; }
+#pic_bg #container .invite_friends:active { background-position: 0 -720px; }
 
 #pic_bg #container #users .picker_choice .tiles {
 	position: absolute;
