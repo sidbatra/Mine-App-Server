@@ -6,6 +6,26 @@
 
 <div id="pic_bg" class="fixed_bg">
 
+		<%if is_onboarding?%>
+		<div id='header_onboarding'>
+		
+			<div class='navbar unselectable'>
+		
+				 <%=image_tag('oncloset_logo_30_white.png', 
+				 		:alt => CONFIG[:name],
+				 		:class => "logo")%>
+				 		
+				<ol id='indicators'>
+		        <li class='first'></li>
+		        <li class='second on'></li>
+		        <li class='third'></li>
+		    </ol> 		
+		
+			</div>
+		
+		</div>
+	<%end%>
+
 	<div id="container">
 			
 			<div class="temporary_redesign_blocker" style="height: 64px">
