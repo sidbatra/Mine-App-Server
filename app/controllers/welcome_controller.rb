@@ -13,6 +13,8 @@ class WelcomeController < ApplicationController
       @view     = "show"
     when WelcomeFilter::Stores
       @view     = "shoppings/new"
+    when WelcomeFilter::Friends
+      @view     = "invites/new"
 
     when WelcomeFilter::Follow
       follows = 10
@@ -67,7 +69,7 @@ class WelcomeController < ApplicationController
           ShoppingSource::User)
       end
     when WelcomeFilter::Follow
-      @success_target = welcome_path(WelcomeFilter::Create,:category => 'shoes')
+      @success_target = welcome_path(WelcomeFilter::Friends)
       @error_target   = welcome_path(WelcomeFilter::Follow)
 
       user_ids        = params[:user_ids].split(',')

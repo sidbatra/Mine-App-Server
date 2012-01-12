@@ -63,6 +63,8 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Invites.New({source:'<%=@source%>',el:'#container'});
+    new Denwen.Views.Invites.New({
+                          is_onboarding :<%=is_onboarding?%>,
+                          el            :'#container'});
   </script>
 <%end%>
