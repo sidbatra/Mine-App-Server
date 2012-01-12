@@ -143,7 +143,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.inviteView(this.source);
+    analytics.inviteView();
 
     if(this.isOnboarding)
       analytics.inviteViewOnboarding();

@@ -344,9 +344,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Page view on the invite page
   //
-  inviteView: function(source) {
-     mpq.track(
-      'Invite View',{'source' : source});
+  inviteView: function() {
+     mpq.track('Invite View');
   },
 
   // Page view on the collections new page
