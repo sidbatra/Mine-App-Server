@@ -69,7 +69,7 @@
     new Denwen.Views.Products.New({
                         el            : $('body'),
                         categoryJSON  : <%=@category.to_json%>,
-                        source        : '<%=@source%>'});
+                        is_onboarding : <%=is_onboarding?%>});
   </script>
 
 <%end%>
