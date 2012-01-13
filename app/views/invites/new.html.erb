@@ -89,9 +89,9 @@
 
 	<%if is_onboarding?%>	
 		<div id='footer_onboarding'>
-		  <%=submit_tag '',
-		    :class  => 'add_1st_item',
-		    :name   => nil%>
+		  <%=link_to  '', 
+                  welcome_path(WelcomeFilter::Create,:category => 'shoes'),
+                  :class  => 'add_1st_item'%>
 		</div>
 	<%end%>
 
