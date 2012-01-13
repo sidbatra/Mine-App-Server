@@ -43,8 +43,9 @@ class User < ActiveRecord::Base
   named_scope :stars, 
                   :joins      => :products, 
                   :conditions => {
-                    :products   => {:created_at => 1.day.ago..Time.now},
-                    :gender_ne  => 'male'},
+                    :products           => {:created_at => 1.day.ago..Time.now},
+                    :products_count_gt  => 9,
+                    :gender_ne          => 'male'},
                   :group      => "users.id", 
                   :order      => "count(users.id) DESC, users.created_at DESC"
 

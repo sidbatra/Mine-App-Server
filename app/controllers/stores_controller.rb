@@ -20,7 +20,7 @@ class StoresController < ApplicationController
       @options  = {:only => [:handle],:methods => [:thumbnail_url]}
       @key      = KEYS[:store_top]
     when :suggest
-      @stores   = Store.processed.popular.limit(35)
+      @stores   = Store.processed.popular.limit(36)
       @options  = {:only => [:handle],:methods => [:large_url]}
       @key      = KEYS[:store_suggest]
     when :all

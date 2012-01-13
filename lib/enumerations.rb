@@ -73,6 +73,7 @@ module DW
       Learn   = 'intro'
       Stores  = 'stores'
       Follow  = 'follow'
+      Friends = 'friends'
       Create  = 'create'
     end
   end
