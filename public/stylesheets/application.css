@@ -294,7 +294,7 @@ body {
 
 #pic_bg #container .invite_list {
 	text-align: left;
-	margin: 24px auto;
+	margin: 24px auto 120px;
 }
 
 #pic_bg #container .invite_list .invite_row {
@@ -370,6 +370,10 @@ body {
 #pic_bg #stores,  #pic_bg #users {
  width: 865px;
  text-align: center;
+}
+
+#pic_bg #stores {
+	margin-bottom: 100px;
 }
 
 #pic_bg #users {
@@ -465,10 +469,10 @@ body {
 	display: block;
 }
 
-#pic_bg #container .pick_top_stores,
-#pic_bg #container .follow_people,
-#pic_bg #container .add_1st_item,
-#pic_bg #container .invite_friends {
+#pic_bg .pick_top_stores,
+#pic_bg .follow_people,
+#pic_bg .add_1st_item,
+#pic_bg .invite_friends {
 	width: 320px;
 	height: 60px;
 	cursor: pointer;
@@ -482,25 +486,25 @@ body {
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
-#pic_bg #container .pick_top_stores { 
+#pic_bg .pick_top_stores { 
 	background-position: 0 0;
 	margin-top: 20px; 
 	margin-bottom: 80px; 
 }
 
-#pic_bg #container .pick_top_stores:hover { background-position: 0 -60px; }
-#pic_bg #container .pick_top_stores:active { background-position: 0 -120px; }
+#pic_bg .pick_top_stores:hover { background-position: 0 -60px; }
+#pic_bg .pick_top_stores:active { background-position: 0 -120px; }
 
-#pic_bg #container .follow_people { 
+#pic_bg .follow_people { 
 	background-position: 0 -180px;
 	margin-top: 20px; 
 	margin-bottom: 80px; 
 }
 
-#pic_bg #container .follow_people:hover { background-position: 0 -240px; }
-#pic_bg #container .follow_people:active { background-position: 0 -300px; }
+#pic_bg .follow_people:hover { background-position: 0 -240px; }
+#pic_bg .follow_people:active { background-position: 0 -300px; }
 
-#pic_bg #container .follow_people.disactivated { 
+#pic_bg .follow_people.disactivated { 
 	background-position: 0 -360px; 
 	cursor: default;
 	box-shadow: none;
@@ -509,21 +513,37 @@ body {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(enabled=false)";
 }
 
-#pic_bg #container .add_1st_item { 
+#pic_bg .add_1st_item { 
 	background-position: 0 -420px;
-	margin-bottom: 40px;  
-
 }
-#pic_bg #container .add_1st_item:hover { background-position: 0 -480px; }
-#pic_bg #container .add_1st_item:active { background-position: 0 -540px; }
 
-#pic_bg #container .invite_friends { 
+#pic_bg .follow_people,
+#pic_bg .add_1st_item { 
+	margin: 18px auto 22px;
+}
+
+#pic_bg .add_1st_item:hover { background-position: 0 -480px; }
+#pic_bg .add_1st_item:active { background-position: 0 -540px; }
+
+#pic_bg .invite_friends { 
 	background-position: 0 -600px;
 	margin-bottom: 40px;  
-
 }
-#pic_bg #container .invite_friends:hover { background-position: 0 -660px; }
-#pic_bg #container .invite_friends:active { background-position: 0 -720px; }
+
+#pic_bg .invite_friends:hover { background-position: 0 -660px; }
+#pic_bg .invite_friends:active { background-position: 0 -720px; }
+
+#footer_onboarding {
+	height: 100px;
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	text-align: center;
+	line-height: 100px;
+	background: #e9e4e1;
+	border-top: 1px solid #A8A8A8;
+	z-index: 10000;
+}
 
 #pic_bg #container #users .picker_choice .tiles {
 	position: absolute;
