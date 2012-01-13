@@ -373,7 +373,7 @@ body {
 }
 
 #pic_bg #stores {
-	margin-bottom: 100px;
+	margin-bottom: 124px;
 }
 
 #pic_bg #users {
@@ -390,7 +390,16 @@ body {
   font-size: 0;
 }
 
-#pic_bg .picker_choice {
+#pic_bg #stores .picker_choice {
+	width: 190px;
+	height: 60px;
+	float: left;
+	position: relative;
+	background: white;
+	z-index: 1;
+}
+
+#pic_bg #users .picker_choice {
 	width: 250px;
 	height: 100px;
 	float: left;
@@ -404,7 +413,7 @@ body {
 }
 
 #pic_bg #stores .picker_choice {
-	margin: 0 18px 20px;
+	margin: 0 13px 16px;
 }
 
 #pic_bg #stores .picker_choice:hover {
@@ -412,9 +421,9 @@ body {
 	opacity: 1.00;
 	filter: alpha (opacity=100);
 	cursor:pointer;
-	box-shadow: 0px 1px 1px 5px rgba(102, 102, 102, 0.5);
-	-moz-box-shadow: 0px 1px 1px 5px rgba(255, 255, 255, 0.5);
-	-webkit-box-shadow: 0px 1px 1px 5px rgba(102, 102, 102, 0.1);
+	box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
+	-moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
+	-webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=8, Direction=180, Color='#cccccc')";
 }
 
@@ -424,21 +433,44 @@ body {
 	-webkit-box-shadow: none;
 }
 
-#pic_bg .picker_choice .left {
+#pic_bg #stores .picker_choice .left {
+	width: 60px;
+	height: 60px;
+	float: left;
+	background-position: center center; /* for user imgs */
+}
+
+#pic_bg #users .picker_choice .left {
 	width: 100px;
 	height: 100px;
 	float: left;
 	background-position: center center; /* for user imgs */
 }
 
+#pic_bg #stores .picker_choice .left_img {
+	width: 60px;
+	height: 60px;
+	z-index: 1;
+}
 
-#pic_bg .picker_choice .left_img {
+#pic_bg #users .picker_choice .left_img {
 	width: 100px;
 	height: 100px;
 	z-index: 1;
 }
 
-#pic_bg .picker_choice .right {
+#pic_bg #stores .picker_choice .right {
+	color: #555555;
+	font-size: 15px;
+	line-height: 21px;
+	text-align: left;
+	float: right;
+	width: 112px;
+	height: 42px;
+	padding: 8px 8px 10px 10px;
+}
+
+#pic_bg #users .picker_choice .right {
 	color: #555555;
 	font-size: 16px;
 	line-height: 24px;
@@ -456,9 +488,9 @@ body {
 
 #pic_bg .picker_choice .button_picker {
 	display: none;
-	width: 36px;
-	height: 26px;
-	background-image: url('/images/vx.png');
+	width: 28px;
+	height: 21px;
+	background: url('/images/v-x.png') 0 0 no-repeat;
 	z-index: 10000;
 	position: absolute;
 	bottom: 10px;
