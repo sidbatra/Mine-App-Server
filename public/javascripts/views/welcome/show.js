@@ -14,6 +14,8 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
+
+    analytics.fbConnectAccepted();
     analytics.welcomeView();
 
     if(this.source == 'login') {

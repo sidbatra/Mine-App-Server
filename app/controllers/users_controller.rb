@@ -7,20 +7,10 @@ class UsersController < ApplicationController
   # Create a user based on token received from facebook
   #
   def create
-    raise IOError, "User rejected FB connect" unless params[:code]
-
     source                    = params[:source] ? 
                                   params[:source].to_s : 
                                   "unknown"
-
-    fb_auth                   = FbGraph::Auth.new(
-                                  CONFIG[:fb_app_id],
-                                  CONFIG[:fb_app_secret])
-
-    client                    = fb_auth.client
-    client.redirect_uri       = fb_reply_url(:source => source)
-    client.authorization_code = params[:code]
-    access_token              = client.access_token!
+    access_token              = params[:access_token]
 
     raise IOError, "Error fetching access token" unless access_token
 
