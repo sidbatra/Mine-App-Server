@@ -65,7 +65,7 @@ class UserPresenter < BasePresenter
       name  = parts.first + ' ' + parts.last if parts.length > 2
     end
 
-    name + ""
+    name + "'s Closet"
   end
 
   # Full url of the user's closet

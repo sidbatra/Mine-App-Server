@@ -1,52 +1,57 @@
-<! -- welcome / stores -->
+<!--
+<div id="background">
+	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
+</div>
+-->
 
-<div id='header'>
+<div id="pic_bg" class="fixed_bg">
 
-	<div class='navbar narrow unselectable'>
-
-		 <%=image_tag('oncloset_logo_30_white.png', 
-		 		:alt => CONFIG[:name],
-		 		:class => "logo")%>
-		 		
-		<ol id='indicators'>
-        <li class='first on'></li>
-        <li class='second'></li>
-        <li class='third'></li>
-    </ol> 		
-
+	<div id='header_onboarding'>
+	
+		<div class='navbar unselectable'>
+	
+			 <%=image_tag('oncloset_logo_30_white.png', 
+			 		:alt => CONFIG[:name],
+			 		:class => "logo")%>
+			 		
+			<ol id='indicators'>
+	        <li class='first on'></li>
+	        <li class='second'></li>
+	        <li class='third'></li>
+	    </ol> 		
+	
+		</div>
+	
 	</div>
 
-</div>
+	<div id="container">
 
-<div id="container" class="narrow">
+			<div class="heading unselectable">
+				Click a few stores you shop at <br />
+				so we can suggest people to follow:
+			</div>
+	      
+	    <div id="stores">
+	    </div>
+	    
+	</div> <!-- container -->
+	
+  <div id='footer_onboarding'>
+		<%form_tag '/welcome',
+        :id   => 'new_shopping', :style => 'display:none' do |f|%>
 
-		<div class="heading unselectable">
-			Click a few stores you shop at <br />
-			so we can suggest people to follow:
-		</div>
-      
-    <div id="stores">
-    </div>
-    
-</div> <!-- container -->
-
-<div id='footer_onboarding'>
-	<%form_tag '/welcome',
-      :id   => 'new_shopping', :style => 'display:none' do |f|%>
-
-  <%=hidden_field_tag :id, WelcomeFilter::Stores%>
-  <%=hidden_field_tag :store_ids%>
-  <%=submit_tag '',
-                :class      => 'follow_people disactivated',
-                :id         => 'stores_picked_button',
-                :name       => nil,
-                :disabled   => true %>
-  <%end%>   
-</div>	      
+    <%=hidden_field_tag :id, WelcomeFilter::Stores%>
+    <%=hidden_field_tag :store_ids%>
+    <%=submit_tag '',
+                  :class      => 'follow_people disactivated',
+                  :id         => 'stores_picked_button',
+                  :name       => nil,
+                  :disabled   => true %>
+    <%end%>   
+	</div>	      
 
 
-
-
+</div> <!-- pic_bg -->
 
 
 <%content_for :javascript do%>

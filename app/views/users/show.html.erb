@@ -15,7 +15,7 @@
                                 ''}%>
 <%end%>
 
-<div id="container" class="wide">
+<div id="outer">
 
 		<!-- Welcome box to signup if user is not logged in -->
 	<%=render :partial => 'misc/welcome', 
@@ -24,14 +24,14 @@
 	            :source         => @user_presenter.source_id} unless logged_in?%>
 		
 	<!-- Main -->
-	<div id='main'>
+	<div id='inner_main'>
 			
 			<div id="shelves"></div>
 	
-	</div> <!-- main -->
+	</div> <!-- inner_main -->
 		
-	<!-- left_sidebar -->
-	<div id='left_sidebar'>
+	<!-- Side column -->
+	<div id='inner_side'>
 
 		<div class="profile_picture_box">
 		
@@ -52,32 +52,18 @@
 		<div class='username'>
       <%=@user_presenter.closet_title%>
     </div>
-	  
-	  <div class='tab triangle on'>
-	  	Owns
-	  </div>
-	  
-	  <div class='tab triangle'>
-	  	Likes
-	  </div>
-	  
-	  <div class='tab triangle'>
-	  	Wants
-	  </div>
-	  
+	    
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box_<%=@user.id%>' class='top_action_button'>
 	    </div>
 	  <%end%>
 	
-<!--
 			<div id='profile_bio'>
 		    <div id='user_byline_default'>	
-		        <#=render :partial  => 'byline',
+		        <%=render :partial  => 'byline',
 		                  :locals   => {:user => @user}%>
 		    </div>
 	    </div>
--->
 	    
 	  <div class="box tiled">
 			<div id = "ifollowers_with_msg">
@@ -99,10 +85,10 @@
 	 	<div id="top_stores_box" class="box tiled">
 	  </div> <!-- top_stores_box -->
 	 		 	
-	</div> <!-- left_sidebar -->	
+	</div> <!-- inner_side -->	
 
 
-</div> <!-- container -->
+</div> <!-- outer -->
 
 <%content_for :javascript do%>
   <%#render :partial => "misc/feedback"%>

@@ -2,15 +2,17 @@
 
 	<div id='header'>
 	
-		<div class='navbar wide'>
+		<div id='navbar'>
 	
+	    <div id='logo' alt='<%=CONFIG[:name]%>'>
 	      <%=link_to_if !is_onboarding?,
-	                    image_tag('oncloset_logo_30_white.png', :alt => CONFIG[:name], :class => "logo"),
+	                    image_tag('oncloset_logo_white.png', :alt => CONFIG[:name]),
 	                     logged_in? ? 
 	                        user_path(self.current_user.handle,:src => "top") : 
 	                        home_path(
 	                          @origin && @origin != "direct" ? @origin : "",
 	                          :src => "top") %>
+	    </div> <!-- logo -->
 	    
 	    <ul class='nav'>
 	    
@@ -32,7 +34,7 @@
 	        
 	        
 	        	<a href="<%=new_invite_path(:src => 'bar')%>" 
-	          class='invite'></a>
+	          class='invite slim_shadow_dark'></a>
 	        
 	        </div>
 	      <%end%>
@@ -45,7 +47,7 @@
 	      
 	        <a class='nav_menu nav_add_item_button'>Add item +</a>
 	        
-	        <ul class='nav_add_list'>
+	        <ul class='nav_add_list slim_shadow_dark'>
 	          
 	          <%@categories.each do |category|%>
 	            <%=link_to "<li>#{category.id == 8 ? 
@@ -81,11 +83,9 @@
 			</li>
 			<li>
 		    <%if !is_onboarding?%>	
-	        <a class='nav_menu nav_login_button'>
-	        	<img src='/images/v.png'>
-	        </a>
+	        <a class='nav_menu nav_login_button'></a>
 	        
-	        <ul class='nav_login_list'>
+	        <ul class='nav_login_list slim_shadow_light'>
 	          <%=link_to "<li>Log Out</li>", 
 	              logout_path,
 	              :class => "login_list_item"%>
