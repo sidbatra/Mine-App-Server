@@ -21,6 +21,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     this.spinnerEl            = '#loading_spinner';
     this.searchContainerEl    = '#invite_search_container';
     this.searchTitleEl        = '#invite_textfield_title';
+    this.footerEl             = '#footer_onboarding';
 
     this.fbInviteBox          = new Denwen.Partials.Facebook.Invite();
 
@@ -67,6 +68,8 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       $(this.spinnerEl).hide();
       $(this.searchContainerEl).hide();
     }
+
+    $(this.footerEl).show();
   },
 
   // Render the contacts collection

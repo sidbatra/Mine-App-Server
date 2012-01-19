@@ -88,7 +88,7 @@
 	</div> <!-- container -->
 
 	<%if is_onboarding?%>	
-		<div id='footer_onboarding'>
+		<div id='footer_onboarding' style="display:none">
 		  <%=link_to  '', 
                   welcome_path(WelcomeFilter::Create,:category => 'shoes'),
                   :class  => 'add_1st_item'%>
