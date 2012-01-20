@@ -67,6 +67,18 @@ module DW
       Product = 1
     end
 
+    # Different sources of landing at the users/show route
+    #
+    class UserShowSource < Enumeration
+      Login = 'login'
+    end
+
+    # Sources of landing at the users/show route
+    #
+    class HomeShowSource < Enumeration
+      UserCreateError = 'user_create_error'
+    end
+
     # Different screens for the welcoem controller
     #
     class WelcomeFilter < Enumeration

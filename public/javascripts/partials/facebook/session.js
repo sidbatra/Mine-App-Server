@@ -27,7 +27,7 @@ Denwen.Partials.Facebook.Session = Backbone.View.extend({
                                "/facebook/reply?" + 
                                "access_token=" +
                                response.authResponse.accessToken + 
-                               "&source=" + self.origin; 
+                               "&src=" + self.origin; 
       }
       else {
         analytics.fbConnectRejected();

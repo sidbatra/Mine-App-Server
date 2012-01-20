@@ -3,7 +3,7 @@
 class WelcomeController < ApplicationController
   before_filter :login_required
 
-  # Display the welcome page
+  # Display the different steps during the onboarding
   #
   def show
     @filter = params[:id]

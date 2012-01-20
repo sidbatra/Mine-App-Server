@@ -22,7 +22,7 @@
 	  <%=render :partial => 'misc/welcome', 
 	        :locals => {
 	          :user_presenter => @user_presenter,
-	          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
+	          :src            => 'product_' + @product.id.to_s} unless logged_in?%>
 	  
   	<div id="product_section">
   		<div class="product_top_bar">
@@ -100,9 +100,7 @@
                   <div id="right_relativist">
                     <div id="right_extras">
                         <%=render :partial => 'endorsement',
-                                  :locals   => {
-                                                :source   => @source,
-                                                :product  => @product}%>
+                                  :locals   => {:product  => @product}%>
                     </div> <!--right_extras-->
                   </div> <!--right_relativist-->
                 </div>
