@@ -1,7 +1,7 @@
 <%if(shelf.get('products').length || isActive){%>
 
     <%if(!on){%>
-       <div class="titlebar">
+       <div class="titlebar small_bottom_margin">
          <a class='cat on' href=''>Everything</a>
          <a class='cat' href=''>Shoes</a>  
          <a class='cat' href=''>Clothing</a>
@@ -12,7 +12,7 @@
          <a class='cat' href=''>Jewelry</a>
        </div>
     <%}else{%>
-      <div class="titlebar">
+      <div class="titlebar small_bottom_margin">
         On <%=onTitle%>
         <%if(isActive){%>
           <a href="/collections/new?src=profile" 
