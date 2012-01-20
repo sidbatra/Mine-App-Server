@@ -12,8 +12,6 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.isOnboarding         = this.options.is_onboarding;
-
     this.contactsEl           = '#contacts';
     this.queryEl              = '#search_box';
     this.multiInviteEl        = '#multi_invite_box';
@@ -148,7 +146,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   setAnalytics: function() {
     analytics.inviteView();
 
-    if(this.isOnboarding)
+    if(helpers.isOnboarding)
       analytics.inviteViewOnboarding();
   }
 
