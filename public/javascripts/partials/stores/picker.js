@@ -35,13 +35,11 @@ Denwen.Partials.Stores.Picker = Backbone.View.extend({
       $(this.onEl).addClass('pushed');
       
       this.trigger('addToStoresPicked',this.model.get('id'));
-      //analytics.storePicked();
     }
     else {
       $(this.onEl).removeClass('pushed');
       
       this.trigger('removeFromStoresPicked',this.model.get('id'));
-      //analytics.storeUnPicked();
     }
   }
 

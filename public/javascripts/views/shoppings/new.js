@@ -1,6 +1,6 @@
-// View for selecting new stores while onboarding 
+// View for selecting favourite stores
 //
-Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
+Denwen.Views.Shoppings.New = Backbone.View.extend({
   
   // Setup event handlers
   //
@@ -19,8 +19,6 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
 
     this.posting        = false;
 
-    this.currentUser    = new Denwen.Models.User(this.options.currentUserJSON);
-    this.storePickers   = new Array(); 
     this.storesPicked   = new Array(); 
 
     $(this.formEl).submit(function(){return self.post();});
@@ -36,9 +34,9 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
     this.stores     = new Denwen.Collections.Stores();
 
     this.stores.fetch({
-          data:     {filter: 'suggest'},
-          success:  function(collection){self.fetched();},
-          error:    function(collection,errors){}
+          data    :  {filter: 'suggest'},
+          success :  function(collection){self.fetched();},
+          error   :  function(collection,errors){}
           });
   },
 
@@ -49,16 +47,20 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
     var self = this;
 
     this.stores.each(function(store){
+
       var storePicker = new Denwen.Partials.Stores.Picker({
                                         model : store,
                                         el    : $(self.storesEl)
                                         });
+      storePicker.bind(
+        'addToStoresPicked',
+        self.addToStoresPicked,
+        self);
 
-      storePicker.bind('addToStoresPicked',self.addToStoresPicked,self);
-      storePicker.bind('removeFromStoresPicked',
-                          self.removeFromStoresPicked,self);
-
-      self.storePickers.push(storePicker);
+      storePicker.bind(
+        'removeFromStoresPicked',
+        self.removeFromStoresPicked,
+        self);
     });
       
     $(this.formEl).show();
@@ -73,6 +75,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
       $(this.buttonEl).removeClass('disactivated');
       $(this.buttonEl).removeAttr('disabled'); 
     }
+    
     analytics.storePicked();
   },
 
@@ -85,6 +88,7 @@ Denwen.Views.Welcome.Shoppings = Backbone.View.extend({
       $(this.buttonEl).addClass('disactivated');
       $(this.buttonEl).attr('disabled',true); 
     }
+
     analytics.storeUnpicked();
   },
 

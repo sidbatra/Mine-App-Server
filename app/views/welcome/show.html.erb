@@ -1,19 +1,6 @@
 
-<div id='header'>
-	<div class='navbar narrow unselectable'>
-
-		<%=image_tag 'oncloset_logo_30_white.png', 
-        :alt    => CONFIG[:name],
-        :class  => "logo"%>
-		 		
-		<ol id='indicators'>
-        <li class='first'></li>
-        <li class='second'></li>
-        <li class='third'></li>
-    </ol> 		
-
-	</div>
-</div> <!-- header -->
+<%=render :partial  => "headers/onboarding",
+          :locals   => {:step => 0}%>
 
 
 <div id="container" class="narrow">
@@ -36,6 +23,6 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Show({source : '<%=@source%>'});
+    new Denwen.Views.Welcome.Show();
   </script>
 <%end%>

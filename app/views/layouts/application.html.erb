@@ -17,7 +17,7 @@
     
     <div id="fb-root"></div>    
 
-    <%=render "misc/header"%>
+    <%=render "headers/default" unless is_onboarding?%>
  
     <%=yield%>
     

@@ -1,25 +1,8 @@
-<! -- welcome / create & create -->
 
-<%if is_onboarding? && @category.name == 'Shoes'%>
-	<div id='header'>
+<%=render :partial => "headers/onboarding",
+          :locals   => {:step => 3} if is_onboarding?%>
 	
-		<div class='navbar narrow unselectable'>
-	
-			 <%=image_tag('oncloset_logo_30_white.png', 
-			 		:alt => CONFIG[:name],
-			 		:class => "logo")%>
-			 		
-			<ol id='indicators'>
-	        <li class='first'></li>
-	        <li class='second'></li>
-	        <li class='third on'></li>
-	    </ol> 		
-	
-		</div>
-	
-	</div>
-<%end%>
-	
+
 <div id='container' class="narrow">
 
 	<%if is_onboarding? && @category.name == 'Shoes'%>

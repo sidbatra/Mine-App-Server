@@ -1,22 +1,7 @@
-<! -- welcome / stores -->
 
-<div id='header'>
+<%=render :partial  => "headers/onboarding",
+          :locals   => {:step => 1}%>
 
-	<div class='navbar narrow unselectable'>
-
-		 <%=image_tag('oncloset_logo_30_white.png', 
-		 		:alt => CONFIG[:name],
-		 		:class => "logo")%>
-		 		
-		<ol id='indicators'>
-        <li class='first on'></li>
-        <li class='second'></li>
-        <li class='third'></li>
-    </ol> 		
-
-	</div>
-
-</div>
 
 <div id="container" class="narrow">
 
@@ -30,32 +15,25 @@
     
 </div> <!-- container -->
 
+
 <div id='footer_onboarding'>
 	<%form_tag '/welcome',
-      :id   => 'new_shopping', :style => 'display:none' do |f|%>
+      :id     => 'new_shopping', 
+      :style  => 'display:none' do |f|%>
 
-  <%=hidden_field_tag :id, WelcomeFilter::Stores%>
-  <%=hidden_field_tag :store_ids%>
-  <%=submit_tag '',
-                :class      => 'follow_people disactivated',
-                :id         => 'stores_picked_button',
-                :name       => nil,
-                :disabled   => true %>
+    <%=hidden_field_tag :id, WelcomeFilter::Stores%>
+    <%=hidden_field_tag :store_ids%>
+    <%=submit_tag '',
+        :class      => 'follow_people disactivated',
+        :id         => 'stores_picked_button',
+        :name       => nil,
+        :disabled   => true %>
   <%end%>   
 </div>	      
 
 
-
-
-
-
 <%content_for :javascript do%>
-
   <script type="text/javascript">
-
-    new Denwen.Views.Welcome.Shoppings({
-            currentUserJSON : <%=self.current_user.to_json%>,
-                         el : $('#container')});
-
+    new Denwen.Views.Shoppings.New({el : $('#container')});
   </script>
 <%end%>
