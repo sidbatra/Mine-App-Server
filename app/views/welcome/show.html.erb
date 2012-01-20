@@ -1,44 +1,41 @@
 
-<div id="pic_bg" class="fixed_bg">
+<div id='header'>
+	<div class='navbar narrow unselectable'>
 
-	<div id='header_onboarding'>
-	
-		<div class='navbar unselectable'>
-	
-			 <%=image_tag('oncloset_logo_30_white.png', 
-			 		:alt => CONFIG[:name],
-			 		:class => "logo")%>
-			 		
-			<ol id='indicators'>
-	        <li class='first'></li>
-	        <li class='second'></li>
-	        <li class='third'></li>
-	    </ol> 		
-	
+		<%=image_tag 'oncloset_logo_30_white.png', 
+        :alt    => CONFIG[:name],
+        :class  => "logo"%>
+		 		
+		<ol id='indicators'>
+        <li class='first'></li>
+        <li class='second'></li>
+        <li class='third'></li>
+    </ol> 		
+
+	</div>
+</div> <!-- header -->
+
+
+<div id="container" class="narrow">
+
+		<div class="heading unselectable">
+      Welcome to OnCloset, <%=current_user.first_name%>!<br />
+			A showcase of what you and your friends are buying
 		</div>
-	</div> <!--header_onboarding-->
 
-	<div id="container">
+    <%=image_tag 'welcome.png', 
+        :style => 'margin: -20px 0px 0px 0px;'%>
+		
+    <%=link_to '',
+        welcome_path(WelcomeFilter::Stores),
+        :class => 'pick_top_stores',
+        :style => 'position: relative; top: -217px;'%>
 
-			<div class="heading unselectable">
-        Welcome to OnCloset, <%=current_user.first_name%>!<br />
-				A showcase of what you and your friends are buying
-				<!-- your shoes, clothes, accessories and more! -->
-			</div>
+</div> <!-- container -->
 
-      <%=image_tag 'welcome.png', :style => 'margin: -20px 0px 0px 0px;'%>
-			
-      <%=link_to '',
-                  welcome_path(WelcomeFilter::Stores),
-                  :class => 'pick_top_stores',
-                  :style => 'position: relative; top: -217px;'%>
-	
-	</div> <!-- container -->
-   
-</div> <!-- pic_bg -->
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Show({source:'<%=@source%>'});
+    new Denwen.Views.Welcome.Show({source : '<%=@source%>'});
   </script>
 <%end%>

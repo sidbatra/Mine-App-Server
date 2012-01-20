@@ -1,4 +1,4 @@
-// View for welcoming the user during onboarding
+// View for displaying the site introduction during onboarding
 //
 Denwen.Views.Welcome.Show = Backbone.View.extend({
   
