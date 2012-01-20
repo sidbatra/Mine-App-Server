@@ -30,6 +30,12 @@ module DW
       Automated = 0
     end
 
+    # Sources of landing at collections/new
+    #
+    class CollectionNewSource < Enumeration
+      Error = 'error'
+    end
+
     # Purpose for sending a user an email
     #
     class EmailPurpose < Enumeration
@@ -57,6 +63,8 @@ module DW
     #
     class HomeShowSource < Enumeration
       UserCreateError = 'user_create_error'
+      LoginError      = 'login_error'
+      Logout          = 'logout'
     end
 
     # Sources of landing at products/new
@@ -88,9 +96,11 @@ module DW
     # Different sources of landing at the users/show route
     #
     class UserShowSource < Enumeration
-      Login           = 'login'
-      ProductCreate   = 'product_create'
-      ProductDeleted  = 'product_deleted'
+      CollectionCreate  = 'collection_create'
+      HomeRedirect      = 'home_redirect'
+      Login             = 'login'
+      ProductCreate     = 'product_create'
+      ProductDeleted    = 'product_deleted'
     end
 
     # Different screens for the welcoem controller

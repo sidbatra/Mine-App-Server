@@ -27,10 +27,10 @@ class CollectionsController < ApplicationController
       format.html do
         redirect_to  @error ? 
                       new_collection_path(
-                        :src => 'error') :
+                        :src => CollectionNewSource::Error) :
                       user_path(
                         self.current_user.handle,
-                        :src => 'collection_create')
+                        :src => UserShowSource::CollectionCreate)
       end
       format.json 
     end

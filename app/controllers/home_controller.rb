@@ -10,7 +10,9 @@ class HomeController < ApplicationController
     if params[:id]
       redirect_to root_path
     elsif logged_in? 
-      redirect_to user_path(self.current_user.handle,:src => 'home_redirect') 
+      redirect_to user_path(
+                    self.current_user.handle,
+                    :src => UserShowSource::HomeRedirect)
     end
   end
 
