@@ -47,10 +47,10 @@ class ProductsController < ApplicationController
                       new_product_path(
                         :category => Category.find(
                                         params[:product][:category_id]).handle,
-                        :src      => 'error') :
+                        :src      => ProductNewSource::Error) :
                       user_path(
                         self.current_user.handle,
-                        :src => 'product_create')
+                        :src => UserShowSource::ProductCreate)
 
       end
       format.json 
@@ -149,7 +149,7 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => 'product_show_error') if @error
+    redirect_to root_path if @error
   end
 
   # Display form for editing a product
@@ -179,10 +179,10 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => 'product_edit_error') if @error
+    redirect_to root_path if @error
   end
 
-  # Update user's byline
+  # Update product
   #
   def update
     @product        = Product.find(params[:id])
@@ -209,7 +209,7 @@ class ProductsController < ApplicationController
     if @product.user_id == self.current_user.id
       @product.update_attributes(product_params) 
     end
-  
+
   rescue => ex
     handle_exception(ex)
   ensure
@@ -218,7 +218,7 @@ class ProductsController < ApplicationController
         redirect_to product_path(
                     self.current_user.handle,
                     @product.handle,
-                    :src => 'product_updated')
+                    :src => ProductShowSource::Updated)
       end
       format.json 
     end
@@ -232,7 +232,9 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to user_path(self.current_user.handle,:src => "product_deleted")
+    redirect_to user_path(
+                  self.current_user.handle,
+                  :src => UserShowSource::ProductDeleted)
   end
 
 

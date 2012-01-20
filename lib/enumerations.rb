@@ -53,6 +53,24 @@ module DW
       Suggestion  = 2
     end
 
+    # Sources of landing at the users/show route
+    #
+    class HomeShowSource < Enumeration
+      UserCreateError = 'user_create_error'
+    end
+
+    # Sources of landing at products/new
+    #
+    class ProductNewSource < Enumeration
+      Error = 'error'
+    end
+
+    # Source of landing at products/show
+    #
+    class ProductShowSource < Enumeration
+      Updated = 'product_updated'
+    end
+
     # Source for the creation of the Search model
     #
     class SearchSource < Enumeration
@@ -70,13 +88,9 @@ module DW
     # Different sources of landing at the users/show route
     #
     class UserShowSource < Enumeration
-      Login = 'login'
-    end
-
-    # Sources of landing at the users/show route
-    #
-    class HomeShowSource < Enumeration
-      UserCreateError = 'user_create_error'
+      Login           = 'login'
+      ProductCreate   = 'product_create'
+      ProductDeleted  = 'product_deleted'
     end
 
     # Different screens for the welcoem controller
