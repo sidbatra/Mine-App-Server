@@ -21,7 +21,8 @@
 	<%=render :partial => 'misc/welcome', 
 	          :locals => {
 	            :user_presenter => @user_presenter,
-	            :source         => @user_presenter.source_id} unless logged_in?%>
+	            :src            => @user_presenter.source_id} unless logged_in?%>
+
 	            
 	<!-- sidebar: left -->
 	<div class='sidebar'>

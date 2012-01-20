@@ -7,28 +7,28 @@ class UsersController < ApplicationController
   # Create a user based on token received from facebook
   #
   def create
-    raise IOError, "User rejected FB connect" unless params[:code]
+    access_token              = params[:access_token]
 
-    source                    = params[:source] ? 
-                                  params[:source].to_s : 
-                                  "unknown"
+    unless access_token
+      fb_auth                   = FbGraph::Auth.new(
+                                    CONFIG[:fb_app_id],
+                                    CONFIG[:fb_app_secret])
 
-    fb_auth                   = FbGraph::Auth.new(
-                                  CONFIG[:fb_app_id],
-                                  CONFIG[:fb_app_secret])
-
-    client                    = fb_auth.client
-    client.redirect_uri       = fb_reply_url(:source => source)
-    client.authorization_code = params[:code]
-    access_token              = client.access_token!
+      client                    = fb_auth.client
+      client.redirect_uri       = fb_reply_url(:src => @source)
+      client.authorization_code = params[:code]
+      access_token              = client.access_token!
+    end
 
     raise IOError, "Error fetching access token" unless access_token
 
 
-    fb_user = FbGraph::User.fetch("me?fields=first_name,last_name,"\
-                                  "gender,email,birthday",
-                                    :access_token => access_token)
-    @user = User.add(fb_user,source)
+    fb_user = FbGraph::User.fetch(
+                "me?fields=first_name,last_name,"\
+                "gender,email,birthday",
+                :access_token => access_token)
+
+    @user = User.add(fb_user,@source)
 
     raise IOError, "Error creating user" unless @user
 
@@ -36,12 +36,12 @@ class UsersController < ApplicationController
     self.current_user = @user
     set_cookie
     target_url = @user.is_fresh ? 
-                  welcome_path(WelcomeFilter::Learn) :
-                  user_path(@user.handle,:src => 'login')
+                   welcome_path(WelcomeFilter::Learn) :
+                   user_path(@user.handle,:src => UserShowSource::Login)
 
   rescue => ex
     handle_exception(ex)
-    target_url = root_path(:src => 'user_create_error')
+    target_url = root_path(:src => HomeShowSource::UserCreateError)
   ensure
     redirect_to target_url
   end

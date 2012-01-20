@@ -1,7 +1,7 @@
     
     <%if is_current_user(product.user)%>
 
-      <%edit_mode   = source == 'review'%>
+      <%edit_mode   = false%>
       <%edit_style  = edit_mode ? '' : 'display:none'%>
       <%ui_style    = edit_mode ? 'display:none' : ''%>
 

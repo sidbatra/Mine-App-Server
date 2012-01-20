@@ -4,7 +4,7 @@ template_namespace: Denwen.JST
 
 javascripts:
   application:
-    - public/javascripts/libs/jquery-1.4.3.js
+    - public/javascripts/libs/jquery-1.7.1.js
     - public/javascripts/libs/jquery-timeago.js
     - public/javascripts/libs/jquery-autocomplete.js
     - public/javascripts/libs/underscore.js

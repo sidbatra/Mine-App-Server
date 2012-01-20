@@ -3,7 +3,7 @@
 class WelcomeController < ApplicationController
   before_filter :login_required
 
-  # Display the welcome page
+  # Display the different steps during the onboarding
   #
   def show
     @filter = params[:id]
@@ -35,9 +35,9 @@ class WelcomeController < ApplicationController
 
       @shoppings  = Shopping.find_all_by_user_id(
                               @users.map(&:id),
-                              :include    => :store,
-                              :conditions => {'stores.is_processed' => true}
-                              ).group_by{|s| s.user_id}
+                              :include    => :store).
+                              select{|s| s.store.is_processed}.
+                              group_by{|s| s.user_id}
 
       @view     = "followings/new"
     else
@@ -47,7 +47,7 @@ class WelcomeController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    @error ? redirect_to(home_path) : render(@view)
+    @error ? redirect_to(root_path) : render(@view)
   end
 
   # Handle onboarding related post requests

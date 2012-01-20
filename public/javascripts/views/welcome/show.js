@@ -1,4 +1,4 @@
-// View for welcoming the user during onboarding
+// View for displaying the site introduction during onboarding
 //
 Denwen.Views.Welcome.Show = Backbone.View.extend({
   
@@ -14,11 +14,10 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.welcomeView();
 
-    if(this.source == 'login') {
-      analytics.userCreated(); 
-    }
+    analytics.fbConnectAccepted();
+    analytics.welcomeView();
+    analytics.userCreated(); 
   }
 
 });

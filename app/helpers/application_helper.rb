@@ -27,6 +27,12 @@ module ApplicationHelper
     "<meta name='current_user_id' content='#{current_user_id}'/>"
   end
 
+  # Generate meta tag for status of onboarding
+  #
+  def is_onboarding_meta_tag
+    "<meta name='is_onboarding' content='#{is_onboarding?}'/>"
+  end
+
   # Format price or currency in general
   #
   def display_currency(amount)

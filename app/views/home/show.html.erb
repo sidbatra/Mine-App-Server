@@ -36,10 +36,11 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
-     mpq.register_once({'landed_on' : '<%=@origin%>'});
-     mpq.track('landed on homepage',{
-      'source'  : '<%=@source%>',
-      'origin'  : '<%=@origin%>'});
+
+     new Denwen.Views.Home.Show({
+                            source  : '<%=@source%>',
+                            origin  : '<%=@origin%>'});
+
   </script>
 
 <%end%>
