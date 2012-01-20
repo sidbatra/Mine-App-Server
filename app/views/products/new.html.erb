@@ -1,63 +1,52 @@
-<!--
-<div id="background">
-	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
-</div>
--->
+<! -- welcome / create & create -->
 
-<div id="pic_bg" class="fixed_bg">
+<%if is_onboarding? && @category.name == 'Shoes'%>
+	<div id='header'>
 	
-		<%if is_onboarding? && @category.name == 'Shoes'%>
-			<div id='header_onboarding'>
-			
-				<div class='navbar unselectable'>
-			
-					 <%=image_tag('oncloset_logo_30_white.png', 
-					 		:alt => CONFIG[:name],
-					 		:class => "logo")%>
-					 		
-					<ol id='indicators'>
-			        <li class='first'></li>
-			        <li class='second'></li>
-			        <li class='third on'></li>
-			    </ol> 		
-			
-				</div>
-			
-			</div>
-		<%end%>
-			
-			<div id='container'>
+		<div class='navbar narrow unselectable'>
+	
+			 <%=image_tag('oncloset_logo_30_white.png', 
+			 		:alt => CONFIG[:name],
+			 		:class => "logo")%>
+			 		
+			<ol id='indicators'>
+	        <li class='first'></li>
+	        <li class='second'></li>
+	        <li class='third on'></li>
+	    </ol> 		
+	
+		</div>
+	
+	</div>
+<%end%>
+	
+<div id='container' class="narrow">
 
-		<%if is_onboarding? && @category.name == 'Shoes'%>
-      <div class='heading unselectable' id = 'onboarding_create_msg'>
-      	To start your closet, type the name<br /> 
-      	of the favorite pair of shoes you own:
-      </div>
-    <%else%>
-    
-    	<div class="temporary_redesign_blocker" style="height: 72px">
-			</div>
-			
-		<%end%>
+	<%if is_onboarding? && @category.name == 'Shoes'%>
+	  <div class='heading unselectable' id = 'onboarding_create_msg'>
+	  	To start your closet, type the name<br /> 
+	  	of the favorite pair of shoes you own:
+	  </div>
+	<%else%>
+	
+	<%end%>
 
 
-		<!-- item -->
-		
-		  <%form_for @product,
-		        :html => {:class => 'new_product unselectable'} do |f|%>
-		
-		    <%=render :partial  => 'input', 
-		              :locals   => {
-		                :f            => f,
-		                :category     => @category,
-		                :placeholders => @placeholders,
-                    :onboarding   => is_onboarding? && @category.name == 'Shoes'}%>
-		
-		  <%end%> <!-- form -->
-		
-	</div> <!-- container -->
-   
-</div> <!-- pic_bg -->
+	<!-- item -->
+
+  <%form_for @product,
+        :html => {:class => 'new_product unselectable'} do |f|%>
+
+    <%=render :partial  => 'input', 
+              :locals   => {
+                :f            => f,
+                :category     => @category,
+                :placeholders => @placeholders,
+                :onboarding   => is_onboarding? && @category.name == 'Shoes'}%>
+
+  <%end%> <!-- form -->
+
+</div> <!-- container -->
 
 
 <%=render 'chooser'%> 
