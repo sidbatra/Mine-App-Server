@@ -15,7 +15,6 @@ class WelcomeController < ApplicationController
       @view     = "shoppings/new"
     when WelcomeFilter::Friends
       @view     = "invites/new"
-
     when WelcomeFilter::Follow
       follows = 10
       stores  = self.current_user.stores
@@ -68,6 +67,7 @@ class WelcomeController < ApplicationController
           store_id,
           ShoppingSource::User)
       end
+
     when WelcomeFilter::Follow
       @success_target = welcome_path(WelcomeFilter::Friends)
       @error_target   = welcome_path(WelcomeFilter::Follow)
@@ -81,6 +81,7 @@ class WelcomeController < ApplicationController
           FollowingSource::Suggestion,
           false)
       end
+
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)
       @error_target    = welcome_path(WelcomeFilter::Learn)

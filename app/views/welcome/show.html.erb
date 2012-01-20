@@ -1,5 +1,5 @@
 
-<%=render :partial => "headers/onboarding",
+<%=render :partial  => "headers/onboarding",
           :locals   => {:step => 0}%>
 
 
@@ -23,6 +23,6 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Show({source : '<%=@source%>'});
+    new Denwen.Views.Welcome.Show();
   </script>
 <%end%>
