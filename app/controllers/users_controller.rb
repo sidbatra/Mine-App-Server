@@ -12,6 +12,17 @@ class UsersController < ApplicationController
                                   "unknown"
     access_token              = params[:access_token]
 
+    unless access_token
+      fb_auth                   = FbGraph::Auth.new(
+                                    CONFIG[:fb_app_id],
+                                    CONFIG[:fb_app_secret])
+
+      client                    = fb_auth.client
+      client.redirect_uri       = fb_reply_url(:source => source)
+      client.authorization_code = params[:code]
+      access_token              = client.access_token!
+    end
+
     raise IOError, "Error fetching access token" unless access_token
 
 
@@ -26,8 +37,8 @@ class UsersController < ApplicationController
     self.current_user = @user
     set_cookie
     target_url = @user.is_fresh ? 
-                  welcome_path(WelcomeFilter::Learn) :
-                  user_path(@user.handle,:src => 'login')
+                   welcome_path(WelcomeFilter::Learn) :
+                   user_path(@user.handle,:src => 'login')
 
   rescue => ex
     handle_exception(ex)
