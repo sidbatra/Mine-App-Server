@@ -1707,7 +1707,8 @@ body {
 #main .titlebar {
   height: 36px;
   line-height: 36px;
-  color: #333333; }
+  color: #333333;
+  margin-bottom: 4px; }
 
 #main .titlebar a.cat {
   color: #999999;
@@ -1752,9 +1753,9 @@ body {
   position: relative; }
 
 .products .product .top:hover {
-  -moz-opacity: 0.8;
-  opacity: .80;
-  filter: alpha(opacity=80); }
+  -moz-opacity: 0.7;
+  opacity: .70;
+  filter: alpha(opacity=70); }
 
 .products .product .bottom {
   width: 170px;
