@@ -151,6 +151,14 @@ class Product < ActiveRecord::Base
       FileSystem.url(image_path) : 
       orig_image_url
   end
+  
+  # Url of the giant copy of the image
+  #
+  def giant_url
+    is_hosted ?
+      FileSystem.url(giant_path) : 
+      orig_image_url
+  end
 
   # Generate url for the photo
   #
@@ -239,7 +247,7 @@ class Product < ActiveRecord::Base
                             :comments_count,:user_id,:category_id]
 
     options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += [:thumbnail_url]
+    options[:methods]  += [:giant_url]
 
     options[:include] = {}
     options[:include].store(*(Store.json_options)) if options[:with_store]

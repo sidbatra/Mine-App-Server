@@ -1,14 +1,11 @@
 
-  <div id='following_msg' class='title'>
+  <div id='following_msg' class='tab triangle large_top_margin'>
     <%if(users.length) {%>
-      <%if(helpers.isCurrentUser(leader.get('id'))){%> 
-        People you're following 
-      <%} else {%>
-        <%=leader.get('first_name')%> is following
-      <%}%>
+        Following 
     <%} else if(helpers.isCurrentUser(leader.get('id'))){%>
-        People you're following
+        Following
     <%}%>
+    <div class='count'>154</div>
   </div>
 
   <div ='ifollowers'>
