@@ -47,7 +47,7 @@ class WelcomeController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    @error ? redirect_to(home_path) : render(@view)
+    @error ? redirect_to(root_path) : render(@view)
   end
 
   # Handle onboarding related post requests
