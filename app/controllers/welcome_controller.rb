@@ -35,9 +35,9 @@ class WelcomeController < ApplicationController
 
       @shoppings  = Shopping.find_all_by_user_id(
                               @users.map(&:id),
-                              :include    => :store,
-                              :conditions => {'stores.is_processed' => true}
-                              ).group_by{|s| s.user_id}
+                              :include    => :store).
+                              select{|s| s.store.is_processed}.
+                              group_by{|s| s.user_id}
 
       @view     = "followings/new"
     else

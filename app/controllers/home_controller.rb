@@ -16,11 +16,6 @@ class HomeController < ApplicationController
 
   private 
 
-  # Decide layout based on the source of the visit to home page
-  #
-  def decide_layout
-  end
-
   # Detect which origin the user is coming from and save it to session
   #
   def detect_origin
