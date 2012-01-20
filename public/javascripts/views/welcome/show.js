@@ -17,10 +17,7 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
 
     analytics.fbConnectAccepted();
     analytics.welcomeView();
-
-    if(this.source == 'login') {
-      analytics.userCreated(); 
-    }
+    analytics.userCreated(); 
   }
 
 });
