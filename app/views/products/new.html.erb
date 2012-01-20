@@ -42,7 +42,8 @@
                 :f            => f,
                 :category     => @category,
                 :placeholders => @placeholders,
-                :onboarding   => is_onboarding? && @category.name == 'Shoes'}%>
+                :onboarding   => is_onboarding? && @category.name == 'Shoes',
+                :submit_class => 'add_to_closet'}%>
 
   <%end%> <!-- form -->
 
