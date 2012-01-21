@@ -93,6 +93,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
       $(this.priceEl).removeClass('box_shadow');
       $(this.priceDollarEl).addClass('creation_dollar_inactive');
+      $(this.priceInvalidMsgEl).hide();
     }
     else {
       $(this.priceEl).removeClass('creation_input_inactive');

@@ -1,5 +1,5 @@
 
-<%=render :partial => "headers/onboarding",
+<%=render :partial  => "headers/onboarding",
           :locals   => {:step => 3} if is_onboarding?%>
 	
 
@@ -18,15 +18,15 @@
 	<!-- item -->
 
   <%form_for @product,
-        :html => {:class => 'new_product unselectable'} do |f|%>
+      :html => {:class => 'new_product unselectable'} do |f|%>
 
     <%=render :partial  => 'input', 
-              :locals   => {
-                :f            => f,
-                :category     => @category,
-                :placeholders => @placeholders,
-                :onboarding   => is_onboarding? && @category.name == 'Shoes',
-                :submit_class => 'add_to_closet'}%>
+        :locals   => {
+          :f            => f,
+          :category     => @category,
+          :placeholders => @placeholders,
+          :onboarding   => is_onboarding? && @category.name == 'Shoes',
+          :submit_class => 'add_to_closet'}%>
 
   <%end%> <!-- form -->
 
@@ -35,14 +35,13 @@
 
 <%=render 'chooser'%> 
 
-<%content_for :javascript do%>
 
+<%content_for :javascript do%>
   <script type="text/javascript">
 
     new Denwen.Views.Products.New({
                         el            : $('body'),
                         categoryJSON  : <%=@category.to_json%>});
   </script>
-
 <%end%>
 
