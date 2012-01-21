@@ -32,15 +32,21 @@ Denwen.Views.Welcome.Followings = Backbone.View.extend({
   setup: function(){
     var self = this;
 
-   $.each(this.userIds,function(i,userID){
+    $.each(this.userIds,function(i,userID){
       var following = new Denwen.Partials.Users.Following({
                         el           : $('#following_box_' + userID.toString()),
                         user_id      : userID,
-                        is_suggested : true });
+                        is_suggested : true});
 
-      following.bind('addToUsersFollowed',self.addToUsersFollowed,self);
-      following.bind('removeFromUsersFollowed',
-                          self.removeFromUsersFollowed,self);
+      following.bind(
+        'addToUsersFollowed',
+        self.addToUsersFollowed,
+        self);
+
+      following.bind(
+        'removeFromUsersFollowed',
+        self.removeFromUsersFollowed,
+        self);
 
       self.followings.push(following);
     });
