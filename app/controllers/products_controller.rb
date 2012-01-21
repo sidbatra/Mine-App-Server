@@ -104,7 +104,7 @@ class ProductsController < ApplicationController
       @products = []
 
       if collection
-        @products = Product.for_ids(collection.product_ids) 
+        @products = Product.for_ids(collection.product_ids).with_user.with_store
         @options[:with_store] = true
         @options[:with_user]  = true
         @key = KEYS[:collection_products] % collection.id
