@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224045502) do
+ActiveRecord::Schema.define(:version => 20120121191305) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -245,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20111224045502) do
     t.integer  "inverse_followings_count",  :default => 0
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
+    t.integer  "collections_count",         :default => 0
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

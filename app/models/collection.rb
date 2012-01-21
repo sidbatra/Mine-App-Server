@@ -3,7 +3,7 @@ class Collection < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   has_many :collection_parts, :dependent => :destroy
   has_many :products, :through => :collection_parts
 
