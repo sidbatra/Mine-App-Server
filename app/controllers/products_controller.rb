@@ -99,6 +99,22 @@ class ProductsController < ApplicationController
       @options[:with_user] = true
       @key = KEYS[:store_top_products] % params[:owner_id]
 
+    when :liked
+      @actions  = Action.named(ActionName::Like).
+                    by_user(params[:owner_id]).
+                    with_actionable_product
+      
+      @options[:with_store] = true
+      @key = KEYS[:user_like_products] % params[:owner_id]
+
+    when :wanted
+      @actions  = Action.named(ActionName::Want).
+                    by_user(params[:owner_id]).
+                    with_actionable_product
+      
+      @options[:with_store] = true
+      @key = KEYS[:user_want_products] % params[:owner_id]
+
     when :collection
       collection = Collection.fresh_for_user(params[:owner_id])
       @products = []

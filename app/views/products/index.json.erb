@@ -1,3 +1,7 @@
 <%-cache @key do-%>
-  <%=@products.to_json(@options)-%>
+  <%-if @filter == :liked || @filter == :wanted-%>
+    <%=@actions.map(&:actionable).to_json(@options)-%>
+  <%-else-%>
+    <%=@products.to_json(@options)-%>
+  <%-end-%>
 <%-end-%>

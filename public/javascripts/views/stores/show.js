@@ -18,14 +18,11 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
                         isActive  : false});
     
     // -----
-    this.topProducts   = new Denwen.Partials.Products.Products({
+    this.topProducts   = new Denwen.Partials.Products.TopProducts({
                                 el        : $('#top_products'),
-                                owner_id  : this.store.get('id'),
-                                filter    : 'top',
-                                jst       : 'products/top_products',
-                                active    : false});
-    this.topProducts.fetch();
+                                owner_id  : this.store.get('id')});
 
+    // -----
     new Denwen.Partials.Facebook.Base();
 
     // -----
