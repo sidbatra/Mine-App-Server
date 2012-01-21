@@ -10,7 +10,7 @@ class Action < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of   :name
-  validates_inclusion_of  :name, :in => %w(like own want)
+  validates_inclusion_of  :name, :in => ActionName.values
   validates_presence_of   :user_id
   validates_presence_of   :actionable_id
   validates_presence_of   :actionable_type
@@ -46,7 +46,7 @@ class Action < ActiveRecord::Base
   #
   def self.fetch_own_on_for_user(klass,id,user_id)
     find_by_actionable_id_and_actionable_type_and_name_and_user_id(
-      id,klass,'own',user_id)
+      id,klass,ActionName::Own,user_id)
   end
 
 
