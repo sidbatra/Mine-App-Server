@@ -1,68 +1,66 @@
 
-<%=render :partial => "headers/onboarding",
+<%=render :partial  => "headers/onboarding",
           :locals   => {:step => 2} if is_onboarding?%>
 
 
 <div id="container" class="narrow">
 
-		<p class="heading">
-			<%if is_onboarding?%>
-				Whose closets would you like to see?<br />
-				Who do you shop with?
-			<%else%>
-				Invite your friends to OnCloset!<br />
-				You'll follow each other automatically.
-			<%end%>
-		</p>
+  <p class="heading">
+    <%if is_onboarding?%>
+      Whose closets would you like to see?<br />
+      Who do you shop with?
+    <%else%>
+      Invite your friends to OnCloset!<br />
+      You'll follow each other automatically.
+    <%end%>
+  </p>
 		
-		<div class="new_invite">
+  <div class="new_invite">
 
-			<div class="textfield_title" 
-              id="invite_textfield_title" 
-           style="display:none">
-				Search for friends by name:
-			</div>
+    <div class="textfield_title" 
+            id="invite_textfield_title" 
+         style="display:none">
+      Search for friends by name:
+    </div>
 
-			<div class="invite_search_enclosure" id="invite_search_container">
-			  <%=text_field_tag 'search_box', 
-			                    nil, 
-			                    :placeholder => '', 
-			                    :class => 'textfield',
-			                    :hidden => :true%>
-	
-	      <%=link_to  '',
-	                  'javascript:void(0)',
-	                  :id    => 'x_button',
-	                  :class => 'x-text',
-	                  :style => 'display:none'%>
-      </div>
-      
-		
-		  <div id="contacts">
-		  	<div class="loading" id="loading_spinner">
-          <%=image_tag 'spinner_light_bg.gif'%>
-		  	</div>
-		  </div>
+    <div class="invite_search_enclosure" id="invite_search_container">
+      <%=text_field_tag 'search_box', 
+          nil, 
+          :placeholder => '', 
+          :class => 'textfield',
+          :hidden => :true%>
 
-      <div id='multi_invite_box' style="display:none">
-      
-				<%=link_to  '',
-	        'javascript:void(0)',
-          :id    => 'invite_backup_button',
-          :class => 'view_friends_list'%>
-
-        <!-- fb multi invite dialog for edge cases -->
-      </div>
+      <%=link_to  '',
+          'javascript:void(0)',
+          :id    => 'x_button',
+          :class => 'x-text',
+          :style => 'display:none'%>
+    </div>
     
-    </div> <!-- new_invite -->		
-     
+  
+    <div id="contacts">
+      <div class="loading" id="loading_spinner">
+        <%=image_tag 'spinner_light_bg.gif'%>
+      </div>
+    </div>
+
+    <div id='multi_invite_box' style="display:none">
+      <%=link_to  '',
+        'javascript:void(0)',
+        :id    => 'invite_backup_button',
+        :class => 'view_friends_list'%>
+    </div> <!-- fb multi invite dialog for edge cases -->
+  
+  </div> <!-- new_invite -->		
+   
 </div> <!-- container -->
+
 
 <%if is_onboarding?%>	
 	<div id='footer_onboarding' style="display:none">
 	  <%=link_to  '', 
-                welcome_path(WelcomeFilter::Create,:category => 'shoes'),
-                :class  => 'add_1st_item'%>
+        welcome_path(WelcomeFilter::Create,:category => 'shoes'),
+        :class  => 'add_1st_item'%>
 	</div>
 <%end%>
 
