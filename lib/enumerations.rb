@@ -30,6 +30,14 @@ module DW
       Automated = 0
     end
 
+    # Names for the Action model
+    #
+    class ActionName < Enumeration
+      Like  = 'like'
+      Own   = 'own'
+      Want  = 'want'
+    end
+
     # Sources of landing at collections/new
     #
     class CollectionNewSource < Enumeration
