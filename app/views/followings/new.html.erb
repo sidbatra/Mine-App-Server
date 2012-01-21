@@ -1,5 +1,5 @@
 
-<%=render :partial => "headers/onboarding",
+<%=render :partial  => "headers/onboarding",
           :locals   => {:step => 2}%>
 
 
@@ -7,24 +7,26 @@
 	
 		<div class="heading unselectable">
 			Success! Here are a few shoppers<br />
-			you're following to get you started.</div>
+			you're following to get you started.
+    </div>
 
-    	<%form_tag '/welcome',
-            :id   => 'new_followings' do |f|%>
+    <%form_tag '/welcome',
+        :id   => 'new_followings' do |f|%>
 
-	      <%=hidden_field_tag :id, WelcomeFilter::Follow%>
-	      <%=hidden_field_tag :user_ids%>
-	      <%=submit_tag '',
-	                    :class  => 'invite_friends',
-	                    :name   => nil%>
-	    <%end%>
+      <%=hidden_field_tag :id, WelcomeFilter::Follow%>
+      <%=hidden_field_tag :user_ids%>
+      <%=submit_tag '',
+          :class  => 'invite_friends',
+          :name   => nil%>
+    <%end%>
 
 
 	  <div id="users">
-		  <%@users.each_with_index do |user,i|%>
+		  <%@users.each do |user|%>
 			  <div class='picker_choice unselectable'>
 	
-			  		<div class="left" style="background-image: url('<%=user.large_photo_url%>');">
+			  		<div class="left" 
+                  style="background-image: url('<%=user.large_photo_url%>');">
 			  		</div>
 	
 						<div class="right">
@@ -38,26 +40,23 @@
               <%subset[0..3].each do |store|%>
                 <img class="tile" src=<%=store.image_url%> />
               <%end%>
-              <%if subset.length <= 3%>
-                <%(stores-subset)[0..(3-subset.length)].each do |store|%>
-                  <img class="tile" src=<%=store.image_url%> />
-                <%end%>
-              <%end%>
+
+              <%(stores-subset)[0..(3-subset.length)].each do |store|%>
+                <img class="tile" src=<%=store.image_url%> />
+              <%end if subset.length <= 3%>
 						</div>
 		
 						<div class='action_bar' id='following_box_<%=user.id%>'>
-						</div><!--suggested following box-->
+						</div>
               
-			  </div>
+			  </div> <!-- picker_choice -->
       <%end%>
 	  </div> <!--users-->
 
-	</div> <!-- box -->
-	 
 </div> <!-- container -->
 
-<%content_for :javascript do%>
 
+<%content_for :javascript do%>
   <script type="text/javascript">
 
     new Denwen.Views.Welcome.Followings({
@@ -65,6 +64,5 @@
                          el : $('#container')});
 
   </script>
-
 <%end%>
 

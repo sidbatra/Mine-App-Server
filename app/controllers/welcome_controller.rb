@@ -38,7 +38,7 @@ class WelcomeController < ApplicationController
                               select{|s| s.store.is_processed}.
                               group_by{|s| s.user_id}
 
-      @view     = "followings/new"
+      @view       = "followings/new"
     else
       raise IOError, "Incorrect welcome show ID"
     end
