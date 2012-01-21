@@ -44,16 +44,16 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           user  : this.user});
 
     // -----
-    window.setTimeout(function() {
-              new Denwen.Partials.Users.Stars({
-                          el  : '#star_users_box'});
-                          },500);
+    //window.setTimeout(function() {
+    //          new Denwen.Partials.Users.Stars({
+    //                      el  : '#star_users_box'});
+    //                      },500);
 
-    // -----
-    window.setTimeout(function() {
-              new Denwen.Partials.Stores.Top({
-                          el  : '#top_stores_box'});
-                          },500);
+    //// -----
+    //window.setTimeout(function() {
+    //          new Denwen.Partials.Stores.Top({
+    //                      el  : '#top_stores_box'});
+    //                      },500);
 
     // -----
     if(!this.isCurrentUser && helpers.isLoggedIn())
