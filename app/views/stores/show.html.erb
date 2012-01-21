@@ -13,64 +13,64 @@
 <%end%>
 
 
-<div id="outer">
+<div id="container" class="wide">
 
-  <!-- Main -->
-  <div id='inner_main'>
-      
-      <div id="shelves"></div>
-  
-  </div> <!-- inner_main -->
-    
-  <!-- Side column -->
-  <div id='inner_side'>
-  
-		<div class="profile_picture_box">
-			
-  		<!-- like button for the page -->
-		  <%=render :partial => 'facebook/like', 
-		            :locals  => {
-		            :style	 => 'z-index: 5000; position: absolute; top: 5px; left: 5px;',
-		            :url     => @store_presenter.closet_url('fb'),
-		            :send_button  => false,
-		            :width        => 80,
-		            :faces        => false}%>	
-			
-			<div class='like_this_store_box'></div>
-   	  <%=@store_presenter.large_picture('picture')%>
-   	 
-   	</div>
-      
+	<!-- sidebar: left -->
+	<div class='sidebar'>
+
+   	<%=@store_presenter.large_picture('picture')%>
+
     <div class='username'>
       <%=@store_presenter.name%>
     </div>
       
-      <div id='profile_bio'>
-        <div id='user_byline_default'>	
-          Recently bought items
-        </div>
+    <!--<div id='profile_bio'>
+      <div id='user_byline_default'>	
+        Recently bought items
       </div>
-         
-      <!-- like button for the page 
-      <#=render :partial => 'facebook/like', 
-                :locals  => {
-                :style	 => 'position: absolute; top:5px; left: 5px;',
-                :url     => @user_presenter.closet_url('fb'),
-                :send_button  => false,
-                :width        => 125,
-                :faces        => false}%>-->
+    </div>--> 
   
-  
-    <div id="top_shoppers" class="box tiled">
+    <div id="top_shoppers">
     </div> <!-- top shoppers at this store -->
     
-    <div id="top_products" class="box">
+    <div id="top_products">
     </div> <!-- top products at this store -->
     
-  </div> <!-- inner_right -->	
+  </div> <!-- sidebar: left -->	
+  
 
+  <!-- Main -->
+  <div id='main'>
+  
+  	<div id='social_buttons' class="titlebar">
+							<!-- like button for the page -->
+		  			<%=render :partial => 'facebook/like', 
+		            :locals  => {
+		            :style	 => '',
+		            :url     => @store_presenter.closet_url('fb'),
+		            :send_button  => false,
+		            :width        => 90,
+		            :faces        => false}%>	
+		            
+		    twitter
+		    tumblr
+		    stumble
+		    google+
+		    
+			</div>
+    
+    <div id="shelves"></div>
+  
+  </div> <!-- main -->
+  
+  <!-- sidebar: right -->
+	<div class='sidebar right'>
+		Related stores go here
+	</div> <!-- your_stores_box -->
+	  
+	</div> <!-- sidebar: right -->	
 
-</div> <!-- outer -->
+</div> <!-- container -->
 
 
 
