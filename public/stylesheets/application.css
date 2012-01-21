@@ -1315,7 +1315,8 @@ body {
   float: left;
   z-index: 4999;
   color: white;
-  position: relative; }
+  position: relative;
+  line-height: 0px; }
 
 .sidebar.right {
   float: right; }
@@ -1712,6 +1713,9 @@ body {
   line-height: 36px;
   color: #333333; }
 
+#main .titlebar a {
+  color: #cc3333; }
+
 #main .titlebar a.cat {
   color: #999999;
   margin-right: 5px; }
@@ -1755,9 +1759,9 @@ body {
   position: relative; }
 
 .products .product .top:hover {
-  -moz-opacity: 0.7;
-  opacity: .70;
-  filter: alpha(opacity=70); }
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80); }
 
 .products .product .bottom {
   width: 170px;

@@ -18,8 +18,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                         filter    : 'user',
                         onFilter  : 'collection',
                         onTitle   : (this.isCurrentUser ? 
-                                      'you' : 
-                                      this.user.get('first_name')) + ' today',
+                                      'You' : 
+                                      this.user.get('first_name')) + ' Today',
                         ownerID   : this.user.get('id'),
                         isActive  : helpers.isCurrentUser(this.user.get('id'))});
     
