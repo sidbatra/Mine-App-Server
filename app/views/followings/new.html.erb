@@ -59,7 +59,7 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
 
-    new Denwen.Views.Welcome.Followings({
+    new Denwen.Views.Followings.New({
                      users  : <%=@users.map(&:id).to_json%>,
                          el : $('#container')});
 

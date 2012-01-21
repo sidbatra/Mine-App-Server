@@ -1,6 +1,6 @@
 // View for following suggested users while onboarding 
 //
-Denwen.Views.Welcome.Followings = Backbone.View.extend({
+Denwen.Views.Followings.New = Backbone.View.extend({
   
   // Setup event handlers
   //
