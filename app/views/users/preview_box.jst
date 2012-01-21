@@ -1,14 +1,10 @@
 
   <div id='following_msg' class='tab triangle large_top_margin'>
-    <%if(users.length) {%>
-        Following 
-    <%} else if(helpers.isCurrentUser(leader.get('id'))){%>
-        Following
-    <%}%>
-    <div class='count'>154</div>
+    <%=header%>
+    <div class='count'><%=count%></div>
   </div>
 
-  <div ='ifollowers'>
+  <div>
     <%users.each(function(user){%>
       <%=Denwen.JST['users/user']({user:user, src:'follow'})%>
     <%});%>

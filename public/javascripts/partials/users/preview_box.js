@@ -1,6 +1,6 @@
-// Partial to load and display user's followers 
+// Partial to load and display user's iFollowers 
 //
-Denwen.Partials.Users.Followers = Backbone.View.extend({
+Denwen.Partials.Users.PreviewBox = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -10,23 +10,23 @@ Denwen.Partials.Users.Followers = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self            = this;
-    this.user           = this.options.user;
+    var self      = this;
+    this.user     = this.options.user;
+    this.filter   = this.options.filter;
+    this.header   = this.options.header;
+    this.count    = this.options.count;
 
-    if(this.options.delay)
-      window.setTimeout(function(){self.get();},5000);
-    else
-      this.get();
+    this.get();
   },
 
-  // Fetches the followers 
+  // Fetches the iFollowers 
   //
   get: function() {
     var self    = this;
     this.users  = new Denwen.Collections.Users();
 
     this.users.fetch({
-            data:     {id: this.user.get('id'), filter: 'followers'},
+            data:     {id: this.user.get('id'), filter: self.filter},
             success:  function(collection){self.render();},
             error:    function(collection,errors){}
             });
@@ -41,9 +41,11 @@ Denwen.Partials.Users.Followers = Backbone.View.extend({
       $(this.el).parent().hide();
 
     $(this.el).html(
-      Denwen.JST['users/followers']({
+      Denwen.JST['users/preview_box']({
         users   : this.users,
-        leader  : this.user}));
+        leader  : this.user,
+        header  : this.header,
+        count   : this.count}));
   }
 
 });
