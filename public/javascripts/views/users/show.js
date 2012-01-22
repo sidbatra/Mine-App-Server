@@ -141,14 +141,17 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           self.ownedProducts.fetch(category);
           $(self.ownsTab).addClass(self.onTabClass);
           break;
+
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
           $(self.likesTab).addClass(self.onTabClass);
           break;
+
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
           $(self.wantsTab).addClass(self.onTabClass);
           break;
+
         default:
           self.ownedProducts.fetch();
           $(self.ownsTab).addClass(self.onTabClass);
@@ -166,11 +169,15 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         case Denwen.UserShowHash.Following:
           console.log('followings');
           $(self.followingTab).addClass(self.onTabClass);
+          analytics.userIFollowersView(self.user.get('id'));
           break;
+
         case Denwen.UserShowHash.FollowedBy:
           console.log('followed by');
           $(self.followedByTab).addClass(self.onTabClass);
+          analytics.userFollowersView(self.user.get('id'));
           break;
+
         default:
           self.ownedProducts.fetch();
           $(self.ownsTab).addClass(self.onTabClass);

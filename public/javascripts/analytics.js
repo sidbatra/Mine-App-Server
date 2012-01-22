@@ -341,6 +341,24 @@ Denwen.Analytics = Backbone.Model.extend({
         'id'              : userID});
   },
 
+  // A user's followers are viewed
+  //
+  userFollowersView: function(userID) {
+    mpq.track(
+      'User Followers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's ifollowers are viewed
+  //
+  userIFollowersView: function(userID) {
+    mpq.track(
+      'User IFollowers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
   // Product's on a store's profile are filtered
   //
   storeProfileFiltered: function(category,id) {
