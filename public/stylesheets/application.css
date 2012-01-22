@@ -895,6 +895,7 @@ body {
 #item .top_bar {
   height: 36px;
   line-height: 36px;
+  padding-left: 12px;
   font-size: 14px;
   color: #555555;
   position: relative; }
@@ -913,7 +914,8 @@ body {
 #left, #right {
   height: 390px;
   float: left;
-  background: white; }
+  background: white;
+  padding: 6px 0; }
 
 #left {
   width: 420px;
@@ -1424,13 +1426,13 @@ body {
   background-position: 0 -198px; }
 
 .tab.follow_on {
-  background-position: 0 -126px; }
+  background-position: 0 -342px; }
 
 .tab.follow_on:hover {
-  background-position: 0 -162px; }
+  background-position: 0 -378px; }
 
 .tab.follow_on:active {
-  background-position: 0 -198px; }
+  background-position: 0 -414px; }
 
 .sidebar .username {
   -webkit-font-smoothing: antialiased;
