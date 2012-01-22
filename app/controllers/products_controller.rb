@@ -99,6 +99,7 @@ class ProductsController < ApplicationController
     when :liked
       @products = Product.with_store.with_user.
                     acted_on_by_for(params[:owner_id],ActionName::Like).
+                    not_for_user(params[:owner_id]).
                     in_category(category_id)
       
       @options[:with_store] = true
