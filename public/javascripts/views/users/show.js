@@ -106,19 +106,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       //
       routes: {
         ":type/:category" : "filter",
-        ":category" : "catchAll"
+        ":misc"           : "defaultFilter"
       },
 
-      filterLikes: function(category) {
-        console.log('likes ' + category);
-        self.likedProducts.fetch(category);
-      },
-
-      filterWants: function(category) {
-        console.log('wants ' + category);
-        self.wantedProducts.fetch(category);
-      },
-
+      // Display owns,likes,wants with categoty filters
+      //
       filter: function(type,category) {
         if(type == 'owns')
           self.ownedProducts.fetch(category);
@@ -126,13 +118,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           self.likedProducts.fetch(category);
         else if(type == 'wants')
           self.wantedProducts.fetch(category);
-
-        console.log(type,category);
       },
 
-      // Called when a filter route is fired
+      // Called when an unknown or empty fragment is found
       //
-      catchAll: function(category) {
+      defaultFilter: function(misc) {
         self.ownedProducts.fetch();
 
         //if(category != undefined && category.length && category != '_=_') {
