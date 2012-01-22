@@ -1977,7 +1977,6 @@ body {
 }
 
 .products .product .feedback .buttons .pushed {
-	/* background: white url('/images/black_30.png') repeat-x; */
 	color: #cc3333;
 }
 
@@ -2006,7 +2005,7 @@ body {
 	color: #666666;
 }
 
-.products .product .feedback .buttons .pushed:hover { color: white; }
+.products .product .feedback .buttons .pushed:hover {}
 
 .products .product .feedback .buttons span.in {
 	display: none;
@@ -2135,12 +2134,13 @@ body {
 
 .products .product .feedback .buttons .button .context_box {
 	width: 170px;
-	height: 222px;
+	height: 220px;
 	position: absolute;
 	top: 36px;
 	right: 0px;
 	background: white;
 	padding: 12px 10px 0px;
+	border-top: 2px solid #ebe8e3;
 	line-height: 100%;
 	text-align: left;
 	font-size: 14px;
@@ -2236,7 +2236,7 @@ body {
 .products .product .feedback .buttons .button .context_box .own_to_closet {
 	width: 170px;
 	height: 36px;
-	margin-top: 4px;
+	margin-top: 2px;
 	background: url('/images/profile_buttons.png') center -234px;
 	border: 0;
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
