@@ -1483,15 +1483,17 @@ body {
 
 .sidebar .tile_frame {
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 35px;
+  height: 35px;
+  border-right: 1px solid #ebe8e3;
+  border-bottom: 1px solid #ebe8e3;
   float: left;
   cursor: pointer;
   z-index: 3000; }
 
-.sidebar .tile {
-  height: 36px;
-  width: 36px;
+.sidebar img.tile {
+  height: 35px;
+  width: 35px;
   z-index: 1000; }
 
 .sidebar .tile_list {
