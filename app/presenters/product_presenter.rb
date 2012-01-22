@@ -174,7 +174,7 @@ class ProductPresenter < BasePresenter
   def breadcrumb(title,path)
     h.link_to "← " + title,
               path,
-              :class => 'navigation' 
+              :class => '' 
   end
 
 

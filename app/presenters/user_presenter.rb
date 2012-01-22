@@ -44,7 +44,7 @@ class UserPresenter < BasePresenter
   def small_picture(src)
     h.link_to h.image_tag(
                 user.photo_url, 
-                :class  => "slim_shadow_light",
+                :class  => "",
                 :alt    => ''),
               closet_path(src)
   end

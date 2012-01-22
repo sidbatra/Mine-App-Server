@@ -406,7 +406,7 @@ body.home7 {
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	background: black url('/images/tile35_33.jpg');
+	background: white url('/images/tile35_33.jpg');
 	background-position: center top;
 	overflow: hidden;
 }
