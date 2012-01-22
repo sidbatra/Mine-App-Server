@@ -9,14 +9,13 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     this.source   = this.options.source;
 
     // -----
-    this.shelves = new Denwen.Partials.Products.Shelves({
-                        el        : $('#shelves'),
-                        filter    : 'store',
-                        onFilter  : '',
-                        onTitle   : '',
-                        ownerID   : this.store.get('id'),
-                        isActive  : false});
-    
+    this.products = new Denwen.Partials.Products.Products({
+                          el        : $('#products'),
+                          owner_id  : this.store.get('id'),
+                          filter    : 'store',
+                          type      : 'store',
+                          fragment  : 'products'});
+
     // -----
     this.topProducts   = new Denwen.Partials.Products.TopProducts({
                                 el        : $('#top_products'),
@@ -31,7 +30,42 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
                           store : this.store});
 
     // -----
+    this.routing();
+
+    // -----
     this.setAnalytics();
+  },
+
+  // Use Backbone router for reacting to changes in URL
+  // fragments
+  //
+  routing: function() {
+    var self = this;
+
+    var router = Backbone.Router.extend({
+
+      // Listen to routes
+      //
+      routes: {
+        "products/:category"  : "doubleFilter",
+        ":misc"               : "defaultFilter"
+      },
+
+      // Filter store products by category
+      //
+      doubleFilter: function(category) {
+        self.products.fetch(category);
+      },
+
+      // Load all products for unknown fragments
+      //
+      defaultFilter: function(misc) {
+        self.products.fetch();
+      }
+    });
+
+    new router();
+    Backbone.history.start();
   },
 
   // Fire various tracking events 
