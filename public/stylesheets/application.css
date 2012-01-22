@@ -191,8 +191,7 @@ body {
   display: none;
   box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
   -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=8, Direction=180, Color='#cccccc')"; }
+  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
 
 .nav_add_list {
   position: absolute;
@@ -436,8 +435,7 @@ body {
   cursor: pointer;
   box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
   -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=8, Direction=180, Color='#cccccc'); }
+  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
 
 .picker_choice:active {
   box-shadow: none;
@@ -1274,14 +1272,12 @@ body {
 .next:hover, .previous:hover {
   box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
   -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=8, Direction=180, Color='#cccccc')"; }
+  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
 
 .next:active, .previous:active {
   box-shadow: none;
   -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=8, Direction=180, Color='#cccccc')"; }
+  -webkit-box-shadow: none; }
 
 .next {
   right: -42px;
