@@ -367,6 +367,15 @@ Denwen.Analytics = Backbone.Model.extend({
           "id"               : id});
   },
 
+  // A store's products in a category are explicitly viewed
+  //
+  storeProductsView: function(category,storeID) {
+    mpq.track('Store Products View',{
+      'Category'  : category,
+      'id'        : storeID
+    });
+  },
+
   // Page view on store profile
   //
   storeProfileView: function(source,id) {

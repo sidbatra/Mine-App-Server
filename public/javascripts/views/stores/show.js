@@ -55,6 +55,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       //
       doubleFilter: function(category) {
         self.products.fetch(category);
+        analytics.storeProductsView(category,self.store.get('id'));
       },
 
       // Load all products for unknown fragments
