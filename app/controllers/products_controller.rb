@@ -60,14 +60,14 @@ class ProductsController < ApplicationController
   # Fetch multiple products
   #
   def index
-    @filter   = params[:filter].to_sym
-    @options  = {}
+    @filter     = params[:filter].to_sym
+    @options    = {}
+
+    category    = Category.fetch(params[:category]) if params[:category]
+    category_id = category ? category.id : nil
 
     case @filter
     when :user
-      category    = Category.fetch(params[:category]) if params[:category]
-      category_id = category ? category.id : nil
-
       @products   = Product.with_store.with_user.
                       for_user(params[:owner_id]).
                       in_category(category_id).
@@ -78,9 +78,6 @@ class ProductsController < ApplicationController
       @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
 
     when :store
-      category    = Category.fetch(params[:category]) if params[:category]
-      category_id = category ? category.id : nil
-
       @products   = Product.with_user.
                       for_store(params[:owner_id]).
                       in_category(category_id).
@@ -100,22 +97,24 @@ class ProductsController < ApplicationController
       @key = KEYS[:store_top_products] % params[:owner_id]
 
     when :liked
-      @actions  = Action.named(ActionName::Like).
-                    by_user(params[:owner_id]).
-                    with_actionable_product
+      @products = Product.with_store.with_user.
+                    acted_on_by_for(params[:owner_id],ActionName::Like).
+                    in_category(category_id)
       
       @options[:with_store] = true
       @options[:with_user]  = true
-      @key = KEYS[:user_like_products] % params[:owner_id]
+      @key = KEYS[:user_like_products_in_category] % 
+              [params[:owner_id],category_id]
 
     when :wanted
-      @actions  = Action.named(ActionName::Want).
-                    by_user(params[:owner_id]).
-                    with_actionable_product
+      @products = Product.with_store.with_user.
+                    acted_on_by_for(params[:owner_id],ActionName::Want).
+                    in_category(category_id)
       
       @options[:with_store] = true
       @options[:with_user]  = true
-      @key = KEYS[:user_want_products] % params[:owner_id]
+      @key = KEYS[:user_want_products_in_category] % 
+              [params[:owner_id],category_id]
 
     when :collection
       collection = Collection.fresh_for_user(params[:owner_id])

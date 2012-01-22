@@ -20,7 +20,6 @@ class Action < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :with_user, :include => :user
-  named_scope :with_actionable_product, :include => {:actionable => [:user,:store]}
   named_scope :by_user, lambda {|user_id|{:conditions => {:user_id => user_id}}}
   named_scope :named, lambda {|name| {:conditions => {:name => name}}}
   named_scope :on, lambda {|klass,id| 
