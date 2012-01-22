@@ -105,6 +105,7 @@ class ProductsController < ApplicationController
                     with_actionable_product
       
       @options[:with_store] = true
+      @options[:with_user]  = true
       @key = KEYS[:user_like_products] % params[:owner_id]
 
     when :wanted
@@ -113,6 +114,7 @@ class ProductsController < ApplicationController
                     with_actionable_product
       
       @options[:with_store] = true
+      @options[:with_user]  = true
       @key = KEYS[:user_want_products] % params[:owner_id]
 
     when :collection
