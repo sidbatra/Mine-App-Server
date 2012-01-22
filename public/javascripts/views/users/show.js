@@ -9,6 +9,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.isCurrentUser  = helpers.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
 
+    this.onTabClass     = 'on';
+    this.ownsTab        = '#owns_tab';
+    this.likesTab       = '#likes_tab';
+    this.wantsTab       = '#wants_tab';
+    this.followingTab   = '#following_tab';
+    this.followedByTab  = '#followed_by_tab';
+
     if(this.options.currentUserJSON != 'false')
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
@@ -42,7 +49,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           user    : this.user,
                           filter  : 'ifollowers_preview',
                           header  : 'Following',
-                          count   : this.user.get('inverse_followings_count')});
+                          count   : this.user.get('inverse_followings_count'),
+                          hash    : 'following'});
     
     // -----
     new Denwen.Partials.Users.PreviewBox({
@@ -50,7 +58,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           user    : this.user,
                           filter  : 'followers_preview',
                           header  : 'Followed by',
-                          count   : this.user.get('followings_count')});
+                          count   : this.user.get('followings_count'),
+                          hash    : 'followed_by'});
 
     // -----
     new Denwen.Partials.Users.Stores({
@@ -97,6 +106,16 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
   },
 
+  // Reset all tabs to off state
+  //
+  switchTabsOff: function() {
+    $(this.ownsTab).removeClass(this.onTabClass);
+    $(this.likesTab).removeClass(this.onTabClass);
+    $(this.wantsTab).removeClass(this.onTabClass);
+    $(this.followingTab).removeClass(this.onTabClass);
+    $(this.followedByTab).removeClass(this.onTabClass);
+  },
+
   // Use Backbone router for reacting to changes in URL
   // fragments
   //
@@ -108,25 +127,52 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        ":type/:category" : "filter",
-        ":misc"           : "defaultFilter"
+        ":type/:category" : "doubleFilter",
+        ":type"           : "singleFilter"
       },
 
       // Display owns,likes,wants with categoty filters
       //
-      filter: function(type,category) {
-        if(type == 'owns')
+      doubleFilter: function(type,category) {
+        self.switchTabsOff();
+
+        switch(type) {
+        case Denwen.UserShowHash.Owns:
           self.ownedProducts.fetch(category);
-        else if(type == 'likes')
+          $(self.ownsTab).addClass(self.onTabClass);
+          break;
+        case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
-        else if(type == 'wants')
+          $(self.likesTab).addClass(self.onTabClass);
+          break;
+        case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
+          $(self.wantsTab).addClass(self.onTabClass);
+          break;
+        default:
+          self.ownedProducts.fetch();
+          $(self.ownsTab).addClass(self.onTabClass);
+        }
       },
 
-      // Called when an unknown or empty fragment is found
+      // Display ifollowers, followers and handle empty fragments
       //
-      defaultFilter: function(misc) {
-        self.ownedProducts.fetch();
+      singleFilter: function(type) {
+        self.switchTabsOff();
+
+        switch(type) {
+        case Denwen.UserShowHash.Following:
+          console.log('followings');
+          $(self.followingTab).addClass(self.onTabClass);
+          break;
+        case Denwen.UserShowHash.FollowedBy:
+          console.log('followed by');
+          $(self.followedByTab).addClass(self.onTabClass);
+          break;
+        default:
+          self.ownedProducts.fetch();
+          $(self.ownsTab).addClass(self.onTabClass);
+        }
 
         //if(category != undefined && category.length && category != '_=_') {
         //  analytics.userProfileFiltered(
