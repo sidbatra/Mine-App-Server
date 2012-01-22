@@ -13,16 +13,29 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.shelves = new Denwen.Partials.Products.Shelves({
-                        el        : $('#shelves'),
-                        filter    : 'user',
-                        onFilter  : 'collection',
-                        onTitle   : (this.isCurrentUser ? 
-                                      'You' : 
-                                      this.user.get('first_name')) + ' Today',
-                        ownerID   : this.user.get('id'),
-                        isActive  : helpers.isCurrentUser(this.user.get('id'))});
-    
+    this.ownedProducts = new Denwen.Partials.Products.Products({
+                          el        : $('#products'),
+                          owner_id  : this.user.get('id'),
+                          filter    : 'user',
+                          type      : 'user',
+                          fragment  : 'owns'});
+
+    // -----
+    this.likedProducts = new Denwen.Partials.Products.Products({
+                            el        : $('#products'),
+                            owner_id  : this.user.get('id'),
+                            filter    : 'liked',
+                            type      : 'user',
+                            fragment  : 'likes'});
+
+    // -----
+    this.wantedProducts = new Denwen.Partials.Products.Products({
+                            el        : $('#products'),
+                            owner_id  : this.user.get('id'),
+                            filter    : 'wanted',
+                            type      : 'user',
+                            fragment  : 'wants'});
+
     // -----
     new Denwen.Partials.Users.PreviewBox({
                           el      : $('#ifollowers_with_msg'),
@@ -68,6 +81,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                     model: this.user, 
                     el:$('#profile_bio')});
 
+    // ----
+    this.routing();
 
     // -----
     this.loadFacebookPlugs();
@@ -80,6 +95,50 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   loadFacebookPlugs: function() {
     new Denwen.Partials.Facebook.Base();
+  },
+
+  // Use Backbone router for reacting to changes in URL
+  // fragments
+  //
+  routing: function() {
+    var self = this;
+
+    var router = Backbone.Router.extend({
+
+      // Listen to routes
+      //
+      routes: {
+        ":type/:category" : "filter",
+        ":misc"           : "defaultFilter"
+      },
+
+      // Display owns,likes,wants with categoty filters
+      //
+      filter: function(type,category) {
+        if(type == 'owns')
+          self.ownedProducts.fetch(category);
+        else if(type == 'likes')
+          self.likedProducts.fetch(category);
+        else if(type == 'wants')
+          self.wantedProducts.fetch(category);
+      },
+
+      // Called when an unknown or empty fragment is found
+      //
+      defaultFilter: function(misc) {
+        self.ownedProducts.fetch();
+
+        //if(category != undefined && category.length && category != '_=_') {
+        //  analytics.userProfileFiltered(
+        //              category,
+        //              self.isCurrentUser,
+        //              self.user.get('id'));
+        //}
+      }
+    });
+
+    new router();
+    Backbone.history.start();
   },
 
   // Fire various tracking events 

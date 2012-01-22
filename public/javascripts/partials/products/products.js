@@ -1,4 +1,4 @@
-// Partial to load and display products for an owner.
+// Partial to load and display products along with category filters.
 //
 Denwen.Partials.Products.Products = Backbone.View.extend({
 
@@ -7,32 +7,47 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
   initialize: function() {
     this.ownerID    = this.options.owner_id;
     this.filter     = this.options.filter;
-    this.jst        = this.options.jst;
-    this.active     = this.options.active;
+    this.type       = this.options.type;
+    this.fragment   = this.options.fragment;
+
     this.products   = new Denwen.Collections.Products();
+    this.categories = new Denwen.Collections.Categories();
+    this.category   = '';
   },
 
   // Render the products collection
   //
   render: function() {
-    if(this.products.isEmpty())
-      $(this.el).hide();
+    var self = this;
+
+    if(this.category == 'all' || this.category == undefined) {
+      this.categories = new Denwen.Collections.Categories();
+
+      this.products.each(function(product){
+        if(self.categories.get(product.get('category_id')) == undefined)
+          self.categories.add(Categories.get(product.get('category_id')));
+      });
+
+      this.categories.sort();
+    }
 
     this.el.html('');
     this.el.prepend(
-      Denwen.JST[this.jst]({
-        products  : this.products,
-        ownerID   : this.ownerID}));
+      Denwen.JST['products/products']({
+        products        : this.products,
+        ownerID         : this.ownerID,
+        src             : this.filter,
+        type            : this.type,
+        fragment        : this.fragment,
+        categories      : this.categories,
+        currentCategory : this.category}));
 
-    if(this.active) {
-      var self = this;
-      this.products.each(function(product){
-        new Denwen.Partials.Products.Product({
-              model     : product,
-              source    : self.filter,
-              sourceID  : self.ownerID});
-      });
-    }
+    this.products.each(function(product){
+      new Denwen.Partials.Products.Product({
+            model     : product,
+            source    : self.filter,
+            sourceID  : self.ownerID});
+    });
   },
 
   // Fetch products filtered by the given category
@@ -43,6 +58,8 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
 
     if(category != undefined && category.length) 
       data['category']  = category;
+
+    this.category = category;
 
     this.products.fetch({
       data    : data,

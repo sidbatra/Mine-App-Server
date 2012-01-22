@@ -26,8 +26,8 @@ common: &common
     :user_followers_preview: user_%d_followers_preview
     :user_top_stores: user_%d_top_stores
     :user_products_in_category: user_%d_category_%d_products
-    :user_like_products: user_%d_like_products
-    :user_want_products: user_%d_want_products
+    :user_like_products_in_category: user_%d_category_%d_like_products
+    :user_want_products_in_category: user_%d_category_%d_want_products
     :store_category_count: store_%d_category_%d_count
     :store_price: store_%d_products_price
     :store_top_products: store_%d_top_products

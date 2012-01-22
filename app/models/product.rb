@@ -40,6 +40,11 @@ class Product < ActiveRecord::Base
                               {:conditions => {:user_id => user_id}}}
   named_scope :for_store,   lambda {|store_id| 
                               {:conditions => {:store_id => store_id}}}
+  named_scope :acted_on_by_for, lambda {|user_id,name| 
+                                  {:conditions => {:actions => {
+                                                    :user_id  => user_id,
+                                                    :name     => name}},
+                                   :joins       => :actions}}
   named_scope :in_category, lambda {|category_id| 
                               {:conditions => {:category_id => category_id}} if category_id}
   named_scope :created,     lambda {|range| 

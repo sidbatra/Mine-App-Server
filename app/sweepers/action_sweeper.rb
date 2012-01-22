@@ -35,9 +35,12 @@ class ActionSweeper < ActionController::Caching::Sweeper
   # Expire set of products under the same action by the same user
   #
   def expire_actioned_products(action)
-    unless action.name == ActionName::Own
-      key = "user_#{action.name}_products".to_sym
-      expire_cache(KEYS[key] % action.user_id)
+    if action.actionable_type == Product.name && 
+            action.name != ActionName::Own
+      key = "user_#{action.name}_products_in_category".to_sym
+
+      expire_cache(KEYS[key] % [action.user_id,action.actionable.category_id])
+      expire_cache(KEYS[key] % [action.user_id,0])
     end
   end
 end
