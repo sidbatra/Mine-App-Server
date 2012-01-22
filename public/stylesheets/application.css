@@ -914,33 +914,28 @@ body {
   text-align: center;
   position: relative; }
 
-#product_section .buttons {
+#item .edit {
   position: absolute;
-  width: 98px;
+  width: 80px;
   height: 32px;
-  right: 6px;
-  bottom: 6px; }
+  right: 20px;
+  bottom: 8px; }
 
-#product_section .buttons .button {
-  width: 47px;
-  height: 30px;
+#item .edit .button {
+  width: 40px;
+  height: 32px;
   color: #cccccc;
   font-size: 12px;
   line-height: 30px;
   text-align: center;
   float: left;
-  border: 1px solid transparent;
   background: white;
   display: block;
-  color: #666666; }
+  color: #999999;
+  cursor: pointer; }
 
-#product_section .buttons .button:hover {
-  border: 1px solid #cccccc;
-  cursor: pointer;
+#item .edit .button:hover {
   color: #cc3333; }
-
-#product_section .buttons .button:active {
-  background: #f8f8f8; }
 
 .left_delete a {
   position: absolute;
