@@ -4,33 +4,38 @@
   </a> <!-- top -->
 
   <div class='bottom'>
+  
+  		<div class='fade'></div>
 
       <!-- product title
       <a class="title" href="<#=product.path(src)%>">
         <#=helpers.truncate(product.escape('title'),40,'...')%>
       </a>-->
       
-      <%if(product.get('is_gift')) { %>
-        Gift
-      <%}%>
- 
       <!-- product price  
       <#} else if(product.has('price')) { %>
         <#=helpers.displayCurrency(product.get('price'))%>
       -->
       
-     
         	
       <%if(type == 'user' && product.has('store')) { %>
-        <%if(product.get('is_gift')) { %>
-        	f<%}else{%>F<%}%>rom <%=product.get('store').conditionalLink('user_profile')%>
+       	Bought at <%=product.get('store').conditionalLink('user_profile')%>
+      <%}else{%>
+      	<%if(type == 'user' && product.get('is_gift')) { %>
+       		Gift
+      	<%}%>
       <%}%>
       
       <%if(type == 'store') { %>
-        by <a href="<%=product.get('user').path('store')%>">
-            <%=product.get('user').escape('first_name')%> 
-            <%=product.get('user').escape('last_name')%>
-        </a>
+				<a href="<%=product.get('user').path('store')%>" class='user'>
+	    		<img src="http://graph.facebook.com/100001310055990/picture?type=square" />
+	    	</a>
+
+	    	<a href="<%=product.get('user').path('store')%>" class='user'>
+	        <%=product.get('user').escape('first_name')%> 
+	        <%=product.get('user').escape('last_name')%>
+				</a>
+        bought this
       <%}%>
     
   </div> <!-- bottom -->

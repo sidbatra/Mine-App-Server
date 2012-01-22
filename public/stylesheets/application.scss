@@ -1892,7 +1892,7 @@ body {
 	position: relative;
 	background-position: center center;
 	background-repeat: no-repeat;
-/* 	background-size: 230px auto; */
+/* 	background-size: 350px auto; */
 }
 
 .products .product .top .image {
@@ -1909,13 +1909,35 @@ body {
 }
 
 .products .product .bottom {
-	width: 170px;
+	width: 180px;
 	height: 30px;
 	line-height: 30px;
 	overflow: hidden;
 	position: relative;
-	text-align: center;
+	text-align: left;
+	color: #bbbbbb;
+	white-space: nowrap;
+	overflow: hidden;
 }
+
+.products .product .bottom img {
+	width: 18px;
+	height: 18px;
+	float: left;
+	margin: 6px 6px 6px 0px;
+}
+
+.products .product .bottom .fade {
+	width: 30px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	background: url('/images/bottom_right_fade.png') center right repeat-y;
+}
+
+.products .product .bottom a.user { color: #555555; }
+.products .product .bottom a.user:hover { color: #cc3333; }
 
 .products .product a { color: #cc3333; }
 
@@ -2451,7 +2473,7 @@ body {
 	line-height: 32px;
 	display: block;
 	margin-bottom: 5px;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 #extras .feedback .feed_item a {
