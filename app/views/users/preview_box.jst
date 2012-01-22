@@ -1,8 +1,10 @@
 
-  <div id='following_msg' class='tab triangle large_top_margin'>
-    <%=header%>
-    <div class='count'><%=count%></div>
-  </div>
+  <a href='#<%=hash%>'>
+    <div id='following_msg' class='tab triangle large_top_margin'>
+      <%=header%>
+      <div class='count'><%=count%></div>
+    </div>
+  </a>
 
   <div>
     <%users.each(function(user){%>

@@ -15,6 +15,7 @@ Denwen.Partials.Users.PreviewBox = Backbone.View.extend({
     this.filter   = this.options.filter;
     this.header   = this.options.header;
     this.count    = this.options.count;
+    this.hash     = this.options.hash;
 
     this.get();
   },
@@ -45,7 +46,8 @@ Denwen.Partials.Users.PreviewBox = Backbone.View.extend({
         users   : this.users,
         leader  : this.user,
         header  : this.header,
-        count   : this.count}));
+        count   : this.count,
+        hash    : this.hash}));
   }
 
 });
