@@ -27,7 +27,7 @@
   	<div id="item">
   		<div class="top_bar">
 
-        <%if @source == 'store' && @product.store%>
+        <%if (@source == 'store' || @source == 'top_product') && @product.store%>
           <%@store_presenter = presenter_for(@product.store)%>
           <%=@product_presenter.breadcrumb(
                 @store_presenter.name,
