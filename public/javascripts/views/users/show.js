@@ -9,6 +9,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.isCurrentUser  = helpers.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
 
+    this.onTabClass     = 'on';
+    this.ownsTab        = '#owns_tab';
+    this.likesTab       = '#likes_tab';
+    this.wantsTab       = '#wants_tab';
+    this.followingTab   = '#following_tab';
+    this.followedByTab  = '#followed_by_tab';
+
     if(this.options.currentUserJSON != 'false')
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
@@ -99,6 +106,16 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
   },
 
+  // Reset all tabs to off state
+  //
+  switchTabsOff: function() {
+    $(this.ownsTab).removeClass(this.onTabClass);
+    $(this.likesTab).removeClass(this.onTabClass);
+    $(this.wantsTab).removeClass(this.onTabClass);
+    $(this.followingTab).removeClass(this.onTabClass);
+    $(this.followedByTab).removeClass(this.onTabClass);
+  },
+
   // Use Backbone router for reacting to changes in URL
   // fragments
   //
@@ -117,33 +134,44 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       // Display owns,likes,wants with categoty filters
       //
       doubleFilter: function(type,category) {
+        self.switchTabsOff();
+
         switch(type) {
         case Denwen.UserShowHash.Owns:
           self.ownedProducts.fetch(category);
+          $(self.ownsTab).addClass(self.onTabClass);
           break;
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
+          $(self.likesTab).addClass(self.onTabClass);
           break;
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
+          $(self.wantsTab).addClass(self.onTabClass);
           break;
         default:
           self.ownedProducts.fetch();
+          $(self.ownsTab).addClass(self.onTabClass);
         }
       },
 
       // Display ifollowers, followers and handle empty fragments
       //
       singleFilter: function(type) {
+        self.switchTabsOff();
+
         switch(type) {
         case Denwen.UserShowHash.Following:
           console.log('followings');
+          $(self.followingTab).addClass(self.onTabClass);
           break;
         case Denwen.UserShowHash.FollowedBy:
           console.log('followed by');
+          $(self.followedByTab).addClass(self.onTabClass);
           break;
         default:
           self.ownedProducts.fetch();
+          $(self.ownsTab).addClass(self.onTabClass);
         }
 
         //if(category != undefined && category.length && category != '_=_') {
