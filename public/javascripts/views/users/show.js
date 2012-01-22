@@ -153,6 +153,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           self.ownedProducts.fetch();
           $(self.ownsTab).addClass(self.onTabClass);
         }
+
+        analytics.userProductsView(type,category,self.user.get('id'));
       },
 
       // Display ifollowers, followers and handle empty fragments
@@ -173,13 +175,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           self.ownedProducts.fetch();
           $(self.ownsTab).addClass(self.onTabClass);
         }
-
-        //if(category != undefined && category.length && category != '_=_') {
-        //  analytics.userProfileFiltered(
-        //              category,
-        //              self.isCurrentUser,
-        //              self.user.get('id'));
-        //}
       }
     });
 

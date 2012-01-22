@@ -330,6 +330,17 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // A type and category of a user's products are 
+  // explictly viewed
+  //
+  userProductsView: function(type,category,userID) {
+    mpq.track(
+      'User ' + type.capitalize() + ' View',{
+        'Category'        : category,
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
   // Product's on a store's profile are filtered
   //
   storeProfileFiltered: function(category,id) {
