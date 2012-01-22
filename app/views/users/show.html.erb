@@ -33,17 +33,17 @@
       <%=@user_presenter.closet_title%>
     </div>
 	  
-	  <div class='tab triangle on'>
-	  	Owns
-	  </div>
-	  
-	  <div class='tab triangle small_top_margin'>
-	  	Likes
-	  </div>
-	  
-	  <div class='tab triangle small_top_margin'>
-	  	Wants
-	  </div>
+    <a href='#owns/all'>
+      <div class='tab triangle on'>Owns</div>
+    </a>
+
+    <a href='#likes/all'>
+      <div class='tab triangle'>Likes</div>
+    </a>
+
+    <a href='#wants/all'>
+      <div class='tab triangle'>Wants</div>
+    </a>
 	  
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box_<%=@user.id%>'>
