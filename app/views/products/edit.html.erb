@@ -2,8 +2,6 @@
 
 	<div id="container">
 
-		<div id="box" class="rounded_5">
-
 		<!-- item -->
 		
 		  <%form_for @product,:url => "/products/#{@product.id}",
@@ -20,13 +18,6 @@
                     :submit_class => 'update_product'}%>
 		
 		  <%end%> <!-- form -->
-		  
-		  
-		</div> <!-- box -->
-
-		<div id="footer">
-			<%=CONFIG[:name]%> © 2011 · <%=email_link%>
-		</div>
 	
 	</div> <!-- container -->
    

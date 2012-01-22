@@ -370,7 +370,6 @@ body {
   border: none;
   margin: 0 auto;
   background: url("/images/invite_buttons.png") 0 -96px no-repeat;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')";
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
@@ -514,7 +513,6 @@ body {
   border: none;
   margin-left: 270px;
   background: url("/images/onboarding_buttons.png") no-repeat;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')";
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
@@ -856,7 +854,8 @@ body {
   opacity: 1;
   filter: alpha(opacity=100); }
 
-.add_to_closet {
+.add_to_closet, .update_product {
+  /* create + edit view submit variants */
   width: 500px;
   height: 60px;
   margin-top: 20px;
@@ -867,14 +866,22 @@ body {
   background-position: 0 -150px;
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')"; }
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
 
 .add_to_closet:hover {
   background-position: 0 -210px; }
 
 .add_to_closet:active {
   background-position: 0 -270px; }
+
+.update_product {
+  background-position: 0 -330px; }
+
+.update_product:hover {
+  background-position: 0 -390px; }
+
+.update_product:active {
+  background-position: 0 -450px; }
 
 /* ------------------------------ Product Page */
 .emphasis {
@@ -2337,7 +2344,6 @@ body {
   -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6);
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999')";
   /* For IE 8 */
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=180, Color='#999999');
   /* For IE 5.5 - 7 */ }
