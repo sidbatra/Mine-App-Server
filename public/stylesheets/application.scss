@@ -955,6 +955,7 @@ body {
 #item .top_bar {
 	height: 36px;
 	line-height: 36px;
+	padding-left: 12px;
 	font-size: 14px;
 	color: #555555;
 	position: relative;
@@ -975,6 +976,7 @@ body {
 	height: 390px;
 	float: left;
 	background: white;
+	padding: 6px 0;
 }
 
 #left {	
@@ -2140,7 +2142,7 @@ body {
 	right: 0px;
 	background: white;
 	padding: 12px 10px 0px;
-	border-top: 2px dashed #ebe8e3;
+	border-top: 2px solid #ebe8e3;
 	line-height: 100%;
 	text-align: left;
 	font-size: 14px;
