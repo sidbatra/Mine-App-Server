@@ -1012,7 +1012,7 @@ body {
 }
 
 #product_section .buttons .button:active {
-	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	background: #f8f8f8;
 }
 
 .left_delete a {
@@ -1582,7 +1582,7 @@ body {
 	color: #666666;
 	padding: 0 4px;
 	border: none;
-	background: #f8f8f8 url('/images/slim_shadow_light.png') repeat-x;
+	background: #f8f8f8;
 }
 
 .sidebar .update {
@@ -2308,7 +2308,7 @@ body {
 	height: 22px;
 	padding: 0px 4px;
 	border: 1px solid #cccccc;
-	background: white url('/images/slim_shadow_light.png') repeat-x;
+	background: white;
 	font-family: 'FuturaStdBook', Arial, sans-serif;
 	line-height: 22px;
 }
@@ -2558,42 +2558,6 @@ body {
 .button_silver:active { background: #dddddd; }
 
 /* ------------------------------ Effects */
-
-.slim_shadow_light { /* for permanent shadows */
-	box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
-}
-
-.slim_shadow_ultra_light { /* for permanent shadows */
-	box-shadow: rgba(0, 0, 0, 0.0664062) 0px 1px 2px 0px;
-	-moz-box-shadow: rgba(0, 0, 0, 0.0664062) 0px 1px 2px 0px;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0664062) 0px 1px 2px 0px;
-}
-
-.slim_shadow_dark {
-	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-}
-
-.hover_shadow_light { /* for buttons on hover */
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.0);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.0);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.0);
-}
-
-.hover_shadow_light:hover {
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-}
-
-.hover_shadow_light:active {
-	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-}
 
 .shadow {
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(00, 00, 00, 0.6);
