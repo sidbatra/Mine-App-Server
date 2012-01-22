@@ -1,4 +1,4 @@
-// Partial to load and display products for an owner.
+// Partial to load and display products along with category filters.
 //
 Denwen.Partials.Products.Products = Backbone.View.extend({
 
@@ -7,32 +7,28 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
   initialize: function() {
     this.ownerID    = this.options.owner_id;
     this.filter     = this.options.filter;
-    this.jst        = this.options.jst;
-    this.active     = this.options.active;
+    this.type       = this.options.type;
     this.products   = new Denwen.Collections.Products();
   },
 
   // Render the products collection
   //
   render: function() {
-    if(this.products.isEmpty())
-      $(this.el).hide();
 
     this.el.html('');
     this.el.prepend(
-      Denwen.JST[this.jst]({
+      Denwen.JST['products/products']({
         products  : this.products,
-        ownerID   : this.ownerID}));
+        ownerID   : this.ownerID,
+        src       : this.filter,
+        type      : this.type}));
 
-    if(this.active) {
-      var self = this;
-      this.products.each(function(product){
-        new Denwen.Partials.Products.Product({
-              model     : product,
-              source    : self.filter,
-              sourceID  : self.ownerID});
-      });
-    }
+    this.products.each(function(product){
+      new Denwen.Partials.Products.Product({
+            model     : product,
+            source    : self.filter,
+            sourceID  : self.ownerID});
+    });
   },
 
   // Fetch products filtered by the given category

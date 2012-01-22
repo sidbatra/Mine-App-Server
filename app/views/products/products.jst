@@ -1,0 +1,7 @@
+<%if(products.length) {%>
+  <%products.each(function(product){%>
+    <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
+  <%});%>
+<%} else {%>
+  No products here
+<%}%>
