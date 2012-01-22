@@ -1424,13 +1424,13 @@ body {
   background-position: 0 -198px; }
 
 .tab.follow_on {
-  background-position: 0 -126px; }
+  background-position: 0 -342px; }
 
 .tab.follow_on:hover {
-  background-position: 0 -162px; }
+  background-position: 0 -378px; }
 
 .tab.follow_on:active {
-  background-position: 0 -198px; }
+  background-position: 0 -414px; }
 
 .sidebar .username {
   -webkit-font-smoothing: antialiased;
@@ -1965,7 +1965,7 @@ body {
   right: 0px;
   background: white;
   padding: 12px 10px 0px;
-  border-top: 2px solid #ebe8e3;
+  border-top: 2px dashed #ebe8e3;
   line-height: 100%;
   text-align: left;
   font-size: 14px;
