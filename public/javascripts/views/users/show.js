@@ -21,7 +21,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.ownedProducts = new Denwen.Partials.Products.Products({
-                          el        : $('#products'),
+                          el        : $('#centerstage'),
                           owner_id  : this.user.get('id'),
                           filter    : 'user',
                           type      : 'user',
@@ -29,7 +29,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.likedProducts = new Denwen.Partials.Products.Products({
-                            el        : $('#products'),
+                            el        : $('#centerstage'),
                             owner_id  : this.user.get('id'),
                             filter    : 'liked',
                             type      : 'user',
@@ -37,7 +37,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.wantedProducts = new Denwen.Partials.Products.Products({
-                            el        : $('#products'),
+                            el        : $('#centerstage'),
                             owner_id  : this.user.get('id'),
                             filter    : 'wanted',
                             type      : 'user',
