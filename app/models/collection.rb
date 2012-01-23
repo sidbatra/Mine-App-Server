@@ -16,8 +16,8 @@ class Collection < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :for_user, lambda {|user_id| {:conditions => {
-                                              :user_id => user_id},
-                                            :limit => 1}}
+                                              :user_id => user_id}}}
+  named_scope :limit, lambda {|limit| {:limit => limit}}
 
   #----------------------------------------------------------------------
   # Class methods
@@ -38,28 +38,10 @@ class Collection < ActiveRecord::Base
     collection
   end
 
-  # Fetch the last fresh collection for the given user_id
-  #
-  def self.fresh_for_user(user_id)
-    for_user(user_id).last
-  end
-
 
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
-
-  # Test is the collection is less than a day old
-  #
-  def is_fresh
-    (Time.now - self.created_at) < 86400
-  end
-
-  # Fetch product ids for the products in the collection
-  #
-  def product_ids
-    collection_parts.map(&:product_id)
-  end
 
   # Override to customize accessible attributes
   #
@@ -68,7 +50,7 @@ class Collection < ActiveRecord::Base
     options[:only] += [:id]
 
     options[:include] = {}
-    #options[:include].store(*(User.json_options))
+    options[:include].store(:products,{:only => [:id],:methods => [:photo_url]})
 
     super(options)
   end

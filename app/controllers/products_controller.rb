@@ -117,19 +117,6 @@ class ProductsController < ApplicationController
       @key = KEYS[:user_want_products_in_category] % 
               [params[:owner_id],category_id]
 
-    when :collection
-      collection = Collection.fresh_for_user(params[:owner_id])
-      @products = []
-
-      if collection
-        @products = Product.for_ids(collection.product_ids).with_user.with_store
-        @options[:with_store] = true
-        @options[:with_user]  = true
-        @key = KEYS[:collection_products] % collection.id
-      else
-        @key = KEYS[:collection_products] % 0
-      end
-
     else
       raise IOError, "Invalid option"
     end
