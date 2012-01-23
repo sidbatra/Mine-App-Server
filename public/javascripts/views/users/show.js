@@ -21,7 +21,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.ownedProducts = new Denwen.Partials.Products.Products({
-                          el        : $('#products'),
+                          el        : $('#centerstage'),
                           owner_id  : this.user.get('id'),
                           filter    : 'user',
                           type      : 'user',
@@ -29,7 +29,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.likedProducts = new Denwen.Partials.Products.Products({
-                            el        : $('#products'),
+                            el        : $('#centerstage'),
                             owner_id  : this.user.get('id'),
                             filter    : 'liked',
                             type      : 'user',
@@ -37,11 +37,27 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.wantedProducts = new Denwen.Partials.Products.Products({
-                            el        : $('#products'),
+                            el        : $('#centerstage'),
                             owner_id  : this.user.get('id'),
                             filter    : 'wanted',
                             type      : 'user',
                             fragment  : 'wants'});
+
+    // -----
+    this.followingUsers  = new Denwen.Partials.Users.List({
+                                el      : $('#centerstage'),
+                                userID  : this.user.get('id'),
+                                filter  : 'ifollowers',
+                                header  : 'Following',
+                                src     : 'following_list'});
+
+    // -----
+    this.followedByUsers  = new Denwen.Partials.Users.List({
+                                  el      : $('#centerstage'),
+                                  userID  : this.user.get('id'),
+                                  filter  : 'followers',
+                                  header  : 'Followed By',
+                                  src     : 'followed_by_list'});
 
     // -----
     new Denwen.Partials.Users.PreviewBox({
@@ -141,18 +157,23 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           self.ownedProducts.fetch(category);
           $(self.ownsTab).addClass(self.onTabClass);
           break;
+
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
           $(self.likesTab).addClass(self.onTabClass);
           break;
+
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
           $(self.wantsTab).addClass(self.onTabClass);
           break;
+
         default:
           self.ownedProducts.fetch();
           $(self.ownsTab).addClass(self.onTabClass);
         }
+
+        analytics.userProductsView(type,category,self.user.get('id'));
       },
 
       // Display ifollowers, followers and handle empty fragments
@@ -162,24 +183,21 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         switch(type) {
         case Denwen.UserShowHash.Following:
-          console.log('followings');
+          self.followingUsers.fetch();
           $(self.followingTab).addClass(self.onTabClass);
+          analytics.userIFollowersView(self.user.get('id'));
           break;
+
         case Denwen.UserShowHash.FollowedBy:
-          console.log('followed by');
+          self.followedByUsers.fetch();
           $(self.followedByTab).addClass(self.onTabClass);
+          analytics.userFollowersView(self.user.get('id'));
           break;
+
         default:
           self.ownedProducts.fetch();
           $(self.ownsTab).addClass(self.onTabClass);
         }
-
-        //if(category != undefined && category.length && category != '_=_') {
-        //  analytics.userProfileFiltered(
-        //              category,
-        //              self.isCurrentUser,
-        //              self.user.get('id'));
-        //}
       }
     });
 

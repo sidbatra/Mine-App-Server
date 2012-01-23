@@ -7,7 +7,9 @@
   
 
   <!-- query -->
-	<div class='step' id='query_box'>
+	<div class='step' 
+        id='query_box' 
+        style='<%=show_query_box ? '' : 'display:none'%>'>
 	
 		<%if !onboarding%>
 			<p id='query_text' class='step_title'>

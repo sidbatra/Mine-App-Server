@@ -10,7 +10,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
 
     // -----
     this.products = new Denwen.Partials.Products.Products({
-                          el        : $('#products'),
+                          el        : $('#centerstage'),
                           owner_id  : this.store.get('id'),
                           filter    : 'store',
                           type      : 'store',
@@ -55,6 +55,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       //
       doubleFilter: function(category) {
         self.products.fetch(category);
+        analytics.storeProductsView(category,self.store.get('id'));
       },
 
       // Load all products for unknown fragments

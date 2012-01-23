@@ -61,17 +61,20 @@ class UsersController < ApplicationController
   # Fetch group of users based on different filters 
   #
   def index
-    @filter = params[:filter].to_sym
+    @filter   = params[:filter].to_sym
+    @options  = {}
 
     case @filter
     when :followers
       @users      = User.find(params[:id]).followers
+      @options    = {:only => [:byline]}
       @key        = KEYS[:user_followers] % params[:id]
     when :followers_preview
       @users      = User.find(params[:id]).followers.limit(5)
       @key        = KEYS[:user_followers_preview] % params[:id]
     when :ifollowers
       @users      = User.find(params[:id]).ifollowers
+      @options    = {:only => [:byline]}
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :ifollowers_preview
       @users      = User.find(params[:id]).ifollowers.limit(5)

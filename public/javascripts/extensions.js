@@ -5,6 +5,12 @@ String.prototype.toProperCase = function () {
     return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
+// Capitalize the first character of a string
+//
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 var uncheckedkeycodes=/(8)|(13)|(16)|(17)|(18)/;  //keycodes that are not checked, even when limit has been reached.
 
 function restrictFieldSize($fields, optsize, optoutputdiv){

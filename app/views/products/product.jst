@@ -28,7 +28,7 @@
       
       <%if(type == 'store') { %>
 				<a href="<%=product.get('user').path('store')%>" class='user'>
-	    		<img src="http://graph.facebook.com/100001310055990/picture?type=square" />
+	    		<img src="<%=product.get('user').get('photo_url')%>"/>
 	    	</a>
 
 	    	<a href="<%=product.get('user').path('store')%>" class='user'>

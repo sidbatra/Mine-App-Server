@@ -330,12 +330,50 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // A type and category of a user's products are 
+  // explictly viewed
+  //
+  userProductsView: function(type,category,userID) {
+    mpq.track(
+      'User ' + type.capitalize() + ' View',{
+        'Category'        : category,
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's followers are viewed
+  //
+  userFollowersView: function(userID) {
+    mpq.track(
+      'User Followers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's ifollowers are viewed
+  //
+  userIFollowersView: function(userID) {
+    mpq.track(
+      'User IFollowers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
   // Product's on a store's profile are filtered
   //
   storeProfileFiltered: function(category,id) {
     mpq.track('Store Profile Filtered',{
           "Category"         : category,
           "id"               : id});
+  },
+
+  // A store's products in a category are explicitly viewed
+  //
+  storeProductsView: function(category,storeID) {
+    mpq.track('Store Products View',{
+      'Category'  : category,
+      'id'        : storeID
+    });
   },
 
   // Page view on store profile

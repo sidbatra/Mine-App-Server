@@ -36,8 +36,7 @@ Denwen.Partials.Users.TopShoppers = Backbone.View.extend({
 
     $(this.el).html(
       Denwen.JST['users/top_shoppers']({
-        users         : this.users, 
-        store_handle  : this.store.get('handle')}));
+        users         : this.users}));
   }
 
 });

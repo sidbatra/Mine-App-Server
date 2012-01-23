@@ -22,7 +22,7 @@ class StoresController < ApplicationController
     when :suggest
       @stores   = Store.processed.popular.limit(40).sort{|x,y| 
                                             x.name.downcase <=> y.name.downcase}
-      @options  = {:only => [:handle],:methods => [:large_url]}
+      @options  = {:only => [:handle],:methods => [:medium_url]}
       @key      = KEYS[:store_suggest]
     when :all
       @stores   = Store.unfiltered
