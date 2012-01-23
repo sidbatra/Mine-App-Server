@@ -1,7 +1,7 @@
 <%-cache @key do-%>
   <%-if @filter == :stars || @filter == :top_shoppers-%>
-    <%=@achievers.map(&:achievable).to_json-%>
+    <%=@achievers.map(&:achievable).to_json(@options)-%>
   <%-else-%>
-    <%=@users.to_json-%>
+    <%=@users.to_json(@options)-%>
   <%-end-%>
 <%-end-%>
