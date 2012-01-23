@@ -1,0 +1,9 @@
+<div>
+  <%=header%>
+</div>
+
+<div>
+  <%users.each(function(user){%>
+    <%=Denwen.JST['users/user_detailed']({user:user, src:src})%>
+  <%});%>
+</div>

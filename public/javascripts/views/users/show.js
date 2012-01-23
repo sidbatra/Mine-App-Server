@@ -44,6 +44,22 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                             fragment  : 'wants'});
 
     // -----
+    this.followingUsers  = new Denwen.Partials.Users.List({
+                                el      : $('#centerstage'),
+                                userID  : this.user.get('id'),
+                                filter  : 'ifollowers',
+                                header  : 'Following',
+                                src     : 'following_list'});
+
+    // -----
+    this.followedByUsers  = new Denwen.Partials.Users.List({
+                                  el      : $('#centerstage'),
+                                  userID  : this.user.get('id'),
+                                  filter  : 'followers',
+                                  header  : 'Followed By',
+                                  src     : 'followed_by_list'});
+
+    // -----
     new Denwen.Partials.Users.PreviewBox({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
@@ -167,13 +183,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         switch(type) {
         case Denwen.UserShowHash.Following:
-          console.log('followings');
+          self.followingUsers.fetch();
           $(self.followingTab).addClass(self.onTabClass);
           analytics.userIFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.FollowedBy:
-          console.log('followed by');
+          self.followedByUsers.fetch();
           $(self.followedByTab).addClass(self.onTabClass);
           analytics.userFollowersView(self.user.get('id'));
           break;

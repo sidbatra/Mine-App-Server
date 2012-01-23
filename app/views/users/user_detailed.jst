@@ -1,0 +1,14 @@
+<div class="tile_frame">
+  <span class="tooltip_down_ffffff">
+    <%=user.get('first_name') + ' ' + user.get('last_name')%>
+  </span>
+
+  <a href="<%=user.path(src)%>">
+    <img src="<%=user.get('photo_url')%>" class='tile'/>
+  </a>
+
+  <span>
+    <%=user.get('byline')%>
+  </span>
+</div>
+
