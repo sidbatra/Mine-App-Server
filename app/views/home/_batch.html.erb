@@ -9,9 +9,8 @@
 
   
      <%=link_to 	'', 
-  						'javascript:void(0)',
+  						fb_auth_path(:source => @origin), 
   						:class => 'login_button',
-              :id    => 'fb_login_button',
   						:style => ''%>
   	
   	<div class="login_shadow" class="unselectable">
