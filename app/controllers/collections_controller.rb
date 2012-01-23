@@ -1,7 +1,7 @@
 # Handle requests for the collections resource
 #
 class CollectionsController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => :index
 
   # Display UI for creating a new collection
   #
@@ -33,6 +33,33 @@ class CollectionsController < ApplicationController
                         :src => UserShowSource::CollectionCreate)
       end
       format.json 
+    end
+  end
+
+  # Fetch list of collections
+  #
+  def index
+    @filter   = params[:filter].to_sym
+    @options  = {}
+
+    case @filter
+    when :user_last
+      @collections  = Collection.for_user(params[:owner_id]).
+                        last
+      @key          = KEYS[:collection_products] % 
+                        (@collections ? @collections.id : 0)
+    when :user
+      @collections  = Collection.for_user(params[:owner_id]).
+                        with_products.
+                        by_id
+      @key          = KEYS[:user_collections] % params[:owner_id]
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
     end
   end
 

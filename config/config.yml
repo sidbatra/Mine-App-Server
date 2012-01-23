@@ -38,6 +38,7 @@ common: &common
     :store_suggest: store_suggest
     :star_users: star_users
     :collection_products: collection_%d_products
+    :user_collections: user_%d_collections
     :comment_commentable: comment_commentable_%d_%s
     :action_actionable: action_actionable_%d_%s
   :msg:

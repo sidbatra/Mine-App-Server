@@ -18,6 +18,8 @@ class Collection < ActiveRecord::Base
   named_scope :for_user, lambda {|user_id| {:conditions => {
                                               :user_id => user_id}}}
   named_scope :limit, lambda {|limit| {:limit => limit}}
+  named_scope :by_id, :order => 'id DESC'
+  named_scope :with_products, :include => :products
 
   #----------------------------------------------------------------------
   # Class methods

@@ -87,7 +87,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:index]
 
   map.resources :collections,
-                :only => [:create,:new]
+                :only => [:create,:new,:index]
 
   map.resources :welcome,
                 :only       => [:show,:create],
