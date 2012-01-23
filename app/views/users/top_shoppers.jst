@@ -4,7 +4,7 @@
 
 <div>
   <%users.each(function(user){%>
-    <%=Denwen.JST['users/user']({user:user, src:store_handle+'_top_shoppers'})%>
+    <%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
   <%});%>
   <%=helpers.blocker()%>
 </div>
