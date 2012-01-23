@@ -1,13 +1,12 @@
-<div id='welcome_box'>
+<div id='footer_onboarding'>
+
+	<div class='welcome_text'>Join OnCloset now</div>
 
 	 <%=link_to 	'', 
   						fb_auth_path(:src => src), 
-  						:class => 'log_in_with_facebook_no_shadow',
-  						:style => 'float:right;'%>
-  						
-	<%=user_presenter.first_name%> is using <%=CONFIG[:name]%> as
-  <%=user_presenter.possessive_pronoun%> online closet!<br>
+  						:class => 'log_in_with_facebook',
+  						:style => ''%>
 
-	<span class='welcome_subtitle'>It's fun, and free :)</span>
+	<div class='welcome_text'>It's fun, and free!</div>
 
 </div>

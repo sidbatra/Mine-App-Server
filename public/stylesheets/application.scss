@@ -82,18 +82,37 @@ body {
 
 /* ------------------------------ Logged Out Welcome Box */
 
-#welcome_box {
-	padding: 10px 8px 6px;
-	margin: 0px auto 15px;
-	color: white;
-	font-size: 24px;
-	line-height: 24px;
-	position: relative;
+.log_in_with_facebook {
+	width: 400px;
+	height: 60px;
+	margin-top: 14px; 
+	cursor: pointer;
+	display: inline-block;
+	border: none;
+	background: url('/images/welcome_buttons.png') no-repeat;
+	font-size: 20px;
+	color: #555555;
+	text-shadow: 0 1px 1px rgba(255,255,255,1.0);
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
-.welcome_subtitle {
-	font-size: 14px;
+.log_in_with_facebook:hover { background-position: 0 -60px; }
+.log_in_with_facebook:active { background-position: 0 -120px; }
+
+
+div.welcome_text {
+	margin: 0 15px;
+	display: inline;
+	font-size: 20px;
+	line-height: 90px;
+	color: #555555;
+	text-shadow: 0 1px 1px rgba(255,255,255,1.0);
+	position: relative;
+	top: -23px;
 }
+
 
 /* ------------------------------ Header */
 
@@ -565,6 +584,8 @@ body {
 	display: block;
 }
 
+
+
 .pick_top_stores,
 .follow_people,
 .add_1st_item,
@@ -576,7 +597,6 @@ body {
 	border: none;
 	margin-left: 270px;
 	background: url('/images/onboarding_buttons.png') no-repeat;
-
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
@@ -632,13 +652,15 @@ body {
 #footer_onboarding {
 	height: 90px;
 	width: 100%;
+	padding-top: 9px;
 	position: fixed;
 	bottom: 0px;
 	text-align: center;
-	line-height: 100px;
-	background: #e9e4e1;
-	border-top: 1px solid #A8A8A8;
+	line-height: 90px;
+	background: url('/images/footer_onboarding_overlay_shadow.png') top repeat-x;
 	z-index: 10000;
+	/* 	background: #e9e4e1; */
+	/* 	border-top: 1px solid #A8A8A8; */
 }
 
 #container #users .picker_choice .tiles {
@@ -1389,7 +1411,7 @@ body {
 	width: 36px;
 	height: 36px;
 	position: absolute;
-	top: 213px;
+	top: 219px;
 	z-index: 50;
 	background: white url('/images/triangles.png') center -144px;
 }
@@ -2268,12 +2290,13 @@ body {
 
 #extras .feedback .buttons .button .context_box {
 	width: 170px;
-	height: 222px;
+	height: 220px;
 	position: absolute;
-	top: 34px;
+	top: 32px;
 	right: 0px;
 	background: white;
 	padding: 12px 10px 0px;
+	border-top: 2px solid #ebe8e3;
 	line-height: 100%;
 	text-align: left;
 	font-size: 14px;
@@ -2365,7 +2388,7 @@ body {
 #extras .feedback .buttons .button .context_box .own_to_closet {
 	width: 170px;
 	height: 36px;
-	margin-top: 4px;
+	margin-top: 2px;
 	background: url('/images/profile_buttons.png') center -234px;
 	border: 0;
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
@@ -2439,7 +2462,8 @@ body {
 }
 
 #extras .feedback .buttons .button.want {
-	margin: 0 2px;
+	border-right: 2px solid #ebe8e3;
+	border-left: 2px solid #ebe8e3;
 }
 
 #extras .feedback .buttons .button:active,
@@ -2698,22 +2722,6 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e6e6e', endColorstr='#5a5a5a',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, #6e6e6e 0%,#5a5a5a 100%); /* W3C */
 }
-
-.log_in_with_facebook_no_shadow {
-	width: 250px;
-	height: 47px;
-	background: url('/images/log_in_with_facebook_no_shadow.png') no-repeat;
-	cursor: pointer;
-	display: inline-block;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-.log_in_with_facebook_no_shadow:hover {
-	background: url('/images/log_in_with_facebook_no_shadow.png') 0 -50px no-repeat;
-}
-
 .awesome { 
 	font-family: 'FuturaStdBold', Arial, sans-serif; 
 	font-size: 14px;

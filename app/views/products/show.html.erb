@@ -15,185 +15,184 @@
               :image        => @product_presenter.thumbnail_url}%>
 <%end%>
 
+<!-- Welcome box to signup if user is not logged in -->
+<%=render :partial => 'misc/welcome', 
+      :locals => {
+        :user_presenter => @user_presenter,
+        :src            => 'product_' + @product.id.to_s} unless logged_in?%>
 
-  <div id="container" class="wide">
+<div id="container" class="wide">
   
-	  <!-- Welcome box to signup if user is not logged in -->
-	  <%=render :partial => 'misc/welcome', 
-	        :locals => {
-	          :user_presenter => @user_presenter,
-	          :src            => 'product_' + @product.id.to_s} unless logged_in?%>
-	  
-  	<div id="item">
-  		<div class="top_bar">
+	<div id="item">
+		<div class="top_bar">
 
-        <%if (@source == 'store' || @source == 'top_product') && @product.store%>
-          <%@store_presenter = presenter_for(@product.store)%>
-          <%=@product_presenter.breadcrumb(
-                @store_presenter.name,
-                @store_presenter.closet_path('product'))%>
-        <%else%>
-          <%=@product_presenter.breadcrumb(
-                @user_presenter.closet_title(true),
-                @user_presenter.closet_path('product'))%>
-        <%end%>
-        
-        <div class='social_buttons'>
- 
-		    <%=render :partial => 'facebook/like', 
-		              :locals => {
-		              	:style				=> '',
-		                :url          => @product_presenter.url('fb'),
-		                :send_button  => false,
-		                :width        => 70,
-		                :faces        => false}%>
-		                
-		                
-		         twitter tumblr stumble google+
-		                
-		     </div> <!-- social buttons -->
-		     
-  		</div>
-      
-			<div class="edit">
-        	<%=@product_presenter.edit_link%>
-        	<%=@product_presenter.destroy_link%>
-      </div>
-
-    
-      <!-- navigation to other products -->
-      <%unless @next_product.id == @prev_product.id && 
-                @next_product.id == @product.id%>
-
-        <%=@product_presenter.next(@prev_product,@product.user)%>
-        <%=@product_presenter.prev(@next_product,@product.user)%>
-      
+      <%if (@source == 'store' || @source == 'top_product') && @product.store%>
+        <%@store_presenter = presenter_for(@product.store)%>
+        <%=@product_presenter.breadcrumb(
+              @store_presenter.name,
+              @store_presenter.closet_path('product'))%>
+      <%else%>
+        <%=@product_presenter.breadcrumb(
+              @user_presenter.closet_title(true),
+              @user_presenter.closet_path('product'))%>
       <%end%>
       
-      
-      
-	
-	
-	    <!-- product 
-      <div>-->
+      <div class='social_buttons'>
 
-        <div id="left" class="photo">
-          <%=@product_presenter.large_image%>
+	    <%=render :partial => 'facebook/like', 
+	              :locals => {
+	              	:style				=> '',
+	                :url          => @product_presenter.url('fb'),
+	                :send_button  => false,
+	                :width        => 70,
+	                :faces        => false}%>
+	                
+	                
+	         twitter tumblr stumble google+
+	                
+	     </div> <!-- social buttons -->
+	     
+		</div>
+    
+		<div class="edit">
+      	<%=@product_presenter.edit_link%>
+      	<%=@product_presenter.destroy_link%>
+    </div>
+
+  
+    <!-- navigation to other products -->
+    <%unless @next_product.id == @prev_product.id && 
+              @next_product.id == @product.id%>
+
+      <%=@product_presenter.next(@prev_product,@product.user)%>
+      <%=@product_presenter.prev(@next_product,@product.user)%>
+    
+    <%end%>
+    
+    
+    
+
+
+    <!-- product 
+    <div>-->
+
+      <div id="left" class="photo">
+        <%=@product_presenter.large_image%>
+      </div>
+
+      
+      <div id="right">
+      
+        <div id="right_user_image">
+          <%=@user_presenter.small_picture('product_user')%>
         </div>
 
-        
-        <div id="right">
-        
-          <div id="right_user_image">
-            <%=@user_presenter.small_picture('product_user')%>
-          </div>
+        <table id="right_text">
+          <tr>
+            <td>
+              <div id="right_text_div">
 
-          <table id="right_text">
-            <tr>
-              <td>
-                <div id="right_text_div">
-
-                  <span class="right_user">
-                    <%=@user_presenter.bought_text(
-                          @product.is_gift,
-                          'product_name')%> 
-                  </span><br/>
-                    
-                  <span class="right_title">
-                    <%=h @product_presenter.title%>
-                  </span>
+                <span class="right_user">
+                  <%=@user_presenter.bought_text(
+                        @product.is_gift,
+                        'product_name')%> 
+                </span><br/>
                   
-                  <br/>
-                  
-                  <%=@product_presenter.byline%>
+                <span class="right_title">
+                  <%=h @product_presenter.title%>
+                </span>
+                
+                <br/>
+                
+                <%=@product_presenter.byline%>
 
-                  <div id="right_relativist">
-                    <div id="right_extras">
-                        <%=render :partial => 'endorsement',
-                                  :locals   => {:product  => @product}%>
-                    </div> <!--right_extras-->
-                  </div> <!--right_relativist-->
-                </div>
-              </td>
-            </tr>
-           </table>
-           
-        </div> <!-- right -->
-        
-        <%=blocker%>
+                <div id="right_relativist">
+                  <div id="right_extras">
+                      <%=render :partial => 'endorsement',
+                                :locals   => {:product  => @product}%>
+                  </div> <!--right_extras-->
+                </div> <!--right_relativist-->
+              </div>
+            </td>
+          </tr>
+         </table>
+         
+      </div> <!-- right -->
+      
+      <%=blocker%>
 
-      <!-- </div>  product -->
-	      
-		</div> <!-- product_section -->
-	  
-	  <div id="extras">
-	  
-	  	 <div id='feedback' class='feedback'>
-        <%if logged_in?%>
-        	<div class='buttons'>
-            <a id='like_product' 
+    <!-- </div>  product -->
+      
+	</div> <!-- product_section -->
+  
+  <div id="extras">
+  
+  	 <div id='feedback' class='feedback'>
+      <%if logged_in?%>
+      	<div class='buttons'>
+          <a id='like_product' 
+              href='javascript:void(0)' 
+              class='button like'>
+              <span class='in'>♥</span><span class='out'>Like</span>
+          </a>
+          <%unless is_current_user(@product.user)%>
+          	<a id='want_product' 
                 href='javascript:void(0)' 
-                class='button like'>
-                <span class='in'>♥</span><span class='out'>Like</span>
+                class='button want'>
+                <span class='in'>✓ </span><span class='out'>Want</span>
+           	</a>
+            <a id='own_product'  
+                href='javascript:void(0)' 
+                class='button own'>
+               	<span class='in'>✓ </span><span class='out'>Own</span>
             </a>
-            <%unless is_current_user(@product.user)%>
-            	<a id='want_product' 
-                  href='javascript:void(0)' 
-                  class='button want'>
-                  <span class='in'>✓ </span><span class='out'>Want</span>
-             	</a>
-              <a id='own_product'  
-                  href='javascript:void(0)' 
-                  class='button own'>
-                 	<span class='in'>✓ </span><span class='out'>Own</span>
-              </a>
-            <%end%>
-          </div>
-        <%end%>
-
-        <div id='feed_items'>
+          <%end%>
         </div>
-       </div> <!-- feedback -->
-	  
-	      	
-	    <div id="comments_container">
+      <%end%>
 
-	      <div>
-          <div id="comments">
-          </div>
+      <div id='feed_items'>
+      </div>
+     </div> <!-- feedback -->
+  
+      	
+    <div id="comments_container">
+
+      <div>
+        <div id="comments">
+        </div>
+        <%=blocker%>
+      </div>
+    
+    	<%if logged_in?%>
+     
+	      <div id="add_comment">
+		      
+		        <%=image_tag self.current_user.photo_url,
+		            :class => "comment_photo_self slim_shadow_light",
+		            :alt => ""%>
+		
+		        <%=text_area_tag "comment_data","Add a comment",
+		            :class => "" %>
+		          
+	          <input id="comment_post" class="small_button" 
+	                  value="Post" title="Post" type="button" alt=""> 
+		      
 	        <%=blocker%>
 	      </div>
-	    
-	    	<%if logged_in?%>
-	     
-		      <div id="add_comment">
-			      
-			        <%=image_tag self.current_user.photo_url,
-			            :class => "comment_photo_self slim_shadow_light",
-			            :alt => ""%>
-			
-			        <%=text_area_tag "comment_data","Add a comment",
-			            :class => "" %>
-			          
-		          <input id="comment_post" class="small_button" 
-		                  value="Post" title="Post" type="button" alt=""> 
-			      
-		        <%=blocker%>
-		      </div>
-	      
-	      <%end%> <!-- comment entry box -->
-	
-	
-	      
-	      <%=blocker%>
-	      
-	    </div> <!-- comments_container -->
-	   
-	   </div> <!-- extras -->
-	   
-	   <%=blocker%>
-    
-  </div> <!-- container -->
+      
+      <%end%> <!-- comment entry box -->
+
+
+      
+      <%=blocker%>
+      
+    </div> <!-- comments_container -->
+   
+   </div> <!-- extras -->
+   
+   <%=blocker%>
+  
+</div> <!-- container -->
 
 
 
