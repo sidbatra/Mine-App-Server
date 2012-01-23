@@ -144,6 +144,12 @@ class Store < ActiveRecord::Base
     't_' + image_path
   end
 
+  # Relative path on the filesystem for the processed medium image
+  #
+  def medium_path
+    'm_' + image_path
+  end
+
   # Relative path on the filesystem for the processed large image
   #
   def large_path
@@ -154,6 +160,12 @@ class Store < ActiveRecord::Base
   #
   def thumbnail_url
     is_processed ? FileSystem.url(thumbnail_path) : image_url
+  end
+
+  # Full url of the medium copy of the image
+  #
+  def medium_url
+    is_processed ? FileSystem.url(medium_path) : image_url
   end
 
   # Full url of the large copy of the image
@@ -196,6 +208,21 @@ class Store < ActiveRecord::Base
 
       FileSystem.store(
         thumbnail_path,
+        open(image.path),
+        "Content-Type"  => "image/png",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create medium thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 100,:height => 100})
+
+      FileSystem.store(
+        medium_path,
         open(image.path),
         "Content-Type"  => "image/png",
         "Expires"       => 1.year.from_now.
