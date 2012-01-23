@@ -259,6 +259,7 @@ class Product < ActiveRecord::Base
     options[:include] = {}
     options[:include].store(*(Store.json_options)) if options[:with_store]
     options[:include].store(*(User.json_options(:methods => []))) if options[:with_user]
+    options[:include].store(*(User.json_options)) if options[:with_user_full]
 
     super(options)
   end

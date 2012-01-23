@@ -83,7 +83,7 @@ class ProductsController < ApplicationController
                       in_category(category_id).
                       by_id
 
-      @options[:with_user] = true
+      @options[:with_user_full] = true
       @key = KEYS[:store_products_in_category] % [params[:owner_id],category_id]
 
     when :top
