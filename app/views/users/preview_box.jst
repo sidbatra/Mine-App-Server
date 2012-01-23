@@ -1,6 +1,7 @@
 
   <a href='#<%=hash%>'>
-    <div id='<%=hash%>_tab' class='tab triangle large_top_margin'>
+    <div id='<%=hash%>_tab' 
+        class='tab triangle large_top_margin <%=window.location.hash == '#' + hash ? 'on' : ''%>'>
       <%=header%>
       <div class='count'><%=count%></div>
     </div>
