@@ -10,6 +10,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.source         = this.options.source;
 
     this.onTabClass     = 'on';
+    this.topStageEl     = '#topstage';
     this.ownsTab        = '#owns_tab';
     this.likesTab       = '#likes_tab';
     this.wantsTab       = '#wants_tab';
@@ -116,10 +117,25 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.setAnalytics();
   },
 
+  // Fetch owned products and update the topstage
+  // 
+  fetchOwnedProducts: function(category) {
+    this.ownedProducts.fetch(category);
+
+    if(category == 'all' || category == undefined)
+      $(this.topStageEl).html(' i am here');
+  },
+
   // Load facebook code via partials
   //
   loadFacebookPlugs: function() {
     new Denwen.Partials.Facebook.Base();
+  },
+
+  // Clear the top stage area
+  //
+  clearTopStage: function() {
+    $(this.topStageEl).html('');
   },
 
   // Reset all tabs to off state
@@ -154,22 +170,24 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         switch(type) {
         case Denwen.UserShowHash.Owns:
-          self.ownedProducts.fetch(category);
+          self.fetchOwnedProducts(category);
           $(self.ownsTab).addClass(self.onTabClass);
           break;
 
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
           $(self.likesTab).addClass(self.onTabClass);
+          self.clearTopStage();
           break;
 
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
           $(self.wantsTab).addClass(self.onTabClass);
+          self.clearTopStage();
           break;
 
         default:
-          self.ownedProducts.fetch();
+          self.fetchOwnedProducts();
           $(self.ownsTab).addClass(self.onTabClass);
         }
 
@@ -185,17 +203,19 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         case Denwen.UserShowHash.Following:
           self.followingUsers.fetch();
           $(self.followingTab).addClass(self.onTabClass);
+          self.clearTopStage();
           analytics.userIFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.FollowedBy:
           self.followedByUsers.fetch();
           $(self.followedByTab).addClass(self.onTabClass);
+          self.clearTopStage();
           analytics.userFollowersView(self.user.get('id'));
           break;
 
         default:
-          self.ownedProducts.fetch();
+          self.fetchOwnedProducts();
           $(self.ownsTab).addClass(self.onTabClass);
         }
       }
