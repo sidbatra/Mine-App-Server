@@ -12,6 +12,13 @@
               :image        => @store.large_url}%>
 <%end%>
 
+
+<!-- Welcome box to signup if user is not logged in -->
+<%=render :partial => 'misc/welcome', 
+          :locals => {
+            :src => @store_presenter.source_id} unless logged_in?%>
+
+
 <div id="container" class="wide">
 
 	<!-- sidebar: left -->

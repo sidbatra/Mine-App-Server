@@ -45,4 +45,10 @@ class StorePresenter < BasePresenter
     "Come check it out!"
   end
 
+  # Unique identifier to be used a source
+  #
+  def source_id
+    "store_" + store.id.to_s
+  end
+
 end

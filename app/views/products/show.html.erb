@@ -15,11 +15,12 @@
               :image        => @product_presenter.thumbnail_url}%>
 <%end%>
 
+
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => 'misc/welcome', 
       :locals => {
-        :user_presenter => @user_presenter,
-        :src            => 'product_' + @product.id.to_s} unless logged_in?%>
+        :src => @product_presenter.source_id} unless logged_in?%>
+
 
 <div id="container" class="wide">
   
