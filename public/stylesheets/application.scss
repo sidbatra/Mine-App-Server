@@ -2284,6 +2284,20 @@ div.welcome_text {
 	position: absolute;
 }
 
+/* incomplete exception styling for BOTH own box instances */
+.context_box .inputfield.incomplete { 
+	border-color: #cc3333 !important; 
+	background: #f5d6d6 !important;
+}
+
+.context_box .title.incomplete { color: #cc3333 !important; }
+
+.context_box .dollar.incomplete {
+	border-color: #cc3333 !important;
+	color: #cc3333 !important;
+	background: #f5d6d6 !important;
+}
+
 /* ------------------------------ Item Page Own Button Context Box */
 
 #extras .feedback .buttons .button .context_box {
