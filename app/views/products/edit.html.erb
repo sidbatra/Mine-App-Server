@@ -11,11 +11,12 @@
 		
 		    <%=render :partial  => 'input', 
 		              :locals   => {
-		                :f            => f,
-		                :category     => @category,
-		                :placeholders => @placeholders,
-                    :onboarding   => false,
-                    :submit_class => 'update_product'}%>
+		                :f                => f,
+		                :category         => @category,
+		                :placeholders     => @placeholders,
+                    :onboarding       => false,
+                    :submit_class     => 'update_product',
+                    :show_query_box   => false}%>
 		
 		  <%end%> <!-- form -->
 	

@@ -22,11 +22,12 @@
 
     <%=render :partial  => 'input', 
         :locals   => {
-          :f            => f,
-          :category     => @category,
-          :placeholders => @placeholders,
-          :onboarding   => is_onboarding? && @category.name == 'Shoes',
-          :submit_class => 'add_to_closet'}%>
+          :f                => f,
+          :category         => @category,
+          :placeholders     => @placeholders,
+          :onboarding       => is_onboarding? && @category.name == 'Shoes',
+          :submit_class     => 'add_to_closet',
+          :show_query_box   => true}%>
 
   <%end%> <!-- form -->
 
