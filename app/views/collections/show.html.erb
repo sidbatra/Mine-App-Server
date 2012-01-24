@@ -1,0 +1,87 @@
+<!-- Welcome box to signup if user is not logged in -->
+<%=render :partial => 'misc/welcome', 
+      :locals => {
+        :src => 'collection_' + @collection.id.to_s} unless logged_in?%>
+
+<div id="container" class="wide">
+  
+  <%@collection.products.each do |product|%>
+    <div id="item">
+
+      <%@product_presenter = presenter_for(product)%>
+      <div id="left" class="photo">
+        <%=@product_presenter.large_image%>
+      </div>
+
+      <%=blocker%>
+
+    </div> <!-- product_section -->
+  <%end%>
+  
+  <div id="extras">
+  
+  	 <div id='feedback' class='feedback'>
+      <%if logged_in?%>
+      	<div class='buttons'>
+          <a id='like_product' 
+              href='javascript:void(0)' 
+              class='button like'>
+              <span class='in'>♥</span><span class='out'>Like</span>
+          </a>
+        </div>
+      <%end%>
+
+      <div id='feed_items'>
+      </div>
+     </div> <!-- feedback -->
+  
+      	
+    <div id="comments_container">
+
+      <div>
+        <div id="comments">
+        </div>
+        <%=blocker%>
+      </div>
+    
+    	<%if logged_in?%>
+     
+	      <div id="add_comment">
+		      
+		        <%=image_tag self.current_user.photo_url,
+		            :class => "comment_photo_self slim_shadow_light",
+		            :alt => ""%>
+		
+		        <%=text_area_tag "comment_data","Add a comment",
+		            :class => "" %>
+		          
+	          <input id="comment_post" class="small_button" 
+	                  value="Post" title="Post" type="button" alt=""> 
+		      
+	        <%=blocker%>
+	      </div>
+      
+      <%end%> <!-- comment entry box -->
+
+
+      
+      <%=blocker%>
+      
+    </div> <!-- comments_container -->
+   
+   </div> <!-- extras -->
+   
+   <%=blocker%>
+  
+</div> <!-- container -->
+
+
+
+  <%content_for :javascript do%>
+    <script type="text/javascript">
+      new Denwen.Views.Collections.Show({
+                    collectionJSON  : <%=@collection.to_json()%>,
+                    source          : '<%=@source%>'});
+    </script>
+  <%end%>
+

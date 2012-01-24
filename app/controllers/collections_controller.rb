@@ -1,7 +1,7 @@
 # Handle requests for the collections resource
 #
 class CollectionsController < ApplicationController
-  before_filter :login_required, :except => :index
+  before_filter :login_required, :except => [:index,:show]
 
   # Display UI for creating a new collection
   #
@@ -61,6 +61,17 @@ class CollectionsController < ApplicationController
     respond_to do |format|
       format.json
     end
+  end
+
+  # Display a collection 
+  #
+  def show
+    @collection = Collection.with_products.find(params[:id])
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to root_path if @error
   end
 
 end

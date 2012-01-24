@@ -49,7 +49,7 @@ class Collection < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id]
+    options[:only] += [:id,:user_id]
 
     options[:include] = {}
     options[:include].store(:products,{:only => [:id],:methods => [:photo_url]})
