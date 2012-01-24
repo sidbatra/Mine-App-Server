@@ -16,6 +16,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.wantsTab       = '#wants_tab';
     this.followingTab   = '#following_tab';
     this.followedByTab  = '#followed_by_tab';
+    this.collectionsTab = '#collections_tab';
 
     if(this.options.currentUserJSON != 'false')
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
@@ -59,6 +60,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   filter  : 'followers',
                                   header  : 'Followed By',
                                   src     : 'followed_by_list'});
+
+    // -----
+    this.collections      = new Denwen.Partials.Collections.List({
+                                  el      : $('#centerstage'),
+                                  userID  : this.user.get('id')});
 
     // -----
     this.onCollection     = new Denwen.Partials.Collections.OnToday({
@@ -151,6 +157,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     $(this.wantsTab).removeClass(this.onTabClass);
     $(this.followingTab).removeClass(this.onTabClass);
     $(this.followedByTab).removeClass(this.onTabClass);
+    $(this.collectionsTab).removeClass(this.onTabClass);
   },
 
   // Use Backbone router for reacting to changes in URL
@@ -217,6 +224,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           $(self.followedByTab).addClass(self.onTabClass);
           self.clearTopStage();
           analytics.userFollowersView(self.user.get('id'));
+          break;
+
+        case Denwen.UserShowHash.Collections:
+          self.collections.fetch();
+          $(self.collectionsTab).addClass(self.onTabClass);
+          self.clearTopStage();
+          //analytics.userFollowersView(self.user.get('id'));
           break;
 
         default:

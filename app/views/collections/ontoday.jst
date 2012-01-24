@@ -4,10 +4,6 @@
 
   <br/>
 
-  <%collection.get('products').each(function(product){%>
-    <%=Denwen.JST['products/collection_part']({product:product})%>
-  <%});%>
-
-  <br/><br/>
+  <%=Denwen.JST['collections/collection']({collection:collection})%>
 
 </div>

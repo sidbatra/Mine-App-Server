@@ -26,7 +26,7 @@ Denwen.Partials.Collections.OnToday = Backbone.View.extend({
     });
   },
 
-  // Render the top stores
+  // Render on today
   //
   render: function() {
     $(this.el).html(

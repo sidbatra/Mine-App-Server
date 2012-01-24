@@ -50,6 +50,14 @@
         Wants
       </div>
     </a>
+
+    <%if @user.collections_count > 0%>
+      <a href='#looks'>
+        <div class='tab triangle small_top_margin' id='collections_tab'>
+          Looks
+        </div>
+      </a>
+    <%end%>
 	  
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box_<%=@user.id%>'>
