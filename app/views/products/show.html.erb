@@ -19,7 +19,8 @@
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => 'misc/welcome', 
       :locals => {
-        :src => @product_presenter.source_id} unless logged_in?%>
+        :src    => @product_presenter.source_id,
+        :target => @product_presenter.path('footer')} unless logged_in?%>
 
 
 <div id="container" class="wide">

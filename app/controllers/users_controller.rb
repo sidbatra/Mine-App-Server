@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   # Create a user based on token received from facebook
   #
   def create
+    target                    = params[:target]          
     access_token              = params[:access_token]
 
     unless access_token
@@ -15,7 +16,9 @@ class UsersController < ApplicationController
                                     CONFIG[:fb_app_secret])
 
       client                    = fb_auth.client
-      client.redirect_uri       = fb_reply_url(:src => @source)
+      client.redirect_uri       = fb_reply_url(
+                                    :src    => @source,
+                                    :target => target)
       client.authorization_code = params[:code]
       access_token              = client.access_token!
     end
@@ -37,7 +40,9 @@ class UsersController < ApplicationController
     set_cookie
     target_url = @user.is_fresh ? 
                    welcome_path(WelcomeFilter::Learn) :
-                   user_path(@user.handle,:src => UserShowSource::Login)
+                   (target ? 
+                    target : 
+                    user_path(@user.handle,:src => UserShowSource::Login))
 
   rescue => ex
     handle_exception(ex)
