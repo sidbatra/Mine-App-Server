@@ -61,6 +61,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   src     : 'followed_by_list'});
 
     // -----
+    this.onCollection     = new Denwen.Partials.Collections.OnToday({
+                                  el      : $('#topstage'),
+                                  userID  : this.user.get('id')});
+
+    // -----
     new Denwen.Partials.Users.PreviewBox({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
@@ -123,7 +128,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.ownedProducts.fetch(category);
 
     if(category == 'all' || category == undefined)
-      $(this.topStageEl).html(' i am here');
+      this.onCollection.fetch();
   },
 
   // Load facebook code via partials

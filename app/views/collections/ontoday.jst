@@ -1,0 +1,13 @@
+<div class="titlebar small_bottom_margin">
+  On Today
+  <a href="/collections/new?src=profile">Change</a>
+
+  <br/>
+
+  <%collection.get('products').each(function(product){%>
+    <%=Denwen.JST['products/collection_part']({product:product})%>
+  <%});%>
+
+  <br/><br/>
+
+</div>
