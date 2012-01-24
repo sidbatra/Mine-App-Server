@@ -14,7 +14,6 @@
 
   <body <%=yield :body_attribute%>>
     
-    <div id="fb-root"></div>
     
     <%=render "misc/header" if @home == 'girl' || @home == 'zendesk'%>
  
@@ -23,8 +22,6 @@
     <%=blocker%>
 
     <%=render :partial => "misc/analytics"%>
-
-    <%=include_javascripts :application-%>
 
     <%=yield :javascript%>
   </body>

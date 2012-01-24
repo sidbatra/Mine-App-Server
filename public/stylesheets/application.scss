@@ -1514,15 +1514,13 @@ div.welcome_text {
 	display: block;
 }
 
-
-
 .small_top_margin { margin-top: 4px; }
 .small_bottom_margin { margin-bottom: 4px; }
 .large_top_margin { margin-top: 16px; }
 .no_small_top_margin  { margin-top: -4px; }
 
 .tab.triangle { 
-	background: #f8f8f8 url('/images/ffffff_f8f8f8.png') repeat-y; 
+	background: #f8f8f8 url('/images/ffffff_f8f8f8_triangle.png') center right; 
 	cursor: pointer;
 	padding-left: 10px;
 }
@@ -2284,6 +2282,20 @@ div.welcome_text {
 	bottom: 0px;
 	left: 0px;
 	position: absolute;
+}
+
+/* incomplete exception styling for BOTH own box instances */
+.context_box .inputfield.incomplete { 
+	border-color: #cc3333 !important; 
+	background: #f5d6d6 !important;
+}
+
+.context_box .title.incomplete { color: #cc3333 !important; }
+
+.context_box .dollar.incomplete {
+	border-color: #cc3333 !important;
+	color: #cc3333 !important;
+	background: #f5d6d6 !important;
 }
 
 /* ------------------------------ Item Page Own Button Context Box */
