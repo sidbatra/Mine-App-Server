@@ -5,7 +5,7 @@ Denwen.Views.Collections.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.collection = new Denwen.Models.Collections(this.options.collectionJSON);
+    this.collection = new Denwen.Models.Collection(this.options.collectionJSON);
     this.source     = this.options.source;
 
     new Denwen.Partials.Collections.Comments({
