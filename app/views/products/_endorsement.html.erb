@@ -26,6 +26,7 @@
 
       <!-- endorsement display-->
 	    <div class='product_endorsement'>
+	    
 	    	<span id='product_endorsement_text' style='<%=ui_style%>'>
 		      <%=h product.endorsement.to_s%>
 		    </span>   
@@ -36,17 +37,16 @@
 		          				:style 	=> product.endorsement.present? && !edit_mode ?
 		                  		    		'' : 
 			                      			'display:none'%>            		
-      </div>      
-                   
 
-      <!-- endorsement empty-->
-      <%=link_to "Add Your Review",
-                  'javascript:void(0)',
-                  :id     => 'product_edit_initiate',
-                  :class  => 'edit',
-                  :style  => product.endorsement.present? || edit_mode ?
-                              'display:none' :
-                              ''%>
+	      <!-- endorsement empty-->
+	      <%=link_to "Add Your Review",
+	                  'javascript:void(0)',
+	                  :id     => 'product_edit_initiate',
+	                  :class  => 'edit',
+	                  :style  => product.endorsement.present? || edit_mode ?
+	                              'display:none' :
+	                              ''%>
+      </div>    
 
     <%else%>
       <%=h product.endorsement.to_s%>
