@@ -230,7 +230,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           self.collections.fetch();
           $(self.collectionsTab).addClass(self.onTabClass);
           self.clearTopStage();
-          //analytics.userFollowersView(self.user.get('id'));
+          analytics.userCollectionsView(self.user.get('id'));
           break;
 
         default:
