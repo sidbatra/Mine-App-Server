@@ -24,7 +24,7 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     if(helpers.isCurrentUser(this.product.get('user_id'))) {
       new Denwen.Partials.Products.Endorsement({
                   model   : this.product,
-                  el      : $('#right_extras'),
+                  el      : $('#product_endorsement_box'),
                   source  : this.source});
     }
 

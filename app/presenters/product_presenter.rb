@@ -21,12 +21,12 @@ class ProductPresenter < BasePresenter
   #
   def edit_link
     if h.logged_in? && h.current_user.id == product.user_id
-      h.link_to "Edit",
+      h.link_to "Edit Item",
                 edit_product_path(
                   product.user.handle,
                   product.handle,
                   :src => 'product'),
-                 :class => 'button hover_shadow_light'
+                 :class => ''
     end
   end
 
@@ -37,7 +37,7 @@ class ProductPresenter < BasePresenter
       h.link_to "Delete",
                 {:action => 'destroy',:id => product.id},
                 :method => :delete,
-                :class => 'button hover_shadow_light',
+                :class => '',
                 :confirm  => "Are you sure you want to delete this item?"
     end
   end
