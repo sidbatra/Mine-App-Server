@@ -29,9 +29,12 @@ Denwen.Partials.Collections.OnToday = Backbone.View.extend({
   // Render on today
   //
   render: function() {
-    $(this.el).html(
-      Denwen.JST['collections/ontoday']({
-        collection : this.collection}));
+    
+    if(this.collection.has('id')){
+      $(this.el).html(
+        Denwen.JST['collections/ontoday']({
+          collection : this.collection}));
+    }
   }
 
 
