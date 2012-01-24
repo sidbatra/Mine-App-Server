@@ -100,7 +100,7 @@ div.welcome_text {
 
 /* ------------------------------ Header */
 #header {
-  height: 80px;
+  height: 72px;
   background: url("/images/black_90.png");
   z-index: 10000;
   margin-bottom: 24px; }
@@ -111,7 +111,7 @@ div.welcome_text {
 
 #header .navbar .logo,
 #header .navbar .logo {
-  margin-top: 25px; }
+  margin-top: 21px; }
 
 /* ------------------------------ Nav */
 /*
@@ -152,7 +152,7 @@ div.welcome_text {
   height: 42px;
   position: absolute;
   right: 0px;
-  top: 19px;
+  top: 15px;
   cursor: pointer; }
 
 #header .navbar .nav li {
@@ -241,7 +241,7 @@ div.welcome_text {
 #header .navbar ol#indicators {
   position: absolute;
   right: 0px;
-  top: 25px; }
+  top: 21px; }
 
 #header .navbar ol#indicators li {
   float: left;
@@ -1594,6 +1594,7 @@ a.product_endorsement_submit_button:active {
 
 .sidebar .tile_frame:hover .tooltip_down_333333,
 .sidebar .tile_frame:hover .tooltip_down_ffffff,
+.sidebar .tile_frame:hover .tooltip_up_ffffff,
 .sidebar .tile_frame:hover .tooltip_down_right_ffffff,
 .sidebar .title .detail:hover .tooltip_down_right_333333 {
   display: block;
@@ -1643,6 +1644,20 @@ a.product_endorsement_submit_button:active {
   line-height: 36px;
   padding: 0px 10px 8px;
   background: url("/images/tooltip_down_ffffff.png") no-repeat;
+  background-position: left bottom;
+  color: #555555;
+  font-size: 14px;
+  white-space: nowrap; }
+
+.tooltip_up_ffffff {
+  position: absolute;
+  display: none;
+  top: 27px;
+  left: 0px;
+  height: 36px;
+  line-height: 36px;
+  padding: 8px 10px 6px;
+  background: url("/images/tooltip_up_ffffff.png") no-repeat;
   background-position: left bottom;
   color: #555555;
   font-size: 14px;
