@@ -57,8 +57,9 @@ body {
 	overflow-x: hidden;
 }
 
-.wide { width: 980px; } /* for navbar and container variants */
-.narrow { width: 865px; } 
+.wide   { width: 980px;    } /* for navbar and container variants */
+.fixed  { position: fixed; }
+.narrow { width: 865px;    } 
 
 #background {
 	width: 100%; 
@@ -85,7 +86,7 @@ body {
 .log_in_with_facebook {
 	width: 400px;
 	height: 60px;
-	margin-top: 14px; 
+	margin-top: 17px; 
 	cursor: pointer;
 	display: inline-block;
 	border: none;
@@ -118,9 +119,11 @@ div.welcome_text {
 
 #header {
 	height: 72px;
-	background: url('/images/black_90.png');
+	background: url('/images/header_black_80.png') repeat-x;
 	z-index: 10000;
-	margin-bottom: 24px;
+	padding-bottom: 2px;
+	margin-bottom: 22px;
+	width: 100%;
 }
 
 #header .navbar {
@@ -181,6 +184,10 @@ div.welcome_text {
 	position: relative;
 }
 
+#header .navbar .nav li:hover {
+	background: #333333;
+}
+
 #header .navbar .nav li ul {
 	background: white;
 /*
@@ -222,8 +229,6 @@ div.welcome_text {
 	color: white;
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
 }
-
-.nav_menu:hover { background: #333333; }
 
 /* Handles the showing and hiding of menu items */
 .nav_add_item_button:hover ~ .nav_add_list, .nav_add_list:hover, .nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover {
@@ -652,7 +657,7 @@ div.welcome_text {
 #footer_onboarding {
 	height: 90px;
 	width: 100%;
-	padding-top: 9px;
+	padding-top: 2px;
 	position: fixed;
 	bottom: 0px;
 	text-align: center;
@@ -1549,7 +1554,7 @@ a.product_endorsement_submit_button:active { background: #dddddd; }
 .tab.triangle { 
 	background: #f8f8f8 url('/images/ffffff_f8f8f8_triangle.png') center right; 
 	cursor: pointer;
-	padding-left: 10px;
+	padding-left: 12px;
 }
 
 .tab.triangle:hover, .tab.on { background: white url('/images/triangles.png') right top no-repeat; }
@@ -1647,6 +1652,10 @@ a.product_endorsement_submit_button:active { background: #dddddd; }
 	font-size: 12px;
 	margin: 0px 0 8px;
 	position: relative;
+}
+
+.sidebar .tile_row {
+	background: url('/images/white_30.png');
 }
 
 .sidebar .tile_frame {
@@ -1764,7 +1773,7 @@ a.product_endorsement_submit_button:active { background: #dddddd; }
 	left: 0px;
 	height: 36px;
 	line-height: 36px;
-	padding: 8px 10px 6px;
+	padding: 8px 12px 6px;
 	background: url('/images/tooltip_up_ffffff.png') no-repeat;
 	background-position: left bottom;
 	color: #555555;
