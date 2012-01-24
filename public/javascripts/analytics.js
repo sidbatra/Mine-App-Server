@@ -96,10 +96,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User creates a comment
   //
-  commentCreated: function(commentableID,commentableType) {
-    mpq.track("Comment Created", {
-          'Commentable ID'    : commentableID,
-          'Commentable Type'  : commentableType});
+  commentCreated: function(commentableType) {
+    mpq.track("Comment Created", {'Commentable Type':commentableType});
   },
 
   // User creates a following
@@ -118,15 +116,26 @@ Denwen.Analytics = Backbone.Model.extend({
           'User ID'      : helpers.currentUserID()});
   },
 
-  // User likes a product
+  // User creates a like
   //
-  likeCreated: function(source,sourceID,productID,productUserID) {
-    mpq.track('Like Created', {
-      'Source'          : source,
-      'Source ID'       : sourceID,
-      'Product ID'      : productID,
-      'User ID'         : helpers.currentUserID(),
-      'Is Own Product'  : helpers.isCurrentUser(productUserID)});
+  likeCreated: function(source,sourceID,actionableID,actionableType,actionableUserID) {
+
+    if(actionableType == 'product') {
+      mpq.track('Like Created', {
+        'Source'          : source,
+        'Source ID'       : sourceID,
+        'Product ID'      : actionableID,
+        'User ID'         : helpers.currentUserID(),
+        'Is Own Product'  : helpers.isCurrentUser(actionableUserID)});
+    }
+    else if(actionableType == 'collection') {
+      mpq.track('Collection Like Created', {
+        'Source'            : source,
+        'Source ID'         : sourceID,
+        'Collection ID'     : actionableID,
+        'User ID'           : helpers.currentUserID(),
+        'Is Own Collection' : helpers.isCurrentUser(actionableUserID)});
+    }
   },
 
   // User initiates the product ownership process

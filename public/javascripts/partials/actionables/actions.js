@@ -96,12 +96,12 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     $(this.likeEl).addClass('pushed');
 
-    /*
     analytics.likeCreated(
-                'actionable',
+                this.actionableType, 
                 this.actionableID,
                 this.actionableID,
-                this.actionableUserID); */
+                this.actionableType,
+                this.actionableUserID);
   },
 
   // Own action clicked
@@ -116,11 +116,10 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     $(this.ownEl).addClass('held');
 
-    /*
     analytics.ownInitiated(
-                'actionable',
+                this.actionableType,
                 this.actionableID,
-                this.actionableID); */
+                this.actionableID);
   },
 
   // Callback from ownBox when an own is created
@@ -131,11 +130,10 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     this.createAction('own');
 
-    /*
     analytics.ownCreated(
-                'actionable',
+                this.actionableType,
                 this.actionableID,
-                this.actionableID);*/
+                this.actionableID);
   },
 
   // Callback from ownBox when an own is cancelled
@@ -144,11 +142,10 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
     $(this.ownEl).removeClass('held');
     this.checked['own'] = false;
 
-    /*
     analytics.ownCancelled(
-                'actionable',
+                this.actionableType,
                 this.actionableID,
-                this.actionableID);*/
+                this.actionableID);
   },
 
   // Want action clicked
@@ -162,10 +159,9 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     $(this.wantEl).addClass('pushed');
 
-    /*
     analytics.wantCreated(
-                'actionable',
+                this.actionableType,
                 this.actionableID,
-                this.actionableID);*/
+                this.actionableID);
   }
 });

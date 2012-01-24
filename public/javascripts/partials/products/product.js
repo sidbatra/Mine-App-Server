@@ -58,6 +58,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
                 this.source,
                 this.sourceID,
                 this.model.get('id'),
+                'product',
                 this.model.get('user_id'));
   },
 
