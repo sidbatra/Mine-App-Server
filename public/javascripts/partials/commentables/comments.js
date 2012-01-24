@@ -72,7 +72,7 @@ Denwen.Partials.Commentables.Comments = Backbone.View.extend({
           error   :  function(model,errors) {}
       });
 
-    //analytics.commentCreated();
+    analytics.commentCreated(this.commentableID,this.commentableType);
   },
 
   // Called when the comment is successfully created
