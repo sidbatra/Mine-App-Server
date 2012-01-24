@@ -104,15 +104,7 @@
                 </span>
                 
                 <br/>
-                
                 <%=@product_presenter.byline%>
-
-                <div id="right_relativist">
-                  <div id="right_extras">
-                      <%=render :partial => 'endorsement',
-                                :locals   => {:product  => @product}%>
-                  </div> <!--right_extras-->
-                </div> <!--right_relativist-->
               </div>
             </td>
           </tr>
@@ -125,7 +117,12 @@
     <!-- </div>  product -->
       
 	</div> <!-- product_section -->
-  
+	
+	<div id="product_endorsement_box">
+				<%=render :partial => 'endorsement',
+			           	:locals   => {:product  => @product}%>
+	</div>
+
   <div id="extras">
   
   	 <div id='feedback' class='feedback'>
