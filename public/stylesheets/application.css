@@ -1073,6 +1073,12 @@ a.product_endorsement_submit_button {
   cursor: pointer;
   border-left: 2px solid #ebe8e3; }
 
+a.product_endorsement_submit_button:hover {
+  background: #f8f8f8; }
+
+a.product_endorsement_submit_button:active {
+  background: #dddddd; }
+
 .submit_red_12 {
   color: #cccccc;
   font-size: 12px;
@@ -2292,6 +2298,12 @@ a.product_endorsement_submit_button {
   position: relative;
   color: #cc3333;
   cursor: pointer; }
+
+#extras .feedback .buttons .button:hover {
+  background: #f8f8f8; }
+
+#extras .feedback .buttons .button:active {
+  background: #dddddd; }
 
 #extras .feedback .buttons .button.want {
   border-right: 2px solid #ebe8e3;
