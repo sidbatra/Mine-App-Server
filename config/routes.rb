@@ -41,6 +41,10 @@ ActionController::Routing::Routes.draw do |map|
                     :controller => :products,
                     :action     => :edit
 
+  map.collection  ':user_handle/c/:id',
+                  :controller => :collections,
+                  :action     => :show
+
   map.store   's/:handle',
                 :controller => :stores,
                 :action     => :show
@@ -87,7 +91,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:index]
 
   map.resources :collections,
-                :only => [:create,:new,:index]
+                :only => [:create,:new,:index,:show]
 
   map.resources :welcome,
                 :only       => [:show,:create],
