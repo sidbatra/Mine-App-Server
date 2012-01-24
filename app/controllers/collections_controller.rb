@@ -66,7 +66,10 @@ class CollectionsController < ApplicationController
   # Display a collection 
   #
   def show
-    @collection = Collection.with_products.find(params[:id])
+    user        = User.find_by_handle(params[:user_handle])
+    @collection = Collection.with_products.find_by_id_and_user_id(
+                                              params[:id],
+                                              user.id)
 
   rescue => ex
     handle_exception(ex)
