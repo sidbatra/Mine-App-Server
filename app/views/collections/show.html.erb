@@ -1,7 +1,11 @@
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => 'misc/welcome', 
       :locals => {
-        :src => 'collection_' + @collection.id.to_s} unless logged_in?%>
+        :src    => 'collection_' + @collection.id.to_s,
+        :target => collection_path(
+                    @collection.user.handle,
+                    @collection.id,
+                    :src => 'footer')} unless logged_in?%>
 
 <div id="container" class="wide">
   
