@@ -1,6 +1,7 @@
-// Partial to load, display and create comments for a product
+// Partial to load, display and create comments for
+// either a product or a collection
 //
-Denwen.Partials.Products.Comments = Backbone.View.extend({
+Denwen.Partials.Commentables.Comments = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -14,7 +15,8 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
     var self                = this;
 
     this.posting            = false;
-    this.productID          = this.options.product_id;
+    this.commentableID      = this.options.commentable_id;
+    this.commentableType    = this.options.commentable_type;
 
     this.inputEl            = '#comment_data';
     this.commentsEl         = '#comments';
@@ -23,8 +25,8 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
     this.comments           = new Denwen.Collections.Comments();
     this.comments.fetch({
             data      : {
-                          source_id   : this.options.product_id,
-                          source_type : 'product'},
+                          source_id   : this.commentableID,
+                          source_type : this.commentableType},
             success   : function() { self.render(); },
             error     : function() {}
           });
@@ -58,8 +60,8 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
 
     var comment   = new Denwen.Models.Comment({
                           data        : $(this.inputEl).val(),
-                          source_id   : this.productID,
-                          source_type : 'product',
+                          source_id   : this.commentableID,
+                          source_type : this.commentableType,
                           defaultData : this.commentPlaceholder});
 
     this.comments.add(comment);
@@ -70,7 +72,7 @@ Denwen.Partials.Products.Comments = Backbone.View.extend({
           error   :  function(model,errors) {}
       });
 
-    analytics.commentCreated();
+    //analytics.commentCreated();
   },
 
   // Called when the comment is successfully created

@@ -8,9 +8,10 @@ Denwen.Views.Collections.Show = Backbone.View.extend({
     this.collection = new Denwen.Models.Collection(this.options.collectionJSON);
     this.source     = this.options.source;
 
-    new Denwen.Partials.Collections.Comments({
-          collection_id : this.collection.get('id'),
-          el            : $('#comments_container')});
+    new Denwen.Partials.Commentables.Comments({
+          commentable_id    : this.collection.get('id'),
+          commentable_type  : 'collection',
+          el                : $('#comments_container')});
 
     new Denwen.Partials.Collections.Actions({
           collection_id       : this.collection.get('id'),
