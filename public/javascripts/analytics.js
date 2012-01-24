@@ -26,24 +26,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("User Logged In Again");
   },
 
-  // User clicks the facebook login button 
-  //
-  fbLoginButtonClicked: function() {
-    mpq.track("FB Login Button Clicked");
-  },
-
-  // User accepts facebook connect 
-  //
-  fbConnectAccepted: function() {
-    mpq.track("FB Connect Accepted");
-  },
-
-  // User rejects facebook connect 
-  //
-  fbConnectRejected: function() {
-    mpq.track("FB Connect Rejected");
-  },
-
   // User created
   //
   userCreated: function() {
@@ -355,6 +337,15 @@ Denwen.Analytics = Backbone.Model.extend({
   userIFollowersView: function(userID) {
     mpq.track(
       'User IFollowers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's collections are viewed
+  //
+  userCollectionsView: function(userID) {
+    mpq.track(
+      'User Collections View',{
         'Is Own Profile'  : helpers.isCurrentUser(userID),
         'id'              : userID});
   },

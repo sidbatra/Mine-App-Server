@@ -19,7 +19,8 @@
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => 'misc/welcome', 
           :locals => {
-            :src => @user_presenter.source_id} unless logged_in?%>
+            :src    => @user_presenter.source_id,
+            :target => @user_presenter.closet_path('footer')} unless logged_in?%>
 
 
 <div id="container" class="wide">
@@ -50,6 +51,14 @@
         Wants
       </div>
     </a>
+
+    <%if @user.collections_count > 0%>
+      <a href='#looks'>
+        <div class='tab triangle small_top_margin' id='collections_tab'>
+          Looks
+        </div>
+      </a>
+    <%end%>
 	  
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box_<%=@user.id%>'>
@@ -103,8 +112,11 @@
 		    
 			</div>
 			
-			<div id="centerstage"></div>
-	
+      <div id="topstage">
+      </div>
+      <div id="centerstage">
+      </div>
+
 	</div> <!-- main -->
 	
 	

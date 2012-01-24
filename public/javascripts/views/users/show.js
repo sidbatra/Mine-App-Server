@@ -10,11 +10,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.source         = this.options.source;
 
     this.onTabClass     = 'on';
+    this.topStageEl     = '#topstage';
     this.ownsTab        = '#owns_tab';
     this.likesTab       = '#likes_tab';
     this.wantsTab       = '#wants_tab';
     this.followingTab   = '#following_tab';
     this.followedByTab  = '#followed_by_tab';
+    this.collectionsTab = '#collections_tab';
 
     if(this.options.currentUserJSON != 'false')
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
@@ -58,6 +60,16 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   filter  : 'followers',
                                   header  : 'Followed By',
                                   src     : 'followed_by_list'});
+
+    // -----
+    this.collections      = new Denwen.Partials.Collections.List({
+                                  el      : $('#centerstage'),
+                                  userID  : this.user.get('id')});
+
+    // -----
+    this.onCollection     = new Denwen.Partials.Collections.OnToday({
+                                  el      : $('#topstage'),
+                                  userID  : this.user.get('id')});
 
     // -----
     new Denwen.Partials.Users.PreviewBox({
@@ -116,10 +128,25 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.setAnalytics();
   },
 
+  // Fetch owned products and update the topstage
+  // 
+  fetchOwnedProducts: function(category) {
+    this.ownedProducts.fetch(category);
+
+    if(category == 'all' || category == undefined)
+      this.onCollection.fetch();
+  },
+
   // Load facebook code via partials
   //
   loadFacebookPlugs: function() {
     new Denwen.Partials.Facebook.Base();
+  },
+
+  // Clear the top stage area
+  //
+  clearTopStage: function() {
+    $(this.topStageEl).html('');
   },
 
   // Reset all tabs to off state
@@ -130,6 +157,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     $(this.wantsTab).removeClass(this.onTabClass);
     $(this.followingTab).removeClass(this.onTabClass);
     $(this.followedByTab).removeClass(this.onTabClass);
+    $(this.collectionsTab).removeClass(this.onTabClass);
   },
 
   // Use Backbone router for reacting to changes in URL
@@ -154,22 +182,24 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         switch(type) {
         case Denwen.UserShowHash.Owns:
-          self.ownedProducts.fetch(category);
+          self.fetchOwnedProducts(category);
           $(self.ownsTab).addClass(self.onTabClass);
           break;
 
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
           $(self.likesTab).addClass(self.onTabClass);
+          self.clearTopStage();
           break;
 
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
           $(self.wantsTab).addClass(self.onTabClass);
+          self.clearTopStage();
           break;
 
         default:
-          self.ownedProducts.fetch();
+          self.fetchOwnedProducts();
           $(self.ownsTab).addClass(self.onTabClass);
         }
 
@@ -185,17 +215,26 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         case Denwen.UserShowHash.Following:
           self.followingUsers.fetch();
           $(self.followingTab).addClass(self.onTabClass);
+          self.clearTopStage();
           analytics.userIFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.FollowedBy:
           self.followedByUsers.fetch();
           $(self.followedByTab).addClass(self.onTabClass);
+          self.clearTopStage();
           analytics.userFollowersView(self.user.get('id'));
           break;
 
+        case Denwen.UserShowHash.Collections:
+          self.collections.fetch();
+          $(self.collectionsTab).addClass(self.onTabClass);
+          self.clearTopStage();
+          analytics.userCollectionsView(self.user.get('id'));
+          break;
+
         default:
-          self.ownedProducts.fetch();
+          self.fetchOwnedProducts();
           $(self.ownsTab).addClass(self.onTabClass);
         }
       }

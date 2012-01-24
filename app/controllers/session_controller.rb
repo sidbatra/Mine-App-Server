@@ -14,7 +14,9 @@ class SessionController < ApplicationController
                             CONFIG[:fb_app_id],
                             CONFIG[:fb_app_secret])
     client              = fb_auth.client
-    client.redirect_uri = fb_reply_url(:src => @source)
+    client.redirect_uri = fb_reply_url(
+                            :src    => @source,
+                            :target => params[:target])
 
     target_url          = client.authorization_uri(
                             :scope => [:email,:user_likes,:user_birthday])

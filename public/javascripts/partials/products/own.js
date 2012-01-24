@@ -161,6 +161,10 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
       this.priceEl.val('');
       this.priceBoxEl.addClass('inactive');
       this.priceEl.attr('disabled','disabled');
+
+      this.priceEl.removeClass('incomplete');
+      this.priceTextEl.removeClass('incomplete');
+      this.priceDollarEl.removeClass('incomplete');
     }
     else {
       this.priceBoxEl.removeClass('inactive');
@@ -181,6 +185,9 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
       $(this.storeEl).val('');
       this.storeBoxEl.addClass('inactive');
       this.storeEl.attr('disabled','disabled');
+
+      this.storeEl.removeClass('incomplete');
+      this.storeTextEl.removeClass('incomplete');
     }
     else {
       this.storeBoxEl.removeClass('inactive');
