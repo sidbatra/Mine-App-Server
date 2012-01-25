@@ -416,18 +416,11 @@ div.welcome_text {
 	margin: 6px auto 0px;
 }
 
-#stores,  #users {
- width: 865px;
- text-align: center;
-}
+#stores,  #users { text-align: center; }
 
-#stores {
-	margin-bottom: 124px;
-}
-
-#users {
- margin-bottom: 50px;
-}
+#stores { margin-bottom: 124px; }
+#users { margin-bottom: 50px; }
+#users.main { padding: 0 6px 0 11px; } 
 
 #stores:after, #users:after {
 	clear: both;
@@ -439,30 +432,37 @@ div.welcome_text {
   font-size: 0;
 }
 
-#stores .picker_choice {
-	width: 190px;
-	height: 60px;
+#stores .picker_choice,
+#users .picker_choice {
 	float: left;
 	position: relative;
-	background: white;
 	z-index: 1;
+	display: block;
+}
+
+#stores .picker_choice:after,
+#users .picker_choice:after {
+	clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: ".";
+  font-size: 0;
+}
+
+#stores .picker_choice {
+	width: 190px;
+	margin: 0 13px 16px;
 }
 
 #users .picker_choice {
 	width: 250px;
-	height: 100px;
-	float: left;
-	position: relative;
-	background: white;
-	z-index: 1;
+	margin: 0 18px 20px;
 }
 
-#users .picker_choice {
-	margin: 0 18px 50px;
-}
-
-#stores .picker_choice {
-	margin: 0 13px 16px;
+#users.main .picker_choice { /* when used in main col */
+	margin: 0 15px 24px;
 }
 
 #stores .picker_choice:hover {
@@ -472,7 +472,7 @@ div.welcome_text {
 	-webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
 }
 
-.picker_choice:active {
+#stores .picker_choice:active {
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -482,7 +482,7 @@ div.welcome_text {
 	width: 60px;
 	height: 60px;
 	float: left;
-	background-position: center center; /* for user imgs */
+	background-position: center center; 
 }
 
 #users .picker_choice .left {
@@ -490,12 +490,13 @@ div.welcome_text {
 	height: 100px;
 	float: left;
 	background-position: center center; /* for user imgs */
+	background-size: 180px auto;
 }
 
-#stores .picker_choice .left_img {
-	width: 60px;
-	height: 60px;
-	z-index: 1;
+#users .picker_choice:hover .left {
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity = 80);
 }
 
 #users .picker_choice .left_img {
@@ -513,22 +514,68 @@ div.welcome_text {
 	width: 112px;
 	height: 42px;
 	padding: 8px 8px 10px 10px;
+	background: white;
 }
 
 #users .picker_choice .right {
 	color: #555555;
 	font-size: 16px;
-	line-height: 24px;
+	line-height: 22px;
 	text-align: left;
 	float: right;
 	width: 128px;
-	height: 80px;
-	padding: 10px 10px 10px 12px;
+	height: 40px;
+	padding: 10px 10px 50px 12px;
+	background: white;
+	overflow: hidden;
 }
 
-#stores .picker_choice:hover .right,
-#users .picker_choice .right {
+#users .picker_choice .right .byline {
+	color: #999999;
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+#container #users .picker_choice .tiles {
+	position: absolute;
+	left: 100px;
+	top: 58px;
+	height: 30px;
+	background: white;
+	padding: 2px 18px 10px 12px; /* to hide any byline underneath */
+}
+
+#container #users .picker_choice .tiles .tile {
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+
+#container #users .picker_choice .action_bar {
+	height: 30px;
+	line-height: 30px;
 	color: #666666;
+	font-size: 12px;
+	text-align: left;
+	padding: 0 10px;
+	-webkit-font-smoothing: subpixel-antialiased;
+	clear: both;
+}
+
+.checkmark_09_666666 {
+	background-image: url('/images/checkmarks.png');
+	display: inline-block;
+	height: 9px;
+	width: 12px;
+	background-position: 13px -30px;
+}
+
+.checkmark_10_666666 {
+	background-image: url('/images/checkmarks.png');
+	display: inline-block;
+	height: 10px;
+	width: 13px;
+	background-position: 0 -30px;
 }
 
 .picker_choice .button_picker {
@@ -545,8 +592,6 @@ div.welcome_text {
 .picker_choice .button_picker.pushed {
 	display: block;
 }
-
-
 
 .pick_top_stores,
 .follow_people,
@@ -624,50 +669,6 @@ div.welcome_text {
 	/* 	background: #e9e4e1; */
 	/* 	border-top: 1px solid #A8A8A8; */
 }
-
-#container #users .picker_choice .tiles {
-	position: absolute;
-	left: 112px;
-	bottom: 10px;
-	height: 30px;
-}
-
-#container #users .picker_choice .tiles .tile {
-	width: 30px;
-	height: 30px;
-	float: left;
-}
-
-#container #users .picker_choice .action_bar {
-	position: absolute;
-	top: 100px;
-	left: 0px;
-	width: 230px;
-	height: 30px;
-	line-height: 30px;
-	color: #666666;
-	font-size: 12px;
-	text-align: left;
-	padding: 0 10px;
-	-webkit-font-smoothing: subpixel-antialiased;
-}
-
-.checkmark_09_666666 {
-	background-image: url('/images/checkmarks.png');
-	display: inline-block;
-	height: 9px;
-	width: 12px;
-	background-position: 13px -30px;
-}
-
-.checkmark_10_666666 {
-	background-image: url('/images/checkmarks.png');
-	display: inline-block;
-	height: 10px;
-	width: 13px;
-	background-position: 0 -30px;
-}
-
 
 /* ------------------------------ Creation */
 
