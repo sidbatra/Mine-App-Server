@@ -52,7 +52,7 @@
 			</div>
 		</div>  <!-- product_endorsement_box -->
 		
-  <%else%>
+  <%elsif product.endorsement.present?%>
   	<div id="product_endorsement_box">
 	  	<div class='product_endorsement'>
 	    	<%=h product.endorsement.to_s%>
