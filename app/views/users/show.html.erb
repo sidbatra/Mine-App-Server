@@ -35,29 +35,21 @@
     </div>
     
     <%if @user.collections_count > 0%>
-      <a href='#looks'>
-        <div class='tab triangle large_bottom_margin' id='collections_tab'>
-          On Now
-        </div>
+      <a href='#looks' class='tab triangle large_bottom_margin' id='collections_tab'>
+        On Now
       </a>
     <%end%>
-	  
-    <a href='#owns/all'>
-      <div class='tab triangle' id='owns_tab'>
-        Owns
-      </div>
+
+    <a href='#owns/all' class='tab triangle' id='owns_tab'>
+      Owns
     </a>
 
-    <a href='#likes/all'>
-      <div class='tab triangle small_top_margin' id='likes_tab'>
-        Likes
-      </div>
+    <a href='#likes/all' class='tab triangle small_top_margin' id='likes_tab'>
+      Likes
     </a>
 
-    <a href='#wants/all'>
-      <div class='tab triangle small_top_margin' id='wants_tab'>
-        Wants
-      </div>
+    <a href='#wants/all' class='tab triangle small_top_margin' id='wants_tab'>
+      Wants
     </a>
 	  
 	  <%if !is_current_user(@user) && logged_in?%>
