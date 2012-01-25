@@ -29,7 +29,7 @@ class StoresController < ApplicationController
       @options  = {:only => [:id,:name]}
       @key      = KEYS[:store_all]
     when :for_user
-      @stores   = Store.processed.for_user(params[:user_id])
+      @stores   = Store.processed.for_user(params[:user_id]).limit(10)
       @options  = {:only => [:handle],:methods => [:thumbnail_url]}
       @key      = KEYS[:user_top_stores] % params[:user_id]
     end
