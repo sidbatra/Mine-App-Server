@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
                 :group        => "users.id HAVING products_at_store > 1", 
                 :order        => "products_at_store DESC,users.id"}}
 
+  named_scope :with_stores, :include => {:shoppings => :store}
+
   named_scope :limit, lambda {|limit| {:limit => limit}}
 
   #----------------------------------------------------------------------
@@ -222,7 +224,7 @@ class User < ActiveRecord::Base
     options[:only]     += [:id,:first_name,:last_name,:handle]
 
     options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += [:photo_url]
+    options[:methods]  += []
 
     super(options)
   end
