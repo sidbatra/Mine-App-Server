@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-#git fetch
-#git merge origin/develop
-git remote update -p
-git merge --ff-only origin/develop
+git pull --rebase
+#git fetch origin
+#git merge develop
+#git remote update -p
+#git merge --ff-only origin/develop
 RAILS_ENV=development rake db:migrate
 touch tmp/restart.txt
 RAILS_ENV=development sudo lib/daemons/processor_ctl restart
