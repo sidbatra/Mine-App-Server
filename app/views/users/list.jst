@@ -1,9 +1,14 @@
+<!--
 <div>
-  <%=header%>
+  <#=header%>
 </div>
+-->
+<div id='users' class='main'>
 
-<div>
-  <%users.each(function(user){%>
-    <%=Denwen.JST['users/user_detailed']({user:user, src:src})%>
-  <%});%>
-</div>
+	<div>
+	  <%users.each(function(user){%>
+	    <%=Denwen.JST['users/user_detailed']({user:user, src:src})%>
+	  <%});%>
+	</div>
+	
+</div> <!-- users

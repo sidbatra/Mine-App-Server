@@ -1,14 +1,22 @@
-<div class="tile_frame">
-  <span class="tooltip_down_ffffff">
-    <%=user.get('first_name') + ' ' + user.get('last_name')%>
-  </span>
+<a href="<%=user.path(src)%>" class="picker_choice">
 
-  <a href="<%=user.path(src)%>">
-    <img src="<%=user.get('photo_url')%>" class='tile'/>
-  </a>
+	<div class="left" style="background-image: url('<%=user.get('photo_url')%>');">
+	</div>
+	
+	<div class="right">
+		<%=user.get('first_name') + ' ' + user.get('last_name')%> 
+		<br />
+		<span class='byline'>
+			<%=helpers.truncate(user.get('byline'), 18, '…')%>
+		</span>
+	</div>
+	
+	<div class="tiles">
+	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/ODQ1Y2NlNDNhMjUxNGJkNGI2MmIxMzIzOTk1NTg1.png">
+	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/Nzc3NGJhNTlhNjlhM2E4YzUwZWIxMzIzOTk1NzMx.png">
+	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/MjFmYzFkMjViMDE5ODE5NzViNmIxMzI0MTM5OTI2.png">
+	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/MTBkYTVlNTZjZjhjZDE2MDlhMTIxMzIzOTk1NTU2.png">
+	</div>
 
-  <span>
-    <%=user.get('byline')%>
-  </span>
-</div>
+</a> <!-- picker_choice -->
 
