@@ -140,19 +140,6 @@ div.welcome_text {
 	background-color: #9f1414;
 }
 */
-#header .navbar .buttons .invite {
-  width: 130px;
-  height: 42px;
-  background: url("/images/profile_buttons.png") 0 0;
-  cursor: pointer;
-  display: block; }
-
-#header .navbar .buttons .invite:hover {
-  background-position: 0 -42px; }
-
-#header .navbar .buttons .invite:active {
-  background-position: 0 -84px; }
-
 #header .navbar .nav {
   height: 42px;
   position: absolute;
@@ -169,11 +156,6 @@ div.welcome_text {
 
 #header .navbar .nav li ul {
   background: white;
-  /*
-  	border-right: 1px solid #999999;
-  	border-left: 1px solid #999999;
-  	border-bottom: 1px solid #999999;
-  */
   z-index: 5000; }
 
 #header .navbar .nav li ul li {
@@ -219,14 +201,15 @@ div.welcome_text {
 .nav_add_item_button:hover {
   background-position: 0 -42px; }
 
-.nav_add_item_button:active {
+.nav_add_item_button:active,
+#header .navbar .nav li:hover .nav_add_item_button {
   background-position: 0 -84px; }
 
 .nav_add_list, .nav_login_list {
   display: none;
-  box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
-  -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
+  box-shadow: 0px 0px 1px 4px rgba(102, 102, 102, 0.1);
+  -moz-box-shadow: 0px 0px 1px 4px rgba(102, 102, 102, 0.1);
+  -webkit-box-shadow: 0px 0px 1px 4px rgba(102, 102, 102, 0.1); }
 
 .nav_add_list {
   position: absolute;
