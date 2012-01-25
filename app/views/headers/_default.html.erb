@@ -28,13 +28,12 @@
 	   	<li>
 	   	
 	      <%if !is_onboarding?%>
-	        <div class='buttons'>
+<!-- 	        <div class='buttons'> -->
 	        
 	        
-	        	<a href="<%=new_invite_path(:src => 'bar')%>" 
-	          class='invite'></a>
+	        	<a href="<%=new_invite_path(:src => 'bar')%>" class="nav_menu">Invite friends</a>
 	        
-	        </div>
+<!-- 	        </div> -->
 	      <%end%>
 	   	
 	   	</li>
@@ -43,7 +42,7 @@
 			<li>
 	      <%if !is_onboarding? || is_onboarding_create?%>
 	      
-	        <a class='nav_menu nav_add_item_button'>Add item +</a>
+	        <a class='nav_menu nav_add_item_button'></a>
 	        
 	        <ul class='nav_add_list'>
 	          

@@ -165,7 +165,7 @@ div.welcome_text {
   position: relative; }
 
 #header .navbar .nav li:hover {
-  background: #333333; }
+  background: #3c3c3c; }
 
 #header .navbar .nav li ul {
   background: white;
@@ -200,7 +200,7 @@ div.welcome_text {
   line-height: 42px;
   font-size: 18px;
   position: relative;
-  padding: 0 10px;
+  padding: 0 16px;
   color: white;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.4); }
 
@@ -209,8 +209,18 @@ div.welcome_text {
   display: block; }
 
 .nav_add_item_button {
-  width: 100px;
-  text-align: center; }
+  width: 130px;
+  height: 42px;
+  background: url("/images/profile_buttons.png") 0 0;
+  cursor: pointer;
+  display: block;
+  padding: 0px; }
+
+.nav_add_item_button:hover {
+  background-position: 0 -42px; }
+
+.nav_add_item_button:active {
+  background-position: 0 -84px; }
 
 .nav_add_list, .nav_login_list {
   display: none;
@@ -222,7 +232,7 @@ div.welcome_text {
   position: absolute;
   top: 42px;
   left: 0px;
-  width: 120px; }
+  width: 130px; }
 
 .nav_user_button_user_photo {
   width: 26px;
@@ -238,9 +248,6 @@ div.welcome_text {
   position: absolute;
   right: 0px;
   white-space: nowrap; }
-
-.nav_login_button:hover .nav_user_button:hover {
-  background: #333333; }
 
 /* ------------------------------ Onboarding */
 #header .navbar ol#indicators {
