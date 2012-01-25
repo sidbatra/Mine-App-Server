@@ -27,4 +27,24 @@ class Shopping < ActiveRecord::Base
                   :source       => source)
   end
 
+  #----------------------------------------------------------------------
+  # Instance methods
+  #----------------------------------------------------------------------
+
+  # Increment the products count
+  #
+  def increment_products_count
+    self.increment!(:products_count)
+  end
+
+  # Decrement the products count
+  #
+  def decrement_products_count
+    self.decrement!(:products_count)
+
+    if self.products_count.zero? && self.source == ShoppingSource::Product
+      self.destroy
+    end
+  end
+
 end
