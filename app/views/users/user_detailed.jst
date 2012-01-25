@@ -1,6 +1,6 @@
 <a href="<%=user.path(src)%>" class="picker_choice">
 
-	<div class="left" style="background-image: url('<%=user.get('photo_url')%>');">
+	<div class="left" style="background-image: url('<%=user.get('large_photo_url')%>');">
 	</div>
 	
 	<div class="right">
@@ -12,10 +12,12 @@
 	</div>
 	
 	<div class="tiles">
-	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/ODQ1Y2NlNDNhMjUxNGJkNGI2MmIxMzIzOTk1NTg1.png">
-	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/Nzc3NGJhNTlhNjlhM2E4YzUwZWIxMzIzOTk1NzMx.png">
-	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/MjFmYzFkMjViMDE5ODE5NzViNmIxMzI0MTM5OTI2.png">
-	  <img class="tile" src="http://s3.amazonaws.com/denwen-hasit-filesystem/MTBkYTVlNTZjZjhjZDE2MDlhMTIxMzIzOTk1NTU2.png">
+    <%var count = 0;%>
+      <%user.get('shoppings').each(function(shopping){%>
+        <%if(shopping.get('store').get('is_processed') && ++count < 5){%>
+          <img class="tile" src="<%=shopping.get('store').get('thumbnail_url')%>" />
+      <%}%>
+    <%});%>
 	</div>
 
 </a> <!-- picker_choice -->
