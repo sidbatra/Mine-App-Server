@@ -131,27 +131,6 @@ div.welcome_text {
 
 /* ------------------------------ Nav */
 
-/*
-#header .navbar .buttons .button {
-	height: 27px;
-	line-height: 28px;
-	margin: 5px 10px;
-	padding: 0px 12px;
-	font-family: 'FuturaStdBold', Arial, sans-serif;
-	color: white;
-	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
-	-webkit-font-smoothing: antialiased;
-	background: #cc2222 url('/images/alert-overlay.png') repeat-x;
-	font-size: 12px;
-	cursor: pointer;
-	border-bottom: 1px solid rgba(0,0,0,0.25);
-}
-
-#header .navbar .buttons .button:hover {
-	color: white;
-	background-color: #9f1414;
-}
-*/
 
 #header .navbar .nav {
 	height: 42px;
@@ -1527,25 +1506,44 @@ a.product_endorsement_submit_button:active { background: #dddddd; }
 .small_top_margin { margin-top: 4px; }
 .small_bottom_margin { margin-bottom: 4px; }
 .large_top_margin { margin-top: 16px; }
+.large_bottom_margin { margin-bottom: 16px; }
 .no_small_top_margin  { margin-top: -4px; }
 
 .tab.triangle { 
-	background: #f8f8f8 url('/images/ffffff_f8f8f8_triangle.png') center right; 
+	background: white url('/images/triangles.png') right -108px no-repeat; 
 	cursor: pointer;
 	padding-left: 12px;
 }
 
-.tab.triangle:hover, .tab.on { background: white url('/images/triangles.png') right top no-repeat; }
+.tab.triangle:hover {
+	background: white url('/images/triangles.png') right 0 no-repeat;
+} 
+
+.tab.triangle:active {
+	background: white url('/images/triangles.png') right -72px no-repeat; 
+	color: #cc3333;
+}
+
+.tab.on, .tab.on:hover, .tab.on:active { 
+	background: white url('/images/triangles.png') right -72px no-repeat; 
+	color: #cc3333;
+}
+
+.tab.static, .tab.static:hover, .tab.static:active { 
+	background: white url('/images/triangles.png') right 0 no-repeat; 
+	color: #555555;
+}
 
 .tab .count { 
 	float: right; 
 	padding-right: 30px; 
 	font-size: 14px; 
-	color: #999999; 
-	font-family: 'FuturaStdBook', Arial, sans-serif;
+	color: #cccccc;
 }
 
-.tab:hover .count { color: #555555; }
+.tab.on .count 		 { color: inherit; }
+.tab:hover  .count { color: inherit; }
+.tab:active .count { color: inherit; }
 
 .tab.image { 
 	padding-left: 0px; 

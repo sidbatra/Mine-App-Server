@@ -33,6 +33,14 @@
 		<div class='username'>
       <%=@user_presenter.closet_title%>
     </div>
+    
+    <%if @user.collections_count > 0%>
+      <a href='#looks'>
+        <div class='tab triangle large_bottom_margin' id='collections_tab'>
+          On Now
+        </div>
+      </a>
+    <%end%>
 	  
     <a href='#owns/all'>
       <div class='tab triangle' id='owns_tab'>
@@ -51,14 +59,6 @@
         Wants
       </div>
     </a>
-
-    <%if @user.collections_count > 0%>
-      <a href='#looks'>
-        <div class='tab triangle small_top_margin' id='collections_tab'>
-          Looks
-        </div>
-      </a>
-    <%end%>
 	  
 	  <%if !is_current_user(@user) && logged_in?%>
 	    <div id='following_box_<%=@user.id%>'>
@@ -112,8 +112,10 @@
 		    
 			</div>
 			
+<!--
       <div id="topstage">
       </div>
+-->
       <div id="centerstage">
       </div>
 
