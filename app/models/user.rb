@@ -21,14 +21,18 @@ class User < ActiveRecord::Base
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings,
-              :source => :follower, :conditions => 'is_active = 1'
+                        :source     => :follower, 
+                        :conditions => 'is_active = 1',
+                        :order      => 'followings.created_at DESC'
 
   has_many :inverse_followings, :class_name   => "Following", 
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
 
-  has_many :ifollowers, :through => :inverse_followings, 
-              :source => :user, :conditions => 'is_active = 1'
+  has_many :ifollowers, :through    => :inverse_followings, 
+                        :source     => :user, 
+                        :conditions => 'is_active = 1',
+                        :order      => 'followings.created_at DESC'
 
   #----------------------------------------------------------------------
   # Validations

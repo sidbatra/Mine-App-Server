@@ -79,7 +79,7 @@ class UsersController < ApplicationController
                           :only     => [:id,:products_count],
                           :include  => {
                             :store => {
-                              :only     => [:id,:handle,:is_processed],
+                              :only     => [:id,:is_processed],
                               :methods  => [:thumbnail_url]}}}}}
       @key        = KEYS[:user_followers] % params[:id]
     when :followers_preview
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
                           :only     => [:id,:products_count],
                           :include  => {
                             :store => {
-                              :only     => [:id,:handle,:is_processed],
+                              :only     => [:id,:is_processed],
                               :methods  => [:thumbnail_url]}}}}}
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :ifollowers_preview
