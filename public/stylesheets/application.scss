@@ -420,7 +420,11 @@ div.welcome_text {
 
 #stores { margin-bottom: 124px; }
 #users { margin-bottom: 50px; }
-#users.main { padding: 0 6px 0 11px; } 
+#users.main { 
+	padding: 0 8px 0 13px; 
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+} 
 
 #stores:after, #users:after {
 	clear: both;
@@ -462,7 +466,7 @@ div.welcome_text {
 }
 
 #users.main .picker_choice { /* when used in main col */
-	margin: 0 15px 24px;
+	margin: 0 13px 20px;
 }
 
 #stores .picker_choice:hover {
