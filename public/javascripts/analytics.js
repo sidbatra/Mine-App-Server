@@ -13,6 +13,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.name_tag(email);
     mpq.register_once({'age' : age}); 
   },
+
+  // Track the version number of the application
+  //
+  trackVersion: function(version) {
+    mpq.register({'Version' : 'v' + version});
+  },
   
   // Track the page the user landed on
   //

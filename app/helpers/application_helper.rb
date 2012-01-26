@@ -33,6 +33,12 @@ module ApplicationHelper
     "<meta name='is_onboarding' content='#{is_onboarding?}'/>"
   end
 
+  # Generate meta tag for application version
+  #
+  def version_meta_tag
+    "<meta name='version' content='#{CONFIG[:version]}'/>"
+  end
+
   # Format price or currency in general
   #
   def display_currency(amount)
