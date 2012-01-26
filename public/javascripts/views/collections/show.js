@@ -25,7 +25,7 @@ Denwen.Views.Collections.Show = Backbone.View.extend({
   // Fire various tracking events
   //
   setAnalytics: function() {
-
+    analytics.collectionView(this.source);
   }
 
 });

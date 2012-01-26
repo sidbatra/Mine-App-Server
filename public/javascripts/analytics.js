@@ -367,6 +367,14 @@ Denwen.Analytics = Backbone.Model.extend({
         'id'              : userID});
   },
 
+  // A collection is viewed
+  //
+  collectionView: function(source) {
+    mpq.track(
+      'Collection View',{
+        'source' : source});
+  },
+
   // Product's on a store's profile are filtered
   //
   storeProfileFiltered: function(category,id) {
