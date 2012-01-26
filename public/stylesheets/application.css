@@ -450,11 +450,11 @@ div.welcome_text {
   width: 100px;
   height: 100px;
   float: left;
+  background-color: white;
   background-position: center center;
-  /* for user imgs */
-  background-size: 180px auto; }
+  /* for user imgs */ }
 
-#users .picker_choice:hover .left {
+#users.main .picker_choice:hover .left {
   -moz-opacity: 0.8;
   opacity: .80;
   filter: alpha(opacity=80); }
