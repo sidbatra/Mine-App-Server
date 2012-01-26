@@ -20,8 +20,7 @@ class StoresController < ApplicationController
       @options  = {:only => [:handle],:methods => [:thumbnail_url]}
       @key      = KEYS[:store_top]
     when :suggest
-      @stores   = Store.processed.popular.limit(60).sort{|x,y| 
-                                            x.name.downcase <=> y.name.downcase}
+      @stores   = Store.processed.popular.limit(60)
       @options  = {:only => [:handle],:methods => [:medium_url]}
       @key      = KEYS[:store_suggest]
     when :all
