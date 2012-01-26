@@ -50,6 +50,7 @@ class CollectionsController < ApplicationController
                         (@collections ? @collections.id : 0)
     when :user
       @collections  = Collection.for_user(params[:owner_id]).
+                        with_user.
                         with_products.
                         by_id
       @key          = KEYS[:user_collections] % params[:owner_id]
