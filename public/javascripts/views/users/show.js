@@ -67,9 +67,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   userID  : this.user.get('id')});
 
     // -----
-    this.onCollection     = new Denwen.Partials.Collections.OnToday({
-                                  el      : $('#topstage'),
-                                  userID  : this.user.get('id')});
+    //this.onCollection     = new Denwen.Partials.Collections.OnToday({
+    //                              el      : $('#topstage'),
+    //                              userID  : this.user.get('id')});
 
     // -----
     new Denwen.Partials.Users.PreviewBox({
@@ -133,8 +133,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   fetchOwnedProducts: function(category) {
     this.ownedProducts.fetch(category);
 
-    if(category == 'all' || category == undefined)
-      this.onCollection.fetch();
+    //if(category == 'all' || category == undefined)
+    //  this.onCollection.fetch();
   },
 
   // Load facebook code via partials
