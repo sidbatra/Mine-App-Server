@@ -10,7 +10,9 @@ Denwen.Partials.Collections.List = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.userID       = this.options.userID;
+    this.ownerID      = this.options.ownerID;
+    this.source       = this.options.source;
+    this.filter       = this.options.filter;
     this.collections  = new Denwen.Collections.Collections();
   },
 
@@ -20,7 +22,7 @@ Denwen.Partials.Collections.List = Backbone.View.extend({
     var self = this;
 
     this.collections.fetch({
-          data      : {filter: 'user',owner_id: self.userID},
+          data      : {filter: self.filter,owner_id: self.ownerID},
           success   : function(collection){self.render();},
           error     : function(collection,errors){}
     });
@@ -29,9 +31,18 @@ Denwen.Partials.Collections.List = Backbone.View.extend({
   // Render user's collections
   //
   render: function() {
+    var self = this;
+
     $(this.el).html(
       Denwen.JST['collections/list']({
         collections : this.collections}));
+    
+    this.collections.each(function(collection){
+      new Denwen.Partials.Collections.Collection({
+            model     : collection,
+            source    : self.source,
+            sourceID  : self.ownerID});
+    });
   }
 
 

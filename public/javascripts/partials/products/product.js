@@ -1,4 +1,4 @@
-// Manage user interactions on a rendered product
+// Manage user interactions on a rendered product preview
 //
 Denwen.Partials.Products.Product = Backbone.View.extend({
   

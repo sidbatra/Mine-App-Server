@@ -1,3 +1,9 @@
+<a id='like_collection_<%=collection.get('id')%>' 
+    href='javascript:void(0)'>
+    Like
+</a>
+
+
 <%=jQuery.timeago(collection.get('created_at'))%>
 
 <%collection.get('products').each(function(product){%>

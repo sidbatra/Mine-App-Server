@@ -64,7 +64,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     // -----
     this.collections      = new Denwen.Partials.Collections.List({
                                   el      : $('#centerstage'),
-                                  userID  : this.user.get('id')});
+                                  ownerID : this.user.get('id'),
+                                  filter  : 'user',
+                                  source  : 'user_collections'});
 
     // -----
     //this.onCollection     = new Denwen.Partials.Collections.OnToday({
