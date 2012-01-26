@@ -9,6 +9,13 @@ Denwen.Collections.Shoppings = Backbone.Collection.extend({
   // Constructor logic
   //
   initialize: function() {
+  },
+
+  // Comparator function for sorting on the basis
+  // of the products count
+  //
+  comparator: function(shopping) {
+    return -shopping.get('products_count');
   }
 
 });

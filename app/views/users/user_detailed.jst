@@ -13,7 +13,7 @@
 	
 	<div class="tiles">
     <%var count = 0;%>
-      <%user.get('shoppings').each(function(shopping){%>
+      <%user.get('shoppings').sort().each(function(shopping){%>
         <%if(shopping.get('store').get('is_processed') && ++count < 5){%>
           <img class="tile" src="<%=shopping.get('store').get('thumbnail_url')%>" />
       <%}%>

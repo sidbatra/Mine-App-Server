@@ -76,7 +76,7 @@ class UsersController < ApplicationController
                       :methods  => [:large_photo_url],
                       :include  => {
                         :shoppings => {
-                          :only     => [:id],
+                          :only     => [:id,:products_count],
                           :include  => {
                             :store => {
                               :only     => [:id,:handle,:is_processed],
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
                       :methods  => [:large_photo_url],
                       :include  => {
                         :shoppings => {
-                          :only     => [:id],
+                          :only     => [:id,:products_count],
                           :include  => {
                             :store => {
                               :only     => [:id,:handle,:is_processed],
