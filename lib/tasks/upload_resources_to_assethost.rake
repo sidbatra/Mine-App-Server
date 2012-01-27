@@ -14,10 +14,10 @@ task :upload_resources_to_assethost do |e,args|
 
   #--------- Attach asset_host to image and type references in css
 
-  system "sed -i -e \"s/'\\/images/'#{asset_host.gsub("/","\\/")}"\
+  system "sed -i -e \"s/\\([\\\"']\\)\\/images/\\1#{asset_host.gsub("/","\\/")}"\
           "\\/images/g\" public/stylesheets/*.css"
 
-  system "sed -i -e \"s/'\\/type/'#{"http://#{CONFIG[:host]}".gsub("/","\\/")}"\
+  system "sed -i -e \"s/\\([\\\"']\\)\\/type/\\1#{"http://#{CONFIG[:host]}".gsub("/","\\/")}"\
           "\\/type/g\" public/stylesheets/*.css"
 
   #system "sed -i -e \"s/'\\/swfs/'#{asset_host.gsub("/","\\/")}"\
