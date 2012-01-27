@@ -70,6 +70,7 @@ namespace :deploy do
 
     system "cap #{environment}  workers:start"
 
+    system "cap #{environment}  logrotate:install"
     system "cap #{environment}  misc:whenever"
 
     system "cap #{environment} monit:config_web"
@@ -202,6 +203,16 @@ namespace :monit do
   desc 'Stop the monit daemon'
   task :stop, :roles => [:web,:worker] do
     run "sudo /etc/init.d/monit stop"
+  end
+end
+
+namespace :logrotate do
+  
+  desc 'Install logrotate config'
+  task :install, :roles => [:web,:worker] do
+    run "sudo cp #{current_path}/config/logrotate/rails /etc/logrotate.d"
+    run "sudo chown root:root /etc/logrotate.d/rails"
+    run "sudo chmod 644 /etc/logrotate.d/rails"
   end
 end
 
