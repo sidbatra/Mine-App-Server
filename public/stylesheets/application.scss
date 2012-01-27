@@ -111,12 +111,14 @@ div.welcome_text {
 /* ------------------------------ Header */
 
 #header {
-	height: 68px;
-	background: url('/images/header_black_80.png') center bottom repeat-x;
+	height: 66px;
+/* 	background: url('/images/header_black_80.png') center bottom repeat-x; */
 	z-index: 10000;
-	padding-bottom: 2px;
-	margin-bottom: 18px;
+/* 	padding-bottom: 2px; */
+	margin-bottom: 20px;
 	width: 100%;
+	border-bottom: 2px solid black;
+	background: url('/images/black_80.png');
 }
 
 #header .navbar {
@@ -1054,7 +1056,7 @@ div.welcome_text {
 }
 
 #product_endorsement_box {
-	margin: 2px auto;
+	margin: 2px auto 0;
 	width: 835px;
 	background: white;
 	position: relative;
@@ -1520,9 +1522,15 @@ a.product_endorsement_submit_button:active { background: #dddddd; }
 	color: #cc3333;
 }
 
+.tab.on.now, tab.on.now:hover, .tab.on.now:active {
+	background: #cc3333 url('/images/triangles.png') right -144px no-repeat;
+	color: white;
+}
+
 .tab.static, .tab.static:hover, .tab.static:active { 
 	background: white url('/images/triangles.png') right 0 no-repeat; 
 	color: #555555;
+	cursor: default;
 }
 
 .tab .count { 
@@ -2451,7 +2459,7 @@ a.product_endorsement_submit_button:active { background: #dddddd; }
 #extras {
 	padding: 28px 0px 20px 28px; /* keeps footer away from goodies */
 	width: 807px;
-	margin: 0 auto;
+	margin: 2px auto 0;
 	position: relative;
 	background: url('/images/white_30.png')
 }
