@@ -98,17 +98,17 @@ div.welcome_text {
 
 /* ------------------------------ Header */
 #header {
-  height: 65px;
-  /* 	background: url('/images/header_black_80.png') center bottom repeat-x; */
+  height: 68px;
+  background: url("/images/header_black_80.png") center bottom repeat-x;
   z-index: 10000;
-  /* 	padding-bottom: 2px; */
-  margin-bottom: 20px;
+  padding-bottom: 2px;
+  margin-bottom: 18px;
   width: 100%;
-  border-bottom: 3px solid black;
-  background: url("/images/black_80.png");
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
+  /* 	border-bottom: 3px solid black; */
+  /* 	background: url('/images/black_80.png'); */
+  /* 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); */
+  /* 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); */
+  /* 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); */ }
 
 #header .navbar {
   position: relative;
@@ -1540,10 +1540,8 @@ a.product_endorsement_submit_button:active {
 
 .sidebar .tile_frame {
   position: relative;
-  width: 35px;
-  height: 35px;
-  border-right: 1px solid #ebe8e3;
-  border-bottom: 1px solid #ebe8e3;
+  width: 36px;
+  height: 36px;
   float: left;
   cursor: pointer;
   z-index: 3000; }
@@ -1593,13 +1591,11 @@ a.product_endorsement_submit_button:active {
 .sidebar .invite_5 {
   background: url("/images/invite_numbers_32.png") 0px -200px no-repeat; }
 
-.sidebar .tile_frame:hover .tooltip_down_333333,
-.sidebar .tile_frame:hover .tooltip_down_ffffff,
+.sidebar .tile_frame:hover .tooltip_up_000000_80,
 .sidebar .tile_frame:hover .tooltip_up_ffffff,
-.sidebar .tile_frame:hover .tooltip_down_right_ffffff,
-.sidebar .title .detail:hover .tooltip_down_right_333333 {
+.sidebar .tile_frame:hover .tooltip_down_right_ffffff {
   display: block;
-  z-index: 2000; }
+  z-index: 10000 !important; }
 
 .sidebar .invite {
   margin-top: 6px; }
@@ -1623,30 +1619,17 @@ a.product_endorsement_submit_button:active {
 .sidebar ol li a .item:hover {
   color: #333333; }
 
-.tooltip_down_333333 {
+.tooltip_up_000000_80 {
   position: absolute;
   display: none;
-  top: -29px;
-  left: 0px;
-  height: 24px;
-  line-height: 24px;
-  padding: 0px 8px 5px;
-  background: url("/images/tooltip_down_333333.png") no-repeat;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap; }
-
-.tooltip_down_ffffff {
-  position: absolute;
-  display: none;
-  top: -36px;
+  top: 27px;
   left: 0px;
   height: 36px;
   line-height: 36px;
-  padding: 0px 10px 8px;
-  background: url("/images/tooltip_down_ffffff.png") no-repeat;
+  padding: 8px 12px 6px;
+  background: url("/images/tooltip_up_000000_80.png") no-repeat;
   background-position: left bottom;
-  color: #555555;
+  color: white;
   font-size: 14px;
   white-space: nowrap; }
 
@@ -1675,20 +1658,6 @@ a.product_endorsement_submit_button:active {
   background: url("/images/tooltip_down_right_ffffff.png") no-repeat;
   background-position: right bottom;
   color: #333333;
-  font-size: 12px;
-  white-space: nowrap; }
-
-.tooltip_down_right_333333 {
-  position: absolute;
-  display: none;
-  top: -29px;
-  right: -11px;
-  height: 24px;
-  line-height: 24px;
-  padding: 0px 8px 5px;
-  background: url("/images/tooltip_down_right_333333.png") no-repeat;
-  background-position: right bottom;
-  color: white;
   font-size: 12px;
   white-space: nowrap; }
 
