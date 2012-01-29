@@ -111,14 +111,17 @@ div.welcome_text {
 /* ------------------------------ Header */
 
 #header {
-	height: 66px;
+	height: 65px;
 /* 	background: url('/images/header_black_80.png') center bottom repeat-x; */
 	z-index: 10000;
 /* 	padding-bottom: 2px; */
 	margin-bottom: 20px;
 	width: 100%;
-	border-bottom: 2px solid black;
+	border-bottom: 3px solid black;
 	background: url('/images/black_80.png');
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
 #header .navbar {
@@ -199,11 +202,11 @@ div.welcome_text {
   padding: 0px;
 }
 
-.nav_add_item_button:hover {
+.nav_add_item_button:hover,
+#header .navbar .nav li:hover .nav_add_item_button {
   background-position: -5px -42px; }
 
-.nav_add_item_button:active,
-#header .navbar .nav li:hover .nav_add_item_button {
+.nav_add_item_button:active {
   background-position: -5px -84px; }
 
 .nav_add_list, .nav_login_list {
