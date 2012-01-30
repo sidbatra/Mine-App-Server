@@ -19,6 +19,7 @@ class CollectionsController < ApplicationController
 
     @collection = Collection.add(
                     product_ids,
+                    params[:collection][:name],
                     self.current_user.id)
   rescue => ex
     handle_exception(ex)

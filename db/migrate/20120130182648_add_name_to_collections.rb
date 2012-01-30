@@ -1,6 +1,6 @@
 class AddNameToCollections < ActiveRecord::Migration
   def self.up
-    add_column :collections, :name, :string
+    add_column :collections, :name, :string, :default => ''
   end
 
   def self.down

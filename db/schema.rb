@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20120130182648) do
     t.datetime "updated_at"
     t.integer  "comments_count", :default => 0
     t.integer  "actions_count",  :default => 0
-    t.string   "name"
+    t.string   "name",           :default => ""
   end
 
   add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
