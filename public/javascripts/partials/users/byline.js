@@ -6,7 +6,6 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   //
   events: {
     "click #user_edit"          : "edit",
-    "click #user_edit_initiate" : "edit",
     "click #user_update"        : "update",
     "click #user_cancel"        : "cancel"
   },
@@ -57,16 +56,19 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   // Hides the active editing UI
   //
   wipe: function() {
-    $(this.updateEl).hide();
     $(this.cancelEl).hide();
-    $(this.inputEl).hide();
 
     if(this.model.get('byline') == '' || 
         this.model.get('byline') == null) {
 
       $(this.startEl).show();
+      $(this.inputEl).show();
+      $(this.updateEl).show();
     }
     else {
+      $(this.inputEl).hide();
+      $(this.updateEl).hide();
+      $(this.startEl).hide();
       $(this.textEl).show();
       $(this.editEl).show();
     }

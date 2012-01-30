@@ -1,44 +1,52 @@
 
       <%if is_current_user(user)%>
       
-      		<!-- byline empty --> 
+          <!-- byline empty --> 
           <%=link_to  "Add your style statement",
                       'javascript:void(0)',
-                      :id     => '',
-                      :class  => 'tab',
+                      :id     => 'user_edit_initiate',
+                      :class  => 'edit_gray_12',
                       :style  => self.current_user.byline.present? ?
                                   'display:none' : 
                                   ''%>
-      
+
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
-				              self.current_user.byline,
-				              :class  => 'user_byline_input',
-				              :style  => self.current_user.byline.present? ?
-										              'display:none' : 
-										              ''%>
+              self.current_user.byline,
+              :style  => self.current_user.byline.present? ?
+                          'display:none' :
+                          ''%>
+          
+          <%=link_to  'Save', 
+                      'javascript:void(0)', 
+                      :class  => 'update',
+                      :id     => 'user_update',
+                      :style  => self.current_user.byline.present? ?
+                                  'display:none' :
+                                  ''%>
+                      
+          <%=link_to  'Cancel', 
+                      'javascript:void(0)', 
+                      :class  => 'submit_red_12',
+                      :id     => 'user_cancel',
+                      :style  => 'display:none'%>                         
           
           
           <!-- byline display -->
-          <div id='user_byline_text' >
+          <span id='user_byline_text'>
             <%=h self.current_user.byline%>
-            
-						<%=link_to 	'Edit', 
-						        'javascript:void(0)', 
-						        :id			=> 'user_edit',
-						        :class	=> '',
-						        :style	=> self.current_user.byline.present? ?
-						                    '' :
-						                    'display:none'%>		
-          </div>
+          </span>
           
-          <%=link_to 	'Save', 
-                      'javascript:void(0)', 
-                      :id			=> 'user_update',
-                     	:class	=> '',
-                      :style	=> 'display:block'%>										
-													               
 
+          <%=link_to  'Edit', 
+                      'javascript:void(0)', 
+                      :class  => 'edit_gray_12 inline_nudge',
+                      :id     => 'user_edit',
+                      :style  => self.current_user.byline.present? ?
+                                  '' :
+                                  'display:none'%>
+          
+          
       <%else%>
 
           <%=user.byline.present? ? 
