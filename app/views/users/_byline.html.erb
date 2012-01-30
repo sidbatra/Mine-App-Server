@@ -34,7 +34,11 @@
           
           
           <!-- byline display -->
-          <div class='user_byline_display'>
+          <div id='user_edit_box' 
+                class='user_byline_display'
+                style="<%=self.current_user.byline.present? ?
+                        '' :
+                        'display:none'%>">
           
           	<span id='user_byline_text'>
           		<%=h self.current_user.byline%>
