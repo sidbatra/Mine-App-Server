@@ -97,4 +97,18 @@ class CollectionsController < ApplicationController
     end
   end
 
+  # Destroy a collection
+  #
+  def destroy
+    collection = Collection.find(params[:id])
+    collection.destroy if collection.user_id == self.current_user.id
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to user_path(
+                  self.current_user.handle,
+                  :src    => UserShowSource::CollectionDeleted,
+                  :anchor => UserShowHash::Collections)
+  end
+
 end

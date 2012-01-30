@@ -105,6 +105,7 @@ module DW
     #
     class UserShowSource < Enumeration
       CollectionCreate  = 'collection_create'
+      CollectionCreated = 'collection_deleted'
       HomeRedirect      = 'home_redirect'
       Login             = 'login'
       ProductCreate     = 'product_create'
