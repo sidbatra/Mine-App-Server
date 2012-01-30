@@ -94,6 +94,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Cancelled");
   },
 
+  // User deletes a collection
+  //
+  collectionDeleted: function() {
+    mpq.track("Collection Deleted");
+  },
+
   // User starts to type a comment
   //
   commentSelected: function() {
