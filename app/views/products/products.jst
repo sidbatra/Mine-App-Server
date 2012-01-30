@@ -15,7 +15,52 @@
       <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
     <%});%>
   </div>
+<%} else if(src == 'liked') {%>
 
+	<!-- no likes, other user -->
+	<div class='placeholder heading'>
+		Bob hasn't <span class='em'>Liked</span> anything yet.
+	</div>
+	<div class='placeholder box like'>
+	</div>
+ 
+	<%if(helpers.isCurrentUser(ownerID)){%>
+	
+	<!-- no likes, current user -->
+	<div class='placeholder heading'>
+		Everything you <span class='em'>Like</span> shows up here.
+	</div>
+	<div class='placeholder box like'>
+		<div class='overlay'>
+		</div>
+	</div>
+		
+	<%}%>
+	
+<%} else if(src == 'wanted') {%>
+
+	<!-- no wants, other user -->
+ 	<div class='placeholder heading'>
+		Bob hasn't <span class='em'>Wanted</span> anything yet.
+	</div>
+	<div class='placeholder box want'>
+	</div>
+ 
+ 	<%if(helpers.isCurrentUser(ownerID)){%>
+ 	
+ 	<!-- no wants, current user -->
+	<div class='placeholder heading'>
+		Everything you <span class='em'>Want</span> shows up here.
+	</div>
+	<div class='placeholder box want'>
+		<div class='overlay'>
+		</div>
+	</div>
+		
+	<%}%>
+	
 <%} else {%>
+
   No products here
+  
 <%}%>

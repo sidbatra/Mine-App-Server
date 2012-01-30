@@ -14,7 +14,7 @@
 
 <div class='sequence'>
 	<%collection.get('products').each(function(product){%>
-		<div class='product' style="background-image: url('<%=product.get('thumbnail_url')%>');" >
-	  </div>
+		<a href='<%=collection.path('user_comment')%>' class='product' style="background-image: url('<%=product.get('thumbnail_url')%>');" >
+	  </a>
 	<%});%>
 </div>

@@ -1724,6 +1724,41 @@ a.product_endorsement_submit_button:active {
   width: 582px;
   float: left;
   margin: 0 19px; }
+  
+#main .placeholder.heading {
+	font-size: 26px;
+  line-height: 150%;
+  color: #555555;
+  text-align: center;
+  text-shadow: 0 1px 1px white;
+  padding: 6px 10px 18px; }
+ 
+#main .placeholder.heading .em { color: #cc3333; }
+  
+
+#main .placeholder.box {
+	width: 582;
+	height: 270px;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+#main .placeholder.box.like { background-image: url('/images/place_like_image.jpg'); }
+#main .placeholder.box.want { background-image: url('/images/place_want_image.jpg'); }
+
+#main .placeholder.box.like .overlay,
+#main .placeholder.box.want .overlay {
+	width: 582px;
+	height: 260px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-repeat: no-repeat;
+}
+
+#main .placeholder.box.like .overlay { background-image: url('/images/place_like_text.png'); }
+#main .placeholder.box.want .overlay { background-image: url('/images/place_want_text.png'); }
+
 
 #main .titlebar {
   height: 36px;
@@ -1758,17 +1793,6 @@ a.product_endorsement_submit_button:active {
   padding-left: 17px;
 }
 
-#main .sequence .product {
-	height: 100px;
-	width: 100px;
-	border: 8px solid white;
-	float: left;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: 100px auto;
-	background-color: white;
-}
-
 #main .sequence {
 	padding: 10px 0 14px;
 }
@@ -1781,6 +1805,18 @@ a.product_endorsement_submit_button:active {
   visibility: hidden;
   content: ".";
   font-size: 0;
+}
+
+#main .sequence .product {
+	height: 100px;
+	width: 100px;
+	border: 8px solid white;
+	float: left;
+	display: block;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100px auto;
+	background-color: white;
 }
 
 /* ------------------------------ Products */
