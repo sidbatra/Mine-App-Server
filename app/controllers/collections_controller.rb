@@ -80,4 +80,21 @@ class CollectionsController < ApplicationController
     redirect_to root_path if @error
   end
 
+  # Update a collection 
+  #
+  def update
+    @collection = Collection.find_by_id(params[:id])
+
+    if @collection.user_id == self.current_user.id
+      @collection.update_attributes(params[:collection])
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
+
 end
