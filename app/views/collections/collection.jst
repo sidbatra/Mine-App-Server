@@ -1,17 +1,20 @@
-<a id='like_collection_<%=collection.get('id')%>' 
-    href='javascript:void(0)'>
-    Like
-</a>
+<div class='titlebar border'>
 
-<a href='<%=collection.path('user_comment')%>'>
-  Comment
-</a>
+	<%=jQuery.timeago(collection.get('created_at'))%>
+	
+	<a class='action' id='like_collection_<%=collection.get('id')%>' href='javascript:void(0)'>
+		Like <span class='count'>6</span>
+	</a>
+	
+	<a class='action comment' href='<%=collection.path('user_comment')%>'>
+	  <span class='count'>14</span>
+	</a>
 
+</div>
 
-<%=jQuery.timeago(collection.get('created_at'))%>
-
-<%collection.get('products').each(function(product){%>
-  <img src='<%=product.get('photo_url')%>' height='20'/>
-<%});%>
-
-<br/>
+<div class='sequence'>
+	<%collection.get('products').each(function(product){%>
+		<div class='product' style="background-image: url('<%=product.get('thumbnail_url')%>');" >
+	  </div>
+	<%});%>
+</div>

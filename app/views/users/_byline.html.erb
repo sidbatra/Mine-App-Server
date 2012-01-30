@@ -35,14 +35,16 @@
           <%=link_to 	'Save', 
                       'javascript:void(0)', 
                       :id			=> 'user_update',
-                     	:class	=> '',
+                     	:class	=> 'user_byline_save',
                       :style	=> 'display:block'%>										
 													               
 
       <%else%>
 
-          <%=user.byline.present? ? 
-              user.byline : 
-              "Collecting since " + user.created_at.strftime('%B %Y')%>
-
+          <%if user.byline.present?%> 
+              <%=user.byline%>
+          <%else%>
+              <!-- "Collecting since " + user.created_at.strftime('%B %Y')%> -->
+          <%end%>
+          
       <%end%> 

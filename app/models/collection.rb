@@ -53,7 +53,7 @@ class Collection < ActiveRecord::Base
     options[:only] += [:id,:user_id,:created_at]
 
     options[:include] = {}
-    options[:include].store(:products,{:only => [:id],:methods => [:photo_url]})
+    options[:include].store(:products,{:only => [:id],:methods => [:thumbnail_url]})
     options[:include].store(:user,{:only => [:id,:handle]})
 
     super(options)

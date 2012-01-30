@@ -1171,24 +1171,6 @@ a.product_endorsement_submit_button:active {
   border: 0;
   overflow: hidden; }
 
-.action {
-  position: absolute;
-  bottom: 40px;
-  left: 59px;
-  border: 0;
-  overflow: visible; }
-
-.action:active {
-  bottom: 39px; }
-
-.f {
-  vertical-align: middle;
-  margin-right: 10px; }
-
-.f_friends {
-  vertical-align: middle;
-  margin-right: 8px; }
-
 .save_and_share {
   background: transparent url("/images/save_and_share_button.png") no-repeat; }
 
@@ -1480,7 +1462,21 @@ a.product_endorsement_submit_button:active {
   height: 72px;
   border: 2px solid #a8a8a8;
   padding: 8px 8px 8px 10px;
-  background: url("/images/textarea_white_30.png") top center repeat-x; }
+  background: white url("/images/black_7.png") repeat-x;
+/*   background: url("/images/textarea_white_30.png") top center repeat-x;  */
+}
+  
+.sidebar .user_byline_save {
+	clear: both;
+	height: 32px;
+	width: 48px;
+	text-align: center;
+	line-height: 32px;
+/* 	background: white; */
+	color: #cc3333;
+	font-size: 16px;
+/* 	float: right; */
+}
 
 .sidebar .tile_row {
   background: url("/images/white_30.png"); }
@@ -1709,6 +1705,10 @@ a.product_endorsement_submit_button:active {
   height: 36px;
   line-height: 36px;
   color: #333333; }
+  
+#main .titlebar.border {
+	border-bottom: 2px solid white;
+}
 
 #main .titlebar a {
   color: #cc3333; }
@@ -1721,6 +1721,43 @@ a.product_endorsement_submit_button:active {
 #main .titlebar a.cat.on,
 #main .titlebar a.cat:hover {
   color: #333333; }
+  
+#main .titlebar a.action {
+	font-size: 14px;
+	margin: 0 0 0 8px;
+	display: inline-block;
+	color: #cc3333;
+}
+
+#main .titlebar a.action.comment {
+	background: url("/images/bubbles.png") -13px -36px no-repeat;
+  padding-left: 17px;
+}
+
+#main .sequence .product {
+	height: 100px;
+	width: 100px;
+	border: 8px solid white;
+	float: left;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100px auto;
+	background-color: white;
+}
+
+#main .sequence {
+	padding: 10px 0 14px;
+}
+
+#main .sequence:after {
+	clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: ".";
+  font-size: 0;
+}
 
 /* ------------------------------ Products */
 .products {
@@ -1799,7 +1836,6 @@ a.product_endorsement_submit_button:active {
   top: 0px;
   left: 0px;
   right: 0px;
-  background: white;
   display: none; }
 
 .product:hover .feedback {
@@ -1810,6 +1846,8 @@ a.product_endorsement_submit_button:active {
   font-size: 14px;
   line-height: 36px;
   color: #555555;
+  padding-bottom: 2px;
+  background: url('/images/shadow_light_downfacing.png') bottom center repeat-x;
   text-align: center; }
 
 .products .product .feedback .buttons .button {
