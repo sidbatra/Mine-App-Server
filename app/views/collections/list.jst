@@ -1,10 +1,4 @@
-<div>
-  Looks
+<%collections.each(function(collection){%>
+  <%=Denwen.JST['collections/collection']({collection:collection})%>
+<%});%>
 
-  <br/>
-
-  <%collections.each(function(collection){%>
-    <%=Denwen.JST['collections/collection']({collection:collection})%>
-  <%});%>
-
-</div>
