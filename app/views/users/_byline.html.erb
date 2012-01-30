@@ -50,11 +50,13 @@
           </div>
           
       <%else%>
-
-          <%if user.byline.present?%> 
-              <%=user.byline%>
-          <%else%>
-              <!-- "Collecting since " + user.created_at.strftime('%B %Y')%> -->
-          <%end%>
-          
+					<div class='user_byline_display'>
+          	<span id='user_byline_text'>
+		          <%if user.byline.present?%> 
+		              <%=user.byline%>
+		          <%else%>
+		              <!-- "Collecting since " + user.created_at.strftime('%B %Y')%> -->
+		          <%end%>
+	          </span>
+	         </div>
       <%end%> 
