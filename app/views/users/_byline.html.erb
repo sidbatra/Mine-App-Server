@@ -36,14 +36,6 @@
           <!-- byline display -->
           <div class='user_byline_display'>
           
-<<<<<<< HEAD
-          <%=link_to 	'Save', 
-                      'javascript:void(0)', 
-                      :id			=> 'user_update',
-                     	:class	=> 'user_byline_save',
-                      :style	=> 'display:block'%>										
-													               
-=======
           	<span id='user_byline_text'>
           		<%=h self.current_user.byline%>
           	</span>
@@ -56,13 +48,9 @@
 	                                  '' :
 	                                  'display:none'%>
           </div>
-
->>>>>>> e8281e261be221c525af5d9898bfff7b06260e44
-
           
       <%else%>
 
-<<<<<<< HEAD
           <%if user.byline.present?%> 
               <%=user.byline%>
           <%else%>
@@ -70,10 +58,3 @@
           <%end%>
           
       <%end%> 
-=======
-          <%=user.byline.present? ? 
-              user.byline : 
-              "Collecting since " + user.created_at.strftime('%B %Y')%>
-
-      <%end%> 
->>>>>>> e8281e261be221c525af5d9898bfff7b06260e44
