@@ -56,13 +56,6 @@
 	    <div id='following_box_<%=@user.id%>'>
 	    </div>
 	  <%end%>
-	
-		<!-- <div id='profile_bio'>
-		    <div id='user_byline_default'>	
-		        <#=render :partial  => 'byline',
-		                  :locals   => {:user => @user}%>
-		    </div>
-	    </div> style statement -->
 	    
 	  <div>
 			<div id="ifollowers_with_msg">
@@ -73,6 +66,15 @@
 			<div id="followers_with_msg">
       </div>
 		</div> <!-- followed by-->
+		
+  	<!-- bio -->
+  	<div id='profile_bio' class='large_top_margin'>
+  		<div id='user_byline_default'>
+	    <%=render :partial  => 'byline',
+	              :locals   => {:user => @user}%>
+	    </div>
+	  </div>
+
 
 	 	<!-- <div id="star_users_box" class="box tiled">
 	  </div>  star_users_box -->
