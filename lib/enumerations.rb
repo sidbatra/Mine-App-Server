@@ -105,10 +105,18 @@ module DW
     #
     class UserShowSource < Enumeration
       CollectionCreate  = 'collection_create'
+      CollectionCreated = 'collection_deleted'
       HomeRedirect      = 'home_redirect'
       Login             = 'login'
       ProductCreate     = 'product_create'
       ProductDeleted    = 'product_deleted'
+    end
+
+    # Hash tags for loading different views on
+    # the users/show page
+    #
+    class UserShowHash < Enumeration
+      Collections = 'looks'
     end
 
     # Different screens for the welcoem controller

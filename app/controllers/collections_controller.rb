@@ -19,6 +19,7 @@ class CollectionsController < ApplicationController
 
     @collection = Collection.add(
                     product_ids,
+                    params[:collection][:name],
                     self.current_user.id)
   rescue => ex
     handle_exception(ex)
@@ -30,7 +31,8 @@ class CollectionsController < ApplicationController
                         :src => CollectionNewSource::Error) :
                       user_path(
                         self.current_user.handle,
-                        :src => UserShowSource::CollectionCreate)
+                        :src    => UserShowSource::CollectionCreate,
+                        :anchor => UserShowHash::Collections)
       end
       format.json 
     end
@@ -76,6 +78,37 @@ class CollectionsController < ApplicationController
     handle_exception(ex)
   ensure
     redirect_to root_path if @error
+  end
+
+  # Update a collection 
+  #
+  def update
+    @collection = Collection.find_by_id(params[:id])
+
+    if @collection.user_id == self.current_user.id
+      @collection.update_attributes(params[:collection])
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
+
+  # Destroy a collection
+  #
+  def destroy
+    collection = Collection.find(params[:id])
+    collection.destroy if collection.user_id == self.current_user.id
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to user_path(
+                  self.current_user.handle,
+                  :src    => UserShowSource::CollectionDeleted,
+                  :anchor => UserShowHash::Collections)
   end
 
 end

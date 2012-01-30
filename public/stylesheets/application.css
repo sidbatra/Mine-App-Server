@@ -1447,19 +1447,26 @@ a.product_endorsement_submit_button:active {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
   position: relative; }
 
-.sidebar #user_byline_default {}
+.sidebar .user_byline_display {
+	font-size: 14px;
+  line-height: 21px;
+  color: #666666;
+  width: 158px;
+  padding: 10px 10px 10px 12px;
+  background: url("/images/white_30.png");
+}
 
 .sidebar .user_byline_input {
   font-family: 'FuturaStdBook', Arial, sans-serif;
   font-size: 14px;
   line-height: 21px;
-  color: #555555;
+  color: #333333;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-font-feature-settings: "kern=1";
   -ms-font-feature-settings: "kern" 1;
   width: 158px;
-  height: 72px;
+  height: 84px;
   border: 2px solid #a8a8a8;
   padding: 8px 8px 8px 10px;
   background: white url("/images/black_7.png") repeat-x;
@@ -1467,6 +1474,7 @@ a.product_endorsement_submit_button:active {
 }
   
 .sidebar .user_byline_save {
+<<<<<<< HEAD
 	clear: both;
 	height: 32px;
 	width: 48px;
@@ -1476,6 +1484,22 @@ a.product_endorsement_submit_button:active {
 	color: #cc3333;
 	font-size: 16px;
 /* 	float: right; */
+=======
+	height: 36px;
+/*
+	width: 48px;
+	text-align: center;
+*/
+	line-height: 36px;
+	color: #cc3333;
+	font-size: 16px;
+	display: block;
+}
+
+.user_byline_inline_edit{
+	color: #cc3333;
+	margin-left: 4px;
+>>>>>>> e8281e261be221c525af5d9898bfff7b06260e44
 }
 
 .sidebar .tile_row {

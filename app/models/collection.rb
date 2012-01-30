@@ -23,13 +23,20 @@ class Collection < ActiveRecord::Base
   named_scope :with_user, :include => :user
 
   #----------------------------------------------------------------------
+  # Attributes
+  #----------------------------------------------------------------------
+  attr_accessible :name,:user_id
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
   # Add a new collection
   #
-  def self.add(product_ids,user_id)
-    collection = new(:user_id => user_id)
+  def self.add(product_ids,name,user_id)
+    collection = new(
+                  :user_id  => user_id,
+                  :name     => name)
 
     raise IOError, "No products added to collection" unless product_ids.present?
 
@@ -50,7 +57,8 @@ class Collection < ActiveRecord::Base
   #
   def to_json(options = {})
     options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id,:user_id,:created_at]
+    options[:only] += [:id,:user_id,:name,:comments_count,
+                        :actions_count,:created_at]
 
     options[:include] = {}
     options[:include].store(:products,{:only => [:id],:methods => [:thumbnail_url]})
