@@ -10,11 +10,12 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
 
     // -----
     this.products = new Denwen.Partials.Products.Products({
-                          el        : $('#centerstage'),
-                          owner_id  : this.store.get('id'),
-                          filter    : 'store',
-                          type      : 'store',
-                          fragment  : 'products'});
+                          el          : $('#centerstage'),
+                          owner_id    : this.store.get('id'),
+                          owner_name  : this.store.get('name'),
+                          filter      : 'store',
+                          type        : 'store',
+                          fragment    : 'products'});
 
     // -----
     this.topProducts   = new Denwen.Partials.Products.TopProducts({

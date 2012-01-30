@@ -23,16 +23,18 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     // -----
     this.ownedProducts = new Denwen.Partials.Products.Products({
-                          el        : $('#centerstage'),
-                          owner_id  : this.user.get('id'),
-                          filter    : 'user',
-                          type      : 'user',
-                          fragment  : 'owns'});
+                          el          : $('#centerstage'),
+                          owner_id    : this.user.get('id'),
+                          owner_name  : this.user.get('first_name'),
+                          filter      : 'user',
+                          type        : 'user',
+                          fragment    : 'owns'});
 
     // -----
     this.likedProducts = new Denwen.Partials.Products.Products({
                             el        : $('#centerstage'),
                             owner_id  : this.user.get('id'),
+                          owner_name  : this.user.get('first_name'),
                             filter    : 'liked',
                             type      : 'user',
                             fragment  : 'likes'});
@@ -41,6 +43,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.wantedProducts = new Denwen.Partials.Products.Products({
                             el        : $('#centerstage'),
                             owner_id  : this.user.get('id'),
+                          owner_name  : this.user.get('first_name'),
                             filter    : 'wanted',
                             type      : 'user',
                             fragment  : 'wants'});

@@ -6,6 +6,7 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
   //
   initialize: function() {
     this.ownerID    = this.options.owner_id;
+    this.ownerName  = this.options.owner_name;
     this.filter     = this.options.filter;
     this.type       = this.options.type;
     this.fragment   = this.options.fragment;
@@ -36,6 +37,7 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
       Denwen.JST['products/products']({
         products        : this.products,
         ownerID         : this.ownerID,
+        ownerName       : this.ownerName,
         src             : this.filter,
         type            : this.type,
         fragment        : this.fragment,
