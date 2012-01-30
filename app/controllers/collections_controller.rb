@@ -31,7 +31,8 @@ class CollectionsController < ApplicationController
                         :src => CollectionNewSource::Error) :
                       user_path(
                         self.current_user.handle,
-                        :src => UserShowSource::CollectionCreate)
+                        :src    => UserShowSource::CollectionCreate,
+                        :anchor => UserShowHash::Collections)
       end
       format.json 
     end

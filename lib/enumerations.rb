@@ -111,6 +111,13 @@ module DW
       ProductDeleted    = 'product_deleted'
     end
 
+    # Hash tags for loading different views on
+    # the users/show page
+    #
+    class UserShowHash < Enumeration
+      Collections = 'looks'
+    end
+
     # Different screens for the welcoem controller
     #
     class WelcomeFilter < Enumeration
