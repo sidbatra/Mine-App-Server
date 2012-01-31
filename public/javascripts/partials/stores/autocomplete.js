@@ -19,6 +19,8 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
   autocomplete: function() {
     this.el.autocomplete(
               this.stores.pluck('name'),{
+               matchContains: 'word',
+               max: 50,
                formatMatch: function(item){
                 return item[0].replace(/[^(\w|\s)]/gi, '');},
                formatResult: function(item){

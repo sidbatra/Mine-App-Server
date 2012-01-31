@@ -254,7 +254,7 @@ $.Autocompleter = function(input, options) {
 			$input.addClass(options.loadingClass);
 			if (!options.matchCase)
 				currentValue = currentValue.toLowerCase();
-			request(currentValue.replace(/[^\w]/g, ''), receiveData, hideResultsNow);
+			request(currentValue.replace(/[^(\w|\s)]/g, ''), receiveData, hideResultsNow);
 		} else {
 			stopLoading();
 			select.hide();
@@ -413,7 +413,7 @@ $.Autocompleter.defaults = {
 	delay: 400,
 	matchCase: false,
 	matchSubset: true,
-	matchContains: "word",
+	matchContains: false,
 	cacheLength: 10,
 	max: 100,
 	mustMatch: false,
