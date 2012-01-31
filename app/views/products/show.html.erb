@@ -26,6 +26,7 @@
 <div id="container" class="wide">
   
 	<div id="item">
+	
 		<div class="top_bar">
 
       <%if (@source == 'store' || @source == 'top_product') && @product.store%>
@@ -54,7 +55,7 @@
 	                
 	     </div> <!-- social buttons -->
 	     
-		</div>
+		</div> <!-- top_bar -->
     
 		<div class="edit">
       	<%=@product_presenter.edit_link%>
@@ -71,13 +72,6 @@
     
     <%end%>
     
-    
-    
-
-
-    <!-- product 
-    <div>-->
-
       <div id="left" class="photo">
         <%=@product_presenter.large_image%>
       </div>
@@ -114,10 +108,8 @@
       </div> <!-- right -->
       
       <%=blocker%>
-
-    <!-- </div>  product -->
       
-	</div> <!-- product_section -->
+	</div> <!-- item -->
 	
 	<%=render :partial => 'endorsement',
            	:locals   => {:product  => @product}%>

@@ -8,19 +8,52 @@
                     :src => 'footer')} unless logged_in?%>
 
 <div id="container" class="wide">
+
+	<div id="item">
+	
+		<div class="top_bar">
+
+      <%if (@source == 'store' || @source == 'top_product') && @product.store%>
+        <%@store_presenter = presenter_for(@product.store)%>
+        <%=@product_presenter.breadcrumb(
+              @store_presenter.name,
+              @store_presenter.closet_path('product'))%>
+      <%else%>
+        <%=@product_presenter.breadcrumb(
+              @user_presenter.closet_title(true),
+              @user_presenter.closet_path('product'))%>
+      <%end%>
+      
+      <div class='social_buttons'>
+
+	    <%=render :partial => 'facebook/like', 
+	              :locals => {
+	              	:style				=> '',
+	                :url          => @product_presenter.url('fb'),
+	                :send_button  => false,
+	                :width        => 70,
+	                :faces        => false}%>
+	                
+	                
+	         twitter tumblr stumble google+
+	                
+	     </div> <!-- social buttons -->
+	     
+		</div> <!-- top_bar -->
+
   
-  <%@collection.products.each do |product|%>
-    <div id="item">
+	  <%@collection.products.each do |product|%>
+	
+	      <%@product_presenter = presenter_for(product)%>
+	      <div id="left" class="photo">
+	        <%=@product_presenter.large_image%>
+	      </div>
+	
+	      <%=blocker%>
 
-      <%@product_presenter = presenter_for(product)%>
-      <div id="left" class="photo">
-        <%=@product_presenter.large_image%>
-      </div>
-
-      <%=blocker%>
-
-    </div> <!-- product_section -->
-  <%end%>
+	  <%end%>
+  
+  </div> <!-- item -->
   
   <div id="extras">
   

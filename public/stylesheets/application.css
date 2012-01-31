@@ -445,7 +445,7 @@ div.welcome_text {
   
 #stores .picker_choice .left img{
   width: 60px;
-  height: 60px; pull}
+  height: 60px; }
 
 #users .picker_choice .left {
   width: 100px;
@@ -626,11 +626,11 @@ div.welcome_text {
   /* 	border-top: 1px solid #A8A8A8; */ }
   
 .add_more_items_arrow {
-	width: 582px;
+	width: 580px;
 	height: 334px;
 	position: absolute;
 	left: 0px;
-	top: 12px;
+	top: 10px;
 	background: url('/images/onboarding_add_more_3.png') no-repeat;
 	z-index: -10;
 }
@@ -1522,7 +1522,6 @@ a.product_endorsement_submit_button:active {
 .user_byline_inline_edit{
 	color: #cc3333;
 	margin-left: 4px;
->>>>>>> e8281e261be221c525af5d9898bfff7b06260e44
 }
 
 .sidebar .tile_row {
@@ -1744,9 +1743,9 @@ a.product_endorsement_submit_button:active {
   background-position: 0 -154px; }
 
 #main {
-  width: 582px;
+  width: 580px;
   float: left;
-  margin: 0 19px;
+  margin: 0 20px;
   position: relative; }
   
 #main .placeholder.heading {
@@ -1761,7 +1760,7 @@ a.product_endorsement_submit_button:active {
   
 
 #main .placeholder.box {
-	width: 582;
+	width: 580px;
 	height: 270px;
 	background-repeat: no-repeat;
 	position: relative;
@@ -1776,7 +1775,7 @@ a.product_endorsement_submit_button:active {
 
 #main .placeholder.box.like .overlay,
 #main .placeholder.box.want .overlay {
-	width: 582px;
+	width: 580px;
 	height: 260px;
 	position: absolute;
 	top: 0px;
@@ -1849,20 +1848,38 @@ a.product_endorsement_submit_button:active {
 
 /* ------------------------------ Products */
 .products {
-  width: 588px; }
+  width: 585px;
+	/* background: url('/images/stamps_bg.png') repeat-y; */ }
+
+.products:after {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  content: ".";
+  font-size: 0; }
 
 .products .product {
   float: left;
   width: 170px;
   height: 250px;
   padding: 10px;
-  margin: 0 6px 5px 0;
+  margin: 0 5px 5px 0;
   position: relative;
   font-size: 12px;
   line-height: 18px;
   background: white;
   z-index: 1;
   color: #999999; }
+  
+.products .product.stamp {
+	background: url('/images/stamp_bg_balanced.png') no-repeat;
+	top: -3px;
+	left: -3px;
+	padding: 13px 12px 12px 13px;
+	margin: 0px;
+}
 
 .products .product a.top {
   display: block;
