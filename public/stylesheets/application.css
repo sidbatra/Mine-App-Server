@@ -445,7 +445,7 @@ div.welcome_text {
   
 #stores .picker_choice .left img{
   width: 60px;
-  height: 60px; }
+  height: 60px; pull}
 
 #users .picker_choice .left {
   width: 100px;
