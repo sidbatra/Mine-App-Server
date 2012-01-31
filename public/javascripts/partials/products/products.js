@@ -32,11 +32,6 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
       this.categories.sort();
     }
     
-    var temp = new Denwen.Collections.Products(this.products.last());
-    this.products.reset();
-    this.products = temp;
-    
-
     this.el.html('');
     this.el.prepend(
       Denwen.JST['products/products']({
