@@ -78,12 +78,13 @@ class ProductObserver < ActiveRecord::Observer
                         product.user_id)
     action.destroy if action
 
-    shopping = Shopping.add(
-                          product.user_id,
-                          product.store_id,
-                          ShoppingSource::Product)
-    shopping.decrement_products_count
-
+    if product.store_id
+      shopping = Shopping.add(
+                            product.user_id,
+                            product.store_id,
+                            ShoppingSource::Product)
+      shopping.decrement_products_count
+    end
   end
 
 end
