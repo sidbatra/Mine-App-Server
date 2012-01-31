@@ -413,7 +413,7 @@ $.Autocompleter.defaults = {
 	delay: 400,
 	matchCase: false,
 	matchSubset: true,
-	matchContains: false,
+	matchContains: "word",
 	cacheLength: 10,
 	max: 100,
 	mustMatch: false,

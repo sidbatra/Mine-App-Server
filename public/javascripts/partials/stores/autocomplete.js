@@ -20,7 +20,7 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
     this.el.autocomplete(
               this.stores.pluck('name'),{
                formatMatch: function(item){
-                return item[0].replace(/[^\w]/gi, '');},
+                return item[0].replace(/[^(\w|\s)]/gi, '');},
                formatResult: function(item){
                 return item[0];} });
   }
