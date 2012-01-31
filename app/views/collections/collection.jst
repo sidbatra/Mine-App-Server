@@ -1,6 +1,10 @@
 <div class='titlebar border'>
 
-	<%=jQuery.timeago(collection.get('created_at'))%>
+  <%if(index){%>
+    <%=jQuery.timeago(collection.get('created_at'))%>
+  <%}else{%>
+    Latest
+  <%}%>
 	
 	<a class='action' id='like_collection_<%=collection.get('id')%>' href='javascript:void(0)'>
 		Like <span class='count'>6</span>

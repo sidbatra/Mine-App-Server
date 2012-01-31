@@ -1,4 +1,5 @@
+<%var index=0;%>
 <%collections.each(function(collection){%>
-  <%=Denwen.JST['collections/collection']({collection:collection})%>
+  <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
 <%});%>
 
