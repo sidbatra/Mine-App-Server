@@ -10,7 +10,8 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   belongs_to  :user
   has_many    :products
-  has_many    :shoppings, :dependent => :destroy
+  has_many    :specialties, :dependent => :destroy
+  has_many    :shoppings,   :dependent => :destroy
 
   #----------------------------------------------------------------------
   # Validations

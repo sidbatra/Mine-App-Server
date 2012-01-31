@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130182648) do
+ActiveRecord::Schema.define(:version => 20120131230538) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -211,6 +211,20 @@ ActiveRecord::Schema.define(:version => 20120130182648) do
   add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
   add_index "shoppings", ["store_id"], :name => "index_shoppings_on_store_id"
   add_index "shoppings", ["user_id", "store_id"], :name => "index_shoppings_on_user_id_and_store_id", :unique => true
+
+  create_table "specialties", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "category_id"
+    t.integer  "weight",      :default => 0
+    t.boolean  "is_top",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "specialties", ["category_id"], :name => "index_specialties_on_category_id"
+  add_index "specialties", ["store_id", "category_id"], :name => "index_specialties_on_store_id_and_category_id"
+  add_index "specialties", ["store_id", "is_top"], :name => "index_specialties_on_store_id_and_is_top"
+  add_index "specialties", ["weight"], :name => "index_specialties_on_weight"
 
   create_table "stores", :force => true do |t|
     t.string   "name"
