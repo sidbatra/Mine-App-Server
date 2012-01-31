@@ -53,6 +53,24 @@ class Collection < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
+  # Fetch the next collection made by the owner 
+  #
+  def next
+    self.class.first(
+                :conditions => {
+                    :user_id  => self.user_id,
+                    :id_gt    => self.id})
+  end
+
+  # Fetch the previous collection made by the owner 
+  #
+  def previous
+    self.class.last(
+                :conditions => {
+                    :user_id  => self.user_id,
+                    :id_lt    => self.id})
+  end
+
   # Override to customize accessible attributes
   #
   def to_json(options = {})

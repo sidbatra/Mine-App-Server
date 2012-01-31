@@ -73,6 +73,12 @@ class CollectionsController < ApplicationController
     @collection = Collection.with_products.find_by_id_and_user_id(
                                               params[:id],
                                               user.id)
+    
+    @next_collection  = @collection.next
+    @next_collection  ||= @collection.user.collections.first
+
+    @prev_collection  = @collection.previous
+    @prev_collection  ||= @collection.user.collections.last
 
   rescue => ex
     handle_exception(ex)
