@@ -442,6 +442,10 @@ div.welcome_text {
   height: 60px;
   float: left;
   background-position: center center; }
+  
+#stores .picker_choice .left img{
+  width: 60px;
+  height: 60px; }
 
 #users .picker_choice .left {
   width: 100px;
