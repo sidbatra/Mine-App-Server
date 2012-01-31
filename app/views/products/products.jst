@@ -10,7 +10,8 @@
         </a>  
       <%});%>
     </div>
-
+		
+		
     <%products.each(function(product){%>
       <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
     <%});%>
@@ -21,20 +22,24 @@
 	
     <!-- no likes, current user -->
     <div class='placeholder heading'>
-      Everything you <span class='em'>Like</span> shows up here.
+      Everything you <span class='em'>like</span> shows up here.
     </div>
     <div class='placeholder box like'>
       <div class='overlay'>
       </div>
+    </div>
+    <div class='placeholder box like_2'>
     </div>
     
   <%}else{%>
 
     <!-- no likes, other user -->
     <div class='placeholder heading'>
-      <%=ownerName%> hasn't <span class='em'>Liked</span> anything yet.
+      <%=ownerName%> hasn't <span class='em'>liked</span> anything yet.
     </div>
     <div class='placeholder box like'>
+    </div>
+    <div class='placeholder box like_2'>
     </div>
 
 	<%}%>
@@ -45,25 +50,43 @@
  	
     <!-- no wants, current user -->
     <div class='placeholder heading'>
-      Everything you <span class='em'>Want</span> shows up here.
+      Everything you <span class='em'>want</span> shows up here.
     </div>
     <div class='placeholder box want'>
       <div class='overlay'>
       </div>
+    </div>
+    <div class='placeholder box want_2'>
     </div>
 		
   <%}else{%>
 
     <!-- no wants, other user -->
     <div class='placeholder heading'>
-      <%=ownerName%> hasn't <span class='em'>Wanted</span> anything yet.
+      <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
     </div>
     <div class='placeholder box want'>
+    </div>
+    <div class='placeholder box want_2'>
     </div>
 
 	<%}%>
 	
 <%} else if(src == 'user'){%>
 
-  Empty closet
+		<!-- Nothing in closet -->
+    <div class='placeholder heading'>
+      Nothing in this closet yet.
+    </div>
+    <div class='placeholder box like'>
+    </div>
+    <div class='placeholder box want'>
+    </div>
+
 <%}%>
+
+
+<%if(src == 'user' && helpers.isCurrentUser(ownerID) && products.size() == 1){%>
+	<div class='add_more_items_arrow'></div>
+<%}%>
+

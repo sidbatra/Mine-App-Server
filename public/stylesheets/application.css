@@ -617,6 +617,16 @@ div.welcome_text {
   z-index: 10000;
   /* 	background: #e9e4e1; */
   /* 	border-top: 1px solid #A8A8A8; */ }
+  
+.add_more_items_arrow {
+	width: 582px;
+	height: 334px;
+	position: absolute;
+	left: 0px;
+	top: 12px;
+	background: url('/images/onboarding_add_more_3.png') no-repeat;
+	z-index: -10;
+}
 
 /* ------------------------------ Creation */
 .new_product {
@@ -1723,7 +1733,8 @@ a.product_endorsement_submit_button:active {
 #main {
   width: 582px;
   float: left;
-  margin: 0 19px; }
+  margin: 0 19px;
+  position: relative; }
   
 #main .placeholder.heading {
 	font-size: 26px;
@@ -1746,6 +1757,9 @@ a.product_endorsement_submit_button:active {
 
 #main .placeholder.box.like { background-image: url('/images/place_like_image.jpg'); }
 #main .placeholder.box.want { background-image: url('/images/place_want_image.jpg'); }
+
+#main .placeholder.box.like_2 { background-image: url('/images/place_like_image_2.jpg'); }
+#main .placeholder.box.want_2 { background-image: url('/images/place_want_image_2.jpg'); }
 
 #main .placeholder.box.like .overlay,
 #main .placeholder.box.want .overlay {
@@ -1834,6 +1848,7 @@ a.product_endorsement_submit_button:active {
   font-size: 12px;
   line-height: 18px;
   background: white;
+  z-index: 1;
   color: #999999; }
 
 .products .product a.top {
