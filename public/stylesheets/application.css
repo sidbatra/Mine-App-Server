@@ -1364,6 +1364,12 @@ a.product_endorsement_submit_button:active {
   background: white url("/images/triangles.png") right -108px no-repeat;
   cursor: pointer;
   padding-left: 12px; }
+  
+.tab.triangle.load {
+  background: white url("/images/tab_load_999999.gif") 154px center no-repeat; }
+  
+.tab.triangle.on.now.load {
+  background: #cc3333 url("/images/tab_load_cc3333.gif") 154px center no-repeat; }
 
 .tab.triangle:hover {
   background: white url("/images/triangles.png") right 0 no-repeat; }
