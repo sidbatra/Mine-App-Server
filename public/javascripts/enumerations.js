@@ -10,3 +10,11 @@ Denwen.UserShowHash = {
   FollowedBy  : 'followed_by',
   Collections : 'looks'
 }
+
+// Callbacks used across the application
+//
+Denwen.Callback = {
+  ProductsLoaded        : 'productsLoaded',
+  UsersListLoaded       : 'usersListLoaded',
+  CollectionsListLoaded : 'collectionsListLoaded'
+}

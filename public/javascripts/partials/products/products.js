@@ -66,7 +66,7 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
     this.products.fetch({
       data    : data,
       success : function() { 
-                  self.trigger('productsLoaded'); 
+                  self.trigger(Denwen.Callback.ProductsLoaded); 
                   self.render();},
       error   : function() {}
     });

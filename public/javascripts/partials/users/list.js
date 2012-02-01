@@ -26,7 +26,7 @@ Denwen.Partials.Users.List = Backbone.View.extend({
     this.users.fetch({
             data:     {id: this.userID, filter: this.filter},
             success:  function(collection){
-                        self.trigger('usersListLoaded');
+                        self.trigger(Denwen.Callback.UsersListLoaded);
                         self.render();},
             error:    function(collection,errors){}
             });

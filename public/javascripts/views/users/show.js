@@ -32,8 +32,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           type        : 'user',
                           fragment    : 'owns'});
 
-    this.ownedProducts.bind('productsLoaded',this.productsLoaded,this);
-
+    this.ownedProducts.bind(
+      Denwen.Callback.ProductsLoaded,
+      this.productsLoaded,
+      this);
 
     // -----
     this.likedProducts = new Denwen.Partials.Products.Products({
@@ -44,7 +46,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                             type      : 'user',
                             fragment  : 'likes'});
 
-    this.likedProducts.bind('productsLoaded',this.productsLoaded,this);
+    this.likedProducts.bind(
+      Denwen.Callback.ProductsLoaded,
+      this.productsLoaded,
+      this);
 
     // -----
     this.wantedProducts = new Denwen.Partials.Products.Products({
@@ -55,7 +60,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                             type      : 'user',
                             fragment  : 'wants'});
 
-    this.wantedProducts.bind('productsLoaded',this.productsLoaded,this);
+    this.wantedProducts.bind(
+      Denwen.Callback.ProductsLoaded,
+      this.productsLoaded,
+      this);
 
     // -----
     this.followingUsers  = new Denwen.Partials.Users.List({
@@ -65,7 +73,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                 header  : 'Following',
                                 src     : 'following_list'});
 
-    this.followingUsers.bind('usersListLoaded',this.usersLoaded,this);
+    this.followingUsers.bind(
+      Denwen.Callback.UsersListLoaded,
+      this.usersLoaded,
+      this);
 
     // -----
     this.followedByUsers  = new Denwen.Partials.Users.List({
@@ -75,7 +86,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   header  : 'Followed By',
                                   src     : 'followed_by_list'});
 
-    this.followedByUsers.bind('usersListLoaded',this.usersLoaded,this);
+    this.followedByUsers.bind(
+      Denwen.Callback.UsersListLoaded,
+      this.usersLoaded,
+      this);
 
     // -----
     this.collections      = new Denwen.Partials.Collections.List({
@@ -84,7 +98,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   filter  : 'user',
                                   source  : 'user_collections'});
 
-    this.collections.bind('collectionsListLoaded',this.collectionsLoaded,this);
+    this.collections.bind(
+      Denwen.Callback.CollectionsListLoaded,
+      this.collectionsLoaded,
+      this);
 
     // -----
     //this.onCollection     = new Denwen.Partials.Collections.OnToday({
