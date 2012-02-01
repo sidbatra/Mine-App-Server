@@ -23,6 +23,7 @@ class Store < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :unfiltered,  ''
+  named_scope :with_products, :include => :products
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
