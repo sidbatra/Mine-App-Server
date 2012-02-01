@@ -1,3 +1,7 @@
+<!-- Generate presenters for the view -->
+<%@user_presenter       = presenter_for(@collection.user)%>
+<%@collection_presenter = presenter_for(@collection)%>
+
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => 'misc/welcome', 
       :locals => {
@@ -13,23 +17,16 @@
 	
 		<div class="top_bar">
 
-      <%if (@source == 'store' || @source == 'top_product') && @product.store%>
-        <%@store_presenter = presenter_for(@product.store)%>
-        <%=@product_presenter.breadcrumb(
-              @store_presenter.name,
-              @store_presenter.closet_path('product'))%>
-      <%else%>
-        <%=@product_presenter.breadcrumb(
-              @user_presenter.closet_title(true),
-              @user_presenter.closet_path('product'))%>
-      <%end%>
+      <%=@collection_presenter.breadcrumb(
+            @user_presenter.closet_title(true),
+            @user_presenter.closet_path('collection'))%>
       
       <div class='social_buttons'>
 
 	    <%=render :partial => 'facebook/like', 
 	              :locals => {
 	              	:style				=> '',
-	                :url          => @product_presenter.url('fb'),
+	                :url          => @collection_presenter.url('fb'),
 	                :send_button  => false,
 	                :width        => 70,
 	                :faces        => false}%>
@@ -54,6 +51,15 @@
 	  <%end%>
   
   </div> <!-- item -->
+
+  <!-- navigation to other products -->
+  <%unless @next_collection.id == @prev_collection.id && 
+            @next_collection.id == @collection.id%>
+
+    <%=@collection_presenter.next(@prev_collection,@collection.user)%>
+    <%=@collection_presenter.prev(@next_collection,@collection.user)%>
+  
+  <%end%>
   
   <div id="extras">
   
