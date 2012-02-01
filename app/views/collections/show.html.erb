@@ -21,7 +21,7 @@
             @user_presenter.closet_title(true),
             @user_presenter.closet_path('collection'))%>
       
-      <div class='social_buttons'>
+      <div class="social_buttons">
 
 	    <%=render :partial => 'facebook/like', 
 	              :locals => {
@@ -38,19 +38,33 @@
 	     
 		</div> <!-- top_bar -->
 		
+		<table class="collection details">
+			<tr>
+				<td>
+<!-- 					<img src="http://graph.facebook.com/517379696/picture?type=square" /> -->
+					<div class="textbox">
+						On Pierre Legrain 3 days ago
+						<br/>
+						Internship day two
+					</div>
+				</td>
+			</tr>
+		</table>
+		
 		<div class="products collection">
   
 		  <%@collection.products.each do |product|%>
 		  	<%@product_presenter = presenter_for(product)%>
 		  
-		  	<div class='product stamp'> 
+		  	<div class="product stamp"> 
 
           <%=link_to  '',
               @product_presenter.path('collection'),
               :class  => 'top',
               :style  => "background-image: url('" + product.giant_url + "')"%>
 
-          <div class='bottom'>
+          <div class="bottom">
+          	<div class="fade"></div>
             <%=@product_presenter.shorter_byline%>
           </div> <!-- bottom-->
 				
@@ -73,18 +87,18 @@
   
   <div id="extras">
   
-  	 <div id='feedback' class='feedback'>
+  	 <div id="feedback" class="feedback">
       <%if logged_in?%>
-      	<div class='buttons'>
-          <a id='like_actionable' 
-              href='javascript:void(0)' 
-              class='button like'>
-              <span class='in'>♥</span><span class='out'>Like</span>
+      	<div class="buttons">
+          <a id="like_actionable" 
+              href="javascript:void(0)" 
+              class="button like">
+              <span class="in">♥</span><span class="out">Like</span>
           </a>
         </div>
       <%end%>
 
-      <div id='feed_items'>
+      <div id="feed_items">
       </div>
      </div> <!-- feedback -->
   

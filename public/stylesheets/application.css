@@ -16,8 +16,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   border-collapse: collapse;
   list-style: none; }
 
-/* colors */
-/* margins */
 a {
   text-decoration: none;
   color: inherit; }
@@ -31,14 +29,6 @@ body {
   text-rendering: optimizeLegibility;
   -moz-font-feature-settings: "kern=1";
   -ms-font-feature-settings: "kern" 1;
-  /*
-  	background: #f8f8f8 url('/images/home_pink.jpg') no-repeat fixed; 
-  	background: url('/images/home_gold.jpg') no-repeat top center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  */
   overflow-y: scroll;
   overflow-x: hidden; }
 
@@ -1846,13 +1836,6 @@ a.product_endorsement_submit_button:active {
 /* ------------------------------ Products */
 .products {
   width: 585px; }
-  
-.products.collection {
-	width: 835px;
-	background: white;
-	margin: 0 auto;
-	position: relative;
-}
 
 .products:after {
   clear: both;
@@ -1883,6 +1866,41 @@ a.product_endorsement_submit_button:active {
 	padding: 13px 12px 12px 13px;
 	margin: 0px;
 }
+
+/* ----- Product collection-specific ----- */
+.products.collection {
+	width: 785px;
+	padding: 21px 17px 21px 33px;
+	background: white;
+	margin: 0 auto;
+	position: relative; }
+
+.products.collection .product.stamp {
+	background: url('/images/stamp_bg_full.png') no-repeat;
+	top: -3px;
+	left: -3px;
+	padding: 15px;
+	margin: 0 0 -5px -5px; }
+
+table.collection.details td {
+	height: 50px;
+	padding: 16px 28px 0px;
+	width: 835px;
+	background: white;
+	vertical-align: middle;
+}
+
+table.collection.details td img {
+	height: 50px;
+	width: 50px;
+	vertical-align: middle;
+}
+
+table.collection.details td .textbox {
+	width: 400px;
+}
+
+/* ----- End of collection-specific ----- */
 
 .products .product a.top {
   display: block;
