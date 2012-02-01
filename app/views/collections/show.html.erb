@@ -55,10 +55,9 @@
 					<span class='title'><%=@collection.name%></span>
 				</td>
 			</tr>
-		</table>
+		</table> <!-- collection details -->
 		
 		<div class="products collection">
-  
 		  <%@collection.products.each do |product|%>
 		  	<%@product_presenter = presenter_for(product)%>
 		  
@@ -78,15 +77,14 @@
 						  
 		  <%end%> 
 		  
-		<!-- navigation to other products -->
-	  <%unless @next_collection.id == @prev_collection.id && 
-	            @next_collection.id == @collection.id%>
-	
-	    <%=@collection_presenter.next(@prev_collection,@collection.user)%>
-	    <%=@collection_presenter.prev(@next_collection,@collection.user)%>
-	  
-	  <%end%>
-	  
+      <!-- navigation to other products -->
+      <%unless @next_collection.id == @prev_collection.id && 
+                @next_collection.id == @collection.id%>
+    
+        <%=@collection_presenter.next(@prev_collection,@collection.user)%>
+        <%=@collection_presenter.prev(@next_collection,@collection.user)%>
+      
+      <%end%>
 	  </div> <!-- products collection -->
   
   </div> <!-- item -->
@@ -136,10 +134,7 @@
       
       <%end%> <!-- comment entry box -->
 
-
-      
       <%=blocker%>
-      
     </div> <!-- comments_container -->
    
    </div> <!-- extras -->
