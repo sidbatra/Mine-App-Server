@@ -85,7 +85,10 @@
 <%}%>
 
 
-<%if(src == 'user' && helpers.isCurrentUser(ownerID) && products.size() == 1){%>
+<%if(src == 'user' && 
+      helpers.isCurrentUser(ownerID) && 
+      products.size() == 1 && 
+      (currentCategory == 'all' || currentCategory == undefined)){%>
 	<div class='add_more_items_arrow'></div>
 <%}%>
 
