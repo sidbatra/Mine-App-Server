@@ -951,7 +951,7 @@ div.welcome_text {
 .left_delete a:hover {
   color: #cc3333; }
 
-.photo {
+#left.photo {
   line-height: 390px; }
 
 #left_photo {
@@ -992,6 +992,9 @@ div.welcome_text {
 .right_title {
   font-size: 20px;
   color: #333333; }
+
+.right_user a { color: #555555; }
+.right_user a:hover { color: #cc3333; }
 
 .right_user a, .right_price a, .right_store a {
   color: #cc3333; }
@@ -1273,6 +1276,8 @@ a.product_endorsement_submit_button:active {
   z-index: 10000;
   display: none; }
 
+/* ----- previous, next -----*/
+
 .next, .previous {
   width: 36px;
   height: 36px;
@@ -1282,9 +1287,9 @@ a.product_endorsement_submit_button:active {
   background: white url("/images/triangles.png") center -288px; }
 
 .next:hover, .previous:hover {
-  box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
-  -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
+  box-shadow: 0px 0px 1px 4px rgba(102, 102, 102, 0.1);
+  -moz-box-shadow: 0px 0px 1px 4px rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0px 0px 1px 4px rgba(102, 102, 102, 0.1); }
 
 .next:active, .previous:active {
   box-shadow: none;
@@ -1293,36 +1298,34 @@ a.product_endorsement_submit_button:active {
 
 .next {
   right: -42px;
-  background-position: center -36px; }
-
-.next:hover {
   background-position: center 0px; }
 
-.next:active {
+.next:hover {
   background-position: center -72px; }
 
 .previous {
-  left: -42px; }
-
-.previous:hover {
+  left: -42px; 
   background-position: center -180px; }
 
-.previous:active {
+.previous:hover {
   background-position: center -252px; }
 
-/*
-.previous:hover {
-	background: white url('/images/prevnext_cccccc_cc3333.png') 0 -48px;
-}
-
-.next:hover {
-		background: white url('/images/prevnext_cccccc_cc3333.png') 36px -48px;
-}
-*/
 .strapline {
   font-family: 'FuturaStdBold', Arial, sans-serif;
   line-height: 50px;
   font-size: 24px; }
+  
+.products.collection .next {
+	top: -43px;
+	right: 28px;
+	background-color: #f8f8f8;
+}
+
+.products.collection .previous {
+	top: -43px;
+	left: 725px;
+	background-color: #f8f8f8;
+}
 
 /* ------------------------------ Tabs */
 .tab {
@@ -1870,7 +1873,7 @@ a.product_endorsement_submit_button:active {
 /* ----- Product collection-specific ----- */
 .products.collection {
 	width: 785px;
-	padding: 21px 17px 21px 33px;
+	padding: 21px 17px 25px 33px;
 	background: white;
 	margin: 0 auto;
 	position: relative; }
@@ -1881,23 +1884,42 @@ a.product_endorsement_submit_button:active {
 	left: -3px;
 	padding: 15px;
 	margin: 0 0 -5px -5px; }
+	
+table.collection.details {
+	width: 835px;
+	background: white;
+}
 
 table.collection.details td {
 	height: 50px;
-	padding: 16px 28px 0px;
-	width: 835px;
-	background: white;
 	vertical-align: middle;
 }
 
-table.collection.details td img {
-	height: 50px;
+table.collection.details .photo {
 	width: 50px;
+	padding: 24px 0 0 28px;
+}
+
+table.collection.details .photo img {
+	width: 50px;
+	height: 50px;
 	vertical-align: middle;
 }
 
-table.collection.details td .textbox {
-	width: 400px;
+table.collection.details .textbox {
+	padding: 24px 28px 0 14px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #999999;
+	white-space: nowrap;
+	overflow-y: hidden;
+}
+
+table.collection.details .textbox .name { color: #555555; }
+
+table.collection.details .textbox .title { 
+	font-size: 20px;
+	color: #333333;
 }
 
 /* ----- End of collection-specific ----- */

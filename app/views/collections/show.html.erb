@@ -40,13 +40,13 @@
 		
 		<table class="collection details">
 			<tr>
-				<td>
-<!-- 					<img src="http://graph.facebook.com/517379696/picture?type=square" /> -->
-					<div class="textbox">
-						On Pierre Legrain 3 days ago
-						<br/>
-						Internship day two
-					</div>
+				<td class="photo">
+					<img src="http://graph.facebook.com/100001310055990/picture?type=square" />
+				</td>
+				<td class="textbox">
+					On <span class='name'>Pierre Legrain</span> 3 days ago
+					<br/>
+					<span class='title'>Internship day two</span>
 				</td>
 			</tr>
 		</table>
@@ -71,19 +71,19 @@
 				</div> <!-- product -->
 						  
 		  <%end%> 
+		  
+		<!-- navigation to other products -->
+	  <%unless @next_collection.id == @prev_collection.id && 
+	            @next_collection.id == @collection.id%>
+	
+	    <%=@collection_presenter.next(@prev_collection,@collection.user)%>
+	    <%=@collection_presenter.prev(@next_collection,@collection.user)%>
+	  
+	  <%end%>
 	  
 	  </div> <!-- products collection -->
   
   </div> <!-- item -->
-
-  <!-- navigation to other products -->
-  <%unless @next_collection.id == @prev_collection.id && 
-            @next_collection.id == @collection.id%>
-
-    <%=@collection_presenter.next(@prev_collection,@collection.user)%>
-    <%=@collection_presenter.prev(@next_collection,@collection.user)%>
-  
-  <%end%>
   
   <div id="extras">
   
