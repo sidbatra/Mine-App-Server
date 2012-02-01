@@ -5,8 +5,11 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.store    = new Denwen.Models.Store(this.options.storeJSON);
-    this.source   = this.options.source;
+    this.store        = new Denwen.Models.Store(this.options.storeJSON);
+    this.source       = this.options.source;
+    this.productsTab  = '#products_tab';
+    this.currentTab   = undefined;
+    this.loadTabClass = 'load';
 
     // -----
     this.products = new Denwen.Partials.Products.Products({
@@ -16,6 +19,11 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
                           filter      : 'store',
                           type        : 'store',
                           fragment    : 'products'});
+
+    this.products.bind(
+      Denwen.Callback.ProductsLoaded,
+      this.productsLoaded,
+      this);
 
     // -----
     this.topProducts   = new Denwen.Partials.Products.TopProducts({
@@ -42,6 +50,19 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     this.setAnalytics();
   },
 
+  // Switch on the given tab element
+  //
+  switchTabOn: function(tab) {
+    this.currentTab = tab;
+    $(tab).addClass(this.loadTabClass);
+  },
+
+  // Remove loading state from the current tab
+  //
+  switchCurrentTabLoadOff: function() {
+    $(this.currentTab).removeClass(this.loadTabClass);
+  },
+
   // Use Backbone router for reacting to changes in URL
   // fragments
   //
@@ -61,6 +82,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       //
       doubleFilter: function(category) {
         self.products.fetch(category);
+        self.switchTabOn(self.productsTab);
         analytics.storeProductsView(category,self.store.get('id'));
       },
 
@@ -68,6 +90,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       //
       defaultFilter: function(misc) {
         self.products.fetch();
+        self.switchTabOn(self.productsTab);
       }
     });
 
@@ -87,6 +110,12 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
 
     if(this.source.slice(0,6) == 'email_')
       analytics.emailClicked(this.source.slice(6,this.source.length));
+  },
+
+  // Callback when store products are loaded
+  //
+  productsLoaded: function() {
+    this.switchCurrentTabLoadOff();
   }
 
 });
