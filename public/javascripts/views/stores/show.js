@@ -31,6 +31,11 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
                           store : this.store});
 
     // -----
+    new Denwen.Partials.Stores.Related({
+          el      : $('#related_stores_box'),
+          store   : this.store});
+
+    // -----
     this.routing();
 
     // -----
