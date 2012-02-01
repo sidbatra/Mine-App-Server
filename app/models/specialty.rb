@@ -22,7 +22,7 @@ class Specialty < ActiveRecord::Base
   #
   def self.add(store_id,category_id,weight,is_top)
 
-    specialty = Specialty.find_or_initialize_by_store_id_and_category_id(
+    specialty = find_or_initialize_by_store_id_and_category_id(
                   :store_id     => store_id,
                   :category_id  => category_id)
 
@@ -31,6 +31,13 @@ class Specialty < ActiveRecord::Base
 
     specialty.save!
     specialty
+  end
+
+  # Retrieve top category_id for given store
+  #
+  def self.top_category_id_for_store(store_id)
+    specialty   = find_by_store_id_and_is_top(store_id,true)
+    specialty ? specialty.category_id : 0
   end
 
 end

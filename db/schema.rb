@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131230538) do
+ActiveRecord::Schema.define(:version => 20120201003308) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20120131230538) do
   add_index "stores", ["is_approved"], :name => "index_stores_on_is_approved"
   add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
+  add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

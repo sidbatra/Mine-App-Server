@@ -35,6 +35,13 @@ class Store < ActiveRecord::Base
                                 :conditions => {:shoppings => {
                                                   :user_id => user_id}},
                                 :order      => 'shoppings.products_count DESC'}}
+  named_scope :for_specialty,  lambda {|category_id| {
+                                :joins      => :specialties,
+                                :conditions => {:specialties => {
+                                                  :category_id  => category_id,
+                                                  :is_top       => true},
+                                                :products_count_gt => 15},
+                                :order      => 'specialties.weight DESC'}}
 
   #----------------------------------------------------------------------
   # Class methods

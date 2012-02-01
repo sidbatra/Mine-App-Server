@@ -31,6 +31,11 @@ class StoresController < ApplicationController
       @stores   = Store.processed.for_user(params[:user_id]).limit(10)
       @options  = {:only => [:handle],:methods => [:thumbnail_url]}
       @key      = KEYS[:user_top_stores] % params[:user_id]
+    when :related
+      @category_id  = Specialty.top_category_id_for_store(params[:store_id])
+      @stores       = Store.processed.for_specialty(@category_id).limit(11)
+      @options      = {:only => [:handle],:methods => [:thumbnail_url]}
+      @key          = KEYS[:store_related_in_category] % @category_id
     end
 
   rescue => ex

@@ -1,4 +1,4 @@
-# Observer events on the Comment model to keep 
+# Observe events on the Comment model to keep 
 # comment related cache stores persistent
 #
 class CommentSweeper < ActionController::Caching::Sweeper
