@@ -84,6 +84,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   filter  : 'user',
                                   source  : 'user_collections'});
 
+    this.collections.bind('collectionsListLoaded',this.collectionsLoaded,this);
+
     // -----
     //this.onCollection     = new Denwen.Partials.Collections.OnToday({
     //                              el      : $('#topstage'),
@@ -318,9 +320,15 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.switchCurrentTabLoadOff();
   },
 
-  // Calback when followers or ifollowers are loaded
+  // Callback when followers or ifollowers are loaded
   //
   usersLoaded: function() {
+    this.switchCurrentTabLoadOff();
+  },
+
+  // Callback when collections are loaded
+  //
+  collectionsLoaded: function() {
     this.switchCurrentTabLoadOff();
   }
   

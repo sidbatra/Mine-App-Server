@@ -23,7 +23,9 @@ Denwen.Partials.Collections.List = Backbone.View.extend({
 
     this.collections.fetch({
           data      : {filter: self.filter,owner_id: self.ownerID},
-          success   : function(collection){self.render();},
+          success   : function(collection){
+                        self.trigger('collectionsListLoaded');
+                        self.render();},
           error     : function(collection,errors){}
     });
   },
