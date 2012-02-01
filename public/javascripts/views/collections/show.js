@@ -19,6 +19,8 @@ Denwen.Views.Collections.Show = Backbone.View.extend({
           actionable_user_id  : this.collection.get('user_id'),
           el                  : $('#feedback')});
 
+    new Denwen.Partials.Facebook.Base();
+
     this.setAnalytics();
   },
 
