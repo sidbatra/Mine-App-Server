@@ -170,9 +170,11 @@ div.welcome_text {
   cursor: pointer;
   display: block;
   padding: 0px;
+/*
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+*/ }
 
 .nav_add_item_button:hover,
 #header .navbar .nav li:hover .nav_add_item_button {
