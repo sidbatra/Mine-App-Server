@@ -10,6 +10,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.source         = this.options.source;
 
     this.onTabClass     = 'on';
+    this.loadTabClass   = 'load';
     this.topStageEl     = '#topstage';
     this.ownsTab        = '#owns_tab';
     this.likesTab       = '#likes_tab';
@@ -165,6 +166,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     $(this.collectionsTab).removeClass(this.onTabClass);
   },
 
+  // Switch on the given tab element
+  //
+  switchTabOn: function(tab) {
+    $(tab).addClass(this.loadTabClass);
+    $(tab).addClass(this.onTabClass);
+  },
+
   // Use Backbone router for reacting to changes in URL
   // fragments
   //
@@ -188,24 +196,24 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         switch(type) {
         case Denwen.UserShowHash.Owns:
           self.fetchOwnedProducts(category);
-          $(self.ownsTab).addClass(self.onTabClass);
+          self.switchTabOn(self.ownsTab);
           break;
 
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
-          $(self.likesTab).addClass(self.onTabClass);
+          self.switchTabOn(self.likesTab);
           self.clearTopStage();
           break;
 
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
-          $(self.wantsTab).addClass(self.onTabClass);
+          self.switchTabOn(self.wantsTab);
           self.clearTopStage();
           break;
 
         default:
           self.fetchOwnedProducts();
-          $(self.ownsTab).addClass(self.onTabClass);
+          self.switchTabOn(self.ownsTab);
         }
 
         analytics.userProductsView(type,category,self.user.get('id'));
@@ -219,28 +227,28 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         switch(type) {
         case Denwen.UserShowHash.Following:
           self.followingUsers.fetch();
-          $(self.followingTab).addClass(self.onTabClass);
+          self.switchTabOn(self.followingTab);
           self.clearTopStage();
           analytics.userIFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.FollowedBy:
           self.followedByUsers.fetch();
-          $(self.followedByTab).addClass(self.onTabClass);
+          self.switchTabOn(self.followedByTab);
           self.clearTopStage();
           analytics.userFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.Collections:
           self.collections.fetch();
-          $(self.collectionsTab).addClass(self.onTabClass);
+          self.switchTabOn(self.collectionsTab);
           self.clearTopStage();
           analytics.userCollectionsView(self.user.get('id'));
           break;
 
         default:
           self.fetchOwnedProducts();
-          $(self.ownsTab).addClass(self.onTabClass);
+          self.switchTabOn(self.ownsTab);
         }
       }
     });
