@@ -11,6 +11,7 @@
                     @collection.id,
                     :src => 'footer')} unless logged_in?%>
 
+
 <div id="container" class="wide">
 
 	<div id="item">
@@ -23,13 +24,13 @@
       
       <div class="social_buttons">
 
-	    <%=render :partial => 'facebook/like', 
-	              :locals => {
-	              	:style				=> '',
-	                :url          => @collection_presenter.url('fb'),
-	                :send_button  => false,
-	                :width        => 70,
-	                :faces        => false}%>
+        <%=render :partial => 'facebook/like', 
+                  :locals => {
+                    :style				=> '',
+                    :url          => @collection_presenter.url('fb'),
+                    :send_button  => false,
+                    :width        => 70,
+                    :faces        => false}%>
 	                
 	                
 	         twitter tumblr stumble google+
@@ -38,15 +39,20 @@
 	     
 		</div> <!-- top_bar -->
 		
+
 		<table class="collection details">
 			<tr>
 				<td class="photo">
-					<img src="http://graph.facebook.com/100001310055990/picture?type=square" />
+          <%=image_tag @collection.user.photo_url%>
 				</td>
 				<td class="textbox">
-					On <span class='name'>Pierre Legrain</span> 3 days ago
+					On <span class='name'>
+            <%=is_current_user(@collection.user) ? 
+                'You' :
+                @user_presenter.full_name%>
+          </span> <%=time_ago_in_words @collection.created_at%> ago
 					<br/>
-					<span class='title'>Internship day two</span>
+					<span class='title'><%=@collection.name%></span>
 				</td>
 			</tr>
 		</table>
