@@ -8,6 +8,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.user           = new Denwen.Models.User(this.options.userJSON);
     this.isCurrentUser  = helpers.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
+    this.currentTab     = undefined;
 
     this.onTabClass     = 'on';
     this.loadTabClass   = 'load';
@@ -31,6 +32,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           type        : 'user',
                           fragment    : 'owns'});
 
+    this.ownedProducts.bind('productsLoaded',this.productsLoaded,this);
+
+
     // -----
     this.likedProducts = new Denwen.Partials.Products.Products({
                             el        : $('#centerstage'),
@@ -40,6 +44,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                             type      : 'user',
                             fragment  : 'likes'});
 
+    this.likedProducts.bind('productsLoaded',this.productsLoaded,this);
+
     // -----
     this.wantedProducts = new Denwen.Partials.Products.Products({
                             el        : $('#centerstage'),
@@ -48,6 +54,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                             filter    : 'wanted',
                             type      : 'user',
                             fragment  : 'wants'});
+
+    this.wantedProducts.bind('productsLoaded',this.productsLoaded,this);
 
     // -----
     this.followingUsers  = new Denwen.Partials.Users.List({
@@ -169,8 +177,15 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   // Switch on the given tab element
   //
   switchTabOn: function(tab) {
+    this.currentTab = tab;
     $(tab).addClass(this.loadTabClass);
     $(tab).addClass(this.onTabClass);
+  },
+
+  // Remove loading state from the current tab
+  //
+  switchCurrentTabLoadOff: function() {
+    $(this.currentTab).removeClass(this.loadTabClass);
   },
 
   // Use Backbone router for reacting to changes in URL
@@ -291,6 +306,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
       analytics.trackVersion(helpers.version);
     }
+  },
+
+  // Callback when owns,likes or wants are loaded
+  //
+  productsLoaded: function() {
+    this.switchCurrentTabLoadOff();
   }
   
 });
