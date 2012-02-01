@@ -37,18 +37,40 @@
 	     </div> <!-- social buttons -->
 	     
 		</div> <!-- top_bar -->
-
+		
+		<div class="products collection">
   
-	  <%@collection.products.each do |product|%>
-	
-	      <%@product_presenter = presenter_for(product)%>
-	      <div id="left" class="photo">
-	        <%=@product_presenter.large_image%>
-	      </div>
-	
-	      <%=blocker%>
+		  <%@collection.products.each do |product|%>
+		  
+		  	<%@product_presenter = presenter_for(product)%>
+		    <%=@product_presenter.large_image%>
+		  
+		  	<div class='product stamp'> 
 
-	  <%end%>
+				  <a class='top' href="<%=product.path(src)%>" style="background-image: url('<%=product.get('giant_url')%>')">
+				  </a> <!-- top -->
+				
+				  <div class='bottom'>
+				  
+				  		<div class='fade'></div>
+				        	
+								<a href="<%=product.get('user').path('store')%>" class='user'>
+					    		<img src="<%=product.get('user').get('photo_url')%>"/>
+					    	</a>
+				
+					    	<a href="<%=product.get('user').path('store')%>" class='user'>
+					        <%=product.get('user').escape('first_name')%> 
+					        <%=product.get('user').escape('last_name')%>
+								</a>
+				        bought this
+				    
+				  </div> <!-- bottom -->
+
+				</div> <!-- product -->
+						  
+		  <%end%> 
+	  
+	  </div> <!-- products collection -->
   
   </div> <!-- item -->
 

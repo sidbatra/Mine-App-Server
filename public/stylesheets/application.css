@@ -1848,8 +1848,14 @@ a.product_endorsement_submit_button:active {
 
 /* ------------------------------ Products */
 .products {
-  width: 585px;
-	/* background: url('/images/stamps_bg.png') repeat-y; */ }
+  width: 585px; }
+  
+.products.collection {
+	width: 835px;
+	background: white;
+	margin: 0 auto;
+	position: relative;
+}
 
 .products:after {
   clear: both;
