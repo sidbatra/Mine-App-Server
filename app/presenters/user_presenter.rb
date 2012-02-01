@@ -22,6 +22,12 @@ class UserPresenter < BasePresenter
     user.is_male? ? 'his' : 'her'
   end
 
+  # Him / her
+  #
+  def personal_pronoun
+    user.is_male? ? 'him' : 'her'
+  end
+
   # Generic bought text with
   #
   def bought_text(is_gift,src='')

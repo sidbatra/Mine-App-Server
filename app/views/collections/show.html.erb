@@ -43,13 +43,13 @@
 		<table class="collection details">
 			<tr>
 				<td class="photo">
-          <%=image_tag @collection.user.photo_url%>
+          <%=link_to image_tag(@collection.user.photo_url),
+          					 @user_presenter.closet_path('collection_user_photo')%>
 				</td>
 				<td class="textbox">
 					On <span class='name'>
-            <%=is_current_user(@collection.user) ? 
-                'You' :
-                @user_presenter.full_name%>
+            <%=link_to @user_presenter.full_name,
+        				       @user_presenter.closet_path('collection_user_name')%>
           </span> <%=time_ago_in_words @collection.created_at%> ago
 					<br/>
 					<span class='title'><%=@collection.name%></span>

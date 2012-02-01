@@ -1915,7 +1915,8 @@ table.collection.details .textbox {
 	overflow-y: hidden;
 }
 
-table.collection.details .textbox .name { color: #555555; }
+table.collection.details .textbox a { color: #555555; }
+table.collection.details .textbox a:hover { color: #cc3333; }
 
 table.collection.details .textbox .title { 
 	font-size: 20px;
