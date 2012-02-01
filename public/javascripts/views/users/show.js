@@ -65,6 +65,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                 header  : 'Following',
                                 src     : 'following_list'});
 
+    this.followingUsers.bind('usersListLoaded',this.usersLoaded,this);
+
     // -----
     this.followedByUsers  = new Denwen.Partials.Users.List({
                                   el      : $('#centerstage'),
@@ -72,6 +74,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   filter  : 'followers',
                                   header  : 'Followed By',
                                   src     : 'followed_by_list'});
+
+    this.followedByUsers.bind('usersListLoaded',this.usersLoaded,this);
 
     // -----
     this.collections      = new Denwen.Partials.Collections.List({
@@ -311,6 +315,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   // Callback when owns,likes or wants are loaded
   //
   productsLoaded: function() {
+    this.switchCurrentTabLoadOff();
+  },
+
+  // Calback when followers or ifollowers are loaded
+  //
+  usersLoaded: function() {
     this.switchCurrentTabLoadOff();
   }
   
