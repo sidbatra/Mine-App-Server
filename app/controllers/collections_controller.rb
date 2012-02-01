@@ -70,9 +70,12 @@ class CollectionsController < ApplicationController
   #
   def show
     user        = User.find_by_handle(params[:user_handle])
-    @collection = Collection.with_products.find_by_id_and_user_id(
-                                              params[:id],
-                                              user.id)
+    @collection = Collection.
+                    with_user.
+                    with_products_and_associations.
+                    find_by_id_and_user_id(
+                                        params[:id],
+                                        user.id)
     
     @next_collection  = @collection.next
     @next_collection  ||= @collection.user.collections.first

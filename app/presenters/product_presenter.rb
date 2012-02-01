@@ -124,6 +124,22 @@ class ProductPresenter < BasePresenter
     html
   end
 
+  # Shorter product byline displayed on the user and collection show page
+  #
+  def shorter_byline
+    html = ""
+
+    if product.store
+      html = "Bought at <span class='right_store'>" +
+              store_link +
+              "</span>"
+    elsif product.is_gift
+      html = "gift "
+    end
+
+    html
+  end
+
   # Preview image for the product, along with conditional links in IE
   #
   def preview_image

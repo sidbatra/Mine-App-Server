@@ -20,6 +20,8 @@ class Collection < ActiveRecord::Base
   named_scope :limit, lambda {|limit| {:limit => limit}}
   named_scope :by_id, :order => 'id DESC'
   named_scope :with_products, :include => :products
+  named_scope :with_products_and_associations,
+              :include => {:products => [:store,:user]}
   named_scope :with_user, :include => :user
 
   #----------------------------------------------------------------------
