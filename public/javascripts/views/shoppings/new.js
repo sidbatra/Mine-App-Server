@@ -46,6 +46,9 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   fetched: function(){
     var self = this;
 
+    this.stores.comparator = function(store) { 
+                              return store.get('name').toLowerCase();};
+
     this.stores.sort().each(function(store){
 
       var storePicker = new Denwen.Partials.Stores.Picker({

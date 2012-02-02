@@ -24,12 +24,6 @@ Denwen.Collections.Stores = Backbone.Collection.extend({
       url = '/admin/stores';
 
     return url;
-  },
-
-  // Comparator function for sorting alphabetically
-  //
-  comparator: function(store) {
-    return store.get('name').toLowerCase();
   }
 
 });
