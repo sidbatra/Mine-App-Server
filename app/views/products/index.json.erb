@@ -1,7 +1,7 @@
 <%-cache @key do-%>
   <%-if @filter == :user || @filter == :liked || @filter == :wanted-%>
     <%=@products.to_json(
-        :only     => [:id,:is_gift,:handle,:comments_count,
+        :only     => [:id,:is_gift,:handle,
                         :user_id,:category_id],
         :methods  => [:giant_url],
         :include  => {
@@ -12,7 +12,7 @@
             :only => [:id,:handle]}})-%>
   <%-elsif @filter  == :store-%>
     <%=@products.to_json(
-        :only     => [:id,:is_gift,:handle,:comments_count,
+        :only     => [:id,:is_gift,:handle,
                         :user_id,:category_id],
         :methods  => [:giant_url],
         :include  => {
