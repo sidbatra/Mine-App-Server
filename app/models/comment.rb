@@ -51,21 +51,4 @@ class Comment < ActiveRecord::Base
     user_ids.uniq
   end
 
-
-  #----------------------------------------------------------------------
-  # Instance methods
-  #----------------------------------------------------------------------
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id,:data,:created_at]
-
-    options[:include] = {}
-    options[:include].store(*(User.json_options))
-
-    super(options)
-  end
-
 end
