@@ -15,6 +15,19 @@ class CollectionPresenter < BasePresenter
     h.collection_url collection.user.handle,collection.id,:src => source
   end
 
+  # Anchor tag for deleting the collection 
+  #
+  def destroy_link
+    if h.logged_in? && h.current_user.id == collection.user_id
+      h.link_to "Delete",
+                {:action => 'destroy',:id => collection.id},
+                :method => :delete,
+                :class => '',
+                :confirm  => "Are you sure you want to delete this set?"
+    end
+  end
+
+
   # Link to the next collection 
   #
   def next(next_collection,user)
