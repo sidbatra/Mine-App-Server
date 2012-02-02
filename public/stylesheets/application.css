@@ -930,10 +930,11 @@ div.welcome_text {
 #item .edit {
   position: absolute;
   text-align: right;
-  right: 20px;
-  bottom: 12px;
+  right: 28px;
+  bottom: 9px;
   color: #cccccc;
-  font-size: 14px; }
+  font-size: 14px;
+  z-index: 10000; }
 
 #item .edit a {
   margin-left: 5px; }
@@ -1324,7 +1325,7 @@ a.product_endorsement_submit_button:active {
 
 .products.collection .previous {
 	top: -43px;
-	left: 725px;
+	left: 732px;
 	background-color: #f8f8f8;
 }
 
@@ -1467,7 +1468,7 @@ a.product_endorsement_submit_button:active {
   color: #666666;
   width: 158px;
   padding: 10px 10px 10px 12px;
-  background: url("/images/white_30.png");
+  background: url("/images/white_40.png");
 }
 
 .sidebar .user_byline_input {
@@ -1484,7 +1485,7 @@ a.product_endorsement_submit_button:active {
   border: 2px solid #a8a8a8;
   padding: 8px 8px 8px 10px;
   background: white url("/images/black_7.png") repeat-x;
-/*   background: url("/images/textarea_white_30.png") top center repeat-x;  */
+/*   background: url("/images/textarea_white_40.png") top center repeat-x;  */
 }
   
 .sidebar .user_byline_save {
@@ -1516,7 +1517,7 @@ a.product_endorsement_submit_button:active {
 }
 
 .sidebar .tile_row {
-  background: url("/images/white_30.png"); }
+  background: url("/images/white_40.png"); }
 
 .sidebar .tile_frame {
   position: relative;
@@ -1911,7 +1912,7 @@ a.product_endorsement_submit_button:active {
 /* ----- Product collection-specific ----- */
 .products.collection {
 	width: 785px;
-	padding: 21px 17px 25px 33px;
+	padding: 21px 17px 37px 33px;
 	background: white;
 	margin: 0 auto;
 	position: relative; }
@@ -2425,7 +2426,7 @@ table.collection.details .textbox .title {
   width: 807px;
   margin: 2px auto 0;
   position: relative;
-  background: url("/images/white_30.png"); }
+  background: url("/images/white_40.png"); }
 
 #extras:after {
   clear: both;
