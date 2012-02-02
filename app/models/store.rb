@@ -259,18 +259,6 @@ class Store < ActiveRecord::Base
     end
   end
 
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-
-    options[:only]     = [] if options[:only].nil?
-    options[:only]    += [:id,:name]
-
-    options[:methods]  = [] if options[:methods].nil?
-
-    super(options)
-  end
-
 
   protected
 

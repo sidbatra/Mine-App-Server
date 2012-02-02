@@ -93,7 +93,7 @@
   <script type='text/javascript'>
 
     new Denwen.Views.Stores.Show({
-          storeJSON    : <%=@store.to_json()%>,
+          storeJSON    : <%=@store.to_json(:only => [:id,:name])%>,
           source       : "<%=@source%>"});
 
   </script>
