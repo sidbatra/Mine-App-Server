@@ -41,8 +41,9 @@
   <script type="text/javascript">
 
     new Denwen.Views.Products.New({
-                        el            : $('body'),
-                        categoryJSON  : <%=@category.to_json%>});
+          el            : $('body'),
+          categoryJSON  : <%=@category.to_json(
+                              :only => [:id,:name,:handle,:weight])%>});
   </script>
 <%end%>
 

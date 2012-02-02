@@ -42,7 +42,8 @@
 
       <%if @categories%>
         var Categories = new Denwen.Collections.Categories(
-                              <%=@categories.to_json%>);
+                              <%=@categories.to_json(
+                                  :only => [:id,:name,:handle,:weight])%>);
       <%end%>
     </script>
 

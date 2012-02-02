@@ -34,12 +34,13 @@
   <script type="text/javascript">
 
     new Denwen.Views.Products.Edit({
-                        el            : $('body'),
-                        productJSON   : <%=@product.to_json(
-                                              :only     => [:endorsement],
-                                              :methods  => [:photo_url])%>,
-                        categoryJSON  : <%=@category.to_json%>,
-                        source        : '<%=@source%>'});
+          el            : $('body'),
+          productJSON   : <%=@product.to_json(
+                              :only     => [:endorsement],
+                              :methods  => [:photo_url])%>,
+          categoryJSON  : <%=@category.to_json(
+                              :only => [:id,:name,:handle,:weight])%>,
+          source        : '<%=@source%>'});
   </script>
 
 <%end%>

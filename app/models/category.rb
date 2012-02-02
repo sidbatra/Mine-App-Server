@@ -43,15 +43,4 @@ class Category < ActiveRecord::Base
     Cache.fetch('category_all'){weighted}
   end
 
-
-  #----------------------------------------------------------------------
-  # Instance methods
-  #----------------------------------------------------------------------
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    super(options.merge(:only => [:id,:name,:handle,:weight]))
-  end
-
 end
