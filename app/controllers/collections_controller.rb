@@ -43,11 +43,6 @@ class CollectionsController < ApplicationController
     @filter   = params[:filter].to_sym
 
     case @filter
-    when :user_last
-      @collections  = Collection.for_user(params[:owner_id]).
-                        last
-      @key          = KEYS[:collection_products] % 
-                        (@collections ? @collections.id : 0)
     when :user
       @collections  = Collection.for_user(params[:owner_id]).
                         with_user.
