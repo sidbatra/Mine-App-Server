@@ -1,8 +1,0 @@
-<%-response = {}-%>
-<%-if success-%>
-  <%-response[:data] = body-%>
-<%-else-%>
-  <%-response[:error]           = {}-%>
-  <%-response[:error][:message] = message-%>
-<%-end-%>
-<%=response.to_json-%>
