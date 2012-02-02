@@ -1,19 +1,19 @@
 <%-cache @key do-%>
   <%-if @filter == :user || @filter == :liked || @filter == :wanted-%>
     <%=@products.to_json(
-        :only     => [:id,:title,:is_gift,:handle,:price,
-                      :comments_count,:user_id,:category_id],
+        :only     => [:id,:is_gift,:handle,:comments_count,
+                        :user_id,:category_id],
         :methods  => [:giant_url],
         :include  => {
           :store  => {
             :only     => [:id,:name,:handle],
             :methods  => [:is_top]},
           :user => {
-            :only => [:id,:first_name,:last_name,:handle]}})-%>
+            :only => [:id,:handle]}})-%>
   <%-elsif @filter  == :store-%>
     <%=@products.to_json(
-        :only     => [:id,:title,:is_gift,:handle,:price,
-                      :comments_count,:user_id,:category_id],
+        :only     => [:id,:is_gift,:handle,:comments_count,
+                        :user_id,:category_id],
         :methods  => [:giant_url],
         :include  => {
           :user => {
@@ -21,11 +21,9 @@
             :methods  => [:photo_url]}})-%>
   <%-elsif @filter == :top-%>
     <%=@products.to_json(
-        :only     => [:id,:title,:is_gift,:handle,:price,
-                      :comments_count,:user_id,:category_id],
-        :methods  => [:giant_url],
+        :only     => [:id,:title,:handle],
         :include  => {
           :user => {
-            :only => [:id,:first_name,:last_name,:handle]}})-%>
+            :only => [:id,:handle]}})-%>
   <%-end-%>
 <%-end-%>

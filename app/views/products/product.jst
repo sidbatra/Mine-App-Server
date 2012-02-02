@@ -6,17 +6,6 @@
   <div class='bottom'>
   
   		<div class='fade'></div>
-
-      <!-- product title
-      <a class="title" href="<#=product.path(src)%>">
-        <#=helpers.truncate(product.escape('title'),40,'...')%>
-      </a>-->
-      
-      <!-- product price  
-      <#} else if(product.has('price')) { %>
-        <#=helpers.displayCurrency(product.get('price'))%>
-      -->
-      
         	
       <%if(type == 'user' && product.has('store')) { %>
        	Bought at <%=product.get('store').conditionalLink('user_profile')%>
