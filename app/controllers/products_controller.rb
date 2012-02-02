@@ -61,7 +61,6 @@ class ProductsController < ApplicationController
   #
   def index
     @filter     = params[:filter].to_sym
-    @options    = {}
 
     category    = Category.fetch(params[:category]) if params[:category]
     category_id = category ? category.id : nil
@@ -73,8 +72,6 @@ class ProductsController < ApplicationController
                       in_category(category_id).
                       by_id
 
-      @options[:with_store] = true
-      @options[:with_user]  = true
       @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
 
     when :store
@@ -83,7 +80,6 @@ class ProductsController < ApplicationController
                       in_category(category_id).
                       by_id
 
-      @options[:with_user_full] = true
       @key = KEYS[:store_products_in_category] % [params[:owner_id],category_id]
 
     when :top
@@ -93,7 +89,6 @@ class ProductsController < ApplicationController
                     with_user.
                     limit(10)
 
-      @options[:with_user] = true
       @key = KEYS[:store_top_products] % params[:owner_id]
 
     when :liked
@@ -102,8 +97,6 @@ class ProductsController < ApplicationController
                     not_for_user(params[:owner_id]).
                     in_category(category_id)
       
-      @options[:with_store] = true
-      @options[:with_user]  = true
       @key = KEYS[:user_like_products_in_category] % 
               [params[:owner_id],category_id]
 
@@ -112,8 +105,6 @@ class ProductsController < ApplicationController
                     acted_on_by_for(params[:owner_id],ActionName::Want).
                     in_category(category_id)
       
-      @options[:with_store] = true
-      @options[:with_user]  = true
       @key = KEYS[:user_want_products_in_category] % 
               [params[:owner_id],category_id]
 
