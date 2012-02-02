@@ -195,6 +195,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     $(this.followingTab).removeClass(this.onTabClass);
     $(this.followedByTab).removeClass(this.onTabClass);
     $(this.collectionsTab).removeClass(this.onTabClass);
+    $(this.ownsTab).removeClass(this.loadTabClass);
+    $(this.likesTab).removeClass(this.loadTabClass);
+    $(this.wantsTab).removeClass(this.loadTabClass);
+    $(this.followingTab).removeClass(this.loadTabClass);
+    $(this.followedByTab).removeClass(this.loadTabClass);
+    $(this.collectionsTab).removeClass(this.loadTabClass);
   },
 
   // Switch on the given tab element
