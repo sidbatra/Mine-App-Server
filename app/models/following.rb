@@ -62,14 +62,4 @@ class Following < ActiveRecord::Base
     self.save!
   end
 
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:is_active]
-
-    super(options)
-  end
-
-
 end
