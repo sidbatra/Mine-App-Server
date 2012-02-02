@@ -71,48 +71,23 @@ class UsersController < ApplicationController
     case @filter
     when :followers
       @users      = User.find(params[:id]).followers.with_stores
-      @options    = {
-                      :only     => [:byline],
-                      :methods  => [:large_photo_url],
-                      :include  => {
-                        :shoppings => {
-                          :only     => [:id,:products_count],
-                          :include  => {
-                            :store => {
-                              :only     => [:id,:is_processed],
-                              :methods  => [:thumbnail_url]}}}}}
       @key        = KEYS[:user_followers] % params[:id]
     when :followers_preview
       @users      = User.find(params[:id]).followers.limit(5)
-      @options    = {:methods => [:photo_url]}
       @key        = KEYS[:user_followers_preview] % params[:id]
     when :ifollowers
       @users      = User.find(params[:id]).ifollowers.with_stores
-      @options    = {
-                      :only     => [:byline],
-                      :methods  => [:large_photo_url],
-                      :include  => {
-                        :shoppings => {
-                          :only     => [:id,:products_count],
-                          :include  => {
-                            :store => {
-                              :only     => [:id,:is_processed],
-                              :methods  => [:thumbnail_url]}}}}}
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :ifollowers_preview
       @users      = User.find(params[:id]).ifollowers.limit(5)
-      @options    = {:methods => [:photo_url]}
       @key        = KEYS[:user_ifollowers_preview] % params[:id]
     when :stars
       @achievers  = AchievementSet.current_star_users
-      @options    = {:methods => [:photo_url]}
       @key        = KEYS[:star_users]
     when :top_shoppers
       @achievers  = AchievementSet.current_top_shoppers(params[:store_id])
-      @options    = {:methods => [:photo_url]}
       @key        = KEYS[:store_top_shoppers] % params[:store_id]
     end
-
   rescue => ex
     handle_exception(ex)
   ensure

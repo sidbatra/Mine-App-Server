@@ -1,7 +1,21 @@
 <%-cache @key do-%>
   <%-if @filter == :stars || @filter == :top_shoppers-%>
-    <%=@achievers.map(&:achievable).to_json(@options)-%>
+    <%-@users=@achievers.map(&:achievable)-%>
+  <%-end-%>
+  <%-if @filter == :ifollowers || @filter == :followers-%>
+    <%=@users.to_json(
+        :only     => [:id,:first_name,:last_name,:handle,:byline],
+        :methods  => [:large_photo_url],
+        :include  => {
+          :shoppings => {
+            :only     => [:id,:products_count],
+            :include  => {
+              :store => {
+                :only     => [:id,:is_processed],
+                :methods  => [:thumbnail_url]}}}})-%>
   <%-else-%>
-    <%=@users.to_json(@options)-%>
+    <%=@users.to_json(
+        :only     => [:id,:first_name,:last_name,:handle],
+        :methods  => :photo_url)-%>
   <%-end-%>
 <%-end-%>

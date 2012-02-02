@@ -133,11 +133,13 @@
 
     new Denwen.Views.Users.Show({
           userJSON        : <%=@user.to_json(
-                                      :only => [:byline,:followings_count,
-                                                  :inverse_followings_count])%>,
+                                :only => [:id,:first_name,:last_name,
+                                          :handle,:byline,:followings_count,
+                                          :inverse_followings_count])%>,
           currentUserJSON : <%=self.current_user.to_json(
-                                      :only    => [:email],
-                                      :methods => [:age])%>,
+                                :only    => [:id,:first_name,:last_name,
+                                              :handle,:email],
+                                :methods => [:age])%>,
           source          : "<%=@source%>"});
 
   </script>

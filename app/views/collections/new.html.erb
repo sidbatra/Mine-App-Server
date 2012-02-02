@@ -43,7 +43,9 @@
   <script type="text/javascript">
 
     new Denwen.Views.Collections.New({
-            currentUserJSON : <%=self.current_user.to_json%>,
+            currentUserJSON : <%=self.current_user.to_json(
+                                  :only => [:id,:first_name,:last_name,
+                                              :handle])%>,
                      source : '<%=@source%>',
                          el : $('#container')});
 

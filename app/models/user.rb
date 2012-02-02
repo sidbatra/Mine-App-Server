@@ -221,18 +221,6 @@ class User < ActiveRecord::Base
     fb_user.friends
   end
 
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:first_name,:last_name,:handle]
-
-    options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += []
-
-    super(options)
-  end
-
   
   protected
 
