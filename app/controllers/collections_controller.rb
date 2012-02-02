@@ -34,7 +34,6 @@ class CollectionsController < ApplicationController
                         :src    => UserShowSource::CollectionCreate,
                         :anchor => UserShowHash::Collections)
       end
-      format.json 
     end
   end
 
@@ -42,7 +41,6 @@ class CollectionsController < ApplicationController
   #
   def index
     @filter   = params[:filter].to_sym
-    @options  = {}
 
     case @filter
     when :user_last

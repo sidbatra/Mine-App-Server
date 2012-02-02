@@ -1,3 +1,10 @@
 <%-cache @key do-%>
-  <%=@collections.to_json(@options)-%>
+  <%=@collections.to_json(
+      :only => [:id,:user_id,:name,:comments_count,:actions_count,:created_at],
+      :include => {
+        :products => {
+          :only     => [:id],
+          :methods  => [:thumbnail_url]},
+        :user => {
+          :only => [:id,:handle]}})-%>
 <%-end-%>

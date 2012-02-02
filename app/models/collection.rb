@@ -73,17 +73,4 @@ class Collection < ActiveRecord::Base
                     :id_lt    => self.id})
   end
 
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id,:user_id,:name,:comments_count,
-                        :actions_count,:created_at]
-
-    options[:include] = {}
-    options[:include].store(:products,{:only => [:id],:methods => [:thumbnail_url]})
-    options[:include].store(:user,{:only => [:id,:handle]})
-
-    super(options)
-  end
 end
