@@ -23,6 +23,7 @@ a {
 body {
   font-family: 'FuturaStdBook', Arial, sans-serif;
   font-size: 16px;
+  margin-bottom: 100px;
   background: #e9e4e1 url("/images/home_glow_lite_tiled.jpg") fixed;
   background-position: center 38px;
   -webkit-font-smoothing: antialiased;
@@ -89,7 +90,7 @@ div.welcome_text {
 /* ------------------------------ Header */
 #header {
   height: 68px;
-  background: url('/images/header_black_80.png') center bottom repeat-x; */
+  background: url('/images/header_black_convex.png') center bottom repeat-x;
   z-index: 10000;
   padding-bottom: 2px;
   margin-bottom: 18px;
@@ -115,7 +116,7 @@ div.welcome_text {
   position: relative; }
 
 #header .navbar .nav li:hover {
-  background: #3c3c3c; }
+  background: url('/images/black_30.png'); }
 
 #header .navbar .nav li ul {
   background: white;
@@ -226,7 +227,7 @@ div.welcome_text {
   background-position: 0 -120px; }
 
 #container {
-  margin: 0px auto 100px;
+  margin: 0px auto 0px;
   position: relative; }
 
 #container:after {
@@ -1779,8 +1780,13 @@ a.product_endorsement_submit_button:active {
 
 #main .titlebar {
   height: 36px;
+  font-size: 16px;
   line-height: 36px;
   color: #333333; }
+  
+#main .titlebar.med {
+	font-size: 14px;
+  color: #555555; }
   
 #main .titlebar.border {
 	border-bottom: 2px solid white;
@@ -1811,7 +1817,9 @@ a.product_endorsement_submit_button:active {
 }
 
 #main .sequence {
-	padding: 10px 0 14px;
+	width: 585px;
+/* 	padding: 10px 0 14px; */
+padding-bottom: 6px;
 }
 
 #main .sequence:after {
@@ -1825,14 +1833,28 @@ a.product_endorsement_submit_button:active {
 }
 
 #main .sequence .product {
-	height: 100px;
 	width: 100px;
-	border: 8px solid white;
+	height: 100px;
+	border: 6px solid white;
+	margin: 0 5px 5px 0;
 	float: left;
 	display: block;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 100px auto;
+	background-color: white;
+}
+
+#main .sequence .product.stamp {
+	width: 100px;
+	height: 100px;
+	border: 6px solid white;
+	margin: 0 5px 5px 0;
+	float: left;
+	display: block;
+	background-position: center center;
+	background-repeat: no-repeat;
+/* 	background-size: 100px auto; */
 	background-color: white;
 }
 
