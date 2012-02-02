@@ -1,1 +1,1 @@
-<%=@contacts.to_json-%>
+<%=@contacts.to_json(:only => [:id,:third_party_id,:name])-%>

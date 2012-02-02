@@ -29,19 +29,4 @@ class Contact < ActiveRecord::Base
         :name           => fb_friend.name})
   end
 
-  #----------------------------------------------------------------------
-  # Instance methods
-  #----------------------------------------------------------------------
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:third_party_id,:name]
-
-    options[:methods]   = [] if options[:methods].nil?
-
-    super(options)
-  end
-
 end
