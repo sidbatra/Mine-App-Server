@@ -102,17 +102,6 @@ class User < ActiveRecord::Base
     find_by_remember_token(token)
   end
 
-  # Return json options specifiying which attributes and methods
-  # to pass in the json when the model is used within an include
-  # of another model's json
-  #
-  def self.json_options(options={})
-    options[:only]      = [:id,:first_name,:last_name,:handle]
-    options[:methods]   = [:photo_url] if options[:methods].nil?
-
-    [self.name.downcase.to_sym,options]
-  end
-
 
   #----------------------------------------------------------------------
   # Instance methods
