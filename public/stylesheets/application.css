@@ -1784,9 +1784,18 @@ a.product_endorsement_submit_button:active {
   line-height: 36px;
   color: #333333; }
   
-#main .titlebar.med {
+#main .titlebar.timeline {
 	font-size: 14px;
+	padding-left: 20px;
+	background: url('/images/timeline_stop.gif') center left no-repeat;
+	border-left: 4px solid white;
   color: #555555; }
+  
+#main .titlebar.timeline.latest {
+	background: url('/images/timeline_stop_latest.png') bottom left no-repeat;
+	border-left: none;
+	padding-left: 30px;
+	margin-left: -6px; }
   
 #main .titlebar.border {
 	border-bottom: 2px solid white;
@@ -1817,9 +1826,16 @@ a.product_endorsement_submit_button:active {
 }
 
 #main .sequence {
-	width: 585px;
-/* 	padding: 10px 0 14px; */
-padding-bottom: 6px;
+	width: 564px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	border-left: 4px solid white; 
+}
+
+#main .sequence:hover {
+	-moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80);
 }
 
 #main .sequence:after {
@@ -1833,10 +1849,10 @@ padding-bottom: 6px;
 }
 
 #main .sequence .product {
-	width: 100px;
-	height: 100px;
-	border: 6px solid white;
-	margin: 0 5px 5px 0;
+	width: 98px;
+	height: 98px;
+	border: 5px solid white;
+	margin: 0 4px 4px 0;
 	float: left;
 	display: block;
 	background-position: center center;
