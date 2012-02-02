@@ -11,7 +11,6 @@ class InvitesController < ApplicationController
   # Create one or more invites 
   #
   def create
-    @invite = nil
 
     params[:fb_user_ids].each do |fb_user_id|
       Invite.add(self.current_user.id,fb_user_id)
