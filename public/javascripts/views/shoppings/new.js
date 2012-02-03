@@ -46,6 +46,8 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   fetched: function(){
     var self = this;
 
+    $(this.storesEl).html('');
+
     this.stores.comparator = function(store) { 
                               return store.get('name').toLowerCase();};
 
