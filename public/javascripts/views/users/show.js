@@ -12,7 +12,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     this.onTabClass     = 'on';
     this.loadTabClass   = 'load';
-    this.topStageEl     = '#topstage';
     this.ownsTab        = '#owns_tab';
     this.likesTab       = '#likes_tab';
     this.wantsTab       = '#wants_tab';
@@ -104,11 +103,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this);
 
     // -----
-    //this.onCollection     = new Denwen.Partials.Collections.OnToday({
-    //                              el      : $('#topstage'),
-    //                              userID  : this.user.get('id')});
-
-    // -----
     new Denwen.Partials.Users.PreviewBox({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
@@ -132,18 +126,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           user  : this.user});
 
     // -----
-    //window.setTimeout(function() {
-    //          new Denwen.Partials.Users.Stars({
-    //                      el  : '#star_users_box'});
-    //                      },500);
-
-    //// -----
-    //window.setTimeout(function() {
-    //          new Denwen.Partials.Stores.Top({
-    //                      el  : '#top_stores_box'});
-    //                      },500);
-
-    // -----
     if(!this.isCurrentUser && helpers.isLoggedIn())
       new Denwen.Partials.Users.Following({
                             el  : $('#following_box_' + this.user.get('id')),
@@ -165,25 +147,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.setAnalytics();
   },
 
-  // Fetch owned products and update the topstage
-  // 
-  fetchOwnedProducts: function(category) {
-    this.ownedProducts.fetch(category);
-
-    //if(category == 'all' || category == undefined)
-    //  this.onCollection.fetch();
-  },
-
   // Load facebook code via partials
   //
   loadFacebookPlugs: function() {
     new Denwen.Partials.Facebook.Base();
-  },
-
-  // Clear the top stage area
-  //
-  clearTopStage: function() {
-    $(this.topStageEl).html('');
   },
 
   // Reset all tabs to off state
@@ -239,24 +206,22 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         switch(type) {
         case Denwen.UserShowHash.Owns:
-          self.fetchOwnedProducts(category);
+          self.ownedProducts.fetch(category);
           self.switchTabOn(self.ownsTab);
           break;
 
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
           self.switchTabOn(self.likesTab);
-          self.clearTopStage();
           break;
 
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
           self.switchTabOn(self.wantsTab);
-          self.clearTopStage();
           break;
 
         default:
-          self.fetchOwnedProducts();
+          self.ownedProducts.fetch();
           self.switchTabOn(self.ownsTab);
         }
 
@@ -272,26 +237,23 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         case Denwen.UserShowHash.Following:
           self.followingUsers.fetch();
           self.switchTabOn(self.followingTab);
-          self.clearTopStage();
           analytics.userIFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.FollowedBy:
           self.followedByUsers.fetch();
           self.switchTabOn(self.followedByTab);
-          self.clearTopStage();
           analytics.userFollowersView(self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.Collections:
           self.collections.fetch();
           self.switchTabOn(self.collectionsTab);
-          self.clearTopStage();
           analytics.userCollectionsView(self.user.get('id'));
           break;
 
         default:
-          self.fetchOwnedProducts();
+          self.ownedProducts.fetch();
           self.switchTabOn(self.ownsTab);
         }
       }
