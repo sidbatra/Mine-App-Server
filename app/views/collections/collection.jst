@@ -6,9 +6,15 @@
     Latest
   <%}%>
 	
-	<a class='action' id='like_collection_<%=collection.get('id')%>' href='javascript:void(0)'>
-		<span class='in'>♥ <%=collection.likes_count_string()%></span>
-		<span class='out'>Like <%=collection.likes_count_string()%></span>
+	<a class='action' 
+      id='like_collection_<%=collection.get('id')%>' 
+      href='javascript:void(0)'>
+		<span class='in'>
+      ♥ <%=collection.get('actions_count')+1%>
+    </span>
+		<span class='out'>
+      Like <%=collection.likes_count_string()%>
+    </span>
 	</a>
 	
 	<a class='action comment' href='<%=collection.path('user_comment')%>'>
@@ -17,7 +23,7 @@
 	
 </div>
 
-<%if(collection.has('name')){%>
+<%if(collection.get('name')){%>
 	<div class='sequence_title'>
 		<a href='<%=collection.path('user')%>'>
 			<%=collection.get('name')%>

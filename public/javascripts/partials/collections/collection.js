@@ -40,8 +40,7 @@ Denwen.Partials.Collections.Collection = Backbone.View.extend({
     if(this.likes)
       return;
 
-    $(this.likeEl).removeClass('');
-    $(this.likeEl).addClass('');
+    $(this.likeEl).addClass('pushed');
 
     this.likes = true;
 
