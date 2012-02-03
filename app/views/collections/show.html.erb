@@ -36,21 +36,6 @@
             @user_presenter.closet_title(true),
             @user_presenter.closet_path('collection'))%>
       
-      <div class="social_buttons">
-
-        <%=render :partial => 'facebook/like', 
-                  :locals => {
-                    :style				=> '',
-                    :url          => @collection_presenter.url('fb'),
-                    :send_button  => false,
-                    :width        => 70,
-                    :faces        => false}%>
-	                
-	                
-	         twitter tumblr stumble google+
-	                
-	     </div> <!-- social buttons -->
-	     
 		</div> <!-- top_bar -->
 		
 		<div class="edit">
