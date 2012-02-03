@@ -1912,10 +1912,10 @@ a.product_endorsement_submit_button:active {
 }
 
 #main .sequence .product {
-	width: 96px;
-	height: 96px;
-	border: 6px solid white;
-	margin: 0 4px 4px 0;
+	width: 94px;
+	height: 94px;
+	border: 7px solid white;
+	margin: 0 3px 3px 0;
 	float: left;
 	display: block;
 	background-position: center center;
