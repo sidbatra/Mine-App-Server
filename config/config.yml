@@ -18,6 +18,7 @@ common: &common
   :error: error
   :name: OnCloset
   :version: 2.5
+  :products_threshold: 5
   :keys:
     :user_category_count: user_%d_category_%d_count
     :user_price: user_%d_products_price

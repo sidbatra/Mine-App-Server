@@ -34,7 +34,7 @@
       <%=@user_presenter.closet_title%>
     </div>
     
-    <%if @user.collections_count > 0%>
+    <%if @user.collections_count > 0 || is_current_user(@user)%>
       <a href='#looks' class='tab triangle large_bottom_margin' id='collections_tab'>
         On <%=is_current_user(@user) ? 'You' : @user_presenter.personal_pronoun.capitalize%> Now
       </a>
@@ -104,13 +104,8 @@
 		    
 			</div>
 			
-<!--
-      <div id="topstage">
-      </div>
--->
       <div id="centerstage">
       </div>
-
 	</div> <!-- main -->
 	
 	
@@ -135,6 +130,7 @@
           userJSON        : <%=@user.to_json(
                                 :only => [:id,:first_name,:last_name,
                                           :handle,:byline,:followings_count,
+                                          :collections_count,
                                           :inverse_followings_count])%>,
           currentUserJSON : <%=self.current_user.to_json(
                                 :only    => [:id,:first_name,:last_name,

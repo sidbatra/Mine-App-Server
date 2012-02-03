@@ -184,6 +184,34 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     $(this.currentTab).removeClass(this.loadTabClass);
   },
 
+  // Load tab that displays the user's collections
+  //
+  loadCollectionsTab: function() {
+    this.collections.fetch();
+    this.switchTabOn(this.collectionsTab);
+    analytics.userCollectionsView(this.user.get('id'));
+  },
+
+  // Load tab that displays the user's owns
+  //
+  loadOwnsTab: function(category) {
+    this.ownedProducts.fetch(category);
+    this.switchTabOn(this.ownsTab);
+    analytics.userProductsView('owns',category,this.user.get('id'));
+  },
+
+  // Load the default tab. Used when a hash fragment
+  // isn't explicitly set
+  //
+  loadDefaultTab: function() {
+    if(this.user.get('collections_count')) {
+      this.loadCollectionsTab();
+    }
+    else {
+      this.loadOwnsTab();
+    }
+  },
+
   // Use Backbone router for reacting to changes in URL
   // fragments
   //
@@ -206,26 +234,25 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         switch(type) {
         case Denwen.UserShowHash.Owns:
-          self.ownedProducts.fetch(category);
-          self.switchTabOn(self.ownsTab);
+          self.loadOwnsTab(category);
           break;
 
         case Denwen.UserShowHash.Likes:
           self.likedProducts.fetch(category);
           self.switchTabOn(self.likesTab);
+          analytics.userProductsView(type,category,self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.Wants:
           self.wantedProducts.fetch(category);
           self.switchTabOn(self.wantsTab);
+          analytics.userProductsView(type,category,self.user.get('id'));
           break;
 
         default:
-          self.ownedProducts.fetch();
-          self.switchTabOn(self.ownsTab);
+          self.loadDefaultTab();
         }
 
-        analytics.userProductsView(type,category,self.user.get('id'));
       },
 
       // Display ifollowers, followers and handle empty fragments
@@ -247,14 +274,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
           break;
 
         case Denwen.UserShowHash.Collections:
-          self.collections.fetch();
-          self.switchTabOn(self.collectionsTab);
-          analytics.userCollectionsView(self.user.get('id'));
+          self.loadCollectionsTab();
           break;
 
         default:
-          self.ownedProducts.fetch();
-          self.switchTabOn(self.ownsTab);
+          self.loadDefaultTab();
         }
       }
     });

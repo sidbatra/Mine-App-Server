@@ -50,7 +50,11 @@ class ProductsController < ApplicationController
                         :src      => ProductNewSource::Error) :
                       user_path(
                         self.current_user.handle,
-                        :src => UserShowSource::ProductCreate)
+                        :src    => UserShowSource::ProductCreate,
+                        :anchor => (self.current_user.products_count == 
+                                    CONFIG[:products_threshold] - 1) ?
+                                      UserShowHash::Collections :
+                                      UserShowHash::Owns)
 
       end
       format.json 
@@ -230,7 +234,8 @@ class ProductsController < ApplicationController
   ensure
     redirect_to user_path(
                   self.current_user.handle,
-                  :src => UserShowSource::ProductDeleted)
+                  :src    => UserShowSource::ProductDeleted,
+                  :anchor => UserShowHash::Owns)
   end
 
 
