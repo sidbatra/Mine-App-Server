@@ -13,8 +13,17 @@
 	<a class='action comment' href='<%=collection.path('user_comment')%>'>
 	  <span class='count'><%=collection.comments_count_string()%>&nbsp;</span>
 	</a>
-
+	<br />
+	
 </div>
+
+<%if(collection.has('name')){%>
+	<div class='sequence_title'>
+		<a href='<%=collection.path('user')%>'>
+			<%=collection.get('name')%>
+		</a>
+	</div>
+<%}%>
 
 <div class='sequence'>
 	<%collection.get('products').each(function(product){%>

@@ -1820,13 +1820,12 @@ a.product_endorsement_submit_button:active {
 #main .placeholder.box.like .overlay { background-image: url('/images/place_like_text.png'); }
 #main .placeholder.box.want .overlay { background-image: url('/images/place_want_text.png'); }
 
-
 #main .titlebar {
   height: 36px;
   font-size: 16px;
   line-height: 36px;
   color: #333333; }
-  
+
 #main .titlebar.timeline {
 	font-size: 14px;
 	padding-left: 20px;
@@ -1839,10 +1838,6 @@ a.product_endorsement_submit_button:active {
 	border-left: none;
 	padding-left: 30px;
 	margin-left: -6px; }
-  
-#main .titlebar.border {
-	border-bottom: 2px solid white;
-}
 
 #main .titlebar a {
   color: #cc3333; }
@@ -1866,6 +1861,18 @@ a.product_endorsement_submit_button:active {
 #main .titlebar a.action.comment {
 	background: url("/images/bubbles.png") -13px -36px no-repeat;
   padding-left: 17px;
+}
+
+#main .sequence_title {
+	font-size: 16px;
+	color: #444444;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	border-left: 4px solid white; 
+}
+
+#main .sequence_title a:hover {
+	color: #cc3333;
 }
 
 #main .sequence {
