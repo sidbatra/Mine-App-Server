@@ -1,6 +1,8 @@
-<div class='new_collection'>
-	<a href='' class='update'></a>
-</div>
+<%if(helpers.isCurrentUser(ownerID)){%>
+  <div class='new_collection'>
+    <a href='/collections/new?src=user' class='update'></a>
+  </div>
+<%}%>
 
 <%var index=0;%>
 <%collections.each(function(collection){%>

@@ -37,7 +37,8 @@ Denwen.Partials.Collections.List = Backbone.View.extend({
 
     $(this.el).html(
       Denwen.JST['collections/list']({
-        collections : this.collections}));
+        collections : this.collections,
+        ownerID     : this.ownerID}));
     
     this.collections.each(function(collection){
       new Denwen.Partials.Collections.Collection({
