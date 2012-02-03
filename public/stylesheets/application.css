@@ -247,6 +247,20 @@ div.welcome_text {
   text-shadow: 0 1px 1px white;
   padding-bottom: 18px; }
 
+#container .heading .input {
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	height: 42px;
+	width: 402px;
+	border: 2px solid #A8A8A8;
+	background: white url("/images/black_7.png") repeat-x;
+	padding: 2px 8px;
+	line-height: 40px;
+	font-size: 22px;
+	color: #666666;
+	vertical-align: top;
+	margin-top: 8px; }
+
 #container .heading .title {
   font-family: 'FuturaStdBold', Arial, sans-serif;
   font-size: 24px;
@@ -368,15 +382,17 @@ div.welcome_text {
   text-align: center;
   margin: 6px auto 0px; }
 
-#stores, #users {
+#stores, #users, #items {
   text-align: center; }
+ 
+#items { padding: 0 67px 0 68px; }
 
 #users.main {
   padding: 0 8px 0 13px;
   border-left: 2px solid white;
   border-right: 2px solid white; }
 
-#stores:after, #users:after {
+#stores:after, #users:after, #items:after {
   clear: both;
   display: block;
   height: 0;
@@ -386,14 +402,16 @@ div.welcome_text {
   font-size: 0; }
 
 #stores .picker_choice,
-#users .picker_choice {
+#users .picker_choice,
+#items .picker_choice {
   float: left;
   position: relative;
   z-index: 1;
   display: block; }
 
 #stores .picker_choice:after,
-#users .picker_choice:after {
+#users .picker_choice:after,
+#items .picker_choice:after {
   clear: both;
   display: block;
   height: 0;
@@ -405,6 +423,18 @@ div.welcome_text {
 #stores .picker_choice {
   width: 190px;
   margin: 0 13px 16px; }
+  
+#items .picker_choice {
+  width: 130px;
+  margin: 0 8px 16px; }
+  
+#items .picker_choice {
+  height: 130px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 110px auto;
+}
 
 #users .picker_choice {
   width: 250px;
@@ -414,13 +444,15 @@ div.welcome_text {
   /* when used in main col */
   margin: 0 13px 20px; }
 
-#stores .picker_choice:hover {
+#stores .picker_choice:hover,
+#items .picker_choice:hover {
   cursor: pointer;
   box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
   -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
   -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
 
-#stores .picker_choice:active {
+#stores .picker_choice:active,
+#items .picker_choice:active {
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none; }
@@ -431,7 +463,7 @@ div.welcome_text {
   float: left;
   background-position: center center; }
   
-#stores .picker_choice .left img{
+#stores .picker_choice .left img {
   width: 60px;
   height: 60px; }
 
@@ -521,13 +553,13 @@ div.welcome_text {
 
 .picker_choice .button_picker {
   display: none;
-  width: 28px;
-  height: 21px;
-  background: url("/images/v-x.png") 0 0 no-repeat;
+  width: 48px;
+  height: 40px;
+  background: url("/images/v-x_glow.png") 0 0 no-repeat;
   z-index: 10000;
   position: absolute;
-  bottom: 10px;
-  right: 10px; }
+  bottom: 0px;
+  right: 0px; }
 
 .picker_choice .button_picker.pushed {
   display: block; }
@@ -535,7 +567,8 @@ div.welcome_text {
 .pick_top_stores,
 .follow_people,
 .add_1st_item,
-.invite_friends {
+.invite_friends,
+.done {
   width: 320px;
   height: 60px;
   cursor: pointer;
@@ -559,9 +592,7 @@ div.welcome_text {
   background-position: 0 -120px; }
 
 .follow_people {
-  background-position: 0 -180px;
-  margin-top: 20px;
-  margin-bottom: 80px; }
+  background-position: 0 -180px; }
 
 .follow_people:hover {
   background-position: 0 -240px; }
@@ -581,8 +612,9 @@ div.welcome_text {
   background-position: 0 -420px; }
 
 .follow_people,
-.add_1st_item {
-  margin: 13px auto 16px; }
+.add_1st_item,
+.done { 
+	margin: 13px auto 16px; }
 
 .add_1st_item:hover {
   background-position: 0 -480px; }
@@ -599,6 +631,16 @@ div.welcome_text {
 
 .invite_friends:active {
   background-position: 0 -720px; }
+
+.done {
+	background: url("/images/on_now_buttons.png") no-repeat;
+  background-position: 0 -96px; }
+
+.done:hover {
+  background-position: 0 -156px; }
+
+.done:active {
+  background-position: 0 -216px; }
 
 #footer_onboarding {
   height: 86px;
@@ -1082,6 +1124,7 @@ a.product_endorsement_submit_button:active {
   line-height: 12px; }
 
 .edit_555555_18 {
+	font-size: 18px;
   padding-left: 30px;
   background: url("/images/pens.png") 5px -76px no-repeat; }
 
@@ -1828,7 +1871,7 @@ a.product_endorsement_submit_button:active {
 
 #main .sequence {
 	width: 564px;
-	padding-bottom: 6px;
+	padding-bottom: 12px;
 	padding-left: 20px;
 	border-left: 4px solid white; 
 }
@@ -1858,7 +1901,6 @@ a.product_endorsement_submit_button:active {
 	display: block;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: 100px auto;
 	background-color: white;
 }
 

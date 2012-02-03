@@ -1,45 +1,39 @@
-<div id="outer">
+<%form_for @collection,
+	      :html => {:class => '', :style => 'display:'} do |f|%>
+<%=f.hidden_field :product_ids%>
 
-	<div id="inner">
+	<div id="container" class="narrow">
 	
-		<div class="module">
-		
-			<div class="heading">
-			
-				<div class="title">
-					Select the items you have <span class="red">On</span> today:
-				</div>
-
-			  <%form_for @collection,
-				      :html => {:class => '', :style => 'display:'} do |f|%>
-		      <%=f.hidden_field :product_ids%>
-          <%=f.text_field :name%>
-		      <%=submit_tag 'Done',
-		                    :class  => 'button button_red slim_shadow_light submit',
-		                    :name   => nil%>
-		    <%end%>
-		    
-		    <div class="button button_dark slim_shadow_light cancel">
-					<%=link_to 'Cancel',
-                      user_path(
-                        self.current_user.handle,:src => 'collection_cancel')%>
-				</div>
-	    
-	    </div>
+		<div class="heading unselectable">
+			Click the items you have on you now.
+			<br />
+				<a href="javascript:void(0)" class="edit_555555_18 add_review" id="collection_title_initiate">
+				Add a title to this set?
+			</a>
+	
+			<!--
+<#=f.text_field :name,
+			:class    => "input"%>
+-->
+		</div>
 	      
-	    <div id="items">
-	    </div>
+	  <div id="items">
+		</div> <!-- items -->
 	    
-    	</div>
-
-	</div> <!-- inner -->
-
-</div> <!-- outer -->
+	</div> <!-- container -->
 	
+	
+	<div id='footer_onboarding'>
+	
+	  <%=submit_tag '',
+	                :class  => 'done',
+	                :name   => nil%>
+	    
+	</div>
 
+<%end%>
 
 <%content_for :javascript do%>
-
   <script type="text/javascript">
 
     new Denwen.Views.Collections.New({
@@ -51,3 +45,4 @@
 
   </script>
 <%end%>
+
