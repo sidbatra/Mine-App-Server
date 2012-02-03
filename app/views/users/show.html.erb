@@ -70,8 +70,7 @@
   	<!-- bio -->
   	<div id='profile_bio' class='large_top_margin'>
 	    <%=render :partial  => 'byline',
-	              :locals   => {:user => @user} if is_current_user(@user) || 
-                                                 @user.byline.present?%>
+	              :locals   => {:user => @user}%>
 	  </div>
 
 
