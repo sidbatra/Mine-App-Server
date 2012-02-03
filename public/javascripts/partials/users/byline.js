@@ -28,6 +28,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   //
   changed: function() {
     $(this.textEl).html(this.model.escape('byline'));
+    $(this.startEl).text('Your style');
 
     this.wipe();
     analytics.bylineEditingCompleted();
@@ -36,7 +37,6 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   // Called when the user wants to edit the byline
   //
   edit: function() {
-    $(this.startEl).hide();
     $(this.textEl).hide();
     $(this.editEl).hide();
     $(this.editBoxEl).hide();
@@ -63,14 +63,12 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     if(this.model.get('byline') == '' || 
         this.model.get('byline') == null) {
 
-      $(this.startEl).show();
       $(this.inputEl).show();
       $(this.updateEl).show();
     }
     else {
       $(this.inputEl).hide();
       $(this.updateEl).hide();
-      $(this.startEl).hide();
       $(this.textEl).show();
       $(this.editEl).show();
       $(this.editBoxEl).show();

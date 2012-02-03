@@ -1,14 +1,12 @@
 
       <%if is_current_user(user)%>
       
-          <!-- byline empty --> 
-          <%=link_to  "What's your style?",
+          <!-- byline title--> 
+          <%=link_to  self.current_user.byline.present? ? 
+                        "Your style" : "What's your style?",
                       'javascript:void(0)',
                       :id     => 'user_edit_initiate',
-                      :class  => 'tab',
-                      :style  => self.current_user.byline.present? ?
-                                  'display:none' : 
-                                  ''%>
+                      :class  => 'tab'%>
 
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
@@ -54,6 +52,13 @@
           </div>
           
       <%elsif user.byline.present?%>
+          <!-- byline title--> 
+          <%=link_to  user.gender == 'male' ? 
+                        'His style' : 'Her style', 
+                      'javascript:void(0)',
+                      :id     => 'user_edit_initiate',
+                      :class  => 'tab'%>
+
 					<div class='user_byline_display'>
           	<span id='user_byline_text'>
 		          <%=user.byline%>
