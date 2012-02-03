@@ -1875,6 +1875,26 @@ a.product_endorsement_submit_button:active {
 	background-color: white;
 }
 
+.new_collection {
+	height: 32px;
+	padding: 16px 0 16px 30px;
+	margin-left: -6px;
+	background: url('/images/timeline_stop_latest_update.png') bottom left no-repeat;
+}
+
+.new_collection a.update {
+	height: 32px;
+	width: 108px;
+	display: block;
+	background: url('/images/on_now_buttons.png') no-repeat;
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+.new_collection a.update:hover { background-position: 0 -32px; }
+.new_collection a.update:active { background-position: 0 -64px; }
+
 /* ------------------------------ Products */
 .products {
   width: 585px; }
@@ -1909,7 +1929,7 @@ a.product_endorsement_submit_button:active {
 	margin: 0px;
 }
 
-/* ----- Product collection-specific ----- */
+/* ----- Product collection show specific ----- */
 .products.collection {
 	width: 785px;
 	padding: 21px 17px 37px 33px;
@@ -1962,7 +1982,7 @@ table.collection.details .textbox .title {
 	color: #333333;
 }
 
-/* ----- End of collection-specific ----- */
+/* ----- End of collection show specific ----- */
 
 .products .product a.top {
   display: block;
@@ -2694,16 +2714,15 @@ table.collection.details .textbox .title {
   /* W3C */ }
 
 .awesome {
-  font-family: 'FuturaStdBold', Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   border: 0;
   overflow: visible;
   position: absolute; }
 
 .awesome, .awesome:visited {
-  background: #222222 url("/images/alert-overlay.png") repeat-x;
+  background: #cb221d url("/images/alert-overlay.png") repeat-x;
   padding: 0px 10px;
-  color: #fff;
+  color: white;
   text-decoration: none;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
