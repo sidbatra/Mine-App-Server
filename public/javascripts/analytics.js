@@ -433,6 +433,12 @@ Denwen.Analytics = Backbone.Model.extend({
       'Collection New View',{'source' : source});
   },
 
+  // User opts in to write a title while creating a collection
+  //
+  collectionTitleInitiated: function() {
+    mpq.track('Collection Title Initiated');
+  },
+
   // Fired when the invite view is opened during onboarding
   //
   inviteViewOnboarding: function() {
