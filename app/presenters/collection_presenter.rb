@@ -56,4 +56,10 @@ class CollectionPresenter < BasePresenter
               :class => '' 
   end
 
+  # Title of the page
+  #
+  def page_title(user_name)
+    "A set of items owned by " + user_name
+  end
+
 end

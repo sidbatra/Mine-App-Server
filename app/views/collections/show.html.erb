@@ -2,6 +2,20 @@
 <%@user_presenter       = presenter_for(@collection.user)%>
 <%@collection_presenter = presenter_for(@collection)%>
 
+
+<!-- Inject facebook og tags into the head -->
+<%content_for :head do%>
+  <%=render :partial  => 'facebook/og',
+            :locals   => {
+              :title        => @collection_presenter.page_title(
+                                  @user_presenter.first_name),
+              :type         => 'link',
+              :description  => @user_presenter.usage_description,
+              :url          => @collection_presenter.url('fb'),
+              :image        => @collection.products.last.thumbnail_url}%>
+<%end%>
+
+
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => 'misc/welcome', 
       :locals => {
