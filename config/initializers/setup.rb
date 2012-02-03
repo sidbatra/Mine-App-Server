@@ -13,7 +13,7 @@ REGEX[:url] = /(((http|ftp|https):\/\/){1}([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)+([\
 #
 require 'ar-extensions/adapters/mysql'
 require 'ar-extensions/import/mysql'
-#require File.join(RAILS_ROOT,'lib','extensions.rb')
+require File.join(RAILS_ROOT,'lib','extensions.rb')
 
 # Include modules needed through the application lifetime
 #
