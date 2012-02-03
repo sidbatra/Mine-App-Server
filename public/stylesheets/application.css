@@ -1568,12 +1568,12 @@ a.product_endorsement_submit_button:active {
   height: 36px;
   float: left;
   cursor: pointer;
-  z-index: 3000; }
+  z-index: 0; }
 
 .sidebar img.tile {
   height: 35px;
   width: 35px;
-  z-index: 1000; }
+  z-index: 0; }
 
 .sidebar .tile_list {
   height: 24px;
@@ -1621,7 +1621,7 @@ a.product_endorsement_submit_button:active {
 .sidebar .tile_frame:hover .tooltip_down_right_ffffff,
 .sidebar .title .detail:hover .tooltip_down_right_333333 {
   display: block;
-  z-index: 10000; }
+  z-index: 10000 !important; }
 
 .sidebar .invite {
   margin-top: 6px; }
