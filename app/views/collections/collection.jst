@@ -7,13 +7,13 @@
   <%}%>
 	
 	<a class='action' id='like_collection_<%=collection.get('id')%>' href='javascript:void(0)'>
-		Like <span class='count'><%=collection.likes_count_string()%></span>
+		<span class='in'>♥ <%=collection.likes_count_string()%></span>
+		<span class='out'>Like <%=collection.likes_count_string()%></span>
 	</a>
 	
 	<a class='action comment' href='<%=collection.path('user_comment')%>'>
 	  <span class='count'><%=collection.comments_count_string()%>&nbsp;</span>
 	</a>
-	<br />
 	
 </div>
 

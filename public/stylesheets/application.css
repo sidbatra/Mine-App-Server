@@ -1863,8 +1863,21 @@ a.product_endorsement_submit_button:active {
   padding-left: 17px;
 }
 
+#main .titlebar a.action.pushed {
+	color: #999999;
+}
+
+#main .titlebar a.action span.in {
+  display: none; }
+
+#main .titlebar a.action.pushed span.out {
+  display: none; }
+
+#main .titlebar a.action.pushed span.in {
+  display: block; }
+
 #main .sequence_title {
-	font-size: 16px;
+	font-size: 18px;
 	color: #444444;
 	padding-bottom: 10px;
 	padding-left: 20px;
@@ -1899,9 +1912,9 @@ a.product_endorsement_submit_button:active {
 }
 
 #main .sequence .product {
-	width: 98px;
-	height: 98px;
-	border: 5px solid white;
+	width: 96px;
+	height: 96px;
+	border: 6px solid white;
 	margin: 0 4px 4px 0;
 	float: left;
 	display: block;
