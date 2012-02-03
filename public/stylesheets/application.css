@@ -1621,7 +1621,7 @@ a.product_endorsement_submit_button:active {
 .sidebar .tile_frame:hover .tooltip_down_right_ffffff,
 .sidebar .title .detail:hover .tooltip_down_right_333333 {
   display: block;
-  z-index: 2000; }
+  z-index: 10000; }
 
 .sidebar .invite {
   margin-top: 6px; }
