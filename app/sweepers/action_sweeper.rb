@@ -9,6 +9,7 @@ class ActionSweeper < ActionController::Caching::Sweeper
   def after_create(action)
     expire_actions(action)
     expire_actioned_products(action)
+    expire_actioned_collections(action)
   end
 
   # Fired when a action is updated
@@ -16,6 +17,7 @@ class ActionSweeper < ActionController::Caching::Sweeper
   def after_update(action)
     expire_actions(action)
     expire_actioned_products(action)
+    expire_actioned_collections(action)
   end
 
   # Fired when a action is destroyed
@@ -23,6 +25,7 @@ class ActionSweeper < ActionController::Caching::Sweeper
   def after_destroy(action)
     expire_actions(action)
     expire_actioned_products(action)
+    expire_actioned_collections(action)
   end
 
   # Expire actions for the associated actionable
@@ -41,6 +44,15 @@ class ActionSweeper < ActionController::Caching::Sweeper
 
       expire_cache(KEYS[key] % [action.user_id,action.actionable.category_id])
       expire_cache(KEYS[key] % [action.user_id,0])
+    end
+  end
+
+  # Expire collections cache for user whose collection
+  # has been liked
+  #
+  def expire_actioned_collections(action)
+    if action.actionable_type == Collection.name 
+      expire_cache(KEYS[:user_collections] % action.actionable.user_id)
     end
   end
 end
