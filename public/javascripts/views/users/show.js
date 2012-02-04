@@ -95,6 +95,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                                   el      : $('#centerstage'),
                                   ownerID : this.user.get('id'),
                                   filter  : 'user',
+                            productsLeft  : CONFIG['products_threshold'] - 
+                                              this.user.get('products_count'),
                                   source  : 'user_collections'});
 
     this.collections.bind(
