@@ -148,7 +148,7 @@ div.welcome_text {
   position: relative;
   padding: 0 16px;
   color: white;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 1.0); }
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6); }
 
 /* Handles the showing and hiding of menu items */
 .nav_add_item_button:hover ~ .nav_add_list, .nav_add_list:hover, .nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover {
@@ -1686,96 +1686,6 @@ a.product_endorsement_submit_button:active {
   white-space: nowrap;
   z-index: 100; }
 
-/* for full-width mains */
-#inner .title_box,
-#inner .module {
-  padding: 12px 12px 6px 12px;
-  position: relative;
-  margin: 0px 0px 0px;
-  position: relative;
-  background: #eeeeee; }
-
-#inner .module:after {
-  clear: both;
-  display: block;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  content: ".";
-  font-size: 0; }
-
-#inner .module .heading {
-  color: #333333;
-  height: 24px;
-  padding: 4px 0px 4px 8px;
-  line-height: 24px;
-  margin-bottom: 8px;
-  text-align: left; }
-
-#inner .module .heading .title {
-  font-size: 14px;
-  font-family: 'FuturaStdBold', Arial, sans-serif;
-  float: left; }
-
-#inner .module .heading .button {
-  line-height: 24px;
-  font-size: 12px;
-  padding: 0 8px;
-  height: 23px;
-  float: right;
-  text-align: center;
-  white-space: nowrap;
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 4px;
-  width: 60px; }
-
-#inner .module .heading .submit {
-  height: 24px;
-  width: 76px; }
-
-#inner .module #items {
-  margin-left: -10px; }
-
-#inner .module #items .item {
-  width: 130px;
-  height: 130px;
-  padding: 12px;
-  background: white;
-  float: left;
-  position: relative;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  line-height: 130px; }
-
-#inner .module #items .item img {
-  vertical-align: middle;
-  max-height: 130px;
-  max-width: 130px; }
-
-#inner .module #items .item .button_picker {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 154px;
-  height: 154px;
-  background: url("/images/on.png") no-repeat;
-  cursor: pointer;
-  display: none; }
-
-#inner .module #items .item:hover .button_picker {
-  display: block; }
-
-#inner .module #items .item .pushed {
-  display: block; }
-
-#inner .module #items .item .button_picker:active,
-#inner .module #items .item .pushed,
-#inner .module #items .item .pushed:hover {
-  background-position: 0 -154px; }
-
 #main {
   width: 580px;
   float: left;
@@ -1944,7 +1854,24 @@ a.product_endorsement_submit_button:active {
 	background: url('/images/timeline_stop_latest_update.png') bottom left no-repeat;
 }
 
-.new_collection a.update {
+.new_collection.on_now_placeholder {
+	padding: 3px 0 29px 30px;
+	text-align: center;
+	font-size: 26px;
+	color: #555555;
+  line-height: 31px;
+  text-shadow: 0 1px 1px white;
+}
+
+.new_collection.on_now_placeholder span.subtitle {
+	color: #999999;
+	font-size: 18px;
+}
+
+.new_collection.on_now_placeholder span.red { color: #cc3333; }
+
+.new_collection a.update,
+.new_collection a.start {
 	height: 32px;
 	width: 108px;
 	display: block;
@@ -1956,6 +1883,14 @@ a.product_endorsement_submit_button:active {
 
 .new_collection a.update:hover { background-position: 0 -32px; }
 .new_collection a.update:active { background-position: 0 -64px; }
+
+.new_collection a.start { 
+	background-position: 0 -276px; 
+	display: inline-block;
+	margin-top: 12px;
+}
+.new_collection a.start:hover { background-position: 0 -308px; }
+.new_collection a.start:active { background-position: 0 -340px; }
 
 /* ------------------------------ Products */
 .products {

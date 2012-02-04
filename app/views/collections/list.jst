@@ -1,3 +1,4 @@
+<!-- regular usage -->
 <%if(helpers.isCurrentUser(ownerID)){%>
   <div class='new_collection'>
     <a href='/collections/new?src=user' class='update'></a>
@@ -8,4 +9,30 @@
 <%collections.each(function(collection){%>
   <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
 <%});%>
+
+
+
+<!-- onboarding -->
+<div class='new_collection on_now_placeholder'>
+	Which of your items are On You Now?
+	<br />
+
+	<!-- subtitle with item countdown -->  
+	<span class='subtitle'>
+		<span class='red'>
+			Add 3 more items
+		</span>
+		 to start using this feature.
+	</span>
+
+	<!-- start button -->  
+	<a href='/collections/new?src=user' class='start'></a>
+	
+</div>
+
+<!-- placeholder image -->  
+<img class='on_now_placeholder unselectable' src='/images/on_now_placeholder.png' />
+	
+
+
 
