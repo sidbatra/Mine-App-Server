@@ -16,7 +16,6 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     this.textEl     = '#user_byline_text';
     this.editEl     = '#user_edit';
     this.editBoxEl  = '#user_edit_box';
-    this.startEl    = '#user_edit_initiate';
     this.updateEl   = '#user_update';
     this.cancelEl   = '#user_cancel';
     this.inputEl    = '#user_byline';
@@ -36,7 +35,6 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   // Called when the user wants to edit the byline
   //
   edit: function() {
-    $(this.startEl).hide();
     $(this.textEl).hide();
     $(this.editEl).hide();
     $(this.editBoxEl).hide();
@@ -63,14 +61,12 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     if(this.model.get('byline') == '' || 
         this.model.get('byline') == null) {
 
-      $(this.startEl).show();
       $(this.inputEl).show();
       $(this.updateEl).show();
     }
     else {
       $(this.inputEl).hide();
       $(this.updateEl).hide();
-      $(this.startEl).hide();
       $(this.textEl).show();
       $(this.editEl).show();
       $(this.editBoxEl).show();
