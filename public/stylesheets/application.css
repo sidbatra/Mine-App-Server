@@ -1416,7 +1416,9 @@ a.product_endorsement_submit_button:active {
   color: white; }
 
 .tab.static, .tab.static:hover, .tab.static:active {
-  background: white url("/images/triangles.png") right 0 no-repeat;
+  background-color: white;
+  padding-left: 12px;
+  background-position: right 0;
   color: #555555;
   cursor: default; }
 
