@@ -1,14 +1,16 @@
 <%if(products.length) {%>
 
-  <div class="titlebar small_bottom_margin">
-    <a class='cat <%=currentCategory == 'all' || currentCategory == undefined ? 'on' : ''%>' href='#<%=fragment%>/all'>Everything</a>
+  <%if(categories.size() > 1){%>
+    <div class="titlebar small_bottom_margin">
+      <a class='cat <%=currentCategory == 'all' || currentCategory == undefined ? 'on' : ''%>' href='#<%=fragment%>/all'>Everything</a>
 
-    <%categories.each(function(category){%>
-      <a class='cat <%=category.get('handle') == currentCategory ? 'on' : ''%>' href='#<%=fragment%>/<%=category.get('handle')%>'>
-        <%=category.get('name')%>
-      </a>  
-    <%});%>
-  </div>
+      <%categories.each(function(category){%>
+        <a class='cat <%=category.get('handle') == currentCategory ? 'on' : ''%>' href='#<%=fragment%>/<%=category.get('handle')%>'>
+          <%=category.get('name')%>
+        </a>  
+      <%});%>
+    </div>
+  <%}%>
 		
 	<div class="products">
     <%products.each(function(product){%>
