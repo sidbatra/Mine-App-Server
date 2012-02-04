@@ -189,7 +189,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   loadCollectionsTab: function() {
     this.collections.fetch();
     this.switchTabOn(this.collectionsTab);
-    analytics.userCollectionsView(this.user.get('id'));
+
+    if(this.user.get('collections_count'))
+      analytics.userCollectionsView(this.user.get('id'));
+    else
+      analytics.collectionOnboardingViewed('faded_timeline');
   },
 
   // Load tab that displays the user's owns
