@@ -2,9 +2,10 @@
   Top Shoppers
 </div>
 
-
+<div class='tile_row'>
   <%users.each(function(user){%>
     <%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
   <%});%>
   <%=helpers.blocker()%>
+</div>
 
