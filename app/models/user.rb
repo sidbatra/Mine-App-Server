@@ -126,14 +126,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Total price of all the products
-  #
-  def products_price
-    Cache.fetch(KEYS[:user_price] % self.id) do
-      Product.for_user(self.id).sum(:price) 
-    end
-  end
-
   # Test is the user was created very recently
   #
   def is_fresh

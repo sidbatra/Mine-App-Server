@@ -89,14 +89,6 @@ class Store < ActiveRecord::Base
     end
   end
 
-  # Total price of all the products
-  #
-  def products_price
-    Cache.fetch(KEYS[:store_price] % self.id) do
-      Product.for_store(self.id).sum(:price) 
-    end
-  end
-
   # Flag if the store is a top store
   #
   def is_top
@@ -116,8 +108,6 @@ class Store < ActiveRecord::Base
     Category.fetch_all.each do |category|
       Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
     end
-
-    Cache.delete(KEYS[:store_price] % store.id)
   end
 
   # Change all products to gift
