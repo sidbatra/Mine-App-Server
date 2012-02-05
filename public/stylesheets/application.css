@@ -751,17 +751,17 @@ div.welcome_text {
 
 .creation_search_chooser {
   font-family: 'FuturaStdBook', Arial, sans-serif;
-  height: 26px;
-  width: 263px;
+  height: 24px;
+  width: 261px;
   margin: 0px 0 3px;
-  border: 1px solid #cccccc;
+  border: 2px solid #a8a8a8;
   padding: 2px 5px;
   line-height: 26px;
   font-size: 20px;
   -webkit-font-smoothing: antialiased;
   color: #666666;
   vertical-align: top;
-  background: #fbfbfb; }
+	background: white url("/images/black_7.png") repeat-x; }
 
 .creation_search {
   width: 320px;
