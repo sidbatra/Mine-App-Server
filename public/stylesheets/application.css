@@ -675,11 +675,11 @@ div.welcome_text {
   
 .add_more_items_arrow {
 	width: 580px;
-	height: 334px;
+	height: 270px;
 	position: absolute;
 	left: 0px;
-	top: 10px;
-	background: url('/images/onboarding_add_more_3.png') no-repeat;
+	top: 0px;
+	background: url('/images/onboarding_add_more.png') no-repeat;
 	z-index: -10;
 }
 
