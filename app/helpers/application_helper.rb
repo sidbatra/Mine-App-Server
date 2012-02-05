@@ -39,7 +39,7 @@ module ApplicationHelper
     "<meta name='version' content='#{CONFIG[:version]}'/>"
   end
 
-  # Format price or currency in general
+  # Format currency for display
   #
   def display_currency(amount)
     '$' + ('%.2f' % amount).chomp('.00')

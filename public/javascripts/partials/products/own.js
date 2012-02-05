@@ -21,17 +21,11 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.render();
 
     this.boxEl                = $('#own_box_' + this.productID);
-    this.priceEl              = $('#product_price_' + this.productID);
-    this.priceBoxEl           = $('#product_price_box_' + this.productID);
-    this.priceTextEl          = $('#product_price_text_' + this.productID);
-    this.priceDollarEl        = $('#creation_dollar_' + this.productID);
     this.storeEl              = $('#product_store_name_' + this.productID);
     this.storeBoxEl           = $('#product_store_box_' + this.productID);
     this.storeTextEl          = $('#product_store_text_' + this.productID);
-    this.isGiftEl             = $('#product_is_gift_' + this.productID);
     this.isStoreUnknownEl     = $('#product_is_store_unknown_'+ this.productID);
 
-    this.isGiftEl.change(function(){self.isGiftChanged();});
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
   },
 
@@ -67,12 +61,10 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.posting = true;
 
     var params = {
-                  is_gift:this.isGifted() ? '1' : '0',
+                  is_gift:'0',
+                  price:0,
                   is_store_unknown:this.isStoreUnknown() ? '1' : '0',
                   source_product_id:this.productID};
-
-    if(!this.isGifted())
-      params['price'] = this.priceEl.val();
 
     if(!this.isStoreUnknown())
       params['store_name'] = this.storeEl.val();
@@ -105,32 +97,6 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     var valid = true;
     var mode  = 'own';
 
-    if(!this.isGifted() && 
-            $(this.priceEl).val().replace(/ /g,'').length < 1) {
-      valid = false;
-
-      this.priceEl.addClass('incomplete');
-      this.priceTextEl.addClass('incomplete');
-      this.priceDollarEl.addClass('incomplete');
-
-      analytics.productException('No Price',mode);
-    }
-    else if(!this.isGifted() && isNaN(this.priceEl.val())) {
-      valid = false;
-
-      this.priceEl.addClass('incomplete');
-      this.priceTextEl.addClass('incomplete');
-      this.priceDollarEl.addClass('incomplete');
-      
-      analytics.productException('Invalid Price',mode);
-    }
-    else {
-      this.priceEl.removeClass('incomplete');
-      this.priceTextEl.removeClass('incomplete');
-      this.priceDollarEl.removeClass('incomplete');
-    }
-
-    
     if(!this.isStoreUnknown() && this.storeEl.val().length < 1) {
       valid = false;
 
@@ -145,31 +111,6 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     }
 
     return valid;
-  },
-
-  // Returns the current state of the gifted check box
-  //
-  isGifted: function() {
-    return this.isGiftEl.is(':checked');
-  },
-
-  // Fired when the user toggles the is gift check box
-  //
-  isGiftChanged: function() {
-
-    if(this.isGifted()) {
-      this.priceEl.val('');
-      this.priceBoxEl.addClass('inactive');
-      this.priceEl.attr('disabled','disabled');
-
-      this.priceEl.removeClass('incomplete');
-      this.priceTextEl.removeClass('incomplete');
-      this.priceDollarEl.removeClass('incomplete');
-    }
-    else {
-      this.priceBoxEl.removeClass('inactive');
-      $(this.priceEl).removeAttr('disabled');
-    }
   },
 
   // Returns the current state of the is unknown check box
