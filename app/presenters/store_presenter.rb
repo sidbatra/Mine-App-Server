@@ -16,16 +16,6 @@ class StorePresenter < BasePresenter
     h.store_url(store.handle,:src => src)
   end
 
-  # Display html for total products count
-  #
-  def closet_stats
-    h.content_tag(:span, store.products_count.to_s, :class => 'stat_num') +
-    " " + (store.products_count == 1 ? 'item' : 'items') + " worth <br />" +
-    h.content_tag(:span, h.display_currency(store.products_price), 
-      :class => 'stat_num') +
-    " bought at this store."
-  end
-
   # Link to larger store photo
   #
   def large_picture(src)
