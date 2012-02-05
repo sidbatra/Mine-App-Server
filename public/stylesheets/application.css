@@ -1087,11 +1087,8 @@ div.welcome_text {
   text-rendering: optimizeLegibility; }
 
 .product_endorsement a.edit {
-  color: #cccccc;
+  color: #cc3333;
   margin-left: 4px; }
-
-.product_endorsement a.edit:hover {
-  color: #cc3333; }
 
 .product_endorsement_input {
   width: 779px;
@@ -1145,6 +1142,29 @@ a.product_endorsement_submit_button:active {
 	font-size: 18px;
   padding-left: 30px;
   background: url("/images/pens.png") 5px -76px no-repeat; }
+  
+.edit_cc333333_14 {
+	font-size: 14px;
+	color: #cc3333;
+  padding-left: 18px;
+  background: url("/images/pens.png") -4px -279px no-repeat; }
+  
+.edit_999999_14 {
+	font-size: 14px;
+	color: #999999;
+  padding-left: 18px;
+  background: url("/images/pens.png") -4px -204px no-repeat; }
+
+.edit_cccccc_14 {
+	font-size: 14px;
+	color: #cccccc;
+  padding-left: 18px;
+  background: url("/images/pens.png") -4px -179px no-repeat; }
+  
+.edit_999999_14:hover,
+.edit_cccccc_14:hover {
+	color: #cc3333;
+  background: url("/images/pens.png") -4px -279px no-repeat; }
 
 .edit_gray_12 {
   font-size: 12px;
