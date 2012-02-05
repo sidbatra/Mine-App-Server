@@ -412,7 +412,6 @@ div.welcome_text {
 #items .picker_choice {
   float: left;
   position: relative;
-  z-index: 1;
   display: block; }
 
 #stores .picker_choice:after,
@@ -428,11 +427,24 @@ div.welcome_text {
 
 #stores .picker_choice {
   width: 190px;
-  margin: 0 13px 16px; }
+  margin: 0 13px 16px;
+  cursor: pointer; }
+
+#stores .picker_choice .shadowbox,
+#items .picker_choice .shadowbox {
+	display: none;
+	position: absolute;
+	top: -6px;
+	right: -6px;
+	bottom: -6px;
+	left: -6px;
+	background: url('/images/black_5.png');
+  z-index: -10000; }
   
 #items .picker_choice {
   width: 130px;
-  margin: 0 8px 16px; }
+  margin: 0 8px 16px;
+  cursor: pointer; }
   
 #items .picker_choice {
   height: 130px;
@@ -450,12 +462,12 @@ div.welcome_text {
   /* when used in main col */
   margin: 0 13px 20px; }
 
-#stores .picker_choice:hover,
-#items .picker_choice:hover {
-  cursor: pointer;
-  box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.5);
-  -moz-box-shadow: 0px 0px 1px 5px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
+#stores .picker_choice:hover .shadowbox,
+#items .picker_choice:hover .shadowbox {
+	display: block;
+	z-index: -10000;
+}
+
 
 #stores .picker_choice:active,
 #items .picker_choice:active {
