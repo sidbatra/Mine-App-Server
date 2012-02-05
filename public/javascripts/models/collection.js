@@ -21,6 +21,13 @@ Denwen.Models.Collection = Backbone.Model.extend({
             this.get('id') + '?src=' + src;
   },
 
+  // Likes count string after a like has been initiated
+  //
+  pushed_likes_count_string: function() {
+    var count = this.get('actions_count') + helpers.isLoggedIn();
+    return count ? count : '';
+  },
+
   // String for the total count of likes
   //
   likes_count_string: function() {

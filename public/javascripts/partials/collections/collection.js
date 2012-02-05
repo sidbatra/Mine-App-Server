@@ -10,10 +10,14 @@ Denwen.Partials.Collections.Collection = Backbone.View.extend({
     this.source   = this.options.source;
     this.sourceID = this.options.sourceID;
 
+    this.onClass  = 'pushed';
     this.likes    = false;
     this.likeEl   = '#like_collection_' + this.model.get('id');
 
-    $(this.likeEl).click(function(){self.likeClicked();});
+    if(helpers.isLoggedIn())
+      $(this.likeEl).click(function(){self.likeClicked();});
+    else
+      this.switchOn();
   },
 
   // Create a like action on the current collection
@@ -34,13 +38,19 @@ Denwen.Partials.Collections.Collection = Backbone.View.extend({
                 this.model.get('user_id'));
   },
 
+  // Switch on the like element to its clicked state
+  //
+  switchOn: function() {
+    $(this.likeEl).addClass(this.onClass);
+  },
+
   // User clicks the like button
   //
   likeClicked: function() {
     if(this.likes)
       return;
 
-    $(this.likeEl).addClass('pushed');
+    this.switchOn();
 
     this.likes = true;
 

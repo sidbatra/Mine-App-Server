@@ -10,7 +10,7 @@
       id='like_collection_<%=collection.get('id')%>' 
       href='javascript:void(0)'>
 		<span class='in'>
-      ♥ <%=collection.get('actions_count')+1%>
+      ♥ <%=collection.pushed_likes_count_string()%>
     </span>
 		<span class='out'>
       Like <%=collection.likes_count_string()%>
