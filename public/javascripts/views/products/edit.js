@@ -28,7 +28,6 @@ Denwen.Views.Products.Edit = Backbone.View.extend({
 
     this.input.displayProductImage(this.product.get('photo_url'));
 
-    this.input.isGiftChanged();
     this.input.isStoreUnknownChanged();
 
     var endorsement = this.product.get('endorsement');

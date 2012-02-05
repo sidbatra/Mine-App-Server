@@ -1,5 +1,7 @@
 
   <%=f.hidden_field :category_id, :value => category.id%>
+  <%=f.hidden_field :price%>
+  <%=f.hidden_field :is_gift%>
   <%=f.hidden_field :source_url%>
   <%=f.hidden_field :orig_image_url%>
   <%=f.hidden_field :orig_thumb_url%>
@@ -79,33 +81,6 @@
                         
     </div> 
     <!-- store step -->  
-
-
-    <!-- price -->
-    <div class="step" id='price_box'>
-
-      <div id='is_gift_box' class='creation_checkbox_right gift'>
-        <%=f.check_box :is_gift%>
-        <%=f.label :is_gift,"Gift"%>
-      </div>
-
-      <p id='price_text' class='step_title'>
-        Price
-      </p>
-      
-      <div id='creation_dollar' class='creation_dollar'>
-        $
-      </div>
-
-      <%=f.text_field :price,
-                  :class    => "creation_input creation_price"%>
-                  
-      <div id='price_invalid_msg' class='price_invalid'>
-      </div>
-                 
-      <%=blocker%>
-    </div> 
-    <!-- price step -->
 
 
     <%=link_to  'Add an optional review', 

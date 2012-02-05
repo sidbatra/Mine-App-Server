@@ -8,8 +8,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     "click #endorsement_initiate" : "endorsementInitiated",
     "keypress #product_title" : "inputKeystroke",
     "keypress #product_store_name" : "inputKeystroke",
-    "keypress #product_price" : "inputKeystroke",
-    "change #product_is_gift" : "isGiftChanged",
     "change #product_is_store_unknown" : "isStoreUnknownChanged"
   },
 
@@ -28,11 +26,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.onboardingMsgEl      = '#onboarding_create_msg';
     this.titleEl              = '#product_title';
     this.titleTextEl          = '#title_text';
-    this.priceEl              = '#product_price';
-    this.priceDollarEl        = '#creation_dollar';
-    this.priceBoxEl           = '#price_box';
-    this.priceTextEl          = '#price_text';
-    this.priceInvalidMsgEl    = '#price_invalid_msg';
     this.storeEl              = '#product_store_name';
     this.storeBoxEl           = '#store_box';
     this.storeTextEl          = '#store_text';
@@ -45,8 +38,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.endorsementEl        = '#product_endorsement';
     this.endorsementBoxEl     = '#endorsement_container';
     this.endorsementStartEl   = '#endorsement_initiate';
-    this.isGiftEl             = '#product_is_gift';
-    this.isGiftBoxEl          = '#is_gift_box';
     this.isStoreUnknownEl     = '#product_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
     this.posting              = false;
@@ -63,7 +54,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.formEl).submit(function(){return self.post();});
 
-    restrictFieldSize($(this.priceEl),11,'charsremain');
     restrictFieldSize($(this.storeEl),254,'charsremain');
 
     new Denwen.Partials.Stores.Autocomplete({el:$(this.storeEl)});
@@ -74,33 +64,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   inputKeystroke: function(e) {
     if(e.keyCode == 13) {
       return false;
-    }
-  },
-
-  // Returns the current state of the gifted check box
-  //
-  isGifted: function() {
-    return $(this.isGiftEl).is(':checked');
-  },
-
-  // Fired when the user toggles the is gift check box
-  //
-  isGiftChanged: function() {
-    if(this.isGifted()) {
-      $(this.priceEl).val('');
-      $(this.priceEl).addClass('creation_input_inactive');
-      $(this.priceEl).attr('disabled','disabled');
-      $(this.isGiftBoxEl).addClass('creation_checkbox_right_active');
-      $(this.priceEl).removeClass('box_shadow');
-      $(this.priceDollarEl).addClass('creation_dollar_inactive');
-      $(this.priceInvalidMsgEl).hide();
-    }
-    else {
-      $(this.priceEl).removeClass('creation_input_inactive');
-      $(this.priceEl).removeAttr('disabled');
-      $(this.isGiftBoxEl).removeClass('creation_checkbox_right_active');
-      $(this.priceEl).addClass('box_shadow');
-      $(this.priceDollarEl).removeClass('creation_dollar_inactive');
     }
   },
 
@@ -255,39 +218,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     else {
       $(this.storeEl).removeClass('incomplete');
       $(this.storeTextEl).removeClass('incomplete');
-    }
-
-    if(!this.isGifted() && 
-            $(this.priceEl).val().replace(/ /g,'').length < 1) {
-      valid = false;
-
-      $(this.priceEl).addClass('incomplete');
-      $(this.priceTextEl).addClass('incomplete');
-      $(this.priceDollarEl).addClass('incomplete');
-
-      $(this.priceInvalidMsgEl).html('Your best guess is fine.');
-      $(this.priceInvalidMsgEl).show();
-
-      analytics.productException('No Price',this.mode);
-    }
-    else if(!this.isGifted() && isNaN($(this.priceEl).val())) {
-      valid = false;
-
-      $(this.priceEl).addClass('incomplete');
-      $(this.priceTextEl).addClass('incomplete');
-      $(this.priceDollarEl).addClass('incomplete');
-
-      $(this.priceInvalidMsgEl).html('Invalid price.');
-      $(this.priceInvalidMsgEl).show();
-
-      analytics.productException('Invalid Price',this.mode);
-    }
-    else {
-      $(this.priceEl).removeClass('incomplete');
-      $(this.priceTextEl).removeClass('incomplete');
-      $(this.priceDollarEl).removeClass('incomplete');
-
-      $(this.priceInvalidMsgEl).hide();
     }
 
     this.posting = valid;

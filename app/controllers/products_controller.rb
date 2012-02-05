@@ -7,7 +7,8 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
-    @product      = Product.new
+    @product        = Product.new
+    @product.price  = 0
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
