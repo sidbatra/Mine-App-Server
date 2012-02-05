@@ -119,7 +119,8 @@ div.welcome_text {
   background: url('/images/black_20.png'); }
 
 #header .navbar .nav li ul {
-  background: white;
+	background: url('/images/black_7.png');
+	padding: 0 8px 8px 8px;
   z-index: 5000; }
 
 #header .navbar .nav li ul li {
@@ -171,19 +172,20 @@ div.welcome_text {
 
 .nav_add_list, .nav_login_list {
   display: none;
-  border-top: 2px solid #ebe8e3;
-  border-right: 2px solid #ebe8e3;
-  border-bottom: 2px solid #ebe8e3;
-  border-left: 2px solid #ebe8e3;
+/*border-top: 2px solid transparent; 
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
   box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
   -moz-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
-  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
+  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);*/
+*/ }
 
 .nav_add_list {
   position: absolute;
   top: 42px;
-  left: 0px;
-  width: 116px; }
+  left: -8px;
+  width: 120px; }
 
 .nav_user_button_user_photo {
   width: 26px;
