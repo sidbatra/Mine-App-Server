@@ -116,7 +116,7 @@ div.welcome_text {
   position: relative; }
 
 #header .navbar .nav li:hover {
-  background: url('/images/black_30.png'); }
+  background: url('/images/black_20.png'); }
 
 #header .navbar .nav li ul {
   background: white;
@@ -162,22 +162,22 @@ div.welcome_text {
   display: block;
   padding: 0px; }
 
-.nav_add_item_button:hover {
+.nav_add_item_button:hover,
+#header .navbar .nav li:hover .nav_add_item_button {
   background-position: -5px -42px; }
 
-.nav_add_item_button:active,
-#header .navbar .nav li:hover .nav_add_item_button {
+.nav_add_item_button:active {
   background-position: -5px -84px; }
 
 .nav_add_list, .nav_login_list {
   display: none;
-/*   border-top: 2px solid #a8a8a8; */
+  border-top: 2px solid #ebe8e3;
   border-right: 2px solid #ebe8e3;
   border-bottom: 2px solid #ebe8e3;
   border-left: 2px solid #ebe8e3;
-  box-shadow: 0px 0px 1px 3px rgba(102, 102, 102, 0.1);
-  -moz-box-shadow: 0px 0px 1px 3px rgba(102, 102, 102, 0.1);
-  -webkit-box-shadow: 0px 0px 1px 3px rgba(102, 102, 102, 0.1); }
+  box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
+  -moz-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1);
+  -webkit-box-shadow: 0px 0px 1px 5px rgba(102, 102, 102, 0.1); }
 
 .nav_add_list {
   position: absolute;
@@ -1382,13 +1382,14 @@ a.product_endorsement_submit_button:active {
   line-height: 36px;
   font-size: 16px;
   color: #555555;
+  text-shadow: 0 1px 1px white;
   display: block; }
 
 .small_top_margin {
-  margin-top: 4px; }
+  margin-top: 3px; }
 
 .small_bottom_margin {
-  margin-bottom: 4px; }
+  margin-bottom: 3px; }
 
 .large_top_margin {
   margin-top: 16px; }
@@ -1397,7 +1398,7 @@ a.product_endorsement_submit_button:active {
   margin-bottom: 16px; }
 
 .no_small_top_margin {
-  margin-top: -4px; }
+  margin-top: -3px; }
 
 .tab.triangle {
   background: white url("/images/triangles.png") right -108px no-repeat;
@@ -1425,6 +1426,9 @@ a.product_endorsement_submit_button:active {
   background-position: right 0;
   color: #555555;
   cursor: default; }
+ 
+.tab.triangle.down, .tab.triangle.down:hover, .tab.triangle.down:active {
+  background: white url("/images/triangles.png") right -360px no-repeat; }
 
 .tab.triangle.load, .tab.triangle.load:hover, .tab.triangle.load:active {
   background: white url("/images/tab_load_cc3333.gif") 154px center no-repeat; }
@@ -1533,8 +1537,8 @@ a.product_endorsement_submit_button:active {
   height: 84px;
   border: 2px solid #a8a8a8;
   padding: 8px 8px 8px 10px;
-  background: white url("/images/black_7.png") repeat-x;
-/*   background: url("/images/textarea_white_40.png") top center repeat-x;  */
+/*   background: white url("/images/black_7.png") repeat-x; */
+  background: url("/images/textarea_white_40.png") top center repeat-x; 
 }
   
 .sidebar .user_byline_save {
@@ -2046,8 +2050,8 @@ table.collection.details .textbox .title {
 .products .product .feedback {
   position: absolute;
   top: 0px;
-  left: 0px;
-  right: 0px;
+  left: 10px;
+  right: 10px;
   display: none; }
 
 .product:hover .feedback {
@@ -2058,8 +2062,8 @@ table.collection.details .textbox .title {
   font-size: 14px;
   line-height: 36px;
   color: #555555;
-  padding-bottom: 2px;
-  background: url('/images/shadow_light_downfacing.png') bottom center repeat-x;
+  padding-bottom: 4px;
+  background: url('/images/shadow_downfacing_4.png') bottom center repeat-x;
   text-align: center; }
 
 .products .product .feedback .buttons .button {
