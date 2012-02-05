@@ -32,10 +32,6 @@ class ProductsController < ApplicationController
                                       self.current_user.id).id
     end
 
-    if params[:product][:is_gift] == '1'
-      params[:product][:price] = 0 if params[:product][:price].nil?
-    end
-
     @product  = Product.add(params[:product],self.current_user.id)
 
   rescue => ex
@@ -198,13 +194,6 @@ class ProductsController < ApplicationController
                                         self.current_user.id).id :
                                     nil
     end
-
-    if product_params[:is_gift] && 
-        product_params[:is_gift] == '1'
-
-      product_params[:price] = 0 if product_params[:price].nil?
-    end
-
 
     if @product.user_id == self.current_user.id
       @product.update_attributes(product_params) 
