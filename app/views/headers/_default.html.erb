@@ -3,7 +3,7 @@
 		<div class='navbar wide'>
 	
 	      <%=link_to_if !is_onboarding?,
-	                    image_tag('oncloset_logo_30_white.png', :alt => CONFIG[:name], :class => "logo"),
+	                    image_tag('oncloset_logo_34_white.png', :alt => CONFIG[:name], :class => "logo"),
 	                     logged_in? ? 
 	                        user_path(self.current_user.handle,:src => "top") : 
 	                        home_path(
