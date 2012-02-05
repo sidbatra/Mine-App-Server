@@ -82,22 +82,16 @@ class ProductPresenter < BasePresenter
 
   # Link to the store if it is a top store
   #
-  def store_link
+  def store_link(src)
     link = ""
 
     if product.store 
       link += h.link_to_if product.store.is_top,
                 store_name,
-                store_path(product.store.handle,:src => 'product_store')
+                store_path(product.store.handle,:src => src)
     end
 
     link
-  end
-
-  # Price of the product
-  #
-  def price
-    product.price ? h.display_currency(product.price) : ''
   end
 
   # Byline displayed on the product show page
@@ -107,17 +101,13 @@ class ProductPresenter < BasePresenter
     
     if product.is_gift
       html += "as a gift "
-    elsif product.price
-      html += "for <span class='right_price'>" + 
-              price +
-              "</span> " 
     end
 
     if product.store
       html += "bought " if product.is_gift
 
       html += "at <span class='right_store'>" +
-              store_link +
+              store_link('product_store') +
               "</span>"
     end
 
@@ -131,7 +121,7 @@ class ProductPresenter < BasePresenter
 
     if product.store
       html = "Bought at <span class='right_store'>" +
-              store_link +
+              store_link('collection_store') +
               "</span>"
     elsif product.is_gift
       html = "gift "
