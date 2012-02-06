@@ -1,94 +1,68 @@
-<!--
-<div id="background">
-	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
-</div>
--->
 
-<div id="pic_bg" class="fixed_bg">
+<%=render :partial  => "headers/onboarding",
+          :locals   => {:step => 2}%>
 
-	<div id='header_onboarding'>
-	
-		<div class='navbar unselectable'>
-	
-			 <%=image_tag('oncloset_logo_30_white.png', 
-			 		:alt => CONFIG[:name],
-			 		:class => "logo")%>
-			 		
-			<ol id='indicators'>
-	        <li class='first'></li>
-	        <li class='second on'></li>
-	        <li class='third'></li>
-	    </ol> 		
-	
-		</div>
-	
-	</div>
 
-	<div id="container">
+<div id="container" class="narrow">
+	
+		<div class="heading unselectable">
+			Success! Here are a few shoppers<br />
+			you're following to get you started.
+    </div>
+
+    <%form_tag '/welcome',
+        :id   => 'new_followings' do |f|%>
+
+      <%=hidden_field_tag :id, WelcomeFilter::Follow%>
+      <%=hidden_field_tag :user_ids%>
+      <%=submit_tag '',
+          :class  => 'invite_friends',
+          :name   => nil%>
+    <%end%>
+
+
+	  <div id="users">
+		  <%@users.each do |user|%>
+			  <div class='picker_choice unselectable'>
+	
+			  		<div class="left" 
+                  style="background-image: url('<%=user.large_photo_url%>');">
+			  		</div>
+	
+						<div class="right">
+							<%=user.first_name + ' ' + user.last_name%>
+						</div>
+						
+						<div class="tiles">
+              <%stores = @shoppings[user.id].map(&:store)%>
+              <%subset = self.current_user.stores.select{|s| stores.include?(s)}%>
+
+              <%subset[0..3].each do |store|%>
+                <img class="tile" src=<%=store.image_url%> />
+              <%end%>
+
+              <%(stores-subset)[0..(3-subset.length)].each do |store|%>
+                <img class="tile" src=<%=store.image_url%> />
+              <%end if subset.length <= 3%>
+						</div>
 		
-			<div class="heading unselectable">
-				Success! Here are a few shoppers<br />
-				you're following to get you started.</div>
+						<div class='action_bar' id='following_box_<%=user.id%>'>
+						</div>
+              
+			  </div> <!-- picker_choice -->
+      <%end%>
+	  </div> <!--users-->
 
-	    	<%form_tag '/welcome',
-              :id   => 'new_followings' do |f|%>
-
-		      <%=hidden_field_tag :id, WelcomeFilter::Follow%>
-		      <%=hidden_field_tag :user_ids%>
-		      <%=submit_tag '',
-		                    :class  => 'invite_friends',
-		                    :name   => nil%>
-		    <%end%>
-
-
-		  <div id="users">
-			  <%@users.each_with_index do |user,i|%>
-				  <div class='picker_choice unselectable'>
-		
-				  		<div class="left" style="background-image: url('<%=user.large_photo_url%>');">
-				  		</div>
-		
-							<div class="right">
-								<%=user.first_name + ' ' + user.last_name%>
-							</div>
-							
-							<div class="tiles">
-                <%stores = @shoppings[user.id].map(&:store)%>
-                <%subset = self.current_user.stores.select{|s| stores.include?(s)}%>
-
-                <%subset[0..3].each do |store|%>
-                  <img class="tile" src=<%=store.image_url%> />
-                <%end%>
-                <%if subset.length <= 3%>
-                  <%(stores-subset)[0..(3-subset.length)].each do |store|%>
-                    <img class="tile" src=<%=store.image_url%> />
-                  <%end%>
-                <%end%>
-							</div>
-			
-							<div class='action_bar' id='following_box_<%=user.id%>'>
-							</div><!--suggested following box-->
-	              
-				  </div>
-        <%end%>
-		  </div> <!--users-->
-
-		</div> <!-- box -->
-		 
-	</div> <!-- container -->
-	
-</div> <!-- pic_bg -->
+</div> <!-- container -->
 
 
 <%content_for :javascript do%>
-
   <script type="text/javascript">
 
-    new Denwen.Views.Welcome.Followings({
+    new Denwen.Views.Followings.New({
                      users  : <%=@users.map(&:id).to_json%>,
                          el : $('#container')});
 
   </script>
-
 <%end%>
 

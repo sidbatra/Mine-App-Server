@@ -1,0 +1,24 @@
+<a href="<%=user.path(src)%>" class="picker_choice">
+
+	<div class="left" style="background-image: url('<%=user.get('large_photo_url')%>');">
+	</div>
+	
+	<div class="right">
+		<%=user.get('first_name') + ' ' + user.get('last_name')%> 
+		<br />
+		<span class='byline'>
+			<%=helpers.truncate(user.get('byline'), 18, '…')%>
+		</span>
+	</div>
+	
+	<div class="tiles">
+    <%var count = 0;%>
+      <%user.get('shoppings').sort().each(function(shopping){%>
+        <%if(shopping.get('store').get('is_processed') && ++count < 5){%>
+          <img class="tile" src="<%=shopping.get('store').get('thumbnail_url')%>" />
+      <%}%>
+    <%});%>
+	</div>
+
+</a> <!-- picker_choice -->
+

@@ -10,18 +10,19 @@ class SessionController < ApplicationController
   # Create a session by asking user to enter via facebook
   #
   def create
-    source              = params[:source] ? params[:source].to_s : "unknown"
     fb_auth             = FbGraph::Auth.new(
                             CONFIG[:fb_app_id],
                             CONFIG[:fb_app_secret])
     client              = fb_auth.client
-    client.redirect_uri = fb_reply_url(:source => source)
+    client.redirect_uri = fb_reply_url(
+                            :src    => @source,
+                            :target => params[:target])
 
-    target_url          =  client.authorization_uri(
+    target_url          = client.authorization_uri(
                             :scope => [:email,:user_likes,:user_birthday])
   rescue => ex
     handle_exception(ex)
-    target_url = root_path(:src => "login_error")
+    target_url = root_path(:src => HomeShowSource::LoginError)
   ensure
     redirect_to target_url
   end
@@ -37,7 +38,7 @@ class SessionController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => "logout")
+    redirect_to root_path(:src => HomeShowSource::Logout)
   end
 
 end

@@ -1,13 +1,13 @@
 class Product < ActiveRecord::Base
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Mixins
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   include DW::Handler
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Associations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
@@ -16,9 +16,9 @@ class Product < ActiveRecord::Base
   has_many    :achievements,  :as => :achievable,   :dependent => :destroy
   has_many    :collection_parts, :dependent => :destroy
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Validations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   validates_presence_of     :title
   validates_presence_of     :price
   validates_presence_of     :orig_image_url
@@ -27,9 +27,9 @@ class Product < ActiveRecord::Base
   validates_presence_of     :category_id
   validates_inclusion_of    :category_id, :in => 1..8
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Named scopes
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   named_scope :with_user,   :include => :user
   named_scope :with_store,  :include => :store
   named_scope :by_id,       :order => 'id DESC'
@@ -40,23 +40,30 @@ class Product < ActiveRecord::Base
                               {:conditions => {:user_id => user_id}}}
   named_scope :for_store,   lambda {|store_id| 
                               {:conditions => {:store_id => store_id}}}
+  named_scope :not_for_user, lambda {|user_id| 
+                              {:conditions => {:user_id_ne => user_id}}}
+  named_scope :acted_on_by_for, lambda {|user_id,name| 
+                                  {:conditions => {:actions => {
+                                                    :user_id  => user_id,
+                                                    :name     => name}},
+                                   :joins       => :actions}}
   named_scope :in_category, lambda {|category_id| 
                               {:conditions => {:category_id => category_id}} if category_id}
   named_scope :created,     lambda {|range| 
                               {:conditions => {:created_at => range}}}
 
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Attributes
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
                   :query,:price,:endorsement,:is_gift,:category_id,
                   :store_id,:user_id,:source_product_id
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Class methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Add a new product
   #
@@ -78,9 +85,9 @@ class Product < ActiveRecord::Base
   end
 
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Instance methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Share the product to fb via the user who created it
   #
@@ -149,6 +156,14 @@ class Product < ActiveRecord::Base
   def image_url
     is_hosted ?
       FileSystem.url(image_path) : 
+      orig_image_url
+  end
+  
+  # Url of the giant copy of the image
+  #
+  def giant_url
+    is_hosted ?
+      FileSystem.url(giant_path) : 
       orig_image_url
   end
 
@@ -229,23 +244,6 @@ class Product < ActiveRecord::Base
       self.is_processed  = true
       self.save(false)
     end
-  end
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:title,:is_gift,:handle,:price,
-                            :comments_count,:user_id,:category_id]
-
-    options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += [:thumbnail_url]
-
-    options[:include] = {}
-    options[:include].store(*(Store.json_options)) if options[:with_store]
-    options[:include].store(*(User.json_options(:methods => []))) if options[:with_user]
-
-    super(options)
   end
 
 

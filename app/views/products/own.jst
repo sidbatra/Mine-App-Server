@@ -4,8 +4,8 @@
         class='context_box'>
 
     <div class='step' id='product_store_box_<%=id%>'>
-	    <div class='title'>
-	      Store <span class='longer_title'>where bought</span>
+	    <div class='title' id='product_store_text_<%=id%>'>
+	      Store
 	      <span class='option'>
 	        <input class='checkbox' 
 	                id='product_is_store_unknown_<%=id%>' 
@@ -17,35 +17,13 @@
 	      </span>
 	    </div>
 
-    	<input class='textfield' type='text' id='product_store_name_<%=id%>'>
+    	<input class='inputfield' type='text' id='product_store_name_<%=id%>'>
     </div>
-		
-		<div class='step' id='product_price_box_<%=id%>'>
-	    <div class='title'>
-	      Price 
-	      <span class='option'>
-	        <input class='checkbox' 
-	                id='product_is_gift_<%=id%>' 
-	                type='checkbox' 
-	                value='0'>
-	        <label for='product_is_gift_<%=id%>'>
-	          Gift
-	        </label>
-	      </span>
-	    </div>
 	    
-	    <div class='price_container'>
-	      <input class='textfield price' type='text' id='product_price_<%=id%>'>
-	      <div id='creation_dollar_<%=id%>' class='dollar'>
-	        $
-	      </div>
-	    </div>
-    </div>
-    
-    <input class='button_red but add_to_closet slim_shadow_dark' 
+    <input class='own_to_closet' 
               id='create_own'
             type='submit' 
-            value='Add to closet'>
+            value=''>
 
     <div id='cancel_own' class='cancel'>
       Cancel

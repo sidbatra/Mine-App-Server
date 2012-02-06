@@ -30,6 +30,20 @@ module DW
       Automated = 0
     end
 
+    # Names for the Action model
+    #
+    class ActionName < Enumeration
+      Like  = 'like'
+      Own   = 'own'
+      Want  = 'want'
+    end
+
+    # Sources of landing at collections/new
+    #
+    class CollectionNewSource < Enumeration
+      Error = 'error'
+    end
+
     # Purpose for sending a user an email
     #
     class EmailPurpose < Enumeration
@@ -53,6 +67,26 @@ module DW
       Suggestion  = 2
     end
 
+    # Sources of landing at the users/show route
+    #
+    class HomeShowSource < Enumeration
+      UserCreateError = 'user_create_error'
+      LoginError      = 'login_error'
+      Logout          = 'logout'
+    end
+
+    # Sources of landing at products/new
+    #
+    class ProductNewSource < Enumeration
+      Error = 'error'
+    end
+
+    # Source of landing at products/show
+    #
+    class ProductShowSource < Enumeration
+      Updated = 'product_updated'
+    end
+
     # Source for the creation of the Search model
     #
     class SearchSource < Enumeration
@@ -65,6 +99,25 @@ module DW
     class ShoppingSource < Enumeration
       User    = 0
       Product = 1
+    end
+
+    # Different sources of landing at the users/show route
+    #
+    class UserShowSource < Enumeration
+      CollectionCreate  = 'collection_create'
+      CollectionDeleted = 'collection_deleted'
+      HomeRedirect      = 'home_redirect'
+      Login             = 'login'
+      ProductCreate     = 'product_create'
+      ProductDeleted    = 'product_deleted'
+    end
+
+    # Hash tags for loading different views on
+    # the users/show page
+    #
+    class UserShowHash < Enumeration
+      Collections = 'looks'
+      Owns        = 'owns/all'
     end
 
     # Different screens for the welcoem controller

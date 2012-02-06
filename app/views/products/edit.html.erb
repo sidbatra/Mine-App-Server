@@ -1,8 +1,6 @@
 <div id="pic_bg">
 
-	<div id="container">
-
-		<div id="box" class="rounded_5">
+	<div id="container narrow">
 
 		<!-- item -->
 		
@@ -13,19 +11,14 @@
 		
 		    <%=render :partial  => 'input', 
 		              :locals   => {
-		                :f            => f,
-		                :category     => @category,
-		                :placeholders => @placeholders,
-                    :onboarding   => false}%>
+		                :f                => f,
+		                :category         => @category,
+		                :placeholders     => @placeholders,
+                    :onboarding       => false,
+                    :submit_class     => 'update_product',
+                    :show_query_box   => false}%>
 		
 		  <%end%> <!-- form -->
-		  
-		  
-		</div> <!-- box -->
-
-		<div id="footer">
-			<%=CONFIG[:name]%> © 2011 · <%=email_link%>
-		</div>
 	
 	</div> <!-- container -->
    
@@ -41,11 +34,13 @@
   <script type="text/javascript">
 
     new Denwen.Views.Products.Edit({
-                        el            : $('body'),
-                        productJSON   : <%=@product.to_json(
-                                              :methods => [:photo_url])%>,
-                        categoryJSON  : <%=@category.to_json%>,
-                        source        : '<%=@source%>'});
+          el            : $('body'),
+          productJSON   : <%=@product.to_json(
+                              :only     => [:id,:user_id,:endorsement],
+                              :methods  => [:photo_url])%>,
+          categoryJSON  : <%=@category.to_json(
+                              :only => [:id,:name,:handle,:weight])%>,
+          source        : '<%=@source%>'});
   </script>
 
 <%end%>

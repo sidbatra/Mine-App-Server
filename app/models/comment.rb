@@ -1,32 +1,32 @@
 class Comment < ActiveRecord::Base
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Associations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   belongs_to :user
   belongs_to :commentable, :polymorphic => true, :counter_cache => true
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Validations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   validates_presence_of   :data
   validates_presence_of   :user_id
   validates_presence_of   :commentable_id
   validates_presence_of   :commentable_type
-  validates_inclusion_of  :commentable_type, :in => %w(Product)
+  validates_inclusion_of  :commentable_type, :in => %w(Product Collection)
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Named scopes
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   named_scope :with_user, :include => :user
   named_scope :on, lambda {|klass,id| {:conditions => {
                               :commentable_id   => id,
                               :commentable_type => klass.capitalize}}}
   named_scope :by_id, :order => 'id DESC'
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Class methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Add a new comment
   #
@@ -49,23 +49,6 @@ class Comment < ActiveRecord::Base
                   :commentable_id   => comment.commentable_id}).map(&:user_id)
     user_ids << comment.commentable.user_id
     user_ids.uniq
-  end
-
-
-  #-----------------------------------------------------------------------------
-  # Instance methods
-  #-----------------------------------------------------------------------------
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id,:data,:created_at]
-
-    options[:include] = {}
-    options[:include].store(*(User.json_options))
-
-    super(options)
   end
 
 end

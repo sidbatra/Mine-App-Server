@@ -1,27 +1,28 @@
 class Store < ActiveRecord::Base
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Mixins
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   include DW::Handler
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Associations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   belongs_to  :user
   has_many    :products
-  has_many    :shoppings, :dependent => :destroy
+  has_many    :specialties, :dependent => :destroy
+  has_many    :shoppings,   :dependent => :destroy
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Validations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   validates_presence_of   :name
   validates_presence_of   :user_id
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Named scopes
-  #-----------------------------------------------------------------------------
-  named_scope :unfiltered,  ''
+  #----------------------------------------------------------------------
+  named_scope :with_products, :include => :products
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
@@ -29,13 +30,21 @@ class Store < ActiveRecord::Base
   named_scope :popular,     :order      => 'products_count DESC'
   named_scope :limit,       lambda {|limit| {:limit => limit}}
   named_scope :for_user,    lambda {|user_id| {
-                                      :joins      => :shoppings,
-                                      :conditions => {:shoppings => {
-                                                        :user_id => user_id}} }}
+                                :joins      => :shoppings,
+                                :conditions => {:shoppings => {
+                                                  :user_id => user_id}},
+                                :order      => 'shoppings.products_count DESC'}}
+  named_scope :for_specialty,  lambda {|category_id| {
+                                :joins      => :specialties,
+                                :conditions => {:specialties => {
+                                                  :category_id  => category_id,
+                                                  :is_top       => true},
+                                                :products_count_gt => 15},
+                                :order      => 'specialties.weight DESC'}}
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Class methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Add a new store
   #
@@ -51,21 +60,10 @@ class Store < ActiveRecord::Base
     find_by_name(name.squeeze(' ').strip) 
   end
 
-  # Return json options specifiying which attributes and methods
-  # to pass in the json when the model is used within an include
-  # of another model's json
-  #
-  def self.json_options
-    options             = {}
-    options[:only]      = [:id,:name,:handle]
-    options[:methods]   = [:is_top]
 
-    [self.name.downcase.to_sym,options]
-  end
-
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Instance methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Edit attributes of the model
   #
@@ -91,14 +89,6 @@ class Store < ActiveRecord::Base
     end
   end
 
-  # Total price of all the products
-  #
-  def products_price
-    Cache.fetch(KEYS[:store_price] % self.id) do
-      Product.for_store(self.id).sum(:price) 
-    end
-  end
-
   # Flag if the store is a top store
   #
   def is_top
@@ -118,8 +108,6 @@ class Store < ActiveRecord::Base
     Category.fetch_all.each do |category|
       Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
     end
-
-    Cache.delete(KEYS[:store_price] % store.id)
   end
 
   # Change all products to gift
@@ -144,6 +132,12 @@ class Store < ActiveRecord::Base
     't_' + image_path
   end
 
+  # Relative path on the filesystem for the processed medium image
+  #
+  def medium_path
+    'm_' + image_path
+  end
+
   # Relative path on the filesystem for the processed large image
   #
   def large_path
@@ -154,6 +148,12 @@ class Store < ActiveRecord::Base
   #
   def thumbnail_url
     is_processed ? FileSystem.url(thumbnail_path) : image_url
+  end
+
+  # Full url of the medium copy of the image
+  #
+  def medium_url
+    is_processed ? FileSystem.url(medium_path) : image_url
   end
 
   # Full url of the large copy of the image
@@ -192,10 +192,25 @@ class Store < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 35,:height => 35})
+                        {:width => 36,:height => 36})
 
       FileSystem.store(
         thumbnail_path,
+        open(image.path),
+        "Content-Type"  => "image/png",
+        "Expires"       => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create medium thumbnail
+      #
+      image = MiniMagick::Image.from_file(file_path)
+
+      ImageUtilities.reduce_to_with_image(
+                        image,
+                        {:width => 100,:height => 100})
+
+      FileSystem.store(
+        medium_path,
         open(image.path),
         "Content-Type"  => "image/png",
         "Expires"       => 1.year.from_now.
@@ -220,18 +235,6 @@ class Store < ActiveRecord::Base
       self.is_processed  = true
       self.save(false)
     end
-  end
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-
-    options[:only]     = [] if options[:only].nil?
-    options[:only]    += [:id,:name]
-
-    options[:methods]  = [] if options[:methods].nil?
-
-    super(options)
   end
 
 

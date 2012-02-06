@@ -7,7 +7,8 @@ class ProductsController < ApplicationController
   # Display UI for creating a new product
   #
   def new
-    @product      = Product.new
+    @product        = Product.new
+    @product.price  = 0
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
@@ -32,10 +33,6 @@ class ProductsController < ApplicationController
                                       self.current_user.id).id
     end
 
-    if params[:product][:is_gift] == '1'
-      params[:product][:price] = 0 if params[:product][:price].nil?
-    end
-
     @product  = Product.add(params[:product],self.current_user.id)
 
   rescue => ex
@@ -47,10 +44,14 @@ class ProductsController < ApplicationController
                       new_product_path(
                         :category => Category.find(
                                         params[:product][:category_id]).handle,
-                        :src      => 'error') :
+                        :src      => ProductNewSource::Error) :
                       user_path(
                         self.current_user.handle,
-                        :src => 'product_create')
+                        :src    => UserShowSource::ProductCreate,
+                        :anchor => (self.current_user.products_count == 
+                                    CONFIG[:products_threshold] - 1) ?
+                                      UserShowHash::Collections :
+                                      UserShowHash::Owns)
 
       end
       format.json 
@@ -60,33 +61,26 @@ class ProductsController < ApplicationController
   # Fetch multiple products
   #
   def index
-    @filter   = params[:filter].to_sym
-    @options  = {}
+    @filter     = params[:filter].to_sym
+
+    category    = Category.fetch(params[:category]) if params[:category]
+    category_id = category ? category.id : nil
 
     case @filter
     when :user
-      category    = Category.fetch(params[:category]) if params[:category]
-      category_id = category ? category.id : nil
-
       @products   = Product.with_store.with_user.
                       for_user(params[:owner_id]).
                       in_category(category_id).
                       by_id
 
-      @options[:with_store] = true
-      @options[:with_user]  = true
       @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
 
     when :store
-      category    = Category.fetch(params[:category]) if params[:category]
-      category_id = category ? category.id : nil
-
       @products   = Product.with_user.
                       for_store(params[:owner_id]).
                       in_category(category_id).
                       by_id
 
-      @options[:with_user] = true
       @key = KEYS[:store_products_in_category] % [params[:owner_id],category_id]
 
     when :top
@@ -96,21 +90,24 @@ class ProductsController < ApplicationController
                     with_user.
                     limit(10)
 
-      @options[:with_user] = true
       @key = KEYS[:store_top_products] % params[:owner_id]
 
-    when :collection
-      collection = Collection.fresh_for_user(params[:owner_id])
-      @products = []
+    when :liked
+      @products = Product.with_store.with_user.
+                    acted_on_by_for(params[:owner_id],ActionName::Like).
+                    not_for_user(params[:owner_id]).
+                    in_category(category_id)
+      
+      @key = KEYS[:user_like_products_in_category] % 
+              [params[:owner_id],category_id]
 
-      if collection
-        @products = Product.for_ids(collection.product_ids) 
-        @options[:with_store] = true
-        @options[:with_user]  = true
-        @key = KEYS[:collection_products] % collection.id
-      else
-        @key = KEYS[:collection_products] % 0
-      end
+    when :wanted
+      @products = Product.with_store.with_user.
+                    acted_on_by_for(params[:owner_id],ActionName::Want).
+                    in_category(category_id)
+      
+      @key = KEYS[:user_want_products_in_category] % 
+              [params[:owner_id],category_id]
 
     else
       raise IOError, "Invalid option"
@@ -149,7 +146,7 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => 'product_show_error') if @error
+    redirect_to root_path if @error
   end
 
   # Display form for editing a product
@@ -179,10 +176,10 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path(:src => 'product_edit_error') if @error
+    redirect_to root_path if @error
   end
 
-  # Update user's byline
+  # Update product
   #
   def update
     @product        = Product.find(params[:id])
@@ -199,17 +196,10 @@ class ProductsController < ApplicationController
                                     nil
     end
 
-    if product_params[:is_gift] && 
-        product_params[:is_gift] == '1'
-
-      product_params[:price] = 0 if product_params[:price].nil?
-    end
-
-
     if @product.user_id == self.current_user.id
       @product.update_attributes(product_params) 
     end
-  
+
   rescue => ex
     handle_exception(ex)
   ensure
@@ -218,7 +208,7 @@ class ProductsController < ApplicationController
         redirect_to product_path(
                     self.current_user.handle,
                     @product.handle,
-                    :src => 'product_updated')
+                    :src => ProductShowSource::Updated)
       end
       format.json 
     end
@@ -232,7 +222,10 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to user_path(self.current_user.handle,:src => "product_deleted")
+    redirect_to user_path(
+                  self.current_user.handle,
+                  :src    => UserShowSource::ProductDeleted,
+                  :anchor => UserShowHash::Owns)
   end
 
 

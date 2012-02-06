@@ -1,0 +1,96 @@
+<%if(products.length) {%>
+
+  <%if(categories.size() > 1){%>
+    <div class="titlebar small_bottom_margin">
+      <a class='cat <%=currentCategory == 'all' || currentCategory == undefined ? 'on' : ''%>' href='#<%=fragment%>/all'>Everything</a>
+
+      <%categories.each(function(category){%>
+        <a class='cat <%=category.get('handle') == currentCategory ? 'on' : ''%>' href='#<%=fragment%>/<%=category.get('handle')%>'>
+          <%=category.get('name')%>
+        </a>  
+      <%});%>
+    </div>
+  <%}%>
+		
+	<div class="products">
+    <%products.each(function(product){%>
+      <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
+    <%});%>
+  </div>
+<%} else if(src == 'liked') {%>
+
+	<%if(helpers.isCurrentUser(ownerID)){%>
+	
+    <!-- no likes, current user -->
+    <div class='placeholder heading'>
+      Everything you <span class='em'>like</span> shows up here.
+    </div>
+    <div class='placeholder box like'>
+      <div class='overlay'>
+      </div>
+    </div>
+    <div class='placeholder box like_2'>
+    </div>
+    
+  <%}else{%>
+
+    <!-- no likes, other user -->
+    <div class='placeholder heading'>
+      <%=ownerName%> hasn't <span class='em'>liked</span> anything yet.
+    </div>
+    <div class='placeholder box like'>
+    </div>
+    <div class='placeholder box like_2'>
+    </div>
+
+	<%}%>
+	
+<%} else if(src == 'wanted') {%>
+ 
+ 	<%if(helpers.isCurrentUser(ownerID)){%>
+ 	
+    <!-- no wants, current user -->
+    <div class='placeholder heading'>
+      Everything you <span class='em'>want</span> shows up here.
+    </div>
+    <div class='placeholder box want'>
+      <div class='overlay'>
+      </div>
+    </div>
+    <div class='placeholder box want_2'>
+    </div>
+		
+  <%}else{%>
+
+    <!-- no wants, other user -->
+    <div class='placeholder heading'>
+      <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
+    </div>
+    <div class='placeholder box want'>
+    </div>
+    <div class='placeholder box want_2'>
+    </div>
+
+	<%}%>
+	
+<%} else if(src == 'user'){%>
+
+		<!-- Nothing in closet -->
+    <div class='placeholder heading'>
+      Nothing in this closet yet.
+    </div>
+    <div class='placeholder box like'>
+    </div>
+    <div class='placeholder box want'>
+    </div>
+
+<%}%>
+
+
+<%if(src == 'user' && 
+      helpers.isCurrentUser(ownerID) && 
+      products.size() == 1 && 
+      (currentCategory == 'all' || currentCategory == undefined)){%>
+	<div class='add_more_items_arrow'></div>
+<%}%>
+

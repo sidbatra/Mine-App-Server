@@ -6,29 +6,13 @@
     <%=include_stylesheets :home-%>
 
     <%=yield :head%>
-
-
-    <%=csrf_meta_tag%>
-    <%=asset_host_meta_tag%>
   </head>
 
-  <body <%=yield :body_attribute%>>
-    
-    <div id="fb-root"></div>
-    
-    <%=render "misc/header" if @home == 'girl' || @home == 'zendesk'%>
- 
+  <body style='overflow:hidden' class='home7'>
     <%=yield%>
     
-    <%=blocker%>
-
     <%=render :partial => "misc/analytics"%>
-
-    <%=include_javascripts :application-%>
 
     <%=yield :javascript%>
   </body>
 </html>
-
-
-

@@ -13,6 +13,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.name_tag(email);
     mpq.register_once({'age' : age}); 
   },
+
+  // Track the version number of the application
+  //
+  trackVersion: function(version) {
+    mpq.register({'Version' : 'v' + version});
+  },
   
   // Track the page the user landed on
   //
@@ -24,24 +30,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   userLogin: function() {
     mpq.track("User Logged In Again");
-  },
-
-  // User clicks the facebook login button 
-  //
-  fbLoginButtonClicked: function() {
-    mpq.track("FB Login Button Clicked");
-  },
-
-  // User accepts facebook connect 
-  //
-  fbConnectAccepted: function() {
-    mpq.track("FB Connect Accepted");
-  },
-
-  // User rejects facebook connect 
-  //
-  fbConnectRejected: function() {
-    mpq.track("FB Connect Rejected");
   },
 
   // User created
@@ -106,6 +94,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Cancelled");
   },
 
+  // User deletes a collection
+  //
+  collectionDeleted: function() {
+    mpq.track("Collection Deleted");
+  },
+
   // User starts to type a comment
   //
   commentSelected: function() {
@@ -114,8 +108,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User creates a comment
   //
-  commentCreated: function() {
-    mpq.track("Comment Created");
+  commentCreated: function(commentableType) {
+    mpq.track("Comment Created", {'Commentable Type':commentableType});
   },
 
   // User creates a following
@@ -134,15 +128,26 @@ Denwen.Analytics = Backbone.Model.extend({
           'User ID'      : helpers.currentUserID()});
   },
 
-  // User likes a product
+  // User creates a like
   //
-  likeCreated: function(source,sourceID,productID,productUserID) {
-    mpq.track('Like Created', {
-      'Source'          : source,
-      'Source ID'       : sourceID,
-      'Product ID'      : productID,
-      'User ID'         : helpers.currentUserID(),
-      'Is Own Product'  : helpers.isCurrentUser(productUserID)});
+  likeCreated: function(source,sourceID,actionableID,actionableType,actionableUserID) {
+
+    if(actionableType == 'product') {
+      mpq.track('Like Created', {
+        'Source'          : source,
+        'Source ID'       : sourceID,
+        'Product ID'      : actionableID,
+        'User ID'         : helpers.currentUserID(),
+        'Is Own Product'  : helpers.isCurrentUser(actionableUserID)});
+    }
+    else if(actionableType == 'collection') {
+      mpq.track('Collection Like Created', {
+        'Source'            : source,
+        'Source ID'         : sourceID,
+        'Collection ID'     : actionableID,
+        'User ID'           : helpers.currentUserID(),
+        'Is Own Collection' : helpers.isCurrentUser(actionableUserID)});
+    }
   },
 
   // User initiates the product ownership process
@@ -330,12 +335,67 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
+  // A type and category of a user's products are 
+  // explictly viewed
+  //
+  userProductsView: function(type,category,userID) {
+    mpq.track(
+      'User ' + type.capitalize() + ' View',{
+        'Category'        : category,
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's followers are viewed
+  //
+  userFollowersView: function(userID) {
+    mpq.track(
+      'User Followers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's ifollowers are viewed
+  //
+  userIFollowersView: function(userID) {
+    mpq.track(
+      'User IFollowers View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A user's collections are viewed
+  //
+  userCollectionsView: function(userID) {
+    mpq.track(
+      'User Collections View',{
+        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'id'              : userID});
+  },
+
+  // A collection is viewed
+  //
+  collectionView: function(source) {
+    mpq.track(
+      'Collection View',{
+        'source' : source});
+  },
+
   // Product's on a store's profile are filtered
   //
   storeProfileFiltered: function(category,id) {
     mpq.track('Store Profile Filtered',{
           "Category"         : category,
           "id"               : id});
+  },
+
+  // A store's products in a category are explicitly viewed
+  //
+  storeProductsView: function(category,storeID) {
+    mpq.track('Store Products View',{
+      'Category'  : category,
+      'id'        : storeID
+    });
   },
 
   // Page view on store profile
@@ -371,6 +431,12 @@ Denwen.Analytics = Backbone.Model.extend({
   collectionNewView: function(source) {
      mpq.track(
       'Collection New View',{'source' : source});
+  },
+
+  // User opts in to write a title while creating a collection
+  //
+  collectionTitleInitiated: function() {
+    mpq.track('Collection Title Initiated');
   },
 
   // Fired when the invite view is opened during onboarding

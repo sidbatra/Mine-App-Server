@@ -1,10 +1,11 @@
-<div class='title'>
-  Top Shoppers at this Store
+<div class='tab static triangle down'>
+  Top Shoppers
 </div>
 
-<div>
+<div class='tile_row'>
   <%users.each(function(user){%>
-    <%=Denwen.JST['users/user']({user:user, src:store_handle+'_top_shoppers'})%>
+    <%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
   <%});%>
   <%=helpers.blocker()%>
 </div>
+

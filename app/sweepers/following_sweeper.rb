@@ -31,11 +31,13 @@ class FollowingSweeper < ActionController::Caching::Sweeper
   #
   def expire_followers(following)
     expire_cache(KEYS[:user_followers] % following.user_id)
+    expire_cache(KEYS[:user_followers_preview] % following.user_id)
   end
 
   # Expire ifollowers for the user who created the following
   #
   def expire_ifollowers(following)
     expire_cache(KEYS[:user_ifollowers] % following.follower_id)
+    expire_cache(KEYS[:user_ifollowers_preview] % following.follower_id)
   end
 end

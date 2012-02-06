@@ -10,16 +10,13 @@ class HomeController < ApplicationController
     if params[:id]
       redirect_to root_path
     elsif logged_in? 
-      redirect_to user_path(self.current_user.handle,:src => 'home_redirect') 
+      redirect_to user_path(
+                    self.current_user.handle,
+                    :src => UserShowSource::HomeRedirect)
     end
   end
 
   private 
-
-  # Decide layout based on the source of the visit to home page
-  #
-  def decide_layout
-  end
 
   # Detect which origin the user is coming from and save it to session
   #

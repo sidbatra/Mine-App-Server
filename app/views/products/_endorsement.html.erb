@@ -1,51 +1,66 @@
+
     
-    <%if is_current_user(product.user)%>
+  <%if is_current_user(product.user)%>
 
-      <%edit_mode   = source == 'review'%>
-      <%edit_style  = edit_mode ? '' : 'display:none'%>
-      <%ui_style    = edit_mode ? 'display:none' : ''%>
+    <%edit_mode   = false%>
+    <%edit_style  = edit_mode ? '' : 'display:none'%>
+    <%ui_style    = edit_mode ? 'display:none' : ''%>
 
-      <!-- endorsement editing -->
-      <%=text_area_tag "product_endorsement",
-          product.endorsement.to_s,
-          :class  => "product_endorsement box_shadow",
-          :style  => edit_style%>
-      						
-      <%=link_to 	'Cancel', 
-      						'javascript:void(0)',
-      						:id			=> 'product_cancel',
-      						:class  => 'submit_red_12',
-      						:style	=> edit_style%>
-      						
-      <%=link_to 	'Save', 
-      						'javascript:void(0)',
-      						:id			=> 'product_update',
-      						:class  => 'submit_red_12',
-      						:style	=> edit_style%>
+    <!-- endorsement editing -->
+    
+    <div id="product_endorsement_box">
+    
+	    <%=text_area_tag "product_endorsement",
+				          product.endorsement.to_s,
+				          :class  => "product_endorsement_input",
+				          :style  => edit_style%>
+	    
+	    <%=link_to 	'Cancel', 
+	    						'javascript:void(0)',
+	    						:id			=> 'product_cancel',
+	    						:class  => 'product_endorsement_submit_button',
+	    						:style	=> edit_style%>
+	    
+			<%=link_to 	'Save', 
+									'javascript:void(0)',
+									:id			=> 'product_update',
+									:class  => 'product_endorsement_submit_button',
+									:style	=> edit_style%>
+	
+	    <!-- endorsement display-->
+	    <div class='product_endorsement'>
+	    
+	    	<span id='product_endorsement_text' style='<%=ui_style%>'>
+		      <%=h product.endorsement.to_s%>
+		    </span>   
+	
+					<%=link_to 'Edit', 'javascript:void(0)',
+											:id			=> 'product_edit',
+											:class  => 'edit_cccccc_14',
+		          				:style 	=> product.endorsement.present? && !edit_mode ?
+		                  		    		'' : 
+			                      			'display:none'%>            		
+	
+	      <!-- endorsement empty-->
+	      <%=link_to "Add your review",
+	                  'javascript:void(0)',
+	                  :id     => 'product_edit_initiate',
+	                  :class  => 'edit_cc333333_14',
+	                  :style  => product.endorsement.present? || edit_mode ?
+	                              'display:none' :
+	                              ''%>
+			</div>
+		</div>  <!-- product_endorsement_box -->
+		
+  <%elsif product.endorsement.present?%>
+  	<div id="product_endorsement_box">
+	  	<div class='product_endorsement'>
+	    	<%=h product.endorsement.to_s%>
+	    </div>
+	  </div>
+  <%end%>
+  
 
-      <!-- endorsement display-->
-      <span id='product_endorsement_text' style='<%=ui_style%>'>
-        <%=h product.endorsement.to_s%>
-      </span>
 
-			<%=link_to 'Edit', 'javascript:void(0)',
-									:id			=> 'product_edit',
-									:class  => 'edit_gray_to_red_12 inline_nudge',
-          				:style 	=> product.endorsement.present? && !edit_mode ?
-                  		    		'' : 
-	                      			'display:none'%>        
-                   
 
-      <!-- endorsement empty-->
-      <%=link_to "Add your review",
-                  'javascript:void(0)',
-                  :id     => 'product_edit_initiate',
-                  :class  => 'edit_gray_to_red_12',
-                  :style  => product.endorsement.present? || edit_mode ?
-                              'display:none' :
-                              ''%>
-
-    <%else%>
-      <%=h product.endorsement.to_s%>
-    <%end%>
   

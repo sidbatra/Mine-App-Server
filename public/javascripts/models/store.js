@@ -22,7 +22,7 @@ Denwen.Models.Store = Backbone.Model.extend({
   // path only if the store is a top store
   //
   conditionalLink: function(src) {
-    var name = helpers.truncate(this.get('name'),19,'...');
+    var name = this.get('name');
     
     return this.get('is_top') ?  
       "<a href='" + this.path(src) + "'>" + name + "</a>" :

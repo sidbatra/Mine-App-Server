@@ -1,0 +1,39 @@
+<div class='titlebar timeline <%=!index ? 'latest' : ''%>'>
+
+  <%if(index){%>
+    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
+  <%}else{%>
+    Latest
+  <%}%>
+	
+	<a class='action' 
+      id='like_collection_<%=collection.get('id')%>' 
+      href='javascript:void(0)'>
+		<span class='in'>
+      ♥ <%=collection.pushed_likes_count_string()%>
+    </span>
+		<span class='out'>
+      Like <%=collection.likes_count_string()%>
+    </span>
+	</a>
+	
+	<a class='action comment' href='<%=collection.path('user_comment')%>'>
+	  <span class='count'><%=collection.comments_count_string()%>&nbsp;</span>
+	</a>
+	
+</div>
+
+<%if(collection.get('name')){%>
+	<div class='sequence_title'>
+		<a href='<%=collection.path('user')%>'>
+			<%=collection.get('name')%>
+		</a>
+	</div>
+<%}%>
+
+<div class='sequence'>
+	<%collection.get('products').each(function(product){%>
+		<a href='<%=collection.path('user')%>' class='product' style="background-image: url('<%=product.get('thumbnail_url')%>');" >
+	  </a>
+	<%});%>
+</div>

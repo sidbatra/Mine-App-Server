@@ -8,7 +8,12 @@ class ProductObserver < ActiveRecord::Observer
   def after_create(product)
 
     if product.store_id
-      Shopping.add(product.user_id,product.store_id,ShoppingSource::Product)
+      shopping = Shopping.add(
+                            product.user_id,
+                            product.store_id,
+                            ShoppingSource::Product)
+
+      shopping.increment_products_count
     end
 
     ProcessingQueue.push(
@@ -30,11 +35,22 @@ class ProductObserver < ActiveRecord::Observer
     if product.store_id_changed? 
       if product.store_id
         Store.increment_counter(:products_count,product.store_id) 
-        Shopping.add(product.user_id,product.store_id,ShoppingSource::Product)
+
+        shopping = Shopping.add(
+                              product.user_id,
+                              product.store_id,
+                              ShoppingSource::Product)
+        shopping.increment_products_count
       end
 
       if product.store_id_was
         Store.decrement_counter(:products_count,product.store_id_was) 
+
+        shopping = Shopping.add(
+                              product.user_id,
+                              product.store_id_was,
+                              ShoppingSource::Product)
+        shopping.decrement_products_count
       end
     end
 
@@ -61,6 +77,14 @@ class ProductObserver < ActiveRecord::Observer
                         product.source_product_id,
                         product.user_id)
     action.destroy if action
+
+    if product.store_id
+      shopping = Shopping.add(
+                            product.user_id,
+                            product.store_id,
+                            ShoppingSource::Product)
+      shopping.decrement_products_count
+    end
   end
 
 end

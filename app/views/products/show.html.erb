@@ -16,176 +16,157 @@
 <%end%>
 
 
-  <div id="outer" class="slim_shadow_dark">
-  
-	  <!-- Welcome box to signup if user is not logged in -->
-	  <%=render :partial => 'misc/welcome', 
-	        :locals => {
-	          :user_presenter => @user_presenter,
-	          :source         => 'product_' + @product.id.to_s} unless logged_in?%>
-	  
-  	<div id="product_section">
-  		<div class="product_top_bar">
+<!-- Welcome box to signup if user is not logged in -->
+<%=render :partial => 'misc/welcome', 
+      :locals => {
+        :src    => @product_presenter.source_id,
+        :target => @product_presenter.path('footer')} unless logged_in?%>
 
-        <%if @source == 'store' && @product.store%>
-          <%@store_presenter = presenter_for(@product.store)%>
-          <%=@product_presenter.breadcrumb(
-                @store_presenter.name,
-                @store_presenter.closet_path('product'))%>
-        <%else%>
-          <%=@product_presenter.breadcrumb(
-                @user_presenter.closet_title(true),
-                @user_presenter.closet_path('product'))%>
-        <%end%>
-      	
-      	<!-- like button for the page -->
-		    <%=render :partial => 'facebook/like', 
-		              :locals => {
-		              	:style				=> 'position: absolute; left: 485px; top:5px',
-		                :url          => @product_presenter.url('fb'),
-		                :send_button  => true,
-		                :width        => 200,
-		                :faces        => false}%>
-  		</div>
+
+<div id="container" class="wide">
+  
+	<div id="item">
+	
+		<div class="top_bar">
+
+      <%if (@source == 'store' || @source == 'top_product') && @product.store%>
+        <%@store_presenter = presenter_for(@product.store)%>
+        <%=@product_presenter.breadcrumb(
+              @store_presenter.name,
+              @store_presenter.closet_path('product'))%>
+      <%else%>
+        <%=@product_presenter.breadcrumb(
+              @user_presenter.closet_title(true),
+              @user_presenter.closet_path('product'))%>
+      <%end%>
       
-			<div class="buttons">
-        	<%=@product_presenter.edit_link%>
-        	<%=@product_presenter.destroy_link%>
+		</div> <!-- top_bar -->
+    
+		<div class="edit">
+      	<%=@product_presenter.edit_link%>
+      	<%=@product_presenter.destroy_link%>
+    </div>
+
+  
+    <!-- navigation to other products -->
+    <%unless @next_product.id == @prev_product.id && 
+              @next_product.id == @product.id%>
+
+      <%=@product_presenter.next(@prev_product,@product.user)%>
+      <%=@product_presenter.prev(@next_product,@product.user)%>
+    
+    <%end%>
+    
+      <div id="left" class="photo">
+        <%=@product_presenter.large_image%>
       </div>
 
-    
-      <!-- navigation to other products -->
-      <%unless @next_product.id == @prev_product.id && 
-                @next_product.id == @product.id%>
-
-        <%=@product_presenter.next(@prev_product,@product.user)%>
-        <%=@product_presenter.prev(@next_product,@product.user)%>
       
-      <%end%>
-	
-	
-	    <!-- product -->
-      <div>
-
-        <div id="left" class="photo">
-          <%=@product_presenter.large_image%>
+      <div id="right">
+      
+        <div id="right_user_image">
+          <%=@user_presenter.small_picture('product_user')%>
         </div>
 
-        
-        <div id="right">
-        
-          <div id="right_user_image">
-            <%=@user_presenter.small_picture('product_user')%>
-          </div>
+        <table id="right_text">
+          <tr>
+            <td>
+              <div id="right_text_div">
 
-          <table id="right_text">
-            <tr>
-              <td>
-                <div id="right_text_div">
-
-                  <span class="right_user">
-                    <%=@user_presenter.bought_text(
-                          @product.is_gift,
-                          'product_name')%> 
-                  </span><br/>
-                    
-                  <span class="right_title">
-                    <%=h @product_presenter.title%>
-                  </span>
+                <span class="right_user">
+                  <%=@user_presenter.bought_text(
+                        @product.is_gift,
+                        'product_name')%> 
+                </span><br/>
                   
-                  <br/>
-                  
-                  <%=@product_presenter.byline%>
+                <span class="right_title">
+                  <%=h @product_presenter.title%>
+                </span>
+                
+                <br/>
+                <%=@product_presenter.byline%>
+              </div>
+            </td>
+          </tr>
+         </table>
+         
+      </div> <!-- right -->
+      
+      <%=blocker%>
+      
+	</div> <!-- item -->
+	
+	<%=render :partial => 'endorsement',
+           	:locals   => {:product  => @product}%>
 
-                  <div id="right_relativist">
-                    <div id="right_extras">
-                        <%=render :partial => 'endorsement',
-                                  :locals   => {
-                                                :source   => @source,
-                                                :product  => @product}%>
-                    </div> <!--right_extras-->
-                  </div> <!--right_relativist-->
-                </div>
-              </td>
-            </tr>
-           </table>
-           
-        </div> <!-- right -->
-        
-        <%=blocker%>
-
-      </div> <!-- product -->
-	      
-		</div> <!-- product_section -->
-	  
-	  <div id="extras">
-	  
-	  	 <div id='feedback' class='feedback'>
-        <%if logged_in?%>
-        	<div class='buttons'>
-            <a id='like_product' 
+  <div id="extras">
+  
+  	 <div id='feedback' class='feedback'>
+      <%if logged_in?%>
+      	<div class='buttons'>
+          <a id='like_actionable' 
+              href='javascript:void(0)' 
+              class='button like'>
+              <span class='in'>♥</span><span class='out'>Like</span>
+          </a>
+          <%unless is_current_user(@product.user)%>
+          	<a id='want_actionable' 
                 href='javascript:void(0)' 
-                class='button hover_shadow_light like'>
-                <span class='in'>♥ </span><span class='out'>♥ </span> like
+                class='button want'>
+                <span class='in'>✓ </span><span class='out'>Want</span>
+           	</a>
+            <a id='own_actionable'  
+                href='javascript:void(0)' 
+                class='button own'>
+               	<span class='in'>✓ </span><span class='out'>Own</span>
             </a>
-            <%unless is_current_user(@product.user)%>
-            	<a id='want_product' 
-                  href='javascript:void(0)' 
-                  class='button hover_shadow_light want'>
-                  <span class='in'>✓ </span> want
-             	</a>
-              <a id='own_product'  
-                  href='javascript:void(0)' 
-                  class='button hover_shadow_light own'>
-                 	<span class='in'>✓ </span> own
-              </a>
-            <%end%>
-          </div>
-        <%end%>
-
-        <div id='feed_items'>
+          <%end%>
         </div>
-       </div> <!-- feedback -->
-	  
-	      	
-	    <div id="comments_container">
+      <%end%>
 
-	      <div>
-          <div id="comments">
-          </div>
+      <div id='feed_items'>
+      </div>
+     </div> <!-- feedback -->
+  
+      	
+    <div id="comments_container">
+
+      <div>
+        <div id="comments">
+        </div>
+        <%=blocker%>
+      </div>
+    
+    	<%if logged_in?%>
+     
+	      <div id="add_comment">
+		      
+		        <%=image_tag self.current_user.photo_url,
+		            :class => "comment_photo_self slim_shadow_light",
+		            :alt => ""%>
+		
+		        <%=text_area_tag "comment_data","Add a comment",
+		            :class => "" %>
+		          
+	          <input id="comment_post" class="small_button" 
+	                  value="Post" title="Post" type="button" alt=""> 
+		      
 	        <%=blocker%>
 	      </div>
-	    
-	    	<%if logged_in?%>
-	     
-		      <div id="add_comment">
-			      
-			        <%=image_tag self.current_user.photo_url,
-			            :class => "comment_photo_self slim_shadow_light",
-			            :alt => ""%>
-			
-			        <%=text_area_tag "comment_data","Add a comment",
-			            :class => "" %>
-			          
-		          <input id="comment_post" class="small_button" 
-		                  value="Post" title="Post" type="button" alt=""> 
-			      
-		        <%=blocker%>
-		      </div>
-	      
-	      <%end%> <!-- comment entry box -->
-	
-	
-	      
-	      <%=blocker%>
-	      
-	    </div> <!-- comments_container -->
-	   
-	   </div> <!-- extras -->
-	   
-	   <%=blocker%>
-    
-  </div> <!-- outer -->
+      
+      <%end%> <!-- comment entry box -->
+
+
+      
+      <%=blocker%>
+      
+    </div> <!-- comments_container -->
+   
+   </div> <!-- extras -->
+   
+   <%=blocker%>
+  
+</div> <!-- container -->
 
 
 
@@ -193,9 +174,9 @@
     <script type="text/javascript">
 
       new Denwen.Views.Products.Show({
-                        productJSON : <%=@product.to_json(
-                                            :only => [:endorsement])%>,
-                        source      : '<%=@source%>'});
+            productJSON : <%=@product.to_json(
+                                :only => [:id,:user_id,:endorsement])%>,
+            source      : '<%=@source%>'});
 
     </script>
   <%end%>

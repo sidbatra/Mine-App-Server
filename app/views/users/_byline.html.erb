@@ -1,51 +1,64 @@
 
       <%if is_current_user(user)%>
       
+          <%=link_to  "What's your style?",
+                      'javascript:void(0)',
+                      :id     => 'user_edit_initiate',
+                      :class  => 'tab static triangle down'%>
+
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
-              :style => 'display:none'%>
+              :class  => 'user_byline_input',
+              :style  => self.current_user.byline.present? ?
+                          'display:none' :
+                          ''%>
           
-          <%=link_to 	'Update', 
+          <%=link_to  'Save', 
                       'javascript:void(0)', 
-                      :class	=> 'update',
-                      :id			=> 'user_update',
-                      :style	=> 'display:none'%>
+                      :class  => 'user_byline_save',
+                      :id     => 'user_update',
+                      :style  => self.current_user.byline.present? ?
+                                  'display:none' :
+                                  ''%>
                       
-          <%=link_to 	'Cancel', 
+          <!--<#=link_to  'Cancel', 
                       'javascript:void(0)', 
-                      :class	=> 'submit_red_12',
-                      :id			=> 'user_cancel',
-                      :style	=> 'display:none'%>													
+                      :class  => 'submit_red_12',
+                      :id     => 'user_cancel',
+                      :style  => 'display:none'%>-->                         
           
           
           <!-- byline display -->
-          <span id='user_byline_text'>
-            <%=h self.current_user.byline%>
-          </span>
+          <div id='user_edit_box' 
+                class='user_byline_display'
+                style="<%=self.current_user.byline.present? ?
+                        '' :
+                        'display:none'%>">
           
-
-          <%=link_to 	'Edit', 
-                      'javascript:void(0)', 
-                      :class	=> 'edit_gray_12 inline_nudge',
-                      :id			=> 'user_edit',
-                      :style	=> self.current_user.byline.present? ?
-                                  '' :
-                                  'display:none'%>															               
+          	<span id='user_byline_text'>
+          		<%=h self.current_user.byline%>
+          	</span>
+          	
+          	<%=link_to  'Edit', 
+	                      'javascript:void(0)', 
+	                      :class  => 'edit_999999_14',
+	                      :id     => 'user_edit',
+	                      :style  => self.current_user.byline.present? ?
+	                                  '' :
+	                                  'display:none'%>
+          </div>
           
-          <!-- byline empty --> 
-          <%=link_to  "Add your style statement",
+      <%elsif user.byline.present?%>
+          <%=link_to  user.gender == 'male' ?
+                        'His style' : 'Her style',
                       'javascript:void(0)',
                       :id     => 'user_edit_initiate',
-                      :class  => 'edit_gray_12',
-                      :style  => self.current_user.byline.present? ?
-                                  'display:none' : 
-                                  ''%>
-          
-      <%else%>
+                      :class  => 'tab static triangle down'%>
 
-          <%=user.byline.present? ? 
-              user.byline : 
-              "Collecting since " + user.created_at.strftime('%B %Y')%>
-
+					<div class='user_byline_display'>
+          	<span id='user_byline_text'>
+		          <%=user.byline%>
+	          </span>
+	         </div>
       <%end%> 

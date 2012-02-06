@@ -5,8 +5,10 @@ Denwen.Helpers = Backbone.Model.extend({
   //Constructor logic
   //
   initialize: function() {
-    this.assetHost = $('meta[name=asset_host]').attr('content');
-    this.current_user_id = $('meta[name=current_user_id]').attr('content');
+    this.assetHost        = $('meta[name=asset_host]').attr('content');
+    this.current_user_id  = $('meta[name=current_user_id]').attr('content');
+    this.isOnboarding     = $('meta[name=is_onboarding]').attr('content') == 'true'; 
+    this.version          = $('meta[name=version]').attr('content'); 
   },
 
   // Truncate str to length using omissions

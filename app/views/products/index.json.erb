@@ -1,3 +1,29 @@
 <%-cache @key do-%>
-  <%=@products.to_json(@options)-%>
+  <%-if @filter == :user || @filter == :liked || @filter == :wanted-%>
+    <%=@products.to_json(
+        :only     => [:id,:is_gift,:handle,
+                        :user_id,:category_id],
+        :methods  => [:giant_url],
+        :include  => {
+          :store  => {
+            :only     => [:id,:name,:handle],
+            :methods  => [:is_top]},
+          :user => {
+            :only => [:id,:handle]}})-%>
+  <%-elsif @filter  == :store-%>
+    <%=@products.to_json(
+        :only     => [:id,:is_gift,:handle,
+                        :user_id,:category_id],
+        :methods  => [:giant_url],
+        :include  => {
+          :user => {
+            :only => [:id,:first_name,:last_name,:handle],
+            :methods  => [:photo_url]}})-%>
+  <%-elsif @filter == :top-%>
+    <%=@products.to_json(
+        :only     => [:id,:title,:handle],
+        :include  => {
+          :user => {
+            :only => [:id,:handle]}})-%>
+  <%-end-%>
 <%-end-%>

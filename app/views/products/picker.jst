@@ -1,14 +1,8 @@
-<div class='item' id="product_picker_<%=product.get('id')%>"> 
+<a class="picker_choice unselectable" id="product_picker_<%=product.get('id')%>" style="background-image: url('<%=product.get('giant_url')%>');">
 
+	<div class="shadowbox"></div>
+	
 	<div class="button_picker" id="button_picker_<%=product.get('id')%>">
 	</div>
-
-  <img src="<%=product.get('thumbnail_url')%>" 
-      class='image'
-      alt=''/>
-
-  <!--p class='details'-->
-    <!--%=helpers.truncate(product.escape('title'),40,'...')%-->
-  <!--pi-->
   
-</div> <!-- product -->
+</a> <!-- product picker-->

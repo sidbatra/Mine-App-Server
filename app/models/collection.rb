@@ -1,32 +1,44 @@
 class Collection < ActiveRecord::Base
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Associations
-  #-----------------------------------------------------------------------------
-  belongs_to :user
+  #----------------------------------------------------------------------
+  belongs_to :user, :counter_cache => true
   has_many :collection_parts, :dependent => :destroy
   has_many :products, :through => :collection_parts
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Validations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   validates_presence_of   :user_id
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Named scopes
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   named_scope :for_user, lambda {|user_id| {:conditions => {
-                                              :user_id => user_id},
-                                            :limit => 1}}
+                                              :user_id => user_id}}}
+  named_scope :limit, lambda {|limit| {:limit => limit}}
+  named_scope :by_id, :order => 'id DESC'
+  named_scope :with_products, :include => :products
+  named_scope :with_products_and_associations,
+              :include => {:products => [:store,:user]}
+  named_scope :with_user, :include => :user
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
+  # Attributes
+  #----------------------------------------------------------------------
+  attr_accessible :name,:user_id
+
+  #----------------------------------------------------------------------
   # Class methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Add a new collection
   #
-  def self.add(product_ids,user_id)
-    collection = new(:user_id => user_id)
+  def self.add(product_ids,name,user_id)
+    collection = new(
+                  :user_id  => user_id,
+                  :name     => name)
 
     raise IOError, "No products added to collection" unless product_ids.present?
 
@@ -38,38 +50,27 @@ class Collection < ActiveRecord::Base
     collection
   end
 
-  # Fetch the last fresh collection for the given user_id
-  #
-  def self.fresh_for_user(user_id)
-    for_user(user_id).last
-  end
 
-
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Instance methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
-  # Test is the collection is less than a day old
+  # Fetch the next collection made by the owner 
   #
-  def is_fresh
-    (Time.now - self.created_at) < 86400
+  def next
+    self.class.first(
+                :conditions => {
+                    :user_id  => self.user_id,
+                    :id_gt    => self.id})
   end
 
-  # Fetch product ids for the products in the collection
+  # Fetch the previous collection made by the owner 
   #
-  def product_ids
-    collection_parts.map(&:product_id)
+  def previous
+    self.class.last(
+                :conditions => {
+                    :user_id  => self.user_id,
+                    :id_lt    => self.id})
   end
 
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]  = [] if options[:only].nil?
-    options[:only] += [:id]
-
-    options[:include] = {}
-    #options[:include].store(*(User.json_options))
-
-    super(options)
-  end
 end

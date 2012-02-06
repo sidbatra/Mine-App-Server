@@ -1,1 +1,6 @@
-<%=@action.to_json-%>
+<%=@action.to_json(
+    :only => [:id,:name,:user_id],
+    :include => {
+      :user => {
+        :only => [:id,:first_name,:last_name,:handle],
+        :methods  => [:photo_url]}})-%>

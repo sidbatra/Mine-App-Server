@@ -3,7 +3,7 @@
 class WelcomeController < ApplicationController
   before_filter :login_required
 
-  # Display the welcome page
+  # Display the different steps during the onboarding
   #
   def show
     @filter = params[:id]
@@ -15,7 +15,6 @@ class WelcomeController < ApplicationController
       @view     = "shoppings/new"
     when WelcomeFilter::Friends
       @view     = "invites/new"
-
     when WelcomeFilter::Follow
       follows = 10
       stores  = self.current_user.stores
@@ -35,11 +34,11 @@ class WelcomeController < ApplicationController
 
       @shoppings  = Shopping.find_all_by_user_id(
                               @users.map(&:id),
-                              :include    => :store,
-                              :conditions => {'stores.is_processed' => true}
-                              ).group_by{|s| s.user_id}
+                              :include    => :store).
+                              select{|s| s.store.is_processed}.
+                              group_by{|s| s.user_id}
 
-      @view     = "followings/new"
+      @view       = "followings/new"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -47,7 +46,7 @@ class WelcomeController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    @error ? redirect_to(home_path) : render(@view)
+    @error ? redirect_to(root_path) : render(@view)
   end
 
   # Handle onboarding related post requests
@@ -68,6 +67,7 @@ class WelcomeController < ApplicationController
           store_id,
           ShoppingSource::User)
       end
+
     when WelcomeFilter::Follow
       @success_target = welcome_path(WelcomeFilter::Friends)
       @error_target   = welcome_path(WelcomeFilter::Follow)
@@ -81,6 +81,7 @@ class WelcomeController < ApplicationController
           FollowingSource::Suggestion,
           false)
       end
+
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)
       @error_target    = welcome_path(WelcomeFilter::Learn)

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224045502) do
+ActiveRecord::Schema.define(:version => 20120201003308) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(:version => 20111224045502) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comments_count", :default => 0
+    t.integer  "actions_count",  :default => 0
+    t.string   "name",           :default => ""
   end
 
   add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
@@ -202,11 +205,26 @@ ActiveRecord::Schema.define(:version => 20111224045502) do
     t.integer  "source"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "products_count", :default => 0
   end
 
   add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
   add_index "shoppings", ["store_id"], :name => "index_shoppings_on_store_id"
   add_index "shoppings", ["user_id", "store_id"], :name => "index_shoppings_on_user_id_and_store_id", :unique => true
+
+  create_table "specialties", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "category_id"
+    t.integer  "weight",      :default => 0
+    t.boolean  "is_top",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "specialties", ["category_id"], :name => "index_specialties_on_category_id"
+  add_index "specialties", ["store_id", "category_id"], :name => "index_specialties_on_store_id_and_category_id"
+  add_index "specialties", ["store_id", "is_top"], :name => "index_specialties_on_store_id_and_is_top"
+  add_index "specialties", ["weight"], :name => "index_specialties_on_weight"
 
   create_table "stores", :force => true do |t|
     t.string   "name"
@@ -224,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20111224045502) do
   add_index "stores", ["is_approved"], :name => "index_stores_on_is_approved"
   add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
+  add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -245,6 +264,7 @@ ActiveRecord::Schema.define(:version => 20111224045502) do
     t.integer  "inverse_followings_count",  :default => 0
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
+    t.integer  "collections_count",         :default => 0
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

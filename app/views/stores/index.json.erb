@@ -1,3 +1,14 @@
 <%-cache @key do-%>
-  <%=@stores.to_json(@options)-%>
+  <%-if @filter == :top || @filter == :for_user || @filter == :related-%>
+    <%=@stores.to_json(
+        :only     => [:id,:name,:handle],
+        :methods  => :thumbnail_url)-%>
+  <%-elsif @filter == :suggest-%>
+    <%=@stores.to_json(
+        :only     => [:id,:name,:handle],
+        :methods  => :medium_url)-%>
+  <%-elsif @filter == :all-%>
+    <%=@stores.to_json(
+        :only     => [:id,:name])-%>
+  <%-end-%>
 <%-end-%>

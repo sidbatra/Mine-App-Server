@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Mixins
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   include DW::Handler
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Associations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   has_many :products,     :dependent => :destroy
   has_many :comments,     :dependent => :destroy
   has_many :actions,      :dependent => :destroy
@@ -21,25 +21,29 @@ class User < ActiveRecord::Base
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings,
-              :source => :follower, :conditions => 'is_active = 1'
+                        :source     => :follower, 
+                        :conditions => 'is_active = 1',
+                        :order      => 'followings.created_at DESC'
 
   has_many :inverse_followings, :class_name   => "Following", 
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
 
-  has_many :ifollowers, :through => :inverse_followings, 
-              :source => :user, :conditions => 'is_active = 1'
+  has_many :ifollowers, :through    => :inverse_followings, 
+                        :source     => :user, 
+                        :conditions => 'is_active = 1',
+                        :order      => 'followings.created_at DESC'
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Validations
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   validates_presence_of   :first_name
   validates_presence_of   :last_name
   validates_presence_of   :email
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Named scopes
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   named_scope :stars, 
                   :joins      => :products, 
                   :conditions => {
@@ -61,16 +65,18 @@ class User < ActiveRecord::Base
                 :group        => "users.id HAVING products_at_store > 1", 
                 :order        => "products_at_store DESC,users.id"}}
 
+  named_scope :with_stores, :include => {:shoppings => :store}
+
   named_scope :limit, lambda {|limit| {:limit => limit}}
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Attributes
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   attr_accessor :mine_contacts
 
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Class methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Add a new user or find an existing one based on email
   #
@@ -96,21 +102,10 @@ class User < ActiveRecord::Base
     find_by_remember_token(token)
   end
 
-  # Return json options specifiying which attributes and methods
-  # to pass in the json when the model is used within an include
-  # of another model's json
-  #
-  def self.json_options(options={})
-    options[:only]      = [:id,:first_name,:last_name,:handle]
-    options[:methods]   = [:photo_url] if options[:methods].nil?
 
-    [self.name.downcase.to_sym,options]
-  end
-
-
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
   # Instance methods
-  #-----------------------------------------------------------------------------
+  #----------------------------------------------------------------------
 
   # Edit attributes of the model
   #
@@ -128,14 +123,6 @@ class User < ActiveRecord::Base
   def products_category_count(category_id)
     Cache.fetch(KEYS[:user_category_count] % [self.id,category_id]) do
       Product.for_user(self.id).in_category(category_id).count 
-    end
-  end
-
-  # Total price of all the products
-  #
-  def products_price
-    Cache.fetch(KEYS[:user_price] % self.id) do
-      Product.for_user(self.id).sum(:price) 
     end
   end
 
@@ -213,18 +200,6 @@ class User < ActiveRecord::Base
   def fb_friends
     fb_user = FbGraph::User.new('me', :access_token => self.access_token)
     fb_user.friends
-  end
-
-  # Override to customize accessible attributes
-  #
-  def to_json(options = {})
-    options[:only]      = [] if options[:only].nil?
-    options[:only]     += [:id,:first_name,:last_name,:handle]
-
-    options[:methods]   = [] if options[:methods].nil?
-    options[:methods]  += [:photo_url]
-
-    super(options)
   end
 
   

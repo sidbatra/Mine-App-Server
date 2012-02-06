@@ -27,7 +27,19 @@ module ApplicationHelper
     "<meta name='current_user_id' content='#{current_user_id}'/>"
   end
 
-  # Format price or currency in general
+  # Generate meta tag for status of onboarding
+  #
+  def is_onboarding_meta_tag
+    "<meta name='is_onboarding' content='#{is_onboarding?}'/>"
+  end
+
+  # Generate meta tag for application version
+  #
+  def version_meta_tag
+    "<meta name='version' content='#{CONFIG[:version]}'/>"
+  end
+
+  # Format currency for display
   #
   def display_currency(amount)
     '$' + ('%.2f' % amount).chomp('.00')

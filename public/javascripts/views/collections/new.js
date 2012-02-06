@@ -5,18 +5,21 @@ Denwen.Views.Collections.New = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
+    "click #collection_title_initiate"   : "titleInitiated"
   },
 
   // Constructor logic
   //
   initialize: function() {
-    var self            = this;
+    var self              = this;
 
-    this.source         = this.options.source;
+    this.source           = this.options.source;
 
-    this.productsEl     = '#items';
-    this.formEl         = '#new_collection';
-    this.productIdsEl   = '#collection_product_ids';
+    this.productsEl       = '#items';
+    this.formEl           = '#new_collection';
+    this.productIdsEl     = '#collection_product_ids';
+    this.titleEl          = '#collection_name';
+    this.titleInitiateEl  = '#collection_title_initiate';
 
     this.posting        = false;
 
@@ -89,7 +92,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
     
     if(this.productsPicked.length < 1) {
       valid = false;
-      alert("Please add atleast one item.");
+      alert("Please add at least one item.");
       analytics.collectionException();
     }
     else {
@@ -99,6 +102,17 @@ Denwen.Views.Collections.New = Backbone.View.extend({
     this.posting = valid;
 
     return valid;
+  },
+
+  // User initiate creation of the title 
+  //
+  titleInitiated: function() {
+    $(this.titleInitiateEl).hide();
+
+    $(this.titleEl).show();
+    $(this.titleEl).focus();
+
+    analytics.collectionTitleInitiated();
   },
 
   // Fire tracking events

@@ -13,8 +13,8 @@ Denwen.Views.Products.New = Backbone.View.extend({
     var self          = this;
     this.category     = new Denwen.Models.Category(this.options.categoryJSON);
     this.input        = new Denwen.Partials.Products.Input({
-                                              el:$('body'),mode:'new'});
-    this.isOnboarding = this.options.is_onboarding;
+                                              el    : $('body'),
+                                              mode  : 'new'});
 
     this.setAnalytics();
   },
@@ -28,7 +28,7 @@ Denwen.Views.Products.New = Backbone.View.extend({
         this.category.get('name'),
         this.source);
 
-    if(this.isOnboarding)
+    if(helpers.isOnboarding) 
       analytics.productNewViewOnboarding();
   }
 

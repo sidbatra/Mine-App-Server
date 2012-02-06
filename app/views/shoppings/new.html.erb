@@ -1,66 +1,42 @@
-<!--
-<div id="background">
-	<img src="/images/home_batch_2.jpg" class="stretch unselectable" />
-</div>
--->
 
-<div id="pic_bg" class="fixed_bg">
+<%=render :partial  => "headers/onboarding",
+          :locals   => {:step => 1}%>
 
-	<div id='header_onboarding'>
-	
-		<div class='navbar unselectable'>
-	
-			 <%=image_tag('oncloset_logo_30_white.png', 
-			 		:alt => CONFIG[:name],
-			 		:class => "logo")%>
-			 		
-			<ol id='indicators'>
-	        <li class='first on'></li>
-	        <li class='second'></li>
-	        <li class='third'></li>
-	    </ol> 		
-	
+
+<div id="container" class="narrow">
+
+		<div class="heading unselectable">
+			Click a few stores you shop at <br />
+			so we can suggest people to follow:
 		</div>
-	
-	</div>
+      
+    <div id="stores">
+      <div class="loading" id="loading_spinner">
+        <%=image_tag 'spinner_light_bg.gif'%>
+      </div>
+    </div>
+    
+</div> <!-- container -->
 
-	<div id="container">
 
-			<div class="heading unselectable">
-				Click a few stores you shop at <br />
-				so we can suggest people to follow:
-			</div>
-	      
-	    <div id="stores">
-	    </div>
-	    
-	</div> <!-- container -->
-	
-  <div id='footer_onboarding'>
-		<%form_tag '/welcome',
-        :id   => 'new_shopping', :style => 'display:none' do |f|%>
+<div id='footer_onboarding'>
+	<%form_tag '/welcome',
+      :id     => 'new_shopping', 
+      :style  => 'display:none' do |f|%>
 
     <%=hidden_field_tag :id, WelcomeFilter::Stores%>
     <%=hidden_field_tag :store_ids%>
     <%=submit_tag '',
-                  :class      => 'follow_people disactivated',
-                  :id         => 'stores_picked_button',
-                  :name       => nil,
-                  :disabled   => true %>
-    <%end%>   
-	</div>	      
-
-
-</div> <!-- pic_bg -->
+        :class      => 'follow_people disactivated',
+        :id         => 'stores_picked_button',
+        :name       => nil,
+        :disabled   => true %>
+  <%end%>   
+</div>	      
 
 
 <%content_for :javascript do%>
-
   <script type="text/javascript">
-
-    new Denwen.Views.Welcome.Shoppings({
-            currentUserJSON : <%=self.current_user.to_json%>,
-                         el : $('#container')});
-
+    new Denwen.Views.Shoppings.New({el : $('#container')});
   </script>
 <%end%>

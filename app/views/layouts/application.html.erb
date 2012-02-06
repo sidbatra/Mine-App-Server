@@ -10,22 +10,25 @@
     <%=csrf_meta_tag%>
     <%=asset_host_meta_tag%>
     <%=current_user_id_meta_tag%>
+    <%=is_onboarding_meta_tag%>
+    <%=version_meta_tag%>
   </head>
 
   <body <%=yield :body_attribute%>>
     
     <div id="fb-root"></div>    
 
-    <%=render "misc/header"%>
+    <%=render "headers/default" unless is_onboarding?%>
  
     <%=yield%>
     
     <div id="blocker"></div>
 
-
-    <!--div id="footer">
-     <%=CONFIG[:name]%> © 2011 · <%=email_link%>
-    </div-->
+    <%unless is_onboarding?%>
+      <div id="footer">
+        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
+      </div>
+    <%end%>
 
     <%=render :partial => "misc/analytics"%>
 
@@ -39,7 +42,8 @@
 
       <%if @categories%>
         var Categories = new Denwen.Collections.Categories(
-                              <%=@categories.to_json%>);
+                              <%=@categories.to_json(
+                                  :only => [:id,:name,:handle,:weight])%>);
       <%end%>
     </script>
 

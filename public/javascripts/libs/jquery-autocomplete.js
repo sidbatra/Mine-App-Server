@@ -254,7 +254,7 @@ $.Autocompleter = function(input, options) {
 			$input.addClass(options.loadingClass);
 			if (!options.matchCase)
 				currentValue = currentValue.toLowerCase();
-			request(currentValue.replace(/[^\w]/g, ''), receiveData, hideResultsNow);
+			request(currentValue.replace(/[^(\w|\s)]/g, ''), receiveData, hideResultsNow);
 		} else {
 			stopLoading();
 			select.hide();
