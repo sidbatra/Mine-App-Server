@@ -37,6 +37,7 @@
     <%if @user.collections_count > 0 || is_current_user(@user)%>
       <a href='#looks' class='tab triangle large_bottom_margin' id='collections_tab'>
         On <%=is_current_user(@user) ? 'You' : @user_presenter.personal_pronoun.capitalize%> Now
+        <div class='shadowbox'></div>
       </a>
     <%end%>
 

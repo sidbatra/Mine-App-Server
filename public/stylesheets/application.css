@@ -1416,6 +1416,7 @@ a.product_endorsement_submit_button:active {
   line-height: 36px;
   font-size: 16px;
   color: #555555;
+  position: relative;
   text-shadow: 0 1px 1px white;
   display: block; }
 
@@ -1469,6 +1470,16 @@ a.product_endorsement_submit_button:active {
   
 .tab.static.load, .tab.static.load:hover, .tab.static.load:active {
   background: white url("/images/tab_load_999999.gif") 154px center no-repeat; }
+  
+.tab .shadowbox {
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	bottom: -4px;
+	left: -4px;
+	background: url('/images/black_5.png');
+  z-index: -10000;
+}
 
 .tab .count {
   float: right;
