@@ -686,7 +686,7 @@ div.welcome_text {
 /* ------------------------------ Creation */
 .new_product {
   width: 500px;
-  margin: 0 auto 80px;
+  margin: 0 auto;
   color: #555555;
   font-size: 18px;
   padding: 0px;
@@ -1143,7 +1143,7 @@ a.product_endorsement_submit_button:active {
   padding-left: 30px;
   background: url("/images/pens.png") 5px -76px no-repeat; }
   
-.edit_cc333333_14 {
+.edit_cc3333_14 {
 	font-size: 14px;
 	color: #cc3333;
   padding-left: 18px;
@@ -1416,6 +1416,7 @@ a.product_endorsement_submit_button:active {
   line-height: 36px;
   font-size: 16px;
   color: #555555;
+  position: relative;
   text-shadow: 0 1px 1px white;
   display: block; }
 
@@ -1469,6 +1470,16 @@ a.product_endorsement_submit_button:active {
   
 .tab.static.load, .tab.static.load:hover, .tab.static.load:active {
   background: white url("/images/tab_load_999999.gif") 154px center no-repeat; }
+  
+.tab .shadowbox {
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	bottom: -4px;
+	left: -4px;
+	background: url('/images/black_5.png');
+  z-index: -10000;
+}
 
 .tab .count {
   float: right;
@@ -1596,7 +1607,7 @@ a.product_endorsement_submit_button:active {
 	display: block;
 }
 
-.user_byline_inline_edit{
+.user_byline_inline_edit {
 	color: #cc3333;
 	margin-left: 4px;
 }

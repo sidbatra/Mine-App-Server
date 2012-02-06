@@ -1,11 +1,14 @@
-
+  <%if(count){%>
   <a href='#<%=hash%>'>
+  <%}%>
     <div id='<%=hash%>_tab' 
-        class='tab triangle large_top_margin <%=window.location.hash == '#' + hash ? 'on' : ''%>'>
+        class='tab <%=count ? 'triangle' : 'static'%> large_top_margin <%=window.location.hash == '#' + hash ? 'on' : ''%>'>
       <%=header%>
-      <div class='count'><%=count%></div>
+      <div class='count'><%=count ? count : ''%></div>
     </div>
+  <%if(count){%>
   </a>
+  <%}%>
 
   <div class='tile_row'>
     <%users.each(function(user){%>

@@ -19,10 +19,8 @@
 
     <%if(productsLeft > 0){%>
       <span class='subtitle'>
-        <span class='red'>
-          Add <%=productsLeft%> more items
-        </span>
-         to start using this feature.
+      	Add <span class='red'><%=productsLeft%></span> more <%=productsLeft == 1 ? 'item' : 'items'%>
+      	to start using this feature.
       </span>
     <%}else{%>
       <a href='/collections/new?src=start' class='start'></a>

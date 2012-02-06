@@ -26,7 +26,7 @@ class ProductPresenter < BasePresenter
                   product.user.handle,
                   product.handle,
                   :src => 'product'),
-                 :class => ''
+                 :class => 'edit_cccccc_14'
     end
   end
 
