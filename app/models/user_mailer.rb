@@ -24,6 +24,8 @@ class UserMailer < ActionMailer::Base
 
     if(comment.commentable_type == 'Product')
       @action     += comment.commentable.title
+    elsif(comment.commentable_type == 'Collection')
+      @action     +=  'set'
     end
 
     generate_attributes(@user.id,@comment.user.id,@comment,EmailPurpose::NewComment)
@@ -111,6 +113,8 @@ class UserMailer < ActionMailer::Base
 
     if(@actionable.class.name == 'Product')
       @action     +=  @actionable.title
+    elsif(@actionable.class.name == 'Collection')
+      @action     +=  'set'
     end
     
     if @action_name == 'want'
