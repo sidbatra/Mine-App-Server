@@ -2228,12 +2228,12 @@ table.collection.details .textbox .title {
 /* ------------------------------ Profile Page Closet Own Button Context Box */
 .products .product .feedback .buttons .button .context_box {
   width: 170px;
-  height: 220px;
+  height: 194px;
   position: absolute;
   top: 36px;
-  right: 0px;
+  left: -10px; /* only difference with item page variant */
   background: white;
-  padding: 12px 10px 0px;
+  padding: 38px 10px 0px;
   border-top: 2px solid #ebe8e3;
   line-height: 100%;
   text-align: left;
@@ -2339,6 +2339,7 @@ table.collection.details .textbox .title {
   text-align: center;
   display: block;
   cursor: pointer;
+  background: #f8f8f8;
   bottom: 0px;
   left: 0px;
   position: absolute; }
@@ -2359,12 +2360,12 @@ table.collection.details .textbox .title {
 /* ------------------------------ Item Page Own Button Context Box */
 #extras .feedback .buttons .button .context_box {
   width: 170px;
-  height: 220px;
+  height: 194px;
   position: absolute;
   top: 32px;
   right: 0px;
   background: white;
-  padding: 12px 10px 0px;
+  padding: 38px 10px 0px;
   border-top: 2px solid #ebe8e3;
   line-height: 100%;
   text-align: left;
@@ -2463,6 +2464,7 @@ table.collection.details .textbox .title {
   height: 30px;
   font-size: 12px;
   line-height: 30px;
+  background: #f8f8f8;
   color: #cc3333;
   text-align: center;
   display: block;
