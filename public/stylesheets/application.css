@@ -686,7 +686,7 @@ div.welcome_text {
 /* ------------------------------ Creation */
 .new_product {
   width: 500px;
-  margin: 0 auto 80px;
+  margin: 0 auto;
   color: #555555;
   font-size: 18px;
   padding: 0px;
