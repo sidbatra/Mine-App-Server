@@ -1418,6 +1418,7 @@ a.product_endorsement_submit_button:active {
   color: #555555;
   position: relative;
   text-shadow: 0 1px 1px white;
+	overflow: hidden;
   display: block; }
 
 .small_top_margin {
@@ -1438,7 +1439,8 @@ a.product_endorsement_submit_button:active {
 .tab.triangle {
   background: white url("/images/triangles.png") right -108px no-repeat;
   cursor: pointer;
-  padding-left: 12px; }
+  padding-left: 12px;
+  padding-right: 22px; }
 
 .tab.triangle:hover {
   background: white url("/images/triangles.png") right 0 no-repeat; }
@@ -1483,7 +1485,7 @@ a.product_endorsement_submit_button:active {
 
 .tab .count {
   float: right;
-  padding-right: 30px;
+  padding-right: 8px;
   font-size: 14px;
   color: #cccccc; }
 
