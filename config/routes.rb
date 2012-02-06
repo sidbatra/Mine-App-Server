@@ -45,6 +45,10 @@ ActionController::Routing::Routes.draw do |map|
                   :controller => :collections,
                   :action     => :show
 
+  map.edit_collection  ':user_handle/c/:id/edit',
+                  :controller => :collections,
+                  :action     => :edit
+
   map.store   's/:handle',
                 :controller => :stores,
                 :action     => :show

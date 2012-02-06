@@ -82,6 +82,20 @@ class CollectionsController < ApplicationController
     redirect_to root_path if @error
   end
 
+  # Edit a collection
+  #
+  def edit
+    user        = User.find_by_handle(params[:user_handle])
+    @collection = Collection.
+                    find_by_id_and_user_id(
+                                        params[:id],
+                                        user.id)
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to root_path if @error
+  end
+
   # Update a collection 
   #
   def update
