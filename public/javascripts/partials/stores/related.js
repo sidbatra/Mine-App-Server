@@ -31,17 +31,17 @@ Denwen.Partials.Stores.Related = Backbone.View.extend({
   // Render the top stores
   //
   render: function() {
-    if(this.stores.isEmpty()) {
-      $(this.el).hide();
-      return;
-    }
-
     var self = this;
 
     this.stores = new Denwen.Collections.Stores(
                         this.stores.reject(
                           function(store){
                             return store.get('id') == self.store.get('id')}));
+
+    if(this.stores.isEmpty()) {
+      $(this.el).hide();
+      return;
+    }
 
     $(this.el).html(
       Denwen.JST['stores/related']({
