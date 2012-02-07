@@ -46,7 +46,8 @@ class Product < ActiveRecord::Base
                                   {:conditions => {:actions => {
                                                     :user_id  => user_id,
                                                     :name     => name}},
-                                   :joins       => :actions}}
+                                   :joins       => :actions,
+                                   :order       => 'actions.created_at DESC'}}
   named_scope :in_category, lambda {|category_id| 
                               {:conditions => {:category_id => category_id}} if category_id}
   named_scope :created,     lambda {|range| 

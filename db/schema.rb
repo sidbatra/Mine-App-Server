@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201003308) do
+ActiveRecord::Schema.define(:version => 20120207201426) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20120201003308) do
   end
 
   add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
+  add_index "actions", ["created_at"], :name => "index_actions_on_created_at"
+  add_index "actions", ["name"], :name => "index_actions_on_name"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -130,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20120201003308) do
     t.integer  "source"
   end
 
+  add_index "followings", ["created_at"], :name => "index_followings_on_created_at"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
   add_index "followings", ["source"], :name => "index_followings_on_source"
