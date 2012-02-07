@@ -10,6 +10,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
 
     new Denwen.Partials.Collections.Input({
           el            : $('#new_collection'),
+          productIDs    : [],
           currentUserID : this.currentUser.get('id')});
 
     this.setAnalytics();

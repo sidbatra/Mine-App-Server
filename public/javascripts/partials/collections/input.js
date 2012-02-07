@@ -15,6 +15,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     var self              = this;
 
     this.currentUserID    = this.options.currentUserID;
+    this.productIDs       = this.options.productIDs;
 
     this.productsEl       = '#items';
     this.productIdsEl     = '#collection_product_ids';
@@ -63,6 +64,10 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
                           self.removeFromProductsPicked,self);
 
       self.productPickers.push(productPicker);
+
+      if(_.include(self.productIDs,product.get('id').toString()))
+        productPicker.clicked();
+
     });
   },
 

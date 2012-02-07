@@ -15,6 +15,7 @@
                                   :only => [:id,:first_name,:last_name,
                                               :handle])%>,
                      source : '<%=@source%>',
+                 productIDs : '<%=@collection.product_ids.join(',')%>',
                          el : $('#container')});
 
   </script>
