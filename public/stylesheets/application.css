@@ -100,8 +100,13 @@ div.welcome_text {
   position: relative;
   margin: 0 auto; }
 
-#header .navbar .logo {
-  padding: 17px 20px 19px 0px; }
+#header .navbar a.logo {
+	width: 137px;
+	height: 32px;
+  padding: 17px 20px 19px 0px;
+  display: block;
+  background: url('/images/oncloset_logo_34_white.png') 0 17px no-repeat; }
+
 
 /* ------------------------------ Nav */
 #header .navbar .nav {
