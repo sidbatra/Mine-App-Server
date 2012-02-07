@@ -1138,31 +1138,31 @@ a.product_endorsement_submit_button:active {
   cursor: pointer;
   line-height: 12px; }
 
-.edit_555555_18 {
+a.edit_555555_18 {
 	font-size: 18px;
   padding-left: 30px;
   background: url("/images/pens.png") 5px -76px no-repeat; }
   
-.edit_cc3333_14 {
+a.edit_cc3333_14 {
 	font-size: 14px;
 	color: #cc3333;
   padding-left: 18px;
   background: url("/images/pens.png") -4px -279px no-repeat; }
   
-.edit_999999_14 {
+a.edit_999999_14 {
 	font-size: 14px;
 	color: #999999;
   padding-left: 18px;
   background: url("/images/pens.png") -4px -204px no-repeat; }
 
-.edit_cccccc_14 {
+a.edit_cccccc_14 {
 	font-size: 14px;
 	color: #cccccc;
   padding-left: 18px;
   background: url("/images/pens.png") -4px -179px no-repeat; }
   
-.edit_999999_14:hover,
-.edit_cccccc_14:hover {
+a.edit_999999_14:hover,
+a.edit_cccccc_14:hover {
 	color: #cc3333;
   background: url("/images/pens.png") -4px -279px no-repeat; }
 
@@ -1796,9 +1796,6 @@ a.product_endorsement_submit_button:active {
 	border-left: none;
 	padding-left: 30px;
 	margin-left: -6px; }
-
-#main .titlebar a {
-  color: #cc3333; }
 
 #main .titlebar a.cat {
   color: #999999;

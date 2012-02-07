@@ -26,6 +26,18 @@ class CollectionPresenter < BasePresenter
                 :confirm  => "Are you sure you want to delete this set?"
     end
   end
+  
+  # Anchor tag for editing the collection 
+  #
+  def edit_link
+    if h.logged_in? && h.current_user.id == collection.user_id
+      h.link_to "Edit",
+                {:action => 'destroy',:id => collection.id},
+                :method => :delete,
+                :class => 'edit_cccccc_14',
+                :confirm  => "Are you sure you want to delete this set?"
+    end
+  end
 
 
   # Link to the next collection 
