@@ -972,7 +972,7 @@ div.welcome_text {
 #item .top_bar a {
   color: #cc3333; }
   
-#item .top_bar a span.unicode {
+.unicode {
 	font-family: "Lucida Sans Unicode"; }
 
 #item .top_bar .social_buttons {
