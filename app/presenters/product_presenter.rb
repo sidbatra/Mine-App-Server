@@ -142,7 +142,7 @@ class ProductPresenter < BasePresenter
 #                               "'#{path('profile')}'}"
   end
 
-  # Large product image linked to it's original source
+  # Large product image linked to its original source
   #
   def large_image
     h.link_to_if !product.is_hosted,
@@ -178,7 +178,7 @@ class ProductPresenter < BasePresenter
   # Link to go get back to the source url
   #
   def breadcrumb(title,path)
-    h.link_to "← " + title,
+    h.link_to "<span style='unicode'>←</span> " + title,
               path,
               :class => '' 
   end
