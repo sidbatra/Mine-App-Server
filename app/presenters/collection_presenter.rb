@@ -15,6 +15,19 @@ class CollectionPresenter < BasePresenter
     h.collection_url collection.user.handle,collection.id,:src => source
   end
 
+  # Anchor tag for editing the collection 
+  #
+  def edit_link
+    if h.logged_in? && h.current_user.id == collection.user_id
+      h.link_to "Edit",
+                edit_collection_path(
+                  collection.user.handle,
+                  collection.id,
+                  :src => 'collection'),
+                :class => 'edit_cccccc_14'
+    end
+  end
+
   # Anchor tag for deleting the collection 
   #
   def destroy_link
@@ -26,19 +39,6 @@ class CollectionPresenter < BasePresenter
                 :confirm  => "Are you sure you want to delete this set?"
     end
   end
-  
-  # Anchor tag for editing the collection 
-  #
-  def edit_link
-    if h.logged_in? && h.current_user.id == collection.user_id
-      h.link_to "Edit",
-                {:action => 'destroy',:id => collection.id},
-                :method => :delete,
-                :class => 'edit_cccccc_14',
-                :confirm  => "Are you sure you want to delete this set?"
-    end
-  end
-
 
   # Link to the next collection 
   #
