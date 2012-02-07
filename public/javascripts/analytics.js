@@ -57,6 +57,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // Collection onboarding previewed in disabled state 
+  //
+  collectionOnboardingPreviewed: function() {
+    mpq.track("Collection Onboarding Previewed");
+  },
+
   // Collection onboarding of a certain type viewed
   //
   collectionOnboardingViewed: function(type) {
