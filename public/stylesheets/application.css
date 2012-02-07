@@ -177,6 +177,7 @@ div.welcome_text {
 
 .nav_add_list, .nav_login_list {
   display: none;
+  z-index: 10000;
 /*border-top: 2px solid transparent; 
   border-right: 2px solid transparent;
   border-bottom: 2px solid transparent;
@@ -579,7 +580,7 @@ div.welcome_text {
   width: 48px;
   height: 40px;
   background: url("/images/v-x_glow.png") 0 0 no-repeat;
-  z-index: 10000;
+  z-index: 1;
   position: absolute;
   bottom: 0px;
   right: 0px; }
