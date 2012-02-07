@@ -44,6 +44,12 @@ module DW
       Error = 'error'
     end
 
+    # Source of landing at collections/show
+    #
+    class CollectionShowSource < Enumeration
+      Updated = 'collection_updated'
+    end
+
     # Purpose for sending a user an email
     #
     class EmailPurpose < Enumeration
