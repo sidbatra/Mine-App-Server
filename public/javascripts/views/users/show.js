@@ -194,8 +194,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     if(this.user.get('collections_count'))
       analytics.userCollectionsView(this.user.get('id'));
-    else if(this.isCurrentUser && 
-            this.user.get('products_count') < CONFIG['products_threshold'])
+    else if(this.user.get('products_count') < CONFIG['products_threshold'])
       analytics.collectionOnboardingPreviewed();
     else
       analytics.collectionOnboardingViewed('faded_timeline');
