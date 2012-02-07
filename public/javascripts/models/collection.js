@@ -21,11 +21,22 @@ Denwen.Models.Collection = Backbone.Model.extend({
     return 'collection_' + this.get('id');
   },
 
+  // Base of collection paths
+  //
+  pathBase: function() {
+    return '/' + this.get('user').get('handle') + '/c/' + this.get('id');
+  },
+
   // Path to the collection with the originating source
   //
   path: function(src) {
-    return '/' + this.get('user').get('handle') + '/c/' + 
-            this.get('id') + '?src=' + src;
+    return this.pathBase() + '?src=' + src;
+  },
+
+  // Path to editing the collection with the originating source
+  //
+  editPath: function(src) {
+    return this.pathBase() + '/edit?src=' + src;
   },
 
   // Likes count string after a like has been initiated
