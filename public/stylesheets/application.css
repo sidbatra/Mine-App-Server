@@ -205,7 +205,7 @@ div.welcome_text {
 
 .nav_login_list {
   position: absolute;
-  right: 0px;
+  right: -8px;
   white-space: nowrap; }
 
 /* ------------------------------ Onboarding */
