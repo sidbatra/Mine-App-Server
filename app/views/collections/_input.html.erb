@@ -8,13 +8,14 @@
 			<br />
 				<a href="javascript:void(0)" 
             class="edit_555555_18 add_review" 
-            id="collection_title_initiate">
+            id="collection_title_initiate"
+            style="<%=collection.name.present? ? 'display:none' : ''%>">
 				Add a title to this set?
 			</a>
 	
 <%=f.text_field :name,
 			:class    => 'input',
-      :style    => 'display:none'%>
+      :style    => collection.name.present? ? '' : 'display:none'%>
 
 		</div>
 	      

@@ -3,8 +3,9 @@
 	      :html => {:class => '', :id => 'edit_collection'} do |f|%>
 
   <%=render :partial  => 'input',
-            :locals   => {:f => f}%>
-
+            :locals   => {
+              :f          => f,
+              :collection => @collection}%>
 <%end%>
 
 <%content_for :javascript do%>
