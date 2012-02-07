@@ -63,7 +63,7 @@ class CollectionPresenter < BasePresenter
   # Link to go get back to the source url
   #
   def breadcrumb(title,path)
-    h.link_to "← " + title,
+    h.link_to "<span class='unicode'>←</span> " + title,
               path,
               :class => '' 
   end
