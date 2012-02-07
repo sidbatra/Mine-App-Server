@@ -27,7 +27,14 @@ Denwen.Views.Collections.Show = Backbone.View.extend({
   // Fire various tracking events
   //
   setAnalytics: function() {
+    analytics.userLandsOn(this.collection.uniqueKey());
     analytics.collectionView(this.source);
+
+    if(this.source == 'collection_updated')
+      analytics.collectionUpdated();
+
+    if(this.source.slice(0,6) == 'email_')
+      analytics.emailClicked(this.source.slice(6,this.source.length));
   }
 
 });

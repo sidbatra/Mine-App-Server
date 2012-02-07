@@ -16,7 +16,6 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
 
     this.currentUserID    = this.options.currentUserID;
 
-    this.formEl           = '#new_collection';
     this.productsEl       = '#items';
     this.productIdsEl     = '#collection_product_ids';
     this.titleEl          = '#collection_name';
@@ -27,7 +26,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     this.productPickers = new Array(); 
     this.productsPicked = new Array(); 
 
-    $(this.formEl).submit(function(){return self.post();});
+    this.el.submit(function(){return self.post();});
 
     this.get();
   },

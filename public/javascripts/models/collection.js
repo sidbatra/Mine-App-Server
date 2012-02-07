@@ -14,6 +14,13 @@ Denwen.Models.Collection = Backbone.Model.extend({
     this.associate('products',Denwen.Collections.Products);
   },
 
+  // Unique key to identify the unique combination of the
+  // model name and the id
+  //
+  uniqueKey: function() {
+    return 'collection_' + this.get('id');
+  },
+
   // Path to the collection with the originating source
   //
   path: function(src) {
