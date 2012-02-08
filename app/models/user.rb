@@ -92,6 +92,8 @@ class User < ActiveRecord::Base
     user.first_name   = attributes.first_name
     user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
+
+    user.build_setting if user.new_record?
       
     user.save!
     user
