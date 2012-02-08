@@ -93,11 +93,10 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Updated");
   },
 
-  // User tried to create a collection without
-  // adding any products
+  // User tried to create a collection with an exception
   // 
-  collectionException: function() {
-    mpq.track("Collection Exception");
+  collectionException: function(type) {
+    mpq.track("Collection Exception",{'Type' : type});
   },
 
   // User cancels a collection

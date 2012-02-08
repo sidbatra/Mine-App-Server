@@ -1,11 +1,9 @@
-
 <%form_for @collection,:url => "/collections/#{@collection.id}",
 	      :html => {:class => '', :id => 'edit_collection'} do |f|%>
 
   <%=render :partial  => 'input',
             :locals   => {
-              :f          => f,
-              :collection => @collection}%>
+              :f => f}%>
 <%end%>
 
 <%content_for :javascript do%>

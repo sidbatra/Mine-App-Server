@@ -6,7 +6,6 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #collection_title_initiate"   : "titleInitiated"
   },
 
   // Constructor logic
@@ -20,7 +19,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     this.productsEl       = '#items';
     this.productIdsEl     = '#collection_product_ids';
     this.titleEl          = '#collection_name';
-    this.titleInitiateEl  = '#collection_title_initiate';
+    this.titleTextEl      = '#name_text';
 
     this.posting          = false;
 
@@ -96,26 +95,27 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     if(this.productsPicked.length < 1) {
       valid = false;
       alert("Please add at least one item.");
-      analytics.collectionException();
+      analytics.collectionException('No Products');
     }
     else {
       $(this.productIdsEl).val(this.productsPicked.join(","));
     }
 
+    if($(this.titleEl).val().length < 1) {
+      valid = false;
+
+      $(this.titleEl).addClass('incomplete');
+      $(this.titleTextEl).addClass('incomplete');
+      analytics.collectionException('No Name');
+    }
+    else {
+      $(this.titleEl).removeClass('incomplete');
+      $(this.titleTextEl).removeClass('incomplete');
+    }
+
     this.posting = valid;
 
     return valid;
-  },
-
-  // User initiate creation of the title 
-  //
-  titleInitiated: function() {
-    $(this.titleInitiateEl).hide();
-
-    $(this.titleEl).show();
-    $(this.titleEl).focus();
-
-    analytics.collectionTitleInitiated();
   }
 
 });

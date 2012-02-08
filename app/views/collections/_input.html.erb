@@ -18,14 +18,12 @@
 	
 	<div id='footer_onboarding'>
 		
-		<div class='text set_name'>Name this set:</div>
+		<div id='name_text' class='text set_name'>Name this set:</div>
 	
 		<%=f.text_field :name,
-			:class    => 'input',
-      :style    => collection.name.present? ? '' : ''%>
+			:class    => 'input'%>
 	
 	  <%=submit_tag '',
 	                :class  => 'done',
 	                :name   => nil%>
-	    
 	</div>
