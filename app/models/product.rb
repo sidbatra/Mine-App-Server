@@ -90,15 +90,6 @@ class Product < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Mark the product as gift
-  #
-  def make_gift
-    self.is_gift  = true
-    self.price    = 0
-    self.store_id = nil
-    save!
-  end
-
   # Mark the store as unknown
   #
   def make_store_unknown
