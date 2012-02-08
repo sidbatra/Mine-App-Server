@@ -58,6 +58,8 @@ class ProductObserver < ActiveRecord::Observer
       User.increment_counter(:products_count,product.user_id)
       User.decrement_counter(:products_count,product.user_id_was)
     end
+
+    product.collection_parts.each{|c| c.save!}
   end
 
   # Post process based on the flags set in before_update
