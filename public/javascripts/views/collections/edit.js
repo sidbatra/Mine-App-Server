@@ -1,16 +1,17 @@
-// View for creating new collections
+// View for editing collections
 //
-Denwen.Views.Collections.New = Backbone.View.extend({
+Denwen.Views.Collections.Edit = Backbone.View.extend({
   
   // Constructor logic
   //
   initialize: function() {
     this.source      = this.options.source;
+    this.productIDs  = this.options.productIDs.split(',');
     this.currentUser = new Denwen.Models.User(this.options.currentUserJSON);
 
     new Denwen.Partials.Collections.Input({
-          el            : $('#new_collection'),
-          productIDs    : [],
+          el            : $('#edit_collection'),
+          productIDs    : this.productIDs,
           currentUserID : this.currentUser.get('id')});
 
     this.setAnalytics();
@@ -19,7 +20,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.collectionNewView(this.source);
+    analytics.collectionEditView(this.source);
   }
 
 });

@@ -110,14 +110,6 @@ class Store < ActiveRecord::Base
     end
   end
 
-  # Change all products to gift
-  #
-  def change_products_to_gift
-    self.products.each do |product|
-      product.make_gift
-    end
-  end
-
   # Change the store to unknown for all products 
   #
   def change_products_store_to_unknown

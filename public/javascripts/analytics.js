@@ -57,6 +57,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // Collection onboarding previewed in disabled state 
+  //
+  collectionOnboardingPreviewed: function() {
+    mpq.track("Collection Onboarding Previewed");
+  },
+
   // Collection onboarding of a certain type viewed
   //
   collectionOnboardingViewed: function(type) {
@@ -81,11 +87,16 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Created");
   },
 
-  // User tried to create a collection without
-  // adding any products
+  // User updates a collection
+  //
+  collectionUpdated: function() {
+    mpq.track("Collection Updated");
+  },
+
+  // User tried to create a collection with an exception
   // 
-  collectionException: function() {
-    mpq.track("Collection Exception");
+  collectionException: function(type) {
+    mpq.track("Collection Exception",{'Type' : type});
   },
 
   // User cancels a collection
@@ -431,6 +442,13 @@ Denwen.Analytics = Backbone.Model.extend({
   collectionNewView: function(source) {
      mpq.track(
       'Collection New View',{'source' : source});
+  },
+
+  // Page view on the collections edit page
+  //
+  collectionEditView: function(source) {
+     mpq.track(
+      'Collection Edit View',{'source' : source});
   },
 
   // User opts in to write a title while creating a collection

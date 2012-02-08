@@ -46,7 +46,8 @@ class Product < ActiveRecord::Base
                                   {:conditions => {:actions => {
                                                     :user_id  => user_id,
                                                     :name     => name}},
-                                   :joins       => :actions}}
+                                   :joins       => :actions,
+                                   :order       => 'actions.created_at DESC'}}
   named_scope :in_category, lambda {|category_id| 
                               {:conditions => {:category_id => category_id}} if category_id}
   named_scope :created,     lambda {|range| 
@@ -88,29 +89,6 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
-
-  # Share the product to fb via the user who created it
-  #
-  #def share(product_url)
-  #  fb_user = FbGraph::User.me(self.user.access_token)
-  #  fb_user.feed!(
-  #    :message      => self.endorsement,
-  #    :picture      => self.thumbnail_url,
-  #    :link         => product_url,
-  #    :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
-  #                      (user.is_male? ? "his" : "her") +
-  #                      " online closet. It's fun, and free!",
-  #    :name         => self.title)
-  #end
-
-  # Mark the product as gift
-  #
-  def make_gift
-    self.is_gift  = true
-    self.price    = 0
-    self.store_id = nil
-    save!
-  end
 
   # Mark the store as unknown
   #

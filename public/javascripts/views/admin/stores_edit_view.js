@@ -39,7 +39,7 @@ Denwen.Views.Admin.StoresEditView = Backbone.View.extend({
   setAutocompleteDataSource: function() {
     var stores = this.approvedStores.map(function(store){
                                           return store.get("name");});
-    stores.push('Unknown','Gift');
+    stores.push('Unknown');
 
     for (i in this.storeEditViews)
       this.storeEditViews[i].setupAutocomplete(stores);

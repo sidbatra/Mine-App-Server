@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+migration_count=`ls db/migrate | wc -l`
+
 git pull --rebase
-#git fetch origin
-#git merge develop
-#git remote update -p
-#git merge --ff-only origin/develop
-RAILS_ENV=development rake db:migrate
+
+new_migration_count=`ls db/migrate | wc -l`
+
+if [ $migration_count -ne $new_migration_count ] ; then
+  RAILS_ENV=development rake db:migrate
+fi
+
 touch tmp/restart.txt
-RAILS_ENV=development sudo lib/daemons/processor_ctl restart
+RAILS_ENV=development sudo lib/daemons/processor_ctl restart > /dev/null &

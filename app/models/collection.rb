@@ -55,6 +55,18 @@ class Collection < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
+  # Destroy the old collection parts and make new ones
+  #
+  def update_parts(new_product_ids)
+    collection_parts.destroy_all
+
+    new_product_ids.uniq.each do |product_id|
+      collection_parts.build(:product_id => product_id)
+    end
+
+    save!
+  end
+
   # Fetch the next collection made by the owner 
   #
   def next

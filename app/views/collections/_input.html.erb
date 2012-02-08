@@ -1,0 +1,29 @@
+
+<%=f.hidden_field :product_ids%>
+
+	<div id="container" class="narrow">
+	
+		<div class="heading unselectable">
+			Click the items you have on you now.
+		</div>
+	      
+	  <div id="items">
+      <div class="loading" id="loading_spinner">
+        <%=image_tag 'spinner_light_bg.gif'%>
+      </div>
+		</div> <!-- items -->
+	    
+	</div> <!-- container -->
+	
+	
+	<div id='footer_onboarding'>
+		
+		<div id='name_text' class='text set_name'>Name this set:</div>
+	
+		<%=f.text_field :name,
+			:class    => 'input'%>
+	
+	  <%=submit_tag '',
+	                :class  => 'done',
+	                :name   => nil%>
+	</div>

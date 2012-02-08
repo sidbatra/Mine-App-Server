@@ -28,11 +28,6 @@ class Admin::StoresController < ApplicationController
     type            = params[:name].downcase.to_sym
 
     case type
-    when :gift
-      store.change_products_to_gift
-      store.destroy
-
-      @store = nil
     when :unknown
       store.change_products_store_to_unknown
       store.destroy

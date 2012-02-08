@@ -21,6 +21,12 @@
 	  <span class='count'><%=collection.comments_count_string()%>&nbsp;</span>
 	</a>
 	
+  <%if(helpers.isCurrentUser(collection.get('user_id'))){%>
+    <a href='<%=collection.editPath('user_list')%>' class='edit_999999_14'>
+      Edit
+    </a>
+  <%}%>
+	
 </div>
 
 <%if(collection.get('name')){%>

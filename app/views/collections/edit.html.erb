@@ -1,5 +1,5 @@
-<%form_for @collection,
-	      :html => {:class => '', :style => ''} do |f|%>
+<%form_for @collection,:url => "/collections/#{@collection.id}",
+	      :html => {:class => '', :id => 'edit_collection'} do |f|%>
 
   <%=render :partial  => 'input',
             :locals   => {
@@ -9,13 +9,13 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
 
-    new Denwen.Views.Collections.New({
+    new Denwen.Views.Collections.Edit({
             currentUserJSON : <%=self.current_user.to_json(
                                   :only => [:id,:first_name,:last_name,
                                               :handle])%>,
                      source : '<%=@source%>',
+                 productIDs : '<%=@collection.product_ids.join(',')%>',
                          el : $('#container')});
 
   </script>
 <%end%>
-

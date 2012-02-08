@@ -82,6 +82,20 @@ class CollectionsController < ApplicationController
     redirect_to root_path if @error
   end
 
+  # Edit a collection
+  #
+  def edit
+    user        = User.find_by_handle(params[:user_handle])
+    @collection = Collection.
+                    find_by_id_and_user_id(
+                                        params[:id],
+                                        user.id)
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    redirect_to root_path if @error
+  end
+
   # Update a collection 
   #
   def update
@@ -89,12 +103,23 @@ class CollectionsController < ApplicationController
 
     if @collection.user_id == self.current_user.id
       @collection.update_attributes(params[:collection])
+
+      if params[:collection][:product_ids]
+        @collection.update_parts(
+                      params[:collection][:product_ids].split(','))
+      end
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
     respond_to do |format|
+      format.html do 
+        redirect_to collection_path(
+                      self.current_user.handle,
+                      @collection.id,
+                      :src => CollectionShowSource::Updated)
+      end
       format.json
     end
   end
