@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207201426) do
+ActiveRecord::Schema.define(:version => 20120208212536) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -201,6 +201,15 @@ ActiveRecord::Schema.define(:version => 20120207201426) do
 
   add_index "searches", ["source"], :name => "index_searches_on_source"
   add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
+
+  create_table "settings", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "post_to_timeline", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
 
   create_table "shoppings", :force => true do |t|
     t.integer  "user_id"
