@@ -1,0 +1,31 @@
+
+<div id="pic_bg">
+
+	<div id="container narrow">
+
+  <%form_for @settings,:url => "/settings/#{@settings.id}",
+        :html => {
+          :class  => 'new_product',
+          :id     => 'edit_product'} do |f|%>
+
+      <div class='step'>
+      
+        <div id='' class=''>
+          <%=f.check_box :post_to_timeline%>
+          <%=f.label :post_to_timeline,"Post to Facebook Timeline"%>
+        </div>
+
+
+        <%=blocker%>
+
+        <%=submit_tag "",
+                      :class  => '',
+                      :name   => nil%>
+                          
+        <%=blocker%>
+      </div> 
+  <%end%>
+
+	</div> <!-- container -->
+   
+</div> <!-- pic_bg -->

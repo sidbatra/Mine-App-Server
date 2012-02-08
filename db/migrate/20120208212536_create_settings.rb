@@ -2,7 +2,7 @@ class CreateSettings < ActiveRecord::Migration
   def self.up
     create_table :settings do |t|
       t.integer :user_id
-      t.boolean :post_to_timeline, :default => false
+      t.boolean :post_to_timeline, :default => true
 
       t.timestamps
     end

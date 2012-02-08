@@ -101,6 +101,9 @@ ActionController::Routing::Routes.draw do |map|
                 :only       => [:show,:create],
                 :controller => :welcome
 
+  map.resources :settings,
+                :only => [:index,:update]
+
   # Admin routes
   map.resources :admin_users, 
                 :as         => 'admin/users', 

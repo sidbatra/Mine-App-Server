@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20120208212536) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "post_to_timeline", :default => false
+    t.boolean  "post_to_timeline", :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
