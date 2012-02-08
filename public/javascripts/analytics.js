@@ -384,6 +384,12 @@ Denwen.Analytics = Backbone.Model.extend({
         'id'              : userID});
   },
 
+  // User views the settings page
+  //
+  settingsView: function(source) {
+    mpq.track('Settings View',{'source' : source});
+  },
+
   // A collection is viewed
   //
   collectionView: function(source) {

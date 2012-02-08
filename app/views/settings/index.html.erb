@@ -5,8 +5,8 @@
 
   <%form_for @settings,:url => "/settings/#{@settings.id}",
         :html => {
-          :class  => 'new_product',
-          :id     => 'edit_product'} do |f|%>
+          :class  => '',
+          :id     => 'edit_setting'} do |f|%>
 
       <div class='step'>
       
@@ -29,3 +29,14 @@
 	</div> <!-- container -->
    
 </div> <!-- pic_bg -->
+
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+    new Denwen.Views.Settings.Index({
+          el            : $('edit_setting'),
+          source        : '<%=@source%>'});
+  </script>
+
+<%end%>
