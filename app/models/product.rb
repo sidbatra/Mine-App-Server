@@ -90,20 +90,6 @@ class Product < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Share the product to fb via the user who created it
-  #
-  #def share(product_url)
-  #  fb_user = FbGraph::User.me(self.user.access_token)
-  #  fb_user.feed!(
-  #    :message      => self.endorsement,
-  #    :picture      => self.thumbnail_url,
-  #    :link         => product_url,
-  #    :description  => user.first_name + " is using #{CONFIG[:name]} to share " +
-  #                      (user.is_male? ? "his" : "her") +
-  #                      " online closet. It's fun, and free!",
-  #    :name         => self.title)
-  #end
-
   # Mark the product as gift
   #
   def make_gift
