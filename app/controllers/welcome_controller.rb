@@ -56,7 +56,7 @@ class WelcomeController < ApplicationController
 
     case @filter
     when WelcomeFilter::Stores
-      @success_target = welcome_path(WelcomeFilter::Follow)
+      @success_target = welcome_path(WelcomeFilter::Friends)
       @error_target   = welcome_path(WelcomeFilter::Stores)
 
       store_ids = params[:store_ids].split(',')
