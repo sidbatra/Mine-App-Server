@@ -101,11 +101,12 @@ class Collection < ActiveRecord::Base
                          SecureRandom.hex(10) + 
                          Time.now.to_i.to_s).chomp + ".jpg"
 
-    base = MiniMagick::Image.open(CONFIG[:collection_base_image])
+    base = MiniMagick::Image.open(
+            File.join(RAILS_ROOT,CONFIG[:collection_base_image]))
     coordinates = [[8,8],[90,8],[8,90],[90,90]]
     thumbnail_size = 82
 
-    products[0..3].each_with_index do |product,i|
+    products.shuffle[0..3].each_with_index do |product,i|
       image = MiniMagick::Image.open(product.thumbnail_url)
       image = ImageUtilities.square_thumbnail_with_image(image,thumbnail_size)
 

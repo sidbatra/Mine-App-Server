@@ -60,6 +60,7 @@ Rails::Initializer.run do |config|
                                     :user_observer, :following_observer,
                                     :action_observer, :store_observer,
                                     :achievement_set_observer,
+                                    :collection_observer,
                                     :store_sweeper, :following_sweeper,
                                     :product_sweeper, :collection_part_sweeper,
                                     :user_sweeper, :achievement_set_sweeper,

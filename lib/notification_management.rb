@@ -79,6 +79,13 @@ module DW
 
         UserMailer.deliver_new_follower(following) 
       end
+
+      # Process a new collection and manager distribution
+      #
+      def self.new_collection(collection_id)
+        collection = Collection.find(collection_id)
+        collection.process
+      end
     
     end #notification manager
 
