@@ -4,8 +4,8 @@
 common: &common
   :aws_access_id: AKIAJWYCAWDPAAKLNKSQ
   :aws_secret_key: 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 
-  :fb_app_id: 245230762190915 
-  :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815 
+  :fb_app_id: 245230762190915
+  :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
   :fb_app_namespace: dw_boomerang
   :age_bucket_size: 5
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4

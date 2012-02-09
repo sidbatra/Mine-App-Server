@@ -8,9 +8,9 @@
 <meta property="og:image" content="<%=image%>"/>
 <%-if defined? products-%>
 <%-products.each do |product|-%>
-<meta property="dw_boomerang:item" content="<%=product_url(product.user.handle,product.handle,:src => 'fb')%>"/>
+<meta property="<%=CONFIG[:fb_app_namespace]%>:item" content="<%=product_url(product.user.handle,product.handle,:src => 'fb')%>"/>
 <%-end-%>
 <%-end-%>
 <%-if defined?(store) && store.present?-%>
-<meta property="dw_boomerang:store" content="<%=store_url(store.handle,:src => 'fb')%>"/>
+<meta property="<%=CONFIG[:fb_app_namespace]%>:store" content="<%=store_url(store.handle,:src => 'fb')%>"/>
 <%-end-%>
