@@ -85,4 +85,49 @@ class Collection < ActiveRecord::Base
                     :id_lt    => self.id})
   end
 
+  # Full url of the original image
+  #
+  def image_url
+    FileSystem.url(image_path ? image_path : "")
+  end
+
+  # Generate an canonical image using products
+  # of the collection
+  #
+  def process
+    return if products.length < 4
+
+    self.image_path  = Base64.encode64(
+                         SecureRandom.hex(10) + 
+                         Time.now.to_i.to_s).chomp + ".jpg"
+
+    base = MiniMagick::Image.open(CONFIG[:collection_base_image])
+    coordinates = [[8,8],[90,8],[8,90],[90,90]]
+    thumbnail_size = 82
+
+    products[0..3].each_with_index do |product,i|
+      image = MiniMagick::Image.open(product.thumbnail_url)
+      image = ImageUtilities.square_thumbnail_with_image(image,thumbnail_size)
+
+      size = image[:width] > image[:height] ?
+              "#{thumbnail_size}x#{(image[:height]*thumbnail_size)/image[:width]}" :
+              "#{thumbnail_size}x#{(image[:width]*thumbnail_size)/image[:height]}"
+
+      base = base.composite(image) do |canvas|
+        canvas.gravity  "NorthWest"
+        canvas.geometry "#{size}+#{coordinates[i].join('+')}"
+      end
+    end
+
+    FileSystem.store(
+      image_path,
+      open(base.path),
+      "Content-Type"  => "image/jpg",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+    self.is_processed = true
+    save!
+  end
+
 end

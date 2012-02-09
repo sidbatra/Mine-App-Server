@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208212536) do
+ActiveRecord::Schema.define(:version => 20120209020106) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20120208212536) do
     t.integer  "comments_count", :default => 0
     t.integer  "actions_count",  :default => 0
     t.string   "name",           :default => ""
+    t.string   "image_path"
+    t.boolean  "is_processed",   :default => false
   end
 
   add_index "collections", ["user_id"], :name => "index_collections_on_user_id"

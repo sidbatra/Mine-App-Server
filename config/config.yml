@@ -20,6 +20,7 @@ common: &common
   :name: OnCloset
   :version: 2.5
   :products_threshold: 5
+  :collection_base_image: private/collection_base.jpg
   :keys:
     :user_category_count: user_%d_category_%d_count
     :user_ifollowers: user_%d_ifollowers
