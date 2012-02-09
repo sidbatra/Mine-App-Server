@@ -2,7 +2,9 @@
   <div id='header'>
     <div class='navbar narrow unselectable'>
 
-      <div class="logo"></div>
+      <%=image_tag 'oncloset_logo_34_white.png', 
+          :alt    => CONFIG[:name],
+          :class  => "logo"%>
           
       <ol id='indicators'>
           <li class='first <%=step == 1 ? 'on' : ''%>'></li>
