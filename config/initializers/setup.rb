@@ -25,6 +25,7 @@ include ImageProcessing
 include NotificationManagement
 include Storage
 include QueueManagement
+include DistributionManagement
 
 
 # Disable updates in ThinkingSphinx to use the delayed delta
