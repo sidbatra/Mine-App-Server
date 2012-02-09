@@ -30,8 +30,7 @@ Rails::Initializer.run do |config|
               :version => '0.6.2')
   config.gem('aws-ses', 
               :lib => 'aws/ses', 
-              :version => '0.4.3',
-              :lib => false)
+              :version => '0.4.3')
   config.gem('daemons', 
               :version => '1.1.0',
               :lib => false)
