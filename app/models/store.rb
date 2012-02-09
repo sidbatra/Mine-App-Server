@@ -180,7 +180,7 @@ class Store < ActiveRecord::Base
 
       # Create tiny thumbnail
       #
-      image = MiniMagick::Image.from_file(file_path)
+      image = MiniMagick::Image.open(file_path)
 
       ImageUtilities.reduce_to_with_image(
                         image,
@@ -195,7 +195,7 @@ class Store < ActiveRecord::Base
 
       # Create medium thumbnail
       #
-      image = MiniMagick::Image.from_file(file_path)
+      image = MiniMagick::Image.open(file_path)
 
       ImageUtilities.reduce_to_with_image(
                         image,
@@ -210,7 +210,7 @@ class Store < ActiveRecord::Base
 
       # Create large thumbnail
       #
-      image = MiniMagick::Image.from_file(file_path)
+      image = MiniMagick::Image.open(file_path)
 
       ImageUtilities.reduce_to_with_image(
                         image,

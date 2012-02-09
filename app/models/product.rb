@@ -189,7 +189,7 @@ class Product < ActiveRecord::Base
 
       # Create tiny thumbnail
       #
-      image = MiniMagick::Image.from_file(file_path)
+      image = MiniMagick::Image.open(file_path)
 
       ImageUtilities.reduce_to_with_image(
                         image,
@@ -204,7 +204,7 @@ class Product < ActiveRecord::Base
 
       # Create giant thumbnail
       #
-      image = MiniMagick::Image.from_file(file_path)
+      image = MiniMagick::Image.open(file_path)
 
       ImageUtilities.reduce_to_with_image(
                         image,

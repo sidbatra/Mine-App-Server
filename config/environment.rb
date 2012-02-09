@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
   config.gem('daemons', 
               :version => '1.1.0')
   config.gem('mini_magick', 
-              :version => '2.1')
+              :version => '3.4')
   config.gem('fb_graph',
               :version => '2.1.10')
   config.gem('jammit',
