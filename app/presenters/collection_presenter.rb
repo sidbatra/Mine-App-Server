@@ -75,4 +75,11 @@ class CollectionPresenter < BasePresenter
     "A set of items owned by " + user_name
   end
 
+  # Thumbnail url for the collection
+  #
+  def thumbnail_url
+    collection.is_processed ? collection.image_url : 
+                              collection.products.first.thumbnail_url
+  end
+
 end
