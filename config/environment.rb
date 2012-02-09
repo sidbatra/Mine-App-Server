@@ -30,15 +30,21 @@ Rails::Initializer.run do |config|
               :version => '0.6.2')
   config.gem('aws-ses', 
               :lib => 'aws/ses', 
-              :version => '0.4.3')
+              :version => '0.4.3',
+              :lib => false)
   config.gem('daemons', 
-              :version => '1.1.0')
-  config.gem('mini_magick', 
-              :version => '3.4')
+              :version => '1.1.0',
+              :lib => false)
   config.gem('fb_graph',
               :version => '2.4.0')
   config.gem('jammit',
               :version => '0.6.3')
+  config.gem('mechanize', 
+              :version => '2.1.1',
+              :lib => false)
+  config.gem('mini_magick', 
+              :version => '3.4',
+              :lib => false)
 
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

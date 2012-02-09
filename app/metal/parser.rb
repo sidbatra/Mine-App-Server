@@ -1,12 +1,13 @@
 # Allow the metal piece to run in isolation
 #require(File.dirname(__FILE__) + "/../../config/environment") unless defined?(Rails)
-require 'rubygems'
-require 'mechanize'
 
 class Parser
   def self.call(env)
 
     if env["PATH_INFO"] =~ /^\/parser/
+      require 'rubygems'
+      require 'mechanize'
+
       images  = []
       title   = ""
 
