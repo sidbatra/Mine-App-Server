@@ -28,6 +28,8 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
 
     this.el.submit(function(){return self.post();});
 
+    restrictFieldSize($(this.titleEl),254,'charsremain');
+
     this.get();
   },
 
