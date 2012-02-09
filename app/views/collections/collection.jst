@@ -32,7 +32,7 @@
 <%if(collection.get('name')){%>
 	<div class='sequence_title'>
 		<a href='<%=collection.path('user')%>'>
-			<%=collection.get('name')%>
+			<%=collection.escape('name')%>
 		</a>
 	</div>
 <%}%>
