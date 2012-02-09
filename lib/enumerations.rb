@@ -135,6 +135,22 @@ module DW
       Friends = 'friends'
       Create  = 'create'
     end
+
+    # Facebook OpenGraph objects
+    #
+    class OGObjects < Enumeration
+      Item    = "#{CONFIG[:fb_app_namespace]}:item" 
+      Set     = "#{CONFIG[:fb_app_namespace]}:set" 
+      Store   = "#{CONFIG[:fb_app_namespace]}:store" 
+    end
+
+    # Facebook OpenGraph Actions
+    #
+    class OGActions < Enumeration
+      Add     = "#{CONFIG[:fb_app_namespace]}:add" 
+      Use     = "#{CONFIG[:fb_app_namespace]}:use" 
+    end
+
   end
 
 end

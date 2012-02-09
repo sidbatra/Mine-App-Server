@@ -75,10 +75,4 @@ class CollectionPresenter < BasePresenter
     "A set of items owned by " + user_name
   end
 
-  # Open graph type
-  #
-  def og_type
-    "#{CONFIG[:fb_app_namespace]}:set"
-  end
-
 end

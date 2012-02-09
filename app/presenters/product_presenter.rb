@@ -74,12 +74,6 @@ class ProductPresenter < BasePresenter
             :omissions 	=> '…')
   end
 
-  # Open graph type
-  #
-  def og_type
-    "#{CONFIG[:fb_app_namespace]}:item"
-  end
-
   # Store where the product was bought
   #
   def store_name
