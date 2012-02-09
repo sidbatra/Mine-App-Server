@@ -6,7 +6,7 @@
 <meta property="og:description" content ="<%=description%>"/>
 <meta property="fb:app_id" content="<%=CONFIG[:fb_app_id]%>"/>
 <meta property="og:image" content="<%=image%>"/>
-<%-if defined? products-%>
+<%-if defined?(products)-%>
 <%-products.each do |product|-%>
 <meta property="<%=CONFIG[:fb_app_namespace]%>:item" content="<%=product_url(product.user.handle,product.handle,:src => 'fb')%>"/>
 <%-end-%>
