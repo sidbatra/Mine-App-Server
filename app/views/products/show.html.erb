@@ -8,7 +8,7 @@
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @product_presenter.title, 
-              :type         => OGObjects::Item, 
+              :type         => OGObject::Item, 
               :description  => @user_presenter.usage_description,
               :url          => @product_presenter.url('fb'),
               :image        => @product_presenter.thumbnail_url,

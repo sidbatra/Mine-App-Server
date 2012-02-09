@@ -8,9 +8,9 @@
 <meta property="og:image" content="<%=image%>"/>
 <%-if defined?(products)-%>
 <%-products.each do |product|-%>
-<meta property="<%=OGObjects::Item%>" content="<%=product_url(product.user.handle,product.handle,:src => 'fb')%>"/>
+<meta property="<%=OGObject::Item%>" content="<%=product_url(product.user.handle,product.handle,:src => 'fb')%>"/>
 <%-end-%>
 <%-end-%>
 <%-if defined?(store) && store.present? && store.is_processed-%>
-<meta property="<%=OGObjects::Store%>" content="<%=store_url(store.handle,:src => 'fb')%>"/>
+<meta property="<%=OGObject::Store%>" content="<%=store_url(store.handle,:src => 'fb')%>"/>
 <%-end-%>

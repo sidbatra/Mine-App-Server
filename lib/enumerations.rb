@@ -138,7 +138,7 @@ module DW
 
     # Facebook OpenGraph objects
     #
-    class OGObjects < Enumeration
+    class OGObject < Enumeration
       Item    = "#{CONFIG[:fb_app_namespace]}:item" 
       Set     = "#{CONFIG[:fb_app_namespace]}:set" 
       Store   = "#{CONFIG[:fb_app_namespace]}:store" 
@@ -146,7 +146,7 @@ module DW
 
     # Facebook OpenGraph Actions
     #
-    class OGActions < Enumeration
+    class OGAction < Enumeration
       Add     = "#{CONFIG[:fb_app_namespace]}:add" 
       Use     = "#{CONFIG[:fb_app_namespace]}:use" 
     end

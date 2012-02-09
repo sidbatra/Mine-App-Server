@@ -6,7 +6,7 @@
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @store_presenter.name,
-              :type         => OGObjects::Store,
+              :type         => OGObject::Store,
               :description  => @store_presenter.usage_description,
               :url          => @store_presenter.closet_url('fb'),
               :image        => @store.large_url}%>
