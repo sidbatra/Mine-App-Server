@@ -7,12 +7,12 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => @collection_presenter.page_title(
-                                  @user_presenter.first_name),
-              :type         => 'link',
+              :title        => @collection_presenter.name,
+              :type         => @collection_presenter.og_type,
               :description  => @user_presenter.usage_description,
               :url          => @collection_presenter.url('fb'),
-              :image        => @collection.products.last.thumbnail_url}%>
+              :image        => @collection.products.first.thumbnail_url,
+              :products     => @collection.products}%>
 <%end%>
 
 

@@ -41,4 +41,10 @@ class StorePresenter < BasePresenter
     "store_" + store.id.to_s
   end
 
+  # Open graph type
+  #
+  def og_type
+    "#{CONFIG[:fb_app_namespace]}:store"
+  end
+
 end
