@@ -22,6 +22,8 @@ module DW
                                     product.handle,
                                     :src  => 'fb',
                                     :host => CONFIG[:host])) 
+
+      TickerAction.add(action.identifier,OGAction::Add,product)
     end
 
     # Publish a story whenever the user uses a collection
@@ -37,6 +39,8 @@ module DW
                                     collection.id,
                                     :src  => 'fb',
                                     :host => CONFIG[:host])) 
+
+      TickerAction.add(action.identifier,OGAction::Use,collection)
     end
     
     end #distribution manager
