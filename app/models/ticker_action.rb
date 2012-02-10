@@ -19,7 +19,7 @@ class TickerAction < ActiveRecord::Base
   # Class methods
   #----------------------------------------------------------------------
 
-  # Add a new email 
+  # Add a new ticker action 
   #
   def self.add(og_action_id,og_action_type,ticker_actionable)
     create!(
