@@ -19,7 +19,7 @@
           :user => {
             :only => [:id,:first_name,:last_name,:handle],
             :methods  => [:photo_url]}})-%>
-  <%-elsif @filter == :top-%>
+  <%-elsif @filter == :top || @filter == :used-%>
     <%=@products.to_json(
         :only     => [:id,:title,:handle],
         :include  => {

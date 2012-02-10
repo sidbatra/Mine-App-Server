@@ -92,6 +92,14 @@ class ProductsController < ApplicationController
 
       @key = KEYS[:store_top_products] % params[:owner_id]
 
+    when :used
+      @products = Product.for_user(params[:owner_id]).
+                    with_user.
+                    most_used.
+                    limit(10)
+
+      @key = KEYS[:user_top_products] % params[:owner_id]
+
     when :liked
       @products = Product.with_store.with_user.
                     acted_on_by_for(params[:owner_id],ActionName::Like).
