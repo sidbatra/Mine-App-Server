@@ -1,0 +1,34 @@
+<! -- header -->
+<div id="header">
+	<div class="navbar wide">
+    <div class="logo"></div>
+    <ul class="nav">
+			<li>
+				<a href="/facebook/authenticate?src=login&amp;target=%2FAnna-Simpson" 
+				class="nav_menu" id="action_link">Log In</a>
+			</li>
+    </ul> 
+  </div> 
+</div>
+
+
+<!-- blackout -->
+<div class='black'>
+	<div class='overlay'>
+		Create a <span class='em'>beautiful</span> online closet
+		<br />
+		of everything you buy
+		
+		<div class='cross_browser_shadow'>
+	   <%=link_to 	'', 
+					fb_auth_path(:source => @origin), 
+					:class => 'login_with_facebook',
+					:style => ''%>
+		</div>
+					
+		<div class='click_login_orange_arrow'></div>
+	</div>
+</div>
+
+<!-- iframe -->
+<iframe src="http://oncloset.com/Anna-Simpson#owns/all" scrolling="no" frameborder="0"></iframe>

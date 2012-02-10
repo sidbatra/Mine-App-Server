@@ -12,23 +12,9 @@
 <%end%>
 
 
-<%content_for :body_attribute do%>
-  <%if @home ==  'girl'%>
-    <%="style='overflow:hidden' class='home1'"%>
-  <%elsif @home == 'tri'%>
-    <%="style='overflow:hidden' class='home2'"%>
-  <%elsif @home == 'art'%>
-    <%="style='overflow:hidden' class='home3'"%>
-  <%elsif @home == 'zendesk'%>
-    <%="style='overflow:hidden' class='home4'"%>
-  <%elsif @home == 'gojee'%>
-    <%="style='overflow:hidden' class='home5'"%>
-  <%elsif @home == 'gojee1'%>
-    <%="style='overflow:hidden' class='home6'"%>
-  <%elsif @home == 'batch'%>
-    <%="style='overflow:hidden' class='home7'"%>
-  <%end%>
-<%end%>
+<%-content_for :body_attribute do-%>
+	<%="style='overflow:hidden' class='#{@home}'"-%>
+<%-end-%>
 
 <%=render @home%>
 

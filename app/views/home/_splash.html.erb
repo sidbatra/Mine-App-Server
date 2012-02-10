@@ -1,0 +1,20 @@
+
+<div id="container" class="splash">
+  hi bitches
+  
+  
+     <%=link_to 	'', 
+  						fb_auth_path(:source => @origin), 
+  						:class => 'login_button',
+  						:style => ''%>
+  	
+  	
+    <%=image_tag 'home_batch_never.png', 
+        :class => 'unselectable',
+        :style => "position: relative; top:-45px; z-index: 10000;"%> 
+   
+</div> <!-- container -->
+
+<div id="footer" class="home7 unselectable">
+	<%=CONFIG[:name]%> © 2012 · <%=email_link%>
+</div>
