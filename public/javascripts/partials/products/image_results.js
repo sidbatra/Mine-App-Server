@@ -26,6 +26,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.shadowEl       = "#shadow";
     this.moreEl         = "#scroll_for_more_results";
 
+    this.parser = new Denwen.Models.Parser();
+
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
     this.images.bind('add',this.added,this);
@@ -53,6 +55,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
       this.search();
+      //this.parse();
       return false;
     }
   },
@@ -87,6 +90,27 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   //
   queryCorrection: function(correctedQuery) {
     $(this.repeatQueryEl).val(correctedQuery);
+  },
+
+  // Parse images from a url
+  //
+  parse: function() {
+    var self = this;
+    var query = $(this.queryEl).val();
+
+    this.parser.fetch({
+      data : {source : query},
+      success : function(model) {self.urlParsed();},
+      error : function(model) {}
+      });
+  },
+
+  // Images from url successfully parsed
+  //
+  urlParsed: function() {
+    _.each(this.parser.get('images'),function(image){
+      $('body').prepend("<img style='display:none' onload='if(this.width>100)this.style.display = \"inline\"' src='" + image + "' />");
+    });
   },
 
   // Launch the search UI
