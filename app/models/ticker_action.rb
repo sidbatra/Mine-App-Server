@@ -9,10 +9,8 @@ class TickerAction < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of   :og_action_id
-  validates_presence_of   :og_action_type
   validates_inclusion_of  :og_action_type, :in => OGAction.values
   validates_presence_of   :ticker_actionable_id
-  validates_presence_of   :ticker_actionable_type
   validates_inclusion_of  :ticker_actionable_type, :in => %w(Product Collection)
 
   #----------------------------------------------------------------------
