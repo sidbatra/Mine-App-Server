@@ -30,6 +30,10 @@ module DW
       def self.new_product(product_id)
         product = Product.find(product_id)
         product.host
+
+        if product.user.setting.post_to_timeline
+          DistributionManager.publish_add(product)
+        end
       end
 
       # Host the updated product image
@@ -85,6 +89,10 @@ module DW
       def self.new_collection(collection_id)
         collection = Collection.find(collection_id)
         collection.process
+
+        if collection.user.setting.post_to_timeline
+          DistributionManager.publish_use(collection)
+        end
       end
     
     end #notification manager
