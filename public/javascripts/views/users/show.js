@@ -212,8 +212,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   // isn't explicitly set
   //
   loadDefaultTab: function() {
-    if((this.isCurrentUser && this.user.get('collections_count')) || 
-          this.user.get('collections_count') > 1) {
+    if((this.isCurrentUser && this.user.get('collections_count'))){
       this.loadCollectionsTab();
     }
     else {
