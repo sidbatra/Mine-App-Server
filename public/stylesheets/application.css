@@ -54,6 +54,68 @@ body {
 .stretch {
   width: 100%;
   height: 100%; }
+  
+/* ------------------------------ Logged-out blackout */ 
+  
+.blackout {
+	background: url('/images/black_60.png');
+	top: 0px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	z-index: 9000; }
+
+.blackout .overlay {
+	position: relative;
+	margin: 180px auto 0;
+	background-color: #f5f5f5;
+	width: 402px;
+	padding: 24px;	
+	height: 156px;
+	-moz-box-shadow:0 0 45px 5px #333333;
+	-webkit-box-shadow: 0 0 45px #333333;
+	box-shadow: 0 0 45px #333333;
+	text-align: center;
+	font-family: 'FuturaStdBook', Arial, sans-serif;
+	font-size: 26px;
+	color: #555555;
+	line-height: 150%;
+	text-shadow: 0 1px 1px white; }
+
+.blackout .overlay .em {
+	color: #3B5B96; }
+
+.blackout .login_with_facebook {
+	width: 320px;
+	height: 60px;
+	margin-top: 13px;
+	cursor: pointer;
+	display: inline-block;
+	border: none;
+	background: url("/images/welcome_buttons.png") no-repeat;
+	background-position: -40px 0px;
+	font-size: 20px;
+	color: #555;
+	text-shadow: 0 1px 1px white;
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
+
+.blackout .login_with_facebook:hover { background-position: -40px -60px; }
+.blackout .login_with_facebook:active { 
+	background-position: -40px -120px; 
+	box-shadow: none;
+  	-moz-box-shadow: none;
+  	-webkit-box-shadow: none }
+
+.blackout .click_login_orange_arrow {
+	width: 280px;
+	height: 135px;
+	background: url("/images/click_login_orange_arrow.png") no-repeat;
+	position: absolute;
+	top: 189px;
+	left: 85px; }
 
 /* ------------------------------ Logged Out Welcome Box */
 .log_in_with_facebook {
@@ -75,7 +137,10 @@ body {
   background-position: 0 -60px; }
 
 .log_in_with_facebook:active {
-  background-position: 0 -120px; }
+  background-position: 0 -120px;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none; }
 
 div.welcome_text {
   margin: 0 15px;
@@ -90,15 +155,16 @@ div.welcome_text {
 /* ------------------------------ Header */
 #header {
   height: 68px;
+  position: relative; /* needed to keep above blackout */
   background: url('/images/header_black_convex.png') center bottom repeat-x;
-  z-index: 10000;
+  z-index: 10000 !important;
   padding-bottom: 2px;
-  margin-bottom: 18px;
-  width: 100%; }
+  margin-bottom: 18px; }
 
 #header .navbar {
   position: relative;
-  margin: 0 auto; }
+  margin: 0 auto;
+  z-index: 10000 !important; }
 
 #header .navbar .logo {
 	width: 137px;
@@ -663,7 +729,7 @@ div.welcome_text {
   text-align: center;
   line-height: 85px;
   background: url("/images/footer_onboarding_overlay_shadow.png") top repeat-x;
-  z-index: 10000;
+  z-index: 9995;
   /* 	background: #e9e4e1; */
   /* 	border-top: 1px solid #A8A8A8; */ }
   
@@ -1534,7 +1600,7 @@ a.edit_cccccc_14:hover {
 	bottom: -6px;
 	left: -6px;
 	background: url('/images/black_5.png');
-  z-index: -10000;
+	z-index: -10000;
 }
 
 .tab .count {
