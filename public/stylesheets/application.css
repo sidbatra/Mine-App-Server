@@ -157,14 +157,12 @@ div.welcome_text {
   height: 68px;
   position: relative; /* needed to keep above blackout */
   background: url('/images/header_black_convex.png') center bottom repeat-x;
-  z-index: 10000 !important;
   padding-bottom: 2px;
   margin-bottom: 18px; }
 
 #header .navbar {
   position: relative;
-  margin: 0 auto;
-  z-index: 10000 !important; }
+  margin: 0 auto; }
 
 #header .navbar .logo {
 	width: 137px;
