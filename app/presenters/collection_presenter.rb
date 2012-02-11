@@ -2,7 +2,6 @@
 #
 class CollectionPresenter < BasePresenter
   presents :collection
-  delegate :name, :to => :collection
 
   # Relative path for the collection 
   #
@@ -72,7 +71,7 @@ class CollectionPresenter < BasePresenter
   # Title of the page
   #
   def page_title(user_name)
-    "A set of items owned by " + user_name
+    collection.name.present? ? collection.name : user_name + "'s set"
   end
 
   # Thumbnail url for the collection
