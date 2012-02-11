@@ -4,8 +4,10 @@
     <div class="logo"></div>
     <ul class="nav">
 			<li>
-				<a href="/facebook/authenticate?src=login&amp;target=%2FAnna-Simpson" 
-				class="nav_menu" id="action_link">Log In</a>
+        <%=link_to 'Log In', 
+                   fb_auth_path(:source => @origin),
+                   :class => 'nav_menu',
+                   :id    => 'action_link'%>
 			</li>
     </ul> 
   </div> 
@@ -31,4 +33,6 @@
 </div>
 
 <!-- iframe -->
-<iframe src="http://oncloset.com/Anna-Simpson#owns/all" scrolling="no" frameborder="0"></iframe>
+<iframe src="<%=user_url('Anna-Simpson',:src => 'iframe')%>" 
+        scrolling="no" 
+        frameborder="0"></iframe>

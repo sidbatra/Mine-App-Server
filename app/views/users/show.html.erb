@@ -20,7 +20,8 @@
 <%=render :partial => 'misc/welcome', 
           :locals => {
             :src    => @user_presenter.source_id,
-            :target => @user_presenter.closet_path('footer')} unless logged_in?%>
+            :target => @user_presenter.closet_path('footer')} if !logged_in? &&
+                                                                @source != 'iframe'%>
 
 
 <div id="container" class="wide">
