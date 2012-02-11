@@ -20,14 +20,15 @@ a {
 	text-decoration: none;
 	color: inherit; }
 
-body { 
+
+/*-------------------- Blackout --------------------*/
+
+body.blackout {
 	font-family: 'FuturaStdBook', Arial, sans-serif; 
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-font-feature-settings: "kern=1";
   -ms-font-feature-settings: "kern" 1; }
-
-/*-------------------- Blackout --------------------*/
   
 .blackout .black {
 	background: url('/images/black_60.png');
@@ -42,6 +43,7 @@ body {
 	position: relative;
 	margin: 180px auto 0;
 	border-top: 1px solid white;
+	border-bottom: 1px solid #cccccc;
 	background: url('/images/f5f5f5_95.png');
 	width: 402px;
 	padding: 24px;	
@@ -72,18 +74,14 @@ body {
 	display: block;
 	cursor: pointer;
 	border: none;
-	background: url("/images/welcome_buttons.png") no-repeat;
+	background: url("/images/welcome_buttons_pop.png") no-repeat;
 	background-position: -40px 0px;
 	font-size: 20px;
 	color: #555;
 	text-shadow: 0 1px 1px white; }
 
 .blackout .black .login_with_facebook:hover { background-position: -40px -60px; }
-.blackout .black .login_with_facebook:active { 
-	background-position: -40px -120px; 
-	box-shadow: none;
-  	-moz-box-shadow: none;
-  	-webkit-box-shadow: none }
+.blackout .black .login_with_facebook:active { background-position: -40px -120px; }
 
 .blackout .black .click_login_orange_arrow {
 	width: 280px;
@@ -102,10 +100,9 @@ body {
 
 .blackout #header {
   height: 68px;
-  position: relative; /* needed to keep above blackout */
   z-index: 10000 !important;
-  padding-bottom: 2px;
-  margin-bottom: 18px; }
+  position: relative;
+  background-color: black; }
 
 .blackout #header .navbar {
   position: relative;
@@ -145,6 +142,136 @@ body {
 .blackout #header .navbar .nav li:hover {
   background: url('/images/white_10.png'); }
 
+/*-------------------- Splash --------------------*/
+
+body.splash {
+  font-family: 'FuturaStdBook', Arial, sans-serif;
+  font-size: 16px;
+  margin-bottom: 100px;
+  background: #e9e4e1 url("/images/home_glow_lite_tiled.jpg");
+  background-position: center top;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-font-feature-settings: "kern=1";
+  -ms-font-feature-settings: "kern" 1; }
+
+.splash #header {
+  height: 68px;
+  background: url('/images/header_black_convex.png') center bottom repeat-x;
+  z-index: 10000 !important;
+  padding-bottom: 2px;
+  margin-bottom: 18px; }
+
+.splash #header .navbar {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 68px;
+  font-size: 22px;
+  color: #cccccc;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
+  z-index: 10000 !important; }
+  
+.splash #header .navbar.narrow { width: 865px; }
+
+.splash #header .navbar .logo {
+	width: 137px;
+	height: 32px;
+	position: absolute;
+  left: 0px
+  top: 0px;
+  padding: 17px 20px 19px 0px;
+  display: block;
+  background: url('/images/oncloset_logo_34_white.png') 0 17px no-repeat; }
+
+.splash #header .navbar .log_in {
+	width: 142px;
+	height: 42px;
+  display: block;
+  background: url('/images/log_in.png') 0 -42px no-repeat; }
+ 
+.splash #header .navbar .log_in:active {
+	background-position: 0 0; }
+
+.splash #header .navbar .nav {
+  height: 42px;
+  position: absolute;
+  right: 0px;
+  top: 13px;
+  cursor: pointer; }
+  
+.splash .dark_half {
+	width: 100%;
+	position: absolute;
+	top: 438px;
+	height: 830px;
+	overflow: hidden;
+	background: url('/images/splash_dark_half_bg.png') repeat-x; }
+  
+.splash #container {
+  margin: 0px auto 0px;
+  position: relative; }
+  
+.splash #container.narrow { width: 865px; }
+
+.splash .splash_items {
+	width: 865px;
+	height: 205px;
+	padding-top: 307px;
+	text-align: center;
+  background: url('/images/splash_items.jpg') no-repeat; }
+
+.splash .splash_items .cross_browser_shadow {
+	width: 320px;
+	display: inline-block;
+	padding-bottom: 2px;
+	background: url('/images/shadow_bottom_20_10.png') bottom center repeat-x; }
+
+.splash .splash_items .login_with_facebook {
+	width: 320px;
+	height: 60px;
+	margin-top: 13px;
+	display: block;
+	cursor: pointer;
+	border: none;
+	background: url("/images/welcome_buttons_pop.png") no-repeat;
+	background-position: -40px 0px;
+	font-size: 20px;
+	color: #555;
+	text-shadow: 0 1px 1px white; }
+
+.splash .splash_items .login_with_facebook:hover { background-position: -40px -60px; }
+.splash .splash_items .login_with_facebook:active { background-position: -40px -120px; }
+
+.splash .splash_panels {
+	width: 865px;
+	height: 546px;
+	margin: 20px 0; }
+
+.splash .splash_panel_1 { 
+	width: 865px;
+	height: 194px;
+	background: url('/images/splash_panel_1.jpg') no-repeat; }
+	
+.splash .splash_panel_2 { 
+	width: 865px;
+	height: 176px;
+	background: url('/images/splash_panel_2.jpg') no-repeat; }
+
+.splash .splash_panel_3 { 
+	width: 865px;
+	height: 176px;
+	background: url('/images/splash_panel_3.jpg') no-repeat; }
+
+.splash #footer {
+	font-size: 12px;
+	color: #999999;
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	clear: both;
+	font-family: 'FuturaStdBook', Arial, sans-serif; 
+	z-index: 0; }
 
 /*-------------------- Home 5 (Gojee) --------------------*/
 
