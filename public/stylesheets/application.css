@@ -341,25 +341,24 @@ div.welcome_text {
   font-size: 24px;
   line-height: 150%; }
 
-.new_invite {
-  width: 400px;
-  margin: 0 auto 80px;
+/* invite: live friend search */
+
+.invite_search {
+  width: 406px;
+  margin: 0 auto;
   color: #555555;
   font-size: 18px;
   padding: 0px;
+  clear: both;
   text-align: left; }
 
-#container #contacts .loading {
-  text-align: center;
-  margin-top: 32px; }
-
-#container .invite_search_enclosure {
+.invite_search .invite_search_enclosure {
   position: relative;
   height: 56px; }
 
-#container .textfield {
+.invite_search .textfield {
   height: 42px;
-  width: 380px;
+  width: 386px;
   margin: 0 0 6px;
   border: 2px solid #A8A8A8;
   font-family: 'FuturaStdBook', Arial, sans-serif;
@@ -373,7 +372,7 @@ div.welcome_text {
   margin-top: 8px;
   float: left; }
 
-#container .x-text {
+.invite_search .x-text {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -382,32 +381,42 @@ div.welcome_text {
   background: url("/images/x-text.gif") no-repeat;
   cursor: pointer; }
 
-#container .x-text:hover {
+.invite_search .x-text:hover {
   background: url("/images/x-text.gif") 0px -30px no-repeat; }
+  
+#contacts .loading {
+  text-align: center;
+  margin-top: 32px; }
+  
+/* invite: list view */
+  
+#contacts.list {
+  width: 406px;
+  margin: 20px auto 80px;
+  color: #555555;
+  font-size: 18px;
+  padding: 0px;
+  text-align: left; }
 
-#container .invite_list {
-  text-align: left;
-  margin: 20px auto 120px; }
-
-#container .invite_list .invite_row {
+#contacts.list .invite_row {
   height: 40px;
   line-height: 40px;
   margin-bottom: 4px;
   position: relative; }
 
-#container .invite_list .invite_row img.invite_user {
+#contacts.list .invite_row img.invite_user {
   width: 40px;
   height: 40px;
   float: left;
   margin-right: 12px; }
 
-#container .invite_list .invite_row img.follow_user {
+#contacts.list .invite_row img.follow_user {
   width: 50px;
   height: 50px;
   float: left;
   margin-right: 12px; }
 
-#container .invite_list .invite_row .invite {
+#contacts.list .invite_row .invite {
   width: 72px;
   height: 32px;
   background: url("/images/invite_buttons.png") no-repeat;
@@ -420,15 +429,22 @@ div.welcome_text {
   -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color='#999999')"; }
 
-#container .invite_list .invite_row .invite:hover {
+#contacts.list .invite_row .invite:hover {
   background-position: 0 -32px; }
 
-#container .invite_list .invite_row .invite:active {
+#contacts.list .invite_row .invite:active {
   background-position: 0 -64px; }
 
-#container .invite_list .invite_row img.invite_user:hover,
-#container .invite_list .invite_row .name:hover {
+#contacts.list .invite_row img.invite_user:hover,
+#contacts.list .invite_row .name:hover {
   cursor: pointer; }
+
+/* invite: grid view */
+
+#contacts.grid {
+  margin-top: 24px; }
+  
+/* invite: retrieving friends list manually */
 
 #container .view_friends_list {
   width: 320px;
@@ -478,14 +494,16 @@ div.welcome_text {
 
 #stores .picker_choice,
 #users .picker_choice,
-#items .picker_choice {
+#items .picker_choice,
+#contacts .picker_choice {
   float: left;
   position: relative;
   display: block; }
 
 #stores .picker_choice:after,
 #users .picker_choice:after,
-#items .picker_choice:after {
+#items .picker_choice:after,
+#contacts .picker_choice:after {
   clear: both;
   display: block;
   height: 0;
@@ -494,13 +512,15 @@ div.welcome_text {
   content: ".";
   font-size: 0; }
 
-#stores .picker_choice {
+#stores .picker_choice,
+#contacts .picker_choice {
   width: 190px;
   margin: 0 13px 16px;
   cursor: pointer; }
 
 #stores .picker_choice .shadowbox,
-#items .picker_choice .shadowbox {
+#items .picker_choice .shadowbox,
+#contacts .picker_choice .shadowbox {
 	display: none;
 	position: absolute;
 	top: -6px;
@@ -520,8 +540,7 @@ div.welcome_text {
   background-position: center center;
   background-repeat: no-repeat;
   background-color: white;
-  background-size: 110px auto;
-}
+  background-size: 110px auto; }
 
 #users .picker_choice {
   width: 250px;
@@ -532,23 +551,20 @@ div.welcome_text {
   margin: 0 13px 20px; }
 
 #stores .picker_choice:hover .shadowbox,
-#items .picker_choice:hover .shadowbox {
+#items .picker_choice:hover .shadowbox,
+#contacts .picker_choice:hover .shadowbox {
 	display: block;
 	z-index: -10000; }
 
-#stores .picker_choice:active,
-#items .picker_choice:active {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none; }
-
-#stores .picker_choice .left {
+#stores .picker_choice .left,
+#contacts .picker_choice .left {
   width: 60px;
   height: 60px;
   float: left;
   background-position: center center; }
   
-#stores .picker_choice .left img {
+#stores .picker_choice .left img,
+#contacts .picker_choice .left img {
   width: 60px;
   height: 60px; }
 
@@ -570,7 +586,8 @@ div.welcome_text {
   height: 100px;
   z-index: 1; }
 
-#stores .picker_choice .right {
+#stores .picker_choice .right,
+#contacts .picker_choice .right {
   color: #555555;
   font-size: 15px;
   line-height: 21px;
@@ -598,7 +615,7 @@ div.welcome_text {
   font-size: 14px;
   white-space: nowrap; }
 
-#container #users .picker_choice .tiles {
+#users .picker_choice .tiles {
   position: absolute;
   left: 100px;
   top: 58px;
@@ -607,12 +624,12 @@ div.welcome_text {
   padding: 2px 18px 10px 12px;
   /* to hide any byline underneath */ }
 
-#container #users .picker_choice .tiles .tile {
+#users .picker_choice .tiles .tile {
   width: 30px;
   height: 30px;
   float: left; }
 
-#container #users .picker_choice .action_bar {
+#users .picker_choice .action_bar {
   height: 30px;
   line-height: 30px;
   color: #666666;
