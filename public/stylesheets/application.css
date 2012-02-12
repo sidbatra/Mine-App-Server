@@ -439,7 +439,7 @@ div.welcome_text {
 #contacts.list .invite_row .name:hover {
   cursor: pointer; }
 
-/* invite: grid view */
+/* invite: grid view - see #contacts .picker_choice etc */
 
 #contacts.grid {
   margin-top: 24px; }
