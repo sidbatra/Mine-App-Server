@@ -51,7 +51,7 @@ task :upload_resources_to_assethost do |e,args|
       "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
-  Dir.glob('public/images/**/*').each do |file|
+  Dir.glob('public/images/**/*\.*').each do |file|
     AssetHost.store(
       file.gsub('public',revision),
       open(file),
