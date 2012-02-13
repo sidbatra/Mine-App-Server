@@ -1,3 +1,4 @@
+.migrations
 database.yml
 *.swp
 .sass-cache/
