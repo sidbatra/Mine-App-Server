@@ -1,1 +1,43 @@
-<div class="background" style="background-image: url('/images/home_path/marilyn_rectangle.jpg')"></div>
+<!--[if !IE]>-->
+<div class="background" style="background-image: url('/images/home_path/marilyn_rectangle_cropped.jpg')"></div>
+<div class="background firefox">
+	<img src="/images/home_path/marilyn_rectangle_cropped.jpg" width="100%" height="100%" />
+</div>
+<!--<![endif]-->
+
+<!--[If IE]>
+<div class="background" style="text-align: center;">
+	<img src="/images/home_path/marilyn_rectangle_cropped.jpg" width="100%" height="100%" />
+</div>
+<![endif]-->
+
+<div class="dimmer"></div>
+<div class="strip">
+	<div class="logo">
+		OnCloset
+	</div>
+	<div class="strapline">
+		Create a beautiful online closet
+		<br />of everything you own.
+	</div>
+	<div class="cross_browser_shadow">
+		<%=link_to 	'', 
+				fb_auth_path(:source => @origin), 
+				:class => 'login_with_facebook',
+				:style => ''%>
+	</div>
+	<div class="tiles">
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+		<div class="tile"></div>
+	</div>
+</div>

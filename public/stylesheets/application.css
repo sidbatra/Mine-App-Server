@@ -579,7 +579,8 @@ div.welcome_text {
 #users.main .picker_choice:hover .left {
   -moz-opacity: 0.8;
   opacity: .80;
-  filter: alpha(opacity=80); }
+  filter: alpha(opacity=80);
+  zoom: 1; }
 
 #users .picker_choice .left_img {
   width: 100px;
@@ -980,12 +981,14 @@ div.welcome_text {
 .creation_checkbox_right input {
   -moz-opacity: 0.4;
   opacity: .40;
-  filter: alpha(opacity=40); }
+  filter: alpha(opacity=40);
+  zoom: 1; }
 
 .creation_checkbox_right:hover input, .creation_checkbox_right_active input {
   -moz-opacity: 1;
   opacity: 1;
-  filter: alpha(opacity=100); }
+  filter: alpha(opacity=100);
+  zoom: 1; }
 
 .creation_input_inactive {
   background-color: #999999;
@@ -1041,12 +1044,14 @@ div.welcome_text {
   -moz-opacity: 0.6;
   opacity: .60;
   filter: alpha(opacity=60);
+  zoom: 1;
   clear: both; }
 
 .add_review:hover {
   -moz-opacity: 1;
   opacity: 1;
-  filter: alpha(opacity=100); }
+  filter: alpha(opacity=100);
+  zoom: 1; }
 
 .add_to_closet, .update_product {
   /* create + edit view submit variants */
@@ -1987,7 +1992,7 @@ a.edit_cccccc_14:hover {
 	-moz-opacity: 0.8;
   opacity: .80;
   filter: alpha(opacity=80);
-}
+  zoom: 1; }
 
 #main .sequence:after {
 	clear: both;
@@ -2178,7 +2183,8 @@ table.collection.details .textbox .title {
 .products .product .top:hover {
   -moz-opacity: 0.8;
   opacity: .80;
-  filter: alpha(opacity=80); }
+  filter: alpha(opacity=80);
+  zoom: 1; }
 
 .products .product .bottom {
   width: 180px;
@@ -2390,6 +2396,7 @@ table.collection.details .textbox .title {
   -moz-opacity: 0.4;
   opacity: .40;
   filter: alpha(opacity=40);
+  zoom: 1;
   background-image: none; }
 
 .products .product .feedback .buttons .button .context_box .inactive .dollar {
@@ -2403,7 +2410,8 @@ table.collection.details .textbox .title {
   margin-left: 8px;
   -moz-opacity: 0.2;
   opacity: .20;
-  filter: alpha(opacity=20); }
+  filter: alpha(opacity=20);
+  zoom: 1; }
 
 .products .product .feedback .buttons .button .context_box .title .option label {
   color: #cccccc;
@@ -2416,6 +2424,7 @@ table.collection.details .textbox .title {
   -moz-opacity: 1;
   opacity: 1;
   filter: alpha(opacity=100);
+  zoom: 1;
   color: #999999; }
 
 .products .product .feedback .buttons .button .context_box .title span.longer_title {
@@ -2522,6 +2531,7 @@ table.collection.details .textbox .title {
   -moz-opacity: 0.4;
   opacity: .40;
   filter: alpha(opacity=40);
+  zoom: 1; 
   background-image: none; }
 
 #extras .feedback .buttons .button .context_box .inactive .dollar {
@@ -2535,7 +2545,8 @@ table.collection.details .textbox .title {
   margin-left: 8px;
   -moz-opacity: 0.2;
   opacity: .20;
-  filter: alpha(opacity=20); }
+  filter: alpha(opacity=20);
+  zoom: 1; }
 
 #extras .feedback .buttons .button .context_box .title .option label {
   color: #cccccc;
@@ -2548,6 +2559,7 @@ table.collection.details .textbox .title {
   -moz-opacity: 1;
   opacity: 1;
   filter: alpha(opacity=100);
+  zoom: 1;
   color: #999999; }
 
 #extras .feedback .buttons .button .context_box .inputfield {
@@ -2817,7 +2829,8 @@ table.collection.details .textbox .title {
 .faded {
   -moz-opacity: 0.5;
   opacity: .50;
-  filter: alpha(opacity=50); }
+  filter: alpha(opacity=50);
+  zoom: 1; }
 
 .rounded_5 {
   -moz-border-radius: 5px;
