@@ -51,12 +51,10 @@ task :upload_resources_to_assethost do |e,args|
       "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
-  Dir.new('public/images').each do |file|
-    next unless file.length > 2
-
+  Dir.glob('public/images/**/*').each do |file|
     AssetHost.store(
-      "#{revision}/images/#{file}",
-      open("public/images/#{file}"),
+      file.gsub('public',revision),
+      open(file),
       "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
