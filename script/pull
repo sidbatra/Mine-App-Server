@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
 migration_count=`ls db/migrate | wc -l`
+brant_migration_count=`ls pkg/migrate | wc -l`
 
 git pull --rebase
 
-new_migration_count=`ls db/migrate | wc -l`
+new_migration_count=`ls db/migrate | wc -l` 
+new_brant_migration_count=`ls pkg/migrate | wc -l`
 
 if [ $migration_count -ne $new_migration_count ] ; then
   RAILS_ENV=development rake db:migrate
+fi
+
+if [ $brant_migration_count -ne $new_brant_migration_count ] ; then
+  RAILS_ENV=development rake brant:migrate
 fi
 
 touch tmp/restart.txt
