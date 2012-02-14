@@ -104,11 +104,6 @@
   	 <div id='feedback' class='feedback'>
       <%if logged_in?%>
       	<div class='buttons'>
-          <a id='like_actionable' 
-              href='javascript:void(0)' 
-              class='button like'>
-              <span class='in'>♥</span><span class='out'>Like</span>
-          </a>
           <%unless is_current_user(@product.user)%>
           	<a id='want_actionable' 
                 href='javascript:void(0)' 

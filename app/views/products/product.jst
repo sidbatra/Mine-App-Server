@@ -33,10 +33,6 @@
     <div class='feedback'>
         <div class='buttons'>
         
-          <div id="like_product_<%=product.get('id')%>" class='button like'>
-            <span class="out">Like</span><span class="in">♥</span>
-          </div>
-            
           <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
           	<div id="want_product_<%=product.get('id')%>" class='button want'>
               <span class="out">Want</span><span class="in">✓</span>

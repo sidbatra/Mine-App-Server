@@ -13,7 +13,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.onTabClass     = 'on';
     this.loadTabClass   = 'load';
     this.ownsTab        = '#owns_tab';
-    this.likesTab       = '#likes_tab';
     this.wantsTab       = '#wants_tab';
     this.followingTab   = '#following_tab';
     this.followedByTab  = '#followed_by_tab';
@@ -32,20 +31,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           fragment    : 'owns'});
 
     this.ownedProducts.bind(
-      Denwen.Callback.ProductsLoaded,
-      this.productsLoaded,
-      this);
-
-    // -----
-    this.likedProducts = new Denwen.Partials.Products.Products({
-                            el        : $('#centerstage'),
-                            owner_id  : this.user.get('id'),
-                          owner_name  : this.user.get('first_name'),
-                            filter    : 'liked',
-                            type      : 'user',
-                            fragment  : 'likes'});
-
-    this.likedProducts.bind(
       Denwen.Callback.ProductsLoaded,
       this.productsLoaded,
       this);
@@ -159,13 +144,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   switchTabsOff: function() {
     $(this.ownsTab).removeClass(this.onTabClass);
-    $(this.likesTab).removeClass(this.onTabClass);
     $(this.wantsTab).removeClass(this.onTabClass);
     $(this.followingTab).removeClass(this.onTabClass);
     $(this.followedByTab).removeClass(this.onTabClass);
     $(this.collectionsTab).removeClass(this.onTabClass);
     $(this.ownsTab).removeClass(this.loadTabClass);
-    $(this.likesTab).removeClass(this.loadTabClass);
     $(this.wantsTab).removeClass(this.loadTabClass);
     $(this.followingTab).removeClass(this.loadTabClass);
     $(this.followedByTab).removeClass(this.loadTabClass);
@@ -235,7 +218,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         ":type"           : "singleFilter"
       },
 
-      // Display owns,likes,wants with categoty filters
+      // Display owns,wants with categoty filters
       //
       doubleFilter: function(type,category) {
         self.switchTabsOff();
@@ -243,12 +226,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         switch(type) {
         case Denwen.UserShowHash.Owns:
           self.loadOwnsTab(category);
-          break;
-
-        case Denwen.UserShowHash.Likes:
-          self.likedProducts.fetch(category);
-          self.switchTabOn(self.likesTab);
-          analytics.userProductsView(type,category,self.user.get('id'));
           break;
 
         case Denwen.UserShowHash.Wants:
@@ -331,7 +308,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     }
   },
 
-  // Callback when owns,likes or wants are loaded
+  // Callback when owns or wants are loaded
   //
   productsLoaded: function() {
     this.switchCurrentTabLoadOff();

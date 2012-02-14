@@ -100,15 +100,6 @@ class ProductsController < ApplicationController
 
       @key = KEYS[:user_top_products] % params[:owner_id]
 
-    when :liked
-      @products = Product.with_store.with_user.
-                    acted_on_by_for(params[:owner_id],ActionName::Like).
-                    not_for_user(params[:owner_id]).
-                    in_category(category_id)
-      
-      @key = KEYS[:user_like_products_in_category] % 
-              [params[:owner_id],category_id]
-
     when :wanted
       @products = Product.with_store.with_user.
                     acted_on_by_for(params[:owner_id],ActionName::Want).

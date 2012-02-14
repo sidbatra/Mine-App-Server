@@ -139,26 +139,15 @@ Denwen.Analytics = Backbone.Model.extend({
           'User ID'      : helpers.currentUserID()});
   },
 
-  // User creates a like
+  // User creates a like on a collection
   //
-  likeCreated: function(source,sourceID,actionableID,actionableType,actionableUserID) {
-
-    if(actionableType == 'product') {
-      mpq.track('Like Created', {
-        'Source'          : source,
-        'Source ID'       : sourceID,
-        'Product ID'      : actionableID,
-        'User ID'         : helpers.currentUserID(),
-        'Is Own Product'  : helpers.isCurrentUser(actionableUserID)});
-    }
-    else if(actionableType == 'collection') {
-      mpq.track('Collection Like Created', {
-        'Source'            : source,
-        'Source ID'         : sourceID,
-        'Collection ID'     : actionableID,
-        'User ID'           : helpers.currentUserID(),
-        'Is Own Collection' : helpers.isCurrentUser(actionableUserID)});
-    }
+  likeCreated: function(source,sourceID,collectionID,collectionUserID) {
+    mpq.track('Collection Like Created', {
+      'Source'            : source,
+      'Source ID'         : sourceID,
+      'Collection ID'     : collectionID,
+      'User ID'           : helpers.currentUserID(),
+      'Is Own Collection' : helpers.isCurrentUser(collectionUserID)});
   },
 
   // User initiates the product ownership process
