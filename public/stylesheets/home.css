@@ -332,6 +332,24 @@ body.path {
   opacity: .75;
   filter: alpha(opacity=75);
   zoom: 1; }
+  
+.path .next_shadow {
+	width: 97px;
+	display: inline-block;
+	padding-bottom: 2px;
+	background: url('/images/shadow_bottom_20_10.png') bottom center repeat-x; }
+
+.path .next {
+	width: 97px;
+	height: 42px;
+	margin-top: 13px;
+	display: block;
+	cursor: pointer;
+	border: none;
+	background: url("/images/login_with_facebook_230_42.png") 0 -126px no-repeat; }
+
+.path .next:hover { background-position: 0 -168px; }
+.path .next:active { background-position: 0 -210px; }
 
 .path .cross_browser_shadow {
 	width: 230px;
