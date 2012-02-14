@@ -1,52 +1,43 @@
-<!--[if !IE]>-->
-<div class="background" style="background-image: url('<%=image_path 'home_path/changing.jpg'%>')"></div>
-<div class="background firefox">
-  <%=image_tag 'home_path/changing.jpg',
-      :width  => "100%",
-      :height => "100%"%>
-</div>
-<!--<![endif]-->
+<div id="stage_1">
 
-<!--[If IE]>
-<div class="background" style="text-align: center;">
-  <%=image_tag 'home_path/changing.jpg',
-      :width  => "100%",
-      :height => "100%"%>
-</div>
-<![endif]-->
-
-<div class="dimmer"></div>
-<div class="strip">
-	<div class="logo">
-		OnCloset
+	<!--[if !IE]>-->
+	<div class="background" style="background-image: url('<%=image_path 'home_path/burrow.jpg'%>')"></div>
+	<div class="background firefox">
+	  <%=image_tag 'home_path/burrow.jpg',
+	      :width  => "100%",
+	      :height => "100%"%>
 	</div>
-
-	<div class="strapline">
+	<!--<![endif]-->
 	
-<!--
+	<!--[If IE]>
+	<div class="background" style="text-align: center;">
+	  <%=image_tag 'home_path/burrow.jpg',
+	      :width  => "100%",
+	      :height => "100%"%>
+	</div>
+	<![endif]-->
+	
+	<div class="dimmer"></div>
+	
+	<div class="strip">
+	
+		<div class="logo">
+			OnCloset
+		</div>
+	
+		<div class="strapline">
 			Create a beautiful online closet
-		<br />of everything you own.
--->
-	
-			Pick favorite sets 
-			<br />of items you wear and use. 
-	
-<!--
-		Share your style
-		<br />on your Facebook timeline.
--->
-	</div>
-	<div class="cross_browser_shadow">
-		<%=link_to 	'', 
-				fb_auth_path(:source => @origin), 
-				:class => 'login_with_facebook',
-				:style => ''%>
-	</div>
-	<div class="tiles">
-	
-		<!-- 1 -->
-<!--
-<div id="stage1">
+			<br />of everything you own.
+		</div>
+		
+		<div class="cross_browser_shadow">
+			<%=link_to 	'', 
+					fb_auth_path(:source => @origin), 
+					:class => 'login_with_facebook',
+					:style => ''%>
+		</div>
+		
+		<div class="tiles">
 			<div class="slotting" style="background-image: url('<%=image_path 'home_path/tiles/toga_slot.png'%>')"></div>
 			<div class="tile" style="background-image: url('<%=image_path 'home_path/tiles/heart.jpg'%>')"></div>
 			<div class="tile" style="background-image: url('<%=image_path 'home_path/tiles/scarf.jpg'%>')"></div>
@@ -60,26 +51,112 @@
 			<div class="tile" style="background-image: url('<%=image_path 'home_path/tiles/slips.jpg'%>')"></div>
 			<div class="tile" style="background-image: url('<%=image_path 'home_path/tiles/moody.jpg'%>')"></div>
 			<div class="tile" style="background-image: url('<%=image_path 'home_path/tiles/fur.jpg'%>')"></div>
-		</div>
--->
+		</div> <!-- tiles -->
 		
-		<! -- 2 -->
-		<div id="stage2">
-			<div class="stamps">
-			</div>
-		</div>	
+	</div> <!-- strip -->
 
-		<!-- 3 -->
-		<!--
-<div id="stage3">
-			<div class="timeline">
-				<div class="item first"></div>
-				<div class="item second"></div>
-				<div class="item third"></div>
-				<div class="item fourth"></div>
-			</div>
+</div> <!-- stage_1 -->
+
+
+<div id="stage_2">
+
+	<!--[if !IE]>-->
+	<div class="background" style="background-image: url('<%=image_path 'home_path/changing.jpg'%>')"></div>
+	<div class="background firefox">
+	  <%=image_tag 'home_path/changing.jpg',
+	      :width  => "100%",
+	      :height => "100%"%>
+	</div>
+	<!--<![endif]-->
+	
+	<!--[If IE]>
+	<div class="background" style="text-align: center;">
+	  <%=image_tag 'home_path/changing.jpg',
+	      :width  => "100%",
+	      :height => "100%"%>
+	</div>
+	<![endif]-->
+	
+	<div class="dimmer"></div>
+	
+	<div class="strip">
+	
+		<div class="logo">
+			OnCloset
 		</div>
--->
+	
+		<div class="strapline">
+			Pick out sets of items
+			<br />as you wear and use them.
+		</div>
 		
-	</div> <!-- tiles -->
-</div> <!-- strip -->
+		<div class="cross_browser_shadow">
+			<%=link_to 	'', 
+					fb_auth_path(:source => @origin), 
+					:class => 'login_with_facebook',
+					:style => ''%>
+		</div>
+		
+		<div class="tiles">
+				<div class="stamps">
+				</div>
+		</div> <!-- tiles -->
+		
+	</div> <!-- strip -->
+
+
+</div> <!-- stage_2 -->
+
+
+<div id="stage_3">
+
+	<!--[if !IE]>-->
+	<div class="background" style="background-image: url('<%=image_path 'home_path/iphone.jpg'%>')"></div>
+	<div class="background firefox">
+	  <%=image_tag 'home_path/iphone.jpg',
+	      :width  => "100%",
+	      :height => "100%"%>
+	</div>
+	<!--<![endif]-->
+	
+	<!--[If IE]>
+	<div class="background" style="text-align: center;">
+	  <%=image_tag 'home_path/iphone.jpg',
+	      :width  => "100%",
+	      :height => "100%"%>
+	</div>
+	<![endif]-->
+	
+	<div class="dimmer"></div>
+	
+	<div class="strip">
+	
+		<div class="logo">
+			OnCloset
+		</div>
+	
+		<div class="strapline">
+			Share your style
+			<br />on your Facebook timeline.
+		</div>
+		
+		<div class="cross_browser_shadow">
+			<%=link_to 	'', 
+					fb_auth_path(:source => @origin), 
+					:class => 'login_with_facebook',
+					:style => ''%>
+		</div>
+		
+		<div class="tiles">
+				<div class="timeline">
+					<div class="item first"></div>
+					<div class="item second"></div>
+					<div class="item third"></div>
+					<div class="item fourth"></div>
+				</div>
+		</div> <!-- tiles -->
+		
+	</div> <!-- strip -->
+
+</div> <!-- stage_3 -->
+
