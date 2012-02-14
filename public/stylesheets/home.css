@@ -310,7 +310,7 @@ body.path {
 	height: 100%; }
 
 .path .strip {
-/* 	background: url("/images/black_25.png"); */
+/*background: url("/images/black_25.png");*/
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -415,23 +415,28 @@ body.path {
 	width: 87px;
 	height: 150px;
 	position: absolute;
+	background: url("/images/home_path/tiles/timeline_items.jpg") no-repeat;
 	top: 116px; }
 	
-.path .tiles .timeline .item.first { left: 30px; }
+.path .tiles .timeline .item.first { 
+	left: 30px; background-position: 0 0; }
 .path .tiles .timeline .item.first:hover {
-	background: url("/images/home_path/tiles/timeline_1.png") no-repeat; }
-
-.path .tiles .timeline .item.second { left: 127px; }
+	background-position: 0 -150px; }
+	
+.path .tiles .timeline .item.second { 
+	left: 127px; background-position: -87px 0; }
 .path .tiles .timeline .item.second:hover {
-	background: url("/images/home_path/tiles/timeline_2.png") no-repeat; }
-
-.path .tiles .timeline .item.third { left: 321px; }
+	background-position: -87px -150px; }
+	
+.path .tiles .timeline .item.third { 
+	left: 224px; background-position: -174px 0; }
 .path .tiles .timeline .item.third:hover {
-	background: url("/images/home_path/tiles/timeline_3.png") no-repeat; }
+	background-position: -174px -150px; }
 
-.path .tiles .timeline .item.fourth { left: 224px; }
+.path .tiles .timeline .item.fourth { 
+	left: 321px; background-position: -261px 0; }
 .path .tiles .timeline .item.fourth:hover {
-	background: url("/images/home_path/tiles/timeline_4.png") no-repeat; }
+	background-position: -261px -150px; }
 
 
 /*-------------------- Home 5 (Gojee) --------------------*/
