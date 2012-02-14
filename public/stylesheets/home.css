@@ -408,7 +408,31 @@ body.path {
 	width: 427px;
 	height: 344px;
 	margin-left: -1px;
+	position: relative;
 	background: url("/images/home_path/tiles/timeline.png") no-repeat; }
+
+.path .tiles .timeline .item {
+	width: 87px;
+	height: 150px;
+	position: absolute;
+	top: 116px; }
+	
+.path .tiles .timeline .item.first { left: 30px; }
+.path .tiles .timeline .item.first:hover {
+	background: url("/images/home_path/tiles/timeline_1.png") no-repeat; }
+
+.path .tiles .timeline .item.second { left: 127px; }
+.path .tiles .timeline .item.second:hover {
+	background: url("/images/home_path/tiles/timeline_2.png") no-repeat; }
+
+.path .tiles .timeline .item.third { left: 321px; }
+.path .tiles .timeline .item.third:hover {
+	background: url("/images/home_path/tiles/timeline_3.png") no-repeat; }
+
+.path .tiles .timeline .item.fourth { left: 224px; }
+.path .tiles .timeline .item.fourth:hover {
+	background: url("/images/home_path/tiles/timeline_4.png") no-repeat; }
+
 
 /*-------------------- Home 5 (Gojee) --------------------*/
 
