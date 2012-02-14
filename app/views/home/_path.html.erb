@@ -1,4 +1,7 @@
-<div id="stage_1">
+<div id="slides">
+<div class="slides_container">
+
+<div id="stage_1" style="display:none">
 
 	<!--[if !IE]>-->
 	<div class="background" style="background-image: url('<%=image_path 'home_path/burrow.jpg'%>')"></div>
@@ -31,7 +34,7 @@
 		</div>
 		
 		<div class="next_shadow">
-			<a href="/" class="next"></a>
+			<a href="javascript:void(0)" class="next navigation"></a>
 		</div>
 		
 		<div class="tiles">
@@ -55,7 +58,7 @@
 </div> <!-- stage_1 -->
 
 
-<div id="stage_2">
+<div id="stage_2" style="display:none">
 
 	<!--[if !IE]>-->
 	<div class="background" style="background-image: url('<%=image_path 'home_path/changing.jpg'%>')"></div>
@@ -88,7 +91,7 @@
 		</div>
 		
 		<div class="next_shadow">
-			<a href="/" class="next"></a>
+			<a href="javascript:void(0)" class="next navigation"></a>
 		</div>
 		
 		<div class="tiles">
@@ -102,7 +105,7 @@
 </div> <!-- stage_2 -->
 
 
-<div id="stage_3">
+<div id="stage_3" style="display:none">
 
 	<!--[if !IE]>-->
 	<div class="background" style="background-image: url('<%=image_path 'home_path/iphone.jpg'%>')"></div>
@@ -154,3 +157,16 @@
 
 </div> <!-- stage_3 -->
 
+</div>
+</div>
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    $(function(){
+      $("#slides").slides({
+        next      : 'navigation',
+        effect    : 'fade',
+        fadeSpeed : 600});
+    });
+  </script>
+<%end%>
