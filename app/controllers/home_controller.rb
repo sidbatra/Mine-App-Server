@@ -24,6 +24,7 @@ class HomeController < ApplicationController
     session[:home]    = 'path' #['art','zendesk','gojee','gojee1'][rand(4)]
     session[:origin]  ||= params[:id] ? params[:id].to_s : 'direct'
     @home               = session[:home]
+    @campaign           = session[:origin]
     @origin             = session[:origin] + '_' + @home
   end
 
