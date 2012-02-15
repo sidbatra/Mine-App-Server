@@ -1,8 +1,8 @@
 module DW
 
-  # Set of classes and methods for instace (server) management
+  # Set of classes and methods for interfacing with AWS
   #
-  module InstanceManagement
+  module AWSManagement
 
     require "AWS"
 
@@ -126,7 +126,7 @@ module DW
 
         @ec2.terminate_instances(:instance_id => instances.map(&:instanceId))
 
-        instantize(instances)
+        instances
       end
 
 
@@ -152,6 +152,7 @@ module DW
               :access_key_id      => CONFIG[:aws_access_id],
               :secret_access_key  => CONFIG[:aws_secret_key])
 
+
       # Fetch all load balancers matching the given options
       #
       def self.all(options={})
@@ -174,6 +175,36 @@ module DW
       def self.find(options={})
         balancers = all(options)
         balancers.length > 0 ? balancers.first : nil
+      end
+
+
+      # Add given instance ids to the load balancer
+      #
+      def attach(instance_ids)
+        instance_ids = [instance_ids] if instance_ids.is_a? String
+
+        self.class.elb.register_instances_with_load_balancer(
+          :instances          => instance_ids,
+          :load_balancer_name => self.LoadBalancerName)
+      end
+
+      # Remove given instance ids from the load balancer
+      #
+      def dettach(instance_ids)
+        instance_ids = [instance_ids] if instance_ids.is_a? String
+
+        self.class.elb.deregister_instances_from_load_balancer(
+          :instances          => instance_ids,
+          :load_balancer_name => self.LoadBalancerName)
+      end
+
+
+      private
+
+      # Accessor method for the elb object
+      #
+      def self.elb
+        @elb
       end
     end
 
