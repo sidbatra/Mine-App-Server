@@ -5,7 +5,7 @@
     <ul class="nav">
 			<li>
         <%=link_to 'Log In', 
-                   fb_auth_path(:source => @origin),
+                   fb_auth_path(:src => @origin),
                    :class => 'nav_menu',
                    :id    => 'action_link'%>
 			</li>
@@ -23,7 +23,7 @@
 		
 		<div class='cross_browser_shadow'>
 	   <%=link_to 	'', 
-					fb_auth_path(:source => @origin), 
+					fb_auth_path(:src => @origin), 
 					:class => 'login_with_facebook',
 					:style => ''%>
 		</div>
