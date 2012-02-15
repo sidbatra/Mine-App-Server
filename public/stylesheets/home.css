@@ -329,8 +329,8 @@ body.path {
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4) }
 	
 .path .strip .strapline {
-	font-size: 26px;
-	line-height: 36px;
+	font-size: 24px;
+	line-height: 32px;
 	padding: 4px 0;
 	color: white;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
