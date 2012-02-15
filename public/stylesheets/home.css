@@ -276,7 +276,7 @@ body.splash {
 
 body.path {
   font-family: 'FuturaStdBook', Arial, sans-serif;
-  background-color: #999999;
+  background-color: black;
   font-size: 16px;
   height: 100%;
   overflow: hidden;
@@ -286,28 +286,31 @@ body.path {
   -ms-font-feature-settings: "kern" 1; }
 
 .path .background {
-	background-size: cover;
-	background-position: 50% 50%;
-	position: fixed;
-	top: 0;
-	left: -1px; /*left-side 1px fix */
-	width: 101%;
+	position: absolute;
+	width: 100%;
 	height: 100%; }
-
-.path .background.firefox {
-	display: none; }
-
-@-moz-document url-prefix() {
-	.path .background { display: none; } 
-	.path .background.firefox { display: block; } }
 	
+.path .background img {
+	width: 100%;
+	height: auto;
+	z-index: -100; }
+	
+.path .background .fade_bottom {
+	width: 100%;
+	height: 200px;
+	background-image: url("/images/fade_bottom.png");
+	position: absolute;
+	bottom: 0px;
+	background-repeat: repeat-x; }
+	
+/* deprecated: pre-darkened images now used
 .path .dimmer {
 	background: url("/images/black_35.png");
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%; }
+	height: 100%; } */
 
 .path .strip {
 /*background: url("/images/black_25.png");*/
