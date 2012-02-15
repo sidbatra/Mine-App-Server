@@ -34,9 +34,11 @@
         <div class='buttons'>
         
           <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
-          	<div id="want_product_<%=product.get('id')%>" class='button want'>
-              <span class="out">Want</span><span class="in">✓</span>
-            </div>
+            <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
+              <div id="want_product_<%=product.get('id')%>" class='button want'>
+                <span class="out">Want</span><span class="in">✓</span>
+              </div>
+            <%}%>
             <div id="own_product_<%=product.get('id')%>" class='button own'>
             	<span class="out">Own</span><span class="in">✓</span>
             </div>

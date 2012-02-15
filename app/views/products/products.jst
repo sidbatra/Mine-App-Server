@@ -14,7 +14,7 @@
 		
 	<div class="products">
     <%products.each(function(product){%>
-      <%=Denwen.JST['products/product']({type:type,product:product,src:src})%>
+      <%=Denwen.JST['products/product']({type:type,product:product,src:src,ownerID:ownerID})%>
     <%});%>
   </div>
 <%} else if(src == 'wanted') {%>
