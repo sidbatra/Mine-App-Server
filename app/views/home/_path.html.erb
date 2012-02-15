@@ -1,7 +1,7 @@
 <div id="slides">
 <div class="slides_container">
 
-<div id="stage_1" style="display:none">
+<div id="stage_1">
 
 	<!--[if !IE]>-->
 	<div class="background" style="background-image: url('<%=image_path 'home_path/burrow.jpg'%>')"></div>
@@ -34,7 +34,7 @@
 		</div>
 		
 		<div class="next_shadow">
-			<a href="javascript:void(0)" class="next navigation"></a>
+			<a id="next_1" href="javascript:void(0)" class="next navigation"></a>
 		</div>
 		
 		<div class="tiles">
@@ -91,7 +91,7 @@
 		</div>
 		
 		<div class="next_shadow">
-			<a href="javascript:void(0)" class="next navigation"></a>
+			<a id="next_2" href="javascript:void(0)" class="next navigation"></a>
 		</div>
 		
 		<div class="tiles">
@@ -162,11 +162,47 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    $(function(){
-      $("#slides").slides({
-        next      : 'navigation',
-        effect    : 'fade',
-        fadeSpeed : 600});
+
+    var timer = 750;
+
+    $('#next_1').click(function(){
+      if($.browser.msie) {
+        $('#stage_1').find('.slotting').fadeOut(timer);
+        $('#stage_1').find('.tiles').fadeOut(timer);
+        $('#stage_1').find('.strip').fadeOut(timer);
+        $('#stage_1').find('.background').fadeOut(timer);
+        $('#stage_1').fadeOut(timer);
+
+        $('#stage_2').find('.slotting').fadeIn(timer);
+        $('#stage_2').find('.tiles').fadeIn(timer);
+        $('#stage_2').find('.strip').fadeIn(timer);
+        $('#stage_2').find('.background').fadeIn(timer);
+        $('#stage_2').fadeIn(timer);
+      }
+      else {
+        $('#stage_1').fadeOut(timer);
+        $('#stage_2').fadeIn(timer);
+      }
+    });
+
+    $('#next_2').click(function(){
+      if($.browser.msie) {
+        $('#stage_2').find('.slotting').fadeOut(timer);
+        $('#stage_2').find('.tiles').fadeOut(timer);
+        $('#stage_2').find('.strip').fadeOut(timer);
+        $('#stage_2').find('.background').fadeOut(timer);
+        $('#stage_2').fadeOut(timer);
+
+        $('#stage_3').find('.slotting').fadeIn(timer);
+        $('#stage_3').find('.tiles').fadeIn(timer);
+        $('#stage_3').find('.strip').fadeIn(timer);
+        $('#stage_3').find('.background').fadeIn(timer);
+        $('#stage_3').fadeIn(timer);
+      }
+      else {
+        $('#stage_2').fadeOut(timer);
+        $('#stage_3').fadeIn(timer);
+      }
     });
   </script>
 <%end%>

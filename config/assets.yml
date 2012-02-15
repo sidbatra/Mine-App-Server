@@ -31,7 +31,6 @@ javascripts:
     - app/views/collections/*.jst
   home:
     - public/javascripts/libs/jquery-1.7.1.js
-    - public/javascripts/libs/slides.jquery.js
 stylesheets:
   application:
     - public/stylesheets/application.css
