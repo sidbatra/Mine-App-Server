@@ -19,6 +19,7 @@ module DW
                 :stopping     => "64",
                 :stopped      => "80"}
 
+
       # Fetch all instances that match the provided
       # filtering options
       #
@@ -39,9 +40,7 @@ module DW
                       end
         end
 
-        if options[:tags] && 
-            options[:tags].is_a?(Hash) && 
-            options[:tags].length > 0
+        if tags_are_valid? options[:tags]
 
           instances = instances.select do |instance|
                         tags = instance.tagSet.item
@@ -61,6 +60,32 @@ module DW
         end
 
         instances
+      end
+
+      # Create fresh instances
+      #
+      def self.create(options={})
+        ec2 = AWS::EC2::Base.new(
+                :access_key_id      => CONFIG[:aws_access_id],
+                :secret_access_key  => CONFIG[:aws_secret_key])
+
+        response = ec2.run_instances(options[:instances])
+        sleep 3
+
+        if tags_are_valid? options[:tags]
+          ec2.create_tags(
+            :resource_id  => response.instancesSet.item.map(&:instanceId),
+            :tag          => options[:tags].map{|k,v| {k.to_s.capitalize => v}})
+        end
+      end
+
+
+      protected
+
+      # Test validity of an array of tags associated with instances
+      #
+      def self.tags_are_valid?(tags)
+        tags && tags.is_a?(Hash) && tags.length > 0
       end
 
     end #instance manager
