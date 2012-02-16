@@ -120,7 +120,7 @@ module DW
 
       # Destroy instances based on the tags provided
       #
-      def self.destroy(options={})
+      def self.destroy_all(options={})
         instances = all(options)
         instances = instances[0..options[:count]-1] if options[:count]
 
