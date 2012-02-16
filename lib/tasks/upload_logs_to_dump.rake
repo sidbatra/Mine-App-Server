@@ -1,9 +1,12 @@
 desc "Upload app logs to the dump filesystem"
 
 ENV['RAILS_PATH'] = Dir.pwd
+
+environment = ENV['RAILS_ENV']
+environment ||= 'development'
   
 # Load rails config
-CONFIG = YAML.load_file("config/config.yml")[ENV['RAILS_ENV']]
+CONFIG = YAML.load_file("config/config.yml")[environment]
 CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
 
 # Load logs config
