@@ -1,7 +1,7 @@
 <%if(products.length) {%>
 
   <%if(categories.size() > 1){%>
-    <div class="titlebar small_bottom_margin">
+    <div class="titlebar">
       <a class='cat <%=currentCategory == 'all' || currentCategory == undefined ? 'on' : ''%>' href='#<%=fragment%>/all'>Everything</a>
 
       <%categories.each(function(category){%>
