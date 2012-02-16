@@ -149,8 +149,17 @@ module DW
       #
       def self.create(options={})
         response = AWSConnection.ec2.run_instances(options[:instances])
-        instances = response.instancesSet.item
+        instances = instantize(response.instancesSet.item)
         sleep 5
+
+        update_all(instances,options)
+
+        instances
+      end
+
+      # Update all given instances with the given options
+      #
+      def self.update_all(instances,options={})
 
         if tags_are_valid? options[:tags]
           AWSConnection.ec2.create_tags(
@@ -158,7 +167,7 @@ module DW
             :tag          => options[:tags].map{|k,v| {k.to_s.capitalize => v}})
         end
 
-        instantize(instances)
+        instances
       end
 
       # Destroy instances based on the tags provided
