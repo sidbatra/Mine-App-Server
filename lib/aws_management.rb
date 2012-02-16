@@ -6,6 +6,36 @@ module DW
 
     require "AWS"
 
+    # Maintains connections to AWS services
+    #
+    class AWSConnection
+      
+      # Open a connection to ec2 and elb
+      #
+      def self.establish(access_key_id,secret_access_key)
+        @@ec2 ||= AWS::EC2::Base.new(
+                    :access_key_id      => access_key_id,
+                    :secret_access_key  => secret_access_key)
+      
+        @@elb ||= AWS::ELB::Base.new(
+                    :access_key_id      => access_key_id,
+                    :secret_access_key  => secret_access_key)
+
+        true
+      end
+
+      # Retrieve the ec2 connection object
+      #
+      def self.ec2
+        @@ec2
+      end
+
+      # Retrieve the elb connection object
+      def self.elb
+        @@elb
+      end
+    end
+
 
     # Mixin module with methods to interface with AWS response objects
     # that contain a param hash
@@ -51,7 +81,7 @@ module DW
 
       include AWSObjectInterface
 
-      @states = {
+      @@states = {
                 :pending      => "0",
                 :running      => "16", 
                 :shuttingdown => "32",
@@ -59,17 +89,13 @@ module DW
                 :stopping     => "64",
                 :stopped      => "80"}
 
-      @ec2 = AWS::EC2::Base.new(
-              :access_key_id      => CONFIG[:aws_access_id],
-              :secret_access_key  => CONFIG[:aws_secret_key])
-
-
       # Fetch all instances that match the provided
       # filtering options
       #
       def self.all(options={})
-        instances = @ec2.describe_instances.reservationSet.item.map do |group| 
-                      group.instancesSet.item
+        instances = AWSConnection.ec2.describe_instances.
+                      reservationSet.item.map do |group| 
+                        group.instancesSet.item
                     end.flatten
 
         if options[:instance_ids]
@@ -83,7 +109,7 @@ module DW
         if options[:state]
           instances = instances.select do |instance|
                         next unless instance.instanceState.code == 
-                                      @states[options[:state]]
+                                      @@states[options[:state]]
                         true
                       end
         end
@@ -113,12 +139,12 @@ module DW
       # Create fresh instances
       #
       def self.create(options={})
-        response = @ec2.run_instances(options[:instances])
+        response = AWSConnection.ec2.run_instances(options[:instances])
         instances = response.instancesSet.item
         sleep 5
 
         if tags_are_valid? options[:tags]
-          @ec2.create_tags(
+          AWSConnection.ec2.create_tags(
             :resource_id  => instances.map(&:instanceId),
             :tag          => options[:tags].map{|k,v| {k.to_s.capitalize => v}})
         end
@@ -132,7 +158,8 @@ module DW
         instances = all(options)
         instances = instances[0..options[:count]-1] if options[:count]
 
-        @ec2.terminate_instances(:instance_id => instances.map(&:instanceId))
+        AWSConnection.ec2.terminate_instances(
+          :instance_id => instances.map(&:instanceId))
 
         instances
       end
@@ -155,16 +182,12 @@ module DW
     class LoadBalancer
 
       include AWSObjectInterface
-      
-      @elb = AWS::ELB::Base.new(
-              :access_key_id      => CONFIG[:aws_access_id],
-              :secret_access_key  => CONFIG[:aws_secret_key])
 
 
       # Fetch all load balancers matching the given options
       #
       def self.all(options={})
-        balancers = @elb.describe_load_balancers.
+        balancers = AWSConnection.elb.describe_load_balancers.
                       DescribeLoadBalancersResult.
                       LoadBalancerDescriptions.
                       member
@@ -191,7 +214,7 @@ module DW
       def attach(instance_ids)
         instance_ids = [instance_ids] if instance_ids.is_a? String
 
-        self.class.elb.register_instances_with_load_balancer(
+        AWSConnection.elb.register_instances_with_load_balancer(
           :instances          => instance_ids,
           :load_balancer_name => self.LoadBalancerName)
       end
@@ -201,19 +224,11 @@ module DW
       def dettach(instance_ids)
         instance_ids = [instance_ids] if instance_ids.is_a? String
 
-        self.class.elb.deregister_instances_from_load_balancer(
+        AWSConnection.elb.deregister_instances_from_load_balancer(
           :instances          => instance_ids,
           :load_balancer_name => self.LoadBalancerName)
       end
 
-
-      private
-
-      # Accessor method for the elb object
-      #
-      def self.elb
-        @elb
-      end
     end
 
   end #LoadBalancer
