@@ -304,18 +304,8 @@ body.path {
 	position: absolute;
 	bottom: 0px;
 	background-repeat: repeat-x; }
-	
-/* deprecated: pre-darkened images now used
-.path .dimmer {
-	background: url("/images/black_35.png");
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%; } */
 
 .path .strip {
-/*background: url("/images/black_25.png");*/
 	position: fixed;
 	top: 0;
 	left: 0;
