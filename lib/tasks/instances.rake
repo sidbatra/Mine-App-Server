@@ -3,18 +3,52 @@ require 'lib/aws_management'
 include DW
 include AWSManagement
 
-
 namespace :instances do
+
+  IMAGE_ID           = 'ami-914595f8'
+  INSTANCE_TYPE      = 't1.micro'
+  AVAILABILITY_ZONE  = 'us-east-1b'
+  SECURITY_GROUP     = 'sg-7c5fca15'
+  TYPES              = ['web','proc']
+  ENVIRONMENTS       = ['production','staging']
+  SPECS_REGEX        = "^(((#{TYPES.join('|')}){1}:(\\d)+)[,]{0,1})+$"
+
 
   desc "Launch fresh instances"
   task :create do |e,args|
     setup_environment_variables
     connect_to_aws
+
+    # Launch instances independently for each spec
+    #
+    @specs.split(',').each do |spec|
+      type,count = spec.split(':')
+      instances = Instance.create(
+                    :instances => {
+                      :image_id => IMAGE_ID,
+                      :min_count => count,
+                      :max_count => count,
+                      :instance_type => INSTANCE_TYPE,
+                      :availability_zone => AVAILABILITY_ZONE,
+                      :security_group => SECURITY_GROUP},
+                    :tags => {
+                      :environment => @environment,
+                      :type => type,
+                      :installed => '0',
+                      :name => "Closet #{@environment.capitalize} "\
+                                "#{type.capitalize}"})
+
+      if type == 'web'
+        load_balancer = LoadBalancer.find(:matching => @environment)
+        load_balancer.attach(instances.map(&:instanceId)) if load_balancer
+      end
+    end
   end
 
   desc "Destroy running instances"
   task :destroy do |e,args|
   end
+
 
   # Validate and setup environment variables
   #
@@ -22,12 +56,16 @@ namespace :instances do
     @specs        = ENV['specs']
     @environment  = ENV['env']
 
-    unless @specs && @environment
-      puts "Usage:\nrake instances:{create,destroy} "\
-            "specs=[web,proc]:[count] "\
-            "env={production,staging}"
-      exit
-    end
+    raise IOError,"" unless @specs && 
+                      @environment &&
+                      ENVIRONMENTS.include?(@environment) &&
+                      @specs.match(Regexp.new(SPECS_REGEX))
+
+  rescue
+    puts "Usage:\nrake instances:{create,destroy} "\
+          "specs=[{web,proc}:count](,) "\
+          "env={production,staging}"
+    exit
   end
 
   # Open a connection to AWS
