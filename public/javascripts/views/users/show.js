@@ -50,30 +50,30 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this);
 
     // -----
-    this.followingUsers  = new Denwen.Partials.Users.List({
-                                el      : $('#centerstage'),
-                                userID  : this.user.get('id'),
-                                filter  : 'ifollowers',
-                                header  : 'Following',
-                                src     : 'following_list'});
+    //this.followingUsers  = new Denwen.Partials.Users.List({
+    //                            el      : $('#centerstage'),
+    //                            userID  : this.user.get('id'),
+    //                            filter  : 'ifollowers',
+    //                            header  : 'Following',
+    //                            src     : 'following_list'});
 
-    this.followingUsers.bind(
-      Denwen.Callback.UsersListLoaded,
-      this.usersLoaded,
-      this);
+    //this.followingUsers.bind(
+    //  Denwen.Callback.UsersListLoaded,
+    //  this.usersLoaded,
+    //  this);
 
     // -----
-    this.followedByUsers  = new Denwen.Partials.Users.List({
-                                  el      : $('#centerstage'),
-                                  userID  : this.user.get('id'),
-                                  filter  : 'followers',
-                                  header  : 'Followed By',
-                                  src     : 'followed_by_list'});
+    //this.followedByUsers  = new Denwen.Partials.Users.List({
+    //                              el      : $('#centerstage'),
+    //                              userID  : this.user.get('id'),
+    //                              filter  : 'followers',
+    //                              header  : 'Followed By',
+    //                              src     : 'followed_by_list'});
 
-    this.followedByUsers.bind(
-      Denwen.Callback.UsersListLoaded,
-      this.usersLoaded,
-      this);
+    //this.followedByUsers.bind(
+    //  Denwen.Callback.UsersListLoaded,
+    //  this.usersLoaded,
+    //  this);
 
     // -----
     this.collections      = new Denwen.Partials.Collections.List({
@@ -93,7 +93,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     new Denwen.Partials.Users.PreviewBox({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
-                          filter  : 'ifollowers_preview',
+                          filter  : 'ifollowers',
                           header  : 'Influenced by',
                           count   : this.user.get('inverse_followings_count'),
                           hash    : 'following'});
