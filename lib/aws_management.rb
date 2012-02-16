@@ -64,6 +64,18 @@ module DW
             k,
             proc{self.instance_variable_get("@#{k}")})
         end
+
+        tags = {}
+
+        self.tagSet.item.each do |tag|
+          tags[tag.key.downcase.to_sym] = tag.value
+        end if self.tagSet.item
+
+        self.instance_variable_set("@tags",tags)
+        self.class.send(
+          :define_method,
+          "tags",
+          proc{self.instance_variable_get("@tags")})
       end
 
       # Explicitly mix in class methods 
@@ -98,6 +110,8 @@ module DW
                         group.instancesSet.item
                     end.flatten
 
+        instances = instantize(instances)
+
         if options[:instance_ids]
           instances = instances.select do |instance|
                         next unless options[:instance_ids].
@@ -117,15 +131,10 @@ module DW
         if tags_are_valid? options[:tags]
 
           instances = instances.select do |instance|
-                        tags = instance.tagSet.item
-                        next unless tags.length > 0 
-                        
                         failed = false
 
-                        tags.each do |tag|
-                          key = tag.key.downcase.to_sym
-                          failed = true if options[:tags][key] &&
-                                            options[:tags][key] != tag.value
+                        options[:tags].each do |k,v|
+                          failed = true if instance.tags[k] != v
                         end
 
                         next if failed
@@ -133,7 +142,7 @@ module DW
                       end
         end
 
-        instantize(instances)
+        instances
       end
 
       # Create fresh instances
