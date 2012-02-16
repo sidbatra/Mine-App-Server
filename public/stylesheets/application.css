@@ -256,8 +256,24 @@ div.welcome_text {
   position: absolute;
   right: -8px;
   white-space: nowrap; }
+  
+/* ------------------------------ OMNIBOX */
+
+.omnibox {
+	margin: 0 auto;
+	width: 928px;
+	padding-top: 17px;
+	font-size: 24px;
+	line-height: 32px;
+	color: white;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+	-moz-opacity: 0.75;
+	opacity: .75;
+	filter: alpha(opacity=75);
+	zoom: 1; }
 
 /* ------------------------------ Onboarding */
+
 #header .navbar ol#indicators {
   position: absolute;
   right: 0px;
@@ -289,7 +305,7 @@ div.welcome_text {
 
 #container {
 	width: 928px;
-	padding: 28px 48px 0px;
+	padding: 26px 48px 0px;
   margin: 0px auto 0px;
   position: relative; }
 
