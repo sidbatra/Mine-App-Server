@@ -8,6 +8,7 @@
   		<div class='fade'></div>
         	
       <%if(type == 'user' && product.has('store')) { %>
+      	<%=product.get('store').get('is_processed') ? "<img src='" + product.get('store').get('thumbnail_url') + "' />"  : ''%>
        	Bought at <%=product.get('store').conditionalLink('user_profile')%>
       <%}else{%>
       	<%if(type == 'user' && product.get('is_gift')) { %>

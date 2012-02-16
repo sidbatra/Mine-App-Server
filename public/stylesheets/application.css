@@ -175,7 +175,7 @@ div.welcome_text {
 #header .logo {
 	color: white;
 	font-size: 40px;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4) }
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6) }
 
 /* ------------------------------ Nav */
 #header .nav {
@@ -1544,6 +1544,10 @@ a.edit_cccccc_14:hover {
   color: white;
   position: relative;
   display: block; }
+
+.tab.major {
+	font-size: 18px; }
+
   
 .tab span.trans {
   -moz-opacity: 0.75;
@@ -1567,46 +1571,39 @@ a.edit_cccccc_14:hover {
   margin-bottom: 3px; }
 
 .large_top_margin {
-  margin-top: 16px; }
+  margin-top: 21px; }
 
 .large_bottom_margin {
-  margin-bottom: 16px; }
+  margin-bottom: 21px; }
 
 .no_small_top_margin {
   margin-top: -3px; }
 
 .tab.triangle {
-  background: url("/images/triangles.png") right -108px no-repeat;
   cursor: pointer;
   padding-right: 22px; }
 
-.tab.triangle:hover {
-  background: url("/images/triangles.png") right 0 no-repeat; }
-
-.tab.triangle:active {
-  background: url("/images/triangles.png") right -72px no-repeat;
-  color: #cc3333; }
+.tab.triangle:hover,
+.tab.triangle:active  {
+  background: url("/images/triangles.png") 50px 3 no-repeat; }
 
 .tab.on, .tab.on:hover, .tab.on:active {
-  background: url("/images/triangles.png") right -72px no-repeat;
-  color: #cc3333; }
+  background: url("/images/triangles.png") 50px -147px no-repeat; }
 
-.tab.on.now, tab.on.now:hover, .tab.on.now:active {
-  background: #cc3333 url("/images/triangles.png") right -144px no-repeat;
-  color: white; }
+.tab.on span.trans {
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100); }
 
 .tab.static, .tab.static:hover, .tab.static:active {
   background-position: right 0;
   cursor: default; }
  
-.tab.triangle.down, .tab.triangle.down:hover, .tab.triangle.down:active {
-  background: url("/images/triangles.png") right -360px no-repeat; }
-
 .tab.triangle.load, .tab.triangle.load:hover, .tab.triangle.load:active {
-  background: url("/images/tab_load_cc3333.gif") 154px center no-repeat; }
+  background: url("/images/tab_load_999999.gif") 60px center no-repeat; }
   
 .tab.static.load, .tab.static.load:hover, .tab.static.load:active {
-  background: url("/images/tab_load_999999.gif") 154px center no-repeat; }
+  background: url("/images/tab_load_999999.gif") 60px center no-repeat; }
   
 .tab .shadowbox {
 	position: absolute;
@@ -1699,7 +1696,7 @@ a.edit_cccccc_14:hover {
 
 .sidebar .username {
   -webkit-font-smoothing: antialiased;
-  padding: 19px 0px 21px;
+  padding: 19px 0px;
   line-height: 36px;
   font-size: 24px;
   color: white;
@@ -1757,9 +1754,6 @@ a.edit_cccccc_14:hover {
 	color: #cc3333;
 	margin-left: 4px;
 }
-
-.sidebar .tile_row {
-  background: url("/images/white_40.png"); }
 
 .sidebar .tile_frame {
   position: relative;
