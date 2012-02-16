@@ -18,14 +18,15 @@ class ConvertLikesToWants < ActiveRecord::Migration
       ids << action.id
     end
 
-    Action.destroy_all(:id => ids)
+    Action.delete_all(:id => ids)
 
     Action.import columns, values
 
-    columns = [:actions_count]
-    values  = Product.all(:include => :actions).map{|p| [p.actions.length]} 
+    columns = [:id,:actions_count]
+    values  = Product.all(:include => :actions).map{|p| [p.id,p.actions.length]}
 
-    Product.import columns, values, {:validate => false}
+    Product.import columns, values, 
+      {:validate => false, :on_duplicate_key_update => [:actions_count,:updated_at]}
   end
 
   def self.down
