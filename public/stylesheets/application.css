@@ -22,16 +22,16 @@ a {
 
 body {
   font-family: 'FuturaStdBook', Arial, sans-serif;
+  background-color: black;
   font-size: 16px;
   margin-bottom: 100px;
-  background: #e9e4e1 url("/images/home_glow_lite_tiled.jpg") fixed;
-  background-position: center 38px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-font-feature-settings: "kern=1";
   -ms-font-feature-settings: "kern" 1;
   overflow-y: scroll;
   overflow-x: hidden; }
+
 
 .wide {
   width: 980px; }
@@ -43,17 +43,29 @@ body {
 .narrow {
   width: 865px; }
 
-#background {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  z-index: -1; }
+/* ------------------------------ Blurred full-screen background */  
 
-.stretch {
-  width: 100%;
-  height: 100%; }
+.background {
+	position: absolute;
+	width: 100%;
+	height: 100%; }
+
+.background .canvas {
+	position: relative; }
+	
+.background img {
+	width: 100%;
+	height: auto;
+	z-index: -100; }
+	
+.background .fade_bottom {
+	width: 100%;
+	height: 200px;
+	background-image: url("/images/fade_bottom.png");
+	position: absolute;
+	bottom: 0px;
+	background-repeat: repeat-x; }
+
   
 /* ------------------------------ Logged-out blackout */ 
   
@@ -154,22 +166,19 @@ div.welcome_text {
 
 /* ------------------------------ Header */
 #header {
-  height: 68px;
-  position: relative; /* needed to keep above blackout */
-  background: url('/images/header_black_convex.png') center bottom repeat-x;
-  padding-bottom: 2px;
-  margin-bottom: 18px; }
+  height: 66px;
+  position: relative; /* needed to keep above blackout */ }
+  
+#header .logo {
+	color: white;
+	font-size: 34px;
+	display: block;
+	padding: 32px 48px 0px 48px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4) }
 
 #header .navbar {
   position: relative;
   margin: 0 auto; }
-
-#header .navbar .logo {
-	width: 137px;
-	height: 32px;
-  padding: 17px 20px 19px 0px;
-  display: block;
-  background: url('/images/oncloset_logo_34_white.png') 0 17px no-repeat; }
 
 /* ------------------------------ Nav */
 #header .navbar .nav {
@@ -302,6 +311,8 @@ div.welcome_text {
   background-position: 0 -120px; }
 
 #container {
+	width: 1024px;
+	padding: 0px 48px;
   margin: 0px auto 0px;
   position: relative; }
 
