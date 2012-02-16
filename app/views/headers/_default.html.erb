@@ -1,7 +1,7 @@
 	<div id='header'>
 	
     <%=link_to_if !is_onboarding?,
-      				 CONFIG[:name],
+      				CONFIG[:name],
                logged_in? ? 
                   user_path(self.current_user.handle,:src => "top") : 
                   home_path(
@@ -29,26 +29,28 @@
 	   	<li>
 	   	
 	      <%if !is_onboarding?%>
-<!-- 	        <div class='buttons'> -->
-	        
-	        
+
 	        	<a href="<%=new_invite_path(:src => 'bar')%>" class="nav_menu">Invite friends</a>
-	        
-<!-- 	        </div> -->
+	      
 	      <%end%>
 	   	
+	   	</li>
+	  
+	   	
+	   	<li>
+	   		<a href="/" class="nav_menu">New set</a>
 	   	</li>
 	   
 	   
 			<li>
 	      <%if !is_onboarding? || is_onboarding_create?%>
 	      
-	        <a class='nav_menu nav_add_item_button'></a>
+	        <a class='nav_menu'>Add item +</a>
 	        
-	        <ul class='nav_add_list'>
+	        <!--<ul class='nav_add_list'>
 	          
-	          <%@categories.each do |category|%>
-	            <%=link_to "<li>#{category.id == 8 ? 
+	          <#@categories.each do |category|%>
+	            <#=link_to "<li>#{category.id == 8 ? 
 	                                'Anything!' : 
 	                                category.name}</li>",
 	                    (is_onboarding_create? ?
@@ -58,8 +60,9 @@
 	                        :category => category.handle,
 	                        :src      => 'dropdown')),
 	                    :class => ''%>
-	          <%end%>
-	        </ul>
+	          <#end%>
+	        </ul>-->
+	       
 	      <%end%>
 			</li>
 			
@@ -81,15 +84,21 @@
 			</li>
 			<li>
 		    <%if !is_onboarding?%>	
-	        <a class='nav_menu nav_login_button'>
-            <%=image_tag 'v.png'%>
+					
+					<%=link_to "Log out", 
+	              logout_path,
+	              :class => "nav_menu"%>
+	              
+	        <!--<a class='nav_menu nav_login_button'>
+            <#=image_tag 'v.png'%>
 	        </a>
 	        
 	        <ul class='nav_login_list'>
-	          <%=link_to "<li>Log Out</li>", 
+	          <#=link_to "<li>Log Out</li>", 
 	              logout_path,
 	              :class => "login_list_item"%>
-	        </ul>
+	        </ul>-->
+
 	      <%end%> 
 			</li>
 	         
