@@ -79,7 +79,7 @@ class UsersController < ApplicationController
       @users      = User.find(params[:id]).ifollowers.with_stores
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :ifollowers_preview
-      @users      = User.find(params[:id]).ifollowers.limit(5)
+      @users      = User.find(params[:id]).ifollowers
       @key        = KEYS[:user_ifollowers_preview] % params[:id]
     when :stars
       @achievers  = AchievementSet.current_star_users

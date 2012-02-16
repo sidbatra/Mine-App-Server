@@ -10,15 +10,15 @@
   </a>
   <%}%>
 
-  <div class='tile_row'>
+  <div class='no_small_top_margin'>
     <%users.each(function(user){%>
-      <%=Denwen.JST['users/user']({user:user, src:hash + '_box'})%>
+      <%=Denwen.JST['users/tiled_list']({user:user, src:hash + '_box'})%>
     <%});%>
-    <%if(helpers.isCurrentUser(leader.get('id'))){%>
+    <!--%if(helpers.isCurrentUser(leader.get('id'))){%>
       <%for(var i=users.length+1; i<=5; i++) {%>
         <%=Denwen.JST['users/user']({src:'invite', index:i})%>
       <%}%>
-    <%}%>
+    <%}%-->
     <%=helpers.blocker()%>
   </div>
  
