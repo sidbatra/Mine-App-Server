@@ -1585,10 +1585,10 @@ a.edit_cccccc_14:hover {
 
 .tab.triangle:hover,
 .tab.triangle:active  {
-  background: url("/images/triangles.png") 50px 3 no-repeat; }
+  background: url("/images/triangles.png") 52px 3 no-repeat; }
 
 .tab.on, .tab.on:hover, .tab.on:active {
-  background: url("/images/triangles.png") 50px -147px no-repeat; }
+  background: url("/images/triangles.png") 52px -147px no-repeat; }
 
 .tab.on span.trans {
 	-moz-opacity: 1.00;
@@ -1600,10 +1600,10 @@ a.edit_cccccc_14:hover {
   cursor: default; }
  
 .tab.triangle.load, .tab.triangle.load:hover, .tab.triangle.load:active {
-  background: url("/images/tab_load_999999.gif") 60px center no-repeat; }
+  background: url("/images/tab_load_999999.gif") 62px center no-repeat; }
   
 .tab.static.load, .tab.static.load:hover, .tab.static.load:active {
-  background: url("/images/tab_load_999999.gif") 60px center no-repeat; }
+  background: url("/images/tab_load_999999.gif") 62px center no-repeat; }
   
 .tab .shadowbox {
 	position: absolute;
@@ -1696,7 +1696,7 @@ a.edit_cccccc_14:hover {
 
 .sidebar .username {
   -webkit-font-smoothing: antialiased;
-  padding: 19px 0px;
+  padding: 19px 0px 13px;
   line-height: 36px;
   font-size: 24px;
   color: white;
@@ -1706,27 +1706,27 @@ a.edit_cccccc_14:hover {
 .sidebar .user_byline_display {
 	font-size: 14px;
   line-height: 21px;
-  color: #666666;
+  color: #f5f5f5;
   width: 158px;
   padding: 10px 10px 10px 12px;
-  background: url("/images/white_40.png");
+  background: url("/images/black_20.png");
 }
 
 .sidebar .user_byline_input {
   font-family: 'FuturaStdBook', Arial, sans-serif;
   font-size: 14px;
   line-height: 21px;
-  color: #333333;
+  color: white;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-font-feature-settings: "kern=1";
   -ms-font-feature-settings: "kern" 1;
   width: 158px;
   height: 84px;
-  border: 2px solid #a8a8a8;
+  border: 2px solid transparent;
   padding: 8px 8px 8px 10px;
-/*   background: white url("/images/black_7.png") repeat-x; */
-  background: url("/images/textarea_white_40.png") top center repeat-x; 
+  background: url("/images/black_20.png");
+/*   background: url("/images/textarea_white_40.png") top center repeat-x;  */
 }
   
 .sidebar .user_byline_save {
