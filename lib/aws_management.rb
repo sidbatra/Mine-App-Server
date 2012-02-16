@@ -69,7 +69,7 @@ module DW
 
         self.tagSet.item.each do |tag|
           tags[tag.key.downcase.to_sym] = tag.value
-        end if self.tagSet.item
+        end if params['tagSet'] && self.tagSet.item
 
         self.instance_variable_set("@tags",tags)
         self.class.send(

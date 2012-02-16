@@ -9,9 +9,9 @@ namespace :instances do
   INSTANCE_TYPE      = 't1.micro'
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
-  TYPES              = ['web','proc']
+  TYPES              = {:web => 'web',:proc => 'proc'}
   ENVIRONMENTS       = ['production','staging']
-  SPECS_REGEX        = "^(((#{TYPES.join('|')}){1}:(\\d)+)[,]{0,1})+$"
+  SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
 
   desc "Launch fresh instances"
@@ -38,7 +38,7 @@ namespace :instances do
                       :name => "Closet #{@environment.capitalize} "\
                                 "#{type.capitalize}"})
 
-      if type == 'web'
+      if type == TYPES[:web]
         load_balancer = LoadBalancer.find(:matching => @environment)
         load_balancer.attach(instances.map(&:instanceId)) if load_balancer
       end
@@ -47,6 +47,25 @@ namespace :instances do
 
   desc "Destroy running instances"
   task :destroy do |e,args|
+    setup_environment_variables
+    connect_to_aws
+
+    # Destroy instances independently for each spec
+    #
+    @specs.split(',').each do |spec|
+      type,count = spec.split(':')
+      instances = Instance.destroy_all(
+                    :tags => {
+                      :environment => @environment,
+                      :type => type},
+                    :state => :running,
+                    :count => 1)
+
+      if type == TYPES[:web]
+        load_balancer = LoadBalancer.find(:matching => @environment)
+        load_balancer.dettach(instances.map(&:instanceId)) if load_balancer
+      end
+    end
   end
 
 
