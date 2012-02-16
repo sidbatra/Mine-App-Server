@@ -72,6 +72,14 @@ module DW
                       group.instancesSet.item
                     end.flatten
 
+        if options[:instance_ids]
+          instances = instances.select do |instance|
+                        next unless options[:instance_ids].
+                                      include?(instance.instanceId)
+                        true
+                      end
+        end
+
         if options[:state]
           instances = instances.select do |instance|
                         next unless instance.instanceState.code == 
@@ -107,7 +115,7 @@ module DW
       def self.create(options={})
         response = @ec2.run_instances(options[:instances])
         instances = response.instancesSet.item
-        sleep 3
+        sleep 5
 
         if tags_are_valid? options[:tags]
           @ec2.create_tags(
