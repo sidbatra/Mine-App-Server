@@ -189,7 +189,9 @@ div.welcome_text {
   height: 40px;
   position: absolute;
   right: 48px;
+  padding: 0 12px;
   top: 0px;
+  background: url('/images/black_20.png');
   cursor: pointer; }
 
 #header .nav li {
@@ -232,7 +234,7 @@ div.welcome_text {
   line-height: 40px;
   font-size: 14px;
   position: relative;
-  padding: 0 6px;
+  padding: 0 7px;
   color: white; }
 
 /* Handles the showing and hiding of menu items */
@@ -1962,7 +1964,7 @@ a.edit_cccccc_14:hover {
 	right: 0px; }
 
 #main .titlebar .menu:hover { 
-	background: url('/images/black_60.png'); }
+	background: url('/images/black_20.png'); }
 
 #main .titlebar .menu .title { 
 	display: block;
@@ -1973,7 +1975,7 @@ a.edit_cccccc_14:hover {
 
 #main .titlebar .menu .list { 
 	display: none; 
-	background: url('/images/black_20.png');
+	background: url('/images/black_60.png');
 	color: white;
 	padding: 6px 0 9px}
 
