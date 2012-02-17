@@ -15,6 +15,9 @@ class Admin::StoresController < ApplicationController
     when :popular
       @stores           = Store.popular  
     end
+
+    render :partial => @filter.to_s,
+           :layout  => "application"
   end
 
 

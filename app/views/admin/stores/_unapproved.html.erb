@@ -1,25 +1,32 @@
-<%@stores.each do |store|%>
-  <tr id="tr_<%=store.id%>">
-    <td width="400">
-      <%= text_field_tag  'name',
-                          store.name,
-                          :id     => "store_name_#{store.id}",
-                          :class  => "creation_input box_shadow"%>
-    </td>
-    <td width="200">
-      <%=link_to  'Approve', 
-                  'javascript:void(0);',
-                  :id     => "store_update_#{store.id}",
-                  :class  => 'submit_red_12'%>
-    </td>
-    <td width="200">
-      <%=link_to  'Store', 
-                  store_path(store.handle),
-                  :id     => "store_link_#{store.id}",
-                  :target => '_newtab'%>
-    </td>
-  </tr>
-<%end%>
+<div id="container">
+  <table>
+
+  <%@stores.each do |store|%>
+    <tr id="tr_<%=store.id%>">
+      <td width="400">
+        <%= text_field_tag  'name',
+                            store.name,
+                            :id     => "store_name_#{store.id}",
+                            :class  => "creation_input box_shadow"%>
+      </td>
+      <td width="200">
+        <%=link_to  'Approve', 
+                    'javascript:void(0);',
+                    :id     => "store_update_#{store.id}",
+                    :class  => 'submit_red_12'%>
+      </td>
+      <td width="200">
+        <%=link_to  'Store', 
+                    store_path(store.handle),
+                    :id     => "store_link_#{store.id}",
+                    :target => '_newtab'%>
+      </td>
+    </tr>
+  <%end%>
+
+  </table>
+</div>
+
 
 
 <%content_for :javascript do%>

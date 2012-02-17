@@ -3,19 +3,22 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_required
 
-  # Show all the users who have created a product
+  # Fetch sets of users based on different filters
   # 
   def index 
-    @users            = Product.with_store.with_user.all.map(&:user).uniq
-    @grouped_users    = {} 
+    @filter = params[:filter].to_sym
 
-    @users.each do |user| 
-      key = user.age/CONFIG[:age_bucket_size]
-      @grouped_users[key] = [] unless @grouped_users.has_key?(key)
-      @grouped_users[key] = @grouped_users[key] << user 
+    case @filter
+    when :active
+      @users = {}
+      @users['daily']     = active_users_in_time_period(1.day.ago)
+      @users['weekly']    = active_users_in_time_period(1.week.ago)
+      @users['biweekly']  = active_users_in_time_period(15.days.ago)
+      @users['monthly']   = active_users_in_time_period(1.month.ago)
     end
 
-    @grouped_users = @grouped_users.sort{|a,b| a[0]<=>b[0]}
+    render :partial => @filter.to_s,
+           :layout  => "application"
   end
 
 
@@ -26,5 +29,19 @@ class Admin::UsersController < ApplicationController
     @collection = (user.searches + user.products).sort{
                    |x,y| x.created_at <=> y.created_at}
   end
+
+
+  protected
+
+  # Fetch users who have been active in the given time period
+  #
+  def active_users_in_time_period(time)
+    user_ids = [Product,Action,Collection,Comment].map do |model|
+                 model.select(:user_id).made(time).map(&:user_id)
+               end.flatten.uniq
+
+    User.find_all_by_id(user_ids)
+  end
+
 
 end

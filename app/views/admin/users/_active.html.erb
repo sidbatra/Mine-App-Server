@@ -1,0 +1,16 @@
+<div id="container">
+  <%@users.sort{|a,b| a[1].count <=> b[1].count}.each do |time_period,users|%>
+
+    <b><%=users.count%> <%=time_period.capitalize%> Actives </b> <br> <br>
+    <table>
+      <%users.sort{|a,b| b.products_count <=> a.products_count}.each do |user|%>
+        <tr>
+          <td><%=link_to user_full_name(user),user_path(user.handle)%></td>
+        </tr>
+      <%end%>
+    </table>
+
+    <br/><br/><br/>
+
+  <%end%>
+</div>
