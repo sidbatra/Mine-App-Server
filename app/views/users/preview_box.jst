@@ -1,14 +1,8 @@
-  <%if(count){%>
-  <a href='#<%=hash%>'>
-  <%}%>
-    <div id='<%=hash%>_tab' 
-        class='tab title large_top_margin <%=window.location.hash == '#' + hash ? 'on' : ''%>'>
-      <%=header%>
-      <%=count ? count : ''%> people
-    </div>
-  <%if(count){%>
-  </a>
-  <%}%>
+  <div id='<%=hash%>_tab' 
+      class='tab title large_top_margin'>
+    <%=header%>
+    <%=count ? (count == 1 ? '1 person' : count + ' people') : ' no one'%> 
+  </div>
 
   <div class='no_small_top_margin'>
     <%users.each(function(user){%>
