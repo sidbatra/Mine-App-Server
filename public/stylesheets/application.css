@@ -189,24 +189,14 @@ div.welcome_text {
   height: 40px;
   position: absolute;
   right: 36px;
-  padding: 0 12px;
   top: 0px;
   background: url('/images/black_20.png');
   cursor: pointer; }
 
 #header .nav li {
   float: left;
-  -moz-opacity: 0.85;
-  opacity: .8;
-  filter: alpha(opacity=80);
-  zoom: 1;
   position: relative; }
 
-#header .nav li:hover { 
-	-moz-opacity: 1.00;
-  opacity: 1.00;
-  filter: alpha(opacity=100); }
-  
 #header .nav li ul {
 	background: url('/images/black_20.png'); 
 	padding: 6px 0 9px;
@@ -234,8 +224,26 @@ div.welcome_text {
   line-height: 40px;
   font-size: 14px;
   position: relative;
-  padding: 0 7px;
+  padding: 0 14px;
+  -moz-opacity: 0.80;
+  opacity: .8;
+  filter: alpha(opacity=80);
+  zoom: 1;
   color: white; }
+
+.nav_menu:hover {
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100); }
+  
+.nav_menu.add_item {
+	zoom: 1;
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100);
+	background: #a32929; }
+
+.nav_menu.add_item:hover { background: #cc3333; }
 
 /* Handles the showing and hiding of menu items */
 .nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover {
@@ -243,7 +251,7 @@ div.welcome_text {
 
 .nav_login_list {
 	position: absolute;
-  right: -12px;
+  right: 0px;
   white-space: nowrap;
   display: none;
   z-index: 10000; }
@@ -253,6 +261,10 @@ div.welcome_text {
   top: 42px;
   left: -8px;
   width: 120px; }
+
+.new_set { padding-right: 7px; }
+.nav_user_button { padding-right: 0px; }
+
 
 .nav_user_button_user_photo {
   width: 20px;
