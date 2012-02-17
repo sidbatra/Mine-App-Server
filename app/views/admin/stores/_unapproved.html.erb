@@ -42,7 +42,7 @@
                                 <%=@stores.to_json(:only => [:id,:name])%>,
                                 {is_admin:true});
 
-      storesEditView    = new Denwen.Views.Admin.StoresEditView({
+      storesEditView    = new Denwen.Views.Admin.Stores.Unapproved({
                                   approved_collection   : approved_stores,
                                   unapproved_collection : unapproved_stores});
     });

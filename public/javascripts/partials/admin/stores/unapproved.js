@@ -1,6 +1,6 @@
-// View for editing a store in the admin UI 
+// Partial for editing a store in the admin UI 
 //
-Denwen.Views.Admin.StoreEditView = Backbone.View.extend({
+Denwen.Partials.Admin.Stores.Unapproved = Backbone.View.extend({
 
   // Event listeners
   //
@@ -26,7 +26,7 @@ Denwen.Views.Admin.StoreEditView = Backbone.View.extend({
     this.inputEl.autocomplete(
                         stores,{
                         formatMatch: function(item){
-                          return item[0].replace(/[^\w]/gi, '');},
+                          return item[0].replace(/[^(\w|\s)]/gi, '');},
                         formatResult: function(item){
                           return item[0];}
                         });
