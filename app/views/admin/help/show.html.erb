@@ -8,6 +8,10 @@
   <%=link_to 'Daily, Weekly, Biweekly, Monthly Active',
               admin_users_path(:filter => 'active')%> <br>
 
+  Admin View of any User. /admin/users/{handle} 
+  Example - <%=link_to 'Anna Smith',admin_user_path('anna-smith')%>
+  <br>
+
   <br> <h3>Collections</h3>
   <%=link_to 'Recent',
               admin_collections_path(:filter => 'recent')%> <br>
