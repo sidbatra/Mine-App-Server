@@ -60,11 +60,16 @@ class Admin::StoresController < ApplicationController
       end # type
 
     when :generic
+      store.update_attributes(params[:store])
+
     end # filter
   rescue => ex
     handle_exception(ex)
   ensure
     respond_to do |format|
+      format.html do
+        redirect_to edit_admin_store_path(store.handle)
+      end
       format.json
     end
   end

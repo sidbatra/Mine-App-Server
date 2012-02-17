@@ -1,7 +1,13 @@
 <div id="container">
 
-  <%form_for @store, :url => "/admin/stores/#{@store.id}" do |f|%>
+  <%form_for @store, 
+      :url => "/admin/stores/#{@store.id}?filter=generic" do |f|%>
+
     <%=f.hidden_field :image_path%>
+
+    <%=f.text_field :name%>
+
+    <%=submit_tag "Update", :name   => nil%>
   <%end%>
 
 </div>
