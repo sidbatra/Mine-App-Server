@@ -31,29 +31,36 @@ class Admin::StoresController < ApplicationController
   # the existing store. Also handle cases for unknowns and gifts
   #
   def update
-    store           = Store.find(params[:id])
-    fetched_store   = Store.fetch(params[:name])
-    type            = params[:name].downcase.to_sym
+    store  = Store.find(params[:id])
+    filter = params[:filter].to_sym
 
-    case type
-    when :unknown
-      store.change_products_store_to_unknown
-      store.destroy
+    case filter
+    when :unapproved
+      fetched_store   = Store.fetch(params[:name])
+      type            = params[:name].downcase.to_sym
 
-      @store = nil
-    else
-      if fetched_store.nil? || store.id == fetched_store.id
-        params[:is_approved] = true
-        store.edit(params)
-
-        @store = store
-      else
-        store.move_products_to(fetched_store)
+      case type
+      when :unknown
+        store.change_products_store_to_unknown
         store.destroy
 
-        @store = fetched_store
-      end
-    end
+        @store = nil
+      else
+        if fetched_store.nil? || store.id == fetched_store.id
+          params[:is_approved] = true
+          store.edit(params)
+
+          @store = store
+        else
+          store.move_products_to(fetched_store)
+          store.destroy
+
+          @store = fetched_store
+        end
+      end # type
+
+    when :generic
+    end # filter
   rescue => ex
     handle_exception(ex)
   ensure

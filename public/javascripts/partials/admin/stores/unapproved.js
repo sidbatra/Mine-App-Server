@@ -45,7 +45,7 @@ Denwen.Partials.Admin.Stores.Unapproved = Backbone.View.extend({
    var self = this;
 
    this.model.save(
-          {'name':this.inputEl.val()},
+          {'name':this.inputEl.val(),'filter':'unapproved'},
           {
             success : function(){self.changed();},
             error   : function(model,errors){}
