@@ -5,8 +5,6 @@
 Denwen.UserShowHash = {
   Owns        : 'owns',
   Wants       : 'wants',
-  Following   : 'following',
-  FollowedBy  : 'followed_by',
   Collections : 'looks'
 }
 

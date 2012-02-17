@@ -14,8 +14,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.loadTabClass   = 'load';
     this.ownsTab        = '#owns_tab';
     this.wantsTab       = '#wants_tab';
-    this.followingTab   = '#following_tab';
-    this.followedByTab  = '#followed_by_tab';
     this.collectionsTab = '#collections_tab';
 
     if(this.options.currentUserJSON != 'false')
@@ -50,32 +48,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this);
 
     // -----
-    //this.followingUsers  = new Denwen.Partials.Users.List({
-    //                            el      : $('#centerstage'),
-    //                            userID  : this.user.get('id'),
-    //                            filter  : 'ifollowers',
-    //                            header  : 'Following',
-    //                            src     : 'following_list'});
-
-    //this.followingUsers.bind(
-    //  Denwen.Callback.UsersListLoaded,
-    //  this.usersLoaded,
-    //  this);
-
-    // -----
-    //this.followedByUsers  = new Denwen.Partials.Users.List({
-    //                              el      : $('#centerstage'),
-    //                              userID  : this.user.get('id'),
-    //                              filter  : 'followers',
-    //                              header  : 'Followed By',
-    //                              src     : 'followed_by_list'});
-
-    //this.followedByUsers.bind(
-    //  Denwen.Callback.UsersListLoaded,
-    //  this.usersLoaded,
-    //  this);
-
-    // -----
     this.collections      = new Denwen.Partials.Collections.List({
                                   el      : $('#centerstage'),
                                   ownerID : this.user.get('id'),
@@ -89,23 +61,15 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.collectionsLoaded,
       this);
 
+
     // -----
-    new Denwen.Partials.Users.PreviewBox({
+    new Denwen.Partials.Users.List({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
                           filter  : 'ifollowers',
                           header  : 'Influenced by',
                           count   : this.user.get('inverse_followings_count'),
-                          hash    : 'following'});
-    
-    // -----
-    //new Denwen.Partials.Users.PreviewBox({
-    //                      el      : $('#followers_with_msg'),
-    //                      user    : this.user,
-    //                      filter  : 'followers_preview',
-    //                      header  : 'Followed by',
-    //                      count   : this.user.get('followings_count'),
-    //                      hash    : 'followed_by'});
+                          src     : 'following'});
 
     // -----
     new Denwen.Partials.Users.Stores({
@@ -145,13 +109,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   switchTabsOff: function() {
     $(this.ownsTab).removeClass(this.onTabClass);
     $(this.wantsTab).removeClass(this.onTabClass);
-    $(this.followingTab).removeClass(this.onTabClass);
-    $(this.followedByTab).removeClass(this.onTabClass);
     $(this.collectionsTab).removeClass(this.onTabClass);
     $(this.ownsTab).removeClass(this.loadTabClass);
     $(this.wantsTab).removeClass(this.loadTabClass);
-    $(this.followingTab).removeClass(this.loadTabClass);
-    $(this.followedByTab).removeClass(this.loadTabClass);
     $(this.collectionsTab).removeClass(this.loadTabClass);
   },
 
@@ -240,24 +200,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
       },
 
-      // Display ifollowers, followers and handle empty fragments
+      // Display collections and handle empty fragments
       //
       singleFilter: function(type) {
         self.switchTabsOff();
 
         switch(type) {
-        case Denwen.UserShowHash.Following:
-          self.followingUsers.fetch();
-          self.switchTabOn(self.followingTab);
-          analytics.userIFollowersView(self.user.get('id'));
-          break;
-
-        case Denwen.UserShowHash.FollowedBy:
-          self.followedByUsers.fetch();
-          self.switchTabOn(self.followedByTab);
-          analytics.userFollowersView(self.user.get('id'));
-          break;
-
         case Denwen.UserShowHash.Collections:
           self.loadCollectionsTab();
           break;
@@ -311,12 +259,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   // Callback when owns or wants are loaded
   //
   productsLoaded: function() {
-    this.switchCurrentTabLoadOff();
-  },
-
-  // Callback when followers or ifollowers are loaded
-  //
-  usersLoaded: function() {
     this.switchCurrentTabLoadOff();
   },
 

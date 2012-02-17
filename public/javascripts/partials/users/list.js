@@ -1,4 +1,4 @@
-// Partial to load and display users in a box with detailed info
+// Partial to load and display a list of users
 //
 Denwen.Partials.Users.List = Backbone.View.extend({
 
@@ -10,24 +10,25 @@ Denwen.Partials.Users.List = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.userID = this.options.userID;
-    this.filter = this.options.filter;
-    this.header = this.options.header;
-    this.src    = this.options.src;
+    var self      = this;
+    this.user     = this.options.user;
+    this.filter   = this.options.filter;
+    this.header   = this.options.header;
+    this.count    = this.options.count;
+    this.src      = this.options.src;
 
-    this.users  = new Denwen.Collections.Users();
+    this.get();
   },
 
-  // Fetches the users
+  // Fetches the iFollowers 
   //
-  fetch: function() {
+  get: function() {
     var self    = this;
+    this.users  = new Denwen.Collections.Users();
 
     this.users.fetch({
-            data:     {id: this.userID, filter: this.filter},
-            success:  function(collection){
-                        self.trigger(Denwen.Callback.UsersListLoaded);
-                        self.render();},
+            data:     {id: this.user.get('id'), filter: self.filter},
+            success:  function(collection){self.render();},
             error:    function(collection,errors){}
             });
   },
@@ -35,12 +36,18 @@ Denwen.Partials.Users.List = Backbone.View.extend({
   // Render the users collection
   //
   render: function() {
+    var self = this;
+    
+    if(this.users.isEmpty() && !helpers.isCurrentUser(this.user.get('id')))
+      $(this.el).parent().hide();
+
     $(this.el).html(
       Denwen.JST['users/list']({
-        users         : this.users, 
-        header        : this.header,
-        src           : this.src}));
+        users   : this.users,
+        leader  : this.user,
+        header  : this.header,
+        count   : this.count,
+        src     : this.src}));
   }
 
 });
-
