@@ -175,7 +175,7 @@ div.welcome_text {
 #header {
 	width: 928px;
 	margin: 0 auto;
-	padding: 40px 48px 0px;
+	padding: 32px 48px 0px;
   height: 40px;
   position: relative; /* needed to keep above blackout */ }
   
@@ -1572,7 +1572,6 @@ a.edit_cccccc_14:hover {
 
 .tab.major {
 	font-size: 18px; }
-
   
 .tab span.trans {
   -moz-opacity: 0.80;
@@ -1599,10 +1598,10 @@ a.edit_cccccc_14:hover {
   margin-bottom: 3px; }
 
 .large_top_margin {
-  margin-top: 21px; }
+  margin-top: 10px; }
 
 .large_bottom_margin {
-  margin-bottom: 21px; }
+  margin-bottom: 10px; }
 
 .no_small_top_margin {
   margin-top: -3px; }
