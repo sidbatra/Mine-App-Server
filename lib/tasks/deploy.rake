@@ -17,7 +17,7 @@ namespace :deploy do
       connect_to_aws
       load_instances
 
-      system("cap #{environment} deploy:install")
+      system("cap #{@environment} deploy:install")
 
       Instance.update_all(
         @web_instances + @proc_instances,
@@ -30,7 +30,7 @@ namespace :deploy do
       connect_to_aws
       load_instances
 
-      system("cap #{environment} deploy:release")
+      system("cap #{@environment} deploy:release")
     end
 
 
