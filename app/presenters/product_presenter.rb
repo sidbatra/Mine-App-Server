@@ -17,7 +17,7 @@ class ProductPresenter < BasePresenter
     h.product_url product.user.handle,product.handle,:src => source
   end
 
-  # Anchor tag for deleting the product
+  # Anchor tag for editing the product
   #
   def edit_link
     if h.logged_in? && h.current_user.id == product.user_id

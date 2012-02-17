@@ -53,6 +53,7 @@ module DW
     # Purpose for sending a user an email
     #
     class EmailPurpose < Enumeration
+      Admin             = 99
       NewComment        = 0
       NewFollower       = 1
       NewAction         = 2

@@ -108,7 +108,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_users, 
                 :as         => 'admin/users', 
                 :controller => 'admin/users',
-                :only       => [:index,:show]
+                :only       => [:index,:show,:destroy]
   
   map.resources :admin_stores, 
                 :as         => 'admin/stores', 
@@ -120,7 +120,7 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => 'admin/collections',
                 :only       => [:index]
 
-  map.connect '/admin',
+  map.admin '/admin',
                 :controller => 'admin/help',
                 :action     => :show
 

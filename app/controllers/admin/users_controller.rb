@@ -25,11 +25,21 @@ class Admin::UsersController < ApplicationController
   # Display the user's queries and products. 
   #
   def show
-    user        = User.find(params[:id])
-    @collection = (user.searches + user.products).sort{
+    @user       = User.find_by_handle(params[:id])
+    @collection = (@user.searches + @user.products).sort{
                    |x,y| x.created_at <=> y.created_at}
   end
 
+  # Destroy the user
+  #
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    sleep 10
+    UserMailer.deliver_user_deleted(@user)
+
+    redirect_to admin_path
+  end
 
   protected
 

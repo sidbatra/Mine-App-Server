@@ -6,6 +6,7 @@
       <%users.sort{|a,b| b.products_count <=> a.products_count}.each do |user|%>
         <tr>
           <td><%=link_to user_full_name(user),user_path(user.handle)%></td>
+          <td><%=link_to 'Admin View',admin_user_path(user.handle)%></td>
         </tr>
       <%end%>
     </table>
