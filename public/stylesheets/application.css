@@ -173,9 +173,9 @@ div.welcome_text {
 
 /* ------------------------------ Header */
 #header {
-	width: 928px;
+	width: 952px;
 	margin: 0 auto;
-	padding: 32px 48px 0px;
+	padding: 36px 36px 0px;
   height: 40px;
   position: relative; /* needed to keep above blackout */ }
   
@@ -188,7 +188,7 @@ div.welcome_text {
 #header .nav {
   height: 40px;
   position: absolute;
-  right: 48px;
+  right: 36px;
   padding: 0 12px;
   top: 0px;
   background: url('/images/black_20.png');
@@ -270,8 +270,8 @@ div.welcome_text {
 
 .omnibox {
 	margin: 0 auto;
-	width: 928px;
-	padding-top: 17px;
+	width: 952px;
+	padding: 17px 36px 0;
 	font-size: 24px;
 	line-height: 32px;
 	color: white;
@@ -313,8 +313,8 @@ div.welcome_text {
   background-position: 0 -120px; }
 
 #container {
-	width: 928px;
-	padding: 40px 48px 0px;
+	width: 952px;
+	padding: 40px 36px 0px;
   margin: 0px auto 0px;
   position: relative; }
 
@@ -1713,8 +1713,7 @@ a.edit_cccccc_14:hover {
   color: #f5f5f5;
   width: 158px;
   padding: 10px 10px 10px 12px;
-  background: url("/images/black_20.png");
-}
+  background: url("/images/black_20.png"); }
 
 .sidebar .user_byline_input {
   font-family: 'FuturaStdBook', Arial, sans-serif;
@@ -1729,9 +1728,7 @@ a.edit_cccccc_14:hover {
   height: 84px;
   border: 2px solid transparent;
   padding: 8px 8px 8px 10px;
-  background: url("/images/black_20.png");
-/*   background: url("/images/textarea_white_40.png") top center repeat-x;  */
-}
+  background: url("/images/black_20.png"); }
   
 .sidebar .user_byline_save {
 	clear: both;
@@ -1739,25 +1736,17 @@ a.edit_cccccc_14:hover {
 	width: 48px;
 	text-align: center;
 	line-height: 32px;
-/* 	background: white; */
 	color: #cc3333;
 	font-size: 16px;
-/* 	float: right; */
 	height: 36px;
-/*
-	width: 48px;
-	text-align: center;
-*/
 	line-height: 36px;
 	color: #cc3333;
 	font-size: 16px;
-	display: block;
-}
+	display: block; }
 
 .user_byline_inline_edit {
 	color: #cc3333;
-	margin-left: 4px;
-}
+	margin-left: 4px; }
 
 .sidebar .tile_frame {
   position: relative;
@@ -1882,7 +1871,7 @@ a.edit_cccccc_14:hover {
   z-index: 100; }
 
 #main {
-  width: 528px;
+  width: 552px;
   float: left;
   margin: 0 20px;
   position: relative; }
@@ -1897,14 +1886,12 @@ a.edit_cccccc_14:hover {
  
 #main .placeholder.heading .em { color: #cc3333; }
   
-
 #main .placeholder.box {
 	width: 580px;
 	height: 270px;
 	background-repeat: no-repeat;
 	position: relative;
-	margin-bottom: 5px;
-}
+	margin-bottom: 5px; }
 
 #main .placeholder.box.like { background-image: url('/images/place_like_image.jpg'); }
 #main .placeholder.box.want { background-image: url('/images/place_want_image.jpg'); }
@@ -1930,7 +1917,6 @@ a.edit_cccccc_14:hover {
   line-height: 40px;
   font-size: 14px;
   vertical-align: top;
-  white-space: nowrap;
   position: relative;
   color: white; }
 
@@ -2006,17 +1992,14 @@ a.edit_cccccc_14:hover {
 	font-size: 14px;
 	margin: 0 0 0 8px;
 	display: inline-block;
-	color: #cc3333;
-}
+	color: #cc3333; }
 
 #main .titlebar a.action.comment {
 	background: url("/images/bubbles.png") -13px -36px no-repeat;
-  padding-left: 17px;
-}
+  padding-left: 17px; }
 
 #main .titlebar a.action.pushed {
-	color: #666666;
-}
+	color: #666666; }
 
 #main .titlebar a.action span.in {
   display: none; }
@@ -2033,19 +2016,16 @@ a.edit_cccccc_14:hover {
 	margin-top: -2px;
 	padding-bottom: 10px;
 	padding-left: 20px;
-	border-left: 4px solid white; 
-}
+	border-left: 4px solid white; }
 
 #main .sequence_title a:hover {
-	color: #cc3333;
-}
+	color: #cc3333; }
 
 #main .sequence {
 	width: 564px;
 	padding-bottom: 14px;
 	padding-left: 20px;
-	border-left: 4px solid white; 
-}
+	border-left: 4px solid white; }
 
 #main .sequence:hover {
 	-moz-opacity: 0.8;
@@ -2060,8 +2040,7 @@ a.edit_cccccc_14:hover {
   overflow: hidden;
   visibility: hidden;
   content: ".";
-  font-size: 0;
-}
+  font-size: 0; }
 
 #main .sequence .product {
 	width: 94px;
@@ -2072,8 +2051,7 @@ a.edit_cccccc_14:hover {
 	display: block;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-color: white;
-}
+	background-color: white; }
 
 #main .sequence .product.stamp {
 	width: 100px;
@@ -2085,15 +2063,13 @@ a.edit_cccccc_14:hover {
 	background-position: center center;
 	background-repeat: no-repeat;
 /* 	background-size: 100px auto; */
-	background-color: white;
-}
+	background-color: white; }
 
 .new_collection {
 	height: 32px;
 	padding: 16px 0 16px 30px;
 	margin-left: -6px;
-	background: url('/images/timeline_stop_latest_update.png') bottom left no-repeat;
-}
+	background: url('/images/timeline_stop_latest_update.png') bottom left no-repeat; }
 
 .new_collection.on_now_placeholder {
 	padding: 3px 0 29px 30px;
@@ -2101,13 +2077,11 @@ a.edit_cccccc_14:hover {
 	font-size: 26px;
 	color: #555555;
   line-height: 31px;
-  text-shadow: 0 1px 1px white;
-}
+  text-shadow: 0 1px 1px white; }
 
 .new_collection.on_now_placeholder span.subtitle {
 	color: #999999;
-	font-size: 18px;
-}
+	font-size: 18px; }
 
 .new_collection.on_now_placeholder span.red { color: #cc3333; }
 
@@ -2119,8 +2093,7 @@ a.edit_cccccc_14:hover {
 	background: url('/images/on_now_buttons.png') no-repeat;
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-}
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2); }
 
 .new_collection a.update:hover { background-position: 0 -32px; }
 .new_collection a.update:active { background-position: 0 -64px; }
@@ -2128,14 +2101,14 @@ a.edit_cccccc_14:hover {
 .new_collection a.start { 
 	background-position: 0 -276px; 
 	display: inline-block;
-	margin-top: 12px;
-}
+	margin-top: 12px; }
+	
 .new_collection a.start:hover { background-position: 0 -308px; }
 .new_collection a.start:active { background-position: 0 -340px; }
 
 /* ------------------------------ Products */
 .products {
-  width: 531px; }
+  width: 555px; }
 
 .products:after {
   clear: both;
@@ -2148,8 +2121,8 @@ a.edit_cccccc_14:hover {
 
 .products .product {
   float: left;
-  width: 160px;
-  height: 240px;
+  width: 168px;
+  height: 252px;
   padding: 7px;
   margin: 0 3px 3px 0;
   position: relative;
@@ -2230,9 +2203,9 @@ table.collection.details .textbox .title {
 
 .products .product a.top {
   display: block;
-  width: 160px;
-  height: 215px;
-  line-height: 215px;
+  width: 168px;
+  height: 227px;
+  line-height: 227px;
   text-align: center;
   position: relative;
   background-position: center center;
@@ -2240,13 +2213,13 @@ table.collection.details .textbox .title {
   /* 	background-size: 170px auto; */ }
 
 .products .product .top .image {
-  max-width: 160px;
-  max-height: 215px;
+  max-width: 168px;
+  max-height: 227px;
   vertical-align: middle;
   position: relative; }
 
 .products .product .bottom {
-  width: 167px;
+  width: 175px;
   height: 18px;
   font-size: 12px;
   line-height: 18px;
