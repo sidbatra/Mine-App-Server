@@ -3,24 +3,31 @@
   <%if(categories.size() > 1){%>
     <div class="titlebar overhang">
     	<div class="menu">
-	    	<a class="title">Everything</a>
-	    	<ul class="list">
-	    		<li>Shoes</li>
-	    		<li>Accessories</li>
-	    		<li>Clothing</li>
-	    		<li>Decor</li>
-	    		<li>Cosmetics</li>
-	    		<li>Electronics</li>
-	    		<li>Jewelry</li>
-	    	</ul>
-	    </div>
-      <!--<a class='cat <#=currentCategory == 'all' || currentCategory == undefined ? 'on' : ''%>' href='#<#=fragment%>/all'>Everything</a>
 
-      <#categories.each(function(category){%>
-        <a class='cat <#=category.get('handle') == currentCategory ? 'on' : ''%>' href='#<#=fragment%>/<#=category.get('handle')%>'>
-          <#=category.get('name')%>
-        </a>  
-      <#});%>-->
+        <%if(currentCategory == 'all' || currentCategory == undefined){%>
+          <a class="title">Everything</a>
+        <%}else{%>
+          <%categories.each(function(category){%>
+            <%if(currentCategory == category.get('handle')){%>
+              <a class="title"><%=category.get('name')%></a>
+            <%}%>
+          <%});%>
+        <%}%>
+
+	    	<ul class="list">
+          <%if(currentCategory != 'all' && currentCategory != undefined){%>
+            <a href="#<%=fragment%>/all"><li>Everything</li></a>
+          <%}%>
+          <%categories.each(function(category){%>
+            <%if(currentCategory != category.get('handle')){%>
+              <a href='#<%=fragment%>/<%=category.get('handle')%>'>
+                <li><%=category.get('name')%></li>
+              </a>  
+            <%}%>
+          <%});%>
+	    	</ul>
+
+	    </div>
     </div>
   <%}%>
 		
