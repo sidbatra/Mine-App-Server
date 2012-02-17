@@ -1,16 +1,15 @@
 <div id="container">
   <table>
-
-    <ol style="width: 300px">
-      <%@stores.each do |store|%>
-      <li style="list-style-type:decimal; white-space: nowrap;">
-        <%=link_to store.name, store_path(store.handle)%>
-        &nbsp;&nbsp;
-        <span><%=store.id%></span>
-        <span style="float:right"><%=h store.products_count%></span>
-      </li>
-      <%end%>
-    </ol>
-
+    <%@stores.each do |store|%>
+      <tr>
+        <td><%=link_to store.name, store_path(store.handle)%></td>
+        <td><%=store.products_count%></td>
+        <td><%=store.image_path ? 
+                link_to(
+                  image_tag(store.image_url,:height => 50),
+                  store.image_url) :
+                'No Image'%></td>
+      </tr>
+    <%end%>
   </table>
 </div>
