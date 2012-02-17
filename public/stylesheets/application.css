@@ -1830,9 +1830,9 @@ a.edit_cccccc_14:hover {
 
 .sidebar ol li a .item {
   color: white; 
-  -moz-opacity: 0.90;
-  opacity: .90;
-  filter: alpha(opacity=90); }
+  -moz-opacity: 0.80;
+  opacity: .80;
+  filter: alpha(opacity=80); }
 
 .sidebar ol li a .item:hover {
   -moz-opacity: 1.00;
