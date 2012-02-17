@@ -73,7 +73,7 @@ namespace :instances do
 
     # Validate and setup environment variables
     #
-    def setup_environment_variables
+    def self.setup_environment_variables
       @specs        = ENV['specs']
       @environment  = ENV['env']
 
@@ -91,7 +91,7 @@ namespace :instances do
 
     # Open a connection to AWS
     #
-    def connect_to_aws
+    def self.connect_to_aws
       config = YAML.load_file("config/config.yml")[@environment]
       AWSConnection.establish(config[:aws_access_id],config[:aws_secret_key])
     end
