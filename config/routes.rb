@@ -115,6 +115,11 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => 'admin/stores',
                 :only       => [:index,:update,:show]
 
+  map.resources :admin_collections, 
+                :as         => 'admin/collections', 
+                :controller => 'admin/collections',
+                :only       => [:index]
+
   map.canvas    '/canvas',
                 :controller => :canvas,
                 :action     => :show
