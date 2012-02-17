@@ -1,7 +1,3 @@
-require 'lib/aws_management'
-
-include DW
-include AWSManagement
 
 namespace :deploy do
 
@@ -37,6 +33,11 @@ namespace :deploy do
     # Validate and setup environment variables
     #
     def self.setup_environment_variables
+      require 'lib/aws_management'
+
+      include DW
+      include AWSManagement
+
       @environment  = ENV['env']
 
       raise IOError,"" unless @environment &&
