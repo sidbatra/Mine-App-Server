@@ -9,6 +9,7 @@
                   image_tag(store.image_url,:height => 50),
                   store.image_url) :
                 'No Image'%></td>
+        <td><%=link_to 'Edit View',edit_admin_store_path(store.handle)%></td>
       </tr>
     <%end%>
   </table>

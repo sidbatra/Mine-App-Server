@@ -20,6 +20,11 @@ class Admin::StoresController < ApplicationController
            :layout  => "application"
   end
 
+  # Edit a store
+  #
+  def edit
+    @store = Store.find_by_handle(params[:id])
+  end
 
   # Update the store name. If the updated name is already in the
   # database, then delete the store and move all its products to
@@ -55,12 +60,6 @@ class Admin::StoresController < ApplicationController
     respond_to do |format|
       format.json
     end
-  end
-
-  # Show all products from a store
-  #
-  def show
-    @store = Store.find(params[:id])
   end
 
 end

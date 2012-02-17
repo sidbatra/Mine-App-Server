@@ -1,0 +1,7 @@
+<div id="container">
+
+  <%form_for @store, :url => "/admin/stores/#{@store.id}" do |f|%>
+    <%=f.hidden_field :image_path%>
+  <%end%>
+
+</div>

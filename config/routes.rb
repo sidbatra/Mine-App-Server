@@ -113,7 +113,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_stores, 
                 :as         => 'admin/stores', 
                 :controller => 'admin/stores',
-                :only       => [:index,:update,:show]
+                :only       => [:index,:edit,:update]
 
   map.resources :admin_collections, 
                 :as         => 'admin/collections', 
