@@ -28,7 +28,6 @@ class Store < ActiveRecord::Base
   named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
-  named_scope :limit,       lambda {|limit| {:limit => limit}}
   named_scope :for_user,    lambda {|user_id| {
                                 :joins      => :shoppings,
                                 :conditions => {:shoppings => {

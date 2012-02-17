@@ -68,8 +68,6 @@ class User < ActiveRecord::Base
 
   named_scope :with_stores, :include => {:shoppings => :store}
 
-  named_scope :limit, lambda {|limit| {:limit => limit}}
-
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
