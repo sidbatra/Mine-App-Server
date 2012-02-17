@@ -8,7 +8,7 @@
    
 <div class='no_small_top_margin'>
   <%stores.each(function(store){%>
-    <%=Denwen.JST['stores/list']({store:store, src:'user'})%>
+    <%=Denwen.JST['stores/store']({store:store, src:'user'})%>
   <%});%>
   <%=helpers.blocker()%>
 </div>
