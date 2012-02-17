@@ -113,6 +113,12 @@ module DW
         @@queue.push(payload.to_yaml)
       end
 
+      # Clear the queue
+      #
+      def self.clear
+        @@queue.clear
+      end
+
     end
 
 

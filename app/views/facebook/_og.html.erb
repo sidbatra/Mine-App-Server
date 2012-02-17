@@ -10,6 +10,7 @@
 <%-products.each do |product|-%>
 <meta property="<%=OGObject::Item%>" content="<%=product_url(product.user.handle,product.handle,:src => 'fb')%>"/>
 <%-end-%>
+<meta property="<%=OGProperty::Length%>" content="<%=products.length%>"/>
 <%-end-%>
 <%-if defined?(store) && store.present? && store.is_processed-%>
 <meta property="<%=OGObject::Store%>" content="<%=store_url(store.handle,:src => 'fb')%>"/>

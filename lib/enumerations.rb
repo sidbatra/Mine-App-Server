@@ -152,6 +152,12 @@ module DW
       Use     = "#{CONFIG[:fb_app_namespace]}:use" 
     end
 
+    # Facebook OpenGraph Properties
+    #
+    class OGProperty < Enumeration
+      Length  = "#{CONFIG[:fb_app_namespace]}:length" 
+    end
+
   end
 
 end
