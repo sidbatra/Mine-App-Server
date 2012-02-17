@@ -74,7 +74,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //
   render: function(contacts) {
     $(this.contactsEl).html(
-      Denwen.JST['users/contacts']({contacts : contacts}));
+      Denwen.JST['contacts/contacts']({contacts : contacts}));
 
     this.fbInviteBox.hookUp();
   },

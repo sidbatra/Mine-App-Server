@@ -1,27 +1,3 @@
-<!-- invite: single invite list view  -->
-
-<!--
-<div class='invite_row'> 
-  <img class='invite_user' 
-        src='<#=contact.imageURL()%>' 
-        id='fb_single_invite_link' 
-        fb_id='<#=contact.get('third_party_id')%>'/>
-  <span class='name' 
-        id='fb_single_invite_link' 
-        fb_id='<#=contact.get('third_party_id')%>'>
-      <#=contact.get('name')%>
-  </span>
-  <a href='javascript:void(0);' 
-     id='fb_single_invite_link'
-     class='invite' 
-     fb_id='<#=contact.get('third_party_id')%>'>
-  </a> 
-</div>
--->
-
-
-<!-- invite: multi-invite grid view contact picker -->
-
 <a class="picker_choice unselectable" id="fb_single_invite_link"> 
 	
 	<div class="shadowbox"></div>
@@ -39,4 +15,4 @@
 		<%=helpers.truncate(contact.get('name'),30,".")%>
 	</div>
 
-</a> <!-- contact picker -->
+</a>
