@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216204125) do
+ActiveRecord::Schema.define(:version => 20120217014625) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20120216204125) do
   add_index "products", ["created_at"], :name => "index_products_on_created_at"
   add_index "products", ["handle"], :name => "index_products_on_handle"
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
+  add_index "products", ["source_product_id"], :name => "index_products_on_source_product_id"
   add_index "products", ["store_id"], :name => "index_products_on_store_id"
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
