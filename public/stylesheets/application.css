@@ -229,7 +229,8 @@ div.welcome_text {
   opacity: .8;
   filter: alpha(opacity=80);
   zoom: 1;
-  color: white; }
+  color: white;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2); }
 
 .nav_menu:hover {
 	-moz-opacity: 1.00;
@@ -237,13 +238,12 @@ div.welcome_text {
   filter: alpha(opacity=100); }
   
 .nav_menu.add_item {
-	zoom: 1;
-	-moz-opacity: 1.00;
+  background: #cc3333;
+  -moz-opacity: 1.00;
   opacity: 1.00;
-  filter: alpha(opacity=100);
-	background: #a32929; }
-
-.nav_menu.add_item:hover { background: #cc3333; }
+  filter: alpha(opacity=100); }
+  
+.nav_menu.add_item:hover { background: #a32929; }
 
 /* Handles the showing and hiding of menu items */
 .nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover {
@@ -262,9 +262,7 @@ div.welcome_text {
   left: -8px;
   width: 120px; }
 
-.new_set { padding-right: 7px; }
-.nav_user_button { padding-right: 0px; }
-
+.new_set, .nav_user_button { padding-right: 0px; }
 
 .nav_user_button_user_photo {
   width: 20px;
