@@ -2312,19 +2312,19 @@ table.collection.details .textbox .title {
   color: #cc3333; }
 
 .products .product .feedback .buttons .comments_none {
-  background: url("/images/bubbles.png") center 0px no-repeat;
+  background: url("/images/bubbles.png") center -2px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_some {
-  background: url("/images/bubbles.png") center 0px no-repeat;
+  background: url("/images/bubbles.png") center -2px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_some:hover {
-  background: url("/images/bubbles.png") center -36px no-repeat;
+  background: url("/images/bubbles.png") center -38px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_none:hover {
-  background: url("/images/bubbles.png") center -36px no-repeat;
+  background: url("/images/bubbles.png") center -38px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .held,
