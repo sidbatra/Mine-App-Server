@@ -39,7 +39,9 @@
 			<li>
 	      <%if !is_onboarding? || is_onboarding_create?%>
 	      
-	        <a class='nav_menu add_item'>Add item +</a>
+          <%=link_to 'Add item +', 
+              new_product_path(:src => 'bar'),
+              :class => 'nav_menu add_item'%>
 	        
 	        <!--<ul class='nav_add_list'>
 	          
@@ -61,7 +63,10 @@
 			</li>
 			
 	   	<li>
-	   		<a href="/" class="nav_menu new_set">New set</a>
+        <%=link_to 'New set',
+            new_collection_path(:src => 'bar'),
+            :class => "nav_menu new set" if self.current_user.products_count > 
+                                              CONFIG[:products_threshold]%>
 	   	</li>
 	
 			<li>
