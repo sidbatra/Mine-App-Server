@@ -26,6 +26,15 @@
 <div id="container" class="wide">
   
 	<div id="item">
+		
+				<!-- navigation to other products -->
+		    <%unless @next_product.id == @prev_product.id && 
+		              @next_product.id == @product.id%>
+		              
+					<%=@product_presenter.prev(@next_product,@product.user)%>
+		      <%=@product_presenter.next(@prev_product,@product.user)%>
+		    
+		    <%end%>
 	
 		<div class="top_bar">
 
@@ -48,29 +57,12 @@
     </div>
     
       <div id="left" class="photo">
-		    
-		    <!-- navigation to other products -->
-		    <%unless @next_product.id == @prev_product.id && 
-		              @next_product.id == @product.id%>
-		
-		      <%=@product_presenter.prev(@next_product,@product.user)%>
-		    
-		    <%end%>
-      
         <%=@product_presenter.large_image%>
       </div>
 
       
       <div id="right">
-      
-		    <!-- navigation to other products -->
-		    <%unless @next_product.id == @prev_product.id && 
-		              @next_product.id == @product.id%>
-		
-		      <%=@product_presenter.next(@prev_product,@product.user)%>
-		    
-		    <%end%>
-      
+
         <div id="right_user_image">
           <%=@user_presenter.small_picture('product_user')%>
         </div>

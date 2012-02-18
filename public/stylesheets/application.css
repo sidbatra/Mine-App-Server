@@ -1217,10 +1217,10 @@ div.welcome_text {
 
 #right_text_div {
   color: #999999;
-  width: 313px;
+  width: 281px;
   font-size: 16px;
   line-height: 28px;
-  padding: 0 16px 0 20px; }
+  padding: 0 48px 0 20px; }
 
 #right_user_image {
   height: 220px;
@@ -1542,21 +1542,33 @@ a.edit_cccccc_14:hover {
 /* ----- previous, next -----*/
 
 .next, .previous {
-  width: 36px;
-  height: 88px;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  top: 149px;
+  top: 220px;
   z-index: 50;
-  background: url("/images/prevnext.png") 0 0 no-repeat;
-  display: none; }
+  background: url("/images/prevnext.png") 0 0px;
+  -moz-opacity: 0.8;
+  opacity: .8;
+  filter: alpha(opacity=80);
+  zoom: 1; 
+/*   display: none; */ }
 
 .next {
-  right: 12px;
-  background-position: 0 -88px; }
+  right: -50px;
+  background-position: 0 -40px; }
 
-.previous { left: 12px; }
+.previous { left: -50px; }
 
-#right:hover .next, #left:hover .previous { display: block; }
+.next:hover, .previous:hover {
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100); }
+
+.next:active, .previous:active {
+	-moz-opacity: 0.5;
+  opacity: .5;
+  filter: alpha(opacity=50); }
   
 .strapline {
   font-family: 'FuturaStdBold', Arial, sans-serif;
