@@ -42,6 +42,13 @@ module DW
         product = Product.find(product_id)
         product.host
       end
+
+      # Rehost the updated store image
+      #
+      def self.update_store(store_id)
+        store = Store.find(store_id)
+        store.host
+      end
       
       # Make a user follow all his Facebook friends in our user base 
       # and email the friends about his signup. Also store all their
