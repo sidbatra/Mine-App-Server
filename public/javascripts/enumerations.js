@@ -15,3 +15,12 @@ Denwen.Callback = {
   UsersListLoaded       : 'usersListLoaded',
   CollectionsListLoaded : 'collectionsListLoaded'
 }
+
+// Callbacks for the uploader partial
+//
+Denwen.Callbacks.Uploader = {
+  FileSelected        : 'fileSelected',
+  FileUploadError     : 'fileUploadError',
+  FileUploadDone      : 'fileUploadDone',
+  FileUploadProgress  : 'fileUploadProgress'
+}

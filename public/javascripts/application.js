@@ -8,8 +8,9 @@ var Denwen = {
                   Settings : {}},
   Partials    : { Users : {}, Products : {}, Comments : {}, Commentables : {}, 
                   Facebook : {}, Stores : {}, Invites : {}, Actionables  : {},
-                  Collections : {}, Admin : {Stores : {}}},
-  Collections : {}
+                  Collections : {}, Common : {}, Admin : {Stores : {}}},
+  Collections : {},
+  Callbacks   : {}
 };
 
 

@@ -5,9 +5,32 @@
 
     <%=f.hidden_field :image_path%>
 
-    <%=f.text_field :name%>
+    <%=f.text_field :name%> <br>
 
-    <%=submit_tag "Update", :name   => nil%>
+    <div id='store_image'>
+      <%if @store.image_path.present?%>
+        <img src="<%=@store.image_url%>" />
+      <%else%>
+        No Image
+      <%end%>
+    </div>
+
+    <a href='javasvript:void(0)' id='uploader'>
+      Add/Change Image
+    </a> 
+    
+    <br>
+
+    <%=submit_tag "Update", :name => nil%>
   <%end%>
 
 </div>
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Admin.Stores.Edit({
+          el            : $('#container'),
+          uploadConfig  : <%=@upload_config.to_json%>});
+  </script>
+<%end%>

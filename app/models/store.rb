@@ -167,71 +167,57 @@ class Store < ActiveRecord::Base
 
   # Save store image to filesystem and create smaller copies
   #
-  def host(file_path)
-    self.image_path  = Base64.encode64(
-                         SecureRandom.hex(10) + 
-                         Time.now.to_i.to_s).chomp + ".png"
+  def host
+    return unless self.image_path.present?
 
-    if File.exists? file_path
+    # Create tiny thumbnail
+    #
+    image = MiniMagick::Image.open(self.image_url)
 
-      # Store original image
-      #
-      FileSystem.store(
-        image_path,
-        open(file_path),
-        "Content-Type"  => "image/png",
-        "Expires"       => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+    ImageUtilities.reduce_to_with_image(
+                      image,
+                      {:width => 36,:height => 36})
 
-      # Create tiny thumbnail
-      #
-      image = MiniMagick::Image.open(file_path)
+    FileSystem.store(
+      thumbnail_path,
+      open(image.path),
+      "Content-Type"  => "image/png",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
-      ImageUtilities.reduce_to_with_image(
-                        image,
-                        {:width => 36,:height => 36})
+    # Create medium thumbnail
+    #
+    image = MiniMagick::Image.open(self.image_url)
 
-      FileSystem.store(
-        thumbnail_path,
-        open(image.path),
-        "Content-Type"  => "image/png",
-        "Expires"       => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+    ImageUtilities.reduce_to_with_image(
+                      image,
+                      {:width => 100,:height => 100})
 
-      # Create medium thumbnail
-      #
-      image = MiniMagick::Image.open(file_path)
+    FileSystem.store(
+      medium_path,
+      open(image.path),
+      "Content-Type"  => "image/png",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
-      ImageUtilities.reduce_to_with_image(
-                        image,
-                        {:width => 100,:height => 100})
+    # Create large thumbnail
+    #
+    image = MiniMagick::Image.open(self.image_url)
 
-      FileSystem.store(
-        medium_path,
-        open(image.path),
-        "Content-Type"  => "image/png",
-        "Expires"       => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+    ImageUtilities.reduce_to_with_image(
+                      image,
+                      {:width => 180,:height => 180})
 
-      # Create large thumbnail
-      #
-      image = MiniMagick::Image.open(file_path)
-
-      ImageUtilities.reduce_to_with_image(
-                        image,
-                        {:width => 180,:height => 180})
-
-      FileSystem.store(
-        large_path,
-        open(image.path),
-        "Content-Type" => "image/png",
-        "Expires"       => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+    FileSystem.store(
+      large_path,
+      open(image.path),
+      "Content-Type" => "image/png",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
 
-      self.is_processed  = true
-      self.save(false)
-    end
+    self.is_processed  = true
+    self.save(false)
   end
 
 

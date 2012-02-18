@@ -2,6 +2,7 @@
 #
 class Admin::StoresController < ApplicationController
   before_filter :admin_required 
+  before_filter :generate_uploader, :only => :edit
 
   # Fetch group of stores based on different filters 
   #
@@ -26,15 +27,17 @@ class Admin::StoresController < ApplicationController
     @store = Store.find_by_handle(params[:id])
   end
 
-  # Update the store name. If the updated name is already in the
-  # database, then delete the store and move all its products to
-  # the existing store. Also handle cases for unknowns and gifts
+  # Update a store
   #
   def update
     store  = Store.find(params[:id])
     filter = params[:filter].to_sym
 
     case filter
+
+    # Update the store name. If the updated name is already in the
+    # database, then delete the store and move all its products to
+    # the existing store. Also handle cases for unknowns and gifts
     when :unapproved
       fetched_store   = Store.fetch(params[:name])
       type            = params[:name].downcase.to_sym
