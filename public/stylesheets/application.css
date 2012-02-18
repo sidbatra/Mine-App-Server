@@ -190,7 +190,8 @@ div.welcome_text {
   position: absolute;
   right: 36px;
   top: 0px;
-  background: url('/images/black_20.png');
+/*   background: url('/images/black_20.png'); */
+  border-bottom: 2px solid #cccccc;
   cursor: pointer; }
 
 #header .nav li {
@@ -294,7 +295,8 @@ div.welcome_text {
 	-moz-opacity: 0.8;
 	opacity: .8;
 	filter: alpha(opacity=80);
-	zoom: 1; }
+	zoom: 1;
+	display: none; }
 
 /* ------------------------------ Onboarding */
 
@@ -1551,41 +1553,34 @@ a.edit_cccccc_14:hover {
   -moz-opacity: 0.8;
   opacity: .8;
   filter: alpha(opacity=80);
-  zoom: 1; 
-/*   display: none; */ }
+  zoom: 1; }
 
-.next {
+.next, .collection .next {
   right: -50px;
   background-position: 0 -40px; }
 
-.previous { left: -50px; }
+.previous, .collection .previous { left: -50px; }
 
-.next:hover, .previous:hover {
+.next:hover, .previous:hover,
+.collection .next:hover, .collection .previous:hover {
 	-moz-opacity: 1.00;
   opacity: 1.00;
   filter: alpha(opacity=100); }
 
-.next:active, .previous:active {
+.next:active, .previous:active,
+.collection .next:active, .collection .previous:active {
 	-moz-opacity: 0.5;
   opacity: .5;
   filter: alpha(opacity=50); }
   
+.collection .next,
+.collection .previous {
+	top: 108px; }
+	
 .strapline {
   font-family: 'FuturaStdBold', Arial, sans-serif;
   line-height: 50px;
   font-size: 24px; }
-  
-.products.collection .next {
-	top: -43px;
-	right: 28px;
-	background-color: #f8f8f8;
-}
-
-.products.collection .previous {
-	top: -43px;
-	left: 732px;
-	background-color: #f8f8f8;
-}
 
 /* ------------------------------ Tabs */
 .tab {
@@ -2190,6 +2185,9 @@ a.edit_cccccc_14:hover {
 table.collection.details {
 	width: 835px;
 	background: white;
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
 }
 
 table.collection.details td {
