@@ -8,7 +8,7 @@
   <%=link_to 'Daily, Weekly, Biweekly, Monthly Active',
               admin_users_path(:filter => 'active')%> <br>
 
-  Admin View of any User. /admin/users/{handle} 
+  Admin View of User. /admin/users/{handle} 
   Example - <%=link_to 'Anna Smith',admin_user_path('anna-smith')%>
   <br>
 
@@ -22,4 +22,8 @@
 
   <%=link_to 'Popular',
               admin_stores_path(:filter => 'popular')%> <br>
+
+  Edit View of Store. /admin/stores/{handle}/edit
+  Example - <%=link_to 'Target',edit_admin_store_path('target')%>
+  <br>
 </div>
