@@ -46,7 +46,7 @@ class Store < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessor :rehost
-  attr_accessible :name,:user_id,:image_path
+  attr_accessible :name,:user_id,:image_path,:is_approved
 
   #----------------------------------------------------------------------
   # Class methods
@@ -70,22 +70,6 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
-
-  # Edit attributes of the model
-  #
-  def edit(attributes)
-
-    if attributes[:name].present?
-      self.name             = attributes[:name]
-      self.generate_handle  = true
-    end
-
-    if attributes[:is_approved].present?
-      self.is_approved      = attributes[:is_approved] 
-    end
-
-    self.save!
-  end
 
   # Return product count for the given category
   #

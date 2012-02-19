@@ -51,7 +51,8 @@ class Admin::StoresController < ApplicationController
       else
         if fetched_store.nil? || store.id == fetched_store.id
           params[:is_approved] = true
-          store.edit(params)
+          store.generate_handle = true
+          store.update_attributes(params)
 
           @store = store
         else
