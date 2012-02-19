@@ -32,7 +32,28 @@
     
   </div> <!-- bottom -->
   
+  	<%if(helpers.isLoggedIn()) {%>
 
+     
+          <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+          	<div class='feedback'>
+		       		<div class='buttons'>
+		            <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
+				              <div id="want_product_<%=product.get('id')%>" class='button want'>
+				                <span class="out">Want</span><span class="in">✓</span>
+				              </div>
+				            <%}%>
+				            <div id="own_product_<%=product.get('id')%>" class='button own'>
+				            	<span class="out">Own</span><span class="in">✓</span>
+				            </div>
+				          	<a href="<%=product.path(src)%>">
+				            	<div class='button comments_none'></div>
+				          	</a>
+		          </div>  <!-- buttons -->
+		    	  </div> <!-- feedback -->
+		    	<%}%>
+  			<%}%>
+ 
 
 </div> <!-- product -->
 

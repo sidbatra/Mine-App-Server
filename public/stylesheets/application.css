@@ -2294,11 +2294,9 @@ table.collection.details .textbox .title {
 	color: white;
 	padding-left: 27px; 
 	padding-right: 10px;
-/*
 	-moz-opacity: 0.8;
   opacity: .80;
   filter: alpha(opacity=80);
-*/
   zoom: 1;
   z-index: 2;
   display: none; }
