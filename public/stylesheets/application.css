@@ -173,9 +173,9 @@ div.welcome_text {
 
 /* ------------------------------ Header */
 #header {
-	width: 952px;
+	width: 976px;
 	margin: 0 auto;
-	padding: 36px 36px 0px;
+	padding: 36px 24px 0px;
   height: 40px;
   position: relative; /* needed to keep above blackout */ }
   
@@ -188,7 +188,7 @@ div.welcome_text {
 #header .nav {
   height: 40px;
   position: absolute;
-  right: 36px;
+  right: 24px;
   top: 0px;
 /*   background: url('/images/black_20.png'); */
   border-bottom: 2px solid #cccccc;
@@ -287,7 +287,7 @@ div.welcome_text {
 .omnibox {
 	margin: 0 auto;
 	width: 952px;
-	padding: 17px 36px 0;
+	padding: 17px 24px 0;
 	font-size: 24px;
 	line-height: 32px;
 	color: white;
@@ -330,8 +330,8 @@ div.welcome_text {
   background-position: 0 -120px; }
 
 #container {
-	width: 952px;
-	padding: 40px 36px 0px;
+	width: 976px;
+	padding: 40px 24px 0px;
   margin: 0px auto 0px;
   position: relative; }
 
@@ -1929,8 +1929,7 @@ a.edit_cccccc_14:hover {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-repeat: no-repeat;
-}
+	background-repeat: no-repeat; }
 
 #main .placeholder.box.like .overlay { background-image: url('/images/place_like_text.png'); }
 #main .placeholder.box.want .overlay { background-image: url('/images/place_want_text.png'); }
@@ -2131,7 +2130,7 @@ a.edit_cccccc_14:hover {
 
 /* ------------------------------ Products */
 .products {
-  width: 555px; }
+  width: 579px; }
 
 .products:after {
   clear: both;
@@ -2144,8 +2143,8 @@ a.edit_cccccc_14:hover {
 
 .products .product {
   float: left;
-  width: 168px;
-  height: 252px;
+  width: 176px;
+  height: 264px;
   padding: 7px;
   margin: 0 3px 3px 0;
   position: relative;
@@ -2229,9 +2228,9 @@ table.collection.details .textbox .title {
 
 .products .product a.top {
   display: block;
-  width: 168px;
-  height: 227px;
-  line-height: 227px;
+  width: 176px;
+  height: 239px;
+  line-height: 239px;
   text-align: center;
   position: relative;
   background-position: center center;
@@ -2239,13 +2238,13 @@ table.collection.details .textbox .title {
   /* 	background-size: 170px auto; */ }
 
 .products .product .top .image {
-  max-width: 168px;
-  max-height: 227px;
+  max-width: 176px;
+  max-height: 239px;
   vertical-align: middle;
   position: relative; }
 
 .products .product .bottom {
-  width: 175px;
+  width: 183px;
   height: 18px;
   font-size: 12px;
   line-height: 18px;
