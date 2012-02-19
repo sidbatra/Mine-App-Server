@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   def update
 
     @user = self.current_user
-    @user.edit(params)
+    @user.update_attributes(params)
   
   rescue => ex
     handle_exception(ex)

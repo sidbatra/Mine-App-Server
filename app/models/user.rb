@@ -72,6 +72,8 @@ class User < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessor :mine_contacts
+  attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
+                    :first_name,:last_name,:access_token,:byline
 
   #----------------------------------------------------------------------
   # Class methods
@@ -107,17 +109,6 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
-
-  # Edit attributes of the model
-  #
-  def edit(attributes)
-    
-    if !attributes[:byline].nil?
-      self.byline = attributes[:byline]
-    end
-
-    self.save
-  end
 
   # Return product count for the given category
   #
