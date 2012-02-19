@@ -188,7 +188,8 @@ div.welcome_text {
 #header .nav {
   height: 40px;
   position: absolute;
-  right: 24px;
+  right: 0px;
+/*   padding-right: 24px; */
   top: 0px;
   background: url('/images/black_20.png');
   border-bottom: 1px solid #999999;
@@ -226,7 +227,8 @@ div.welcome_text {
   line-height: 40px;
   font-size: 14px;
   position: relative;
-  padding: 0 14px;
+  padding: 0 0 0 16px;
+  
   -moz-opacity: 0.80;
   opacity: .8;
   filter: alpha(opacity=80);
@@ -258,6 +260,7 @@ div.welcome_text {
 
 .nav_login_list {
 	position: absolute;
+	top: 41px;
   right: 0px;
   white-space: nowrap;
   display: none;
@@ -279,6 +282,7 @@ div.welcome_text {
 
 .nav_login_button {
   width: 6px;
+  padding-right: 16px;
   background: url('/images/arrows.png') 0 0 no-repeat; }
 
   
