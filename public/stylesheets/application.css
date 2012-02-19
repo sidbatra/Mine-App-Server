@@ -227,7 +227,7 @@ div.welcome_text {
   line-height: 40px;
   font-size: 14px;
   position: relative;
-  padding: 0 0 0 16px;
+  padding: 0 0 0 18px;
   
   -moz-opacity: 0.80;
   opacity: .8;
@@ -282,7 +282,7 @@ div.welcome_text {
 
 .nav_login_button {
   width: 6px;
-  padding-right: 16px;
+  padding-right: 18px;
   background: url('/images/arrows.png') 0 0 no-repeat; }
 
   
@@ -1898,7 +1898,7 @@ a.edit_cccccc_14:hover {
   z-index: 100; }
 
 #main {
-  width: 552px;
+  width: 576px;
   float: left;
   margin: 0 20px;
   position: relative; }
