@@ -11,6 +11,8 @@ Signal.trap("TERM") do
   $running = false
 end
 
+logger = Logger.new(File.join(RAILS_ROOT,"log/processor.rb.log"))
+
 
 while($running) do
   payload = ProcessingQueue.pop
@@ -22,17 +24,18 @@ while($running) do
       payload.process
       end_time = Time.now
 
-      ActiveRecord::Base.logger.info "Finished processing "\
-                                      "#{payload.klass} "\
-                                      "#{payload.method} "\
-                                      "#{end_time - start_time} "\
-                                      "#{payload.arguments.join("|")}"
+      logger.info "Finished processing "\
+                  "#{payload.klass} "\
+                  "#{payload.method} "\
+                  "#{payload.arguments.join("|")} "\
+                  "#{end_time - start_time}"
+
     rescue => ex
       if payload.recover?
-        ActiveRecord::Base.logger.info "Recovering "\
-                                        "#{payload.klass} "\
-                                        "#{payload.method} "\
-                                        "#{payload.arguments.join("|")}"
+        logger.info "Recovering "\
+                    "#{payload.klass} "\
+                    "#{payload.method} "\
+                    "#{payload.arguments.join("|")}"
         ProcessingQueue.push(payload)
       else
         LoggedException.add(__FILE__,__method__,ex)
