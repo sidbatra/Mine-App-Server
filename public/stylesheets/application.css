@@ -176,12 +176,12 @@ div.welcome_text {
 	width: 976px;
 	margin: 0 auto;
 	padding: 36px 24px 0px;
-  height: 40px;
+  height: 42px;
   position: relative; /* needed to keep above blackout */ }
   
 #header .logo {
 	color: white;
-	font-size: 40px;
+	font-size: 42px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6) }
 
 /* ------------------------------ Nav */
@@ -190,8 +190,8 @@ div.welcome_text {
   position: absolute;
   right: 24px;
   top: 0px;
-/*   background: url('/images/black_20.png'); */
-  border-bottom: 2px solid #cccccc;
+  background: url('/images/black_20.png');
+  border-bottom: 1px solid #999999;
   cursor: pointer; }
 
 #header .nav li {
@@ -2143,9 +2143,9 @@ a.edit_cccccc_14:hover {
 
 .products .product {
   float: left;
-  width: 176px;
-  height: 264px;
-  padding: 7px;
+  width: 174px;
+  height: 262px;
+  padding: 8px;
   margin: 0 3px 3px 0;
   position: relative;
   background: white;
@@ -2228,9 +2228,9 @@ table.collection.details .textbox .title {
 
 .products .product a.top {
   display: block;
-  width: 176px;
-  height: 239px;
-  line-height: 239px;
+  width: 174px;
+  height: 236px;
+  line-height: 236px;
   text-align: center;
   position: relative;
   background-position: center center;
@@ -2238,20 +2238,20 @@ table.collection.details .textbox .title {
   /* 	background-size: 170px auto; */ }
 
 .products .product .top .image {
-  max-width: 176px;
-  max-height: 239px;
+  max-width: 174px;
+  max-height: 236px;
   vertical-align: middle;
   position: relative; }
 
 .products .product .bottom {
-  width: 183px;
+  width: 181px;
   height: 18px;
   font-size: 12px;
   line-height: 18px;
   overflow: hidden;
   position: absolute;
-  bottom: 7px;
-  left: 7px;
+  bottom: 8px;
+  left: 8px;
   text-align: left;
   color: #bbbbbb;
   white-space: nowrap;
