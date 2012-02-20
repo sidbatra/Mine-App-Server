@@ -392,6 +392,7 @@ body.path {
 	height: 208px; 
 	top: -19px;
 	left: 272px;
+	zoom: 1;
 	-moz-opacity: 0.90;
   opacity: .90;
   filter: alpha(opacity=90);

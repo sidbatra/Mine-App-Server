@@ -180,9 +180,18 @@ div.welcome_text {
   position: relative; /* needed to keep above blackout */ }
   
 #header .logo {
+	zoom: 1;
+	-moz-opacity: 0.90;
+  opacity: .90;
+  filter: alpha(opacity=90);
 	color: white;
 	font-size: 42px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6) }
+
+#header .logo:hover {
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100); }
 
 /* ------------------------------ Nav */
 #header .nav {
@@ -1616,10 +1625,10 @@ a.edit_cccccc_14:hover {
 	margin-top: -40px; }
 
 .small_top_margin {
-  margin-top: 3px; }
+  margin-top: 2px; }
 
 .small_bottom_margin {
-  margin-bottom: 3px; }
+  margin-bottom: 2px; }
 
 .large_top_margin {
   margin-top: 10px; }
@@ -1948,10 +1957,17 @@ a.edit_cccccc_14:hover {
 #main .titlebar .menu { 
 	position: absolute;
 	z-index: 1000;
-	right: 0px; }
+	right: 0px; 
+	zoom: 1;
+	-moz-opacity: 0.80;
+  opacity: .80;
+  filter: alpha(opacity=80); }
 
 #main .titlebar .menu:hover { 
-	background: url('/images/black_20.png'); }
+	background: url('/images/black_20.png'); 
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100); }
 
 #main .titlebar .menu .title { 
 	display: block;
@@ -2146,10 +2162,10 @@ a.edit_cccccc_14:hover {
 
 .products .product {
   float: left;
-  width: 174px;
-  height: 262px;
-  padding: 8px;
-  margin: 0 3px 3px 0;
+  width: 190px;
+  height: 278px;
+  padding: 0px;
+  margin: 0 3px 2px 0;
   position: relative;
   background: white;
   z-index: 1;
@@ -2191,8 +2207,7 @@ table.collection.details {
 	background: white;
 	-moz-border-radius: 3px 3px 0 0;
 	-webkit-border-radius: 3px 3px 0 0;
-	border-radius: 3px 3px 0 0;
-}
+	border-radius: 3px 3px 0 0; }
 
 table.collection.details td {
 	height: 50px;
@@ -2231,32 +2246,33 @@ table.collection.details .textbox .title {
 
 .products .product a.top {
   display: block;
-  width: 174px;
-  height: 236px;
-  line-height: 236px;
+  width: 190px;
+  height: 244px;
+  line-height: 244px;
   text-align: center;
   position: relative;
   background-position: center center;
   background-repeat: no-repeat;
-  /* 	background-size: 170px auto; */ }
+  /* 	background-size: 170px auto; */}
 
 .products .product .top .image {
-  max-width: 174px;
-  max-height: 236px;
+  max-width: 190px;
+  max-height: 244px;
   vertical-align: middle;
   position: relative; }
 
 .products .product .bottom {
-  width: 181px;
   height: 18px;
+  width: 182px;
+  padding: 8px 0px 8px 8px;
   font-size: 12px;
   line-height: 18px;
   overflow: hidden;
   position: absolute;
-  bottom: 8px;
-  left: 8px;
+  bottom: 0px;
+  left: 0px;
   text-align: left;
-  color: #bbbbbb;
+  color: #aaaaaa;
   white-space: nowrap;
   overflow: hidden; }
 
@@ -2283,6 +2299,7 @@ table.collection.details .textbox .title {
 .products .product a {
   color: #cc3333; }
 
+/*
 .products .product .edit {
 	height: 27px;
 	line-height: 27px;
@@ -2306,6 +2323,7 @@ table.collection.details .textbox .title {
   opacity: 1;
   filter: alpha(opacity=100);
   cursor: pointer; }
+*/
 
 .products .product:hover .edit {
 	display: block; }
@@ -2313,49 +2331,56 @@ table.collection.details .textbox .title {
 .products .product .feedback {
   position: absolute;
   top: 0px;
-  left: 7px;
-  right: 7px;
+  left: 0px;
+  right: 0px;
   display: none; }
 
 .product:hover .feedback {
   display: block; }
 
 .products .product .feedback .buttons {
-  height: 32px;
+  height: 34px;
   font-size: 14px;
   line-height: 32px;
-  color: #555555;
-  padding-bottom: 4px;
-  background: url('/images/shadow_downfacing_4.png') bottom center repeat-x;
+  color: white;
+  background: url('/images/black_40.png');
   text-align: center; }
 
 .products .product .feedback .buttons .button {
-  height: 32px;
+  height: 34px;
   padding: 0 5px;
   cursor: pointer;
   display: inline-block;
-  vertical-align: top; }
-
+  vertical-align: top;
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80);
+  zoom: 1; }
+ 
 .products .product .feedback .buttons .button:hover {
-  color: #cc3333; }
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-opacity: 1;
+  opacity: 1;
+  filter: alpha(opacity=100); }
 
-.products .product .feedback .buttons .pushed {
-  color: #cc3333; }
+.products .product .feedback .buttons .button:hover {}
+
+.products .product .feedback .buttons .pushed {}
 
 .products .product .feedback .buttons .comments_none {
-  background: url("/images/bubbles.png") center -2px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_some {
-  background: url("/images/bubbles.png") center -2px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_some:hover {
-  background: url("/images/bubbles.png") center -38px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_none:hover {
-  background: url("/images/bubbles.png") center -38px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .held,

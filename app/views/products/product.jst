@@ -1,6 +1,4 @@
-<div class='product'> 
-	
-	<div class='edit'>Edit</div>
+<div class='product'>
 
   <a class='top' href="<%=product.path(src)%>" style="background-image: url('<%=product.get('giant_url')%>')">
   </a> <!-- top -->
@@ -43,12 +41,12 @@
 				                <span class="out">Want</span><span class="in">✓</span>
 				              </div>
 				            <%}%>
-				            <div id="own_product_<%=product.get('id')%>" class='button own'>
-				            	<span class="out">Own</span><span class="in">✓</span>
-				            </div>
 				          	<a href="<%=product.path(src)%>">
 				            	<div class='button comments_none'></div>
 				          	</a>
+				          	<div id="own_product_<%=product.get('id')%>" class='button own'>
+				            	<span class="out">Own</span><span class="in">✓</span>
+				            </div>
 		          </div>  <!-- buttons -->
 		    	  </div> <!-- feedback -->
 		    	<%}%>
