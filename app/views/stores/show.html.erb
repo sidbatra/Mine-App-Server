@@ -14,7 +14,7 @@
 
 
 <!-- Welcome box to signup if user is not logged in -->
-<%#render :partial => 'misc/welcome', 
+<%=render :partial => 'misc/welcome', 
           :locals => {
             :src    => @store_presenter.source_id,
             :target => @store_presenter.closet_path('footer')} unless logged_in?%>

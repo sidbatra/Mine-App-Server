@@ -8,8 +8,7 @@ class HomeController < ApplicationController
   #
   def show
     if params[:id]
-      redirect_to params[:id] == 'stumble' ?  store_path('Urban-Outfitters') : 
-                                              root_path
+      redirect_to root_path
     elsif logged_in? 
       redirect_to user_path(
                     self.current_user.handle,
