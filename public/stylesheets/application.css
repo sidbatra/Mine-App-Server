@@ -196,12 +196,13 @@ div.welcome_text {
 /* ------------------------------ Nav */
 #header .nav {
   height: 40px;
+  padding-bottom: 20px;
   position: absolute;
   right: 0px;
 /*   padding-right: 24px; */
   top: 0px;
-  background: url('/images/black_20.png');
-  border-bottom: 1px solid black;
+  background: url('/images/feedback_fade_60_70.png');
+/*   border-bottom: 1px solid black; */
   cursor: pointer; }
 
 #header .nav li {
@@ -2264,13 +2265,14 @@ table.collection.details .textbox .title {
 .products .product .bottom {
   height: 18px;
   width: 182px;
-  padding: 8px 0px 8px 8px;
+  padding: 34px 0px 8px 8px;
   font-size: 12px;
   line-height: 18px;
   overflow: hidden;
   position: absolute;
   bottom: 0px;
   left: 0px;
+  background: url('/images/bottom_fade_60_100.png') top center repeat-x;
   text-align: left;
   color: #aaaaaa;
   white-space: nowrap;
@@ -2284,9 +2286,9 @@ table.collection.details .textbox .title {
 
 .products .product .bottom .fade {
   width: 30px;
+  height: 34px;
   position: absolute;
   right: 0px;
-  top: 0px;
   bottom: 0px;
   background: url("/images/bottom_right_fade.png") center right repeat-y; }
 
@@ -2341,49 +2343,50 @@ table.collection.details .textbox .title {
 .products .product .feedback .buttons {
   height: 34px;
   font-size: 14px;
-  padding-bottom: 4px;
+  padding-bottom: 26px;
   line-height: 32px;
-  color: #333333;
-  background: url('/images/shadow_downfacing_4.png') bottom center repeat-x;
-  text-align: center;
-  -moz-opacity: 0.8;
-  opacity: .80;
-  filter: alpha(opacity=80);
-  zoom: 1; }
+  color: white;
+  background: url('/images/feedback_fade_60_70.png') bottom center repeat-x;
+  text-align: center; }
 
-.products .product .feedback .buttons:hover { 
- 	-moz-opacity: 1;
-  opacity: 1;
-  filter: alpha(opacity=100); }
+.products .product .feedback .buttons:hover {}
 
 .products .product .feedback .buttons .button {
   height: 34px;
   padding: 0 4px;
   cursor: pointer;
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+/*
+  -moz-opacity: 0.9;
+  opacity: .90;
+  filter: alpha(opacity=90);
+*/
+  zoom: 1; }
  
 .products .product .feedback .buttons .button:hover {
-	color: #cc3333; }
+ 	-moz-opacity: 1;
+  opacity: 1;
+  filter: alpha(opacity=100); }
 
 .products .product .feedback .buttons .button:hover {}
 
 .products .product .feedback .buttons .pushed {}
 
 .products .product .feedback .buttons .comments_none {
-  background: url("/images/bubbles.png") center -2px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_some {
-  background: url("/images/bubbles.png") center -2px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_some:hover {
-  background: url("/images/bubbles.png") center -38px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .comments_none:hover {
-  background: url("/images/bubbles.png") center -38px no-repeat;
+  background: url("/images/bubbles.png") center -74px no-repeat;
   width: 15px; }
 
 .products .product .feedback .buttons .held,
