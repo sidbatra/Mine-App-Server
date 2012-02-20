@@ -100,7 +100,7 @@ div.welcome_text {
   position: relative;
   margin: 0 auto; }
 
-#header .navbar .logo {
+#header .navbar a.logo {
 	width: 137px;
 	height: 32px;
   padding: 17px 20px 19px 0px;
