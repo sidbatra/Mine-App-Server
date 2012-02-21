@@ -233,7 +233,7 @@ namespace :cache do
   desc 'Clear the cache'
   task :clear do
     system "cd #{Dir.pwd} && "\
-            "rake clear_cache RAILS_ENV=#{environment}"
+            "rake cache:clear RAILS_ENV=#{environment}"
   end
 
 end
