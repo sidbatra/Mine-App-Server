@@ -16,12 +16,12 @@ module DW
 
       # Construct the url for performing a web search
       #
-      def self.url(query,sources,limits)
+      def self.build_url(query,sources,limits)
         params = {
           'AppId'   => CONFIG[:bing_app_id],
           'Version' => '2.2', 
           'Market'  => 'en-US',
-          'Query'   => query,
+          'Query'   => CGI.escape(query),
           'Sources' => sources.map{|s| SOURCES[s]}.join('+')}
 
         limits.each{|k,v| params[LIMITS[k]] = v}
@@ -29,6 +29,39 @@ module DW
         URI::HTTP.build([
               nil,'api.bing.net',nil,'/json.aspx',
               params.map{|k,v| "#{k}=#{v}"}.join('&'),nil])
+      end
+
+      # Perform a web search on html pages i.e. a classic web search
+      #
+      def self.on_pages(query,limit=10)
+        fetch_response build_url(query,[:web],{:web => limit})
+      end
+
+      # Fetch json response from the given url via the
+      #  third party search api
+      #
+      def self.fetch_response(url)
+        http      = Net::HTTP.new(url.host,url.port)
+        response  = http.request(Net::HTTP::Get.new(url.request_uri))
+
+        body = ""
+        body = response.body if response.code == "200"
+
+        new(JSON.parse(body)["SearchResponse"])
+      end
+
+
+      # Create a class object from a params hash making all 
+      # keys of the params hash available as instance variables
+      #
+      def initialize(params)
+        params.each do |k,v|
+          self.instance_variable_set("@#{k}",v)
+          self.class.send(
+            :define_method,
+            k,
+            proc{self.instance_variable_get("@#{k}")})
+        end
       end
 
     end #web search
