@@ -541,7 +541,7 @@ div.welcome_text {
 #stores, #users, #items {
   text-align: center; }
  
-#items { padding: 0 67px 0 68px; }
+#items { padding: 0 95px; }
 
 #users.main {
   padding: 0 8px 0 13px;
@@ -597,7 +597,7 @@ div.welcome_text {
   
 #items .picker_choice {
   width: 130px;
-  margin: 0 8px 16px;
+  margin: 0 1px 1px 0px;
   cursor: pointer; }
   
 #items .picker_choice {
@@ -833,7 +833,7 @@ div.welcome_text {
 	vertical-align: top;
 	width: 272px;
 	margin-top: 17px;
-	border: 2px solid #A8A8A8;
+/* 	border: 2px solid #A8A8A8; */
 	background: white url("/images/black_7.png") repeat-x;
 	padding: 2px 8px;
 	line-height: 40px;
