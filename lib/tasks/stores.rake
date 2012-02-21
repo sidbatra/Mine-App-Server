@@ -2,10 +2,48 @@ namespace :stores do
 
   namespace :update do
 
+    desc "Update domains for each store"
+    task :domains => :environment do |e,args|
+    begin
+
+      require 'lib/web_search_interface'
+      include DW::WebSearchInterface
+
+      columns = [:id,:domain]
+      values  = []
+
+      Store.approved.each_with_index do |store,i|
+        begin
+          web_search = WebSearch.on_pages(store.name,1)
+          uri = URI.parse(web_search.Web["Results"][0]["Url"])
+
+          values << [store.id,uri.host]
+
+          puts "Parsed store #{i} - #{store.id},#{store.name},#{uri.host}"
+        rescue => ex
+          puts "Failed to update domain for store - #{store.id},#{store.name}"
+          LoggedException.add(__FILE__,__method__,ex)
+        ensure
+          sleep 0.1
+        end
+      end
+
+      Store.import columns,
+        values, {
+          :validate => false,
+          :on_duplicate_key_update => [:domain]} if values.present?
+
+    rescue => ex
+      puts "Critical error while updating store domains"
+      LoggedException.add(__FILE__,__method__,ex)
+    end
+    end #domains
+
+
     desc "Update specialties for top stores"
     task :specialties => :environment do |e,args|
 
-      Store.processed.with_products.limit(1).each do |store|
+      Store.processed.with_products.each do |store|
         hash = Hash.new(0)
 
         store.products.each do |product|
