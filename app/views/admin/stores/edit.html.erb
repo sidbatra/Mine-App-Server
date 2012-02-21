@@ -6,6 +6,10 @@
     <%=f.hidden_field :image_path%>
 
     <%=f.text_field :name%> <br>
+    <%=f.text_field :domain%> <br>
+
+    <%=f.label :is_approved,"Is Approved"%>
+    <%=f.check_box :is_approved%>
 
     <div id='store_image'>
       <%if @store.image_path.present?%>
@@ -15,8 +19,8 @@
       <%end%>
     </div>
 
+    Click below to Add/Change Main store Image <br>
     <a href='javasvript:void(0)' id='uploader'>
-      Add/Change Image
     </a> 
     
     <br>

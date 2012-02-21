@@ -49,7 +49,7 @@ class Store < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessor :rehost
-  attr_accessible :name,:user_id,:image_path,:is_approved
+  attr_accessible :name,:user_id,:image_path,:is_approved,:domain
 
   #----------------------------------------------------------------------
   # Class methods
