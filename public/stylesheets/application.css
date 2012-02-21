@@ -196,7 +196,6 @@ div.welcome_text {
   right: 0px;
 /*   padding-right: 24px; */
   top: 0px;
-  background: url('/images/black_20.png'); 
 /*   border-bottom: 1px solid black; */
   cursor: pointer; }
 
@@ -232,7 +231,12 @@ div.welcome_text {
   line-height: 40px;
   font-size: 14px;
   position: relative;
-  padding: 0 0 0 18px;
+  padding: 0 16px;
+  margin-left: 3px;
+  background: url('/images/black_30.png'); 
+  -moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
   -moz-opacity: 0.80;
   opacity: .8;
   filter: alpha(opacity=80);
@@ -264,11 +268,14 @@ div.welcome_text {
 
 .nav_login_list {
 	position: absolute;
-	top: 41px;
+	top: 40px;
   right: 0px;
   white-space: nowrap;
   display: none;
-  z-index: 10000; }
+  z-index: 10000;
+  -moz-border-radius: 0 0 0 5px;
+	-webkit-border-radius: 0 0 0 5px;
+	border-radius: 0 0 0 5px; }
 
 .nav_add_list {
   position: absolute;
@@ -276,7 +283,12 @@ div.welcome_text {
   left: -8px;
   width: 120px; }
 
-.nav_user_button { padding-right: 0px; }
+.nav_user_button { 
+	padding-right: 0px;
+	-moz-border-radius: 0 0 0 5px;
+	-webkit-border-radius: 0 0 0 5px;
+	border-radius: 0 0 0 5px; }
+
 
 .nav_user_button_user_photo {
   width: 20px;
@@ -285,17 +297,19 @@ div.welcome_text {
   margin-right: 3px; }
 
 .nav_login_button {
-  width: 6px;
-  padding-right: 18px;
-  background: url('/images/arrows.png') 0 0 no-repeat; }
+	font-size: 10px;
+	margin-left: 0px;
+	-moz-border-radius: 0 0 0 0;
+	-webkit-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;  }
 
   
 /* ------------------------------ OMNIBOX */
 
 .omnibox {
 	margin: 0 auto;
-	width: 952px;
-	padding: 17px 24px 0;
+	width: 976px;
+	padding: 17px 36px 0;
 	font-size: 24px;
 	line-height: 32px;
 	color: white;
