@@ -107,12 +107,12 @@
           	<a id='want_actionable' 
                 href='javascript:void(0)' 
                 class='button want'>
-                <span class='in'>✓ </span><span class='out'>Want</span>
+                <span class='in'>✓ </span><span class='out'>want</span>
            	</a>
             <a id='own_actionable'  
                 href='javascript:void(0)' 
                 class='button own'>
-               	<span class='in'>✓ </span><span class='out'>Own</span>
+               	<span class='in'>✓ </span><span class='out'>own</span>
             </a>
           <%end%>
         </div>
@@ -136,7 +136,7 @@
 	      <div id="add_comment">
 		      
 		        <%=image_tag self.current_user.photo_url,
-		            :class => "comment_photo_self slim_shadow_light",
+		            :class => "comment_photo_self",
 		            :alt => ""%>
 		
 		        <%=text_area_tag "comment_data","Add a comment",
