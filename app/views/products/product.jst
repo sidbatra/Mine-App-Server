@@ -45,12 +45,14 @@
 	        </div>
 				<%}else{%>
 					<a href="<%=product.editPath(src)%>" class='button own'>
-		      	<img class="pen_img" src="/images/pen_white.png" />edit
+		      	<img class="pen_img" 
+                  src="<%=helpers.imagePath('pen_white.png')%>" />edit
 		    	</a>
 			  <%}%>
 
         <a href="<%=product.path(src)%>" class='button'>
-          <img class="bubble_img" src="/images/bubble_white.png" />
+          <img class="bubble_img" 
+                src="<%=helpers.imagePath('bubble_white.png')%>" />
         </a>
 
 			</div>  <!-- buttons -->
