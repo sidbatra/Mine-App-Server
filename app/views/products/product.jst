@@ -1,19 +1,18 @@
 <div class='product'>
 
-  <a class='top' href="<%=product.path(src)%>" style="background-image: url('<%=product.get('giant_url')%>')">
+  <a class='top' 
+      href="<%=product.path(src)%>" 
+      style="background-image: url('<%=product.get('giant_url')%>')">
   </a> <!-- top -->
 
   <div class='bottom'>
-  
   		<div class='fade'></div>
         	
       <%if(type == 'user' && product.has('store')) { %>
       	<%=product.get('store').get('is_processed') ? "<img src='" + product.get('store').get('thumbnail_url') + "' />"  : ''%>
        	Bought at <%=product.get('store').conditionalLink('user_profile')%>
-      <%}else{%>
-      	<%if(type == 'user' && product.get('is_gift')) { %>
-       		Gift
-      	<%}%>
+      <%}else if(type == 'user' && product.get('is_gift')) { %>
+        Gift
       <%}%>
       
       <%if(type == 'store') { %>
@@ -25,15 +24,16 @@
 	        <%=product.get('user').escape('first_name')%> 
 	        <%=product.get('user').escape('last_name')%>
 				</a>
+
         bought this
       <%}%>
-    
   </div> <!-- bottom -->
   
   <%if(helpers.isLoggedIn()) {%>
 
 		<div class='feedback'>
 			<div class='buttons'>
+
 			  <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
 	        <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
 	          <div id="want_product_<%=product.get('id')%>" class='button want'>
@@ -44,18 +44,19 @@
 	        	<span class="out">own</span><span class="in">✓</span>
 	        </div>
 				<%}else{%>
-					<a href="/" class='button own'>
+					<a href="<%=product.editPath(src)%>" class='button own'>
 		      	<img class="pen_img" src="/images/pen_white.png" />edit
 		    	</a>
 			  <%}%>
-					<a href="<%=product.path(src)%>" class='button'>
-		      	<img class="bubble_img" src="/images/bubble_white.png" />
-		    	</a>
+
+        <a href="<%=product.path(src)%>" class='button'>
+          <img class="bubble_img" src="/images/bubble_white.png" />
+        </a>
+
 			</div>  <!-- buttons -->
 		</div> <!-- feedback -->
 
 	<%}%>
- 
 
 </div> <!-- product -->
 
