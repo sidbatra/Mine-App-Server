@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217014625) do
+ActiveRecord::Schema.define(:version => 20120220215719) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -251,6 +251,10 @@ ActiveRecord::Schema.define(:version => 20120217014625) do
     t.string   "handle"
     t.string   "image_path"
     t.boolean  "is_processed",   :default => false
+    t.string   "domain"
+    t.string   "byline"
+    t.text     "description"
+    t.string   "favicon_path"
   end
 
   add_index "stores", ["handle"], :name => "index_stores_on_handle", :unique => true
