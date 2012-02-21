@@ -196,12 +196,11 @@ div.welcome_text {
 /* ------------------------------ Nav */
 #header .nav {
   height: 40px;
-  padding-bottom: 20px;
   position: absolute;
   right: 0px;
 /*   padding-right: 24px; */
   top: 0px;
-  background: url('/images/feedback_fade_60_70.png');
+  background: url('/images/black_20.png'); 
 /*   border-bottom: 1px solid black; */
   cursor: pointer; }
 
@@ -309,7 +308,7 @@ div.welcome_text {
 	opacity: .8;
 	filter: alpha(opacity=80);
 	zoom: 1;
-	display: none; }
+	display: block; }
 
 /* ------------------------------ Onboarding */
 
@@ -2266,6 +2265,7 @@ table.collection.details .textbox .title {
   height: 18px;
   width: 182px;
   padding: 34px 0px 8px 8px;
+/*   padding: 8px 0px 8px 8px; */
   font-size: 12px;
   line-height: 18px;
   overflow: hidden;
@@ -2332,9 +2332,9 @@ table.collection.details .textbox .title {
 
 .products .product .feedback {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
+  top: 8px;
+  left: 8px;
+  right: 8px;
   display: none; }
 
 .product:hover .feedback {
@@ -2346,23 +2346,29 @@ table.collection.details .textbox .title {
   padding-bottom: 26px;
   line-height: 32px;
   color: white;
-  background: url('/images/feedback_fade_60_70.png') bottom center repeat-x;
   text-align: center; }
 
 .products .product .feedback .buttons:hover {}
 
 .products .product .feedback .buttons .button {
-  height: 34px;
-  padding: 0 4px;
+	width: 50px;
+  height: 20px;
+  line-height: 18px;
+  text-align: center;
+  float: left;
+  margin-right: 3px;
   cursor: pointer;
-  display: inline-block;
-  vertical-align: top;
-/*
-  -moz-opacity: 0.9;
-  opacity: .90;
-  filter: alpha(opacity=90);
-*/
+  background: url('/images/black_50.png'); 
+  -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80);
   zoom: 1; }
+
+.products .product .feedback .buttons .button .bubble_img {
+	margin-top: 4px; }
  
 .products .product .feedback .buttons .button:hover {
  	-moz-opacity: 1;

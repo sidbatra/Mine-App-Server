@@ -38,15 +38,16 @@
 		       		<div class='buttons'>
 		            <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
 				              <div id="want_product_<%=product.get('id')%>" class='button want'>
-				                <span class="out">Want</span><span class="in">✓</span>
+				                <span class="out">want</span><span class="in">✓</span>
 				              </div>
 				            <%}%>
 				            <div id="own_product_<%=product.get('id')%>" class='button own'>
-				            	<span class="out">Own</span><span class="in">✓</span>
+				            	<span class="out">own</span><span class="in">✓</span>
 				            </div>
-				          	<a href="<%=product.path(src)%>">
-				            	<div class='button comments_none'></div>
+				            <a href="<%=product.path(src)%>" class='button'>
+				            	<img class="bubble_img" src="/images/bubble_white.png" />
 				          	</a>
+
 		          </div>  <!-- buttons -->
 		    	  </div> <!-- feedback -->
 		    	<%}%>
