@@ -261,6 +261,8 @@ div.welcome_text {
   opacity: 1.00;
   filter: alpha(opacity=100); }
   
+.nav_menu.log_in { margin-right: 24px; }
+  
 /*
 .nav_menu.add_item, .nav_menu.new_set {
   -moz-opacity: 1.00;
