@@ -178,8 +178,8 @@ div.welcome_text {
   display: inline;
   font-size: 20px;
   line-height: 90px;
-  color: #555555;
-  text-shadow: 0 1px 1px white;
+  color: white;
+  text-shadow: 0 1px 1px #333333;
   position: relative;
   top: -24px; }
 
@@ -806,10 +806,8 @@ div.welcome_text {
   bottom: 0px;
   text-align: center;
   line-height: 85px;
-  background: url("/images/footer_onboarding_overlay_shadow.png") top repeat-x;
-  z-index: 9995;
-  /* 	background: #e9e4e1; */
-  /* 	border-top: 1px solid #A8A8A8; */ }
+  background: url("/images/footer_onboarding_overlay_shadow_dark.png") top center repeat-x;
+  z-index: 9995; }
   
 #footer_onboarding .done {
   width: 130px;
@@ -823,7 +821,6 @@ div.welcome_text {
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
-}
 
 #footer_onboarding .done:hover { background-position: -4px -422px; }	
 #footer_onboarding .done:active { background-position: -4px -472px; }
@@ -841,13 +838,11 @@ div.welcome_text {
 	padding: 2px 8px;
 	line-height: 40px;
 	font-size: 22px;
-	color: #666666;
-}
+	color: #666666; }
 
 #footer_onboarding .input.incomplete {
 	border-color: #cc3333;
-	background: #f5d6d6;
-}
+	background: #f5d6d6; }
 
 #footer_onboarding .text {
 	height: 50px;
@@ -855,9 +850,8 @@ div.welcome_text {
   vertical-align: top;
 	margin-top: 17px;
   font-size: 20px;
-  color: #555555;
-  text-shadow: 0 1px 1px white;
-}
+  color: white;
+  text-shadow: 0 1px 1px black; }
 
 #footer_onboarding .text.incomplete {
 	color: #cc3333;
