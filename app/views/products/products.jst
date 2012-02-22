@@ -1,85 +1,76 @@
-<%if(products.length) {%>
-
-  <%if(categories.size() > 1){%>
-    <div class="titlebar overhang">
-    	<div class="menu">
-
-        <%if(currentCategory == 'all' || currentCategory == undefined){%>
-          <a class="title">Everything</a>
-        <%}else{%>
-          <%categories.each(function(category){%>
-            <%if(currentCategory == category.get('handle')){%>
-              <a class="title"><%=category.get('name')%></a>
-            <%}%>
-          <%});%>
-        <%}%>
-
-	    	<ul class="list">
-          <%if(currentCategory != 'all' && currentCategory != undefined){%>
-            <a href="#<%=fragment%>/all"><li>Everything</li></a>
-          <%}%>
-          <%categories.each(function(category){%>
-            <%if(currentCategory != category.get('handle')){%>
-              <a href='#<%=fragment%>/<%=category.get('handle')%>'>
-                <li><%=category.get('name')%></li>
-              </a>  
-            <%}%>
-          <%});%>
-	    	</ul>
-
-	    </div>
+<%if(!products.length) {%> 
+  <%if(src == 'user') {%> 
+    <!-- empty closet -->
+    <div class='heading'>
+      Nothing in this closet yet.
     </div>
+  <%} else if(src == 'wanted') {%>
+    <%if(helpers.isCurrentUser(ownerID)){%>
+      <!-- no wants, current user -->
+      <div class='heading'>
+        Everything you <span class='em'>want</span> shows up here. <br />
+        <span class="trans_80" style="font-size: 18px">Find something you want at one of your stores →</span>
+      </div>
+    <%}else{%>
+      <!-- no wants, other user -->
+      <div class='heading'>
+        <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
+      </div>
+    <%}%>
   <%}%>
-		
-	<div class="products">
-    <%products.each(function(product){%>
-      <%=Denwen.JST['products/product']({type:type,product:product,src:src,ownerID:ownerID})%>
-    <%});%>
-  </div>
-<%} else if(src == 'wanted') {%>
- 
- 	<%if(helpers.isCurrentUser(ownerID)){%>
- 	
-    <!-- no wants, current user -->
-    <div class='heading'>
-      Everything you <span class='em'>want</span> shows up here. <br />
-      <span class="trans_80" style="font-size: 18px">Find something you want at one of your stores →</span>
-    </div>
-		
-  <%}else{%>
-
-    <!-- no wants, other user -->
-    <div class='heading'>
-      <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
-    </div>
-
-	<%}%>
-	
-<%} else if(src == 'user'){%>
-
-  <div class='heading'>
-    Nothing in this closet yet.
-  </div>
-
 <%}%>
 
+<%if(categories.size() > 1){%>
+  <div class="titlebar overhang">
+    <div class="menu">
 
-<%if(src == 'user' && 
-      helpers.isCurrentUser(ownerID) && 
-      (currentCategory == 'all' || currentCategory == undefined)){%>
+      <%if(currentCategory == 'all' || currentCategory == undefined){%>
+        <a class="title">Everything</a>
+      <%}else{%>
+        <%categories.each(function(category){%>
+          <%if(currentCategory == category.get('handle')){%>
+            <a class="title"><%=category.get('name')%></a>
+          <%}%>
+        <%});%>
+      <%}%>
 
-    <div class="placeholders">
-      <%Categories.each(function(category){%>
-        <%if(categories.get(category.get('id')) == undefined && category.isPrimary()){%>
-          <a class="placeholder" 
-              href="<%=helpers.newProductPath(category.get('handle'),'placeholder')%>"
-              style="background: url('<%=helpers.imagePath('placeholders/' + category.get('handle') + '.jpg')%>');">
-            <div class="fader">
-              Add +<br />your <%=category.get('name')%>
-            </div>
-          </a>
+      <ul class="list">
+        <%if(currentCategory != 'all' && currentCategory != undefined){%>
+          <a href="#<%=fragment%>/all"><li>Everything</li></a>
         <%}%>
-      <%});%>
-    </div>
-<%}%>
+        <%categories.each(function(category){%>
+          <%if(currentCategory != category.get('handle')){%>
+            <a href='#<%=fragment%>/<%=category.get('handle')%>'>
+              <li><%=category.get('name')%></li>
+            </a>  
+          <%}%>
+        <%});%>
+      </ul>
 
+    </div>
+  </div>
+<%}%>
+		
+<div class="products">
+  <%products.each(function(product){%>
+    <%=Denwen.JST['products/product']({type:type,product:product,src:src,ownerID:ownerID})%>
+  <%});%>
+  <%if(src == 'user' && 
+        helpers.isCurrentUser(ownerID) && 
+        (currentCategory == 'all' || currentCategory == undefined)){%>
+
+      <div class="placeholders">
+        <%Categories.each(function(category){%>
+          <%if(categories.get(category.get('id')) == undefined && category.isPrimary()){%>
+            <a class="placeholder" 
+                href="<%=helpers.newProductPath(category.get('handle'),'placeholder')%>"
+                style="background: url('<%=helpers.imagePath('placeholders/' + category.get('handle') + '.jpg')%>');">
+              <div class="fader">
+                Add +<br />your <%=category.get('name')%>
+              </div>
+            </a>
+          <%}%>
+        <%});%>
+      </div>
+  <%}%>
+</div>
