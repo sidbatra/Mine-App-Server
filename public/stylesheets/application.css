@@ -271,7 +271,8 @@ div.welcome_text {
   filter: alpha(opacity=100);}
 
 .add_item { 
-	width: 68px; 
+	text-align: center;
+	width: 74px; 
 	-moz-opacity: 1.00;
   opacity: 1.00;
   filter: alpha(opacity=100);
@@ -301,7 +302,7 @@ div.welcome_text {
   position: absolute;
   top: 40px;
   left: 0px;
-  width: 100px;
+  width: 106px;
   white-space: nowrap;
   display: none;
   z-index: 10000;
