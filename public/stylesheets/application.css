@@ -534,6 +534,8 @@ div.welcome_text {
 
 #stores, #users, #items {
   text-align: center; }
+
+#stores { padding: 0 56px; }
  
 #items { padding: 0 95px; }
 
@@ -636,6 +638,9 @@ div.welcome_text {
   /* for user imgs */ }
 
 #users.main .picker_choice:hover .left {
+	border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 3px 0 0 3px;
   -moz-opacity: 0.8;
   opacity: .80;
   filter: alpha(opacity=80);
@@ -656,7 +661,10 @@ div.welcome_text {
   width: 112px;
   height: 42px;
   padding: 8px 8px 10px 10px;
-  background: white; }
+  background: white; 
+  border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0px 3px 3px 0px; }
 
 #users .picker_choice .right {
   color: #555555;
