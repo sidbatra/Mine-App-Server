@@ -249,6 +249,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         analytics.collectionCancelled();
       else if(this.source == 'collection_deleted')
         analytics.collectionDeleted();
+      else if(this.source == 'shoppings_create')
+        analytics.shoppingsCreated();
 
       analytics.identifyUser(
         this.currentUser.get('email'),

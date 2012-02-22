@@ -57,6 +57,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // User picks the store where they shop at 
+  //
+  shoppingsCreated: function() {
+    mpq.track("Shoppings Created");
+  },
+
   // Collection onboarding previewed in disabled state 
   //
   collectionOnboardingPreviewed: function() {

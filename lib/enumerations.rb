@@ -111,13 +111,15 @@ module DW
     # Different sources of landing at the users/show route
     #
     class UserShowSource < Enumeration
-      CollectionCreate  = 'collection_create'
-      CollectionDeleted = 'collection_deleted'
-      HomeRedirect      = 'home_redirect'
-      Login             = 'login'
-      UserCreate        = 'user_create'
-      ProductCreate     = 'product_create'
-      ProductDeleted    = 'product_deleted'
+      CollectionCreate      = 'collection_create'
+      CollectionDeleted     = 'collection_deleted'
+      HomeRedirect          = 'home_redirect'
+      Login                 = 'login'
+      UserCreate            = 'user_create'
+      ProductCreate         = 'product_create'
+      ProductDeleted        = 'product_deleted'
+      ShoppingsCreate       = 'shoppings_create'
+      ShoppingsCreateError  = 'shoppings_create_error'
     end
 
     # Hash tags for loading different views on

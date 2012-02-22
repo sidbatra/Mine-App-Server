@@ -1,5 +1,5 @@
 
-<%=render :partial  => "headers/onboarding",
+<%#render :partial  => "headers/onboarding",
           :locals   => {:step => 1}%>
 
 
@@ -12,7 +12,7 @@
       
     <div id="stores">
       <div class="loading" id="loading_spinner">
-        <%=image_tag 'spinner_light_bg.gif'%>
+        <%=image_tag 'spinner_dark_bg.gif'%>
       </div>
     </div>
     
@@ -20,11 +20,9 @@
 
 
 <div id='footer_onboarding'>
-	<%form_tag '/welcome',
-      :id     => 'new_shopping', 
-      :style  => 'display:none' do |f|%>
+	<%form_for @shopping,
+      :html => {:style  => 'display:none'} do |f|%>
 
-    <%=hidden_field_tag :id, WelcomeFilter::Stores%>
     <%=hidden_field_tag :store_ids%>
     <%=submit_tag '',
         :class      => 'follow_people disactivated',

@@ -91,6 +91,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :invites,
                 :only => [:create,:new]
 
+  map.resources :shoppings,
+                :only => [:create,:new]
+
   map.resources :contacts,
                 :only => [:index]
 
