@@ -1,7 +1,7 @@
 
 namespace :instances do
 
-  IMAGE_ID           = 'ami-914595f8'
+  IMAGE_ID           = 'ami-4ea07227'
   INSTANCE_TYPE      = 't1.micro'
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
