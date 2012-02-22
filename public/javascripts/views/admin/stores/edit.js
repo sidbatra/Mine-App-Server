@@ -10,33 +10,57 @@ Denwen.Views.Admin.Stores.Edit = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.imagePathEl      = $('#store_image_path');
-    this.imageContainerEl = $('#store_image');
+    this.imagePathEl        = $('#store_image_path');
+    this.imageContainerEl   = $('#store_image');
+    this.faviconPathEl      = $('#store_favicon_path');
+    this.faviconContainerEl = $('#store_favicon');
 
     this.uploadConfig = this.options.uploadConfig;
-    this.uploader = new Denwen.Partials.Common.Uploader({
-                              el : $('#uploader'),
+
+    this.imageUploader = new Denwen.Partials.Common.Uploader({
+                              el : $('#image_uploader'),
                           config : this.uploadConfig});
 
-    this.uploader.bind(
+    this.faviconUploader = new Denwen.Partials.Common.Uploader({
+                                el : $('#favicon_uploader'),
+                            config : this.uploadConfig});
+
+    this.imageUploader.bind(
       Denwen.Callbacks.Uploader.FileUploadDone,
-      this.fileUploadDone,
+      this.imageUploadDone,
       this);
 
-    this.uploader.bind(
+    this.faviconUploader.bind(
+      Denwen.Callbacks.Uploader.FileUploadDone,
+      this.faviconUploadDone,
+      this);
+
+    this.imageUploader.bind(
+      Denwen.Callbacks.Uploader.FileUploadError,
+      this.fileUploadError,
+      this);
+
+    this.faviconUploader.bind(
       Denwen.Callbacks.Uploader.FileUploadError,
       this.fileUploadError,
       this);
   },
 
-  // Callback from uploader - file is uploaded
+  // Callback from imageUploader - file is uploaded
   //
-  fileUploadDone: function(file,relativePath,absolutePath) {
+  imageUploadDone: function(file,relativePath,absolutePath) {
     this.imagePathEl.val(relativePath);
     this.imageContainerEl.html("<img src='" + absolutePath + "' />");
   },
 
-  // Callback from uploader - error uploading file
+  // Callback from faviconUploader - file is uploaded
+  //
+  faviconUploadDone: function(file,relativePath,absolutePath) {
+    this.faviconPathEl.val(relativePath);
+    this.faviconContainerEl.html("<img src='" + absolutePath + "' />");
+  },
+
+  // Callback from both uploaders - error uploading file
   //
   fileUploadError: function(message) {
     alert('Error uploading file: ' + message);
