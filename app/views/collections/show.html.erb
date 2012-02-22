@@ -65,7 +65,7 @@
 		  <%@collection.products.each do |product|%>
 		  	<%@product_presenter = presenter_for(product)%>
 		  
-		  	<div class="product stamp"> 
+		  	<div class="stamp"> 
 
           <%=link_to  '',
               @product_presenter.path('collection'),

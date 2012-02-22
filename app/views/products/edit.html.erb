@@ -1,28 +1,25 @@
-<div id="pic_bg">
+<div id="container" class="narrow">
 
-	<div id="container narrow">
-
-		<!-- item -->
-		
-		  <%form_for @product,:url => "/products/#{@product.id}",
-		        :html => {
-		          :class  => 'new_product',
-		          :id     => 'edit_product'} do |f|%>
-		
-		    <%=render :partial  => 'input', 
-		              :locals   => {
-		                :f                => f,
-		                :category         => @category,
-		                :placeholders     => @placeholders,
-                    :onboarding       => false,
-                    :submit_class     => 'update_product',
-                    :show_query_box   => false}%>
-		
-		  <%end%> <!-- form -->
+	<!-- item -->
 	
-	</div> <!-- container -->
+	  <%form_for @product,:url => "/products/#{@product.id}",
+	        :html => {
+	          :class  => 'new_product',
+	          :id     => 'edit_product'} do |f|%>
+	
+	    <%=render :partial  => 'input', 
+	              :locals   => {
+	                :f                => f,
+	                :category         => @category,
+	                :placeholders     => @placeholders,
+                  :onboarding       => false,
+                  :submit_class     => 'update_product',
+                  :show_query_box   => false}%>
+	
+	  <%end%> <!-- form -->
+
+</div> <!-- container -->
    
-</div> <!-- pic_bg -->
 
 		
 <%=render 'chooser'%>	
