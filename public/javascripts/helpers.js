@@ -78,6 +78,12 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   blocker: function() {
     return "<div id='blocker'></div>";
+  },
+
+  // Generate path for creating a product in a category
+  //
+  newProductPath: function(category,src) {
+    return '/products/new?category=' + category + '&src=' + src;
   }
 
 });

@@ -57,52 +57,29 @@
 	
 <%} else if(src == 'user'){%>
 
-		<!-- Nothing in closet -->
-    <div class='heading'>
-      Nothing in this closet yet.
-    </div>
-    
-    <!-- category placeholders -->
-    <div class="placeholders">
-	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/shoes.jpg')%>');">
-	    	<div class="fader">
-	    		Add +<br />your shoes
-	    	</div>
-	    </a>
-	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/clothing.jpg')%>');">
-	    	<div class="fader">
-	    	 Add +<br />your clothing
-	    	</div>
-	    </a>
-	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/accessories.jpg')%>');">
-	    	<div class="fader">
-	    		Add +<br />your accessories
-	    	</div>
-	    </a>
-	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/cosmetics.jpg')%>');">
-	    	<div class="fader">
-	    		Add +<br />your cosmetics
-	    	</div>
-	    </a>
-	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/jewelry.jpg')%>');">
-	    	<div class="fader">
-	    		Add +<br />your jewelry
-	    	</div>
-	    </a>
-	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/electronics.jpg')%>');">
-	    	<div class="fader">
-	    		Add +<br />your electronics
-	    	</div>
-	    </a>
-    </div>
+  <div class='heading'>
+    Nothing in this closet yet.
+  </div>
 
 <%}%>
 
 
 <%if(src == 'user' && 
       helpers.isCurrentUser(ownerID) && 
-      products.size() == 1 && 
       (currentCategory == 'all' || currentCategory == undefined)){%>
-	<div class='add_more_items_arrow'></div>
+
+    <div class="placeholders">
+      <%Categories.each(function(category){%>
+        <%if(categories.get(category.get('id')) == undefined && category.isPrimary()){%>
+          <a class="placeholder" 
+              href="<%=helpers.newProductPath(category.get('handle'),'placeholder')%>"
+              style="background: url('<%=helpers.imagePath('placeholders/' + category.get('handle') + '.jpg')%>');">
+            <div class="fader">
+              Add +<br />your <%=category.get('name')%>
+            </div>
+          </a>
+        <%}%>
+      <%});%>
+    </div>
 <%}%>
 
