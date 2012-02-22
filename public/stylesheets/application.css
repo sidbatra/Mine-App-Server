@@ -263,14 +263,21 @@ div.welcome_text {
   filter: alpha(opacity=80);
   zoom: 1;
   color: white;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2); }
 
 .nav_menu:hover {
 	-moz-opacity: 1.00;
   opacity: 1.00;
   filter: alpha(opacity=100);}
 
-.add_item { width: 68px; }
+.add_item { 
+	width: 68px; 
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100);
+	background: url('/images/button_red_bg.png') repeat-x; }
+
+.add_item:hover { background-position-y: -40px; }
   
 .nav_menu.log_in { margin-right: 24px; }
  
