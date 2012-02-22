@@ -19,7 +19,7 @@ common: &common
   :success: success
   :error: error
   :name: OnCloset
-  :version: 2.5
+  :version: 2.6
   :products_threshold: 5
   :collection_base_image: private/collection_base.jpg
   :keys:
