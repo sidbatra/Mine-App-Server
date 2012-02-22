@@ -16,7 +16,8 @@ class StoreObserver < ActiveRecord::Observer
     end
 
     store.reupdate_domain   = store.is_approved_changed? && 
-                                store.is_approved
+                                store.is_approved &&
+                                !store.domain_changed?
 
     store.reupdate_metadata = store.domain_changed? && 
                                 store.domain.present?
