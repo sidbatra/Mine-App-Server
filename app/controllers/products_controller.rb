@@ -48,10 +48,7 @@ class ProductsController < ApplicationController
                       user_path(
                         self.current_user.handle,
                         :src    => UserShowSource::ProductCreate,
-                        :anchor => (self.current_user.products_count == 
-                                    CONFIG[:products_threshold] - 1) ?
-                                      UserShowHash::Collections :
-                                      UserShowHash::Owns)
+                        :anchor => UserShowHash::Owns)
 
       end
       format.json 
