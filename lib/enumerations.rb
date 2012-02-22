@@ -115,6 +115,7 @@ module DW
       CollectionDeleted = 'collection_deleted'
       HomeRedirect      = 'home_redirect'
       Login             = 'login'
+      UserCreate        = 'user_create'
       ProductCreate     = 'product_create'
       ProductDeleted    = 'product_deleted'
     end

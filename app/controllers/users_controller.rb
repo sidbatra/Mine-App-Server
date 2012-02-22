@@ -39,8 +39,8 @@ class UsersController < ApplicationController
     self.current_user = @user
     set_cookie
     target_url = @user.is_fresh ? 
-                   welcome_path(WelcomeFilter::Learn) :
-                   (target ? 
+                  user_path(@user.handle,:src => UserShowSource::UserCreate) :
+                  (target ? 
                     target : 
                     user_path(@user.handle,:src => UserShowSource::Login))
 
