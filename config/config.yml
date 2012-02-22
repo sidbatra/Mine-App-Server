@@ -7,6 +7,7 @@ common: &common
   :fb_app_id: 226580834069502
   :fb_app_secret: e975886e089c27cb9ee31e958956d452
   :fb_app_namespace: dw_boomerang
+  :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :age_bucket_size: 5
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile

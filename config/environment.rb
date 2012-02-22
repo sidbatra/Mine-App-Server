@@ -31,8 +31,6 @@ Rails::Initializer.run do |config|
   config.gem('aws-ses', 
               :lib => 'aws/ses', 
               :version => '0.4.3')
-  config.gem('brant',
-              :version => '0.1.0')
   config.gem('daemons', 
               :version => '1.1.0',
               :lib => false)
@@ -45,6 +43,9 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('mini_magick', 
               :version => '3.4',
+              :lib => false)
+  config.gem('pismo',
+              :version => '0.7.2',
               :lib => false)
 
   # :all can be used as a placeholder for all plugins not explicitly named

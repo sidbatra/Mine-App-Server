@@ -4,8 +4,15 @@
       :url => "/admin/stores/#{@store.id}?filter=generic" do |f|%>
 
     <%=f.hidden_field :image_path%>
+    <%=f.hidden_field :favicon_path%>
 
-    <%=f.text_field :name%> <br>
+    Name - <%=f.text_field :name%> <br>
+    Domain - <%=f.text_field :domain%> <br>
+    Byline - <%=f.text_field :byline%> <br>
+    Description - <%=f.text_area :description%> <br>
+
+    <%=f.label :is_approved,"Is Approved"%>
+    <%=f.check_box :is_approved%>
 
     <div id='store_image'>
       <%if @store.image_path.present?%>
@@ -15,8 +22,21 @@
       <%end%>
     </div>
 
-    <a href='javasvript:void(0)' id='uploader'>
-      Add/Change Image
+    <div id='store_favicon'>
+      <%if @store.favicon_path.present?%>
+        <img src="<%=@store.favicon_url%>" />
+      <%else%>
+        No Favicon
+      <%end%>
+    </div>
+
+    Click below to Add/Change Main store Image <br>
+    <a href='javasvript:void(0)' id='image_uploader'>
+    </a> 
+
+    <br>
+    Click below to Add/Change store favicon<br>
+    <a href='javasvript:void(0)' id='favicon_uploader'>
     </a> 
     
     <br>

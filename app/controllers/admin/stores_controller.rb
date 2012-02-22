@@ -14,7 +14,7 @@ class Admin::StoresController < ApplicationController
       @approved_stores  = Store.approved
       @stores           = Store.unapproved.sorted
     when :popular
-      @stores           = Store.popular.limit(200)
+      @stores           = Store.products_count_gt(1).popular
     end
 
     render :partial => @filter.to_s,

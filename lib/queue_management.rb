@@ -56,7 +56,9 @@ module DW
         raise IOError, "klass name needed" if args.size < 2
         
         @attempts   = 0
-        @klass      = args.first.to_s.split("::").last
+        @klass      = args.first.is_a?(ActiveRecord::Base) ? 
+                        args.first.to_yaml  : 
+                        args.first.to_s.split("::").last
         @method     = args[1]
         @arguments  = args[2..-1]
       end
@@ -65,8 +67,15 @@ module DW
       # klass and running the given method with the given arguments
       #
       def process
-        klass_object = Object.const_get @klass
-        klass_object.send(@method.to_sym,*arguments)
+        object = @klass.match(/ruby\/object/) ?
+                  YAML.load(@klass) :
+                  Object.const_get(@klass)
+
+        if object.is_a? ActiveRecord::Base
+          object = object.class.find object.id
+        end
+
+        object.send(@method.to_sym,*arguments)
       end
 
       # Test based on the total attempts whether the payload should

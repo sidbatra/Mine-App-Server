@@ -28,6 +28,9 @@ class Store < ActiveRecord::Base
   named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'products_count DESC'
+  named_scope :products_count_gt, lambda {|count| {
+                                  :conditions => {
+                                    :products_count_gt => count}}}
   named_scope :for_user,    lambda {|user_id| {
                                 :joins      => :shoppings,
                                 :conditions => {:shoppings => {
@@ -45,8 +48,9 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessor :rehost
-  attr_accessible :name,:user_id,:image_path,:is_approved
+  attr_accessor :rehost, :reupdate_domain, :reupdate_metadata
+  attr_accessible :name,:user_id,:image_path,:is_approved,
+                    :domain,:byline,:description,:favicon_path
 
   #----------------------------------------------------------------------
   # Class methods
@@ -144,10 +148,70 @@ class Store < ActiveRecord::Base
     is_processed ? FileSystem.url(large_path) : image_url
   end
 
+  # Full url of the store favicon
+  #
+  def favicon_url
+    FileSystem.url(favicon_path ? favicon_path : "")
+  end
+
   # Full url of the original image
   #
   def image_url
     FileSystem.url(image_path ? image_path : "")
+  end
+
+  # Update the domain for the store. 
+  #
+  def update_domain
+    web_search  = WebSearch.on_pages(name,1)
+    self.domain = URI.parse(web_search.Web["Results"][0]["Url"]).host
+
+    save! 
+  end
+
+  # Use store domain to update metadata
+  #
+  def update_metadata
+    return unless self.domain.present?
+
+    url = 'http://' + domain
+    webpage = Pismo::Document.new(url)
+
+    self.byline       = webpage.title
+    self.description  = webpage.description
+    favicon_url       = webpage.favicon
+    favicon_url     ||= File.join url,'favicon.ico'
+
+    old_favicon_path  = favicon_path
+
+    begin
+      host_favicon(favicon_url)
+    rescue
+      self.favicon_path = old_favicon_path
+    end
+
+    save! 
+  end
+
+  # Fetch favicon from the given url and host it
+  #
+  def host_favicon(favicon_url)
+    self.favicon_path  = Base64.encode64(
+                           SecureRandom.hex(10) + 
+                           Time.now.to_i.to_s).chomp + ".jpg"
+
+    image = MiniMagick::Image.open(favicon_url)
+
+    ImageUtilities.reduce_to_with_image(
+                      image,
+                      {:width => 64,:height => 64})
+
+    FileSystem.store(
+      favicon_path,
+      open(image.path),
+      "Content-Type"  => "image/jpeg",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
   # Save store image to filesystem and create smaller copies
