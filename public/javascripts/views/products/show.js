@@ -11,6 +11,7 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     new Denwen.Partials.Commentables.Comments({
           commentable_id    : this.product.get('id'),
           commentable_type  : 'product',
+          with_focus        : /_comment$/i.test(this.source),
           el                : $('#comments_container')});
 
     new Denwen.Partials.Actionables.Actions({

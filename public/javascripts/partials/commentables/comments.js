@@ -17,6 +17,7 @@ Denwen.Partials.Commentables.Comments = Backbone.View.extend({
     this.posting            = false;
     this.commentableID      = this.options.commentable_id;
     this.commentableType    = this.options.commentable_type;
+    this.withFocus          = this.options.with_focus;
 
     this.inputEl            = '#comment_data';
     this.commentsEl         = '#comments';
@@ -36,6 +37,10 @@ Denwen.Partials.Commentables.Comments = Backbone.View.extend({
       $(this.inputEl).val(),
       $(this.inputEl).css('color'),
       '#333333');
+
+    if(this.withFocus)
+      $(this.inputEl).focus();
+
   },
 
   // Render the comments collection
