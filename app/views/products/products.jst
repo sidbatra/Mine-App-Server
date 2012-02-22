@@ -41,25 +41,16 @@
  	<%if(helpers.isCurrentUser(ownerID)){%>
  	
     <!-- no wants, current user -->
-    <div class='placeholder heading'>
-      Everything you <span class='em'>want</span> shows up here.
-    </div>
-    <div class='placeholder box want'>
-      <div class='overlay'>
-      </div>
-    </div>
-    <div class='placeholder box want_2'>
+    <div class='heading'>
+      Everything you <span class='em'>want</span> shows up here. <br />
+      <span class="trans_80" style="font-size: 18px">Find something you want at one of your stores →</span>
     </div>
 		
   <%}else{%>
 
     <!-- no wants, other user -->
-    <div class='placeholder heading'>
+    <div class='heading'>
       <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
-    </div>
-    <div class='placeholder box want'>
-    </div>
-    <div class='placeholder box want_2'>
     </div>
 
 	<%}%>
@@ -67,12 +58,42 @@
 <%} else if(src == 'user'){%>
 
 		<!-- Nothing in closet -->
-    <div class='placeholder heading'>
+    <div class='heading'>
       Nothing in this closet yet.
     </div>
-    <div class='placeholder box like'>
-    </div>
-    <div class='placeholder box want'>
+    
+    <!-- category placeholders -->
+    <div class="placeholders">
+	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/shoes.jpg')%>');">
+	    	<div class="fader">
+	    		Add +<br />your shoes
+	    	</div>
+	    </a>
+	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/clothing.jpg')%>');">
+	    	<div class="fader">
+	    	 Add +<br />your clothing
+	    	</div>
+	    </a>
+	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/accessories.jpg')%>');">
+	    	<div class="fader">
+	    		Add +<br />your accessories
+	    	</div>
+	    </a>
+	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/cosmetics.jpg')%>');">
+	    	<div class="fader">
+	    		Add +<br />your cosmetics
+	    	</div>
+	    </a>
+	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/jewelry.jpg')%>');">
+	    	<div class="fader">
+	    		Add +<br />your jewelry
+	    	</div>
+	    </a>
+	    <a class="placeholder" style="background: url('<%=helpers.imagePath('placeholders/electronics.jpg')%>');">
+	    	<div class="fader">
+	    		Add +<br />your electronics
+	    	</div>
+	    </a>
     </div>
 
 <%}%>

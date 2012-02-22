@@ -1929,22 +1929,42 @@ a.edit_cccccc_14:hover {
   margin: 0 19px;
   position: relative; }
   
-#main .placeholder.heading {
+#main .heading {
 	font-size: 26px;
   line-height: 150%;
-  color: #555555;
+  color: white;
   text-align: center;
-  text-shadow: 0 1px 1px white;
+  text-shadow: 0 1px 1px #333333;
   padding: 6px 10px 18px; }
  
-#main .placeholder.heading .em { color: #cc3333; }
-  
-#main .placeholder.box {
-	width: 580px;
-	height: 270px;
-	background-repeat: no-repeat;
+#main .heading .em { color: #cc3333; }
+
+#main .placeholders { width: 579px; }
+
+#main .placeholder {
+	width: 192px;
+	display: block;
+	height: 278px;
 	position: relative;
-	margin-bottom: 5px; }
+	float: left; 
+	font-size: 24px;
+	line-height: 32px;
+	color: white; 
+	cursor: pointer;
+	margin: 0 1px 1px 0;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4); }
+
+#main .placeholder .fader { 
+		background: url('/images/black_50.png');
+		position: absolute;
+		padding-top: 106px;
+		top: 0px;
+		height: 172px;
+		width: 192px; }
+
+#main .placeholder .fader:hover {
+ 	background: url('/images/black_40.png'); }
 
 #main .placeholder.box.like { background-image: url('/images/place_like_image.jpg'); }
 #main .placeholder.box.want { background-image: url('/images/place_want_image.jpg'); }
@@ -2237,19 +2257,16 @@ table.collection.details {
 
 table.collection.details td {
 	height: 50px;
-	vertical-align: middle;
-}
+	vertical-align: middle; }
 
 table.collection.details .photo {
 	width: 50px;
-	padding: 22px 0 0 28px;
-}
+	padding: 22px 0 0 28px; }
 
 table.collection.details .photo img {
 	width: 50px;
 	height: 50px;
-	vertical-align: middle;
-}
+	vertical-align: middle; }
 
 table.collection.details .textbox {
 	padding: 22px 28px 0 14px;
@@ -2257,16 +2274,14 @@ table.collection.details .textbox {
 	line-height: 24px;
 	color: #999999;
 	white-space: nowrap;
-	overflow-y: hidden;
-}
+	overflow-y: hidden; }
 
 table.collection.details .textbox a { color: #555555; }
 table.collection.details .textbox a:hover { color: #cc3333; }
 
 table.collection.details .textbox .title { 
 	font-size: 20px;
-	color: #333333;
-}
+	color: #333333; }
 
 /* ----- End of collection show specific ----- */
 
