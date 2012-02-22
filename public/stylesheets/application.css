@@ -1763,6 +1763,14 @@ a.edit_cccccc_14:hover {
   padding: 10px 10px 10px 12px;
   background: url("/images/black_20.png"); }
 
+.sidebar .placeholder_text {
+	font-size: 14px;
+	line-height: 21px;
+	color: white; }
+
+.sidebar .placeholder_text a {
+	color: #cc3333; }
+	
 .sidebar .user_byline_input {
   font-family: 'FuturaStdBook', Arial, sans-serif;
   font-size: 14px;
