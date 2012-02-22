@@ -90,6 +90,12 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   newInvitePath: function(src) {
     return '/invites/new?src=' + src;
+  },
+
+  // Generate path for creating new shoppings
+  //
+  newShoppingsPath: function(src) {
+    return 'shoppings/new?src=' + src;
   }
 
 });
