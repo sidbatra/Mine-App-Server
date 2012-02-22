@@ -36,17 +36,17 @@
 	   	
 	   	</li>
 	   
-			<li>
+			<li class="list">
 	      <%if !is_onboarding? || is_onboarding_create?%>
 	      
           <%=link_to 'Add item +', 
               new_product_path(:src => 'bar'),
               :class => 'nav_menu add_item'%>
 	        
-	        <!--<ul class='nav_add_list'>
+	        <ul class='nav_add_list'>
 	          
-	          <#@categories.each do |category|%>
-	            <#=link_to "<li>#{category.id == 8 ? 
+	          <%@categories.each do |category|%>
+	            <%=link_to "<li>#{category.id == 8 ? 
 	                                'Anything!' : 
 	                                category.name}</li>",
 	                    (is_onboarding_create? ?
@@ -56,8 +56,8 @@
 	                        :category => category.handle,
 	                        :src      => 'dropdown')),
 	                    :class => ''%>
-	          <#end%>
-	        </ul>-->
+	          <%end%>
+	        </ul>
 	       
 	      <%end%>
 			</li>
@@ -84,7 +84,7 @@
 				
 				
 			</li>
-			<li>
+			<li class="list">
 		    <%if !is_onboarding?%>	
 	              
 	        <a class='nav_menu nav_login_button'>

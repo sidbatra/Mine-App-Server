@@ -213,17 +213,23 @@ div.welcome_text {
   height: 40px;
   position: absolute;
   right: 0px;
-/*   padding-right: 24px; */
   top: 0px;
-/*   border-bottom: 1px solid black; */
   cursor: pointer; }
 
 #header .nav li {
   float: left;
   position: relative; }
 
+#header .nav li.list:hover {
+  background: #333333; }
+
+#header .nav li.list:hover .nav_menu{ 
+  -moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100); }
+
 #header .nav li ul {
-	background: url('/images/black_20.png'); 
+	background: #333333 url('/images/black_30.png'); 
 	padding: 6px 0 9px;
   z-index: 5000; }
 
@@ -251,11 +257,7 @@ div.welcome_text {
   font-size: 14px;
   position: relative;
   padding: 0 16px;
-  margin-left: 1px;
   background: url('/images/black_30.png'); 
-  -moz-border-radius: 0 0 5px 5px;
-	-webkit-border-radius: 0 0 5px 5px;
-	border-radius: 0 0 5px 5px;
   -moz-opacity: 0.80;
   opacity: .8;
   filter: alpha(opacity=80);
@@ -266,26 +268,15 @@ div.welcome_text {
 .nav_menu:hover {
 	-moz-opacity: 1.00;
   opacity: 1.00;
-  filter: alpha(opacity=100); }
+  filter: alpha(opacity=100);}
+
+.add_item { width: 68px; }
   
 .nav_menu.log_in { margin-right: 24px; }
-  
-/*
-.nav_menu.add_item, .nav_menu.new_set {
-  -moz-opacity: 1.00;
-  opacity: 1.00;
-  filter: alpha(opacity=100); }
-
-.nav_menu.add_item { background: #a32929; }
-.nav_menu.add_item:hover { background: #cc3333; }
-
-.nav_menu.new_set { background: #2952a3; }
-.nav_menu.new_set:hover { background: #3366cc; }
-*/
-
+ 
 /* Handles the showing and hiding of menu items */
-
-.nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover {
+.nav_login_button:hover ~ .nav_login_list, .nav_login_list:hover,
+.add_item:hover ~ .nav_add_list, .nav_add_list:hover {
   display: block; }
 
 .nav_login_list {
@@ -301,16 +292,15 @@ div.welcome_text {
 
 .nav_add_list {
   position: absolute;
-  top: 42px;
-  left: -8px;
-  width: 120px; }
-
-.nav_user_button { 
-	padding-right: 0px;
-	-moz-border-radius: 0 0 0 5px;
-	-webkit-border-radius: 0 0 0 5px;
-	border-radius: 0 0 0 5px; }
-
+  top: 40px;
+  left: 0px;
+  width: 100px;
+  white-space: nowrap;
+  display: none;
+  z-index: 10000;
+  -moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;  }
 
 .nav_user_button_user_photo {
   width: 20px;
@@ -320,10 +310,7 @@ div.welcome_text {
 
 .nav_login_button {
 	font-size: 9px;
-	margin-left: 0px;
-	-moz-border-radius: 0 0 0 0;
-	-webkit-border-radius: 0 0 0 0;
-	border-radius: 0 0 0 0;  }
+	margin-left: 0px; }
 
   
 /* ------------------------------ OMNIBOX */
