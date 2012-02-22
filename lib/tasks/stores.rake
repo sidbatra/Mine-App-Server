@@ -6,27 +6,9 @@ namespace :stores do
     task :domains => :environment do |e,args|
     begin
 
-      columns = [:id,:domain]
-      values  = []
-
-      Store.approved.each_with_index do |store,i|
-        begin
-          domain = store.update_domain(false)
-          values << [store.id,domain]
-
-          puts "Parsed store #{i} - #{store.id},#{store.name},#{domain}"
-        rescue => ex
-          puts "Failed to update domain for store - #{store.id},#{store.name}"
-          LoggedException.add(__FILE__,__method__,ex)
-        ensure
-          sleep 0.01
-        end
+      Store.approved.each do |store|
+          ProcessingQueue.push(store,:update_domain)
       end
-
-      Store.import columns,
-        values, {
-          :validate => false,
-          :on_duplicate_key_update => [:domain]} if values.present?
 
     rescue => ex
       puts "Critical error while updating store domains"

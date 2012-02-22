@@ -159,20 +159,18 @@ class Store < ActiveRecord::Base
     FileSystem.url(image_path ? image_path : "")
   end
 
-  # Update the domain for the store. Optionally turn off
-  # saving using param
+  # Update the domain for the store. 
   #
-  def update_domain(save=true)
+  def update_domain
     web_search  = WebSearch.on_pages(name,1)
     self.domain = URI.parse(web_search.Web["Results"][0]["Url"]).host
 
-    save! if save
-    domain
+    save! 
   end
 
   # Use store domain to update metadata
   #
-  def update_metadata(save=true)
+  def update_metadata
     return unless self.domain.present?
 
     url = 'http://' + domain
@@ -183,9 +181,15 @@ class Store < ActiveRecord::Base
     favicon_url       = webpage.favicon
     favicon_url     ||= File.join url,'favicon.ico'
 
-    save! if save
+    old_favicon_path  = favicon_path
 
-    [byline,description,favicon_url]
+    begin
+      host_favicon(favicon_url)
+    rescue
+      self.favicon_path = old_favicon_path
+    end
+
+    save! 
   end
 
   # Fetch favicon from the given url and host it
@@ -207,8 +211,6 @@ class Store < ActiveRecord::Base
       "Content-Type"  => "image/jpeg",
       "Expires"       => 1.year.from_now.
                           strftime("%a, %d %b %Y %H:%M:%S GMT"))
-
-    save!
   end
 
   # Save store image to filesystem and create smaller copies
