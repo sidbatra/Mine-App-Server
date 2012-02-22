@@ -26,6 +26,7 @@ include NotificationManagement
 include Storage
 include QueueManagement
 include DistributionManagement
+include WebSearchInterface
 
 
 # Disable updates in ThinkingSphinx to use the delayed delta

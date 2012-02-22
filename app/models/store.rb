@@ -153,6 +153,17 @@ class Store < ActiveRecord::Base
     FileSystem.url(image_path ? image_path : "")
   end
 
+  # Update the domain for the store. Optionally turn off
+  # saving using param
+  #
+  def update_domain(save=true)
+    web_search  = WebSearch.on_pages(name,1)
+    self.domain = URI.parse(web_search.Web["Results"][0]["Url"]).host
+
+    save! if save
+    domain
+  end
+
   # Save store image to filesystem and create smaller copies
   #
   def host

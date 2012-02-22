@@ -6,25 +6,20 @@ namespace :stores do
     task :domains => :environment do |e,args|
     begin
 
-      require 'lib/web_search_interface'
-      include DW::WebSearchInterface
-
       columns = [:id,:domain]
       values  = []
 
       Store.approved.each_with_index do |store,i|
         begin
-          web_search = WebSearch.on_pages(store.name,1)
-          uri = URI.parse(web_search.Web["Results"][0]["Url"])
+          domain = store.update_domain(false)
+          values << [store.id,domain]
 
-          values << [store.id,uri.host]
-
-          puts "Parsed store #{i} - #{store.id},#{store.name},#{uri.host}"
+          puts "Parsed store #{i} - #{store.id},#{store.name},#{domain}"
         rescue => ex
           puts "Failed to update domain for store - #{store.id},#{store.name}"
           LoggedException.add(__FILE__,__method__,ex)
         ensure
-          sleep 0.1
+          sleep 0.01
         end
       end
 
