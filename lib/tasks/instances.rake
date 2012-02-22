@@ -57,7 +57,7 @@ namespace :instances do
                         :environment => @environment,
                         :type => type},
                       :state => :running,
-                      :count => count)
+                      :count => count.to_i)
 
         if type == TYPES[:web]
           load_balancer = LoadBalancer.find(:matching => @environment)
