@@ -48,7 +48,7 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessor :rehost, :reupdate_domain
+  attr_accessor :rehost, :reupdate_domain, :reupdate_metadata
   attr_accessible :name,:user_id,:image_path,:is_approved,:domain
 
   #----------------------------------------------------------------------
