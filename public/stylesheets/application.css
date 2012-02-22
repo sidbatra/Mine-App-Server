@@ -2157,12 +2157,11 @@ a.edit_cccccc_14:hover {
 	padding: 3px 0 29px 30px;
 	text-align: center;
 	font-size: 26px;
-	color: #555555;
+	color: white;
   line-height: 31px;
-  text-shadow: 0 1px 1px white; }
+  text-shadow: 0 1px 1px #333333; }
 
 .new_collection.on_now_placeholder span.subtitle {
-	color: #999999;
 	font-size: 18px; }
 
 .new_collection.on_now_placeholder span.red { color: #cc3333; }
