@@ -14,6 +14,9 @@ class StoreObserver < ActiveRecord::Observer
       store.rehost        = true
       store.is_processed  = false
     end
+
+    store.reupdate_domain = store.is_approved_changed? && 
+                              store.is_approved
   end
 
   # A store is updated
@@ -23,6 +26,10 @@ class StoreObserver < ActiveRecord::Observer
       NotificationManager,
       :update_store,
       store.id) if store.rehost
+
+    ProcessingQueue.push(
+      store,
+      :update_domain) if store.reupdate_domain
   end
 
   # A store is delted
