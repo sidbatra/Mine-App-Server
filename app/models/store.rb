@@ -147,6 +147,12 @@ class Store < ActiveRecord::Base
     is_processed ? FileSystem.url(large_path) : image_url
   end
 
+  # Full url of the store favicon
+  #
+  def favicon_url
+    FileSystem.url(favicon_path ? favicon_path : "")
+  end
+
   # Full url of the original image
   #
   def image_url
@@ -162,6 +168,47 @@ class Store < ActiveRecord::Base
 
     save! if save
     domain
+  end
+
+  # Use store domain to update metadata
+  #
+  def update_metadata(save=true)
+    return unless self.domain.present?
+
+    url = 'http://' + domain
+    webpage = Pismo::Document.new(url)
+
+    self.byline       = webpage.title
+    self.description  = webpage.description
+    favicon_url       = webpage.favicon
+    favicon_url     ||= File.join url,'favicon.ico'
+
+    save! if save
+
+    [byline,description,favicon_url]
+  end
+
+  # Fetch favicon from the given url and host it
+  #
+  def host_favicon(favicon_url)
+    self.favicon_path  = Base64.encode64(
+                           SecureRandom.hex(10) + 
+                           Time.now.to_i.to_s).chomp + ".jpg"
+
+    image = MiniMagick::Image.open(favicon_url)
+
+    ImageUtilities.reduce_to_with_image(
+                      image,
+                      {:width => 64,:height => 64})
+
+    FileSystem.store(
+      favicon_path,
+      open(image.path),
+      "Content-Type"  => "image/jpeg",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+    save!
   end
 
   # Save store image to filesystem and create smaller copies
