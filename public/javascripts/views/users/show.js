@@ -155,12 +155,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   // isn't explicitly set
   //
   loadDefaultTab: function() {
-    if((this.isCurrentUser && this.user.get('collections_count'))){
-      this.loadCollectionsTab();
-    }
-    else {
-      this.loadOwnsTab();
-    }
+    this.loadOwnsTab();
+    //if((this.isCurrentUser && this.user.get('collections_count'))){
+    //  this.loadCollectionsTab();
+    //}
+    //else {
+    //  this.loadOwnsTab();
+    //}
   },
 
   // Use Backbone router for reacting to changes in URL
