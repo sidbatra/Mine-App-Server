@@ -12,6 +12,8 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   initialize: function() {
     var self            = this;
 
+    this.source         = this.options.source;
+
     this.storesEl       = '#stores';
     this.formEl         = '#new_shopping';
     this.storeIdsEl     = '#store_ids';
@@ -113,7 +115,7 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.onboardingStoresView();
+    analytics.shoppingNewView(this.source);
   }
 
 });

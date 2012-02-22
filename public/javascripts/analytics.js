@@ -438,6 +438,13 @@ Denwen.Analytics = Backbone.Model.extend({
      mpq.track('Invite View');
   },
 
+  // Page view on the shoppings new page
+  //
+  shoppingNewView: function(source) {
+     mpq.track(
+      'Shopping New View',{'source' : source});
+  },
+
   // Page view on the collections new page
   //
   collectionNewView: function(source) {
