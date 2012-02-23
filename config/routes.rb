@@ -37,6 +37,11 @@ ActionController::Routing::Routes.draw do |map|
                 :action     => :show,
                 :filter     => :terms
 
+  map.terms     'copyright',
+                :controller => :static,
+                :action     => :show,
+                :filter     => :copyright
+
   # Deprecate in next version
   map.product_d 'products/:id/:name',
                 :controller => :products,
