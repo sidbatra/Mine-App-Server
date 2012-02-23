@@ -1,3 +1,19 @@
+<div id='header'>
+	<div class='navbar'>
+    <ul class='nav'>
+			<li>
+					<%=link_to "Log In",
+	                	fb_auth_path(
+	                    :src    => @origin ? @origin : "login",
+	                    :target => request.request_uri),
+	                	:class => "log_in",
+	                	:id => "action_link" %>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
 <div id="slides">
 <div class="slides_container">
 

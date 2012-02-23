@@ -20,6 +20,31 @@ a {
 	text-decoration: none;
 	color: inherit; }
 
+/* ------------------------------ Header */
+
+.log_in {
+	z-index: 10000;
+	position: absolute;
+	top: 0px;
+	right: 48px;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  padding: 0 16px;
+  background: url('/images/black_40.png'); 
+  -moz-opacity: 0.80;
+  opacity: .8;
+  filter: alpha(opacity=80);
+  zoom: 1;
+  color: white;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2); }
+
+.log_in:hover {
+	-moz-opacity: 1.00;
+  opacity: 1.00;
+  filter: alpha(opacity=100);}
+
 /*-------------------- Blackout --------------------*/
 
 body.blackout {
