@@ -1,5 +1,5 @@
 <%if(!products.length) {%> 
-  <%if(src == 'user') {%> 
+  <%if(src == 'user' && !helpers.isCurrentUser(ownerID)) {%> 
     <!-- empty closet -->
     <div class='heading'>
       Nothing in this closet yet.
