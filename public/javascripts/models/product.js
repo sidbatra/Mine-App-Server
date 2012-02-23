@@ -14,11 +14,23 @@ Denwen.Models.Product = Backbone.Model.extend({
     this.associate('user',Denwen.Models.User);
   },
 
+  // Base path to the product with any additional args
+  //
+  basePath: function() {
+    return '/' + this.get('user').get('handle') + '/p/' + 
+      this.get('handle');
+  },
+
   // Path to the product with the originating source
   //
   path: function(src) {
-    return '/' + this.get('user').get('handle') + '/p/' + 
-            this.get('handle') + '?src=' + src;
+    return this.basePath() + '?src=' + src;
+  },
+
+  // Path to the edit view of the product with an originating source
+  //
+  editPath: function(src) {
+    return this.basePath() + '/edit?src=' + src;
   },
 
   // Unique key to identify the unique combination of the

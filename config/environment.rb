@@ -31,14 +31,25 @@ Rails::Initializer.run do |config|
   config.gem('aws-ses', 
               :lib => 'aws/ses', 
               :version => '0.4.3')
+  config.gem('brant',
+              :lib => false,
+              :version => '0.1.0')
   config.gem('daemons', 
-              :version => '1.1.0')
-  config.gem('mini_magick', 
-              :version => '2.1')
+              :version => '1.1.0',
+              :lib => false)
   config.gem('fb_graph',
-              :version => '2.1.10')
+              :version => '2.4.0')
   config.gem('jammit',
               :version => '0.6.3')
+  config.gem('mechanize', 
+              :version => '2.1.1',
+              :lib => false)
+  config.gem('mini_magick', 
+              :version => '3.4',
+              :lib => false)
+  config.gem('pismo',
+              :version => '0.7.2',
+              :lib => false)
 
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -60,11 +71,13 @@ Rails::Initializer.run do |config|
                                     :user_observer, :following_observer,
                                     :action_observer, :store_observer,
                                     :achievement_set_observer,
+                                    :collection_observer,
                                     :store_sweeper, :following_sweeper,
                                     :product_sweeper, :collection_part_sweeper,
                                     :user_sweeper, :achievement_set_sweeper,
                                     :comment_sweeper, :action_sweeper,
-                                    :collection_sweeper, :specialty_sweeper
+                                    :collection_sweeper, :specialty_sweeper,
+                                    :shopping_sweeper
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.

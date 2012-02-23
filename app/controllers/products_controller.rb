@@ -48,10 +48,7 @@ class ProductsController < ApplicationController
                       user_path(
                         self.current_user.handle,
                         :src    => UserShowSource::ProductCreate,
-                        :anchor => (self.current_user.products_count == 
-                                    CONFIG[:products_threshold] - 1) ?
-                                      UserShowHash::Collections :
-                                      UserShowHash::Owns)
+                        :anchor => UserShowHash::Owns)
 
       end
       format.json 
@@ -92,14 +89,13 @@ class ProductsController < ApplicationController
 
       @key = KEYS[:store_top_products] % params[:owner_id]
 
-    when :liked
-      @products = Product.with_store.with_user.
-                    acted_on_by_for(params[:owner_id],ActionName::Like).
-                    not_for_user(params[:owner_id]).
-                    in_category(category_id)
-      
-      @key = KEYS[:user_like_products_in_category] % 
-              [params[:owner_id],category_id]
+    when :used
+      @products = Product.for_user(params[:owner_id]).
+                    with_user.
+                    most_used.
+                    limit(10)
+
+      @key = KEYS[:user_top_products] % params[:owner_id]
 
     when :wanted
       @products = Product.with_store.with_user.
@@ -246,35 +242,6 @@ class ProductsController < ApplicationController
     params[:endorsement]    = ''
 
     params
-  end
-
-  # Prepare parameters for the image uploder
-  #
-  def generate_uploader
-    uploader = {}
-    uploader[:server]     = "http://#{CONFIG[:s3_bucket]}.s3.amazonaws.com/"
-    uploader[:aws_id]     = CONFIG[:aws_access_id]
-    uploader[:max]        = 50.megabytes
-    uploader[:extensions] = "*.jpeg;*.jpg;*.gif;*.bmp;*.png"
-    uploader[:key]        = [Time.now.to_i,SecureRandom.hex(20)].join("_")
-    uploader[:policy]     = Base64.encode64(
-                              "{'expiration': '#{6.year.from_now.
-                                  utc.strftime('%Y-%m-%dT%H:%M:%S.000Z')}',
-                                'conditions': [
-                                  {'bucket': '#{CONFIG[:s3_bucket]}'},
-                                  {'acl': 'public-read'},
-                                  {'success_action_status': '201'},
-                                  ['content-length-range',0, #{uploader[:max]}],
-                                  ['starts-with', '$key', '#{uploader[:key]}'],
-                                  ['starts-with', '$Filename', '']
-                                ]
-                              }").gsub(/\n|\r/, '')
-    uploader[:signature]   = Base64.encode64(
-                              OpenSSL::HMAC.digest(
-                                OpenSSL::Digest::Digest.new('sha1'),
-                                CONFIG[:aws_secret_key],
-                                uploader[:policy])).gsub("\n","")
-    uploader
   end
 
 end

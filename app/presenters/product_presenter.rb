@@ -17,7 +17,7 @@ class ProductPresenter < BasePresenter
     h.product_url product.user.handle,product.handle,:src => source
   end
 
-  # Anchor tag for deleting the product
+  # Anchor tag for editing the product
   #
   def edit_link
     if h.logged_in? && h.current_user.id == product.user_id
@@ -178,9 +178,9 @@ class ProductPresenter < BasePresenter
   # Link to go get back to the source url
   #
   def breadcrumb(title,path)
-    h.link_to "<span class='unicode'>←</span> " + title,
+    h.link_to title,
               path,
-              :class => '' 
+              :class => 'nav' 
   end
 
 

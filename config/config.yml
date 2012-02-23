@@ -6,6 +6,8 @@ common: &common
   :aws_secret_key: WhaJ7PClLRYEjFto9pDwzV7vARu4FHybkUACXEPd 
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
+  :fb_app_namespace: dw_boomerang
+  :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :age_bucket_size: 5
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
@@ -17,8 +19,9 @@ common: &common
   :success: success
   :error: error
   :name: OnCloset
-  :version: 2.5
+  :version: 2.6
   :products_threshold: 5
+  :collection_base_image: private/collection_base.jpg
   :keys:
     :user_category_count: user_%d_category_%d_count
     :user_ifollowers: user_%d_ifollowers
@@ -26,6 +29,7 @@ common: &common
     :user_followers: user_%d_followers
     :user_followers_preview: user_%d_followers_preview
     :user_top_stores: user_%d_top_stores
+    :user_top_products: user_%d_top_products
     :user_products_in_category: user_%d_category_%d_products
     :user_like_products_in_category: user_%d_category_%d_like_products
     :user_want_products_in_category: user_%d_category_%d_want_products
@@ -87,7 +91,7 @@ common: &common
 
 development: &development
   <<: *common
-  :host: sbat.oncloset.com
+  :host: drao.oncloset.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
   :dump_bucket: denwen-hasit-dumps

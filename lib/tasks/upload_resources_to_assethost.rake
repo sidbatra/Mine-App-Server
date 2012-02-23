@@ -20,10 +20,6 @@ task :upload_resources_to_assethost do |e,args|
   system "sed -i -e \"s/\\([\\\"']\\)\\/type/\\1#{"http://#{CONFIG[:host]}".gsub("/","\\/")}"\
           "\\/type/g\" public/stylesheets/*.css"
 
-  #system "sed -i -e \"s/'\\/swfs/'#{asset_host.gsub("/","\\/")}"\
-  #        "\\/swfs/g\" public/javascripts/*.js"
-
-
 
   #--------- Package it up
   Jammit.package!
@@ -51,12 +47,10 @@ task :upload_resources_to_assethost do |e,args|
       "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
-  Dir.new('public/images').each do |file|
-    next unless file.length > 2
-
+  Dir.glob('public/images/**/*\.*').each do |file|
     AssetHost.store(
-      "#{revision}/images/#{file}",
-      open("public/images/#{file}"),
+      file.gsub('public',revision),
+      open(file),
       "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   end
 
@@ -69,14 +63,12 @@ task :upload_resources_to_assethost do |e,args|
   #    "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
   #end
 
-  #Dir.new('public/swfs').each do |file|
-  #  next unless file.length > 2
-
-  #  AssetHost.store(
-  #    "#{revision}/swfs/#{file}",
-  #    open("public/swfs/#{file}"),
-  #    "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
-  #end
+  Dir.glob('public/swfs/**/*\.*').each do |file|
+    AssetHost.store(
+      file.gsub('public',revision),
+      open(file),
+      "Expires" => 1.year.from_now.strftime("%a, %d %b %Y %H:%M:%S GMT"))
+  end
 
 
   #--------- Restore back to original state

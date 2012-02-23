@@ -34,7 +34,6 @@ Denwen.Partials.Collections.Collection = Backbone.View.extend({
                 this.source,
                 this.sourceID,
                 this.model.get('id'),
-                'collection',
                 this.model.get('user_id'));
   },
 

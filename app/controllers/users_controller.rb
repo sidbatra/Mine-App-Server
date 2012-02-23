@@ -39,8 +39,8 @@ class UsersController < ApplicationController
     self.current_user = @user
     set_cookie
     target_url = @user.is_fresh ? 
-                   welcome_path(WelcomeFilter::Learn) :
-                   (target ? 
+                  user_path(@user.handle,:src => UserShowSource::UserCreate) :
+                  (target ? 
                     target : 
                     user_path(@user.handle,:src => UserShowSource::Login))
 
@@ -70,17 +70,11 @@ class UsersController < ApplicationController
 
     case @filter
     when :followers
-      @users      = User.find(params[:id]).followers.with_stores
+      @users      = User.find(params[:id]).followers
       @key        = KEYS[:user_followers] % params[:id]
-    when :followers_preview
-      @users      = User.find(params[:id]).followers.limit(5)
-      @key        = KEYS[:user_followers_preview] % params[:id]
     when :ifollowers
-      @users      = User.find(params[:id]).ifollowers.with_stores
+      @users      = User.find(params[:id]).ifollowers
       @key        = KEYS[:user_ifollowers] % params[:id]
-    when :ifollowers_preview
-      @users      = User.find(params[:id]).ifollowers.limit(5)
-      @key        = KEYS[:user_ifollowers_preview] % params[:id]
     when :stars
       @achievers  = AchievementSet.current_star_users
       @key        = KEYS[:star_users]
@@ -101,7 +95,7 @@ class UsersController < ApplicationController
   def update
 
     @user = self.current_user
-    @user.edit(params)
+    @user.update_attributes(params)
   
   rescue => ex
     handle_exception(ex)

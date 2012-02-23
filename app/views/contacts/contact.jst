@@ -1,4 +1,5 @@
-<div class='invite_row'> 
+
+<div class='invite_row trans_80 hover'> 
   <img class='invite_user' 
         src='<%=contact.imageURL()%>' 
         id='fb_single_invite_link' 
@@ -14,3 +15,24 @@
      fb_id='<%=contact.get('third_party_id')%>'>
   </a> 
 </div>
+
+
+<!-- invite: single invite grid view  
+<a class="picker_choice unselectable" id="fb_single_invite_link"> 
+	
+	<div class="shadowbox"></div>
+
+	<div class="button_picker" id="button_picker_">
+	</div>
+	
+	<div class="left">
+		<img src="<#=contact.imageURL()%>" 
+				 class="left_img"
+				 fb_id="<#=contact.get('third_party_id')%>"/>
+	</div>
+
+	<div class="right" fb_id="<#=contact.get('third_party_id')%>">
+		<#=helpers.truncate(contact.get('name'),30,".")%>
+	</div>
+
+</a>-->

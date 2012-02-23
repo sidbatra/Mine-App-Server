@@ -100,7 +100,6 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
                 this.actionableType, 
                 this.actionableID,
                 this.actionableID,
-                this.actionableType,
                 this.actionableUserID);
   },
 

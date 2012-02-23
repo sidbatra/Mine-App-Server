@@ -57,6 +57,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Byline Editing Completed");
   },
 
+  // User picks the store where they shop at 
+  //
+  shoppingsCreated: function() {
+    mpq.track("Shoppings Created");
+  },
+
   // Collection onboarding previewed in disabled state 
   //
   collectionOnboardingPreviewed: function() {
@@ -139,26 +145,15 @@ Denwen.Analytics = Backbone.Model.extend({
           'User ID'      : helpers.currentUserID()});
   },
 
-  // User creates a like
+  // User creates a like on a collection
   //
-  likeCreated: function(source,sourceID,actionableID,actionableType,actionableUserID) {
-
-    if(actionableType == 'product') {
-      mpq.track('Like Created', {
-        'Source'          : source,
-        'Source ID'       : sourceID,
-        'Product ID'      : actionableID,
-        'User ID'         : helpers.currentUserID(),
-        'Is Own Product'  : helpers.isCurrentUser(actionableUserID)});
-    }
-    else if(actionableType == 'collection') {
-      mpq.track('Collection Like Created', {
-        'Source'            : source,
-        'Source ID'         : sourceID,
-        'Collection ID'     : actionableID,
-        'User ID'           : helpers.currentUserID(),
-        'Is Own Collection' : helpers.isCurrentUser(actionableUserID)});
-    }
+  likeCreated: function(source,sourceID,collectionID,collectionUserID) {
+    mpq.track('Collection Like Created', {
+      'Source'            : source,
+      'Source ID'         : sourceID,
+      'Collection ID'     : collectionID,
+      'User ID'           : helpers.currentUserID(),
+      'Is Own Collection' : helpers.isCurrentUser(collectionUserID)});
   },
 
   // User initiates the product ownership process
@@ -384,6 +379,12 @@ Denwen.Analytics = Backbone.Model.extend({
         'id'              : userID});
   },
 
+  // User views the settings page
+  //
+  settingsView: function(source) {
+    mpq.track('Settings View',{'source' : source});
+  },
+
   // A collection is viewed
   //
   collectionView: function(source) {
@@ -433,8 +434,15 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Page view on the invite page
   //
-  inviteView: function() {
-     mpq.track('Invite View');
+  inviteView: function(source) {
+     mpq.track('Invite View',{'source' : source});
+  },
+
+  // Page view on the shoppings new page
+  //
+  shoppingNewView: function(source) {
+     mpq.track(
+      'Shopping New View',{'source' : source});
   },
 
   // Page view on the collections new page

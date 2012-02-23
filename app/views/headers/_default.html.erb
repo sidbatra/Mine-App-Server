@@ -1,15 +1,15 @@
 	<div id='header'>
 	
-		<div class='navbar wide'>
+    <%=link_to_if !is_onboarding?,
+      				CONFIG[:name],
+               logged_in? ? 
+                  user_path(self.current_user.handle,:src => "top") : 
+                  home_path(
+                    @origin && @origin != "direct" ? @origin : "",
+                    :src => "top"),
+               			:class => "logo" %>
 	
-	      <%=link_to_if !is_onboarding?,
-	            				 "",
-	                     logged_in? ? 
-	                        user_path(self.current_user.handle,:src => "top") : 
-	                        home_path(
-	                          @origin && @origin != "direct" ? @origin : "",
-	                          :src => "top"),
-	                     :class => "logo" %>
+		<div class='navbar'>
 	    
 	    <ul class='nav'>
 	    
@@ -20,7 +20,7 @@
 	                	fb_auth_path(
                       :src    => @origin ? @origin : "login",
                       :target => request.request_uri),
-	                	:class => "nav_menu",
+	                	:class => "nav_menu log_in",
 	                	:id => "action_link" %>
 			</li>
 	    
@@ -29,21 +29,19 @@
 	   	<li>
 	   	
 	      <%if !is_onboarding?%>
-<!-- 	        <div class='buttons'> -->
-	        
-	        
+
 	        	<a href="<%=new_invite_path(:src => 'bar')%>" class="nav_menu">Invite friends</a>
-	        
-<!-- 	        </div> -->
+	      
 	      <%end%>
 	   	
 	   	</li>
 	   
-	   
-			<li>
+			<li class="list">
 	      <%if !is_onboarding? || is_onboarding_create?%>
 	      
-	        <a class='nav_menu nav_add_item_button'></a>
+          <%=link_to 'Add item +', 
+              new_product_path(:src => 'bar'),
+              :class => 'nav_menu add_item'%>
 	        
 	        <ul class='nav_add_list'>
 	          
@@ -60,9 +58,16 @@
 	                    :class => ''%>
 	          <%end%>
 	        </ul>
+	       
 	      <%end%>
 			</li>
 			
+	   	<li>
+        <%=link_to 'New set',
+            new_collection_path(:src => 'bar'),
+            :class => "nav_menu new set" if self.current_user.products_count > 
+                                              CONFIG[:products_threshold]%>
+	   	</li>
 	
 			<li>
 	
@@ -79,17 +84,20 @@
 				
 				
 			</li>
-			<li>
+			<li class="list">
 		    <%if !is_onboarding?%>	
+	              
 	        <a class='nav_menu nav_login_button'>
-            <%=image_tag 'v.png'%>
+	        	▼
 	        </a>
 	        
 	        <ul class='nav_login_list'>
-	          <%=link_to "<li>Log Out</li>", 
+	           <!--li>Settings</li-->
+	           <%=link_to "<li>Log out</li>", 
 	              logout_path,
 	              :class => "login_list_item"%>
 	        </ul>
+
 	      <%end%> 
 			</li>
 	         
@@ -101,3 +109,8 @@
 	  </div> <!-- navbar -->
 	    
 	</div> <!-- header -->
+	
+  <div class="omnibox">
+		Welcome to omnibox,<br />
+		a space for us to talk to you, the user <3.
+	</div>

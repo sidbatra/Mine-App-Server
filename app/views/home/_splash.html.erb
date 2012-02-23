@@ -1,0 +1,37 @@
+<!-- header -->
+<div id="header">
+  <div class="navbar narrow">
+    <div class="logo"></div>
+    
+    Create a beautiful online closet of everything you own.
+    
+    <div class="nav">
+			<%=link_to 	'', 
+					fb_auth_path(:src => @origin), 
+					:class => 'log_in',
+					:style => ''%>
+		</div>
+  </div>
+</div>
+
+<div class="dark_half"></div>
+
+<div id="container" class="narrow">
+  <div class="splash_items">
+  	<div class="cross_browser_shadow">
+	   <%=link_to 	'', 
+					fb_auth_path(:src => @origin), 
+					:class => 'login_with_facebook',
+					:style => ''%>
+		</div>
+  </div> 
+  <div class="splash_panels">
+  	<div class="splash_panel_1"></div>
+  	<div class="splash_panel_2"></div>
+  	<div class="splash_panel_3"></div>
+  </div>
+</div> <!-- container -->
+
+<div id="footer">
+	<%=CONFIG[:name]%> © 2012 · <%=email_link%>
+</div>

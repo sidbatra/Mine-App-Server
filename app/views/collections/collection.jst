@@ -1,12 +1,14 @@
 <div class='titlebar timeline <%=!index ? 'latest' : ''%>'>
 
-  <%if(index){%>
-    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
-  <%}else{%>
-    Latest
-  <%}%>
+	<span class="trans_80">
+	  <%if(index){%>
+	    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
+	  <%}else{%>
+	    Latest
+	  <%}%>
+  </span>
 	
-	<a class='action' 
+	<a class='action trans_80 hover' 
       id='like_collection_<%=collection.get('id')%>' 
       href='javascript:void(0)'>
 		<span class='in'>
@@ -17,12 +19,12 @@
     </span>
 	</a>
 	
-	<a class='action comment' href='<%=collection.path('user_comment')%>'>
+	<a class='action comment trans_80 hover' href='<%=collection.path('user_comment')%>'>
 	  <span class='count'><%=collection.comments_count_string()%>&nbsp;</span>
 	</a>
 	
   <%if(helpers.isCurrentUser(collection.get('user_id'))){%>
-    <a href='<%=collection.editPath('user_list')%>' class='edit_999999_14'>
+    <a href='<%=collection.editPath('user_list')%>' class='edit_ffffff_14 trans_80 hover'>
       Edit
     </a>
   <%}%>
@@ -32,7 +34,7 @@
 <%if(collection.get('name')){%>
 	<div class='sequence_title'>
 		<a href='<%=collection.path('user')%>'>
-			<%=collection.get('name')%>
+			<%=collection.escape('name')%>
 		</a>
 	</div>
 <%}%>

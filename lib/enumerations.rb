@@ -53,6 +53,7 @@ module DW
     # Purpose for sending a user an email
     #
     class EmailPurpose < Enumeration
+      Admin             = 99
       NewComment        = 0
       NewFollower       = 1
       NewAction         = 2
@@ -110,12 +111,15 @@ module DW
     # Different sources of landing at the users/show route
     #
     class UserShowSource < Enumeration
-      CollectionCreate  = 'collection_create'
-      CollectionDeleted = 'collection_deleted'
-      HomeRedirect      = 'home_redirect'
-      Login             = 'login'
-      ProductCreate     = 'product_create'
-      ProductDeleted    = 'product_deleted'
+      CollectionCreate      = 'collection_create'
+      CollectionDeleted     = 'collection_deleted'
+      HomeRedirect          = 'home_redirect'
+      Login                 = 'login'
+      UserCreate            = 'user_create'
+      ProductCreate         = 'product_create'
+      ProductDeleted        = 'product_deleted'
+      ShoppingsCreate       = 'shoppings_create'
+      ShoppingsCreateError  = 'shoppings_create_error'
     end
 
     # Hash tags for loading different views on
@@ -135,6 +139,28 @@ module DW
       Friends = 'friends'
       Create  = 'create'
     end
+
+    # Facebook OpenGraph objects
+    #
+    class OGObject < Enumeration
+      Item    = "#{CONFIG[:fb_app_namespace]}:item" 
+      Set     = "#{CONFIG[:fb_app_namespace]}:set" 
+      Store   = "#{CONFIG[:fb_app_namespace]}:store" 
+    end
+
+    # Facebook OpenGraph Actions
+    #
+    class OGAction < Enumeration
+      Add     = "#{CONFIG[:fb_app_namespace]}:add" 
+      Use     = "#{CONFIG[:fb_app_namespace]}:use" 
+    end
+
+    # Facebook OpenGraph Properties
+    #
+    class OGProperty < Enumeration
+      Length  = "#{CONFIG[:fb_app_namespace]}:length" 
+    end
+
   end
 
 end

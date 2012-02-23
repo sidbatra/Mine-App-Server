@@ -30,6 +30,10 @@ module DW
       def self.new_product(product_id)
         product = Product.find(product_id)
         product.host
+
+        #if product.user.setting.post_to_timeline
+        #  DistributionManager.publish_add(product)
+        #end
       end
 
       # Host the updated product image
@@ -37,6 +41,13 @@ module DW
       def self.update_product(product_id)
         product = Product.find(product_id)
         product.host
+      end
+
+      # Rehost the updated store image
+      #
+      def self.update_store(store_id)
+        store = Store.find(store_id)
+        store.host
       end
       
       # Make a user follow all his Facebook friends in our user base 
@@ -78,6 +89,17 @@ module DW
         following = Following.find(following_id)
 
         UserMailer.deliver_new_follower(following) 
+      end
+
+      # Process a new collection and manager distribution
+      #
+      def self.new_collection(collection_id)
+        collection = Collection.find(collection_id)
+        collection.process
+
+        #if collection.user.setting.post_to_timeline
+        #  DistributionManager.publish_use(collection)
+        #end
       end
     
     end #notification manager

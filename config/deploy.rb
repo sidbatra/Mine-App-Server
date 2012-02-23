@@ -101,6 +101,8 @@ namespace :deploy do
     system "cap #{environment} monit:config_web"
     system "cap #{environment} monit:config_worker"
     system "cap #{environment} monit:restart"
+
+    system "cap #{environment} brant:migrate"
   end
 
 end
@@ -127,6 +129,15 @@ namespace :db do
         "rake db:migrate RAILS_ENV=#{environment}" 
   end
 
+end
+
+namespace :brant do
+
+  desc 'Run a brant migration'
+  task :migrate do
+    system "cd #{Dir.pwd} && "\
+        "rake brant:migrate RAILS_ENV=#{environment}" 
+  end
 end
 
 namespace :search do 
@@ -222,7 +233,7 @@ namespace :cache do
   desc 'Clear the cache'
   task :clear do
     system "cd #{Dir.pwd} && "\
-            "rake clear_cache RAILS_ENV=#{environment}"
+            "rake cache:clear RAILS_ENV=#{environment}"
   end
 
 end

@@ -5,6 +5,7 @@
 - /vol/closet/current/log/production.log
 - /vol/closet/current/log/staging.log
 - /vol/closet/current/log/processor.rb.log
+- /vol/closet/current/log/deploy.rb.log
 - /vol/closet/current/log/cron.log
 - /vol/apache2/log/error.log
 - /vol/apache2/log/other_vhosts_access.log

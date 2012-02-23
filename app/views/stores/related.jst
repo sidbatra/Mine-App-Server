@@ -1,10 +1,10 @@
-<div class='tab'>
+<div class='tab title overhang'>
   Related stores
 </div>
    
 <div class='no_small_top_margin'>
   <%stores.each(function(store){%>
-    <%=Denwen.JST['stores/tiled_list']({store:store, src:'related'})%>
+    <%=Denwen.JST['stores/store']({store:store, src:'related'})%>
   <%});%>
   <%=helpers.blocker()%>
 </div>

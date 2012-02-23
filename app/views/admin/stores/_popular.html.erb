@@ -1,10 +1,24 @@
-<ol style="width: 300px">
-	<%@stores.each do |store|%>
-	<li style="list-style-type:decimal; white-space: nowrap;">
-  	<%=link_to store.name, store_path(store.handle)%>
-    &nbsp;&nbsp;
-    <span><%=store.id%></span>
-    <span style="float:right"><%=h store.products_count%></span>
-  </li>
-	<%end%>
-</ol>
+<div id="container">
+  <table with="900">
+    <%@stores.each do |store|%>
+      <tr>
+        <td><%=link_to store.name, store_path(store.handle)%></td>
+        <td width="50"><%=store.products_count%></td>
+        <td><%=store.domain ? 
+                link_to(store.domain,'http://' + store.domain) : 
+                'Not Found'%></td>
+        <td width="100"><%=store.image_path.present? ? 
+                link_to(
+                  image_tag(store.image_url,:height => 50),
+                  store.image_url) :
+                'None'%></td>
+        <td width="100"><%=store.favicon_path.present? ? 
+                link_to(
+                  image_tag(store.favicon_url),
+                  store.favicon_url) :
+                'None'%></td>
+        <td><%=link_to 'Edit View',edit_admin_store_path(store.handle)%></td>
+      </tr>
+    <%end%>
+  </table>
+</div>

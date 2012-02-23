@@ -7,12 +7,12 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => @product_presenter.page_title(
-                                  @user_presenter.full_name),
-              :type         => 'product',
+              :title        => @product_presenter.title, 
+              :type         => OGObject::Item, 
               :description  => @user_presenter.usage_description,
               :url          => @product_presenter.url('fb'),
-              :image        => @product_presenter.thumbnail_url}%>
+              :image        => @product_presenter.thumbnail_url,
+              :store        => @product.store}%>
 <%end%>
 
 
@@ -26,6 +26,15 @@
 <div id="container" class="wide">
   
 	<div id="item">
+		
+				<!-- navigation to other products -->
+		    <%unless @next_product.id == @prev_product.id && 
+		              @next_product.id == @product.id%>
+		              
+					<%=@product_presenter.prev(@next_product,@product.user)%>
+		      <%=@product_presenter.next(@prev_product,@product.user)%>
+		    
+		    <%end%>
 	
 		<div class="top_bar">
 
@@ -46,16 +55,6 @@
       	<%=@product_presenter.edit_link%>
       	<%=@product_presenter.destroy_link%>
     </div>
-
-  
-    <!-- navigation to other products -->
-    <%unless @next_product.id == @prev_product.id && 
-              @next_product.id == @product.id%>
-
-      <%=@product_presenter.next(@prev_product,@product.user)%>
-      <%=@product_presenter.prev(@next_product,@product.user)%>
-    
-    <%end%>
     
       <div id="left" class="photo">
         <%=@product_presenter.large_image%>
@@ -63,7 +62,7 @@
 
       
       <div id="right">
-      
+
         <div id="right_user_image">
           <%=@user_presenter.small_picture('product_user')%>
         </div>
@@ -104,21 +103,16 @@
   	 <div id='feedback' class='feedback'>
       <%if logged_in?%>
       	<div class='buttons'>
-          <a id='like_actionable' 
-              href='javascript:void(0)' 
-              class='button like'>
-              <span class='in'>♥</span><span class='out'>Like</span>
-          </a>
           <%unless is_current_user(@product.user)%>
           	<a id='want_actionable' 
                 href='javascript:void(0)' 
                 class='button want'>
-                <span class='in'>✓ </span><span class='out'>Want</span>
+                <span class='in'>✓ </span><span class='out'>want</span>
            	</a>
             <a id='own_actionable'  
                 href='javascript:void(0)' 
                 class='button own'>
-               	<span class='in'>✓ </span><span class='out'>Own</span>
+               	<span class='in'>✓ </span><span class='out'>own</span>
             </a>
           <%end%>
         </div>
@@ -142,7 +136,7 @@
 	      <div id="add_comment">
 		      
 		        <%=image_tag self.current_user.photo_url,
-		            :class => "comment_photo_self slim_shadow_light",
+		            :class => "comment_photo_self",
 		            :alt => ""%>
 		
 		        <%=text_area_tag "comment_data","Add a comment",

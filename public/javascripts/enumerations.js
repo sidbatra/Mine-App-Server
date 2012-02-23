@@ -4,10 +4,7 @@
 //
 Denwen.UserShowHash = {
   Owns        : 'owns',
-  Likes       : 'likes',
   Wants       : 'wants',
-  Following   : 'following',
-  FollowedBy  : 'followed_by',
   Collections : 'looks'
 }
 
@@ -17,4 +14,13 @@ Denwen.Callback = {
   ProductsLoaded        : 'productsLoaded',
   UsersListLoaded       : 'usersListLoaded',
   CollectionsListLoaded : 'collectionsListLoaded'
+}
+
+// Callbacks for the uploader partial
+//
+Denwen.Callbacks.Uploader = {
+  FileSelected        : 'fileSelected',
+  FileUploadError     : 'fileUploadError',
+  FileUploadDone      : 'fileUploadDone',
+  FileUploadProgress  : 'fileUploadProgress'
 }

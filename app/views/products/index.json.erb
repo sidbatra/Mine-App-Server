@@ -1,13 +1,13 @@
 <%-cache @key do-%>
-  <%-if @filter == :user || @filter == :liked || @filter == :wanted-%>
+  <%-if @filter == :user || @filter == :wanted-%>
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
                         :user_id,:category_id],
         :methods  => [:giant_url],
         :include  => {
           :store  => {
-            :only     => [:id,:name,:handle],
-            :methods  => [:is_top]},
+            :only     => [:id,:name,:handle,:is_processed],
+            :methods  => [:is_top,:thumbnail_url]},
           :user => {
             :only => [:id,:handle]}})-%>
   <%-elsif @filter  == :store-%>
@@ -19,7 +19,7 @@
           :user => {
             :only => [:id,:first_name,:last_name,:handle],
             :methods  => [:photo_url]}})-%>
-  <%-elsif @filter == :top-%>
+  <%-elsif @filter == :top || @filter == :used-%>
     <%=@products.to_json(
         :only     => [:id,:title,:handle],
         :include  => {

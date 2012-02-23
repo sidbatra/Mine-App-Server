@@ -11,15 +11,12 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.sourceID   = this.options.sourceID;
     this.ownBox     = null;
 
-    this.likes      = false;
     this.owns       = false;
     this.wants      = false;
 
-    this.likeEl     = '#like_product_' + this.model.get('id');
     this.ownEl      = '#own_product_' + this.model.get('id');
     this.wantEl     = '#want_product_' + this.model.get('id');
 
-    $(this.likeEl).click(function(){self.likeClicked();});
     $(this.ownEl).click(function(){self.ownClicked();});
     $(this.wantEl).click(function(){self.wantClicked();});
 
@@ -40,26 +37,6 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
       name        : name,
       source_id   : this.model.get('id'),
       source_type : 'product'});
-  },
-
-  // Fired when the like button is clicked
-  //
-  likeClicked: function() {
-    if(this.likes)
-      return;
-    
-    $(this.likeEl).removeClass('hover_shadow_light');
-    $(this.likeEl).addClass('pushed');
-
-    this.createAction('like');
-    this.likes = true;
-
-    analytics.likeCreated(
-                this.source,
-                this.sourceID,
-                this.model.get('id'),
-                'product',
-                this.model.get('user_id'));
   },
 
   // Fired when the own button is clicked

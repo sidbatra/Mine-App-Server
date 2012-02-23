@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
 migration_count=`ls db/migrate | wc -l`
+brant_migration_count=`ls pkg/migrate | wc -l`
 
 git pull --rebase
 
-new_migration_count=`ls db/migrate | wc -l`
+new_migration_count=`ls db/migrate | wc -l` 
+new_brant_migration_count=`ls pkg/migrate | wc -l`
+
+RAILS_ENV=development sudo rake gems:install > /dev/null &
+
+if [ $brant_migration_count -ne $new_brant_migration_count ] ; then
+  RAILS_ENV=development rake brant:migrate
+fi
 
 if [ $migration_count -ne $new_migration_count ] ; then
   RAILS_ENV=development rake db:migrate

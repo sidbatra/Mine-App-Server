@@ -12,6 +12,8 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.source               = this.options.source;
+
     this.contactsEl           = '#contacts';
     this.queryEl              = '#search_box';
     this.multiInviteEl        = '#multi_invite_box';
@@ -74,7 +76,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //
   render: function(contacts) {
     $(this.contactsEl).html(
-      Denwen.JST['users/contacts']({contacts : contacts}));
+      Denwen.JST['contacts/contacts']({contacts : contacts}));
 
     this.fbInviteBox.hookUp();
   },
@@ -144,7 +146,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.inviteView();
+    analytics.inviteView(this.source);
 
     if(helpers.isOnboarding)
       analytics.inviteViewOnboarding();

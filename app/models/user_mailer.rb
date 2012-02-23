@@ -177,6 +177,17 @@ class UserMailer < ActionMailer::Base
     subject       @user.first_name + ", your Closet is feeling lonely :o("
   end
 
+  # Safety check email whenever a user is deleted
+  #
+  def user_deleted(user)
+    @user = user
+    generate_attributes(0,0,@user,EmailPurpose::Admin)
+
+    recipients    User.find_all_by_is_admin(true).first.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", is deleted from OnCloset"
+  end
+
   # Extend the method_missing method to enable email
   # delivery only in production environment
   #

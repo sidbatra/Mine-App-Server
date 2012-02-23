@@ -31,7 +31,7 @@ Denwen.Partials.Users.Stores = Backbone.View.extend({
   // Render the top stores
   //
   render: function() {
-    if(this.stores.isEmpty()) {
+    if(this.stores.isEmpty() && !helpers.isCurrentUser(this.user.get('id'))) {
       $(this.el).hide();
       return;
     }

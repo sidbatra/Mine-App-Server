@@ -21,12 +21,25 @@ Denwen.Helpers = Backbone.Model.extend({
                 omission;
   },
 
-  // Based on the rails helper image_path. The name of the
-  // image is converted to its path in the image folder
-  // taking into account the current assetHost
+  // Inspired from rails helpers this helper converts relative
+  // paths of assets to full qualified paths using the available
+  // assetHost. This defaults to local folders during development
+  // and CDN paths in production
+  //
+  assetPath: function(folder,assetName) {
+    return this.assetHost + '/' + folder + '/' + assetName;
+  },
+
+  // JS helper inspired from rails image_path
   //
   imagePath: function(imgName) {
-    return this.assetHost + '/images/' + imgName;
+    return this.assetPath('images',imgName);
+  },
+
+  // SWF version of rails image_path
+  //
+  swfPath: function(swfName) {
+    return this.assetPath('swfs',swfName);
   },
 
   // Tests if a user is currently logged in
@@ -65,6 +78,24 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   blocker: function() {
     return "<div id='blocker'></div>";
+  },
+
+  // Generate path for creating a product in a category
+  //
+  newProductPath: function(category,src) {
+    return '/products/new?category=' + category + '&src=' + src;
+  },
+
+  // Generate path for inviting users
+  //
+  newInvitePath: function(src) {
+    return '/invites/new?src=' + src;
+  },
+
+  // Generate path for creating new shoppings
+  //
+  newShoppingsPath: function(src) {
+    return 'shoppings/new?src=' + src;
   }
 
 });

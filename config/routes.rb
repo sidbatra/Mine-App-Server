@@ -64,7 +64,7 @@ ActionController::Routing::Routes.draw do |map|
               :filter       => :popular
 
   # Exception manager
-  map.connect 'admin/logged_exceptions/:action/:id', 
+  map.logged_exceptions 'admin/logged_exceptions/:action/:id', 
               :controller => 'logged_exceptions'
 
   map.resources :users,
@@ -91,6 +91,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :invites,
                 :only => [:create,:new]
 
+  map.resources :shoppings,
+                :only => [:create,:new]
+
   map.resources :contacts,
                 :only => [:index]
 
@@ -101,16 +104,28 @@ ActionController::Routing::Routes.draw do |map|
                 :only       => [:show,:create],
                 :controller => :welcome
 
+  map.resources :settings,
+                :only => [:index,:update]
+
   # Admin routes
   map.resources :admin_users, 
                 :as         => 'admin/users', 
                 :controller => 'admin/users',
-                :only       => [:index,:show]
+                :only       => [:index,:show,:destroy]
   
   map.resources :admin_stores, 
                 :as         => 'admin/stores', 
                 :controller => 'admin/stores',
-                :only       => [:index,:update,:show]
+                :only       => [:index,:edit,:update]
+
+  map.resources :admin_collections, 
+                :as         => 'admin/collections', 
+                :controller => 'admin/collections',
+                :only       => [:index]
+
+  map.admin '/admin',
+                :controller => 'admin/help',
+                :action     => :show
 
   map.canvas    '/canvas',
                 :controller => :canvas,

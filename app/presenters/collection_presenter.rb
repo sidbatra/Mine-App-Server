@@ -63,15 +63,22 @@ class CollectionPresenter < BasePresenter
   # Link to go get back to the source url
   #
   def breadcrumb(title,path)
-    h.link_to "<span class='unicode'>←</span> " + title,
+    h.link_to title,
               path,
-              :class => '' 
+              :class => 'nav' 
   end
 
   # Title of the page
   #
   def page_title(user_name)
-    "A set of items owned by " + user_name
+    collection.name.present? ? collection.name : user_name + "'s set"
+  end
+
+  # Thumbnail url for the collection
+  #
+  def thumbnail_url
+    collection.is_processed ? collection.image_url : 
+                              collection.products.first.thumbnail_url
   end
 
 end

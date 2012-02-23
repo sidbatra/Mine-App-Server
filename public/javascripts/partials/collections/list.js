@@ -34,6 +34,7 @@ Denwen.Partials.Collections.List = Backbone.View.extend({
   // Render user's collections
   //
   render: function() {
+  
     var self = this;
 
     $(this.el).html(

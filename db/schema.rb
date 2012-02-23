@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207201426) do
+ActiveRecord::Schema.define(:version => 20120220215719) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20120207201426) do
     t.integer  "comments_count", :default => 0
     t.integer  "actions_count",  :default => 0
     t.string   "name",           :default => ""
+    t.string   "image_path"
+    t.boolean  "is_processed",   :default => false
   end
 
   add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
@@ -188,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20120207201426) do
   add_index "products", ["created_at"], :name => "index_products_on_created_at"
   add_index "products", ["handle"], :name => "index_products_on_handle"
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
+  add_index "products", ["source_product_id"], :name => "index_products_on_source_product_id"
   add_index "products", ["store_id"], :name => "index_products_on_store_id"
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
@@ -201,6 +204,15 @@ ActiveRecord::Schema.define(:version => 20120207201426) do
 
   add_index "searches", ["source"], :name => "index_searches_on_source"
   add_index "searches", ["user_id"], :name => "index_searches_on_user_id"
+
+  create_table "settings", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "post_to_timeline", :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
 
   create_table "shoppings", :force => true do |t|
     t.integer  "user_id"
@@ -239,6 +251,10 @@ ActiveRecord::Schema.define(:version => 20120207201426) do
     t.string   "handle"
     t.string   "image_path"
     t.boolean  "is_processed",   :default => false
+    t.string   "domain"
+    t.string   "byline"
+    t.text     "description"
+    t.string   "favicon_path"
   end
 
   add_index "stores", ["handle"], :name => "index_stores_on_handle", :unique => true
@@ -246,6 +262,15 @@ ActiveRecord::Schema.define(:version => 20120207201426) do
   add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
   add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
+
+  create_table "ticker_actions", :force => true do |t|
+    t.string   "og_action_id"
+    t.string   "og_action_type"
+    t.integer  "ticker_actionable_id"
+    t.string   "ticker_actionable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

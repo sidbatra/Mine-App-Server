@@ -1,5 +1,15 @@
 
 <div id="container">
+  <h1><%=user_full_name(@user)%><h1>
+  <h3><%=@user.byline%></h3>
+  <h3><%=link_to 'Link to Closet',user_path(@user.handle)%><h3>
+  <h3><%=@user.products_count%> Products</h3>
+  <h3><%=@user.collections_count%> Collections</h3>
+  <h3><%=link_to "Think before you click",
+            {:controller => 'admin/users',:action => 'destroy',:id => @user.id},
+            :method => :delete,
+            :confirm  => "There is no undo on this, sure?"%></h3>
+  <br><br>
   <table>
     <tr>
         <td width="400"><i>QUERY</i></td>
@@ -10,7 +20,7 @@
       <tr>
         <%if c.class == Product%>
           <td></td>
-          <td><u><%= link_to h(c.title), product_path(c.user.handle,c.handle)%></u></td>
+          <td><u><%= link_to h(c.title), product_path(@user.handle,c.handle)%></u></td>
         <%else%>
           <td><%=c.query%></td>
         <%end%>

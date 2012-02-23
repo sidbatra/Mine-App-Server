@@ -6,7 +6,7 @@
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @store_presenter.name,
-              :type         => 'link',
+              :type         => OGObject::Store,
               :description  => @store_presenter.usage_description,
               :url          => @store_presenter.closet_url('fb'),
               :image        => @store.large_url}%>
@@ -20,7 +20,7 @@
             :target => @store_presenter.closet_path('footer')} unless logged_in?%>
 
 
-<div id="container" class="wide">
+<div id="container">
 
 	<!-- sidebar: left -->
 	<div class='sidebar'>
@@ -31,11 +31,11 @@
       <%=@store_presenter.name%>
     </div>
     
-    <div id="products_tab" class="tab triangle static">
-    	<a href='#products/all'>Latest Buys</a>
+    <div id="products_tab" class="tab triangle current on">
+    	<a href="#products/all">Latest buys</a>
     </div>
   
-    <div id="top_shoppers" class="large_top_margin">
+    <div id="top_shoppers">
     </div> <!-- top shoppers at this store -->
     
     <div id="top_products">

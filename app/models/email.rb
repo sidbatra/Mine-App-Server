@@ -11,11 +11,9 @@ class Email < ActiveRecord::Base
   validates_presence_of   :recipient_id
   validates_presence_of   :sender_id
   validates_presence_of   :emailable_id
-  validates_presence_of   :emailable_type
   validates_inclusion_of  :emailable_type, :in => %w(User Store Following Comment Action)
   validates_presence_of   :message_id
   validates_presence_of   :request_id
-  validates_presence_of   :purpose
   validates_inclusion_of  :purpose, :in => EmailPurpose.values
 
   #----------------------------------------------------------------------

@@ -8,10 +8,12 @@
     <%=yield :head%>
   </head>
 
-  <body style='overflow:hidden' class='home7'>
+  <body <%=yield :body_attribute-%>>
     <%=yield%>
     
     <%=render :partial => "misc/analytics"%>
+
+    <%=include_javascripts :home-%>
 
     <%=yield :javascript%>
   </body>

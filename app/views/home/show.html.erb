@@ -2,33 +2,18 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => "#{CONFIG[:name]} - Share your online closet!",
+              :title        => "Join me on #{CONFIG[:name]}",
               :type         => 'website',
-              :description  => "Create your own Online Closet! Share the "\
-                                "things you own. Compare with friends. "\
-                                "Express your style!",
+              :description  => "Create a beautiful online closet of everything you own."\
+                               "It's free, and even more fun with friends.",
               :url          => root_url,
-              :image        => image_path('tiles_small_50.jpg')}%>
+              :image        => image_path('On_fb.jpg')}%>
 <%end%>
 
 
-<%content_for :body_attribute do%>
-  <%if @home ==  'girl'%>
-    <%="style='overflow:hidden' class='home1'"%>
-  <%elsif @home == 'tri'%>
-    <%="style='overflow:hidden' class='home2'"%>
-  <%elsif @home == 'art'%>
-    <%="style='overflow:hidden' class='home3'"%>
-  <%elsif @home == 'zendesk'%>
-    <%="style='overflow:hidden' class='home4'"%>
-  <%elsif @home == 'gojee'%>
-    <%="style='overflow:hidden' class='home5'"%>
-  <%elsif @home == 'gojee1'%>
-    <%="style='overflow:hidden' class='home6'"%>
-  <%elsif @home == 'batch'%>
-    <%="style='overflow:hidden' class='home7'"%>
-  <%end%>
-<%end%>
+<%-content_for :body_attribute do-%>
+	<%="class='#{@home}'"-%>
+<%-end-%>
 
 <%=render @home%>
 
@@ -37,6 +22,7 @@
 
   <script type="text/javascript">
      mpq.register_once({'landed_on' : '<%=@origin%>'});
+     mpq.register_once({'Campaign' : '<%=@campaign%>'});
      mpq.track('landed on homepage',{
       'source'  : '<%=@source%>',
       'origin'  : '<%=@origin%>'});

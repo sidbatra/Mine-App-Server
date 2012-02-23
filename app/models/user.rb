@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :achievements, :dependent => :destroy
   has_many :shoppings,    :dependent => :destroy
   has_many :stores,       :through   => :shoppings
+  has_one  :setting,      :dependent => :destroy 
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings,
@@ -67,12 +68,12 @@ class User < ActiveRecord::Base
 
   named_scope :with_stores, :include => {:shoppings => :store}
 
-  named_scope :limit, lambda {|limit| {:limit => limit}}
-
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
   attr_accessor :mine_contacts
+  attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
+                    :first_name,:last_name,:access_token,:byline
 
   #----------------------------------------------------------------------
   # Class methods
@@ -91,6 +92,8 @@ class User < ActiveRecord::Base
     user.first_name   = attributes.first_name
     user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
+
+    user.build_setting if user.new_record?
       
     user.save!
     user
@@ -106,17 +109,6 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
-
-  # Edit attributes of the model
-  #
-  def edit(attributes)
-    
-    if !attributes[:byline].nil?
-      self.byline = attributes[:byline]
-    end
-
-    self.save
-  end
 
   # Return product count for the given category
   #
