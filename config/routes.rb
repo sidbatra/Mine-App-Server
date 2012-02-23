@@ -26,7 +26,16 @@ ActionController::Routing::Routes.draw do |map|
   map.fb_reply  'facebook/reply',
                 :controller => :users,
                 :action     => :create
+  
+  map.privacy   'privacy',
+                :controller => :static,
+                :action     => :show,
+                :filter     => :privacy
 
+  map.terms     'terms',
+                :controller => :static,
+                :action     => :show,
+                :filter     => :terms
 
   # Deprecate in next version
   map.product_d 'products/:id/:name',
