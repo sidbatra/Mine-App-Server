@@ -208,13 +208,13 @@ body.splash {
   display: block;
   background: url('/images/oncloset_logo_34_white.png') 0 17px no-repeat; }
 
-.splash #header .navbar .log_in {
+.splash #header .navbar .log_in_oval {
 	width: 142px;
 	height: 42px;
   display: block;
   background: url('/images/log_in.png') 0 -42px no-repeat; }
  
-.splash #header .navbar .log_in:active {
+.splash #header .navbar .log_in_oval:active {
 	background-position: 0 0; }
 
 .splash #header .navbar .nav {
