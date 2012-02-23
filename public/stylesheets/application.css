@@ -24,6 +24,7 @@ body {
   font-family: 'FuturaStdBook', Arial, sans-serif;
   background-color: black;
   font-size: 16px;
+  color: white;
   margin-bottom: 100px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -66,7 +67,8 @@ body {
 .background {
 	position: fixed;
 	width: 100%;
-	height: 100%; }
+	height: 100%;
+	z-index: -1; }
 
 .background .canvas {
 	position: relative; }
