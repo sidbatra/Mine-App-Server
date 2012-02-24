@@ -154,18 +154,6 @@ class UserMailer < ActionMailer::Base
     subject       @user.first_name + ", come see an amazing update to your online closet!"
   end
 
-  # Message user to keep creating collections
-  #
-  def collect_more(user)
-    @user = user
-
-    generate_attributes(@user.id,0,@user,EmailPurpose::CollectMore)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @user.first_name + ", a Thank You message from OnCloset"
-  end
-
   # Message user to invite more friends
   #
   def invite_more(user)

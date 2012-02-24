@@ -13,7 +13,7 @@ Hi <%=@user.first_name%>, <br /><br />
 <%elsif @comment.commentable_type == 'Collection'%>
   <a href="<%=collection_url(
                 @comment.commentable.user.handle,
-                @comment.commentable.id,
+                @comment.commentable.handle,
                 :src => "email_collection_comment")%>">
   View comment thread</a>
 <%end%>
