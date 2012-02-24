@@ -82,8 +82,8 @@ class UserPresenter < BasePresenter
 
   # Relative path of the user's closet
   #
-  def closet_path(src)
-    h.user_path(user.handle,:src => src)
+  def closet_path(src,anchor=nil)
+    h.user_path(user.handle,:src => src,:anchor => anchor)
   end
 
   # Image representing the closet - image of
