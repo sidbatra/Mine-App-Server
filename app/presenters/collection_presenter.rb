@@ -6,13 +6,13 @@ class CollectionPresenter < BasePresenter
   # Relative path for the collection 
   #
   def path(source)
-    h.collection_path collection.user.handle,collection.id,:src => source
+    h.collection_path collection.user.handle,collection.handle,:src => source
   end
   
   # Absolute path for the collection 
   # 
   def url(source)
-    h.collection_url collection.user.handle,collection.id,:src => source
+    h.collection_url collection.user.handle,collection.handle,:src => source
   end
 
   # Anchor tag for editing the collection 
@@ -22,7 +22,7 @@ class CollectionPresenter < BasePresenter
       h.link_to "Edit",
                 edit_collection_path(
                   collection.user.handle,
-                  collection.id,
+                  collection.handle,
                   :src => 'collection'),
                 :class => 'edit_cccccc_14'
     end
@@ -46,7 +46,7 @@ class CollectionPresenter < BasePresenter
 	    next_collection ? 
         h.link_to(
             '',
-            collection_path(user.handle,next_collection.id,:src => 'next'),
+            collection_path(user.handle,next_collection.handle,:src => 'next'),
             :class => 'next') : ''
   end
 
@@ -56,7 +56,7 @@ class CollectionPresenter < BasePresenter
 	    prev_collection ? 
         h.link_to(
             '',
-            collection_path(user.handle,prev_collection.id,:src => 'previous'),
+            collection_path(user.handle,prev_collection.handle,:src => 'previous'),
             :class => 'previous') : ''
   end
 

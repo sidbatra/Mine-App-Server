@@ -3,7 +3,7 @@
     <%@collections.each do |collection|%>
       <tr>
         <td><%=link_to collection.name.present? ? collection.name : 'No Name',
-                  collection_path(collection.user.handle,collection.id)%></td>
+                  collection_path(collection.user.handle,collection.handle)%></td>
         <td><%=user_full_name(collection.user)%></td>
       </tr>
     <%end%>

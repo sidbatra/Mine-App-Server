@@ -23,7 +23,7 @@
         :src    => 'collection_' + @collection.id.to_s,
         :target => collection_path(
                     @collection.user.handle,
-                    @collection.id,
+                    @collection.handle,
                     :src => 'footer')} unless logged_in?%>
 
 
