@@ -25,6 +25,18 @@ class ApplicationController < ActionController::Base
     @source       = params[:src] ? params[:src].to_s : 'direct'
   end
 
+  # Renew an active session after a certain time period to mark
+  # the user as an active user on the site
+  #
+  def renew_session
+    if logged_in? && (!session[:last_renewed_at] || 
+                    Time.now - session[:last_renewed_at] > 3600)
+      
+      self.current_user.touch
+      session[:last_renewed_at] = Time.now
+    end
+  end
+
   # Test is the format of the current request is json
   #
   def is_json?

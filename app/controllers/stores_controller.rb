@@ -1,6 +1,7 @@
 # Handle requests for the store resource
 #
 class StoresController < ApplicationController
+  before_filter :renew_session, :only => :show
 
   # Display a store
   #
