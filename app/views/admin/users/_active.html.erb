@@ -1,19 +1,17 @@
 <div id="container">
-  <%@users.sort{|a,b| a[1].count <=> b[1].count}.each do |time_period,users|%>
-
+  <%@buckets.each do |bucket|%>
     <b><%=users.count%> <%=time_period.capitalize%> Actives </b> <br> <br>
-    <table>
-      <%users.sort{|a,b| b.products_count <=> a.products_count}.each do |user|%>
-        <tr>
-          <td width="200"><%=link_to user_full_name(user),user_path(user.handle)%></td>
-          <td width="200"><%="joined #{time_ago_in_words(user.created_at)} ago"%></td>
-          <td width="200"><%="#{user.products_count} items"%></td>
-          <td width="200"><%=link_to 'Admin View',admin_user_path(user.handle)%></td>
-        </tr>
-      <%end%>
-    </table>
+      <table>
+        <%users.sort{|a,b| b.products_count <=> a.products_count}.each do |user|%>
+          <tr>
+            <td width="200"><%=link_to user_full_name(user),user_path(user.handle)%></td>
+            <td width="200"><%="joined #{time_ago_in_words(user.created_at)} ago"%></td>
+            <td width="200"><%="#{user.products_count} items"%></td>
+            <td width="200"><%=link_to 'Admin View',admin_user_path(user.handle)%></td>
+          </tr>
+        <%end%>
+      </table>
 
-    <br/><br/><br/>
-
+      <br/><br/><br/>
   <%end%>
 </div>
