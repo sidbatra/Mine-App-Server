@@ -30,9 +30,8 @@ class StorePresenter < BasePresenter
   # the app. 
   #
   def usage_description
-    "#{CONFIG[:name]} shows the latest products from #{name} "\
-    "that people have in their closets! "\
-    "Come check it out!"
+    "Shop at #{name}? Discover what your friends buy there on "\
+    "#{CONFIG[:name]}."
   end
 
   # Unique identifier to be used a source

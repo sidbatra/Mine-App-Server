@@ -11,4 +11,13 @@ class CollectionObserver < ActiveRecord::Observer
       :new_collection,
       collection.id)
   end
+
+  # Reprocess collection after an update
+  #
+  def after_update(collection)
+    ProcessingQueue.push(
+      NotificationManager,
+      :update_collection,
+      collection.id) if collection.reprocess
+  end
 end

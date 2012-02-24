@@ -26,6 +26,7 @@ class Collection < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
+  attr_accessor :reprocess
   attr_accessible :name,:user_id
 
   #----------------------------------------------------------------------
@@ -62,6 +63,8 @@ class Collection < ActiveRecord::Base
     new_product_ids.uniq.each do |product_id|
       collection_parts.build(:product_id => product_id)
     end
+
+    self.reprocess = true
 
     save!
   end

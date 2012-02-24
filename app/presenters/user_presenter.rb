@@ -93,13 +93,28 @@ class UserPresenter < BasePresenter
     products.present? ? products.first.thumbnail_url : ''
   end
 
-  # Description message for the user's use of
+  # Description message for the user's use of 
   # the app. 
   #
   def usage_description
-    user.first_name + " is using #{CONFIG[:name]} to share " +
-    (user.is_male? ? "his" : "her") +
-    " online closet. It's fun, and free!"
+    user.first_name + " is using #{CONFIG[:name]}: " +
+    "discover what your friends are buying and using."
+  end
+
+  # Description message for the user's use of a product
+  # of the app. 
+  #
+  def product_usage_description
+    user.first_name + " added this item on #{CONFIG[:name]}: " +
+    "discover what your friends are buying and using."
+  end
+
+  # Description message for the user's use of a collection 
+  # of the app. 
+  #
+  def collection_usage_description
+    user.first_name + " added this set on #{CONFIG[:name]}: " +
+    "discover what your friends are buying and using."
   end
 
   # Unique identifier to be used a source

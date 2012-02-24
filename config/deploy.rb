@@ -95,6 +95,7 @@ namespace :deploy do
     system "cap #{environment}  workers:restart"
 
     #system "cap #{environment}  search:index"
+    system "cap #{environment}  cache:clear"
 
     system "cap #{environment}  misc:whenever"
 
