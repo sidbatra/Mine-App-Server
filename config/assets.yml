@@ -9,6 +9,7 @@ javascripts:
     - public/javascripts/libs/jquery-autocomplete.js
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
+    - public/javascripts/libs/bootstrap.js
     - public/javascripts/libs/swfupload.js
     - public/javascripts/extensions.js
     - public/javascripts/config.js
@@ -35,5 +36,6 @@ javascripts:
 stylesheets:
   application:
     - public/stylesheets/application.css
+    - public/stylesheets/bootstrap.css
   home:
     - public/stylesheets/home.css
