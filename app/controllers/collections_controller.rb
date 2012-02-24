@@ -2,6 +2,7 @@
 #
 class CollectionsController < ApplicationController
   before_filter :login_required, :except => [:index,:show]
+  before_filter :renew_session, :only => :show
 
   # Display UI for creating a new collection
   #
