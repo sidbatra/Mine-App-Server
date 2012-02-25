@@ -61,6 +61,7 @@ module DW
       Welcome           = 10
       FriendCollection  = 11
       AnotherCollection = 12
+      AnotherProduct    = 13
     end
 
     # Sources for the Following model

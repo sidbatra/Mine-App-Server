@@ -159,6 +159,19 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Alert the user to add new products to their closet 
+  #
+  def create_another_product(user)
+    @user         = user
+    @action       = "Bought something new this week?"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::AnotherProduct)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Safety check email whenever a user is deleted
   #
   def user_deleted(user)

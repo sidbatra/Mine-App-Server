@@ -56,6 +56,9 @@ class Admin::EmailsController < ApplicationController
                         User.first,
                         User.first.collections.last)
 
+    when :create_another_product
+      render :text => UserMailer.preview_create_another_product(
+                        User.last)
 
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.last)
