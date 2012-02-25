@@ -64,6 +64,7 @@ module DW
           begin
             if follower.setting.email_influencer
               UserMailer.deliver_friend_collection(follower,collection)
+              sleep 0.09
             end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
@@ -97,8 +98,10 @@ module DW
       def self.notify_top_shoppers(store,top_shoppers)
         top_shoppers.each do |user|
           begin 
-            UserMailer.deliver_top_shopper(user,store)    
-            sleep 0.09
+            if user.setting.email_update
+              UserMailer.deliver_top_shopper(user,store)    
+              sleep 0.09
+            end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
           end
@@ -113,7 +116,10 @@ module DW
       def self.prompt_users_to_create_another_collection(users)
         users.each do |user|
           begin
-            #UserMailer.create_another_collection(user)
+            if user.setting.email_update
+              #UserMailer.create_another_collection(user)
+              #sleep 0.09
+            end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
           end
