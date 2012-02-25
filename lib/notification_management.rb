@@ -14,15 +14,8 @@ module DW
       # Email all the users on the comment thread
       #
       def self.new_comment(comment_id)
-        comment   = Comment.with_user.find(comment_id)
-        user_ids  = Comment.user_ids_in_thread_with(comment)
-        users     = User.find_all_by_id(user_ids)
-
-        users.each do |user|
-          UserMailer.deliver_new_comment(
-                      comment,
-                      user) unless user.id == comment.user.id
-        end
+        comment = Comment.with_user.find(comment_id)
+        Mailman.new_comment(comment)
       end
       
       # Host the new product image
@@ -87,8 +80,7 @@ module DW
       # 
       def self.new_following(following_id)
         following = Following.find(following_id)
-
-        UserMailer.deliver_new_follower(following) 
+        Mailman.new_following(following)
       end
 
       # Process a new collection and manager distribution
