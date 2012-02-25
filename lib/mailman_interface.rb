@@ -11,14 +11,14 @@ module DW
 
       # Email the owner about any action on a collection or product
       #
-      def self.new_action(action)
+      def self.noitify_owner_about_an_action(action)
         UserMailer.deliver_new_action(
                     action) unless action.user_id == action.actionable.user_id
       end
 
       # Email all the users on the comment thread
       #
-      def self.new_comment(comment)
+      def self.email_users_in_comment_thread(comment)
         user_ids  = Comment.user_ids_in_thread_with(comment)
         users     = User.find_all_by_id(user_ids)
 
@@ -31,7 +31,7 @@ module DW
 
       # Email user being followed
       #
-      def self.new_following(following)
+      def self.email_leader_about_follower(following)
         UserMailer.deliver_new_follower(following) 
       end
 
@@ -43,7 +43,7 @@ module DW
 
       # Email admins when a user is deleted
       #
-      def self.user_deleted(user)
+      def self.email_admin_about_deleted_user(user)
         UserMailer.deliver_user_deleted(user)
       end
     end #mailman

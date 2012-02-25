@@ -36,7 +36,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     sleep 10
-    Mailman.user_deleted(@user)
+    Mailman.email_admin_about_deleted_user(@user)
 
     redirect_to admin_path
   end
