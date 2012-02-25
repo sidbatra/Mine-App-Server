@@ -26,7 +26,7 @@ module DW
       #
       def self.email_users_in_comment_thread(comment)
         user_ids  = Comment.user_ids_in_thread_with(comment)
-        users     = User.find_all_by_id(user_ids)
+        users     = User.with_setting.find_all_by_id(user_ids)
 
         users.each do |user|
           begin
@@ -60,7 +60,7 @@ module DW
       # Email followers of a user about a freshly added collection
       #
       def self.email_followers_about_collection(collection)
-        collection.user.followers.each do |follower|
+        collection.user.followers.with_setting.each do |follower|
           begin
             if follower.setting.email_influencer
               UserMailer.deliver_friend_collection(follower,collection)
@@ -117,7 +117,9 @@ module DW
         users.each do |user|
           begin
             if user.setting.email_update
-              UserMailer.create_another_collection(user,user.collections.last)
+              UserMailer.deliver_create_another_collection(
+                          user,
+                          user.collections.last)
               sleep 0.09
             end
           rescue => ex
@@ -132,13 +134,13 @@ module DW
       # Email users with no items to try and win them back
       #
       def self.pester_users_with_no_items(users)
-        pester_users(users,:create_an_item)
+        pester_users(users,:deliver_create_an_item)
       end
 
       # Email users with no friends to try and make them invite
       #
       def self.pester_users_with_no_friends(users)
-        pester_users(users,:add_a_friend)
+        pester_users(users,:deliver_add_a_friend)
       end
 
 
