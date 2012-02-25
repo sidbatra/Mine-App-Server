@@ -48,7 +48,10 @@ module DW
       # Email user being followed
       #
       def self.email_leader_about_follower(following)
-        UserMailer.deliver_new_follower(following) 
+        
+        if following.user.setting.email_influencer
+          UserMailer.deliver_new_follower(following) 
+        end
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
