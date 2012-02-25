@@ -12,8 +12,12 @@ module DW
       # Email the owner about any action on a collection or product
       #
       def self.notify_owner_about_an_action(action)
-        UserMailer.deliver_new_action(
-                    action) unless action.user_id == action.actionable.user_id
+        
+        if action.actionable.user.setting.email_interaction &&
+                action.user_id != action.actionable.user_id
+
+          UserMailer.deliver_new_action(action) 
+        end
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
