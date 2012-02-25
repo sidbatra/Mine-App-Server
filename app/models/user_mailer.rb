@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   #
   def new_user(user)
     @user         = user
-    @action       = "Welcome"
+    @action       = "Welcome to #{CONFIG[:name]}!"
 
     generate_attributes(@user.id,0,@user,EmailPurpose::Welcome)
 
