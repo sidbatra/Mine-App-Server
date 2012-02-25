@@ -116,7 +116,7 @@ end
 namespace :db do 
 
   desc 'Setup database.yml'
-  task :config, :role => [:web,:worker] do
+  task :config, :role => [:web,:worker,:cron] do
     run "ln -s "\
         "#{current_path}/config/database/#{environment}.yml "\
         "#{current_path}/config/database.yml"
@@ -225,7 +225,7 @@ end
 namespace :logrotate do
   
   desc 'Install logrotate config'
-  task :install, :roles => [:web,:worker] do
+  task :install, :roles => [:web,:worker,:cron] do
     run "sudo cp #{current_path}/config/logrotate/rails /etc/logrotate.d"
     run "sudo chown root:root /etc/logrotate.d/rails"
     run "sudo chmod 644 /etc/logrotate.d/rails"
@@ -270,7 +270,7 @@ end
 namespace :gems do
 
   desc 'Install required gems on the web and worker servers'
-  task :install, :roles => [:web,:worker] do
+  task :install, :roles => [:web,:worker,:cron] do
     run "cd #{current_path} && sudo rake gems:install RAILS_ENV=#{environment}" 
   end
 
@@ -302,7 +302,7 @@ namespace :permissions do
   end
   
   desc 'Setup proper permissions for new files'
-  task :setup, :roles => [:web,:worker] do
+  task :setup, :roles => [:web,:worker,:cron] do
     run "sudo touch #{current_path}/log/#{environment}.log"
     run "sudo chown -R manager:manager #{current_path}/log/#{environment}.log"
   end
