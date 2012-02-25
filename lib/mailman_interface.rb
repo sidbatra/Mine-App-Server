@@ -30,9 +30,12 @@ module DW
 
         users.each do |user|
           begin
-            UserMailer.deliver_new_comment(
-                        comment,
-                        user) unless user.id == comment.user.id
+            
+            if user.setting.email_interaction && 
+                user.id != comment.user.id
+
+              UserMailer.deliver_new_comment(comment,user) 
+            end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
           end
