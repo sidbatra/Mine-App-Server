@@ -101,7 +101,7 @@ class UserMailer < ActionMailer::Base
   def new_action(action)
     action_map    = {'like' => 'likes',
                      'own'  => 'also owns',
-                     'want' => 'just added'}
+                     'want' => 'added'}
 
     @actionable   = action.actionable
     @user         = @actionable.user 
@@ -114,11 +114,13 @@ class UserMailer < ActionMailer::Base
     if(@actionable.class.name == 'Product')
       @action     +=  @actionable.title
     elsif(@actionable.class.name == 'Collection')
-      @action     +=  'set'
+      @action     +=  @actionable.name.present? ? 
+                        "\"#{@actionable.name.strip}\" " : ""
+      @action     += "set"
     end
     
     if @action_name == 'want'
-    	@action			+= " to #{@actor.is_male? ? 'his' : 'her'} wishlist!"
+    	@action			+= " to #{@actor.is_male? ? 'his' : 'her'} wants!"
     else
     	@action			+= "!"
     end
