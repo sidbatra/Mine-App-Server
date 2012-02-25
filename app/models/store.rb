@@ -70,6 +70,21 @@ class Store < ActiveRecord::Base
     find_by_name(name.squeeze(' ').strip) 
   end
 
+  # Update top shoppers across popular stores
+  #
+  def self.update_top_shoppers
+    Store.processed.popular.each do |store|
+      begin
+        top_shoppers = store.update_top_shoppers
+
+        yield store,top_shoppers if block_given?
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)    
+      end
+    end 
+  end
+
 
   #----------------------------------------------------------------------
   # Instance methods

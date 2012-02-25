@@ -80,27 +80,17 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Update top shoppers at each store and email
-      # them about their achievement
+      # Notify top shoppers at a store about their achievement
       #
-      def self.update_and_notify_top_shoppers
-        Store.processed.popular.each do |store|
-          begin
-            top_shoppers = store.update_top_shoppers
-
-            top_shoppers.each do |user|
-              begin 
-                UserMailer.deliver_top_shopper(user,store)    
-                sleep 0.09
-              rescue => ex
-                LoggedException.add(__FILE__,__method__,ex)    
-              end
-            end
-
+      def self.notify_top_shoppers(store,top_shoppers)
+        top_shoppers.each do |user|
+          begin 
+            UserMailer.deliver_top_shopper(user,store)    
+            sleep 0.09
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
           end
-        end #stores
+        end
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
