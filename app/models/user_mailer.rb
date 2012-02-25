@@ -79,6 +79,22 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Alert user whenever a friend creates a collection 
+  #
+  def friend_collection(user,collection)
+    @owner        = collection.user
+    @user         = user
+    @collection   = collection 
+    @action       = "#{@owner.first_name} just added a collection"
+
+    generate_attributes(@user.id,@collection.user_id,@collection,EmailPurpose::FriendCollection)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+
   # Alert the owner whenever an action is taken 
   # on his/her product or collection
   #
