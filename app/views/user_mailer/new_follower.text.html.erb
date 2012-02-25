@@ -1,7 +1,7 @@
-Hi <%=@user.first_name%>, <br /><br />
+Hi <%=@user.first_name%>,<br /><br />
 
-<%=@action%> <br /><br />
+<%=@action%><br /><br />
 
 <a href="<%=user_url(@follower.handle,:src => 'email_follower')%>">
   View <%=@follower.is_male? ? 'his' : 'her'%> OnCloset</a>
-to see what you think!
+to see what you think.

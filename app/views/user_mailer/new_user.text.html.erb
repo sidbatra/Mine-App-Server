@@ -1,7 +1,8 @@
-Hi <%=@user.first_name%>,<br />
-Thanks for joining OnCloset. What you buy says a lot about you.<br /><br />
+Hi <%=@user.first_name%>,<br /><br />
 
-Now that you’re in, you can: <br /><br />
+Welcome to OnCloset. What you buy says a lot about you.<br />
+
+Now that you’re in, you can:<br /><br />
 Add  
 <%Category.all.each_with_index do |c,i|%>
   <a href="<%=new_product_url(
