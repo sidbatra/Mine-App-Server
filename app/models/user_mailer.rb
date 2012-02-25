@@ -171,7 +171,7 @@ class UserMailer < ActionMailer::Base
 
     elsif method.to_s.match(/^preview_(.*)/)
       mail = self.send("create_#{$1}".to_sym,*args) 
-      mail.body
+      "<b>" + mail.subject + "</b>" + "<br><br>" + mail.body
     else
       super
     end
