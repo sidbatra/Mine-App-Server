@@ -14,6 +14,8 @@ module DW
       def self.notify_owner_about_an_action(action)
         UserMailer.deliver_new_action(
                     action) unless action.user_id == action.actionable.user_id
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Email all the users on the comment thread
@@ -23,36 +25,59 @@ module DW
         users     = User.find_all_by_id(user_ids)
 
         users.each do |user|
-          UserMailer.deliver_new_comment(
-                      comment,
-                      user) unless user.id == comment.user.id
+          begin
+            UserMailer.deliver_new_comment(
+                        comment,
+                        user) unless user.id == comment.user.id
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
         end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Email user being followed
       #
       def self.email_leader_about_follower(following)
         UserMailer.deliver_new_follower(following) 
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Email followers of a user about a freshly added collection
       #
       def self.email_followers_about_collection(collection)
         collection.user.followers.each do |follower|
-          UserMailer.deliver_friend_collection(follower,collection)
+          begin
+            UserMailer.deliver_friend_collection(follower,collection)
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
         end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Welcome email for the new user
       #
       def self.welcome_new_user(user)
         UserMailer.deliver_new_user(user)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Email admins when a user is deleted
       #
       def self.email_admin_about_deleted_user(user)
         UserMailer.deliver_user_deleted(user)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
     end #mailman
 
