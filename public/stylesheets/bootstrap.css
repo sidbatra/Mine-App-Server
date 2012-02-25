@@ -97,6 +97,8 @@ textarea {
 
 body {
   margin: 0;
+  padding-top: 60px;
+  padding-bottom: 40px;
   font-family: 'FuturaStdBook', Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -299,7 +301,8 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-weight: bold;
+	font-family: 'FuturaStdBook', Helvetica, Arial, sans-serif;
+	font-weight: normal;
   color: #333333;
   text-rendering: optimizelegibility; }
 
