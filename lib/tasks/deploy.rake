@@ -2,7 +2,7 @@
 namespace :deploy do
 
   ENVIRONMENTS  = ['production','staging']
-  TYPES         = {:web => 'web',:proc => 'proc'}
+  TYPES         = {:web => 'web',:proc => 'proc',:cron => 'cron'}
 
 
   module Deploy
@@ -16,7 +16,7 @@ namespace :deploy do
       system("cap #{@environment} deploy:install")
 
       Instance.update_all(
-        @web_instances + @proc_instances,
+        @web_instances + @proc_instances + @cron_instances,
         :tags => {:installed => '1'})
     end
 
@@ -59,11 +59,11 @@ namespace :deploy do
     # Populate instances and populate environment variables
     #
     def self.load_instances
-      @web_instances = Instance.all(
-                        :tags => {
-                          :environment => @environment,
-                          :type => TYPES[:web]},
-                        :state => :running)
+      @web_instances  = Instance.all(
+                          :tags => {
+                            :environment => @environment,
+                            :type => TYPES[:web]},
+                          :state => :running)
 
       @proc_instances = Instance.all(
                           :tags => {
@@ -71,8 +71,15 @@ namespace :deploy do
                             :type => TYPES[:proc]},
                           :state => :running)
 
-      ENV['web_servers'] = @web_instances.map(&:dnsName).join(',')
+      @cron_instances = Instance.all(
+                          :tags => {
+                            :environment => @environment,
+                            :type => TYPES[:cron]},
+                          :state => :running)
+
+      ENV['web_servers']  = @web_instances.map(&:dnsName).join(',')
       ENV['proc_servers'] = @proc_instances.map(&:dnsName).join(',')
+      ENV['cron_servers'] = @cron_instances.map(&:dnsName).join(',')
     end
   end #deploy module
 end #deploy namespace
