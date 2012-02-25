@@ -167,6 +167,12 @@ module DW
         pester_users(users,:deliver_add_a_store)
       end
 
+      # Email users with no collection to try and make them add collections
+      #
+      def self.pester_users_with_no_collections(users)
+        pester_users(users,:deliver_add_a_collection)
+      end
+
 
       protected
 

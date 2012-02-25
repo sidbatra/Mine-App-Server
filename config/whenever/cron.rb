@@ -23,6 +23,10 @@ every 3.days, :at => '6:30pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_stores)"
 end
 
+every 3.days, :at => '6:45pm' do
+  runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_collections)"
+end
+
 
 every 1.week, :at => '2:00am' do
   runner "ProcessingQueue.push(CronWorker,:update_top_shoppers)"
