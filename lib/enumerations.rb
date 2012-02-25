@@ -59,6 +59,7 @@ module DW
       NewAction         = 2
       TopShopper        = 4
       Welcome           = 5
+      FriendCollection  = 6
     end
 
     # Sources for the Following model
