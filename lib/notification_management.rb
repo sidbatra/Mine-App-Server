@@ -1,6 +1,6 @@
 module DW
 
-  # Set of classes and methods for handling a generic noitifcation framework
+  # Set of classes and methods for handling a generic notifcation framework
   #
   module NotificationManagement
     
@@ -73,7 +73,7 @@ module DW
       #
       def self.new_action(action_id)
         action  = Action.find(action_id)
-        Mailman.noitify_owner_about_an_action(action)
+        Mailman.notify_owner_about_an_action(action)
       end
 
       # Notify Mailman about the new following

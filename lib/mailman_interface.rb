@@ -11,7 +11,7 @@ module DW
 
       # Email the owner about any action on a collection or product
       #
-      def self.noitify_owner_about_an_action(action)
+      def self.notify_owner_about_an_action(action)
         UserMailer.deliver_new_action(
                     action) unless action.user_id == action.actionable.user_id
       end
