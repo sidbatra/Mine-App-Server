@@ -1,7 +1,7 @@
 
 <div id="pic_bg">
 
-	<div id="container narrow">
+	<div id="container">
 
   <%form_for @settings,:url => "/settings/#{@settings.id}",
         :html => {
@@ -15,6 +15,25 @@
           <%=f.label :post_to_timeline,"Post to Facebook Timeline"%>
         </div>
 
+        <div id='' class=''>
+          <%=f.check_box :email_interaction%>
+          <%=f.label :email_interaction,
+                      "Someone owns, wants, likes or comments on one "\
+                      "of my items or sets "%>
+        </div>
+
+        <div id='' class=''>
+          <%=f.check_box :email_influencer%>
+          <%=f.label :email_influencer,
+                      "Someone adds me as an influencer, or if my influencers "\
+                      "add new items and sets"%>
+        </div>
+
+        <div id='' class=''>
+          <%=f.check_box :email_update%>
+          <%=f.label :email_update,
+                      "Updates and reminders about OnCloset features and tips"%>
+        </div>
 
         <%=blocker%>
 
