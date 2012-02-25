@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
+  named_scope :products_count, lambda {|count| {
+                  :conditions => {:products_count => count}}}
   named_scope :collections_count_gt, lambda {|count| {
                   :conditions => {:collections_count_gt => count}}}
   named_scope :stars, 
@@ -71,6 +73,7 @@ class User < ActiveRecord::Base
   named_scope :with_stores, :include => {:shoppings => :store}
   named_scope :with_collections_with_products,  
                 :include => {:collections => :products} 
+  named_scope :with_setting, :include => :setting
 
   #----------------------------------------------------------------------
   # Attributes

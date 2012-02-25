@@ -129,6 +129,24 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Email users with no items to try and win them back
+      #
+      def self.pester_users_with_no_items(users)
+        users.each do |user|
+          begin
+            if user.setting.email_update
+              #UserMailer.create_an_item(user)
+              #sleep 0.09
+            end
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)    
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #mailman
 
   end #mailman interface

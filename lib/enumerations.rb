@@ -77,6 +77,11 @@ module DW
     class HealthReportService < Enumeration
       TopShopperUpdate        = 0
       AnotherCollectionPrompt = 1
+      AnotherItemPrompt       = 2
+      AddItemsPrompt          = 3
+      AddFriendsPrompt        = 4
+      AddStoresPrompt         = 5
+      AddCollectionsPrompt    = 6
     end
 
     # Sources of landing at the users/show route
