@@ -4,6 +4,19 @@
 class UserMailer < ActionMailer::Base
   layout 'email'
 
+  # Welcome email for the user on sign up
+  #
+  def new_user(user)
+    @user         = user
+    @action       = "Welcome"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::Welcome)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Alert user when a new comment is added on a 
   # thread to which the user belongs
   #
@@ -67,7 +80,7 @@ class UserMailer < ActionMailer::Base
   end
 
   # Alert the owner whenever an action is taken 
-  # on his/her product
+  # on his/her product or collection
   #
   def new_action(action)
     action_map    = {'like' => 'likes',
