@@ -74,14 +74,14 @@ module DW
         Mailman.new_action(action)
       end
 
-      # Email the user whenever someone follows him/her
+      # Notify Mailman about the new following
       # 
       def self.new_following(following_id)
         following = Following.find(following_id)
         Mailman.new_following(following)
       end
 
-      # Process a new collection and manager distribution
+      # Process a new collection and manage distribution
       #
       def self.new_collection(collection_id)
         collection = Collection.find(collection_id)

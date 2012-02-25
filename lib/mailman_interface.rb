@@ -34,6 +34,12 @@ module DW
         UserMailer.deliver_new_action(
                     action) unless action.user_id == action.actionable.user_id
       end
+
+      # Email admins when a user is deleted
+      #
+      def self.user_deleted(user)
+        UserMailer.deliver_user_deleted(user)
+      end
     end #mailman
 
   end #mailman module
