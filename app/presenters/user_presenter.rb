@@ -101,22 +101,6 @@ class UserPresenter < BasePresenter
     "discover what your friends are buying and using."
   end
 
-  # Description message for the user's use of a product
-  # of the app. 
-  #
-  def product_usage_description
-    user.first_name + " added this item on #{CONFIG[:name]}: " +
-    "discover what your friends are buying and using."
-  end
-
-  # Description message for the user's use of a collection 
-  # of the app. 
-  #
-  def collection_usage_description
-    user.first_name + " added this set on #{CONFIG[:name]}: " +
-    "discover what your friends are buying and using."
-  end
-
   # Unique identifier to be used a source
   #
   def source_id

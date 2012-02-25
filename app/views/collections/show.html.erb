@@ -9,8 +9,8 @@
             :locals   => {
               :title        => @collection_presenter.page_title(
                                  @user_presenter.first_name),
-              :type         => OGObject::Set, 
-              :description  => @user_presenter.collection_usage_description,
+              :type         => OGObject::Set,
+              :description  => @collection_presenter.description,
               :url          => @collection_presenter.url('fb'),
               :image        => @collection_presenter.thumbnail_url,
               :products     => @collection.products}%>

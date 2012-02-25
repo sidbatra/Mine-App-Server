@@ -74,6 +74,35 @@ class CollectionPresenter < BasePresenter
     collection.name.present? ? collection.name : user_name + "'s set"
   end
 
+  # Description message for the collection used in
+  # og description tag
+  #
+  def description
+    description   = h.pluralize(collection.products.length, "item", "items")
+
+    stores        = collection.products.map(&:store).uniq
+    names         = stores.compact.map{|s| s.name if s.is_approved}.compact
+
+    other_stores  = stores.include?(nil) || (stores.length != names.length)  
+      
+    if names.present? 
+      description += " from " 
+
+      if names.length == 1
+        description += names[0]
+      else
+        description += names[0..-2].join(", ") + 
+                       (other_stores ? ", " : " and ") + 
+                       names[-1] 
+      end
+
+      description += " and others" if other_stores
+    end
+
+    description
+  end
+
+
   # Thumbnail url for the collection
   #
   def thumbnail_url
