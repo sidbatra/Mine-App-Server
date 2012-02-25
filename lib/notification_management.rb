@@ -11,7 +11,7 @@ module DW
     #
     class NotificationManager
 
-      # Email all the users on the comment thread
+      # Notify mailman about new comment
       #
       def self.new_comment(comment_id)
         comment = Comment.with_user.find(comment_id)
@@ -67,13 +67,11 @@ module DW
         user.save!
       end
 
-      # Email the owner about any action taken on his product
+      # Notify Mailman about the new actin
       #
       def self.new_action(action_id)
         action  = Action.find(action_id)
-
-        UserMailer.deliver_new_action(
-                    action) unless action.user_id == action.actionable.user_id
+        Mailman.new_action(action)
       end
 
       # Email the user whenever someone follows him/her
