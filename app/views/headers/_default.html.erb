@@ -32,8 +32,9 @@
 	              <li>
 	                <a href="<%=new_invite_path(:src => 'bar')%>">Invite friends</a>
 	              </li>
-	              <li class="dropdown open">
-              		<a href="<%=new_product_path(:src => 'bar')%>" class="dropdown-toggle" data-toggle="dropdown">
+	              <li class="dropdown">
+	              	<!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
+              		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
               			Add item 
               			<b class="caret"></b>
               		</a>
@@ -70,8 +71,9 @@
 										<%=user_full_name(self.current_user)%>
 									</a>
 	              </li>
-	              <li class="dropdown open">
-              		<a href="<%=new_product_path(:src => 'bar')%>" class="dropdown-toggle" data-toggle="dropdown">
+	              <li class="dropdown">
+	              	<!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
+              		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
               			<b class="caret"></b>
               		</a>
               		<ul class="dropdown-menu">

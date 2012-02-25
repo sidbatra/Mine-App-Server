@@ -30,7 +30,19 @@
 
 			<%=@user_presenter.large_picture('picture')%>
 				
-			<h2><%=@user_presenter.closet_title%></h2>
+			<h3><%=@user_presenter.closet_title%></h3>
+			
+			<ul class="nav nav-list">
+				<li>
+					<a id="owns_tab" href="#">Owns</a>
+				</li>
+				<li>
+					<a id="wants_tab" href="#">Wants</a>
+				</li>
+				<li>
+					<a id="uses_tab" href="#">Uses</a>
+				</li>
+			</ul>
 	
 	    <a href='#owns/all' class='tab triangle major' id='owns_tab'>
 	      <span class="trans">Owns</span>
