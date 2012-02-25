@@ -62,7 +62,9 @@ module DW
       def self.email_followers_about_collection(collection)
         collection.user.followers.each do |follower|
           begin
-            UserMailer.deliver_friend_collection(follower,collection)
+            if follower.setting.email_influencer
+              UserMailer.deliver_friend_collection(follower,collection)
+            end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
           end
