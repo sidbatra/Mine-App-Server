@@ -19,6 +19,8 @@ class Comment < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :with_user, :include => :user
+  named_scope :on_type, lambda {|klass| {:conditions => {
+                                  :commentable_type => klass.capitalize}}}
   named_scope :on, lambda {|klass,id| {:conditions => {
                               :commentable_id   => id,
                               :commentable_type => klass.capitalize}}}
