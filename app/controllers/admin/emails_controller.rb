@@ -18,7 +18,7 @@ class Admin::EmailsController < ApplicationController
       text += "<br><br><br><br>"
 
       text += UserMailer.preview_new_action(
-                Action.on_type(Product.name).last)
+                Action.named(ActionName::Want).on_type(Product.name).last)
 
       text += "<br><br><br><br>"
 
