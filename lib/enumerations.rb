@@ -58,8 +58,9 @@ module DW
       NewFollower       = 1
       NewAction         = 2
       TopShopper        = 4
-      Welcome           = 5
-      FriendCollection  = 6
+      Welcome           = 10
+      FriendCollection  = 11
+      AnotherCollection = 12
     end
 
     # Sources for the Following model
