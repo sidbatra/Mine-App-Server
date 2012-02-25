@@ -1,3 +1,10 @@
-Hi <%=@user.first_name%>, <br /><br />
+Hi <%=@user.first_name%>, <br />
 
 <%=@action%> <br /><br />
+
+<a href="<%=collection_url(
+              @owner.handle,
+              @collection.handle,
+              :src => "email_friend_collection")%>">
+View <%=@owner.is_male? ? 'his' : 'her'%> set</a>
+to see what you think!

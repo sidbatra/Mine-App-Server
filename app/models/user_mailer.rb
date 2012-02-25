@@ -88,7 +88,8 @@ class UserMailer < ActionMailer::Base
     @owner        = collection.user
     @user         = user
     @collection   = collection 
-    @action       = "#{@owner.first_name} just added a collection"
+    @action       = "#{@owner.first_name} #{@owner.last_name} " + 
+                    "just posted a new set!" 
 
     generate_attributes(@user.id,@collection.user_id,@collection,EmailPurpose::FriendCollection)
 
