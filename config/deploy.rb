@@ -18,6 +18,7 @@ ssh_options[:paranoid] = false
 task :staging do 
   role(:web)          { ENV['web_servers'].split(',') }
   role(:worker)       { ENV['proc_servers'].split(',') }
+  role(:cron)         { ENV['cron_servers'].split(',') }
   #role :search,       "ec2-174-129-148-194.compute-1.amazonaws.com",
   #                      :no_release => true
   set :total_workers, 3
@@ -29,6 +30,7 @@ end
 task :production do
   role(:web)          { ENV['web_servers'].split(',') }
   role(:worker)       { ENV['proc_servers'].split(',') }
+  role(:cron)         { ENV['cron_servers'].split(',') }
   #role :search,       "ec2-107-22-94-58.compute-1.amazonaws.com",
   #                      :no_release => true
   set :total_workers, 3
@@ -71,7 +73,8 @@ namespace :deploy do
     system "cap #{environment}  workers:start"
 
     system "cap #{environment}  logrotate:install"
-    system "cap #{environment}  misc:whenever"
+    system "cap #{environment}  cron:update_web_proc"
+    system "cap #{environment}  cron:update_cron"
 
     system "cap #{environment} monit:config_web"
     system "cap #{environment} monit:config_worker"
@@ -97,7 +100,8 @@ namespace :deploy do
     #system "cap #{environment}  search:index"
     system "cap #{environment}  cache:clear"
 
-    system "cap #{environment}  misc:whenever"
+    system "cap #{environment}  cron:update_web_proc"
+    system "cap #{environment}  cron:update_cron"
 
     system "cap #{environment} monit:config_web"
     system "cap #{environment} monit:config_worker"
@@ -305,11 +309,24 @@ namespace :permissions do
 
 end
 
-namespace :misc do
+
+namespace :cron do
   
-  task :whenever, :roles => [:web,:worker] do
-    run "cd #{current_path} && RAILS_ENV=#{environment} whenever -w"
+  desc 'Update cron on web and proc servers'
+  task :update_web_proc, :roles => [:web,:worker] do
+    run "cd #{current_path} && RAILS_ENV=#{environment} "\
+        "whenever -w -f config/whenever/web_proc.rb"
   end
+
+  desc 'Update cron on cron servers'
+  task :update_cron, :roles => [:cron] do
+    run "cd #{current_path} && RAILS_ENV=#{environment} "\
+        "whenever -w -f config/whenever/cron.rb"
+  end
+
+end
+
+namespace :misc do
 
   desc 'Setup the diretory structure of the release directory'
   task :directories do
