@@ -15,7 +15,7 @@ module DW
       #
       def self.new_comment(comment_id)
         comment = Comment.with_user.find(comment_id)
-        Mailman.new_comment(comment)
+        Mailman.email_users_in_comment_thread(comment)
       end
       
       # Host the new product image
@@ -73,14 +73,14 @@ module DW
       #
       def self.new_action(action_id)
         action  = Action.find(action_id)
-        Mailman.new_action(action)
+        Mailman.noitify_owner_about_an_action(action)
       end
 
       # Notify Mailman about the new following
       # 
       def self.new_following(following_id)
         following = Following.find(following_id)
-        Mailman.new_following(following)
+        Mailman.email_leader_about_follower(following)
       end
 
       # Process a new collection and manage distribution
