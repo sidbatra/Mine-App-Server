@@ -35,6 +35,14 @@ module DW
         UserMailer.deliver_new_follower(following) 
       end
 
+      # Email followers of a user about a freshly added collection
+      #
+      def self.email_followers_about_collection(collection)
+        collection.user.followers.each do |follower|
+          UserMailer.deliver_friend_collection(follower,collection)
+        end
+      end
+
       # Welcome email for the new user
       #
       def self.welcome_new_user(user)
@@ -48,6 +56,6 @@ module DW
       end
     end #mailman
 
-  end #mailman module
+  end #mailman interface
 
 end #dw
