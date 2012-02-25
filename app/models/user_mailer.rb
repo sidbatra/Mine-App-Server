@@ -51,35 +51,6 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert user about new bulk followers
-  #
-  def new_bulk_followers(user,followings) 
-    @user         = user
-    @followers    = followings.map(&:follower) 
-
-    @action       = "#{@followers.length} new people are now following "\
-                    "your Closet!" 
-                    
-    generate_attributes(@user.id,0,@user,EmailPurpose::NewBulkFollowers)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-  # Alert user whenever he/she is featured as a star user 
-  #
-  def star_user(user)
-    @user         = user
-    @action       = "Your closet is now featured as a Top Closet!"
-
-    generate_attributes(@user.id,0,@user,EmailPurpose::StarUser)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
   # Alert user whenever he/she is featured as a 
   # top shopper for a particular store
   #
@@ -130,41 +101,6 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Revive a dormant user
-  #
-  def dormant(user)
-    @user = user
-
-    generate_attributes(@user.id,0,@user,EmailPurpose::Dormant)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @user.first_name + ", your online closet is waiting!"
-  end
-
-  # Message about on today feature
-  #
-  def ontoday(user)
-    @user = user
-
-    generate_attributes(@user.id,0,@user,EmailPurpose::OnToday)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @user.first_name + ", come see an amazing update to your online closet!"
-  end
-
-  # Message user to invite more friends
-  #
-  def invite_more(user)
-    @user = user
-    generate_attributes(@user.id,0,@user,EmailPurpose::InviteMore)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @user.first_name + ", your Closet is feeling lonely :o("
-  end
-
   # Safety check email whenever a user is deleted
   #
   def user_deleted(user)
@@ -198,6 +134,10 @@ class UserMailer < ActionMailer::Base
         ActiveRecord::Base.logger.info "Preview of email generated \n\n" + 
                                         mail.to_s 
       end
+
+    elsif method.to_s.match(/^preview_(.*)/)
+      mail = self.send("create_#{$1}".to_sym,*args) 
+      mail.body
     else
       super
     end
