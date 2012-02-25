@@ -18,6 +18,8 @@ module DW
           Mailman.notify_top_shoppers(store,users)
         end
 
+        HealthReport.add(HealthReportService::TopShopperUpdate)
+
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end

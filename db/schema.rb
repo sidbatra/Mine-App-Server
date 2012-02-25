@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224183425) do
+ActiveRecord::Schema.define(:version => 20120225203421) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(:version => 20120224183425) do
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
   add_index "followings", ["source"], :name => "index_followings_on_source"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
+
+  create_table "health_reports", :force => true do |t|
+    t.integer  "service"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "health_reports", ["service"], :name => "index_health_reports_on_service"
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"

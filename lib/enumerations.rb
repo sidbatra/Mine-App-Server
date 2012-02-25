@@ -70,6 +70,13 @@ module DW
       Suggestion  = 2
     end
 
+    # Services across the application for which health
+    # reports are generated
+    #
+    class HealthReportService < Enumeration
+      TopShopperUpdate = 0
+    end
+
     # Sources of landing at the users/show route
     #
     class HomeShowSource < Enumeration
