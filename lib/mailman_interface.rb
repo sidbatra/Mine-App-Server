@@ -27,6 +27,13 @@ module DW
       def self.new_following(following)
         UserMailer.deliver_new_follower(following) 
       end
+
+      # Email the owner about any action on a collection or product
+      #
+      def self.new_action(action)
+        UserMailer.deliver_new_action(
+                    action) unless action.user_id == action.actionable.user_id
+      end
     end #mailman
 
   end #mailman module
