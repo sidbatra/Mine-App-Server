@@ -5,6 +5,6 @@ every 1.hour do
   rake "upload_logs_to_dump"
 end
 
-every 1.week, :at => '1:00am' do
+every 1.week, :at => '2:00am' do
   runner "ProcessingQueue.push(CronWorker,:update_top_shoppers)"
 end
