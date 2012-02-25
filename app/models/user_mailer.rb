@@ -58,7 +58,7 @@ class UserMailer < ActionMailer::Base
     @user         = following.user
 
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " is now following your Closet!"
+                    " thinks you influence each other's style!"
 
     generate_attributes(@user.id,@follower.id,following,EmailPurpose::NewFollower)
 
