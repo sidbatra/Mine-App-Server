@@ -123,12 +123,36 @@ class UserMailer < ActionMailer::Base
     end
     
     if @action_name == 'want'
-    	@action			+= " to #{@actor.is_male? ? 'his' : 'her'} wants!"
+    	@action			+= " to #{@actor.is_male? ? 'his' : 'her'} Wants!"
     else
     	@action			+= "!"
     end
 
     generate_attributes(@user.id,@actor.id,action,EmailPurpose::NewAction)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert the user to create daily collections 
+  #
+  def create_another_collection(user,last_collection)
+    @user             = user
+    @last_collection  = last_collection
+    @products         = last_collection.products.map(&:title)
+
+    @action           = "Still have your "
+
+    if @products.length == 1
+      @action         += @products[0]
+    else
+      @action         += "#{@products[0..-2].join(", ")} and #{@products[-1]}" 
+    end
+
+    @action           += " on you?"
+                  
+    generate_attributes(@user.id,0,@last_collection,EmailPurpose::AnotherCollection)
 
     recipients    @user.email
     from          EMAILS[:contact]

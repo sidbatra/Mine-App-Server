@@ -117,8 +117,8 @@ module DW
         users.each do |user|
           begin
             if user.setting.email_update
-              #UserMailer.create_another_collection(user)
-              #sleep 0.09
+              UserMailer.create_another_collection(user,user.collections.last)
+              sleep 0.09
             end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    

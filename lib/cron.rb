@@ -28,7 +28,7 @@ module DW
       # collection
       #
       def self.email_to_create_another_collection
-        users = User.collections_count_gt(0)
+        users = User.with_collections_with_products.collections_count_gt(0)
         Mailman.prompt_users_to_create_another_collection(users)
 
         HealthReport.add(HealthReportService::AnotherCollectionPrompt)

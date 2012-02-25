@@ -69,6 +69,8 @@ class User < ActiveRecord::Base
                 :order        => "products_at_store DESC,users.id"}}
 
   named_scope :with_stores, :include => {:shoppings => :store}
+  named_scope :with_collections_with_products,  
+                :include => {:collections => :products} 
 
   #----------------------------------------------------------------------
   # Attributes
