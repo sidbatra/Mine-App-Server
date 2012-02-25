@@ -132,10 +132,28 @@ module DW
       # Email users with no items to try and win them back
       #
       def self.pester_users_with_no_items(users)
+        pester_users(users,:create_an_item)
+      end
+
+      # Email users with no friends to try and make them invite
+      #
+      def self.pester_users_with_no_friends(users)
+        pester_users(users,:add_a_friend)
+      end
+
+
+      protected
+
+      # Generic methods that iterates over the given users
+      # and calls the given mailer method with only the user
+      # as an argument. Primary usage are the multiple pester
+      # methods that fire on different triggers
+      #
+      def self.pester_users(users,mailer_method)
         users.each do |user|
           begin
             if user.setting.email_update
-              #UserMailer.create_an_item(user)
+              #UserMailer.send(mailer_method,user)
               #sleep 0.09
             end
           rescue => ex

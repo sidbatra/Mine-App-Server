@@ -48,6 +48,19 @@ module DW
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
+
+      # Email users who haven't added a friend but have added an item
+      # to win them back
+      #
+      def self.scoop_users_with_no_friends
+        users = User.with_setting.products_count_gt(0).followings_count(0)
+        Mailman.pester_users_with_no_friends(users)
+
+        HealthReport.add(HealthReportService::AddFriendsPrompt)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
     end
 
   end # Cron
