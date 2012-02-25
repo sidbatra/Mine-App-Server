@@ -140,7 +140,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_collections, 
                 :as         => 'admin/collections', 
                 :controller => 'admin/collections',
-                :only       => [:index]
+                :only       => :index
+
+  map.resources :admin_emails,
+                :as         => 'admin/emails',
+                :controller => 'admin/emails',
+                :only       => :show
 
   map.admin '/admin',
                 :controller => 'admin/help',
