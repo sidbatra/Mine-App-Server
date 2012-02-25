@@ -9,6 +9,13 @@ module DW
     #
     class Mailman
 
+      # Email the owner about any action on a collection or product
+      #
+      def self.new_action(action)
+        UserMailer.deliver_new_action(
+                    action) unless action.user_id == action.actionable.user_id
+      end
+
       # Email all the users on the comment thread
       #
       def self.new_comment(comment)
@@ -28,11 +35,10 @@ module DW
         UserMailer.deliver_new_follower(following) 
       end
 
-      # Email the owner about any action on a collection or product
+      # Welcome email for the new user
       #
-      def self.new_action(action)
-        UserMailer.deliver_new_action(
-                    action) unless action.user_id == action.actionable.user_id
+      def self.welcome_new_user(user)
+        UserMailer.deliver_new_user(user)
       end
 
       # Email admins when a user is deleted

@@ -65,6 +65,8 @@ module DW
 
         user.has_contacts_mined = true
         user.save!
+
+        Mailman.welcome_new_user(user)
       end
 
       # Notify Mailman about the new actin
