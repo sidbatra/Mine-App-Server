@@ -20,6 +20,7 @@ require File.join(RAILS_ROOT,'lib','extensions.rb')
 include DW
 include Enumerations
 include CacheManagement
+include Cron
 include CryptoManagement 
 include ImageProcessing
 include NotificationManagement
