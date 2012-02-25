@@ -49,12 +49,18 @@ class User < ActiveRecord::Base
                   :conditions => {:products_count => count}}}
   named_scope :followings_count, lambda {|count| {
                   :conditions => {:followings_count => count}}}
-  named_scope :collections_count_gt, lambda {|count| {
-                  :conditions => {:collections_count_gt => count}}}
+  named_scope :shoppings_count, lambda {|count| {
+                  :conditions => {:shoppings_count => count}}}
+  named_scope :collections_count, lambda {|count| {
+                  :conditions => {:collections_count => count}}}
   named_scope :products_count_gt, lambda {|count| {
                   :conditions => {:products_count_gt => count}}}
   named_scope :followings_count_gt, lambda {|count| {
                   :conditions => {:followings_count_gt => count}}}
+  named_scope :shoppings_count_gt, lambda {|count| {
+                  :conditions => {:shoppings_count_gt => count}}}
+  named_scope :collections_count_gt, lambda {|count| {
+                  :conditions => {:collections_count_gt => count}}}
   named_scope :stars, 
                   :joins      => :products, 
                   :conditions => {

@@ -77,7 +77,24 @@ module DW
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
-    end
+
+      # Email users who haven't added a store but have added friends and items
+      #
+      def self.scoop_users_with_no_stores
+        users = User.with_setting.
+                  products_count_gt(0).
+                  followings_count_gt(0).
+                  shoppings_count(0)
+
+        Mailman.pester_users_with_no_stores(users)
+
+        HealthReport.add(HealthReportService::AddStoresPrompt)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+    end #cron worker
 
   end # Cron
 end # DW

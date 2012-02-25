@@ -152,13 +152,19 @@ module DW
       # Email users with no items to try and win them back
       #
       def self.pester_users_with_no_items(users)
-        pester_users(users,:deliver_create_an_item)
+        pester_users(users,:deliver_add_an_item)
       end
 
       # Email users with no friends to try and make them invite
       #
       def self.pester_users_with_no_friends(users)
         pester_users(users,:deliver_add_a_friend)
+      end
+
+      # Email users with no stores to try and make them add stores
+      #
+      def self.pester_users_with_no_stores(users)
+        pester_users(users,:deliver_add_a_store)
       end
 
 
