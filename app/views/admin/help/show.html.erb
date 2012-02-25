@@ -28,7 +28,7 @@
   <br>
 
   <br> <h3>Emails</h3> 
-  <%UserMailer.instance_methods(false).each do |method|%>
+  <%UserMailer.instance_methods(false).sort.each do |method|%>
     <%unless ['generate_attributes'].include? method%> 
       <%=link_to method,admin_email_path(method)%>
       <br>
