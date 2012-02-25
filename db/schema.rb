@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225211240) do
+ActiveRecord::Schema.define(:version => 20120225225900) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -305,15 +305,20 @@ ActiveRecord::Schema.define(:version => 20120225211240) do
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
     t.integer  "collections_count",         :default => 0
+    t.integer  "shoppings_count",           :default => 0
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
+  add_index "users", ["collections_count"], :name => "index_users_on_collections_count"
   add_index "users", ["created_at"], :name => "index_users_on_created_at"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
+  add_index "users", ["followings_count"], :name => "index_users_on_followings_count"
   add_index "users", ["gender"], :name => "index_users_on_gender"
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
   add_index "users", ["has_contacts_mined"], :name => "index_users_on_has_contacts_mined"
+  add_index "users", ["products_count"], :name => "index_users_on_products_count"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
+  add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
 
 end
