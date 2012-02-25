@@ -89,6 +89,8 @@ module DW
         collection = Collection.find(collection_id)
         collection.process
 
+         Mailman.email_followers_about_collection(collection)
+
         #if collection.user.setting.post_to_timeline
         #  DistributionManager.publish_use(collection)
         #end
