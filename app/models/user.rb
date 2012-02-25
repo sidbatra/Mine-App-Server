@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
+  named_scope :collections_count_gt, lambda {|count| {
+                  :conditions => {:collections_count_gt => count}}}
   named_scope :stars, 
                   :joins      => :products, 
                   :conditions => {

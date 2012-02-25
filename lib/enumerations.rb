@@ -74,7 +74,8 @@ module DW
     # reports are generated
     #
     class HealthReportService < Enumeration
-      TopShopperUpdate = 0
+      TopShopperUpdate        = 0
+      AnotherCollectionPrompt = 1
     end
 
     # Sources of landing at the users/show route

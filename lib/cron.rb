@@ -23,6 +23,19 @@ module DW
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
+
+      # Ping users who have made a collection to create another
+      # collection
+      #
+      def self.email_to_create_another_collection
+        users = User.collections_count_gt(0)
+        Mailman.prompt_users_to_create_another_collection(users)
+
+        HealthReport.add(HealthReportService::AnotherCollectionPrompt)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
     end
 
   end # Cron

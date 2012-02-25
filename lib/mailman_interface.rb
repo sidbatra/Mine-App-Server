@@ -96,6 +96,21 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Prompt given users to create another collection
+      #
+      def self.prompt_users_to_create_another_collection(users)
+        users.each do |user|
+          begin
+            #UserMailer.create_another_collection(user)
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)    
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #mailman
 
   end #mailman interface
