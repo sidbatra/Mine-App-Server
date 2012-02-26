@@ -388,7 +388,19 @@ Denwen.Analytics = Backbone.Model.extend({
   // User views the settings page
   //
   settingsView: function(source) {
-    mpq.track('Settings View',{'source' : source});
+    mpq.track('Settings View',{'Source' : source});
+  },
+
+  // User turns on a setting
+  //
+  settingTurnedOn: function(name) {
+    mpq.track('Setting Turned On',{'Name' : name});
+  },
+
+  // User turns off a setting
+  //
+  settingTurnedOff: function(name) {
+    mpq.track('Setting Turned Off',{'Name' : name});
   },
 
   // User updates settings
