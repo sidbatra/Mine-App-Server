@@ -87,7 +87,8 @@ module DW
       # Email admins when a user is deleted
       #
       def self.email_admin_about_deleted_user(user)
-        UserMailer.deliver_user_deleted(user)
+        admin = User.find_all_by_is_admin(true).first
+        UserMailer.deliver_user_deleted(admin,user)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Welcome to #{CONFIG[:name]}!"
 
-    generate_attributes(@user.id,0,@user,EmailPurpose::Welcome)
+    generate_attributes(@user,0,@user,EmailPurpose::Welcome)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -44,7 +44,7 @@ class UserMailer < ActionMailer::Base
 
     @action	    += "!"
 
-    generate_attributes(@user.id,@comment.user.id,@comment,EmailPurpose::NewComment)
+    generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -60,7 +60,7 @@ class UserMailer < ActionMailer::Base
     @action       = @follower.first_name + " " + @follower.last_name + 
                     " thinks you influence each other's style!"
 
-    generate_attributes(@user.id,@follower.id,following,EmailPurpose::NewFollower)
+    generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -75,7 +75,7 @@ class UserMailer < ActionMailer::Base
     @store        = store
     @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
 
-    generate_attributes(@user.id,0,@store,EmailPurpose::TopShopper)
+    generate_attributes(@user,0,@store,EmailPurpose::TopShopper)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -91,7 +91,7 @@ class UserMailer < ActionMailer::Base
     @action       = "#{@owner.first_name} #{@owner.last_name} " + 
                     "just posted a new set!" 
 
-    generate_attributes(@user.id,@collection.user_id,@collection,EmailPurpose::FriendCollection)
+    generate_attributes(@user,@collection.user_id,@collection,EmailPurpose::FriendCollection)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -128,7 +128,7 @@ class UserMailer < ActionMailer::Base
     	@action			+= "!"
     end
 
-    generate_attributes(@user.id,@actor.id,action,EmailPurpose::NewAction)
+    generate_attributes(@user,@actor.id,action,EmailPurpose::NewAction)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -152,7 +152,7 @@ class UserMailer < ActionMailer::Base
 
     @action           += " on you?"
                   
-    generate_attributes(@user.id,0,@last_collection,EmailPurpose::AnotherCollection)
+    generate_attributes(@user,0,@last_collection,EmailPurpose::AnotherCollection)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -165,7 +165,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Bought something new this week?"
 
-    generate_attributes(@user.id,0,@user,EmailPurpose::AnotherProduct)
+    generate_attributes(@user,0,@user,EmailPurpose::AnotherProduct)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -178,7 +178,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Are you wearing your favorite shoes?"
 
-    generate_attributes(@user.id,0,@user,EmailPurpose::AddItem)
+    generate_attributes(@user,0,@user,EmailPurpose::AddItem)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -191,7 +191,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Which of your friends has great style?"
 
-    generate_attributes(@user.id,0,@user,EmailPurpose::AddFriend)
+    generate_attributes(@user,0,@user,EmailPurpose::AddFriend)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -204,7 +204,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Where do you like to shop?"
 
-    generate_attributes(@user.id,0,@user,EmailPurpose::AddStore)
+    generate_attributes(@user,0,@user,EmailPurpose::AddStore)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -217,7 +217,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @action       = "Share your style!"
 
-    generate_attributes(@user.id,0,@user,EmailPurpose::AddCollection)
+    generate_attributes(@user,0,@user,EmailPurpose::AddCollection)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -226,13 +226,15 @@ class UserMailer < ActionMailer::Base
 
   # Safety check email whenever a user is deleted
   #
-  def user_deleted(user)
-    @user = user
-    generate_attributes(0,0,@user,EmailPurpose::Admin)
+  def user_deleted(admin,user)
+    @user_deleted = user
+    @user = admin
 
-    recipients    User.find_all_by_is_admin(true).first.email
+    generate_attributes(@user,0,@user,EmailPurpose::Admin)
+
+    recipients    @user.email
     from          EMAILS[:contact]
-    subject       @user.first_name + ", is deleted from OnCloset"
+    subject       @user_deleted.first_name + ", is deleted from OnCloset"
   end
 
   # Extend the method_missing method to enable email
@@ -243,8 +245,7 @@ class UserMailer < ActionMailer::Base
     if method.to_s.match(/^deliver_(.*)/)
       mail = self.send("create_#{$1}".to_sym,*args) 
 
-      if RAILS_ENV == 'production' || 
-                       User.find_by_email(mail['to'].to_s).is_admin
+      if RAILS_ENV == 'production' || @@is_admin
 
         response    = @@custom_amazon_ses_mailer.send_raw_email(mail)
         xml         = XmlSimple.xml_in(response.to_s)
@@ -271,9 +272,10 @@ class UserMailer < ActionMailer::Base
 
   # Generate email attributes to store in the database
   #
-  def generate_attributes(recipient_id,sender_id,source,purpose)
+  def generate_attributes(user,sender_id,source,purpose)
+    @@is_admin = user.is_admin
     @@attributes = {
-                  :recipient_id   => recipient_id,
+                  :recipient_id   => user.id,
                   :sender_id      => sender_id,
                   :emailable_id   => source.id,
                   :emailable_type => source.class.name,
