@@ -391,6 +391,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track('Settings View',{'source' : source});
   },
 
+  // User updates settings
+  //
+  settingsUpdated: function() {
+    mpq.track('Settings Updated');
+  },
+
   // User visits the settings page with an unsubscription in mind
   //
   unsubscribeInitiated: function(source) {

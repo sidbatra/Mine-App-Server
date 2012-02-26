@@ -20,6 +20,9 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
   setAnalytics: function() {
     analytics.settingsView(this.source);
 
+    if(this.source == 'saved')
+      analytics.settingsUpdated();
+
     if(this.source.slice(0,6) == 'email_')
       analytics.unsubscribeInitiated(this.source.slice(6,this.source.length));
   }
