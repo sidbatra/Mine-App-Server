@@ -24,7 +24,7 @@ body {
   font-family: 'FuturaStdBook', Arial, sans-serif;
   background-color: black;
   font-size: 16px;
-  color: #333333;
+  color: white;
   margin-bottom: 100px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -133,7 +133,8 @@ body {
 	cursor: pointer;
 	display: inline-block;
 	border: none;
-	background: url("/images/welcome_buttons.png") no-repeat;
+	background: url("/images/
+	welcome_buttons.png") no-repeat;
 	background-position: -40px 0px;
 	font-size: 20px;
 	color: #555;
@@ -2910,6 +2911,7 @@ table.collection.details .textbox .title {
 /* ------------------------------ Settings (Bootstrap) */
   
 .well.settings {
+	color: #333333;
   min-height: 20px;
   padding: 0 19px 19px;
   margin-bottom: 20px;
