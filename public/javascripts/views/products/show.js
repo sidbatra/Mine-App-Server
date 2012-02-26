@@ -41,7 +41,6 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     if(this.source == 'product_updated')
       analytics.productUpdated(this.product.get('id'));
 
-    if(this.source.slice(0,6) == 'email_')
-      analytics.emailClicked(this.source.slice(6,this.source.length));
+    analytics.checkForEmailClickedEvent(this.source);
   }
 });
