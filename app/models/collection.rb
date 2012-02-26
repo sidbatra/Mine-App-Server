@@ -1,6 +1,11 @@
 class Collection < ActiveRecord::Base
 
   #----------------------------------------------------------------------
+  # Mixins
+  #----------------------------------------------------------------------
+  include DW::Handler
+
+  #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
   belongs_to :user, :counter_cache => true
@@ -131,6 +136,20 @@ class Collection < ActiveRecord::Base
 
     self.is_processed = true
     save!
+  end
+
+  protected
+
+  # Required by Handler mixin to create base handle
+  #
+  def handle_base
+    name
+  end
+
+  # Required by Handler mixin to test uniqueness of handle
+  #
+  def handle_uniqueness_query(handle)
+    self.class.find_by_handle_and_user_id(handle,user_id)
   end
 
 end

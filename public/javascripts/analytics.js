@@ -238,12 +238,18 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Invite Completed", {'count':count});
   },
 
+  // Test if the given source indicates that the user came from
+  // an email and fire an special email clicked tracking event
+  //
+  checkForEmailClickedEvent: function(source) {
+    if(source.slice(0,6) == 'email_')
+      this.emailClicked(source.slice(6,source.length));
+  },
+
   // User visits the site from an email
   //
   emailClicked: function(source) {
-    mpq.track("Email Clicked", {
-      'Source'  : source,
-      'User ID' : helpers.currentUserID()});
+    mpq.track("Email Clicked", {'Source' : source});
   },
 
   // User searches a friend for inviting 
@@ -382,7 +388,31 @@ Denwen.Analytics = Backbone.Model.extend({
   // User views the settings page
   //
   settingsView: function(source) {
-    mpq.track('Settings View',{'source' : source});
+    mpq.track('Settings View',{'Source' : source});
+  },
+
+  // User turns on a setting
+  //
+  settingTurnedOn: function(name) {
+    mpq.track('Setting Turned On',{'Name' : name});
+  },
+
+  // User turns off a setting
+  //
+  settingTurnedOff: function(name) {
+    mpq.track('Setting Turned Off',{'Name' : name});
+  },
+
+  // User updates settings
+  //
+  settingsUpdated: function() {
+    mpq.track('Settings Updated');
+  },
+
+  // User visits the settings page with an unsubscription in mind
+  //
+  unsubscribeInitiated: function(source) {
+    mpq.track("Unsubscribe Initiated", {'Source' : source});
   },
 
   // A collection is viewed

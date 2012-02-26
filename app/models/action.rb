@@ -22,6 +22,8 @@ class Action < ActiveRecord::Base
   named_scope :with_user, :include => :user
   named_scope :by_user, lambda {|user_id|{:conditions => {:user_id => user_id}}}
   named_scope :named, lambda {|name| {:conditions => {:name => name}}}
+  named_scope :on_type, lambda {|klass| {:conditions => {
+                                  :actionable_type => klass.capitalize}}}
   named_scope :on, lambda {|klass,id| 
                             {:conditions => {
                               :actionable_id    => id,

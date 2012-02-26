@@ -1,41 +1,68 @@
+<div id="container">
 
-<div id="pic_bg">
+	<div class="well settings" style="background: white;">
+	
+	  <%form_for @settings,:url => "/settings/#{@settings.id}",
+      :html => {
+        :class  => '',
+        :id     => 'edit_setting'} do |f|%>
 
-	<div id="container narrow">
+			<!-- Notifications -->
+			
+			<h3>Notifications</h3>
+			
+			<h4>Activity</h4>
+			
+	    <%=f.label :email_interaction,
+	                  "#{f.check_box :email_interaction} Email me when someone owns, wants, likes or comments on one "\
+	                  "of my items or sets ",
+	                  :class => "checkbox"%>
+			
+			<h4>Influencers</h4>
+			
+	    <%=f.label :email_influencer,
+	                  "#{f.check_box :email_influencer} Email me when someone adds me as an influencer, or if my influencers "\
+	                  "add new items and sets",
+	                  :class => "checkbox"%>
+			
+			<h4>Updates</h4>
 
-  <%form_for @settings,:url => "/settings/#{@settings.id}",
-        :html => {
-          :class  => '',
-          :id     => 'edit_setting'} do |f|%>
+	    <%=f.label :email_update,
+	                  "#{f.check_box :email_update} Email me updates and reminders about OnCloset features and tips",
+	                  :class => "checkbox"%>
+			
+			<!-- /Notifications -->
+			<!-- Social Sharing -->
+			
+			<h3>Social Sharing</h3>
+			
+			<h4>Facebook</h4>
+		    
+	    <%=f.label :post_to_timeline, 
+	    							"#{f.check_box :post_to_timeline} Post to my Facebook Timeline when I add a new item or set",
+	                  :class => "checkbox"%>
+	    
+			
+			<!-- /Social Sharing -->
+	    
+	    <p style="margin-top: 28px;">
+	    	<%=submit_tag "Save Changes",
+		                  :class  => 'btn',
+		                  :name   => nil%>
+	    </p>
+	                          
+	  <%end%> <!-- /form -->
+	  
+  </div> <!-- /well -->
 
-      <div class='step'>
-      
-        <div id='' class=''>
-          <%=f.check_box :post_to_timeline%>
-          <%=f.label :post_to_timeline,"Post to Facebook Timeline"%>
-        </div>
-
-
-        <%=blocker%>
-
-        <%=submit_tag "",
-                      :class  => '',
-                      :name   => nil%>
-                          
-        <%=blocker%>
-      </div> 
-  <%end%>
-
-	</div> <!-- container -->
-   
-</div> <!-- pic_bg -->
+</div> <!-- /container -->
 
 
 <%content_for :javascript do%>
 
   <script type="text/javascript">
     new Denwen.Views.Settings.Index({
-          el            : $('edit_setting'),
+          el            : $('#edit_setting'),
           source        : '<%=@source%>'});
   </script>
 

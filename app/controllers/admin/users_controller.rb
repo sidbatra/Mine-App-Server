@@ -10,11 +10,16 @@ class Admin::UsersController < ApplicationController
 
     case @filter
     when :active
-      @users = {}
-      @users['daily']     = active_users_in_time_period(1.day.ago)
-      @users['weekly']    = active_users_in_time_period(1.week.ago)
-      @users['biweekly']  = active_users_in_time_period(15.days.ago)
-      @users['monthly']   = active_users_in_time_period(1.month.ago)
+      @buckets = [{:time => 1.day.ago,  :name => 'daily'},
+                  {:time => 1.week.ago, :name => 'weekly'},
+                  {:time => 15.days.ago,:name => 'biweekly'},
+                  {:time => 1.month.ago,:name => 'monthly'}]
+
+      @buckets.each do |bucket|
+        bucket[:users],
+        bucket[:count],
+        bucket[:active_count] = active_users_in_time_period(bucket[:time])
+      end
     end
 
     render :partial => @filter.to_s,
@@ -36,21 +41,26 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     sleep 10
-    UserMailer.deliver_user_deleted(@user)
+    Mailman.email_admin_about_deleted_user(@user)
 
     redirect_to admin_path
   end
+
 
   protected
 
   # Fetch users who have been active in the given time period
   #
   def active_users_in_time_period(time)
-    user_ids = [Product,Action,Collection,Comment].map do |model|
-                 model.select(:user_id).made(time).map(&:user_id)
-               end.flatten.uniq
+    users = User.updated(time).by_products_count.limit(150)
+    count = users.count
 
-    User.find_all_by_id(user_ids)
+    active_count = [Product,Action,Collection,
+                      Comment,Search].map do |model|
+                     model.select(:user_id).made(time).map(&:user_id)
+                   end.flatten.uniq.count
+
+    [users,count,active_count]
   end
 
 

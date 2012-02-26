@@ -57,13 +57,15 @@ module DW
       NewComment        = 0
       NewFollower       = 1
       NewAction         = 2
-      StarUser          = 3
       TopShopper        = 4
-      Dormant           = 5
-      OnToday           = 6
-      CollectMore       = 7
-      InviteMore        = 8
-      NewBulkFollowers  = 9
+      Welcome           = 10
+      FriendCollection  = 11
+      AnotherCollection = 12
+      AnotherProduct    = 13
+      AddItem           = 14
+      AddFriend         = 15
+      AddStore          = 16
+      AddCollection     = 17
     end
 
     # Sources for the Following model
@@ -72,6 +74,19 @@ module DW
       Auto        = 0
       Manual      = 1
       Suggestion  = 2
+    end
+
+    # Services across the application for which health
+    # reports are generated
+    #
+    class HealthReportService < Enumeration
+      TopShopperUpdate        = 0
+      AnotherCollectionPrompt = 1
+      AnotherItemPrompt       = 2
+      AddItemsPrompt          = 3
+      AddFriendsPrompt        = 4
+      AddStoresPrompt         = 5
+      AddCollectionsPrompt    = 6
     end
 
     # Sources of landing at the users/show route

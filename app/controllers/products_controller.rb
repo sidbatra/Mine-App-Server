@@ -2,7 +2,7 @@
 #
 class ProductsController < ApplicationController
   before_filter :login_required,  :only => [:new,:create,:edit,:update,:destroy]
-  before_filter :logged_in?,      :only => :show
+  before_filter :renew_session, :only => :show
 
   # Display UI for creating a new product
   #

@@ -9,7 +9,7 @@
             :locals   => {
               :title        => @product_presenter.title, 
               :type         => OGObject::Item, 
-              :description  => @user_presenter.product_usage_description,
+              :description  => @product_presenter.description, 
               :url          => @product_presenter.url('fb'),
               :image        => @product_presenter.thumbnail_url,
               :store        => @product.store}%>
@@ -46,7 +46,7 @@
       <%else%>
         <%=@product_presenter.breadcrumb(
               @user_presenter.closet_title(true),
-              @user_presenter.closet_path('product'))%>
+              @user_presenter.closet_path('product',UserShowHash::Owns))%>
       <%end%>
       
 		</div> <!-- top_bar -->

@@ -45,6 +45,23 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
+  named_scope :products_count, lambda {|count| {
+                  :conditions => {:products_count => count}}}
+  named_scope :followings_count, lambda {|count| {
+                  :conditions => {:followings_count => count}}}
+  named_scope :shoppings_count, lambda {|count| {
+                  :conditions => {:shoppings_count => count}}}
+  named_scope :collections_count, lambda {|count| {
+                  :conditions => {:collections_count => count}}}
+  named_scope :products_count_gt, lambda {|count| {
+                  :conditions => {:products_count_gt => count}}}
+  named_scope :followings_count_gt, lambda {|count| {
+                  :conditions => {:followings_count_gt => count}}}
+  named_scope :shoppings_count_gt, lambda {|count| {
+                  :conditions => {:shoppings_count_gt => count}}}
+  named_scope :collections_count_gt, lambda {|count| {
+                  :conditions => {:collections_count_gt => count}}}
+  named_scope :by_products_count, {:order => 'products_count DESC'}
   named_scope :stars, 
                   :joins      => :products, 
                   :conditions => {
@@ -67,6 +84,9 @@ class User < ActiveRecord::Base
                 :order        => "products_at_store DESC,users.id"}}
 
   named_scope :with_stores, :include => {:shoppings => :store}
+  named_scope :with_collections_with_products,  
+                :include => {:collections => :products} 
+  named_scope :with_setting, :include => :setting
 
   #----------------------------------------------------------------------
   # Attributes

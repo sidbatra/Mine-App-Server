@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220215719) do
+ActiveRecord::Schema.define(:version => 20120225225900) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20120220215719) do
     t.string   "name",           :default => ""
     t.string   "image_path"
     t.boolean  "is_processed",   :default => false
+    t.string   "handle"
   end
 
   add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
@@ -139,6 +140,14 @@ ActiveRecord::Schema.define(:version => 20120220215719) do
   add_index "followings", ["is_active"], :name => "index_followings_on_is_active"
   add_index "followings", ["source"], :name => "index_followings_on_source"
   add_index "followings", ["user_id"], :name => "index_followings_on_user_id"
+
+  create_table "health_reports", :force => true do |t|
+    t.integer  "service"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "health_reports", ["service"], :name => "index_health_reports_on_service"
 
   create_table "invites", :force => true do |t|
     t.integer  "user_id"
@@ -207,9 +216,12 @@ ActiveRecord::Schema.define(:version => 20120220215719) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "post_to_timeline", :default => true
+    t.boolean  "post_to_timeline",  :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "email_interaction", :default => true
+    t.boolean  "email_influencer",  :default => true
+    t.boolean  "email_update",      :default => true
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -293,15 +305,20 @@ ActiveRecord::Schema.define(:version => 20120220215719) do
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
     t.integer  "collections_count",         :default => 0
+    t.integer  "shoppings_count",           :default => 0
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
+  add_index "users", ["collections_count"], :name => "index_users_on_collections_count"
   add_index "users", ["created_at"], :name => "index_users_on_created_at"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
+  add_index "users", ["followings_count"], :name => "index_users_on_followings_count"
   add_index "users", ["gender"], :name => "index_users_on_gender"
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
   add_index "users", ["has_contacts_mined"], :name => "index_users_on_has_contacts_mined"
+  add_index "users", ["products_count"], :name => "index_users_on_products_count"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
+  add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
 
 end

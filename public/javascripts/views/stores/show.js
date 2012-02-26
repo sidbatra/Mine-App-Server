@@ -108,8 +108,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       this.source,
       this.store.get('id'));
 
-    if(this.source.slice(0,6) == 'email_')
-      analytics.emailClicked(this.source.slice(6,this.source.length));
+    analytics.checkForEmailClickedEvent(this.source);
   },
 
   // Callback when store products are loaded

@@ -20,6 +20,7 @@ Denwen.Views.Collections.New = Backbone.View.extend({
   //
   setAnalytics: function() {
     analytics.collectionNewView(this.source);
+    analytics.checkForEmailClickedEvent(this.source);
   }
 
 });

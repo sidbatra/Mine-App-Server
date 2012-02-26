@@ -8,6 +8,11 @@
 
     <br><br>
     Thanks, <br>
-    The <%=CONFIG[:name]%> Team
+    <%=CONFIG[:name]%>
+
+    <br><br>
+    <span>
+      Is all this feedback blowing your mind?
+    </span> <%=link_to "Manage your settings",settings_url(:src => @source)%>
   </body>
 </html>

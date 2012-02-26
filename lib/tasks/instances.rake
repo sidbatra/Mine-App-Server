@@ -5,7 +5,7 @@ namespace :instances do
   INSTANCE_TYPE      = 't1.micro'
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
-  TYPES              = {:web => 'web',:proc => 'proc'}
+  TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron'}
   ENVIRONMENTS       = ['production','staging']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
