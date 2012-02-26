@@ -238,12 +238,18 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Invite Completed", {'count':count});
   },
 
+  // Test if the given source indicates that the user came from
+  // an email and fire an special email clicked tracking event
+  //
+  checkForEmailClickedEvent: function(source) {
+    if(source.slice(0,6) == 'email_')
+      this.emailClicked(source.slice(6,source.length));
+  },
+
   // User visits the site from an email
   //
   emailClicked: function(source) {
-    mpq.track("Email Clicked", {
-      'Source'  : source,
-      'User ID' : helpers.currentUserID()});
+    mpq.track("Email Clicked", {'Source' : source});
   },
 
   // User searches a friend for inviting 
