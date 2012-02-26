@@ -140,7 +140,7 @@ class UserMailer < ActionMailer::Base
   def create_another_collection(user,last_collection)
     @user             = user
     @last_collection  = last_collection
-    @products         = last_collection.products.map(&:title)
+    @products         = last_collection.products.take(3).map(&:title)
 
     @action           = "Still have your "
 
