@@ -137,7 +137,7 @@ module DW
         users.each do |user|
           begin
             if user.setting.email_update
-              UserMailer.create_another_product(user)
+              UserMailer.deliver_create_another_product(user)
               sleep 0.09
             end
           rescue => ex
