@@ -80,14 +80,6 @@ class ProductPresenter < BasePresenter
     product.store ? product.store.name : ''
   end
 
-  # Description message for the product used in 
-  # og description tag
-  #
-  def description
-    product.store && product.store.is_approved ? 
-      "bought at #{product.store.name}" : ''
-  end
-
   # Link to the store if it is a top store
   #
   def store_link(src)

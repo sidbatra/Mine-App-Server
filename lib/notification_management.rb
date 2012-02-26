@@ -1,6 +1,6 @@
 module DW
 
-  # Set of classes and methods for handling a generic notifcation framework
+  # Set of classes and methods for handling a generic noitifcation framework
   #
   module NotificationManagement
     
@@ -11,11 +11,18 @@ module DW
     #
     class NotificationManager
 
-      # Notify mailman about new comment
+      # Email all the users on the comment thread
       #
       def self.new_comment(comment_id)
-        comment = Comment.with_user.find(comment_id)
-        Mailman.email_users_in_comment_thread(comment)
+        comment   = Comment.with_user.find(comment_id)
+        user_ids  = Comment.user_ids_in_thread_with(comment)
+        users     = User.find_all_by_id(user_ids)
+
+        users.each do |user|
+          UserMailer.deliver_new_comment(
+                      comment,
+                      user) unless user.id == comment.user.id
+        end
       end
       
       # Host the new product image
@@ -65,31 +72,30 @@ module DW
 
         user.has_contacts_mined = true
         user.save!
-
-        Mailman.welcome_new_user(user)
       end
 
-      # Notify Mailman about the new actin
+      # Email the owner about any action taken on his product
       #
       def self.new_action(action_id)
         action  = Action.find(action_id)
-        Mailman.notify_owner_about_an_action(action)
+
+        UserMailer.deliver_new_action(
+                    action) unless action.user_id == action.actionable.user_id
       end
 
-      # Notify Mailman about the new following
+      # Email the user whenever someone follows him/her
       # 
       def self.new_following(following_id)
         following = Following.find(following_id)
-        Mailman.email_leader_about_follower(following)
+
+        UserMailer.deliver_new_follower(following) 
       end
 
-      # Process a new collection and manage distribution
+      # Process a new collection and manager distribution
       #
       def self.new_collection(collection_id)
         collection = Collection.find(collection_id)
         collection.process
-
-         Mailman.email_followers_about_collection(collection)
 
         #if collection.user.setting.post_to_timeline
         #  DistributionManager.publish_use(collection)

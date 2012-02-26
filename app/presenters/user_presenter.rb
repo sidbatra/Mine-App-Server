@@ -40,7 +40,7 @@ class UserPresenter < BasePresenter
   def large_picture(src)
     h.link_to h.image_tag(
                 user.large_photo_url, 
-                :class  => "",
+                :class  => "user_photo",
                 :alt    => ''),
               closet_path(src)
   end
@@ -82,8 +82,8 @@ class UserPresenter < BasePresenter
 
   # Relative path of the user's closet
   #
-  def closet_path(src,anchor=nil)
-    h.user_path(user.handle,:src => src,:anchor => anchor)
+  def closet_path(src)
+    h.user_path(user.handle,:src => src)
   end
 
   # Image representing the closet - image of
@@ -98,6 +98,22 @@ class UserPresenter < BasePresenter
   #
   def usage_description
     user.first_name + " is using #{CONFIG[:name]}: " +
+    "discover what your friends are buying and using."
+  end
+
+  # Description message for the user's use of a product
+  # of the app. 
+  #
+  def product_usage_description
+    user.first_name + " added this item on #{CONFIG[:name]}: " +
+    "discover what your friends are buying and using."
+  end
+
+  # Description message for the user's use of a collection 
+  # of the app. 
+  #
+  def collection_usage_description
+    user.first_name + " added this set on #{CONFIG[:name]}: " +
     "discover what your friends are buying and using."
   end
 

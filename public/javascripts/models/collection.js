@@ -24,7 +24,7 @@ Denwen.Models.Collection = Backbone.Model.extend({
   // Base of collection paths
   //
   pathBase: function() {
-    return '/' + this.get('user').get('handle') + '/s/' + this.get('handle');
+    return '/' + this.get('user').get('handle') + '/c/' + this.get('id');
   },
 
   // Path to the collection with the originating source

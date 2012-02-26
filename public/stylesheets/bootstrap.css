@@ -97,9 +97,7 @@ textarea {
 
 body {
   margin: 0;
-  padding-top: 60px;
-  padding-bottom: 40px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'FuturaStdBook', Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
   color: #333333;
@@ -280,7 +278,7 @@ a:hover {
 
 p {
   margin: 0 0 9px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'FuturaStdBook', Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px; }
 
@@ -301,7 +299,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
   color: #333333;
   text-rendering: optimizelegibility; }
 
@@ -544,7 +542,7 @@ input,
 button,
 select,
 textarea {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  font-family: 'FuturaStdBook', Helvetica, Arial, sans-serif; }
 
 label {
   display: block;
@@ -1163,7 +1161,7 @@ table .span12 {
   height: 14px;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("/images/glyphicons-halflings.png");
+  background-image: url("../img/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   *margin-right: .3em; }
@@ -1172,7 +1170,7 @@ table .span12 {
   *margin-left: 0; }
 
 .icon-white {
-  background-image: url("/images/glyphicons-halflings-white.png"); }
+  background-image: url("../img/glyphicons-halflings-white.png"); }
 
 .icon-glass {
   background-position: 0      0; }
@@ -2581,7 +2579,7 @@ button.btn.small, input[type="submit"].btn.small {
 
 .navbar-search .search-query {
   padding: 4px 9px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'FuturaStdBook', Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1;

@@ -4,19 +4,6 @@
 class UserMailer < ActionMailer::Base
   layout 'email'
 
-  # Welcome email for the user on sign up
-  #
-  def new_user(user)
-    @user         = user
-    @action       = "Welcome"
-
-    generate_attributes(@user.id,0,@user,EmailPurpose::Welcome)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
   # Alert user when a new comment is added on a 
   # thread to which the user belongs
   #
@@ -64,6 +51,35 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Alert user about new bulk followers
+  #
+  def new_bulk_followers(user,followings) 
+    @user         = user
+    @followers    = followings.map(&:follower) 
+
+    @action       = "#{@followers.length} new people are now following "\
+                    "your Closet!" 
+                    
+    generate_attributes(@user.id,0,@user,EmailPurpose::NewBulkFollowers)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert user whenever he/she is featured as a star user 
+  #
+  def star_user(user)
+    @user         = user
+    @action       = "Your closet is now featured as a Top Closet!"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::StarUser)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Alert user whenever he/she is featured as a 
   # top shopper for a particular store
   #
@@ -79,24 +95,8 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert user whenever a friend creates a collection 
-  #
-  def friend_collection(user,collection)
-    @owner        = collection.user
-    @user         = user
-    @collection   = collection 
-    @action       = "#{@owner.first_name} just added a collection"
-
-    generate_attributes(@user.id,@collection.user_id,@collection,EmailPurpose::FriendCollection)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-
   # Alert the owner whenever an action is taken 
-  # on his/her product or collection
+  # on his/her product
   #
   def new_action(action)
     action_map    = {'like' => 'likes',
@@ -128,6 +128,53 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
+  end
+
+  # Revive a dormant user
+  #
+  def dormant(user)
+    @user = user
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::Dormant)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", your online closet is waiting!"
+  end
+
+  # Message about on today feature
+  #
+  def ontoday(user)
+    @user = user
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::OnToday)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", come see an amazing update to your online closet!"
+  end
+
+  # Message user to keep creating collections
+  #
+  def collect_more(user)
+    @user = user
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::CollectMore)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", a Thank You message from OnCloset"
+  end
+
+  # Message user to invite more friends
+  #
+  def invite_more(user)
+    @user = user
+    generate_attributes(@user.id,0,@user,EmailPurpose::InviteMore)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @user.first_name + ", your Closet is feeling lonely :o("
   end
 
   # Safety check email whenever a user is deleted
@@ -163,10 +210,6 @@ class UserMailer < ActionMailer::Base
         ActiveRecord::Base.logger.info "Preview of email generated \n\n" + 
                                         mail.to_s 
       end
-
-    elsif method.to_s.match(/^preview_(.*)/)
-      mail = self.send("create_#{$1}".to_sym,*args) 
-      mail.body
     else
       super
     end

@@ -6,13 +6,13 @@ class CollectionPresenter < BasePresenter
   # Relative path for the collection 
   #
   def path(source)
-    h.collection_path collection.user.handle,collection.handle,:src => source
+    h.collection_path collection.user.handle,collection.id,:src => source
   end
   
   # Absolute path for the collection 
   # 
   def url(source)
-    h.collection_url collection.user.handle,collection.handle,:src => source
+    h.collection_url collection.user.handle,collection.id,:src => source
   end
 
   # Anchor tag for editing the collection 
@@ -22,7 +22,7 @@ class CollectionPresenter < BasePresenter
       h.link_to "Edit",
                 edit_collection_path(
                   collection.user.handle,
-                  collection.handle,
+                  collection.id,
                   :src => 'collection'),
                 :class => 'edit_cccccc_14'
     end
@@ -46,7 +46,7 @@ class CollectionPresenter < BasePresenter
 	    next_collection ? 
         h.link_to(
             '',
-            collection_path(user.handle,next_collection.handle,:src => 'next'),
+            collection_path(user.handle,next_collection.id,:src => 'next'),
             :class => 'next') : ''
   end
 
@@ -56,7 +56,7 @@ class CollectionPresenter < BasePresenter
 	    prev_collection ? 
         h.link_to(
             '',
-            collection_path(user.handle,prev_collection.handle,:src => 'previous'),
+            collection_path(user.handle,prev_collection.id,:src => 'previous'),
             :class => 'previous') : ''
   end
 
@@ -73,35 +73,6 @@ class CollectionPresenter < BasePresenter
   def page_title(user_name)
     collection.name.present? ? collection.name : user_name + "'s set"
   end
-
-  # Description message for the collection used in
-  # og description tag
-  #
-  def description
-    description   = h.pluralize(collection.products.length, "item", "items")
-
-    stores        = collection.products.map(&:store).uniq
-    names         = stores.compact.map{|s| s.name if s.is_approved}.compact
-
-    other_stores  = stores.include?(nil) || (stores.length != names.length)  
-      
-    if names.present? 
-      description += " from " 
-
-      if names.length == 1
-        description += names[0]
-      else
-        description += names[0..-2].join(", ") + 
-                       (other_stores ? ", " : " and ") + 
-                       names[-1] 
-      end
-
-      description += " and others" if other_stores
-    end
-
-    description
-  end
-
 
   # Thumbnail url for the collection
   #

@@ -4,7 +4,7 @@ module DW
   #
   module CacheManagement
 
-    # Wraps around Rails.cache for preventing development errors
+    # Wraps around Rails.cache for preventing devleopment errors
     #
     class Cache
 

@@ -1,7 +1,6 @@
 <%-cache @key do-%>
   <%=@collections.to_json(
-      :only => [:id,:user_id,:name,:handle,:comments_count,
-                    :actions_count,:created_at],
+      :only => [:id,:user_id,:name,:comments_count,:actions_count,:created_at],
       :include => {
         :products => {
           :only     => [:id],

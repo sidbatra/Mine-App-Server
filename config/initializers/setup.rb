@@ -23,7 +23,6 @@ include CacheManagement
 include CryptoManagement 
 include ImageProcessing
 include NotificationManagement
-include MailmanInterface
 include Storage
 include QueueManagement
 include DistributionManagement

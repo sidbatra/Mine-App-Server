@@ -57,9 +57,13 @@ module DW
       NewComment        = 0
       NewFollower       = 1
       NewAction         = 2
+      StarUser          = 3
       TopShopper        = 4
-      Welcome           = 5
-      FriendCollection  = 6
+      Dormant           = 5
+      OnToday           = 6
+      CollectMore       = 7
+      InviteMore        = 8
+      NewBulkFollowers  = 9
     end
 
     # Sources for the Following model

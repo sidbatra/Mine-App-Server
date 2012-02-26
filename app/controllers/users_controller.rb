@@ -2,7 +2,7 @@
 #
 class UsersController < ApplicationController
   before_filter :login_required,  :only => :update
-  before_filter :renew_session, :only => :show
+  before_filter :logged_in?,      :only => :show
 
   # Create a user based on token received from facebook
   #

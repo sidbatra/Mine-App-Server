@@ -2,7 +2,6 @@
 #
 class CollectionsController < ApplicationController
   before_filter :login_required, :except => [:index,:show]
-  before_filter :renew_session, :only => :show
 
   # Display UI for creating a new collection
   #
@@ -63,22 +62,12 @@ class CollectionsController < ApplicationController
   # Display a collection 
   #
   def show
-
-    if params[:id].present? && params[:user_handle].present?
-      user       = User.find_by_handle(params[:user_handle])
-      collection = Collection.find_by_id_and_user_id(params[:id],user.id)
-
-      redirect_to collection_path(user.handle,collection.handle)
-      return
-    end
-
-
     user        = User.find_by_handle(params[:user_handle])
     @collection = Collection.
                     with_user.
                     with_products_and_associations.
-                    find_by_handle_and_user_id(
-                                        params[:handle],
+                    find_by_id_and_user_id(
+                                        params[:id],
                                         user.id)
     
     @next_collection  = @collection.next
@@ -97,12 +86,9 @@ class CollectionsController < ApplicationController
   #
   def edit
     user        = User.find_by_handle(params[:user_handle])
-
-    raise IOError, "Unauthorized Access" if user.id != self.current_user.id
-
     @collection = Collection.
-                    find_by_handle_and_user_id(
-                                        params[:handle],
+                    find_by_id_and_user_id(
+                                        params[:id],
                                         user.id)
   rescue => ex
     handle_exception(ex)
@@ -131,7 +117,7 @@ class CollectionsController < ApplicationController
       format.html do 
         redirect_to collection_path(
                       self.current_user.handle,
-                      @collection.handle,
+                      @collection.id,
                       :src => CollectionShowSource::Updated)
       end
       format.json
