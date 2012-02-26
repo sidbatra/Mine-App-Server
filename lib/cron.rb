@@ -44,7 +44,7 @@ module DW
       # product 
       #
       def self.email_to_create_another_product
-        users = User.products_count_gt(0)
+        users = User.with_setting.products_count_gt(0)
         Mailman.prompt_users_to_create_another_product(users)
 
         HealthReport.add(HealthReportService::AnotherItemPrompt)
