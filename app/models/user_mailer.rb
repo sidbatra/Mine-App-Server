@@ -171,6 +171,58 @@ class UserMailer < ActionMailer::Base
     from          EMAILS[:contact]
     subject       @action
   end
+  
+  # Alert the user to start adding items 
+  #
+  def add_an_item(user)
+    @user         = user
+    @action       = "Are you wearing your favorite shoes?"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::AddItem)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert the user to start inviting friends 
+  #
+  def add_a_friend(user)
+    @user         = user
+    @action       = "Which of your friends has great style?"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::AddFriend)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert the user to start adding stores 
+  #
+  def add_a_store(user)
+    @user         = user
+    @action       = "Where do you like to shop?"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::AddStore)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  # Alert the user to start adding collections 
+  #
+  def add_a_collection(user)
+    @user         = user
+    @action       = "Share your style!"
+
+    generate_attributes(@user.id,0,@user,EmailPurpose::AddCollection)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
 
   # Safety check email whenever a user is deleted
   #

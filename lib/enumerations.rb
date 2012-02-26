@@ -62,6 +62,10 @@ module DW
       FriendCollection  = 11
       AnotherCollection = 12
       AnotherProduct    = 13
+      AddItem           = 14
+      AddFriend         = 15
+      AddStore          = 16
+      AddCollection     = 17
     end
 
     # Sources for the Following model

@@ -60,6 +60,18 @@ class Admin::EmailsController < ApplicationController
       render :text => UserMailer.preview_create_another_product(
                         User.last)
 
+    when :add_an_item
+      render :text => UserMailer.preview_add_an_item(User.last)
+
+    when :add_a_friend
+      render :text => UserMailer.preview_add_a_friend(User.last)
+
+    when :add_a_store
+      render :text => UserMailer.preview_add_a_store(User.last)
+
+    when :add_a_collection
+      render :text => UserMailer.preview_add_a_collection(User.last)
+
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.last)
 
