@@ -16,8 +16,9 @@ class Admin::UsersController < ApplicationController
                   {:time => 1.month.ago,:name => 'monthly'}]
 
       @buckets.each do |bucket|
-        next if bucket[:time] < 10.days.ago
-        bucket[:users] = active_users_in_time_period(bucket[:time])
+        bucket[:users],
+        bucket[:count],
+        bucket[:active_count] = active_users_in_time_period(bucket[:time])
       end
     end
 
@@ -51,20 +52,15 @@ class Admin::UsersController < ApplicationController
   # Fetch users who have been active in the given time period
   #
   def active_users_in_time_period(time)
-    users = User.updated(time)
+    users = User.updated(time).by_products_count.limit(150)
+    count = users.count
 
-    #user_ids = [Product,Action,Collection,Comment].map do |model|
-    #             model.select(:user_id).made(time).map(&:user_id)
-    #           end.flatten
+    active_count = [Product,Action,Collection,
+                      Comment,Search].map do |model|
+                     model.select(:user_id).made(time).map(&:user_id)
+                   end.flatten.uniq.count
 
-    #user_ids = Hash[*user_ids.zip([true] * user_ids.length).flatten]
-
-    users.each do |user|
-      #user[:is_active] = user_ids.key? user.id
-      user[:is_recent] = time > user.created_at
-    end
-
-    users
+    [users,count,active_count]
   end
 
 
