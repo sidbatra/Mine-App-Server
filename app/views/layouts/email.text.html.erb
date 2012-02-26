@@ -9,5 +9,10 @@
     <br><br>
     Thanks, <br>
     <%=CONFIG[:name]%>
+
+    <br><br>
+    <span>
+      Is all this feedback blowing your mind?
+    </span> <%=link_to "Manage your settings",settings_url(:src => @source)%>
   </body>
 </html>

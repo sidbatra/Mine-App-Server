@@ -9,6 +9,7 @@ class UserMailer < ActionMailer::Base
   def new_user(user)
     @user         = user
     @action       = "Welcome to #{CONFIG[:name]}!"
+    @source       = "email_welcome"
 
     generate_attributes(@user,0,@user,EmailPurpose::Welcome)
 
@@ -25,6 +26,7 @@ class UserMailer < ActionMailer::Base
     @comment      = comment
     @user         = user
     @action       = @comment.user.first_name + " " + @comment.user.last_name
+    @source       = "email_#{comment.commentable_type.downcase}_comment"
 
     if @owner.id == @user.id
       @action    += "just commented on your "
@@ -56,6 +58,7 @@ class UserMailer < ActionMailer::Base
   def new_follower(following) 
     @follower     = following.follower 
     @user         = following.user
+    @source       = "email_follower"
 
     @action       = @follower.first_name + " " + @follower.last_name + 
                     " thinks you influence each other's style!"
@@ -74,6 +77,7 @@ class UserMailer < ActionMailer::Base
     @user         = user
     @store        = store
     @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
+    @source       = "email_tshopper"
 
     generate_attributes(@user,0,@store,EmailPurpose::TopShopper)
 
@@ -88,6 +92,7 @@ class UserMailer < ActionMailer::Base
     @owner        = collection.user
     @user         = user
     @collection   = collection 
+    @source       = "email_friend_collection"
     @action       = "#{@owner.first_name} #{@owner.last_name} " + 
                     "just posted a new set!" 
 
@@ -111,6 +116,7 @@ class UserMailer < ActionMailer::Base
     @user         = @actionable.user 
     @actor        = action.user 
     @action_name  = action.name
+    @source       = "email_#{@actionable.class.name.downcase}_#{@action_name}"
 
     @action       = "#{@actor.first_name} #{@actor.last_name} " + 
     								"#{action_map[@action_name]} your "
@@ -141,6 +147,7 @@ class UserMailer < ActionMailer::Base
     @user             = user
     @last_collection  = last_collection
     @products         = last_collection.products.take(3).map(&:title)
+    @source           = "email_another_collection"
 
     @action           = "Still have your "
 
@@ -164,6 +171,7 @@ class UserMailer < ActionMailer::Base
   def create_another_product(user)
     @user         = user
     @action       = "Bought something new this week?"
+    @source       = "email_another_product"
 
     generate_attributes(@user,0,@user,EmailPurpose::AnotherProduct)
 
@@ -177,6 +185,7 @@ class UserMailer < ActionMailer::Base
   def add_an_item(user)
     @user         = user
     @action       = "Are you wearing your favorite shoes?"
+    @source       = "email_add_item"
 
     generate_attributes(@user,0,@user,EmailPurpose::AddItem)
 
@@ -190,6 +199,7 @@ class UserMailer < ActionMailer::Base
   def add_a_friend(user)
     @user         = user
     @action       = "Which of your friends has great style?"
+    @source       = "email_add_friend"
 
     generate_attributes(@user,0,@user,EmailPurpose::AddFriend)
 
@@ -203,6 +213,7 @@ class UserMailer < ActionMailer::Base
   def add_a_store(user)
     @user         = user
     @action       = "Where do you like to shop?"
+    @source       = "email_add_store"
 
     generate_attributes(@user,0,@user,EmailPurpose::AddStore)
 
@@ -216,6 +227,7 @@ class UserMailer < ActionMailer::Base
   def add_a_collection(user)
     @user         = user
     @action       = "Share your style!"
+    @source       = "email_add_collection"
 
     generate_attributes(@user,0,@user,EmailPurpose::AddCollection)
 

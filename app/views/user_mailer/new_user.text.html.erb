@@ -7,7 +7,7 @@ Add
 <%Category.all.each_with_index do |c,i|%>
   <a href="<%=new_product_url(
                 :category => c.handle, 
-                :src      => "email_welcome")%>">
+                :src      => @source)%>">
   <%if i<6%>
     <%=c.name%></a>, 
   <%elsif i==6%>
@@ -18,11 +18,11 @@ Add
 <%end%> <br />
 
 Add 
-<a href="<%=new_shopping_url(:src => "email_welcome")%>">
+<a href="<%=new_shopping_url(:src => @source)%>">
 Favorite stores</a><br/>
 
 Add 
-<a href="<%=new_invite_url(:src => "email_welcome")%>">
+<a href="<%=new_invite_url(:src => @source)%>">
 Influential friends</a> (people with great style, clearly!)<br/><br />
 
 Always feel free to email us 

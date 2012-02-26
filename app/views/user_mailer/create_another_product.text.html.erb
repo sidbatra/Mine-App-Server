@@ -6,7 +6,7 @@ Add
 <%Category.all.each_with_index do |c,i|%>
   <a href="<%=new_product_url(
                 :category => c.handle, 
-                :src      => "email_another_product")%>">
+                :src      => @source)%>">
   <%if i<6%>
     <%=c.name%></a>, 
   <%elsif i==6%>

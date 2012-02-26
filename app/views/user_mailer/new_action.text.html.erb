@@ -6,12 +6,12 @@ Hi <%=@user.first_name%>,<br /><br />
   <a href="<%=product_url(
                 @user.handle,
                 @actionable.handle,
-                :src => "email_#{@action_name}")%>">
+                :src => @source)%>">
   View your item</a>
 <%elsif @actionable.class.name == 'Collection'%>
   <a href="<%=collection_url(
                 @user.handle,
                 @actionable.handle,
-                :src => "email_collection_#{@action_name}")%>">
+                :src => @source)%>">
   View your set</a>
 <%end%>

@@ -73,7 +73,7 @@ class Admin::EmailsController < ApplicationController
       render :text => UserMailer.preview_add_a_collection(User.last)
 
     when :user_deleted
-      render :text => UserMailer.preview_user_deleted(User.last)
+      render :text => UserMailer.preview_user_deleted(User.first,User.last)
 
     end
   end
