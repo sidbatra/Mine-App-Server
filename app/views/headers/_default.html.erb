@@ -1,93 +1,97 @@
   <!-- Navbar
     ================================================== -->
+
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
         
           <%=link_to_if !is_onboarding?,
-      				CONFIG[:name],
-              	logged_in? ? 
+              CONFIG[:name],
+                logged_in? ? 
                   user_path(self.current_user.handle,:src => "top") : 
                   home_path(
                   @origin && @origin != "direct" ? @origin : "",
                   :src => "top"),
-               		:class => "brand" %>
-               			
+                  :class => "brand" %>
+                    
           <div class="nav-collapse">
             <ul class="nav pull-right">
-            	
-            	<%if !logged_in?%>
+              
+              <%if !logged_in?%>
             
-	              <li>
-	                <%=link_to "Log In",
-		                	fb_auth_path(
-	                      :src    => @origin ? @origin : "login",
-	                      :target => request.request_uri),
-		                		:id => "action_link" %>
-	              </li>
+                <li>
+                  <%=link_to "Log In",
+                      fb_auth_path(
+                        :src    => @origin ? @origin : "login",
+                        :target => request.request_uri),
+                        :id => "action_link" %>
+                </li>
               
               <%else%>
-	              
-	              <li>
-	                <a href="<%=new_invite_path(:src => 'bar')%>">Invite friends</a>
-	              </li>
-	              <li class="dropdown open">
-              		<a href="<%=new_product_path(:src => 'bar')%>" class="dropdown-toggle" data-toggle="dropdown">
-              			Add item 
-              			<b class="caret"></b>
-              		</a>
-              		<ul class="dropdown-menu">
-		              	<%@categories.each do |category|%>
-					            <li>
-						            <%=link_to "#{category.id == 8 ? 
-						                                'Anything!' : 
-						                                category.name}",
-						                    (is_onboarding_create? ?
-						                      welcome_create_path(
-						                        :category => category.handle) :
-						                      new_product_path(
-						                        :category => category.handle,
-						                        :src      => "dropdown"))%>
-						          </li>
-						        <%end%>
-		              </ul>
-	              </li>
-	              <li>
-	                <%=link_to 'New set',
-					            new_collection_path(:src => 'bar'),
-					            :class => "" if self.current_user.products_count > 
-					                                              CONFIG[:products_threshold]%>
-	              </li>
-	              <li class="user-cell">
-						    	<a href="<%=is_onboarding? ? 
-						                  "javascript:void(0)" : 
-						                  user_path(self.current_user.handle,:src => 'bar')%>">
-										 <%=image_tag self.current_user.photo_url, 
-						                    :class => "avatar",
-						                    :alt => ""
-						                    %>
-										<%=user_full_name(self.current_user)%>
-									</a>
-	              </li>
-	              <li class="dropdown open">
-              		<a href="<%=new_product_path(:src => 'bar')%>" class="dropdown-toggle" data-toggle="dropdown">
-              			<b class="caret"></b>
-              		</a>
-              		<ul class="dropdown-menu">
-              			<li>
-					          	<%=link_to "Log out", 
-					              logout_path%>
-						        </li>
-		              </ul>
-	              </li>
+                
+                <li>
+                  <a href="<%=new_invite_path(:src => 'bar')%>">Invite friends</a>
+                </li>
+                <li class="dropdown">
+                  <!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Add item 
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <%@categories.each do |category|%>
+                      <li>
+                        <%=link_to "#{category.id == 8 ? 
+                                            'Anything!' : 
+                                            category.name}",
+                                (is_onboarding_create? ?
+                                  welcome_create_path(
+                                    :category => category.handle) :
+                                  new_product_path(
+                                    :category => category.handle,
+                                    :src      => "dropdown"))%>
+                      </li>
+                    <%end%>
+                  </ul>
+                </li>
+                <li>
+                  <%=link_to 'New set',
+                      new_collection_path(:src => 'bar'),
+                      :class => "" if self.current_user.products_count > 
+                                                        CONFIG[:products_threshold]%>
+                </li>
+                <li class="user-cell">
+                  <a href="<%=is_onboarding? ? 
+                              "javascript:void(0)" : 
+                              user_path(self.current_user.handle,:src => 'bar')%>">
+                     <%=image_tag self.current_user.photo_url, 
+                                :class => "avatar",
+                                :alt => ""
+                                %>
+                    <%=user_full_name(self.current_user)%>
+                  </a>
+                </li>
+                <li class="dropdown">
+                  <!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%=link_to "Log out", 
+                        logout_path%>
+                    </li>
+                  </ul>
+                </li>
               
               <%end%>
               
             </ul> <!-- /nav -->
-          </div> <! --/nav-collapse -->
+          </div> <!-- /nav-collapse -->
         </div> <!-- /container -->
       </div> <!-- /navbar-inner -->
-    </div> <!-- /navbar -->
+    </div> <!-- /navbar navbar-fixed-top -->
+
 
 
 

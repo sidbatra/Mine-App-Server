@@ -4,120 +4,83 @@
 
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
-  <%=render :partial  => 'facebook/og',
+  <%=render :partial  => "facebook/og",
             :locals   => {
               :title        => @user_presenter.closet_name,
-              :type         => 'link',
+              :type         => "link",
               :description  => @user_presenter.usage_description,
-              :url          => @user_presenter.closet_url('fb'),
+              :url          => @user_presenter.closet_url("fb"),
               :image        => @user.products_count > 0 ? 
                                 @user.products.last.thumbnail_url : 
-                                ''}%>
+                                ""}%>
 <%end%>
 
 
 <!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => 'misc/welcome', 
+<%=render :partial => "misc/welcome", 
           :locals => {
             :src    => @user_presenter.source_id,
             :target => @user_presenter.closet_path('footer')} if !logged_in? &&
-                                                                @source != 'iframe'%>
+                                                                @source != "iframe"%>
 
 
-<div id="container">
-	            
-	<!-- sidebar: left -->
-	<div class='sidebar'>
+<div class="container">
+  <div class="row">
+    <div class="span2" style="background: #eeeeee;">
 
-		<%=@user_presenter.large_picture('picture')%>
-			
-		<div class='username'>
-      <%=@user_presenter.closet_title%>
-    </div>
-
-    <a href='#owns/all' class='tab triangle major' id='owns_tab'>
-      <span class="trans">Owns</span>
-    </a>
-
-    <a href='#wants/all' class='tab triangle major small_top_margin' id='wants_tab'>
-       <span class="trans">Wants</span>
-    </a>
-    
-    <%if @user.collections_count > 0 || is_current_user(@user)%>
-      <a href='#looks' class='tab triangle major small_top_margin' id='collections_tab'>
-         <span class="trans">Uses</span>
+      <%=@user_presenter.large_picture('picture')%>
+        
+      <h3><%=@user_presenter.closet_title%></h3>
+      
+      <ul class="nav nav-list">
+        <li>
+          <a id="owns_tab" href="#">Owns</a>
+        </li>
+        <li>
+          <a id="wants_tab" href="#">Wants</a>
+        </li>
+        <li>
+          <a id="uses_tab" href="#">Uses</a>
+        </li>
+      </ul>
+  
+      <a href='#owns/all' class='tab triangle major' id='owns_tab'>
+        <span class="trans">Owns</span>
       </a>
-    <%end%>
-	  
-<!--
-	  <#if !is_current_user(@user) && logged_in?%>
-	    <div id='following_box_<#=@user.id%>'>
-	    </div>
-	  <#end%>
--->
-	    
-	  <div>
-			<div id="ifollowers_with_msg">
+  
+      <a href='#wants/all' class='tab triangle major small_top_margin' id='wants_tab'>
+         <span class="trans">Wants</span>
+      </a>
+      
+      <%if @user.collections_count > 0 || is_current_user(@user)%>
+        <a href='#looks' class='tab triangle major small_top_margin' id='collections_tab'>
+           <span class="trans">Uses</span>
+        </a>
+      <%end%>
+        
+      <div>
+        <div id="ifollowers_with_msg">
+        </div>
       </div>
-		</div> <!-- following-->
-
-	  <div>
-			<div id="followers_with_msg">
+      
+      <div id='profile_bio' class='large_top_margin'>
+        <%=render :partial  => 'byline',
+                  :locals   => {:user => @user}%>
       </div>
-		</div> <!-- followed by-->
-		
-  	<!-- bio -->
-  	<div id='profile_bio' class='large_top_margin'>
-	    <%=render :partial  => 'byline',
-	              :locals   => {:user => @user}%>
-	  </div>
-
-
-	 	<!-- <div id="star_users_box" class="box tiled">
-	  </div>  star_users_box -->
-	  
-	 	<!-- <div id="top_stores_box" class="box tiled">
-	  </div>  top_stores_box -->
-	 		 	
-	</div> <!-- sidebar: left -->	            
-
-		
-		
-	<!-- Main -->
-	<div id='main'>
-			
-			<!--div id='social_buttons' class="titlebar">
-		  			<%#render :partial => 'facebook/like', 
-		            :locals  => {
-		            :style	 => '',
-		            :url     => @user_presenter.closet_url('fb'),
-		            :send_button  => false,
-		            :width        => 90,
-		            :faces        => false}%>	
-		            
-		    twitter
-		    tumblr
-		    stumble
-		    google+
-		    
-			</div-->
-			
-      <div id="centerstage">
-      </div>
-	</div> <!-- main -->
-	
-	
-	
-	<!-- sidebar: right -->
-	<div class='sidebar right'>
-	
-		<div id="user_stores_box" class="box tile_listed">
-	  </div> <!-- your_stores_box -->
-	  
-	</div> <!-- sidebar: right -->	
-	
-
-</div> <!-- container -->
+    
+    </div> <!-- /span2 (left) -->
+    
+    
+    <div class="span8" style="background: #eeeeee;">
+      <div id="centerstage"></div>
+    </div> <!-- /span8 -->
+    
+    
+    <div class="span2" style="background: #eeeeee;">
+      <div id="user_stores_box" class="box tile_listed"></div>
+    </div> <!-- /span2 (right) -->
+  </div> <!-- /row -->
+</div> <!-- /container -->
 
 <%content_for :javascript do%>
   <%#render :partial => "misc/feedback"%>
