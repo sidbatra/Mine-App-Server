@@ -133,8 +133,7 @@ body {
 	cursor: pointer;
 	display: inline-block;
 	border: none;
-	background: url("/images/
-	welcome_buttons.png") no-repeat;
+	background: url("/images/welcome_buttons.png") no-repeat;
 	background-position: -40px 0px;
 	font-size: 20px;
 	color: #555;
