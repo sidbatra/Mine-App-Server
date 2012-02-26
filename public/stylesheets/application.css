@@ -215,6 +215,7 @@ div.welcome_text {
   height: 40px;
   position: absolute;
   right: 0px;
+  padding-right: 24px;
   top: 0px;
   cursor: pointer; }
 
