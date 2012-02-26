@@ -116,6 +116,7 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   //
   setAnalytics: function() {
     analytics.shoppingNewView(this.source);
+    analytics.checkForEmailClickedEvent(this.source);
   }
 
 });
