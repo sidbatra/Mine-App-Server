@@ -79,5 +79,5 @@ task :upload_resources_to_assethost do |e,args|
   end
 
   system("rmdir public/assets")
-  system("git checkout .")
+  system("git checkout public/stylesheets/*.css")
 end
