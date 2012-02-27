@@ -1,7 +1,6 @@
 <!-- Generate presenters to render this page -->
 <%@user_presenter = presenter_for(@user)%>
 
-
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
   <%=render :partial  => "facebook/og",
@@ -23,7 +22,6 @@
             :target => @user_presenter.closet_path('footer')} if !logged_in? &&
                                                                 @source != "iframe"%>
 
-
 <div class="container">
   <div class="row">
     <div class="span2">
@@ -34,9 +32,11 @@
       </div>
       
       <!-- user name -->  
-      <h3 style="padding: 13px 0;"><%=@user_presenter.closet_title%></h3>
+      <h3 style="padding: 13px 0;">
+      	<%=@user_presenter.closet_title%>
+      </h3>
       
-      <!-- owns wants uses -->
+      <!-- owns wants uses tabs -->
       <ul class="nav nav-tabs nav-stacked">
       
         <li>
@@ -78,16 +78,21 @@
     </div> <!-- /span2 (left) -->
     
     
-    <div class="span8" style="background: #eeeeee;">
+    <div class="span8">
       <div id="centerstage"></div>
     </div> <!-- /span8 -->
     
     
-    <div class="span2" style="background: #eeeeee;">
-      <div id="user_stores_box" class="box tile_listed"></div>
+    <div class="span2">
+      <div class="well" style="padding: 8px 0; white-space:nowrap; overflow: hidden;">
+      	<ul class="nav nav-list" id="user_stores_box">
+      	</ul>
+      </div>
     </div> <!-- /span2 (right) -->
+    
   </div> <!-- /row -->
 </div> <!-- /container -->
+
 
 <%content_for :javascript do%>
   <%#render :partial => "misc/feedback"%>
