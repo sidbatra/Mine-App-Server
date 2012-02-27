@@ -37,5 +37,6 @@ stylesheets:
   application:
     - public/stylesheets/application.css
     - public/stylesheets/bootstrap.css
+    - public/stylesheets/velcro.css
   home:
     - public/stylesheets/home.css

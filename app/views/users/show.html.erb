@@ -26,48 +26,55 @@
 
 <div class="container">
   <div class="row">
-    <div class="span2" style="background: #eeeeee;">
+    <div class="span2">
 
-      <%=@user_presenter.large_picture('picture')%>
-        
-      <h3><%=@user_presenter.closet_title%></h3>
+			<!-- user photo -->
+      <div style="line-height: 0px;">
+      	<%=@user_presenter.large_picture('picture')%>
+      </div>
       
-      <ul class="nav nav-list">
+      <!-- user name -->  
+      <h3 style="padding: 13px 0;"><%=@user_presenter.closet_title%></h3>
+      
+      <!-- owns wants uses -->
+      <ul class="nav nav-tabs nav-stacked">
+      
         <li>
-          <a id="owns_tab" href="#">Owns</a>
+          <a href="#owns/all" id="owns_tab" data-toggle="tab">
+          	Owns
+          </a>
         </li>
+        
         <li>
-          <a id="wants_tab" href="#">Wants</a>
+          <a href="#wants/all" id="wants_tab" data-toggle="tab">
+          	Wants
+          </a>
         </li>
-        <li>
-          <a id="uses_tab" href="#">Uses</a>
-        </li>
+        
+        <%if @user.collections_count > 0 || is_current_user(@user)%>
+	        <li>
+	          <a href="#looks" id="collections_tab" data-toggle="tab">
+	          	Uses
+	          </a>
+	        </li>
+        <%end%>
+        
       </ul>
-  
-      <a href='#owns/all' class='tab triangle major' id='owns_tab'>
-        <span class="trans">Owns</span>
-      </a>
-  
-      <a href='#wants/all' class='tab triangle major small_top_margin' id='wants_tab'>
-         <span class="trans">Wants</span>
-      </a>
       
-      <%if @user.collections_count > 0 || is_current_user(@user)%>
-        <a href='#looks' class='tab triangle major small_top_margin' id='collections_tab'>
-           <span class="trans">Uses</span>
-        </a>
-      <%end%>
-        
-      <div>
-        <div id="ifollowers_with_msg">
-        </div>
+      <!-- user byline -->
+      <div class="well" style="padding: 8px 0;">
+      	<ul class="nav nav-list" id="profile_bio">
+	        <%=render :partial  => 'byline',
+	                  :locals   => {:user => @user}%>
+        </ul>
       </div>
       
-      <div id='profile_bio' class='large_top_margin'>
-        <%=render :partial  => 'byline',
-                  :locals   => {:user => @user}%>
+      <!-- influenced by -->  
+      <div class="well" style="padding: 8px 0; white-space:nowrap; overflow: hidden;">
+      	<ul class="nav nav-list" id="ifollowers_with_msg">
+        </ul>
       </div>
-    
+      
     </div> <!-- /span2 (left) -->
     
     

@@ -1156,7 +1156,7 @@ table .span12 {
   float: none;
   width: 924px;
   margin-left: 0; }
-
+  
 [class^="icon-"], [class*=" icon-"] {
   display: inline-block;
   width: 14px;
@@ -1175,7 +1175,7 @@ table .span12 {
   background-image: url("/images/glyphicons-halflings-white.png"); }
 
 .icon-glass {
-  background-position: 0      0; }
+  background-position: 0 0; }
 
 .icon-music {
   background-position: -24px 0; }
@@ -1533,23 +1533,6 @@ table .span12 {
 
 .icon-resize-horizontal {
   background-position: -456px -118px; }
-
-.user-cell {
-  position: relative;
-  padding-left: 28px; }
-
-.user-cell .avatar {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  opacity: 0.8;
-  filter: alpha(opacity=80); }
-
-.user-cell:hover .avatar {
-  opacity: 1;
-  filter: alpha(opacity=100); }
 
 .dropdown {
   position: relative; }
@@ -3502,20 +3485,3 @@ a.thumbnail:hover {
 
 .invisible {
   visibility: hidden; }
-
-
-/* ------------------------------ Fonts ------------------------------  */
-@font-face {
-  font-family: 'FuturaStdBold';
-  src: url("../type/futurastd-bold-webfont.eot");
-  src: url("../type/futurastd-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../type/futurastd-bold-webfont.woff") format("woff"), url("../type/futurastd-bold-webfont.ttf") format("truetype"), url("../type/futurastd-bold-webfont.svg#") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'FuturaStdBook';
-  src: url("../type/futurastd-book-webfont.eot");
-  src: url("../type/futurastd-book-webfont.eot?#iefix") format("embedded-opentype"), url("../type/futurastd-book-webfont.woff") format("woff"), url("../type/futurastd-book-webfont.ttf") format("truetype"), url("../type/futurastd-book-webfont.svg#FuturaStdBook") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-

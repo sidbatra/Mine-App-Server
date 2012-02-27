@@ -1,25 +1,21 @@
+<li class="nav-header">
+  <%=header%> 
+</li>
+
 <%if(!count){%>
 
-  <div class='tab title large_top_margin'>
-  	Which friends influence you?
-  </div>
-  <div class='placeholder_text'>
-  	<a href="<%=helpers.newInvitePath('placeholder')%>">Invite</a>
-    <span class="trans_80"> a few friends whose style you like.</span> 
-  </div>
+  <li>
+  	<a href="<%=helpers.newInvitePath('placeholder')%>">
+  		Invite a few friends whose style you like.   	
+    </a>
+  </li>
   
 <%}else{%>
 
-	<div class='tab title large_top_margin'>
-    <%=header%>
-    <%=count ? (count == 1 ? '1 person' : count + ' people') : ' no one'%> 
-  </div>
-
-  <div class='no_small_top_margin'>
-    <%users.each(function(user){%>
-      <%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
-    <%});%>
-    <%=helpers.blocker()%>
-  </div>
+  <%users.each(function(user){%>
+  	<li>
+    	<%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
+    </li>
+  <%});%>
 
 <%}%>

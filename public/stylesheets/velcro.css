@@ -1,0 +1,50 @@
+/* user-cell image and name nav button */
+
+.user-cell .avatar {
+  width: 20px;
+  height: 20px;
+  float: left;
+  padding-right: 8px;
+  opacity: 0.8;
+  filter: alpha(opacity=80); }
+
+.user-cell:hover .avatar {
+  opacity: 1;
+  filter: alpha(opacity=100); }
+
+/* fade-to-background div content overflow */
+
+.overflow-fade {
+	position: absolute; 
+	top: 0px; 
+	right: 0px; 
+	bottom: 0px; 
+	background: url(/images/fade.png);
+	background-repeat: repeat-y; }
+
+.well a .overflow-fade {
+	background-position-y: -50px; }
+
+.well a:hover .overflow-fade {
+	background-position-y: -100px; }
+
+
+
+/* ------------------------------ Fonts ------------------------------  */
+@font-face {
+  font-family: 'FuturaStdBold';
+  src: url("../type/futurastd-bold-webfont.eot");
+  src: url("../type/futurastd-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../type/futurastd-bold-webfont.woff") format("woff"), url("../type/futurastd-bold-webfont.ttf") format("truetype"), url("../type/futurastd-bold-webfont.svg#") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'FuturaStdBook';
+  src: url("../type/futurastd-book-webfont.eot");
+  src: url("../type/futurastd-book-webfont.eot?#iefix") format("embedded-opentype"), url("../type/futurastd-book-webfont.woff") format("woff"), url("../type/futurastd-book-webfont.ttf") format("truetype"), url("../type/futurastd-book-webfont.svg#FuturaStdBook") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+
+
+

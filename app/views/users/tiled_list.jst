@@ -1,4 +1,6 @@
-<a href="<%=user.path(src)%>" class="tab image small_top_margin"> 
-	<img src="<%=user.get('photo_url')%>" />
-	<span class="trans"><%=helpers.truncate(user.get('first_name') + ' ' + user.get('last_name'), 18, '…')%></span>
+<a href="<%=user.path(src)%>" style="position: relative;"> 
+	<div class="overflow-fade" style="width: 24px;"></div>
+	<img class="icon-img" src="<%=user.get('photo_url')%>" />
+	<%=helpers.truncate(user.get('first_name') + ' ' + user.get('last_name'), 18, '…')%>
 </a>
+
