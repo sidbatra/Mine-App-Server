@@ -11,19 +11,19 @@ every 1.day, :at => '12:00pm' do
 end
 
 
-every 3.days, :at => '6:00pm' do
+every [:monday,:friday], :at => '6:00pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_items)"
 end
 
-every 3.days, :at => '6:15pm' do
+every [:monday,:friday], :at => '6:15pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_friends)"
 end
 
-every 3.days, :at => '6:30pm' do
+every [:monday,:friday], :at => '6:30pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_stores)"
 end
 
-every 3.days, :at => '6:45pm' do
+every [:monday,:friday], :at => '6:45pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_collections)"
 end
 
