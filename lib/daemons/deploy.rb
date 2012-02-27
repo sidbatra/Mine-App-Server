@@ -15,6 +15,7 @@ while($running) do
 
   begin 
     if `cd #{ENV['RAILS_PATH']} && git pull`.chomp != "Already up-to-date."
+      `cd #{ENV['RAILS_PATH']} && sudo RAILS_ENV=#{ENV['RAILS_ENV']} rake gems:install`
       `cd #{ENV['RAILS_PATH']} && rake deploy:release env=#{ENV['RAILS_ENV']}`
       logger.info "Released at - #{Time.now}"
     end
