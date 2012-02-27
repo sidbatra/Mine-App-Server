@@ -11,6 +11,13 @@
 .user-cell:hover .avatar {
   opacity: 1;
   filter: alpha(opacity=100); }
+  
+/* tab chevrons */
+
+.chev-right {
+	background-position: 0 -140px;
+	width: 9px;
+	height: 13px; }
 
 /* fade-to-background div content overflow */
 
@@ -28,9 +35,8 @@
 .well a:hover .overflow-fade {
 	background-position-y: -100px; }
 
+/* font-face fonts */
 
-
-/* ------------------------------ Fonts ------------------------------  */
 @font-face {
   font-family: 'FuturaStdBold';
   src: url("../type/futurastd-bold-webfont.eot");
@@ -44,7 +50,3 @@
   src: url("../type/futurastd-book-webfont.eot?#iefix") format("embedded-opentype"), url("../type/futurastd-book-webfont.woff") format("woff"), url("../type/futurastd-book-webfont.ttf") format("truetype"), url("../type/futurastd-book-webfont.svg#FuturaStdBook") format("svg");
   font-weight: normal;
   font-style: normal; }
-
-
-
-
