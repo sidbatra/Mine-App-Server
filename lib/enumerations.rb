@@ -15,6 +15,30 @@ module DW
       def self.values
         constants.map{|constant| class_eval constant}
       end
+
+      # Returns the key for the given value
+      #
+      def self.key_for(value)
+        self.values_hash[value]
+      end
+
+      protected
+
+      # Returns a hash that maps the values of constants back to
+      # their names. Hash is generated at runtime when first request.
+      # After this the hash is kept in a class variable and not regenerated
+      #
+      def self.values_hash
+
+        if !defined? @@values_hash
+          @@values_hash = {}
+          constants.each do |constant| 
+            @@values_hash[class_eval(constant)] = constant
+          end
+        end
+
+        @@values_hash
+      end
     end
 
     # Reasons for creation for the AchievementSet model
