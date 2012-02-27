@@ -287,8 +287,7 @@ namespace :assets do
   task :remote do
 
     system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake upload_resources_to_assethost" 
-
+            "rake assets:deploy" 
   end
 
 end

@@ -25,7 +25,7 @@ while($running) do
       end_time = Time.now
 
       logger.info "Finished processing "\
-                  "#{payload.klass} "\
+                  "#{payload.object_name} "\
                   "#{payload.method} "\
                   "#{payload.arguments.join("|")} "\
                   "#{end_time - start_time}"
@@ -33,7 +33,7 @@ while($running) do
     rescue => ex
       if payload.recover?
         logger.info "Recovering "\
-                    "#{payload.klass} "\
+                    "#{payload.object_name} "\
                     "#{payload.method} "\
                     "#{payload.arguments.join("|")}"
         ProcessingQueue.push(payload)

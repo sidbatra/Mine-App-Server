@@ -78,6 +78,17 @@ module DW
         object.send(@method.to_sym,*arguments)
       end
 
+      # Returns an identifying name for the object
+      #
+      def object_name
+        if @klass.match(/ruby\/object/)
+          object = YAML.load(@klass)
+          object.class.name + '_' + object.id.to_s
+        else
+          Object.const_get(@klass).name
+        end
+      end
+
       # Test based on the total attempts whether the payload should
       # receover from failure or not
       #
