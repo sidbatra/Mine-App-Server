@@ -1,4 +1,5 @@
-<a href="<%=store.path(src)%>" class="tab image small_top_margin"> 
-	<img src="<%=store.get('thumbnail_url')%>" />
-	<span class="trans"><%=helpers.truncate(store.get('name'), 20, '…')%></span>
+<a href="<%=store.path(src)%>" style="position: relative;"> 
+	<div class="overflow-fade" style="width: 28px;"></div>
+	<img class="icon-img" src="<%=store.get('thumbnail_url')%>" />
+	<%=helpers.truncate(store.get('name'), 20, '…')%>
 </a>

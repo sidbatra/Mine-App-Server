@@ -1,8 +1,8 @@
 <%if(stores.isEmpty()){%>
 
-  <div class='tab title overhang'>
+  <li class="nav-header">
     Which stores do you shop at?
-  </div>
+  </li>
 
   <div class="placeholder_text">
     <a href="<%=helpers.newShoppingsPath('placeholder')%>">Add</a>
@@ -11,19 +11,18 @@
 
 <%}else{%>
 
-  <div class='tab title overhang'>
+  <li class="nav-header"'>
     <%if(helpers.isCurrentUser(user.get('id'))){%> 
       Your stores
     <%} else {%>
       <%=user.get('first_name')%>'s stores
     <%}%>
-  </div>
-     
-  <div class='no_small_top_margin'>
-    <%stores.each(function(store){%>
-      <%=Denwen.JST['stores/store']({store:store, src:'user'})%>
-    <%});%>
-    <%=helpers.blocker()%>
-  </div>
+  </li>
+  
+  <%stores.each(function(store){%>
+  	<li>
+    	<%=Denwen.JST['stores/store']({store:store, src:'user'})%>
+    </li>
+  <%});%>
 
 <%}%>
