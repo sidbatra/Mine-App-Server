@@ -35,4 +35,21 @@
       <br>
     <%end%>
   <%end%>
+
+  <br> <h3>Live Commits</h3> 
+  <table width="900">
+    <%@commits.each do |commit|%>
+      <tr>
+        <td width="200">
+          <%=commit.committer%>
+        </td>
+        <td width="500">
+          <%=commit.message%>
+        </td>
+        <td width="150">
+          <%=commit.id[0..9] + "..."%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
 </div>

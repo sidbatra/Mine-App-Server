@@ -39,6 +39,9 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('fb_graph',
               :version => '2.4.0')
+  config.gem('grit',
+              :version => '2.4.1',
+              :lib => false)
   config.gem('jammit',
               :version => '0.6.3')
   config.gem('mechanize', 
