@@ -3,35 +3,41 @@
           :locals   => {:step => 3} if is_onboarding?%>
 	
 
-<div id='container' class="narrow">
-
-	<%if is_onboarding? && @category.name == 'Shoes'%>
-	  <div class='heading unselectable' id = 'onboarding_create_msg'>
-	  	To start your closet, type the name<br /> 
-	  	of the favorite pair of shoes you own:
-	  </div>
-	<%else%>
+<div class="container">
+	<div class="row">
+		
+		<div class="span8 offset2">
 	
-	<%end%>
-
-
-	<!-- item -->
-
-  <%form_for @product,
-      :html => {:class => 'new_product unselectable'} do |f|%>
-
-    <%=render :partial  => 'input', 
-        :locals   => {
-          :f                => f,
-          :category         => @category,
-          :placeholders     => @placeholders,
-          :onboarding       => is_onboarding? && @category.name == 'Shoes',
-          :submit_class     => 'add_to_closet',
-          :show_query_box   => true}%>
-
-  <%end%> <!-- form -->
-
-</div> <!-- container -->
+			<%if is_onboarding? && @category.name == 'Shoes'%>
+			  <div id="onboarding_create_msg">
+			  	To start your closet, type the name<br /> 
+			  	of the favorite pair of shoes you own:
+			  </div>
+			<%else%>
+			
+			<%end%>
+		
+		
+			<!-- item -->
+		
+		  <%form_for @product,
+		      :html => {:class => "well"} do |f|%>
+		
+		    <%=render :partial  => 'input', 
+		        :locals   => {
+		          :f                => f,
+		          :category         => @category,
+		          :placeholders     => @placeholders,
+		          :onboarding       => is_onboarding? && @category.name == 'Shoes',
+		          :submit_class     => "",
+		          :show_query_box   => true}%>
+		
+		  <%end%> <!-- /form -->
+	
+		</div> <!-- /span8 -->
+		
+	</div> <!-- /row -->
+</div> <!-- /container -->
 
 
 <%=render 'chooser'%> 
