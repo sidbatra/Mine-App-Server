@@ -1,0 +1,47 @@
+<style type="text/css">
+  .status {
+    background-image: url("<%=image_path "health.png"%>"); 
+    height: 26px;
+    width: 26px;
+    overflow: visible;
+    position: relative;
+    display:block;
+    top: -5px;
+    left: 0;
+    margin: 0 5px 0 0; }
+
+  .success {
+    background-position: 0 0;
+  }
+
+  .failure {
+    background-position: 0 52px;
+  }
+</style>
+
+<div id="container">
+  <h1>Health Reports</h1> <br>
+
+  <table width="900">
+    <%@services.each do |service|%>
+      <tr height="30">
+        <td width="200">
+          <%=HealthReportService.key_for(service[:id])%>
+        </td>
+        <td width="150">
+          <%=service[:report] ? 
+              time_ago_in_words(service[:report].created_at) :
+              "Hasn't run yet"%>
+        </td>
+        <td>
+          <%if !service[:report] ||
+              service[:time] > service[:report].created_at%>
+            <span class="status failure"></span>
+          <%else%>
+            <span class="status success"></span>
+          <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>
