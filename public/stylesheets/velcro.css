@@ -1,4 +1,12 @@
-/* user-cell image and name nav button */
+/* ---------- image src url conversions */
+
+[class^="icon-"], [class*=" icon-"] {
+  background-image: url("/images/glyphicons-halflings.png"); }
+
+.icon-white {
+  background-image: url("/images/glyphicons-halflings-white.png"); }
+
+/* ---------- user-cell image and name nav button */
 
 .user-cell .avatar {
   width: 20px;
@@ -11,15 +19,8 @@
 .user-cell:hover .avatar {
   opacity: 1;
   filter: alpha(opacity=100); }
-  
-/* tab chevrons */
 
-.chev-right {
-	background-position: 0 -140px;
-	width: 9px;
-	height: 13px; }
-
-/* fade-to-background div content overflow */
+/* ---------- fade-to-background div content overflow */
 
 .overflow-fade {
 	position: absolute; 
@@ -35,7 +36,7 @@
 .well a:hover .overflow-fade {
 	background-position-y: -100px; }
 
-/* font-face fonts */
+/* ---------- font-face fonts */
 
 @font-face {
   font-family: 'FuturaStdBold';
