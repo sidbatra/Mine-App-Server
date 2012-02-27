@@ -8,10 +8,3 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
-
-begin
-  require 'brant'
-  require 'brant/tasks'
-rescue LoadError
-  puts "You can't load brant tasks unless the brant gem is installed"
-end
