@@ -115,7 +115,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     var search = new Denwen.Models.Search({
                       query   : query,
                       source  : this.mode == 'new' ? 0 : 1});
-    search.save();
+
+    setTimeout(function(){search.save();},500);
 
     this.trigger('productSearched',query);
   },
