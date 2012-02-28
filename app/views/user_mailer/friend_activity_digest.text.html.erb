@@ -9,7 +9,7 @@ Hi <%=@user.first_name%>, <br />
                   friend.handle,
                   owned_product.handle,
                   :src => @source)%>">
-    <%=owned_product.title%></a><%=owned_product.store ? 
+    <%=owned_product.title.strip%></a><%=owned_product.store ? 
                                    ", bought at #{owned_product.store.name}" :
                                    ""%><br />
   <%end if @owns[i]%>
@@ -19,7 +19,7 @@ Hi <%=@user.first_name%>, <br />
                   wanted_product.user.handle,
                   wanted_product.handle,
                   :src => @source)%>">
-    <%=wanted_product.title%></a>
+    <%=wanted_product.title.strip%></a>
     to <%=friend.is_male? ? "his" : "her"%> Wants <br /> 
   <%end if @wants[i]%>
 
