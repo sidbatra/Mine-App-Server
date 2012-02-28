@@ -118,7 +118,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     setTimeout(function(){search.save();},500);
 
-    this.trigger('productSearched',query);
+    this.trigger('productSearched',query,this.images.queryType);
   },
 
   // Fired when a product image is added to the images

@@ -26,6 +26,6 @@ Denwen.Callbacks.Uploader = {
 }
 
 Denwen.ProductQueryType  = {
-  Text  : 0,
-  URL   : 1
+  Text  : 'text',
+  URL   : 'url'
 }

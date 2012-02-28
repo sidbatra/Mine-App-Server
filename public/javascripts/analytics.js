@@ -266,8 +266,12 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User searches a product
   //
-  productSearched: function(query,mode) {
-    mpq.track("Searched a product", {'query':query,'Mode':mode});
+  productSearched: function(query,queryType,mode) {
+    mpq.track("Searched a product", 
+      {
+        'query':query,
+        'Mode':mode,
+        'Type':queryType});
   },
 
   // Fired when an image selected by the user is broken

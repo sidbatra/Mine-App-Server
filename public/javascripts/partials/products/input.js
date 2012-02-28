@@ -147,8 +147,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
   // Fired when a product is searched from the ProductImagesView
   //
-  productSearched: function(query) {
-    analytics.productSearched(query,this.mode);
+  productSearched: function(query,queryType) {
+    analytics.productSearched(query,queryType,this.mode);
   },
 
   // Fired when a product search is cancelled
