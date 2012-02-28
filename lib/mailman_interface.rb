@@ -158,7 +158,7 @@ module DW
                 
         users.each do |user|
           begin
-            if user.setting.email_update
+            if user.setting.email_influencer
               friends         = user.ifollowers
               active_friends  = friends.select{|f| active_users.include? f.id} 
 
