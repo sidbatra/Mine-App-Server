@@ -87,6 +87,7 @@ class User < ActiveRecord::Base
   named_scope :with_collections_with_products,  
                 :include => {:collections => :products} 
   named_scope :with_setting, :include => :setting
+  named_scope :with_ifollowers, :include => :ifollowers
 
   #----------------------------------------------------------------------
   # Attributes

@@ -10,6 +10,10 @@ every 1.day, :at => '12:00pm' do
   runner "ProcessingQueue.push(CronWorker,:email_to_create_another_collection)"
 end
 
+every 1.day, :at => '12:15pm' do
+  runner "ProcessingQueue.push(CronWorker,:email_users_with_friend_activity,1.day.ago)"
+end
+
 
 every [:monday,:friday], :at => '6:00pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_items)"

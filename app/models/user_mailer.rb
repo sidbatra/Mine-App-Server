@@ -236,6 +236,32 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Friend activity digest for the user 
+  #
+  def friend_activity_digest(user,friends,owns,wants)
+    @user         = user
+    @friends      = friends
+    @owns         = owns
+    @wants        = wants
+    @action       = "What " 
+
+    if @friends.length == 1
+      @action         += @friends[0].first_name
+    else
+      @action         += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
+                         "#{@friends[-1].first_name}" 
+    end
+
+    @action       += " added today"
+    @source       = "email_friend_digest"
+
+    generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Safety check email whenever a user is deleted
   #
   def user_deleted(admin,user)

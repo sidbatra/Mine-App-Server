@@ -1,0 +1,26 @@
+Hi <%=@user.first_name%>, <br />
+
+<%@friends.each_with_index do |friend,i|%>
+
+  <br /><%="#{friend.first_name} #{friend.last_name} added:"%><br /> 
+
+  <%@owns[i].each do |owned_product|%>
+    <a href="<%=product_url(
+                  friend.handle,
+                  owned_product.handle,
+                  :src => @source)%>">
+    <%=owned_product.title%></a><%=owned_product.store ? 
+                                   ", bought at #{owned_product.store.name}" :
+                                   ""%><br />
+  <%end if @owns[i]%>
+
+  <%@wants[i].each do |wanted_product|%>
+    <a href="<%=product_url(
+                  wanted_product.user.handle,
+                  wanted_product.handle,
+                  :src => @source)%>">
+    <%=wanted_product.title%></a>
+    to <%=friend.is_male? ? "his" : "her"%> Wants <br /> 
+  <%end if @wants[i]%>
+
+<%end%>

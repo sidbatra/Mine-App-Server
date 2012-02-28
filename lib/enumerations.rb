@@ -90,6 +90,7 @@ module DW
       AddFriend         = 15
       AddStore          = 16
       AddCollection     = 17
+      FriendDigest      = 18
     end
 
     # Sources for the Following model
@@ -111,6 +112,7 @@ module DW
       AddFriendsPrompt        = 4
       AddStoresPrompt         = 5
       AddCollectionsPrompt    = 6
+      FriendsDigest           = 7
     end
 
     # Sources of landing at the users/show route

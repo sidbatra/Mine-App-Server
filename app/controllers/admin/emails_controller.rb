@@ -72,6 +72,13 @@ class Admin::EmailsController < ApplicationController
     when :add_a_collection
       render :text => UserMailer.preview_add_a_collection(User.last)
 
+    when :friend_activity_digest
+      render :text => UserMailer.preview_friend_activity_digest(
+                                  User.find(3),
+                                  User.find_all_by_id([1,2]),
+                                  [Product.all[-5..-1],[Product.last]],
+                                  [Product.find_all_by_id([100,102]), nil])
+
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)
 

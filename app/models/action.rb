@@ -19,6 +19,8 @@ class Action < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
+  named_scope :with_actionable, :include => :actionable
+  named_scope :with_actionable_and_owner, :include => {:actionable => :user}
   named_scope :with_user, :include => :user
   named_scope :by_user, lambda {|user_id|{:conditions => {:user_id => user_id}}}
   named_scope :named, lambda {|name| {:conditions => {:name => name}}}
@@ -29,6 +31,8 @@ class Action < ActiveRecord::Base
                               :actionable_id    => id,
                               :actionable_type  => klass.capitalize}}}
   named_scope :by_id, :order => 'id DESC'
+  named_scope :created,     lambda {|range| 
+                              {:conditions => {:created_at => range}}}
 
   #----------------------------------------------------------------------
   # Class methods

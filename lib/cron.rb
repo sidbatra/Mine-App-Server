@@ -53,6 +53,48 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Email users with a digest of their friends activities 
+      #
+      def self.email_users_with_friend_activity(from)
+        products  = Product.with_store.created(from..Time.now) 
+        wants     = Action.
+                      on_type('product').
+                      named(ActionName::Want).
+                      created(from..Time.now).
+                      with_actionable_and_owner
+
+        
+        owns_hash = {}
+        products.each do |p|
+          owns_hash[p.user_id] = [] unless owns_hash.has_key?(p.user_id)
+          owns_hash[p.user_id] << p
+        end
+
+        wants_hash = {}
+        wants.each do |w|
+          wants_hash[w.user_id] = [] unless wants_hash.has_key?(w.user_id)
+          wants_hash[w.user_id] << w.actionable
+        end
+        
+        users_with_activity = (products + wants).map(&:user_id).uniq
+        user_ids            = Following.
+                                find_all_by_user_id(users_with_activity).
+                                map(&:follower_id).uniq
+
+        users               = User.with_ifollowers.find_all_by_id(user_ids)
+
+        Mailman.email_users_friend_activity_digest(
+                  users,
+                  users_with_activity,
+                  owns_hash,
+                  wants_hash)
+
+        HealthReport.add(HealthReportService::FriendsDigest)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Email users who haven't added an item to win them back
       #
       def self.scoop_users_with_no_items
