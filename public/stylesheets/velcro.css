@@ -5,8 +5,40 @@
 
 .icon-white {
   background-image: url("/images/glyphicons-halflings-white.png"); }
+
+/* ---------- crisp webkit button text */
+
+.btn {
+	-webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility; }
+
+/* ---------- footer colors */
+
+footer, footer a { color: #999999; }
+
+/* ---------- strike-thru text divider */
+
+.strike-thru {
+	height: 9px;
+	border-top: 1px solid #ccc;
+	padding-top: 18px;
+	margin-top: 27px;
+	color: #999999;
+	text-align: center; }
+
+.strike-thru span, 
+.strike-thru a { 
+	padding: 0 10px;
+	background: white; 
+	position: relative;
+	color: inherit;
+	top: -28px; }
+	
+.well .strike-thru span, 
+.well .strike-thru a { 
+	background: #f5f5f5; }
   
-/* adding an item */
+/* ---------- adding an item */
 
 .photo_box {
   height: 200px;
@@ -18,8 +50,7 @@
   padding: 5px;
   margin-bottom: 18px; }
 
-.photo_box .photo,
-#product_selection_photo /*remove*/ {
+.photo_box .photo {
   max-width: 410px;
   max-height: 200px; }
 

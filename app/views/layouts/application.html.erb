@@ -25,9 +25,11 @@
     <div id="blocker"></div>
 
     <%unless is_onboarding?%>
-      <div id="footer">
-        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
-      </div>
+      <footer style="text-align: center;">
+      	<p>
+        	<%=CONFIG[:name]%> © 2012 · <%=email_link%>
+        </p>
+      </footer>
     <%end%>
 
     <%=render :partial => "misc/analytics"%>

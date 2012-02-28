@@ -45,8 +45,6 @@
     </div>
   <%end%>
 
-
-	
   <div id="extra_steps" style="display:none">
   
 		<div class="control-group">
@@ -55,10 +53,9 @@
       </label>
       <div class="controls" style="margin-left: 130px;">
 	      <%=f.text_field :title,
-	                  :class => "span3"%>
+	                  :style => "width: 200px;"%>
       </div>
     </div> <!-- /title -->
-
 	
 		<div class="control-group">
 	    <label class="control-label" style="width: 120px;">
@@ -66,19 +63,35 @@
 	    </label>
 			<div class="controls" style="margin-left: 130px;">
 		    <%=f.text_field :store_name,
-		                :class    => "span3"%>
-		    <%=f.label :is_store_unknown, 
-						"#{f.check_box :is_store_unknown} Not sure",
-	          :class => "checkbox",
-	          :style => "float: right; padding-top: 5px;"%>
+		                :style => "width: 200px;"%>
+		    <span class="help-inline">          
+			    <%=f.label :is_store_unknown, 
+							"#{f.check_box :is_store_unknown} Not sure",
+		          :class => "checkbox",
+		          :style => "padding-top: 5px;"%>
+	      </span> 
 		  </div>
 	  </div> <!-- /store -->  
+	  
+		<div class="strike-thru" id="endorsement_initiate">
+		  <%=link_to  "Add an optional review?", 
+            "javascript:void(0)"%>
+		</div>
+		
+		<div class="control-group" id="endorsement_container" style="display:none">
+      <label class="control-label" style="width: 120px;">
+        Review
+      </label>
+			<div class="controls" style="margin-left: 130px;">
+	      <%=f.text_area :endorsement,
+	            :value  => "",
+	            :rows 	=> 6,
+	            :style 	=> "width: 200px;"%>
+			</div>
+    </div> <!-- /endorsement -->
 
-		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">
-				<i class="icon-ok icon-white"></i>
-				Add to your OnCloset
-			</button>
-	  </div>
+		<button type="submit" class="btn btn-large btn-primary" style="width: 420px;">
+			Add to closet
+		</button> <!-- submit -->
     
-</div>
+	</div>
