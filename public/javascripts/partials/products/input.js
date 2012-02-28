@@ -117,7 +117,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   displayProductImage: function(imageURL) {
     $(this.selectionEl).show();
-    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
+    $(this.selectionEl).html("<img class='photo' id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
   },
 
   // Fired when a product is selected from the ProductImagesView

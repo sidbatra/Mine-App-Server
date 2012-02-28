@@ -1,10 +1,7 @@
-<div id="<%=thumbUrl%>" 
-  style="<%=filter ? 'display:none' : ''%>"
+<div id="<%=divID%>" 
+  style="<%=hide ? 'display:none' : ''%>"
   class='photo_choice_cell'>
   <img class='photo_choice' 
-      <%if(filter){%>
-       onload="if(this.width>149 && this.height>149)this.parentNode.style.display='inline';"
-      <%}%>
         src="<%=thumbUrl%>" />
   <div class='choose_this'>
     Mine! or similar ›
