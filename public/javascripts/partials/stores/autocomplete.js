@@ -19,13 +19,12 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
   autocomplete: function() {
     this.trigger(Denwen.Callback.StoresLoaded,this.stores);
 
-    this.el.autocomplete(
-              this.stores.pluck('name'),{
-               matchContains: 'word',
-               max: 50,
-               formatMatch: function(item){
-                return item[0].replace(/[^(\w|\s)]/gi, '');},
-               formatResult: function(item){
-                return item[0];} });
+    this.el.typeahead({
+              source:this.stores.pluck('name'),
+              items: 50,
+              matcher: function(item){
+                return ~item.toLowerCase().replace(/[^\w]/g,'').
+                          indexOf(this.query.toLowerCase().
+                                        replace(/[^\w]/g,''));}});
   }
 });
