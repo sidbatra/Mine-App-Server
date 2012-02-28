@@ -72,7 +72,7 @@ class Product < ActiveRecord::Base
   #
   def self.add(attributes,user_id)
     create!(
-      :title              => attributes['title'],
+      :title              => attributes['title'].strip,
       :source_url         => attributes['source_url'],
       :orig_image_url     => attributes['orig_image_url'],
       :orig_thumb_url     => attributes['orig_thumb_url'],
