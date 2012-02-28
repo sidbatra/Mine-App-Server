@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225225900) do
+ActiveRecord::Schema.define(:version => 20120228031817) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20120225225900) do
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
   create_table "searches", :force => true do |t|
-    t.string   "query"
+    t.text     "query"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
