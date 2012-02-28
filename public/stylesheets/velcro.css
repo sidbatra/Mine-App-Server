@@ -41,6 +41,7 @@ footer, footer a { color: #cccccc; }
 /* ---------- creation */
 
 .creation .photo_box {
+	position: relative;
   height: 200px;
   line-height: 200px;
   background: white url("/images/spinner.gif") no-repeat;
@@ -53,6 +54,18 @@ footer, footer a { color: #cccccc; }
 .creation .photo_box .photo {
   max-width: 410px;
   max-height: 200px; }
+
+.creation .change-photo {
+	position:absolute; 
+	top: 5px; 
+	right: 5px;
+	display: none; }
+
+.change-box { position: relative; }
+
+.change-box:hover .change-photo {
+	display: block;
+	z-index: 10; }
 
 /* ---------- settings */ 
 
@@ -145,6 +158,14 @@ footer, footer a { color: #cccccc; }
 .faded-30 {
   opacity: 0.3;
   filter: alpha(opacity=30); }
+
+.faded-50 {
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+
+.faded-60 {
+  opacity: 0.6;
+  filter: alpha(opacity=60); }
 
 .faded-80 {
   opacity: 0.8;
