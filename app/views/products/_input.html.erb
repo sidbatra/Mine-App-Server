@@ -64,7 +64,7 @@
 			<div class="controls" style="margin-left: 130px;">
 		    <%=f.text_field :store_name,
 		                :style => "width: 200px;"%>
-		    <span class="help-inline">          
+		    <span class="help-inline faded-80">          
 			    <%=f.label :is_store_unknown, 
 							"#{f.check_box :is_store_unknown} Not sure",
 		          :class => "checkbox",
@@ -74,7 +74,7 @@
 	  </div> <!-- /store -->  
 	  
 		<div class="strike-thru" id="endorsement_initiate">
-		  <%=link_to  "Add an optional review?", 
+		  <%=link_to  "<i class='icon-pencil faded-30'></i> Add an optional review?", 
             "javascript:void(0)"%>
 		</div>
 		

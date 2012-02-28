@@ -20,7 +20,7 @@ footer, footer a { color: #cccccc; }
 
 .strike-thru {
 	height: 9px;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid #dddddd;
 	padding-top: 18px;
 	margin-top: 27px;
 	color: #999999;
@@ -38,9 +38,9 @@ footer, footer a { color: #cccccc; }
 .well .strike-thru a { 
 	background: #f5f5f5; }
   
-/* ---------- adding an item */
+/* ---------- creation */
 
-.photo_box {
+.creation .photo_box {
   height: 200px;
   line-height: 200px;
   background: white url("/images/spinner.gif") no-repeat;
@@ -50,9 +50,20 @@ footer, footer a { color: #cccccc; }
   padding: 5px;
   margin-bottom: 18px; }
 
-.photo_box .photo {
+.creation .photo_box .photo {
   max-width: 410px;
   max-height: 200px; }
+
+/* ---------- settings */ 
+
+.settings .well .checkbox {  
+	padding: 6px 10px 6px 25px;
+	color: #555;
+	background-color: white;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer; }
 
 /* ---------- user-cell image and name nav button */
 
@@ -85,9 +96,13 @@ footer, footer a { color: #cccccc; }
 	background-position-y: -100px; }
 
 /* ---------- general styles */
-.faded {
+.faded-80 {
   opacity: 0.8;
   filter: alpha(opacity=80); }
+
+.faded-30 {
+  opacity: 0.3;
+  filter: alpha(opacity=30); }
 
 /* ---------- font-face fonts */
 
