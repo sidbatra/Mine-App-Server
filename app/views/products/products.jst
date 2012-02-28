@@ -21,41 +21,6 @@
     <%}%>
   <%}%>
 <%}%>
-
-<%if(categories.size() > 1){%>
-
-
-  <div class="btn-group">
-    <div class="menu">
-
-      <%if(currentCategory == 'all' || currentCategory == undefined){%>
-        <a class="title">Everything</a>
-      <%}else{%>
-        <%categories.each(function(category){%>
-          <%if(currentCategory == category.get('handle')){%>
-            <a class="title"><%=category.get('name')%></a>
-          <%}%>
-        <%});%>
-      <%}%>
-
-      <ul class="list">
-        <%if(currentCategory != 'all' && currentCategory != undefined){%>
-          <a href="#<%=fragment%>/all"><li>Everything</li></a>
-        <%}%>
-        <%categories.each(function(category){%>
-          <%if(currentCategory != category.get('handle')){%>
-            <a href='#<%=fragment%>/<%=category.get('handle')%>'>
-              <li><%=category.get('name')%></li>
-            </a>  
-          <%}%>
-        <%});%>
-      </ul>
-
-    </div>
-  </div>
-  
-  
-<%}%>
 		
 <div class="products">
   <%products.each(function(product){%>
