@@ -28,7 +28,7 @@ class StoresController < ApplicationController
                         limit(60)
       @key      = KEYS[:store_suggest]
     when :all
-      @stores   = Store.select(:id,:name)
+      @stores   = Store.select(:id,:name,:domain)
       @key      = KEYS[:store_all]
     when :for_user
       @stores   = Store.select('stores.id',:name,:handle,:is_processed,
