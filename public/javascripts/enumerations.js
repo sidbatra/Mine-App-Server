@@ -5,7 +5,7 @@
 Denwen.UserShowHash = {
   Owns        : 'owns',
   Wants       : 'wants',
-  Collections : 'looks'
+  Collections : 'uses'
 }
 
 // Callbacks used across the application

@@ -167,7 +167,7 @@ module DW
     # the users/show page
     #
     class UserShowHash < Enumeration
-      Collections = 'looks'
+      Collections = 'uses'
       Owns        = 'owns'
       Wants       = 'wants'
     end

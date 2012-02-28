@@ -57,7 +57,9 @@
         
         <%if @user.collections_count > 0 || is_current_user(@user)%>
 	        <li>
-	          <a href="#looks" id="collections_tab" data-toggle="tab">
+	          <a href="#<%=UserShowHash::Collections%>" 
+                id="collections_tab" 
+                data-toggle="tab">
 	          	Uses
 	          </a>
 	        </li>
