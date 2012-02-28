@@ -5,6 +5,22 @@
 
 .icon-white {
   background-image: url("/images/glyphicons-halflings-white.png"); }
+  
+/* adding an item */
+
+.photo_box {
+  height: 200px;
+  line-height: 200px;
+  background: white url("/images/spinner.gif") no-repeat;
+  background-position: center;
+  text-align: center;
+  display: none;
+  padding: 5px; }
+
+.photo_box .photo,
+#product_selection_photo /*remove*/ {
+  max-width: 410px;
+  max-height: 200px; }
 
 /* ---------- user-cell image and name nav button */
 

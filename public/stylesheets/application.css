@@ -1094,6 +1094,7 @@ div.welcome_text {
 .create_photo_box:hover .change_photo_overlay {
   display: block; }
 
+/*
 #product_selection {
   width: 490px;
   height: 200px;
@@ -1103,10 +1104,13 @@ div.welcome_text {
   text-align: center;
   display: none;
   padding: 5px; }
+*/
 
+/*
 #product_selection_photo {
   max-width: 490px;
   max-height: 200px; }
+*/
 
 .add_to_closet, .update_product {
   /* create + edit view submit variants */

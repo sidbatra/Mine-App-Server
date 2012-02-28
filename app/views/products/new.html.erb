@@ -6,7 +6,7 @@
 <div class="container">
 	<div class="row">
 		
-		<div class="span8 offset2">
+		<div class="span6 offset3">
 	
 			<%if is_onboarding? && @category.name == 'Shoes'%>
 			  <div id="onboarding_create_msg">
@@ -21,7 +21,7 @@
 			<!-- item -->
 		
 		  <%form_for @product,
-		      :html => {:class => "well"} do |f|%>
+		      :html => {:class => "well form-inline"} do |f|%>
 		
 		    <%=render :partial  => 'input', 
 		        :locals   => {

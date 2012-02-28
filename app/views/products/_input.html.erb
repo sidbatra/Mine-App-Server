@@ -7,38 +7,37 @@
   <%=f.hidden_field :orig_thumb_url%>
   <%=f.hidden_field :is_hosted%>
   
-
-  <!-- query -->
-	<div class='step' 
-        id='query_box' 
-        style='<%=show_query_box ? '' : 'display:none'%>'>
+	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
 	
 		<%if !onboarding%>
-			<p id='query_text' class='step_title'>
-	      <%=placeholders[:query]%>
-	    </p>
+			<label id="query_text">
+	      Type your item's name, or item page URL
+	    </label><br />
 	  <%end%>
 
     <%=f.text_field :query,
-        :class    => "creation_input creation_search"%><input id='product_search' class='find_photo' value='' title='Search' type='button' alt='Search'>
+        :class    => "span4"%>
+    	<a id="product_search" 
+    					class="btn btn-primary" 
+    					value="" 
+    					title="Search" 
+    					type="button" 
+    					alt="Search">
+    		<i class="icon-camera icon-white"></i>
+    		Find photo
+    	</a>
 		
 		<%if !onboarding%>
-			<p class='step_example'>
-	      <%=placeholders[:query_eg]%>
+			<p class="help-block">
+	      e.g. 'Zara high-heeled boot' or 'http://zara.com/high…'
 	    </p>
 	  <%end%>
-	  
-    <%=blocker%>
     
-	</div> 
-  <!-- query step -->
-
-	<div class='create_photo_box'>
-		<div class='change_photo_overlay' id='product_change_photo'>
-		</div>
-		<div id='product_selection' class='step rounded_3'>
-		</div>
-	</div>
+	</div> <!-- /query_box -->
+	
+	<div class="photo_box" id="product_selection">
+		<!-- image inserted is #product_selection_photo.photo -->
+	</div> <!-- /photo_box -->
 
   <%if onboarding%>
     <div id='onboarding'>
@@ -48,39 +47,28 @@
 
   <div id='extra_steps' style='display:none'>
 
-    <!-- title -->
-    <div class='step'>
-      <p id='title_text' class='step_title'>
-        <%=placeholders[:title]%>
-      </p>
+      <label>
+				Item name
+      </label><br />
 
       <%=f.text_field :title,
-                  :class    => "creation_input"%>
-      <%=blocker%>
-    </div> 
+                  :class => "span4"%>
 
-    <!-- title step -->
+    <!-- /title -->
 
-
-    <!-- store -->
-    <div class='step' id='store_box'>
+    <label>
+      Store where bought
+      <%=f.label :is_store_unknown, 
+					"#{f.check_box :is_store_unknown} Not sure",
+          :class => "checkbox",
+          :style => "padding-left: 130px;"%>
+    </label><br />
     
-      <div id='is_store_unknown_box' class='creation_checkbox_right trans_60 hover'>
-        <%=f.check_box :is_store_unknown%>
-        <%=f.label :is_store_unknown,"Not sure"%>
-      </div>
 
-      <p id='store_text' class='step_title'>
-        Store where bought
-      </p>
 
-      <%=f.text_field :store_name,
-                  :class    => "creation_input"%>
-      
-      <%=blocker%>
-                        
-    </div> 
-    <!-- store step -->  
+    <%=f.text_field :store_name,
+                :class    => "span4"%>
+    <!-- /store -->  
 
 
     <%=link_to  'Add an optional review', 
@@ -89,18 +77,15 @@
                 :class => 'edit_ffffff_18 add_review trans_60 hover'%>
 
     <!-- endorsement step-->
-    <div id='endorsement_container' class="step" style='display:none'>
-      <p class="step_title">
+    <div id='endorsement_container' style='display:none'>
+      <label>
         Review
-      </p>
+      </label><br />
 
       <%=f.text_area :endorsement,
             :value    => "",
             :class    => "creation_input creation_endorsement"%>
 
-      <p class="step_example">
-        <%=placeholders[:endorsement_eg]%>
-      </p>
     </div> 
     <!-- endorsement step -->
 
