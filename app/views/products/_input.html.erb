@@ -12,7 +12,7 @@
 		<%if !onboarding%>
 			<label id="query_text">
 	      Type your item's name, or item page URL
-	    </label><br />
+	    </label>
 	  <%end%>
 
     <%=f.text_field :query,
@@ -45,55 +45,40 @@
     </div>
   <%end%>
 
-  <div id='extra_steps' style='display:none'>
 
-      <label>
+	
+  <div id="extra_steps" style="display:none">
+  
+		<div class="control-group">
+      <label class="control-label" style="width: 120px;">
 				Item name
-      </label><br />
+      </label>
+      <div class="controls" style="margin-left: 130px;">
+	      <%=f.text_field :title,
+	                  :class => "span3"%>
+      </div>
+    </div> <!-- /title -->
 
-      <%=f.text_field :title,
-                  :class => "span4"%>
+	
+		<div class="control-group">
+	    <label class="control-label" style="width: 120px;">
+	      Store where bought
+	    </label>
+			<div class="controls" style="margin-left: 130px;">
+		    <%=f.text_field :store_name,
+		                :class    => "span3"%>
+		    <%=f.label :is_store_unknown, 
+						"#{f.check_box :is_store_unknown} Not sure",
+	          :class => "checkbox",
+	          :style => "float: right; padding-top: 5px;"%>
+		  </div>
+	  </div> <!-- /store -->  
 
-    <!-- /title -->
-
-    <label>
-      Store where bought
-      <%=f.label :is_store_unknown, 
-					"#{f.check_box :is_store_unknown} Not sure",
-          :class => "checkbox",
-          :style => "padding-left: 130px;"%>
-    </label><br />
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">
+				<i class="icon-ok icon-white"></i>
+				Add to your OnCloset
+			</button>
+	  </div>
     
-
-
-    <%=f.text_field :store_name,
-                :class    => "span4"%>
-    <!-- /store -->  
-
-
-    <%=link_to  'Add an optional review', 
-                'javascript:void(0)',
-                :id    => 'endorsement_initiate',
-                :class => 'edit_ffffff_18 add_review trans_60 hover'%>
-
-    <!-- endorsement step-->
-    <div id='endorsement_container' style='display:none'>
-      <label>
-        Review
-      </label><br />
-
-      <%=f.text_area :endorsement,
-            :value    => "",
-            :class    => "creation_input creation_endorsement"%>
-
-    </div> 
-    <!-- endorsement step -->
-
-
-    <%=submit_tag "",
-                  :class  => submit_class,
-                  :name   => nil%>
-    
-    <%=blocker%>
-
 </div>

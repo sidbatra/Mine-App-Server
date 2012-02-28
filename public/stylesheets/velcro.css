@@ -15,7 +15,8 @@
   background-position: center;
   text-align: center;
   display: none;
-  padding: 5px; }
+  padding: 5px;
+  margin-bottom: 18px; }
 
 .photo_box .photo,
 #product_selection_photo /*remove*/ {
@@ -51,6 +52,11 @@
 
 .well a:hover .overflow-fade {
 	background-position-y: -100px; }
+
+/* ---------- general styles */
+.faded {
+  opacity: 0.8;
+  filter: alpha(opacity=80); }
 
 /* ---------- font-face fonts */
 
