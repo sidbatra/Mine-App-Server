@@ -33,26 +33,9 @@
                   <a href="<%=new_invite_path(:src => 'bar')%>">Invite friends</a>
                 </li>
                 <li class="dropdown">
-                  <!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <a href="<%=new_product_path(:src => 'bar')%>">
                     Add item 
-                    <b class="caret"></b>
                   </a>
-                  <ul class="dropdown-menu">
-                    <%@categories.each do |category|%>
-                      <li>
-                        <%=link_to "#{category.id == 8 ? 
-                                            'Anything!' : 
-                                            category.name}",
-                                (is_onboarding_create? ?
-                                  welcome_create_path(
-                                    :category => category.handle) :
-                                  new_product_path(
-                                    :category => category.handle,
-                                    :src      => "dropdown"))%>
-                      </li>
-                    <%end%>
-                  </ul>
                 </li>
                 <li>
                   <%=link_to 'New set',
