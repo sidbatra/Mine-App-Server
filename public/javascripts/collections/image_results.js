@@ -127,8 +127,8 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
       var source = data['source'];
       var title  = data['title'];
 
-      if(source != this.query)
-        return results;
+      //if(source != this.query)
+      //  return results;
 
       var images = [];
 

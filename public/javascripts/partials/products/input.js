@@ -56,7 +56,16 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     restrictFieldSize($(this.storeEl),254,'charsremain');
 
-    new Denwen.Partials.Stores.Autocomplete({el:$(this.storeEl)});
+    this.autoComplete = new Denwen.Partials.Stores.Autocomplete(
+                              {el:$(this.storeEl)});
+    this.autoComplete.bind(Denwen.Callback.StoresLoaded,
+          this.storesLoaded,this);
+  },
+
+  // Callback from autocomplete when stores are loaded
+  //
+  storesLoaded: function(stores) {
+    this.stores = stores;
   },
 
   // Catch keystrokes on inputs to stop form submissions
@@ -143,6 +152,18 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.titleEl).val(productHash['query'].toProperCase());
 
     analytics.productSearchCompleted(this.mode);
+
+    // Test if the website url matches a known store to populate
+    // the store field
+    //
+    var sourceURL = productHash['website_url'].toLowerCase();
+
+    if(this.stores) {
+      this.stores.each(function(store){
+        if(sourceURL.search(store.get('domain')) != -1)
+          $(self.storeEl).val(store.get('name'));
+      });
+    }
   },
 
   // Fired when a product is searched from the ProductImagesView

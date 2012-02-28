@@ -13,6 +13,7 @@ Denwen.UserShowHash = {
 Denwen.Callback = {
   ProductsLoaded        : 'productsLoaded',
   UsersListLoaded       : 'usersListLoaded',
+  StoresLoaded          : 'storesLoaded',
   CollectionsListLoaded : 'collectionsListLoaded'
 }
 

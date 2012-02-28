@@ -17,6 +17,8 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
   // Apply autocomplete funcitonality after the stores have been fetched
   //
   autocomplete: function() {
+    this.trigger(Denwen.Callback.StoresLoaded,this.stores);
+
     this.el.autocomplete(
               this.stores.pluck('name'),{
                matchContains: 'word',
