@@ -24,3 +24,8 @@ Denwen.Callbacks.Uploader = {
   FileUploadDone      : 'fileUploadDone',
   FileUploadProgress  : 'fileUploadProgress'
 }
+
+Denwen.ProductQueryType  = {
+  Text  : 0,
+  URL   : 1
+}

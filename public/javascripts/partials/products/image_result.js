@@ -15,7 +15,9 @@ Denwen.Partials.Products.ImageResult = Backbone.View.extend({
     var self      = this;
     var thumbUrl  = this.model.get('Thumbnail')['Url'];
 
-    this.el.append(Denwen.JST['products/image_result']({thumbUrl:thumbUrl}));
+    this.el.append(Denwen.JST['products/image_result']({
+      thumbUrl:thumbUrl,
+      filter:this.model.get('Filter')}));
 
     document.getElementById(thumbUrl).onclick = function(){self.clicked();};
   },

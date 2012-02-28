@@ -40,10 +40,10 @@ class Parser
       rescue
       end
 
-      result = {:images => images,:title => title}
+      result = {:images => images,:title => title,:source => source_url}
       [200, {"Content-Type" => "application/json"}, [result.to_json]]
     else
-      [404, {"Content-Type" => "text/html"}, ["Not Found"]]
+      [404, {"Content-Type" => "text/html"}, [].to_json]
     end
   end
 end
