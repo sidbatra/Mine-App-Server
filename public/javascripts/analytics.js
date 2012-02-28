@@ -354,10 +354,9 @@ Denwen.Analytics = Backbone.Model.extend({
   // A type and category of a user's products are 
   // explictly viewed
   //
-  userProductsView: function(type,category,userID) {
+  userProductsView: function(type,userID) {
     mpq.track(
       'User ' + type.capitalize() + ' View',{
-        'Category'        : category,
         'Is Own Profile'  : helpers.isCurrentUser(userID),
         'id'              : userID});
   },

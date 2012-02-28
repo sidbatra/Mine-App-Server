@@ -145,10 +145,24 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
   // Load tab that displays the user's owns
   //
-  loadOwnsTab: function(category) {
-    this.ownedProducts.fetch(category);
+  loadOwnsTab: function() {
+    this.ownedProducts.fetch();
     this.switchTabOn(this.ownsTab);
-    analytics.userProductsView('owns',category,this.user.get('id'));
+
+    analytics.userProductsView(
+      Denwen.UserShowHash.Owns,
+      this.user.get('id'));
+  },
+
+  // Load tab that displays the user's wants
+  //
+  loadWantsTab: function() {
+    this.wantedProducts.fetch();
+    this.switchTabOn(this.wantsTab);
+
+    analytics.userProductsView(
+      Denwen.UserShowHash.Wants,
+      this.user.get('id'));
   },
 
   // Load the default tab. Used when a hash fragment
@@ -156,12 +170,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   loadDefaultTab: function() {
     this.loadOwnsTab();
-    //if((this.isCurrentUser && this.user.get('collections_count'))){
-    //  this.loadCollectionsTab();
-    //}
-    //else {
-    //  this.loadOwnsTab();
-    //}
   },
 
   // Use Backbone router for reacting to changes in URL
@@ -175,30 +183,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        ":type/:category" : "doubleFilter",
-        ":type"           : "singleFilter"
-      },
-
-      // Display owns,wants with categoty filters
-      //
-      doubleFilter: function(type,category) {
-        self.switchTabsOff();
-
-        switch(type) {
-        case Denwen.UserShowHash.Owns:
-          self.loadOwnsTab(category);
-          break;
-
-        case Denwen.UserShowHash.Wants:
-          self.wantedProducts.fetch(category);
-          self.switchTabOn(self.wantsTab);
-          analytics.userProductsView(type,category,self.user.get('id'));
-          break;
-
-        default:
-          self.loadDefaultTab();
-        }
-
+        ":type" : "singleFilter"
       },
 
       // Display collections and handle empty fragments
@@ -207,6 +192,14 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         self.switchTabsOff();
 
         switch(type) {
+        case Denwen.UserShowHash.Owns:
+          self.loadOwnsTab();
+          break;
+
+        case Denwen.UserShowHash.Wants:
+          self.loadWantsTab();
+          break;
+
         case Denwen.UserShowHash.Collections:
           self.loadCollectionsTab();
           break;

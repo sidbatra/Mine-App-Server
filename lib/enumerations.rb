@@ -168,7 +168,8 @@ module DW
     #
     class UserShowHash < Enumeration
       Collections = 'looks'
-      Owns        = 'owns/all'
+      Owns        = 'owns'
+      Wants       = 'wants'
     end
 
     # Different screens for the welcoem controller
