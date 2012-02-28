@@ -81,7 +81,10 @@ module DW
                                 find_all_by_user_id(users_with_activity).
                                 map(&:follower_id).uniq
 
-        users               = User.with_ifollowers.find_all_by_id(user_ids)
+        users               = User.
+                                with_ifollowers.
+                                with_setting.
+                                find_all_by_id(user_ids)
 
         Mailman.email_users_friend_activity_digest(
                   users,
