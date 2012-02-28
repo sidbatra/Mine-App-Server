@@ -8,6 +8,9 @@ class Admin::HealthController < ApplicationController
         :id => HealthReportService::AnotherCollectionPrompt,
         :time => 1.day.ago},
       {
+        :id => HealthReportService::FriendsDigest,
+        :time => 1.day.ago},
+      {
         :id => HealthReportService::TopShopperUpdate,
         :time => 1.week.ago},
       {
