@@ -21,27 +21,9 @@
     <%}%>
   <%}%>
 <%}%>
-		
+
 <ul class="thumbnails items">
   <%products.each(function(product){%>
     <%=Denwen.JST['products/product']({type:type,product:product,src:src,ownerID:ownerID})%>
   <%});%>
-  <%if(src == 'user' && 
-        helpers.isCurrentUser(ownerID) && 
-        (currentCategory == 'all' || currentCategory == undefined)){%>
-
-      <div class="placeholders">
-        <%Categories.each(function(category){%>
-          <%if(categories.get(category.get('id')) == undefined && category.isPrimary()){%>
-            <a class="placeholder" 
-                href="<%=helpers.newProductPath(category.get('handle'),'placeholder')%>"
-                style="background: url('<%=helpers.imagePath('placeholders/' + category.get('handle') + '.jpg')%>');">
-              <div class="fader">
-                Add +<br />your <%=category.get('name')%>
-              </div>
-            </a>
-          <%}%>
-        <%});%>
-      </div>
-  <%}%>
 </ul> <!-- /thumbnails -->
