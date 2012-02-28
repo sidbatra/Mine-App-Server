@@ -160,10 +160,7 @@ module DW
           begin
             if user.setting.email_update
               friends         = user.ifollowers
-              active_friends  = friends.select do |f|
-                                  (friends.map(&:id) & active_users).
-                                  include?(f.id)
-                                end
+              active_friends  = friends.select{|f| active_users.include? f.id} 
 
               owns            = active_friends.map{|f| owns_hash[f.id]}
               wants           = active_friends.map{|f| wants_hash[f.id]}
