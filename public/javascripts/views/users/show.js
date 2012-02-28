@@ -183,12 +183,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        ":type" : "singleFilter"
+        ":type" : "filter"
       },
 
       // Display collections and handle empty fragments
       //
-      singleFilter: function(type) {
+      filter: function(type) {
         self.switchTabsOff();
 
         switch(type) {

@@ -74,23 +74,15 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        "products/:category"  : "doubleFilter",
-        ":misc"               : "defaultFilter"
-      },
-
-      // Filter store products by category
-      //
-      doubleFilter: function(category) {
-        self.products.fetch(category);
-        self.switchTabOn(self.productsTab);
-        analytics.storeProductsView(category,self.store.get('id'));
+        ":type" : "filter"
       },
 
       // Load all products for unknown fragments
       //
-      defaultFilter: function(misc) {
+      filter: function(type) {
         self.products.fetch();
         self.switchTabOn(self.productsTab);
+        analytics.storeProductsView(self.store.get('id'));
       }
     });
 

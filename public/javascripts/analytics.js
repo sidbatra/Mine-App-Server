@@ -436,9 +436,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // A store's products in a category are explicitly viewed
   //
-  storeProductsView: function(category,storeID) {
+  storeProductsView: function(storeID) {
     mpq.track('Store Products View',{
-      'Category'  : category,
       'id'        : storeID
     });
   },
