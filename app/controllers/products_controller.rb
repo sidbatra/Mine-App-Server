@@ -42,9 +42,7 @@ class ProductsController < ApplicationController
       format.html do
         redirect_to  @error ? 
                       new_product_path(
-                        :category => Category.find(
-                                        params[:product][:category_id]).handle,
-                        :src      => ProductNewSource::Error) :
+                        :src => ProductNewSource::Error) :
                       user_path(
                         self.current_user.handle,
                         :src    => UserShowSource::ProductCreate,
