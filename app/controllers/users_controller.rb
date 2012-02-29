@@ -31,7 +31,7 @@ class UsersController < ApplicationController
                 "gender,email,birthday",
                 :access_token => access_token)
 
-    @user = User.add(fb_user,@source)
+    @user = User.add_from_fb(fb_user,@source)
 
     raise IOError, "Error creating user" unless @user
 

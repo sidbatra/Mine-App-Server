@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   validates_presence_of   :first_name
   validates_presence_of   :last_name
-  validates_presence_of   :email
+  validates_presence_of   :fb_user_id
 
   #----------------------------------------------------------------------
   # Named scopes
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
 
   # Add a new user or find an existing one based on email
   #
-  def self.add(attributes,source)
+  def self.add_from_fb(attributes,source)
     user = find_or_initialize_by_fb_user_id(
             :fb_user_id   => attributes.identifier,
             :source       => source)
@@ -114,8 +114,6 @@ class User < ActiveRecord::Base
     user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
 
-    user.build_setting if user.new_record?
-      
     user.save!
     user
   end

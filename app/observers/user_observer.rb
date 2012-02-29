@@ -2,6 +2,12 @@
 #
 class UserObserver < ActiveRecord::Observer
 
+  # Fired before a user is created
+  #
+  def before_create(user)
+    user.build_setting  
+  end
+
   # Alert notification manager about a new user 
   #
   def after_create(user)
