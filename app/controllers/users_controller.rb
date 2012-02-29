@@ -38,17 +38,30 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-    target_url = @user.is_fresh ? 
-                  user_path(@user.handle,:src => UserShowSource::UserCreate) :
-                  (target ? 
-                    target : 
-                    user_path(@user.handle,:src => UserShowSource::Login))
 
   rescue => ex
     handle_exception(ex)
-    target_url = root_path(:src => HomeShowSource::UserCreateError)
   ensure
-    redirect_to target_url
+    respond_to do |format|
+
+      format.html do
+        url = ""
+
+        if @error
+          url = root_path(:src => HomeShowSource::UserCreateError)
+        elsif @user.is_fresh
+          url = user_path(@user.handle,:src => UserShowSource::UserCreate)
+        elsif target
+          url = target
+        else
+          url = user_path(@user.handle,:src => UserShowSource::Login)
+        end
+
+        redirect_to url
+      end
+
+      format.json
+    end
   end
 
   # Display user's profile
