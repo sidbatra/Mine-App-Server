@@ -217,6 +217,12 @@ class User < ActiveRecord::Base
     fb_user.friends
   end
 
+  # List of facebook permissions
+  #
+  def fb_permissions
+    fb_user = FbGraph::User.new('me', :access_token => self.access_token)
+    fb_user.permissions
+  end
   
   protected
 

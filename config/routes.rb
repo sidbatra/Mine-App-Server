@@ -124,7 +124,7 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :welcome
 
   map.resources :settings,
-                :only => [:index,:update]
+                :only => [:index,:update,:show]
 
   # Admin routes
   map.resources :admin_users, 
