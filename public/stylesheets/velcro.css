@@ -17,16 +17,21 @@
 footer, footer a { color: #cccccc; }
 
 /* ---------- loading animations */
-[class^="loading-"], [class*=" loading-"] {
+[class^="loading-"], [class*=" loading-"] {}
+
+.loading-large-center {
 	position: absolute; 
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: url('/images/loading_spinner_large_trans.gif') no-repeat; }
+  background: url('/images/loading_spinner_large_trans.gif') no-repeat; }
 
-.loading-center {
-  background-position: center center; }
+.loading-small-inline {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+  background: url('/images/loading_spinner_small_trans.gif') center center no-repeat; }
 	
 /* ---------- strike-thru text divider */
 
@@ -79,7 +84,7 @@ footer, footer a { color: #cccccc; }
 	display: block;
 	z-index: 10; }
 
-/* ---------- creation chooser */
+/* ---------- chooser */
 
 .chooser {
 	position: absolute;
@@ -103,9 +108,12 @@ footer, footer a { color: #cccccc; }
   border-bottom: 1px solid #dddddd; }
 
 .chooser .search-bar .control-group {
-	width: 480px; 
-	padding-right: 120px;
+	width: 500px; 
+	border-right: 110px solid transparent;
 	margin: 0 auto; }
+
+.chooser .search-bar .control-group.loading {
+  background: url('/images/loading_spinner_small_trans.gif') center right no-repeat; }
 
 .chooser .search-bar .close {
 	font-family: Arial; 
