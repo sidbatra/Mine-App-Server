@@ -6,6 +6,6 @@ class Admin::HelpController < ApplicationController
   def show
     repo = Grit::Repo.new(RAILS_ROOT)
     @commits = repo.commits(
-                RAILS_ENV == 'production' ? 'master' : 'develop').take(3)
+                RAILS_ENV == 'development' ? 'develop' : 'deploy').take(3)
   end
 end
