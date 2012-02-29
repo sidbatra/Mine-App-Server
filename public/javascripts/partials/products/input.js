@@ -144,7 +144,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
     $(this.onboardingMsgEl).hide();
-    $(this.imageBrokenMsgEl).hide();
+    $(this.imageBrokenMsgEl).removeClass('error');
 
     $(this.extraEl).show();
     $(this.titleEl).focus();
@@ -187,7 +187,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.queryEl).focus();
     $(this.queryBoxEl).show();
-    $(this.imageBrokenMsgEl).show();
+    $(this.imageBrokenMsgEl).addClass('error');
 
     this.productImagesView.search();
 
