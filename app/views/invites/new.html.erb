@@ -4,55 +4,55 @@
 
 
 <div class="container">
+	<div class="row settings">
+		<div class="span6 offset3">
+			<div class="well">
+				
+				<legend>Title</legend>
 
-  <p class="heading">
-    <%if is_onboarding?%>
-      Whose closets would you like to see?<br />
-      Who do you shop with?
-    <%else%>
-      Share your closet with friends.
-    <%end%>
-  </p>
+						
+			  <div class="invite_search">
 			
-  <div class="invite_search">
+			    <div class="textfield_title trans_80" 
+			            id="invite_textfield_title" 
+			         style="display:none">
+			      Search for friends by name:
+			    </div>
+			
+			    <div class="invite_search_enclosure" id="invite_search_container">
+			      <%=text_field_tag 'search_box', 
+			          nil, 
+			          :placeholder => '', 
+			          :class => 'textfield',
+			          :hidden => :true%>
+			
+			      <%=link_to  '',
+			          'javascript:void(0)',
+			          :id    => 'x_button',
+			          :class => 'x-text',
+			          :style => 'display:none'%>
+			    </div>
+			    
+			  </div> <!-- invite_search -->	
+			  
+		  	<!-- contacts (grid or list class variants -->
+		    <div id="contacts" class="list">
+		      <div class="loading" id="loading_spinner">
+		        <%=image_tag 'spinner_dark_bg.gif'%>
+		      </div>
+		    </div>
+		
+		    <div id='multi_invite_box' style="display:none">
+		      <%=link_to  '',
+		        'javascript:void(0)',
+		        :id    => 'invite_backup_button',
+		        :class => 'view_friends_list'%>
+		    </div> <!-- fb multi invite dialog for edge cases -->
 
-    <div class="textfield_title trans_80" 
-            id="invite_textfield_title" 
-         style="display:none">
-      Search for friends by name:
-    </div>
-
-    <div class="invite_search_enclosure" id="invite_search_container">
-      <%=text_field_tag 'search_box', 
-          nil, 
-          :placeholder => '', 
-          :class => 'textfield',
-          :hidden => :true%>
-
-      <%=link_to  '',
-          'javascript:void(0)',
-          :id    => 'x_button',
-          :class => 'x-text',
-          :style => 'display:none'%>
-    </div>
-    
-  </div> <!-- invite_search -->	
-  
-  	<!-- contacts (grid or list class variants -->
-    <div id="contacts" class="list">
-      <div class="loading" id="loading_spinner">
-        <%=image_tag 'spinner_dark_bg.gif'%>
-      </div>
-    </div>
-
-    <div id='multi_invite_box' style="display:none">
-      <%=link_to  '',
-        'javascript:void(0)',
-        :id    => 'invite_backup_button',
-        :class => 'view_friends_list'%>
-    </div> <!-- fb multi invite dialog for edge cases -->
-	
-</div> <!-- container -->
+		  </div> <!-- /well -->
+	 	</div> <!-- /span6 -->
+	</div> <!-- /row -->
+</div> <!-- /container -->
 
 
 <%if is_onboarding?%>	
