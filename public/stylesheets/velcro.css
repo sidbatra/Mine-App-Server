@@ -16,6 +16,18 @@
 
 footer, footer a { color: #cccccc; }
 
+/* ---------- loading animations */
+[class^="loading-"], [class*=" loading-"] {
+	position: absolute; 
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url('/images/loading_spinner_large_trans.gif') no-repeat; }
+
+.loading-center {
+  background-position: center center; }
+	
 /* ---------- strike-thru text divider */
 
 .strike-thru {
@@ -40,7 +52,7 @@ footer, footer a { color: #cccccc; }
   
 /* ---------- creation */
 
-.creation .photo_box {
+.creation .photo-box {
 	position: relative;
   height: 200px;
   line-height: 200px;
@@ -51,7 +63,7 @@ footer, footer a { color: #cccccc; }
   padding: 5px;
   margin-bottom: 18px; }
 
-.creation .photo_box .photo {
+.creation .photo-box .photo {
   max-width: 410px;
   max-height: 200px; }
 
@@ -71,31 +83,34 @@ footer, footer a { color: #cccccc; }
 
 .chooser {
 	position: absolute;
-	top: 24px;
-	left: 24px;
-	right: 24px;
+	top: 0;
+	left: 0;
+	right: 0;
 	text-align: left;
 	background: white;
 	padding-bottom: 20px;
 	padding-left: 15px;
-	z-index: 7000;
 	overflow: visible; }
 
 .chooser .search-bar {
   position: fixed;
-  top: 0px;
-  left: 24px;
-  right: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
   background: white;
   padding: 8px 0;
   z-index: 9999;
-  border-top: 24px solid black;
   border-bottom: 1px solid #dddddd; }
 
 .chooser .search-bar .control-group {
 	width: 480px; 
 	padding-right: 120px;
 	margin: 0 auto; }
+
+.chooser .search-bar .close {
+	font-family: Arial; 
+	font-size: 36px; 
+	padding: 5px 15px; }
 
 .chooser .control-label.error { color: #B94A48; }
 
@@ -114,7 +129,7 @@ footer, footer a { color: #cccccc; }
   height: 24px;
   background-image: url("/images/close.png");
   background-repeat: no-repeat;
-  z-index: 10000; }
+	z-index: 1032; }
   
 .photo-choice {
   width: 160px;
@@ -126,11 +141,6 @@ footer, footer a { color: #cccccc; }
   cursor: pointer;
   text-align: center;
   border: 1px solid #eeeeee; }
-
-/*
-.photo-choice:hover {
-  background: #f8f8f8; }
-*/
 
 .photo-choice:hover .btn {
   display: block; }
@@ -155,25 +165,29 @@ footer, footer a { color: #cccccc; }
   text-align: center;
   position: fixed;
   background: white;
-  right: 24px;
-  left: 24px;
-  bottom: 0px;
-  z-index: 10000;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: none; }
 
-.results { 
-	margin-top: 33px;
-	height:500px; 
+.results {
+	margin-top: 45px;
+	height: 500px;
 	text-align:center; }
 
-#shadow {
-  position: absolute;
-  left: 0;
-  top: 0;
-	right: 0;
-	bottom: 0;
-  z-index: 6000;
-  background-color: black; }
+.shadow {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 6000;
+	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 18px rgba(0,0,0,0.4);
+	box-shadow: 0 0 18px rgba(0,0,0,0.4);
+	background-color: white;
+	z-index: -1; }
 
 /* ---------- settings */ 
 

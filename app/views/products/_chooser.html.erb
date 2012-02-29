@@ -1,9 +1,11 @@
-
 	<div id="chooser" class="chooser" style="display:none;">
 	
-    <a class="cancel" id="cancel_button" href="javascript:void(0)"></a>
-
 		<form class="form-horizontal search-bar">
+			
+			<a id="cancel_button" class="close" href="javascript:void(0)">
+				&times;
+			</a>
+		
 			<div class="control-group">
 			
 				<label id="product_image_broken_msg" class="control-label">
@@ -11,7 +13,7 @@
 						Select your
 					</span>
 					<span class="error">
-						Image unavailable.
+						Image unavailable!
 					</span>
 				</label>
 				
@@ -42,7 +44,5 @@
 	  </div>
 	  
 	</div> <!-- chooser -->
-
-  <!-- background shadow -->
-  <div id="shadow" style="display:none">
-  </div>
+	
+	<div class="shadow" id="shadow"></div>
