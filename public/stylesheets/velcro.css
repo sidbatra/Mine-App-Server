@@ -116,7 +116,7 @@ footer, footer a { color: #cccccc; }
   background-repeat: no-repeat;
   z-index: 10000; }
   
-.photo_choice_cell {
+.photo-choice {
   width: 160px;
   height: 160px;
   line-height: 158px;
@@ -127,28 +127,25 @@ footer, footer a { color: #cccccc; }
   text-align: center;
   border: 1px solid #eeeeee; }
 
-.photo_choice_cell:hover {
+/*
+.photo-choice:hover {
   background: #f8f8f8; }
+*/
 
-.photo_choice_cell:hover .choose_this {
+.photo-choice:hover .btn {
   display: block; }
 
-.photo_choice {
+.photo-choice .btn { 
+	display: none;
+	width: 108px;
+	position: absolute; 
+	bottom: 10px; 
+	left: 15px; }
+
+.photo-choice .item-photo {
   max-width: 160px;
   max-height: 158px;
   vertical-align: middle; }
-
-.choose_this {
-  display: none;
-  height: 30px;
-  line-height: 30px;
-  position: absolute;
-  bottom: -1px;
-  left: -1px;
-  right: -1px;
-  font-size: 14px;
-  color: white;
-  background: #cc3333; }
 
 .scroll-instructions {
   height: 44px;
