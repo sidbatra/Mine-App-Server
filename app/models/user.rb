@@ -129,14 +129,6 @@ class User < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Return product count for the given category
-  #
-  def products_category_count(category_id)
-    Cache.fetch(KEYS[:user_category_count] % [self.id,category_id]) do
-      Product.for_user(self.id).in_category(category_id).count 
-    end
-  end
-
   # Test is the user was created very recently
   #
   def is_fresh
