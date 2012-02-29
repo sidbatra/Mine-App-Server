@@ -195,6 +195,7 @@ module DW
     class OGAction < Enumeration
       Add     = "#{CONFIG[:fb_app_namespace]}:add" 
       Use     = "#{CONFIG[:fb_app_namespace]}:use" 
+      Want    = "#{CONFIG[:fb_app_namespace]}:want" 
     end
 
     # Facebook OpenGraph Properties

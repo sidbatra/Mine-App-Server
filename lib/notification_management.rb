@@ -69,11 +69,18 @@ module DW
         Mailman.welcome_new_user(user)
       end
 
-      # Notify Mailman about the new actin
+      # Notify Mailman about the new action
       #
       def self.new_action(action_id)
         action  = Action.find(action_id)
         Mailman.notify_owner_about_an_action(action)
+
+        #if action.name == ActionName::Want && 
+        #   action.user.setting.post_to_timeline
+        #  DistributionManager.publish_want(
+        #                        action.user,
+        #                        action.actionable)
+        #end
       end
 
       # Notify Mailman about the new following
