@@ -85,7 +85,7 @@ class ProductPresenter < BasePresenter
   #
   def description
     product.store && product.store.is_approved ? 
-      "bought at #{product.store.name}" : ''
+      "available at #{product.store.name}" : ''
   end
 
   # Link to the store if it is a top store
