@@ -92,7 +92,6 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessor :mine_contacts
   attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
                     :first_name,:last_name,:access_token,:byline
 
@@ -128,6 +127,13 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
+
+  # Whether the user has actually registered or is a stub user from
+  # an invite
+  #
+  def is_registered?
+    access_token.present?
+  end
 
   # Test is the user was created very recently
   #

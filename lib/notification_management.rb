@@ -42,32 +42,6 @@ module DW
         store = Store.find(store_id)
         store.host
       end
-      
-      # Make a user follow all his Facebook friends in our user base 
-      # and email the friends about his signup. Also store all their
-      # friends in the contacts table
-      #
-      def self.new_user(user_id)
-        user              = User.find(user_id)
-        fb_friends        = user.fb_friends
-
-        fb_friends_ids    = fb_friends.map(&:identifier)
-        fb_friends_names  = fb_friends.map(&:name)
-
-        followers         = User.find_all_by_fb_user_id(fb_friends_ids)
-
-        followers.each do |follower|
-          Following.add(user_id,follower.id,FollowingSource::Auto,false)
-          Following.add(follower.id,user_id,FollowingSource::Auto)
-        end
-
-        Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)
-
-        user.has_contacts_mined = true
-        user.save!
-
-        Mailman.welcome_new_user(user)
-      end
 
       # Notify Mailman about the new action
       #

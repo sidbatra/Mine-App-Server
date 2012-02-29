@@ -63,7 +63,8 @@ Rails::Initializer.run do |config|
                               File.join(Rails.root,'app','observers'),
                               File.join(Rails.root,'app','processors'),
                               File.join(Rails.root,'app','presenters'),
-                              File.join(Rails.root,'app','sweepers')]
+                              File.join(Rails.root,'app','sweepers'),
+                              File.join(Rails.root,'app','delayed_observers')]
 
 
   # Register observers
