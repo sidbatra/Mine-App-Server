@@ -117,6 +117,12 @@ class User < ActiveRecord::Base
     user
   end
 
+  # Add a new user when an existing user invites a friend
+  #
+  def self.add_from_invite(attributes)
+    find_or_create_by_fb_user_id(attributes)
+  end
+
   # Find user by the token stored in their cookie
   #
   def self.find_by_cookie(token)

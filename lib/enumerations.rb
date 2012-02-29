@@ -99,6 +99,7 @@ module DW
       Auto        = 0
       Manual      = 1
       Suggestion  = 2
+      Invite      = 3
     end
 
     # Services across the application for which health
