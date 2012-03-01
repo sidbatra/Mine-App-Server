@@ -12,7 +12,7 @@ Denwen.Partials.Facebook.Permissions = Backbone.View.extend({
   show: function() {
     FB.login(function(response) {
       console.log("trigger some action");
-    },{scope: 'publish_stream'});  
+    },{scope: CONFIG['fb_extended_permissions']});  
   }
 
 });
