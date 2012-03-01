@@ -7,8 +7,9 @@ var Denwen = {
                   Collections : {}, Shoppings : {}, Followings : {}, 
                   Settings : {}},
   Partials    : { Users : {}, Products : {}, Comments : {}, Commentables : {}, 
-                  Facebook : {}, Stores : {}, Invites : {}, Actionables  : {},
-                  Collections : {}, Common : {}, Admin : {Stores : {}}},
+                  Facebook : {}, Stores : {}, Invites : { New: {}}, 
+                  Actionables  : {}, Collections : {}, Common : {}, 
+                  Admin : {Stores : {}}},
   Collections : {},
   Callbacks   : {}
 };

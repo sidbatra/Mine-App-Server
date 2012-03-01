@@ -12,8 +12,14 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   initialize: function() {
     this.source  = this.options.source;
 
-    this.friendsView = new Denwen.Partials.Invites.Friends(
+    this.stylesContainerEl  = '#styles_container';
+    this.friendsContainerEl = '#friends_container';
+
+    this.friendsView = new Denwen.Partials.Invites.New.Friends(
                             {el:$('#container')});
+
+    // -----
+    this.routing();
 
     // -----
     this.setAnalytics();
@@ -36,6 +42,39 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //inviteCancelled: function() {
   //  $(this.queryEl).focus();
   //}, 
+
+  // Hide all subviews
+  //
+  hideSubViews: function() {
+    $(this.stylesContainerEl).hide();
+    $(this.friendsContainerEl).hide();
+  },
+
+  // Use Backbone router for reacting to changes in URL
+  // fragments
+  //
+  routing: function() {
+    var self = this;
+
+    var router = Backbone.Router.extend({
+
+      // Listen to routes
+      //
+      routes: {
+        "friend-with-style-:style" : "friends"
+      },
+
+      // Display friends after a style is chosen
+      //
+      friends: function(style) {
+        self.hideSubViews();
+        $(self.friendsContainerEl).show();
+      }
+    });
+
+    new router();
+    Backbone.history.start();
+  },
 
   // Fire tracking events
   //

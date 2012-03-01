@@ -1,6 +1,6 @@
 // Partial for loading and selecting a friend to invite
 //
-Denwen.Partials.Invites.Friends = Backbone.View.extend({
+Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
   
   // Setup event handlers
   //
