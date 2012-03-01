@@ -6,12 +6,9 @@
 .icon-white {
   background-image: url("/images/glyphicons-halflings-white.png"); }
   
-/* ---------- general changes to bootstrap */
+/* ---------- general tweaks to bootstrap */
 
 .close { font-family: Arial; }
-
-/* ---------- crisp webkit button text */
-
 .btn {
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
@@ -22,23 +19,32 @@ footer, footer a { color: #cccccc; }
 
 /* ---------- loading animations */
 
-.loading-large {
+.loading.large {
 	min-height: 40px;
   background-image: url('/images/loading_spinner_large_trans.gif');
   background-position: center center;
   background-repeat: no-repeat; }
 
-.loading-large.left {
+.loading.large.left {
 	background-position: center left; }
   
-.well .loading-large {
-  background-image: url('/images/loading_spinner_large_f5f5f5.gif'); }
+.loading.large.inline {
+	display: none;
+	width: 32px;
+	height: 32px;
+	background: url('/images/loading_spinner_large_trans.gif') center center no-repeat; }
 
-.loading-small.inline {
-	display: inline-block;
+.loading.small.inline {
+	display: none;
 	width: 16px;
 	height: 16px;
   background: url('/images/loading_spinner_small_trans.gif') center center no-repeat; }
+  
+.well .loading.large {
+  background-image: url('/images/loading_spinner_large_f5f5f5.gif'); }
+
+.form-actions.load .loading.inline { /* turns inline loads on/off */
+	display: inline-block; }
 	
 /* ---------- strike-thru text divider */
 
@@ -119,7 +125,7 @@ footer, footer a { color: #cccccc; }
 	border-right: 110px solid transparent;
 	margin: 0 auto; }
 
-.chooser .search-bar .control-group.loading {
+.chooser .search-bar .control-group.load {
   background: url('/images/loading_spinner_small_trans.gif') center right no-repeat; }
 
 .chooser .search-bar .close {
@@ -203,7 +209,7 @@ footer, footer a { color: #cccccc; }
 	background-color: white;
 	z-index: -1; }
 	
-/* ---------- invite: styles */ 
+/* ---------- invite 1: styles */ 
 
 .invite .well .thumbnail {
 	background: white; }
@@ -217,9 +223,10 @@ footer, footer a { color: #cccccc; }
 	margin-left: -9px; }
 
 .invite .well.styles .thumbnail {
-	height: 93px; }
+	height: 125px;
+	text-decoration: none; }
 
-/* ---------- invite: friends */
+/* ---------- invite 2: friends */
 
 .invite .well.friends .thumbnails {
 	margin-left: -9px; }
@@ -254,7 +261,7 @@ footer, footer a { color: #cccccc; }
 .invite_search .x-text:hover {
   background: url("/images/x-text.gif") 0px -30px no-repeat; }
   
-/* ---------- invite: finish */
+/* ---------- invite 3: finish */
 
 .invite .well .fb-timeline {
 	font-size: 11px;
