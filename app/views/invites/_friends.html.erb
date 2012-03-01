@@ -1,0 +1,33 @@
+
+        <div id="friends_container">
+          <legend>Title</legend>
+
+          <div class="invite_search">
+        
+            <div class="textfield_title trans_80" 
+                    id="invite_textfield_title">
+              Search for friends by name:
+            </div>
+        
+            <div class="invite_search_enclosure">
+              <%=text_field_tag 'search_box', 
+                  nil, 
+                  :placeholder => '', 
+                  :class => 'textfield'%>
+        
+              <%=link_to  '',
+                  'javascript:void(0)',
+                  :id    => 'x_button',
+                  :class => 'x-text',
+                  :style => 'display:none'%>
+            </div>
+            
+          </div> <!-- invite_search -->	
+          
+          <!-- contacts (grid or list class variants -->
+          <div id="contacts" class="list">
+            <div class="loading">
+              <%=image_tag 'spinner_dark_bg.gif'%>
+            </div>
+          </div>
+        </div>

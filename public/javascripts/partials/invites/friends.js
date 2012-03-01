@@ -1,0 +1,78 @@
+// Partial for loading and selecting a friend to invite
+//
+Denwen.Partials.Invites.Friends = Backbone.View.extend({
+  
+  // Setup event handlers
+  //
+  events: {
+    "keyup #search_box" : "filter",
+    "click #x_button"   : "searchCancelled"
+  },
+
+  // Constructor logic
+  //
+  initialize: function() {
+    this.contactsEl       = '#contacts';
+    this.queryEl          = '#search_box';
+    this.cancelSearchEl   = '#x_button';
+
+    this.fetch();
+  },
+
+  // Fetches the contacts 
+  //
+  fetch: function() {
+    var self      = this;
+    this.contacts = new Denwen.Collections.Contacts();
+
+    this.contacts.fetch({
+          success:  function(collection){self.render(self.contacts);},
+          error:    function(collection,errors){}
+          });
+  },
+
+  // Render the contacts collection
+  //
+  render: function(contacts) {
+    $(this.contactsEl).html(
+      Denwen.JST['contacts/contacts']({contacts : contacts}));
+  },
+
+  // Filter contacts based on the query
+  //
+  filter: function(e) {
+    var query             = $(this.queryEl).val();
+    var filteredContacts  = this.contacts.filter(
+                              function(contact){
+                                return ~contact.get('name').toLowerCase().
+                                        indexOf(query.toLowerCase());
+                              });
+    
+    this.render(new Denwen.Collections.Contacts(filteredContacts));
+
+    if(query){
+      $(this.cancelSearchEl).show();
+      analytics.friendSearched(query);
+    }
+    else
+      $(this.cancelSearchEl).hide();
+  },
+
+  // Reset the search box and the contacts list 
+  //
+  reset :function() {
+    $(this.queryEl).val('');
+    $(this.queryEl).focus();
+    $(this.cancelSearchEl).hide();
+
+    this.render(this.contacts);
+  },
+
+  // Fired when the user cancels a friend search
+  //
+  searchCancelled: function() {
+    this.reset();
+    analytics.friendSearchCancelled();
+  }
+  
+});
