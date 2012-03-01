@@ -22,15 +22,19 @@ footer, footer a { color: #cccccc; }
 
 /* ---------- loading animations */
 
-.loading-large-center {
-	position: absolute; 
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-  background: url('/images/loading_spinner_large_trans.gif') no-repeat; }
+.loading-large {
+	min-height: 40px;
+  background-image: url('/images/loading_spinner_large_trans.gif');
+  background-position: center center;
+  background-repeat: no-repeat; }
 
-.loading-small-inline {
+.loading-large.left {
+	background-position: center left; }
+  
+.well .loading-large {
+  background-image: url('/images/loading_spinner_large_f5f5f5.gif'); }
+
+.loading-small.inline {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
