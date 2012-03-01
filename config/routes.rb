@@ -108,7 +108,11 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create]
 
   map.resources :invites,
-                :only => [:create,:new]
+                :only => [:create]
+
+  map.new_invite '/invite',
+                  :controller => :invites,
+                  :action => :new
 
   map.resources :shoppings,
                 :only => [:create,:new]
