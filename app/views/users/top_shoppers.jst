@@ -1,8 +1,8 @@
-<div class='tab title static'>
-  They shop here… a lot
-</div>
+<li class="nav-header">
+ They shop here… a lot
+</li>
 
-<div class='tile_row'>
+<div>
   <%users.each(function(user){%>
     <%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
   <%});%>

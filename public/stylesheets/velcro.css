@@ -220,9 +220,11 @@ footer, footer a { color: #cccccc; }
   padding: 0;
   width: 202px;
   height: 264px;
+/*
   -webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
+*/
 	background-repeat: no-repeat;
 	background-position: 50% 60%; }
 
@@ -305,6 +307,10 @@ footer, footer a { color: #cccccc; }
 
 .faded-90 {
   opacity: 0.9;
+  filter: alpha(opacity=90); }
+
+.to-90:hover {
+	opacity: 0.90;
   filter: alpha(opacity=90); }
 
 .to-opaque:hover {
