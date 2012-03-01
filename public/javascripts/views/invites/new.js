@@ -11,12 +11,14 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //
   initialize: function() {
     this.source  = this.options.source;
+    this.styles  = new Backbone.Collection(this.options.styles);
 
     this.stylesContainerEl  = '#styles_container';
     this.friendsContainerEl = '#friends_container';
+    this.finishContainerEl  = '#finish_container';
 
     this.friendsView = new Denwen.Partials.Invites.New.Friends(
-                            {el:$('#container')});
+                            {el:$('#friends_container')});
 
     // -----
     this.routing();
@@ -48,6 +50,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   hideSubViews: function() {
     $(this.stylesContainerEl).hide();
     $(this.friendsContainerEl).hide();
+    $(this.finishContainerEl).hide();
   },
 
   // Use Backbone router for reacting to changes in URL
@@ -61,7 +64,15 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        "friend-with-style-:style" : "friends"
+        "style-:style_id/friends" : "friends",
+        ":fragment" : "unknown"
+      },
+
+      // Display styles tab
+      //
+      styles: function() {
+        self.hideSubViews();
+        $(self.stylesContainerEl).show();
       },
 
       // Display friends after a style is chosen
@@ -69,6 +80,12 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       friends: function(style) {
         self.hideSubViews();
         $(self.friendsContainerEl).show();
+      },
+
+      // Load starting tab
+      //
+      unknown: function(fragment) {
+        this.styles();
       }
     });
 
