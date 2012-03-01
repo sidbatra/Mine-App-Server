@@ -42,7 +42,9 @@
           
       <%elsif user.byline.present?%>
           <li class="nav-header">
-	          <%=user.gender == 'male' ? 'His style' : 'Her style'%>
+	          <%=(user.gender ? 
+                  (user.is_male? ? 'His' : 'Her') : 
+                  'Their') + ' style'%>
           </li>
 
 					<div class=''>
