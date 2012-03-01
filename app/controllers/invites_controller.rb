@@ -3,7 +3,7 @@
 class InvitesController < ApplicationController
   before_filter :login_required
 
-  # Display UI for creating one or multiple invites
+  # Display UI for creating invites
   #
   def new
   end

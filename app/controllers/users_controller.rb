@@ -12,8 +12,6 @@ class UsersController < ApplicationController
     case using
     when :facebook
       create_from_fb
-    when :invite 
-      create_from_invite if logged_in?
     end
 
   rescue => ex
@@ -132,15 +130,6 @@ class UsersController < ApplicationController
 
     self.current_user = @user
     set_cookie
-  end
-
-  # Create a user when an existing user invites a friend
-  #
-  def create_from_invite
-    @user = User.add_from_invite(params)
-
-    Following.add(@user.id,self.current_user.id,FollowingSource::Invite,false)
-    Following.add(self.current_user.id,@user.id,FollowingSource::Invite,false)
   end
 
 end
