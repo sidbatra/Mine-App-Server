@@ -5,6 +5,10 @@
 
 .icon-white {
   background-image: url("/images/glyphicons-halflings-white.png"); }
+  
+/* ---------- general changes to bootstrap */
+
+.close { font-family: Arial; }
 
 /* ---------- crisp webkit button text */
 
@@ -393,10 +397,6 @@ footer, footer a { color: #cccccc; }
 .to-opaque:hover {
 	opacity: 1;
   filter: alpha(opacity=100); }
-  
-/* ---------- general changes to bootstrap */
-
-.close { font-family: Arial; }
 
 /* ---------- font-face fonts */
 

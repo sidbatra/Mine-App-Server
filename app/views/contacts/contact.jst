@@ -9,11 +9,12 @@
 		      id="fb_single_invite_link" 
 		      fb_id="<%=contact.get('third_party_id')%>"/>
 		      
-		<span class="user-name"
+		<div class="user-name"
+					style="padding-right: 4px;"
 		      id="fb_single_invite_link" 
 		      fb_id="<%=contact.get('third_party_id')%>">
-		    <%=contact.get('name')%>
-		</span>
+			<%=helpers.truncate(contact.get('name'), 20, '…')%>
+		</div>
 		
 	</a> <!-- /thumbnail -->
 </li> <!-- /span5 -->
