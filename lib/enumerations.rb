@@ -124,6 +124,13 @@ module DW
       Logout          = 'logout'
     end
 
+    # Platforms through which an invite can be sent
+    #
+    class InvitePlatform < Enumeration
+      Facebook  = 0
+      Email     = 1
+    end
+
     # Sources of landing at products/new
     #
     class ProductNewSource < Enumeration

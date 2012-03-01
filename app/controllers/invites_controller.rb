@@ -11,10 +11,10 @@ class InvitesController < ApplicationController
   # Create one or more invites 
   #
   def create
+    params[:user_id] = self.current_user.id
 
-    params[:fb_user_ids].each do |fb_user_id|
-      Invite.add(self.current_user.id,fb_user_id)
-    end
+    @invite = Invite.add(params)
+
   rescue => ex
     handle_exception(ex)
   ensure

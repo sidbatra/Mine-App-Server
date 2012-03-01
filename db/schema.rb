@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228200202) do
+ActiveRecord::Schema.define(:version => 20120301021320) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -154,8 +154,12 @@ ActiveRecord::Schema.define(:version => 20120228200202) do
     t.string   "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "platform",       :default => 0
+    t.string   "recipient_name"
+    t.string   "byline"
   end
 
+  add_index "invites", ["platform"], :name => "index_invites_on_platform"
   add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
   add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id", :unique => true
 
