@@ -21,7 +21,7 @@ class SettingsController < ApplicationController
 
     case @filter
     when :publish_stream
-      @setting = self.current_user.fb_permissions.include?(@filter)
+      @setting = {:status => self.current_user.fb_permissions.include?(@filter)}
     end
   rescue => ex
     handle_exception(ex)
