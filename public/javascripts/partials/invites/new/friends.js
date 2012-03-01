@@ -15,6 +15,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     this.contactsEl       = '#contacts';
     this.queryEl          = '#search_box';
     this.cancelSearchEl   = '#x_button';
+    this.styleID          = 0;
 
     this.fetch();
   },
@@ -31,11 +32,24 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
           });
   },
 
+  // Fired when the friends sub view comes into focus
+  //
+  display: function(styleID) {
+    this.styleID = styleID;
+
+    if(this.contacts && !this.contacts.isEmpty())
+      this.render(this.contacts);
+  },
+
   // Render the contacts collection
   //
   render: function(contacts) {
+    var self = this;
+
     $(this.contactsEl).html(
-      Denwen.JST['contacts/contacts']({contacts : contacts}));
+      Denwen.JST['contacts/contacts'](
+        {contacts: contacts,
+          styleID: self.styleID}));
   },
 
   // Filter contacts based on the query

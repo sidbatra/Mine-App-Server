@@ -1,21 +1,14 @@
 <li class="span5" style="margin-bottom: 7px;">
-	<a 	class="thumbnail" 
-			id="fb_single_invite_link" 
-			href="javascript:void(0);"
-			fb_id="<%=contact.get('third_party_id')%>">
+	<a class="thumbnail" 
+			href="#styles-<%=styleID%>/friends-<%=contact.get('name').replace(' ','+')%>-<%=contact.get('third_party_id')%>/finish">
 	
 		<img class="user-photo" 
-		      src="<%=contact.imageURL()%>" 
-		      id="fb_single_invite_link" 
-		      fb_id="<%=contact.get('third_party_id')%>"/>
+		      src="<%=contact.imageURL()%>" />
 		      
 		<div class="user-name"
-					style="padding-right: 4px;"
-		      id="fb_single_invite_link" 
-		      fb_id="<%=contact.get('third_party_id')%>">
+					style="padding-right: 4px;">
 			<%=helpers.truncate(contact.get('name'), 20, '…')%>
 		</div>
-		
-	</a> <!-- /thumbnail -->
-</li> <!-- /span5 -->
+	</a> 
+</li> 
 
