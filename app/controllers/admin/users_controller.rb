@@ -52,8 +52,8 @@ class Admin::UsersController < ApplicationController
   # Fetch users who have been active in the given time period
   #
   def active_users_in_time_period(time)
-    users = User.updated(time).by_products_count.limit(150)
-    count = users.count
+    users = User.updated(time).by_updated_at.limit(150)
+    count = users.length
 
     active_count = [Product,Action,Collection,
                       Comment,Search].map do |model|

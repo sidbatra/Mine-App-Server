@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
   named_scope :collections_count_gt, lambda {|count| {
                   :conditions => {:collections_count_gt => count}}}
   named_scope :by_products_count, {:order => 'products_count DESC'}
+  named_scope :by_updated_at, {:order => 'updated_at DESC'}
   named_scope :stars, 
                   :joins      => :products, 
                   :conditions => {
