@@ -223,6 +223,22 @@ class User < ActiveRecord::Base
     fb_user = FbGraph::User.new('me', :access_token => self.access_token)
     fb_user.permissions
   end
+
+  # Post an invite on friends facebook wall
+  #
+  def post_on_friends_fb_wall(friend)
+    fb_friend       = FbGraph::User.new(
+                                      friend.fb_user_id, 
+                                      :access_token => self.access_token)
+
+    fb_friend_feed  = fb_friend.feed!(
+                          :message      => '',
+                          :picture      => '',
+                          :link         => '',
+                          :name         => '',
+                          :description  => '',
+                          :caption      => '')
+  end
   
   protected
 

@@ -21,6 +21,8 @@ class InviteDelayedObserver < DelayedObserver
       Following.add(invite.user_id,user.id,FollowingSource::Invite,false)
 
       # Create invite
+      sender = User.find(invite.user_id)
+      sender.post_on_friends_fb_wall(user)
     end
   end
 
