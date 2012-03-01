@@ -1,33 +1,35 @@
+<div class="well friends" id="friends_container" style="display: block">
+	
+	<legend>…and their name is…</legend>
+	
+	<div class="control-group">
+	  
+  	<div id="invite_search_container">
 
-        <div id="friends_container" style="display:none">
-          <legend>Title</legend>
+      <%=text_field_tag 'search_box', 
+          nil, 
+          :placeholder => '', 
+          :class => 'input-xlarge'%>
 
-          <div class="invite_search">
-        
-            <div class="textfield_title trans_80" 
-                    id="invite_textfield_title">
-              Search for friends by name:
-            </div>
-        
-            <div class="invite_search_enclosure">
-              <%=text_field_tag 'search_box', 
-                  nil, 
-                  :placeholder => '', 
-                  :class => 'textfield'%>
-        
-              <%=link_to  '',
-                  'javascript:void(0)',
-                  :id    => 'x_button',
-                  :class => 'x-text',
-                  :style => 'display:none'%>
-            </div>
-            
-          </div> <!-- invite_search -->	
-          
-          <!-- contacts (grid or list class variants -->
-          <div id="contacts" class="list">
-            <div class="loading">
-              <%=image_tag 'spinner_dark_bg.gif'%>
-            </div>
-          </div>
-        </div>
+      <%=link_to  '',
+          'javascript:void(0)',
+          :id    => 'x_button',
+          :class => 'x-text',
+          :style => 'display:none'%>
+   
+   	</div>
+   	
+   	</div> <!-- /control-group -->
+	
+	  <div id="contacts" class="list">
+	    <div class="loading">
+	      <%=image_tag 'spinner_dark_bg.gif'%>
+	    </div>
+	  </div> <!-- /contacts -->
+  
+
+	
+</div> <!-- /friends_container.well -->
+
+
+    

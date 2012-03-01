@@ -370,178 +370,8 @@ div.welcome_text {
 
 #header .navbar ol#indicators li.third.on {
   background-position: 0 -120px; }
-
-#container {
-	width: 976px;
-	padding: 40px 24px 0px;
-  margin: 0px auto 0px;
-  position: relative; }
-
-#container:after {
-  clear: both;
-  display: block;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  content: ".";
-  font-size: 0; }
-
-#container .heading {
-  font-size: 26px;
-  line-height: 150%;
-  color: white;
-  text-align: center;
-  text-shadow: 0 1px 1px black;
-  padding-bottom: 18px; }
-
-#container .heading .input {
-	font-family: 'FuturaStdBook', Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	height: 42px;
-	width: 402px;
-	border: 2px solid #A8A8A8;
-	background: white url("/images/black_7.png") repeat-x;
-	padding: 2px 8px;
-	line-height: 40px;
-	font-size: 22px;
-	color: #666666;
-	vertical-align: top;
-	margin-top: 8px; }
-
-#container .heading .title {
-  font-family: 'FuturaStdBold', Arial, sans-serif;
-  font-size: 24px;
-  line-height: 150%; }
-
-/* invite: live friend search */
-
-.invite_search {
-  width: 406px;
-  margin: 0 auto;
-  color: white;
-  font-size: 18px;
-  padding: 0px;
-  clear: both;
-  text-align: left; }
-
-.invite_search .invite_search_enclosure {
-  position: relative;
-  height: 56px; }
-
-.invite_search .textfield {
-  height: 38px;
-  width: 386px;
-  margin: 8px 0 6px;
-  font-family: 'FuturaStdBook', Arial, sans-serif;
-  background: white url("/images/black_7.png") repeat-x;
-  padding: 2px 8px;
-  line-height: 40px;
-  font-size: 22px;
-  -webkit-font-smoothing: antialiased;
-  color: #666666;
-  vertical-align: top;
-  float: left; }
-
-.invite_search .x-text {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 16px;
-  right: 6px;
-  background: url("/images/x-text.gif") no-repeat;
-  cursor: pointer; }
-
-.invite_search .x-text:hover {
-  background: url("/images/x-text.gif") 0px -30px no-repeat; }
-  
-#contacts .loading {
-  text-align: center;
-  margin-top: 32px; }
-  
-/* invite: list view */
-  
-#contacts.list {
-  width: 406px;
-  margin: 20px auto 80px;
-  color: white;
-  font-size: 18px;
-  padding: 0px;
-  text-align: left; }
-
-#contacts.list .invite_row {
-  height: 40px;
-  line-height: 40px;
-  margin-bottom: 4px;
-  position: relative; }
-
-#contacts.list .invite_row img.invite_user {
-  width: 40px;
-  height: 40px;
-  float: left;
-  margin-right: 12px; }
-
-#contacts.list .invite_row img.follow_user {
-  width: 50px;
-  height: 50px;
-  float: left;
-  margin-right: 12px; }
-
-#contacts.list .invite_row .invite {
-  width: 72px;
-  height: 32px;
-  background: url("/images/invite_buttons.png") no-repeat;
-  position: absolute;
-  top: 4px;
-  right: 0px;
-  cursor: pointer;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=180, Color='#999999')"; }
-
-#contacts.list .invite_row .invite:hover {
-  background-position: 0 -32px; }
-
-#contacts.list .invite_row .invite:active {
-  background-position: 0 -64px; }
-
-#contacts.list .invite_row img.invite_user:hover,
-#contacts.list .invite_row .name:hover {
-  cursor: pointer; }
-
-/* invite: grid view - see #contacts .picker_choice etc */
-
-#contacts.grid {
-  margin-top: 24px; }
   
 /* invite: retrieving friends list manually */
-
-#container .view_friends_list {
-  width: 320px;
-  height: 60px;
-  cursor: pointer;
-  display: block;
-  border: none;
-  margin: 0 auto;
-  background: url("/images/invite_buttons.png") 0 -96px no-repeat;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
-
-#container .view_friends_list:hover {
-  background-position: 0 -156px; }
-
-#container .view_friends_list:active {
-  background-position: 0 -216px; }
-
-#container #footer {
-  color: #666666;
-  line-height: 20px;
-  font-size: 12px;
-  color: #999999;
-  width: 480px;
-  text-align: center;
-  margin: 6px auto 0px; }
 
 #stores, #users, #items {
   text-align: center; }
@@ -566,16 +396,14 @@ div.welcome_text {
 
 #stores .picker_choice,
 #users .picker_choice,
-#items .picker_choice,
-#contacts .picker_choice {
+#items .picker_choice {
   float: left;
   position: relative;
   display: block; }
 
 #stores .picker_choice:after,
 #users .picker_choice:after,
-#items .picker_choice:after,
-#contacts .picker_choice:after {
+#items .picker_choice:after {
   clear: both;
   display: block;
   height: 0;
@@ -584,15 +412,13 @@ div.welcome_text {
   content: ".";
   font-size: 0; }
 
-#stores .picker_choice,
-#contacts .picker_choice {
+#stores .picker_choice {
   width: 190px;
   margin: 0 13px 16px;
   cursor: pointer; }
 
 #stores .picker_choice .shadowbox,
-#items .picker_choice .shadowbox,
-#contacts .picker_choice .shadowbox {
+#items .picker_choice .shadowbox {
 	display: none;
 	position: absolute;
 	top: -6px;
@@ -623,20 +449,17 @@ div.welcome_text {
   margin: 0 13px 20px; }
 
 #stores .picker_choice:hover .shadowbox,
-#items .picker_choice:hover .shadowbox,
-#contacts .picker_choice:hover .shadowbox {
+#items .picker_choice:hover .shadowbox {
 	display: block;
 	z-index: -10000; }
 
-#stores .picker_choice .left,
-#contacts .picker_choice .left {
+#stores .picker_choice .left {
   width: 60px;
   height: 60px;
   float: left;
   background-position: center center; }
   
-#stores .picker_choice .left img,
-#contacts .picker_choice .left img {
+#stores .picker_choice .left img {
   width: 60px;
   height: 60px; }
 
@@ -662,8 +485,7 @@ div.welcome_text {
   height: 100px;
   z-index: 1; }
 
-#stores .picker_choice .right,
-#contacts .picker_choice .right {
+#stores .picker_choice .right {
   color: #555555;
   font-size: 15px;
   line-height: 21px;
@@ -744,72 +566,6 @@ div.welcome_text {
 
 .picker_choice .button_picker.pushed {
   display: block; }
-
-.pick_top_stores,
-.follow_people,
-.add_1st_item,
-.invite_friends {
-  width: 320px;
-  height: 60px;
-  cursor: pointer;
-  display: block;
-  border: none;
-  margin-left: 270px;
-  background: url("/images/onboarding_buttons.png") no-repeat;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
-
-.pick_top_stores {
-  background-position: 0 0;
-  margin-top: 20px;
-  margin-bottom: 80px; }
-
-.pick_top_stores:hover {
-  background-position: 0 -60px; }
-
-.pick_top_stores:active {
-  background-position: 0 -120px; }
-
-.follow_people {
-  background-position: 0 -180px; }
-
-.follow_people:hover {
-  background-position: 0 -240px; }
-
-.follow_people:active {
-  background-position: 0 -300px; }
-
-.follow_people.disactivated {
-  background-position: 0 -360px;
-  cursor: default;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(enabled=false)"; }
-
-.add_1st_item {
-  background-position: 0 -420px; }
-
-.follow_people,
-.add_1st_item { 
-	margin: 13px auto 16px; }
-
-.add_1st_item:hover {
-  background-position: 0 -480px; }
-
-.add_1st_item:active {
-  background-position: 0 -540px; }
-
-.invite_friends {
-  background-position: 0 -600px;
-  margin-bottom: 32px; }
-
-.invite_friends:hover {
-  background-position: 0 -660px; }
-
-.invite_friends:active {
-  background-position: 0 -720px; }
 
 #footer_onboarding {
   height: 86px;

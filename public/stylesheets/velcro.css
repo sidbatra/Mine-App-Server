@@ -60,7 +60,7 @@ footer, footer a { color: #cccccc; }
 	position: relative;
   height: 200px;
   line-height: 200px;
-  background: white url("/images/spinner.gif") no-repeat;
+  background: white url("/images/loading_spinner_large_trans.gif") no-repeat;
   background-position: center;
   text-align: center;
   display: none;
@@ -77,9 +77,9 @@ footer, footer a { color: #cccccc; }
 	right: 5px;
 	display: none; }
 
-.change-box { position: relative; }
+.creation .change-box { position: relative; }
 
-.change-box:hover .change-photo {
+.creation .change-box:hover .change-photo {
 	display: block;
 	z-index: 10; }
 
@@ -195,6 +195,89 @@ footer, footer a { color: #cccccc; }
 	box-shadow: 0 0 18px rgba(0,0,0,0.4);
 	background-color: white;
 	z-index: -1; }
+	
+/* ---------- invite: styles */ 
+
+.invite .well .thumbnail {
+	background: white; }
+	
+.invite .well.styles li.span2 {
+	margin-left: -9px;
+	margin: 0 0 7px 8px; 
+	width: 135px; }
+
+.invite .well.styles .thumbnails {
+	margin-left: -9px; }
+
+.invite .well.styles .thumbnail {
+	height: 93px; }
+
+/* ---------- invite: friends */
+
+.invite .well.friends .thumbnails {
+	margin-left: -9px; }
+
+.invite .well.friends li {
+	margin-left: -9px;
+	margin: 0 0 7px 8px; 
+	width: 135px; }
+
+.invite .well.friends .thumbnail {
+	color: #333333; 
+	font-size: 11px;
+	line-height: 1.28;
+	text-decoration: none;
+	height: 32px; }
+	
+.invite .well.friends .thumbnail .user-photo {
+	float: left; 
+	height: 32px;
+	width: 32px;
+	margin-right: 8px; }
+
+.invite_search .x-text {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 16px;
+  right: 6px;
+  background: url("/images/x-text.gif") no-repeat;
+  cursor: pointer; }
+
+.invite_search .x-text:hover {
+  background: url("/images/x-text.gif") 0px -30px no-repeat; }
+  
+/* ---------- invite: finish */
+
+.invite .well .fb-timeline {
+	font-size: 11px;
+	line-height: 1.28; }
+
+.invite .well .fb-timeline .user-block {
+	border-bottom: 1px solid #DDD;
+	padding-bottom: 5px;
+	margin-botttom: 5px;
+	height: 32px; }
+
+.invite .well .fb-timeline .user-block .user-photo {
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-right: 8px; }
+
+.invite .well .fb-timeline .above-content {
+	margin: 15px 0;
+	font-size: 13px;
+	line-height: 18px; }
+
+.invite .well .fb-timeline .display-content {
+	height: 90px; }
+
+.invite .well .fb-timeline .display-content .art-photo {
+	height: 90px;
+	width: 90px;
+	float: left;
+	margin-right: 10px; }
 
 /* ---------- settings */ 
 
@@ -207,7 +290,7 @@ footer, footer a { color: #cccccc; }
 	border-radius: 3px;
 	cursor: pointer; }
 	
-/* ---------- items */ 
+/* ---------- items (user + store ) */ 
 
 .thumbnails.items {
 	margin-left: -2px; }
@@ -220,11 +303,9 @@ footer, footer a { color: #cccccc; }
   padding: 0;
   width: 202px;
   height: 264px;
-/*
-  -webkit-border-radius: 0;
+/*-webkit-border-radius: 0;
 	-moz-border-radius: 0;
-	border-radius: 0;
-*/
+	border-radius: 0; */
 	background-repeat: no-repeat;
 	background-position: 50% 60%; }
 
