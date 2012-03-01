@@ -147,7 +147,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.imageBrokenMsgEl).removeClass('error');
 
     $(this.extraEl).show();
-    $(this.titleEl).focus();
+    $(this.storeEl).focus();
     $(this.titleEl).val(productHash['query'].toProperCase());
 
     analytics.productSearchCompleted(this.mode);
