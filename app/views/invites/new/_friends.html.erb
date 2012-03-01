@@ -4,18 +4,18 @@
 	
 	<div class="control-group">
 	  
-  	<div id="invite_search_container">
+  	<div style="position: relative; width: 277px;">
 
       <%=text_field_tag 'search_box', 
           nil, 
           :placeholder => '', 
-          :class => 'input-xlarge'%>
+          :style => 'width: 267px;'%>
 
-      <%=link_to  '',
+      <%=link_to  '&times;',
           'javascript:void(0)',
           :id    => 'x_button',
-          :class => 'x-text',
-          :style => 'display:none'%>
+          :class => 'close',
+          :style => 'position: absolute; top: 5px; right: 8px; display:block;'%>
    
    	</div>
    	

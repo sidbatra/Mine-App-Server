@@ -115,7 +115,6 @@ footer, footer a { color: #cccccc; }
   background: url('/images/loading_spinner_small_trans.gif') center right no-repeat; }
 
 .chooser .search-bar .close {
-	font-family: Arial; 
 	font-size: 36px; 
 	padding: 5px 15px; }
 
@@ -303,9 +302,6 @@ footer, footer a { color: #cccccc; }
   padding: 0;
   width: 202px;
   height: 264px;
-/*-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0; */
 	background-repeat: no-repeat;
 	background-position: 50% 60%; }
 
@@ -397,6 +393,10 @@ footer, footer a { color: #cccccc; }
 .to-opaque:hover {
 	opacity: 1;
   filter: alpha(opacity=100); }
+  
+/* ---------- general changes to bootstrap */
+
+.close { font-family: Arial; }
 
 /* ---------- font-face fonts */
 
