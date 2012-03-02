@@ -50,6 +50,8 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     $(this.imageEl).attr(
       "src",
       "https://graph.facebook.com/" + fbID + "/picture?type=large");
+
+    analytics.inviteFriendPicked();
   },
 
   // Enter loading state
@@ -83,11 +85,14 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   updatedSettingsFetched: function() {
     
     if(this.setting.get('status')) {
+      analytics.facebookPermissionsAccepted();
       this.sendInvite();
     }
     else {
       this.stopLoading();
       console.log("permissions not accepted");
+
+      analytics.facebookPermissionsRejected();
     }
   },
 
@@ -123,6 +128,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   //
   inviteCreated: function() {
     window.location.hash = Denwen.InviteNewHash.Styles;
+    analytics.inviteCompleted();
   },
 
   // Invite fails to create

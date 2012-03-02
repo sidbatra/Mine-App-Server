@@ -42,6 +42,8 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
 
     $(this.queryEl).val('');
     $(this.cancelSearchEl).hide();
+
+    analytics.inviteStylePicked();
   },
 
   // Fired when the sub view has come into focus

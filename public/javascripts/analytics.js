@@ -234,8 +234,32 @@ Denwen.Analytics = Backbone.Model.extend({
   
   // User opens invite dialog and completes it
   //
-  inviteCompleted: function(count) {
-    mpq.track("Invite Completed", {'count':count});
+  inviteCompleted: function() {
+    mpq.track("Invite Completed");
+  },
+
+  // User picks a style for a friend he/she is inviting
+  //
+  inviteStylePicked: function() {
+    mpq.track("Invite Style Picked");
+  },
+
+  // User picks a friend for inviting 
+  //
+  inviteFriendPicked: function() {
+    mpq.track("Invite Friend Picked");
+  },
+
+  // User rejects the additional facebook permissions
+  //
+  facebookPermissionsRejected: function() {
+    mpq.track("Facebook Permissions Rejected");
+  },
+
+  // User accepts the additional facebook permissions
+  //
+  facebookPermissionsAccepted: function() {
+    mpq.track("Facebook Permissions Accepted");
   },
 
   // Test if the given source indicates that the user came from
