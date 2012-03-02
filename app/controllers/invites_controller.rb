@@ -25,11 +25,11 @@ class InvitesController < ApplicationController
         :caption => "Athletic"},
       {
         :id => 5,
-        :image => "invite/casual.jpg",
+        :image => "invite/casual2.jpg",
         :caption => "Casual"},
       {
         :id => 6,
-        :image => "invite/smart.jpg",
+        :image => "invite/smart2.jpg",
         :caption => "Smart"}]
   end
 
