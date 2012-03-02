@@ -26,7 +26,23 @@ Denwen.Callbacks.Uploader = {
   FileUploadProgress  : 'fileUploadProgress'
 }
 
+// Ways of creating a product
+//
 Denwen.ProductQueryType  = {
   Text  : 'text',
   URL   : 'url'
+}
+
+// Platforms via which invites are created
+//
+Denwen.InvitePlatform = {
+  Facebook  : '0',
+  Email     : '1'
+}
+
+// Valid hashes for invites/new
+//
+Denwen.InviteNewHash = {
+  Success  : 'styles-true',
+  Failure  : 'styles-false'
 }

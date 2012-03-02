@@ -17,6 +17,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     this.friendsContainerEl = '#friends_container';
     this.finishContainerEl  = '#finish_container';
 
+    this.stylesView  = new Denwen.Partials.Invites.New.Styles(
+                            {el:$('#styles_container')});
+
     this.friendsView = new Denwen.Partials.Invites.New.Friends(
                             {el:$('#friends_container')});
 
@@ -29,24 +32,6 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     // -----
     this.setAnalytics();
   },
-
-  // Fired when the user completes an invite
-  //
-  //inviteCompleted: function(fb_id) {
-  //  var contact = this.contacts.find(
-  //                      function(contact){ 
-  //                        return contact.get('third_party_id')==fb_id;
-  //                      });
-
-  //  this.contacts.remove(contact);
-  //  this.reset();
-  //},   
-
-  //// Fired when the user cancels an invite
-  ////
-  //inviteCancelled: function() {
-  //  $(this.queryEl).focus();
-  //}, 
 
   // Hide all subviews
   //
@@ -67,6 +52,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
+        "styles-:success" : "styles",
         "styles-:styleID/friends" : "friends",
         "styles-:styleID/friends-:name-:fbID/finish" : "finish",
         ":fragment" : "unknown"
@@ -74,8 +60,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
 
       // Display styles tab
       //
-      styles: function() {
+      styles: function(success) {
         self.hideSubViews();
+        self.stylesView.display(success);
         $(self.stylesContainerEl).show();
       },
 
@@ -102,7 +89,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Load starting tab
       //
       unknown: function(fragment) {
-        this.styles();
+        this.styles(false);
       }
     });
 
