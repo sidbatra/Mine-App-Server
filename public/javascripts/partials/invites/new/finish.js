@@ -5,7 +5,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #send_invite"   : "sendInvite"
+    "click #send_invite"   : "prepareToSendInvite"
   },
 
   // Constructor logic
@@ -22,6 +22,15 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     this.bylineEl       = '#friend_byline';
     this.imageEl        = '#friend_image';
     this.actionsAreaEl  = '#actions_area';
+
+    this.setting = new Denwen.Models.Setting({id:'publish_stream'}); 
+    this.setting.fetch();
+
+    this.fbPermissionsBox = new Denwen.Partials.Facebook.Permissions();
+    this.fbPermissionsBox.bind(
+          'fbPermissionsDialogClosed',
+          this.fbPermissionsDialogClosed,
+          this);
   },
 
   // Fired just before the view is coming into focus
@@ -55,7 +64,44 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     $(this.actionsAreaEl).removeClass(this.loadClass);
   },
 
+  // Fired when the user allows or skips the facebook
+  // permission dialog
+  //
+  fbPermissionsDialogClosed: function() {
+    var self = this;
+
+    this.startLoading();
+    this.setting.fetch({
+          success:  function(setting){self.updatedSettingsFetched();},
+          error:    function(setting,error){}
+          });
+  },
+
+  // Fired when the updated permissions settings
+  // are fetched
+  //
+  updatedSettingsFetched: function() {
+    
+    if(this.setting.get('status')) {
+      this.sendInvite();
+    }
+    else {
+      this.stopLoading();
+      console.log("permissions not accepted");
+    }
+  },
+
   // Fired when the user wants to send the invite
+  //
+  prepareToSendInvite: function() {
+
+    if(this.setting.get('status'))
+      this.sendInvite();
+    else 
+      this.fbPermissionsBox.show();
+  },
+
+  // Send invite request to the server
   //
   sendInvite: function() {
     this.startLoading();

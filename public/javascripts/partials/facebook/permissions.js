@@ -10,8 +10,10 @@ Denwen.Partials.Facebook.Permissions = Backbone.View.extend({
   // Show the facebook login dialog with extra permissions
   //
   show: function() {
+    var self = this;
+
     FB.login(function(response) {
-      console.log("trigger some action");
+     self.trigger('fbPermissionsDialogClosed'); 
     },{scope: CONFIG['fb_extended_permissions']});  
   }
 

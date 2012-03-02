@@ -30,7 +30,16 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     this.routing();
 
     // -----
+    this.loadFacebookPlugs();
+
+    // -----
     this.setAnalytics();
+  },
+
+  // Load facebook code via partials
+  //
+  loadFacebookPlugs: function() {
+    new Denwen.Partials.Facebook.Base();
   },
 
   // Hide all subviews
