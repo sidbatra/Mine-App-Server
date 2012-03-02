@@ -48,9 +48,9 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     $(this.largeNameEl).html(firstName);
     $(this.smallNameEl).html(firstName);
     $(this.bylineEl).html(byline);
-    $(this.imageEl).attr(
-      "src",
-      "https://graph.facebook.com/" + fbID + "/picture?type=large");
+    $(this.imageEl).css(
+      "background-image",
+      "url('https://graph.facebook.com/" + fbID + "/picture?type=large')");
 
     analytics.inviteFriendPicked();
   },
