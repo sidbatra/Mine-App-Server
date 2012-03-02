@@ -24,7 +24,7 @@ footer, footer a { color: #cccccc; }
 	width: 500px; 
 	left: 50%; 
 	top: 47px; 
-	margin-left: -250px;
+	margin-left: -275px;
 	-webkit-box-shadow: 0 4px 12px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.5);
 	-moz-box-shadow: 0 4px 12px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.5);
 	box-shadow: 0 4px 12px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.5); }
