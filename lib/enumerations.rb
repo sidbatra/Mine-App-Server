@@ -169,6 +169,7 @@ module DW
       ProductDeleted        = 'product_deleted'
       ShoppingsCreate       = 'shoppings_create'
       ShoppingsCreateError  = 'shoppings_create_error'
+      Invite                = 'invite'
     end
 
     # Hash tags for loading different views on

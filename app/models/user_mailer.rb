@@ -34,7 +34,7 @@ class UserMailer < ActionMailer::Base
       @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
     else
       @action    += " also commented on #{@owner.first_name} "\
-                    " #{@owner.last_name}'s "
+                    "#{@owner.last_name}'s "
     end
 
     if(comment.commentable_type == 'Product')

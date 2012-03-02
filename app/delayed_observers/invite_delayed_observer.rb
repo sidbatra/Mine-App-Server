@@ -22,7 +22,7 @@ class InviteDelayedObserver < DelayedObserver
 
       # Create invite
       sender = User.find(invite.user_id)
-      sender.post_on_friends_fb_wall(user)
+      DistributionManager.post_on_friends_wall(sender,user)
     end
   end
 

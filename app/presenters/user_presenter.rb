@@ -98,7 +98,7 @@ class UserPresenter < BasePresenter
   #
   def usage_description
     user.first_name + " is using #{CONFIG[:name]}: " +
-    "discover what your friends are buying and using."
+    "an online closet for your latest purchases and daily style."
   end
 
   # Unique identifier to be used a source

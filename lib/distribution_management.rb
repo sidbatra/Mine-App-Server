@@ -62,6 +62,27 @@ module DW
 
         TickerAction.add(action.identifier,OGAction::Use,collection)
       end
+
+      # Post an invite on a friends facebook wall 
+      #
+      def self.post_on_friends_wall(user,friend)
+        fb_friend = FbGraph::User.new(
+                              friend.fb_user_id, 
+                              :access_token => user.access_token)
+
+        
+        fb_friend.feed!(
+          :message      => "I set up your #{CONFIG[:name]} with style set to "\
+                           "\"#{friend.byline}\"!",
+          :picture      => "", 
+          :link         => user_url(
+                            friend.handle,
+                            :src  => UserShowSource::Invite,
+                            :host => CONFIG[:host]),
+          :name         => "#{friend.first_name}'s #{CONFIG[:name]}",
+          :description  => "#{CONFIG[:description]}",
+          :caption      => "#{CONFIG[:host]}")
+      end
     
     end #distribution manager
 
