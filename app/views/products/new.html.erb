@@ -1,24 +1,12 @@
 
 <%=render :partial  => "headers/onboarding",
           :locals   => {:step => 3} if is_onboarding?%>
-	
+
 
 <div class="container creation">
 	<div class="row">
 		
 		<div class="span6 offset3">
-	
-			<%if is_onboarding? && @category.name == 'Shoes'%>
-			  <div id="onboarding_create_msg">
-			  	To start your closet, type the name<br /> 
-			  	of the favorite pair of shoes you own:
-			  </div>
-			<%else%>
-			
-			<%end%>
-		
-		
-			<!-- item -->
 		
 		  <%form_for @product,
 		      :html => {:class => "well form-horizontal"} do |f|%>
@@ -33,6 +21,10 @@
 		          :show_query_box   => true}%>
 		
 		  <%end%> <!-- /form -->
+		  
+		  <div class="alert alert-info" style="margin-top: -10px;">
+		    <strong>New!</strong> Add items by URL for the perfect photo every time.
+		  </div> <!-- /alert -->
 	
 		</div> <!-- /span6 -->
 		

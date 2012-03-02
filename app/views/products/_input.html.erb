@@ -11,7 +11,7 @@
 	
 		<%if !onboarding%>
 			<label id="query_text">
-	      Type your item's name, or item page URL
+	      Item name <strong>or</strong> URL
 	    </label>
 	  <%end%>
 
@@ -26,12 +26,10 @@
     		<i class="icon-camera icon-white"></i>
     		Find photo
     	</a>
-		
-		<%if !onboarding%>
+	
 			<p class="help-block">
-	      e.g. 'Zara high-heeled boot' or 'http://zara.com/high…'
+	      e.g. 'Sand Classic Uggs'. Brands and colors help.
 	    </p>
-	  <%end%>
     
 	</div> <!-- /query_box -->
 	
@@ -45,9 +43,7 @@
 	</div>
 
   <%if onboarding%>
-    <div id='onboarding'>
-      <%=image_tag 'create_suggestion.png', :class => "create_suggestion unselectable"%>
-    </div>
+   <!-- currently unused -->
   <%end%>
 
   <div id="extra_steps" style="display:none">
