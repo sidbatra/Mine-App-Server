@@ -1,7 +1,7 @@
 <div class="well finish" id="finish_container" style="display:none">
 
 	<legend>
-    Perfect. <span id='friend_name_large'></span>'s OnCloset is ready for them.
+    Perfect. <span id='friend_name_large'></span>'s OnCloset is ready to go.
   </legend>
 
 	<div class="control-group">
@@ -12,23 +12,23 @@
 		 		<div class="user-block">
           <%=image_tag self.current_user.photo_url,
               :class => "user-photo"%>
-		 			<b><%=user_full_name(self.current_user)%></b><br />
+		 			<strong><%=user_full_name(self.current_user)%></strong><br />
 		 			<span style="color: gray;"><%=Time.zone.now.strftime("%B %d")%></span>
 		 		</div> 
 		 		
 		 		<div class="above-content">
-		 			I described your style as "<span id='friend_byline'></span>".
+		 			I set up your OnCloset with style set to "<span id='friend_byline'></span>"!
 		 		</div>
 		 		
 		 		<div class="display-content">
-          <%=image_tag self.current_user.large_photo_url,
-              :id     =>  "friend_image",
-              :class  => "art-photo"%>
-		 			<b>
+		 			<div class="art-photo" id="friend_image"
+		 					 style="background-image: url('http://graph.facebook.com/502835064/picture?type=large');">
+          </div>
+          <strong>
             <div style="margin-bottom: 3px;">
               <span id='friend_name_small'></span>'s OnCloset
             </div>
-          </b>
+          </strong>
 		 			<span style="color: gray;">
 		 				OnCloset is a personal space for your favorite
 						items, latest purchases and daily style. It's fun, and free.

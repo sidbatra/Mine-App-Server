@@ -304,6 +304,9 @@ footer, footer a { color: #cccccc; }
 .invite .well .fb-timeline .display-content .art-photo {
 	height: 90px;
 	width: 90px;
+	background-position: center center;
+	background-size: auto 90px;
+	background-repeat: no-repeat;
 	float: left;
 	margin-right: 10px; }
 
