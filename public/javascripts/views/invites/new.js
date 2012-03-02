@@ -61,7 +61,6 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        "styles-:success" : "styles",
         "styles-:styleID/friends" : "friends",
         "styles-:styleID/friends-:name-:fbID/finish" : "finish",
         ":fragment" : "unknown"
@@ -69,9 +68,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
 
       // Display styles tab
       //
-      styles: function(success) {
+      styles: function() {
         self.hideSubViews();
-        self.stylesView.display(success);
+        self.stylesView.display();
         $(self.stylesContainerEl).show();
       },
 
@@ -98,7 +97,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Load starting tab
       //
       unknown: function(fragment) {
-        this.styles(false);
+        this.styles();
       }
     });
 

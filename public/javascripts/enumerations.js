@@ -43,6 +43,5 @@ Denwen.InvitePlatform = {
 // Valid hashes for invites/new
 //
 Denwen.InviteNewHash = {
-  Success  : 'styles-true',
-  Failure  : 'styles-false'
+  Styles  : 'styles'
 }
