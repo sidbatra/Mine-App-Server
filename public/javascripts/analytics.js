@@ -237,6 +237,12 @@ Denwen.Analytics = Backbone.Model.extend({
   inviteCompleted: function() {
     mpq.track("Invite Completed");
   },
+  
+  // User cancels invite
+  //
+  inviteCancelled: function() {
+    mpq.track("Invite Cancelled");
+  },
 
   // User picks a style for a friend he/she is inviting
   //

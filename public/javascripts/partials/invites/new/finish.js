@@ -5,7 +5,8 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #send_invite"   : "prepareToSendInvite"
+    "click #send_invite"   : "prepareToSendInvite",
+    "click #cancel_invite" : "cancelInvite"
   },
 
   // Constructor logic
@@ -134,6 +135,13 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   // Invite fails to create
   //
   inviteFailed: function() {
+  },
+
+  // User cancels invite
+  //
+  cancelInvite: function() {
+    window.location.hash = Denwen.InviteNewHash.Styles;
+    analytics.inviteCancelled();
   }
 
 });
