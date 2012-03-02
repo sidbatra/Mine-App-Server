@@ -129,6 +129,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   //
   inviteCreated: function() {
     window.location.hash = Denwen.InviteNewHash.Styles;
+    dDrawer.success('Invite sent successfully');
     analytics.inviteCompleted();
   },
 

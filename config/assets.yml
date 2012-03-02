@@ -15,6 +15,7 @@ javascripts:
     - public/javascripts/application.js
     - public/javascripts/enumerations.js
     - public/javascripts/analytics.js
+    - public/javascripts/message_drawer.js
     - public/javascripts/helpers.js
     - public/javascripts/global.js
     - public/javascripts/window_listener.js

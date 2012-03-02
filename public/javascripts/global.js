@@ -9,6 +9,7 @@
 //
 var analytics       = new Denwen.Analytics();
 var helpers         = new Denwen.Helpers();
+var dDrawer         = new Denwen.Partials.Common.MessageDrawer();
 
 var isDeviceMobile  = false;
 var isDeviceiOS     = false;
