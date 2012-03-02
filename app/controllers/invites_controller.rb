@@ -9,28 +9,28 @@ class InvitesController < ApplicationController
     @styles = [
       {
         :id => 1,
-        :image => "http://placehold.it/160x120",
-        :caption => "Boho"},
+        :image => "invite/glam.jpg",
+        :caption => "Glam"},
       {
         :id => 2,
-        :image => "http://placehold.it/160x120",
-        :caption => "Chic"},
+        :image => "invite/preppy.jpg",
+        :caption => "Preppy"},
       {
         :id => 3,
-        :image => "http://placehold.it/160x120",
-        :caption => "Chic"},
+        :image => "invite/hipster.jpg",
+        :caption => "Hipster"},
       {
         :id => 4,
-        :image => "http://placehold.it/160x120",
-        :caption => "Chic"},
+        :image => "invite/athletic.jpg",
+        :caption => "Athletic"},
       {
         :id => 5,
-        :image => "http://placehold.it/160x120",
-        :caption => "Chic"},
+        :image => "invite/casual.jpg",
+        :caption => "Casual"},
       {
         :id => 6,
-        :image => "http://placehold.it/160x120",
-        :caption => "Chic"}]
+        :image => "invite/smart.jpg",
+        :caption => "Smart"}]
   end
 
   # Create one or more invites 
