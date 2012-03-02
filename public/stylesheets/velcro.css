@@ -9,13 +9,25 @@
 /* ---------- general tweaks to bootstrap */
 
 .close { font-family: Arial; }
+
 .btn {
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
 
-/* ---------- footer colors */
-
 footer, footer a { color: #cccccc; }
+
+/* ---------- message drawer */
+
+.message-drawer {
+	z-index: 1051; 
+	position: fixed; 
+	width: 500px; 
+	left: 50%; 
+	top: 47px; 
+	margin-left: -250px;
+	-webkit-box-shadow: 0 4px 12px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.5);
+	-moz-box-shadow: 0 4px 12px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.5);
+	box-shadow: 0 4px 12px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.5); }
 
 /* ---------- loading animations */
 
@@ -402,6 +414,10 @@ footer, footer a { color: #cccccc; }
 .faded-90 {
   opacity: 0.9;
   filter: alpha(opacity=90); }
+
+.faded-95 {
+  opacity: 0.95;
+  filter: alpha(opacity=95); }
 
 .to-90:hover {
 	opacity: 0.90;

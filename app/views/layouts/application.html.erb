@@ -19,10 +19,12 @@
     <div id="fb-root"></div>    
 
     <%=render "headers/default" unless is_onboarding?%>
+    
+    <div id="message-drawer" class="message-drawer faded-95 alert alert-success">
+		    Invite sent successfully.
+		</div>
  
     <%=yield%>
-    
-    <div id="blocker"></div>
 
     <%unless is_onboarding?%>
       <footer style="text-align: center;">
