@@ -141,7 +141,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     if(this.images.isEmpty()) {
       this.stopSearch();
       this.images.disableSearch();
-      alert("Oops, no photos for this item. Try a different search.");
+      dDrawer.error("Oops, no photos for this item. Try a different search.");
     }
     else if(this.images.isSearchDone()) {
       this.images.disableSearch();
