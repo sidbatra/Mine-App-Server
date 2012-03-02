@@ -19,7 +19,8 @@ class LoggedException < ActiveRecord::Base
         :action_name     => method_name,
         :message         => exception.message.inspect,
         :backtrace       => exception.backtrace,
-        :request         => "internal"
+        :request         => "internal " + (CONFIG && CONFIG[:machine_id] ? 
+                                            CONFIG[:machine_id] : '')
     end
     
     def find_exception_class_names
