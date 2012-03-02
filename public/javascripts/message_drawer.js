@@ -42,6 +42,24 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
   //
   success: function(text,timeout) {
     this.display(text,this.successClass,timeout);
+  },
+
+  // Display an error message
+  //
+  error: function(text,timeout) {
+    this.display(text,this.errorClass,timeout);
+  },
+
+  // Display an info message
+  //
+  info: function(text,timeout) {
+    this.display(text,this.infoClass,timeout);
+  },
+
+  // Display a plain message
+  //
+  message: function(text,timeout) {
+    this.display(text,'',timeout);
   }
 
 });
