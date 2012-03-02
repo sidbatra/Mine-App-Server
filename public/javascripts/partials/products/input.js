@@ -39,6 +39,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.endorsementStartEl   = '#endorsement_initiate';
     this.isStoreUnknownEl     = '#product_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
+    this.urlAlertBoxEl        = '#url_alert_box';
     this.posting              = false;
 
     this.productImages      = new Denwen.Collections.ImageResults();
@@ -149,6 +150,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.extraEl).show();
     $(this.storeEl).focus();
     $(this.titleEl).val(productHash['query'].toProperCase());
+
+    $(this.urlAlertBoxEl).hide();
 
     analytics.productSearchCompleted(this.mode);
 
