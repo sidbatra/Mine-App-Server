@@ -96,7 +96,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     
     if(this.productsPicked.length < 1) {
       valid = false;
-      alert("Please add at least one item.");
+      dDrawer.error("Please add at least one item.");
       analytics.collectionException('No Products');
     }
     else {
