@@ -20,6 +20,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     this.friendsView = new Denwen.Partials.Invites.New.Friends(
                             {el:$('#friends_container')});
 
+    this.finishView  = new Denwen.Partials.Invites.New.Finish(
+                            {el:$('#finish_container')});
+
     // -----
     this.routing();
 
@@ -82,13 +85,17 @@ Denwen.Views.Invites.New = Backbone.View.extend({
         self.hideSubViews();
         self.friendsView.display(styleID);
         $(self.friendsContainerEl).show();
+        self.friendsView.displayed();
       },
 
       // DIsplay final invite view
       //
       finish: function(styleID,name,fbID) {
         self.hideSubViews();
-        console.log(styleID,name.replace('+',' '),fbID);
+        self.finishView.display(
+          self.styles.get(styleID).get('caption'),
+          name.replace('+',' '),
+          fbID);
         $(self.finishContainerEl).show();
       },
 

@@ -39,6 +39,13 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
 
     if(this.contacts && !this.contacts.isEmpty())
       this.render(this.contacts);
+
+    $(this.queryEl).val('');
+  },
+
+  // Fired when the sub view has come into focus
+  displayed: function() {
+    $(this.queryEl).focus();
   },
 
   // Render the contacts collection

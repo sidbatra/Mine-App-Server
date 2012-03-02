@@ -1,6 +1,8 @@
 <div class="well finish" id="finish_container" style="display:none">
 
-	<legend>Perfect. Gabe's OnCloset is ready for her.</legend>
+	<legend>
+    Perfect. <span id='friend_name_large'></span>'s OnCloset is ready for them.
+  </legend>
 
 	<div class="control-group">
 		
@@ -8,18 +10,25 @@
 		 	<div style="padding: 11px">
 		 	
 		 		<div class="user-block">
-		 			<img class="user-photo" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/41443_517379696_219149389_q.jpg" />
-		 			<b>Pierre Legrain</b><br />
-		 			<span style="color: gray;">February 21</span>
+          <%=image_tag self.current_user.photo_url,
+              :class => "user-photo"%>
+		 			<b><%=user_full_name(self.current_user)%></b><br />
+		 			<span style="color: gray;"><%=Time.zone.now.strftime("%B %d")%></span>
 		 		</div> 
 		 		
 		 		<div class="above-content">
-		 			I described your style as "Smart & Sharp".
+		 			I described your style as "<span id='friend_byline'></span>".
 		 		</div>
 		 		
 		 		<div class="display-content">
-		 			<img class="art-photo" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275142_216250_1681232058_n.jpg" />
-		 			<b><div style="margin-bottom: 3px;">Gabe's OnCloset</div></b>
+          <%=image_tag self.current_user.large_photo_url,
+              :id     =>  "friend_image",
+              :class  => "art-photo"%>
+		 			<b>
+            <div style="margin-bottom: 3px;">
+              <span id='friend_name_small'></span>'s OnCloset
+            </div>
+          </b>
 		 			<span style="color: gray;">
 		 				OnCloset is a personal space for your favorite
 						items, latest purchases and daily style. It's fun, and free.
@@ -29,9 +38,16 @@
 		 	</div> <!-- padding -->
 		 	
 	 		<div class="form-actions" style="margin: 4px 0 0 0; padding-left: 111px;">
-        <button class="btn btn-primary btn-large"><i class="icon-envelope icon-white"></i> Send invite</button>
-        <button class="btn btn-large">Cancel</button>
-        <div class="loading small inline" style="margin-left: 10px; vertical-align: middle;"></div>
+        <button id="send_invite" class="btn btn-primary btn-large">
+          <i class="icon-envelope icon-white"></i> 
+            Send invite
+        </button>
+        <button class="btn btn-large">
+          Cancel
+        </button>
+        <div class="loading small inline" 
+              style="margin-left: 10px; vertical-align: middle;">
+        </div>
       </div>
       
 		</div> <!-- /thumbnail -->
