@@ -1,34 +1,43 @@
 /* ---------- items (user + store ) */ 
 
-.bottom {
-	height: 18px;
-	padding: 8px 0 8px 8px;
-	font-size: 12px;
-	line-height: 18px;
-	overflow: hidden;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
+.profile .well.items .thumbnail {
 	background: white;
-	text-align: left;
-	color: #AAA;
+	height: 130px; /* no masonry */
+	padding-bottom: 36px; }
+		
+.profile .well.items li:hover .thumbnail { /* for entire item hover*/
+  border-color: #0088cc;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25); }
+  
+.profile .well.items li .caption { /* outside of thumbnail */
+	color: #999;
+	position: absolute; 
+	right: 5px; 
+	bottom: 5px; 
+	left: 13px; 
+	height: 28px; 
+	font-size: 12px;
+	line-height: 28px;
 	white-space: nowrap;
 	overflow: hidden; }
 
-.bottom img {
-	width: 18px;
-	height: 18px;
+.profile .well.items li .caption .icon {
+	height: 16px;
+	width: 16px;
 	float: left;
-	margin-right: 6px; }
+	vertical-align: middle;
+	margin: 6px 5px 0 0; }
 
-.bottom .fade {
-	width: 30px;
-	height: 34px;
-	right: 0;
-	bottom: 0;
-	z-index: 10000;
-	background: yellow url("/images/bottom_right_fade.png") center right repeat-y; }
+.profile .well.items li .btn-group {	
+	display: none; 
+	position: absolute; 
+	top: 5px; 
+	left: 5px; }
+
+.profile .well.items li:hover .btn-group {
+	display: block; }
 
 /* ---------- image src url conversions */
 
@@ -48,7 +57,7 @@ body { background: #333; }
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
 
-footer, footer a { color: #cccccc; }
+footer, footer a, footer a:hover { color: #666666; }
 
 /* ---------- message drawer */
 

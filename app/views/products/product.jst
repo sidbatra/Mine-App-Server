@@ -1,8 +1,53 @@
-<li class="span2" style="margin: 0 0 10px 12px;">
-  <a href="<%=product.path(src)%>" class="thumbnail"
-  	 style="background-image: url('<%=product.get('giant_url')%>');">
-    <div class="caption">
-        <h5>Item Footer</h5>
-    </div>
+<li class="span2" style="margin: 0 0 10px 12px; position: relative;">
+  <a href="<%=product.path(src)%>" class="thumbnail">
+  	<img src="<%=product.get('thumbnail_url')%>" />
   </a> <!-- /thumbnail -->
+  <div class="caption">
+  	<div class="overflow-fade" style="width: 18px;"></div>
+	  <%if(type == 'user' && product.has('store')) { %>
+	  	<%=product.get('store').get('is_processed') ? "<img class='icon' src='" + product.get('store').get('thumbnail_url') + "' />"  : ''%>
+	   	<%=product.get('store').conditionalLink('user_profile')%>
+	  <%}else if(type == 'user' && product.get('is_gift')) { %>
+	    Gift
+	  <%}%>
+	  
+	  <%if(type == 'store') { %>
+			<a href="<%=product.get('user').path('store')%>">
+	  		<img class="icon" src="<%=product.get('user').get('photo_url')%>"/>
+	  	</a>
+	  	<a href="<%=product.get('user').path('store')%>">
+	      <%=product.get('user').escape('first_name')%> 
+	      <%=product.get('user').escape('last_name')%>
+			</a>
+	    bought this
+	  <%}%>
+  </div>
+  
+  <%if(helpers.isLoggedIn()) {%>
+  
+  	<div class="btn-group">
+
+		  <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+	      <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
+	        <a class="btn btn-small" id="want_product_<%=product.get('id')%>">
+	          Want
+	        </a>
+	      <%}%>
+	      <a class="btn btn-small" id="own_product_<%=product.get('id')%>">
+	      	Own
+	      </a>
+			<%}else{%>
+				<a class="btn btn-small" href="<%=product.editPath(src)%>">
+					<i class="icon-pencil"></i> Edit
+	    	</a>
+		  <%}%>
+	
+	    <a class="btn btn-small" href="<%=product.path(src+'_comment')%>">
+	      <i class="icon-comment"></i>
+	    </a>
+    
+    </div> <!-- /btn-group -->
+
+	<%}%>
+  
 </li>

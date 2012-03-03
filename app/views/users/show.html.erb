@@ -27,7 +27,20 @@
   
     <div class="span12">
     	<div class="well items">
-      	<div id="centerstage"></div>
+    		<legend> 
+    			<a href="#<%=UserShowHash::Owns%>" style="color: #333" 
+              id="owns_tab">
+          	Owns</a> · 
+          <a href="#<%=UserShowHash::Wants%>" style="color: #333"
+              id="wants_tab">
+          	Wants</a> · 
+         	<a href="#<%=UserShowHash::Collections%>" style="color: #333"
+              id="collections_tab">
+          	Uses</a>
+        </legend>
+    		<div class="control-group">
+      		<div id="centerstage"></div>
+      	</div>
       </div> <!-- /well -->
     </div> <!-- /span12 -->
     
