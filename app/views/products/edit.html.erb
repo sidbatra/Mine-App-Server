@@ -1,25 +1,26 @@
-<div id="container" class="narrow">
+<div class="container creation">
+	<div class="row">
+		<div class="span6 offset3">
+		
+		  <%form_for @product,:url => "/products/#{@product.id}",
+		        :html => {
+		          :class  => 'well form-horizontal',
+		          :id     => 'edit_product'} do |f|%>
+		
+		    <%=render :partial  => 'input', 
+		              :locals   => {
+		                :f                => f,
+		                :category         => @category,
+		                :placeholders     => @placeholders,
+		                :onboarding       => false,
+		                :submit_text      => "Save",
+		                :show_query_box   => false}%>
+		
+		  <%end%> <!-- form -->
 
-	<!-- item -->
-	
-	  <%form_for @product,:url => "/products/#{@product.id}",
-	        :html => {
-	          :class  => 'new_product',
-	          :id     => 'edit_product'} do |f|%>
-	
-	    <%=render :partial  => 'input', 
-	              :locals   => {
-	                :f                => f,
-	                :category         => @category,
-	                :placeholders     => @placeholders,
-                  :onboarding       => false,
-                  :submit_text      => "Save",
-                  :show_query_box   => false}%>
-	
-	  <%end%> <!-- form -->
-
-</div> <!-- container -->
-   
+		</div> <!-- /span6 -->
+	</div> <!-- /row -->
+</div> <!-- /container -->
 
 		
 <%=render 'chooser'%>	
