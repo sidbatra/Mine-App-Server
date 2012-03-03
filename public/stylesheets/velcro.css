@@ -1,9 +1,16 @@
 /* ---------- items (user + store ) */ 
 
 .profile .well.items .thumbnail {
+	display: block;
 	background: white;
-	height: 130px; /* no masonry */
+	height: 130px; /* remove for flexible heights */
+	line-height: 65px;
+	text-align: center;
 	padding-bottom: 36px; }
+	
+.profile .well.items .thumbnail img {
+	margin-top: -65px;
+	display: inline-block; }
 		
 .profile .well.items li:hover .thumbnail { /* for entire item hover*/
   border-color: #0088cc;
