@@ -21,8 +21,7 @@ module DW
                                       product.user.handle,
                                       product.handle,
                                       :src  => 'fb',
-                                      :host => CONFIG[:host]),
-                            :expires_in => 300) 
+                                      :host => CONFIG[:host]))
 
         TickerAction.add(action.identifier,OGAction::Add,product)
       end
