@@ -237,6 +237,41 @@ class User < ActiveRecord::Base
     fb_user.permissions
   end
 
+  # Host user's fb image
+  #
+  def host
+    return unless fb_user_id.present?
+
+    # Set to false to retrieve latest fb image
+    self.are_images_hosted = false
+
+    self.image_path  = Base64.encode64(
+                           SecureRandom.hex(10) + 
+                           Time.now.to_i.to_s).chomp + ".jpg"
+
+    image = MiniMagick::Image.open(image_url)
+
+    FileSystem.store(
+      image_path,
+      open(image.path),
+      "Content-Type"  => "image/jpeg",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+
+    image = MiniMagick::Image.open(square_image_url)
+
+    FileSystem.store(
+      square_image_path,
+      open(image.path),
+      "Content-Type"  => "image/jpeg",
+      "Expires"       => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+    self.are_images_hosted = true
+    save!
+  end
+
   protected
 
   # Required by Handler mixin to create base handle
