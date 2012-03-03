@@ -148,23 +148,35 @@ class User < ActiveRecord::Base
     (Time.now - self.created_at) < 60
   end
 
-  # URL for the user photo
+  # URL for the user's image on fb of the given type
   #
-  def image_url(type='square')
+  def fb_image_url(type='square')
     "http://graph.facebook.com/" + fb_user_id + "/picture?type=#{type}" 
   end
 
-  # Alias for image_url
+  # Relative path to the square image
   #
-  def photo_url
-    image_url
+  def square_image_path
+    's_' + image_path
   end
 
-  # Alias for large image url
+  # Absolute url of the square thumbnail
   #
-  def large_photo_url
-    image_url('large')
+  def square_image_url
+    are_images_hosted ?
+      FileSystem.url(square_image_path) :
+      fb_image_url('square')
   end
+  alias :photo_url :square_image_url
+
+  # Absolute url of the large image
+  #
+  def image_url
+    are_images_hosted ?
+      FileSystem.url(image_path) :
+      fb_image_url('large')
+  end
+  alias :large_photo_url :image_url
 
   # Tests gender to see if user is male
   #
