@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301201809) do
+ActiveRecord::Schema.define(:version => 20120303031132) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -310,6 +310,8 @@ ActiveRecord::Schema.define(:version => 20120301201809) do
     t.boolean  "has_contacts_mined",        :default => false
     t.integer  "collections_count",         :default => 0
     t.integer  "shoppings_count",           :default => 0
+    t.string   "image_path"
+    t.boolean  "are_images_hosted",         :default => false
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
