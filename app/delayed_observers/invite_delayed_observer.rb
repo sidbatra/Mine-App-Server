@@ -20,6 +20,10 @@ class InviteDelayedObserver < DelayedObserver
       Following.add(user.id,invite.user_id,FollowingSource::Invite,false)
       Following.add(invite.user_id,user.id,FollowingSource::Invite,false)
 
+      # Host the invited user's fb image for compatability
+      # with fb's wall post guidelines
+      user.host
+
       # Create invite
       sender = User.find(invite.user_id)
       DistributionManager.post_on_friends_wall(sender,user)

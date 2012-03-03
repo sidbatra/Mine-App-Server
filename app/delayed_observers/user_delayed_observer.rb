@@ -9,6 +9,8 @@ class UserDelayedObserver < DelayedObserver
 
     Mailman.welcome_new_user(user)
 
+    user.host
+
     mine_fb_data(user)
   end
 

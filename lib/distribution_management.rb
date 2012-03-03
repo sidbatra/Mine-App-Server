@@ -73,7 +73,7 @@ module DW
         fb_friend.feed!(
           :message      => "I set up your #{CONFIG[:name]} with style set to "\
                            "\"#{friend.byline}\"!",
-          :picture      => "", 
+          :picture      => friend.image_url, 
           :link         => user_url(
                             friend.handle,
                             :src  => UserShowSource::Invite,
