@@ -9,24 +9,24 @@ class InvitesController < ApplicationController
     @styles = [
       {
         :id => 1,
-        :image => "invite/glam.jpg",
+        :image => "invite/glam2.jpg",
         :caption => "Glam"},
       {
         :id => 2,
+        :image => "invite/casual3.jpg",
+        :caption => "Casual"},
+      {
+        :id => 3,
+        :image => "invite/athletic2.jpg",
+        :caption => "Athletic"},
+      {
+        :id => 4,
         :image => "invite/preppy.jpg",
         :caption => "Preppy"},
       {
-        :id => 3,
+        :id => 5,
         :image => "invite/hipster.jpg",
         :caption => "Hipster"},
-      {
-        :id => 4,
-        :image => "invite/athletic.jpg",
-        :caption => "Athletic"},
-      {
-        :id => 5,
-        :image => "invite/casual2.jpg",
-        :caption => "Casual"},
       {
         :id => 6,
         :image => "invite/smart2.jpg",
