@@ -167,7 +167,13 @@ class User < ActiveRecord::Base
       FileSystem.url(square_image_path) :
       fb_image_url('square')
   end
-  alias :photo_url :square_image_url
+
+  # Old method for fetching square fb user image
+  #
+  def photo_url
+    fb_image_url('square')
+  end
+ # alias :photo_url :square_image_url
 
   # Absolute url of the large image
   #
@@ -176,7 +182,13 @@ class User < ActiveRecord::Base
       FileSystem.url(image_path) :
       fb_image_url('large')
   end
-  alias :large_photo_url :image_url
+
+  # Old method for fetching large fb user image
+  #
+  def large_photo_url
+    fb_image_url('large')
+  end
+  #alias :large_photo_url :image_url
 
   # Tests gender to see if user is male
   #
