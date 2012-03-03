@@ -14,19 +14,33 @@
                                 ""}%>
 <%end%>
 
-
 <!-- Welcome box to signup if user is not logged in -->
 <%=render :partial => "misc/welcome", 
           :locals => {
             :src    => @user_presenter.source_id,
             :target => @user_presenter.closet_path('footer')} if !logged_in? &&
                                                                 @source != "iframe"%>
-
 <div class="container profile">
+
+	<div class="row">
+    <div class="span12">
+    	<div class="well profile-card" style="margin-bottom: 12px;">
+    		<%=@user_presenter.large_picture('picture')%>
+    		<%=@user_presenter.closet_title%>
+    		<div id="ifollowers_with_msg"></div>
+    		<div id="profile_bio">
+			    <%=render :partial  => 'byline',
+			              :locals   => {:user => @user}%>
+	  		</div>
+	  		<div id="user_stores_box"></div>
+    	</div> <!-- /well profile-card -->
+    </div> <!-- /span12 -->
+  </div> <!-- /row -->
+
   <div class="row">
-  
     <div class="span12">
     	<div class="well items">
+    	
     		<legend> 
     			<a href="#<%=UserShowHash::Owns%>" style="color: #333" 
               id="owns_tab">
@@ -41,11 +55,12 @@
     		<div class="control-group">
       		<div id="centerstage"></div>
       	</div>
-      </div> <!-- /well -->
+      	
+      </div> <!-- /well items-->
     </div> <!-- /span12 -->
-    
   </div> <!-- /row -->
-</div> <!-- /container -->
+  
+</div> <!-- /container profile -->
 
 
 <%content_for :javascript do%>
