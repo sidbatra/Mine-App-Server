@@ -1,3 +1,35 @@
+/* ---------- items (user + store ) */ 
+
+.bottom {
+	height: 18px;
+	padding: 8px 0 8px 8px;
+	font-size: 12px;
+	line-height: 18px;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: white;
+	text-align: left;
+	color: #AAA;
+	white-space: nowrap;
+	overflow: hidden; }
+
+.bottom img {
+	width: 18px;
+	height: 18px;
+	float: left;
+	margin-right: 6px; }
+
+.bottom .fade {
+	width: 30px;
+	height: 34px;
+	right: 0;
+	bottom: 0;
+	z-index: 10000;
+	background: yellow url("/images/bottom_right_fade.png") center right repeat-y; }
+
 /* ---------- image src url conversions */
 
 [class^="icon-"], [class*=" icon-"] {
@@ -7,6 +39,8 @@
   background-image: url("/images/glyphicons-halflings-white.png"); }
   
 /* ---------- general tweaks to bootstrap */
+
+body { background: #333; }
 
 .close { font-family: Arial; }
 
@@ -320,52 +354,6 @@ footer, footer a { color: #cccccc; }
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	cursor: pointer; }
-	
-/* ---------- items (user + store ) */ 
-
-.thumbnails.items {
-	margin-left: -2px; }
-	
-.thumbnails.items > li {
-  margin: 0 0 3px 3px; }
-
-.thumbnails.items li .thumbnail {
-	position: relative;
-  padding: 0;
-  width: 202px;
-  height: 264px;
-	background-repeat: no-repeat;
-	background-position: 50% 60%; }
-
-.thumbnails.items li .thumbnail .bottom .fade {
-	width: 30px;
-	height: 34px;
-	right: 0;
-	bottom: 0;
-	z-index: 10000;
-	background: yellow url("/images/bottom_right_fade.png") center right repeat-y; }
-
-.thumbnails.items li .thumbnail .bottom {
-	height: 18px;
-	padding: 8px 0 8px 8px;
-	font-size: 12px;
-	line-height: 18px;
-	overflow: hidden;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: white;
-	text-align: left;
-	color: #AAA;
-	white-space: nowrap;
-	overflow: hidden; }
-
-.thumbnails.items li .thumbnail .bottom img {
-	width: 18px;
-	height: 18px;
-	float: left;
-	margin-right: 6px; }
 
 /* ---------- user-cell image and name nav button */
 

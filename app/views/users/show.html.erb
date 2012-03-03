@@ -22,79 +22,14 @@
             :target => @user_presenter.closet_path('footer')} if !logged_in? &&
                                                                 @source != "iframe"%>
 
-<div class="container">
+<div class="container profile">
   <div class="row">
-    <div class="span2">
-
-			<!-- user photo -->
-      <div style="line-height: 0px;">
-      	<%=@user_presenter.large_picture('picture')%>
-      </div>
-      
-      <!-- user name -->  
-      <h3 style="padding: 13px 0;">
-      	<%=@user_presenter.closet_title%>
-      </h3>
-      
-      <!-- owns wants uses tabs -->
-      <ul class="nav nav-tabs nav-stacked">
-      
-        <li>
-          <a href="#<%=UserShowHash::Owns%>" 
-              id="owns_tab" 
-              data-toggle="tab">
-          	Owns
-          </a>
-        </li>
-        
-        <li>
-          <a href="#<%=UserShowHash::Wants%>" 
-              id="wants_tab" 
-              data-toggle="tab">
-          	Wants
-          </a>
-        </li>
-        
-        <%if @user.collections_count > 0 || is_current_user(@user)%>
-	        <li>
-	          <a href="#<%=UserShowHash::Collections%>" 
-                id="collections_tab" 
-                data-toggle="tab">
-	          	Uses
-	          </a>
-	        </li>
-        <%end%>
-        
-      </ul>
-      
-      <!-- user byline -->
-      <div class="well" style="padding: 8px 0;">
-      	<ul class="nav nav-list" id="profile_bio">
-	        <%=render :partial  => 'byline',
-	                  :locals   => {:user => @user}%>
-        </ul>
-      </div>
-      
-      <!-- influenced by -->  
-      <div class="well" style="padding: 8px 0; white-space:nowrap; overflow: hidden;">
-      	<ul class="nav nav-list" id="ifollowers_with_msg">
-        </ul>
-      </div>
-      
-    </div> <!-- /span2 (left) -->
-    
-    
-    <div class="span8">
-      <div id="centerstage"></div>
-    </div> <!-- /span8 -->
-    
-    
-    <div class="span2">
-      <div class="well" style="padding: 8px 0; white-space:nowrap; overflow: hidden;">
-      	<ul class="nav nav-list" id="user_stores_box">
-      	</ul>
-      </div>
-    </div> <!-- /span2 (right) -->
+  
+    <div class="span12">
+    	<div class="well items">
+      	<div id="centerstage"></div>
+      </div> <!-- /well -->
+    </div> <!-- /span12 -->
     
   </div> <!-- /row -->
 </div> <!-- /container -->
