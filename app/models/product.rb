@@ -224,6 +224,9 @@ class Product < ActiveRecord::Base
       self.is_processed  = true
       self.save(false)
     end
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
   end
 
 

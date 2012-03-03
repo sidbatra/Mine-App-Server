@@ -270,6 +270,9 @@ class User < ActiveRecord::Base
 
     self.are_images_hosted = true
     save!
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
   end
 
   protected

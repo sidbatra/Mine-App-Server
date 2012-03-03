@@ -227,6 +227,9 @@ class Store < ActiveRecord::Base
       "Content-Type"  => "image/jpeg",
       "Expires"       => 1.year.from_now.
                           strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
   end
 
   # Save store image to filesystem and create smaller copies
@@ -282,6 +285,9 @@ class Store < ActiveRecord::Base
 
     self.is_processed  = true
     self.save(false)
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
   end
 
   # Update the top shoppers at the store. Returns
