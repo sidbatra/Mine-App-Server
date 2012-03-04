@@ -19,7 +19,7 @@
     <a class="right" data-toggle="modal" href="#modal-user-stores">
   		View all
   	</a>
-  </div>
+  </div> <!-- /actions-header -->
   
   <ul class="thumbnails">
 	  <%stores.each(function(store){%>
@@ -27,7 +27,7 @@
 	    	<%=Denwen.JST['stores/store']({store:store, src:'user'})%>
 	    </li>
 	  <%});%>
-  </ul>
+  </ul> <!-- /thumbnails -->
 
 <%}%>
 
@@ -43,10 +43,14 @@
     </h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+  
+    <ul class="thumbnails">
+		  <%stores.each(function(store){%>
+				<li>
+		    	<%=Denwen.JST['stores/store']({store:store, src:'user'})%>
+		    </li>
+		  <%});%>
+  	</ul> <!-- /modal thumbnails -->
+  	
   </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-primary">Save changes</a>
-    <a href="#" class="btn">Close</a>
-  </div>
-</div>
+</div> <!-- /modal -->

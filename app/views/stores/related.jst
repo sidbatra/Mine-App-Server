@@ -3,7 +3,7 @@
   <a class="right" data-toggle="modal" href="#modal-related-stores">
   	View all
   </a>
-</div>
+</div> <!-- /actions-header -->
 
 <ul class="thumbnails">
    
@@ -13,7 +13,7 @@
 	  </li>
 	<%});%>
 
-</ul>
+</ul> <!-- /thumbnails -->
 
 <div class="modal fade" id="modal-related-stores">
   <div class="modal-header">
@@ -21,10 +21,14 @@
     <h3>Related Stores</h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+  
+    <ul class="thumbnails">
+			<%stores.each(function(store){%>
+				<li>
+	  			<%=Denwen.JST['stores/store']({store:store, src:'related'})%>
+	  		</li>
+			<%});%>
+  	</ul> <!-- /modal thumbnails -->
+		
   </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-primary">Save changes</a>
-    <a href="#" class="btn">Close</a>
-  </div>
-</div>
+</div> <!-- /modal -->

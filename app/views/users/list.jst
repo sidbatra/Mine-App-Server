@@ -3,7 +3,7 @@
   <a class="right" data-toggle="modal" href="#modal-user-friends">
   	View all
   </a>
-</div>
+</div> <!-- /actions-header -->
 
 <ul class="thumbnails">
 
@@ -25,7 +25,7 @@
 	
 	<%}%>
 	
-</ul>
+</ul> <!-- /thumbnails -->
 
 <div class="modal fade" id="modal-user-friends">
   <div class="modal-header">
@@ -33,10 +33,14 @@
     <h3>Influenced by</h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+  
+  	<ul class="thumbnails">
+	  	<%users.each(function(user){%>
+		  	<li>
+		    	<%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
+		    </li>
+		  <%});%>
+		</ul> <!-- /modal thumbnails -->
+		
   </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-primary">Save changes</a>
-    <a href="#" class="btn">Close</a>
-  </div>
-</div>
+</div> <!-- /modal -->
