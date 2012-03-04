@@ -24,15 +24,17 @@
 
 	<div class="row">
     <div class="span12">
-    	<div class="well profile-card" style="margin-bottom: 12px;">
-    		<%=@user_presenter.large_picture('picture')%>
-    		<%=@user_presenter.closet_title%>
-    		<div id="ifollowers_with_msg"></div>
+    	<div class="well profile-card" style="height: 128px; margin-bottom: 12px;">
+    		<div class="profile-img">
+					<%=@user_presenter.large_picture('picture')%>
+				</div>
+    		<h1><%=@user_presenter.full_name%></h1>
+    		<!-- <div id="ifollowers_with_msg"></div> -->
     		<div id="profile_bio">
 			    <%=render :partial  => 'byline',
 			              :locals   => {:user => @user}%>
 	  		</div>
-	  		<div id="user_stores_box"></div>
+	  		<!-- <div id="user_stores_box"></div> -->
     	</div> <!-- /well profile-card -->
     </div> <!-- /span12 -->
   </div> <!-- /row -->

@@ -1,5 +1,13 @@
 /* ---------- items (user + store ) */ 
 
+.profile .profile-card .profile-img {
+	float: left; 
+	margin-right: 12px; 
+	width: 128px; 
+	height: 128px; 
+	overflow: hidden; 
+	text-align: center;}
+
 .profile .well.items .thumbnail {
 	background: white;
 	padding-bottom: 36px; }

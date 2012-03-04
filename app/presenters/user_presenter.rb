@@ -40,8 +40,8 @@ class UserPresenter < BasePresenter
   def large_picture(src)
     h.link_to h.image_tag(
                 user.large_photo_url, 
-                :class  => "",
-                :alt    => ''),
+                :class  => '',
+                :alt    => 'self.full_name'),
               closet_path(src)
   end
 
@@ -71,7 +71,7 @@ class UserPresenter < BasePresenter
       name  = parts.first + ' ' + parts.last if parts.length > 2
     end
 
-    name + ""
+    name + "'s Closet"
   end
 
   # Full url of the user's closet
