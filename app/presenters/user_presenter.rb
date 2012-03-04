@@ -41,7 +41,7 @@ class UserPresenter < BasePresenter
     h.link_to h.image_tag(
                 user.large_photo_url, 
                 :class  => '',
-                :alt    => 'self.full_name'),
+                :alt    => self.full_name),
               closet_path(src)
   end
 
