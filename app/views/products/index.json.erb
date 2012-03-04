@@ -14,7 +14,7 @@
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
                         :user_id,:category_id],
-        :methods  => [:giant_url,:thumbnail],
+        :methods  => [:giant_url,:thumbnail_url],
         :include  => {
           :user => {
             :only => [:id,:first_name,:last_name,:handle],
