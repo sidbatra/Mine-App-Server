@@ -20,8 +20,8 @@
 .profile .profile-card .profile-card-actions {
 	padding-bottom: 2px;
 	padding-left: 10px;
-	border-left: 1px solid #ddd; 
-	margin-left: 9px;
+/* 	border-left: 1px solid #ddd;  */
+	margin-left: 10px;
 	width: 212px; 
 	height: 100%;
 	overflow: hidden;
