@@ -39,7 +39,7 @@ Denwen.Partials.Users.List = Backbone.View.extend({
     var self = this;
     
     if(this.users.isEmpty() && !helpers.isCurrentUser(this.user.get('id')))
-      $(this.el).parent().hide();
+      $(this.el).hide();
 
     $(this.el).html(
       Denwen.JST['users/list']({
