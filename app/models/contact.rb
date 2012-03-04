@@ -4,6 +4,17 @@ class Contact < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to :user
+  has_one :fb_user, 
+              :class_name => "User", 
+              :foreign_key => "fb_user_id",
+              :primary_key => "third_party_id"
+  
+  #----------------------------------------------------------------------
+  # Named Scopes
+  #----------------------------------------------------------------------
+  named_scope :by_name, :order => :name
+  named_scope :for_user, lambda {|user_id| {
+                :conditions => {:user_id => user_id}}}
 
   #----------------------------------------------------------------------
   # Class Methods 
