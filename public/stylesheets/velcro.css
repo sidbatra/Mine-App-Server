@@ -37,6 +37,12 @@
 	color: #999999; 
 	font-weight: bold; }
 	
+.actions-header .right {
+	float: right; 
+	padding-right: 3px; 
+	text-transform: none; 
+	font-weight: normal; }
+	
 .profile .profile-card .profile-card-actions .thumbnails {
 	margin-left: -6px; }
 
