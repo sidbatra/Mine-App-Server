@@ -6,7 +6,11 @@
 	width: 128px; 
 	height: 128px; 
 	overflow: hidden; 
-	text-align: center;}
+	text-align: center; }
+
+.profile .profile-card .byline {
+	font-size: 18px;
+	color: #777777; }
 
 .profile .well.items .thumbnail {
 	background: white;

@@ -1,33 +1,32 @@
 
       <%if is_current_user(user)%>
-      		<li class="nav-header">
-	          What's your style?
-	        </li>
 
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
+              :placeholder => "What's your style?",
               :class  => '',
+              :rows   => '3',
               :style  => self.current_user.byline.present? ?
-                          'width: 100px; display:none' :
-                          'width: 100px;'%>
+                          'width: 200px; display:none;' :
+                          'width: 200px;'%>
           
           <%=link_to  'Save', 
                       'javascript:void(0)', 
-                      :class  => '',
                       :id     => 'user_update',
+                      :class     => 'btn',
                       :style  => self.current_user.byline.present? ?
                                   'display:none' :
                                   ''%>                        
           
           <!-- byline display -->
-          <div id='user_edit_box' 
-                class=''
+          <div id="user_edit_box" 
+                class=""
                 style="<%=self.current_user.byline.present? ?
                         '' :
                         'display:none'%>">
           
-          	<span id='user_byline_text'>
+          	<span class="byline" id="user_byline_text">
           		<%=h self.current_user.byline%>
           	</span>
           	
@@ -41,14 +40,8 @@
           </div>
           
       <%elsif user.byline.present?%>
-          <li class="nav-header">
-	          <%=(user.gender ? 
-                  (user.is_male? ? 'His' : 'Her') : 
-                  'Their') + ' style'%>
-          </li>
-
-					<div class=''>
-          	<span id='user_byline_text'>
+					<div class="byline">
+          	<span id="user_byline_text">
 		          <%=user.byline%>
 	          </span>
 	         </div>
