@@ -1,5 +1,5 @@
-<a href="<%=store.path(src)%>" style="position: relative;"> 
-	<div class="overflow-fade" style="width: 28px;"></div>
-	<img class="icon-img" src="<%=store.get('thumbnail_url')%>" />
-	<%=helpers.truncate(store.get('name'), 20, '…')%>
+<a class="thumbnail" style="position: relative;" href="<%=store.path(src)%>">
+	<div class="overflow-fade" style="width: 20px;"></div>
+	<img class="thumb-photo" src="<%=store.get('thumbnail_url')%>" />
+	<%=helpers.truncate(store.get('name'), 16, '…')%>
 </a>

@@ -1,9 +1,13 @@
-<li class="nav-header">
+<div class="actions-header">
   Related stores
-</li>
+</div>
+
+<ul class="thumbnails">
    
-<%stores.each(function(store){%>
-	<li>
-  	<%=Denwen.JST['stores/store']({store:store, src:'related'})%>
-  </li>
-<%});%>
+	<%stores.each(function(store){%>
+		<li>
+	  	<%=Denwen.JST['stores/store']({store:store, src:'related'})%>
+	  </li>
+	<%});%>
+
+</ul>

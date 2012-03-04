@@ -9,8 +9,56 @@
 	text-align: center; }
 
 .profile .profile-card .byline {
-	font-size: 18px;
+	font-size: 16px;
+	line-height: 22px;
 	color: #777777; }
+
+.profile .profile-card .profile-card-inner {
+	width: 436px;
+	float: left; }
+	
+.profile .profile-card .profile-card-actions {
+	padding-bottom: 2px;
+	padding-left: 10px;
+	border-left: 1px solid #ddd; 
+	margin-left: 9px;
+	width: 212px; 
+	height: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	float: right; }
+
+.profile .profile-card .profile-card-actions .actions-header {
+	height: 16px;
+	line-height: 16px;
+	margin-bottom: 2px;
+	text-transform: uppercase;
+	font-size: 11px; 
+	color: #999999; 
+	font-weight: bold; }
+	
+.profile .profile-card .profile-card-actions .thumbnails {
+	margin-left: -6px; }
+
+.profile .profile-card .profile-card-actions .thumbnails li {	
+	margin: 0 0 4px 6px;
+	width: 103px; }
+
+.profile .profile-card .profile-card-actions .thumbnail {	
+	padding-right: 6px;
+	height: 24px;
+	background: white;
+	overflow: hidden;
+	text-decoration: none;
+	color: #333;
+	font-size: 11px;
+	line-height: 12px; }
+
+.profile .profile-card .profile-card-actions .thumbnail .thumb-photo {	
+	float: left;
+	margin-right: 6px;
+	width: 24px;
+	height: 24px; }
 
 .profile .well.items .thumbnail {
 	background: white;
@@ -313,7 +361,6 @@ footer, footer a, footer a:hover { color: #666666; }
 	margin-left: -9px; }
 
 .invite .well.friends li {
-	margin-left: -9px;
 	margin: 0 0 7px 8px; 
 	width: 135px; }
 
@@ -406,17 +453,27 @@ footer, footer a, footer a:hover { color: #666666; }
 
 .overflow-fade {
 	position: absolute; 
-	top: 0px; 
+	top: 2px; 
 	right: 0px; 
-	bottom: 0px; 
+	bottom: 2px; 
 	background: url(/images/fade.png);
 	background-repeat: repeat-y; }
 
-.well a .overflow-fade {
+.well a .overflow-fade, {
 	background-position-y: -50px; }
 
 .well a:hover .overflow-fade {
 	background-position-y: -100px; }
+	
+.well.white a .overflow-fade { /* deprecated */
+	background-position-y: 0; }
+
+.well.white a:hover .overflow-fade { /* deprecated */
+	background-position-y: -50px; }
+
+.well .profile-card-actions a:hover .overflow-fade {
+	background-position-y: 0; }
+
 
 /* ---------- general styles */
 .faded-30 {

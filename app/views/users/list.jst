@@ -1,21 +1,25 @@
-<li class="nav-header">
+<div class="actions-header">
   <%=header%> 
-</li>
+</div>
 
-<%if(!count){%>
+<ul class="thumbnails">
 
-  <li>
-  	<a href="<%=helpers.newInvitePath('placeholder')%>">
-  		Invite a few friends whose style you like.   	
-    </a>
-  </li>
-  
-<%}else{%>
-
-  <%users.each(function(user){%>
-  	<li>
-    	<%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
-    </li>
-  <%});%>
-
-<%}%>
+	<%if(!count){%>
+	
+	  <li>
+			<a class="thumbnail">
+				invite cells here
+			</a>
+	  </li>
+	  
+	<%}else{%>
+	
+	  <%users.each(function(user){%>
+	  	<li>
+	    	<%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
+	    </li>
+	  <%});%>
+	
+	<%}%>
+	
+</ul>

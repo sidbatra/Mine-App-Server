@@ -1,8 +1,8 @@
 <%if(stores.isEmpty()){%>
 
-  <li class="nav-header">
+  <div class="actions-header">
     Which stores do you shop at?
-  </li>
+  </div>
 
   <a href="<%=helpers.newShoppingsPath('placeholder')%>">
   	Add your favorite stores to your closet.
@@ -10,18 +10,20 @@
 
 <%}else{%>
 
-  <li class="nav-header"'>
+  <div class="actions-header">
     <%if(helpers.isCurrentUser(user.get('id'))){%> 
       Your stores
     <%} else {%>
       <%=user.get('first_name')%>'s stores
     <%}%>
-  </li>
+  </div>
   
-  <%stores.each(function(store){%>
-  	<li>
-    	<%=Denwen.JST['stores/store']({store:store, src:'user'})%>
-    </li>
-  <%});%>
+  <ul class="thumbnails">
+	  <%stores.each(function(store){%>
+			<li>
+	    	<%=Denwen.JST['stores/store']({store:store, src:'user'})%>
+	    </li>
+	  <%});%>
+  </ul>
 
 <%}%>
