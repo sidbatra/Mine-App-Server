@@ -26,6 +26,8 @@
   <script type="text/javascript">
     new Denwen.Views.Invites.New({
           source  : '<%=@source%>',
+         friends  : <%=self.current_user.ifollowers.to_json(
+                            :only => [:fb_user_id])%>,
           styles  : <%=@styles.to_json%>,
           el      : $('#container')});
   </script>

@@ -10,8 +10,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.source  = this.options.source;
-    this.styles  = new Backbone.Collection(this.options.styles);
+    this.source   = this.options.source;
+    this.friends  = new Denwen.Collections.Users(this.options.friends);
+    this.styles   = new Backbone.Collection(this.options.styles);
 
     this.stylesContainerEl  = '#styles_container';
     this.friendsContainerEl = '#friends_container';
@@ -21,7 +22,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
                             {el:$('#styles_container')});
 
     this.friendsView = new Denwen.Partials.Invites.New.Friends(
-                            {el:$('#friends_container')});
+                            {el:$('#friends_container'),friends: this.friends});
 
     this.finishView  = new Denwen.Partials.Invites.New.Finish(
                             {el:$('#finish_container')});

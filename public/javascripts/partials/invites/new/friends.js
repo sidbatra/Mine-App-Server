@@ -12,6 +12,8 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.friends          = this.options.friends;
+
     this.contactsEl       = '#contacts';
     this.queryEl          = '#search_box';
     this.cancelSearchEl   = '#x_button';
@@ -27,9 +29,26 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     this.contacts = new Denwen.Collections.Contacts();
 
     this.contacts.fetch({
-          success:  function(collection){self.render(self.contacts);},
+          success:  function(collection){
+                      self.removeFriends();
+                      self.render(self.contacts);},
           error:    function(collection,errors){}
           });
+  },
+
+  // Filter out existing friends from contacts
+  //
+  removeFriends: function() {
+    var friendIDs = new Array();
+    this.friends.each(function(friend){
+                        friendIDs[friend.get('fb_user_id')] = 1;});
+
+    if(friendIDs.length) {
+      var contacts = this.contacts.reject(function(contact){
+                             return friendIDs[contact.get('third_party_id')]});
+
+      this.contacts = new Denwen.Collections.Contacts(contacts);
+    }
   },
 
   // Fired when the friends sub view comes into focus
