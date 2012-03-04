@@ -3,7 +3,7 @@
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
                         :user_id,:category_id],
-        :methods  => [:giant_url,:thumbnail_url],
+        :methods  => [:thumbnail_url],
         :include  => {
           :store  => {
             :only     => [:id,:name,:handle,:is_processed],
@@ -14,7 +14,7 @@
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
                         :user_id,:category_id],
-        :methods  => [:giant_url,:thumbnail_url],
+        :methods  => [:thumbnail_url],
         :include  => {
           :user => {
             :only => [:id,:first_name,:last_name,:handle],
