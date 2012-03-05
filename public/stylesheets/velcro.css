@@ -42,6 +42,12 @@
 	padding-right: 3px; 
 	text-transform: none; 
 	font-weight: normal; }
+
+.profile .profile-card .profile-card-actions .nav-stacked {
+	background: white;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075); }
 	
 .profile .profile-card .profile-card-actions .thumbnails {
 	margin-left: -6px; }
