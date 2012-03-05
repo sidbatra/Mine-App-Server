@@ -1,5 +1,8 @@
 <div class="actions-header">
- They shop here… a lot
+	Top Shoppers
+	<a class="right" data-toggle="modal" href="#modal-top-shoppers">
+		View all
+	</a>
 </div>
 
 <ul class="thumbnails">
@@ -9,4 +12,24 @@
    	</li>
   <%});%>
 </ul> <!-- /thumbnails -->
+
+<div class="modal fade" id="modal-top-shoppers">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>
+			Top Shoppers
+    </h3>
+  </div>
+  <div class="modal-body">
+  
+  <ul class="thumbnails">
+	  <%users.each(function(user){%>
+	  	<li>
+	   		<%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
+	   	</li>
+	  <%});%>
+	</ul> <!-- /modal thumbnails -->
+  	
+  </div>
+</div> <!-- /modal -->
 
