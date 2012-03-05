@@ -30,7 +30,7 @@
 		    		<div class="profile-img">
 							<%=@user_presenter.large_picture('picture')%>
 						</div>
-		    		<h1 style="padding-bottom: 2px;"><%=@user_presenter.full_name%></h1>
+		    		<h1 style="padding-bottom: 4px; line-height: 1;"><%=@user_presenter.full_name%></h1>
 		    		<div id="profile_bio">
 					    <%=render :partial  => 'byline',
 					              :locals   => {:user => @user}%>
