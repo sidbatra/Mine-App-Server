@@ -13,7 +13,6 @@ Denwen.Partials.Users.List = Backbone.View.extend({
     var self      = this;
     this.user     = this.options.user;
     this.filter   = this.options.filter;
-    this.header   = this.options.header;
     this.count    = this.options.count;
     this.src      = this.options.src;
 
@@ -45,7 +44,6 @@ Denwen.Partials.Users.List = Backbone.View.extend({
       Denwen.JST['users/list']({
         users   : this.users,
         leader  : this.user,
-        header  : this.header,
         count   : this.count,
         src     : this.src}));
   }

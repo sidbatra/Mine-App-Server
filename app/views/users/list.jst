@@ -2,7 +2,7 @@
 	<%if(!count){%>
 		Invite a friend who's…
 	<%}else{%>
-  	<%=header%>
+  	Influenced By
 	  <a class="right" 
         onclick="analytics.viewAllSelected(Denwen.ViewAllType.IFollowers);"
         data-toggle="modal" 
@@ -11,6 +11,7 @@
 	  </a>
   <%}%>
 </div> <!-- /actions-header -->
+
 
 <ul class="thumbnails">
 
@@ -87,6 +88,7 @@
 	<%}%>
 
 </ul> <!-- /thumbnails -->
+
 
 <div class="modal fade" id="modal-user-friends">
   <div class="modal-header">

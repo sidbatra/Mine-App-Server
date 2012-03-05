@@ -67,7 +67,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
                           filter  : 'ifollowers',
-                          header  : 'Influenced by',
                           count   : this.user.get('inverse_followings_count'),
                           src     : 'following'});
 
