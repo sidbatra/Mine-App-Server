@@ -3,7 +3,10 @@
 		Invite a friend who's…
 	<%}else{%>
   	<%=header%>
-	  <a class="right" data-toggle="modal" href="#modal-user-friends">
+	  <a class="right" 
+        onclick="analytics.viewAllSelected(Denwen.ViewAllType.IFollowers);"
+        data-toggle="modal" 
+        href="#modal-user-friends">
 	  	View all
 	  </a>
   <%}%>

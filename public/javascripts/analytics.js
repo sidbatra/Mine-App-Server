@@ -117,6 +117,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Deleted");
   },
 
+  // Modal view all selected for the given type
+  //
+  viewAllSelected: function(type) {
+    mpq.track("View All "+ type);
+  },
+
   // User starts to type a comment
   //
   commentSelected: function() {

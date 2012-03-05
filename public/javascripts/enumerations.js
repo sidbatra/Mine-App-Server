@@ -45,3 +45,11 @@ Denwen.InvitePlatform = {
 Denwen.InviteNewHash = {
   Styles  : 'styles'
 }
+
+// View all links across the site
+//
+Denwen.ViewAllType = {
+  IFollowers : 'IFollowers',
+  UserStores : 'User Stores',
+  RelatedStores : 'Related Stores'
+}

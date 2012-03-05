@@ -16,7 +16,10 @@
     <%} else {%>
       <%=user.get('first_name')%>'s stores
     <%}%>
-    <a class="right" data-toggle="modal" href="#modal-user-stores">
+    <a class="right" 
+        onclick="analytics.viewAllSelected(Denwen.ViewAllType.UserStores);"
+        data-toggle="modal" 
+        href="#modal-user-stores">
   		View all
   	</a>
   </div> <!-- /actions-header -->
