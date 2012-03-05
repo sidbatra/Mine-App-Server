@@ -20,7 +20,7 @@ class Parser
         agent.get(source_url)
 
         if agent.page.is_a? Mechanize::Page
-          base_uri = URI.parse(source_url)
+          base_uri = URI.parse(URI.encode(source_url))
           
           images = agent.page.images.map do |img| 
                     begin
