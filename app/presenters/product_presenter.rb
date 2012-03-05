@@ -21,12 +21,12 @@ class ProductPresenter < BasePresenter
   #
   def edit_link
     if h.logged_in? && h.current_user.id == product.user_id
-      h.link_to "Edit",
+      h.link_to "<i class='icon-pencil'></i> Edit",
                 edit_product_path(
                   product.user.handle,
                   product.handle,
                   :src => 'product'),
-                 :class => 'edit_cccccc_14'
+                 :class => 'btn'
     end
   end
 
@@ -37,7 +37,7 @@ class ProductPresenter < BasePresenter
       h.link_to "Delete",
                 {:action => 'destroy',:id => product.id},
                 :method => :delete,
-                :class => '',
+                :class => 'btn',
                 :confirm  => "Are you sure you want to delete this item?"
     end
   end
@@ -46,18 +46,18 @@ class ProductPresenter < BasePresenter
   #
   def next(next_product,user)
 	    next_product ? 
-        h.link_to('',
+        h.link_to("<i class='icon-chevron-right'></i>",
                   product_path(user.handle,next_product.handle,:src => 'next'),
-                  :class => 'next') : ''
+                  :class => 'btn') : ''
   end
 
   # Link to the prev product
   #
   def prev(prev_product,user)
 	    prev_product ? 
-        h.link_to('',
+        h.link_to("<i class='icon-chevron-left'></i>",
                   product_path(user.handle,prev_product.handle,:src => 'previous'),
-                  :class => 'previous') : ''
+                  :class => 'btn') : ''
   end
 
   # Title of the product page
@@ -112,11 +112,9 @@ class ProductPresenter < BasePresenter
     end
 
     if product.store
-      html += "bought " if product.is_gift
 
-      html += "at <span class='right_store'>" +
-              store_link('product_store') +
-              "</span>"
+      html += "bought at " +
+              store_link('product_store')
     end
 
     html
@@ -128,9 +126,8 @@ class ProductPresenter < BasePresenter
     html = ""
 
     if product.store
-      html = "Bought at <span class='right_store'>" +
-              store_link('collection_store') +
-              "</span>"
+      html = "Bought at" +
+              store_link('collection_store')
     elsif product.is_gift
       html = "gift "
     end
@@ -142,7 +139,7 @@ class ProductPresenter < BasePresenter
   #
   def preview_image
     h.image_tag product.thumbnail_url, 
-                :class    => 'product_left_image',
+                :class    => '',
                 :alt      => ''
                 # :onclick  => "if($.browser.msie && "\
 #                               "parseInt($.browser.version,10) == 7){"\
@@ -170,7 +167,7 @@ class ProductPresenter < BasePresenter
     if product.comments_count != 0
       html += product.comments_count.to_s + ' '
       html += h.image_tag 'comment_bubble.png', 
-                :class => 'product_comment_bubble',
+                :class => '',
                 :alt => ''
     end
 
@@ -188,7 +185,7 @@ class ProductPresenter < BasePresenter
   def breadcrumb(title,path)
     h.link_to title,
               path,
-              :class => 'nav' 
+              :class => '' 
   end
 
 
