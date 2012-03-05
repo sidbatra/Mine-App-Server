@@ -12,6 +12,7 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Learn
       @view     = "show"
     when WelcomeFilter::Stores
+      @shopping = Shopping.new
       @view     = "shoppings/new"
     when WelcomeFilter::Friends
       @view     = "invites/new"
