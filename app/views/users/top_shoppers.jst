@@ -2,10 +2,11 @@
  They shop here… a lot
 </div>
 
-<div>
+<ul class="thumbnails">
   <%users.each(function(user){%>
-    <%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
+  	<li>
+   		<%=Denwen.JST['users/user']({user:user, src:'top_shopper'})%>
+   	</li>
   <%});%>
-  <%=helpers.blocker()%>
-</div>
+</ul> <!-- /thumbnails -->
 
