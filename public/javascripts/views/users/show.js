@@ -8,6 +8,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.user           = new Denwen.Models.User(this.options.userJSON);
     this.isCurrentUser  = helpers.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
+    this.styles         = new Backbone.Collection(this.options.styles);
     this.currentTab     = undefined;
 
     this.onTabClass     = 'on';
@@ -68,6 +69,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           user    : this.user,
                           filter  : 'ifollowers',
                           count   : this.user.get('inverse_followings_count'),
+                        styles    : this.styles,
                           src     : 'following'});
 
     // -----

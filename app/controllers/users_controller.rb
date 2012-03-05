@@ -49,6 +49,7 @@ class UsersController < ApplicationController
     end
 
     @user = User.find_by_handle(params[:handle])
+    @styles = CONFIG[:styles]
   end
   
   # Fetch group of users based on different filters 
