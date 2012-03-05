@@ -73,21 +73,23 @@
 					</div> <!-- /thumbnail -->
 				</div> <!-- /control-group -->
 				
-				<div id="comments_container">
-					<div id="comments"></div>
+				<div class="control-group" id="comments_container" style="background: yellow">
+					<div id="comments" style="background: pink"></div>
 		    
 		    	<%if logged_in?%>
-			      <div id="add_comment">
+			      <div id="add_comment" style="">
 				      
 				        <%=image_tag self.current_user.photo_url,
 				            :class => "",
+				            :style => "width: 32px; height: 32px; float: left; margin-right: 8px;",
 				            :alt => ""%>
 				
 				        <%=text_area_tag "comment_data","Add a comment",
+				        		:style => "width: 470px; padding: 6px 4px;",
+				        		:rows => "1",
 				            :class => "" %>
 				          
-			          <input id="comment_post" class="btn" 
-			                  value="Post" title="Post" type="button" alt=""> 
+			          <input id="comment_post" class="btn" style="padding: 6px 14px;" value="Post" title="Post" type="button" alt=""> 
 				      
 			      </div> <!-- /add_comment -->
 		      <%end%> 

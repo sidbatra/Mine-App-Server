@@ -1,10 +1,16 @@
-<a href="<%=comment.get('user').path('comment_photo')%>">
-  <img src="<%=comment.get('user').get('photo_url')%>" alt=''/>
-</a>
+<div class="comment" style="clear: both;">
 
-<a href="<%=comment.get('user').path('comment_name')%>">
-  <%=comment.get('user').get('first_name') + ' ' + comment.get('user').get('last_name')%>
-</a>
-      
-<%=jQuery.timeago(comment.get('created_at'))%>
-<%=comment.escape('data')%>
+	<a href="<%=comment.get('user').path('comment_photo')%>">
+	  <img style="width: 32px; height: 32px; float: left; margin-right: 8px;" src="<%=comment.get('user').get('photo_url')%>" alt=''/>
+	</a>
+	
+	<a href="<%=comment.get('user').path('comment_name')%>">
+	  <%=comment.get('user').get('first_name') + ' ' + comment.get('user').get('last_name')%>
+	</a>
+	      
+	<%=jQuery.timeago(comment.get('created_at'))%>
+	<%=comment.escape('data')%>
+
+</div>
+
+
