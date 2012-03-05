@@ -1,7 +1,9 @@
 <a class="thumbnail" style="position: relative;" href="<%=user.path(src)%>">
 	<div class="overflow-fade" style="width: 10px;"></div>
 	<img class="thumb-photo" src="<%=user.get('photo_url')%>" />
-	<%=helpers.truncate(user.get('first_name') + '<br /> ' + user.get('last_name'), 22, '…')%>
+	<div class="caption" style="padding: 0;">
+		<%=helpers.truncate(user.get('first_name') + '<br /> ' + user.get('last_name'), 22, '…')%>
+	</div>
 </a>
 
 

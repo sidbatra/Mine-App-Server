@@ -1,5 +1,7 @@
 <a class="thumbnail" style="position: relative;" href="<%=store.path(src)%>">
 	<div class="overflow-fade" style="width: 20px;"></div>
 	<img class="thumb-photo" src="<%=store.get('thumbnail_url')%>" />
-	<%=helpers.truncate(store.get('name'), 16, '…')%>
+	<div class="caption" style="padding: 0;">
+		<%=helpers.truncate(store.get('name'), 16, '…')%>
+	</div>
 </a>

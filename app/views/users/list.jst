@@ -1,19 +1,77 @@
 <div class="actions-header">
-  <%=header%> 
-  <a class="right" data-toggle="modal" href="#modal-user-friends">
-  	View all
-  </a>
+	<%if(!count){%>
+		Invite a friend who's…
+	<%}else{%>
+  	<%=header%>
+	  <a class="right" data-toggle="modal" href="#modal-user-friends">
+	  	View all
+	  </a>
+  <%}%>
 </div> <!-- /actions-header -->
 
 <ul class="thumbnails">
 
-	<%if(!count){%>
+<%if(!count){%>
 	
-	  <li>
-			<a class="thumbnail">
-				invite cells here
+    <li>
+      <a class="thumbnail" style="position: relative;" href="/invite?src=bar#styles-1/friends">
+				<div class="overflow-fade" style="width: 10px;"></div>
+				<img class="thumb-photo" src="/images/invite/glam2.jpg" />
+				<div class="caption" style="padding: 0;">
+					Glam
+				</div>
 			</a>
-	  </li>
+    </li>
+    
+    <li>
+      <a class="thumbnail" style="position: relative;" href="/invite?src=bar#styles-2/friends">
+				<div class="overflow-fade" style="width: 10px;"></div>
+				<img class="thumb-photo" src="/images/invite/casual3.jpg" />
+				<div class="caption" style="padding: 0;">
+					Casual
+				</div>
+			</a>
+    </li>
+    
+    <li>
+      <a class="thumbnail" style="position: relative;" href="/invite?src=bar#styles-3/friends">
+				<div class="overflow-fade" style="width: 10px;"></div>
+				<img class="thumb-photo" src="/images/invite/athletic2.jpg" />
+				<div class="caption" style="padding: 0;">
+					Athletic
+				</div>
+			</a>
+    </li>
+    
+    <li>
+      <a class="thumbnail" style="position: relative;" href="/invite?src=bar#styles-4/friends">
+				<div class="overflow-fade" style="width: 10px;"></div>
+				<img class="thumb-photo" src="/images/invite/preppy.jpg" />
+				<div class="caption" style="padding: 0;">
+					Preppy
+				</div>
+			</a>
+    </li>
+    
+    <li>
+      <a class="thumbnail" style="position: relative;" href="/invite?src=bar#styles-5/friends">
+				<div class="overflow-fade" style="width: 10px;"></div>
+				<img class="thumb-photo" src="/images/invite/hipster.jpg" />
+				<div class="caption" style="padding: 0;">
+					Hipster
+				</div>
+			</a>
+    </li>
+    
+    <li>
+      <a class="thumbnail" style="position: relative;" href="/invite?src=bar#styles-6/friends">
+				<div class="overflow-fade" style="width: 10px;"></div>
+				<img class="thumb-photo" src="/images/invite/smart2.jpg" />
+				<div class="caption" style="padding: 0;">
+					Smart
+				</div>			
+			</a>
+    </li>
 	  
 	<%}else{%>
 	
@@ -24,7 +82,7 @@
 	  <%});%>
 	
 	<%}%>
-	
+
 </ul> <!-- /thumbnails -->
 
 <div class="modal fade" id="modal-user-friends">
