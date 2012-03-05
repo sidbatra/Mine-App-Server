@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       @users      = User.find(params[:id]).followers
       @key        = KEYS[:user_followers] % params[:id]
     when :ifollowers
-      @users      = User.find(params[:id]).ifollowers
+      @users      = User.find(params[:id]).ifollowers.by_updated_at
       @key        = KEYS[:user_ifollowers] % params[:id]
     when :stars
       @achievers  = AchievementSet.current_star_users
