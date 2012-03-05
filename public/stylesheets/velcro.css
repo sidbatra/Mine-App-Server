@@ -29,6 +29,7 @@
 	float: right; }
 
 .profile .profile-card .profile-card-actions .actions-header {
+	position: relative;
 	height: 16px;
 	line-height: 16px;
 	margin-bottom: 2px;
@@ -38,7 +39,8 @@
 	font-weight: bold; }
 	
 .actions-header .right {
-	float: right; 
+	position: absolute;
+	right: 0;
 	padding-right: 3px; 
 	text-transform: none; 
 	font-weight: normal; }
