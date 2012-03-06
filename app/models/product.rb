@@ -63,7 +63,7 @@ class Product < ActiveRecord::Base
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
                   :query,:price,:endorsement,:is_gift,:category_id,
-                  :store_id,:user_id,:source_product_id
+                  :store_id,:user_id,:source_product_id,:suggestion_id
 
   #----------------------------------------------------------------------
   # Class methods
@@ -83,6 +83,7 @@ class Product < ActiveRecord::Base
       :endorsement        => attributes['endorsement'].strip,
       :is_gift            => attributes['is_gift'],
       :category_id        => attributes['category_id'],
+      :suggestion_id      => attributes['suggestion_id'],
       :store_id           => attributes['store_id'],
       :source_product_id  => attributes['source_product_id'],
       :user_id            => user_id)

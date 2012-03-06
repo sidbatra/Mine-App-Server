@@ -1,5 +1,6 @@
 
-  <%=f.hidden_field :category_id, :value => category.id%>
+  <%=f.hidden_field :suggestion_id, :value => suggestion ? suggestion.id : nil%>
+  <%=f.hidden_field :category_id, :value => category ? category.id : nil%>
   <%=f.hidden_field :price%>
   <%=f.hidden_field :is_gift%>
   <%=f.hidden_field :source_url%>
