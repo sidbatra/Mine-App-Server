@@ -3,20 +3,23 @@
           :locals   => {:step => 1}%>
 
 
-<div id="container" class="narrow">
+<div class="container picker">
+	<div class="row">
+		<div class="" style="width: 746px; margin: 0 auto;">
+			<div class="well stores">
+				<legend>
+					Pick a few stores you shop at to add to your profile:
+				</legend>
+    		
+    		<div class="control-group">
+			    <ul class="thumbnails" id="stores">
+			    </ul>
+		    </div>
 
-		<div class="heading unselectable">
-			Click a few stores you shop at<br />
-			to add them to your closet.
-		</div>
-      
-    <div id="stores">
-      <div class="loading" id="loading_spinner">
-        <%=image_tag 'spinner_dark_bg.gif'%>
-      </div>
-    </div>
-    
-</div> <!-- container -->
+			</div> <!-- /well -->
+		</div> <!-- /span6 -->
+	</div> <!-- /row -->    
+</div> <!-- /container -->
 
 
 <div id='footer_onboarding'>
