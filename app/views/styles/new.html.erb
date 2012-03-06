@@ -1,38 +1,44 @@
-<div class="well styles" id="container">
+<%=render :partial  => "headers/onboarding"%>
 
-<div class="control-group">
-
-  <ul class="thumbnails" id="styles">
-
-    <%@styles.each do |style|%>
-      <li class="span2">
-	      <a class="thumbnail" id="style_picker_<%=style[:id]%>"> 
-          <%=image_tag style[:image]%>
-          <div class="caption">
-              <h5><%=style[:caption]%></h5>
-          </div>
-	      </a> <!-- /thumbnail -->
-      </li>
-    <%end%>
-
-  </ul>
-
-</div> <!-- /control-group -->
-
-</div> <!-- /styles_container.well -->
-
-<%form_tag '/welcome',
-    :id   => 'new_styles' do |f|%>
-
-  <%=hidden_field_tag :id, WelcomeFilter::Style%>
-  <%=hidden_field_tag :style%>
-  <%=submit_tag '',
-      :class    => 'invite_friends',
-      :id       => 'styles_picked_button',
-      :disabled => true,
-      :name     => nil%>
-<%end%>
-
+<div class="container picker">
+ 	<div style="width: 746px; margin: 0 97px;">
+		<div class="well styles">
+			<legend>
+				What's your style? <small>(Don't fit the mould? You can change this later)</small>				
+				<%form_tag '/welcome',
+						:style  => 'display:block; float: right; margin-top: -1px;',
+				    :id   => 'new_styles' do |f|%>
+				
+				  <%=hidden_field_tag :id, WelcomeFilter::Style%>
+				  <%=hidden_field_tag :style%>
+		  		<% content_tag :button,
+			    		:type  		=> :submit, 
+			    		:class 		=> 'btn btn-large btn-primary',
+			    		:id    		=> 'styles_picked_button',
+			    		:disabled	=> false do %>
+					   Pick your Stores <i class='icon-chevron-right icon-white'></i>
+					<% end %>
+				<%end%>
+			</legend>
+			<div class="control-group">
+			  <ul class="thumbnails" id="styles">
+			
+			    <%@styles.each do |style|%>
+			      <li class="span2">
+				      <a class="thumbnail" id="style_picker_<%=style[:id]%>"> 
+			          <%=image_tag style[:image]%>
+			          <div class="caption">
+			              <h5><%=style[:caption]%></h5>
+			          </div>
+				      </a> <!-- /thumbnail -->
+			      </li>
+			    <%end%>
+			
+			  </ul> <!-- /thumbnails -->
+			</div> <!-- /control-group -->
+		</div> <!-- /well styles -->
+	</div> <!-- /746 -->
+</div> <!-- /container -->
 
 <%content_for :javascript do%>
   <script type="text/javascript">

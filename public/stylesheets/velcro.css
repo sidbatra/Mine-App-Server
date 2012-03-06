@@ -36,22 +36,30 @@
 	-moz-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0; }
 
-.picker .well.stores li {
+.picker .well.stores li,
+.picker .well.styles li {
 	margin-left: -9px;
 	margin: 0 0 7px 8px; 
 	width: 135px; }
 
-.picker .well.stores .thumbnails {
+.picker .well.stores .thumbnails,
+.picker .well.styles .thumbnails {
 	margin-left: -9px; }
 
 .picker .well.stores .thumbnail {
 	height: 157px;
-/* 	height: 125px; */
+	text-decoration: none; }
+	
+.picker .well.styles .thumbnail {
+	height: 125px;
 	text-decoration: none; }
 	
 .picker .well.stores .thumbnail .thumb-photo {
 	height: 125px;
-/* 	height: 93px; */
+	overflow: hidden; }
+	
+.picker .well.styles .thumbnail .thumb-photo {
+	height: 93px; 
 	overflow: hidden; }
 
 /*
@@ -59,7 +67,7 @@
 	margin-top: -16px; }
 */
 
-.picker .well.stores .thumbnail .caption {
+.picker .well .thumbnail .caption {
 	overflow: hidden;
 	white-space: nowrap; }
 
