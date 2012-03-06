@@ -21,8 +21,9 @@ Denwen.Views.Styles.New = Backbone.View.extend({
     this.buttonEl       = '#styles_picked_button';
 
     this.posting        = false;
-
     this.style          = null; 
+    this.stylePickers   = new Array();
+
 
     $(this.formEl).submit(function(){return self.post();});
 
@@ -46,33 +47,24 @@ Denwen.Views.Styles.New = Backbone.View.extend({
         self.stylePicked,
         self);
 
-      stylePicker.bind(
-        'styleUnpicked',
-        self.styleUnpicked,
-        self);
+      self.stylePickers.push(stylePicker);
     });
   },
 
   // Fired when a style is picked
   //
   stylePicked: function(style) {
-    this.style = style;
+    var self    = this;
+    this.style  = style;
 
-    //$(this.buttonEl).removeClass('disactivated');
+    $.each(this.stylePickers,function(i,stylePicker){
+      if(self.style.get('id') != stylePicker.model.get('id'))
+        stylePicker.disable();
+    });
+
     $(this.buttonEl).removeAttr('disabled'); 
-    
+
     //analytics.stylePicked();
-  },
-
-  // Fired when a style is unpicked
-  //
-  styleUnpicked: function(style) {
-    this.style = null;
-    
-    //$(this.buttonEl).addClass('disactivated');
-    $(this.buttonEl).attr('disabled',true); 
-
-    //analytics.styleUnpicked();
   },
 
   // Form submitted callback
@@ -83,7 +75,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
       return false;
 
     this.posting  = true;
-    $(this.styleEl).val(this.style);
+    $(this.styleEl).val(this.style.get('caption'));
 
     return true;
   },

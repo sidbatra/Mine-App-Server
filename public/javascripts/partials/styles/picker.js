@@ -18,19 +18,21 @@ Denwen.Partials.Styles.Picker = Backbone.View.extend({
     $(this.toggleEl).click(function(){self.clicked();});
   },
 
-  // Fired when the style is clicked to select/unselect 
+  // Fired when the style is clicked to select
   //
   clicked: function() {
-    this.picked = !this.picked;
+    this.picked = true; 
 
-    if(this.picked) {
-      //$(this.onEl).addClass('pushed');
-      this.trigger('stylePicked',this.model.get('caption'));
-    }
-    else {
-      //$(this.onEl).removeClass('pushed');
-      this.trigger('styleUnpicked',this.model.get('caption'));
-    }
+    $(this.toggleEl).addClass('selected');
+    this.trigger('stylePicked',this.model);
+  },
+
+  // Change the state of the style picker to unselected 
+  // 
+  disable: function() {
+    this.picked = false;
+
+    $(this.toggleEl).removeClass('selected');
   }
 
 });
