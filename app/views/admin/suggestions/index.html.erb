@@ -1,0 +1,30 @@
+
+<div id="container" class="container well">
+  <legend>
+    Suggestions - 
+    <%=link_to "Add",new_admin_suggestion_path%>
+  </legend>
+
+  <table width="900">
+    <tr>
+      <th>Title</th>
+      <th>Weight</th>
+      <th>Image</th>
+    </tr>
+    <tr height="20">
+    </tr>
+    <%@suggestions.each do |suggestion|%>
+      <tr>
+        <td width="200">
+          <%=suggestion.title%>
+        </td>
+        <td width="50">
+          <%=suggestion.weight%>
+        </td>
+        <td>
+          <%=image_tag suggestion.image_url,:width => 100%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>

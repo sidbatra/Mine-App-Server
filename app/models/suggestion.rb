@@ -16,13 +16,28 @@ class Suggestion < ActiveRecord::Base
   attr_accessible :title,:image_path,:weight
 
   #----------------------------------------------------------------------
+  # Named scopes
+  #----------------------------------------------------------------------
+  named_scope :by_weight, :order => 'weight DESC'
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
   # Add a new suggestion
   #
   def self.add(attributes)
-    create!(attributes)
+    create(attributes)
+  end
+
+  #----------------------------------------------------------------------
+  # Instance methods
+  #----------------------------------------------------------------------
+
+  # Absolute url of the image
+  #
+  def image_url
+    FileSystem.url(image_path)
   end
 
 end

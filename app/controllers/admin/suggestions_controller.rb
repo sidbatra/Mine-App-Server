@@ -1,0 +1,27 @@
+class Admin::SuggestionsController < ApplicationController
+  before_filter :admin_required 
+  before_filter :generate_uploader, :only => [:new,:edit]
+
+  # Display UI for creating a new suggestion
+  #
+  def new
+    @suggestion = Suggestion.new
+  end
+
+  # Create a new suggestion
+  #
+  def create
+    @suggestion = Suggestion.add(params[:suggestion])
+
+    redirect_to @suggestion.valid? ? 
+                  admin_suggestions_path :
+                  new_admin_suggestion_path
+  end
+
+  # List all suggestions
+  #
+  def index
+    @suggestions = Suggestion.by_weight
+  end
+
+end
