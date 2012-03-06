@@ -6,7 +6,7 @@
   <%-elsif @filter == :suggest-%>
     <%=@stores.to_json(
         :only     => [:id,:name,:handle],
-        :methods  => :medium_url)-%>
+        :methods  => :large_url)-%>
   <%-elsif @filter == :all-%>
     <%=@stores.to_json(
         :only     => [:id,:name,:domain])-%>
