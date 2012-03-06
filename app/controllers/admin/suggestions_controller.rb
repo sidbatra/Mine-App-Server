@@ -24,4 +24,21 @@ class Admin::SuggestionsController < ApplicationController
     @suggestions = Suggestion.by_weight
   end
 
+  # Display UI for editing a suggestion
+  #
+  def edit
+    @suggestion = Suggestion.find(params[:id])
+  end
+
+  # Update suggestion
+  #
+  def update
+    @suggestion = Suggestion.find(params[:id])
+    @suggestion.update_attributes(params[:suggestion])
+
+    redirect_to @suggestion.valid? ? 
+                  admin_suggestions_path :
+                  new_admin_suggestion_path
+  end
+
 end

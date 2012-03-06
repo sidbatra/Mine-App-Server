@@ -6,11 +6,6 @@
   </legend>
 
   <table width="900">
-    <tr>
-      <th>Title</th>
-      <th>Weight</th>
-      <th>Image</th>
-    </tr>
     <tr height="20">
     </tr>
     <%@suggestions.each do |suggestion|%>
@@ -21,8 +16,11 @@
         <td width="50">
           <%=suggestion.weight%>
         </td>
-        <td>
+        <td width="150">
           <%=image_tag suggestion.image_url,:width => 100%>
+        </td>
+        <td>
+          <%=link_to "Edit",edit_admin_suggestion_path(suggestion)%>
         </td>
       </tr>
     <%end%>
