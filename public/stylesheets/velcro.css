@@ -28,17 +28,19 @@
 	margin-left: -9px; }
 
 .picker .well.stores .thumbnail {
-/* 	height: 161px; */
-	height: 125px;
+	height: 161px;
+/* 	height: 125px; */
 	text-decoration: none; }
 	
 .picker .well.stores .thumbnail .thumb-photo {
-/* 	height: 125px; */
-	height: 93px;
+	height: 125px;
+/* 	height: 93px; */
 	overflow: hidden; }
 
+/*
 .picker .well.stores .thumbnail .thumb-photo img {
 	margin-top: -16px; }
+*/
 
 .picker .well.stores .thumbnail .caption {
 	overflow: hidden;
