@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
+  belongs_to  :suggestion
   has_many    :comments,      :as => :commentable,  :dependent => :destroy
   has_many    :actions,       :as => :actionable,   :dependent => :destroy
   has_many    :achievements,  :as => :achievable,   :dependent => :destroy
