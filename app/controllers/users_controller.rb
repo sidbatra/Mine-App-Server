@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
         elsif @user.is_fresh
-          url = user_path(@user.handle,:src => UserShowSource::UserCreate)
+          url = welcome_path(WelcomeFilter::Learn) 
         elsif @target
           url = @target
         else
