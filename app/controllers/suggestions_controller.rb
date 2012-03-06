@@ -11,5 +11,12 @@ class SuggestionsController < ApplicationController
     @suggestions = Suggestion.by_weight.except(suggestion_ids)
 
     @key = KEYS[:user_product_suggestions] % self.current_user.id
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json 
+    end
   end
 end

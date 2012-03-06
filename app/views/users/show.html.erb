@@ -47,6 +47,15 @@
     </div> <!-- /span12 -->
   </div> <!-- /row -->
 
+  <%if is_current_user(@user)%>
+    <div class="row">
+      <div class="span12">
+        <div id="suggestions" class="well">
+        </div>
+      </div>
+    </div>
+  <%end%>
+
   <div class="row">
     <div class="span12">
     	<div class="well items">
