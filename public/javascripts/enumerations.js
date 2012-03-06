@@ -1,55 +1,42 @@
-// App wide enumerations
+// Auto-generated via "rake enums:dump:js"
+// 
+// IMP: Do not edit directly. Edit config/enumerations.yml 
+// and rerun "rake enums:dump:js"
+// 
 
-// Valid hash fragments for the user show page
-//
-Denwen.UserShowHash = {
-  Owns        : 'owns',
-  Wants       : 'wants',
-  Collections : 'uses'
-}
-
-// Callbacks used across the application
-//
-Denwen.Callback = {
-  ProductsLoaded        : 'productsLoaded',
-  UsersListLoaded       : 'usersListLoaded',
-  StoresLoaded          : 'storesLoaded',
-  CollectionsListLoaded : 'collectionsListLoaded'
-}
-
-// Callbacks for the uploader partial
-//
-Denwen.Callbacks.Uploader = {
-  FileSelected        : 'fileSelected',
-  FileUploadError     : 'fileUploadError',
-  FileUploadDone      : 'fileUploadDone',
-  FileUploadProgress  : 'fileUploadProgress'
-}
-
-// Ways of creating a product
-//
-Denwen.ProductQueryType  = {
-  Text  : 'text',
-  URL   : 'url'
-}
-
-// Platforms via which invites are created
-//
-Denwen.InvitePlatform = {
-  Facebook  : '0',
-  Email     : '1'
-}
-
-// Valid hashes for invites/new
-//
-Denwen.InviteNewHash = {
-  Styles  : 'styles'
-}
-
-// View all links across the site
-//
 Denwen.ViewAllType = {
-  IFollowers : 'IFollowers',
-  UserStores : 'User Stores',
-  RelatedStores : 'Related Stores'
+UserStores: "User Stores",
+IFollowers: "IFollowers",
+RelatedStores: "Related Stores"
+}
+
+Denwen.UserShowHash = {
+Collections: "uses",
+Owns: "owns",
+Wants: "wants"
+}
+
+Denwen.ProductQueryType = {
+URL: "url",
+Text: "text"
+}
+
+Denwen.InvitePlatform = {
+Facebook: 0,
+Email: 1
+}
+
+Denwen.Callback = {
+FileUploadDone: "fileUploadDone",
+ProductsLoaded: "productsLoaded",
+StoresLoaded: "storesLoaded",
+CollectionsListLoaded: "collectionsListLoaded",
+UsersListLoaded: "usersListLoaded",
+FileUploadError: "fileUploadError",
+FileSelected: "fileSelected",
+FileUploadProgress: "fileUploadProgress"
+}
+
+Denwen.InviteNewHash = {
+Styles: "styles"
 }

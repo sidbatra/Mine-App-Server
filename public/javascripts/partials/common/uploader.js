@@ -61,7 +61,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
   // Callback - file is selected
   //
   fileQueuedHandler: function(file) {
-    this.trigger(Denwen.Callbacks.Uploader.FileSelected,file);
+    this.trigger(Denwen.Callback.FileSelected,file);
     this.uploader.startUpload();
   },
 
@@ -69,7 +69,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
   //
   uploadProgressHandler: function(file,bytesLoaded) {
     var percent = Math.ceil((bytesLoaded / file.size) * 100);
-    this.trigger(Denwen.Callbacks.Uploader.FileUploadProgress,file,percent);
+    this.trigger(Denwen.Callback.FileUploadProgress,file,percent);
   },
 
   // Callback - file finished uploading (not 100% reliable)
@@ -84,7 +84,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
     var absolutePath = this.config['server'] + relativePath;
 
     this.trigger(
-      Denwen.Callbacks.Uploader.FileUploadDone,
+      Denwen.Callback.FileUploadDone,
       file,
       relativePath,
       absolutePath);
@@ -101,7 +101,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
     default:
       break;
     }
-    this.trigger(Denwen.Callbacks.Uploader.FileUploadError,message);
+    this.trigger(Denwen.Callback.FileUploadError,message);
   }
 
 });

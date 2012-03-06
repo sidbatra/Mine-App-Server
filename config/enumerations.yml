@@ -8,8 +8,13 @@
 #      enumerations in JS friendly format.
 #
 :common: &common
-  Placeholder:
-    ignore: 1
+  UserShowHash:
+    Collections: 'uses'
+    Owns: 'owns'
+    Wants: 'wants'
+  InvitePlatform:
+    Facebook: 0
+    Email: 1
 
 # Enumerations for ruby. 
 #
@@ -61,9 +66,6 @@
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
     Logout: 'logout'
-  InvitePlatform:
-    Facebook: 0
-    Email: 1
   ProductNewSource:
     Error: 'error'
   ProductShowSource:
@@ -85,10 +87,6 @@
     ShoppingsCreate: 'shoppings_create'
     ShoppingsCreateError: 'shoppings_create_error'
     Invite: 'invite'
-  UserShowHash:
-    Collections: 'uses'
-    Owns: 'owns'
-    Wants: 'wants'
   WelcomeFilter:
     Learn: 'intro'
     Stores: 'stores'
@@ -119,3 +117,20 @@
   <<: *common
   InviteNewHash: 
     Styles: 'styles'
+  Callback:
+    ProductsLoaded: 'productsLoaded'
+    UsersListLoaded: 'usersListLoaded'
+    StoresLoaded: 'storesLoaded'
+    CollectionsListLoaded: 'collectionsListLoaded'
+    FileSelected: 'fileSelected'
+    FileUploadError: 'fileUploadError'
+    FileUploadDone: 'fileUploadDone'
+    FileUploadProgress: 'fileUploadProgress'
+  ProductQueryType:
+    Text: 'text'
+    URL: 'url'
+  ViewAllType:
+    IFollowers: 'IFollowers'
+    UserStores: 'User Stores'
+    RelatedStores: 'Related Stores'
+
