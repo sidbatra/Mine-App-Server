@@ -4,7 +4,7 @@
  	<div style="width: 746px; margin: 0 97px;">
 		<div class="well styles">
 			<legend>
-				What's your style? <small>You can change this at any time.</small>				
+				Pick your closest style: <small>(Don't worry, you can change this at any time)</small>				
 				<%form_tag '/welcome',
 						:style  => 'display:block; float: right; margin-top: -1px;',
 				    :id   => 'new_styles' do |f|%>
@@ -13,10 +13,10 @@
 				  <%=hidden_field_tag :style%>
 		  		<% content_tag :button,
 			    		:type  		=> :submit, 
-			    		:class 		=> 'btn btn-large btn-primary',
+			    		:class 		=> 'btn btn-large',
 			    		:id    		=> 'styles_picked_button',
-			    		:disabled	=> false do %>
-					   Pick your Stores <i class='icon-chevron-right icon-white'></i>
+			    		:disabled	=> true do %>
+					   Pick your Stores <i class='icon-chevron-right'></i>
 					<% end %>
 				<%end%>
 			</legend>
@@ -29,7 +29,7 @@
 				      	<div class="thumb-photo">
 			          	<%=image_tag style[:image]%>
 			          </div>
-			          <div class="caption">
+			          <div class="caption" style="position: relative;">
 			          	<div class="overflow-fade">
 										<i class="icon-ok icon-white" 
 											style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
