@@ -5,22 +5,41 @@
       <div class="navbar-inner">
         <div class="container">
         
-          <div class="brand">
-          	<%=CONFIG[:name]%>
+          <div class="brand step indicator">
+          	<%=CONFIG[:name]%> 
+          	<i class="icon-chevron-right icon-white" style="vertical-align: baseline;"></i>
           </div>
                     
           <div class="nav-collapse">
-            <ul class="nav pull-right">
+            <ul class="nav">
+            
+            	<li>
+            		<a class="step indicator">
+            			Style <i class="icon-chevron-right icon-white"></i>
+            		</a>
+            	</li>
+            	<li>
+            		<a class="step indicator">
+            			Stores <i class="icon-chevron-right icon-white"></i>
+            		</a>
+            	</li>
+            	<li>
+            		<a class="step indicator">
+            			Start!
+            		</a>
+            	</li>
                 
+<!--
                 <li class="user-cell disabled">
                   <a>
-                     <%=image_tag self.current_user.photo_url, 
+                     <#=image_tag self.current_user.photo_url, 
                                 :class => "avatar",
                                 :alt => ""
                                 %>
-                    <%=user_full_name(self.current_user)%>
+                    <#=user_full_name(self.current_user)%>
                   </a>
                 </li>
+-->
               
             </ul> <!-- /nav -->
           </div> <!-- /nav-collapse -->

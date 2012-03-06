@@ -1,3 +1,20 @@
+/* ---------- onboarding indicators */
+
+.brand.step.indicator {
+	padding-right: 10px; 
+	opacity: 0.3;
+	filter: alpha(opacity=30); }
+
+.nav .step.indicator {
+	color: white; 
+	padding-left: 0; 
+	opacity: 0.3;
+	filter: alpha(opacity=30); }
+	
+.step.indicator.active {
+	opacity: 1;
+	filter: alpha(opacity=100); }
+
 /* ---------- picker: stores */
 
 .picker .hider {
