@@ -3,6 +3,7 @@ class CreateSuggestions < ActiveRecord::Migration
     create_table :suggestions do |t|
       t.string :title, :null => false
       t.string :image_path, :null => false
+      t.integer :weight, :default => 0
 
       t.timestamps
     end

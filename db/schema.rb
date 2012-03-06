@@ -280,8 +280,9 @@ ActiveRecord::Schema.define(:version => 20120306000635) do
   add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
 
   create_table "suggestions", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "image_path", :null => false
+    t.string   "title",                     :null => false
+    t.string   "image_path",                :null => false
+    t.integer  "weight",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

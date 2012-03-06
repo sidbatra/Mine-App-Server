@@ -13,7 +13,7 @@ class Suggestion < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessible :title,:image_path
+  attr_accessible :title,:image_path,:weight
 
   #----------------------------------------------------------------------
   # Class methods
