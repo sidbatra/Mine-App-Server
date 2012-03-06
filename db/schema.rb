@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303031132) do
+ActiveRecord::Schema.define(:version => 20120306013703) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20120303031132) do
     t.boolean  "is_gift",           :default => false
     t.integer  "actions_count",     :default => 0
     t.integer  "source_product_id"
+    t.integer  "suggestion_id"
   end
 
   add_index "products", ["actions_count"], :name => "index_products_on_actions_count"
@@ -205,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20120303031132) do
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
   add_index "products", ["source_product_id"], :name => "index_products_on_source_product_id"
   add_index "products", ["store_id"], :name => "index_products_on_store_id"
+  add_index "products", ["suggestion_id"], :name => "index_products_on_suggestion_id"
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
   create_table "searches", :force => true do |t|
@@ -278,6 +280,16 @@ ActiveRecord::Schema.define(:version => 20120303031132) do
   add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
   add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
+
+  create_table "suggestions", :force => true do |t|
+    t.string   "title",                     :null => false
+    t.string   "image_path",                :null => false
+    t.integer  "weight",     :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
 
   create_table "ticker_actions", :force => true do |t|
     t.string   "og_action_id"

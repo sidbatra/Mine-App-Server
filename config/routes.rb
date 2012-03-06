@@ -110,6 +110,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :invites,
                 :only => [:create]
 
+  map.resources :suggestions,
+                :only => [:index]
+
   map.new_invite '/invite',
                   :controller => :invites,
                   :action => :new
@@ -155,6 +158,11 @@ ActionController::Routing::Routes.draw do |map|
                 :as         => 'admin/health',
                 :controller => 'admin/health',
                 :only       => :index
+
+  map.resources :admin_suggestions,
+                :as         => 'admin/suggestions',
+                :controller => 'admin/suggestions',
+                :only       => [:new,:create,:index,:edit,:update,:destroy]
 
   map.admin '/admin',
                 :controller => 'admin/help',

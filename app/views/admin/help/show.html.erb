@@ -28,6 +28,10 @@
   Example - <%=link_to 'Target',edit_admin_store_path('target')%>
   <br>
 
+  <br> <h3>Suggestions</h3> 
+  <%=link_to 'New', new_admin_suggestion_path%> <br>
+  <%=link_to 'All', admin_suggestions_path%> <br>
+
   <br> <h3>Emails</h3> 
   <%UserMailer.instance_methods(false).sort.each do |method|%>
     <%unless ['generate_attributes'].include? method%> 

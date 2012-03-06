@@ -1,40 +1,49 @@
 
-<%#render :partial  => "headers/onboarding",
-          :locals   => {:step => 1}%>
+<%=render :partial  => "headers/onboarding"%>
 
 
 <div class="container picker">
-	<div class="row">
-		<div class="" style="width: 746px; margin: 0 auto;">
+	
+		<div class="hider">
+			<div style="width: 746px;">
+				<div class="well">
+					<legend>
+					
+						Where do you shop? Add a few stores to your profile.
+						
+						<%form_for @shopping,
+					      :html => {:style  => 'display:none; float: right; margin-top: -1px;'} do |f|%>
+					
+					    <%=hidden_field_tag :store_ids%>
+					    
+					    <% content_tag :button,
+					    		:type  		=> :submit, 
+					    		:class 		=> 'btn btn-large',
+					    		:id    		=> 'stores_picked_button',
+					    		:disabled	=> true do %>
+							   Pick at least 3!
+							<% end %>
+							
+						<%end%>
+	
+						
+					</legend>
+				</div> <!-- / well legend -->
+			</div> <!-- /746px -->
+		</div> <!-- /hider -->
+    	
+    <div style="width: 746px; margin: 55px 97px 0;">
 			<div class="well stores">
-				<legend>
-					Pick a few stores you shop at to add to your profile:
-				</legend>
     		
     		<div class="control-group">
 			    <ul class="thumbnails" id="stores">
 			    </ul>
 		    </div>
 
-			</div> <!-- /well -->
-		</div> <!-- /span6 -->
-	</div> <!-- /row -->    
+			</div> <!-- /well stores -->
+		</div> <!-- /746px -->
+  
 </div> <!-- /container -->
-
-
-<div id='footer_onboarding'>
-	<%form_for @shopping,
-      :html => {:style  => 'display:none'} do |f|%>
-
-    <%=hidden_field_tag :store_ids%>
-    <%=submit_tag '',
-        :class      => 'follow_people disactivated',
-        :id         => 'stores_picked_button',
-        :name       => nil,
-        :disabled   => true %>
-  <%end%>   
-</div>	      
-
 
 <%content_for :javascript do%>
   <script type="text/javascript">

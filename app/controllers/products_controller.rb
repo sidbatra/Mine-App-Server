@@ -13,6 +13,9 @@ class ProductsController < ApplicationController
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
 
+    @suggestion   = params[:suggestion] ? 
+                      Suggestion.find(params[:suggestion]) : nil
+
     @placeholders = MSG[:product][@category.handle.to_sym]
   rescue => ex
     handle_exception(ex)
@@ -165,6 +168,7 @@ class ProductsController < ApplicationController
 
 
     @category     = @product.category
+    @suggestion   = @product.suggestion
     @placeholders = MSG[:product][@category.handle.to_sym]
 
   rescue => ex

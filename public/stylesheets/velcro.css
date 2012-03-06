@@ -1,4 +1,40 @@
+/* ---------- onboarding indicators */
+
+.brand.step.indicator {
+	padding-right: 10px; 
+	opacity: 0.3;
+	filter: alpha(opacity=30); }
+
+.nav .step.indicator {
+	color: white; 
+	padding-left: 0; 
+	opacity: 0.3;
+	filter: alpha(opacity=30); }
+	
+.step.indicator.active {
+	opacity: 1;
+	filter: alpha(opacity=100); }
+
 /* ---------- picker: stores */
+
+.picker .hider {
+	z-index: 2; 
+	background: #333; 
+	position: fixed; 
+	top: 0; 
+	width: 746px; 
+	margin: 0 97px; 
+	height: 75px; 
+	padding-top: 60px; }
+
+.picker .hider .well {
+	width: 706px; 
+	height: 36px; 
+	overflow-y: hidden; 
+	border-bottom: none; 
+	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0; }
 
 .picker .well.stores li {
 	margin-left: -9px;
@@ -9,8 +45,23 @@
 	margin-left: -9px; }
 
 .picker .well.stores .thumbnail {
-	height: 125px;
+	height: 157px;
+/* 	height: 125px; */
 	text-decoration: none; }
+	
+.picker .well.stores .thumbnail .thumb-photo {
+	height: 125px;
+/* 	height: 93px; */
+	overflow: hidden; }
+
+/*
+.picker .well.stores .thumbnail .thumb-photo img {
+	margin-top: -16px; }
+*/
+
+.picker .well.stores .thumbnail .caption {
+	overflow: hidden;
+	white-space: nowrap; }
 
 /* ---------- items (user + store ) */ 
 
@@ -176,6 +227,36 @@
 body { background: #333; }
 
 .thumbnail { background: white; }
+
+.thumbnail.selected {
+	background: #08C; 
+	border: 1px solid #08C; }
+
+.thumbnail.selected .caption h5 {
+	color: white; }
+
+.thumbnail.selected .caption .overflow-fade {
+	background-position: 0 -150px;
+	width: 40px; }
+
+.thumbnail .caption .overflow-fade [class^="icon-"],
+.thumbnail .caption .overflow-fade [class*=" icon-"] {
+	display: none; }
+
+.thumbnail.selected .caption .overflow-fade [class^="icon-"],
+.thumbnail.selected .caption .overflow-fade [class*=" icon-"] {
+	display: block; }
+	
+[class^="icon-"].off, [class*=" icon-"].off {
+	display: none; }
+
+.navbar .nav > li.disabled:hover > a {
+	float: none;
+	padding: 10px 10px 11px;
+	line-height: 19px;
+	color: #999;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
 
 .close { font-family: Arial; }
 
@@ -488,6 +569,10 @@ footer, footer a, footer a:hover { color: #666666; }
   opacity: 1;
   filter: alpha(opacity=100); }
 
+.user-cell.disabled:hover .avatar {
+  opacity: 0.8;
+  filter: alpha(opacity=80); }
+
 /* ---------- fade-to-background div content overflow */
 
 .overflow-fade {
@@ -496,23 +581,8 @@ footer, footer a, footer a:hover { color: #666666; }
 	right: 0px; 
 	bottom: 2px; 
 	background: url(/images/fade.png);
-	background-repeat: repeat-y; }
-
-.well a .overflow-fade, {
-	background-position-y: -50px; }
-
-.well a:hover .overflow-fade {
-	background-position-y: -100px; }
-	
-.well.white a .overflow-fade { /* deprecated */
-	background-position-y: 0; }
-
-.well.white a:hover .overflow-fade { /* deprecated */
-	background-position-y: -50px; }
-
-.well .profile-card-actions a:hover .overflow-fade {
-	background-position-y: 0; }
-
+	background-repeat: repeat-y;
+	width: 24px; }
 
 /* ---------- general styles */
 .faded-30 {

@@ -14,6 +14,8 @@ class ProductSweeper < ActionController::Caching::Sweeper
     expire_user_top_stores(product.user_id)
     expire_store_top_products(product.store_id)
 
+    expire_user_product_suggestions(product.user_id)
+
     expire_user_products_in_category(product.user_id,product.category_id)
     expire_store_products_in_category(product.store_id,product.category_id)
   end
@@ -63,6 +65,10 @@ class ProductSweeper < ActionController::Caching::Sweeper
       expire_store_products_in_category(product.store_id,product.category_id_was)
     end
 
+    if product.suggestion_id_changed?
+      expire_user_product_suggestions(product.user_id)
+    end
+
     expire_user_top_products(product.user_id)
     expire_store_top_products(product.store_id)
     expire_user_products_in_category(product.user_id,product.category_id)
@@ -87,6 +93,8 @@ class ProductSweeper < ActionController::Caching::Sweeper
 
     expire_user_products_in_category(product.user_id,product.category_id)
     expire_store_products_in_category(product.store_id,product.category_id)
+
+    expire_user_product_suggestions(product.user_id)
   end
 
 
@@ -113,6 +121,12 @@ class ProductSweeper < ActionController::Caching::Sweeper
   def expire_user_products_in_category(user_id,category_id)
     expire_cache KEYS[:user_products_in_category] % [user_id,category_id]
     expire_cache KEYS[:user_products_in_category] % [user_id,0]
+  end
+
+  # Expire cache fragment for user's product suggestions
+  #
+  def expire_user_product_suggestions(user_id)
+    expire_cache KEYS[:user_product_suggestions] % user_id
   end
 
   # Expire category count cache for a store's product category
