@@ -26,9 +26,15 @@
 			    <%@styles.each do |style|%>
 			      <li class="span2">
 				      <a class="thumbnail" id="style_picker_<%=style[:id]%>"> 
-			          <%=image_tag style[:image]%>
+				      	<div class="thumb-photo">
+			          	<%=image_tag style[:image]%>
+			          </div>
 			          <div class="caption">
-			              <h5><%=style[:caption]%></h5>
+			          	<div class="overflow-fade">
+										<i class="icon-ok icon-white" 
+											style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
+									</div>
+			          	<h5><%=style[:caption]%></h5>
 			          </div>
 				      </a> <!-- /thumbnail -->
 			      </li>

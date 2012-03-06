@@ -15,7 +15,7 @@
 	opacity: 1;
 	filter: alpha(opacity=100); }
 
-/* ---------- picker: stores */
+/* ---------- picker: styles + stores */
 
 .picker .hider {
 	z-index: 2; 
@@ -236,6 +236,8 @@ body { background: #333; }
 
 .thumbnail { background: white; }
 
+/* --- thumbnail selected --*/
+
 .thumbnail.selected {
 	background: #08C; 
 	border: 1px solid #08C; }
@@ -246,6 +248,34 @@ body { background: #333; }
 .thumbnail.selected .caption .overflow-fade {
 	background-position: 0 -150px;
 	width: 40px; }
+
+/* --- thumbnail disabled --*/
+
+.thumbnail.disabled {
+	background: whiteSmoke; }
+
+.thumbnail.disabled .thumb-photo {
+	opacity: 0.3;
+	filter: alpha(opacity=30); }
+
+.thumbnail.disabled .caption h5 {
+	color: #ccc; }
+
+.thumbnail.disabled .caption .overflow-fade {
+	background-position: 0 -50px; }
+
+.thumbnail.disabled:hover {
+	background: white; }
+
+.thumbnail.disabled:hover .thumb-photo {
+	opacity: 1;
+	filter: alpha(opacity=100); }
+
+.thumbnail.disabled:hover .caption h5 {
+	color: #333; }
+
+.thumbnail.disabled:hover .caption .overflow-fade {
+	background-position: 0 0; }
 
 .thumbnail .caption .overflow-fade [class^="icon-"],
 .thumbnail .caption .overflow-fade [class*=" icon-"] {
