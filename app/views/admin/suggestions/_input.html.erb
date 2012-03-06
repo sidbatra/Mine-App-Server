@@ -1,0 +1,16 @@
+
+    <%=f.hidden_field :image_path%>
+    Title - <%=f.text_field :title%> <br>
+    Weight - <%=f.text_field :weight%> <br>
+
+    <div id='suggestion_image'>
+      <%if @suggestion.image_path.present?%>
+        <img src="<%=@suggestion.image_url%>" />
+      <%end%>
+    </div>
+
+    Click below to add/change image<br>
+    <a href='javasvript:void(0)' id='image_uploader'>
+    </a> <br><br>
+
+    <%=submit_tag submit_text, :name => nil%>

@@ -3,21 +3,8 @@
   <legend>Create a new suggestion</legend>
 
   <%form_for @suggestion, :url => "/admin/suggestions" do |f|%>
-    <%=f.hidden_field :image_path%>
-    Title - <%=f.text_field :title%> <br>
-    Weight - <%=f.text_field :weight%> <br>
-
-    <div id='suggestion_image'>
-      <%if @suggestion.image_path.present?%>
-        <img src="<%=@suggestion.image_url%>" />
-      <%end%>
-    </div>
-
-    Click below to add/change image<br>
-    <a href='javasvript:void(0)' id='image_uploader'>
-    </a> <br><br>
-
-    <%=submit_tag "Create", :name => nil%>
+    <%=render :partial  => "input",
+              :locals   => {:f => f,:submit_text => "Create"}%>
   <%end%>
 
 </div>
