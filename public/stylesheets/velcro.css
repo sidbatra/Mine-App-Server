@@ -10,7 +10,7 @@
 	height: 75px; 
 	padding-top: 60px; }
 
-.picker .well.hider {
+.picker .hider .well {
 	width: 706px; 
 	height: 36px; 
 	overflow-y: hidden; 
