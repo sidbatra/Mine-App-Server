@@ -1,1 +1,5 @@
-<%=@suggestions.to_json(:only => [:id,:title],:methods => [:image_url])%>
+<%-cache @key do-%>
+  <%=@suggestions.to_json(
+      :only => [:id,:title],
+      :methods => [:image_url])%>
+<%-end-%>
