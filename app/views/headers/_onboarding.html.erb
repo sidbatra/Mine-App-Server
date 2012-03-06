@@ -1,15 +1,32 @@
+  <!-- Navbar
+    ================================================== -->
 
-  <div id='header'>
-    <div class='navbar narrow unselectable'>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+        
+          <div class="brand">
+          	<%=CONFIG[:name]%>
+          </div>
+                    
+          <div class="nav-collapse">
+            <ul class="nav pull-right">
+                
+                <li class="user-cell disabled">
+                  <a>
+                     <%=image_tag self.current_user.photo_url, 
+                                :class => "avatar",
+                                :alt => ""
+                                %>
+                    <%=user_full_name(self.current_user)%>
+                  </a>
+                </li>
+              
+            </ul> <!-- /nav -->
+          </div> <!-- /nav-collapse -->
+        </div> <!-- /container -->
+      </div> <!-- /navbar-inner -->
+    </div> <!-- /navbar navbar-fixed-top -->
 
-      <div class="logo"></div>
-          
-      <ol id='indicators'>
-          <li class='first <%=step == 1 ? 'on' : ''%>'></li>
-          <li class='second <%=step == 2 ? 'on' : ''%>'></li>
-          <li class='third <%=step == 3 ? 'on' : ''%>'></li>
-      </ol> 		
 
-    </div>
-  </div> <!-- header -->
 

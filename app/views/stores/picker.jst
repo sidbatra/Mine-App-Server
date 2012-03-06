@@ -1,14 +1,16 @@
 <li>
-	<a class="thumbnail" id="store_picker_<%=store.get('id')%>"> 
+	<a class="thumbnail" id="store_picker_<%=store.get('id')%>" href="javascript:void(0)"> 
 	
 <!--
 	<div class="button_picker" id="button_picker_<#=store.get('id')%>">
 	</div>
 -->
-		
-	<img src="<%=store.get('giant_url')%>" />
+	<div class="thumb-photo">
+		<img src="<%=store.get('large_url')%>"/>
+	</div>
 	
-	<div class="caption">
+	<div class="caption" style="position: relative;">
+		<div class="overflow-fade" style="width: 24px;"></div>
 		<h5>
 			<%=helpers.truncate(store.get('name'),30,".")%>
 		</h5>
