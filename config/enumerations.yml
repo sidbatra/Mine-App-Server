@@ -20,6 +20,92 @@
     TopShoppers: 1
   AchievementSetOwner:
     Automated: 0
+  ActionName:
+    Like: 'like'
+    Own: 'own'
+    Want: 'want'
+  CollectionNewSource:
+    Error: 'error'
+  CollectionShowSource:
+    Updated: 'collection_updated'
+  EmailPurpose:
+    Admin: 99
+    NewComment: 0
+    NewFollower: 1
+    NewAction: 2
+    TopShopper: 4
+    Welcome: 10
+    FriendCollection: 11
+    AnotherCollection: 12
+    AnotherProduct: 13
+    AddItem: 14
+    AddFriend: 15
+    AddStore: 16
+    AddCollection: 17
+    FriendDigest: 18
+  FollowingSource:
+    Auto: 0
+    Manual: 1
+    Suggestion: 2
+    Invite: 3
+  HealthReportService:
+    TopShopperUpdate: 0
+    AnotherCollectionPrompt: 1
+    AnotherItemPrompt: 2
+    AddItemsPrompt: 3
+    AddFriendsPrompt: 4
+    AddStoresPrompt: 5
+    AddCollectionsPrompt: 6
+    FriendsDigest: 7
+  HomeShowSource:
+    UserCreateError: 'user_create_error'
+    LoginError: 'login_error'
+    Logout: 'logout'
+  InvitePlatform:
+    Facebook: 0
+    Email: 1
+  ProductNewSource:
+    Error: 'error'
+  ProductShowSource:
+    Updated: 'product_updated'
+  SearchSource:
+    New: 0
+    Edit: 1
+  ShoppingSource:
+    User: 0
+    Product: 1
+  UserShowSource:
+    CollectionCreate: 'collection_create'
+    CollectionDeleted: 'collection_deleted'
+    HomeRedirect: 'home_redirect'
+    Login: 'login'
+    UserCreate: 'user_create'
+    ProductCreate: 'product_create'
+    ProductDeleted: 'product_deleted'
+    ShoppingsCreate: 'shoppings_create'
+    ShoppingsCreateError: 'shoppings_create_error'
+    Invite: 'invite'
+  UserShowHash:
+    Collections: 'uses'
+    Owns: 'owns'
+    Wants: 'wants'
+  WelcomeFilter:
+    Learn: 'intro'
+    Stores: 'stores'
+    Follow: 'follow'
+    Friends: 'friends'
+    Create: 'create'
+    Style: 'style'
+  OGObject:
+    Item: "oncloset:item" 
+    Set: "oncloset:set" 
+    Store: "oncloset:store" 
+  OGAction:
+    Add: "oncloset:add" 
+    Use: "oncloset:use" 
+    Want: "oncloset:want" 
+  OGProperty:
+    Length: "oncloset:length" 
 
 # Enumerations for javascript
 #
