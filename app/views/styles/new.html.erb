@@ -1,15 +1,17 @@
-<div class="well styles" id="styles_container">
+<div class="well styles" id="container">
 
 <div class="control-group">
 
-  <ul class="thumbnails">
+  <ul class="thumbnails" id="styles">
 
     <%@styles.each do |style|%>
       <li class="span2">
-        <%=image_tag style[:image]%>
-        <div class="caption">
-            <h5><%=style[:caption]%></h5>
-        </div>
+	      <a class="thumbnail" id="style_picker_<%=style[:id]%>"> 
+          <%=image_tag style[:image]%>
+          <div class="caption">
+              <h5><%=style[:caption]%></h5>
+          </div>
+	      </a> <!-- /thumbnail -->
       </li>
     <%end%>
 
@@ -29,4 +31,14 @@
       :id       => 'styles_picked_button',
       :disabled => true,
       :name     => nil%>
+<%end%>
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Styles.New({
+          styles  : <%=@styles.to_json%>,
+          source  : '<%=@source%>',
+          el      : $('#container')});
+  </script>
 <%end%>
