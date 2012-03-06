@@ -62,7 +62,10 @@ Denwen.Views.Styles.New = Backbone.View.extend({
         stylePicker.disable();
     });
 
+    $(this.buttonEl).addClass('btn-primary');
     $(this.buttonEl).removeAttr('disabled'); 
+    $(this.buttonEl).html(
+      "Pick your Stores <i class='icon-chevron-right icon-white'></i>"); 
 
     //analytics.stylePicked();
   },

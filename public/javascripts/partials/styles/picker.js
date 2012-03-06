@@ -24,6 +24,8 @@ Denwen.Partials.Styles.Picker = Backbone.View.extend({
     this.picked = true; 
 
     $(this.toggleEl).addClass('selected');
+    $(this.toggleEl).removeClass('disabled');
+
     this.trigger('stylePicked',this.model);
   },
 
@@ -33,6 +35,7 @@ Denwen.Partials.Styles.Picker = Backbone.View.extend({
     this.picked = false;
 
     $(this.toggleEl).removeClass('selected');
+    $(this.toggleEl).addClass('disabled');
   }
 
 });
