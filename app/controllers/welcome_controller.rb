@@ -19,30 +19,6 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Style
       @styles   = CONFIG[:styles]
       @view     = "styles/new"
-    when WelcomeFilter::Follow
-      follows = 10
-      stores  = self.current_user.stores
-
-      raise IOError, "No stores found" unless stores.present?
-
-      @users    = []
-      per_store = follows / stores.length 
-
-      stores.each do |store|
-        @users += AchievementSet.current_top_shoppers(store.id).
-                    map(&:achievable).
-                    shuffle[0..per_store] 
-      end
-
-      @users      = @users.uniq.shuffle[0..follows-1]
-
-      @shoppings  = Shopping.find_all_by_user_id(
-                              @users.map(&:id),
-                              :include    => :store).
-                              select{|s| s.store.is_processed}.
-                              group_by{|s| s.user_id}
-
-      @view       = "followings/new"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -72,20 +48,6 @@ class WelcomeController < ApplicationController
           self.current_user.id,
           store_id,
           ShoppingSource::User)
-      end
-
-    when WelcomeFilter::Follow
-      @success_target = welcome_path(WelcomeFilter::Friends)
-      @error_target   = welcome_path(WelcomeFilter::Follow)
-
-      user_ids        = params[:user_ids].split(',')
-
-      user_ids.each do |user_id|
-        Following.add(
-          user_id,
-          self.current_user.id,
-          FollowingSource::Suggestion,
-          false)
       end
 
     when WelcomeFilter::Style
