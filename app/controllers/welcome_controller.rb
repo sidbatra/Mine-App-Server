@@ -92,7 +92,7 @@ class WelcomeController < ApplicationController
       @success_target = welcome_path(WelcomeFilter::Stores)
       @error_target   = welcome_path(WelcomeFilter::Style)
 
-      self.current_user.update_attributes(params)
+      self.current_user.update_attributes(:byline => params[:style])
 
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)
