@@ -7,6 +7,8 @@ class CreateSuggestions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :suggestions, :weight
   end
 
   def self.down

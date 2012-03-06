@@ -287,6 +287,8 @@ ActiveRecord::Schema.define(:version => 20120306000635) do
     t.datetime "updated_at"
   end
 
+  add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
+
   create_table "ticker_actions", :force => true do |t|
     t.string   "og_action_id"
     t.string   "og_action_type"
