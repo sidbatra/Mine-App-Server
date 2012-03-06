@@ -22,6 +22,14 @@
         <td>
           <%=link_to "Edit",edit_admin_suggestion_path(suggestion)%>
         </td>
+        <td>
+          <%=link_to "Delete", {
+                :controller => 'admin/suggestions',
+                :action => 'destroy',
+                :id => suggestion.id},
+              :method => :delete,
+              :confirm  => "There is no undo on this, sure?"%></h3>
+        </td>
       </tr>
     <%end%>
   </table>

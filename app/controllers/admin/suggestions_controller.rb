@@ -41,4 +41,11 @@ class Admin::SuggestionsController < ApplicationController
                   new_admin_suggestion_path
   end
 
+  # Destroy a suggestion
+  #
+  def destroy
+    Suggestion.find(params[:id]).destroy
+    redirect_to admin_suggestions_path
+  end
+
 end
