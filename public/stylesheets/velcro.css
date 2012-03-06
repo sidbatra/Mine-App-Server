@@ -28,7 +28,7 @@
 	margin-left: -9px; }
 
 .picker .well.stores .thumbnail {
-	height: 161px;
+	height: 157px;
 /* 	height: 125px; */
 	text-decoration: none; }
 	
@@ -210,6 +210,28 @@
 body { background: #333; }
 
 .thumbnail { background: white; }
+
+.thumbnail.selected {
+	background: #08C; 
+	border: 1px solid #08C; }
+
+.thumbnail.selected .caption h5 {
+	color: white; }
+
+.thumbnail.selected .caption .overflow-fade {
+	background-position: 0 -150px;
+	width: 40px; }
+
+.thumbnail .caption .overflow-fade [class^="icon-"],
+.thumbnail .caption .overflow-fade [class*=" icon-"] {
+	display: none; }
+
+.thumbnail.selected .caption .overflow-fade [class^="icon-"],
+.thumbnail.selected .caption .overflow-fade [class*=" icon-"] {
+	display: block; }
+	
+[class^="icon-"].off, [class*=" icon-"].off {
+	display: none; }
 
 .navbar .nav > li.disabled:hover > a {
 	float: none;
@@ -542,7 +564,8 @@ footer, footer a, footer a:hover { color: #666666; }
 	right: 0px; 
 	bottom: 2px; 
 	background: url(/images/fade.png);
-	background-repeat: repeat-y; }
+	background-repeat: repeat-y;
+	width: 24px; }
 
 /* ---------- general styles */
 .faded-30 {

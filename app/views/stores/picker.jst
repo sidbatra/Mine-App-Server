@@ -1,20 +1,18 @@
 <li>
 	<a class="thumbnail" id="store_picker_<%=store.get('id')%>" href="javascript:void(0)"> 
 	
-<!--
-	<div class="button_picker" id="button_picker_<#=store.get('id')%>">
-	</div>
--->
-	<div class="thumb-photo">
-		<img src="<%=store.get('large_url')%>"/>
-	</div>
-	
-	<div class="caption" style="position: relative;">
-		<div class="overflow-fade" style="width: 24px;"></div>
-		<h5>
-			<%=helpers.truncate(store.get('name'),30,".")%>
-		</h5>
-	</div>
+		<div class="thumb-photo">
+			<img src="<%=store.get('large_url')%>"/>
+		</div>
+		
+		<div class="caption" style="position: relative;">
+			<div class="overflow-fade">
+				<i class="icon-ok icon-white" style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
+			</div>
+			<h5>
+				<%=helpers.truncate(store.get('name'),30,".")%>
+			</h5>
+		</div>
 	
 	</a> <!-- /thumbnail -->
 </li> 
