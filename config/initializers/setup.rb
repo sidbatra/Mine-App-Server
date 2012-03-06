@@ -15,10 +15,16 @@ require 'ar-extensions/adapters/mysql'
 require 'ar-extensions/import/mysql'
 require File.join(RAILS_ROOT,'lib','extensions.rb')
 
+
 # Include modules needed through the application lifetime
 #
 include DW
 include Enumerations
+
+# Populate enumerations
+enums = YAML.load_file("#{RAILS_ROOT}/config/enumerations.yml")
+DW::Enumerations.populate(enums[:ruby])
+
 include CacheManagement
 include Cron
 include CryptoManagement 

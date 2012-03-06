@@ -4,6 +4,27 @@ module DW
   #
   module Enumerations
 
+    # Create enumeration classes that inherit from Enumeration.
+    #
+    # enums - Hash of hashes loaded from a YAML file. The outer hash
+    #         keys are names of Enumeration classes and each inner hash
+    #         key value pairs represent enumeration keys and their values.
+    #
+    # return - Boolean true
+    #
+    def self.populate(enums)
+      enums.each do |name,enum|
+        class_eval "#{name} = Class.new(Enumeration)"
+        klass = const_get(name)
+
+        enum.each do |key,value|
+          value = value.is_a?(String) ? "\"#{value}\"" : value
+          klass.class_eval("#{key} = #{value}")
+        end
+      end
+      true
+    end
+
     # Base class for all enumerations
     #
     class Enumeration
@@ -39,19 +60,6 @@ module DW
 
         @@values_hash
       end
-    end
-
-    # Reasons for creation for the AchievementSet model
-    #
-    class AchievementSetFor < Enumeration
-      StarUsers   = 0
-      TopShoppers = 1
-    end
-
-    # Edge case owner ids for the AchivementSet model
-    #
-    class AchievementSetOwner < Enumeration
-      Automated = 0
     end
 
     # Names for the Action model

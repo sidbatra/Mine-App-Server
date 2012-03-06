@@ -1,0 +1,35 @@
+
+# Enumerations shared across ruby & javasript.
+#
+# Use wisely. It's costly to load and populate a giant
+# enumerations file on every request.
+#
+# IMP: After editing please run "rake enums:dump:js" to generate
+#      enumerations in JS friendly format.
+#
+:common: &common
+  Placeholder:
+    ignore: 1
+
+# Enumerations for ruby. 
+#
+:ruby: &ruby
+  <<: *common
+  AchievementSetFor:
+    StarUsers: 0
+    TopShoppers: 1
+  AchievementSetOwner:
+    Automated: 0
+
+# Enumerations for javascript
+#
+# Use wisely. It's costly to load and populate a giant
+# enumerations file on every request.
+#
+# IMP: After editing please run "rake enums:dump:js" to generate
+#      enumerations in JS friendly format.
+#
+:javascript: &javascript
+  <<: *common
+  InviteNewHash: 
+    Styles: 'styles'
