@@ -16,6 +16,9 @@ class WelcomeController < ApplicationController
       @view     = "shoppings/new"
     when WelcomeFilter::Friends
       @view     = "invites/new"
+    when WelcomeFilter::Style
+      @styles   = CONFIG[:styles]
+      @view     = "styles/new"
     when WelcomeFilter::Follow
       follows = 10
       stores  = self.current_user.stores
@@ -57,7 +60,9 @@ class WelcomeController < ApplicationController
 
     case @filter
     when WelcomeFilter::Stores
-      @success_target = welcome_path(WelcomeFilter::Friends)
+      @success_target = user_path(
+                          self.current_user.handle,
+                          :src => UserShowSource::ShoppingsCreate)
       @error_target   = welcome_path(WelcomeFilter::Stores)
 
       store_ids = params[:store_ids].split(',')
@@ -82,6 +87,12 @@ class WelcomeController < ApplicationController
           FollowingSource::Suggestion,
           false)
       end
+
+    when WelcomeFilter::Style
+      @success_target = welcome_path(WelcomeFilter::Stores)
+      @error_target   = welcome_path(WelcomeFilter::Style)
+
+      self.current_user.update_attributes(params)
 
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)

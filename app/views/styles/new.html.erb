@@ -1,0 +1,32 @@
+<div class="well styles" id="styles_container">
+
+<div class="control-group">
+
+  <ul class="thumbnails">
+
+    <%@styles.each do |style|%>
+      <li class="span2">
+        <%=image_tag style[:image]%>
+        <div class="caption">
+            <h5><%=style[:caption]%></h5>
+        </div>
+      </li>
+    <%end%>
+
+  </ul>
+
+</div> <!-- /control-group -->
+
+</div> <!-- /styles_container.well -->
+
+<%form_tag '/welcome',
+    :id   => 'new_styles' do |f|%>
+
+  <%=hidden_field_tag :id, WelcomeFilter::Style%>
+  <%=hidden_field_tag :style%>
+  <%=submit_tag '',
+      :class    => 'invite_friends',
+      :id       => 'styles_picked_button',
+      :disabled => true,
+      :name     => nil%>
+<%end%>

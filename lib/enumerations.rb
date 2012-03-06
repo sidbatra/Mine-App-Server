@@ -189,6 +189,7 @@ module DW
       Follow  = 'follow'
       Friends = 'friends'
       Create  = 'create'
+      Style   = 'style'
     end
 
     # Facebook OpenGraph objects
