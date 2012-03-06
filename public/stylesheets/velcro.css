@@ -48,11 +48,13 @@
 
 .picker .well.stores .thumbnail {
 	height: 157px;
-	text-decoration: none; }
+	text-decoration: none;
+	cursor: pointer; }
 	
 .picker .well.styles .thumbnail {
 	height: 125px;
-	text-decoration: none; }
+	text-decoration: none;
+	cursor: pointer; }
 	
 .picker .well.stores .thumbnail .thumb-photo {
 	height: 125px;
