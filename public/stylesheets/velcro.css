@@ -306,6 +306,11 @@ body { background: #333; }
 
 footer, footer a, footer a:hover { color: #666666; }
 
+.q-point {
+	min-width: 25px;
+	min-height: 25px;
+	background: url('/images/q-point.png') no-repeat; }
+
 /* ---------- message drawer */
 
 .message-drawer {

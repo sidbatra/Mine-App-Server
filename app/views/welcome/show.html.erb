@@ -19,20 +19,21 @@
 		    <%=image_tag 'intro.jpg', 
 		        :style => 'margin-bottom: 4px;'%>
 		    
-		    <div id="style" 
-		    style="position: absolute; top: 10px; left: 15px; width: 260px; height: 90px;"></div>
+		    <div id="style" class="q-point" 
+		    style="position: absolute; top: 10px; left: 15px; width: 260px; height: 90px;
+		    background-position: center 55px;"></div>
 		    
-		    <div id="influencers" 
-		    style="position: absolute; top: 10px; left: 286px; width: 154px; height: 90px;"></div>
+		    <div id="influencers" class="q-point" 
+		    style="position: absolute; top: 10px; left: 286px; width: 154px; height: 75px;
+		    background-position: center 40px;"></div>
 		    
-		    <div id="stores" 
-		    style="position: absolute; top: 10px; left: 438px; width: 154px; height: 90px;"></div>
+		    <div id="stores" class="q-point" 
+		    style="position: absolute; top: 10px; left: 438px; width: 154px; height: 75px;
+		    background-position: center 40px;"></div>
 		    
-		   <div id="items" 
-		    style="position: absolute; top: 121px; left: 0; width: 600px; height: 140px;"></div>
-
-				        
-				    
+		    <div id="items" class="q-point"
+		    style="position: absolute; top: 121px; left: 0; width: 600px; height: 140px;
+		    background-position: center 105px;"></div>
 				        
 			 </div> <!-- /control-group -->
 
@@ -50,7 +51,7 @@ $('#style').popover({
 	animation: true,
 	delay : 0,
 	title : "What's your style?",
-	content: 'Glam? Hipster? Nerd?<br />Say it however suits you best.'
+	content: 'Glam? Hipster? Casual?<br />Say it whichever way suits you best.'
 });    
     
 $('#stores').popover({
@@ -66,15 +67,15 @@ $('#influencers').popover({
 	animation: true,
 	delay : 0,
 	title : 'Who influences you?',
-	content: 'Get notified when friends with great taste buy something interesting.'
+	content: 'Get notified when friends with good taste buy something new.'
 });
 
 $('#items').popover({
 	placement: 'bottom',
 	animation: true,
 	delay : 0,
-	title : 'What are you favorite items?',
-	content: 'From shoes to jewelry to electronics,<br />fill out your OnCloset however you like.'
+	title : 'What are you favorite buys?',
+	content: 'From shoes to jewelry to electronics,<br />fill your OnCloset however you like.'
 });
   </script>
 <%end%>
