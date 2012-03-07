@@ -286,9 +286,6 @@ body { background: #333; }
 .thumbnail.selected .caption .overflow-fade [class^="icon-"],
 .thumbnail.selected .caption .overflow-fade [class*=" icon-"] {
 	display: block; }
-	
-[class^="icon-"].off, [class*=" icon-"].off {
-	display: none; }
 
 .navbar .nav > li.disabled:hover > a {
 	float: none;
@@ -299,6 +296,9 @@ body { background: #333; }
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
 
 .close { font-family: Arial; }
+
+.well legend {
+	border-bottom: none; }
 
 .btn {
 	-webkit-font-smoothing: antialiased;
