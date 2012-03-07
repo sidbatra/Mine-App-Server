@@ -1,11 +1,12 @@
 
 namespace :instances do
 
-  IMAGE_ID           = 'ami-4ea07227'
+  IMAGE_IDS          = {'32' => 'ami-c622ffaf','64' => 'ami-e622ff8f'}
   INSTANCE_TYPE      = 't1.micro'
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
-  TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron'}
+  TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
+                        :generic => 'generic'}
   ENVIRONMENTS       = ['production','staging']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
@@ -23,7 +24,7 @@ namespace :instances do
         type,count = spec.split(':')
         instances = Instance.create(
                       :instances => {
-                        :image_id => IMAGE_ID,
+                        :image_id => IMAGE_IDS[@os],
                         :min_count => count,
                         :max_count => count,
                         :instance_type => INSTANCE_TYPE,
@@ -77,16 +78,19 @@ namespace :instances do
 
       @specs        = ENV['specs']
       @environment  = ENV['env']
+      @os           = ENV['os'] ? ENV['os'] : '64'
 
       raise IOError,"" unless @specs && 
                         @environment &&
+                        IMAGE_IDS.keys.include?(@os) &&
                         ENVIRONMENTS.include?(@environment) &&
                         @specs.match(Regexp.new(SPECS_REGEX))
 
     rescue
       puts "Usage:\nrake instances:{create,destroy} "\
-            "specs=[{web,proc}:count](,) "\
-            "env={production,staging}"
+            "specs=[{web,proc,cron,generic}:count](,) "\
+            "env={production,staging} "\
+            "os={32,64}"
       exit
     end
 
