@@ -11,7 +11,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.styles         = new Backbone.Collection(this.options.styles);
     this.currentTab     = undefined;
 
-    this.onTabClass     = 'on';
+    this.onTabClass     = 'active';
     this.loadTabClass   = 'load';
     this.ownsTab        = '#owns_tab';
     this.wantsTab       = '#wants_tab';
