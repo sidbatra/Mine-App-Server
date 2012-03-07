@@ -16,6 +16,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   initialize: function() {
     var self                  = this;
     this.mode                 = this.options.mode;
+    this.searchesCount        = 0;
 
     this.formEl               = '#' + this.mode + '_product';
     this.queryEl              = '#product_query';
@@ -133,7 +134,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   productSelected: function(productHash) {
     var self = this;
-    
+
+    this.searchesCount = 0;
+
     this.displayProductImage(productHash['image_url']);
 
     document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
@@ -171,15 +174,22 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // Fired when a product is searched from the ProductImagesView
   //
   productSearched: function(query,queryType) {
+    this.searchesCount++;
     analytics.productSearched(query,queryType,this.mode);
 
-    if(queryType == Denwen.ProductQueryType.Text && query.split(' ').length == 1)
-      dDrawer.info(CONFIG['one_word_query_msg']);
+    if(queryType == Denwen.ProductQueryType.Text) {
+      
+      if(query.split(' ').length == 1)
+        dDrawer.info(CONFIG['one_word_query_msg']);
+      else if(this.searchesCount == CONFIG['multi_query_threshold'])
+        dDrawer.info(CONFIG['multi_query_msg']);
+    }
   },
 
   // Fired when a product search is cancelled
   //
   productSearchCancelled: function(source) {
+    this.searchesCount = 0;
     analytics.productSearchCancelled(source,this.mode);
   },
 
