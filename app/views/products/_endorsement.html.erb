@@ -1,33 +1,34 @@
-
+<span id="product_endorsement_box">
     
   <%if is_current_user(product.user)%>
 
-    <%edit_mode   = false%>
-    <%edit_style  = edit_mode ? '' : 'display:none'%>
-    <%ui_style    = edit_mode ? 'display:none' : ''%>
+    <%edit_mode        = false%>
+    <%edit_style       = edit_mode ? '' : 'display:none'%>
+    <%ui_style         = edit_mode ? 'display:none' : ''%>
 
     <!-- endorsement editing -->
     
 	    <%=text_area_tag "product_endorsement",
 				          product.endorsement.to_s,
-				          :class  => "",
-				          :style  => edit_style%>
+				          :class  => '',
+				          :rows  => '2',
+				          :style 	=> 'width: 543px; margin-top: 6px; clear: both;'%>    
+				          
+			<%=link_to 	'Save', 
+									'javascript:void(0)',
+									:id			=> 'product_update',
+									:class  => 'btn btn-primary',
+									:style	=> edit_style%>  		
 	    
 	    <%=link_to 	'Cancel', 
 	    						'javascript:void(0)',
 	    						:id			=> 'product_cancel',
 	    						:class  => 'btn',
 	    						:style	=> edit_style%>
-	    
-			<%=link_to 	'Save', 
-									'javascript:void(0)',
-									:id			=> 'product_update',
-									:class  => 'btn',
-									:style	=> edit_style%>
 	
 	    <!-- endorsement display-->
 	    
-	    	<span id='product_endorsement_text'>
+	    	<span id="product_endorsement_text">
 		      <%=h product.endorsement.to_s%>
 		    </span>   
 	
@@ -50,6 +51,8 @@
   <%elsif product.endorsement.present?%>
 	    	<%=h product.endorsement.to_s%>
   <%end%>
+  
+</span> <!-- /#product_endorsement_box -->
   
 
 
