@@ -34,7 +34,6 @@
 	
 					<%=link_to 'Edit', 'javascript:void(0)',
 											:id			=> 'product_edit',
-											:class  => '',
 		          				:style 	=> product.endorsement.present? && !edit_mode ?
 		                  		    		'' : 
 			                      			'display:none'%>            		
@@ -43,7 +42,6 @@
 	      <%=link_to "Add your review",
 	                  'javascript:void(0)',
 	                  :id     => 'product_edit_initiate',
-	                  :class  => '',
 	                  :style  => product.endorsement.present? || edit_mode ?
 	                              'display:none' :
 	                              ''%>
