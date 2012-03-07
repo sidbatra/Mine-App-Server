@@ -4,7 +4,7 @@
 # Use wisely. It's costly to load and populate a giant
 # enumerations file on every request.
 #
-# IMP: After editing please run "rake enums:dump:js" to generate
+# IMP: After editing please run "rake js:dump:enums" to generate
 #      enumerations in JS friendly format.
 #
 :common: &common
@@ -110,7 +110,7 @@
 # Use wisely. It's costly to load and populate a giant
 # enumerations file on every request.
 #
-# IMP: After editing please run "rake enums:dump:js" to generate
+# IMP: After editing please run "rake js:dump:enums" to generate
 #      enumerations in JS friendly format.
 #
 :javascript: &javascript

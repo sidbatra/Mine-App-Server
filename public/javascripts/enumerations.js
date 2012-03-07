@@ -1,4 +1,4 @@
-// Auto-generated via "rake enums:dump:js"
+// Auto-generated via "rake js:dump:enums"
 // 
 // IMP: Do not edit directly. Edit config/enumerations.yml 
 // and rerun "rake enums:dump:js"

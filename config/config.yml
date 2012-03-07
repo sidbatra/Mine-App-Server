@@ -1,7 +1,14 @@
-# Configuration constants for all RAILS environments
+# Config shared between ruby and javascript
+#
+# IMP: Run "rake js:dump:config" after editing.
+#
+shared: &shared
+  :products_threshold: 5
 
 # Constants shared across deployment environments
+#
 common: &common
+  <<: *shared
   :aws_access_id: AKIAJWYCAWDPAAKLNKSQ
   :aws_secret_key: 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 
   :fb_app_id: 245230762190915
@@ -21,7 +28,6 @@ common: &common
   :name: OnCloset
   :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
   :version: 2.6
-  :products_threshold: 5
   :collection_base_image: private/collection_base.jpg
   :keys:
     :user_category_count: user_%d_category_%d_count
@@ -147,6 +153,14 @@ production: &production
     :noreply: OnCloset <noreply@oncloset.com>
     :contact: OnCloset <contact@oncloset.com>
 
-
 test: &test
   <<: *development
+
+# Config for javascript. 
+#
+# IMP: Run "rake js:dump:config" after editing.
+#
+javascript: &javascript
+  <<: *shared
+  :fb_extended_permissions: 'publish_stream'
+

@@ -1,8 +1,9 @@
-// App wide configuration constants 
-//
-var CONFIG = {
-  'fb_invite_msg'   : "I'm building my online closet. Come check it out!",
-  'fb_invite_title' : "Invite a friend",
-  'fb_extended_permissions' : "publish_stream",
-  'products_threshold' : 5
+// Auto-generated via "rake js:dump:config"
+// 
+// IMP: Do not edit directly. Edit config/config.yml 
+// and rerun "rake js:dump:config"
+// 
+CONFIG = {
+'products_threshold' : 5,
+'fb_extended_permissions' : "publish_stream"
 }
