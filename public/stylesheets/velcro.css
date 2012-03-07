@@ -345,8 +345,11 @@ footer, footer a, footer a:hover { color: #666666; }
 .well .loading.large {
   background-image: url('/images/loading_spinner_large_WhiteSmoke.gif'); }
 
-.form-actions.load .loading.inline { /* turns inline loads on/off */
+.load .loading.inline { /* turns inline loads on/off */
 	display: inline-block; }
+
+.load .tab-text {
+	display: none; }
 	
 /* ---------- strike-thru text divider */
 

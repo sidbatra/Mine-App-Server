@@ -52,31 +52,25 @@
     	<div class="well items">
     	
     		<ul class="nav nav-tabs">
-  				<li class="active">
-    				<a href="#<%=UserShowHash::Owns%>">Owns</a>
+  				<li id="owns_tab">
+    				<a data-toggle="tab" href="#<%=UserShowHash::Owns%>" style="text-align: center; width: 38px;">
+    					<span class="tab-text">Owns</span>
+    					<div class="loading small inline" style="margin-bottom: -4px;"></div>
+    				</a>
   				</li>
-  				<li>
-  					<a href="#<%=UserShowHash::Wants%>">Wants</a>
+  				<li id="wants_tab">
+  					<a data-toggle="tab" href="#<%=UserShowHash::Wants%>" style="text-align: center; width: 38px;">
+  						<span class="tab-text">Wants</span>
+  						<div class="loading small inline" style="margin-bottom: -4px;"></div>
+  					</a>
   				</li>
-  				<li>
-  					<a href="#<%=UserShowHash::Collections%>#">Uses</a>
+  				<li id="collections_tab">
+  					<a data-toggle="tab" href="#<%=UserShowHash::Collections%>#" style="text-align: center; width: 38px;">
+  						<span class="tab-text">Uses</span>
+  						<div class="loading small inline" style="margin-bottom: -4px;"></div>
+  					</a>
   				</li>
 				</ul>
-    	
-    		<!--
-<legend> 
-    			<a href="#<#=UserShowHash::Owns%>" style="color: #333" 
-              id="owns_tab">
-          	Owns</a> · 
-          <a href="#<#=UserShowHash::Wants%>" style="color: #333"
-              id="wants_tab">
-          	Wants</a> · 
-         	<a href="#<#=UserShowHash::Collections%>" style="color: #333"
-              id="collections_tab">
-          	Uses</a>
-          <div class="loading small inline" style="margin: 0 0 2px 10px; vertical-align: middle;"></div>
-        </legend>
--->
         
         <%if is_current_user(@user)%>
 	        <div id="balls-suggestions" style="margin-bottom: 18px;">
