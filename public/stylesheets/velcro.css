@@ -305,11 +305,19 @@ body { background: #333; }
   text-rendering: optimizeLegibility; }
 
 footer, footer a, footer a:hover { color: #666666; }
+footer p { text-align: center; }
 
 .q-point {
 	min-width: 25px;
 	min-height: 25px;
 	background: url('/images/q-point.png') no-repeat; }
+
+.unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
 
 /* ---------- message drawer */
 
