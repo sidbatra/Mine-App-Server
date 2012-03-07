@@ -583,6 +583,24 @@ Denwen.Analytics = Backbone.Model.extend({
       'User ID'     : helpers.currentUserID(),
       'Source'      : source
       });
+  },
+
+  // Style view is opened during onboarding
+  //
+  styleViewOnboarding: function() {
+    mpq.track("Onboarding Style View");
+  },
+
+  // Style view is opened outside onboarding
+  //
+  styleView: function(source) {
+    mpq.track("Style New View",{'Source':source});
+  },
+
+  // User selects a particular style
+  //
+  stylePicked: function() {
+    mpq.track("Style Picked");
   }
 
 });

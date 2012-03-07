@@ -118,7 +118,12 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.shoppingNewView(this.source);
+
+    if(helpers.isOnboarding)
+      analytics.onboardingStoresView();
+    else
+      analytics.shoppingNewView(this.source);
+
     analytics.checkForEmailClickedEvent(this.source);
   }
 

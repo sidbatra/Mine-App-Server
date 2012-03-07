@@ -67,7 +67,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
     $(this.buttonEl).html(
       "Pick your Stores <i class='icon-chevron-right icon-white'></i>"); 
 
-    //analytics.stylePicked();
+    analytics.stylePicked();
   },
 
   // Form submitted callback
@@ -86,6 +86,11 @@ Denwen.Views.Styles.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
+
+    if(helpers.isOnboarding)
+      analytics.styleViewOnboarding();
+    else
+      analytics.styleView(this.source);
   }
 
 });
