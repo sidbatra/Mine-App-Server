@@ -19,21 +19,37 @@
 		    <%=image_tag 'intro.jpg', 
 		        :style => 'margin-bottom: 4px;'%>
 		    
-		    <div id="style" class="q-point" 
-		    style="position: absolute; top: 10px; left: 15px; width: 260px; height: 90px;
-		    background-position: center 55px;"></div>
+		    <div id="style" 
+              title="What's your style?",
+       data-content="Glam? Hipster? Casual?<br />Say it whichever way suits you best.",
+              class="q-point" 
+              style="position: absolute; top: 10px; left: 15px; 
+                      width: 260px; height: 90px; 
+                      background-position: center 55px;"></div>
 		    
-		    <div id="influencers" class="q-point" 
-		    style="position: absolute; top: 10px; left: 286px; width: 154px; height: 75px;
-		    background-position: center 40px;"></div>
+		    <div id="influencers" 
+              title="Who influences you?",
+       data-content="Get notified when friends with good taste buy something new.",
+              class="q-point" 
+              style="position: absolute; top: 10px; left: 286px; 
+                      width: 154px; height: 75px; 
+                      background-position: center 40px;"></div>
 		    
-		    <div id="stores" class="q-point" 
-		    style="position: absolute; top: 10px; left: 438px; width: 154px; height: 75px;
-		    background-position: center 40px;"></div>
+		    <div id="stores" 
+              title="Where do you shop?",
+       data-content="Discover new items at your favorite stores through other people.",
+              class="q-point" 
+              style="position: absolute; top: 10px; left: 438px; 
+                      width: 154px; height: 75px; 
+                      background-position: center 40px;"></div>
 		    
-		    <div id="items" class="q-point"
-		    style="position: absolute; top: 121px; left: 0; width: 600px; height: 140px;
-		    background-position: center 105px;"></div>
+		    <div id="items" 
+              title="What are you favorite buys?",
+       data-content="From shoes to jewelry to electronics,<br />fill your OnCloset however you like.",
+              class="q-point"
+              style="position: absolute; top: 121px; left: 0; 
+                      width: 600px; height: 140px;
+                      background-position: center 105px;"></div>
 				        
 			 </div> <!-- /control-group -->
 
@@ -45,37 +61,5 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Welcome.Show();
-
-		$('#style').popover({
-			placement: 'bottom',
-			animation: true,
-			delay : 0,
-			title : "What's your style?",
-			content: 'Glam? Hipster? Casual?<br />Say it whichever way suits you best.'
-		});    
-		    
-		$('#stores').popover({
-			placement: 'bottom',
-			animation: true,
-			delay : 0,
-			title : 'Where do you shop?',
-			content: 'Discover new items at your favorite stores through other people.'
-		});
-		
-		$('#influencers').popover({
-			placement: 'bottom',
-			animation: true,
-			delay : 0,
-			title : 'Who influences you?',
-			content: 'Get notified when friends with good taste buy something new.'
-		});
-		
-		$('#items').popover({
-			placement: 'bottom',
-			animation: true,
-			delay : 0,
-			title : 'What are you favorite buys?',
-			content: 'From shoes to jewelry to electronics,<br />fill your OnCloset however you like.'
-		});
   </script>
 <%end%>
