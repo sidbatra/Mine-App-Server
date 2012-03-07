@@ -2,29 +2,26 @@
     
   <%if is_current_user(product.user)%>
 
-    <%edit_mode        = false%>
-    <%edit_style       = edit_mode ? '' : 'display:none'%>
-    <%ui_style         = edit_mode ? 'display:none' : ''%>
-
     <!-- endorsement editing -->
     
 	    <%=text_area_tag "product_endorsement",
 				          product.endorsement.to_s,
 				          :class  => '',
-				          :rows  => '2',
-				          :style 	=> 'width: 543px; margin-top: 6px; clear: both;'%>    
+				          :rows   => '2',
+				          :style 	=> "display: none; width: 543px; "\
+                              "margin-top: 6px; clear: both;"%>    
 				          
 			<%=link_to 	'Save', 
 									'javascript:void(0)',
 									:id			=> 'product_update',
 									:class  => 'btn btn-primary',
-									:style	=> edit_style%>  		
+									:style	=> 'display:none'%>  		
 	    
 	    <%=link_to 	'Cancel', 
 	    						'javascript:void(0)',
 	    						:id			=> 'product_cancel',
 	    						:class  => 'btn',
-	    						:style	=> edit_style%>
+	    						:style	=> 'display:none'%>
 	
 	    <!-- endorsement display-->
 	    
@@ -34,7 +31,7 @@
 	
 					<%=link_to 'Edit', 'javascript:void(0)',
 											:id			=> 'product_edit',
-		          				:style 	=> product.endorsement.present? && !edit_mode ?
+		          				:style 	=> product.endorsement.present? ?
 		                  		    		'' : 
 			                      			'display:none'%>            		
 	
@@ -42,7 +39,7 @@
 	      <%=link_to "Add your review",
 	                  'javascript:void(0)',
 	                  :id     => 'product_edit_initiate',
-	                  :style  => product.endorsement.present? || edit_mode ?
+	                  :style  => product.endorsement.present? ?
 	                              'display:none' :
 	                              ''%>
 		
