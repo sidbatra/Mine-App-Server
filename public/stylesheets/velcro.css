@@ -574,7 +574,7 @@ footer p { text-align: center; }
 .invite .well .fb-timeline .user-block {
 	border-bottom: 1px solid #DDD;
 	padding-bottom: 5px;
-	margin-botttom: 5px;
+	margin-bottom: 5px;
 	height: 32px; }
 
 .invite .well .fb-timeline .user-block .user-photo {
@@ -613,11 +613,15 @@ footer p { text-align: center; }
 
 /* ---------- user-cell image and name nav button */
 
+.navbar .nav > li.user-cell > a {
+	padding-left: 38px; 
+	position: relative; }
+
 .user-cell .avatar {
   width: 20px;
   height: 20px;
-  float: left;
-  padding-right: 8px;
+  position: absolute;
+  left: 10px;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
