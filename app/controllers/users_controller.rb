@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
-        elsif @user.is_fresh
+        elsif @user.is_fresh || @onboard
           url = welcome_path(WelcomeFilter::Learn) 
         elsif @target
           url = @target
@@ -128,6 +128,7 @@ class UsersController < ApplicationController
 
     raise IOError, "Error creating user" unless @user
 
+    @onboard = @user[:recreate]
 
     self.current_user = @user
     set_cookie
