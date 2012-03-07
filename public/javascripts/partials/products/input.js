@@ -172,6 +172,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   productSearched: function(query,queryType) {
     analytics.productSearched(query,queryType,this.mode);
+
+    if(queryType == Denwen.ProductQueryType.Text && query.split(' ').length == 1)
+      dDrawer.info(CONFIG['one_word_query_msg']);
   },
 
   // Fired when a product search is cancelled

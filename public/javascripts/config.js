@@ -5,5 +5,6 @@
 // 
 CONFIG = {
 'products_threshold' : 5,
-'fb_extended_permissions' : "publish_stream"
+'fb_extended_permissions' : "publish_stream",
+'one_word_query_msg' : "<strong>Tip:</strong> Including brands and colors helps you find your item."
 }
