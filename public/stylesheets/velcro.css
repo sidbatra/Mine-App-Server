@@ -226,7 +226,9 @@
 	
 /* ---------- item pages */ 
 
-.
+.item .thumbnail a img {
+	max-height: 350px;
+	max-width: 570px; }
 
 /* ---------- image src url conversions */
 
