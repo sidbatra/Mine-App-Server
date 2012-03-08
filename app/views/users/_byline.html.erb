@@ -4,12 +4,11 @@
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
-              :placeholder => "What's your style?",
               :class  => '',
-              :rows   => '1',
+              :rows   => '2',
               :style  => self.current_user.byline.present? ?
-                          'width: 284px; display:none;' :
-                          'width: 284px;'%>
+                          'width: 286px; margin-top: 4px; display:none;' :
+                          'width: 286px; margin-top: 4px;'%>
           
           <%=link_to  'Save', 
                       'javascript:void(0)', 
