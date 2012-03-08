@@ -18,7 +18,7 @@ class ActionsController < ApplicationController
   # Fetch actions on an actionable entity
   #
   def index
-    @actions = Action.on(
+    @actions = Action.select(:id,:name,:user_id).on(
                 params[:source_type],
                 params[:source_id]).with_user.by_id
     @key     = KEYS[:action_actionable] % 
