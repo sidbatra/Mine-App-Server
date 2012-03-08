@@ -45,7 +45,9 @@ class CollectionsController < ApplicationController
 
     case @filter
     when :user
-      @collections  = Collection.for_user(params[:owner_id]).
+      @collections  = Collection.select(:id,:user_id,:name,:handle,
+                                  :comments_count,:actions_count,:created_at).
+                        for_user(params[:owner_id]).
                         with_user.
                         with_products.
                         by_id
