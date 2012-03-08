@@ -27,9 +27,8 @@
     	<div class="well">
     		<div class="control-group">
 					<div class="thumbnail" 
-                style="background: white; position: relative; 
+                style="background: white; text-align: center; position: relative; 
                         min-height: 200px;">
-					
 					
 						<%if logged_in?%>
 							<div class="btn-group" 
@@ -64,7 +63,7 @@
 						<%=@product_presenter.large_image%>
 						
 						
-						<div class="caption" style="padding-top: 18px;">
+						<div class="caption" style="text-align: left; padding-top: 18px;">
 							<h5 style="font-weight: normal">
 								<strong><%=h @product_presenter.title%></strong> 
 								<%=@product_presenter.byline%>

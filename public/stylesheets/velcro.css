@@ -73,7 +73,7 @@
 	overflow: hidden;
 	white-space: nowrap; }
 
-/* ---------- items (user + store ) */ 
+/* ---------- closets (user + store ) */ 
 
 .profile .profile-card .profile-img {
 	float: left; 
@@ -223,6 +223,10 @@
 	height: 32px;
 	width: 32px;
 	margin-right: 8px; }
+	
+/* ---------- item pages */ 
+
+.
 
 /* ---------- image src url conversions */
 
@@ -238,7 +242,7 @@ body { background: #333; }
 
 .thumbnail { background: white; }
 
-/* --- thumbnail selected --*/
+/* --- thumbnail selected -- */
 
 .thumbnail.selected {
 	background: #08C; 
