@@ -7,8 +7,10 @@ class ContactsController < ApplicationController
   #
   def index
     if self.current_user.has_contacts_mined
-      @contacts = Contact.by_name.
-                          for_user(self.current_user.id)
+      @contacts = Contact.
+                    select(:id,:third_party_id,:name).
+                    by_name.
+                    for_user(self.current_user.id)
     else
       @contacts         = []
       fb_friends        = self.current_user.fb_friends
