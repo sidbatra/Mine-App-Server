@@ -349,6 +349,12 @@ Denwen.Analytics = Backbone.Model.extend({
           'User ID'    : helpers.currentUserID()});
   },
 
+  // User clicks product to visit the original link
+  //
+  productClicked: function() {
+    mpq.track("Product Clicked");
+  },
+
   // User deletes a product
   //
   productDeleted: function() {
