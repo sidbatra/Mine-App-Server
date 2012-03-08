@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
     case @filter
     when :user
       @products   = Product.select(:id,:is_gift,:handle,:user_id,:store_id,
-                              :category_id,:image_path,:is_hosted,
+                              :image_path,:is_hosted,
                               :is_processed,:orig_thumb_url).
                       with_store.
                       with_user.
@@ -79,7 +79,7 @@ class ProductsController < ApplicationController
 
     when :store
       @products   = Product.select(:id,:is_gift,:handle,:user_id,
-                              :category_id,:image_path,:is_hosted,
+                              :image_path,:is_hosted,
                               :is_processed,:orig_thumb_url).
                       with_user.
                       for_store(params[:owner_id]).

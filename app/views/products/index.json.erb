@@ -2,7 +2,7 @@
   <%-if @filter == :user || @filter == :wanted-%>
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
-                        :user_id,:category_id],
+                        :user_id],
         :methods  => [:thumbnail_url],
         :include  => {
           :store  => {
@@ -13,7 +13,7 @@
   <%-elsif @filter  == :store-%>
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
-                        :user_id,:category_id],
+                        :user_id],
         :methods  => [:thumbnail_url],
         :include  => {
           :user => {
