@@ -152,7 +152,7 @@ class ProductPresenter < BasePresenter
   def large_image
     h.link_to h.image_tag(
                   product.photo_url,
-                  :id => 'left_photo',
+                  :id => 'product_image',
                   :alt => ''),
               product.source_url,
               :target => '_blank'
