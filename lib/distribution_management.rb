@@ -82,6 +82,15 @@ module DW
           :description  => "#{CONFIG[:description]}",
           :caption      => "#{CONFIG[:host]}")
       end
+
+      # Publish added products to facebook album
+      #
+      def self.publish_product_to_fb_album(product)
+        fb_user = FbGraph::User.me(product.user.access_token)
+        fb_user.photo!(
+                  :url      => product.image_url,
+                  :message  => product.title)  
+      end
     
     end #distribution manager
 
