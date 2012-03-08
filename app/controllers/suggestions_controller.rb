@@ -8,7 +8,9 @@ class SuggestionsController < ApplicationController
                       for_user(self.current_user.id).
                       map(&:suggestion_id).compact.uniq
 
-    @suggestions = Suggestion.by_weight.except(suggestion_ids)
+    @suggestions = Suggestion.select(:id,:title).
+                    by_weight.
+                    except(suggestion_ids)
 
     @key = KEYS[:user_product_suggestions] % self.current_user.id
 
