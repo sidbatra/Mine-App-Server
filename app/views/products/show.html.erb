@@ -26,11 +26,15 @@
     <div class="span8 offset2">
     	<div class="well">
     		<div class="control-group">
-					<div class="thumbnail" style="background: white; position: relative; min-height: 200px;">
+					<div class="thumbnail" 
+                style="background: white; position: relative; 
+                        min-height: 200px;">
 					
 					
 						<%if logged_in?%>
-							<div class="btn-group" style="position: absolute; top: 6px; left: 6px; width: 150px;">
+							<div class="btn-group" 
+                    style="position: absolute; top: 6px; 
+                            left: 6px; width: 150px;">
 						    <%unless is_current_user(@product.user)%>
 						    	<a id="want_actionable" href="javascript:void(0)" class="btn">
 						      	Want
@@ -48,7 +52,9 @@
 
 				    <%unless @next_product.id == @prev_product.id && 
 				             @next_product.id == @product.id%>
-				      <div class="btn-group" style="position: absolute; top: 6px; right: 6px; width: 71px;">      
+				      <div class="btn-group" 
+                    style="position: absolute; top: 6px; 
+                            right: 6px; width: 71px;">      
 				      	<%=@product_presenter.prev(@next_product,@product.user)%>  
 					      <%=@product_presenter.next(@prev_product,@product.user)%>
 					    </div>
@@ -73,7 +79,10 @@
 					</div> <!-- /thumbnail -->
 				</div> <!-- /control-group -->
 				
-				<div class="control-group" id="comments_container" style="margin: 19px 13px 0;">
+				<div class="control-group" 
+              id="comments_container" 
+              style="margin: 19px 13px 0;">
+
 					<div id="comments" style="margin-bottom: 19px;"></div>
 		    
 		    	<%if logged_in?%>
@@ -81,14 +90,26 @@
 				      
 				        <%=image_tag self.current_user.photo_url,
 				            :class => "",
-				            :style => "width: 48px; height: 48x; float: left; margin-right: 10px;",
+				            :style => "width: 48px; height: 48x; "\
+                              "float: left; margin-right: 10px;",
 				            :alt => ""%>
 				
-				        <%=text_area_tag "comment_data","Add a comment",
-				        		:rows        => "2",
-				            :style       => "float: left; height: 38px; width: 426px;"%>
+				        <%=text_area_tag "comment_data",
+                    "",
+				        		:rows  => "2",
+				            :style => "color: #99999; float: left;"\
+                              "height: 38px; width: 426px;",
+                    "ui-placeholder-color" => "#999999",
+                    "ui-text-color" => "#333333",
+                    "data-placeholder" => "Add a comment"%>
 				          
-			          <input id="comment_post" class="btn" style="width: 56px; height: 48px; margin-left: 4px;" value="Post" title="Post" type="button" alt=""> 
+			          <input id="comment_post" 
+                        class="btn" 
+                        style="width: 56px; height: 48px; margin-left: 4px;" 
+                        value="Post" 
+                        title="Post" 
+                        type="button" 
+                        alt=""> 
 				      
 			      </div> <!-- /add_comment -->
 		      <%end%> 
