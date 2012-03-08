@@ -150,13 +150,12 @@ class ProductPresenter < BasePresenter
   # Large product image linked to its original source
   #
   def large_image
-    h.link_to_if !product.is_hosted,
-                  h.image_tag(
-                    product.photo_url,
-                    :id => 'left_photo',
-                    :alt => ''),
-                  product.source_url,
-                  :target => '_blank'
+    h.link_to h.image_tag(
+                  product.photo_url,
+                  :id => 'left_photo',
+                  :alt => ''),
+              product.source_url,
+              :target => '_blank'
   end
 
   # Generate html for the comment bubble used in the preview
