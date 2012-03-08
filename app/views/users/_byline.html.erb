@@ -6,9 +6,12 @@
               self.current_user.byline,
               :class  => '',
               :rows   => '2',
-              :style  => self.current_user.byline.present? ?
-                          'width: 286px; margin-top: 4px; display:none;' :
-                          'width: 286px; margin-top: 4px;'%>
+              :style  => "width: 286px; margin-top: 4px; "\
+                         "#{self.current_user.byline.present? ? 
+                              'display:none;' : ''}",
+              "ui-placeholder-color" => "#999999",
+              "ui-text-color" => "#333333",
+              "data-placeholder" => "What's your style?"%>
           
           <%=link_to  'Save', 
                       'javascript:void(0)', 
