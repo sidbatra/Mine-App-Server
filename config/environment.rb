@@ -50,6 +50,9 @@ Rails::Initializer.run do |config|
   config.gem('pismo',
               :version => '0.7.2',
               :lib => false)
+  config.gem('rb-inotify',
+              :version => '0.8.8',
+              :lib => false)
 
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
