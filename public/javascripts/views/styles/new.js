@@ -17,7 +17,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
 
     this.stylesEl       = '#styles';
     this.formEl         = '#new_styles';
-    this.styleEl        = '#style';
+    this.styleEl        = '#style_id';
     this.buttonEl       = '#styles_picked_button';
 
     this.posting        = false;
@@ -78,7 +78,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
       return false;
 
     this.posting  = true;
-    $(this.styleEl).val(this.style.get('title'));
+    $(this.styleEl).val(this.style.get('id'));
 
     return true;
   },

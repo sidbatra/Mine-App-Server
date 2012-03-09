@@ -93,7 +93,8 @@ class User < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
-                    :first_name,:last_name,:access_token,:byline
+                    :first_name,:last_name,:access_token,:byline,
+                    :style_id
 
   #----------------------------------------------------------------------
   # Class methods
