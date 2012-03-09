@@ -14,6 +14,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
     
     this.source         = this.options.source;
     this.styles         = new Denwen.Collections.Styles(this.options.styles);
+    this.styleID        = this.options.style_id; 
 
     this.stylesEl       = '#styles';
     this.formEl         = '#new_styles';
@@ -21,9 +22,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
     this.buttonEl       = '#styles_picked_button';
 
     this.posting        = false;
-    this.style          = null; 
     this.stylePickers   = new Array();
-
 
     $(this.formEl).submit(function(){return self.post();});
 
@@ -49,17 +48,22 @@ Denwen.Views.Styles.New = Backbone.View.extend({
 
       self.stylePickers.push(stylePicker);
     });
+
+    if(this.styleID)
+      this.stylePicked(this.styleID);
   },
 
   // Fired when a style is picked
   //
-  stylePicked: function(style) {
-    var self    = this;
-    this.style  = style;
+  stylePicked: function(styleID) {
+    var self      = this;
+    this.styleID  = styleID;
 
-    $.each(this.stylePickers,function(i,stylePicker){
-      if(self.style.get('id') != stylePicker.model.get('id'))
+    $.each(this.stylePickers,function(i,stylePicker) {
+      if(self.styleID != stylePicker.model.get('id'))
         stylePicker.disable();
+      else
+        stylePicker.enable();
     });
 
     $(this.buttonEl).addClass('btn-primary');
@@ -78,7 +82,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
       return false;
 
     this.posting  = true;
-    $(this.styleEl).val(this.style.get('id'));
+    $(this.styleEl).val(this.styleID);
 
     return true;
   },

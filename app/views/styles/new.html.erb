@@ -56,8 +56,9 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Styles.New({
-          styles  : <%=@styles.to_json(:only => [:id,:title])%>,
-          source  : '<%=@source%>',
-          el      : $('#container')});
+          styles    : <%=@styles.to_json(:only => [:id,:title])%>,
+          style_id  : <%=self.current_user.style_id ? self.current_user.style_id : 0 %>,
+          source    : '<%=@source%>',
+          el        : $('#container')});
   </script>
 <%end%>
