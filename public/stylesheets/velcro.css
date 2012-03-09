@@ -240,7 +240,9 @@
   
 /* ---------- general tweaks to bootstrap */
 
-body { background: #333; }
+body { 
+	background: #333;
+	padding-bottom: 24px; }
 
 .thumbnail { background: white; }
 
