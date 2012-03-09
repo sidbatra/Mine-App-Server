@@ -164,6 +164,11 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => 'admin/suggestions',
                 :only       => [:new,:create,:index,:edit,:update,:destroy]
 
+  map.resources :admin_styles,
+                :as         => 'admin/styles',
+                :controller => 'admin/styles',
+                :only       => [:new,:create,:index,:edit,:update,:destroy]
+
   map.admin '/admin',
                 :controller => 'admin/help',
                 :action     => :show

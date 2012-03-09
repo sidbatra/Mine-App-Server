@@ -1,0 +1,36 @@
+
+<div id="container" class="container well">
+  <legend>
+    Styles - 
+    <%=link_to "Add",new_admin_style_path%>
+  </legend>
+
+  <table width="900">
+    <tr height="20">
+    </tr>
+    <%@styles.each do |style|%>
+      <tr>
+        <td width="200">
+          <%=style.title%>
+        </td>
+        <td width="50">
+          <%=style.weight%>
+        </td>
+        <td width="150">
+          <%=image_tag style.image_url,:width => 100%>
+        </td>
+        <td>
+          <%=link_to "Edit",edit_admin_style_path(style)%>
+        </td>
+        <td>
+          <%=link_to "Delete", {
+                :controller => 'admin/styles',
+                :action => 'destroy',
+                :id => style.id},
+              :method => :delete,
+              :confirm  => "There is no undo on this, sure?"%></h3>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>
