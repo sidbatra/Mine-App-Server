@@ -104,7 +104,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
 
     this.posting  = true;
     var valid     = true;
-    
+
     if($(this.titleEl).val().length < 1) {
       valid = false;
 
@@ -114,6 +114,8 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     else {
       $(this.titleBoxEl).removeClass('error');
     }
+
+    $(this.productIdsEl).val(this.productsPicked.join(","));
 
     this.posting = valid;
 
