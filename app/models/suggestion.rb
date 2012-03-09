@@ -14,7 +14,7 @@ class Suggestion < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessible :title,:image_path,:weight
+  attr_accessible :title,:image_path,:weight,:gender
 
   #----------------------------------------------------------------------
   # Named scopes

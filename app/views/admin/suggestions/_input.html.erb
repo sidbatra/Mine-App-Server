@@ -2,6 +2,7 @@
     <%=f.hidden_field :image_path%>
     Title - <%=f.text_field :title%> <br>
     Weight - <%=f.text_field :weight%> <br>
+    Gender - <%=f.text_field :gender%> (0 Neutral, 1 for Male, 2 for Female)<br>
 
     <div id='suggestion_image'>
       <%if @suggestion.image_path.present?%>

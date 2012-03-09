@@ -38,7 +38,7 @@ class Admin::SuggestionsController < ApplicationController
 
     redirect_to @suggestion.valid? ? 
                   admin_suggestions_path :
-                  new_admin_suggestion_path
+                  edit_admin_suggestion_path(@suggestion)
   end
 
   # Destroy a suggestion
