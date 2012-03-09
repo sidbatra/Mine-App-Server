@@ -8,6 +8,8 @@ class CreateStyles < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :styles, :weight
+
     change_column :suggestions, :image_path, :string, :null => nil
   end
 
