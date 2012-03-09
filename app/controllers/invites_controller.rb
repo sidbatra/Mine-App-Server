@@ -6,7 +6,7 @@ class InvitesController < ApplicationController
   # Display UI for creating invites
   #
   def new
-    @styles = CONFIG[:styles]
+    @styles = Style.by_weight
   end
 
   # Create one or more invites 

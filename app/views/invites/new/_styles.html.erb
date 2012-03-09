@@ -8,10 +8,10 @@
 
       <%@styles.each do |style|%>
         <li class="span2">
-          <a href="#styles-<%=style[:id]%>/friends" class="thumbnail">
-            <%=image_tag style[:image]%>
+          <a href="#styles-<%=style.id%>/friends" class="thumbnail">
+            <%=image_tag style.image_url%>
             <div class="caption">
-                <h5><%=style[:caption]%></h5>
+                <h5><%=style.title%></h5>
             </div>
           </a>
         </li>

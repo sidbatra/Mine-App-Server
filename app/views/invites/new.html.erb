@@ -18,7 +18,7 @@
           source  : '<%=@source%>',
          friends  : <%=self.current_user.ifollowers.to_json(
                             :only => [:fb_user_id])%>,
-          styles  : <%=@styles.to_json%>,
+          styles  : <%=@styles.to_json(:only => [:id,:title])%>,
           el      : $('#container')});
   </script>
 <%end%>
