@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
+  belongs_to :style
   has_many :products,     :dependent => :destroy
   has_many :comments,     :dependent => :destroy
   has_many :actions,      :dependent => :destroy
@@ -19,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :shoppings,    :dependent => :destroy
   has_many :stores,       :through   => :shoppings
   has_one  :setting,      :dependent => :destroy 
-  has_one  :style
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings,
