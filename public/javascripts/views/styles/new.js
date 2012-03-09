@@ -78,7 +78,7 @@ Denwen.Views.Styles.New = Backbone.View.extend({
       return false;
 
     this.posting  = true;
-    $(this.styleEl).val(this.style.get('caption'));
+    $(this.styleEl).val(this.style.get('title'));
 
     return true;
   },

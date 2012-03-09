@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Friends
       @view     = "invites/new"
     when WelcomeFilter::Style
-      @styles   = CONFIG[:styles]
+      @styles   = Style.by_weight
       @view     = "styles/new"
     else
       raise IOError, "Incorrect welcome show ID"
