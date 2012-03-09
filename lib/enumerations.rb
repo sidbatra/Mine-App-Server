@@ -43,6 +43,19 @@ module DW
         self.values_hash[value]
       end
 
+      # Return value for a constant key.
+      #
+      # key - String. Name of the constant whose value
+      #       is to be fetched
+      #
+      # Returns - Object. Value when key is found. nil otherwise.
+      #
+      def self.value_for(key)
+        class_eval key
+      rescue NameError
+        nil
+      end
+
       protected
 
       # Returns a hash that maps the values of constants back to

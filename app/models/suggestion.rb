@@ -22,6 +22,9 @@ class Suggestion < ActiveRecord::Base
   named_scope :by_weight, :order => 'weight DESC'
   named_scope :except, lambda{|ids| {:conditions => 
                         {:id_ne => ids}} if ids.present?}
+  named_scope :for_gender, lambda{|gender| {:conditions =>
+                            ["gender = #{SuggestionGender::Neutral} or "\
+                             "gender = #{SuggestionGender.value_for(gender)}"]}}
 
   #----------------------------------------------------------------------
   # Class methods
