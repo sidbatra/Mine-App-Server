@@ -11,7 +11,7 @@
 						<legend>
 							Pick the items and a name for your set:
 							
-							<div class="control-group" 
+							<div class="control-group" id="name_box" 
                     style="float: right; margin-top: -1px;">
 							
 								<%=f.text_field :name,
@@ -24,7 +24,7 @@
 						    		:name     	=> nil, 
 						    		:style      => 'vertical-align: top', 
 						    		:class 		  => 'btn btn-large',
-						    		:id    		  => 'styles_picked_button',
+						    		:id    		  => 'products_picked_button',
 						    		:disabled	  => true do %>
 								  Post
 								<% end %>
