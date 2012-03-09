@@ -96,35 +96,6 @@ common: &common
         :query_eg: e.g. 'Moleskine notebook'
         :title: Item name
         :endorsement_eg: 
-  :styles:
-    - :id: 1
-      :image: invite/shopaholic.jpg
-      :caption: Shopaholic
-    - :id: 2
-      :image: invite/urbanite.jpg
-      :caption: City Slicker
-    - :id: 3
-      :image: invite/fan.jpg
-      :caption: Sports Fan
-    - :id: 4
-      :image: invite/explorer.jpg
-      :caption: Explorer
-    - :id: 5
-      :image: invite/foodie.jpg
-      :caption: Foodie
-    - :id: 6
-      :image: invite/geek.jpg
-      :caption: Geek
-    - :id: 7
-      :image: invite/connoisseur.jpg
-      :caption: Connoisseur
-    - :id: 8
-      :image: invite/creator.jpg
-      :caption: Creator
-    - :id: 9
-      :image: invite/fitness.jpg
-      :caption: Fitness Freak
-
 
 development: &development
   <<: *common
