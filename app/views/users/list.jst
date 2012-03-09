@@ -1,6 +1,6 @@
 <div class="actions-header">
 	<%if(!count){%>
-		Invite a friend who's…
+		Invite a friend who's a…
 	<%}else{%>
   	Influenced By
 	  <a class="right" 
@@ -25,10 +25,10 @@
           <div class="overflow-fade" 
                 style="width: 10px;"></div>
           <img class="thumb-photo" 
-                src="<%=helpers.imagePath(style.get('image'))%>" />
+                src="<%=style.get('image_url')%>" />
           <div class="caption" 
                 style="padding: 0;">
-            <%=style.get('caption')%>
+            <%=style.get('title')%>
           </div>
         </a>
       </li>
