@@ -13,11 +13,14 @@
 	          <%=image_tag self.current_user.photo_url,
 	              :class => "user-photo"%>
 			 			<strong><%=user_full_name(self.current_user)%></strong><br />
-			 			<span style="color: gray;"><%=Time.zone.now.strftime("%B %d")%></span>
+			 			<span style="color: gray;">
+              <%=Time.zone.now.strftime("%B %d")%>
+            </span>
 			 		</div> 
 			 		
 			 		<div class="above-content">
-			 			I set up your OnCloset with style set to "<span id='friend_byline'></span>"!
+			 			I set up your OnCloset with style set to "
+            <span id='friend_byline'></span>"!
 			 		</div>
 			 		
 			 		<div class="display-content">
@@ -30,7 +33,8 @@
 	            </div>
 	          </strong>
 			 			<span style="color: gray;">
-			 				OnCloset is an online closet for your latest purchases and daily style. It's fun, and free.
+			 				OnCloset is an online closet for your latest purchases and 
+              daily style. It's fun, and free.
 			 			</span>
 			 		</div>
 			 		

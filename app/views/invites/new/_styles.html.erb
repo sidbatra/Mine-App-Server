@@ -8,7 +8,9 @@
 	
 	      <%@styles.each do |style|%>
 	        <li class="span2">
-	          <a href="#styles-<%=style.id%>/friends" class="thumbnail" style="height: 125px;">
+	          <a href="#styles-<%=style.id%>/friends" 
+                class="thumbnail" 
+                style="height: 125px;">
 	            <%=image_tag style.image_url%>
 	            <div class="caption">
 	                <h5><%=style.title%></h5>

@@ -1,4 +1,6 @@
-<%=hidden_field_tag 'collection_product_ids','',:name => 'collection[product_ids]'%>
+<%=hidden_field_tag 'collection_product_ids',
+      '',
+      :name => 'collection[product_ids]'%>
 
 <div class="container picker" id="container">
 	
@@ -9,11 +11,13 @@
 						<legend>
 							Pick the items and a name for your set:
 							
-							<div class="control-group" style="float: right; margin-top: -1px;">
+							<div class="control-group" 
+                    style="float: right; margin-top: -1px;">
 							
 								<%=f.text_field :name,
 										:placeholder => 'Set name',
-										:style       => 'font-size: 15px; height: 27px; line-height: 27px;'%>
+										:style       => "font-size: 15px; height: 27px; "\
+                                    "line-height: 27px;"%>
 								
 								<% content_tag :button,
 						    		:type  		  => :submit,
