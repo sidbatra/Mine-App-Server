@@ -9,25 +9,26 @@
 				<div class="well">
 					<fieldset>
 						<legend>
-							Pick the items and a name for your set:
+							Pick items and a name for your set:
 							
 							<div class="control-group" id="name_box" 
-                    style="float: right; margin-top: -1px;">
-							
-								<%=f.text_field :name,
-										:placeholder => 'Set name',
-										:style       => "font-size: 15px; height: 27px; "\
-                                    "line-height: 27px;"%>
-								
+                    style="float: right; height: 0;">
+														
 								<% content_tag :button,
 						    		:type  		  => :submit,
 						    		:name     	=> nil, 
-						    		:style      => 'vertical-align: top', 
+						    		:style      => 'float: right;', 
 						    		:class 		  => 'btn btn-large',
 						    		:id    		  => 'products_picked_button',
 						    		:disabled	  => true do %>
 								  Post
+
 								<% end %>
+																
+								<%=f.text_field :name,
+										:placeholder => 'Set name',
+										:style       => "font-size: 15px; height: 27px;"\
+                                    "float: right; margin-right: 4px;"%>
 
 							</div> <!-- /control-group -->
 														

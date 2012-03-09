@@ -6,9 +6,10 @@
 			<div class="well styles">
 				<fieldset>
 					<legend>
-						Pick your style:				
+						Pick your style:	
+					
 						<%form_tag '/welcome',
-								:style  => 'float: right; margin-top: -3px;',
+								:style => 'height: 0; float: right;',
 						    :id   => 'new_styles' do |f|%>
 						
 						  <%=hidden_field_tag :id, WelcomeFilter::Style%>
@@ -16,10 +17,12 @@
 				  		<% content_tag :button,
 					    		:type  		=> :submit, 
 					    		:class 		=> 'btn btn-large',
+					    		:style    => 'float: right;',
 					    		:id    		=> 'styles_picked_button',
 					    		:disabled	=> true do %>
 							   Pick your stores <i class='icon-chevron-right'></i>
 							<% end %>
+					
 						<%end%>
 					</legend>
 					<div class="control-group" style="margin-bottom: 0;">

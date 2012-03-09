@@ -299,7 +299,8 @@ body {
 .well { position: relative; }
 
 .well legend {
-	border-bottom: none; }
+	border-bottom: none;
+	margin-bottom: 18px; }
 
 .btn {
 	-webkit-font-smoothing: antialiased;
