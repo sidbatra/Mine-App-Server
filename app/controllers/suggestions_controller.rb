@@ -10,7 +10,8 @@ class SuggestionsController < ApplicationController
 
     @suggestions = Suggestion.select(:id,:title).
                     by_weight.
-                    except(suggestion_ids)
+                    except(suggestion_ids).
+                    limit(10)
 
     @key = KEYS[:user_product_suggestions] % self.current_user.id
 
