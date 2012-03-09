@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309013621) do
+ActiveRecord::Schema.define(:version => 20120309030504) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -297,8 +297,10 @@ ActiveRecord::Schema.define(:version => 20120309013621) do
     t.integer  "weight",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gender",     :default => 0
   end
 
+  add_index "suggestions", ["gender"], :name => "index_suggestions_on_gender"
   add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
 
   create_table "ticker_actions", :force => true do |t|

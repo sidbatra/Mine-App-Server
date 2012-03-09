@@ -8,6 +8,8 @@ class Suggestion < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of :title
+  validates_inclusion_of :gender, :in => SuggestionGender.values
+  
 
   #----------------------------------------------------------------------
   # Attributes

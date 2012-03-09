@@ -76,6 +76,10 @@
   ShoppingSource:
     User: 0
     Product: 1
+  SuggestionGender:
+    Neutral: 0
+    Male: 1
+    Female: 2
   UserShowSource:
     CollectionCreate: 'collection_create'
     CollectionDeleted: 'collection_deleted'
