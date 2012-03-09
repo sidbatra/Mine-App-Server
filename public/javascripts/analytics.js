@@ -553,12 +553,12 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User opens new product page
   //
-  productNewView: function(category_id,category_name,source) {
+  productNewView: function(source,suggestionID,suggestionTitle) {
     mpq.track("Creation Template Opened", 
       {
-      'id'      : category_id,
-      'name'    : category_name,
-      'source'  : source
+      'source'  : source,
+      'Suggestion ID' : 's' + suggestionID,
+      'Suggestion Title' : suggestionTitle
       });
   },
 

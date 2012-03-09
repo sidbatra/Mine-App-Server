@@ -12,7 +12,7 @@ Denwen.Views.Products.New = Backbone.View.extend({
   initialize: function() {
     var self          = this;
     this.source       = this.options.source;
-    this.category     = new Denwen.Models.Category(this.options.categoryJSON);
+    this.suggestion   = new Denwen.Models.Suggestion(this.options.suggestion);
     this.input        = new Denwen.Partials.Products.Input({
                                               el    : $('body'),
                                               mode  : 'new'});
@@ -25,9 +25,9 @@ Denwen.Views.Products.New = Backbone.View.extend({
   setAnalytics: function() {
 
     analytics.productNewView(
-        this.category.get('id'),
-        this.category.get('name'),
-        this.source);
+      this.source,
+      this.suggestion.get('id'),
+      this.suggestion.get('title'));
 
     if(helpers.isOnboarding) 
       analytics.productNewViewOnboarding();
