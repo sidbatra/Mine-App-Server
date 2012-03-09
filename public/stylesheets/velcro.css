@@ -15,7 +15,7 @@
 	opacity: 1;
 	filter: alpha(opacity=100); }
 
-/* ---------- picker: styles + stores */
+/* ---------- picker: styles, stores and items */
 
 .picker .hider {
 	z-index: 2; 
@@ -36,38 +36,27 @@
 	-moz-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0; }
 
-.picker .well.stores li,
-.picker .well.styles li {
+.picker .well li {
 	margin-left: -9px;
 	margin: 0 0 7px 8px; 
 	width: 135px; }
 
-.picker .well.stores .thumbnails,
-.picker .well.styles .thumbnails {
+.picker .well .thumbnails {
 	margin-left: -9px; }
+	
+.picker .well.stores .thumbnail .thumb-photo { height: 125px; }
+.picker .well.styles .thumbnail .thumb-photo { height: 93px; }
 
-.picker .well.stores .thumbnail {
-	height: 157px;
-	text-decoration: none;
-	cursor: pointer; }
-	
-.picker .well.styles .thumbnail {
-	height: 125px;
-	text-decoration: none;
-	cursor: pointer; }
-	
-.picker .well.stores .thumbnail .thumb-photo {
-	height: 125px;
-	overflow: hidden; }
-	
-.picker .well.styles .thumbnail .thumb-photo {
-	height: 93px; 
-	overflow: hidden; }
-
-/*
-.picker .well.stores .thumbnail .thumb-photo img {
-	margin-top: -16px; }
-*/
+.picker .well.items .thumbnail .thumb-photo {
+	display: table-cell;
+	background: white;
+	text-align: center;
+	line-height: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	width: 125px;
+	height: 125px; }
 
 .picker .well .thumbnail .caption {
 	overflow: hidden;
@@ -95,7 +84,6 @@
 .profile .profile-card .profile-card-actions {
 	padding-bottom: 2px;
 	padding-left: 10px;
-/* 	border-left: 1px solid #ddd;  */
 	margin-left: 10px;
 	width: 212px; 
 	height: 100%;
@@ -137,7 +125,6 @@
 	padding-right: 6px;
 	height: 24px;
 	overflow: hidden;
-	text-decoration: none;
 	color: #333;
 	font-size: 11px;
 	line-height: 12px; }
@@ -148,11 +135,10 @@
 	width: 24px;
 	height: 24px; }
 
-.profile .well.items .thumbnail {
-	padding-bottom: 36px; }
-
-.profile .well.items .thumbnail .img-box { /* preserves thumbnail corners */
+.profile .well.items .thumbnail .thumb-photo { 
+/* preserves thumbnail corners; for items bc imgs have variable height */
 	display: table-cell;
+	background: white;
 	text-align: center;
 	line-height: 0;
 	margin: 0;
@@ -170,7 +156,7 @@
 	-moz-border-radius: 4px;
 	border-radius: 4px; }
   
-.profile .well.items li .caption { /* outside of thumbnail */
+.caption.absolute { /* outside of thumbnail, bc imgs have variable height */
 	color: #999;
 	position: absolute; 
 	right: 5px; 
@@ -182,7 +168,7 @@
 	white-space: nowrap;
 	overflow: hidden; }
 
-.profile .well.items li .caption .icon {
+.caption .icon {
 	height: 16px;
 	width: 16px;
 	float: left;
@@ -215,7 +201,6 @@
 	color: #333333; 
 	font-size: 11px;
 	line-height: 1.28;
-	text-decoration: none;
 	height: 32px; }
 	
 .profile .modal .thumbnails .thumbnail .thumb-photo {
@@ -244,13 +229,19 @@ body {
 	background: #333;
 	padding-bottom: 24px; }
 
-.thumbnail { background: white; }
+.thumbnail { 
+	background: white;
+	text-decoration: none !important;
+	cursor: pointer;  }
 
 /* --- thumbnail selected -- */
 
 .thumbnail.selected {
 	background: #08C; 
-	border: 1px solid #08C; }
+	border: 1px solid transparent; }
+
+.thumbnail.selected .caption {
+	background: none !important; }
 
 .thumbnail.selected .caption h5 {
 	color: white; }
@@ -258,6 +249,10 @@ body {
 .thumbnail.selected .caption .overflow-fade {
 	background-position: 0 -150px;
 	width: 40px; }
+	
+.thumbnail.selected .caption .overflow-fade [class^="icon-"],
+.thumbnail.selected .caption .overflow-fade [class*=" icon-"] {
+	display: block; }
 
 /* --- thumbnail disabled --*/
 
@@ -291,10 +286,6 @@ body {
 .thumbnail .caption .overflow-fade [class*=" icon-"] {
 	display: none; }
 
-.thumbnail.selected .caption .overflow-fade [class^="icon-"],
-.thumbnail.selected .caption .overflow-fade [class*=" icon-"] {
-	display: block; }
-
 .navbar .nav > li.disabled:hover > a {
 	float: none;
 	padding: 10px 10px 11px;
@@ -304,6 +295,8 @@ body {
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
 
 .close { font-family: Arial; }
+
+.well { position: relative; }
 
 .well legend {
 	border-bottom: none; }
@@ -547,10 +540,6 @@ footer p { text-align: center; }
 .invite .well.styles .thumbnails {
 	margin-left: -9px; }
 
-.invite .well.styles .thumbnail {
-	height: 125px;
-	text-decoration: none; }
-
 /* ---------- invite 2: friends */
 
 .invite .well.friends .thumbnails {
@@ -564,7 +553,6 @@ footer p { text-align: center; }
 	color: #333333; 
 	font-size: 11px;
 	line-height: 1.28;
-	text-decoration: none;
 	height: 32px; }
 	
 .invite .well.friends .thumbnail .thumb-photo {

@@ -1,33 +1,32 @@
 <div class="well friends" id="friends_container" style="display:none">
+	<fieldset>	
+		<legend>…and their name is…</legend>
+		
+		<div class="control-group">
+		  
+	  	<div style="position: relative; width: 277px;">
 	
-	<legend>…and their name is…</legend>
+	      <%=text_field_tag 'search_box', 
+	          nil, 
+	          :placeholder => '', 
+	          :style => 'width: 267px;'%>
 	
-	<div class="control-group">
+	      <%=link_to  '&times;',
+	          'javascript:void(0)',
+	          :id    => 'x_button',
+	          :class => 'close',
+	          :style => 'position: absolute; top: 5px; right: 8px; display: none;'%>
+	   
+	   	</div>
+	   	
+	   	</div> <!-- /control-group -->
+		
+		  <div id="contacts" style="position: relative;">
+		    <div class="loading large">
+		    </div>
+		  </div> <!-- /contacts -->
 	  
-  	<div style="position: relative; width: 277px;">
-
-      <%=text_field_tag 'search_box', 
-          nil, 
-          :placeholder => '', 
-          :style => 'width: 267px;'%>
-
-      <%=link_to  '&times;',
-          'javascript:void(0)',
-          :id    => 'x_button',
-          :class => 'close',
-          :style => 'position: absolute; top: 5px; right: 8px; display: none;'%>
-   
-   	</div>
-   	
-   	</div> <!-- /control-group -->
-	
-	  <div id="contacts" style="position: relative;">
-	    <div class="loading large">
-	    </div>
-	  </div> <!-- /contacts -->
-  
-
-	
+	</fieldset>		
 </div> <!-- /friends_container.well -->
 
 

@@ -1,29 +1,52 @@
-
 <%=hidden_field_tag 'collection_product_ids','',:name => 'collection[product_ids]'%>
 
-	<div id="container" class="narrow">
+<div class="container picker" id="container">
 	
-		<div class="heading unselectable">
-			Click the items you have on you now.
-		</div>
-	      
-	  <div id="items">
-      <div class="loading" id="loading_spinner">
-        <%=image_tag 'spinner_dark_bg.gif'%>
-      </div>
-		</div> <!-- items -->
-	    
-	</div> <!-- container -->
-	
-	
-	<div id='footer_onboarding'>
+		<div class="hider unselectable">
+			<div style="width: 746px;">
+				<div class="well">
+					<fieldset>
+						<legend>
+							Pick the items and a name for your set:
+							
+							<div class="control-group" style="float: right; margin-top: -1px;">
+							
+								<%=f.text_field :name,
+										:placeholder => 'Set name',
+										:style       => 'font-size: 15px; height: 27px; line-height: 27px;'%>
+								
+								<% content_tag :button,
+						    		:type  		  => :submit,
+						    		:name     	=> nil, 
+						    		:style      => 'vertical-align: top', 
+						    		:class 		  => 'btn btn-large',
+						    		:id    		  => 'styles_picked_button',
+						    		:disabled	  => true do %>
+								  Post
+								<% end %>
+
+							</div> <!-- /control-group -->
+														
+						</legend>
+					</fieldset>
+				</div> <!-- / well legend -->
+			</div> <!-- /746px -->
+		</div> <!-- /hider -->
+
+    <div style="width: 746px; margin: 55px 97px 0;">
+			<div class="well items">
+    		
+    		<div class="control-group">
+			    <ul class="thumbnails" id="items">
+			    	<div class="loading large"></div>
+			    </ul> <!-- /thumbnails -->
+		    </div>
+
+			</div> <!-- /well stores -->
+		</div> <!-- /746px -->
+  
+</div> <!-- /container -->
+
 		
-		<div id='name_text' class='text set_name'>Name this set:</div>
-	
-		<%=f.text_field :name,
-			:class    => 'input'%>
-	
-	  <%=submit_tag '',
-	                :class  => 'done',
-	                :name   => nil%>
-	</div>
+		
+		
