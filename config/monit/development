@@ -12,4 +12,9 @@
   # Processor
   check process processor with pidfile /vol/closet/log/processor.rb_monitor.pid
     start program = "/bin/bash -c 'cd /vol/closet && /bin/bash script/workers start 1 development'" with timeout 30 seconds
-    stop program = "/bin/bash -c 'cd /vol/closet && /bin/bash script/workers stop 1 development'" 
+    stop program  = "/bin/bash -c 'cd /vol/closet && /bin/bash script/workers stop 1 development'" 
+
+  # Clerk
+  check process clerk with pidfile /vol/closet/log/clerk.rb_monitor.pid
+    start program = "/bin/bash -c 'cd /vol/closet && RAILS_ENV=development RAILS_PATH=/vol/closet /usr/local/bin/ruby lib/daemons/clerk_ctl start'" with timeout 30 seconds
+    stop program  = "/bin/bash -c 'cd /vol/closet && RAILS_ENV=development RAILS_PATH=/vol/closet /usr/local/bin/ruby lib/daemons/clerk_ctl stop'" 
