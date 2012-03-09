@@ -1,49 +1,53 @@
 <%=render :partial  => "headers/onboarding"%>
 
+
+
 <div class="container picker" id="container">
- 	<div style="width: 746px; margin: 0 97px;">
-		<div class="well styles">
-			<legend>
-				Pick your closest style: <small>(Don't worry, you can change this at any time)</small>				
-				<%form_tag '/welcome',
-						:style  => 'display:block; float: right; margin-top: -1px;',
-				    :id   => 'new_styles' do |f|%>
+ 	<div class="row">
+		<div class="span6 offset3">
+			<div class="well styles">
+				<legend>
+					Pick your style:				
+					<%form_tag '/welcome',
+							:style  => 'display:block; float: right; margin-top: -1px;',
+					    :id   => 'new_styles' do |f|%>
+					
+					  <%=hidden_field_tag :id, WelcomeFilter::Style%>
+					  <%=hidden_field_tag :style%>
+			  		<% content_tag :button,
+				    		:type  		=> :submit, 
+				    		:class 		=> 'btn btn-large',
+				    		:id    		=> 'styles_picked_button',
+				    		:disabled	=> true do %>
+						   Pick your Stores <i class='icon-chevron-right'></i>
+						<% end %>
+					<%end%>
+				</legend>
+				<div class="control-group">
+				  <ul class="thumbnails" id="styles">
 				
-				  <%=hidden_field_tag :id, WelcomeFilter::Style%>
-				  <%=hidden_field_tag :style%>
-		  		<% content_tag :button,
-			    		:type  		=> :submit, 
-			    		:class 		=> 'btn btn-large',
-			    		:id    		=> 'styles_picked_button',
-			    		:disabled	=> true do %>
-					   Pick your Stores <i class='icon-chevron-right'></i>
-					<% end %>
-				<%end%>
-			</legend>
-			<div class="control-group">
-			  <ul class="thumbnails" id="styles">
-			
-			    <%@styles.each do |style|%>
-			      <li class="span2">
-				      <a class="thumbnail" id="style_picker_<%=style[:id]%>"> 
-				      	<div class="thumb-photo">
-			          	<%=image_tag style[:image]%>
-			          </div>
-			          <div class="caption" style="position: relative;">
-			          	<div class="overflow-fade">
-										<i class="icon-ok icon-white" 
-											style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
-									</div>
-			          	<h5><%=style[:caption]%></h5>
-			          </div>
-				      </a> <!-- /thumbnail -->
-			      </li>
-			    <%end%>
-			
-			  </ul> <!-- /thumbnails -->
-			</div> <!-- /control-group -->
-		</div> <!-- /well styles -->
-	</div> <!-- /746 -->
+				    <%@styles.each do |style|%>
+				      <li class="span2">
+					      <a class="thumbnail" id="style_picker_<%=style[:id]%>"> 
+					      	<div class="thumb-photo">
+				          	<%=image_tag style[:image]%>
+				          </div>
+				          <div class="caption" style="position: relative;">
+				          	<div class="overflow-fade">
+											<i class="icon-ok icon-white" 
+												style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
+										</div>
+				          	<h5><%=style[:caption]%></h5>
+				          </div>
+					      </a> <!-- /thumbnail -->
+				      </li>
+				    <%end%>
+				
+				  </ul> <!-- /thumbnails -->
+				</div> <!-- /control-group -->
+			</div> <!-- /well styles -->
+		</div> <!-- /span6 -->
+	</div> <!-- /row -->
 </div> <!-- /container -->
 
 <%content_for :javascript do%>
