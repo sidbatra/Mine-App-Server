@@ -14,7 +14,8 @@ class InviteDelayedObserver < DelayedObserver
             :fb_user_id => invite.recipient_id,
             :first_name => name_parts.first,
             :last_name  => name_parts[1..-1].join(' '),
-            :byline     => invite.byline})
+            :byline     => invite.style.title,
+            :style_id   => invite.style.id})
 
     if user.valid?
       Following.add(user.id,invite.user_id,FollowingSource::Invite,false)

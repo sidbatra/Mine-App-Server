@@ -89,6 +89,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       finish: function(styleID,name,fbID) {
         self.hideSubViews();
         self.finishView.display(
+          styleID,
           self.styles.get(styleID).get('title'),
           name.replace('+',' '),
           fbID);

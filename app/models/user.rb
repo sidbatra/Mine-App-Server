@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   has_many :actions,      :dependent => :destroy
   has_many :searches,     :dependent => :destroy
   has_many :contacts,     :dependent => :destroy
-  has_many :invites,      :dependent => :destroy
   has_many :collections,  :dependent => :destroy
   has_many :achievements, :dependent => :destroy
   has_many :shoppings,    :dependent => :destroy
@@ -33,6 +32,12 @@ class User < ActiveRecord::Base
   has_many :ifollowers, :through    => :inverse_followings, 
                         :source     => :user, 
                         :conditions => 'is_active = 1'
+
+  has_many :invites,      :dependent => :destroy
+  has_many :received_invites, :class_name   => "Invite",
+                              :foreign_key  => "recipient_id",
+                              :primary_key  => "fb_user_id",
+                              :dependent => :destroy
 
   #----------------------------------------------------------------------
   # Validations

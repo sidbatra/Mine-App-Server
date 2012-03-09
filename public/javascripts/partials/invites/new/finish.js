@@ -14,9 +14,10 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   initialize: function() {
     this.loadClass = "load";
 
-    this.name   = "";
-    this.fbID   = "";
-    this.byline = "";
+    this.name     = "";
+    this.fbID     = "";
+    this.byline   = "";
+    this.styleID  = null;
 
     this.largeNameEl    = '#friend_name_large';
     this.smallNameEl    = '#friend_name_small';
@@ -36,12 +37,13 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
 
   // Fired just before the view is coming into focus
   //
-  display: function(byline,name,fbID) {
+  display: function(styleID,byline,name,fbID) {
     this.stopLoading();
 
-    this.name   = name;
-    this.fbID   = fbID;
-    this.byline = byline;
+    this.name     = name;
+    this.fbID     = fbID;
+    this.byline   = byline;
+    this.styleID  = styleID;
 
     var firstName = name.split(' ')[0];
 
@@ -117,7 +119,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
                       recipient_id: this.fbID,
                       platform: Denwen.InvitePlatform.Facebook,
                       recipient_name: this.name,
-                      byline: this.byline});
+                      style_id: this.styleID});
 
     invite.save({},{
       success: function(model) {self.inviteCreated()},
