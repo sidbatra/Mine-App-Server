@@ -1,3 +1,8 @@
+require 'config/deploy/staging'
+require 'config/deploy/production'
+require 'config/deploy/deploy'
+require 'config/deploy/gum'
+
 
 set :application,   "closet"
 
@@ -15,100 +20,7 @@ ssh_options[:paranoid] = false
 
 
 
-task :staging do 
-  role(:web)          { ENV['web_servers'].split(',') }
-  role(:worker)       { ENV['proc_servers'].split(',') }
-  role(:cron)         { ENV['cron_servers'].split(',') }
-  #role :search,       "ec2-174-129-148-194.compute-1.amazonaws.com",
-  #                      :no_release => true
-  set :total_workers, 3
-  set :environment,   "staging"
-  set :branch,        "develop"
-end
 
-
-task :production do
-  role(:web)          { ENV['web_servers'].split(',') }
-  role(:worker)       { ENV['proc_servers'].split(',') }
-  role(:cron)         { ENV['cron_servers'].split(',') }
-  #role :search,       "ec2-107-22-94-58.compute-1.amazonaws.com",
-  #                      :no_release => true
-  set :total_workers, 3
-  set :environment,   "production"
-  set :branch,        "master"
-end
-
-namespace :deploy do
-
-  desc 'Setup the servers for a first time release' 
-  task :install do 
-    system "cap #{environment}  assets:remote"
-
-    system "cap #{environment}  permissions:remote"
-
-    system "cap #{environment}  deploy:setup"
-    system "cap #{environment}  deploy:update"
-
-    #system "cap #{environment}  misc:directories"
-
-    system "cap #{environment}  permissions:setup"
-
-    system "cap #{environment}  db:config" 
-
-    system "cap #{environment}  gems:install"
-
-
-    if environment == "staging"
-      #system "cap #{environment}  db:populate" 
-      #system "cap #{environment}  db:migrate"
-    else
-      system "cap #{environment}  db:migrate"
-    end
-
-
-    system "cap #{environment}  apache:config"
-    system "cap #{environment}  apache:start"
-    #system "cap #{environment}  search:start"
-
-    system "cap #{environment}  workers:start"
-
-    system "cap #{environment}  logrotate:install"
-    system "cap #{environment}  cron:update_web_proc"
-    system "cap #{environment}  cron:update_cron"
-
-    system "cap #{environment} monit:config_web"
-    system "cap #{environment} monit:config_worker"
-    system "cap #{environment} monit:restart"
-  end
-
-   
-  desc 'A delta release across all the servers'
-  task :release do 
-    system "cap #{environment}  assets:remote"
-
-    system "cap #{environment}  deploy:update"
-
-    system "cap #{environment}  db:config" 
-
-    system "cap #{environment}  gems:install"
-
-    system "cap #{environment}  db:migrate"
-
-    system "cap #{environment}  passenger:restart"
-    system "cap #{environment}  workers:restart"
-
-    #system "cap #{environment}  search:index"
-    system "cap #{environment}  cache:clear"
-
-    system "cap #{environment}  cron:update_web_proc"
-    system "cap #{environment}  cron:update_cron"
-
-    system "cap #{environment} monit:config_web"
-    system "cap #{environment} monit:config_worker"
-    system "cap #{environment} monit:restart"
-  end
-
-end
 
 
 namespace :db do 
