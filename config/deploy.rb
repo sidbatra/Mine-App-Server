@@ -4,6 +4,9 @@ require 'config/deploy/helpers'
 require 'config/deploy/deploy'
 require 'config/deploy/db'
 require 'config/deploy/sphinx'
+require 'config/deploy/passenger'
+require 'config/deploy/apache'
+require 'config/deploy/monit'
 require 'config/deploy/gum'
 
 
@@ -21,75 +24,6 @@ default_run_options[:pty]   = true
 ssh_options[:forward_agent] = true
 ssh_options[:paranoid] = false
 
-
-
-
-
-
-
-
-
-namespace :passenger do
-
-  desc 'Restart passenger by touching restart.txt'
-  task :restart, :roles => :web, :except => {:no_release => true} do
-     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
-
-end
-
-
-namespace :apache do
-
-  desc 'Install the apache virtual host configuration file'
-  task :config, :roles => :web do
-    run "cd #{current_path} && "\
-        "sudo cp config/apache/#{environment} "\
-        "/etc/apache2/sites-available/#{application}"
-    run "sudo a2ensite #{application}"
-  end
-
-  desc 'Start the apache server for the first time'
-  task :start, :roles => :web do
-    run "sudo /etc/init.d/apache2 start"
-  end
-
-  desc 'Restart the apache server'
-  task :restart, :roles => :web do
-    run "sudo /etc/init.d/apache2 restart"
-  end
-
-end
-
-
-namespace :monit do
-  
-  desc 'Install the monit configuration file for web servers'
-  task :config_web, :roles => :web do
-    run "sudo cp #{current_path}/config/monit/#{environment}_web /etc/monit.d/"
-  end
-
-  
-  desc 'Install the monit configuration file for proc servers'
-  task :config_worker, :roles => :worker do
-    run "sudo cp #{current_path}/config/monit/#{environment}_proc /etc/monit.d/"
-  end
-
-  desc 'Start the monit daemon'
-  task :start, :roles => [:web,:worker] do
-    run "sudo /etc/init.d/monit start"
-  end
-
-  desc 'Restart the monit daemon'
-  task :restart, :roles => [:web,:worker] do
-    run "sudo /etc/init.d/monit restart"
-  end
-
-  desc 'Stop the monit daemon'
-  task :stop, :roles => [:web,:worker] do
-    run "sudo /etc/init.d/monit stop"
-  end
-end
 
 namespace :logrotate do
   
@@ -189,14 +123,4 @@ namespace :cron do
   end
 
 end
-
-namespace :misc do
-
-  desc 'Setup the diretory structure of the release directory'
-  task :directories do
-    run "mkdir #{shared_path}/sphinx"
-  end
-
-end
-
 
