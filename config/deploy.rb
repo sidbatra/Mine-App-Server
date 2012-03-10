@@ -1,6 +1,9 @@
 require 'config/deploy/staging'
 require 'config/deploy/production'
+require 'config/deploy/helpers'
 require 'config/deploy/deploy'
+require 'config/deploy/db'
+require 'config/deploy/sphinx'
 require 'config/deploy/gum'
 
 
@@ -23,42 +26,7 @@ ssh_options[:paranoid] = false
 
 
 
-namespace :db do 
 
-  desc 'Setup database.yml'
-  task :config, :role => [:web,:worker,:cron] do
-    run "ln -s "\
-        "#{current_path}/config/database/#{environment}.yml "\
-        "#{current_path}/config/database.yml"
-  end
-
-  desc 'Create database, load scehma and populate database from sql dump'
-  task :populate do
-    run "cd #{current_path} && rake db:create RAILS_ENV=#{environment}"
-    run "cd #{current_path} && rake db:schema:load RAILS_ENV=#{environment}"
-  end
-
-  desc 'Run a migration'
-  task :migrate do
-    system "cd #{Dir.pwd} && "\
-        "rake db:migrate RAILS_ENV=#{environment}" 
-  end
-
-end
-
-namespace :search do 
-  
-  desc 'Start the sphinx machines'
-  task :start, :roles => :search do
-    run "cd #{current_path} && rake ts:index RAILS_ENV=#{environment}"
-    run "cd #{current_path} && rake ts:start RAILS_ENV=#{environment}"
-  end
-
-  desc 'Reindex the sphinx machines'
-  task :index, :roles => :search do
-    run "cd #{current_path} && rake ts:index RAILS_ENV=#{environment}"
-  end
-end
 
 
 namespace :passenger do
@@ -179,10 +147,6 @@ end
 
 
 namespace :assets do
-
-  desc 'Install local assets on the web and worker servers'
-  task :local, :roles => [:web,:worker] do
-  end
 
   desc 'Install remote assets on to S3'
   task :remote do
