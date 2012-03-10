@@ -1,9 +1,9 @@
 
 # Hardcode environment variables representing roles for debugging
 #
-ENV['web_servers'] = "ec2-23-20-139-220.compute-1.amazonaws.com"
-ENV['proc_servers'] = "ec2-107-21-161-38.compute-1.amazonaws.com"
-ENV['cron_servers'] = "ec2-107-20-40-7.compute-1.amazonaws.com"
+#ENV['web_servers'] = "ec2-23-20-139-220.compute-1.amazonaws.com"
+#ENV['proc_servers'] = "ec2-107-21-161-38.compute-1.amazonaws.com"
+#ENV['cron_servers'] = "ec2-107-20-40-7.compute-1.amazonaws.com"
 
 
 Capistrano::Configuration.instance(:must_exist).load do
