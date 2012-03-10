@@ -2,19 +2,26 @@
 
 # Automatically deploy releases when a change is detected
 #
-# RAILS_PATH=/vol/staging RAILS_ENV=staging 
-# BOT_PASSWORD=*** lib/daemons/deploy_ctl start
+# RAILS_PATH : String. Location of the rails app.
+# RAILS_ENV : String. Deployment environment.
+# BOT_PASSWORD : String. Password for the chat bot.
+#
+# Usage:
+# RAILS_PATH=/vol/staging RAILS_ENV=staging BOT_PASSWORD=*** lib/daemons/deploy_ctl start
+#
 
 require 'rubygems'
 require 'xmpp4r-simple'
 
+bot_email = "deusexmachinaneo@gmail.com"
+admin_email = "siddharthabatra@gmail.com"
 
 $running = true
 Signal.trap("TERM") do 
   $running = false
 end
 
-jabber = Jabber::Simple.new("deusexmachinaneo@gmail.com",ENV['BOT_PASSWORD'])
+jabber = Jabber::Simple.new(bot_email,ENV['BOT_PASSWORD'])
 logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/deploy.rb.log"))
 
 while($running) do
@@ -35,14 +42,14 @@ while($running) do
       logger.info "Released at - #{Time.now}"
 
       jabber.deliver(
-        "siddharthabatra@gmail.com",
+        admin_email,
         "#{ENV['RAILS_ENV']} #{revision_sha[0..9]}")
     end
   rescue => ex
     logger.info "Exception at #{Time.now} - " + ex.message 
 
       jabber.deliver(
-        "siddharthabatra@gmail.com",
+        admin_email,
         "#{ENV['RAILS_ENV']} FAILED")
   end
 
