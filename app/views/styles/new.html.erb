@@ -6,7 +6,11 @@
 			<div class="well styles">
 				<fieldset>
 					<legend>
-						Pick your style:	
+            <%if @sender%>
+              <%=@sender.first_name%> picked your style: 
+            <%else%>
+              Pick your style:	
+            <%end%>
 					
 						<%form_tag '/welcome',
 								:style => 'height: 0; float: right;',
