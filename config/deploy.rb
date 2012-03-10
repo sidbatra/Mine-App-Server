@@ -12,7 +12,8 @@ require 'config/deploy/cache'
 require 'config/deploy/workers'
 require 'config/deploy/gems'
 require 'config/deploy/assets'
-require 'config/deploy/gum'
+require 'config/deploy/permissions'
+require 'config/deploy/cron'
 
 
 set :application,   "closet"
@@ -40,35 +41,6 @@ ssh_options[:paranoid] = false
 
 
 
-namespace :permissions do
-
-  desc 'Setup remote permissions for ssh'
-  task :remote do
-    run "rm .ssh/known_hosts"
-  end
-  
-  desc 'Setup proper permissions for new files'
-  task :setup, :roles => [:web,:worker,:cron] do
-    run "sudo touch #{current_path}/log/#{environment}.log"
-    run "sudo chown -R manager:manager #{current_path}/log/#{environment}.log"
-  end
-
-end
 
 
-namespace :cron do
-  
-  desc 'Update cron on web and proc servers'
-  task :update_web_proc, :roles => [:web,:worker] do
-    run "cd #{current_path} && RAILS_ENV=#{environment} "\
-        "whenever -w -f config/whenever/web_proc.rb"
-  end
-
-  desc 'Update cron on cron servers'
-  task :update_cron, :roles => [:cron] do
-    run "cd #{current_path} && RAILS_ENV=#{environment} "\
-        "whenever -w -f config/whenever/cron.rb"
-  end
-
-end
 
