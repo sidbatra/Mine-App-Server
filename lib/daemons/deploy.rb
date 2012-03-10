@@ -15,13 +15,21 @@ while($running) do
 
   begin 
     if `cd #{ENV['RAILS_PATH']} && git pull`.chomp != "Already up-to-date."
+
+      revision_sha = `git rev-parse HEAD`.chomp
+      log_file     = "log/#{revision_sha}.log"
+
       `cd #{ENV['RAILS_PATH']} && sudo RAILS_ENV=#{ENV['RAILS_ENV']} rake gems:install`
-      `cd #{ENV['RAILS_PATH']} && rake deploy:release env=#{ENV['RAILS_ENV']}`
+      `cd #{ENV['RAILS_PATH']} && rake deploy:release env=#{ENV['RAILS_ENV']} &> #{log_file}`
+
+      if `cat #{log_file}`.scan(/error|fail|timeout/i).present?
+        raise IOError, "Failed release"
+      end
+
       logger.info "Released at - #{Time.now}"
     end
   rescue => ex
     logger.info "Exception at #{Time.now} - " + ex.message 
-    LoggedException.add(__FILE__,__method__,ex)
   end
 
   sleep 60
