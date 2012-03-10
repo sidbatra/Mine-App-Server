@@ -4,7 +4,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Deploy codebase onto an empty server"
     task :install do 
-      assets.remote
+      #assets.remote
 
       permissions.remote
 
@@ -17,7 +17,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       gems.install
 
-      db.migrate
+      #db.migrate
 
       apache.config
       apache.start
