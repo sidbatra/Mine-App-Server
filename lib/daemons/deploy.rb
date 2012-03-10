@@ -14,7 +14,7 @@ logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/deploy.rb.log"))
 while($running) do
 
   begin 
-    unless `cd #{ENV['RAILS_PATH']} && git pull`.chomp != "Already up-to-date."
+    if `cd #{ENV['RAILS_PATH']} && git pull`.chomp != "Already up-to-date."
 
       revision_sha = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
       log_file     = "#{ENV['RAILS_PATH']}/log/#{revision_sha}.log"
