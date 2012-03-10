@@ -7,6 +7,11 @@ require 'config/deploy/sphinx'
 require 'config/deploy/passenger'
 require 'config/deploy/apache'
 require 'config/deploy/monit'
+require 'config/deploy/logrotate'
+require 'config/deploy/cache'
+require 'config/deploy/workers'
+require 'config/deploy/gems'
+require 'config/deploy/assets'
 require 'config/deploy/gum'
 
 
@@ -25,71 +30,14 @@ ssh_options[:forward_agent] = true
 ssh_options[:paranoid] = false
 
 
-namespace :logrotate do
-  
-  desc 'Install logrotate config'
-  task :install, :roles => [:web,:worker,:cron] do
-    run "sudo cp #{current_path}/config/logrotate/rails /etc/logrotate.d"
-    run "sudo chown root:root /etc/logrotate.d/rails"
-    run "sudo chmod 644 /etc/logrotate.d/rails"
-  end
-end
 
 
-namespace :cache do
-
-  desc 'Clear the cache'
-  task :clear do
-    system "cd #{Dir.pwd} && "\
-            "rake cache:clear RAILS_ENV=#{environment}"
-  end
-
-end
 
 
-namespace :workers do
-  
-  desc 'Start workers on the worker server'
-  task :start, :roles => :worker do
-    run "cd #{current_path} && "\
-        "bash script/workers start #{total_workers} #{environment}"
-  end
-
-  desc 'Restart workers on the worker server'
-  task :restart, :roles => :worker do
-    run "cd #{current_path} && "\
-        "bash script/workers restart #{total_workers} #{environment}"
-  end
-
-  desc 'Stop workers on the worker server'
-  task :stop, :roles => :worker do
-    run "cd #{current_path} && "\
-        "bash script/workers stop #{total_workers} #{environment}"
-  end
-
-end
 
 
-namespace :gems do
-
-  desc 'Install required gems on the web and worker servers'
-  task :install, :roles => [:web,:worker,:cron] do
-    run "cd #{current_path} && sudo rake gems:install RAILS_ENV=#{environment}" 
-  end
-
-end
 
 
-namespace :assets do
-
-  desc 'Install remote assets on to S3'
-  task :remote do
-
-    system "cd #{Dir.pwd} && RAILS_ENV=#{environment} "\
-            "rake assets:deploy" 
-  end
-
-end
 
 
 namespace :permissions do
