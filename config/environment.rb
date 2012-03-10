@@ -53,6 +53,12 @@ Rails::Initializer.run do |config|
   config.gem('rb-inotify',
               :version => '0.8.8',
               :lib => false)
+  config.gem('xmpp4r',
+              :version => '0.5',
+              :lib => false)
+  config.gem('xmpp4r-simple',
+              :version => '0.8.8',
+              :lib => false)
 
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
