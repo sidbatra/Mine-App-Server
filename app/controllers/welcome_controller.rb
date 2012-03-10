@@ -18,6 +18,7 @@ class WelcomeController < ApplicationController
       @view     = "invites/new"
     when WelcomeFilter::Style
       @styles   = Style.by_weight
+      @sender   = self.current_user.received_invites.last.user rescue nil
       @view     = "styles/new"
     else
       raise IOError, "Incorrect welcome show ID"
