@@ -40,4 +40,6 @@ stylesheets:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/velcro.css
   home:
+    - public/stylesheets/bootstrap.css
+    - public/stylesheets/velcro.css
     - public/stylesheets/home.css
