@@ -19,12 +19,12 @@ class CollectionPresenter < BasePresenter
   #
   def edit_link
     if h.logged_in? && h.current_user.id == collection.user_id
-      h.link_to "Edit",
+      h.link_to "<i class='icon-pencil'></i> Edit",
                 edit_collection_path(
                   collection.user.handle,
                   collection.handle,
                   :src => 'collection'),
-                :class => 'edit_cccccc_14'
+                :class => 'btn'
     end
   end
 
@@ -35,7 +35,7 @@ class CollectionPresenter < BasePresenter
       h.link_to "Delete",
                 {:action => 'destroy',:id => collection.id},
                 :method => :delete,
-                :class => '',
+                :class => 'btn',
                 :confirm  => "Are you sure you want to delete this set?"
     end
   end
@@ -45,9 +45,9 @@ class CollectionPresenter < BasePresenter
   def next(next_collection,user)
 	    next_collection ? 
         h.link_to(
-            '',
+            "<i class='icon-chevron-right'></i>",
             collection_path(user.handle,next_collection.handle,:src => 'next'),
-            :class => 'next') : ''
+            :class => 'btn') : ''
   end
 
   # Link to the prev collection 
@@ -55,9 +55,9 @@ class CollectionPresenter < BasePresenter
   def prev(prev_collection,user)
 	    prev_collection ? 
         h.link_to(
-            '',
+            "<i class='icon-chevron-left'></i>",
             collection_path(user.handle,prev_collection.handle,:src => 'previous'),
-            :class => 'previous') : ''
+            :class => 'btn') : ''
   end
 
   # Link to go get back to the source url

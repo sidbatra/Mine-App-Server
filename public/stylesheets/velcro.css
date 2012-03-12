@@ -1,4 +1,4 @@
-/* sets */
+/* sets: list view */
 
 .sets .items {
 	margin: 0; }
@@ -20,8 +20,36 @@
 .sets .btn-group.right {
 	display: none;
 	position: absolute;
-	top: 10px;
-	right: 10px; }
+	top: 12px;
+	right: 12px; }
+
+/* sets: set view */
+
+.set .items {
+	margin: 0; }
+
+.set .items {
+	margin: 0; }
+	
+.set .items:before, .set .items:after {
+  display: table;
+  content: ""; }
+
+.set .items:after {
+  clear: both; }
+  
+.set .items li {
+	float: left; 
+	list-style:none; }
+
+.set .items .thumb-photo {
+	display: table-cell;
+	background: white;
+	text-align: center;
+	line-height: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle; }
 
 
 /* ---------- onboarding indicators */
