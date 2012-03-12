@@ -11,14 +11,16 @@ namespace :deploy do
     task :install do |e,args|
       setup_environment_variables
       connect_to_aws
-      load_instances("0")
+      
+      unless load_instances("0").zero?
 
-      system("cap #{@environment} deploy:install")
+        system("cap #{@environment} deploy:install") 
 
-      Instance.update_all(
-        @web_instances + @proc_instances + @cron_instances,
-        :tags => {:installed => '1'})
-    end
+        Instance.update_all(
+          @web_instances + @proc_instances + @cron_instances,
+          :tags => {:installed => '1'})
+      end
+    end # install
 
     desc "Update deployed copy of app"
     task :release do |e,args|
@@ -27,7 +29,7 @@ namespace :deploy do
       load_instances("1")
 
       system("cap #{@environment} deploy:release")
-    end
+    end #release
 
 
     # Validate and setup environment variables
@@ -56,7 +58,12 @@ namespace :deploy do
       AWSConnection.establish(config[:aws_access_id],config[:aws_secret_key])
     end
 
-    # Populate instances and populate environment variables
+    # Populate environment variables and module variables for instances.
+    #
+    # installed - String. ("0" or "1") signifying uninstalled or 
+    #               installed instances. Default "1".
+    #
+    # returns - Integer. Total number of instances loaded into variables.
     #
     def self.load_instances(installed="1")
       @web_instances  = Instance.all(
@@ -83,6 +90,8 @@ namespace :deploy do
       ENV['web_servers']  = @web_instances.map(&:dnsName).join(',')
       ENV['proc_servers'] = @proc_instances.map(&:dnsName).join(',')
       ENV['cron_servers'] = @cron_instances.map(&:dnsName).join(',')
+
+      [@web_instances,@proc_instances,@cron_instances].map(&:length).sum
     end
   end #deploy module
 end #deploy namespace
