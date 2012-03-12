@@ -12,6 +12,7 @@
 
 require 'rubygems'
 require 'xmpp4r-simple'
+require ENV['RAILS_PATH'] + '/lib/aws_management'
 
 bot_email = "deusexmachinaneo@gmail.com"
 admin_email = "siddharthabatra@gmail.com"
@@ -23,6 +24,16 @@ end
 
 jabber = Jabber::Simple.new(bot_email,ENV['BOT_PASSWORD'])
 logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/deploy.rb.log"))
+config = YAML.load_file(File.join(
+                          ENV['RAILS_PATH'],
+                          'config',
+                          'config.yml'))[ENV['RAILS_ENV']]
+
+DW::AWSManagement::AWSConnection.establish(
+                                  config[:aws_access_id],
+                                  config[:aws_secret_key])
+
+
 
 while($running) do
 
@@ -55,8 +66,47 @@ while($running) do
 
     jabber.deliver(
       admin_email,
-      "#{ENV['RAILS_ENV']} FAILED")
+      "#{ENV['RAILS_ENV']} release FAILED")
   end
 
+
+  begin
+    unless DW::AWSManagement::Instance.all(
+            :state => :running,
+            :tags => {
+              :installed => "0",
+              :environment => ENV['RAILS_ENV']}).count.zero?
+
+      revision_sha = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
+      log_file     = "#{ENV['RAILS_PATH']}/log/#{revision_sha}_installation.log"
+
+      `cd #{ENV['RAILS_PATH']} && \
+        sudo RAILS_ENV=#{ENV['RAILS_ENV']} \
+        rake gems:install 1>&2 2> #{log_file}`
+
+      `cd #{ENV['RAILS_PATH']} && \
+        rake deploy:install env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
+
+      if `cat #{log_file}`.scan(/exception|error|fail|timeout/i).present?
+        raise IOError, "Failed installation"
+      end
+
+      logger.info "Installed at - #{Time.now}"
+
+      jabber.deliver(
+        admin_email,
+        "#{ENV['RAILS_ENV']} installed #{revision_sha[0..9]}")
+    end
+
+  rescue => ex
+    logger.info "Exception installing at #{Time.now} - " + ex.message 
+
+    jabber.deliver(
+      admin_email,
+      "#{ENV['RAILS_ENV']} installation FAILED")
+  end
+
+
   sleep 30
-end
+end #while running
+
