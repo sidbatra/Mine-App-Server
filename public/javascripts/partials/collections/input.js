@@ -79,7 +79,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
   addToProductsPicked: function(productID) {
     this.productsPicked.push(productID);
 
-    if(this.productsPicked.length == 2) { 
+    if(this.productsPicked.length == CONFIG['minimum_products_in_collection']) { 
       $(this.buttonEl).addClass('btn-primary');
       $(this.buttonEl).removeAttr('disabled'); 
     }
@@ -90,7 +90,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
   removeFromProductsPicked: function(productID) {
     this.productsPicked = _.without(this.productsPicked,productID);
 
-    if(this.productsPicked.length < 2) { 
+    if(this.productsPicked.length < CONFIG['minimum_products_in_collection']) { 
       $(this.buttonEl).removeClass('btn-primary');
       $(this.buttonEl).attr('disabled',true); 
     }

@@ -5,6 +5,7 @@
 // 
 CONFIG = {
 'multi_query_threshold' : 5,
+'minimum_products_in_collection' : 2,
 'fb_extended_permissions' : "publish_stream",
 'one_word_query_msg' : "<strong>Tip:</strong> Including brands and colors helps you find your item.",
 'products_threshold' : 5,
