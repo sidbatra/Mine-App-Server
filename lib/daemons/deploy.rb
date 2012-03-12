@@ -73,6 +73,7 @@ while($running) do
   begin
     unless DW::AWSManagement::Instance.all(
             :state => :running,
+            :age => 5.minutes,
             :tags => {
               :installed => "0",
               :environment => ENV['RAILS_ENV']}).count.zero?
