@@ -34,23 +34,8 @@
     		<div class="control-group">
 					<div class="thumbnail" 
                 style="background: white; position: relative; padding-top: 40px;">
-			            
-			      <%if logged_in?%>
-							<div class="btn-group" 
-                    style="position: absolute; top: 6px; 
-                            right: 6px;">
-						    <%unless is_current_user(@collection.user)%>
-									<a id="like_actionable" href="javascript:void(0)" class="btn">
-						      	Like
-						     	</a>
-						    <%else%>  
-						      <%=@collection_presenter.edit_link%>
-      						<%=@collection_presenter.destroy_link%>
-						    <%end%>
-							</div>
-						<%end%> <!-- /edit + like -->
-						
-						<div style="margin-left: 0; position: absolute; top: 6px; left: 6px; width: 400px;">
+			       		       
+			      <div style="margin-left: 0; position: absolute; top: 6px; left: 6px; width: 400px;">
 						
 							<%=@collection_presenter.breadcrumb(
 				            @user_presenter.closet_title(true),
@@ -66,6 +51,22 @@
 					    <%end%> <!-- /previous + next -->	 
 					    
 				    </div> <!-- /all navigation -->
+			            
+			      <%if logged_in?%>
+							<div class="btn-group" 
+                    style="position: absolute; top: 6px; 
+                            right: 6px;">
+						    <%unless is_current_user(@collection.user)%>
+									<a id="like_actionable" href="javascript:void(0)" class="btn">
+						      	Like
+						     	</a>
+						    <%else%>  
+						      <%=@collection_presenter.edit_link%>
+      						<%=@collection_presenter.destroy_link%>
+						    <%end%>
+							</div>
+						<%end%> <!-- /edit + like -->
+
 
 				  	<ul class="items">
 					   	<%@collection.products.each do |product|%>

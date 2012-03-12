@@ -51,7 +51,6 @@
 	padding: 0;
 	vertical-align: middle; }
 
-
 /* ---------- onboarding indicators */
 
 .brand.step.indicator {
@@ -287,6 +286,10 @@ body {
 	background: white;
 	text-decoration: none !important;
 	cursor: pointer; }
+
+/* multi btn-group on single line fix */	
+.btn-group::after {
+	clear: none; }
 
 /* --- thumbnail selected -- */
 
