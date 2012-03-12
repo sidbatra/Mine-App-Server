@@ -128,6 +128,16 @@ module DW
                       end
         end
 
+        if options[:age]
+          current_time = Time.now.utc
+          instances = instances.select do |instance|
+                        next unless current_time - 
+                                      Time.parse(instance.launchTime) >
+                                      options[:age]
+                        true
+                      end
+        end
+
         if tags_are_valid? options[:tags]
 
           instances = instances.select do |instance|
