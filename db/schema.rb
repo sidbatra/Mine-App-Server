@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312201850) do
+ActiveRecord::Schema.define(:version => 20120312232029) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
