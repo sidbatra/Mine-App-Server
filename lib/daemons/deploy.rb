@@ -27,13 +27,17 @@ logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/deploy.rb.log"))
 while($running) do
 
   begin 
-    if `cd #{ENV['RAILS_PATH']} && git pull`.chomp != "Already up-to-date."
+    unless `cd #{ENV['RAILS_PATH']} && git pull`.match(/^Already up-to-date.$/)
 
       revision_sha = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
       log_file     = "#{ENV['RAILS_PATH']}/log/#{revision_sha}.log"
 
-      `cd #{ENV['RAILS_PATH']} && sudo RAILS_ENV=#{ENV['RAILS_ENV']} rake gems:install 1>&2 2> #{log_file}`
-      `cd #{ENV['RAILS_PATH']} && rake deploy:release env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
+      `cd #{ENV['RAILS_PATH']} && \
+        sudo RAILS_ENV=#{ENV['RAILS_ENV']} \
+        rake gems:install 1>&2 2> #{log_file}`
+
+      `cd #{ENV['RAILS_PATH']} && \
+        rake deploy:release env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
 
       if `cat #{log_file}`.scan(/exception|error|fail|timeout/i).present?
         raise IOError, "Failed release"
@@ -45,13 +49,14 @@ while($running) do
         admin_email,
         "#{ENV['RAILS_ENV']} #{revision_sha[0..9]}")
     end
+
   rescue => ex
     logger.info "Exception at #{Time.now} - " + ex.message 
 
-      jabber.deliver(
-        admin_email,
-        "#{ENV['RAILS_ENV']} FAILED")
+    jabber.deliver(
+      admin_email,
+      "#{ENV['RAILS_ENV']} FAILED")
   end
 
-  sleep 60
+  sleep 30
 end
