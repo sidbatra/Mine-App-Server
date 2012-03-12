@@ -1,33 +1,24 @@
-<%if(collections.size()){%>
+<div class="sets">
 
-  <%if(helpers.isCurrentUser(ownerID)){%>
-    <div class='new_collection'>
-      <a href='/collections/new?src=user' class='update'></a>
-    </div>
-  <%}%>
+	<%if(collections.size()){%>
+	
+	  <%if(helpers.isCurrentUser(ownerID)){%>
+	    <a class="btn btn-large btn-primary" style="margin-bottom: 16px;" href='/collections/new?src=user'>
+	    	<i class="icon-plus icon-white"></i> New set
+	   	</a>
+	  <%}%>
+	
+		<ul class="thumbnails" style="margin-left: -12px;">
+		  <%var index=0;%>
+		  <%collections.each(function(collection){%>
+		    <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
+		  <%});%>
+	  </ul>
+	
+	<%}else{%>
+	   <a href="/collections/new?src=start">
+	   	<i class="icon-plus icon-white"></i> New set
+	   </a>
+	<%}%>
 
-  <%var index=0;%>
-  <%collections.each(function(collection){%>
-    <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
-  <%});%>
-
-<%}else{%>
-
-  <div class='new_collection on_now_placeholder'>
-    Which of your items are on you now?
-    <br />
-
-    <%if(productsLeft > 0){%>
-      <span class='subtitle trans_80'>
-      	Add <span class='red'><%=productsLeft%></span> more <%=productsLeft == 1 ? 'item' : 'items'%>
-      	to start using this feature.
-      </span>
-    <%}else{%>
-      <a href='/collections/new?src=start' class='start'></a>
-    <%}%>
-  </div>
-
-  <img class='on_now_placeholder unselectable' 
-        src='<%=helpers.imagePath('on_now_placeholder.png')%>' />
-
-<%}%>
+</div>

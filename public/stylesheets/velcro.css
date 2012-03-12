@@ -1,3 +1,29 @@
+/* sets */
+
+.sets .items {
+	margin: 0; }
+	
+.sets .items:before, .sets .items:after {
+  display: table;
+  content: ""; }
+
+.sets .items:after {
+  clear: both; }
+  
+.sets .items li {
+	float: left; 
+	list-style:none; }
+
+.sets legend {
+	line-height: 32px; }
+
+.sets .btn-group.right {
+	display: none;
+	position: absolute;
+	top: 10px;
+	right: 10px; }
+
+
 /* ---------- onboarding indicators */
 
 .brand.step.indicator {
@@ -175,7 +201,7 @@
 	vertical-align: middle;
 	margin: 6px 5px 0 0; }
 
-.profile .well.items li .btn-group {	
+.profile .well.items li .btn-group.left {	
 	display: none; 
 	position: absolute; 
 	top: 5px; 
@@ -232,7 +258,7 @@ body {
 .thumbnail { 
 	background: white;
 	text-decoration: none !important;
-	cursor: pointer;  }
+	cursor: pointer; }
 
 /* --- thumbnail selected -- */
 

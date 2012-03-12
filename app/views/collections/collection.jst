@@ -1,47 +1,43 @@
-<div class='titlebar timeline <%=!index ? 'latest' : ''%>'>
-
-	<span class="trans_80">
-	  <%if(index){%>
-	    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
-	  <%}else{%>
-	    Latest
+<li style="margin: 0 0 10px 12px; position: relative;">
+	<a class="thumbnail" style="padding: 9px;" href="<%=collection.path('user')%>">
+		
+		<%if(collection.get('name')){%>
+			<legend style="margin: 0 2px 7px;"><%=collection.escape('name')%></legend>
+		<%}%>
+		
+		<ul class="items">
+			<%collection.get('products').each(function(product){%>
+				<li>
+					<div class="thumb-photo" style="padding: 2px; width: 102px; height: 102px;">
+						<img style="max-height: 102px;" src="<%=product.get('thumbnail_url')%>" />
+				  </div>
+			  </li>
+			<%});%>
+		</ul>
+		
+		<div style="color: #999; margin-top: 5px;">
+			<i style="opacity: 0.35" class="icon-time"></i>
+		  <%if(index){%>
+		    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
+		  <%}else{%>
+		    Latest
+		  <%}%>
+		</div>
+		
+	</a>
+	
+	<div class="btn-group right">
+		<%if(helpers.isCurrentUser(collection.get('user_id'))){%>
+			<a class="btn btn-small" href="<%=collection.editPath('user_list')%>">
+		    <i class="icon-pencil"></i> Edit
+		  </a>
 	  <%}%>
-  </span>
-	
-	<a class='action trans_80 hover' 
-      id='like_collection_<%=collection.get('id')%>' 
-      href='javascript:void(0)'>
-		<span class='in'>
-      ♥ <%=collection.pushed_likes_count_string()%>
-    </span>
-		<span class='out'>
-      Like <%=collection.likes_count_string()%>
-    </span>
-	</a>
-	
-	<a class='action comment trans_80 hover' href='<%=collection.path('user_comment')%>'>
-	  <span class='count'><%=collection.comments_count_string()%>&nbsp;</span>
-	</a>
-	
-  <%if(helpers.isCurrentUser(collection.get('user_id'))){%>
-    <a href='<%=collection.editPath('user_list')%>' class='edit_ffffff_14 trans_80 hover'>
-      Edit
-    </a>
-  <%}%>
-	
-</div>
-
-<%if(collection.get('name')){%>
-	<div class='sequence_title'>
-		<a href='<%=collection.path('user')%>'>
-			<%=collection.escape('name')%>
+		<a class="btn btn-small" id="like_collection_<%=collection.get('id')%>" href="javascript:void(0)">
+			Like <%=collection.likes_count_string()%>
 		</a>
-	</div>
-<%}%>
-
-<div class='sequence'>
-	<%collection.get('products').each(function(product){%>
-		<a href='<%=collection.path('user')%>' class='product' style="background-image: url('<%=product.get('thumbnail_url')%>');" >
+	  <a class="btn btn-small" href="<%=collection.path('user_comment')%>">
+	    <i class="icon-comment"></i> <%=collection.comments_count_string()%>
 	  </a>
-	<%});%>
-</div>
+ 	</div>
+	
+</li>
