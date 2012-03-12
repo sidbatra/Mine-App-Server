@@ -63,9 +63,10 @@ class CollectionPresenter < BasePresenter
   # Link to go get back to the source url
   #
   def breadcrumb(title,path)
-    h.link_to title,
+    h.link_to "<i class='icon-arrow-left'></i> " + title,
               path,
-              :class => 'nav' 
+              :style => 'float: left; margin-right: 5px;', 
+              :class => 'btn' 
   end
 
   # Title of the page

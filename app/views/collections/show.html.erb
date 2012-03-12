@@ -38,7 +38,7 @@
 			      <%if logged_in?%>
 							<div class="btn-group" 
                     style="position: absolute; top: 6px; 
-                            left: 6px; width: 150px;">
+                            right: 6px;">
 						    <%unless is_current_user(@collection.user)%>
 									<a id="like_actionable" href="javascript:void(0)" class="btn">
 						      	Like
@@ -49,16 +49,24 @@
 						    <%end%>
 							</div>
 						<%end%> <!-- /edit + like -->
+						
+						<div style="margin-left: 0; position: absolute; top: 6px; left: 6px; width: 300px;">
+						
+							<%=@collection_presenter.breadcrumb(
+				            @user_presenter.closet_title(true),
+				            @user_presenter.closet_path('collection',UserShowHash::Collections))
+				            %> <!-- back to profile -->
 
-						<%unless @next_collection.id == @prev_collection.id && 
-				             @next_collection.id == @collection.id%>
-				      <div class="btn-group" 
-                    style="position: absolute; top: 6px; 
-                            right: 6px; width: 71px;">      
-				      	<%=@collection_presenter.prev(@next_collection,@collection.user)%>  
-					      <%=@collection_presenter.next(@prev_collection,@collection.user)%>
-					    </div>
-				    <%end%> <!-- /previous + next -->	 
+							<%unless @next_collection.id == @prev_collection.id && 
+					             @next_collection.id == @collection.id%>
+					      <div class="btn-group" 
+	                    style="">      
+					      	<%=@collection_presenter.prev(@next_collection,@collection.user)%>  
+						      <%=@collection_presenter.next(@prev_collection,@collection.user)%>
+						    </div>
+					    <%end%> <!-- /previous + next -->	 
+					    
+				    </div> <!-- / all navigation -->
 
 				  	<ul class="items">
 					   	<%@collection.products.each do |product|%>
@@ -76,9 +84,9 @@
 						
 						<div class="caption" style="text-align: left; padding-top: 18px;">
 							<h5 style="font-weight: normal">
-								<strong><%=@collection.name%></strong>&nbsp;
+								<strong><%=@collection.name%></strong>
 								<span style="color: #999;">
-									<%=time_ago_in_words @collection.created_at%> ago
+									&nbsp;<%=time_ago_in_words @collection.created_at%> ago
 								</span>		
 							</h5>	
 						</div> <!-- /caption -->
