@@ -93,6 +93,9 @@ class User < ActiveRecord::Base
                 :include => {:collections => :products} 
   named_scope :with_setting, :include => :setting
   named_scope :with_ifollowers, :include => :ifollowers
+  named_scope :created_collection_in, lambda {|range| {
+                :joins      => :collections,
+                :conditions => {:collections => {:created_at => range}}}} 
 
   #----------------------------------------------------------------------
   # Attributes

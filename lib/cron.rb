@@ -30,7 +30,7 @@ module DW
       def self.email_to_create_another_collection
         users = User.with_setting.
                       with_collections_with_products.
-                      collections_count_gt(0)
+                      created_collection_in(2.days.ago..Time.now)
 
         Mailman.prompt_users_to_create_another_collection(users)
 
