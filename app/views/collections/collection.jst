@@ -1,22 +1,29 @@
 <li style="margin: 0 0 10px 12px; position: relative;">
-	<a class="thumbnail" style="padding: 9px;" href="<%=collection.path('user')%>">
+	<a class="thumbnail" 
+      style="padding: 9px;" 
+      href="<%=collection.path('user')%>">
 		
 		<%if(collection.get('name')){%>
-			<legend style="margin: 0 2px 7px;"><%=collection.escape('name')%></legend>
+			<legend style="margin: 0 2px 7px;">
+        <%=collection.escape('name')%>
+      </legend>
 		<%}%>
 		
 		<ul class="items">
 			<%collection.get('products').each(function(product){%>
 				<li>
-					<div class="thumb-photo" style="padding: 2px; width: 102px; height: 102px;">
-						<img style="max-height: 102px;" src="<%=product.get('thumbnail_url')%>" />
+					<div class="thumb-photo" 
+                style="padding: 2px; width: 102px; height: 102px;">
+						<img style="max-height: 102px;" 
+                  src="<%=product.get('thumbnail_url')%>" />
 				  </div>
 			  </li>
 			<%});%>
 		</ul>
 		
 		<div style="color: #999; margin-top: 5px;">
-			<i style="opacity: 0.35; filter: alpha(opacity=35);" class="icon-time"></i>
+			<i style="opacity: 0.35; filter: alpha(opacity=35);" 
+          class="icon-time"></i>
 		  <%if(index){%>
 		    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
 		  <%}else{%>
@@ -32,7 +39,9 @@
 		    <i class="icon-pencil"></i> Edit
 		  </a>
 	  <%}%>
-		<a class="btn btn-small" id="like_collection_<%=collection.get('id')%>" href="javascript:void(0)">
+		<a class="btn btn-small" 
+        id="like_collection_<%=collection.get('id')%>" 
+        href="javascript:void(0)">
 			Like <%=collection.likes_count_string()%>
 		</a>
 	  <a class="btn btn-small" href="<%=collection.path('user_comment')%>">
