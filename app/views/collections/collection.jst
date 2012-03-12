@@ -16,7 +16,7 @@
 		</ul>
 		
 		<div style="color: #999; margin-top: 5px;">
-			<i style="opacity: 0.35" class="icon-time"></i>
+			<i style="opacity: 0.35; filter: alpha(opacity=35);" class="icon-time"></i>
 		  <%if(index){%>
 		    <%=jQuery.timeago(collection.get('created_at')).capitalize()%>
 		  <%}else{%>
