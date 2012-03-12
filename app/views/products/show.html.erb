@@ -27,13 +27,13 @@
     	<div class="well">
     		<div class="control-group">
 					<div class="thumbnail" 
-                style="background: white; text-align: center; position: relative; 
+                style="background: white; text-align: center; padding-top: 40px; position: relative; 
                         min-height: 200px;">
 					
 						<%if logged_in?%>
 							<div class="btn-group" 
                     style="position: absolute; top: 6px; 
-                            left: 6px; width: 150px;">
+                            right: 6px;">
 						    <%unless is_current_user(@product.user)%>
 						    	<a id="want_actionable" href="javascript:void(0)" class="btn">
 						      	Want
@@ -48,16 +48,28 @@
 							</div>
 						<%end%> <!-- /own + want -->
 
+						<div style="margin-left: 0; position: absolute; top: 6px; left: 6px; width: 400px;">
+						
+							<%if @source == 'store' && @product.store%>
+			          <%@store_presenter = presenter_for(@product.store)%>
+			          <%=@product_presenter.breadcrumb(
+			                @store_presenter.name,
+			                @store_presenter.closet_path('product'))%>
+			        <%else%>
+			          <%=@product_presenter.breadcrumb(
+			                @user_presenter.closet_title(true),
+			                @user_presenter.closet_path('product'))%>
+			        <%end%> <!-- /back to user or store -->
 
-				    <%unless @next_product.id == @prev_product.id && 
-				             @next_product.id == @product.id%>
-				      <div class="btn-group" 
-                    style="position: absolute; top: 6px; 
-                            right: 6px; width: 71px;">      
-				      	<%=@product_presenter.prev(@next_product,@product.user)%>  
-					      <%=@product_presenter.next(@prev_product,@product.user)%>
-					    </div>
-				    <%end%> <!-- /previous + next -->
+					    <%unless @next_product.id == @prev_product.id && 
+					             @next_product.id == @product.id%>
+					      <div class="btn-group">      
+					      	<%=@product_presenter.prev(@next_product,@product.user)%>  
+						      <%=@product_presenter.next(@prev_product,@product.user)%>
+						    </div>
+					    <%end%> <!-- /previous + next -->
+					  
+					  </div> <!-- /all navigation -->
 
 
 						<%=@product_presenter.large_image%>
