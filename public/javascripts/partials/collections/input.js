@@ -29,6 +29,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
 
     this.el.submit(function(){return self.post();});
 
+    make_conditional_field($(this.titleEl));
     restrictFieldSize($(this.titleEl),254,'charsremain');
 
     this.get();
@@ -105,7 +106,8 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     this.posting  = true;
     var valid     = true;
 
-    if($(this.titleEl).val().length < 1) {
+    if($(this.titleEl).val().length < 1 || 
+        $(this.titleEl).val() == $(this.titleEl).attr('data-placeholder')) {
       valid = false;
 
       $(this.titleBoxEl).addClass('error');
