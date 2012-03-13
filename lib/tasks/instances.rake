@@ -1,7 +1,7 @@
 
 namespace :instances do
 
-  IMAGE_IDS          = {'32' => 'ami-c622ffaf','64' => 'ami-e622ff8f'}
+  IMAGE_IDS          = {'32' => 'ami-040dd16d','64' => 'ami-780dd111'}
   INSTANCE_TYPE      = 't1.micro'
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
