@@ -29,7 +29,7 @@ class UserMailer < ActionMailer::Base
     @source       = "email_#{comment.commentable_type.downcase}_comment"
 
     if @owner.id == @user.id
-      @action    += "just commented on your "
+      @action    += " just commented on your "
     elsif @owner.id == @comment.user.id 
       @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
     else
