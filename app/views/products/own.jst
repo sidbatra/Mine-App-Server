@@ -1,32 +1,29 @@
-
-  <div id='own_box_<%=id%>' 
-        style='display:none' 
-        class='context_box'>
-
-    <div class='step' id='product_store_box_<%=id%>'>
-	    <div class='title' id='product_store_text_<%=id%>'>
-	      Store
-	      <span class='option'>
-	        <input class='checkbox' 
-	                id='product_is_store_unknown_<%=id%>' 
-	                type='checkbox' 
-	                value='0'>
-	        <label class="trans_80 hover" for='product_is_store_unknown_<%=id%>'>
-	          Unsure
-	        </label>
+<div id="own_box_<%=id%>" class="popover bottom" style="cursor: default; text-align: left; display: block; top: 27px; left: -70px; ">
+	<div class="arrow"></div>
+	<div class="popover-inner">
+		<h3 class="popover-title">Where did you buy yours?</h3>
+		<div class="popover-content">
+			<div class="controls" id="product_store_box_<%=id%>">
+			
+				<input style="width: 156px;" type="text" id="product_store_name_<%=id%>" placeholder="Store name">
+				
+				<span class="help-inline faded-80">          
+			    <label class="checkbox" for="product_is_store_unknown_<%=id%>" style="padding-top: 5px;">
+				    <input name="product[is_store_unknown]" type="hidden" value="0">
+				    <input id="product_is_store_unknown_<%=id%>" name="product[is_store_unknown]" type="checkbox" value="1"> 
+				    Not sure
+			    </label>
 	      </span>
-	    </div>
+				
+			</div> <!-- /controls -->
+ 
+			<input id="create_own" type="submit" class="btn btn-primary individual" value="Add to closet">
+			
+			<div id="cancel_own" class="btn individual">
+			  Cancel
+			</div>
+			
+		</div>
+	</div>
+</div>
 
-    	<input class='inputfield' type='text' id='product_store_name_<%=id%>'>
-    </div>
-	    
-    <input class='own_to_closet' 
-              id='create_own'
-            type='submit' 
-            value=''>
-
-    <div id='cancel_own' class='cancel trans_80 hover'>
-      Cancel
-    </div>
-
-  </div> 

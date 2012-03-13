@@ -290,6 +290,18 @@ body {
 /* multi btn-group on single line fix */	
 .btn-group::after {
 	clear: none; }
+	
+.btn-group .btn.individual {
+	position: relative;
+	float: none;
+	margin: 0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px; }
+
+.typeahead {
+	z-index: 2000;
+}
 
 /* --- thumbnail selected -- */
 

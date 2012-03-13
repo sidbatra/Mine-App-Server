@@ -25,8 +25,9 @@ class ProductPresenter < BasePresenter
                 edit_product_path(
                   product.user.handle,
                   product.handle,
-                  :src => 'product'),
-                 :class => 'btn'
+                  :src   => 'product'),
+                  :style => 'width: 43px;',
+                  :class => 'btn'
     end
   end
 
@@ -36,9 +37,10 @@ class ProductPresenter < BasePresenter
     if h.logged_in? && h.current_user.id == product.user_id
       h.link_to "Delete",
                 {:action => 'destroy',:id => product.id},
-                :method => :delete,
-                :class => 'btn',
-                :confirm  => "Are you sure you want to delete this item?"
+                :method  => :delete,
+                :style   => 'width: 39px;',
+                :class   => 'btn',
+                :confirm => "Are you sure you want to delete this item?"
     end
   end
 

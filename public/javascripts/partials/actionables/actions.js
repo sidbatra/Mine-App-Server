@@ -23,7 +23,7 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     this.actionsEl        = $('#feed_items');
     this.likeEl           = '#like_actionable';
-    this.ownEl            = '#own_actionable';
+    this.ownEl            = '#own-box';
     this.wantEl           = '#want_actionable';
 
     this.checked          = {'like' : false,'own' : false, 'want' : false};

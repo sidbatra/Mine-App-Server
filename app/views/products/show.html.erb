@@ -54,22 +54,30 @@
 					  </div> <!-- /all navigation -->
 					  
 					  <%if logged_in?%>
-							<div class="btn-group" 
-                    style="position: absolute; top: 6px; 
-                            right: 6px;">
-						    <%unless is_current_user(@product.user)%>
-						    	<a id="want_actionable" href="javascript:void(0)" class="btn">
-						      	Want
-						     	</a>
-						      <a id="own_actionable" href="javascript:void(0)" class="btn">
-						      	Own
-						      </a>
-						    <%else%>  
-						      <%=@product_presenter.edit_link%>
-						      <%=@product_presenter.destroy_link%>
-						    <%end%>
-							</div>
-						<%end%> <!-- /own + want -->
+						  <div id="feedback" style="position: absolute; top: 6px; right: 6px;">
+						  
+								
+							    <%unless is_current_user(@product.user)%>
+								    <div class="btn-group" id="own-box" style="width: 103px;">
+								    	<a id="want_actionable" href="javascript:void(0)" class="btn" style="width: 32px">
+								      	Want
+								     	</a>
+								      <a id="own_actionable" href="javascript:void(0)" class="btn" style="29px;">
+								      	Own
+								      </a>
+								    </div>
+							    <%else%>  
+							    	<div class="btn-group" style="width: 126px;">
+								      <%=@product_presenter.edit_link%>
+								      <%=@product_presenter.destroy_link%>
+							      </div>
+							    <%end%>
+
+								
+							</div> 
+						<%end%> <!-- /feedback: own + want -->
+						
+
 
 
 						<%=@product_presenter.large_image%>
