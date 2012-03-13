@@ -3,19 +3,22 @@
 	<div class="popover-inner">
 		<h3 class="popover-title">Where did you buy yours?</h3>
 		<div class="popover-content">
-			<div class="controls" id="product_store_box_<%=id%>">
-			
-				<input style="width: 156px;" type="text" id="product_store_name_<%=id%>" placeholder="Store name">
+		
+			<div class="control-group">
+				<div class="controls" id="product_store_box_<%=id%>">
 				
-				<span class="help-inline faded-80">          
-			    <label class="checkbox" for="product_is_store_unknown_<%=id%>" style="padding-top: 5px;">
-				    <input name="product[is_store_unknown]" type="hidden" value="0">
-				    <input id="product_is_store_unknown_<%=id%>" name="product[is_store_unknown]" type="checkbox" value="1"> 
-				    Not sure
-			    </label>
-	      </span>
-				
-			</div> <!-- /controls -->
+					<input style="width: 156px;" type="text" id="product_store_name_<%=id%>" placeholder="Store name">
+					
+					<span class="help-inline faded-80">          
+				    <label class="checkbox" for="product_is_store_unknown_<%=id%>" style="padding-top: 5px;">
+					    <input name="product[is_store_unknown]" type="hidden" value="0">
+					    <input id="product_is_store_unknown_<%=id%>" name="product[is_store_unknown]" type="checkbox" value="1"> 
+					    Not sure
+				    </label>
+		      </span>
+					
+				</div> <!-- /controls -->
+			</div> <!-- /control-group -->
  
 			<input id="create_own" type="submit" class="btn btn-primary individual" value="Add to closet">
 			

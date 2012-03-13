@@ -4,6 +4,13 @@
 	top: 27px !important; 
 	left: -70px !important; }
 
+.profile .thumbnails li #own-box .popover {
+	top: 27px !important; 
+	left: -128px !important; }
+	
+.popover .typeahead:hover .popover {
+	display: block; }
+
 /* sets: list view */
 
 .sets .items {
