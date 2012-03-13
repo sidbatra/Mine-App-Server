@@ -30,7 +30,9 @@
 		    		<div class="profile-img">
 							<%=@user_presenter.large_picture('picture')%>
 						</div>
-		    		<h1 style="padding-bottom: 4px; line-height: 1;"><%=@user_presenter.full_name%></h1>
+		    		<h1 style="padding-bottom: 4px; line-height: 1;">
+              <%=@user_presenter.full_name%>
+            </h1>
 		    		<div id="profile_bio">
 					    <%=render :partial  => 'byline',
 					              :locals   => {:user => @user}%>
@@ -68,14 +70,16 @@
               </div>
   					</a>
   				</li>
-  				<li id="collections_tab">
-  					<a href="#<%=UserShowHash::Collections%>" 
-                style="text-align: center; width: 38px;">
-  						<span class="tab-text">Uses</span>
-  						<div class="loading small inline" style="margin-bottom: -4px;">
-              </div>
-  					</a>
-  				</li>
+          <%if is_current_user(@user) or !@user.collections_count.zero?%>
+            <li id="collections_tab">
+              <a href="#<%=UserShowHash::Collections%>" 
+                  style="text-align: center; width: 38px;">
+                <span class="tab-text">Uses</span>
+                <div class="loading small inline" style="margin-bottom: -4px;">
+                </div>
+              </a>
+            </li>
+          <%end%>
 				</ul>
         
     		<div class="control-group">
