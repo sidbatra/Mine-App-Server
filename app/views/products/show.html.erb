@@ -27,10 +27,12 @@
     	<div class="well">
     		<div class="control-group">
 					<div class="thumbnail" 
-                style="background: white; text-align: center; padding-top: 40px; position: relative; 
+                style="background: white; text-align: center; 
+                        padding-top: 40px; position: relative; 
                         min-height: 200px;">
 				
-						<div style="margin-left: 0; position: absolute; top: 6px; left: 6px; width: 400px;">
+						<div style="margin-left: 0; 
+                        position: absolute; top: 6px; left: 6px; width: 400px;">
 						
 							<%if @source == 'store' && @product.store%>
 			          <%@store_presenter = presenter_for(@product.store)%>
@@ -58,11 +60,20 @@
 						  
 								
 							    <%unless is_current_user(@product.user)%>
-								    <div class="btn-group" id="own-box" style="position: relative; width: 103px; height: 28px;">
-								    	<a id="want_actionable" href="javascript:void(0)" class="btn" style="width: 32px">
+								    <div class="btn-group" 
+                          id="own_box_container" 
+                          style="position: relative; width: 103px; "\
+                                "height: 28px;">
+								    	<a id="want_actionable" 
+                          href="javascript:void(0)" 
+                          class="btn" 
+                          style="width: 32px">
 								      	Want
 								     	</a>
-								      <a id="own_actionable" href="javascript:void(0)" class="btn" style="29px;">
+								      <a id="own_actionable" 
+                          href="javascript:void(0)" 
+                          class="btn" 
+                          style="29px;">
 								      	Own
 								      </a>
 								    </div>
@@ -77,8 +88,6 @@
 							</div> 
 						<%end%> <!-- /feedback: own + want -->
 						
-
-
 
 						<%=@product_presenter.large_image%>
 						

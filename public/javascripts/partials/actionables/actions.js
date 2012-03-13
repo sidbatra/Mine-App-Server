@@ -23,7 +23,8 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     this.actionsEl        = $('#feed_items');
     this.likeEl           = '#like_actionable';
-    this.ownEl            = '#own-box';
+    this.ownEl            = '#own_actionable';
+    this.ownBoxEl         = '#own_box_container';
     this.wantEl           = '#want_actionable';
 
     this.checked          = {'like' : false,'own' : false, 'want' : false};
@@ -38,7 +39,7 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
 
     if(this.actionableType == 'product') {
       this.ownBox = new Denwen.Partials.Products.Own({
-                                el            : $(this.ownEl),
+                                el            : $(this.ownBoxEl),
                                 product_id    : this.actionableID});
 
       this.ownBox.bind('ownCreated',this.ownCreated,this);
