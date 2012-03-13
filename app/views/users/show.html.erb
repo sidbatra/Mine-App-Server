@@ -14,12 +14,6 @@
                                 ""}%>
 <%end%>
 
-<!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => "misc/welcome", 
-          :locals => {
-            :src    => @user_presenter.source_id,
-            :target => @user_presenter.closet_path('footer')} if !logged_in? &&
-                                                                @source != "iframe"%>
 <div class="container profile">
 
 	<div class="row">
@@ -48,6 +42,13 @@
 	    </div> <!-- /well profile-card -->
     </div> <!-- /span12 -->
   </div> <!-- /row -->
+  
+  <!-- Welcome box to signup if user is not logged in -->
+<%=render :partial => "misc/welcome", 
+          :locals => {
+            :src    => @user_presenter.source_id,
+            :target => @user_presenter.closet_path('footer')} if !logged_in? &&
+                                                                @source != "iframe"%>
 
   <div class="row">
     <div class="span12">
