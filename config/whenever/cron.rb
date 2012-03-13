@@ -32,9 +32,9 @@ every [:monday,:friday], :at => '6:45pm' do
 end
 
 
-every :sunday, :at => '8:00pm' do
-  runner "ProcessingQueue.push(CronWorker,:update_top_shoppers)"
-end
+#every :sunday, :at => '8:00pm' do
+#  runner "ProcessingQueue.push(CronWorker,:update_top_shoppers)"
+#end
 
 every :sunday, :at => '8:15pm' do
   runner "ProcessingQueue.push(CronWorker,:email_to_create_another_product)"
