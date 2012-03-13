@@ -16,13 +16,14 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
 
     this.ownEl      = '#own_product_' + this.model.get('id');
     this.wantEl     = '#want_product_' + this.model.get('id');
+    this.ownBoxEl   = '#own_box_container_' + this.model.get('id');
 
     $(this.ownEl).click(function(){self.ownClicked();});
     $(this.wantEl).click(function(){self.wantClicked();});
 
 
     this.ownBox = new Denwen.Partials.Products.Own({
-                              el          : $(this.ownEl),
+                              el          : $(this.ownBoxEl),
                               product_id  : this.model.get('id')});
 
     this.ownBox.bind('ownCreated',this.ownCreated,this);
