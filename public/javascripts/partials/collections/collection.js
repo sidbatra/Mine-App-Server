@@ -10,7 +10,7 @@ Denwen.Partials.Collections.Collection = Backbone.View.extend({
     this.source   = this.options.source;
     this.sourceID = this.options.sourceID;
 
-    this.onClass  = 'pushed';
+    this.onClass  = 'disabled';
     this.likes    = false;
     this.likeEl   = '#like_collection_' + this.model.get('id');
 
