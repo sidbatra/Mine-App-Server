@@ -98,7 +98,9 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     var valid = true;
     var mode  = 'own';
 
-    if(!this.isStoreUnknown() && this.storeEl.val().length < 1) {
+    if(!this.isStoreUnknown() && 
+          (this.storeEl.val().length < 1 || 
+            this.storeEl.val() == this.storeEl.attr('data-placeholder'))) {
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
