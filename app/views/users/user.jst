@@ -1,20 +1,7 @@
-<%if(src != 'invite') {%>
-  <div class="tile_frame">
-    <span class="tooltip_up_000000_80">
-      <%=user.get('first_name') + ' ' + user.get('last_name')%>
-    </span>
-
-    <a href="<%=user.path(src)%>">
-      <img src="<%=user.get('photo_url')%>"
-            class = 'tile' />
-    </a>
-  </div>
-<%} else {%>
-  <a href='/invites/new?src=ordinal'>
-    <div class="tile_frame invite"> 
-      <span class="tooltip_up_000000_80">
-        Invite a <%=helpers.ordinal(index)%> friend
-      </span>
-    </div>
-  </a>
-<%}%>
+<a class="thumbnail" style="position: relative;" href="<%=user.path(src)%>">
+	<div class="overflow-fade" style="width: 10px;"></div>
+	<img class="thumb-photo" src="<%=user.get('photo_url')%>" />
+	<div class="caption" style="padding: 0;">
+		<%=helpers.truncate(user.get('first_name') + '<br /> ' + user.get('last_name'), 22, '…')%>
+	</div>
+</a>

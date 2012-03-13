@@ -12,7 +12,6 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
   initialize: function() {
     this.picked   = false;
     this.toggleEl = '#product_picker_' + this.model.get('id');
-    this.onEl			= '#button_picker_' + this.model.get('id');
 
     this.render();
   },
@@ -29,16 +28,16 @@ Denwen.Partials.Products.Picker = Backbone.View.extend({
   // Fired when the product is clicked to turn on or off
   //
   clicked: function() {
-    this.picked = this.picked ? false : true;
+    this.picked = !this.picked; 
 
     if(this.picked) {
-      $(this.onEl).addClass('pushed');
+      $(this.toggleEl).addClass('selected');
       
       this.trigger('addToProductsPicked',this.model.get('id'));
       analytics.productTurnedOn();
     }
     else {
-      $(this.onEl).removeClass('pushed');
+      $(this.toggleEl).removeClass('selected');
       
       this.trigger('removeFromProductsPicked',this.model.get('id'));
       analytics.productTurnedOff();

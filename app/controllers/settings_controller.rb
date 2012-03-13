@@ -14,6 +14,23 @@ class SettingsController < ApplicationController
     redirect_to(root_path) if @error
   end
 
+  # Get the status of individual settings for the current user 
+  #
+  def show
+    @filter = params[:id].to_sym
+
+    case @filter
+    when :publish_stream
+      @setting = {:status => self.current_user.fb_permissions.include?(@filter)}
+    end
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
+
   # Update settings for the current iser
   #
   def update

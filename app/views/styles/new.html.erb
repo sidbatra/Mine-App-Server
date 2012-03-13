@@ -1,0 +1,73 @@
+<%=render :partial  => "headers/onboarding"%>
+
+<div class="container picker" id="container">
+ 	<div class="row">
+		<div class="span6 offset3">
+			<div class="well styles">
+				<fieldset>
+					<legend style="margin-bottom: 0; padding-bottom: 18px;">
+						<%form_tag '/welcome',
+								:style => 'height: 0; float: right;',
+						    :id   => 'new_styles' do |f|%>
+						
+						  <%=hidden_field_tag :id, WelcomeFilter::Style%>
+						  <%=hidden_field_tag :style_id%>
+				  		<% content_tag :button,
+					    		:type  		=> :submit, 
+					    		:class 		=> 'btn btn-large',
+					    		:style    => 'float: right;',
+					    		:id    		=> 'styles_picked_button',
+					    		:disabled	=> true do %>
+							   Pick your stores <i class='icon-chevron-right'></i>
+							<% end %>
+					
+						<%end%>
+						
+						<%if @sender%>
+              <%=@sender.first_name%> picked your style: 
+              <div style="color: #999; font-size: 13px; line-height: 18px;">
+              	Is it right? Change it now or later.
+              </div>
+            <%else%>
+              What type are you?<br />
+              <div style="color: #999; font-size: 13px; line-height: 18px;">
+              	You can change this at any time.
+              </div>
+						<%end%>
+            
+					</legend>
+					  <ul class="thumbnails" id="styles">
+					
+					    <%@styles.each do |style|%>
+					      <li class="span2">
+						      <a class="thumbnail" style="height: 125px;" id="style_picker_<%=style.id%>"> 
+						      	<div class="thumb-photo">
+					          	<%=image_tag style.image_url%>
+					          </div>
+					          <div class="caption" style="position: relative;">
+					          	<div class="overflow-fade">
+												<i class="icon-ok icon-white" 
+													style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
+											</div>
+					          	<h5><%=style.title%></h5>
+					          </div>
+						      </a> <!-- /thumbnail -->
+					      </li>
+					    <%end%>
+					
+					  </ul> <!-- /thumbnails -->
+				</fieldset>
+			</div> <!-- /well styles -->
+		</div> <!-- /span6 -->
+	</div> <!-- /row -->
+</div> <!-- /container -->
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Styles.New({
+          styles    : <%=@styles.to_json(:only => [:id,:title])%>,
+          style_id  : <%=self.current_user.style_id ? self.current_user.style_id : 0 %>,
+          source    : '<%=@source%>',
+          el        : $('#container')});
+  </script>
+<%end%>

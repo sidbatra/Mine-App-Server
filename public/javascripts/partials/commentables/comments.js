@@ -32,11 +32,7 @@ Denwen.Partials.Commentables.Comments = Backbone.View.extend({
             error     : function() {}
           });
 
-    make_conditional_field(
-      this.inputEl,
-      $(this.inputEl).val(),
-      $(this.inputEl).css('color'),
-      '#333333');
+    make_conditional_field(this.inputEl);
 
     if(this.withFocus)
       $(this.inputEl).focus();

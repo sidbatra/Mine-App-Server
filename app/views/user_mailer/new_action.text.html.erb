@@ -1,17 +1,17 @@
-Hi <%=@user.first_name%>, <br /><br />
+Hi <%=@user.first_name%>,<br /><br />
 
-<%=@action%> <br /><br />
+<%=@action%><br /><br />
 
 <%if @actionable.class.name == 'Product'%>
   <a href="<%=product_url(
                 @user.handle,
                 @actionable.handle,
-                :src => "email_#{@action_name}")%>">
+                :src => @source)%>">
   View your item</a>
 <%elsif @actionable.class.name == 'Collection'%>
   <a href="<%=collection_url(
                 @user.handle,
-                @actionable.id,
-                :src => "email_collection_#{@action_name}")%>">
+                @actionable.handle,
+                :src => @source)%>">
   View your set</a>
 <%end%>

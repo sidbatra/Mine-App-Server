@@ -1,8 +1,9 @@
-<li>
-  <a href="<%=product.path(src)%>">
-    <span class='item'><%=product.get('title')%></span>
-  </a>
+<li style="position: relative;">
+	<a href="<%=product.path(src)%>" style="font-size: 11px; white-space: nowrap;">
+	  <%=helpers.truncate(product.get('title'), 23, '…')%>
+	</a>
 </li>
+
 
 
 

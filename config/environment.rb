@@ -31,14 +31,14 @@ Rails::Initializer.run do |config|
   config.gem('aws-ses', 
               :lib => 'aws/ses', 
               :version => '0.4.3')
-  config.gem('brant',
-              :lib => false,
-              :version => '0.1.0')
   config.gem('daemons', 
               :version => '1.1.0',
               :lib => false)
   config.gem('fb_graph',
               :version => '2.4.0')
+  config.gem('grit',
+              :version => '2.4.1',
+              :lib => false)
   config.gem('jammit',
               :version => '0.6.3')
   config.gem('mechanize', 
@@ -49,6 +49,15 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('pismo',
               :version => '0.7.2',
+              :lib => false)
+  config.gem('rb-inotify',
+              :version => '0.8.8',
+              :lib => false)
+  config.gem('xmpp4r',
+              :version => '0.5',
+              :lib => false)
+  config.gem('xmpp4r-simple',
+              :version => '0.8.8',
               :lib => false)
 
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -63,7 +72,8 @@ Rails::Initializer.run do |config|
                               File.join(Rails.root,'app','observers'),
                               File.join(Rails.root,'app','processors'),
                               File.join(Rails.root,'app','presenters'),
-                              File.join(Rails.root,'app','sweepers')]
+                              File.join(Rails.root,'app','sweepers'),
+                              File.join(Rails.root,'app','delayed_observers')]
 
 
   # Register observers
@@ -71,7 +81,7 @@ Rails::Initializer.run do |config|
                                     :user_observer, :following_observer,
                                     :action_observer, :store_observer,
                                     :achievement_set_observer,
-                                    :collection_observer,
+                                    :collection_observer,:invite_observer,
                                     :store_sweeper, :following_sweeper,
                                     :product_sweeper, :collection_part_sweeper,
                                     :user_sweeper, :achievement_set_sweeper,

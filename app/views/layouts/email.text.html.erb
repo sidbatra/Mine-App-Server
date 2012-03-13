@@ -8,6 +8,11 @@
 
     <br><br>
     Thanks, <br>
-    The <%=CONFIG[:name]%> Team
+    <%=CONFIG[:name]%>
+
+    <br><br>
+    <span style="font-size: 10px; color: #999999;">
+    	&copy; 2012 <%=CONFIG[:name]%> All this feedback blowing your mind?
+    <%=link_to "Manage your settings", settings_url(:src => @source),:style => "color: inherit; text-decoration: none;"%></span>
   </body>
 </html>

@@ -12,25 +12,12 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
     this.fragment   = this.options.fragment;
 
     this.products   = new Denwen.Collections.Products();
-    this.categories = new Denwen.Collections.Categories();
-    this.category   = '';
   },
 
   // Render the products collection
   //
   render: function() {
     var self = this;
-
-    if(this.category == 'all' || this.category == undefined) {
-      this.categories = new Denwen.Collections.Categories();
-
-      this.products.each(function(product){
-        if(self.categories.get(product.get('category_id')) == undefined)
-          self.categories.add(Categories.get(product.get('category_id')));
-      });
-
-      this.categories.sort();
-    }
     
     this.el.html('');
     this.el.prepend(
@@ -40,9 +27,7 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
         ownerName       : this.ownerName,
         src             : this.filter,
         type            : this.type,
-        fragment        : this.fragment,
-        categories      : this.categories,
-        currentCategory : this.category}));
+        fragment        : this.fragment}));
 
     this.products.each(function(product){
       new Denwen.Partials.Products.Product({
@@ -50,18 +35,15 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
             source    : self.filter,
             sourceID  : self.ownerID});
     });
+
+    this.trigger(Denwen.Callback.ProductsRendered);
   },
 
   // Fetch products filtered by the given category
   //
-  fetch: function(category) {
+  fetch: function() {
     var self  = this;
     var data  = {filter: this.filter,owner_id: this.ownerID};
-
-    if(category != undefined && category.length) 
-      data['category']  = category;
-
-    this.category = category;
 
     this.products.fetch({
       data    : data,

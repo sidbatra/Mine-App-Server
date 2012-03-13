@@ -5,8 +5,12 @@ Denwen.Views.Products.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    var self  = this;
+
     this.product    = new Denwen.Models.Product(this.options.productJSON);
     this.source     = this.options.source;
+
+    this.productImageEl = '#product_image';
 
     new Denwen.Partials.Commentables.Comments({
           commentable_id    : this.product.get('id'),
@@ -29,7 +33,15 @@ Denwen.Views.Products.Show = Backbone.View.extend({
                   source  : this.source});
     }
 
+    $(this.productImageEl).click(function(){self.productImageClicked();});
+
     this.setAnalytics();
+  },
+
+  // User clicks the product image
+  //
+  productImageClicked: function() {
+    analytics.productClicked();
   },
 
   // Fire various tracking events
@@ -41,7 +53,6 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     if(this.source == 'product_updated')
       analytics.productUpdated(this.product.get('id'));
 
-    if(this.source.slice(0,6) == 'email_')
-      analytics.emailClicked(this.source.slice(6,this.source.length));
+    analytics.checkForEmailClickedEvent(this.source);
   }
 });

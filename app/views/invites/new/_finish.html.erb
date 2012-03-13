@@ -1,0 +1,62 @@
+<div class="well finish" id="finish_container" style="display:none">
+	<fieldset>
+		<legend>
+	    Perfect. <span id='friend_name_large'></span>'s OnCloset is ready to go.
+	  </legend>
+	
+		<div class="control-group">
+			
+			<div class="thumbnail fb-timeline">
+			 	<div style="padding: 11px">
+			 	
+			 		<div class="user-block">
+	          <%=image_tag self.current_user.photo_url,
+	              :class => "user-photo"%>
+			 			<strong><%=user_full_name(self.current_user)%></strong><br />
+			 			<span style="color: gray;">
+              <%=Time.zone.now.strftime("%B %d")%>
+            </span>
+			 		</div> 
+			 		
+			 		<div class="above-content">
+			 			I set up your OnCloset with style set to
+            "<span id='friend_byline'></span>"!
+			 		</div>
+			 		
+			 		<div class="display-content">
+			 			<div class="art-photo" id="friend_image"
+			 					 style="background-image: url('');">
+	          </div>
+	          <strong>
+	            <div style="margin-bottom: 3px;">
+	              <span id='friend_name_small'></span>'s OnCloset
+	            </div>
+	          </strong>
+			 			<span style="color: gray;">
+			 				OnCloset is an online closet for your latest purchases and 
+              daily style. It's fun, and free.
+			 			</span>
+			 		</div>
+			 		
+			 	</div> <!-- padding -->
+			 	
+		 		<div id="actions_area" 
+	            class="form-actions" 
+	            style="margin: 4px 0 0 0; padding-left: 111px;">
+	
+	        <button id="send_invite" class="btn btn-primary btn-large">
+	          <i class="icon-envelope icon-white"></i> 
+	            Send invite
+	        </button>
+	        <button id="cancel_invite" class="btn btn-large">
+	          Cancel
+	        </button>
+	        <div class="loading small inline" 
+	              style="margin-left: 10px; vertical-align: middle;">
+	        </div>
+	      </div>
+	      
+			</div> <!-- /thumbnail -->
+		</div> <!-- /control-group -->
+	</fieldset>	
+</div> <!-- /finish_container.well -->

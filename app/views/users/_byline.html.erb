@@ -1,48 +1,40 @@
 
       <%if is_current_user(user)%>
-      
-          <%=link_to  "What's your style?",
-                      'javascript:void(0)',
-                      :id     => 'user_edit_initiate',
-                      :class  => 'tab static title'%>
 
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
-              :class  => 'user_byline_input',
-              :style  => self.current_user.byline.present? ?
-                          'display:none' :
-                          ''%>
+              :class  => '',
+              :rows   => '2',
+              :style  => "width: 286px; margin-top: 4px; "\
+                         "#{self.current_user.byline.present? ? 
+                              'display:none;' : ''}",
+              "ui-placeholder-color" => "#999999",
+              "ui-text-color" => "#333333",
+              "data-placeholder" => "What's your style?"%>
           
           <%=link_to  'Save', 
                       'javascript:void(0)', 
-                      :class  => 'user_byline_save',
                       :id     => 'user_update',
+                      :class     => 'btn',
                       :style  => self.current_user.byline.present? ?
                                   'display:none' :
-                                  ''%>
-                      
-          <!--<#=link_to  'Cancel', 
-                      'javascript:void(0)', 
-                      :class  => 'submit_red_12',
-                      :id     => 'user_cancel',
-                      :style  => 'display:none'%>-->                         
-          
+                                  ''%>                        
           
           <!-- byline display -->
-          <div id='user_edit_box' 
-                class='user_byline_display'
+          <div id="user_edit_box" 
+                class=""
                 style="<%=self.current_user.byline.present? ?
                         '' :
                         'display:none'%>">
           
-          	<span id='user_byline_text'>
+          	<span class="byline" id="user_byline_text">
           		<%=h self.current_user.byline%>
           	</span>
           	
           	<%=link_to  'Edit', 
 	                      'javascript:void(0)', 
-	                      :class  => 'edit_999999_14',
+	                      :class  => '',
 	                      :id     => 'user_edit',
 	                      :style  => self.current_user.byline.present? ?
 	                                  '' :
@@ -50,14 +42,8 @@
           </div>
           
       <%elsif user.byline.present?%>
-          <%=link_to  user.gender == 'male' ?
-                        'His style' : 'Her style',
-                      'javascript:void(0)',
-                      :id     => 'user_edit_initiate',
-                      :class  => 'tab static title'%>
-
-					<div class='user_byline_display'>
-          	<span id='user_byline_text'>
+					<div class="byline">
+          	<span id="user_byline_text">
 		          <%=user.byline%>
 	          </span>
 	         </div>

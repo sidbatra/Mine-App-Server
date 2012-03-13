@@ -34,9 +34,9 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
 
     // -----
-    new Denwen.Partials.Users.TopShoppers({
-                          el    : $('#top_shoppers'),
-                          store : this.store});
+    //new Denwen.Partials.Users.TopShoppers({
+    //                      el    : $('#top_shoppers'),
+    //                      store : this.store});
 
     // -----
     new Denwen.Partials.Stores.Related({
@@ -74,23 +74,15 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        "products/:category"  : "doubleFilter",
-        ":misc"               : "defaultFilter"
-      },
-
-      // Filter store products by category
-      //
-      doubleFilter: function(category) {
-        self.products.fetch(category);
-        self.switchTabOn(self.productsTab);
-        analytics.storeProductsView(category,self.store.get('id'));
+        ":type" : "filter"
       },
 
       // Load all products for unknown fragments
       //
-      defaultFilter: function(misc) {
+      filter: function(type) {
         self.products.fetch();
         self.switchTabOn(self.productsTab);
+        analytics.storeProductsView(self.store.get('id'));
       }
     });
 
@@ -108,8 +100,7 @@ Denwen.Views.Stores.Show = Backbone.View.extend({
       this.source,
       this.store.get('id'));
 
-    if(this.source.slice(0,6) == 'email_')
-      analytics.emailClicked(this.source.slice(6,this.source.length));
+    analytics.checkForEmailClickedEvent(this.source);
   },
 
   // Callback when store products are loaded

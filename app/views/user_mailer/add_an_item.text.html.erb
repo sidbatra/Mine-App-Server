@@ -1,0 +1,9 @@
+Hi <%=@user.first_name%>, <br /><br />
+
+You joined <%=CONFIG[:name]%> a few days ago, but we noticed that you might be 
+having a little trouble getting started. 
+What you buy says a lot about you!<br /><br />
+
+<a href="<%=new_product_url(:src => @source)%>">
+Add your favorite pair of shoes</a>
+to kick-start your closet. Hot tip: You might be wearing them right now ;)

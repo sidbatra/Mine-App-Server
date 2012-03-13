@@ -1,25 +1,66 @@
+<div class="actions-header">
+	<%if(!count){%>
+		Invite a friend who's a…
+	<%}else{%>
+  	Influenced By
+	  <a class="right" 
+        onclick="analytics.viewAllSelected(Denwen.ViewAllType.IFollowers);"
+        data-toggle="modal" 
+        href="#modal-user-friends">
+	  	View all
+	  </a>
+  <%}%>
+</div> <!-- /actions-header -->
+
+
+<ul class="thumbnails">
+
 <%if(!count){%>
-
-  <div class='tab title large_top_margin'>
-  	Which friends influence you?
-  </div>
-  <div class='placeholder_text'>
-  	<a href="<%=helpers.newInvitePath('placeholder')%>">Invite</a>
-    <span class="trans_80"> a few friends whose style you like.</span> 
-  </div>
-  
-<%}else{%>
-
-	<div class='tab title large_top_margin'>
-    <%=header%>
-    <%=count ? (count == 1 ? '1 person' : count + ' people') : ' no one'%> 
-  </div>
-
-  <div class='no_small_top_margin'>
-    <%users.each(function(user){%>
-      <%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
+	
+    <%styles.each(function(style){%>
+      <li>
+        <a class="thumbnail" 
+            style="position: relative;" 
+            href="/invite?src=placeholder#styles-<%=style.get('id')%>/friends">
+          <div class="overflow-fade" 
+                style="width: 10px;"></div>
+          <img class="thumb-photo" 
+                src="<%=style.get('image_url')%>" />
+          <div class="caption" 
+                style="padding: 0;">
+            <%=style.get('title')%>
+          </div>
+        </a>
+      </li>
     <%});%>
-    <%=helpers.blocker()%>
-  </div>
+	  
+	<%}else{%>
+	
+	  <%users.each(function(user){%>
+	  	<li>
+	    	<%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
+	    </li>
+	  <%});%>
+	
+	<%}%>
 
-<%}%>
+</ul> <!-- /thumbnails -->
+
+
+<div class="modal fade" id="modal-user-friends">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Influenced by</h3>
+  </div>
+  <div class="modal-body">
+  
+  	<ul class="thumbnails">
+	  	<%users.each(function(user){%>
+		  	<li>
+		    	<%=Denwen.JST['users/tiled_list']({user:user, src:src + '_list'})%>
+		    </li>
+		  <%});%>
+		</ul> <!-- /modal thumbnails -->
+		
+  </div>
+</div> <!-- /modal -->

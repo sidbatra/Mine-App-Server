@@ -9,169 +9,157 @@
             :locals   => {
               :title        => @product_presenter.title, 
               :type         => OGObject::Item, 
-              :description  => @user_presenter.product_usage_description,
+              :description  => @product_presenter.description, 
               :url          => @product_presenter.url('fb'),
               :image        => @product_presenter.thumbnail_url,
               :store        => @product.store}%>
 <%end%>
 
+<div style=" width: 620px; margin: -9px auto 0;">
+	<%=render :partial => 'misc/welcome', 
+	      	:locals => {
+	        :src    => @product_presenter.source_id,
+	        :target => @product_presenter.path('footer')} unless logged_in?%>
+	        <!-- /welcome -->
+</div>
 
-<!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => 'misc/welcome', 
-      :locals => {
-        :src    => @product_presenter.source_id,
-        :target => @product_presenter.path('footer')} unless logged_in?%>
+<div class="container item">
+	<div class="row">
+    <div class="span8 offset2">
+    	<div class="well">
+    		<div class="control-group">
+					<div class="thumbnail" 
+                style="background: white; text-align: center; 
+                        padding-top: 40px; position: relative; 
+                        min-height: 200px;">
+				
+						<div style="margin-left: 0; 
+                        position: absolute; top: 6px; left: 6px; width: 400px;">
+						
+							<%if @source == 'store' && @product.store%>
+			          <%@store_presenter = presenter_for(@product.store)%>
+			          <%=@product_presenter.breadcrumb(
+			                @store_presenter.name,
+			                @store_presenter.closet_path('product'))%>
+			        <%else%>
+			          <%=@product_presenter.breadcrumb(
+			                @user_presenter.closet_title(true),
+			                @user_presenter.closet_path('product'))%>
+			        <%end%> <!-- /back to user or store -->
 
+					    <%unless @next_product.id == @prev_product.id && 
+					             @next_product.id == @product.id%>
+					      <div class="btn-group">      
+					      	<%=@product_presenter.prev(@next_product,@product.user)%>  
+						      <%=@product_presenter.next(@prev_product,@product.user)%>
+						    </div>
+					    <%end%> <!-- /previous + next -->
+					  
+					  </div> <!-- /all navigation -->
+					  
+					  <%if logged_in?%>
+						  <div id="feedback" style="position: absolute; top: 6px; right: 6px;">
+						  
+								
+							    <%unless is_current_user(@product.user)%>
+								    <div class="btn-group" 
+                          id="own_box_container" 
+                          style="position: relative; width: 103px; "\
+                                "height: 28px;">
+								    	<a id="want_actionable" 
+                          href="javascript:void(0)" 
+                          class="btn" 
+                          style="width: 32px">
+								      	Want
+								     	</a>
+								      <a id="own_actionable" 
+                          href="javascript:void(0)" 
+                          class="btn" 
+                          style="29px;">
+								      	Own
+								      </a>
+								    </div>
+							    <%else%>  
+							    	<div class="btn-group" style="width: 126px;">
+								      <%=@product_presenter.edit_link%>
+								      <%=@product_presenter.destroy_link%>
+							      </div>
+							    <%end%>
 
-<div id="container" class="wide">
-  
-	<div id="item">
-		
-				<!-- navigation to other products -->
-		    <%unless @next_product.id == @prev_product.id && 
-		              @next_product.id == @product.id%>
-		              
-					<%=@product_presenter.prev(@next_product,@product.user)%>
-		      <%=@product_presenter.next(@prev_product,@product.user)%>
+								
+							</div> 
+						<%end%> <!-- /feedback: own + want -->
+						
+
+						<%=@product_presenter.large_image%>
+						
+						
+						<div class="caption" style="text-align: left; padding-top: 18px;">
+							<h5 style="font-weight: normal">
+								<strong><%=h @product_presenter.title%></strong> 
+								<%=@product_presenter.byline%>
+							</h5>
+							<p style="margin: 0;">
+								<%=render :partial => 'endorsement',
+	           					:locals   => {:product  => @product}%>
+           		</p>			
+						</div> <!-- /caption -->
+						
+						
+					</div> <!-- /thumbnail -->
+				</div> <!-- /control-group -->
+				
+				<div class="control-group" 
+              id="comments_container" 
+              style="margin: 19px 13px 0;">
+
+					<div id="comments" style="margin-bottom: 19px;"></div>
 		    
-		    <%end%>
-	
-		<div class="top_bar">
+		    	<%if logged_in?%>
+			      <div id="add_comment" style="clear: both;">
+				      
+				        <%=image_tag self.current_user.photo_url,
+				            :class => "",
+				            :style => "width: 48px; height: 48x; "\
+                              "float: left; margin-right: 10px;",
+				            :alt => ""%>
+				
+				        <%=text_area_tag "comment_data",
+                    "",
+				        		:rows  => "2",
+				            :style => "color: #99999; float: left;"\
+                              "height: 38px; width: 426px;",
+                    "ui-placeholder-color" => "#999999",
+                    "ui-text-color" => "#333333",
+                    "data-placeholder" => "Add a comment"%>
+				          
+			          <input id="comment_post" 
+                        class="btn" 
+                        style="width: 56px; height: 48px; margin-left: 4px;" 
+                        value="Post" 
+                        title="Post" 
+                        type="button" 
+                        alt=""> 
+				      
+			      </div> <!-- /add_comment -->
+		      <%end%> 
+		    </div> <!-- comments_container -->
+		    
+		    <div id="feed_items" style="margin: 19px 13px 0;"></div>
+			
+      </div> <!-- /well -->
+    </div> <!-- /span12 -->
+  </div> <!-- /row -->
+</div> <!-- /container -->
 
-      <%if (@source == 'store' || @source == 'top_product') && @product.store%>
-        <%@store_presenter = presenter_for(@product.store)%>
-        <%=@product_presenter.breadcrumb(
-              @store_presenter.name,
-              @store_presenter.closet_path('product'))%>
-      <%else%>
-        <%=@product_presenter.breadcrumb(
-              @user_presenter.closet_title(true),
-              @user_presenter.closet_path('product'))%>
-      <%end%>
-      
-		</div> <!-- top_bar -->
-    
-		<div class="edit">
-      	<%=@product_presenter.edit_link%>
-      	<%=@product_presenter.destroy_link%>
-    </div>
-    
-      <div id="left" class="photo">
-        <%=@product_presenter.large_image%>
-      </div>
+<%content_for :javascript do%>
+  <script type="text/javascript">
 
-      
-      <div id="right">
+    new Denwen.Views.Products.Show({
+          productJSON : <%=@product.to_json(
+                              :only => [:id,:user_id,:endorsement])%>,
+          source      : '<%=@source%>'});
 
-        <div id="right_user_image">
-          <%=@user_presenter.small_picture('product_user')%>
-        </div>
-
-        <table id="right_text">
-          <tr>
-            <td>
-              <div id="right_text_div">
-
-                <span class="right_user">
-                  <%=@user_presenter.bought_text(
-                        @product.is_gift,
-                        'product_name')%> 
-                </span><br/>
-                  
-                <span class="right_title">
-                  <%=h @product_presenter.title%>
-                </span>
-                
-                <br/>
-                <%=@product_presenter.byline%>
-              </div>
-            </td>
-          </tr>
-         </table>
-         
-      </div> <!-- right -->
-      
-      <%=blocker%>
-      
-	</div> <!-- item -->
-	
-	<%=render :partial => 'endorsement',
-           	:locals   => {:product  => @product}%>
-
-  <div id="extras">
-  
-  	 <div id='feedback' class='feedback'>
-      <%if logged_in?%>
-      	<div class='buttons'>
-          <%unless is_current_user(@product.user)%>
-          	<a id='want_actionable' 
-                href='javascript:void(0)' 
-                class='button want'>
-                <span class='in'>✓ </span><span class='out'>want</span>
-           	</a>
-            <a id='own_actionable'  
-                href='javascript:void(0)' 
-                class='button own'>
-               	<span class='in'>✓ </span><span class='out'>own</span>
-            </a>
-          <%end%>
-        </div>
-      <%end%>
-
-      <div id='feed_items'>
-      </div>
-     </div> <!-- feedback -->
-  
-      	
-    <div id="comments_container">
-
-      <div>
-        <div id="comments">
-        </div>
-        <%=blocker%>
-      </div>
-    
-    	<%if logged_in?%>
-     
-	      <div id="add_comment">
-		      
-		        <%=image_tag self.current_user.photo_url,
-		            :class => "comment_photo_self",
-		            :alt => ""%>
-		
-		        <%=text_area_tag "comment_data","Add a comment",
-		            :class => "" %>
-		          
-	          <input id="comment_post" class="small_button" 
-	                  value="Post" title="Post" type="button" alt=""> 
-		      
-	        <%=blocker%>
-	      </div>
-      
-      <%end%> <!-- comment entry box -->
-
-
-      
-      <%=blocker%>
-      
-    </div> <!-- comments_container -->
-   
-   </div> <!-- extras -->
-   
-   <%=blocker%>
-  
-</div> <!-- container -->
-
-
-
-  <%content_for :javascript do%>
-    <script type="text/javascript">
-
-      new Denwen.Views.Products.Show({
-            productJSON : <%=@product.to_json(
-                                :only => [:id,:user_id,:endorsement])%>,
-            source      : '<%=@source%>'});
-
-    </script>
-  <%end%>
+  </script>
+<%end%>
 

@@ -19,14 +19,14 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     var self            = this;
     this.mode           = this.options.mode;
 
+    this.loadClass      = "load";
     this.queryEl        = "#product_query";
     this.repeatQueryEl  = "#product_repeat_query";
     this.imagesBoxEl    = "#chooser";
     this.imagesEl       = "#results";
     this.shadowEl       = "#shadow";
     this.moreEl         = "#scroll_for_more_results";
-
-    this.parser = new Denwen.Models.Parser();
+    this.spinnerBoxEl   = "#spinner_box";
 
     this.images = this.options.images;
     this.images.bind('searched',this.searched,this);
@@ -55,7 +55,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
       this.search();
-      //this.parse();
       return false;
     }
   },
@@ -92,25 +91,16 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     $(this.repeatQueryEl).val(correctedQuery);
   },
 
-  // Parse images from a url
+  // Enter into spinning mode
   //
-  parse: function() {
-    var self = this;
-    var query = $(this.queryEl).val();
-
-    this.parser.fetch({
-      data : {source : query},
-      success : function(model) {self.urlParsed();},
-      error : function(model) {}
-      });
+  startSpinner: function() {
+    $(this.spinnerBoxEl).addClass(this.loadClass);
   },
 
-  // Images from url successfully parsed
+  // Exit from spinner mode
   //
-  urlParsed: function() {
-    _.each(this.parser.get('images'),function(image){
-      $('body').prepend("<img style='display:none' onload='if(this.width>100)this.style.display = \"inline\"' src='" + image + "' />");
-    });
+  stopSpinner: function() {
+    $(this.spinnerBoxEl).removeClass(this.loadClass);
   },
 
   // Launch the search UI
@@ -126,6 +116,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     if(!query.length)
       return;
 
+    this.startSpinner();
+
     $(this.shadowEl).css("height","100%");
     $(this.shadowEl).fadeIn(500);
     $(this.imagesEl).html('');
@@ -139,9 +131,10 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     var search = new Denwen.Models.Search({
                       query   : query,
                       source  : this.mode == 'new' ? 0 : 1});
-    search.save();
 
-    this.trigger('productSearched',query);
+    setTimeout(function(){search.save();},500);
+
+    this.trigger('productSearched',query,this.images.queryType);
   },
 
   // Fired when a product image is added to the images
@@ -159,12 +152,14 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // more results
   //
   searched: function() {
+    this.stopSpinner();
+
     $(this.shadowEl).css("height", $(document).height());
 
     if(this.images.isEmpty()) {
       this.stopSearch();
       this.images.disableSearch();
-      alert("Oops, no photos for this item. Try a different search.");
+      dDrawer.error("Oops, no photos for this item. Try a different search.");
     }
     else if(this.images.isSearchDone()) {
       this.images.disableSearch();
@@ -180,7 +175,9 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // ProductImageView
   //
   productImageClicked: function(productHash) {
-    productHash['query'] = $(this.repeatQueryEl).val();
+    productHash['query'] = productHash['from_url'] ? 
+                            productHash['title'] :
+                            $(this.repeatQueryEl).val();
     this.trigger('productSelected',productHash);
     this.stopSearch();
   },

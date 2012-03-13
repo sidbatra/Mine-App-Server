@@ -78,9 +78,11 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   addToStoresPicked: function(storeID) {
     this.storesPicked.push(storeID);
 
-    if(this.storesPicked.length >= 3) { 
-      $(this.buttonEl).removeClass('disactivated');
+    if(this.storesPicked.length == 3) { 
+      $(this.buttonEl).addClass('btn-primary');
       $(this.buttonEl).removeAttr('disabled'); 
+      $(this.buttonEl).html(
+        "Start your OnCloset <i class='icon-chevron-right icon-white'></i>"); 
     }
     
     analytics.storePicked();
@@ -92,8 +94,9 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
     this.storesPicked = _.without(this.storesPicked,storeID);
 
     if(this.storesPicked.length < 3) { 
-      $(this.buttonEl).addClass('disactivated');
+      $(this.buttonEl).removeClass('btn-primary');
       $(this.buttonEl).attr('disabled',true); 
+      $(this.buttonEl).html('Pick at least 3!');
     }
 
     analytics.storeUnpicked();
@@ -115,7 +118,13 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.shoppingNewView(this.source);
+
+    if(helpers.isOnboarding)
+      analytics.onboardingStoresView();
+    else
+      analytics.shoppingNewView(this.source);
+
+    analytics.checkForEmailClickedEvent(this.source);
   }
 
 });

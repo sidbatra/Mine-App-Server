@@ -9,30 +9,38 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.query    = '';
-    this.count    = 12;
-    this.offset   = 0;
-    this.state    = 0;
-    this.disabled = 0;
-    this.finished = 0;
+    this.query      = '';
+    this.count      = 12;
+    this.offset     = 0;
+    this.state      = 0;
+    this.disabled   = 0;
+    this.finished   = 0;
+    this.queryType  = Denwen.ProductQueryType.Text;
   },
 
   // Create url to an image search api based on
   // the query, offset, size and count
   //
   url: function() {
-    var url = [
-                "http://api.bing.net/json.aspx?",
-                "AppId=31862565CFBD51810ABE4AB2CEDCB80D52D33969&",
-                "Version=2.2&",
-                "Market=en-US&",
-                "Query=" + encodeURIComponent(this.query) + "&",
-                "Sources=Image+spell&",
-                "Image.filters=" + this.size + "&",
-                "Image.offset=" + this.offset + "&",
-                "Image.count=" + this.count + "&",
-                "JsonType=callback&",
-                "JsonCallback=?"].join('');
+    var url = '';
+              
+    if(this.queryType == Denwen.ProductQueryType.Text) { 
+      url = [
+            "http://api.bing.net/json.aspx?",
+            "AppId=31862565CFBD51810ABE4AB2CEDCB80D52D33969&",
+            "Version=2.2&",
+            "Market=en-US&",
+            "Query=" + encodeURIComponent(this.query) + "&",
+            "Sources=Image+spell&",
+            "Image.filters=" + this.size + "&",
+            "Image.offset=" + this.offset + "&",
+            "Image.count=" + this.count + "&",
+            "JsonType=callback&",
+            "JsonCallback=?"].join('');
+    }
+    else {
+      url = "/parser?source=" + this.query;
+    }
 
     trace(url);
 
@@ -50,8 +58,17 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
     this.finished = 0;
     this.query    = query;
 
-    this.fetchMedium(this.query);
-    this.fetchLarge(this.query);
+    if(!this.query.match(/http/)) {
+      this.queryType  = Denwen.ProductQueryType.Text;
+
+      this.fetchMedium(this.query);
+      this.fetchLarge(this.query);
+    }
+    else {
+      this.queryType  = Denwen.ProductQueryType.URL;
+
+      this.fetchImagesFromURL(this.query);
+    }
   },
 
   // Load more results for the current search
@@ -78,33 +95,73 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
   //
   parse: function(data) {
     var results = [];
-    var query   = data['SearchResponse']['Query']['SearchTerms'];
 
-    if(query != this.query)
-      return results;
+    if(this.queryType == Denwen.ProductQueryType.Text) {
+      var query   = data['SearchResponse']['Query']['SearchTerms'];
 
-    var images  = data['SearchResponse']['Image']['Results'];
-    var offset  = data['SearchResponse']['Image']['Offset'];
-    var total   = data['SearchResponse']['Image']['Total'];
-    var spell   = data['SearchResponse']['Spell'];
+      if(query != this.query)
+        return results;
 
-    if(spell) {
-      this.trigger('correction',spell['Results'][0]['Value']);
-    }
+      var images  = data['SearchResponse']['Image']['Results'];
+      var offset  = data['SearchResponse']['Image']['Offset'];
+      var total   = data['SearchResponse']['Image']['Total'];
+      var spell   = data['SearchResponse']['Spell'];
 
-    this.state++;
-    this.disabled = 0;
-    
-    if(total <=0)
-      return results;
+      if(spell) {
+        this.trigger('correction',spell['Results'][0]['Value']);
+      }
 
-    if(total - offset <= this.count) {
-      this.finished++;
-    }
+      this.state++;
+      this.disabled = 0;
       
-    results = images;
-    
+      if(total <=0)
+        return results;
+
+      if(total - offset <= this.count) {
+        this.finished++;
+      }
+        
+      results = images;
+    }
+    else {
+      var source = data['source'];
+      var title  = data['title'];
+
+      //if(source != this.query)
+      //  return results;
+
+      var images = [];
+
+      _.each(data['images'],function(image){
+        var model = {
+                      Thumbnail: {Url :image},
+                      MediaUrl: image,
+                      Url: source,
+                      Title: title,
+                      Filter: true}
+        images.push(model);
+      });
+
+      this.state    = 2;
+      this.finished = 2;
+
+      results = images;
+    }
+
     return results;
+  },
+
+  // Extract images from the given source url
+  //
+  fetchImagesFromURL: function(source) {
+    var self = this;
+    
+    this.query = source;
+
+    this.fetch({
+      add :true,
+      success:  function(d) { self.trigger('searched');},
+      error:    function(r,s,e){}});
   },
 
   // Fetch medium sized search results from the images api

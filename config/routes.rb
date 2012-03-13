@@ -55,13 +55,18 @@ ActionController::Routing::Routes.draw do |map|
                     :controller => :products,
                     :action     => :edit
 
-  map.collection  ':user_handle/c/:id',
+  # Deprecate in next version
+  map.collection_d  ':user_handle/c/:id',
+                    :controller => :collections,
+                    :action     => :show
+
+  map.collection  ':user_handle/s/:handle',
                   :controller => :collections,
                   :action     => :show
 
-  map.edit_collection  ':user_handle/c/:id/edit',
-                  :controller => :collections,
-                  :action     => :edit
+  map.edit_collection  ':user_handle/s/:handle/edit',
+                        :controller => :collections,
+                        :action     => :edit
 
   map.store   's/:handle',
                 :controller => :stores,
@@ -103,7 +108,14 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create]
 
   map.resources :invites,
-                :only => [:create,:new]
+                :only => [:create]
+
+  map.resources :suggestions,
+                :only => [:index]
+
+  map.new_invite '/invite',
+                  :controller => :invites,
+                  :action => :new
 
   map.resources :shoppings,
                 :only => [:create,:new]
@@ -119,7 +131,7 @@ ActionController::Routing::Routes.draw do |map|
                 :controller => :welcome
 
   map.resources :settings,
-                :only => [:index,:update]
+                :only => [:index,:update,:show]
 
   # Admin routes
   map.resources :admin_users, 
@@ -135,7 +147,27 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_collections, 
                 :as         => 'admin/collections', 
                 :controller => 'admin/collections',
-                :only       => [:index]
+                :only       => :index
+
+  map.resources :admin_emails,
+                :as         => 'admin/emails',
+                :controller => 'admin/emails',
+                :only       => :show
+
+  map.resources :admin_health,
+                :as         => 'admin/health',
+                :controller => 'admin/health',
+                :only       => :index
+
+  map.resources :admin_suggestions,
+                :as         => 'admin/suggestions',
+                :controller => 'admin/suggestions',
+                :only       => [:new,:create,:index,:edit,:update,:destroy]
+
+  map.resources :admin_styles,
+                :as         => 'admin/styles',
+                :controller => 'admin/styles',
+                :only       => [:new,:create,:index,:edit,:update,:destroy]
 
   map.admin '/admin',
                 :controller => 'admin/help',

@@ -18,9 +18,9 @@ class CommentsController < ApplicationController
   # Fetch comments on a commentable entity
   #
   def index
-    @comments = Comment.on(
-                  params[:source_type],
-                  params[:source_id]).with_user
+    @comments = Comment.select(:id,:user_id,:data,:created_at).
+                  on(params[:source_type],params[:source_id]).
+                  with_user
     @key      = KEYS[:comment_commentable] % 
                   [params[:source_id],params[:source_type].capitalize]
   rescue => ex

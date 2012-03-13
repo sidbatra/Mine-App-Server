@@ -1,66 +1,53 @@
-<div class='product'>
-
-  <a class='top' 
-      href="<%=product.path(src)%>" 
-      style="background-image: url('<%=product.get('giant_url')%>')">
-  </a> <!-- top -->
-
-  <div class='bottom'>
-  		<div class='fade'></div>
-        	
-      <%if(type == 'user' && product.has('store')) { %>
-      	<%=product.get('store').get('is_processed') ? "<img src='" + product.get('store').get('thumbnail_url') + "' />"  : ''%>
-       	Bought at <%=product.get('store').conditionalLink('user_profile')%>
-      <%}else if(type == 'user' && product.get('is_gift')) { %>
-        Gift
-      <%}%>
-      
-      <%if(type == 'store') { %>
-				<a href="<%=product.get('user').path('store')%>" class='user'>
-	    		<img src="<%=product.get('user').get('photo_url')%>"/>
-	    	</a>
-
-	    	<a href="<%=product.get('user').path('store')%>" class='user'>
-	        <%=product.get('user').escape('first_name')%> 
-	        <%=product.get('user').escape('last_name')%>
-				</a>
-
-        bought this
-      <%}%>
-  </div> <!-- bottom -->
+<li style="margin: 0 0 10px 12px; position: relative;">
+  <a href="<%=product.path(src)%>" class="thumbnail" style="height: 162px;">
+  	<div class="thumb-photo">
+  		<img src="<%=product.get('thumbnail_url')%>" style="max-width: 130px; max-height: 130px;" />
+  	</div>
+  </a> <!-- /thumbnail -->
+  <div class="caption absolute">
+  	<div class="overflow-fade" style="width: 18px;"></div>
+	  <%if(type == 'user' && product.has('store')) { %>
+	  	<%=product.get('store').get('is_processed') ? "<img class='icon' src='" + product.get('store').get('thumbnail_url') + "' />"  : ''%>
+	   	<%=product.get('store').conditionalLink('user_profile')%>
+	  <%}else if(type == 'user' && product.get('is_gift')) { %>
+	    Gift
+	  <%}%>
+	  
+	  <%if(type == 'store') { %>
+			<a href="<%=product.get('user').path('store')%>">
+	  		<img class="icon" src="<%=product.get('user').get('photo_url')%>"/>
+	  	</a>
+	  	<a href="<%=product.get('user').path('store')%>">
+	      <%=product.get('user').escape('first_name')%> 
+	      <%=product.get('user').escape('last_name')%></a> bought this
+	  <%}%>
+  </div>
   
   <%if(helpers.isLoggedIn()) {%>
+  
+  	<div class="btn-group left" id="own_box_container_<%=product.get('id')%>">
 
-		<div class='feedback'>
-			<div class='buttons'>
-
-			  <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
-	        <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
-	          <div id="want_product_<%=product.get('id')%>" class='button want'>
-	            <span class="out">want</span><span class="in">✓</span>
-	          </div>
-	        <%}%>
-	        <div id="own_product_<%=product.get('id')%>" class='button own'>
-	        	<span class="out">own</span><span class="in">✓</span>
-	        </div>
-				<%}else{%>
-					<a href="<%=product.editPath(src)%>" class='button own'>
-		      	<img class="pen_img" 
-                  src="<%=helpers.imagePath('pen_white.png')%>" />edit
-		    	</a>
-			  <%}%>
-
-        <a href="<%=product.path(src+'_comment')%>" class='button'>
-          <img class="bubble_img" 
-                src="<%=helpers.imagePath('bubble_white.png')%>" />
-        </a>
-
-			</div>  <!-- buttons -->
-		</div> <!-- feedback -->
+		  <%if(!helpers.isCurrentUser(product.get('user_id'))){%>
+	      <%if(type == 'store' || !helpers.isCurrentUser(ownerID)){%>
+	        <a class="btn btn-small" id="want_product_<%=product.get('id')%>">
+	          Want
+	        </a>
+	      <%}%>
+	      <a class="btn btn-small" id="own_product_<%=product.get('id')%>">
+	      	Own
+	      </a>
+			<%}else{%>
+				<a class="btn btn-small" href="<%=product.editPath(src)%>">
+					<i class="icon-pencil"></i> Edit
+	    	</a>
+		  <%}%>
+	
+	    <a class="btn btn-small" href="<%=product.path(src+'_comment')%>">
+	      <i class="icon-comment"></i>
+	    </a>
+    
+    </div> <!-- /btn-group -->
 
 	<%}%>
-
-</div> <!-- product -->
-
-
-
+  
+</li>

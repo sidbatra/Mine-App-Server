@@ -19,7 +19,8 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
     this.productsEl       = '#items';
     this.productIdsEl     = '#collection_product_ids';
     this.titleEl          = '#collection_name';
-    this.titleTextEl      = '#name_text';
+    this.titleBoxEl       = '#name_box';
+    this.buttonEl         = '#products_picked_button';
 
     this.posting          = false;
 
@@ -28,6 +29,7 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
 
     this.el.submit(function(){return self.post();});
 
+    make_conditional_field($(this.titleEl));
     restrictFieldSize($(this.titleEl),254,'charsremain');
 
     this.get();
@@ -76,12 +78,22 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
   //
   addToProductsPicked: function(productID) {
     this.productsPicked.push(productID);
+
+    if(this.productsPicked.length == CONFIG['minimum_products_in_collection']) { 
+      $(this.buttonEl).addClass('btn-primary');
+      $(this.buttonEl).removeAttr('disabled'); 
+    }
   },
 
   // Fired when a product is turned off
   //
   removeFromProductsPicked: function(productID) {
     this.productsPicked = _.without(this.productsPicked,productID);
+
+    if(this.productsPicked.length < CONFIG['minimum_products_in_collection']) { 
+      $(this.buttonEl).removeClass('btn-primary');
+      $(this.buttonEl).attr('disabled',true); 
+    }
   },
 
   // Form submitted callback
@@ -93,27 +105,19 @@ Denwen.Partials.Collections.Input = Backbone.View.extend({
 
     this.posting  = true;
     var valid     = true;
-    
-    if(this.productsPicked.length < 1) {
-      valid = false;
-      alert("Please add at least one item.");
-      analytics.collectionException('No Products');
-    }
-    else {
-      $(this.productIdsEl).val(this.productsPicked.join(","));
-    }
 
-    if($(this.titleEl).val().length < 1) {
+    if($(this.titleEl).val().length < 1 || 
+        $(this.titleEl).val() == $(this.titleEl).attr('data-placeholder')) {
       valid = false;
 
-      $(this.titleEl).addClass('incomplete');
-      $(this.titleTextEl).addClass('incomplete');
+      $(this.titleBoxEl).addClass('error');
       analytics.collectionException('No Name');
     }
     else {
-      $(this.titleEl).removeClass('incomplete');
-      $(this.titleTextEl).removeClass('incomplete');
+      $(this.titleBoxEl).removeClass('error');
     }
+
+    $(this.productIdsEl).val(this.productsPicked.join(","));
 
     this.posting = valid;
 

@@ -9,6 +9,7 @@
 //
 var analytics       = new Denwen.Analytics();
 var helpers         = new Denwen.Helpers();
+var dDrawer         = new Denwen.Partials.Common.MessageDrawer();
 
 var isDeviceMobile  = false;
 var isDeviceiOS     = false;
@@ -54,21 +55,31 @@ function make_ie_compatible() {
 // Conditionally replace and add default text
 // in the given input field
 //
-function make_conditional_field(id,text,placeholderColor,textColor) {
+function make_conditional_field(id) {
 
-  $(id).focus(function() { 
-    if(this.value == text)
+  var el = $(id);
+  var placeholder = el.attr('data-placeholder');
+  var placeholderColor = el.attr('ui-placeholder-color');
+  var textColor = el.attr('ui-text-color');
+
+  if(el.val() == '') {
+    el.val(placeholder);
+    el.css('color',placeholderColor);
+  }
+  else {
+    el.css('color',textColor);
+  }
+
+  el.focus(function() { 
+    if(this.value == placeholder)
       this.value = '';
-    else {
-      //this.value = this.value;
-      }
 
     this.style.color = textColor;
   });
 
-  $(id).blur(function() {
+  el.blur(function() {
     if(this.value == '') { 
-      this.value = text;
+      this.value = placeholder;
       this.style.color = placeholderColor;
     }
   });

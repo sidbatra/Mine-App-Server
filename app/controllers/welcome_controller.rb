@@ -12,33 +12,14 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Learn
       @view     = "show"
     when WelcomeFilter::Stores
+      @shopping = Shopping.new
       @view     = "shoppings/new"
     when WelcomeFilter::Friends
       @view     = "invites/new"
-    when WelcomeFilter::Follow
-      follows = 10
-      stores  = self.current_user.stores
-
-      raise IOError, "No stores found" unless stores.present?
-
-      @users    = []
-      per_store = follows / stores.length 
-
-      stores.each do |store|
-        @users += AchievementSet.current_top_shoppers(store.id).
-                    map(&:achievable).
-                    shuffle[0..per_store] 
-      end
-
-      @users      = @users.uniq.shuffle[0..follows-1]
-
-      @shoppings  = Shopping.find_all_by_user_id(
-                              @users.map(&:id),
-                              :include    => :store).
-                              select{|s| s.store.is_processed}.
-                              group_by{|s| s.user_id}
-
-      @view       = "followings/new"
+    when WelcomeFilter::Style
+      @styles   = Style.by_weight
+      @sender   = self.current_user.received_invites.last.user rescue nil
+      @view     = "styles/new"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -56,7 +37,9 @@ class WelcomeController < ApplicationController
 
     case @filter
     when WelcomeFilter::Stores
-      @success_target = welcome_path(WelcomeFilter::Friends)
+      @success_target = user_path(
+                          self.current_user.handle,
+                          :src => UserShowSource::ShoppingsCreate)
       @error_target   = welcome_path(WelcomeFilter::Stores)
 
       store_ids = params[:store_ids].split(',')
@@ -68,19 +51,15 @@ class WelcomeController < ApplicationController
           ShoppingSource::User)
       end
 
-    when WelcomeFilter::Follow
-      @success_target = welcome_path(WelcomeFilter::Friends)
-      @error_target   = welcome_path(WelcomeFilter::Follow)
+    when WelcomeFilter::Style
+      @success_target = welcome_path(WelcomeFilter::Stores)
+      @error_target   = welcome_path(WelcomeFilter::Style)
 
-      user_ids        = params[:user_ids].split(',')
+      style = Style.find(params[:style_id])
 
-      user_ids.each do |user_id|
-        Following.add(
-          user_id,
-          self.current_user.id,
-          FollowingSource::Suggestion,
-          false)
-      end
+      self.current_user.update_attributes(
+        :style_id => style.id,
+        :byline => style.title)
 
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)

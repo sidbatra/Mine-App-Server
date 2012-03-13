@@ -12,7 +12,6 @@ Denwen.Partials.Stores.Picker = Backbone.View.extend({
   initialize: function() {
     this.picked   = false;
     this.toggleEl = '#store_picker_' + this.model.get('id');
-    this.onEl			= '#button_picker_' + this.model.get('id');
 
     this.render();
   },
@@ -32,13 +31,11 @@ Denwen.Partials.Stores.Picker = Backbone.View.extend({
     this.picked = !this.picked;
 
     if(this.picked) {
-      $(this.onEl).addClass('pushed');
-      
+      $(this.toggleEl).addClass('selected');
       this.trigger('addToStoresPicked',this.model.get('id'));
     }
     else {
-      $(this.onEl).removeClass('pushed');
-      
+      $(this.toggleEl).removeClass('selected');
       this.trigger('removeFromStoresPicked',this.model.get('id'));
     }
   }

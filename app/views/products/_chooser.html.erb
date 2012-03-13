@@ -1,33 +1,48 @@
-
-	<div id="chooser" class="shadow_overlay" style="display:none">
-    <a id="cancel_button" href="javascript:void(0)"></a>
-
-		<div id="chooser_title_bar">
-			Select your
-			<input class="box_shadow creation_search_chooser" 
-              id="product_repeat_query" 
-              name="products[query]" 
-              type="text" 
-              value="">
-			<input id="product_repeat_search" 
-              class="product_search_chooser" 
-              value="Go" 
-              title="Search" 
-              type="button" 
-              alt="Search">
-      <div id="product_image_broken_msg" 
-        class="error">Image unavailable. Please select a different one.</div>
-		</div>
-
-		<div id="results" style="height:500px;text-align:center;">
+	<div id="chooser" class="chooser" style="display:none;">
+	
+		<form class="form-horizontal search-bar">
+			
+			<a id="cancel_button" class="close" href="javascript:void(0)">
+				&times;
+			</a>
+		
+			<div id="spinner_box" class="control-group">
+			
+				<label id="product_image_broken_msg" class="control-label">
+					<span class="default">
+						Select your
+					</span>
+					<span class="error">
+						Image unavailable!
+					</span>
+				</label>
+				
+				<div class="controls" style="margin-left: 150px;">
+				
+					<input  id="product_repeat_query" 
+		              class="input-xlarge" 
+		              name="products[query]" 
+		              type="text" 
+		              value="">
+					<input id="product_repeat_search" 
+		              class="btn" 
+		              value="Go" 
+		              title="Search" 
+		              type="button" 
+		              alt="Search">
+		              
+        </div> <!-- controls -->     
       
+      </div> <!-- /control-group -->
+		</form> <!-- /search-bar -->
+
+		<div class="results" id="results">
     </div>
 	
-		<div id="scroll_for_more_results">
-	      Scroll down for more <span class='unicode'>↓</span>
-	    </div>
+		<div class="scroll-instructions" id="scroll_for_more_results">
+	      Scroll down for more <b class="caret" style="vertical-align: middle;"></b>
+	  </div>
+	  
 	</div> <!-- chooser -->
-
-  <!-- background shadow -->
-  <div id="shadow" style="display:none">
-  </div>
+	
+	<div class="shadow" id="shadow"></div>

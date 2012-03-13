@@ -1,10 +1,37 @@
-<div class='tab title overhang'>
+<div class="actions-header">
   Related stores
-</div>
+  <a class="right" 
+      onclick="analytics.viewAllSelected(Denwen.ViewAllType.RelatedStores);"
+      data-toggle="modal" 
+      href="#modal-related-stores">
+  	View all
+  </a>
+</div> <!-- /actions-header -->
+
+<ul class="thumbnails">
    
-<div class='no_small_top_margin'>
-  <%stores.each(function(store){%>
-    <%=Denwen.JST['stores/store']({store:store, src:'related'})%>
-  <%});%>
-  <%=helpers.blocker()%>
-</div>
+	<%stores.each(function(store){%>
+		<li>
+	  	<%=Denwen.JST['stores/store']({store:store, src:'related'})%>
+	  </li>
+	<%});%>
+
+</ul> <!-- /thumbnails -->
+
+<div class="modal fade" id="modal-related-stores">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Related Stores</h3>
+  </div>
+  <div class="modal-body">
+  
+    <ul class="thumbnails">
+			<%stores.each(function(store){%>
+				<li>
+	  			<%=Denwen.JST['stores/store']({store:store, src:'related'})%>
+	  		</li>
+			<%});%>
+  	</ul> <!-- /modal thumbnails -->
+		
+  </div>
+</div> <!-- /modal -->

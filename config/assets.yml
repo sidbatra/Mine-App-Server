@@ -6,15 +6,16 @@ javascripts:
   application:
     - public/javascripts/libs/jquery-1.7.1.js
     - public/javascripts/libs/jquery-timeago.js
-    - public/javascripts/libs/jquery-autocomplete.js
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
+    - public/javascripts/libs/bootstrap.js
     - public/javascripts/libs/swfupload.js
     - public/javascripts/extensions.js
     - public/javascripts/config.js
     - public/javascripts/application.js
     - public/javascripts/enumerations.js
     - public/javascripts/analytics.js
+    - public/javascripts/message_drawer.js
     - public/javascripts/helpers.js
     - public/javascripts/global.js
     - public/javascripts/window_listener.js
@@ -30,10 +31,15 @@ javascripts:
     - app/views/followings/*.jst
     - app/views/contacts/*.jst
     - app/views/collections/*.jst
+    - app/views/suggestions/*.jst
   home:
     - public/javascripts/libs/jquery-1.7.1.js
 stylesheets:
   application:
     - public/stylesheets/application.css
+    - public/stylesheets/bootstrap.css
+    - public/stylesheets/velcro.css
   home:
+    - public/stylesheets/bootstrap.css
+    - public/stylesheets/velcro.css
     - public/stylesheets/home.css

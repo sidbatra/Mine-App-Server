@@ -1,78 +1,83 @@
+<%if(helpers.isCurrentUser(ownerID) && src == 'user'){%>
+  <div id="suggestions" class="suggestions" style="display:none;">
+  </div>
+<%}%>
+
 <%if(!products.length) {%> 
-  <%if(src == 'user' && !helpers.isCurrentUser(ownerID)) {%> 
-    <!-- empty closet -->
+  <%if(src == 'user'){%>
     <div class='heading'>
-      Nothing in this closet yet.
+      <%if(helpers.isCurrentUser(ownerID)){%>
+        What should your first item be? Use the suggestions or the blue button above to get started.
+        
+        <ul class="thumbnails unselectable" style="margin-top: 18px; margin-left:-12px;">
+        
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/aerie.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/nordstrom-rack.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/amazon.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/converse.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/cvs.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/wet-seal.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        </ul>
+      
+      <%}else{%>
+        Nothing in this closet yet.
+      <%}%>
     </div>
   <%} else if(src == 'wanted') {%>
-    <%if(helpers.isCurrentUser(ownerID)){%>
-      <!-- no wants, current user -->
-      <div class='heading'>
-        Everything you <span class='em'>want</span> shows up here. <br />
-        <span class="trans_80" style="font-size: 18px">
-          Find something you want at one of your stores →
-        </span>
-      </div>
-    <%}else{%>
-      <!-- no wants, other user -->
-      <div class='heading'>
-        <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
-      </div>
-    <%}%>
+    <div class='heading'>
+      <%if(helpers.isCurrentUser(ownerID)){%>
+        Everything you click 'want' on across the site shows up here.
+      <%}else{%>
+          <%=ownerName%> hasn't wanted anything yet.
+      <%}%>
+    </div>
   <%}%>
 <%}%>
 
-<%if(categories.size() > 1){%>
-  <div class="titlebar overhang">
-    <div class="menu">
-
-      <%if(currentCategory == 'all' || currentCategory == undefined){%>
-        <a class="title">Everything</a>
-      <%}else{%>
-        <%categories.each(function(category){%>
-          <%if(currentCategory == category.get('handle')){%>
-            <a class="title"><%=category.get('name')%></a>
-          <%}%>
-        <%});%>
-      <%}%>
-
-      <ul class="list">
-        <%if(currentCategory != 'all' && currentCategory != undefined){%>
-          <a href="#<%=fragment%>/all"><li>Everything</li></a>
-        <%}%>
-        <%categories.each(function(category){%>
-          <%if(currentCategory != category.get('handle')){%>
-            <a href='#<%=fragment%>/<%=category.get('handle')%>'>
-              <li><%=category.get('name')%></li>
-            </a>  
-          <%}%>
-        <%});%>
-      </ul>
-
-    </div>
-  </div>
-<%}%>
-		
-<div class="products">
+<ul class="thumbnails" style="margin-left:-12px;">
   <%products.each(function(product){%>
     <%=Denwen.JST['products/product']({type:type,product:product,src:src,ownerID:ownerID})%>
   <%});%>
-  <%if(src == 'user' && 
-        helpers.isCurrentUser(ownerID) && 
-        (currentCategory == 'all' || currentCategory == undefined)){%>
-
-      <div class="placeholders">
-        <%Categories.each(function(category){%>
-          <%if(categories.get(category.get('id')) == undefined && category.isPrimary()){%>
-            <a class="placeholder" 
-                href="<%=helpers.newProductPath(category.get('handle'),'placeholder')%>"
-                style="background: url('<%=helpers.imagePath('placeholders/' + category.get('handle') + '.jpg')%>');">
-              <div class="fader">
-                Add +<br />your <%=category.get('name')%>
-              </div>
-            </a>
-          <%}%>
-        <%});%>
-      </div>
-  <%}%>
-</div>
+</ul> <!-- /thumbnails -->

@@ -1,7 +1,14 @@
-# Configuration constants for all RAILS environments
+# Config shared between ruby and javascript
+#
+# IMP: Run "rake js:dump:config" after editing.
+#
+shared: &shared
+  :products_threshold: 5
 
 # Constants shared across deployment environments
+#
 common: &common
+  <<: *shared
   :aws_access_id: AKIAJWYCAWDPAAKLNKSQ
   :aws_secret_key: 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 
   :fb_app_id: 245230762190915
@@ -19,8 +26,8 @@ common: &common
   :success: success
   :error: error
   :name: OnCloset
-  :version: 2.6
-  :products_threshold: 5
+  :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
+  :version: 3.0.0
   :collection_base_image: private/collection_base.jpg
   :keys:
     :user_category_count: user_%d_category_%d_count
@@ -33,6 +40,7 @@ common: &common
     :user_products_in_category: user_%d_category_%d_products
     :user_like_products_in_category: user_%d_category_%d_like_products
     :user_want_products_in_category: user_%d_category_%d_want_products
+    :user_product_suggestions: user_%d_product_suggestions
     :store_category_count: store_%d_category_%d_count
     :store_top_products: store_%d_top_products
     :store_top_shoppers: store_%d_top_shoppers
@@ -125,6 +133,18 @@ production: &production
     :noreply: OnCloset <noreply@oncloset.com>
     :contact: OnCloset <contact@oncloset.com>
 
-
 test: &test
   <<: *development
+
+# Config for javascript. 
+#
+# IMP: Run "rake js:dump:config" after editing.
+#
+javascript: &javascript
+  <<: *shared
+  :fb_extended_permissions: 'publish_stream'
+  :one_word_query_msg: "<strong>Tip:</strong> Including brands and colors helps you find your item."
+  :multi_query_msg: "<strong>Tip:</strong> Add items by URL for the perfect photo every time."
+  :multi_query_threshold: 5
+  :minimum_products_in_collection: 2
+

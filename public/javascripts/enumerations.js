@@ -1,26 +1,43 @@
-// App wide enumerations
+// Auto-generated via "rake js:dump:enums"
+// 
+// IMP: Do not edit directly. Edit config/enumerations.yml 
+// and rerun "rake js:dump:enums"
+// 
 
-// Valid hash fragments for the user show page
-//
+Denwen.ViewAllType = {
+UserStores: "User Stores",
+IFollowers: "IFollowers",
+RelatedStores: "Related Stores"
+}
+
 Denwen.UserShowHash = {
-  Owns        : 'owns',
-  Wants       : 'wants',
-  Collections : 'looks'
+Collections: "uses",
+Owns: "owns",
+Wants: "wants"
 }
 
-// Callbacks used across the application
-//
+Denwen.ProductQueryType = {
+URL: "url",
+Text: "text"
+}
+
+Denwen.InvitePlatform = {
+Facebook: 0,
+Email: 1
+}
+
 Denwen.Callback = {
-  ProductsLoaded        : 'productsLoaded',
-  UsersListLoaded       : 'usersListLoaded',
-  CollectionsListLoaded : 'collectionsListLoaded'
+FileUploadDone: "fileUploadDone",
+ProductsLoaded: "productsLoaded",
+StoresLoaded: "storesLoaded",
+CollectionsListLoaded: "collectionsListLoaded",
+UsersListLoaded: "usersListLoaded",
+FileUploadError: "fileUploadError",
+FileSelected: "fileSelected",
+ProductsRendered: "productsRendered",
+FileUploadProgress: "fileUploadProgress"
 }
 
-// Callbacks for the uploader partial
-//
-Denwen.Callbacks.Uploader = {
-  FileSelected        : 'fileSelected',
-  FileUploadError     : 'fileUploadError',
-  FileUploadDone      : 'fileUploadDone',
-  FileUploadProgress  : 'fileUploadProgress'
+Denwen.InviteNewHash = {
+Styles: "styles"
 }

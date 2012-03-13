@@ -1,8 +1,7 @@
-<div class="feed_item">
+<div class="feed_item" style="height: 48px; line-height: 48px; margin-bottom: 10px;">
 
   <a href="<%=action.get('user').path('action_photo')%>">
-    <img src="<%=action.get('user').get('photo_url')%>" 
-          class='comment_photo_self slim_shadow_light' alt=''/>
+    <img src="<%=action.get('user').get('photo_url')%>" alt="" style="float: left; margin-right: 10px; width: 48px; height: 48px;"/>
   </a>
 
   <a href="<%=action.get('user').path('action_name')%>">
@@ -10,5 +9,6 @@
 
   <%=action.get('name') == 'own' ? ' also ' : ''%>
   <%=action.get('name') + 's this.'%>
+  
 </div>
 

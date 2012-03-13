@@ -1,6 +1,7 @@
 # Handle requests for the store resource
 #
 class StoresController < ApplicationController
+  before_filter :renew_session, :only => :show
 
   # Display a store
   #
@@ -27,14 +28,13 @@ class StoresController < ApplicationController
                         limit(60)
       @key      = KEYS[:store_suggest]
     when :all
-      @stores   = Store.select(:id,:name)
+      @stores   = Store.select(:id,:name,:domain)
       @key      = KEYS[:store_all]
     when :for_user
       @stores   = Store.select('stores.id',:name,:handle,:is_processed,
                                 :image_path).
                         processed.
-                        for_user(params[:user_id]).
-                        limit(10)
+                        for_user(params[:user_id])
       @key      = KEYS[:user_top_stores] % params[:user_id]
     when :related
       @category_id  = Specialty.top_category_id_for_store(params[:store_id])

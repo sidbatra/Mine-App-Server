@@ -23,10 +23,11 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.boxEl                = $('#own_box_' + this.productID);
     this.storeEl              = $('#product_store_name_' + this.productID);
     this.storeBoxEl           = $('#product_store_box_' + this.productID);
-    this.storeTextEl          = $('#product_store_text_' + this.productID);
     this.isStoreUnknownEl     = $('#product_is_store_unknown_'+ this.productID);
 
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
+
+    make_conditional_field(this.storeEl);
   },
 
   // Display the UI for claiming ownership
@@ -97,17 +98,16 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     var valid = true;
     var mode  = 'own';
 
-    if(!this.isStoreUnknown() && this.storeEl.val().length < 1) {
+    if(!this.isStoreUnknown() && 
+          (this.storeEl.val().length < 1 || 
+            this.storeEl.val() == this.storeEl.attr('data-placeholder'))) {
       valid = false;
 
-      this.storeEl.addClass('incomplete');
-      this.storeTextEl.addClass('incomplete');
-
+      $(this.storeBoxEl).addClass('error');
       analytics.productException('No Store',mode);
     }
     else {
-      this.storeEl.removeClass('incomplete');
-      this.storeTextEl.removeClass('incomplete');
+      $(this.storeBoxEl).removeClass('error');
     }
 
     return valid;
@@ -128,7 +128,6 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
       this.storeEl.attr('disabled','disabled');
 
       this.storeEl.removeClass('incomplete');
-      this.storeTextEl.removeClass('incomplete');
     }
     else {
       this.storeBoxEl.removeClass('inactive');

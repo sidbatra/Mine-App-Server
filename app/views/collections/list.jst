@@ -1,33 +1,38 @@
-<%if(collections.size()){%>
+<div class="sets">
 
-  <%if(helpers.isCurrentUser(ownerID)){%>
-    <div class='new_collection'>
-      <a href='/collections/new?src=user' class='update'></a>
-    </div>
-  <%}%>
+	<%if(collections.size()){%>
+	
+	  <%if(helpers.isCurrentUser(ownerID)){%>
+	    <a class="btn btn-large btn-primary" href='/collections/new?src=user'>
+	    	<i class="icon-plus icon-white"></i> New set
+	   	</a>
+	   	
+		  <span style="padding: 0 8px;">
+				Post sets of items, as you use them.
+			</span>
+	  <%}%>
+	
+		<ul class="thumbnails" style="margin-top: 16px; margin-left: -12px;">
+		  <%var index=0;%>
+		  <%collections.each(function(collection){%>
+		    <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
+		  <%});%>
+	  </ul>
+	
+	<%}else{%>
+		<a class="btn btn-large <%=productsLeft > 0 ? 'disabled' : 'btn-primary'%>"
+        onclick="return <%=!(productsLeft > 0)%>;"
+        href="/collections/new?src=start">
+			<i class="icon-plus icon-white"></i> New set
+		</a>
+		 
+		<span style="padding: 0 8px;">
+      <%if(productsLeft > 0){%>
+        Once you've added 5 items, start posting sets of items, as you use them.
+      <%}else{%>
+        Start posting sets of items, as you use them.
+      <%}%>
+		</span>
+	<%}%>
 
-  <%var index=0;%>
-  <%collections.each(function(collection){%>
-    <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
-  <%});%>
-
-<%}else{%>
-
-  <div class='new_collection on_now_placeholder'>
-    Which of your items are on you now?
-    <br />
-
-    <%if(productsLeft > 0){%>
-      <span class='subtitle trans_80'>
-      	Add <span class='red'><%=productsLeft%></span> more <%=productsLeft == 1 ? 'item' : 'items'%>
-      	to start using this feature.
-      </span>
-    <%}else{%>
-      <a href='/collections/new?src=start' class='start'></a>
-    <%}%>
-  </div>
-
-  <img class='on_now_placeholder unselectable' 
-        src='<%=helpers.imagePath('on_now_placeholder.png')%>' />
-
-<%}%>
+</div>

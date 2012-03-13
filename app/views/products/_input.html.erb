@@ -1,5 +1,6 @@
 
-  <%=f.hidden_field :category_id, :value => category.id%>
+  <%=f.hidden_field :suggestion_id, :value => suggestion ? suggestion.id : nil%>
+  <%=f.hidden_field :category_id, :value => category ? category.id : nil%>
   <%=f.hidden_field :price%>
   <%=f.hidden_field :is_gift%>
   <%=f.hidden_field :source_url%>
@@ -7,108 +8,94 @@
   <%=f.hidden_field :orig_thumb_url%>
   <%=f.hidden_field :is_hosted%>
   
-
-  <!-- query -->
-	<div class='step' 
-        id='query_box' 
-        style='<%=show_query_box ? '' : 'display:none'%>'>
+	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
 	
 		<%if !onboarding%>
-			<p id='query_text' class='step_title'>
-	      <%=placeholders[:query]%>
-	    </p>
+			<label id="query_text">
+	      Detailed item name <strong>or</strong> URL
+	    </label>
 	  <%end%>
 
     <%=f.text_field :query,
-        :class    => "creation_input creation_search"%><input id='product_search' class='find_photo' value='' title='Search' type='button' alt='Search'>
-		
-		<%if !onboarding%>
-			<p class='step_example'>
-	      <%=placeholders[:query_eg]%>
+        :class    => "span4"%>
+    	<a id="product_search" 
+    					class="btn btn-primary" 
+    					value="" 
+    					title="Search" 
+    					type="button" 
+    					alt="Search">
+    		<i class="icon-camera icon-white"></i>
+    		Find photo
+    	</a>
+	
+			<p class="help-block">
+	      e.g. 'Sand Classic Uggs'. Brands and colors help.
 	    </p>
-	  <%end%>
-	  
-    <%=blocker%>
     
-	</div> 
-  <!-- query step -->
-
-	<div class='create_photo_box'>
-		<div class='change_photo_overlay' id='product_change_photo'>
-		</div>
-		<div id='product_selection' class='step rounded_3'>
-		</div>
+	</div> <!-- /query_box -->
+	
+	<div class="change-box">
+			<div class="btn change-photo" id="product_change_photo">
+				Change photo
+			</div>
+		<div class="thumbnail photo-box" id="product_selection">
+			<!-- image inserted is #product_selection_photo.photo -->
+		</div> <!-- /photo_box -->
 	</div>
 
   <%if onboarding%>
-    <div id='onboarding'>
-      <%=image_tag 'create_suggestion.png', :class => "create_suggestion unselectable"%>
-    </div>
+   <!-- currently unused -->
   <%end%>
 
-  <div id='extra_steps' style='display:<%=onboarding ? 'none' : ''%>'>
-
-    <!-- title -->
-    <div class='step'>
-      <p id='title_text' class='step_title'>
-        <%=placeholders[:title]%>
-      </p>
-
-      <%=f.text_field :title,
-                  :class    => "creation_input"%>
-      <%=blocker%>
-    </div> 
-
-    <!-- title step -->
-
-
-    <!-- store -->
-    <div class='step' id='store_box'>
-    
-      <div id='is_store_unknown_box' class='creation_checkbox_right trans_60 hover'>
-        <%=f.check_box :is_store_unknown%>
-        <%=f.label :is_store_unknown,"Not sure"%>
+  <div id="extra_steps" 
+      style="<%=show_extra_steps ? '' : 'display: none'%>">
+  
+		<div class="control-group" id="title_box">
+      <label class="control-label" style="width: 120px;">
+				Item name
+      </label>
+      <div class="controls" style="margin-left: 130px;">
+	      <%=f.text_field :title,
+	                  :style => "width: 200px;"%>
       </div>
-
-      <p id='store_text' class='step_title'>
-        Store where bought
-      </p>
-
-      <%=f.text_field :store_name,
-                  :class    => "creation_input"%>
-      
-      <%=blocker%>
-                        
-    </div> 
-    <!-- store step -->  
-
-
-    <%=link_to  'Add an optional review', 
-                'javascript:void(0)',
-                :id    => 'endorsement_initiate',
-                :class => 'edit_ffffff_18 add_review trans_60 hover'%>
-
-    <!-- endorsement step-->
-    <div id='endorsement_container' class="step" style='display:none'>
-      <p class="step_title">
+    </div> <!-- /title -->
+	
+		<div class="control-group" id="store_box">
+	    <label class="control-label" style="width: 120px;">
+	      Store where bought
+	    </label>
+			<div class="controls" style="margin-left: 130px;">
+		    <%=f.text_field :store_name,
+		    						:autocomplete => :off,
+		                :style => "width: 200px;"%>
+		    <span class="help-inline faded-80">          
+			    <%=f.label :is_store_unknown, 
+							"#{f.check_box :is_store_unknown} Not sure",
+		          :class => "checkbox",
+		          :style => "padding-top: 5px;"%>
+	      </span> 
+		  </div>
+	  </div> <!-- /store -->  
+	  
+		<div class="strike-thru" id="endorsement_initiate">
+		  <%=link_to  "<i class='icon-pencil faded-30'></i> Add an optional review?", 
+            "javascript:void(0)"%>
+		</div>
+		
+		<div class="control-group" id="endorsement_container" style="display:none">
+      <label class="control-label" style="width: 120px;">
         Review
-      </p>
+      </label>
+			<div class="controls" style="margin-left: 130px;">
+	      <%=f.text_area :endorsement,
+	            :value  => "",
+	            :rows 	=> 6,
+	            :style 	=> "width: 200px;"%>
+			</div>
+    </div> <!-- /endorsement -->
 
-      <%=f.text_area :endorsement,
-            :value    => "",
-            :class    => "creation_input creation_endorsement"%>
-
-      <p class="step_example">
-        <%=placeholders[:endorsement_eg]%>
-      </p>
-    </div> 
-    <!-- endorsement step -->
-
-
-    <%=submit_tag "",
-                  :class  => submit_class,
-                  :name   => nil%>
+		<button type="submit" class="btn btn-large btn-primary" style="width: 420px;">
+			<%=submit_text%>
+		</button> <!-- submit -->
     
-    <%=blocker%>
-
-</div>
+	</div>

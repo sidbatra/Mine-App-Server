@@ -16,6 +16,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   initialize: function() {
     var self                  = this;
     this.mode                 = this.options.mode;
+    this.searchesCount        = 0;
+    this.oneWordToolTipDone   = false;
+    this.urlToolTipDone       = false;
 
     this.formEl               = '#' + this.mode + '_product';
     this.queryEl              = '#product_query';
@@ -25,10 +28,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.onboardingEl         = '#onboarding';
     this.onboardingMsgEl      = '#onboarding_create_msg';
     this.titleEl              = '#product_title';
-    this.titleTextEl          = '#title_text';
+    this.titleBoxEl           = '#title_box';
     this.storeEl              = '#product_store_name';
     this.storeBoxEl           = '#store_box';
-    this.storeTextEl          = '#store_text';
     this.websiteEl            = '#product_source_url';
     this.thumbEl              = '#product_orig_thumb_url';
     this.imageEl              = '#product_orig_image_url';
@@ -40,6 +42,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.endorsementStartEl   = '#endorsement_initiate';
     this.isStoreUnknownEl     = '#product_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
+    this.urlAlertBoxEl        = '#url_alert_box';
     this.posting              = false;
 
     this.productImages      = new Denwen.Collections.ImageResults();
@@ -56,7 +59,16 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     restrictFieldSize($(this.storeEl),254,'charsremain');
 
-    new Denwen.Partials.Stores.Autocomplete({el:$(this.storeEl)});
+    this.autoComplete = new Denwen.Partials.Stores.Autocomplete(
+                              {el:$(this.storeEl)});
+    this.autoComplete.bind(Denwen.Callback.StoresLoaded,
+          this.storesLoaded,this);
+  },
+
+  // Callback from autocomplete when stores are loaded
+  //
+  storesLoaded: function(stores) {
+    this.stores = stores;
   },
 
   // Catch keystrokes on inputs to stop form submissions
@@ -117,14 +129,16 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   displayProductImage: function(imageURL) {
     $(this.selectionEl).show();
-    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
+    $(this.selectionEl).html("<img class='photo' id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
   },
 
   // Fired when a product is selected from the ProductImagesView
   //
   productSelected: function(productHash) {
     var self = this;
-    
+
+    this.searchesCount = 0;
+
     this.displayProductImage(productHash['image_url']);
 
     document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
@@ -136,24 +150,53 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
     $(this.onboardingMsgEl).hide();
-    $(this.imageBrokenMsgEl).hide();
+    $(this.imageBrokenMsgEl).removeClass('error');
 
     $(this.extraEl).show();
-    $(this.titleEl).focus();
+    $(this.storeEl).focus();
     $(this.titleEl).val(productHash['query'].toProperCase());
 
+    $(this.urlAlertBoxEl).hide();
+
     analytics.productSearchCompleted(this.mode);
+
+    // Test if the website url matches a known store to populate
+    // the store field
+    //
+    var sourceURL = productHash['website_url'].toLowerCase();
+
+    if(this.stores) {
+      this.stores.each(function(store){
+        if(sourceURL.search(store.get('domain')) != -1)
+          $(self.storeEl).val(store.get('name'));
+      });
+    }
   },
 
   // Fired when a product is searched from the ProductImagesView
   //
-  productSearched: function(query) {
-    analytics.productSearched(query,this.mode);
+  productSearched: function(query,queryType) {
+    this.searchesCount++;
+    analytics.productSearched(query,queryType,this.mode);
+
+    if(queryType == Denwen.ProductQueryType.Text) {
+      
+      if(query.split(' ').length == 1 && !this.oneWordToolTipDone) {
+        dDrawer.info(CONFIG['one_word_query_msg']);
+        this.oneWordToolTipDone = true;
+      }
+      else if(this.searchesCount == CONFIG['multi_query_threshold'] && 
+                !this.urlToolTipDone) {
+        dDrawer.info(CONFIG['multi_query_msg']);
+        this.urlToolTipDone = true;
+      }
+    }
   },
 
   // Fired when a product search is cancelled
   //
   productSearchCancelled: function(source) {
+    this.searchesCount = 0;
     analytics.productSearchCancelled(source,this.mode);
   },
 
@@ -167,7 +210,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.queryEl).focus();
     $(this.queryBoxEl).show();
-    $(this.imageBrokenMsgEl).show();
+    $(this.extraEl).hide();
+    $(this.imageBrokenMsgEl).addClass('error');
 
     this.productImagesView.search();
 
@@ -199,25 +243,21 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     if($(this.titleEl).val().length < 1) {
       valid = false;
 
-      $(this.titleEl).addClass('incomplete');
-      $(this.titleTextEl).addClass('incomplete');
+      $(this.titleBoxEl).addClass('error');
       analytics.productException('No Title',this.mode);
     }
     else {
-      $(this.titleEl).removeClass('incomplete');
-      $(this.titleTextEl).removeClass('incomplete');
+      $(this.titleBoxEl).removeClass('error');
     }
 
     if(!this.isStoreUnknown() && $(this.storeEl).val().length < 1) {
       valid = false;
 
-      $(this.storeEl).addClass('incomplete');
-      $(this.storeTextEl).addClass('incomplete');
+      $(this.storeBoxEl).addClass('error');
       analytics.productException('No Store',this.mode);
     }
     else {
-      $(this.storeEl).removeClass('incomplete');
-      $(this.storeTextEl).removeClass('incomplete');
+      $(this.storeBoxEl).removeClass('error');
     }
 
     this.posting = valid;

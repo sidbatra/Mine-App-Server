@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :category
+  belongs_to  :suggestion
   has_many    :comments,      :as => :commentable,  :dependent => :destroy
   has_many    :actions,       :as => :actionable,   :dependent => :destroy
   has_many    :achievements,  :as => :achievable,   :dependent => :destroy
@@ -62,7 +63,7 @@ class Product < ActiveRecord::Base
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
                   :query,:price,:endorsement,:is_gift,:category_id,
-                  :store_id,:user_id,:source_product_id
+                  :store_id,:user_id,:source_product_id,:suggestion_id
 
   #----------------------------------------------------------------------
   # Class methods
@@ -72,7 +73,7 @@ class Product < ActiveRecord::Base
   #
   def self.add(attributes,user_id)
     create!(
-      :title              => attributes['title'],
+      :title              => attributes['title'].strip,
       :source_url         => attributes['source_url'],
       :orig_image_url     => attributes['orig_image_url'],
       :orig_thumb_url     => attributes['orig_thumb_url'],
@@ -82,6 +83,7 @@ class Product < ActiveRecord::Base
       :endorsement        => attributes['endorsement'].strip,
       :is_gift            => attributes['is_gift'],
       :category_id        => attributes['category_id'],
+      :suggestion_id      => attributes['suggestion_id'],
       :store_id           => attributes['store_id'],
       :source_product_id  => attributes['source_product_id'],
       :user_id            => user_id)
@@ -224,6 +226,9 @@ class Product < ActiveRecord::Base
       self.is_processed  = true
       self.save(false)
     end
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
   end
 
 

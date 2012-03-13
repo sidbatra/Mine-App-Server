@@ -1,130 +1,107 @@
 <!-- Generate presenters to render this page -->
 <%@user_presenter = presenter_for(@user)%>
 
-
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
-  <%=render :partial  => 'facebook/og',
+  <%=render :partial  => "facebook/og",
             :locals   => {
               :title        => @user_presenter.closet_name,
-              :type         => 'link',
+              :type         => "link",
               :description  => @user_presenter.usage_description,
-              :url          => @user_presenter.closet_url('fb'),
+              :url          => @user_presenter.closet_url("fb"),
               :image        => @user.products_count > 0 ? 
                                 @user.products.last.thumbnail_url : 
-                                ''}%>
+                                ""}%>
 <%end%>
 
+<div class="container profile">
 
-<!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => 'misc/welcome', 
-          :locals => {
-            :src    => @user_presenter.source_id,
-            :target => @user_presenter.closet_path('footer')} if !logged_in? &&
-                                                                @source != 'iframe'%>
-
-
-<div id="container">
-	            
-	<!-- sidebar: left -->
-	<div class='sidebar'>
-
-		<%=@user_presenter.large_picture('picture')%>
-			
-		<div class='username'>
-      <%=@user_presenter.closet_title%>
-    </div>
-
-    <a href='#owns/all' class='tab triangle major' id='owns_tab'>
-      <span class="trans">Owns</span>
-    </a>
-
-    <a href='#wants/all' class='tab triangle major small_top_margin' id='wants_tab'>
-       <span class="trans">Wants</span>
-    </a>
-    
-    <%if @user.collections_count > 0 || is_current_user(@user)%>
-      <a href='#looks' class='tab triangle major small_top_margin' id='collections_tab'>
-         <span class="trans">Uses</span>
-      </a>
-    <%end%>
-	  
-<!--
-	  <#if !is_current_user(@user) && logged_in?%>
-	    <div id='following_box_<#=@user.id%>'>
-	    </div>
-	  <#end%>
--->
-	    
-	  <div>
-			<div id="ifollowers_with_msg">
-      </div>
-		</div> <!-- following-->
-
-	  <div>
-			<div id="followers_with_msg">
-      </div>
-		</div> <!-- followed by-->
-		
-  	<!-- bio -->
-  	<div id='profile_bio' class='large_top_margin'>
-	    <%=render :partial  => 'byline',
-	              :locals   => {:user => @user}%>
-	  </div>
-
-
-	 	<!-- <div id="star_users_box" class="box tiled">
-	  </div>  star_users_box -->
-	  
-	 	<!-- <div id="top_stores_box" class="box tiled">
-	  </div>  top_stores_box -->
-	 		 	
-	</div> <!-- sidebar: left -->	            
-
-		
-		
-	<!-- Main -->
-	<div id='main'>
-			
-			<!--div id='social_buttons' class="titlebar">
-		  			<%#render :partial => 'facebook/like', 
-		            :locals  => {
-		            :style	 => '',
-		            :url     => @user_presenter.closet_url('fb'),
-		            :send_button  => false,
-		            :width        => 90,
-		            :faces        => false}%>	
-		            
-		    twitter
-		    tumblr
-		    stumble
-		    google+
-		    
-			</div-->
-			
-      <div id="centerstage">
-      </div>
-	</div> <!-- main -->
+	<div class="row">
+    <div class="span12">
+	    <div class="well profile-card" style="height: 128px; margin-bottom: 12px;">
+	    	
+	    		<div class="profile-card-inner">
+		    		<div class="profile-img">
+							<%=@user_presenter.large_picture('picture')%>
+						</div>
+		    		<h1 style="padding-bottom: 4px; line-height: 1;">
+              <%=@user_presenter.full_name%>
+            </h1>
+		    		<div id="profile_bio">
+					    <%=render :partial  => 'byline',
+					              :locals   => {:user => @user}%>
+			  		</div>
+			  	</div>
+			  	
+			  	<div class="profile-card-actions" id="user_stores_box" >
+					</div>
+			  	
+			  	<div class="profile-card-actions" id="ifollowers_with_msg">
+			  	</div>
 	
+	    </div> <!-- /well profile-card -->
+    </div> <!-- /span12 -->
+  </div> <!-- /row -->
 	
-	
-	<!-- sidebar: right -->
-	<div class='sidebar right'>
-	
-		<div id="user_stores_box" class="box tile_listed">
-	  </div> <!-- your_stores_box -->
-	  
-	</div> <!-- sidebar: right -->	
-	
+	<%=render :partial => "misc/welcome", 
+	          :locals => {
+	          :src    => @user_presenter.source_id,
+	          :target => @user_presenter.closet_path('footer')} if !logged_in? &&
+	                               @source != "iframe"%>
+	          <!-- /logged out welcome -->
 
-</div> <!-- container -->
+  <div class="row">
+    <div class="span12">
+    	<div class="well items">
+    	
+    		<ul class="nav nav-tabs">
+  				<li id="owns_tab">
+    				<a href="#<%=UserShowHash::Owns%>" 
+                style="text-align: center; width: 38px;">
+    					<span class="tab-text">Owns</span>
+    					<div class="loading small inline" style="margin-bottom: -4px;">
+              </div>
+    				</a>
+  				</li>
+  				<li id="wants_tab">
+  					<a href="#<%=UserShowHash::Wants%>" 
+                style="text-align: center; width: 38px;">
+  						<span class="tab-text">Wants</span>
+  						<div class="loading small inline" style="margin-bottom: -4px;">
+              </div>
+  					</a>
+  				</li>
+          <%if is_current_user(@user) or !@user.collections_count.zero?%>
+            <li id="collections_tab">
+              <a href="#<%=UserShowHash::Collections%>" 
+                  style="text-align: center; width: 38px;">
+                <span class="tab-text">Uses</span>
+                <div class="loading small inline" style="margin-bottom: -4px;">
+                </div>
+              </a>
+            </li>
+          <%end%>
+				</ul>
+        
+    		<div class="control-group">
+      		<div id="centerstage"></div>
+      	</div>
+      	
+      </div> <!-- /well items-->
+    </div> <!-- /span12 -->
+  </div> <!-- /row -->
+  
+</div> <!-- /container profile -->
+
 
 <%content_for :javascript do%>
-  <%#render :partial => "misc/feedback"%>
 
   <script type="text/javascript">
 
     new Denwen.Views.Users.Show({
+          styles          : <%=@styles.shuffle.to_json(
+                                  :only => [:id,:title],
+                                  :methods => [:image_url])%>,
           userJSON        : <%=@user.to_json(
                                 :only => [:id,:first_name,:last_name,
                                           :handle,:byline,:followings_count,

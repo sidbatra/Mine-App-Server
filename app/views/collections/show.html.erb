@@ -9,152 +9,142 @@
             :locals   => {
               :title        => @collection_presenter.page_title(
                                  @user_presenter.first_name),
-              :type         => OGObject::Set, 
-              :description  => @user_presenter.collection_usage_description,
+              :type         => OGObject::Set,
+              :description  => @collection_presenter.description,
               :url          => @collection_presenter.url('fb'),
               :image        => @collection_presenter.thumbnail_url,
               :products     => @collection.products}%>
 <%end%>
 
+<div style=" width: 620px; margin: -9px auto 0;">
+	<%=render :partial => 'misc/welcome', 
+	      :locals => {
+	        :src    => 'collection_' + @collection.id.to_s,
+	        :target => collection_path(
+	                    @collection.user.handle,
+	                    @collection.handle,
+	                    :src => 'footer')} unless logged_in?%>
+</div> <!-- /welcome -->
 
-<!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => 'misc/welcome', 
-      :locals => {
-        :src    => 'collection_' + @collection.id.to_s,
-        :target => collection_path(
-                    @collection.user.handle,
-                    @collection.id,
-                    :src => 'footer')} unless logged_in?%>
+
+<div class="container set">
+	<div class="row">
+    <div class="span10 offset1">
+    	<div class="well">
+    		<div class="control-group">
+					<div class="thumbnail" 
+                style="background: white; position: relative; padding-top: 40px;">
+			       		       
+			      <div style="margin-left: 0; position: absolute; top: 6px; left: 6px; width: 400px;">
+						
+							<%=@collection_presenter.breadcrumb(
+				            @user_presenter.closet_title(true),
+				            @user_presenter.closet_path('collection',UserShowHash::Collections))
+				            %> <!-- back to user -->
+
+							<%unless @next_collection.id == @prev_collection.id && 
+					             @next_collection.id == @collection.id%>
+					      <div class="btn-group">      
+					      	<%=@collection_presenter.prev(@next_collection,@collection.user)%>  
+						      <%=@collection_presenter.next(@prev_collection,@collection.user)%>
+						    </div>
+					    <%end%> <!-- /previous + next -->	 
+					    
+				    </div> <!-- /all navigation -->
+			            
+			      <%if logged_in?%>
+							<div id="feedback"
+                   class="btn-group" 
+                   style="position: absolute; top: 6px; 
+                           right: 6px;">
+						    <%unless is_current_user(@collection.user)%>
+									<a id="like_actionable" href="javascript:void(0)" class="btn">
+						      	Like
+						     	</a>
+						    <%else%>  
+						      <%=@collection_presenter.edit_link%>
+      						<%=@collection_presenter.destroy_link%>
+						    <%end%>
+							</div>
+						<%end%> <!-- /edit + like -->
 
 
-<div id="container" class="wide">
+				  	<ul class="items">
+					   	<%@collection.products.each do |product|%>
+						   	<li>
+						   	
+								  <%@product_presenter = presenter_for(product)%>
+								  
+								  <a class="thumb-photo" style="width: 243px; height: 243px;" href="<%=@product_presenter.path('collection')%>">
+								  	<img style="max-width: 243px; max-height: 243px;" src="<%=product.giant_url%>" />
+								  </a>
 
-	<div id="item">
-	
-		<div class="top_bar">
+								</li>		
+						  <%end%>
+					  </ul> <!-- /items -->
+						
+						<div class="caption" style="text-align: left; padding-top: 18px;">
+							<h5 style="font-weight: normal">
+								<strong><%=@collection.name%></strong>
+								<span style="color: #999;">
+									&nbsp;<%=time_ago_in_words @collection.created_at%> ago
+								</span>		
+							</h5>	
+						</div> <!-- /caption -->
 
-      <%=@collection_presenter.breadcrumb(
-            @user_presenter.closet_title(true),
-            @user_presenter.closet_path('collection'))%>
-      
-		</div> <!-- top_bar -->
-		
-		<div class="edit">
-				<%=@collection_presenter.edit_link%>
-      	<%=@collection_presenter.destroy_link%>
-    </div>
-		
-		<table class="collection details">
-			<tr>
-				<td class="photo">
-          <%=link_to image_tag(@collection.user.photo_url),
-          					 @user_presenter.closet_path('collection_user_photo')%>
-				</td>
-				<td class="textbox">
-					On <span class='name'>
-            <%=link_to @user_presenter.full_name,
-        				       @user_presenter.closet_path('collection_user_name')%>
-          </span> <%=time_ago_in_words @collection.created_at%> ago
-					<br/>
-					<span class='title'><%=@collection.name%></span>
-				</td>
-			</tr>
-		</table> <!-- collection details -->
-		
-		<div class="products collection">
-		  <%@collection.products.each do |product|%>
-		  	<%@product_presenter = presenter_for(product)%>
-		  
-		  	<div class="stamp"> 
-
-          <%=link_to  '',
-              @product_presenter.path('collection'),
-              :class  => 'top',
-              :style  => "background-image: url('" + product.giant_url + "')"%>
-
-          <div class="bottom">
-          	<div class="fade"></div>
-            <%=@product_presenter.shorter_byline%>
-          </div> <!-- bottom-->
+					</div> <!-- /thumbnail -->
+				</div> <!-- /control-group -->	
 				
-				</div> <!-- product -->
-						  
-		  <%end%> 
-		  
-      <!-- navigation to other products -->
-      <%unless @next_collection.id == @prev_collection.id && 
-                @next_collection.id == @collection.id%>
-    
-        <%=@collection_presenter.next(@prev_collection,@collection.user)%>
-        <%=@collection_presenter.prev(@next_collection,@collection.user)%>
-      
-      <%end%>
-	  </div> <!-- products collection -->
+			<div class="control-group" id="comments_container" style="width: 554px; margin: 19px auto 0;">
+
+				<div id="comments" style="margin-bottom: 19px;"></div>
+		    
+		    	<%if logged_in?%>
+			      <div id="add_comment" style="clear: both;">
+				      
+				        <%=image_tag self.current_user.photo_url,
+				            :class => "",
+				            :style => "width: 48px; height: 48x; "\
+                              "float: left; margin-right: 10px;",
+				            :alt => ""%>
+				
+				        <%=text_area_tag "comment_data",
+                    "",
+				        		:rows  => "2",
+				            :style => "color: #99999; float: left;"\
+                              "height: 38px; width: 426px;",
+                    "ui-placeholder-color" => "#999999",
+                    "ui-text-color" => "#333333",
+                    "data-placeholder" => "Add a comment"%>
+				          
+			          <input id="comment_post" 
+                        class="btn" 
+                        style="width: 56px; height: 48px; margin-left: 4px;" 
+                        value="Post" 
+                        title="Post" 
+                        type="button" 
+                        alt=""> 
+				      
+			      </div> <!-- /add_comment -->
+		      <%end%> 
+		    </div> <!-- /comments_container -->
+
+		    <div id="feed_items" style="width: 554px; margin: 19px auto 0;">
+		    </div>
   
-  </div> <!-- item -->
-  
-  <div id="extras">
-  
-  	 <div id="feedback" class="feedback">
-      <%if logged_in?%>
-      	<div class="buttons">
-          <a id="like_actionable" 
-              href="javascript:void(0)" 
-              class="button like">
-              <span class="in">♥</span><span class="out">Like</span>
-          </a>
-        </div>
-      <%end%>
-
-      <div id="feed_items">
-      </div>
-     </div> <!-- feedback -->
-  
-      	
-    <div id="comments_container">
-
-      <div>
-        <div id="comments">
-        </div>
-        <%=blocker%>
-      </div>
-    
-    	<%if logged_in?%>
-     
-	      <div id="add_comment">
-		      
-		        <%=image_tag self.current_user.photo_url,
-		            :class => "comment_photo_self slim_shadow_light",
-		            :alt => ""%>
-		
-		        <%=text_area_tag "comment_data","Add a comment",
-		            :class => "" %>
-		          
-	          <input id="comment_post" class="small_button" 
-	                  value="Post" title="Post" type="button" alt=""> 
-		      
-	        <%=blocker%>
-	      </div>
-      
-      <%end%> <!-- comment entry box -->
-
-      <%=blocker%>
-    </div> <!-- comments_container -->
-   
-   </div> <!-- extras -->
-   
-   <%=blocker%>
-  
-</div> <!-- container -->
+      </div> <!-- /well -->
+    </div> <!-- /span12 -->
+  </div> <!-- /row -->
+</div> <!-- /container -->
 
 
 
-  <%content_for :javascript do%>
-    <script type="text/javascript">
-      new Denwen.Views.Collections.Show({
-            collectionJSON  : <%=@collection.to_json(
-                                  :only => [:id,:user_id])%>,
-            source          : '<%=@source%>'});
-    </script>
-  <%end%>
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Collections.Show({
+          collectionJSON  : <%=@collection.to_json(
+                                :only => [:id,:user_id])%>,
+          source          : '<%=@source%>'});
+  </script>
+<%end%>
 

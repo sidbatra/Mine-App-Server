@@ -1,38 +1,13 @@
-
-<div class='invite_row trans_80 hover'> 
-  <img class='invite_user' 
-        src='<%=contact.imageURL()%>' 
-        id='fb_single_invite_link' 
-        fb_id='<%=contact.get('third_party_id')%>'/>
-  <span class='name' 
-        id='fb_single_invite_link' 
-        fb_id='<%=contact.get('third_party_id')%>'>
-      <%=contact.get('name')%>
-  </span>
-  <a href='javascript:void(0);' 
-     id='fb_single_invite_link'
-     class='invite' 
-     fb_id='<%=contact.get('third_party_id')%>'>
-  </a> 
-</div>
-
-
-<!-- invite: single invite grid view  
-<a class="picker_choice unselectable" id="fb_single_invite_link"> 
+<li>
+	<a class="thumbnail" 
+			href="#styles-<%=styleID%>/friends-<%=contact.get('name').replace(' ','+')%>-<%=contact.get('third_party_id')%>/finish">
 	
-	<div class="shadowbox"></div>
+		<img class="thumb-photo" 
+		      src="<%=contact.imageURL()%>" />
+		      
+		<div class="caption" style="padding: 1px 4px 0 0;">
+			<%=helpers.truncate(contact.get('name'), 20, '…')%>
+		</div>
+	</a> 
+</li> 
 
-	<div class="button_picker" id="button_picker_">
-	</div>
-	
-	<div class="left">
-		<img src="<#=contact.imageURL()%>" 
-				 class="left_img"
-				 fb_id="<#=contact.get('third_party_id')%>"/>
-	</div>
-
-	<div class="right" fb_id="<#=contact.get('third_party_id')%>">
-		<#=helpers.truncate(contact.get('name'),30,".")%>
-	</div>
-
-</a>-->

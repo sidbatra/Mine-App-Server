@@ -3,18 +3,19 @@
 class InvitesController < ApplicationController
   before_filter :login_required
 
-  # Display UI for creating one or multiple invites
+  # Display UI for creating invites
   #
   def new
+    @styles = Style.by_weight
   end
 
   # Create one or more invites 
   #
   def create
+    params[:user_id] = self.current_user.id
 
-    params[:fb_user_ids].each do |fb_user_id|
-      Invite.add(self.current_user.id,fb_user_id)
-    end
+    @invite = Invite.add(params)
+
   rescue => ex
     handle_exception(ex)
   ensure

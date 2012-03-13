@@ -1,0 +1,39 @@
+
+<div id="container" class="container well">
+  <legend>
+    Suggestions - 
+    <%=link_to "Add",new_admin_suggestion_path%>
+  </legend>
+
+  <table width="900">
+    <tr height="20">
+    </tr>
+    <%@suggestions.each do |suggestion|%>
+      <tr>
+        <td width="200">
+          <%=suggestion.title%>
+        </td>
+        <td width="50">
+          <%=suggestion.weight%>
+        </td>
+        <td width="50">
+          <%=suggestion.gender%>
+        </td>
+        <td width="150">
+          <%=image_tag suggestion.image_url,:width => 100%>
+        </td>
+        <td>
+          <%=link_to "Edit",edit_admin_suggestion_path(suggestion)%>
+        </td>
+        <td>
+          <%=link_to "Delete", {
+                :controller => 'admin/suggestions',
+                :action => 'destroy',
+                :id => suggestion.id},
+              :method => :delete,
+              :confirm  => "There is no undo on this, sure?"%></h3>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>

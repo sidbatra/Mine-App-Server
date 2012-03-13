@@ -2,7 +2,7 @@
 #
 class ProductsController < ApplicationController
   before_filter :login_required,  :only => [:new,:create,:edit,:update,:destroy]
-  before_filter :logged_in?,      :only => :show
+  before_filter :renew_session, :only => :show
 
   # Display UI for creating a new product
   #
@@ -12,6 +12,9 @@ class ProductsController < ApplicationController
 
     @category     = Category.fetch(
                       params[:category] ? params[:category] : "anything")
+
+    @suggestion   = params[:suggestion] ? 
+                      Suggestion.find(params[:suggestion]) : nil
 
     @placeholders = MSG[:product][@category.handle.to_sym]
   rescue => ex
@@ -42,9 +45,7 @@ class ProductsController < ApplicationController
       format.html do
         redirect_to  @error ? 
                       new_product_path(
-                        :category => Category.find(
-                                        params[:product][:category_id]).handle,
-                        :src      => ProductNewSource::Error) :
+                        :src => ProductNewSource::Error) :
                       user_path(
                         self.current_user.handle,
                         :src    => UserShowSource::ProductCreate,
@@ -65,7 +66,11 @@ class ProductsController < ApplicationController
 
     case @filter
     when :user
-      @products   = Product.with_store.with_user.
+      @products   = Product.select(:id,:is_gift,:handle,:user_id,:store_id,
+                              :image_path,:is_hosted,
+                              :is_processed,:orig_thumb_url).
+                      with_store.
+                      with_user.
                       for_user(params[:owner_id]).
                       in_category(category_id).
                       by_id
@@ -73,7 +78,10 @@ class ProductsController < ApplicationController
       @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
 
     when :store
-      @products   = Product.with_user.
+      @products   = Product.select(:id,:is_gift,:handle,:user_id,
+                              :image_path,:is_hosted,
+                              :is_processed,:orig_thumb_url).
+                      with_user.
                       for_store(params[:owner_id]).
                       in_category(category_id).
                       by_id
@@ -81,8 +89,9 @@ class ProductsController < ApplicationController
       @key = KEYS[:store_products_in_category] % [params[:owner_id],category_id]
 
     when :top
-      @products = Product.for_store(params[:owner_id]).
-                    created(20.days.ago..Time.now).
+      @products = Product.select(:id,:title,:handle,:user_id).
+                    for_store(params[:owner_id]).
+                    created(30.days.ago..Time.now).
                     by_actions.
                     with_user.
                     limit(10)
@@ -98,7 +107,12 @@ class ProductsController < ApplicationController
       @key = KEYS[:user_top_products] % params[:owner_id]
 
     when :wanted
-      @products = Product.with_store.with_user.
+      @products = Product.select('products.id',:is_gift,:handle,
+                              'products.user_id',:store_id,
+                              :category_id,:image_path,:is_hosted,
+                              :is_processed,:orig_thumb_url).
+                    with_store.
+                    with_user.
                     acted_on_by_for(params[:owner_id],ActionName::Want).
                     in_category(category_id)
       
@@ -167,6 +181,7 @@ class ProductsController < ApplicationController
 
 
     @category     = @product.category
+    @suggestion   = @product.suggestion
     @placeholders = MSG[:product][@category.handle.to_sym]
 
   rescue => ex

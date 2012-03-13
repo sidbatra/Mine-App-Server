@@ -1,6 +1,6 @@
 module DW
 
-  # Set of classes and methods for handling a generic noitifcation framework
+  # Set of classes and methods for handling a generic notifcation framework
   #
   module NotificationManagement
     
@@ -11,18 +11,11 @@ module DW
     #
     class NotificationManager
 
-      # Email all the users on the comment thread
+      # Notify mailman about new comment
       #
       def self.new_comment(comment_id)
-        comment   = Comment.with_user.find(comment_id)
-        user_ids  = Comment.user_ids_in_thread_with(comment)
-        users     = User.find_all_by_id(user_ids)
-
-        users.each do |user|
-          UserMailer.deliver_new_comment(
-                      comment,
-                      user) unless user.id == comment.user.id
-        end
+        comment = Comment.with_user.find(comment_id)
+        Mailman.email_users_in_comment_thread(comment)
       end
       
       # Host the new product image
@@ -31,9 +24,9 @@ module DW
         product = Product.find(product_id)
         product.host
 
-        #if product.user.setting.post_to_timeline
-        #  DistributionManager.publish_add(product)
-        #end
+        if product.user.setting.post_to_timeline
+          DistributionManager.publish_add(product)
+        end
       end
 
       # Host the updated product image
@@ -49,57 +42,39 @@ module DW
         store = Store.find(store_id)
         store.host
       end
-      
-      # Make a user follow all his Facebook friends in our user base 
-      # and email the friends about his signup. Also store all their
-      # friends in the contacts table
-      #
-      def self.new_user(user_id)
-        user              = User.find(user_id)
-        fb_friends        = user.fb_friends
 
-        fb_friends_ids    = fb_friends.map(&:identifier)
-        fb_friends_names  = fb_friends.map(&:name)
-
-        followers         = User.find_all_by_fb_user_id(fb_friends_ids)
-
-        followers.each do |follower|
-          Following.add(user_id,follower.id,FollowingSource::Auto,false)
-          Following.add(follower.id,user_id,FollowingSource::Auto)
-        end
-
-        Contact.batch_insert(user_id,fb_friends_ids,fb_friends_names)
-
-        user.has_contacts_mined = true
-        user.save!
-      end
-
-      # Email the owner about any action taken on his product
+      # Notify Mailman about the new action
       #
       def self.new_action(action_id)
         action  = Action.find(action_id)
+        Mailman.notify_owner_about_an_action(action)
 
-        UserMailer.deliver_new_action(
-                    action) unless action.user_id == action.actionable.user_id
+        if action.name == ActionName::Want && 
+           action.user.setting.post_to_timeline
+          DistributionManager.publish_want(
+                                action.user,
+                                action.actionable)
+        end
       end
 
-      # Email the user whenever someone follows him/her
+      # Notify Mailman about the new following
       # 
       def self.new_following(following_id)
         following = Following.find(following_id)
-
-        UserMailer.deliver_new_follower(following) 
+        Mailman.email_leader_about_follower(following)
       end
 
-      # Process a new collection and manager distribution
+      # Process a new collection and manage distribution
       #
       def self.new_collection(collection_id)
         collection = Collection.find(collection_id)
         collection.process
 
-        #if collection.user.setting.post_to_timeline
-        #  DistributionManager.publish_use(collection)
-        #end
+         Mailman.email_followers_about_collection(collection)
+
+        if collection.user.setting.post_to_timeline
+          DistributionManager.publish_use(collection)
+        end
       end
 
       # Update a collection

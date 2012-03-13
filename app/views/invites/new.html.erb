@@ -2,72 +2,23 @@
 <%=render :partial  => "headers/onboarding",
           :locals   => {:step => 2} if is_onboarding?%>
 
-
-<div id="container" class="narrow">
-
-  <p class="heading">
-    <%if is_onboarding?%>
-      Whose closets would you like to see?<br />
-      Who do you shop with?
-    <%else%>
-      Share your closet with friends.
-    <%end%>
-  </p>
-			
-  <div class="invite_search">
-
-    <div class="textfield_title trans_80" 
-            id="invite_textfield_title" 
-         style="display:none">
-      Search for friends by name:
-    </div>
-
-    <div class="invite_search_enclosure" id="invite_search_container">
-      <%=text_field_tag 'search_box', 
-          nil, 
-          :placeholder => '', 
-          :class => 'textfield',
-          :hidden => :true%>
-
-      <%=link_to  '',
-          'javascript:void(0)',
-          :id    => 'x_button',
-          :class => 'x-text',
-          :style => 'display:none'%>
-    </div>
-    
-  </div> <!-- invite_search -->	
-  
-  	<!-- contacts (grid or list class variants -->
-    <div id="contacts" class="list">
-      <div class="loading" id="loading_spinner">
-        <%=image_tag 'spinner_dark_bg.gif'%>
-      </div>
-    </div>
-
-    <div id='multi_invite_box' style="display:none">
-      <%=link_to  '',
-        'javascript:void(0)',
-        :id    => 'invite_backup_button',
-        :class => 'view_friends_list'%>
-    </div> <!-- fb multi invite dialog for edge cases -->
-	
-</div> <!-- container -->
-
-
-<%if is_onboarding?%>	
-	<div id='footer_onboarding' style="display:none">
-	  <%=link_to  '', 
-        welcome_path(WelcomeFilter::Create,:category => 'shoes'),
-        :class  => 'add_1st_item'%>
-	</div>
-<%end%>
-
+<div class="container invite" id="container">
+	<div class="row">
+		<div class="span6 offset3">
+      <%=render "invites/new/styles"%>
+      <%=render "invites/new/friends"%>	
+      <%=render "invites/new/finish"%>
+	 	</div> <!-- /span6 -->
+	</div> <!-- /row -->
+</div> <!-- /container -->
 
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Invites.New({
           source  : '<%=@source%>',
+         friends  : <%=self.current_user.ifollowers.to_json(
+                            :only => [:fb_user_id])%>,
+          styles  : <%=@styles.to_json(:only => [:id,:title])%>,
           el      : $('#container')});
   </script>
 <%end%>

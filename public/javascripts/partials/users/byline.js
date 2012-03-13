@@ -21,6 +21,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     this.inputEl    = '#user_byline';
 
     restrictFieldSize($(this.inputEl),254,'charsremain');
+    make_conditional_field(this.inputEl);
   },
 
   // Called when the byline has been saved on the server
@@ -78,6 +79,9 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   update: function() {
 
     var self = this;
+
+    if($(this.inputEl).val() == $(this.inputEl).attr('data-placeholder'))
+      return;
 
     this.model.save(
       {'byline':$(this.inputEl).val()},

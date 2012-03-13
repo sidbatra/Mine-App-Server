@@ -1,43 +1,37 @@
-
+<span id="product_endorsement_box">
     
   <%if is_current_user(product.user)%>
 
-    <%edit_mode   = false%>
-    <%edit_style  = edit_mode ? '' : 'display:none'%>
-    <%ui_style    = edit_mode ? 'display:none' : ''%>
-
     <!-- endorsement editing -->
-    
-    <div id="product_endorsement_box">
     
 	    <%=text_area_tag "product_endorsement",
 				          product.endorsement.to_s,
-				          :class  => "product_endorsement_input",
-				          :style  => edit_style%>
+				          :class  => '',
+				          :rows   => '2',
+				          :style 	=> "display: none; width: 543px; "\
+                              "margin-top: 6px; clear: both;"%>    
+				          
+			<%=link_to 	'Save', 
+									'javascript:void(0)',
+									:id			=> 'product_update',
+									:class  => 'btn btn-primary',
+									:style	=> 'display:none'%>  		
 	    
 	    <%=link_to 	'Cancel', 
 	    						'javascript:void(0)',
 	    						:id			=> 'product_cancel',
-	    						:class  => 'product_endorsement_submit_button',
-	    						:style	=> edit_style%>
-	    
-			<%=link_to 	'Save', 
-									'javascript:void(0)',
-									:id			=> 'product_update',
-									:class  => 'product_endorsement_submit_button',
-									:style	=> edit_style%>
+	    						:class  => 'btn',
+	    						:style	=> 'display:none'%>
 	
 	    <!-- endorsement display-->
-	    <div class='product_endorsement'>
 	    
-	    	<span id='product_endorsement_text' style='<%=ui_style%>'>
+	    	<span id="product_endorsement_text">
 		      <%=h product.endorsement.to_s%>
 		    </span>   
 	
 					<%=link_to 'Edit', 'javascript:void(0)',
 											:id			=> 'product_edit',
-											:class  => 'edit_cccccc_14',
-		          				:style 	=> product.endorsement.present? && !edit_mode ?
+		          				:style 	=> product.endorsement.present? ?
 		                  		    		'' : 
 			                      			'display:none'%>            		
 	
@@ -45,20 +39,15 @@
 	      <%=link_to "Add your review",
 	                  'javascript:void(0)',
 	                  :id     => 'product_edit_initiate',
-	                  :class  => 'edit_cc3333_14',
-	                  :style  => product.endorsement.present? || edit_mode ?
+	                  :style  => product.endorsement.present? ?
 	                              'display:none' :
 	                              ''%>
-			</div>
-		</div>  <!-- product_endorsement_box -->
 		
   <%elsif product.endorsement.present?%>
-  	<div id="product_endorsement_box">
-	  	<div class='product_endorsement'>
 	    	<%=h product.endorsement.to_s%>
-	    </div>
-	  </div>
   <%end%>
+  
+</span> <!-- /#product_endorsement_box -->
   
 
 

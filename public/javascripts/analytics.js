@@ -117,6 +117,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Collection Deleted");
   },
 
+  // Modal view all selected for the given type
+  //
+  viewAllSelected: function(type) {
+    mpq.track("View All "+ type);
+  },
+
   // User starts to type a comment
   //
   commentSelected: function() {
@@ -234,16 +240,52 @@ Denwen.Analytics = Backbone.Model.extend({
   
   // User opens invite dialog and completes it
   //
-  inviteCompleted: function(count) {
-    mpq.track("Invite Completed", {'count':count});
+  inviteCompleted: function() {
+    mpq.track("Invite Completed");
+  },
+  
+  // User cancels invite
+  //
+  inviteCancelled: function() {
+    mpq.track("Invite Cancelled");
+  },
+
+  // User picks a style for a friend he/she is inviting
+  //
+  inviteStylePicked: function() {
+    mpq.track("Invite Style Picked");
+  },
+
+  // User picks a friend for inviting 
+  //
+  inviteFriendPicked: function() {
+    mpq.track("Invite Friend Picked");
+  },
+
+  // User rejects the additional facebook permissions
+  //
+  facebookPermissionsRejected: function() {
+    mpq.track("Facebook Permissions Rejected");
+  },
+
+  // User accepts the additional facebook permissions
+  //
+  facebookPermissionsAccepted: function() {
+    mpq.track("Facebook Permissions Accepted");
+  },
+
+  // Test if the given source indicates that the user came from
+  // an email and fire an special email clicked tracking event
+  //
+  checkForEmailClickedEvent: function(source) {
+    if(source.slice(0,6) == 'email_')
+      this.emailClicked(source.slice(6,source.length));
   },
 
   // User visits the site from an email
   //
   emailClicked: function(source) {
-    mpq.track("Email Clicked", {
-      'Source'  : source,
-      'User ID' : helpers.currentUserID()});
+    mpq.track("Email Clicked", {'Source' : source});
   },
 
   // User searches a friend for inviting 
@@ -260,8 +302,12 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User searches a product
   //
-  productSearched: function(query,mode) {
-    mpq.track("Searched a product", {'query':query,'Mode':mode});
+  productSearched: function(query,queryType,mode) {
+    mpq.track("Searched a product", 
+      {
+        'query':query,
+        'Mode':mode,
+        'Type':queryType});
   },
 
   // Fired when an image selected by the user is broken
@@ -301,6 +347,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Product Updated",{
           'Product ID' : productID,
           'User ID'    : helpers.currentUserID()});
+  },
+
+  // User clicks product to visit the original link
+  //
+  productClicked: function() {
+    mpq.track("Product Clicked");
   },
 
   // User deletes a product
@@ -344,10 +396,9 @@ Denwen.Analytics = Backbone.Model.extend({
   // A type and category of a user's products are 
   // explictly viewed
   //
-  userProductsView: function(type,category,userID) {
+  userProductsView: function(type,userID) {
     mpq.track(
       'User ' + type.capitalize() + ' View',{
-        'Category'        : category,
         'Is Own Profile'  : helpers.isCurrentUser(userID),
         'id'              : userID});
   },
@@ -382,7 +433,31 @@ Denwen.Analytics = Backbone.Model.extend({
   // User views the settings page
   //
   settingsView: function(source) {
-    mpq.track('Settings View',{'source' : source});
+    mpq.track('Settings View',{'Source' : source});
+  },
+
+  // User turns on a setting
+  //
+  settingTurnedOn: function(name) {
+    mpq.track('Setting Turned On',{'Name' : name});
+  },
+
+  // User turns off a setting
+  //
+  settingTurnedOff: function(name) {
+    mpq.track('Setting Turned Off',{'Name' : name});
+  },
+
+  // User updates settings
+  //
+  settingsUpdated: function() {
+    mpq.track('Settings Updated');
+  },
+
+  // User visits the settings page with an unsubscription in mind
+  //
+  unsubscribeInitiated: function(source) {
+    mpq.track("Unsubscribe Initiated", {'Source' : source});
   },
 
   // A collection is viewed
@@ -403,9 +478,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // A store's products in a category are explicitly viewed
   //
-  storeProductsView: function(category,storeID) {
+  storeProductsView: function(storeID) {
     mpq.track('Store Products View',{
-      'Category'  : category,
       'id'        : storeID
     });
   },
@@ -479,12 +553,12 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User opens new product page
   //
-  productNewView: function(category_id,category_name,source) {
+  productNewView: function(source,suggestionID,suggestionTitle) {
     mpq.track("Creation Template Opened", 
       {
-      'id'      : category_id,
-      'name'    : category_name,
-      'source'  : source
+      'source'  : source,
+      'Suggestion ID' : 's' + suggestionID,
+      'Suggestion Title' : suggestionTitle
       });
   },
 
@@ -515,6 +589,24 @@ Denwen.Analytics = Backbone.Model.extend({
       'User ID'     : helpers.currentUserID(),
       'Source'      : source
       });
+  },
+
+  // Style view is opened during onboarding
+  //
+  styleViewOnboarding: function() {
+    mpq.track("Onboarding Style View");
+  },
+
+  // Style view is opened outside onboarding
+  //
+  styleView: function(source) {
+    mpq.track("Style New View",{'Source':source});
+  },
+
+  // User selects a particular style
+  //
+  stylePicked: function() {
+    mpq.track("Style Picked");
   }
 
 });

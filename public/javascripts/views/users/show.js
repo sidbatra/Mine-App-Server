@@ -8,9 +8,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.user           = new Denwen.Models.User(this.options.userJSON);
     this.isCurrentUser  = helpers.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
+    this.styles         = new Backbone.Collection(this.options.styles);
     this.currentTab     = undefined;
 
-    this.onTabClass     = 'on';
+    this.onTabClass     = 'active';
     this.loadTabClass   = 'load';
     this.ownsTab        = '#owns_tab';
     this.wantsTab       = '#wants_tab';
@@ -31,6 +32,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.ownedProducts.bind(
       Denwen.Callback.ProductsLoaded,
       this.productsLoaded,
+      this);
+
+    this.ownedProducts.bind(
+      Denwen.Callback.ProductsRendered,
+      this.ownsRendered,
       this);
 
     // -----
@@ -67,8 +73,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           el      : $('#ifollowers_with_msg'),
                           user    : this.user,
                           filter  : 'ifollowers',
-                          header  : 'Influenced by',
                           count   : this.user.get('inverse_followings_count'),
+                        styles    : this.styles,
                           src     : 'following'});
 
     // -----
@@ -76,11 +82,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
                           el    : '#user_stores_box',
                           user  : this.user});
 
+
     // -----
-    if(!this.isCurrentUser && helpers.isLoggedIn())
-      new Denwen.Partials.Users.Following({
-                            el  : $('#following_box_' + this.user.get('id')),
-                            user_id : this.user.get('id')});
+    //if(!this.isCurrentUser && helpers.isLoggedIn())
+    //  new Denwen.Partials.Users.Following({
+    //                        el  : $('#following_box_' + this.user.get('id')),
+    //                        user_id : this.user.get('id')});
 
     // -----
     if(this.isCurrentUser)
@@ -145,10 +152,24 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
   // Load tab that displays the user's owns
   //
-  loadOwnsTab: function(category) {
-    this.ownedProducts.fetch(category);
+  loadOwnsTab: function() {
+    this.ownedProducts.fetch();
     this.switchTabOn(this.ownsTab);
-    analytics.userProductsView('owns',category,this.user.get('id'));
+
+    analytics.userProductsView(
+      Denwen.UserShowHash.Owns,
+      this.user.get('id'));
+  },
+
+  // Load tab that displays the user's wants
+  //
+  loadWantsTab: function() {
+    this.wantedProducts.fetch();
+    this.switchTabOn(this.wantsTab);
+
+    analytics.userProductsView(
+      Denwen.UserShowHash.Wants,
+      this.user.get('id'));
   },
 
   // Load the default tab. Used when a hash fragment
@@ -156,12 +177,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   loadDefaultTab: function() {
     this.loadOwnsTab();
-    //if((this.isCurrentUser && this.user.get('collections_count'))){
-    //  this.loadCollectionsTab();
-    //}
-    //else {
-    //  this.loadOwnsTab();
-    //}
   },
 
   // Use Backbone router for reacting to changes in URL
@@ -175,38 +190,23 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        ":type/:category" : "doubleFilter",
-        ":type"           : "singleFilter"
-      },
-
-      // Display owns,wants with categoty filters
-      //
-      doubleFilter: function(type,category) {
-        self.switchTabsOff();
-
-        switch(type) {
-        case Denwen.UserShowHash.Owns:
-          self.loadOwnsTab(category);
-          break;
-
-        case Denwen.UserShowHash.Wants:
-          self.wantedProducts.fetch(category);
-          self.switchTabOn(self.wantsTab);
-          analytics.userProductsView(type,category,self.user.get('id'));
-          break;
-
-        default:
-          self.loadDefaultTab();
-        }
-
+        ":type" : "filter"
       },
 
       // Display collections and handle empty fragments
       //
-      singleFilter: function(type) {
+      filter: function(type) {
         self.switchTabsOff();
 
         switch(type) {
+        case Denwen.UserShowHash.Owns:
+          self.loadOwnsTab();
+          break;
+
+        case Denwen.UserShowHash.Wants:
+          self.loadWantsTab();
+          break;
+
         case Denwen.UserShowHash.Collections:
           self.loadCollectionsTab();
           break;
@@ -231,9 +231,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.source,
       this.user.get('id'));
 
-    if(this.source.slice(0,6) == 'email_')
-      analytics.emailClicked(this.source.slice(6,this.source.length));
-
     if(this.isCurrentUser) {
 
       if(this.source == 'product_create')
@@ -257,14 +254,23 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         this.currentUser.get('email'),
         this.currentUser.get('age'));
 
-      analytics.trackVersion(helpers.version);
+      analytics.trackVersion(helpers.version.slice(0,-2));
     }
+
+    analytics.checkForEmailClickedEvent(this.source);
   },
 
   // Callback when owns or wants are loaded
   //
   productsLoaded: function() {
     this.switchCurrentTabLoadOff();
+  },
+
+  // Callback when owns are rendered
+  //
+  ownsRendered: function() {
+    if(this.isCurrentUser) 
+      new Denwen.Partials.Suggestions.Product({el :$('#suggestions')});
   },
 
   // Callback when collections are loaded

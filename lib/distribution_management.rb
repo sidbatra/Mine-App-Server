@@ -21,9 +21,27 @@ module DW
                                       product.user.handle,
                                       product.handle,
                                       :src  => 'fb',
-                                      :host => CONFIG[:host])) 
+                                      :host => CONFIG[:host]))
 
         TickerAction.add(action.identifier,OGAction::Add,product)
+      end
+
+      # Publish a story whenever the user wants an item
+      #
+      def self.publish_want(user,product)
+        fb_app  = FbGraph::Application.new(CONFIG[:fb_app_id])
+        fb_user = FbGraph::User.me(user.access_token)  
+
+        action  = fb_user.og_action!(
+                            OGAction::Want,
+                            :item => product_url(
+                                      product.user.handle,
+                                      product.handle,
+                                      :src  => 'fb',
+                                      :host => CONFIG[:host]),
+                            :end_time => "4486147655") 
+
+        TickerAction.add(action.identifier,OGAction::Want,product)
       end
 
       # Publish a story whenever the user uses a collection
@@ -36,11 +54,42 @@ module DW
                             OGAction::Use,
                             :set => collection_url(
                                       collection.user.handle,
-                                      collection.id,
+                                      collection.handle,
                                       :src  => 'fb',
-                                      :host => CONFIG[:host])) 
+                                      :host => CONFIG[:host]), 
+                            :expires_in => 3600)
 
         TickerAction.add(action.identifier,OGAction::Use,collection)
+      end
+
+      # Post an invite on a friends facebook wall 
+      #
+      def self.post_on_friends_wall(user,friend)
+        fb_friend = FbGraph::User.new(
+                              friend.fb_user_id, 
+                              :access_token => user.access_token)
+
+        
+        fb_friend.feed!(
+          :message      => "I set up your #{CONFIG[:name]} with style set to "\
+                           "\"#{friend.byline}\"!",
+          :picture      => friend.image_url, 
+          :link         => user_url(
+                            friend.handle,
+                            :src  => UserShowSource::Invite,
+                            :host => CONFIG[:host]),
+          :name         => "#{friend.first_name}'s #{CONFIG[:name]}",
+          :description  => "#{CONFIG[:description]}",
+          :caption      => "#{CONFIG[:host]}")
+      end
+
+      # Publish added products to facebook album
+      #
+      def self.publish_product_to_fb_album(product)
+        fb_user = FbGraph::User.me(product.user.access_token)
+        fb_user.photo!(
+                  :url      => product.image_url,
+                  :message  => product.title)  
       end
     
     end #distribution manager

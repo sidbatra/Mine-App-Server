@@ -11,18 +11,20 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.sourceID   = this.options.sourceID;
     this.ownBox     = null;
 
-    this.owns       = false;
-    this.wants      = false;
+    this.owns         = false;
+    this.wants        = false;
+    this.activeClass  = 'active';
 
     this.ownEl      = '#own_product_' + this.model.get('id');
     this.wantEl     = '#want_product_' + this.model.get('id');
+    this.ownBoxEl   = '#own_box_container_' + this.model.get('id');
 
     $(this.ownEl).click(function(){self.ownClicked();});
     $(this.wantEl).click(function(){self.wantClicked();});
 
 
     this.ownBox = new Denwen.Partials.Products.Own({
-                              el          : $(this.ownEl),
+                              el          : $(this.ownBoxEl),
                               product_id  : this.model.get('id')});
 
     this.ownBox.bind('ownCreated',this.ownCreated,this);
@@ -49,6 +51,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
 
     this.ownBox.display();
     $(this.ownEl).addClass('held');
+    $(this.ownBoxEl).addClass(this.activeClass);
 
     analytics.ownInitiated(
                 this.source,
@@ -61,7 +64,8 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   ownCreated: function() {
     $(this.ownEl).removeClass('held');
     $(this.ownEl).removeClass('hover_shadow_light');
-    $(this.ownEl).addClass('pushed');
+    $(this.ownEl).addClass('disabled');
+    $(this.ownBoxEl).removeClass(this.activeClass);
 
     this.createAction('own');
 
@@ -75,6 +79,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   //
   ownCancelled: function() {
     $(this.ownEl).removeClass('held');
+    $(this.ownBoxEl).removeClass(this.activeClass);
     this.owns = false;
 
     analytics.ownCancelled(
@@ -90,7 +95,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
       return;
     
     $(this.wantEl).removeClass('hover_shadow_light');
-    $(this.wantEl).addClass('pushed');
+    $(this.wantEl).addClass('disabled');
 
     this.createAction('want');
     this.wants = true;

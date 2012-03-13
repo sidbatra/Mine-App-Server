@@ -1,0 +1,19 @@
+
+<div id="container" class="container well">
+  <legend>Edit suggestion</legend>
+
+  <%form_for @suggestion, 
+      :url => "/admin/suggestions/#{@suggestion.id}" do |f|%>
+    <%=render :partial  => "input",
+              :locals   => {:f => f,:submit_text => "Update"}%>
+  <%end%>
+
+</div>
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Admin.Suggestions.Edit({
+          el            : $('#container'),
+          uploadConfig  : <%=@upload_config.to_json%>});
+  </script>
+<%end%>

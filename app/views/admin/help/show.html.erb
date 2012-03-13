@@ -1,8 +1,9 @@
-<div id="container">
+<div id="container" class="container well">
   <h1>Admin UI Routes & Features</h1> <br>
 
   <h3>General</h3> 
   <%=link_to 'Exceptions',logged_exceptions_path%> <br>
+  <%=link_to 'Health Report',admin_health_index_path%> <br>
 
   <br> <h3>Users</h3> 
   <%=link_to 'Daily, Weekly, Biweekly, Monthly Active',
@@ -26,4 +27,33 @@
   Edit View of Store. /admin/stores/{handle}/edit
   Example - <%=link_to 'Target',edit_admin_store_path('target')%>
   <br>
+
+  <br> <h3>Suggestions</h3> 
+  <%=link_to 'New', new_admin_suggestion_path%> <br>
+  <%=link_to 'All', admin_suggestions_path%> <br>
+
+  <br> <h3>Emails</h3> 
+  <%UserMailer.instance_methods(false).sort.each do |method|%>
+    <%unless ['generate_attributes'].include? method%> 
+      <%=link_to method,admin_email_path(method)%>
+      <br>
+    <%end%>
+  <%end%>
+
+  <br> <h3>Live Commits</h3> 
+  <table width="900">
+    <%@commits.each do |commit|%>
+      <tr>
+        <td width="200">
+          <%=commit.committer%>
+        </td>
+        <td width="500">
+          <%=commit.message%>
+        </td>
+        <td width="150">
+          <%=commit.id[0..9] + "..."%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
 </div>
