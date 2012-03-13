@@ -64,7 +64,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   ownCreated: function() {
     $(this.ownEl).removeClass('held');
     $(this.ownEl).removeClass('hover_shadow_light');
-    $(this.ownEl).addClass('pushed');
+    $(this.ownEl).addClass('disabled');
     $(this.ownBoxEl).removeClass(this.activeClass);
 
     this.createAction('own');
@@ -95,7 +95,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
       return;
     
     $(this.wantEl).removeClass('hover_shadow_light');
-    $(this.wantEl).addClass('pushed');
+    $(this.wantEl).addClass('disabled');
 
     this.createAction('want');
     this.wants = true;
