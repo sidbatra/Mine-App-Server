@@ -2,16 +2,5 @@ Hi <%=@user.first_name%>, <br /><br />
 
 <%=@action%> <br /><br />
 
-Add  
-<%Category.all.each_with_index do |c,i|%>
-  <a href="<%=new_product_url(
-                :category => c.handle, 
-                :src      => @source)%>">
-  <%if i<6%>
-    <%=c.name%></a>, 
-  <%elsif i==6%>
-    <%=c.name%></a> (or 
-  <%else%>
-    Anything at all</a>)
-  <%end%>
-<%end%> to your <%=CONFIG[:name]%>!
+<a href="<%=new_product_url(:src => @source)%>">
+  Add it to your <%=CONFIG[:name]%></a>!
