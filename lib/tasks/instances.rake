@@ -7,7 +7,7 @@ namespace :instances do
   SECURITY_GROUP     = 'sg-7c5fca15'
   TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
                         :generic => 'generic'}
-  ENVIRONMENTS       = ['production','staging']
+  ENVIRONMENTS       = ['production','staging','development']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
 
@@ -89,7 +89,7 @@ namespace :instances do
     rescue
       puts "Usage:\nrake instances:{create,destroy} "\
             "specs=[{web,proc,cron,generic}:count](,) "\
-            "env={production,staging} "\
+            "env={#{ENVIRONMENTS.join(",")}} "\
             "os={32,64}"
       exit
     end
