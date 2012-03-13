@@ -4,23 +4,22 @@
 <%}%>
 
 <%if(!products.length) {%> 
-  <%if(src == 'user' && !helpers.isCurrentUser(ownerID)) {%> 
-    <!-- empty closet -->
+  <%if(src == 'user'){%>
     <div class='heading'>
-      Nothing in this closet yet.
+      <%if(helpers.isCurrentUser(ownerID)){%>
+        All your items show up here. Add some using the suggestions above.
+      <%}else{%>
+        Nothing in this closet yet.
+      <%}%>
     </div>
   <%} else if(src == 'wanted') {%>
-    <%if(helpers.isCurrentUser(ownerID)){%>
-      <!-- no wants, current user -->
-      <div class='heading'>
+    <div class='heading'>
+      <%if(helpers.isCurrentUser(ownerID)){%>
         Everything you <span class='em'>want</span> shows up here. <br />
-      </div>
-    <%}else{%>
-      <!-- no wants, other user -->
-      <div class='heading'>
-        <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
-      </div>
-    <%}%>
+      <%}else{%>
+          <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
+      <%}%>
+    </div>
   <%}%>
 <%}%>
 
