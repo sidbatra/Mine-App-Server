@@ -1,3 +1,9 @@
+/* own boxes */
+
+.item #own-box .popover {
+	top: 27px !important; 
+	left: -70px !important; }
+
 /* sets: list view */
 
 .sets .items {
