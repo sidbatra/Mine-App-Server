@@ -719,7 +719,7 @@ footer p { text-align: center; }
 	top: 2px; 
 	right: 0px; 
 	bottom: 2px; 
-	background: url(/images/fade.png);
+	background: url("/images/fade.png");
 	background-repeat: repeat-y;
 	width: 24px; }
 
