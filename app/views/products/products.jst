@@ -1,3 +1,8 @@
+<%if(helpers.isCurrentUser(ownerID) && src == 'user'){%>
+  <div id="suggestions" class="suggestions">
+  </div>
+<%}%>
+
 <%if(!products.length) {%> 
   <%if(src == 'user' && !helpers.isCurrentUser(ownerID)) {%> 
     <!-- empty closet -->
@@ -9,9 +14,6 @@
       <!-- no wants, current user -->
       <div class='heading'>
         Everything you <span class='em'>want</span> shows up here. <br />
-        <span class="trans_80" style="font-size: 18px">
-          Find something you want at one of your stores →
-        </span>
       </div>
     <%}else{%>
       <!-- no wants, other user -->
@@ -22,7 +24,7 @@
   <%}%>
 <%}%>
 
-<ul class="thumbnails" style="margin-left: -12px;">
+<ul class="thumbnails" style="margin-left:-12px;">
   <%products.each(function(product){%>
     <%=Denwen.JST['products/product']({type:type,product:product,src:src,ownerID:ownerID})%>
   <%});%>
