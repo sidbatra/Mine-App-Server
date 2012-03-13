@@ -8,6 +8,59 @@
     <div class='heading'>
       <%if(helpers.isCurrentUser(ownerID)){%>
         What should your first item be? Use the suggestions or the blue button above to get started.
+        
+        <ul class="thumbnails" style="margin-top: 18px; margin-left:-12px;">
+        
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<div class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/aerie.jpeg')%>" />
+        			</div>
+        		</div>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/nordstrom-rack.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/amazon.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/converse.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/cvs.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        	<li style="margin: 0 0 10px 12px; position: relative;">
+        		<a class="thumbnail disabled no-hover">
+        			<div class="thumb-photo">
+        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/wet-seal.jpeg')%>" />
+        			</div>
+        		</a>
+        	</li>
+        	
+        </ul>
+      
       <%}else{%>
         Nothing in this closet yet.
       <%}%>

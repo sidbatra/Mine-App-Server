@@ -6,7 +6,7 @@
 		<div class="well">
 			<fieldset>
 				<legend>
-					Your life, shared through the items you buy.
+					Welcome to OnCloset, <%=self.current_user.first_name%>!
 					
 					<%=link_to 'Pick your style <i class="icon-chevron-right icon-white"></i>',
 						        welcome_path(WelcomeFilter::Style),
@@ -21,7 +21,7 @@
 			    
 			    <div id="style" 
 	              title="What's your style?",
-	       data-content="Geek? Shopaholic? Foodie?<br />Say it whichever way suits you best.",
+	       data-content="Geek? Shopaholic? Foodie? Set your style whichever way suits you best.",
 	              class="q-point" 
 	              style="position: absolute; top: 10px; left: 15px; 
 	                      width: 260px; height: 90px; 
@@ -29,7 +29,7 @@
 			    
 			    <div id="influencers" 
 	              title="Who influences you?",
-	       data-content="Get notified when friends with good taste buy something new.",
+	       data-content="Add friends with good taste, and get notified when they buy something new.",
 	              class="q-point" 
 	              style="position: absolute; top: 10px; left: 286px; 
 	                      width: 154px; height: 75px; 
@@ -37,7 +37,7 @@
 			    
 			    <div id="stores" 
 	              title="Where do you shop?",
-	       data-content="Discover new items at your favorite stores through other people.",
+	       data-content="Add stores, then discover new items through others that also shop there.",
 	              class="q-point" 
 	              style="position: absolute; top: 10px; left: 438px; 
 	                      width: 154px; height: 75px; 

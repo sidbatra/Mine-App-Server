@@ -5,13 +5,7 @@
 		<div class="span6 offset3">
 			<div class="well styles">
 				<fieldset>
-					<legend>
-            <%if @sender%>
-              <%=@sender.first_name%> picked your style: 
-            <%else%>
-              Pick your style:	
-            <%end%>
-					
+					<legend style="margin-bottom: 0; padding-bottom: 18px;">
 						<%form_tag '/welcome',
 								:style => 'height: 0; float: right;',
 						    :id   => 'new_styles' do |f|%>
@@ -28,8 +22,20 @@
 							<% end %>
 					
 						<%end%>
+						
+						<%if @sender%>
+              <%=@sender.first_name%> picked your style: 
+              <div style="color: #999; font-size: 13px; line-height: 18px;">
+              	Is it right? Change it now or later.
+              </div>
+            <%else%>
+              What type are you?<br />
+              <div style="color: #999; font-size: 13px; line-height: 18px;">
+              	You can change this at any time.
+              </div>
+						<%end%>
+            
 					</legend>
-					<div class="control-group" style="margin-bottom: 0;">
 					  <ul class="thumbnails" id="styles">
 					
 					    <%@styles.each do |style|%>
@@ -50,7 +56,6 @@
 					    <%end%>
 					
 					  </ul> <!-- /thumbnails -->
-					</div> <!-- /control-group -->
 				</fieldset>
 			</div> <!-- /well styles -->
 		</div> <!-- /span6 -->
