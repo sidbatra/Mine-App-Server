@@ -18,4 +18,14 @@ Capistrano::Configuration.instance(:must_exist).load do
       eval command
       true
     end
+
+    # Check if there are any servers present for the given role
+    #
+    # role - Symbol. Role for which servers are to be tested
+    #
+    # returns - Boolean. Whether servers are found for @role or not
+    #
+    def servers?(role)
+      !roles[role].servers.count.zero?
+    end
 end

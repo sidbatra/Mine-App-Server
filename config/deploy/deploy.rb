@@ -4,8 +4,6 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Deploy codebase onto an empty server"
     task :install do 
-      #assets.remote
-
       permissions.remote
 
       deploy.setup
@@ -17,19 +15,33 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       gems.install
 
-      #db.migrate
+      if servers? :web
+        apache.config
+        apache.start
+      end
 
-      apache.config
-      apache.start
-
-      workers.start
+      if servers? :worker
+        workers.start
+      end
 
       logrotate.install
-      cron.update_web_proc
-      cron.update_cron
 
-      monit.config_web
-      monit.config_worker
+      if servers? :web or servers? :worker
+        cron.update_web_proc
+      end
+
+      if servers? :cron
+        cron.update_cron
+      end
+
+      if servers? :web
+        monit.config_web
+      end
+
+      if servers? :worker
+        monit.config_worker
+      end
+
       monit.restart
     end
      
@@ -45,16 +57,34 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       db.migrate
 
-      passenger.restart
-      workers.restart
+      
+      if servers? :web
+        passenger.restart
+      end
+
+      
+      if servers? :worker
+        workers.restart
+      end
 
       cache.clear
 
-      cron.update_web_proc
-      cron.update_cron
+      if servers? :web or servers? :worker
+        cron.update_web_proc
+      end
 
-      monit.config_web
-      monit.config_worker
+      if servers? :cron
+        cron.update_cron
+      end
+
+      if servers? :web
+        monit.config_web
+      end
+
+      if servers? :worker
+        monit.config_worker
+      end
+
       monit.restart
     end
 
