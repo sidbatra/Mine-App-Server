@@ -27,7 +27,11 @@
 		</a>
 		 
 		<span style="padding: 0 8px;">
-			Once you've added 5 items, start posting sets of items, as you use them.
+      <%if(productsLeft > 0){%>
+        Once you've added 5 items, start posting sets of items, as you use them.
+      <%}else{%>
+        Start posting sets of items, as you use them.
+      <%}%>
 		</span>
 	<%}%>
 
