@@ -404,15 +404,6 @@ body {
 
 .well { position: relative; }
 
-.well.white {
-	background: white;
-	border: 1px solid #CCC;
-	position: relative;
-	cursor: default;
-	-webkit-box-shadow: 0 0 4px rgba(0,0,0,.1);
-	-moz-box-shadow: 0 0 4px rgba(0,0,0,.1);
-	box-shadow: 0 0 4px rgba(0,0,0,.1); }
-
 .well legend {
 	border-bottom: none;
 	margin-bottom: 18px; }
