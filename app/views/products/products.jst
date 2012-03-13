@@ -9,14 +9,14 @@
       <%if(helpers.isCurrentUser(ownerID)){%>
         What should your first item be? Use the suggestions or the blue button above to get started.
         
-        <ul class="thumbnails" style="margin-top: 18px; margin-left:-12px;">
+        <ul class="thumbnails unselectable" style="margin-top: 18px; margin-left:-12px;">
         
         	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<div class="thumbnail disabled no-hover">
+        		<a class="thumbnail disabled no-hover">
         			<div class="thumb-photo">
         				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/aerie.jpeg')%>" />
         			</div>
-        		</div>
+        		</a>
         	</li>
         	
         	<li style="margin: 0 0 10px 12px; position: relative;">
