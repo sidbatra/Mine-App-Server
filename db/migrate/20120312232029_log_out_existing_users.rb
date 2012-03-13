@@ -2,7 +2,7 @@ class LogOutExistingUsers < ActiveRecord::Migration
   def self.up
 
     columns = [:id,:remember_token_expires_at,:remember_token] 
-    values  = User.all.map{|u| [u.id,nil,nil]} 
+    values  = User.select(:id).map{|u| [u.id,nil,nil]} 
 
     User.import columns, values, 
       {:validate => false, 
