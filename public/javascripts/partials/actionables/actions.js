@@ -56,7 +56,7 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
     this.actions.each(function(action){
 
       if(action.get('user_id') == currentUserID) {
-        $('#' + action.get('name') + '_actionable').addClass('pushed');
+        $('#' + action.get('name') + '_actionable').addClass('disabled');
         self.checked[action.get('name')] = true;
       }
 
@@ -95,7 +95,7 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
     this.createAction('like');
     this.checked['like'] = true;
 
-    $(this.likeEl).addClass('pushed');
+    $(this.likeEl).addClass('disabled');
 
     analytics.likeCreated(
                 this.actionableType, 
@@ -126,7 +126,7 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
   //
   ownCreated: function() {
     $(this.ownEl).removeClass('held');
-    $(this.ownEl).addClass('pushed');
+    $(this.ownEl).addClass('disabled');
 
     this.createAction('own');
 
@@ -157,7 +157,7 @@ Denwen.Partials.Actionables.Actions = Backbone.View.extend({
     this.createAction('want');
     this.checked['want'] = true;
 
-    $(this.wantEl).addClass('pushed');
+    $(this.wantEl).addClass('disabled');
 
     analytics.wantCreated(
                 this.actionableType,
