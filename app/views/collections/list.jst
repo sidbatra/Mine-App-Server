@@ -1,24 +1,11 @@
 <div class="sets">
 
-	<%if(collections.size()){%>
-	
-	  <%if(helpers.isCurrentUser(ownerID)){%>
-	    <a class="btn btn-large btn-primary" style="margin-bottom: 16px;" href='/collections/new?src=user'>
-	    	<i class="icon-plus icon-white"></i> New set
-	   	</a>
-	  <%}%>
-	
-		<ul class="thumbnails" style="margin-left: -12px;">
-		  <%var index=0;%>
-		  <%collections.each(function(collection){%>
-		    <%=Denwen.JST['collections/collection']({index:index++,collection:collection})%>
-		  <%});%>
-	  </ul>
-	
-	<%}else{%>
-	   <a href="/collections/new?src=start">
-	   	<i class="icon-plus icon-white"></i> New set
-	   </a>
-	<%}%>
+ <a class="btn btn-large btn-primary" href="/collections/new?src=start">
+ 	<i class="icon-plus icon-white"></i> New set
+ </a>
+ 
+ <span style="padding: 0 5px;">
+ 	Once you've added 5 items, start posting sets of items, as you use them.
+ </span>
 
 </div>
