@@ -1,15 +1,12 @@
 /* own boxes */
 
-.item #own-box .popover {
+.item .own-box.popover {
 	top: 27px !important; 
 	left: -70px !important; }
 
-.profile .thumbnails li #own-box .popover {
+.profile .thumbnails li .own-box.popover {
 	top: 27px !important; 
 	left: -128px !important; }
-	
-#own-box .typeahead:hover #own-box {
-	display: block; }
 
 /* sets: list view */
 
@@ -247,8 +244,10 @@
 	top: 5px; 
 	left: 5px; }
 
+
+
 .profile .well.items li .btn-group.active,
-.profile .well.items li:hover .btn-group.active {
+.profile .well.items li:hover .btn-group {
 	display: block; }
 	
 .profile .modal {
