@@ -24,9 +24,9 @@ module DW
         product = Product.find(product_id)
         product.host
 
-        #if product.user.setting.post_to_timeline
-        #  DistributionManager.publish_add(product)
-        #end
+        if product.user.setting.post_to_timeline
+          DistributionManager.publish_add(product)
+        end
       end
 
       # Host the updated product image
@@ -49,12 +49,12 @@ module DW
         action  = Action.find(action_id)
         Mailman.notify_owner_about_an_action(action)
 
-        #if action.name == ActionName::Want && 
-        #   action.user.setting.post_to_timeline
-        #  DistributionManager.publish_want(
-        #                        action.user,
-        #                        action.actionable)
-        #end
+        if action.name == ActionName::Want && 
+           action.user.setting.post_to_timeline
+          DistributionManager.publish_want(
+                                action.user,
+                                action.actionable)
+        end
       end
 
       # Notify Mailman about the new following
@@ -72,9 +72,9 @@ module DW
 
          Mailman.email_followers_about_collection(collection)
 
-        #if collection.user.setting.post_to_timeline
-        #  DistributionManager.publish_use(collection)
-        #end
+        if collection.user.setting.post_to_timeline
+          DistributionManager.publish_use(collection)
+        end
       end
 
       # Update a collection
