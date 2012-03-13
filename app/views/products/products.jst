@@ -7,7 +7,7 @@
   <%if(src == 'user'){%>
     <div class='heading'>
       <%if(helpers.isCurrentUser(ownerID)){%>
-        All your items show up here. Add some using the suggestions above.
+        What should your first item be? Use the suggestions or the blue button above to get started.
       <%}else{%>
         Nothing in this closet yet.
       <%}%>
@@ -15,9 +15,9 @@
   <%} else if(src == 'wanted') {%>
     <div class='heading'>
       <%if(helpers.isCurrentUser(ownerID)){%>
-        Everything you <span class='em'>want</span> shows up here. <br />
+        Everything you click 'want' on across the site shows up here.
       <%}else{%>
-          <%=ownerName%> hasn't <span class='em'>wanted</span> anything yet.
+          <%=ownerName%> hasn't wanted anything yet.
       <%}%>
     </div>
   <%}%>
