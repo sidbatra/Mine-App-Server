@@ -18,8 +18,6 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
   //
   render: function() {
     var self = this;
-    
-    this.products.reset();
 
     this.el.html('');
     this.el.prepend(
