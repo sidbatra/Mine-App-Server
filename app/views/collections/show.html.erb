@@ -16,15 +16,15 @@
               :products     => @collection.products}%>
 <%end%>
 
-
-<!-- Welcome box to signup if user is not logged in -->
-<%=render :partial => 'misc/welcome', 
-      :locals => {
-        :src    => 'collection_' + @collection.id.to_s,
-        :target => collection_path(
-                    @collection.user.handle,
-                    @collection.handle,
-                    :src => 'footer')} unless logged_in?%>
+<div style=" width: 620px; margin: -9px auto 0;">
+	<%=render :partial => 'misc/welcome', 
+	      :locals => {
+	        :src    => 'collection_' + @collection.id.to_s,
+	        :target => collection_path(
+	                    @collection.user.handle,
+	                    @collection.handle,
+	                    :src => 'footer')} unless logged_in?%>
+</div> <!-- /welcome -->
 
 
 <div class="container set">

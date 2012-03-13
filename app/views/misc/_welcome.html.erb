@@ -1,16 +1,5 @@
-<div class="row">
-  <div class="span12">
-    <div class="well" 
-    		style="color: white; font-weight: bold; text-align: center; 
-    					font-size: 24px; padding: 16px 0; background: none; border: none; margin-bottom: 12px;">
-
-Create your online closet of items you own and love. 
-
-	 <%=link_to 	'Join now for free.', 
-  						fb_auth_path(:src => src,:target => target), 
-  						:class => '',
-  						:style => 'color: #66ccff; text-decoration: underline;'%>
-
-    </div> <!-- /well -->
-  </div> <!-- /span12 -->
-</div> <!-- /row -->
+<div class="welcome-box">
+	Create your online closet of items you own and love. 
+	<%=link_to 	'Join now for free.', 
+					fb_auth_path(:src => src,:target => target)%>
+</div>

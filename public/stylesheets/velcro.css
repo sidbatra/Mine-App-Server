@@ -1,3 +1,19 @@
+/* welcome */
+.welcome-box {
+	color: white; 
+	font-weight: bold; 
+	text-align: center; 
+  font-size: 24px; 
+  line-height: 30px; 
+  padding: 14px 0; 
+  background: none; 
+  border: none; 
+  margin-bottom: 12px; }
+ 
+.welcome-box a {
+	color: #66ccff; 
+	text-decoration: underline; }
+
 /* suggestions */
 
 .suggestions {
