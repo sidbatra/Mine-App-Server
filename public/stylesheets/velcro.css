@@ -8,7 +8,7 @@
 	top: 27px !important; 
 	left: -128px !important; }
 	
-.popover .typeahead:hover .popover {
+#own-box .typeahead:hover #own-box {
 	display: block; }
 
 /* sets: list view */
@@ -247,7 +247,8 @@
 	top: 5px; 
 	left: 5px; }
 
-.profile .well.items li:hover .btn-group {
+.profile .well.items li .btn-group.active,
+.profile .well.items li:hover .btn-group.active {
 	display: block; }
 	
 .profile .modal {
