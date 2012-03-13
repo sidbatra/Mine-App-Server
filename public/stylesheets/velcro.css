@@ -268,8 +268,6 @@
 	top: 5px; 
 	left: 5px; }
 
-
-
 .profile .well.items li .btn-group.active,
 .profile .well.items li:hover .btn-group {
 	display: block; }
@@ -337,8 +335,10 @@ body {
 	border-radius: 4px; }
 
 .typeahead {
-	z-index: 2000;
-}
+	z-index: 2000; }
+	
+.modal { display: none; }
+.modal.fade.in { display: block; }
 
 /* --- thumbnail selected -- */
 
