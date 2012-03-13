@@ -123,6 +123,7 @@
     Styles: 'styles'
   Callback:
     ProductsLoaded: 'productsLoaded'
+    ProductsRendered: 'productsRendered'
     UsersListLoaded: 'usersListLoaded'
     StoresLoaded: 'storesLoaded'
     CollectionsListLoaded: 'collectionsListLoaded'

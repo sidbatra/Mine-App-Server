@@ -34,6 +34,11 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.productsLoaded,
       this);
 
+    this.ownedProducts.bind(
+      Denwen.Callback.ProductsRendered,
+      this.ownsRendered,
+      this);
+
     // -----
     this.wantedProducts = new Denwen.Partials.Products.Products({
                             el        : $('#centerstage'),
@@ -76,10 +81,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     new Denwen.Partials.Users.Stores({
                           el    : '#user_stores_box',
                           user  : this.user});
-
-    // -----
-    if(this.isCurrentUser) 
-      new Denwen.Partials.Suggestions.Product({el :$('#suggestions')});
 
 
     // -----
@@ -263,6 +264,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   productsLoaded: function() {
     this.switchCurrentTabLoadOff();
+  },
+
+  // Callback when owns are rendered
+  //
+  ownsRendered: function() {
+    if(this.isCurrentUser) 
+      new Denwen.Partials.Suggestions.Product({el :$('#suggestions')});
   },
 
   // Callback when collections are loaded

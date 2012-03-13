@@ -33,8 +33,8 @@ Denwen.Partials.Suggestions.Product = Backbone.View.extend({
   render: function() {
     var self = this;
     
-    if(this.suggestions.isEmpty())
-      $(this.el).hide();
+    if(!this.suggestions.isEmpty())
+      $(this.el).show();
 
     $(this.el).html(
       Denwen.JST['suggestions/products']({

@@ -34,6 +34,7 @@ CollectionsListLoaded: "collectionsListLoaded",
 UsersListLoaded: "usersListLoaded",
 FileUploadError: "fileUploadError",
 FileSelected: "fileSelected",
+ProductsRendered: "productsRendered",
 FileUploadProgress: "fileUploadProgress"
 }
 

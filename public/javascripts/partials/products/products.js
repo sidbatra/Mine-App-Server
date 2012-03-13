@@ -35,6 +35,8 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
             source    : self.filter,
             sourceID  : self.ownerID});
     });
+
+    this.trigger(Denwen.Callback.ProductsRendered);
   },
 
   // Fetch products filtered by the given category
