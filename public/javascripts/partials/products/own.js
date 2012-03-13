@@ -26,6 +26,8 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
     this.isStoreUnknownEl     = $('#product_is_store_unknown_'+ this.productID);
 
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
+
+    make_conditional_field(this.storeEl);
   },
 
   // Display the UI for claiming ownership
