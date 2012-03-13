@@ -53,9 +53,10 @@
 				    </div> <!-- /all navigation -->
 			            
 			      <%if logged_in?%>
-							<div class="btn-group" 
-                    style="position: absolute; top: 6px; 
-                            right: 6px;">
+							<div id="feedback"
+                   class="btn-group" 
+                   style="position: absolute; top: 6px; 
+                           right: 6px;">
 						    <%unless is_current_user(@collection.user)%>
 									<a id="like_actionable" href="javascript:void(0)" class="btn">
 						      	Like
