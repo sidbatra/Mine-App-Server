@@ -11,8 +11,9 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     this.sourceID   = this.options.sourceID;
     this.ownBox     = null;
 
-    this.owns       = false;
-    this.wants      = false;
+    this.owns         = false;
+    this.wants        = false;
+    this.activeClass  = 'active';
 
     this.ownEl      = '#own_product_' + this.model.get('id');
     this.wantEl     = '#want_product_' + this.model.get('id');
@@ -50,6 +51,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
 
     this.ownBox.display();
     $(this.ownEl).addClass('held');
+    $(this.ownBoxEl).addClass(this.activeClass);
 
     analytics.ownInitiated(
                 this.source,
@@ -63,6 +65,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
     $(this.ownEl).removeClass('held');
     $(this.ownEl).removeClass('hover_shadow_light');
     $(this.ownEl).addClass('pushed');
+    $(this.ownBoxEl).removeClass(this.activeClass);
 
     this.createAction('own');
 
@@ -76,6 +79,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   //
   ownCancelled: function() {
     $(this.ownEl).removeClass('held');
+    $(this.ownBoxEl).removeClass(this.activeClass);
     this.owns = false;
 
     analytics.ownCancelled(
