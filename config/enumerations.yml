@@ -33,6 +33,8 @@
     Error: 'error'
   CollectionShowSource:
     Updated: 'collection_updated'
+  ConfigurationVariable:
+    SuggestionCacheKey: 0
   EmailPurpose:
     Admin: 99
     NewComment: 0
