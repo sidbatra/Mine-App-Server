@@ -13,6 +13,10 @@
 .welcome-box a {
 	color: #66ccff; 
 	text-decoration: underline; }
+	
+.welcome-box a:hover {
+	color: #66ffff; }	
+
 
 /* suggestions */
 
