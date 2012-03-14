@@ -11,11 +11,12 @@ namespace :git do
         exit
       end
 
-      version = YAML.load_file("config/config.yml")['production'][:version]
-
       system "git pull"
       system "git merge --no-ff origin/develop"
       system "git push"
+
+      version = YAML.load_file("config/config.yml")['production'][:version]
+
       system "git tag -a #{version} -m \"#{message}\""
       system "git push origin #{version}"
     end #master
