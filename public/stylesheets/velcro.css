@@ -335,6 +335,8 @@
 body { 
 	background: #333;
 	padding-bottom: 24px; }
+	
+li { list-style: none; }
 
 .thumbnail { 
 	background: white;
