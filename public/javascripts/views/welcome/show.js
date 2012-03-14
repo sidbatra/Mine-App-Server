@@ -5,6 +5,7 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.currentUser = new Denwen.Models.User(this.options.currentUser);
     this.qEls = ['#style','#stores','#influencers','#items'];
 
     this.setAnalytics();
@@ -23,6 +24,10 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   setAnalytics: function() {
     analytics.welcomeView();
     analytics.userCreated(); 
+    analytics.identifyUser(
+      this.currentUser.get('email'),
+      this.currentUser.get('age'),
+      this.currentUser.get('gender'));
   }
 
 });

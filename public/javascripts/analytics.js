@@ -9,9 +9,10 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Identify a user and associate a friendly name tag
   //
-  identifyUser: function(email,age) {
+  identifyUser: function(email,age,gender) {
     mpq.name_tag(email);
     mpq.register_once({'age' : age}); 
+    mpq.register_once({'Gender' : gender}); 
   },
 
   // Track the version number of the application
