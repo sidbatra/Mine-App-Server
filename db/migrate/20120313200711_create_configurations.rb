@@ -7,6 +7,10 @@ class CreateConfigurations < ActiveRecord::Migration
       t.timestamps
     end
 
+    Configuration.write(
+      ConfigurationVariable::SuggestionCacheKey,
+      SecureRandom.hex(10))
+
     add_index :configurations, :variable, :unique => true
   end
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312232029) do
+ActiveRecord::Schema.define(:version => 20120313200711) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(:version => 20120312232029) do
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "configurations", :force => true do |t|
+    t.integer  "variable"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "configurations", ["variable"], :name => "index_configurations_on_variable", :unique => true
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
