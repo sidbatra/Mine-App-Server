@@ -152,7 +152,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :admin_emails,
                 :as         => 'admin/emails',
                 :controller => 'admin/emails',
-                :only       => :show
+                :only       => [:index,:show]
 
   map.resources :admin_health,
                 :as         => 'admin/health',

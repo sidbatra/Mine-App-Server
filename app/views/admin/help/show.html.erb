@@ -32,13 +32,12 @@
   <%=link_to 'New', new_admin_suggestion_path%> <br>
   <%=link_to 'All', admin_suggestions_path%> <br>
 
+  <br> <h3>Styles</h3> 
+  <%=link_to 'New', new_admin_style_path%> <br>
+  <%=link_to 'All', admin_styles_path%> <br>
+
   <br> <h3>Emails</h3> 
-  <%UserMailer.instance_methods(false).sort.each do |method|%>
-    <%unless ['generate_attributes'].include? method%> 
-      <%=link_to method,admin_email_path(method)%>
-      <br>
-    <%end%>
-  <%end%>
+  <%=link_to 'All', admin_emails_path%> <br>
 
   <br> <h3>Live Commits</h3> 
   <table width="900">

@@ -252,7 +252,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
       analytics.identifyUser(
         this.currentUser.get('email'),
-        this.currentUser.get('age'));
+        this.currentUser.get('age'),
+        this.currentUser.get('gender'));
 
       analytics.trackVersion(helpers.version.slice(0,-2));
     }
