@@ -1,6 +1,11 @@
 class Admin::EmailsController < ApplicationController
   before_filter :admin_required
 
+  # Display links to all emails
+  #
+  def index
+  end
+
   # Display sample content of a particular email
   #
   def show

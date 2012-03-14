@@ -1,0 +1,10 @@
+<div id="container" class="container well">
+  <br> <h3>Emails</h3>  <br>
+  <%UserMailer.instance_methods(false).sort.each do |method|%>
+    <%unless ['generate_attributes'].include? method%> 
+      <%=link_to method,admin_email_path(method)%>
+      <br>
+    <%end%>
+  <%end%>
+</div>
+
