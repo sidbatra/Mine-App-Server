@@ -22,7 +22,7 @@ class Configuration < ActiveRecord::Base
   # returns - String. value of the variable. nil if not found
   #
   def self.read(variable)
-    find_by_variable(variable).value rescue nil
+    find_by_variable(variable,:select => "value").value rescue nil
   end
 
   # Create or update the value of a variable in the database

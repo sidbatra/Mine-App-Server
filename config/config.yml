@@ -40,7 +40,7 @@ common: &common
     :user_products_in_category: user_%d_category_%d_products
     :user_like_products_in_category: user_%d_category_%d_like_products
     :user_want_products_in_category: user_%d_category_%d_want_products
-    :user_product_suggestions: user_%d_product_suggestions
+    :user_product_suggestions: user_%d_product_suggestions_%s
     :store_category_count: store_%d_category_%d_count
     :store_top_products: store_%d_top_products
     :store_top_shoppers: store_%d_top_shoppers
