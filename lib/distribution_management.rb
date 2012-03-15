@@ -44,6 +44,19 @@ module DW
         TickerAction.add(action.identifier,OGAction::Want,product)
       end
 
+      # Update the published story whenever a product is updated
+      #
+      def self.update_add_or_want(ticker_action,product)
+        action = FbGraph::OpenGraph::Action.new(ticker_action.og_action_id) 
+        
+        action.update(:item => product_url(
+                                product.user.handle,
+                                product.handle,
+                                :src  => 'fb',
+                                :host => CONFIG[:host]),
+                      :access_token => product.user.access_token)
+      end
+
       # Publish a story whenever the user uses a collection
       #
       def self.publish_use(collection)
@@ -60,6 +73,27 @@ module DW
                             :expires_in => 3600)
 
         TickerAction.add(action.identifier,OGAction::Use,collection)
+      end
+
+      # Update the published story whenever a collection is updated
+      #
+      def self.update_use(ticker_action,collection)
+        action = FbGraph::OpenGraph::Action.new(ticker_action.og_action_id) 
+
+        action.update(:set => collection_url(
+                                collection.user.handle,
+                                collection.handle,
+                                :src  => 'fb',
+                                :host => CONFIG[:host]), 
+                      :access_token => collection.user.access_token)
+      end
+
+      # Delete a published story whenever a product or a collection is
+      # deleted
+      #
+      def self.delete_story(ticker_action,access_token)
+        action = FbGraph::OpenGraph::Action.new(ticker_action.og_action_id) 
+        action.destroy(:access_token => access_token)
       end
 
       # Post an invite on a friends facebook wall 
