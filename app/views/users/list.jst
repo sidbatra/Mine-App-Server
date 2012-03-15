@@ -6,6 +6,7 @@
 	  <a class="right" 
         onclick="analytics.viewAllSelected(Denwen.ViewAllType.IFollowers);"
         data-toggle="modal" 
+        style="<%=users.length > CONFIG['min_entries_for_view_all'] ? '' : 'display:none'%>"
         href="#modal-user-friends">
 	  	View all
 	  </a>
