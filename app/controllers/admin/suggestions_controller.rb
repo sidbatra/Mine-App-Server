@@ -24,6 +24,12 @@ class Admin::SuggestionsController < ApplicationController
     @suggestions = Suggestion.by_weight
   end
 
+  # Display a suggestion
+  #
+  def show
+    @suggestion = Suggestion.with_products.find(params[:id])
+  end
+
   # Display UI for editing a suggestion
   #
   def edit
