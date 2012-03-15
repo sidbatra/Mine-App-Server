@@ -6,6 +6,7 @@
       <td width="400">
         <%= text_field_tag  'name',
                             store.name,
+                            :autocomplete => :off,
                             :id     => "store_name_#{store.id}",
                             :class  => "creation_input box_shadow"%>
       </td>
