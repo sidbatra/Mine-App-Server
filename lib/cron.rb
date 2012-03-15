@@ -77,7 +77,7 @@ module DW
         end
         
         users_with_activity = (products + wants).map(&:user_id).uniq
-        user_ids            = Following.
+        user_ids            = Following.active.
                                 find_all_by_user_id(users_with_activity).
                                 map(&:follower_id).uniq
 
