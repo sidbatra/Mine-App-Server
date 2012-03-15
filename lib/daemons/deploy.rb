@@ -4,14 +4,16 @@
 #
 # RAILS_PATH : String. Location of the rails app.
 # RAILS_ENV : String. Deployment environment.
+# REPO_BRANCH : String. Branch to checked for new commits.
 # BOT_PASSWORD : String. Password for the chat bot.
 #
 # Usage:
-# RAILS_PATH=/vol/staging RAILS_ENV=staging BOT_PASSWORD=*** lib/daemons/deploy_ctl start
+# REPO_BRANCH=develop RAILS_PATH=/vol/staging RAILS_ENV=staging BOT_PASSWORD=*** lib/daemons/deploy_ctl start
 #
 
 require 'rubygems'
 require 'xmpp4r-simple'
+require 'grit'
 require ENV['RAILS_PATH'] + '/lib/aws_management'
 
 bot_email = "deusexmachinaneo@gmail.com"
@@ -22,6 +24,7 @@ Signal.trap("TERM") do
   $running = false
 end
 
+repo = Grit::Repo.new(ENV['RAILS_PATH'])
 jabber = Jabber::Simple.new(bot_email,ENV['BOT_PASSWORD'])
 logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/deploy.rb.log"))
 config = YAML.load_file(File.join(
@@ -34,13 +37,18 @@ DW::AWSManagement::AWSConnection.establish(
                                   config[:aws_secret_key])
 
 
+revision_sha = repo.commits(ENV['REPO_BRANCH']).first.id
 
 while($running) do
 
   begin 
-    unless `cd #{ENV['RAILS_PATH']} && git pull`.match(/^Already up-to-date.$/)
+    `cd #{ENV['RAILS_PATH']} && git pull`
 
-      revision_sha = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
+    new_revision_sha = repo.commits(ENV['REPO_BRANCH']).first.id
+
+    if revision_sha != new_revision_sha
+
+      revision_sha = new_revision_sha
       log_file     = "#{ENV['RAILS_PATH']}/log/#{revision_sha}.log"
 
       `cd #{ENV['RAILS_PATH']} && \
@@ -54,7 +62,7 @@ while($running) do
         raise IOError, "Failed release"
       end
 
-      logger.info "Released at - #{Time.now}"
+      logger.info "Released #{revision_sha} at - #{Time.now}"
 
       jabber.deliver(
         admin_email,
@@ -62,7 +70,7 @@ while($running) do
     end
 
   rescue => ex
-    logger.info "Exception at #{Time.now} - " + ex.message 
+    logger.info "Exception #{revision_sha} at #{Time.now} - " + ex.message 
 
     jabber.deliver(
       admin_email,
@@ -108,6 +116,6 @@ while($running) do
   end
 
 
-  sleep 30
+  sleep 60
 end #while running
 
