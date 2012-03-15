@@ -46,9 +46,11 @@
     	
 				<ul class="nav nav-tabs">
 				
-					<a class="btn btn-primary" style="float: right">
-						<i class="icon-plus icon-white"></i> Add item bought here
-					</a>
+          <%=link_to "<i class='icon-plus icon-white'></i> "\
+                      "Add item bought here",
+              new_product_path(:store => @store.handle,:src => 'store'),
+              :class => "btn btn-primary",
+              :style => "float: right"%>
 					
   				<li class="active" id="products_tab">
     				<a>
