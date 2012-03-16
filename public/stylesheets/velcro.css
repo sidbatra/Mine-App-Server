@@ -178,6 +178,12 @@
 	overflow: hidden; 
 	text-align: center; }
 
+.profile .profile-card .profile-img img {
+	height: 100%;
+	max-width: none;
+	margin-left: -50%;
+	margin-right: -50%; }
+
 .profile .profile-card .byline {
 	font-size: 13px;
 	line-height: 18px;
