@@ -348,6 +348,35 @@ li { list-style: none; }
 	background: white;
 	text-decoration: none !important;
 	cursor: pointer; }
+	
+.alert { position: relative; }
+.alert-info h3 { color: #3A87AD; }
+.alert-info .thumbnail,
+.alert-info li:hover .thumbnail { 
+	border-color: #BCE8F1 !important;
+	-webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; }
+
+[class^=".caret-"]::before, [class*=" caret-"]::before,
+[class^=".caret-"]::after, [class*=" caret-"]::after {
+	content: '';
+	display: inline-block;
+	position: absolute; }
+	
+.alert-info.caret-top-left::before {
+	top: -7px;
+	left: 20px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #9AD0D8; }
+
+.alert-info.caret-top-left::after {	
+	top: -6px;
+	left: 21px;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #D9EDF7; }
 
 /* multi btn-group on single line fix */	
 .btn-group::after {
@@ -417,7 +446,7 @@ li { list-style: none; }
 
 .profile .well.items li:hover .thumbnail.no-hover {
 	cursor: default;
-	border: 1px solid #DDD !important;
+	border: 1px solid #DDD;
 	background: whiteSmoke;
 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -563,29 +592,6 @@ footer p { text-align: center; }
 .creation .change-box:hover .change-photo {
 	display: block;
 	z-index: 10; }
-
-.creation .alert.ways {
-	position: relative; }
-
-.creation .alert.ways::before {
-	content: '';
-	display: inline-block;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-bottom: 7px solid #8ecedb;
-	position: absolute;
-	top: -7px;
-	left: 20px; }
-
-.creation .alert.ways::after {
-	content: '';
-	display: inline-block;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-bottom: 6px solid #D9EDF7;
-	position: absolute;
-	top: -6px;
-	left: 21px; }
 
 /* ---------- chooser */
 
