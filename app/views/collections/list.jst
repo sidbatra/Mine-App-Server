@@ -21,14 +21,15 @@
 	
 	<%}else{%>
 
-
 		<a class="btn <%=productsLeft > 0 ? 'disabled' : 'btn-primary'%>"
         onclick="return <%=!(productsLeft > 0)%>;"
         href="/collections/new?src=start">
 			<i class="icon-plus icon-white"></i> New set
 		</a>
 
-		<div class="alert alert-info caret-top-left" style="margin-top: 15px; padding-top: 11px; padding-right: 0px; margin-bottom: 0;">
+		<div class="alert alert-info caret-top-left" 
+          style="margin-top: 15px; padding-top: 11px; padding-right: 0px; "
+                "margin-bottom: 0;">
 				 
 		  <%if(productsLeft > 0){%>
 		    Once you've added 5 items, start posting sets of items, as you use them.
@@ -44,46 +45,21 @@
 						<a class="thumbnail disabled no-hover" style="padding: 9px;">
 							<ul class="items">
 								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/male1.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/male2.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/male3.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/male4.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/male5.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/male6.jpeg')%>">
-									  </div>
-								  </li>
-								
+                <%_.each(['male1.jpeg','male2.jpeg','male3.jpeg','male4.jpeg','male5.jpeg'],function(image){%>
+                  <li>
+                    <div class="thumb-photo" 
+                          style="width: 106px; height: 106px;">
+                      <img style="max-height: 102px; max-width: 102px;" 
+                            src="<%=helpers.imagePath('placeholders/' + image)%>">
+                    </div>
+                  </li>
+                <%});%>
+
 							</ul> <!-- /items -->
 							
 							<div style="color: #999; margin: 5px 2px 0;">
-								<i style="opacity: 0.35; filter: alpha(opacity=35);" class="icon-time"></i>
+								<i style="opacity: 0.35; filter: alpha(opacity=35);" 
+                    class="icon-time"></i>
 								28 minutes ago
 							</div>
 							
@@ -93,37 +69,23 @@
 					<!-- female set example -->
 					<li style="margin: 0 0 0 12px; position: relative;">
 						<a class="thumbnail disabled no-hover" style="padding: 9px;">
-		
 							<ul class="items">
 								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/female1.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/female2.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/female3.jpeg')%>">
-									  </div>
-								  </li>
-								
-									<li>
-										<div class="thumb-photo" style="width: 106px; height: 106px;">
-											<img style="max-height: 102px; max-width: 102px;" src="<%=helpers.imagePath('placeholders/female4.jpeg')%>">
-									  </div>
-								  </li>
+                <%_.each(['female1.jpeg','female2.jpeg','female3.jpeg','female4.jpeg'],function(image){%>
+                  <li>
+                    <div class="thumb-photo" 
+                          style="width: 106px; height: 106px;">
+                      <img style="max-height: 102px; max-width: 102px;" 
+                            src="<%=helpers.imagePath('placeholders/' + image)%>">
+                    </div>
+                  </li>
+                <%});%>
 								
 							</ul>
 							
 							<div style="color: #999; margin: 5px 2px 0;">
-								<i style="opacity: 0.35; filter: alpha(opacity=35);" class="icon-time"></i>
+								<i style="opacity: 0.35; filter: alpha(opacity=35);" 
+                    class="icon-time"></i>
 							    2 hours ago
 							</div>
 							
