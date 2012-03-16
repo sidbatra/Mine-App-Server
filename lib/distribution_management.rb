@@ -101,9 +101,9 @@ module DW
       # Delete a published story whenever a product or a collection is
       # deleted
       #
-      def self.delete_story(ticker_action)
-        action = FbGraph::OpenGraph::Action.new(ticker_action.og_action_id) 
-        action.destroy(:access_token => ticker_action.user.access_token)
+      def self.delete_story(og_action_id,access_token)
+        action = FbGraph::OpenGraph::Action.new(og_action_id) 
+        action.destroy(:access_token => access_token)
       end
 
       # Post an invite on a friends facebook wall 
