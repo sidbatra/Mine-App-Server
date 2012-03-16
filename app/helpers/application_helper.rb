@@ -27,6 +27,17 @@ module ApplicationHelper
     "<meta name='current_user_id' content='#{current_user_id}'/>"
   end
 
+  # Generate a meta tag for the gender of the current user
+  #
+  # returns - String. HTML meta tag for the current user's gender
+  #
+  def current_user_gender_meta_tag
+    current_user_gender = logged_in? && self.current_user.gender.present? ? 
+                            self.current_user.gender :
+                            'unknown'
+    "<meta name='current_user_gender' content='#{current_user_gender}'/>"
+  end
+
   # Generate meta tag for status of onboarding
   #
   def is_onboarding_meta_tag
