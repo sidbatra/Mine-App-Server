@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316010450) do
+ActiveRecord::Schema.define(:version => 20120316010831) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -322,9 +322,11 @@ ActiveRecord::Schema.define(:version => 20120316010450) do
     t.string   "ticker_actionable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "ticker_actions", ["ticker_actionable_id", "ticker_actionable_type"], :name => "index_ticker_actions_on_ticker_actionable_id_and_type"
+  add_index "ticker_actions", ["user_id"], :name => "index_ticker_actions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
