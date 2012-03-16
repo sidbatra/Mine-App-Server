@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
   has_many    :comments,      :as => :commentable,  :dependent => :destroy
   has_many    :actions,       :as => :actionable,   :dependent => :destroy
   has_many    :achievements,  :as => :achievable,   :dependent => :destroy
-  has_many    :ticker_actions, :as => :ticker_actionable, :dependent => :destroy
+  has_many    :ticker_actions, :as => :ticker_actionable
   has_many    :collection_parts, :dependent => :destroy
 
   #----------------------------------------------------------------------
