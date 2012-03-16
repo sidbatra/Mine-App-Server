@@ -40,17 +40,23 @@
 			<div class="sets">
 				<ul class="thumbnails" style="margin-top: 9px; margin-left: -12px;">	
 				
-					<!-- male set example -->	
 					<li style="margin: 0 0 10px 12px; position: relative;">
 						<a class="thumbnail disabled no-hover" style="padding: 9px;">
 							<ul class="items">
 								
-                <%_.each(['male1.jpeg','male2.jpeg','male3.jpeg','male4.jpeg','male5.jpeg'],function(image){%>
+                <%var placeholders = [];%>
+                <%if(helpers.isCurrentUserMale()){%>
+                  <%placeholders = ['male1.jpeg','male2.jpeg','male3.jpeg','male4.jpeg','male5.jpeg'];%>
+                <%}else if(helpers.isCurrentUserFemale()){%>
+                  <%placeholders = ['female1.jpeg','female2.jpeg','female3.jpeg','female4.jpeg'];%>
+                <%}%>
+
+                <%_.each(placeholders,function(image){%>
                   <li>
                     <div class="thumb-photo" 
                           style="width: 106px; height: 106px;">
                       <img style="max-height: 102px; max-width: 102px;" 
-                            src="<%=helpers.imagePath('placeholders/' + image)%>">
+                            src="<%=helpers.imagePath('placeholders/' + image)%>"/>
                     </div>
                   </li>
                 <%});%>
@@ -64,34 +70,8 @@
 							</div>
 							
 						</a>
-					</li> <!-- /male set example -->
+					</li> 
 					
-					<!-- female set example -->
-					<li style="margin: 0 0 0 12px; position: relative;">
-						<a class="thumbnail disabled no-hover" style="padding: 9px;">
-							<ul class="items">
-								
-                <%_.each(['female1.jpeg','female2.jpeg','female3.jpeg','female4.jpeg'],function(image){%>
-                  <li>
-                    <div class="thumb-photo" 
-                          style="width: 106px; height: 106px;">
-                      <img style="max-height: 102px; max-width: 102px;" 
-                            src="<%=helpers.imagePath('placeholders/' + image)%>">
-                    </div>
-                  </li>
-                <%});%>
-								
-							</ul>
-							
-							<div style="color: #999; margin: 5px 2px 0;">
-								<i style="opacity: 0.35; filter: alpha(opacity=35);" 
-                    class="icon-time"></i>
-							    2 hours ago
-							</div>
-							
-						</a>
-					</li> <!-- /female set example -->
-
 				</ul>
 			</div>	
 		
