@@ -11,7 +11,7 @@ class Collection < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   has_many :collection_parts, :dependent => :destroy
   has_many :products, :through => :collection_parts
-  has_one  :ticker_action, :as => :ticker_actionable
+  has_one :ticker_action, :as => :ticker_actionable, :dependent => :destroy
 
   #----------------------------------------------------------------------
   # Validations

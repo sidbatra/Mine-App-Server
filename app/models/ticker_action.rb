@@ -4,6 +4,7 @@ class TickerAction < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to :ticker_actionable, :polymorphic => true
+  belongs_to :user
 
   #----------------------------------------------------------------------
   # Validations
