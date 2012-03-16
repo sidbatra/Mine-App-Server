@@ -48,20 +48,6 @@ module DW
         TickerAction.add(action.identifier,OGAction::Want,product,user.id)
       end
 
-      # Update the published story whenever a product is updated
-      #
-      def self.update_add_or_want(ticker_action)
-        action  = FbGraph::OpenGraph::Action.new(ticker_action.og_action_id) 
-        product = ticker_action.ticker_actionable
-        
-        action.update(:item => product_url(
-                                product.user.handle,
-                                product.handle,
-                                :src  => 'fb',
-                                :host => CONFIG[:host]),
-                      :access_token => ticker_action.user.access_token)
-      end
-
       # Publish a story whenever the user uses a collection
       #
       def self.publish_use(collection)
@@ -82,20 +68,6 @@ module DW
                       OGAction::Use,
                       collection,
                       collection.user_id)
-      end
-
-      # Update the published story whenever a collection is updated
-      #
-      def self.update_use(ticker_action)
-        action     = FbGraph::OpenGraph::Action.new(ticker_action.og_action_id) 
-        collection = ticker_action.ticker_actionable
-
-        action.update(:set => collection_url(
-                                collection.user.handle,
-                                collection.handle,
-                                :src  => 'fb',
-                                :host => CONFIG[:host]), 
-                      :access_token => ticker_action.user.access_token)
       end
 
       # Delete a published story whenever a product or a collection is
