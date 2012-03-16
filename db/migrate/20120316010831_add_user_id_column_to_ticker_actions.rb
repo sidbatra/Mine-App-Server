@@ -6,8 +6,8 @@ class AddUserIdColumnToTickerActions < ActiveRecord::Migration
     values  = []
 
     TickerAction.select(:id,:ticker_actionable_id,:ticker_actionable_type).
-                 all(:include => :ticker_actionable).each do |ticker|
-      values << [ticker.id,ticker.ticker_actionable.user_id]
+                 all(:include => :ticker_actionable).each do |t|
+      values << [t.id,t.ticker_actionable.user_id] if t.ticker_actionable
     end
 
     TickerAction.import(columns,values,
