@@ -20,4 +20,13 @@ class CollectionObserver < ActiveRecord::Observer
       :update_collection,
       collection.id) if collection.reprocess
   end
+
+  # Delete facebook stories after a collection
+  # is deleted
+  #
+  def after_destroy(collection)
+    DistributionManager.delete_story(
+        collection.ticker_action,
+        collection.user.access_token) if collection.ticker_action
+  end
 end
