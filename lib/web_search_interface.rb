@@ -14,11 +14,39 @@ module DW
       SOURCES = {:web => 'Web',:image => 'Image',:spell => 'Spell'}
       LIMITS  = {:web => 'Web.Count',:image => 'Image.Count'}
       OFFSETS = {:web => 'Web.Offset',:image => 'Image.Offset'}
+      IMAGE_SIZES = {
+                      :small => 'Size:Small',
+                      :medium => 'Size:Medium',
+                      :large => 'Size:Large'}
 
       # Perform a web search on html pages i.e. a classic web search
       #
+      # query - String. Bunch of words to be searched for on the web.
+      # limit - Integer:1. Max number of results in the output.
+      # offset - Integer:0. Page number of results. Minimum 0.
+      #
+      # returns - WebSearch object.
+      #
       def self.on_pages(query,limit=10,offset=0)
         fetch_response build_url(query,[:web],{:web => limit},{:web => offset})
+      end
+
+      # Perform a web search on images
+      #
+      # query - String. Bunch of words for which images are to be found.
+      # size - Symbol. Filter on size of images. :small,:medium,:large,:all
+      # limit - Integer:1. Max number of results in the output.
+      # offset - Integer:0. Page number of results. Minimum 0.
+      #
+      # returns - WebSearch object.
+      #
+      def self.on_images(query,size,limit=10,offset=0)
+        extras = size == :all ? {} : {'Image.Filters' => IMAGE_SIZES[size]}
+        fetch_response build_url(
+                        query,[:image],
+                        {:image => limit},
+                        {:image => offset},
+                        extras)
       end
 
 
@@ -26,7 +54,7 @@ module DW
 
       # Construct the url for performing a web search
       #
-      def self.build_url(query,sources,limits,offsets)
+      def self.build_url(query,sources,limits,offsets,extras={})
         params = {
           'AppId'   => CONFIG[:bing_app_id],
           'Version' => '2.2', 
@@ -36,6 +64,7 @@ module DW
 
         limits.each{|k,v| params[LIMITS[k]] = v}
         offsets.each{|k,v| params[OFFSETS[k]] = v}
+        extras.each{|k,v| params[k] = v}
         
         URI::HTTP.build([
               nil,'api.bing.net',nil,'/json.aspx',
