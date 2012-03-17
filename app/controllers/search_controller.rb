@@ -18,12 +18,17 @@ class SearchController < ApplicationController
       request.on_complete{|r| @large_images = WebSearch.new(r.body)}
       hydra.queue request
 
+      amazon_url = AmazonProductSearch.fetch_products(@query,1,true)
+      request = Typhoeus::Request.new(amazon_url)
+      request.on_complete{|r| @amazon_products = Amazon::Ecs::Response.new(r.body)}
+      hydra.queue request
+
       hydra.run
 
       #@medium_images = WebSearch.on_images(@query,:medium)
       #@large_images = WebSearch.on_images(@query,:large)
 
-      @amazon_products = AmazonProductSearch.fetch_products(@query)
+      #@amazon_products = AmazonProductSearch.fetch_products(@query)
 
       @products = Product.limit(10).
                     all(:conditions => ['title like ?',"%#{@query}%"])
