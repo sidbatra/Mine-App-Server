@@ -182,12 +182,12 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     if(queryType == Denwen.ProductQueryType.Text) {
       
       if(query.split(' ').length == 1 && !this.oneWordToolTipDone) {
-        dDrawer.info(CONFIG['one_word_query_msg']);
+        dDrawer.info(CONFIG['one_word_query_msg'],0);
         this.oneWordToolTipDone = true;
       }
       else if(this.searchesCount == CONFIG['multi_query_threshold'] && 
                 !this.urlToolTipDone) {
-        dDrawer.info(CONFIG['multi_query_msg']);
+        dDrawer.info(CONFIG['multi_query_msg'],0);
         this.urlToolTipDone = true;
       }
     }
