@@ -125,11 +125,15 @@ module Amazon
       request_url = prepare_url(opts)
       log "Request URL: #{request_url}"
       
-      res = Net::HTTP.get_response(URI::parse(request_url))
-      unless res.kind_of? Net::HTTPSuccess
-        raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
+      if opts[:url_only]
+        request_url
+      else
+        res = Net::HTTP.get_response(URI::parse(request_url))
+        unless res.kind_of? Net::HTTPSuccess
+          raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
+        end
+        Response.new(res.body)
       end
-      Response.new(res.body)
     end
     
     def self.validate_request(opts) 

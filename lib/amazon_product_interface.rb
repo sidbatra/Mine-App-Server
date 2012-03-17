@@ -22,15 +22,17 @@ module DW
       #
       # query - String. Find matching products for this query.
       # page  - Integer:1. Page of results
+      # url_only - Boolean:false. Only return the url without running request.
       #
       # returns - Amazon::Ecs result object
       #
-      def self.fetch_products(query,page=1)
+      def self.fetch_products(query,page=1,url_only=false)
         result = Amazon::Ecs.item_search(
                   query, {
                     :response_group => 'Images,Small',
                     :item_page => page,
-                    :search_index => "All"})
+                    :search_index => "All",
+                    :url_only => url_only})
       end
 
     end #amazon product search
