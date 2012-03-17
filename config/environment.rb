@@ -56,6 +56,10 @@ Rails::Initializer.run do |config|
   config.gem('rb-inotify',
               :version => '0.8.8',
               :lib => false)
+  config.gem('sunspot',
+              :version => '1.3.1')
+  config.gem('sunspot_rails',
+              :version => '1.3.1')
   config.gem('typhoeus',
               :version => '0.3.3')
   config.gem('xmpp4r',
