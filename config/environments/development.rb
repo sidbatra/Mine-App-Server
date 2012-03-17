@@ -17,3 +17,6 @@ config.action_controller.perform_caching             = ENV['CACHE_IN_DEV'] == 't
 config.action_mailer.raise_delivery_errors = false
 
 config.cache_store = :mem_cache_store
+
+config.gem('sunspot',
+            :version => '1.3.1')

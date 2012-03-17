@@ -68,6 +68,17 @@ class Product < ActiveRecord::Base
                   :store_id,:user_id,:source_product_id,:suggestion_id
 
   #----------------------------------------------------------------------
+  # Indexing
+  #----------------------------------------------------------------------
+  searchable do
+    text :title, :boost => 2
+    text :query
+    text :store do
+      store ? store.name : ""
+    end
+  end
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
