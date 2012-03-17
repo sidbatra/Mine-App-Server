@@ -107,6 +107,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searches,
                 :only => [:create]
 
+  map.resources :search,
+                :only => [:index],
+                :controller => :search
+
   map.resources :invites,
                 :only => [:create]
 
