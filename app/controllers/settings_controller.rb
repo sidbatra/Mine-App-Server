@@ -36,8 +36,11 @@ class SettingsController < ApplicationController
   def update
     @settings = self.current_user.setting
     @settings.update_attributes(params[:setting])
+
+    flash[:updated] = true
   rescue => ex
     handle_exception(ex)
+    flash[:updated] = false
   ensure
     respond_to do |format|
       format.html do 

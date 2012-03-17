@@ -2,7 +2,7 @@
 	<div class="row settings">
 		<div class="span6 offset3">
 			<div class="well">
-			
+
 				 <%form_for @settings,:url => "/settings/#{@settings.id}",
 		      :html => {
 		        :class  => 'form-horizontal',
@@ -80,6 +80,7 @@
   <script type="text/javascript">
     new Denwen.Views.Settings.Index({
           el            : $('#edit_setting'),
+          updated       : '<%=flash[:updated]%>',
           source        : '<%=@source%>'});
   </script>
 
