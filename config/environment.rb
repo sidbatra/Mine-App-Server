@@ -21,6 +21,9 @@ Rails::Initializer.run do |config|
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
   CONFIG[:revision]   = `git rev-parse HEAD`.chomp
 
+  config.gem('amazon-ecs',
+              :version => '2.2.4',
+              :lib => 'amazon/ecs')
   config.gem('ar-extensions', 
               :version => '0.9.2')
   config.gem('aws',
