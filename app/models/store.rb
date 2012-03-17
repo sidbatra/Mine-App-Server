@@ -108,14 +108,9 @@ class Store < ActiveRecord::Base
   # Move all products to an existing store
   #
   def move_products_to(store)
-
     self.products.each do |product|
       product.store_id = store.id
       product.save!
-    end
-
-    Category.fetch_all.each do |category|
-      Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
     end
   end
 

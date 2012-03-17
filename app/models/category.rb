@@ -37,10 +37,4 @@ class Category < ActiveRecord::Base
     find_by_handle(handle)
   end
 
-  ##
-  # Fetch all categories sorted by weight
-  def self.fetch_all
-    Cache.fetch('category_all'){weighted}
-  end
-
 end
