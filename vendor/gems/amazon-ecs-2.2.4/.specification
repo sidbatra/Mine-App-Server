@@ -1,0 +1,105 @@
+--- !ruby/object:Gem::Specification 
+name: amazon-ecs
+version: !ruby/object:Gem::Version 
+  hash: 15
+  prerelease: 
+  segments: 
+  - 2
+  - 2
+  - 4
+  version: 2.2.4
+platform: ruby
+authors: 
+- Herryanto Siatono
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2012-01-01 00:00:00 Z
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: nokogiri
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 7
+        segments: 
+        - 1
+        - 4
+        version: "1.4"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: ruby-hmac
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 13
+        segments: 
+        - 0
+        - 3
+        version: "0.3"
+  type: :runtime
+  version_requirements: *id002
+description: Generic Amazon Product Advertising Ruby API.
+email: herryanto@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- CHANGELOG
+- Gemfile
+- MIT-LICENSE
+- Rakefile
+- Readme.rdoc
+- amazon-ecs.gemspec
+- lib/amazon/ecs.rb
+- test/amazon/ecs_test.rb
+- test/fixtures/item_search.xml
+has_rdoc: true
+homepage: https://github.com/jugend/amazon-ecs
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.5.2
+signing_key: 
+specification_version: 2
+summary: Generic Amazon Product Advertising Ruby API.
+test_files: 
+- test/amazon/ecs_test.rb
+- test/fixtures/item_search.xml

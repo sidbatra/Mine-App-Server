@@ -23,7 +23,7 @@ class SearchController < ApplicationController
       #@medium_images = WebSearch.on_images(@query,:medium)
       #@large_images = WebSearch.on_images(@query,:large)
 
-      #@amazon_products = AmazonProductSearch.fetch_products(@query)
+      @amazon_products = AmazonProductSearch.fetch_products(@query)
 
       @products = Product.limit(10).
                     all(:conditions => ['title like ?',"%#{@query}%"])
