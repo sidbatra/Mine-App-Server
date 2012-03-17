@@ -11,12 +11,22 @@ module DW
 
       # Web search constants
       #
-      SOURCES = {:web => 'Web',:image => 'Image'}
+      SOURCES = {:web => 'Web',:image => 'Image',:spell => 'Spell'}
       LIMITS  = {:web => 'Web.Count',:image => 'Image.Count'}
+      OFFSETS = {:web => 'Web.Offset',:image => 'Image.Offset'}
+
+      # Perform a web search on html pages i.e. a classic web search
+      #
+      def self.on_pages(query,limit=10,offset=0)
+        fetch_response build_url(query,[:web],{:web => limit},{:web => offset})
+      end
+
+
+      protected
 
       # Construct the url for performing a web search
       #
-      def self.build_url(query,sources,limits)
+      def self.build_url(query,sources,limits,offsets)
         params = {
           'AppId'   => CONFIG[:bing_app_id],
           'Version' => '2.2', 
@@ -25,16 +35,11 @@ module DW
           'Sources' => sources.map{|s| SOURCES[s]}.join('+')}
 
         limits.each{|k,v| params[LIMITS[k]] = v}
+        offsets.each{|k,v| params[OFFSETS[k]] = v}
         
         URI::HTTP.build([
               nil,'api.bing.net',nil,'/json.aspx',
               params.map{|k,v| "#{k}=#{v}"}.join('&'),nil])
-      end
-
-      # Perform a web search on html pages i.e. a classic web search
-      #
-      def self.on_pages(query,limit=10)
-        fetch_response build_url(query,[:web],{:web => limit})
       end
 
       # Fetch json response from the given url via the
