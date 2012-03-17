@@ -24,11 +24,13 @@ module DW
       # query - String. Bunch of words to be searched for on the web.
       # limit - Integer:1. Max number of results in the output.
       # offset - Integer:0. Page number of results. Minimum 0.
+      # url_only - Boolean:false. Only return the url without running request.
       #
       # returns - WebSearch object.
       #
-      def self.on_pages(query,limit=10,offset=0)
-        fetch_response build_url(query,[:web],{:web => limit},{:web => offset})
+      def self.on_pages(query,limit=10,offset=0,url_only=false)
+        url = build_url(query,[:web],{:web => limit},{:web => offset})
+        url_only ? url.to_s : fetch_response(url)
       end
 
       # Perform a web search on images
@@ -37,16 +39,18 @@ module DW
       # size - Symbol. Filter on size of images. :small,:medium,:large,:all
       # limit - Integer:1. Max number of results in the output.
       # offset - Integer:0. Page number of results. Minimum 0.
+      # url_only - Boolean:false. Only return the url without running request.
       #
       # returns - WebSearch object.
       #
-      def self.on_images(query,size,limit=10,offset=0)
+      def self.on_images(query,size,limit=10,offset=0,url_only=false)
         extras = size == :all ? {} : {'Image.Filters' => IMAGE_SIZES[size]}
-        fetch_response build_url(
-                        query,[:image],
-                        {:image => limit},
-                        {:image => offset},
-                        extras)
+        url = build_url(
+                query,[:image],
+                {:image => limit},
+                {:image => offset},
+                extras)
+        url_only ? url.to_s : fetch_response(url)
       end
 
 
@@ -81,14 +85,15 @@ module DW
         body = ""
         body = response.body if response.code == "200"
 
-        new(JSON.parse(body)["SearchResponse"])
+        new(body)
       end
 
 
       # Create a class object from a params hash making all 
       # keys of the params hash available as instance variables
       #
-      def initialize(params)
+      def initialize(body)
+        params = JSON.parse(body)["SearchResponse"]
         params.each do |k,v|
           self.instance_variable_set("@#{k}",v)
           self.class.send(
