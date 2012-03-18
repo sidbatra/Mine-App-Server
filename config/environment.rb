@@ -53,6 +53,9 @@ Rails::Initializer.run do |config|
   config.gem('pismo',
               :version => '0.7.2',
               :lib => false)
+  config.gem('ruby-hmac',
+              :version => '0.4.0',
+              :lib => false)
   config.gem('rb-inotify',
               :version => '0.8.8',
               :lib => false)
