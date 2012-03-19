@@ -9,9 +9,11 @@
 						<legend>
 							Click a few stores you shop at to add to your profile:
 							
-							<%form_for @shopping,
-						      :html => {:style  => 'display:none; float: right; height: 0;'} do |f|%>
+              <%form_tag '/welcome',
+                  :style => 'height: 0; float: right;',
+                  :id   => 'new_shopping' do |f|%>
 						
+                <%=hidden_field_tag :id, WelcomeFilter::Stores%>
 						    <%=hidden_field_tag :store_ids%>
 						    
 						    <% content_tag :button,

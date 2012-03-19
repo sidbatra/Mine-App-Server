@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
       @view     = "style"
     when WelcomeFilter::Stores
       @shopping = Shopping.new
-      @view     = "shoppings/new"
+      @view     = "stores"
     when WelcomeFilter::Share
       @view     = "share"
     else
