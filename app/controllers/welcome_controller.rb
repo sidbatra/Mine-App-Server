@@ -18,6 +18,8 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Stores
       @shopping = Shopping.new
       @view     = "shoppings/new"
+    when WelcomeFilter::Share
+      @view     = "share"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -45,9 +47,7 @@ class WelcomeController < ApplicationController
         :byline => style.title)
 
     when WelcomeFilter::Stores
-      @success_target = user_path(
-                          self.current_user.handle,
-                          :src => UserShowSource::ShoppingsCreate)
+      @success_target = welcome_path(WelcomeFilter::Share)
       @error_target   = welcome_path(WelcomeFilter::Stores)
 
       store_ids = params[:store_ids].split(',')
