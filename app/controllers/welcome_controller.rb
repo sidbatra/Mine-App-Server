@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Style
       @styles   = Style.by_weight
       @sender   = self.current_user.received_invites.last.user rescue nil
-      @view     = "styles/new"
+      @view     = "style"
     when WelcomeFilter::Stores
       @shopping = Shopping.new
       @view     = "shoppings/new"
