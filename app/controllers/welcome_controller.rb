@@ -11,15 +11,15 @@ class WelcomeController < ApplicationController
     case @filter
     when WelcomeFilter::Learn
       @view     = "show"
-    when WelcomeFilter::Stores
-      @shopping = Shopping.new
-      @view     = "shoppings/new"
-    when WelcomeFilter::Friends
-      @view     = "invites/new"
     when WelcomeFilter::Style
       @styles   = Style.by_weight
       @sender   = self.current_user.received_invites.last.user rescue nil
-      @view     = "styles/new"
+      @view     = "style"
+    when WelcomeFilter::Stores
+      @shopping = Shopping.new
+      @view     = "stores"
+    when WelcomeFilter::Share
+      @view     = "share"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -36,10 +36,18 @@ class WelcomeController < ApplicationController
     @filter = params[:id] 
 
     case @filter
+    when WelcomeFilter::Style
+      @success_target = welcome_path(WelcomeFilter::Stores)
+      @error_target   = welcome_path(WelcomeFilter::Style)
+
+      style = Style.find(params[:style_id])
+
+      self.current_user.update_attributes(
+        :style_id => style.id,
+        :byline => style.title)
+
     when WelcomeFilter::Stores
-      @success_target = user_path(
-                          self.current_user.handle,
-                          :src => UserShowSource::ShoppingsCreate)
+      @success_target = welcome_path(WelcomeFilter::Share)
       @error_target   = welcome_path(WelcomeFilter::Stores)
 
       store_ids = params[:store_ids].split(',')
@@ -50,16 +58,6 @@ class WelcomeController < ApplicationController
           store_id,
           ShoppingSource::User)
       end
-
-    when WelcomeFilter::Style
-      @success_target = welcome_path(WelcomeFilter::Stores)
-      @error_target   = welcome_path(WelcomeFilter::Style)
-
-      style = Style.find(params[:style_id])
-
-      self.current_user.update_attributes(
-        :style_id => style.id,
-        :byline => style.title)
 
     else
       @success_target  = welcome_path(WelcomeFilter::Learn)

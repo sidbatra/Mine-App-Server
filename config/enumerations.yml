@@ -99,6 +99,7 @@
     Follow: 'follow'
     Friends: 'friends'
     Create: 'create'
+    Share: 'share'
     Style: 'style'
   OGObject:
     Item: "oncloset:item" 
