@@ -70,13 +70,6 @@ module DW
         end
       end
 
-      # Update a collection
-      #
-      def self.update_collection(collection_id)
-        collection = Collection.find(collection_id)
-        collection.process
-      end
-    
     end #notification manager
 
   end #notification management
