@@ -53,6 +53,12 @@ module DW
         url_only ? url.to_s : fetch_response(url)
       end
 
+      # Use web search api for spelling correction
+      def self.for_spelling(query,url_only=false)
+        url = build_url(query,[:spell],{},{})
+        url_only ? url.to_s : fetch_response(url)
+      end
+
 
       protected
 
