@@ -20,6 +20,6 @@
     stop program  = "/bin/bash -c 'cd /vol/closet && RAILS_ENV=development RAILS_PATH=/vol/closet /usr/local/bin/ruby lib/daemons/clerk_ctl stop'" 
 
   # Solr
-  check process clerk with pidfile /vol/closet/solr/pids/development/sunspot-solr-development.pid
+  check process solr with pidfile /vol/closet/solr/pids/development/sunspot-solr-development.pid
     start program = "/bin/bash -c 'cd /vol/closet && RAILS_ENV=development RAILS_PATH=/vol/closet /usr/local/bin/rake sunspot:solr:start'" with timeout 30 seconds
     stop program = "/bin/bash -c 'cd /vol/closet && RAILS_ENV=development RAILS_PATH=/vol/closet /usr/local/bin/rake sunspot:solr:stop'" with timeout 30 seconds
