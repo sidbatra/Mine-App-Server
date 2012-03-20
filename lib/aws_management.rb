@@ -4,7 +4,7 @@ module DW
   #
   module AWSManagement
 
-    require "AWS"
+    require "aws"
 
     # Maintains connections to AWS services
     #
