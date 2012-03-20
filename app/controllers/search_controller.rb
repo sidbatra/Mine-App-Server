@@ -28,7 +28,8 @@ class SearchController < ApplicationController
                                     product["Thumbnail"]["Url"],
                                     product["MediaUrl"],
                                     product["Url"],
-                                    product["Title"])
+                                    product["Title"],
+                                    "")
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                 end
@@ -55,7 +56,8 @@ class SearchController < ApplicationController
                                   product["Thumbnail"]["Url"],
                                   product["MediaUrl"],
                                   product["Url"],
-                                  product["Title"])
+                                  product["Title"],
+                                  "")
                               rescue => ex
                                 LoggedException.add(__FILE__,__method__,ex)
                               end
@@ -85,7 +87,8 @@ class SearchController < ApplicationController
                                 medium_url,
                                 large_url,
                                 product.get('DetailPageURL'),
-                                product.get('ItemAttributes/Title'))
+                                product.get('ItemAttributes/Title'),
+                                product.get('ASIN'))
 
                             rescue => ex
                               LoggedException.add(__FILE__,__method__,ex)
@@ -111,7 +114,8 @@ class SearchController < ApplicationController
                            product.thumbnail_url,
                            product.image_url,
                            product.source_url,
-                           product.title)
+                           product.title,
+                           product.id.to_s)
                        end
 
     @products = inhouse_products + amazon_products + 
@@ -134,13 +138,21 @@ class SearchController < ApplicationController
   # large_image_url - String. Url for a large sized product image.
   # source_url - String. Url where detailed product information is found
   # title - String. Title of the product.
+  # unique_id - String. Identifier to uniquely identify the product. 
+  #                     Pass in empty string if inapplicable
   #
-  def product_search_hash(medium_image_url,large_image_url,source_url,title)
+  def product_search_hash(
+        medium_image_url,
+        large_image_url,
+        source_url,
+        title,
+        unique_id)
     {
       :medium_url => medium_image_url,
       :large_url  => large_image_url,
       :source_url => source_url,
-      :title      => title}
+      :title      => title,
+      :uniq_id    => unique_id}
   end
 
 end
