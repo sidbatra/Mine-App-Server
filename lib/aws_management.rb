@@ -193,6 +193,20 @@ module DW
       end
 
 
+      # Apply an elastic ip address to the instance.
+      #
+      # ip - String. Elastic ip address.
+      #
+      # returns - Boolean. true.
+      #
+      def apply_elastic_ip(ip)
+        AWSConnection.ec2.associate_address(
+          :instance_id => self.instanceId,
+          :public_ip => ip)
+        true
+      end
+
+
       protected
 
       # Test validity of an array of tags associated with instances
