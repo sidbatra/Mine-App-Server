@@ -24,6 +24,11 @@ Capistrano::Configuration.instance(:must_exist).load do
         workers.start
       end
 
+      if servers? :search
+        solr.start
+        solr.index
+      end
+
       logrotate.install
 
       if servers? :web or servers? :worker
@@ -69,6 +74,10 @@ Capistrano::Configuration.instance(:must_exist).load do
       
       if servers? :worker
         workers.restart
+      end
+
+      if servers? :search
+        solr.index
       end
 
       cache.clear
