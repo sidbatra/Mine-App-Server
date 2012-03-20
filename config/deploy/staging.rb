@@ -19,6 +19,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     role(:web)          { ENV['web_servers'].split(',') }
     role(:worker)       { ENV['proc_servers'].split(',') }
     role(:cron)         { ENV['cron_servers'].split(',') }
+    role(:search)       { ENV['search_servers'].split(',') }
 
     # Total processing queue worker instances on proc servers
     #
