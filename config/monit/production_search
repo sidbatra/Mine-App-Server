@@ -1,5 +1,5 @@
 
   # Solr
-  check process clerk with pidfile /vol/closet/current/solr/pids/production/sunspot-solr-production.pid
+  check process solr with pidfile /vol/closet/current/solr/pids/production/sunspot-solr-production.pid
     start program = "/bin/bash -c 'cd /vol/closet/current && RAILS_ENV=production RAILS_PATH=/vol/closet/current /usr/local/bin/rake sunspot:solr:start'" with timeout 30 seconds
     stop program = "/bin/bash -c 'cd /vol/closet/current && RAILS_ENV=production RAILS_PATH=/vol/closet/current /usr/local/bin/rake sunspot:solr:stop'" 
