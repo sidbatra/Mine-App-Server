@@ -7,7 +7,8 @@ namespace :instances do
   SECURITY_GROUP     = 'sg-7c5fca15'
   TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
                         :search => 'search', :generic => 'generic'}
-  SEARCH_IPS         = {'staging' => '23.21.154.238', 'production' => ''}
+  SEARCH_IPS         = {'staging' => '23.21.154.238', 
+                        'production' => '23.21.152.127'}
   ENVIRONMENTS       = ['production','staging','development']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
