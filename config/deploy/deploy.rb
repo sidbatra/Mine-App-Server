@@ -42,6 +42,10 @@ Capistrano::Configuration.instance(:must_exist).load do
         monit.config_worker
       end
 
+      if servers? :search
+        monit.config_search
+      end
+
       monit.restart
     end
      
@@ -83,6 +87,10 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       if servers? :worker
         monit.config_worker
+      end
+
+      if servers? :search
+        monit.config_search
       end
 
       monit.restart
