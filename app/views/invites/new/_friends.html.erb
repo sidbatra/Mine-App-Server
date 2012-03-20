@@ -1,15 +1,24 @@
 <div class="well friends" id="friends_container" style="display:none">
 	<fieldset>	
-		<legend>…and their name is…</legend>
+		<legend>
+			
+			<%=link_to "Preview Invite <i class='icon-chevron-right'></i>",
+				  'javascript:void(0)',
+	    		:class 		=> 'btn btn-large disabled',
+	    		:style    => 'float: right;',
+	    		:id    		=> 'styles_picked_button'%>
+			
+			Pick your friend:
+		</legend>
 		
 		<div class="control-group">
 		  
-	  	<div style="position: relative; width: 277px;">
+	  	<div style="position: relative; width: 420px;">
 	
 	      <%=text_field_tag 'search_box', 
 	          nil, 
 	          :placeholder => '', 
-	          :style => 'width: 267px;'%>
+	          :style => 'width: 410px;'%>
 	
 	      <%=link_to  '&times;',
 	          'javascript:void(0)',
