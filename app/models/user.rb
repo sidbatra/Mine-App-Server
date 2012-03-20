@@ -201,8 +201,18 @@ class User < ActiveRecord::Base
 
   # Tests gender to see if user is male
   #
+  # returns. Boolean. true is user is male.
+  #
   def is_male?
-    gender == "male"
+    gender && gender.first == 'm'
+  end
+
+  # Tests gender to see if user is female
+  #
+  # returns. Boolean. true is user is female.
+  #
+  def is_female?
+    gender && gender.first == 'f'
   end
 
   # Test if the remember_token for the user cookie has expired

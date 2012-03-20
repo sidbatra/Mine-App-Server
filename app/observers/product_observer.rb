@@ -66,9 +66,10 @@ class ProductObserver < ActiveRecord::Observer
   #
   def after_update(product)
     ProcessingQueue.push(
-      NotificationManager,
-      :update_product,
-      product.id) if product.rehost
+      ProductDelayedObserver,
+      :after_update,
+      product.id,
+      {:rehost => product.rehost})
   end
 
   # Delete affected cache values

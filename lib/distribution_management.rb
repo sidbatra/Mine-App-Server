@@ -70,6 +70,17 @@ module DW
                       collection.user_id)
       end
 
+      # Update an open graph object - product/collection
+      # This updates all the actions associated with that object
+      #
+      def self.update_object(url)
+        http = Net::HTTP.new('graph.facebook.com')
+        http.request_post('/',"id=#{url}&scrape=true")
+
+        rescue => ex
+          LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Delete a published story whenever a product or a collection is
       # deleted
       #

@@ -29,13 +29,6 @@ module DW
         end
       end
 
-      # Host the updated product image
-      #
-      def self.update_product(product_id)
-        product = Product.find(product_id)
-        product.host
-      end
-
       # Rehost the updated store image
       #
       def self.update_store(store_id)
@@ -77,13 +70,6 @@ module DW
         end
       end
 
-      # Update a collection
-      #
-      def self.update_collection(collection_id)
-        collection = Collection.find(collection_id)
-        collection.process
-      end
-    
     end #notification manager
 
   end #notification management
