@@ -5,6 +5,7 @@ class SearchController < ApplicationController
   def index
     @products   = []
     @query      = params[:q]
+    @sane_query = @query
     @page       = params[:page] ? params[:page].to_i : 0
     per_page    = params[:per_page] ? params[:per_page].to_i : 10
 
@@ -14,8 +15,18 @@ class SearchController < ApplicationController
     amazon_products     = []
     inhouse_products    = []
 
+    begin
+      spellcheck_url = WebSearch.for_spelling(@query,true)
+      logger.info spellcheck_url
+      response = JSON.parse(Typhoeus::Request.get(spellcheck_url).body)
+      response = response["SearchResponse"]["Spell"]
+      @sane_query = response["Results"][0]["Value"] if response
+    rescue => ex
+      LoggedException.add(__FILE__,__method__,ex)
+    end
 
-    medium_url  = WebSearch.on_images(@query,:medium,per_page,@page,true)
+
+    medium_url  = WebSearch.on_images(@sane_query,:medium,per_page,@page,true)
     request     = Typhoeus::Request.new(medium_url)
 
     request.on_complete do |response| 
@@ -43,7 +54,7 @@ class SearchController < ApplicationController
 
 
 
-    large_url  = WebSearch.on_images(@query,:large,per_page,@page,true)
+    large_url  = WebSearch.on_images(@sane_query,:large,per_page,@page,true)
     request     = Typhoeus::Request.new(large_url)
 
     request.on_complete do |response| 
@@ -70,7 +81,7 @@ class SearchController < ApplicationController
     hydra.queue request
 
 
-    amazon_url = AmazonProductSearch.fetch_products(@query,@page+1,true)
+    amazon_url = AmazonProductSearch.fetch_products(@sane_query,@page+1,true)
     request = Typhoeus::Request.new(amazon_url)
 
     request.on_complete do |response| 
@@ -106,7 +117,7 @@ class SearchController < ApplicationController
 
 
     inhouse_products = Product.fulltext_search(
-                          @query,
+                          @sane_query,
                           @page+1,
                           per_page).map do |product|
 
