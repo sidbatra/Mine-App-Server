@@ -157,6 +157,21 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Maintain the search index 
+      #
+      def self.maintain_search_index
+        
+        include IndexManagement
+
+        Index.regenerate
+        Index.optimize
+
+        HealthReport.add(HealthReportService::MaintainSearchIndex)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #cron worker
 
   end # Cron
