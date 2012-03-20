@@ -18,5 +18,5 @@ config.action_mailer.raise_delivery_errors = false
 
 config.cache_store = :mem_cache_store
 
-config.gem('sunspot',
+config.gem('sunspot_solr',
             :version => '1.3.1')
