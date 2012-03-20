@@ -9,4 +9,8 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-require 'sunspot/solr/tasks'
+begin
+  require 'sunspot/solr/tasks'
+rescue => ex
+  puts "Install sunspot_rails to use sunspot rake tasks"
+end
