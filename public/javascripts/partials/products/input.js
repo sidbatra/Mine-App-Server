@@ -167,7 +167,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     if(this.stores) {
       this.stores.each(function(store){
-        if(sourceURL.search(store.get('domain')) != -1)
+        if(store.get('domain') && sourceURL.search(store.get('domain')) != -1) 
           $(self.storeEl).val(store.get('name'));
       });
     }
