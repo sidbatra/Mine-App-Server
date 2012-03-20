@@ -105,8 +105,13 @@ class Product < ActiveRecord::Base
   # Perform full text search on all the indexed products using 
   # solr + sunpot.
   #
+  # query - String. Full text search query.
+  # page - Integer:1. Pagination - the page of results to fetch
+  # per_page - Integer:10. Pagination - number of results per page
+  # 
+  # returns - Array. Array of product models matching the given query.
   #
-  def self.fulltext_search(query,page,per_page)
+  def self.fulltext_search(query,page=1,per_page=10)
     Product.search do 
               fulltext query
               paginate :per_page => per_page, :page => page
