@@ -3,28 +3,39 @@ class SearchController < ApplicationController
   # Fetch a set of search results
   #
   def index
-    @images   = []
-    @query    = params[:q]
-    @page     = params[:page] ? params[:page].to_i : 0
-    per_page  = params[:per_page] ? params[:per_page].to_i : 10
-    hydra     = Typhoeus::Hydra.new
+    @products   = []
+    @query      = params[:q]
+    @page       = params[:page] ? params[:page].to_i : 0
+    per_page    = params[:per_page] ? params[:per_page].to_i : 10
+
+    hydra               = Typhoeus::Hydra.new
+    web_medium_products = []
+    web_large_products  = []
+    amazon_products     = []
+    inhouse_products    = []
 
 
     medium_url  = WebSearch.on_images(@query,:medium,per_page,@page,true)
     request     = Typhoeus::Request.new(medium_url)
 
     request.on_complete do |response| 
-      web_search = JSON.parse(response.body)["SearchResponse"] rescue nil
-      next unless web_search
+      begin
+        web_search = JSON.parse(response.body)["SearchResponse"] 
 
-      @images += web_search["Image"]["Results"].map do |image|
-        {
-          :thumb => image["Thumbnail"]["Url"],
-          :image => image["MediaUrl"],
-          :source => image["Url"],
-          :title => image["Title"]
-          }
-      end #if false
+        web_medium_products = web_search["Image"]["Results"].map do |product|
+                                begin
+                                  product_search_hash(
+                                    product["Thumbnail"]["Url"],
+                                    product["MediaUrl"],
+                                    product["Url"],
+                                    product["Title"])
+                                rescue => ex
+                                  LoggedException.add(__FILE__,__method__,ex)
+                                end
+                              end 
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
     end
 
     hydra.queue request
@@ -35,51 +46,102 @@ class SearchController < ApplicationController
     request     = Typhoeus::Request.new(large_url)
 
     request.on_complete do |response| 
-      web_search = JSON.parse(response.body)["SearchResponse"] rescue nil
-      next unless web_search
+      begin
+        web_search = JSON.parse(response.body)["SearchResponse"] 
 
-      @images += web_search["Image"]["Results"].map do |image|
-        {
-          :thumb => image["Thumbnail"]["Url"],
-          :image => image["MediaUrl"],
-          :source => image["Url"],
-          :title => image["Title"]
-          }
-      end #if false
+        web_large_products = web_search["Image"]["Results"].map do |product|
+                              begin
+                                product_search_hash(
+                                  product["Thumbnail"]["Url"],
+                                  product["MediaUrl"],
+                                  product["Url"],
+                                  product["Title"])
+                              rescue => ex
+                                LoggedException.add(__FILE__,__method__,ex)
+                              end
+                            end
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
     end
 
     hydra.queue request
 
 
     amazon_url = AmazonProductSearch.fetch_products(@query,@page+1,true)
-    logger.info amazon_url
     request = Typhoeus::Request.new(amazon_url)
+
     request.on_complete do |response| 
-      @images += Amazon::Ecs::Response.new(response.body).items.map do |image|
-                  thumb = image.get('MediumImage/URL')
-                  large = image.get('LargeImage/URL')
-                  next unless thumb and large
-                  {
-                    :thumb => thumb,
-                    :image => large,
-                    :source => image.get('DetailPageURL'),
-                    :title => image.get('ItemAttributes/Title')
-                  }
-                end.compact
-    end #if false
+      begin
+        amazon_products = Amazon::Ecs::Response.new(
+                            response.body).items.map do |product|
+                            begin
+                              medium_url = product.get('MediumImage/URL')
+                              large_url = product.get('LargeImage/URL')
+
+                              next unless medium_url and large_url
+                              
+                              product_search_hash(
+                                medium_url,
+                                large_url,
+                                product.get('DetailPageURL'),
+                                product.get('ItemAttributes/Title'))
+
+                            rescue => ex
+                              LoggedException.add(__FILE__,__method__,ex)
+                            end
+                          end.compact
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+    end 
 
     hydra.queue request
 
+
     hydra.run
 
-    #@products = Product.fulltext_search(@query,@page+1,per_page)
 
-  #rescue => ex
-  #  handle_exception(ex)
-  #ensure
+    inhouse_products = Product.fulltext_search(
+                          @query,
+                          @page+1,
+                          per_page).map do |product|
+
+                         product_search_hash(
+                           product.thumbnail_url,
+                           product.image_url,
+                           product.source_url,
+                           product.title)
+                       end
+
+    @products = inhouse_products + amazon_products + 
+                  web_medium_products + web_large_products
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
     respond_to do |format|
       format.json 
     end
   end
 
+
+  protected
+
+  # Create hash representing a result in a product search.
+  #
+  # medium_image_url - String. Url for a medium sized product image.
+  # large_image_url - String. Url for a large sized product image.
+  # source_url - String. Url where detailed product information is found
+  # title - String. Title of the product.
+  #
+  def product_search_hash(medium_image_url,large_image_url,source_url,title)
+    {
+      :medium_url => medium_image_url,
+      :large_url  => large_image_url,
+      :source_url => source_url,
+      :title      => title}
+  end
+
 end
+
