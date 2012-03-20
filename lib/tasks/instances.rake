@@ -6,7 +6,8 @@ namespace :instances do
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
   TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
-                        :generic => 'generic'}
+                        :search => 'search', :generic => 'generic'}
+  SEARCH_IPS         = {'staging' => '23.21.154.238', 'production' => ''}
   ENVIRONMENTS       = ['production','staging','development']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
@@ -40,6 +41,11 @@ namespace :instances do
         if type == TYPES[:web]
           load_balancer = LoadBalancer.find(:matching => @environment)
           load_balancer.attach(instances.map(&:instanceId)) if load_balancer
+        end
+
+        if type == TYPES[:search]
+          instance = instances.last
+          instance.apply_elastic_ip(SEARCH_IPS[@environment])
         end
       end
     end
