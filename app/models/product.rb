@@ -102,6 +102,17 @@ class Product < ActiveRecord::Base
       :user_id            => user_id)
   end
 
+  # Perform full text search on all the indexed products using 
+  # solr + sunpot.
+  #
+  #
+  def self.fulltext_search(query,page,per_page)
+    Product.search do 
+              fulltext query
+              paginate :per_page => per_page, :page => page
+            end.results
+  end
+
 
   #----------------------------------------------------------------------
   # Instance methods
