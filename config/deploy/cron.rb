@@ -3,7 +3,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :cron do
     
     desc "Update cron on web and proc servers"
-    task :update_web_proc, :roles => [:web,:worker] do
+    task :update_web_proc, :roles => [:web,:worker,:search] do
       run "cd #{current_path} && RAILS_ENV=#{environment} "\
           "whenever -w -f config/whenever/web_proc.rb"
     end
