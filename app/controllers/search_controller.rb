@@ -17,7 +17,6 @@ class SearchController < ApplicationController
 
     begin
       spellcheck_url = WebSearch.for_spelling(@query,true)
-      logger.info spellcheck_url
       response = JSON.parse(Typhoeus::Request.get(spellcheck_url).body)
       response = response["SearchResponse"]["Spell"]
       @sane_query = response["Results"][0]["Value"] if response
