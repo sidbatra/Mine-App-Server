@@ -3,35 +3,82 @@ class SearchController < ApplicationController
   # Fetch a set of search results
   #
   def index
-    @query = params[:q]
+    @images   = []
+    @query    = params[:q]
+    @page     = params[:page] ? params[:page].to_i : 0
+    per_page  = params[:per_page] ? params[:per_page].to_i : 10
+    hydra     = Typhoeus::Hydra.new
 
-    if @query
-      hydra = Typhoeus::Hydra.new
 
-      medium_url = WebSearch.on_images(@query,:medium,10,0,true)
-      request = Typhoeus::Request.new(medium_url)
-      request.on_complete{|r| @medium_images = WebSearch.new(r.body)}
-      hydra.queue request
+    medium_url  = WebSearch.on_images(@query,:medium,per_page,@page,true)
+    request     = Typhoeus::Request.new(medium_url)
 
-      large_url = WebSearch.on_images(@query,:large,10,0,true)
-      request = Typhoeus::Request.new(large_url)
-      request.on_complete{|r| @large_images = WebSearch.new(r.body)}
-      hydra.queue request
+    request.on_complete do |response| 
+      web_search = JSON.parse(response.body)["SearchResponse"] rescue nil
+      next unless web_search
 
-      amazon_url = AmazonProductSearch.fetch_products(@query,1,true)
-      request = Typhoeus::Request.new(amazon_url)
-      request.on_complete{|r| @amazon_products = Amazon::Ecs::Response.new(r.body)}
-      hydra.queue request
+      @images += web_search["Image"]["Results"].map do |image|
+        {
+          :thumb => image["Thumbnail"]["Url"],
+          :image => image["MediaUrl"],
+          :source => image["Url"],
+          :title => image["Title"]
+          }
+      end #if false
+    end
 
-      hydra.run
+    hydra.queue request
 
-      #@medium_images = WebSearch.on_images(@query,:medium)
-      #@large_images = WebSearch.on_images(@query,:large)
 
-      #@amazon_products = AmazonProductSearch.fetch_products(@query)
 
-      @products = Product.limit(10).
-                    all(:conditions => ['title like ?',"%#{@query}%"])
+    large_url  = WebSearch.on_images(@query,:large,per_page,@page,true)
+    request     = Typhoeus::Request.new(large_url)
+
+    request.on_complete do |response| 
+      web_search = JSON.parse(response.body)["SearchResponse"] rescue nil
+      next unless web_search
+
+      @images += web_search["Image"]["Results"].map do |image|
+        {
+          :thumb => image["Thumbnail"]["Url"],
+          :image => image["MediaUrl"],
+          :source => image["Url"],
+          :title => image["Title"]
+          }
+      end #if false
+    end
+
+    hydra.queue request
+
+
+    amazon_url = AmazonProductSearch.fetch_products(@query,@page+1,true)
+    logger.info amazon_url
+    request = Typhoeus::Request.new(amazon_url)
+    request.on_complete do |response| 
+      @images += Amazon::Ecs::Response.new(response.body).items.map do |image|
+                  thumb = image.get('MediumImage/URL')
+                  large = image.get('LargeImage/URL')
+                  next unless thumb and large
+                  {
+                    :thumb => thumb,
+                    :image => large,
+                    :source => image.get('DetailPageURL'),
+                    :title => image.get('ItemAttributes/Title')
+                  }
+                end.compact
+    end #if false
+
+    hydra.queue request
+
+    hydra.run
+
+    #@products = Product.fulltext_search(@query,@page+1,per_page)
+
+  #rescue => ex
+  #  handle_exception(ex)
+  #ensure
+    respond_to do |format|
+      format.json 
     end
   end
 
