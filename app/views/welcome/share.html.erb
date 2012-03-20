@@ -18,10 +18,10 @@
 				</legend>
 				
 				<div style="width:856px; margin-left: -2px;">
-					<img style="float: left;" src="<%=image_path 'placeholders/welcome_share/female1.jpg'%>">
-					<img style="float: left;" src="<%=image_path 'placeholders/welcome_share/female2.jpg'%>">
-					<img style="float: left;" src="<%=image_path 'placeholders/welcome_share/female3.jpg'%>">
-					<img style="float: left;" src="<%=image_path 'placeholders/welcome_share/female4.jpg'%>">
+          <%share_placeholders(self.current_user).each do |image|%>
+            <%=image_tag "placeholders/welcome_share/" + image,
+                :style => "float: left;"%>
+          <%end%>
 				</div>
 				
 			</fieldset>    
