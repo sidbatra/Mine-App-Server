@@ -1,43 +1,48 @@
-<div class="well friends" id="friends_container" style="display:none">
-	<fieldset>	
-		<legend>
+<div id="friends_container" class="picker" style="display:none">
+	<div class="hider unselectable" style="width: 460px; height: 80px; margin: 0;">
+		<div class="well" style="height: 80px;">
+			<fieldset>
 			
-			<%=link_to "Preview Invite <i class='icon-chevron-right'></i>",
-				  'javascript:void(0)',
-	    		:class 		=> 'btn btn-large disabled',
-	    		:style    => 'float: right;',
-	    		:id    		=> 'friend_picked_button'%>
+				<legend>
+						<%=link_to "Preview Invite <i class='icon-chevron-right'></i>",
+							  'javascript:void(0)',
+				    		:class 		=> 'btn btn-large disabled',
+				    		:style    => 'float: right;',
+				    		:id    		=> 'friend_picked_button'%>
+						
+						Pick your friend:
+				</legend>
+				
+				<div class="control-group" style="margin-bottom: 0;">
+			  	<div style="position: relative; width: 420px;">
 			
-			Pick your friend:
-		</legend>
-		
-		<div class="control-group">
-		  
-	  	<div style="position: relative; width: 420px;">
+			      <%=text_field_tag 'search_box', 
+			          nil, 
+			          :placeholder => '', 
+			          :style => 'width: 410px;'%>
+			
+			      <%=link_to  '&times;',
+			          'javascript:void(0)',
+			          :id    => 'x_button',
+			          :class => 'close',
+			          :style => "position: absolute; top: 5px; right: 8px; "\
+		                      "display: none;"%>
+		   
+			   	</div>
+			  </div> <!-- /control-group -->
+				
+			</fieldset>
+		</div> <!-- /well -->
+	</div> <!-- hider -->
 	
-	      <%=text_field_tag 'search_box', 
-	          nil, 
-	          :placeholder => '', 
-	          :style => 'width: 410px;'%>
+	<div class="well friends" style="margin-top: 100px;">
+	  <div id="contacts" style="position: relative;">
+	    <div class="loading large">
+	    </div>
+	  </div> <!-- /contacts -->
+	</div>
 	
-	      <%=link_to  '&times;',
-	          'javascript:void(0)',
-	          :id    => 'x_button',
-	          :class => 'close',
-	          :style => "position: absolute; top: 5px; right: 8px; "\
-                      "display: none;"%>
-	   
-	   	</div>
-	   	
-	   	</div> <!-- /control-group -->
-		
-		  <div id="contacts" style="position: relative;">
-		    <div class="loading large">
-		    </div>
-		  </div> <!-- /contacts -->
-	  
-	</fieldset>		
-</div> <!-- /friends_container.well -->
+</div> <!-- /friends_container --> 
 
 
     
