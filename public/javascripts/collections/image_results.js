@@ -6,45 +6,18 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
   //
   model: Denwen.Models.ImageResult,
 
+  // Route on the app server
+  //
+  url: '/search',
+
   // Constructor logic
   //
   initialize: function() {
     this.query      = '';
-    this.count      = 12;
-    this.offset     = 0;
-    this.state      = 0;
-    this.disabled   = 0;
-    this.finished   = 0;
+    this.page       = 0;
+    this.searching  = false;
+    this.finished   = false;
     this.queryType  = Denwen.ProductQueryType.Text;
-  },
-
-  // Create url to an image search api based on
-  // the query, offset, size and count
-  //
-  url: function() {
-    var url = '';
-              
-    if(this.queryType == Denwen.ProductQueryType.Text) { 
-      url = [
-            "http://api.bing.net/json.aspx?",
-            "AppId=31862565CFBD51810ABE4AB2CEDCB80D52D33969&",
-            "Version=2.2&",
-            "Market=en-US&",
-            "Query=" + encodeURIComponent(this.query) + "&",
-            "Sources=Image+spell&",
-            "Image.filters=" + this.size + "&",
-            "Image.offset=" + this.offset + "&",
-            "Image.count=" + this.count + "&",
-            "JsonType=callback&",
-            "JsonCallback=?"].join('');
-    }
-    else {
-      url = "/parser?source=" + this.query;
-    }
-
-    trace(url);
-
-    return url;
   },
 
   // Initiate a new search
@@ -52,166 +25,73 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
   search: function(query) {
     this.reset();
 
-    this.state    = 0;
-    this.offset   = 0;
-    this.disabled = 1;
-    this.finished = 0;
-    this.query    = query;
+    this.query      = query;
+    this.page       = 0;
+    this.searching  = true;
+    this.finished   = false;
 
-    if(!this.query.match(/http/)) {
-      this.queryType  = Denwen.ProductQueryType.Text;
-
-      this.fetchMedium(this.query);
-      this.fetchLarge(this.query);
-    }
-    else {
-      this.queryType  = Denwen.ProductQueryType.URL;
-
-      this.fetchImagesFromURL(this.query);
-    }
+    this.fetchProducts();
   },
 
   // Load more results for the current search
   //
   searchMore: function() {
-    if(this.isSearching() || this.disabled)
+    if(this.searching || this.finished)
       return;
 
-    this.disabled = 1;
-    this.offset   += this.count;
+    this.page++;
+    this.searching = true;
 
-    this.fetchMedium(this.query);
-    this.fetchLarge(this.query);
+    this.fetchProducts();
   },
 
-  // Disable search to prevent any future searches
+  // Custom parsing to strip out extra fields in the json.
+  // Fired automatically after the json is fetched and before
+  // its passed to any success methods.
   //
-  disableSearch: function() {
-    this.disabled = 1; 
-  },
-
-  // Parse out the results from the response before passing
-  // it to the collection
+  // data - Associative Array. Response json in raw form.
+  //
+  // returns - Array. Products part of the received data.
   //
   parse: function(data) {
-    var results = [];
+    var sane_query = data['sane_query'];
 
-    if(this.queryType == Denwen.ProductQueryType.Text) {
-      var query   = data['SearchResponse']['Query']['SearchTerms'];
-
-      if(query != this.query)
-        return results;
-
-      var images  = data['SearchResponse']['Image']['Results'];
-      var offset  = data['SearchResponse']['Image']['Offset'];
-      var total   = data['SearchResponse']['Image']['Total'];
-      var spell   = data['SearchResponse']['Spell'];
-
-      if(spell) {
-        this.trigger('correction',spell['Results'][0]['Value']);
-      }
-
-      this.state++;
-      this.disabled = 0;
-      
-      if(total <=0)
-        return results;
-
-      if(total - offset <= this.count) {
-        this.finished++;
-      }
-        
-      results = images;
+    if(this.query != sane_query) {
+      this.query = sane_query;
+      this.trigger(Denwen.Callback.ProductResultsQueryEdit,sane_query);
     }
-    else {
-      var source = data['source'];
-      var title  = data['title'];
-
-      //if(source != this.query)
-      //  return results;
-
-      var images = [];
-
-      _.each(data['images'],function(image){
-        var model = {
-                      Thumbnail: {Url :image},
-                      MediaUrl: image,
-                      Url: source,
-                      Title: title,
-                      Filter: true}
-        images.push(model);
-      });
-
-      this.state    = 2;
-      this.finished = 2;
-
-      results = images;
+    else if(!data['products'].length) {
+      this.finished = true;
+      this.trigger(Denwen.Callback.ProductResultsFinished);
     }
 
-    return results;
+    return data['products'];
   },
 
-  // Extract images from the given source url
+  // Fetch products from the server and append to the current
+  // set of results.
   //
-  fetchImagesFromURL: function(source) {
+  fetchProducts: function() {
     var self = this;
-    
-    this.query = source;
 
     this.fetch({
-      add :true,
-      success:  function(d) { self.trigger('searched');},
-      error:    function(r,s,e){}});
+      add : true,
+      data : {page: this.page,q: this.query},
+      success: function() {self.productsLoaded();},
+      error: function(r,s,e){}});
   },
 
-  // Fetch medium sized search results from the images api
+  // Fired when products have been successfully fetched
   //
-  fetchMedium: function(query) {
-    var self    = this;
+  productsLoaded: function() {
+    this.searching = false;
 
-    this.query  = query;
-    this.size   = 'Size:Medium';
+    this.trigger(Denwen.Callback.ProductResultsLoaded);
 
-    this.fetch({
-      add:      true,
-      dataType: "jsonp",
-      success:  function(d) { self.trigger('searched');},
-      error:    function(r,s,e){}});
-  },
-
-  // Fetch large sized search results from the images api
-  //
-  fetchLarge: function(query) {
-    var self    = this;
-
-    this.query  = query;
-    this.size   = 'Size:Large';
-
-    this.fetch({
-      add:      true,
-      dataType: "jsonp",
-      success:  function(d) { self.trigger('searched');},
-      error:    function(r,s,e){}});
-  },
-
-  // Returns true if all active api searches haven't completed
-  //
-  isSearching: function() {
-    return this.state % 2 != 0 || this.state == 0;
-  },
-
-  // Test if the requests have ended and the collection
-  // is still empty
-  //
-  isEmpty: function() {
-    return !this.isSearching() && this.length ==0;
-  },
-
-  // Test if the search has no more results to pull
-  // from the remote server
-  //
-  isSearchDone: function() {
-    return !this.isSearching() && this.finished >= 2;
+    if(this.isEmpty()) {
+      this.finished = true;
+      this.trigger(Denwen.Callback.ProductResultsEmpty);
+    }
   }
 
 });

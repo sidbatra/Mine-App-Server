@@ -28,10 +28,27 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.moreEl         = "#scroll_for_more_results";
     this.spinnerBoxEl   = "#spinner_box";
 
-    this.images = this.options.images;
-    this.images.bind('searched',this.searched,this);
-    this.images.bind('add',this.added,this);
-    this.images.bind('correction',this.queryCorrection,this);
+    this.images = new Denwen.Collections.ImageResults();
+    this.images.bind(
+      Denwen.Callback.ProductResultsLoaded,
+      this.productResultsLoaded,
+      this);
+    this.images.bind(
+      Denwen.Callback.ProductResultsEmpty,
+      this.productResultsEmpty,
+      this);
+    this.images.bind(
+      Denwen.Callback.ProductResultsFinished,
+      this.productResultsFinished,
+      this);
+    this.images.bind(
+      Denwen.Callback.ProductResultsQueryEdit,
+      this.productResultsQueryEdit,
+      this);
+    this.images.bind(
+      'add',
+      this.productResultAdded,
+      this);
     
     this.windowListener = new Denwen.WindowListener();
     this.windowListener.bind('documentScrolled',this.documentScrolled,this);
@@ -85,12 +102,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     $(this.repeatQueryEl).val('');
   },
 
-  // Fired from the images collection when there is a correction
-  //
-  queryCorrection: function(correctedQuery) {
-    $(this.repeatQueryEl).val(correctedQuery);
-  },
-
   // Enter into spinning mode
   //
   startSpinner: function() {
@@ -137,48 +148,51 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.trigger('productSearched',query,this.images.queryType);
   },
 
-  // Fired when a product image is added to the images
+  // Fired when a product result is added to the result
   // collection. Here its added into the dom via its view
   //
-  added: function(image) {
+  productResultAdded: function(productResult) {
     var imageView =  new Denwen.Partials.Products.ImageResult({
-                          model:image,
+                          model:productResult,
                           el:$(this.imagesEl)});
     imageView.bind('productImageClicked',this.productImageClicked,this);
   },
 
-  // Fired when a set of results have been returned to the images
-  // collection. Used to catch edge cases like no results or no
-  // more results
+  // Callback whenever product search results are loaded
   //
-  searched: function() {
+  productResultsLoaded: function() {
     this.stopSpinner();
-
     $(this.shadowEl).css("height", $(document).height());
+    this.resizeEnded();
+  },
 
-    if(this.images.isEmpty()) {
-      this.stopSearch();
-      this.images.disableSearch();
-      dDrawer.error("Oops, no photos for this item. Try a different search.");
-    }
-    else if(this.images.isSearchDone()) {
-      this.images.disableSearch();
-      $(this.moreEl).hide();
-    }
-    else {
-      this.resizeEnded();
-    }
+  // Callback when no product search results are found
+  //
+  productResultsEmpty: function() {
+    this.stopSearch();
+    dDrawer.error("Oops, no photos for this item. Try a different search.");
+  },
 
+  // Callback when no more product search results are left
+  //
+  productResultsFinished: function() {
+    $(this.moreEl).hide();
+  },
+
+  // Callback when there is a correction to the user query
+  //
+  productResultsQueryEdit: function(query) {
+    $(this.repeatQueryEl).val(query);
   },
 
   // Fired when the user selects a product image on a
   // ProductImageView
   //
-  productImageClicked: function(productHash) {
-    productHash['query'] = productHash['from_url'] ? 
-                            productHash['title'] :
-                            $(this.repeatQueryEl).val();
-    this.trigger('productSelected',productHash);
+  productImageClicked: function(productResult) {
+    //productHash['query'] = productHash['from_url'] ? 
+    //                        productHash['title'] :
+    //                        $(this.repeatQueryEl).val();
+    this.trigger('productSelected',productResult);
     this.stopSearch();
   },
 

@@ -33,12 +33,15 @@ class SearchController < ApplicationController
       unless fragment_exist? @key
     
 
-        medium_url  = WebSearch.on_images(@sane_query,:medium,per_page,@page,true)
+        medium_url  = WebSearch.on_images(@sane_query,:medium,
+                                  per_page,@page*per_page,true)
         request     = Typhoeus::Request.new(medium_url)
 
         request.on_complete do |response| 
           begin
             web_search = JSON.parse(response.body)["SearchResponse"] 
+            total = web_search["Image"]["Total"]
+            offset = web_search["Image"]["Offset"]
 
             web_medium_products = web_search["Image"]["Results"].map do |product|
                                     begin
@@ -51,7 +54,7 @@ class SearchController < ApplicationController
                                     rescue => ex
                                       LoggedException.add(__FILE__,__method__,ex)
                                     end
-                                  end 
+                                  end if total - offset > per_page
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
           end
@@ -61,12 +64,15 @@ class SearchController < ApplicationController
 
 
 
-        large_url  = WebSearch.on_images(@sane_query,:large,per_page,@page,true)
+        large_url  = WebSearch.on_images(@sane_query,:large,
+                                per_page,@page*per_page,true)
         request     = Typhoeus::Request.new(large_url)
 
         request.on_complete do |response| 
           begin
             web_search = JSON.parse(response.body)["SearchResponse"] 
+            total = web_search["Image"]["Total"]
+            offset = web_search["Image"]["Offset"]
 
             web_large_products = web_search["Image"]["Results"].map do |product|
                                   begin
@@ -79,7 +85,7 @@ class SearchController < ApplicationController
                                   rescue => ex
                                     LoggedException.add(__FILE__,__method__,ex)
                                   end
-                                end
+                                end if total - offset > per_page
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
           end

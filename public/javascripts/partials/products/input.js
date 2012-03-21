@@ -45,10 +45,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.urlAlertBoxEl        = '#url_alert_box';
     this.posting              = false;
 
-    this.productImages      = new Denwen.Collections.ImageResults();
     this.productImagesView  = new Denwen.Partials.Products.ImageResults({
                                   el:this.el,
-                                  images:this.productImages,
                                   mode:this.mode});
     this.productImagesView.bind('productSelected',this.productSelected,this);
     this.productImagesView.bind('productSearched',this.productSearched,this);
@@ -134,18 +132,18 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
   // Fired when a product is selected from the ProductImagesView
   //
-  productSelected: function(productHash) {
+  productSelected: function(productResult) {
     var self = this;
 
     this.searchesCount = 0;
 
-    this.displayProductImage(productHash['image_url']);
+    this.displayProductImage(productResult.get('large_url'));
 
     document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
 
-    $(this.websiteEl).val(productHash['website_url']);
-    $(this.imageEl).val(productHash['image_url']);
-    $(this.thumbEl).val(productHash['thumb_url']);
+    $(this.websiteEl).val(productResult.get('source_url'));
+    $(this.imageEl).val(productResult.get('large_url'));
+    $(this.thumbEl).val(productResult.get('medium_url'));
 
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
@@ -154,7 +152,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.extraEl).show();
     $(this.storeEl).focus();
-    $(this.titleEl).val(productHash['query'].toProperCase());
+    $(this.titleEl).val(productResult.get('title').toProperCase());
 
     $(this.urlAlertBoxEl).hide();
 
@@ -163,7 +161,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     // Test if the website url matches a known store to populate
     // the store field
     //
-    var sourceURL = productHash['website_url'].toLowerCase();
+    var sourceURL = productResult.get('source_url').toLowerCase();
 
     if(this.stores) {
       this.stores.each(function(store){
