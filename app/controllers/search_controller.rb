@@ -7,129 +7,141 @@ class SearchController < ApplicationController
     @query      = params[:q]
     @sane_query = @query
     @page       = params[:page] ? params[:page].to_i : 0
-    per_page    = params[:per_page] ? params[:per_page].to_i : 10
-
-    hydra               = Typhoeus::Hydra.new
-    web_medium_products = []
-    web_large_products  = []
-    amazon_products     = []
-    inhouse_products    = []
-
-    begin
-      spellcheck_url = WebSearch.for_spelling(@query,true)
-      response = JSON.parse(Typhoeus::Request.get(spellcheck_url).body)
-      response = response["SearchResponse"]["Spell"]
-      @sane_query = response["Results"][0]["Value"] if response
-    rescue => ex
-      LoggedException.add(__FILE__,__method__,ex)
-    end
+    @key        = KEYS[:product_search] % [@sane_query.gsub(/[^0-9A-Za-z]/,''),@page]
+    per_page    = 10
 
 
-    medium_url  = WebSearch.on_images(@sane_query,:medium,per_page,@page,true)
-    request     = Typhoeus::Request.new(medium_url)
+    unless fragment_exist? @key
 
-    request.on_complete do |response| 
+      hydra               = Typhoeus::Hydra.new
+      web_medium_products = []
+      web_large_products  = []
+      amazon_products     = []
+      inhouse_products    = []
+
       begin
-        web_search = JSON.parse(response.body)["SearchResponse"] 
+        spellcheck_url = WebSearch.for_spelling(@query,true)
+        response = JSON.parse(Typhoeus::Request.get(spellcheck_url).body)
+        response = response["SearchResponse"]["Spell"]
+        @sane_query = response["Results"][0]["Value"] if response
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
 
-        web_medium_products = web_search["Image"]["Results"].map do |product|
+
+      @key = KEYS[:product_search] % [@sane_query.gsub(/[^0-9A-Za-z]/,''),@page]
+      unless fragment_exist? @key
+    
+
+        medium_url  = WebSearch.on_images(@sane_query,:medium,per_page,@page,true)
+        request     = Typhoeus::Request.new(medium_url)
+
+        request.on_complete do |response| 
+          begin
+            web_search = JSON.parse(response.body)["SearchResponse"] 
+
+            web_medium_products = web_search["Image"]["Results"].map do |product|
+                                    begin
+                                      product_search_hash(
+                                        product["Thumbnail"]["Url"],
+                                        product["MediaUrl"],
+                                        product["Url"],
+                                        product["Title"],
+                                        "")
+                                    rescue => ex
+                                      LoggedException.add(__FILE__,__method__,ex)
+                                    end
+                                  end 
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+        hydra.queue request
+
+
+
+        large_url  = WebSearch.on_images(@sane_query,:large,per_page,@page,true)
+        request     = Typhoeus::Request.new(large_url)
+
+        request.on_complete do |response| 
+          begin
+            web_search = JSON.parse(response.body)["SearchResponse"] 
+
+            web_large_products = web_search["Image"]["Results"].map do |product|
+                                  begin
+                                    product_search_hash(
+                                      product["Thumbnail"]["Url"],
+                                      product["MediaUrl"],
+                                      product["Url"],
+                                      product["Title"],
+                                      "")
+                                  rescue => ex
+                                    LoggedException.add(__FILE__,__method__,ex)
+                                  end
+                                end
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+        hydra.queue request
+
+
+        amazon_url = AmazonProductSearch.fetch_products(@sane_query,@page+1,true)
+        request = Typhoeus::Request.new(amazon_url)
+
+        request.on_complete do |response| 
+          begin
+            amazon_products = Amazon::Ecs::Response.new(
+                                response.body).items.map do |product|
                                 begin
+                                  medium_url = product.get('MediumImage/URL')
+                                  large_url = product.get('LargeImage/URL')
+
+                                  next unless medium_url and large_url
+                                  
                                   product_search_hash(
-                                    product["Thumbnail"]["Url"],
-                                    product["MediaUrl"],
-                                    product["Url"],
-                                    product["Title"],
-                                    "")
+                                    medium_url,
+                                    large_url,
+                                    product.get('DetailPageURL'),
+                                    product.get('ItemAttributes/Title'),
+                                    product.get('ASIN'))
+
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                 end
-                              end 
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-    end
+                              end.compact
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end 
 
-    hydra.queue request
-
-
-
-    large_url  = WebSearch.on_images(@sane_query,:large,per_page,@page,true)
-    request     = Typhoeus::Request.new(large_url)
-
-    request.on_complete do |response| 
-      begin
-        web_search = JSON.parse(response.body)["SearchResponse"] 
-
-        web_large_products = web_search["Image"]["Results"].map do |product|
-                              begin
-                                product_search_hash(
-                                  product["Thumbnail"]["Url"],
-                                  product["MediaUrl"],
-                                  product["Url"],
-                                  product["Title"],
-                                  "")
-                              rescue => ex
-                                LoggedException.add(__FILE__,__method__,ex)
-                              end
-                            end
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-    end
-
-    hydra.queue request
+        hydra.queue request
 
 
-    amazon_url = AmazonProductSearch.fetch_products(@sane_query,@page+1,true)
-    request = Typhoeus::Request.new(amazon_url)
-
-    request.on_complete do |response| 
-      begin
-        amazon_products = Amazon::Ecs::Response.new(
-                            response.body).items.map do |product|
-                            begin
-                              medium_url = product.get('MediumImage/URL')
-                              large_url = product.get('LargeImage/URL')
-
-                              next unless medium_url and large_url
-                              
-                              product_search_hash(
-                                medium_url,
-                                large_url,
-                                product.get('DetailPageURL'),
-                                product.get('ItemAttributes/Title'),
-                                product.get('ASIN'))
-
-                            rescue => ex
-                              LoggedException.add(__FILE__,__method__,ex)
-                            end
-                          end.compact
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-    end 
-
-    hydra.queue request
+        hydra.run
 
 
-    hydra.run
+        inhouse_products = Product.fulltext_search(
+                              @sane_query,
+                              @page+1,
+                              per_page).map do |product|
 
+                             product_search_hash(
+                               product.thumbnail_url,
+                               product.image_url,
+                               product.source_url,
+                               product.title,
+                               product.id.to_s)
+                           end
 
-    inhouse_products = Product.fulltext_search(
-                          @sane_query,
-                          @page+1,
-                          per_page).map do |product|
+        @products = inhouse_products + amazon_products + 
+                      web_medium_products + web_large_products
 
-                         product_search_hash(
-                           product.thumbnail_url,
-                           product.image_url,
-                           product.source_url,
-                           product.title,
-                           product.id.to_s)
-                       end
+      end # fragment exists
 
-    @products = inhouse_products + amazon_products + 
-                  web_medium_products + web_large_products
+    end #fragment exists
 
   rescue => ex
     handle_exception(ex)
