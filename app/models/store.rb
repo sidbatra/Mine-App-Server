@@ -161,7 +161,9 @@ class Store < ActiveRecord::Base
   # Full url of the store favicon
   #
   def favicon_url
-    FileSystem.url(favicon_path ? favicon_path : "")
+    favicon_path ? 
+      FileSystem.url(favicon_path) : 
+      (image_path ? thumbnail_url : "")
   end
 
   # Full url of the original image
