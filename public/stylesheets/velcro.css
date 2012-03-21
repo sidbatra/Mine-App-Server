@@ -128,14 +128,10 @@
 	background: #333; 
 	position: fixed; 
 	top: 0; 
-	width: 746px; 
 	margin: 0 97px; 
-	height: 75px; 
 	padding-top: 60px; }
 
 .picker .hider .well {
-	width: 706px; 
-	height: 36px; 
 	overflow-y: hidden; 
 	border-bottom: none; 
 	-webkit-border-radius: 4px 4px 0 0;
