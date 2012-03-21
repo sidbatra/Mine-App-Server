@@ -23,9 +23,9 @@ every [:monday,:friday], :at => '6:15pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_friends)"
 end
 
-every [:monday,:friday], :at => '6:30pm' do
-  runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_stores)"
-end
+#every [:monday,:friday], :at => '6:30pm' do
+#  runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_stores)"
+#end
 
 every [:monday,:friday], :at => '6:45pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_collections)"
