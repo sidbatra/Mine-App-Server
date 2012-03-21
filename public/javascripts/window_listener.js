@@ -18,7 +18,7 @@ Denwen.WindowListener = Backbone.View.extend({
   //
   scroll: function() {
    if ($(window).scrollTop() >= $(document).height() - 
-                                  $(window).height() - 300)
+                                  $(window).height() - 500)
         this.trigger('documentScrolled');
   },
 
