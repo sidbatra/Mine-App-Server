@@ -14,6 +14,7 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
   //
   initialize: function() {
     this.query      = '';
+    this.title      = '';
     this.page       = 0;
     this.searching  = false;
     this.finished   = false;
@@ -26,6 +27,7 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
     this.reset();
 
     this.query      = query;
+    this.title      = '';
     this.page       = 0;
     this.searching  = true;
     this.finished   = false;
@@ -92,6 +94,16 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
       this.finished = true;
       this.trigger(Denwen.Callback.ProductResultsEmpty);
     }
+  },
+
+  // Canonical title for any product result in this search group.
+  //
+  // returns - String. Title.
+  //
+  currentSearchTitle: function() {
+    return this.queryType  == Denwen.ProductQueryType.Text ? 
+            this.query : 
+            this.title;
   }
 
 });

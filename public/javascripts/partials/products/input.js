@@ -132,7 +132,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
   // Fired when a product is selected from the ProductImagesView
   //
-  productSelected: function(productResult) {
+  productSelected: function(productResult,title) {
     var self = this;
 
     this.searchesCount = 0;
@@ -152,7 +152,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.extraEl).show();
     $(this.storeEl).focus();
-    $(this.titleEl).val(productResult.get('title').toProperCase());
+    $(this.titleEl).val(title.toProperCase());
 
     $(this.urlAlertBoxEl).hide();
 
