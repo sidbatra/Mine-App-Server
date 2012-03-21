@@ -10,9 +10,9 @@ class Admin::HealthController < ApplicationController
       {
         :id => HealthReportService::FriendsDigest,
         :time => 1.day.ago},
-      {
-        :id => HealthReportService::TopShopperUpdate,
-        :time => 1.week.ago},
+      #{
+      #  :id => HealthReportService::TopShopperUpdate,
+      #  :time => 1.week.ago},
       {
         :id => HealthReportService::AnotherItemPrompt,
         :time => 1.week.ago},
@@ -22,9 +22,9 @@ class Admin::HealthController < ApplicationController
       {
         :id => HealthReportService::AddFriendsPrompt,
         :time => 3.days.ago},
-      {
-        :id => HealthReportService::AddStoresPrompt,
-        :time => 3.days.ago},
+      #{
+      #  :id => HealthReportService::AddStoresPrompt,
+      #  :time => 3.days.ago},
       {
         :id => HealthReportService::AddCollectionsPrompt,
         :time => 3.days.ago}]
