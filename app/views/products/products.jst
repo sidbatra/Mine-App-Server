@@ -1,12 +1,14 @@
 <%if(helpers.isCurrentUser(ownerID) && src == 'user'){%>
-<div style="margin-bottom: 15px; height: 38px;">
-	<a href="/" style="padding-bottom: 10px; margin-right: 7px;" class="btn btn-large btn-primary suggestion" >
-		<i class="icon-plus icon-white"></i>
-		Add item 
-	</a>
-	<div id="suggestions" class="suggestions" style="display:none;">
+  <div style="margin-bottom: 15px; height: 38px;">
+    <a href="/products/new?src=owns" 
+        style="padding-bottom: 10px; margin-right: 7px;" 
+        class="btn btn-large btn-primary suggestion" >
+      <i class="icon-plus icon-white"></i>
+      Add item 
+    </a>
+    <div id="suggestions" class="suggestions" style="display:none;">
+    </div>
   </div>
-</div>
 <%}%>
 
 <%if(!products.length) {%> 
