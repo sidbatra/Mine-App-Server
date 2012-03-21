@@ -30,7 +30,10 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
     this.title      = '';
     this.page       = 0;
     this.searching  = true;
-    this.finished   = false;
+    this.queryType  = this.query.match(/http/) ? 
+                        Denwen.ProductQueryType.URL : 
+                        Denwen.ProductQueryType.Text;
+    this.finished   = this.isURLQuery();
 
     this.fetchProducts();
   },
