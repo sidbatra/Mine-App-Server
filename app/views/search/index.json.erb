@@ -1,4 +1,4 @@
-<%-cache @key do-%>
+<%-cache @key, :expires_in => 4.hours do-%>
   <%={
       :query => @query,
       :sane_query => @sane_query,
