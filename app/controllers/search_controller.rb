@@ -7,9 +7,8 @@ class SearchController < ApplicationController
     @query      = params[:q]
     @sane_query = @query
     @page       = params[:page] ? params[:page].to_i : 0
-    @key        = KEYS[:product_search] % [@sane_query.gsub(/[^0-9A-Za-z]/,''),@page]
+    @key        = generate_cache_key(@sane_query,@page)
     per_page    = 10
-
 
     unless fragment_exist? @key
 
@@ -29,7 +28,8 @@ class SearchController < ApplicationController
       end
 
 
-      @key = KEYS[:product_search] % [@sane_query.gsub(/[^0-9A-Za-z]/,''),@page]
+      @key = generate_cache_key(@sane_query,@page)
+
       unless fragment_exist? @key
     
 
@@ -155,6 +155,18 @@ class SearchController < ApplicationController
 
 
   protected
+
+  # Generates a cache key for the results of a query at a page.
+  #
+  # query - String. The query string whose results are to be cached.
+  # page - Integer. The page number of results to be cached.
+  #
+  # returns - String. Cache key formed by sanitizing the query and combining it
+  #             with the page number
+  #
+  def generate_cache_key(query,page)
+    KEYS[:product_search] % [Base64.encode64(query).chomp,page]
+  end
 
   # Create hash representing a result in a product search.
   #
