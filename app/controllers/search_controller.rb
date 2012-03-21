@@ -8,6 +8,7 @@ class SearchController < ApplicationController
     @sane_query = @query
     @page       = params[:page] ? params[:page].to_i : 0
     @key        = generate_cache_key(@sane_query,@page)
+    @title      = ""
     per_page    = 10
 
     unless fragment_exist? @key
