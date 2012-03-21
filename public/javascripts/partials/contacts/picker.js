@@ -6,8 +6,6 @@ Denwen.Partials.Contacts.Picker = Backbone.View.extend({
   //
   initialize: function() {
     var self      = this;
-
-    this.picked   = false;
     this.toggleEl = '#contact_picker_' + this.model.get('id');
 
     $(this.toggleEl).click(function(){self.clicked();});
@@ -22,15 +20,15 @@ Denwen.Partials.Contacts.Picker = Backbone.View.extend({
   // Change the state of the contact picker to selected 
   // 
   enable: function() {
-    this.picked = true; 
     $(this.toggleEl).addClass('selected');
+    $(this.toggleEl).removeClass('disabled');
   },
 
   // Change the state of the contact picker to unselected 
   // 
-  restore: function() {
-    this.picked = false;
+  disable: function() {
     $(this.toggleEl).removeClass('selected');
+    $(this.toggleEl).addClass('disabled');
   }
 
 });

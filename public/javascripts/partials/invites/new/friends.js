@@ -20,7 +20,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     this.buttonEl         = '#friend_picked_button';
 
     this.styleID          = 0;
-    this.selectedPicker   = null;
+    this.contactPickers   = new Array();
 
     this.fetch();
   },
@@ -54,18 +54,21 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     }
   },
 
-  // Setup pick/unpick functionality for all friends 
+  // Hookup pick/unpick functionality for all friends 
   //
-  setup: function() {
+  hookup: function(contacts) {
     var self = this;
+    this.contactPickers = [];
 
-    this.contacts.each(function(contact){
+    contacts.each(function(contact){
       var contactPicker = new Denwen.Partials.Contacts.Picker({model:contact});
 
       contactPicker.bind(
         'contactPicked',
         self.contactPicked,
         self);
+      
+      self.contactPickers.push(contactPicker);
     });
   },
 
@@ -73,10 +76,11 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
   //
   contactPicked: function(contactPicker) {
     this.contact = contactPicker.model;
-
-    if(this.selectedPicker)
-      this.selectedPicker.restore();
     
+    $.each(this.contactPickers,function(i,picker) {
+      picker.disable();
+    });
+
     contactPicker.enable();
 
     $(this.buttonEl).attr(
@@ -86,11 +90,9 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
                       this.contact.get('third_party_id') + '/finish');
 
     $(this.buttonEl).addClass('btn-primary');
-    $(this.buttonEl).removeAttr('disabled'); 
+    $(this.buttonEl).removeClass('disabled'); 
     $(this.buttonEl).html(
       "Preview Invite <i class='icon-chevron-right icon-white'></i>");
-
-    this.selectedPicker = contactPicker;
   },
 
   // Fired when the friends sub view comes into focus
@@ -122,7 +124,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
         {contacts: contacts,
           styleID: self.styleID}));
 
-    this.setup();
+    this.hookup(contacts);
   },
 
   // Filter contacts based on the query

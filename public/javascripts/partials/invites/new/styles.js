@@ -50,7 +50,7 @@ Denwen.Partials.Invites.New.Styles = Backbone.View.extend({
 
     $(this.buttonEl).attr('href','#styles-' + this.styleID + '/friends');
     $(this.buttonEl).addClass('btn-primary');
-    $(this.buttonEl).removeAttr('disabled'); 
+    $(this.buttonEl).removeClass('disabled'); 
     $(this.buttonEl).html(
       "Next <i class='icon-chevron-right icon-white'></i>"); 
 

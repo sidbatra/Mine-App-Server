@@ -11,8 +11,6 @@ Denwen.Partials.Styles.Picker = Backbone.View.extend({
   //
   initialize: function() {
     var self      = this;
-
-    this.picked   = false;
     this.toggleEl = '#style_picker_' + this.model.get('id');
 
     $(this.toggleEl).click(function(){self.clicked();});
@@ -27,8 +25,6 @@ Denwen.Partials.Styles.Picker = Backbone.View.extend({
   // Change the state of the style picker to selected 
   // 
   enable: function() {
-    this.picked = true; 
-
     $(this.toggleEl).addClass('selected');
     $(this.toggleEl).removeClass('disabled');
   },
@@ -36,8 +32,6 @@ Denwen.Partials.Styles.Picker = Backbone.View.extend({
   // Change the state of the style picker to unselected 
   // 
   disable: function() {
-    this.picked = false;
-
     $(this.toggleEl).removeClass('selected');
     $(this.toggleEl).addClass('disabled');
   }
