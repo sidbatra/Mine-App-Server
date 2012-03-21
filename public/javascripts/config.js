@@ -5,7 +5,7 @@
 // 
 CONFIG = {
 'one_word_query_msg' : "<strong>Tip:</strong> Including brands and colors helps you find your item.",
-'multi_query_msg' : "<strong>Tip:</strong> Add items by URL for the perfect photo every time.",
+'multi_query_msg' : "<strong>Tip:</strong> Try adding brands and colors, e.g. 'Vans Brown Tweed Slip ons'", 
 'multi_query_threshold' : 5,
 'minimum_products_in_collection' : 2,
 'products_threshold' : 5,
