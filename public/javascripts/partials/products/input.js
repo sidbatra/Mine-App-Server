@@ -132,7 +132,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
   // Fired when a product is selected from the ProductImagesView
   //
-  productSelected: function(productResult,title) {
+  productSelected: function(productResult,title,attemptStoreSearch) {
     var self = this;
 
     this.searchesCount = 0;
@@ -161,14 +161,16 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     // Test if the website url matches a known store to populate
     // the store field
     //
-    var sourceURL = productResult.get('source_url').toLowerCase();
+    if(attemptStoreSearch) {
+      var sourceURL = productResult.get('source_url').toLowerCase();
 
-    if(this.stores) {
-      this.stores.each(function(store){
-        if(store.get('domain') && sourceURL.search(store.get('domain')) != -1) 
-          $(self.storeEl).val(store.get('name'));
-      });
-    }
+      if(this.stores) {
+        this.stores.each(function(store){
+          if(store.get('domain') && sourceURL.search(store.get('domain')) != -1) 
+            $(self.storeEl).val(store.get('name'));
+        });
+      }
+    } //attempt store search
   },
 
   // Fired when a product is searched from the ProductImagesView

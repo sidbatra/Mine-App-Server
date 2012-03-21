@@ -193,7 +193,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.trigger(
       'productSelected',
       productResult,
-      this.images.currentSearchTitle());
+      this.images.currentSearchTitle(),
+      this.images.isURLQuery());
     this.stopSearch();
   },
 
