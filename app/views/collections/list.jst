@@ -3,13 +3,9 @@
 	<%if(collections.size()){%>
 	
 	  <%if(helpers.isCurrentUser(ownerID)){%>
-	    <a class="btn btn-large btn-primary" href='/collections/new?src=user'>
+	    <a style="padding-bottom: 10px;" class="btn btn-large btn-primary" href='/collections/new?src=user'>
 	    	<i class="icon-plus icon-white"></i> New set
 	   	</a>
-	   	
-		  <span style="padding: 0 8px;">
-				Post sets of items, as you use them.
-			</span>
 	  <%}%>
 	
 		<ul class="thumbnails" style="margin-top: 16px; margin-left: -12px;">
@@ -21,7 +17,7 @@
 	
 	<%}else{%>
 
-		<a class="btn <%=productsLeft > 0 ? 'disabled' : 'btn-primary'%>"
+		<a style="padding-bottom: 10px;" class="btn btn-large <%=productsLeft > 0 ? 'disabled' : 'btn-primary'%>"
         onclick="return <%=!(productsLeft > 0)%>;"
         href="/collections/new?src=start">
 			<i class="icon-plus icon-white"></i> New set

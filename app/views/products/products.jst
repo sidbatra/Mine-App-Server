@@ -1,6 +1,12 @@
 <%if(helpers.isCurrentUser(ownerID) && src == 'user'){%>
-  <div id="suggestions" class="suggestions" style="display:none;">
+<div style="margin-bottom: 15px; height: 38px;">
+	<a href="/" style="padding-bottom: 10px; margin-right: 7px;" class="btn btn-large btn-primary suggestion" >
+		<i class="icon-plus icon-white"></i>
+		Add item 
+	</a>
+	<div id="suggestions" class="suggestions" style="display:none;">
   </div>
+</div>
 <%}%>
 
 <%if(!products.length) {%> 
@@ -12,7 +18,7 @@
             style="padding-top: 11px; padding-right: 0px; margin-bottom: 0;">
 
         What should your first item be? 
-        Use the suggestions above to get started.
+        Click 'Add item' or the suggestions above to get started.
         
         <ul class="thumbnails unselectable" 
             style="margin-top:9px; margin-left:-8px;">
@@ -33,17 +39,21 @@
       </div> <!-- /alert -->
     
     <%}else{%>
-      Nothing in this closet yet.
+	    <div class="alert alert-info">
+	      Nothing in this closet yet.
+	    </div>
     <%}%>
 
   <%} else if(src == 'wanted') {%>
-    <div class='heading'>
       <%if(helpers.isCurrentUser(ownerID)){%>
-        Everything you click 'want' on across the site shows up here.
+      	<div class="alert alert-info">
+        	Everything you 'Want' across the site will show up here.
+        </div>
       <%}else{%>
-        <%=ownerName%> hasn't wanted anything yet.
+      	<div class="alert alert-info">
+         <%=ownerName%> hasn't wanted anything yet.
+        </div>
       <%}%>
-    </div>
   <%}%>
 <%}%>
 
