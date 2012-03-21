@@ -65,7 +65,8 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
                   is_gift:'0',
                   price:0,
                   is_store_unknown:this.isStoreUnknown() ? '1' : '0',
-                  source_product_id:this.productID};
+                  source_product_id:this.productID,
+                  clone:true};
 
     if(!this.isStoreUnknown())
       params['store_name'] = this.storeEl.val();

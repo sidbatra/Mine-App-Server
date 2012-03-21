@@ -43,7 +43,7 @@ Denwen.Models.Product = Backbone.Model.extend({
   // Override the toJSON implementation
   //
   toJSON: function() {
-    var names   = ['endorsement','price','store_name',
+    var names   = ['endorsement','price','store_name','clone',
                     'is_gift','is_store_unknown','source_product_id'];
     var params  = {};
 
