@@ -17,7 +17,10 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     this.contactsEl       = '#contacts';
     this.queryEl          = '#search_box';
     this.cancelSearchEl   = '#x_button';
+    this.buttonEl         = '#friend_picked_button';
+
     this.styleID          = 0;
+    this.selectedPicker   = null;
 
     this.fetch();
   },
@@ -51,6 +54,45 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     }
   },
 
+  // Setup pick/unpick functionality for all friends 
+  //
+  setup: function() {
+    var self = this;
+
+    this.contacts.each(function(contact){
+      var contactPicker = new Denwen.Partials.Contacts.Picker({model:contact});
+
+      contactPicker.bind(
+        'contactPicked',
+        self.contactPicked,
+        self);
+    });
+  },
+
+  // Fired when a contact is picked
+  //
+  contactPicked: function(contactPicker) {
+    this.contact = contactPicker.model;
+
+    if(this.selectedPicker)
+      this.selectedPicker.restore();
+    
+    contactPicker.enable();
+
+    $(this.buttonEl).attr(
+                      'href',
+                      '#styles-' + this.styleID + '/friends-' + 
+                      this.contact.get('name').replace(' ','+') + '-' + 
+                      this.contact.get('third_party_id') + '/finish');
+
+    $(this.buttonEl).addClass('btn-primary');
+    $(this.buttonEl).removeAttr('disabled'); 
+    $(this.buttonEl).html(
+      "Preview Invite <i class='icon-chevron-right icon-white'></i>");
+
+    this.selectedPicker = contactPicker;
+  },
+
   // Fired when the friends sub view comes into focus
   //
   display: function(styleID) {
@@ -79,6 +121,8 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
       Denwen.JST['contacts/contacts'](
         {contacts: contacts,
           styleID: self.styleID}));
+
+    this.setup();
   },
 
   // Filter contacts based on the query

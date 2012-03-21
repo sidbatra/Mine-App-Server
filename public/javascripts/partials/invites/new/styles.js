@@ -24,10 +24,7 @@ Denwen.Partials.Invites.New.Styles = Backbone.View.extend({
     var self = this;
 
     this.styles.each(function(style){
-      var stylePicker = new Denwen.Partials.Styles.Picker({
-                                        model : style,
-                                        el    : $(self.stylesEl)
-                                        });
+      var stylePicker = new Denwen.Partials.Styles.Picker({model:style});
 
       stylePicker.bind(
         'stylePicked',
