@@ -608,6 +608,12 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   stylePicked: function() {
     mpq.track("Style Picked");
+  },
+
+  // Sharing view is opened during onboarding
+  //
+  shareViewOnboarding: function() {
+    mpq.track("Onboarding Share View");
   }
 
 });

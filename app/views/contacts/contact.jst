@@ -1,6 +1,7 @@
 <li>
 	<a class="thumbnail" 
-			href="#styles-<%=styleID%>/friends-<%=contact.get('name').replace(' ','+')%>-<%=contact.get('third_party_id')%>/finish">
+      id="contact_picker_<%=contact.get('id')%>"
+			href="javascript:void(0)">
 	
 		<img class="thumb-photo" 
 		      src="<%=contact.imageURL()%>" />
