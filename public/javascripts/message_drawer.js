@@ -22,6 +22,12 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
   display: function(text,newClass,timeout) {
     var self = this;
 
+    if(timeout == undefined)
+      timeout = 5000;
+
+    if(!timeout)
+      text = '<a class="close" data-dismiss="alert">×</a>' + text;
+
     this.messengerEl.removeClass(this.successClass);
     this.messengerEl.removeClass(this.errorClass);
     this.messengerEl.removeClass(this.infoClass);
@@ -30,9 +36,6 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
     this.messengerEl.html(text);
 
     this.messengerEl.fadeIn();
-
-    if(timeout == undefined)
-      timeout = 5000;
 
     if(timeout)
       setTimeout(function(){self.messengerEl.fadeOut();},timeout);

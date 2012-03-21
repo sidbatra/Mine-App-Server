@@ -12,6 +12,7 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
+    this.updated = this.options.updated;
     this.source = this.options.source;
 
     // Attach listeners on to setting checkboex
@@ -20,6 +21,11 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
       if(input.type == 'checkbox')
         $('#' + input.id).change(function(){self.settingToggled(this)});
     });
+
+    if(this.updated == 'true')
+      dDrawer.success("Your changes have been saved.");
+    else if(this.updated == 'false')
+      dDrawer.error("Sorry, there was an error saving your changes.");
 
     this.setAnalytics();
   },

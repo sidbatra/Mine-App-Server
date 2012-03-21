@@ -18,7 +18,9 @@ class SuggestionsController < ApplicationController
                     except(suggestion_ids).
                     limit(10)
 
-    #@key = KEYS[:user_product_suggestions] % self.current_user.id
+    @key = KEYS[:user_product_suggestions] % 
+            [self.current_user.id,
+              Configuration.read(ConfigurationVariable::SuggestionCacheKey)]
 
   rescue => ex
     handle_exception(ex)

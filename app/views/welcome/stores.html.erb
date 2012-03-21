@@ -1,0 +1,55 @@
+<%=render :partial  => "headers/onboarding"%>
+
+<div class="container picker">
+	
+		<div class="hider unselectable" style="width: 746px; height: 75px;">
+			<div class="well" style="width: 706px; height: 36px;">
+				<fieldset>
+					<legend>
+						Click a few stores you shop at to add to your profile:
+						
+            <%form_tag '/welcome',
+                :style => 'height: 0; float: right;',
+                :id   => 'new_shopping' do |f|%>
+					
+              <%=hidden_field_tag :id, WelcomeFilter::Stores%>
+					    <%=hidden_field_tag :store_ids%>
+					    
+					    <% content_tag :button,
+					    		:type  		=> :submit, 
+					    		:class 		=> 'btn btn-large',
+					    		:style    => 'float: right;',
+					    		:id    		=> 'stores_picked_button',
+					    		:disabled	=> true do %>
+							   Pick at least 3!
+							<% end %>
+							
+						<%end%>
+	
+						
+					</legend>
+				</fieldset>
+			</div> <!-- / well legend -->
+		</div> <!-- /hider -->
+    	
+    <div style="width: 746px; margin: 55px 97px 0;">
+			<div class="well stores">
+    		
+    		<div class="control-group">
+			    <ul class="thumbnails" id="stores">
+			    	<div class="loading large"></div>
+			    </ul>
+		    </div>
+
+			</div> <!-- /well stores -->
+		</div> <!-- /746px -->
+  
+</div> <!-- /container -->
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Shoppings.New({
+          source  : '<%=@source%>',
+          el      : $('#container')});
+  </script>
+<%end%>

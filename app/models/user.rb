@@ -9,16 +9,17 @@ class User < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to :style
-  has_many :products,     :dependent => :destroy
-  has_many :comments,     :dependent => :destroy
-  has_many :actions,      :dependent => :destroy
-  has_many :searches,     :dependent => :destroy
-  has_many :contacts,     :dependent => :destroy
-  has_many :collections,  :dependent => :destroy
-  has_many :achievements, :dependent => :destroy
-  has_many :shoppings,    :dependent => :destroy
-  has_many :stores,       :through   => :shoppings
-  has_one  :setting,      :dependent => :destroy 
+  has_many :products,       :dependent => :destroy
+  has_many :comments,       :dependent => :destroy
+  has_many :actions,        :dependent => :destroy
+  has_many :searches,       :dependent => :destroy
+  has_many :contacts,       :dependent => :destroy
+  has_many :collections,    :dependent => :destroy
+  has_many :achievements,   :dependent => :destroy
+  has_many :shoppings,      :dependent => :destroy
+  has_many :stores,         :through   => :shoppings
+  has_one  :setting,        :dependent => :destroy 
+  has_many :ticker_actions, :dependent => :destroy
 
   has_many :followings, :dependent  => :destroy
   has_many :followers,  :through    => :followings,
@@ -200,8 +201,18 @@ class User < ActiveRecord::Base
 
   # Tests gender to see if user is male
   #
+  # returns. Boolean. true is user is male.
+  #
   def is_male?
-    gender == "male"
+    gender && gender.first == 'm'
+  end
+
+  # Tests gender to see if user is female
+  #
+  # returns. Boolean. true is user is female.
+  #
+  def is_female?
+    gender && gender.first == 'f'
   end
 
   # Test if the remember_token for the user cookie has expired

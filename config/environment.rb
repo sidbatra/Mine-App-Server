@@ -21,6 +21,9 @@ Rails::Initializer.run do |config|
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
   CONFIG[:revision]   = `git rev-parse HEAD`.chomp
 
+  config.gem('amazon-ecs',
+              :version => '2.2.4',
+              :lib => 'amazon/ecs')
   config.gem('ar-extensions', 
               :version => '0.9.2')
   config.gem('aws',
@@ -50,9 +53,14 @@ Rails::Initializer.run do |config|
   config.gem('pismo',
               :version => '0.7.2',
               :lib => false)
+  config.gem('ruby-hmac',
+              :version => '0.4.0',
+              :lib => false)
   config.gem('rb-inotify',
               :version => '0.8.8',
               :lib => false)
+  config.gem('typhoeus',
+              :version => '0.3.3')
   config.gem('xmpp4r',
               :version => '0.5',
               :lib => false)
@@ -82,12 +90,13 @@ Rails::Initializer.run do |config|
                                     :action_observer, :store_observer,
                                     :achievement_set_observer,
                                     :collection_observer,:invite_observer,
+                                    :ticker_action_observer,
                                     :store_sweeper, :following_sweeper,
                                     :product_sweeper, :collection_part_sweeper,
                                     :user_sweeper, :achievement_set_sweeper,
                                     :comment_sweeper, :action_sweeper,
                                     :collection_sweeper, :specialty_sweeper,
-                                    :shopping_sweeper
+                                    :shopping_sweeper, :suggestion_sweeper
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.

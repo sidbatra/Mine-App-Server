@@ -11,7 +11,7 @@
     <%@suggestions.each do |suggestion|%>
       <tr>
         <td width="200">
-          <%=suggestion.title%>
+          <%=link_to suggestion.title,admin_suggestion_path(suggestion)%>
         </td>
         <td width="50">
           <%=suggestion.weight%>

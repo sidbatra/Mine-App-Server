@@ -1,0 +1,24 @@
+<div class="container well">
+  <legend>
+    <%=@suggestion.title%>
+  </legend>
+
+  <h3>Products</h3>
+  <br>
+
+  <table width="900">
+    <%@suggestion.products.each do |product|%>
+      <tr>
+        <td width="200">
+          <%=image_tag product.thumbnail_url%>
+        </td>
+        <td width="300">
+          <%=link_to product.title,product_d_path(product.id,product.handle)%>
+        </td>
+        <td width="300">
+          <%=product.query%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>

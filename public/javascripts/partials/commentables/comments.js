@@ -21,7 +21,7 @@ Denwen.Partials.Commentables.Comments = Backbone.View.extend({
 
     this.inputEl            = '#comment_data';
     this.commentsEl         = '#comments';
-    this.commentPlaceholder = $(this.inputEl).val();
+    this.commentPlaceholder = $(this.inputEl).attr('data-placeholder');
 
     this.comments           = new Denwen.Collections.Comments();
     this.comments.fetch({

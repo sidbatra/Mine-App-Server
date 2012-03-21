@@ -108,14 +108,9 @@ class Store < ActiveRecord::Base
   # Move all products to an existing store
   #
   def move_products_to(store)
-
     self.products.each do |product|
       product.store_id = store.id
       product.save!
-    end
-
-    Category.fetch_all.each do |category|
-      Cache.delete(KEYS[:store_category_count] % [store.id,category.id])
     end
   end
 
@@ -166,7 +161,9 @@ class Store < ActiveRecord::Base
   # Full url of the store favicon
   #
   def favicon_url
-    FileSystem.url(favicon_path ? favicon_path : "")
+    favicon_path ? 
+      FileSystem.url(favicon_path) : 
+      (image_path ? thumbnail_url : "")
   end
 
   # Full url of the original image

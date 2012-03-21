@@ -1,6 +1,9 @@
 <div class="actions-header">
 	Top Shoppers
-	<a class="right" data-toggle="modal" href="#modal-top-shoppers">
+	<a class="right" 
+      data-toggle="modal" 
+      style="<%=users.length > CONFIG['min_entries_for_view_all'] ? '' : 'display:none'%>"
+      href="#modal-top-shoppers">
 		View all
 	</a>
 </div>

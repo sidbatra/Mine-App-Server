@@ -283,7 +283,7 @@ class UserMailer < ActionMailer::Base
     if method.to_s.match(/^deliver_(.*)/)
       mail = self.send("create_#{$1}".to_sym,*args) 
 
-      if RAILS_ENV == 'production' || @@is_admin
+      if (RAILS_ENV == 'production' || @@is_admin) && mail.to.present?
 
         response    = @@custom_amazon_ses_mailer.send_raw_email(mail)
         xml         = XmlSimple.xml_in(response.to_s)

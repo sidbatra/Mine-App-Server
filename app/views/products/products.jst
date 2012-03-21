@@ -1,78 +1,61 @@
 <%if(helpers.isCurrentUser(ownerID) && src == 'user'){%>
-  <div id="suggestions" class="suggestions" style="display:none;">
+  <div style="margin-bottom: 15px; height: 38px;">
+    <a href="/products/new?src=owns" 
+        style="padding-bottom: 10px; margin-right: 7px;" 
+        class="btn btn-large btn-primary suggestion" >
+      <i class="icon-plus icon-white"></i>
+      Add item 
+    </a>
+    <div id="suggestions" class="suggestions" style="display:none;">
+    </div>
   </div>
 <%}%>
 
 <%if(!products.length) {%> 
   <%if(src == 'user'){%>
-    <div class='heading'>
-      <%if(helpers.isCurrentUser(ownerID)){%>
-        What should your first item be? Use the suggestions or the blue button above to get started.
+
+    <%if(helpers.isCurrentUser(ownerID)){%>
+    
+      <div class="alert alert-info caret-top-left" 
+            style="padding-top: 11px; padding-right: 0px; margin-bottom: 0;">
+
+        What should your first item be? 
+        Click 'Add item' or the suggestions above to get started.
         
-        <ul class="thumbnails unselectable" style="margin-top: 18px; margin-left:-12px;">
+        <ul class="thumbnails unselectable" 
+            style="margin-top:9px; margin-left:-8px;">
         
-        	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<a class="thumbnail disabled no-hover">
-        			<div class="thumb-photo">
-        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/aerie.jpeg')%>" />
-        			</div>
-        		</a>
-        	</li>
-        	
-        	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<a class="thumbnail disabled no-hover">
-        			<div class="thumb-photo">
-        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/nordstrom-rack.jpeg')%>" />
-        			</div>
-        		</a>
-        	</li>
-        	
-        	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<a class="thumbnail disabled no-hover">
-        			<div class="thumb-photo">
-        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/amazon.jpeg')%>" />
-        			</div>
-        		</a>
-        	</li>
-        	
-        	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<a class="thumbnail disabled no-hover">
-        			<div class="thumb-photo">
-        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/converse.jpeg')%>" />
-        			</div>
-        		</a>
-        	</li>
-        	
-        	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<a class="thumbnail disabled no-hover">
-        			<div class="thumb-photo">
-        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/cvs.jpeg')%>" />
-        			</div>
-        		</a>
-        	</li>
-        	
-        	<li style="margin: 0 0 10px 12px; position: relative;">
-        		<a class="thumbnail disabled no-hover">
-        			<div class="thumb-photo">
-        				<img style="max-width: 130px; max-height: 130px;" src="<%=helpers.imagePath('placeholders/wet-seal.jpeg')%>" />
-        			</div>
-        		</a>
-        	</li>
-        	
+          <%_.each(['aerie.jpeg','nordstrom-rack.jpeg','amazon.jpeg','converse.jpeg','cvs.jpeg','wet-seal.jpeg'],function(image){%>
+            <li style="margin: 0 0 0 6px; position: relative;">
+              <a class="thumbnail disabled no-hover">
+                <div class="thumb-photo">
+                  <img style="max-width: 130px; max-height: 130px;" 
+                        src="<%=helpers.imagePath('placeholders/' + image)%>" />
+                </div>
+              </a>
+            </li>
+          <%});%>
+
         </ul>
-      
-      <%}else{%>
-        Nothing in this closet yet.
-      <%}%>
-    </div>
+       
+      </div> <!-- /alert -->
+    
+    <%}else{%>
+	    <div class="alert alert-info">
+	      Nothing in this closet yet.
+	    </div>
+    <%}%>
+
   <%} else if(src == 'wanted') {%>
-    <div class='heading'>
       <%if(helpers.isCurrentUser(ownerID)){%>
-        Everything you click 'want' on across the site shows up here.
+      	<div class="alert alert-info">
+        	Everything you 'Want' across the site will show up here.
+        </div>
       <%}else{%>
-          <%=ownerName%> hasn't wanted anything yet.
+      	<div class="alert alert-info">
+         <%=ownerName%> hasn't wanted anything yet.
+        </div>
       <%}%>
-    </div>
   <%}%>
 <%}%>
 

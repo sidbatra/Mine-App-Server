@@ -6,8 +6,8 @@
         :methods  => [:thumbnail_url],
         :include  => {
           :store  => {
-            :only     => [:id,:name,:handle,:is_processed],
-            :methods  => [:is_top,:thumbnail_url]},
+            :only     => [:id,:name,:handle],
+            :methods  => [:is_top,:favicon_url]},
           :user => {
             :only => [:id,:handle]}})-%>
   <%-elsif @filter  == :store-%>

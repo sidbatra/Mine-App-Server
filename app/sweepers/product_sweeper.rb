@@ -126,7 +126,9 @@ class ProductSweeper < ActionController::Caching::Sweeper
   # Expire cache fragment for user's product suggestions
   #
   def expire_user_product_suggestions(user_id)
-    expire_cache KEYS[:user_product_suggestions] % user_id
+    expire_cache KEYS[:user_product_suggestions] % 
+                  [user_id,Configuration.read(
+                            ConfigurationVariable::SuggestionCacheKey)]
   end
 
   # Expire category count cache for a store's product category

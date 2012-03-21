@@ -18,6 +18,7 @@
     <%}%>
     <a class="right" 
         onclick="analytics.viewAllSelected(Denwen.ViewAllType.UserStores);"
+        style="<%=stores.length > CONFIG['min_entries_for_view_all'] ? '' : 'display:none'%>"
         data-toggle="modal" 
         href="#modal-user-stores">
   		View all

@@ -23,7 +23,11 @@ module DW
                                       :src  => 'fb',
                                       :host => CONFIG[:host]))
 
-        TickerAction.add(action.identifier,OGAction::Add,product)
+        TickerAction.add(
+                      action.identifier,
+                      OGAction::Add,
+                      product,
+                      product.user_id)
       end
 
       # Publish a story whenever the user wants an item
@@ -41,7 +45,7 @@ module DW
                                       :host => CONFIG[:host]),
                             :end_time => "4486147655") 
 
-        TickerAction.add(action.identifier,OGAction::Want,product)
+        TickerAction.add(action.identifier,OGAction::Want,product,user.id)
       end
 
       # Publish a story whenever the user uses a collection
@@ -59,7 +63,30 @@ module DW
                                       :host => CONFIG[:host]), 
                             :expires_in => 3600)
 
-        TickerAction.add(action.identifier,OGAction::Use,collection)
+        TickerAction.add(
+                      action.identifier,
+                      OGAction::Use,
+                      collection,
+                      collection.user_id)
+      end
+
+      # Update an open graph object - product/collection
+      # This updates all the actions associated with that object
+      #
+      def self.update_object(url)
+        http = Net::HTTP.new('graph.facebook.com')
+        http.request_post('/',"id=#{url}&scrape=true")
+
+        rescue => ex
+          LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Delete a published story whenever a product or a collection is
+      # deleted
+      #
+      def self.delete_story(og_action_id,access_token)
+        action = FbGraph::OpenGraph::Action.new(og_action_id) 
+        action.destroy(:access_token => access_token)
       end
 
       # Post an invite on a friends facebook wall 

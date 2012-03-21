@@ -5,18 +5,12 @@ class ApplicationController < ActionController::Base
   helper :all 
   protect_from_forgery 
   filter_parameter_logging :password, :secret 
-  before_filter :populate_categories, :track_source
+  before_filter :track_source
 
 
   include ExceptionLoggable, DW::AuthenticationSystem, DW::RequestManagement
 
   protected
-
-  # Popular categories for the drop down in the header
-  #
-  def populate_categories
-    @categories = Category.fetch_all if @controller != :home && !is_json?
-  end
 
   # Populate the source variable for analytics before
   # every request

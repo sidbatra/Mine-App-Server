@@ -16,6 +16,11 @@ class ProductsController < ApplicationController
     @suggestion   = params[:suggestion] ? 
                       Suggestion.find(params[:suggestion]) : nil
 
+    @store        = params[:store] ? 
+                      Store.find_by_handle(params[:store]) : nil
+
+    @product.store_name = @store.name if @store
+
     @placeholders = MSG[:product][@category.handle.to_sym]
   rescue => ex
     handle_exception(ex)

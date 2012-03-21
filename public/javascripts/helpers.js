@@ -5,10 +5,11 @@ Denwen.Helpers = Backbone.Model.extend({
   //Constructor logic
   //
   initialize: function() {
-    this.assetHost        = $('meta[name=asset_host]').attr('content');
-    this.current_user_id  = $('meta[name=current_user_id]').attr('content');
-    this.isOnboarding     = $('meta[name=is_onboarding]').attr('content') == 'true'; 
-    this.version          = $('meta[name=version]').attr('content'); 
+    this.assetHost          = $('meta[name=asset_host]').attr('content');
+    this.current_user_id    = $('meta[name=current_user_id]').attr('content');
+    this.currentUserGender  = $('meta[name=current_user_gender]').attr('content');
+    this.isOnboarding       = $('meta[name=is_onboarding]').attr('content') == 'true'; 
+    this.version            = $('meta[name=version]').attr('content'); 
   },
 
   // Truncate str to length using omissions
@@ -58,6 +59,24 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   isCurrentUser: function(userID) {
     return this.current_user_id && this.current_user_id == userID;
+  },
+
+  // If the current user is male or not
+  //
+  // Returns. Boolean. true if current user is male
+  //
+  isCurrentUserMale: function() {
+    var firstChar = this.currentUserGender[0];
+    return firstChar == 'm' && firstChar != 'u';
+  },
+
+  // If the current user is female or not
+  //
+  // Returns. Boolean. true if current user is female
+  //
+  isCurrentUserFemale: function() {
+    var firstChar = this.currentUserGender[0];
+    return firstChar == 'f' && firstChar != 'u';
   },
 
   // Get the ordinal from an integer

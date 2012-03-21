@@ -1,0 +1,30 @@
+<div class="container well">
+  <%form_tag '/search', :method => 'get' do%>
+    <%=text_field_tag :q,@query%>
+    <%=submit_tag "Search",:name => nil%>
+  <%end%>
+
+  <%if @query.present?%>
+    <h3>OnCloset Results</h3>
+    <%@products.each do |product|%>
+      <%=image_tag product.thumbnail_url%>
+    <%end%>
+
+    <br> <br>
+
+    <h3>Amazon Results</h3>
+    <%@amazon_products.items.each do |product|%>
+      <%=image_tag product.get_hash('MediumImage')['URL'] rescue nil%>
+    <%end%>
+
+    <br> <br>
+
+    <h3>Bing Results</h3>
+    <%@medium_images.Image["Results"].each do |image|%>
+      <%=image_tag image["Thumbnail"]["Url"]%>
+    <%end%>
+    <%@large_images.Image["Results"].each do |image|%>
+      <%=image_tag image["Thumbnail"]["Url"]%>
+    <%end%>
+  <%end%>
+</div>

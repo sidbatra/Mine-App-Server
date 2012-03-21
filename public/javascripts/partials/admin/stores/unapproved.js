@@ -23,13 +23,13 @@ Denwen.Partials.Admin.Stores.Unapproved = Backbone.View.extend({
   // store name text field
   //
   setupAutocomplete :function(stores) {
-    this.inputEl.autocomplete(
-                        stores,{
-                        formatMatch: function(item){
-                          return item[0].replace(/[^(\w|\s)]/gi, '');},
-                        formatResult: function(item){
-                          return item[0];}
-                        });
+    this.inputEl.typeahead({
+              source:stores,
+              items: 50,
+              matcher: function(item){
+                return ~item.toLowerCase().replace(/[^\w]/g,'').
+                          indexOf(this.query.toLowerCase().
+                                        replace(/[^\w]/g,''));}});
   },
 
   // Called when the store has been updated on the server 

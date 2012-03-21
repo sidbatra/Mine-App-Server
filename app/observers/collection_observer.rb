@@ -16,8 +16,9 @@ class CollectionObserver < ActiveRecord::Observer
   #
   def after_update(collection)
     ProcessingQueue.push(
-      NotificationManager,
-      :update_collection,
-      collection.id) if collection.reprocess
+      CollectionDelayedObserver,
+      :after_update,
+      collection.id,
+      {:reprocess => collection.reprocess})
   end
 end

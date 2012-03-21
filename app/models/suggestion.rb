@@ -25,6 +25,7 @@ class Suggestion < ActiveRecord::Base
   named_scope :for_gender, lambda{|gender| {:conditions =>
                             ["gender = #{SuggestionGender::Neutral} or "\
                              "gender = #{SuggestionGender.value_for(gender)}"]}}
+  named_scope :with_products, :include => :products
 
   #----------------------------------------------------------------------
   # Class methods

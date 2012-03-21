@@ -2,7 +2,7 @@
 	<div class="row settings">
 		<div class="span6 offset3">
 			<div class="well">
-			
+
 				 <%form_for @settings,:url => "/settings/#{@settings.id}",
 		      :html => {
 		        :class  => 'form-horizontal',
@@ -52,7 +52,7 @@
 							<label class="control-label" style="width: 80px;">Facebook</label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :post_to_timeline, 
-						    							"#{f.check_box :post_to_timeline} Post new items and sets to my Timeline",
+						    							"#{f.check_box :post_to_timeline} Post my new items and sets to my Timeline",
 						                  :class => "checkbox"%>
 						  </div>
 				    </div>
@@ -80,6 +80,7 @@
   <script type="text/javascript">
     new Denwen.Views.Settings.Index({
           el            : $('#edit_setting'),
+          updated       : '<%=flash[:updated]%>',
           source        : '<%=@source%>'});
   </script>
 

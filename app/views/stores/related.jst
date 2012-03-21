@@ -2,6 +2,7 @@
   Related stores
   <a class="right" 
       onclick="analytics.viewAllSelected(Denwen.ViewAllType.RelatedStores);"
+      style="<%=stores.length > CONFIG['min_entries_for_view_all'] ? '' : 'display:none'%>"
       data-toggle="modal" 
       href="#modal-related-stores">
   	View all

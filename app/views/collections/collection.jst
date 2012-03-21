@@ -37,11 +37,15 @@
 		    <i class="icon-pencil"></i> Edit
 		  </a>
 	  <%}%>
-		<a class="btn btn-small" 
-        id="like_collection_<%=collection.get('id')%>" 
-        href="javascript:void(0)">
-			Like 
-		</a>
+
+		<%if(helpers.isLoggedIn()){%>
+      <a class="btn btn-small" 
+          id="like_collection_<%=collection.get('id')%>" 
+          href="javascript:void(0)">
+        Like 
+      </a>
+	  <%}%>
+
 	  <a class="btn btn-small" href="<%=collection.path('user_comment')%>">
 	    <i class="icon-comment"></i> 
 	  </a>

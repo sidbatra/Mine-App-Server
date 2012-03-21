@@ -82,7 +82,7 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
       $(this.buttonEl).addClass('btn-primary');
       $(this.buttonEl).removeAttr('disabled'); 
       $(this.buttonEl).html(
-        "Start your OnCloset <i class='icon-chevron-right icon-white'></i>"); 
+        "Continue <i class='icon-chevron-right icon-white'></i>"); 
     }
     
     analytics.storePicked();

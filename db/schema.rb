@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312232029) do
+ActiveRecord::Schema.define(:version => 20120317014558) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(:version => 20120312232029) do
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "configurations", :force => true do |t|
+    t.integer  "variable"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "configurations", ["variable"], :name => "index_configurations_on_variable", :unique => true
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -210,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20120312232029) do
   add_index "products", ["source_product_id"], :name => "index_products_on_source_product_id"
   add_index "products", ["store_id"], :name => "index_products_on_store_id"
   add_index "products", ["suggestion_id"], :name => "index_products_on_suggestion_id"
+  add_index "products", ["title"], :name => "index_products_on_title"
   add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
   create_table "searches", :force => true do |t|
@@ -313,7 +323,11 @@ ActiveRecord::Schema.define(:version => 20120312232029) do
     t.string   "ticker_actionable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "ticker_actions", ["ticker_actionable_id", "ticker_actionable_type"], :name => "index_ticker_actions_on_ticker_actionable_id_and_type"
+  add_index "ticker_actions", ["user_id"], :name => "index_ticker_actions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

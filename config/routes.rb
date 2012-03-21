@@ -107,6 +107,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searches,
                 :only => [:create]
 
+  map.resources :search,
+                :only => [:index],
+                :controller => :search
+
   map.resources :invites,
                 :only => [:create]
 
@@ -116,9 +120,6 @@ ActionController::Routing::Routes.draw do |map|
   map.new_invite '/invite',
                   :controller => :invites,
                   :action => :new
-
-  map.resources :shoppings,
-                :only => [:create,:new]
 
   map.resources :contacts,
                 :only => [:index]
@@ -161,8 +162,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :admin_suggestions,
                 :as         => 'admin/suggestions',
-                :controller => 'admin/suggestions',
-                :only       => [:new,:create,:index,:edit,:update,:destroy]
+                :controller => 'admin/suggestions'
 
   map.resources :admin_styles,
                 :as         => 'admin/styles',
