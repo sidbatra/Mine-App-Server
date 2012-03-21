@@ -49,7 +49,7 @@ class SearchController < ApplicationController
                                         product["Thumbnail"]["Url"],
                                         product["MediaUrl"],
                                         product["Url"],
-                                        product["Title"],
+                                        "",
                                         "")
                                     rescue => ex
                                       LoggedException.add(__FILE__,__method__,ex)
@@ -80,7 +80,7 @@ class SearchController < ApplicationController
                                       product["Thumbnail"]["Url"],
                                       product["MediaUrl"],
                                       product["Url"],
-                                      product["Title"],
+                                      "",
                                       "")
                                   rescue => ex
                                     LoggedException.add(__FILE__,__method__,ex)

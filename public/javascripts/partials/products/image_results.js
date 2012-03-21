@@ -189,10 +189,12 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // ProductImageView
   //
   productImageClicked: function(productResult) {
-    //productHash['query'] = productHash['from_url'] ? 
-    //                        productHash['title'] :
-    //                        $(this.repeatQueryEl).val();
-    this.trigger('productSelected',productResult);
+    this.trigger(
+      'productSelected',
+      productResult,
+      productResult.get('title') ? 
+        productResult.get('title') : 
+        this.images.currentSearchTitle());
     this.stopSearch();
   },
 
