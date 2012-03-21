@@ -400,13 +400,14 @@ li { list-style: none; }
 
 .thumbnail.selected {
 	background: #08C; 
-	border: 1px solid transparent; }
+	border: 1px solid transparent;
+	color: white !important; }
 
 .thumbnail.selected .caption {
 	background: none !important; }
 
 .thumbnail.selected .caption h5 {
-	color: white; }
+	color: white !important; }
 
 .thumbnail.selected .caption .overflow-fade {
 	background-position: 0 -150px;

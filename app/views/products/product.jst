@@ -7,7 +7,7 @@
   <div class="caption absolute">
   	<div class="overflow-fade" style="width: 18px;"></div>
 	  <%if(type == 'user' && product.has('store')) { %>
-	  	<%=product.get('store').get('is_processed') ? "<img class='icon' src='" + product.get('store').get('thumbnail_url') + "' />"  : ''%>
+	  	<%=product.get('store').get('favicon_url') ? "<img class='icon' src='" + product.get('store').get('favicon_url') + "' />"  : ''%>
 	   	<%=product.get('store').conditionalLink('user_profile')%>
 	  <%}else if(type == 'user' && product.get('is_gift')) { %>
 	    Gift
