@@ -135,6 +135,10 @@
     FileUploadError: 'fileUploadError'
     FileUploadDone: 'fileUploadDone'
     FileUploadProgress: 'fileUploadProgress'
+    ProductResultsLoaded: 'productResultsLoaded'
+    ProductResultsEmpty: 'productResultsEmpty'
+    ProductResultsFinished: 'productResultsFinished'
+    ProductResultsQueryEdit: 'productResultsQueryEdit'
   ProductQueryType:
     Text: 'text'
     URL: 'url'
