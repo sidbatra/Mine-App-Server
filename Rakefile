@@ -11,6 +11,6 @@ require 'tasks/rails'
 
 begin
   require 'sunspot/solr/tasks'
-rescue => ex
+rescue LoadError
   puts "Install sunspot_rails to use sunspot rake tasks"
 end
