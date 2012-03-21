@@ -138,7 +138,7 @@ class SearchController < ApplicationController
                                product.thumbnail_url,
                                product.image_url,
                                product.source_url,
-                               product.title,
+                               "",
                                product.id.to_s)
                            end
 
