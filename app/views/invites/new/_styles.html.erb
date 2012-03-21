@@ -17,7 +17,7 @@
 	
 	      <%@styles.each do |style|%>
 	        <li class="span2">
-	          <a href="#styles-<%=style.id%>/friends" 
+					  <a id="style_picker_<%=style.id%>"
                 class="thumbnail" 
                 style="height: 125px;">
 	            <%=image_tag style.image_url%>
