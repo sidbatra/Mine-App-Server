@@ -96,6 +96,14 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
     }
   },
 
+  // Test is the current search query is URL based
+  //
+  // returns. Boolean. true if the query type is url based.
+  //
+  isURLQuery: function() {
+    return this.queryType == Denwen.ProductQueryType.URL;
+  },
+
   // Canonical title for any product result in this search group.
   //
   // returns - String. Title.

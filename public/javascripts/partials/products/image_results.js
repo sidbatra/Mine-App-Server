@@ -154,6 +154,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   productResultAdded: function(productResult) {
     var imageView =  new Denwen.Partials.Products.ImageResult({
                           model:productResult,
+                          imageTest:this.images.isURLQuery(),
                           el:$(this.imagesEl)});
     imageView.bind('productImageClicked',this.productImageClicked,this);
   },
