@@ -12,10 +12,16 @@ class SearchController < ApplicationController
     @per_page   = 10
 
     unless fragment_exist? @key
-      @key,@sane_query,@products = product_text_search(
-                                    @sane_query,
-                                    @page,
-                                    @per_page)
+
+      if @sane_query.match(/http/)
+        @title,@products = product_url_search(@sane_query)
+      else
+        @key,@sane_query,@products = product_text_search(
+                                      @sane_query,
+                                      @page,
+                                      @per_page)
+      end
+
     end 
 
   rescue => ex
@@ -227,6 +233,50 @@ class SearchController < ApplicationController
     end
 
     request
+  end
+
+  # Search for potential products within a webpage.
+  #
+  # query - String. Valid url within which products are searched.
+  #
+  # returns - Array. [title,products].
+  #             title - String. Title of the webpage.
+  #             products - Array. Array of product search hash objects.
+  #
+  def product_url_search(query)
+    products = []
+    title = ""
+
+    agent = Mechanize.new
+    agent.user_agent_alias = 'Mac Safari'
+    agent.get(query)
+
+    if agent.page.is_a? Mechanize::Page
+      base_uri = URI.parse(URI.encode(query))
+      
+      images = agent.page.images.map do |img| 
+                begin
+                  img.src.match(/^http/) ? 
+                    img.src : 
+                    URI.decode(base_uri.merge(URI.encode(img.src)).to_s).
+                         gsub("¥","\\")
+                rescue
+                  img.src ? img.src : ''
+                end
+               end
+
+      title = agent.page.title
+    else
+      images = [query]
+    end
+
+    products = images.map do |image|
+                product_search_hash(image,"","","")
+               end
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
+  ensure
+    return [title,products]
   end
 
   # Generates a cache key for the results of a query at a page.

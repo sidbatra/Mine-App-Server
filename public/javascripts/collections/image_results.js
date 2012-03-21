@@ -70,6 +70,17 @@ Denwen.Collections.ImageResults = Backbone.Collection.extend({
       this.trigger(Denwen.Callback.ProductResultsFinished);
     }
 
+    this.title = data['title'];
+
+    if(this.isURLQuery() && data['products']) {
+      var self = this;
+
+      _.each(data['products'],function(product){
+        product['large_url'] = product['medium_url'];
+        product['source_url'] = self.query;
+      });
+    }
+
     return data['products'];
   },
 
