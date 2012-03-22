@@ -7,10 +7,10 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => @collection_presenter.page_title(
-                                 @user_presenter.first_name),
+              :title        => h(@collection_presenter.page_title(
+                                  @user_presenter.first_name)),
               :type         => OGObject::Set,
-              :description  => @collection_presenter.description,
+              :description  => h(@collection_presenter.description),
               :url          => @collection_presenter.url('fb'),
               :image        => @collection_presenter.thumbnail_url,
               :products     => @collection.products}%>

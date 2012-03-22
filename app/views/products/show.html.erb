@@ -7,9 +7,9 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => @product_presenter.title, 
+              :title        => h(@product_presenter.title), 
               :type         => OGObject::Item, 
-              :description  => @product_presenter.description, 
+              :description  => h(@product_presenter.description), 
               :url          => @product_presenter.url('fb'),
               :image        => @product_presenter.thumbnail_url,
               :store        => @product.store}%>
