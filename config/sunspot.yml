@@ -1,6 +1,6 @@
 production:
   solr:
-    hostname: localhost
+    hostname: ec2-23-21-152-127.compute-1.amazonaws.com
     port: 8983
     log_level: WARNING
     min_memory: 2G
@@ -9,7 +9,7 @@ production:
 
 staging:
   solr:
-    hostname: 23.21.154.238
+    hostname: ec2-23-21-154-238.compute-1.amazonaws.com
     port: 8983
     log_level: WARNING
     min_memory: 50M
