@@ -101,7 +101,8 @@ namespace :deploy do
       ENV['cron_servers'] = @cron_instances.map(&:dnsName).join(',')
       ENV['search_servers'] = @search_instances.map(&:dnsName).join(',')
 
-      [@web_instances,@proc_instances,@cron_instances].map(&:length).sum
+      [@web_instances,@proc_instances,
+        @cron_instances,@search_instances].map(&:length).sum
     end
   end #deploy module
 end #deploy namespace

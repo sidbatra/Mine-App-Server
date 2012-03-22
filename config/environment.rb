@@ -61,6 +61,9 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('sunspot',
               :version => '1.3.1')
+  config.gem('sunspot_solr',
+              :version => '1.3.1',
+              :lib => false)
   config.gem('sunspot_rails',
               :version => '1.3.1')
   config.gem('typhoeus',
