@@ -288,7 +288,7 @@ class SearchController < ApplicationController
   #             with the page number
   #
   def generate_cache_key(query,page)
-    KEYS[:product_search] % [Base64.encode64(query).chomp,page]
+    KEYS[:product_search] % [Base64.encode64(query).gsub("\n","")[0..99],page]
   end
 
   # Create hash representing a result in a product search.
