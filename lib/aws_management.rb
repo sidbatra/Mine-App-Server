@@ -94,12 +94,12 @@ module DW
       include AWSObjectInterface
 
       @@states = {
-                :pending      => "0",
-                :running      => "16", 
-                :shuttingdown => "32",
-                :terminated   => "48",
-                :stopping     => "64",
-                :stopped      => "80"}
+                :pending      => "pending",
+                :running      => "running", 
+                :shuttingdown => "shutting-down",
+                :terminated   => "terminated",
+                :stopping     => "stopping",
+                :stopped      => "stopped"}
 
       # Fetch all instances that match the provided
       # filtering options
@@ -122,7 +122,7 @@ module DW
 
         if options[:state]
           instances = instances.select do |instance|
-                        next unless instance.instanceState.code == 
+                        next unless instance.instanceState.name == 
                                       @@states[options[:state]]
                         true
                       end
