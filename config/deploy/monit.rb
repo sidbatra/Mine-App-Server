@@ -21,17 +21,17 @@ Capistrano::Configuration.instance(:must_exist).load do
     end
 
     desc "Start the monit daemon"
-    task :start, :roles => [:web,:worker] do
+    task :start do
       run "sudo /etc/init.d/monit start"
     end
 
     desc "Restart the monit daemon"
-    task :restart, :roles => [:web,:worker] do
+    task :restart do
       run "sudo /etc/init.d/monit restart"
     end
 
     desc "Stop the monit daemon"
-    task :stop, :roles => [:web,:worker] do
+    task :stop do
       run "sudo /etc/init.d/monit stop"
     end
 
