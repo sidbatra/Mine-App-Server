@@ -6,6 +6,7 @@ production:
     min_memory: 150M
     max_memory: 2G
   auto_commit_after_request: false
+  solr_home: /vol/closet/shared/solr
 
 staging:
   solr:
@@ -15,6 +16,7 @@ staging:
     min_memory: 50M
     max_memory: 150M
   auto_commit_after_request: false
+  solr_home: /vol/closet/shared/solr
 
 development:
   solr:

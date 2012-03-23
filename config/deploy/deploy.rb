@@ -25,6 +25,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
 
       if servers? :search
+        solr.install
         solr.start
         solr.index
       end
