@@ -3,8 +3,8 @@ production:
     hostname: ec2-23-21-152-127.compute-1.amazonaws.com
     port: 8983
     log_level: WARNING
-    min_memory: 2G
-    max_memory: 2.5G
+    min_memory: 150M
+    max_memory: 2G
   auto_commit_after_request: false
 
 staging:
