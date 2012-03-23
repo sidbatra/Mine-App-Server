@@ -191,28 +191,23 @@ class Store < ActiveRecord::Base
 
     self.byline       = webpage.title
     self.description  = webpage.description
-    favicon_url       = webpage.favicon
-    favicon_url     ||= File.join url,'favicon.ico'
+    new_favicon_url   = webpage.favicon
+    new_favicon_url ||= File.join url,'favicon.ico'
 
-    old_favicon_path  = favicon_path
-
-    begin
-      host_favicon(favicon_url)
-    rescue
-      self.favicon_path = old_favicon_path
-    end
+    host_favicon(new_favicon_url)
 
     save! 
   end
 
   # Fetch favicon from the given url and host it
   #
-  def host_favicon(favicon_url)
+  def host_favicon(new_favicon_url)
+    old_favicon_path = favicon_path
     self.favicon_path  = Base64.encode64(
                            SecureRandom.hex(10) + 
                            Time.now.to_i.to_s).chomp + ".jpg"
 
-    image = MiniMagick::Image.open(favicon_url)
+    image = MiniMagick::Image.open(new_favicon_url)
 
     ImageUtilities.reduce_to_with_image(
                       image,
@@ -226,6 +221,7 @@ class Store < ActiveRecord::Base
                           strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
   rescue => ex
+    self.favicon_path = old_favicon_path
     LoggedException.add(__FILE__,__method__,ex)
   end
 
