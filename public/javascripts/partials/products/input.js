@@ -154,7 +154,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.extraEl).show();
     $(this.storeEl).focus();
-    $(this.titleEl).val(title.toProperCase());
+    $(this.titleEl).val(title.replace(/^\s+|\s+$/g, '').toProperCase());
 
     $(this.urlAlertBoxEl).hide();
 
