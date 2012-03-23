@@ -4,7 +4,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     
     desc "Install folders for solr"
     task :install, :roles => :search do
-      "cp -r #{current_path}/solr #{shared_path}"
+      run "cp -r #{current_path}/solr #{shared_path}"
     end
     
     desc "Start the solr daemon"
