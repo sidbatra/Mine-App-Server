@@ -5,8 +5,10 @@ production:
     log_level: WARNING
     min_memory: 150M
     max_memory: 2G
+    solr_home: /vol/closet/shared/solr
+    data_path: /vol/closet/shared/solr/data
+    pid_dir: /vol/closet/shared/solr/pids
   auto_commit_after_request: false
-  solr_home: /vol/closet/shared/solr
 
 staging:
   solr:
@@ -15,8 +17,10 @@ staging:
     log_level: WARNING
     min_memory: 50M
     max_memory: 150M
+    solr_home: /vol/closet/shared/solr
+    data_path: /vol/closet/shared/solr/data
+    pid_dir: /vol/closet/shared/solr/pids
   auto_commit_after_request: false
-  solr_home: /vol/closet/shared/solr
 
 development:
   solr:
