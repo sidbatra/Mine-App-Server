@@ -8,3 +8,9 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+begin
+  require 'sunspot/solr/tasks'
+rescue LoadError
+  puts "Install sunspot_rails to use sunspot rake tasks"
+end

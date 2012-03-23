@@ -27,14 +27,18 @@ Email: 1
 }
 
 Denwen.Callback = {
+ProductResultsQueryEdit: "productResultsQueryEdit",
 FileUploadDone: "fileUploadDone",
 ProductsLoaded: "productsLoaded",
+ProductResultsLoaded: "productResultsLoaded",
 StoresLoaded: "storesLoaded",
 CollectionsListLoaded: "collectionsListLoaded",
 UsersListLoaded: "usersListLoaded",
 FileUploadError: "fileUploadError",
+ProductResultsFinished: "productResultsFinished",
 FileSelected: "fileSelected",
 ProductsRendered: "productsRendered",
+ProductResultsEmpty: "productResultsEmpty",
 FileUploadProgress: "fileUploadProgress"
 }
 

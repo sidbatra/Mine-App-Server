@@ -11,27 +11,28 @@ Denwen.Partials.Products.ImageResult = Backbone.View.extend({
   // Override render method for displaying view
   //
   render: function() {
-    var self      = this;
-    var thumbUrl  = this.model.get('Thumbnail')['Url'];
-    this.divID    = Math.random().toString(36).substring(7);
+    var self        = this;
+    var thumbUrl    = this.model.get('medium_url');
+    this.imageTest  = this.options.imageTest;
+    this.divID      = Math.random().toString(36).substring(7);
 
     this.el.append(Denwen.JST['products/image_result']({
       thumbUrl:thumbUrl,
          divID:this.divID,
-          hide:this.model.get('Filter')}));
+          hide:this.imageTest}));
 
     this.divEl = $('#' + this.divID);
 
     this.divEl.click(function(){self.clicked();});
 
-    if(this.model.get('Filter'))
+    if(this.imageTest)
       this.divEl.find("img").load(function(){self.imageLoaded(this)});
   },
 
   // Fired when the image is clicked
   //
   clicked: function() {
-    this.trigger('productImageClicked',this.model.infoHash());
+    this.trigger('productImageClicked',this.model);
   },
 
   // Fired when the image is loaded

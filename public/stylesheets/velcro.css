@@ -536,7 +536,7 @@ footer p { text-align: center; }
 .load .loading.inline { /* turns inline loads on/off */
 	display: inline-block; }
 
-.load .tab-text {
+.load .hide-when-loading {
 	display: none; }
 	
 /* ---------- strike-thru text divider */

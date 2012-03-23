@@ -1,0 +1,35 @@
+production:
+  solr:
+    hostname: ec2-23-21-152-127.compute-1.amazonaws.com
+    port: 8983
+    log_level: WARNING
+    min_memory: 2G
+    max_memory: 2.5G
+  auto_commit_after_request: false
+
+staging:
+  solr:
+    hostname: ec2-23-21-154-238.compute-1.amazonaws.com
+    port: 8983
+    log_level: WARNING
+    min_memory: 50M
+    max_memory: 150M
+  auto_commit_after_request: false
+
+development:
+  solr:
+    hostname: localhost
+    port: 8982
+    log_level: INFO
+    min_memory: 50M
+    max_memory: 150M
+  auto_commit_after_request: false
+
+test:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: WARNING
+    min_memory: 50M
+    max_memory: 150M
+    

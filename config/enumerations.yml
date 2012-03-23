@@ -64,6 +64,7 @@
     AddStoresPrompt: 5
     AddCollectionsPrompt: 6
     FriendsDigest: 7
+    MaintainSearchIndex: 8
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
@@ -134,6 +135,10 @@
     FileUploadError: 'fileUploadError'
     FileUploadDone: 'fileUploadDone'
     FileUploadProgress: 'fileUploadProgress'
+    ProductResultsLoaded: 'productResultsLoaded'
+    ProductResultsEmpty: 'productResultsEmpty'
+    ProductResultsFinished: 'productResultsFinished'
+    ProductResultsQueryEdit: 'productResultsQueryEdit'
   ProductQueryType:
     Text: 'text'
     URL: 'url'

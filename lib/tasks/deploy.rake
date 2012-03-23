@@ -2,7 +2,8 @@
 namespace :deploy do
 
   ENVIRONMENTS  = ['production','staging']
-  TYPES         = {:web => 'web',:proc => 'proc',:cron => 'cron'}
+  TYPES         = {:web => 'web',:proc => 'proc',
+                    :cron => 'cron',:search => 'search'}
 
 
   module Deploy
@@ -17,7 +18,8 @@ namespace :deploy do
         system("cap #{@environment} deploy:install") 
 
         Instance.update_all(
-          @web_instances + @proc_instances + @cron_instances,
+          @web_instances + @proc_instances + 
+          @cron_instances + @search_instances,
           :tags => {:installed => '1'})
       end
     end # install
@@ -87,11 +89,20 @@ namespace :deploy do
                             :type => TYPES[:cron]},
                           :state => :running)
 
+      @search_instances = Instance.all(
+                          :tags => {
+                            :environment => @environment,
+                            :installed => installed,
+                            :type => TYPES[:search]},
+                          :state => :running)
+
       ENV['web_servers']  = @web_instances.map(&:dnsName).join(',')
       ENV['proc_servers'] = @proc_instances.map(&:dnsName).join(',')
       ENV['cron_servers'] = @cron_instances.map(&:dnsName).join(',')
+      ENV['search_servers'] = @search_instances.map(&:dnsName).join(',')
 
-      [@web_instances,@proc_instances,@cron_instances].map(&:length).sum
+      [@web_instances,@proc_instances,
+        @cron_instances,@search_instances].map(&:length).sum
     end
   end #deploy module
 end #deploy namespace

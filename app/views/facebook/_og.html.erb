@@ -1,9 +1,9 @@
-<meta property="og:title" content="<%=title%>"/>
+<meta property="og:title" content="<%=h(title)%>"/>
 <meta property="og:type" content="<%=type%>" />
 <meta property="og:url" content="<%=url%>"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="<%=CONFIG[:name]%>"/>
-<meta property="og:description" content ="<%=description%>"/>
+<meta property="og:description" content ="<%=h(description)%>"/>
 <meta property="fb:app_id" content="<%=CONFIG[:fb_app_id]%>"/>
 <meta property="og:image" content="<%=image%>"/>
 <%-if defined?(products)-%>

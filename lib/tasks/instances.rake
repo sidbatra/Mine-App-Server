@@ -1,12 +1,14 @@
 
 namespace :instances do
 
-  IMAGE_IDS          = {'32' => 'ami-040dd16d','64' => 'ami-780dd111'}
-  INSTANCE_TYPE      = 't1.micro'
+  IMAGE_IDS          = {'32' => 'ami-343be45d','64' => 'ami-3c3be455'}
+  INSTANCE_SIZES     = {:micro => 't1.micro',:medium => 'm1.medium'}
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
   TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
-                        :generic => 'generic'}
+                        :search => 'search', :generic => 'generic'}
+  SEARCH_IPS         = {'staging' => '23.21.154.238', 
+                        'production' => '23.21.152.127'}
   ENVIRONMENTS       = ['production','staging','development']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
@@ -27,7 +29,7 @@ namespace :instances do
                         :image_id => IMAGE_IDS[@os],
                         :min_count => count,
                         :max_count => count,
-                        :instance_type => INSTANCE_TYPE,
+                        :instance_type => INSTANCE_SIZES[@size],
                         :availability_zone => AVAILABILITY_ZONE,
                         :security_group => SECURITY_GROUP},
                       :tags => {
@@ -40,6 +42,11 @@ namespace :instances do
         if type == TYPES[:web]
           load_balancer = LoadBalancer.find(:matching => @environment)
           load_balancer.attach(instances.map(&:instanceId)) if load_balancer
+        end
+
+        if type == TYPES[:search]
+          instance = instances.last
+          instance.apply_elastic_ip(SEARCH_IPS[@environment])
         end
       end
     end
@@ -79,18 +86,21 @@ namespace :instances do
       @specs        = ENV['specs']
       @environment  = ENV['env']
       @os           = ENV['os'] ? ENV['os'] : '64'
+      @size         = ENV['size'] ? ENV['size'].to_sym : :micro
 
       raise IOError,"" unless @specs && 
                         @environment &&
                         IMAGE_IDS.keys.include?(@os) &&
                         ENVIRONMENTS.include?(@environment) &&
+                        INSTANCE_SIZES.include?(@size) &&
                         @specs.match(Regexp.new(SPECS_REGEX))
 
     rescue
       puts "Usage:\nrake instances:{create,destroy} "\
-            "specs=[{web,proc,cron,generic}:count](,) "\
+            "specs=[{#{TYPES.keys.join(",")}}:count](,) "\
             "env={#{ENVIRONMENTS.join(",")}} "\
-            "os={32,64}"
+            "os={32,64} "\
+            "size={#{INSTANCE_SIZES.keys.join(',')}}"
       exit
     end
 

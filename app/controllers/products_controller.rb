@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   #
   def create
     
-    if params[:product][:source_product_id]
+    if params[:product][:source_product_id] && params[:product][:clone]
       params[:product] = populate_params_from_product(params[:product])
     end
 

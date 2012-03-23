@@ -14,6 +14,12 @@ Capistrano::Configuration.instance(:must_exist).load do
           "/etc/monit.d/"
     end
 
+    desc "Install the monit configuration file for search servers"
+    task :config_search, :roles => :search do
+      run "sudo cp #{current_path}/config/monit/#{environment}_search "\
+          "/etc/monit.d/"
+    end
+
     desc "Start the monit daemon"
     task :start, :roles => [:web,:worker] do
       run "sudo /etc/init.d/monit start"

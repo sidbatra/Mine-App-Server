@@ -7,5 +7,7 @@
 - /vol/closet/current/log/processor.rb.log
 - /vol/closet/current/log/deploy.rb.log
 - /vol/closet/current/log/cron.log
+- /vol/closet/current/log/sunspot-solr-staging.log
+- /vol/closet/current/log/sunspot-solr-production.log
 - /vol/apache2/log/error.log
 - /vol/apache2/log/other_vhosts_access.log

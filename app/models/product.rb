@@ -68,6 +68,17 @@ class Product < ActiveRecord::Base
                   :store_id,:user_id,:source_product_id,:suggestion_id
 
   #----------------------------------------------------------------------
+  # Indexing
+  #----------------------------------------------------------------------
+  searchable do
+    text :title, :boost => 2
+    text :query
+    text :store do
+      store ? store.name : ""
+    end
+  end
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
@@ -89,6 +100,22 @@ class Product < ActiveRecord::Base
       :store_id           => attributes['store_id'],
       :source_product_id  => attributes['source_product_id'],
       :user_id            => user_id)
+  end
+
+  # Perform full text search on all the indexed products using 
+  # solr + sunpot.
+  #
+  # query - String. Full text search query.
+  # page - Integer:1. Pagination - the page of results to fetch
+  # per_page - Integer:10. Pagination - number of results per page
+  # 
+  # returns - Array. Array of product models matching the given query.
+  #
+  def self.fulltext_search(query,page=1,per_page=10)
+    Product.search do 
+              fulltext query
+              paginate :per_page => per_page, :page => page
+            end.results
   end
 
 

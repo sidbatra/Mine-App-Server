@@ -3,7 +3,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :db do 
 
     desc "Create link to database.yml for the deploy environment"
-    task :config, :role => [:web,:worker,:cron] do
+    task :config do
       run "ln -s "\
           "#{current_path}/config/database/#{environment}.yml "\
           "#{current_path}/config/database.yml"

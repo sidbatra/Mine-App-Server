@@ -15,6 +15,11 @@ every 1.day, :at => '12:15pm' do
 end
 
 
+every 1.day, :at => '4:00pm' do
+  runner "ProcessingQueue.push(CronWorker,:maintain_search_index)"
+end
+
+
 every [:monday,:friday], :at => '6:00pm' do
   runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_items)"
 end

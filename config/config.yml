@@ -29,7 +29,7 @@ common: &common
   :error: error
   :name: OnCloset
   :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
-  :version: 3.0.4
+  :version: 3.1.0
   :collection_base_image: private/collection_base.jpg
   :keys:
     :user_category_count: user_%d_category_%d_count
@@ -56,6 +56,7 @@ common: &common
     :user_collections: user_%d_collections
     :comment_commentable: comment_commentable_%d_%s
     :action_actionable: action_actionable_%d_%s
+    :product_search: product_search_%s_%d
   :msg:
     :product:
       :shoes:
