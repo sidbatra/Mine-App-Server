@@ -59,6 +59,12 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     $(this.queryEl).focus();
   },
 
+  // Display loading spinner on search more
+  //
+  enterSearchMoreLoading: function() {
+    $(this.moreEl).addClass(this.loadClass);
+  },
+
   // Test if the search box is still visible as a proxy
   // for search being in progress
   //
@@ -112,6 +118,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   //
   stopSpinner: function() {
     $(this.spinnerBoxEl).removeClass(this.loadClass);
+    $(this.moreEl).removeClass(this.loadClass);
   },
 
   // Launch the search UI
@@ -202,15 +209,19 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // scrolled to the end of the page
   //
   documentScrolled: function() {
-    if(this.isSearchActive())
+    if(this.isSearchActive()) {
       this.images.searchMore();
+      this.enterSearchMoreLoading();
+    }
   },
 
   // Browser window resize ended callback
   //
   resizeEnded: function() {
-    if(this.isSearchActive() && this.windowListener.isWindowEmpty()) 
+    if(this.isSearchActive() && this.windowListener.isWindowEmpty())  {
       this.images.searchMore();
+      this.enterSearchMoreLoading();
+    }
   }
 
 });
