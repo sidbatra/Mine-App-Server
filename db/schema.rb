@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327214915) do
+ActiveRecord::Schema.define(:version => 20120327223556) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -47,17 +47,6 @@ ActiveRecord::Schema.define(:version => 20120327214915) do
   add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
   add_index "actions", ["created_at"], :name => "index_actions_on_created_at"
   add_index "actions", ["name"], :name => "index_actions_on_name"
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.string   "handle"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "weight",     :default => 0
-  end
-
-  add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
-  add_index "categories", ["weight"], :name => "index_categories_on_weight"
 
   create_table "collection_parts", :force => true do |t|
     t.integer  "collection_id"
@@ -199,7 +188,6 @@ ActiveRecord::Schema.define(:version => 20120327214915) do
     t.integer  "comments_count",    :default => 0
     t.integer  "store_id"
     t.float    "price"
-    t.integer  "category_id"
     t.string   "image_path"
     t.boolean  "is_processed",      :default => false
     t.boolean  "is_gift",           :default => false
@@ -209,7 +197,6 @@ ActiveRecord::Schema.define(:version => 20120327214915) do
   end
 
   add_index "products", ["actions_count"], :name => "index_products_on_actions_count"
-  add_index "products", ["category_id"], :name => "index_products_on_category_id"
   add_index "products", ["comments_count"], :name => "index_products_on_comments_count"
   add_index "products", ["created_at"], :name => "index_products_on_created_at"
   add_index "products", ["handle"], :name => "index_products_on_handle"
