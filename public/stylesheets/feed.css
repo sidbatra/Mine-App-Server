@@ -1,5 +1,8 @@
 .container {
-	width: 956px; }
+	width: 956px;
+	margin: 0 auto;
+/* 	background: pink;  */
+	position: relative; }
 	
 /* ----- Feed ----- */
 
@@ -96,16 +99,18 @@
 	margin-top: 10px; }
 	
 /* ----- Side Boxes ----- */
+
+.left-col {
+	width: 210px;
+	position: absolute;
+	top: 0; 
+	left: 0; }
 	
 .user-box {
-	position: fixed;
-	width: 210px;
+/* 	background: yellow; */
 	height: 94px;
 	font-size: 15px;
-	font-weight: bold;
-	top: 16px;
-	left:50%; 
-	margin-left: -478px; }
+	font-weight: bold; }
 	
 .user-box a.user-photo {
 	float: left;
@@ -126,7 +131,7 @@
 	float: left;
 	display: table;
 	height: 100%;
-	width: 131px;
+	width: 132px;
 	padding-left: 10px;
 	font-size: 15px;
 	font-weight: bold; }
@@ -139,17 +144,14 @@
 .user-box .user-name a {
 	color: #333; }
 
-.left-box {
-	position: fixed;
+.list-box {
+/* 	background: yellow; */
 	width: 180px;
 	padding-top: 9px;
 	padding-left: 30px;
-	color: #666;
-	top: 114px;
-	left: 50%; 
-	margin-left: -478px; }
+	color: #666; }
 
-.left-box a { color: #666; }
+.list-box a { color: #666; }
 
 .object-list li { 
 	height: 28px;
