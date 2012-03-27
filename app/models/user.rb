@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  belongs_to :style
   has_many :products,       :dependent => :destroy
   has_many :comments,       :dependent => :destroy
   has_many :actions,        :dependent => :destroy
@@ -102,8 +101,7 @@ class User < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
-                    :first_name,:last_name,:access_token,:byline,
-                    :style_id
+                    :first_name,:last_name,:access_token,:byline
 
   #----------------------------------------------------------------------
   # Class methods

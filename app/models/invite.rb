@@ -4,7 +4,6 @@ class Invite < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to :user
-  belongs_to :style
 
   #----------------------------------------------------------------------
   # Validations
@@ -13,12 +12,11 @@ class Invite < ActiveRecord::Base
   validates_presence_of   :recipient_id
   validates_inclusion_of  :platform, :in => InvitePlatform.values
   validates_presence_of   :recipient_name
-  validates_presence_of   :style_id
 
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessible :user_id,:recipient_id,:platform,:recipient_name,:style_id
+  attr_accessible :user_id,:recipient_id,:platform,:recipient_name
 
   #----------------------------------------------------------------------
   # Class Methods 
