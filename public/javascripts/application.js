@@ -4,14 +4,14 @@ var Denwen = {
   Models      : {},
   Views       : { Users : {}, Products : {}, Stores : {},
                   Invites : {}, Welcome : {}, 
-                  Admin : {Styles : {},Suggestions : {},Stores : {}}, 
+                  Admin : {Suggestions : {},Stores : {}}, 
                   Collections : {}, Shoppings : {}, Followings : {}, 
                   Settings : {}, Styles : {}},
   Partials    : { Users : {}, Products : {}, Comments : {}, Commentables : {}, 
                   Facebook : {}, Stores : {}, Invites : { New: {}}, 
                   Actionables  : {}, Collections : {}, Common : {}, Styles : {},
                   Suggestions : {}, Contacts : {},
-                  Admin : {Styles : {},Suggestions : {},Stores : {}}},
+                  Admin : {Suggestions : {},Stores : {}}},
   Collections : {},
   Callbacks   : {}
 };
