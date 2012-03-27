@@ -140,7 +140,5 @@
     Text: 'text'
     URL: 'url'
   ViewAllType:
-    IFollowers: 'IFollowers'
     UserStores: 'User Stores'
-    RelatedStores: 'Related Stores'
 

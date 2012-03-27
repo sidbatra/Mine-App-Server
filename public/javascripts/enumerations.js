@@ -37,7 +37,5 @@ Wants: "wants"
 }
 
 Denwen.ViewAllType = {
-UserStores: "User Stores",
-IFollowers: "IFollowers",
-RelatedStores: "Related Stores"
+UserStores: "User Stores"
 }
