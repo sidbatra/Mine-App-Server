@@ -122,8 +122,6 @@
 #
 :javascript: &javascript
   <<: *common
-  InviteNewHash: 
-    Styles: 'styles'
   Callback:
     ProductsLoaded: 'productsLoaded'
     ProductsRendered: 'productsRendered'

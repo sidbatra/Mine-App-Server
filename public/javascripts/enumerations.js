@@ -20,10 +20,6 @@ ProductResultsEmpty: "productResultsEmpty",
 FileUploadProgress: "fileUploadProgress"
 }
 
-Denwen.InviteNewHash = {
-Styles: "styles"
-}
-
 Denwen.InvitePlatform = {
 Facebook: 0,
 Email: 1
