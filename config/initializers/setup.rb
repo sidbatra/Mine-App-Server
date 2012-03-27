@@ -1,7 +1,6 @@
 # Abstracts the initialization away from config/environment.rb
 #
 
-MSG         = CONFIG[:msg]
 EMAILS      = CONFIG[:emails]
 KEYS        = CONFIG[:keys]
 Q           = CONFIG[:queue]

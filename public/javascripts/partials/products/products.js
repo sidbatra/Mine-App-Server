@@ -1,4 +1,4 @@
-// Partial to load and display products along with category filters.
+// Partial to load and display products 
 //
 Denwen.Partials.Products.Products = Backbone.View.extend({
 
@@ -39,7 +39,7 @@ Denwen.Partials.Products.Products = Backbone.View.extend({
     this.trigger(Denwen.Callback.ProductsRendered);
   },
 
-  // Fetch products filtered by the given category
+  // Fetch products 
   //
   fetch: function() {
     var self  = this;

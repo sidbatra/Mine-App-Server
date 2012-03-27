@@ -1,5 +1,5 @@
 <%-cache @key do-%>
-  <%-if @filter == :user || @filter == :wanted-%>
+  <%-if @filter == :user%>
     <%=@products.to_json(
         :only     => [:id,:is_gift,:handle,
                         :user_id],

@@ -374,15 +374,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Store Unpicked");
   },
 
-  // Product's on a user's profile are filtered
-  //
-  userProfileFiltered: function(category,isCurrentUser,id) {
-    mpq.track('User Profile Filtered',{
-          "Category"         : category,
-          "Is Own Profile"   : isCurrentUser,
-          "id"               : id});
-  },
-
   // Page view on user profile
   //
   userProfileView: function(source,id) {
@@ -394,7 +385,7 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
-  // A type and category of a user's products are 
+  // A type of user's products are 
   // explictly viewed
   //
   userProductsView: function(type,userID) {
@@ -469,15 +460,7 @@ Denwen.Analytics = Backbone.Model.extend({
         'source' : source});
   },
 
-  // Product's on a store's profile are filtered
-  //
-  storeProfileFiltered: function(category,id) {
-    mpq.track('Store Profile Filtered',{
-          "Category"         : category,
-          "id"               : id});
-  },
-
-  // A store's products in a category are explicitly viewed
+  // A store's products are explicitly viewed
   //
   storeProductsView: function(storeID) {
     mpq.track('Store Products View',{

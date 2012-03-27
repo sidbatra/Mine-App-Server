@@ -10,7 +10,6 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
-  belongs_to  :category
   belongs_to  :suggestion
   has_many    :comments,        :as => :commentable,  :dependent => :destroy
   has_many    :actions,         :as => :actionable,   :dependent => :destroy
@@ -27,8 +26,6 @@ class Product < ActiveRecord::Base
   validates_presence_of     :orig_image_url
   validates_inclusion_of    :is_gift, :in => [true,false]
   validates_presence_of     :user_id
-  validates_presence_of     :category_id
-  validates_inclusion_of    :category_id, :in => 1..8
 
   #----------------------------------------------------------------------
   # Named scopes
@@ -53,8 +50,6 @@ class Product < ActiveRecord::Base
   named_scope :most_used, :joins => :collection_parts, 
                           :group => 'products.id',
                           :order => 'count(products.id) DESC'
-  named_scope :in_category, lambda {|category_id| 
-                              {:conditions => {:category_id => category_id}} if category_id}
   named_scope :created,     lambda {|range| 
                               {:conditions => {:created_at => range}}}
 
@@ -64,8 +59,8 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
-                  :query,:price,:endorsement,:is_gift,:category_id,
-                  :store_id,:user_id,:source_product_id,:suggestion_id
+                  :query,:price,:endorsement,:is_gift,:store_id,:user_id,
+                  :source_product_id,:suggestion_id
 
   #----------------------------------------------------------------------
   # Indexing
@@ -95,7 +90,6 @@ class Product < ActiveRecord::Base
       :price              => attributes['price'],
       :endorsement        => attributes['endorsement'].strip,
       :is_gift            => attributes['is_gift'],
-      :category_id        => attributes['category_id'],
       :suggestion_id      => attributes['suggestion_id'],
       :store_id           => attributes['store_id'],
       :source_product_id  => attributes['source_product_id'],

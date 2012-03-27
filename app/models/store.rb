@@ -81,14 +81,6 @@ class Store < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Return product count for the given category
-  #
-  def products_category_count(category_id)
-    Cache.fetch(KEYS[:store_category_count] % [self.id,category_id]) do
-      Product.for_store(self.id).in_category(category_id).count 
-    end
-  end
-
   # Flag if the store is a top store
   #
   def is_top

@@ -10,7 +10,6 @@
 		    <%=render :partial  => 'input', 
 		              :locals   => {
 		                :f                => f,
-		                :category         => @category,
                     :suggestion       => @suggestion,
 		                :placeholders     => @placeholders,
 		                :onboarding       => false,
@@ -38,8 +37,6 @@
           productJSON   : <%=@product.to_json(
                               :only     => [:id,:user_id,:endorsement],
                               :methods  => [:photo_url])%>,
-          categoryJSON  : <%=@category.to_json(
-                              :only => [:id,:name,:handle,:weight])%>,
           source        : '<%=@source%>'});
   </script>
 

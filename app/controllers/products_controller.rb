@@ -10,9 +10,6 @@ class ProductsController < ApplicationController
     @product        = Product.new
     @product.price  = 0
 
-    @category     = Category.fetch(
-                      params[:category] ? params[:category] : "anything")
-
     @suggestion   = params[:suggestion] ? 
                       Suggestion.find(params[:suggestion]) : nil
 
@@ -21,7 +18,6 @@ class ProductsController < ApplicationController
 
     @product.store_name = @store.name if @store
 
-    @placeholders = MSG[:product][@category.handle.to_sym]
   rescue => ex
     handle_exception(ex)
   ensure
@@ -66,9 +62,6 @@ class ProductsController < ApplicationController
   def index
     @filter     = params[:filter].to_sym
 
-    category    = Category.fetch(params[:category]) if params[:category]
-    category_id = category ? category.id : nil
-
     case @filter
     when :user
       @products   = Product.select(:id,:is_gift,:handle,:user_id,:store_id,
@@ -77,10 +70,9 @@ class ProductsController < ApplicationController
                       with_store.
                       with_user.
                       for_user(params[:owner_id]).
-                      in_category(category_id).
                       by_id
 
-      @key = KEYS[:user_products_in_category] % [params[:owner_id],category_id]
+      @key = KEYS[:user_products] % params[:owner_id]
 
     when :store
       @products   = Product.select(:id,:is_gift,:handle,:user_id,
@@ -88,10 +80,9 @@ class ProductsController < ApplicationController
                               :is_processed,:orig_thumb_url).
                       with_user.
                       for_store(params[:owner_id]).
-                      in_category(category_id).
                       by_id
 
-      @key = KEYS[:store_products_in_category] % [params[:owner_id],category_id]
+      @key = KEYS[:store_products] % params[:owner_id]
 
     when :top
       @products = Product.select(:id,:title,:handle,:user_id).
@@ -110,19 +101,6 @@ class ProductsController < ApplicationController
                     limit(10)
 
       @key = KEYS[:user_top_products] % params[:owner_id]
-
-    when :wanted
-      @products = Product.select('products.id',:is_gift,:handle,
-                              'products.user_id',:store_id,
-                              :category_id,:image_path,:is_hosted,
-                              :is_processed,:orig_thumb_url).
-                    with_store.
-                    with_user.
-                    acted_on_by_for(params[:owner_id],ActionName::Want).
-                    in_category(category_id)
-      
-      @key = KEYS[:user_want_products_in_category] % 
-              [params[:owner_id],category_id]
 
     else
       raise IOError, "Invalid option"
@@ -185,9 +163,7 @@ class ProductsController < ApplicationController
     end
 
 
-    @category     = @product.category
     @suggestion   = @product.suggestion
-    @placeholders = MSG[:product][@category.handle.to_sym]
 
   rescue => ex
     handle_exception(ex)
@@ -258,7 +234,6 @@ class ProductsController < ApplicationController
     params[:orig_thumb_url] = product.thumbnail_url
     params[:is_hosted]      = 0
     params[:query]          = product.query
-    params[:category_id]    = product.category_id
     params[:endorsement]    = ''
 
     params
