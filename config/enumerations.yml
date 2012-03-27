@@ -101,7 +101,6 @@
     Friends: 'friends'
     Create: 'create'
     Share: 'share'
-    Style: 'style'
   OGObject:
     Item: "oncloset:item" 
     Set: "oncloset:set" 
