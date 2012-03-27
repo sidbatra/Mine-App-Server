@@ -13,7 +13,6 @@ Denwen.Partials.Users.List = Backbone.View.extend({
     var self      = this;
     this.user     = this.options.user;
     this.filter   = this.options.filter;
-    this.styles   = this.options.styles;
     this.count    = this.options.count;
     this.src      = this.options.src;
 
@@ -38,16 +37,17 @@ Denwen.Partials.Users.List = Backbone.View.extend({
   render: function() {
     var self = this;
     
-    if(this.users.isEmpty() && !helpers.isCurrentUser(this.user.get('id')))
+    if(this.users.isEmpty()) {
       $(this.el).hide();
-
-    $(this.el).html(
-      Denwen.JST['users/list']({
-        users   : this.users,
-        leader  : this.user,
-      styles    : this.styles,
-        count   : this.count,
-        src     : this.src}));
+    }
+    else {
+      $(this.el).html(
+        Denwen.JST['users/list']({
+          users   : this.users,
+          leader  : this.user,
+          count   : this.count,
+          src     : this.src}));
+    }
   }
 
 });
