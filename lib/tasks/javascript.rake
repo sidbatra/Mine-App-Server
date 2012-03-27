@@ -13,7 +13,10 @@ namespace :js do
                 "// and rerun \"rake js:dump:enums\"\n"\
                 "// \n"
 
-      enums[:javascript].each do |klass,enum|
+      enums[:javascript].
+        sort{|a,b| a[0] <=> b[0]}.
+        each do |klass,enum|
+
         file.puts "\nDenwen.#{klass} = {"
         
         enum.each_with_index do |(key,value),i|
@@ -41,7 +44,10 @@ namespace :js do
 
       file.puts "CONFIG = {"
         
-      enums.each_with_index do |(key,value),i|
+      enums.
+        sort{|a,b| a[0].to_s <=> b[0].to_s}.
+        each_with_index do |(key,value),i|
+
         file.puts "'#{key.to_s}' : " + 
                 (value.is_a?(String) ? "\"#{value}\"" : "#{value}") +
                 (i != enums.length-1 ? ",\n" : "")
