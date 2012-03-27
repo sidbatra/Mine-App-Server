@@ -12,14 +12,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   initialize: function() {
     this.source   = this.options.source;
     this.friends  = new Denwen.Collections.Users(this.options.friends);
-    this.styles   = new Denwen.Collections.Styles(this.options.styles);
 
-    this.stylesContainerEl  = '#styles_container';
     this.friendsContainerEl = '#friends_container';
     this.finishContainerEl  = '#finish_container';
-
-    this.stylesView  = new Denwen.Partials.Invites.New.Styles(
-                            {el:$('#styles_container'),styles: this.styles});
 
     this.friendsView = new Denwen.Partials.Invites.New.Friends(
                             {el:$('#friends_container'),friends: this.friends});
@@ -46,7 +41,6 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Hide all subviews
   //
   hideSubViews: function() {
-    $(this.stylesContainerEl).hide();
     $(this.friendsContainerEl).hide();
     $(this.finishContainerEl).hide();
   },
@@ -62,35 +56,25 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        "styles-:styleID/friends" : "friends",
-        "styles-:styleID/friends-:name-:fbID/finish" : "finish",
+        "friends" : "friends",
+        "friends-:name-:fbID/finish" : "finish",
         ":fragment" : "unknown"
       },
 
-      // Display styles tab
+      // Display friends 
       //
-      styles: function() {
+      friends: function() {
         self.hideSubViews();
-        self.stylesView.display();
-        $(self.stylesContainerEl).show();
-      },
-
-      // Display friends after a style is chosen
-      //
-      friends: function(styleID) {
-        self.hideSubViews();
-        self.friendsView.display(styleID);
+        self.friendsView.display();
         $(self.friendsContainerEl).show();
         self.friendsView.displayed();
       },
 
       // DIsplay final invite view
       //
-      finish: function(styleID,name,fbID) {
+      finish: function(name,fbID) {
         self.hideSubViews();
         self.finishView.display(
-          styleID,
-          self.styles.get(styleID).get('title'),
           name.replace('+',' '),
           fbID);
         $(self.finishContainerEl).show();
@@ -99,7 +83,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Load starting tab
       //
       unknown: function(fragment) {
-        this.styles();
+        this.friends();
       }
     });
 

@@ -17,7 +17,6 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     this.name     = "";
     this.fbID     = "";
     this.byline   = "";
-    this.styleID  = null;
 
     this.largeNameEl    = '#friend_name_large';
     this.smallNameEl    = '#friend_name_small';
@@ -37,19 +36,16 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
 
   // Fired just before the view is coming into focus
   //
-  display: function(styleID,byline,name,fbID) {
+  display: function(name,fbID) {
     this.stopLoading();
 
     this.name     = name;
     this.fbID     = fbID;
-    this.byline   = byline;
-    this.styleID  = styleID;
 
     var firstName = name.split(' ')[0];
 
     $(this.largeNameEl).html(firstName);
     $(this.smallNameEl).html(firstName);
-    $(this.bylineEl).html(byline);
     $(this.imageEl).css(
       "background-image",
       "url('https://graph.facebook.com/" + fbID + "/picture?type=large')");
@@ -118,8 +114,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     var invite = new Denwen.Models.Invite({
                       recipient_id: this.fbID,
                       platform: Denwen.InvitePlatform.Facebook,
-                      recipient_name: this.name,
-                      style_id: this.styleID});
+                      recipient_name: this.name});
 
     invite.save({},{
       success: function(model) {self.inviteCreated()},
@@ -129,7 +124,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   // Invite created
   //
   inviteCreated: function() {
-    //window.location.hash = Denwen.InviteNewHash.Styles;
+    //window.location.hash = ;
     dDrawer.success("Invite sent successfully.");
     analytics.inviteCompleted();
   },
@@ -142,7 +137,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   // User cancels invite
   //
   cancelInvite: function() {
-    //window.location.hash = Denwen.InviteNewHash.Styles;
+    //window.location.hash = ;
     analytics.inviteCancelled();
   }
 

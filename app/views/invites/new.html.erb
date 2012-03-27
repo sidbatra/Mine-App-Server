@@ -2,7 +2,6 @@
 <div class="container invite" id="container">
 	<div class="row">
 		<div class="span6 offset3">
-      <%=render "invites/new/styles"%>
       <%=render "invites/new/friends"%>	
       <%=render "invites/new/finish"%>
 	 	</div> <!-- /span6 -->
@@ -15,7 +14,6 @@
           source  : '<%=@source%>',
          friends  : <%=self.current_user.ifollowers.to_json(
                             :only => [:fb_user_id])%>,
-          styles  : <%=@styles.to_json(:only => [:id,:title])%>,
           el      : $('#container')});
   </script>
 <%end%>

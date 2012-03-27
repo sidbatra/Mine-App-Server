@@ -19,7 +19,6 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     this.cancelSearchEl   = '#x_button';
     this.buttonEl         = '#friend_picked_button';
 
-    this.styleID          = 0;
     this.contactPickers   = new Array();
 
     this.fetch();
@@ -85,7 +84,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
 
     $(this.buttonEl).attr(
                       'href',
-                      '#styles-' + this.styleID + '/friends-' + 
+                      '#friends-' + 
                       this.contact.get('name').replace(' ','+') + '-' + 
                       this.contact.get('third_party_id') + '/finish');
 
@@ -97,8 +96,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
 
   // Fired when the friends sub view comes into focus
   //
-  display: function(styleID) {
-    this.styleID = styleID;
+  display: function() {
 
     if(this.contacts && !this.contacts.isEmpty())
       this.render(this.contacts);
@@ -121,8 +119,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
 
     $(this.contactsEl).html(
       Denwen.JST['contacts/contacts'](
-        {contacts: contacts,
-          styleID: self.styleID}));
+        {contacts: contacts}));
 
     this.hookup(contacts);
   },
