@@ -1,5 +1,5 @@
 <%-cache @key do-%>
-  <%-if @filter == :top || @filter == :for_user || @filter == :related-%>
+  <%-if @filter == :top || @filter == :for_user-%>
     <%=@stores.to_json(
         :only     => [:id,:name,:handle],
         :methods  => :thumbnail_url)-%>

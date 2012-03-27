@@ -36,14 +36,6 @@ class StoresController < ApplicationController
                         processed.
                         for_user(params[:user_id])
       @key      = KEYS[:user_top_stores] % params[:user_id]
-    when :related
-      @category_id  = Specialty.top_category_id_for_store(params[:store_id])
-      @stores       = Store.select('stores.id',:name,:handle,:is_processed,
-                                    :image_path).
-                            processed.
-                            for_specialty(@category_id).
-                            limit(11)
-      @key          = KEYS[:store_related_in_category] % @category_id
     end
 
   rescue => ex

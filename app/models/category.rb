@@ -3,7 +3,6 @@ class Category < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   has_many    :products
-  has_many    :specialties, :dependent => :destroy
 
   #----------------------------------------------------------------------
   # Validations

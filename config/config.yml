@@ -50,7 +50,6 @@ common: &common
     :store_all: store_all
     :store_top: store_top
     :store_suggest: store_suggest
-    :store_related_in_category: category_%d_related_stores
     :star_users: star_users
     :collection_products: collection_%d_products
     :user_collections: user_%d_collections
