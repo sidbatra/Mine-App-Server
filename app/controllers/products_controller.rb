@@ -88,7 +88,6 @@ class ProductsController < ApplicationController
       @products = Product.select(:id,:title,:handle,:user_id).
                     for_store(params[:owner_id]).
                     created(30.days.ago..Time.now).
-                    by_actions.
                     with_user.
                     limit(10)
 

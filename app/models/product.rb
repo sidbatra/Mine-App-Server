@@ -12,7 +12,6 @@ class Product < ActiveRecord::Base
   belongs_to  :store, :counter_cache => true
   belongs_to  :suggestion
   has_many    :comments,        :as => :commentable,  :dependent => :destroy
-  has_many    :actions,         :as => :actionable,   :dependent => :destroy
   has_many    :achievements,    :as => :achievable,   :dependent => :destroy
   has_many    :ticker_actions,  :as => :ticker_actionable, 
                                 :dependent => :destroy
@@ -32,7 +31,6 @@ class Product < ActiveRecord::Base
   named_scope :with_user,   :include => :user
   named_scope :with_store,  :include => :store
   named_scope :by_id,       :order => 'id DESC'
-  named_scope :by_actions,  :order => 'actions_count DESC,id DESC'
   named_scope :for_ids,     lambda {|ids| {:conditions => {:id => ids}}}
   named_scope :for_user,    lambda {|user_id| 
                               {:conditions => {:user_id => user_id}}}
@@ -40,12 +38,6 @@ class Product < ActiveRecord::Base
                               {:conditions => {:store_id => store_id}}}
   named_scope :not_for_user, lambda {|user_id| 
                               {:conditions => {:user_id_ne => user_id}}}
-  named_scope :acted_on_by_for, lambda {|user_id,name| 
-                                  {:conditions => {:actions => {
-                                                    :user_id  => user_id,
-                                                    :name     => name}},
-                                   :joins       => :actions,
-                                   :order       => 'actions.created_at DESC'}}
   named_scope :created,     lambda {|range| 
                               {:conditions => {:created_at => range}}}
 

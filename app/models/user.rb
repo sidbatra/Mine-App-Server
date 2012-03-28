@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   has_many :products,       :dependent => :destroy
   has_many :comments,       :dependent => :destroy
-  has_many :actions,        :dependent => :destroy
   has_many :searches,       :dependent => :destroy
   has_many :contacts,       :dependent => :destroy
   has_many :achievements,   :dependent => :destroy

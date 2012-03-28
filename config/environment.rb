@@ -94,14 +94,14 @@ Rails::Initializer.run do |config|
   # Register observers
   config.active_record.observers  = :product_observer, :comment_observer, 
                                     :user_observer, :following_observer,
-                                    :action_observer, :store_observer,
+                                    :store_observer,
                                     :achievement_set_observer,
                                     :invite_observer,
                                     :ticker_action_observer,
                                     :store_sweeper, :following_sweeper,
                                     :product_sweeper,
                                     :user_sweeper, :achievement_set_sweeper,
-                                    :comment_sweeper, :action_sweeper,
+                                    :comment_sweeper, 
                                     :shopping_sweeper, :suggestion_sweeper
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
