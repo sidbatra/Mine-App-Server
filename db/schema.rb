@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327223556) do
+ActiveRecord::Schema.define(:version => 20120328013634) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -47,32 +47,6 @@ ActiveRecord::Schema.define(:version => 20120327223556) do
   add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
   add_index "actions", ["created_at"], :name => "index_actions_on_created_at"
   add_index "actions", ["name"], :name => "index_actions_on_name"
-
-  create_table "collection_parts", :force => true do |t|
-    t.integer  "collection_id"
-    t.integer  "product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "collection_parts", ["collection_id"], :name => "index_collection_parts_on_collection_id"
-  add_index "collection_parts", ["product_id"], :name => "index_collection_parts_on_product_id"
-
-  create_table "collections", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "comments_count", :default => 0
-    t.integer  "actions_count",  :default => 0
-    t.string   "name",           :default => ""
-    t.string   "image_path"
-    t.boolean  "is_processed",   :default => false
-    t.string   "handle"
-  end
-
-  add_index "collections", ["created_at"], :name => "index_collections_on_created_at"
-  add_index "collections", ["handle"], :name => "index_collections_on_handle"
-  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -309,14 +283,12 @@ ActiveRecord::Schema.define(:version => 20120327223556) do
     t.integer  "inverse_followings_count",  :default => 0
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
-    t.integer  "collections_count",         :default => 0
     t.integer  "shoppings_count",           :default => 0
     t.string   "image_path"
     t.boolean  "are_images_hosted",         :default => false
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
-  add_index "users", ["collections_count"], :name => "index_users_on_collections_count"
   add_index "users", ["created_at"], :name => "index_users_on_created_at"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
