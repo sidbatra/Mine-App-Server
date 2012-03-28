@@ -21,7 +21,7 @@ class HomeController < ApplicationController
   # Detect which origin the user is coming from and save it to session
   #
   def detect_origin
-    session[:home]    ||= ['bootstrap'][rand(1)]
+    session[:home]    ||= 'bootstrap'
     session[:origin]  ||= params[:id] ? params[:id].to_s : 'direct'
     @home               = session[:home]
     @campaign           = session[:origin]
