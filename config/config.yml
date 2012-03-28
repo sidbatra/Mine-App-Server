@@ -35,10 +35,8 @@ common: &common
     :user_followers: user_%d_followers
     :user_followers_preview: user_%d_followers_preview
     :user_top_stores: user_%d_top_stores
-    :user_top_products: user_%d_top_products
     :user_products: user_%d_products
     :user_product_suggestions: user_%d_product_suggestions_%s
-    :store_top_products: store_%d_top_products
     :store_all: store_all
     :store_top: store_top
     :store_suggest: store_suggest
