@@ -55,19 +55,6 @@ ActionController::Routing::Routes.draw do |map|
                     :controller => :products,
                     :action     => :edit
 
-  # Deprecate in next version
-  map.collection_d  ':user_handle/c/:id',
-                    :controller => :collections,
-                    :action     => :show
-
-  map.collection  ':user_handle/s/:handle',
-                  :controller => :collections,
-                  :action     => :show
-
-  map.edit_collection  ':user_handle/s/:handle/edit',
-                        :controller => :collections,
-                        :action     => :edit
-
   map.store   's/:handle',
                 :controller => :stores,
                 :action     => :show
@@ -124,9 +111,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contacts,
                 :only => [:index]
 
-  map.resources :collections,
-                :only => [:create,:new,:index,:update,:destroy]
-
   map.resources :welcome,
                 :only       => [:show,:create],
                 :controller => :welcome
@@ -144,11 +128,6 @@ ActionController::Routing::Routes.draw do |map|
                 :as         => 'admin/stores', 
                 :controller => 'admin/stores',
                 :only       => [:index,:edit,:update]
-
-  map.resources :admin_collections, 
-                :as         => 'admin/collections', 
-                :controller => 'admin/collections',
-                :only       => :index
 
   map.resources :admin_emails,
                 :as         => 'admin/emails',

@@ -9,7 +9,7 @@ module DW
     #
     class Mailman
 
-      # Email the owner about any action on a collection or product
+      # Email the owner about any action on a product
       #
       def self.notify_owner_about_an_action(action)
         
@@ -57,24 +57,6 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email followers of a user about a freshly added collection
-      #
-      def self.email_followers_about_collection(collection)
-        collection.user.followers.with_setting.each do |follower|
-          begin
-            if follower.setting.email_influencer
-              UserMailer.deliver_friend_collection(follower,collection)
-              sleep 0.09
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Welcome email for the new user
       #
       def self.welcome_new_user(user)
@@ -101,26 +83,6 @@ module DW
           begin 
             if user.setting.email_update
               UserMailer.deliver_top_shopper(user,store)    
-              sleep 0.09
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
-      # Prompt given users to create another collection
-      #
-      def self.prompt_users_to_create_another_collection(users)
-        users.each do |user|
-          begin
-            if user.setting.email_update
-              UserMailer.deliver_create_another_collection(
-                          user,
-                          user.collections.last)
               sleep 0.09
             end
           rescue => ex
@@ -197,12 +159,6 @@ module DW
       #
       def self.pester_users_with_no_stores(users)
         pester_users(users,:deliver_add_a_store)
-      end
-
-      # Email users with no collection to try and make them add collections
-      #
-      def self.pester_users_with_no_collections(users)
-        pester_users(users,:deliver_add_a_collection)
       end
 
 

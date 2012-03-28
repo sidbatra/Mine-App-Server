@@ -9,7 +9,6 @@
 #
 :common: &common
   UserShowHash:
-    Collections: 'uses'
     Owns: 'owns'
     Wants: 'wants'
   InvitePlatform:
@@ -29,10 +28,6 @@
     Like: 'like'
     Own: 'own'
     Want: 'want'
-  CollectionNewSource:
-    Error: 'error'
-  CollectionShowSource:
-    Updated: 'collection_updated'
   ConfigurationVariable:
     SuggestionCacheKey: 0
   EmailPurpose:
@@ -42,13 +37,10 @@
     NewAction: 2
     TopShopper: 4
     Welcome: 10
-    FriendCollection: 11
-    AnotherCollection: 12
     AnotherProduct: 13
     AddItem: 14
     AddFriend: 15
     AddStore: 16
-    AddCollection: 17
     FriendDigest: 18
   FollowingSource:
     Auto: 0
@@ -57,12 +49,10 @@
     Invite: 3
   HealthReportService:
     TopShopperUpdate: 0
-    AnotherCollectionPrompt: 1
     AnotherItemPrompt: 2
     AddItemsPrompt: 3
     AddFriendsPrompt: 4
     AddStoresPrompt: 5
-    AddCollectionsPrompt: 6
     FriendsDigest: 7
     MaintainSearchIndex: 8
   HomeShowSource:
@@ -84,8 +74,6 @@
     Male: 1
     Female: 2
   UserShowSource:
-    CollectionCreate: 'collection_create'
-    CollectionDeleted: 'collection_deleted'
     HomeRedirect: 'home_redirect'
     Login: 'login'
     UserCreate: 'user_create'
@@ -127,7 +115,6 @@
     ProductsRendered: 'productsRendered'
     UsersListLoaded: 'usersListLoaded'
     StoresLoaded: 'storesLoaded'
-    CollectionsListLoaded: 'collectionsListLoaded'
     FileSelected: 'fileSelected'
     FileUploadError: 'fileUploadError'
     FileUploadDone: 'fileUploadDone'

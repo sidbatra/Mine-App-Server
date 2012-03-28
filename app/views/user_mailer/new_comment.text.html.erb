@@ -10,10 +10,4 @@ Hi <%=@user.first_name%>,<br /><br />
                 @comment.commentable.handle,
                 :src => @source)%>">
   View comment thread</a>
-<%elsif @comment.commentable_type == 'Collection'%>
-  <a href="<%=collection_url(
-                @comment.commentable.user.handle,
-                @comment.commentable.handle,
-                :src => @source)%>">
-  View comment thread</a>
 <%end%>

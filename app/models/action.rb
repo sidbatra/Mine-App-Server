@@ -14,7 +14,7 @@ class Action < ActiveRecord::Base
   validates_presence_of   :user_id
   validates_presence_of   :actionable_id
   validates_presence_of   :actionable_type
-  validates_inclusion_of  :actionable_type, :in => %w(Product Collection)
+  validates_inclusion_of  :actionable_type, :in => %w(Product)
 
   #----------------------------------------------------------------------
   # Named scopes

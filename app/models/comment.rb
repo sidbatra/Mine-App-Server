@@ -13,7 +13,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of   :user_id
   validates_presence_of   :commentable_id
   validates_presence_of   :commentable_type
-  validates_inclusion_of  :commentable_type, :in => %w(Product Collection)
+  validates_inclusion_of  :commentable_type, :in => %w(Product)
 
   #----------------------------------------------------------------------
   # Named scopes

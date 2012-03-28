@@ -5,7 +5,6 @@
   <h3><%=link_to 'Link to Closet',user_path(@user.handle)%><h3>
   <h3><%=link_to 'Link to FB',"https://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%><h3>
   <h3><%=@user.products_count%> Products</h3>
-  <h3><%=@user.collections_count%> Collections</h3>
   <h3><%=link_to "Think before you click",
             {:controller => 'admin/users',:action => 'destroy',:id => @user.id},
             :method => :delete,
@@ -17,7 +16,7 @@
         <td width="400"><i>PRODUCT</i></td>
     </tr>
     <tr height="20"></tr>
-    <%@collection.each do |c| %>
+    <%@set.each do |c| %>
       <tr>
         <%if c.class == Product%>
           <td></td>

@@ -71,16 +71,6 @@
               </div>
   					</a>
   				</li>
-          <%if is_current_user(@user) or !@user.collections_count.zero?%>
-            <li id="collections_tab">
-              <a href="#<%=UserShowHash::Collections%>" 
-                  style="text-align: center; width: 38px;">
-                <span class="hide-when-loading">Uses</span>
-                <div class="loading small inline" style="margin-bottom: -4px;">
-                </div>
-              </a>
-            </li>
-          <%end%>
 				</ul>
         
     		<div class="control-group">
@@ -102,7 +92,7 @@
           userJSON        : <%=@user.to_json(
                                 :only => [:id,:first_name,:last_name,
                                           :handle,:byline,:followings_count,
-                                          :collections_count,:products_count,
+                                          :products_count,
                                           :inverse_followings_count])%>,
           currentUserJSON : <%=self.current_user.to_json(
                                 :only    => [:id,:first_name,:last_name,

@@ -48,29 +48,7 @@ module DW
         TickerAction.add(action.identifier,OGAction::Want,product,user.id)
       end
 
-      # Publish a story whenever the user uses a collection
-      #
-      def self.publish_use(collection)
-        fb_app  = FbGraph::Application.new(CONFIG[:fb_app_id])
-        fb_user = FbGraph::User.me(collection.user.access_token)  
-
-        action  = fb_user.og_action!(
-                            OGAction::Use,
-                            :set => collection_url(
-                                      collection.user.handle,
-                                      collection.handle,
-                                      :src  => 'fb',
-                                      :host => CONFIG[:host]), 
-                            :expires_in => 3600)
-
-        TickerAction.add(
-                      action.identifier,
-                      OGAction::Use,
-                      collection,
-                      collection.user_id)
-      end
-
-      # Update an open graph object - product/collection
+      # Update an open graph object - product
       # This updates all the actions associated with that object
       #
       def self.update_object(url)
@@ -81,7 +59,7 @@ module DW
           LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Delete a published story whenever a product or a collection is
+      # Delete a published story whenever a product is
       # deleted
       #
       def self.delete_story(og_action_id,access_token)

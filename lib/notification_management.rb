@@ -57,19 +57,6 @@ module DW
         Mailman.email_leader_about_follower(following)
       end
 
-      # Process a new collection and manage distribution
-      #
-      def self.new_collection(collection_id)
-        collection = Collection.find(collection_id)
-        collection.process
-
-         Mailman.email_followers_about_collection(collection)
-
-        if collection.user.setting.post_to_timeline
-          DistributionManager.publish_use(collection)
-        end
-      end
-
     end #notification manager
 
   end #notification management

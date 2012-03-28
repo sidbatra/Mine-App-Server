@@ -24,22 +24,6 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Ping users who have made a collection to create another
-      # collection
-      #
-      def self.email_to_create_another_collection
-        users = User.with_setting.
-                      with_collections_with_products.
-                      created_collection_in(2.days.ago..Time.now)
-
-        Mailman.prompt_users_to_create_another_collection(users)
-
-        HealthReport.add(HealthReportService::AnotherCollectionPrompt)
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Ping users who have made a product to create another
       # product 
       #
@@ -134,24 +118,6 @@ module DW
         Mailman.pester_users_with_no_stores(users)
 
         HealthReport.add(HealthReportService::AddStoresPrompt)
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
-      # Email users who haven't added a collection but have added 
-      # stores, friends and items
-      #
-      def self.scoop_users_with_no_collections
-        users = User.with_setting.
-                  products_count_gt(0).
-                  followings_count_gt(0).
-                  shoppings_count_gt(0).
-                  collections_count(0)
-
-        Mailman.pester_users_with_no_collections(users)
-
-        HealthReport.add(HealthReportService::AddCollectionsPrompt)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

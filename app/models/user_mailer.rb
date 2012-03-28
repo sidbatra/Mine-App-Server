@@ -39,9 +39,6 @@ class UserMailer < ActionMailer::Base
 
     if(comment.commentable_type == 'Product')
       @action     += comment.commentable.title
-    elsif(comment.commentable_type == 'Collection')
-      @action     +=  comment.commentable.name.present? ? 
-                        "\"#{comment.commentable.name.strip}\" set" : "set"
     end
 
     @action	    += "!"
@@ -86,26 +83,8 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert user whenever a friend creates a collection 
-  #
-  def friend_collection(user,collection)
-    @owner        = collection.user
-    @user         = user
-    @collection   = collection 
-    @source       = "email_friend_collection"
-    @action       = "#{@owner.first_name} #{@owner.last_name} " + 
-                    "just posted a new set!" 
-
-    generate_attributes(@user,@collection.user_id,@collection,EmailPurpose::FriendCollection)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-
   # Alert the owner whenever an action is taken 
-  # on his/her product or collection
+  # on his/her product 
   #
   def new_action(action)
     action_map    = {'like' => 'likes',
@@ -123,9 +102,6 @@ class UserMailer < ActionMailer::Base
 
     if(@actionable.class.name == 'Product')
       @action     +=  @actionable.title
-    elsif(@actionable.class.name == 'Collection')
-      @action     +=  @actionable.name.present? ? 
-                        "\"#{@actionable.name.strip}\" set" : "set"
     end
     
     if @action_name == 'want'
@@ -135,31 +111,6 @@ class UserMailer < ActionMailer::Base
     end
 
     generate_attributes(@user,@actor.id,action,EmailPurpose::NewAction)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-  # Alert the user to create daily collections 
-  #
-  def create_another_collection(user,last_collection)
-    @user             = user
-    @last_collection  = last_collection
-    @products         = last_collection.products.take(3).map(&:title)
-    @source           = "email_another_collection"
-
-    @action           = "Still have your "
-
-    if @products.length == 1
-      @action         += @products[0]
-    else
-      @action         += "#{@products[0..-2].join(", ")} and #{@products[-1]}" 
-    end
-
-    @action           += " on you?"
-                  
-    generate_attributes(@user,0,@last_collection,EmailPurpose::AnotherCollection)
 
     recipients    @user.email
     from          EMAILS[:contact]
@@ -216,20 +167,6 @@ class UserMailer < ActionMailer::Base
     @source       = "email_add_store"
 
     generate_attributes(@user,0,@user,EmailPurpose::AddStore)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-  # Alert the user to start adding collections 
-  #
-  def add_a_collection(user)
-    @user         = user
-    @action       = "Share your style!"
-    @source       = "email_add_collection"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AddCollection)
 
     recipients    @user.email
     from          EMAILS[:contact]

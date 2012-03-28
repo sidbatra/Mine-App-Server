@@ -122,14 +122,14 @@ class ProductPresenter < BasePresenter
     html
   end
 
-  # Shorter product byline displayed on the user and collection show page
+  # Shorter product byline 
   #
   def shorter_byline
     html = ""
 
     if product.store
       html = "Bought at" +
-              store_link('collection_store')
+              store_link('product_store')
     elsif product.is_gift
       html = "gift "
     end

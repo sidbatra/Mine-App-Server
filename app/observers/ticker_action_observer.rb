@@ -3,7 +3,7 @@
 class TickerActionObserver < ActiveRecord::Observer
 
   # Delete facebook stories after a ticker action is destroyed
-  # as a result of product, collection or user deletion 
+  # as a result of product or user deletion 
   #
   def after_destroy(ticker_action)
     ProcessingQueue.push(

@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   has_many :actions,        :dependent => :destroy
   has_many :searches,       :dependent => :destroy
   has_many :contacts,       :dependent => :destroy
-  has_many :collections,    :dependent => :destroy
   has_many :achievements,   :dependent => :destroy
   has_many :shoppings,      :dependent => :destroy
   has_many :stores,         :through   => :shoppings
@@ -55,16 +54,12 @@ class User < ActiveRecord::Base
                   :conditions => {:followings_count => count}}}
   named_scope :shoppings_count, lambda {|count| {
                   :conditions => {:shoppings_count => count}}}
-  named_scope :collections_count, lambda {|count| {
-                  :conditions => {:collections_count => count}}}
   named_scope :products_count_gt, lambda {|count| {
                   :conditions => {:products_count_gt => count}}}
   named_scope :followings_count_gt, lambda {|count| {
                   :conditions => {:followings_count_gt => count}}}
   named_scope :shoppings_count_gt, lambda {|count| {
                   :conditions => {:shoppings_count_gt => count}}}
-  named_scope :collections_count_gt, lambda {|count| {
-                  :conditions => {:collections_count_gt => count}}}
   named_scope :by_products_count, {:order => 'products_count DESC'}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
   named_scope :stars, 
@@ -89,13 +84,8 @@ class User < ActiveRecord::Base
                 :order        => "products_at_store DESC,users.id"}}
 
   named_scope :with_stores, :include => {:shoppings => :store}
-  named_scope :with_collections_with_products,  
-                :include => {:collections => :products} 
   named_scope :with_setting, :include => :setting
   named_scope :with_ifollowers, :include => :ifollowers
-  named_scope :created_collection_in, lambda {|range| {
-                :joins      => :collections,
-                :conditions => {:collections => {:created_at => range}}}} 
 
   #----------------------------------------------------------------------
   # Attributes

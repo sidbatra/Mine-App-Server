@@ -30,7 +30,6 @@ common: &common
   :name: OnCloset
   :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
   :version: 3.1.1
-  :collection_base_image: private/collection_base.jpg
   :keys:
     :user_ifollowers: user_%d_ifollowers
     :user_ifollowers_preview: user_%d_ifollowers_preview
@@ -47,8 +46,6 @@ common: &common
     :store_top: store_top
     :store_suggest: store_suggest
     :star_users: star_users
-    :collection_products: collection_%d_products
-    :user_collections: user_%d_collections
     :comment_commentable: comment_commentable_%d_%s
     :action_actionable: action_actionable_%d_%s
     :product_search: product_search_%s_%d
@@ -102,5 +99,4 @@ javascript: &javascript
   :one_word_query_msg: "<strong>Tip:</strong> Try adding brands and colors, e.g. 'Vans Brown Tweed Slip ons'" 
   :multi_query_msg: "<strong>Tip:</strong> Add items by URL for the perfect photo every time."
   :multi_query_threshold: 5
-  :minimum_products_in_collection: 2
 

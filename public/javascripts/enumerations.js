@@ -10,7 +10,6 @@ FileUploadDone: "fileUploadDone",
 ProductsLoaded: "productsLoaded",
 ProductResultsLoaded: "productResultsLoaded",
 StoresLoaded: "storesLoaded",
-CollectionsListLoaded: "collectionsListLoaded",
 UsersListLoaded: "usersListLoaded",
 FileUploadError: "fileUploadError",
 ProductResultsFinished: "productResultsFinished",
@@ -31,7 +30,6 @@ Text: "text"
 }
 
 Denwen.UserShowHash = {
-Collections: "uses",
 Owns: "owns",
 Wants: "wants"
 }
