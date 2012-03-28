@@ -26,7 +26,6 @@ javascripts:
     - app/views/products/*.jst
     - app/views/users/*.jst
     - app/views/stores/*.jst
-    - app/views/followings/*.jst
     - app/views/contacts/*.jst
     - app/views/suggestions/*.jst
   home:

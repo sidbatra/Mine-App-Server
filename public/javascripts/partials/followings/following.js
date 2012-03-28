@@ -1,4 +1,4 @@
-Denwen.Partials.Users.Following = Backbone.View.extend({
+Denwen.Partials.Followings.Following = Backbone.View.extend({
 
   // Event listeners
   //
