@@ -11,7 +11,6 @@ class Product < ActiveRecord::Base
   belongs_to  :user,  :counter_cache => true
   belongs_to  :store, :counter_cache => true
   belongs_to  :suggestion
-  has_many    :achievements,    :as => :achievable,   :dependent => :destroy
   has_many    :ticker_actions,  :as => :ticker_actionable, 
                                 :dependent => :destroy
 

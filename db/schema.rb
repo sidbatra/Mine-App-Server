@@ -11,30 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20120328180732) do
 
-  create_table "achievement_sets", :force => true do |t|
-    t.integer  "owner_id"
-    t.datetime "expired_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "for"
-  end
-
-  add_index "achievement_sets", ["created_at"], :name => "index_achievement_sets_on_created_at"
-  add_index "achievement_sets", ["for", "owner_id"], :name => "index_achievement_sets_on_for_and_owner_id"
-
-  create_table "achievements", :force => true do |t|
-    t.integer  "achievable_id"
-    t.string   "achievable_type"
-    t.integer  "user_id"
-    t.integer  "achievement_set_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "achievements", ["achievable_id", "achievable_type"], :name => "index_achievements_on_achievable_id_and_achievable_type"
-  add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
-  add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
-
   create_table "configurations", :force => true do |t|
     t.integer  "variable"
     t.string   "value"

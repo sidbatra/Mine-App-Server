@@ -35,22 +35,6 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert user whenever he/she is featured as a 
-  # top shopper for a particular store
-  #
-  def top_shopper(user,store)
-    @user         = user
-    @store        = store
-    @action       = "You are now featured as a Top Shopper at #{@store.name}!" 
-    @source       = "email_tshopper"
-
-    generate_attributes(@user,0,@store,EmailPurpose::TopShopper)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
   # Alert the user to add new products to their closet 
   #
   def create_another_product(user)

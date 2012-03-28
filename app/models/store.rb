@@ -61,21 +61,6 @@ class Store < ActiveRecord::Base
     find_by_name(name.squeeze(' ').strip) 
   end
 
-  # Update top shoppers across popular stores
-  #
-  def self.update_top_shoppers
-    Store.processed.popular.each do |store|
-      begin
-        top_shoppers = store.update_top_shoppers
-
-        yield store,top_shoppers if block_given?
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)    
-      end
-    end 
-  end
-
 
   #----------------------------------------------------------------------
   # Instance methods
@@ -265,27 +250,6 @@ class Store < ActiveRecord::Base
   rescue => ex
     LoggedException.add(__FILE__,__method__,ex)
   end
-
-  # Update the top shoppers at the store. Returns
-  # shoppers who have recently become top shoppers
-  #
-  def update_top_shoppers
-    old_shoppers = AchievementSet.current_top_shoppers(self.id).
-                    map(&:achievable).
-                    map(&:id)
-    old_shoppers = Hash[*old_shoppers.zip([true] * old_shoppers.length).flatten]
-
-    new_shoppers = User.top_shoppers(self.id).limit(20)
-
-    AchievementSet.add(
-      self.id,
-      AchievementSetFor::TopShoppers,
-      new_shoppers,
-      new_shoppers.map(&:id))
-
-    new_shoppers.reject{|u| old_shoppers.key?(u.id)}
-  end
-
 
   protected
 

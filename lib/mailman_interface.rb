@@ -53,24 +53,6 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Notify top shoppers at a store about their achievement
-      #
-      def self.notify_top_shoppers(store,top_shoppers)
-        top_shoppers.each do |user|
-          begin 
-            if user.setting.email_update
-              UserMailer.deliver_top_shopper(user,store)    
-              sleep 0.09
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Prompt given users to create another product 
       #
       def self.prompt_users_to_create_another_product(users)

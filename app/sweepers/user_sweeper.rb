@@ -17,12 +17,6 @@ class UserSweeper < ActionController::Caching::Sweeper
   # User is deleted
   #
   def after_destroy(user)
-    expire_top_users
   end
 
-  # Expire cache fragment for top users
-  #
-  def expire_top_users
-    expire_cache KEYS[:star_users]
-  end
 end

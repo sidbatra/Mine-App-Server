@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :products,       :dependent => :destroy
   has_many :searches,       :dependent => :destroy
   has_many :contacts,       :dependent => :destroy
-  has_many :achievements,   :dependent => :destroy
   has_many :shoppings,      :dependent => :destroy
   has_many :stores,         :through   => :shoppings
   has_one  :setting,        :dependent => :destroy 
@@ -60,26 +59,6 @@ class User < ActiveRecord::Base
                   :conditions => {:shoppings_count_gt => count}}}
   named_scope :by_products_count, {:order => 'products_count DESC'}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
-  named_scope :stars, 
-                  :joins      => :products, 
-                  :conditions => {
-                    :products           => {:created_at => 1.day.ago..Time.now},
-                    :products_count_gt  => 9,
-                    :gender_ne          => 'male'},
-                  :group      => "users.id", 
-                  :order      => "count(users.id) DESC, users.created_at DESC"
-
-  named_scope :top_shoppers, lambda {|store_id| {
-                :select       => "users.*,count(users.id) as products_at_store",
-                :joins        => :products,
-                :conditions   => {
-                  :products_count_gt => 9,
-                  :products   => {
-                      :store_id   => store_id,
-                      :created_at => 30.days.ago..Time.now},
-                  :gender_ne  => 'male'},
-                :group        => "users.id HAVING products_at_store > 1", 
-                :order        => "products_at_store DESC,users.id"}}
 
   named_scope :with_stores, :include => {:shoppings => :store}
   named_scope :with_setting, :include => :setting

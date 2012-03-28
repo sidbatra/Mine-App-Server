@@ -63,12 +63,6 @@ class UsersController < ApplicationController
     when :ifollowers
       @users      = User.find(params[:id]).ifollowers.by_updated_at
       @key        = KEYS[:user_ifollowers] % params[:id]
-    when :stars
-      @achievers  = AchievementSet.current_star_users
-      @key        = KEYS[:star_users]
-    when :top_shoppers
-      @achievers  = AchievementSet.current_top_shoppers(params[:store_id])
-      @key        = KEYS[:store_top_shoppers] % params[:store_id]
     end
   rescue => ex
     handle_exception(ex)

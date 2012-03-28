@@ -17,11 +17,6 @@ class Admin::EmailsController < ApplicationController
     when :new_user
       render :text => UserMailer.preview_new_user(User.last)
 
-    when :top_shopper
-      render :text => UserMailer.preview_top_shopper(
-                        User.last,
-                        Store.approved.last)
-
     when :create_another_product
       render :text => UserMailer.preview_create_another_product(
                         User.last)

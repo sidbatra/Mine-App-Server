@@ -19,11 +19,6 @@
 #
 :ruby: &ruby
   <<: *common
-  AchievementSetFor:
-    StarUsers: 0
-    TopShoppers: 1
-  AchievementSetOwner:
-    Automated: 0
   ActionName:
     Like: 'like'
     Own: 'own'
