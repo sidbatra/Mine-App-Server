@@ -82,18 +82,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("View All "+ type);
   },
 
-  // User starts to type a comment
-  //
-  commentSelected: function() {
-    mpq.track("Comment Selected");
-  },
-
-  // User creates a comment
-  //
-  commentCreated: function(commentableType) {
-    mpq.track("Comment Created", {'Commentable Type':commentableType});
-  },
-
   // User creates a following
   //
   followingCreated: function(followedID) {
