@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328020626) do
+ActiveRecord::Schema.define(:version => 20120328180732) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -34,18 +34,6 @@ ActiveRecord::Schema.define(:version => 20120328020626) do
   add_index "achievements", ["achievable_id", "achievable_type"], :name => "index_achievements_on_achievable_id_and_achievable_type"
   add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
   add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
-
-  create_table "comments", :force => true do |t|
-    t.text     "data"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "commentable_type"
-    t.integer  "commentable_id"
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "configurations", :force => true do |t|
     t.integer  "variable"
@@ -146,7 +134,6 @@ ActiveRecord::Schema.define(:version => 20120328020626) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "orig_thumb_url"
-    t.integer  "comments_count",    :default => 0
     t.integer  "store_id"
     t.float    "price"
     t.string   "image_path"
@@ -156,7 +143,6 @@ ActiveRecord::Schema.define(:version => 20120328020626) do
     t.integer  "suggestion_id"
   end
 
-  add_index "products", ["comments_count"], :name => "index_products_on_comments_count"
   add_index "products", ["created_at"], :name => "index_products_on_created_at"
   add_index "products", ["handle"], :name => "index_products_on_handle"
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
