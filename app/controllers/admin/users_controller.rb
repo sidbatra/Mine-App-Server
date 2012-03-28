@@ -56,7 +56,7 @@ class Admin::UsersController < ApplicationController
     count = User.updated(time).by_updated_at.count
     users = User.updated(time).by_updated_at.limit(150)
 
-    active_count = [Product,Action,Comment,Search].map do |model|
+    active_count = [Product,Search].map do |model|
                      model.select(:user_id).made(time).map(&:user_id)
                    end.flatten.uniq.count
 

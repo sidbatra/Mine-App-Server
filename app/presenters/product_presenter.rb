@@ -160,21 +160,6 @@ class ProductPresenter < BasePresenter
               :target => '_blank'
   end
 
-  # Generate html for the comment bubble used in the preview
-  #
-  def comment_bubble
-    html = ""
-
-    if product.comments_count != 0
-      html += product.comments_count.to_s + ' '
-      html += h.image_tag 'comment_bubble.png', 
-                :class => '',
-                :alt => ''
-    end
-
-    html
-  end
-
   # id to uniquely identify a product view
   #
   def source_id

@@ -3,7 +3,7 @@
 class SearchesController < ApplicationController
   before_filter :login_required,  :only => [:create]
 
-  # Create a new comment
+  # Create a new search
   #
   def create
     @search = Search.add(

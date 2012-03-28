@@ -18,38 +18,6 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert user when a new comment is added on a 
-  # thread to which the user belongs
-  #
-  def new_comment(comment,user)
-    @owner        = comment.commentable.user
-    @comment      = comment
-    @user         = user
-    @action       = @comment.user.first_name + " " + @comment.user.last_name
-    @source       = "email_#{comment.commentable_type.downcase}_comment"
-
-    if @owner.id == @user.id
-      @action    += " just commented on your "
-    elsif @owner.id == @comment.user.id 
-      @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
-    else
-      @action    += " also commented on #{@owner.first_name} "\
-                    "#{@owner.last_name}'s "
-    end
-
-    if(comment.commentable_type == 'Product')
-      @action     += comment.commentable.title
-    end
-
-    @action	    += "!"
-
-    generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action 
-  end
-
   # Alert user when someone starts following him/her
   #
   def new_follower(following) 
@@ -77,40 +45,6 @@ class UserMailer < ActionMailer::Base
     @source       = "email_tshopper"
 
     generate_attributes(@user,0,@store,EmailPurpose::TopShopper)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-  # Alert the owner whenever an action is taken 
-  # on his/her product 
-  #
-  def new_action(action)
-    action_map    = {'like' => 'likes',
-                     'own'  => 'also owns',
-                     'want' => 'added'}
-
-    @actionable   = action.actionable
-    @user         = @actionable.user 
-    @actor        = action.user 
-    @action_name  = action.name
-    @source       = "email_#{@actionable.class.name.downcase}_#{@action_name}"
-
-    @action       = "#{@actor.first_name} #{@actor.last_name} " + 
-    								"#{action_map[@action_name]} your "
-
-    if(@actionable.class.name == 'Product')
-      @action     +=  @actionable.title
-    end
-    
-    if @action_name == 'want'
-    	@action			+= " to #{@actor.is_male? ? 'his' : 'her'} Wants!"
-    else
-    	@action			+= "!"
-    end
-
-    generate_attributes(@user,@actor.id,action,EmailPurpose::NewAction)
 
     recipients    @user.email
     from          EMAILS[:contact]

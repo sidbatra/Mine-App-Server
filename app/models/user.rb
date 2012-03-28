@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   has_many :products,       :dependent => :destroy
-  has_many :comments,       :dependent => :destroy
   has_many :searches,       :dependent => :destroy
   has_many :contacts,       :dependent => :destroy
   has_many :achievements,   :dependent => :destroy

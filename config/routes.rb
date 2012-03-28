@@ -82,9 +82,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :stores,
                 :only => [:index]
 
-  map.resources :comments,
-                :only => [:create,:index]
-
   map.resources :followings,
                 :only => [:create,:show,:destroy]
 

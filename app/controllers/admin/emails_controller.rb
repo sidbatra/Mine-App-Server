@@ -11,24 +11,6 @@ class Admin::EmailsController < ApplicationController
   def show
     case params[:id].to_sym
 
-    when :new_action
-      text += UserMailer.preview_new_action(
-                Action.named(ActionName::Want).on_type(Product.name).last)
-
-      text += "<br><br><br><br>"
-
-      text += UserMailer.preview_new_action(
-                Action.named(ActionName::Own).on_type(Product.name).last)
-
-      render :text => text
-
-    when :new_comment
-      text += UserMailer.preview_new_comment(
-                Comment.on_type(Product.name).last,
-                User.last)
-
-      render :text => text
-
     when :new_follower
       render :text => UserMailer.preview_new_follower(Following.last)
 

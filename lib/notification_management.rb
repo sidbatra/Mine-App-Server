@@ -10,13 +10,6 @@ module DW
     # emails on specific events
     #
     class NotificationManager
-
-      # Notify mailman about new comment
-      #
-      def self.new_comment(comment_id)
-        comment = Comment.with_user.find(comment_id)
-        Mailman.email_users_in_comment_thread(comment)
-      end
       
       # Host the new product image
       #

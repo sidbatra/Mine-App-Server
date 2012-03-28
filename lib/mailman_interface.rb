@@ -22,29 +22,6 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email all the users on the comment thread
-      #
-      def self.email_users_in_comment_thread(comment)
-        user_ids  = Comment.user_ids_in_thread_with(comment)
-        users     = User.with_setting.find_all_by_id(user_ids)
-
-        users.each do |user|
-          begin
-            
-            if user.setting.email_interaction && 
-                user.id != comment.user.id
-
-              UserMailer.deliver_new_comment(comment,user) 
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Email user being followed
       #
       def self.email_leader_about_follower(following)
