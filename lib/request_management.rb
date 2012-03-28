@@ -15,30 +15,6 @@ module DW
                   :is_device_iphone?, :is_device_ipad?
     end
 
-    # Preprocess every request 
-    # Create variables for params such as email,password,pagination.
-    #
-    def preprocess_request
-
-      unless params[:email].json_nil
-        @email      = params[:email] 
-      end
-
-      if !is_request_html? && !params[:password].json_nil
-        @password   = Cryptography.decrypt(params[:password]) 
-      else
-        @password   = params[:password]
-      end
-
-      if params[:hashed_id]
-        params[:id] = Cryptography.deobfuscate(params[:hashed_id]) 
-      end
-
-      @before   = !params[:before].zero ? Time.at(params[:before].to_i) : nil
-      @after    = !params[:after].zero  ? Time.at(params[:after].to_i)  : nil 
-      @limit    = !params[:limit].zero  ? params[:limit].to_i           : nil
-    end
-
     # Tests if the request has an JSON mime type
     #
     def is_request_json?
@@ -70,7 +46,8 @@ module DW
     def rescue_action_in_public(exception)
       case exception
         when ActiveRecord::RecordNotFound, ActionController::RoutingError, 
-              ActionController::UnknownController, ActionController::UnknownAction
+              ActionController::UnknownController, 
+              ActionController::UnknownAction
           log_exception(exception)
           render :file => "#{RAILS_ROOT}/public/404.html"
         else
@@ -83,7 +60,8 @@ module DW
     def render_404
       respond_to do |format|
         format.html do 
-          render :file => "#{RAILS_ROOT}/public/404.html", :status => :not_found 
+          render :file => "#{RAILS_ROOT}/public/404.html", 
+            :status => :not_found 
         end
       end
     end

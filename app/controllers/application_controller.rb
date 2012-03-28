@@ -1,6 +1,3 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-#
 class ApplicationController < ActionController::Base
   helper :all 
   protect_from_forgery 
@@ -16,7 +13,7 @@ class ApplicationController < ActionController::Base
   # every request
   #
   def track_source
-    @source       = params[:src] ? params[:src].to_s : 'direct'
+    @source = params[:src] ? params[:src].to_s : 'direct'
   end
 
   # Renew an active session after a certain time period to mark
@@ -29,12 +26,6 @@ class ApplicationController < ActionController::Base
       self.current_user.touch
       session[:last_renewed_at] = Time.now
     end
-  end
-
-  # Test is the format of the current request is json
-  #
-  def is_json?
-    request.format == Mime::JSON
   end
 
   # Prepare parameters for the image uploder
