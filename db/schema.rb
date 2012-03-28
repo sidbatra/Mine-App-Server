@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328013634) do
+ActiveRecord::Schema.define(:version => 20120328020626) do
 
   create_table "achievement_sets", :force => true do |t|
     t.integer  "owner_id"
@@ -34,19 +34,6 @@ ActiveRecord::Schema.define(:version => 20120328013634) do
   add_index "achievements", ["achievable_id", "achievable_type"], :name => "index_achievements_on_achievable_id_and_achievable_type"
   add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
   add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
-
-  create_table "actions", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "actionable_type"
-    t.integer  "actionable_id"
-  end
-
-  add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
-  add_index "actions", ["created_at"], :name => "index_actions_on_created_at"
-  add_index "actions", ["name"], :name => "index_actions_on_name"
 
   create_table "comments", :force => true do |t|
     t.text     "data"
@@ -165,12 +152,10 @@ ActiveRecord::Schema.define(:version => 20120328013634) do
     t.string   "image_path"
     t.boolean  "is_processed",      :default => false
     t.boolean  "is_gift",           :default => false
-    t.integer  "actions_count",     :default => 0
     t.string   "source_product_id"
     t.integer  "suggestion_id"
   end
 
-  add_index "products", ["actions_count"], :name => "index_products_on_actions_count"
   add_index "products", ["comments_count"], :name => "index_products_on_comments_count"
   add_index "products", ["created_at"], :name => "index_products_on_created_at"
   add_index "products", ["handle"], :name => "index_products_on_handle"
