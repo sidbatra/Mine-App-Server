@@ -64,18 +64,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Shoppings Created");
   },
 
-  // Collection onboarding previewed in disabled state 
-  //
-  collectionOnboardingPreviewed: function() {
-    mpq.track("Collection Onboarding Previewed");
-  },
-
-  // Collection onboarding of a certain type viewed
-  //
-  collectionOnboardingViewed: function(type) {
-    mpq.track("Collection Onboarding Viewed",{'type':type});
-  },
-
   // User turns on a product
   //
   productTurnedOn: function() {
@@ -86,36 +74,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   productTurnedOff: function() {
     mpq.track("Product Turned Off");
-  },
-
-  // User creates a collection
-  //
-  collectionCreated: function() {
-    mpq.track("Collection Created");
-  },
-
-  // User updates a collection
-  //
-  collectionUpdated: function() {
-    mpq.track("Collection Updated");
-  },
-
-  // User tried to create a collection with an exception
-  // 
-  collectionException: function(type) {
-    mpq.track("Collection Exception",{'Type' : type});
-  },
-
-  // User cancels a collection
-  //
-  collectionCancelled: function() {
-    mpq.track("Collection Cancelled");
-  },
-
-  // User deletes a collection
-  //
-  collectionDeleted: function() {
-    mpq.track("Collection Deleted");
   },
 
   // Modal view all selected for the given type
@@ -150,17 +108,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Following Destroyed",{
           'Followed ID'  : followedID,
           'User ID'      : helpers.currentUserID()});
-  },
-
-  // User creates a like on a collection
-  //
-  likeCreated: function(source,sourceID,collectionID,collectionUserID) {
-    mpq.track('Collection Like Created', {
-      'Source'            : source,
-      'Source ID'         : sourceID,
-      'Collection ID'     : collectionID,
-      'User ID'           : helpers.currentUserID(),
-      'Is Own Collection' : helpers.isCurrentUser(collectionUserID)});
   },
 
   // User initiates the product ownership process
@@ -413,15 +360,6 @@ Denwen.Analytics = Backbone.Model.extend({
         'id'              : userID});
   },
 
-  // A user's collections are viewed
-  //
-  userCollectionsView: function(userID) {
-    mpq.track(
-      'User Collections View',{
-        'Is Own Profile'  : helpers.isCurrentUser(userID),
-        'id'              : userID});
-  },
-
   // User views the settings page
   //
   settingsView: function(source) {
@@ -450,14 +388,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   unsubscribeInitiated: function(source) {
     mpq.track("Unsubscribe Initiated", {'Source' : source});
-  },
-
-  // A collection is viewed
-  //
-  collectionView: function(source) {
-    mpq.track(
-      'Collection View',{
-        'source' : source});
   },
 
   // A store's products are explicitly viewed
@@ -501,26 +431,6 @@ Denwen.Analytics = Backbone.Model.extend({
   shoppingNewView: function(source) {
      mpq.track(
       'Shopping New View',{'source' : source});
-  },
-
-  // Page view on the collections new page
-  //
-  collectionNewView: function(source) {
-     mpq.track(
-      'Collection New View',{'source' : source});
-  },
-
-  // Page view on the collections edit page
-  //
-  collectionEditView: function(source) {
-     mpq.track(
-      'Collection Edit View',{'source' : source});
-  },
-
-  // User opts in to write a title while creating a collection
-  //
-  collectionTitleInitiated: function() {
-    mpq.track('Collection Title Initiated');
   },
 
   // Fired when the invite view is opened during onboarding

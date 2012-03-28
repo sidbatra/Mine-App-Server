@@ -14,7 +14,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.loadTabClass   = 'load';
     this.ownsTab        = '#owns_tab';
     this.wantsTab       = '#wants_tab';
-    this.collectionsTab = '#collections_tab';
 
     if(this.options.currentUserJSON != 'false')
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
@@ -50,20 +49,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.wantedProducts.bind(
       Denwen.Callback.ProductsLoaded,
       this.productsLoaded,
-      this);
-
-    // -----
-    this.collections      = new Denwen.Partials.Collections.List({
-                                  el      : $('#centerstage'),
-                                  ownerID : this.user.get('id'),
-                                  filter  : 'user',
-                            productsLeft  : CONFIG['products_threshold'] - 
-                                              this.user.get('products_count'),
-                                  source  : 'user_collections'});
-
-    this.collections.bind(
-      Denwen.Callback.CollectionsListLoaded,
-      this.collectionsLoaded,
       this);
 
 
@@ -114,10 +99,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   switchTabsOff: function() {
     $(this.ownsTab).removeClass(this.onTabClass);
     $(this.wantsTab).removeClass(this.onTabClass);
-    $(this.collectionsTab).removeClass(this.onTabClass);
     $(this.ownsTab).removeClass(this.loadTabClass);
     $(this.wantsTab).removeClass(this.loadTabClass);
-    $(this.collectionsTab).removeClass(this.loadTabClass);
   },
 
   // Switch on the given tab element
@@ -132,20 +115,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   switchCurrentTabLoadOff: function() {
     $(this.currentTab).removeClass(this.loadTabClass);
-  },
-
-  // Load tab that displays the user's collections
-  //
-  loadCollectionsTab: function() {
-    this.collections.fetch();
-    this.switchTabOn(this.collectionsTab);
-
-    if(this.user.get('collections_count'))
-      analytics.userCollectionsView(this.user.get('id'));
-    else if(this.user.get('products_count') < CONFIG['products_threshold'])
-      analytics.collectionOnboardingPreviewed();
-    else
-      analytics.collectionOnboardingViewed('faded_timeline');
   },
 
   // Load tab that displays the user's owns
@@ -191,7 +160,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         ":type" : "filter"
       },
 
-      // Display collections and handle empty fragments
+      // 
       //
       filter: function(type) {
         self.switchTabsOff();
@@ -203,10 +172,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
         case Denwen.UserShowHash.Wants:
           self.loadWantsTab();
-          break;
-
-        case Denwen.UserShowHash.Collections:
-          self.loadCollectionsTab();
           break;
 
         default:
@@ -239,14 +204,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         analytics.userCreated();
       else if(this.source == 'product_deleted')
         analytics.productDeleted();
-      else if(this.source == 'collection_create')
-        analytics.collectionCreated();
-      else if(this.source == 'collection_cancel')
-        analytics.collectionCancelled();
-      else if(this.source == 'collection_deleted')
-        analytics.collectionDeleted();
-      else if(this.source == 'shoppings_create')
-        analytics.shoppingsCreated();
 
       analytics.identifyUser(
         this.currentUser.get('email'),
@@ -270,12 +227,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   ownsRendered: function() {
     if(this.isCurrentUser) 
       new Denwen.Partials.Suggestions.Product({el :$('#suggestions')});
-  },
-
-  // Callback when collections are loaded
-  //
-  collectionsLoaded: function() {
-    this.switchCurrentTabLoadOff();
   }
   
 });
