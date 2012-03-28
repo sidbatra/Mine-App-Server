@@ -18,12 +18,6 @@ Denwen.Views.Products.Show = Backbone.View.extend({
           with_focus        : /_comment$/i.test(this.source),
           el                : $('#comments_container')});
 
-    new Denwen.Partials.Actionables.Actions({
-          actionable_id       : this.product.get('id'),
-          actionable_type     : 'product',
-          actionable_user_id  : this.product.get('user_id'),
-          el                  : $('#feedback')});
-
     new Denwen.Partials.Facebook.Base();
 
     if(helpers.isCurrentUser(this.product.get('user_id'))) {
