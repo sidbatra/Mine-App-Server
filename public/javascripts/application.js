@@ -2,7 +2,7 @@
 //
 var Denwen = {
   Models      : {},
-  Views       : { Users : {}, Products : {}, Stores : {},
+  Views       : { Users : {}, Products : {}, 
                   Invites : {}, Welcome : {}, 
                   Admin : {Suggestions : {},Stores : {}}, 
                   Shoppings : {}, Followings : {}, 

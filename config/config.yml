@@ -3,8 +3,7 @@
 # IMP: Run "rake js:dump:config" after editing.
 #
 shared: &shared
-  :products_threshold: 5
-  :min_entries_for_view_all: 6
+  :dummy: 0
 
 # Constants shared across deployment environments
 #
@@ -40,7 +39,6 @@ common: &common
     :user_products: user_%d_products
     :user_product_suggestions: user_%d_product_suggestions_%s
     :store_top_products: store_%d_top_products
-    :store_products: store_%d_products
     :store_all: store_all
     :store_top: store_top
     :store_suggest: store_suggest

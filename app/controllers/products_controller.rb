@@ -74,33 +74,6 @@ class ProductsController < ApplicationController
 
       @key = KEYS[:user_products] % params[:owner_id]
 
-    when :store
-      @products   = Product.select(:id,:is_gift,:handle,:user_id,
-                              :image_path,:is_hosted,
-                              :is_processed,:orig_thumb_url).
-                      with_user.
-                      for_store(params[:owner_id]).
-                      by_id
-
-      @key = KEYS[:store_products] % params[:owner_id]
-
-    when :top
-      @products = Product.select(:id,:title,:handle,:user_id).
-                    for_store(params[:owner_id]).
-                    created(30.days.ago..Time.now).
-                    with_user.
-                    limit(10)
-
-      @key = KEYS[:store_top_products] % params[:owner_id]
-
-    when :used
-      @products = Product.for_user(params[:owner_id]).
-                    with_user.
-                    most_used.
-                    limit(10)
-
-      @key = KEYS[:user_top_products] % params[:owner_id]
-
     else
       raise IOError, "Invalid option"
     end
