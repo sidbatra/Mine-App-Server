@@ -96,6 +96,32 @@ module DW
                   :url      => product.image_url,
                   :message  => product.title)  
       end
+
+      # Subscribe to real time updates for facebook permissions
+      # of our userbase 
+      #
+      def self.subscribe_to_fb_permissions_updates
+        http = Net::HTTP.new('graph.facebook.com',443)
+        
+        params = {
+          'object'        => 'permissions',
+          'fields'        => 'publish_actions,publish_stream',
+          'callback_url'  => facebook_index_url(
+                              :host   => CONFIG[:host],
+                              :filter => 'subscriptions'),
+          'verify_token'  => CONFIG[:fb_verify_token],
+          'access_token'  => CONFIG[:fb_app_token]}
+
+        http.use_ssl      = true
+        http.verify_mode  = OpenSSL::SSL::VERIFY_NONE
+
+        http.request_post(
+              "/#{CONFIG[:fb_app_id]}/subscriptions",
+              params.map{|k,v| "#{k}=#{v}"}.join('&'))
+
+        rescue => ex
+          LoggedException.add(__FILE__,__method__,ex)
+      end
     
     end #distribution manager
 
