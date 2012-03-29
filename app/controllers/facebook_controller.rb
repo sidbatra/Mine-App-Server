@@ -36,6 +36,23 @@ class FacebookController < ApplicationController
   
     case @filter
     when :subscriptions
+      object  = params[:object]
+      entry   = params[:entry]
+
+      unless object == 'permissions' && entry 
+        raise IOError, "Incorrect params for fb subscription updates"
+      end
+
+      user_fb_ids = entry.map{|permission| permission['uid']} 
+      users       = User.find_all_by_fb_user_id(user_fb_ids)
+      
+      users.each do |user|
+        ProcessingQueue.push(
+          UserDelayedObserver,
+          :after_fb_permissions_update,
+          user.id)
+      end
+  
     else
       raise IOError, "Incorrect facebook create filter"
     end

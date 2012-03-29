@@ -9,15 +9,7 @@ class UserDelayedObserver < DelayedObserver
 
     Mailman.welcome_new_user(user)
 
-    #user.host
-
-    if user.fb_permissions.include?(:publish_stream)
-      setting = user.setting
-
-      setting.fb_publish_stream = true
-      setting.save!
-    end
-
+    after_fb_permissions_update(user.id)
     mine_fb_data(user)
   end
 
@@ -27,6 +19,20 @@ class UserDelayedObserver < DelayedObserver
     user = User.find(user_id)
 
     mine_fb_data(user) if options[:mine]
+  end
+
+  # Delayed facebook permissions update 
+  #
+  def self.after_fb_permissions_update(user_id)
+    user        = User.find(user_id)
+
+    permissions = user.fb_permissions
+    setting     = user.setting
+
+    setting.fb_publish_stream   = permissions.include?(:publish_stream)
+    setting.fb_publish_actions  = permissions.include?(:publish_actions)
+    
+    setting.save!
   end
 
 
