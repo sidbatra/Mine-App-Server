@@ -37,7 +37,7 @@ class Admin::StoresController < ApplicationController
 
     # Update the store name. If the updated name is already in the
     # database, then delete the store and move all its products to
-    # the existing store. Also handle cases for unknowns and gifts
+    # the existing store. Also handle cases for unknowns. 
     when :unapproved
       fetched_store   = Store.fetch(params[:name])
       type            = params[:name].downcase.to_sym

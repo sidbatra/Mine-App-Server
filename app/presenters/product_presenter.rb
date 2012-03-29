@@ -109,12 +109,7 @@ class ProductPresenter < BasePresenter
   def byline
     html = ""
     
-    if product.is_gift
-      html += "as a gift "
-    end
-
     if product.store
-
       html += "bought at " +
               store_link('product_store')
     end
@@ -130,8 +125,6 @@ class ProductPresenter < BasePresenter
     if product.store
       html = "Bought at" +
               store_link('product_store')
-    elsif product.is_gift
-      html = "gift "
     end
 
     html

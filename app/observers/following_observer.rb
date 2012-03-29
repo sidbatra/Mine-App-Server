@@ -42,14 +42,14 @@ class FollowingObserver < ActiveRecord::Observer
     end
   end
 
-  # Increment counter_caches on the User mode
+  # Increment counter_caches on the User model
   #
   def increment_counter(following)
     User.increment_counter(:followings_count,following.user_id)
     User.increment_counter(:inverse_followings_count,following.follower_id) 
   end
 
-  # Decrement counter_caches on the User mode
+  # Decrement counter_caches on the User model
   #
   def decrement_counter(following)
     User.decrement_counter(:followings_count,following.user_id)

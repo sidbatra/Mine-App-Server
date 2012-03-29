@@ -18,9 +18,7 @@ class Product < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of     :title
-  validates_presence_of     :price
   validates_presence_of     :orig_image_url
-  validates_inclusion_of    :is_gift, :in => [true,false]
   validates_presence_of     :user_id
 
   #----------------------------------------------------------------------
@@ -45,7 +43,7 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,:is_hosted,
-                  :query,:price,:endorsement,:is_gift,:store_id,:user_id,
+                  :query,:endorsement,:store_id,:user_id,
                   :source_product_id,:suggestion_id
 
   #----------------------------------------------------------------------
@@ -73,9 +71,7 @@ class Product < ActiveRecord::Base
       :orig_thumb_url     => attributes['orig_thumb_url'],
       :is_hosted          => attributes['is_hosted'],
       :query              => attributes['query'],
-      :price              => attributes['price'],
       :endorsement        => attributes['endorsement'].strip,
-      :is_gift            => attributes['is_gift'],
       :suggestion_id      => attributes['suggestion_id'],
       :store_id           => attributes['store_id'],
       :source_product_id  => attributes['source_product_id'],
