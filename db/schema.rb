@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329212729) do
+ActiveRecord::Schema.define(:version => 20120329224641) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -95,17 +95,14 @@ ActiveRecord::Schema.define(:version => 20120329212729) do
     t.text     "endorsement"
     t.text     "source_url"
     t.text     "orig_image_url"
-    t.boolean  "is_hosted",         :default => false
     t.string   "query"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "orig_thumb_url"
     t.integer  "store_id"
-    t.float    "price"
     t.string   "image_path"
     t.boolean  "is_processed",      :default => false
-    t.boolean  "is_gift",           :default => false
     t.string   "source_product_id"
     t.integer  "suggestion_id"
   end
