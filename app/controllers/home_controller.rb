@@ -1,10 +1,8 @@
-# Handle requests for the home page
-#
 class HomeController < ApplicationController
   before_filter :detect_origin
   layout        'home'
 
-  # Display pre-selected products on the home page
+  # Display the home page.
   #
   def show
     if params[:id]
@@ -18,7 +16,8 @@ class HomeController < ApplicationController
 
   private 
 
-  # Detect which origin the user is coming from and save it to session
+  # Detect and store various tracking variables inside the session
+  # and the curent request.
   #
   def detect_origin
     session[:home]    ||= 'bootstrap'
