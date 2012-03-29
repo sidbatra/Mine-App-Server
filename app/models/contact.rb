@@ -4,10 +4,6 @@ class Contact < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to :user
-  has_one :fb_user, 
-              :class_name => "User", 
-              :foreign_key => "fb_user_id",
-              :primary_key => "third_party_id"
   
   #----------------------------------------------------------------------
   # Named Scopes
@@ -20,24 +16,21 @@ class Contact < ActiveRecord::Base
   # Class Methods 
   #----------------------------------------------------------------------
 
-  # Batch insert of user's facebook contacts
+  # Batch insert contacts for a particular user.
   #
-  def self.batch_insert(user_id,fb_friends_ids,fb_friends_names)
-    fields  = [:user_id, :third_party_id, :name] 
-    data    = ([user_id]*fb_friends_ids.length).zip(
-                                              fb_friends_ids,
-                                              fb_friends_names)
+  # user_id : Integer. User id whose contacts are being added.
+  # third_party_ids : Array. Unique identifiers for each of the contacts.
+  # names : Array. Names for each of the contacts.
+  #
+  def self.batch_insert(user_id,third_party_ids,names)
+    if third_party_ids.length != names.length
+      raise IOError, "ids and names Array lengths aren't equal" 
+    end
+
+    fields = [:user_id,:third_party_id,:name] 
+    data = ([user_id]*third_party_ids.length).zip(third_party_ids,names)
     
     import fields,data
-  end
-
-  # Create contact from facebook friend object
-  #
-  def self.from_fb_friend(user_id,fb_friend)
-    new({ 
-        :user_id        => user_id,
-        :third_party_id => fb_friend.identifier,
-        :name           => fb_friend.name})
   end
 
 end
