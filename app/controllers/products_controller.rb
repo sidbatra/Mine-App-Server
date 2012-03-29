@@ -142,7 +142,6 @@ class ProductsController < ApplicationController
     params[:source_url]     = product.source_url
     params[:orig_image_url] = product.image_url
     params[:orig_thumb_url] = product.thumbnail_url
-    params[:is_hosted]      = 0
     params[:query]          = product.query
     params[:endorsement]    = ''
 
