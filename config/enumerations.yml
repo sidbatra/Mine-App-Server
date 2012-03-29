@@ -23,8 +23,6 @@
     Like: 'like'
     Own: 'own'
     Want: 'want'
-  ConfigurationVariable:
-    SuggestionCacheKey: 0
   EmailPurpose:
     Admin: 99
     NewFollower: 1
