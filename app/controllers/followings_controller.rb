@@ -1,5 +1,3 @@
-# Handle requests related to the followings resource
-#
 class FollowingsController < ApplicationController
   before_filter :login_required
 
