@@ -1,14 +1,12 @@
-# Handle requests for the invites resource
-#
 class InvitesController < ApplicationController
   before_filter :login_required
 
-  # Display UI for creating invites
+  # Display page for creating invites.
   #
   def new
   end
 
-  # Create one or more invites 
+  # Create an invite.
   #
   def create
     params[:user_id] = self.current_user.id
