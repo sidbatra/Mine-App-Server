@@ -31,10 +31,7 @@ common: &common
   :version: 3.1.1
   :keys:
     :user_ifollowers: user_%d_ifollowers
-    :user_ifollowers_preview: user_%d_ifollowers_preview
     :user_followers: user_%d_followers
-    :user_followers_preview: user_%d_followers_preview
-    :user_top_stores: user_%d_top_stores
     :user_products: user_%d_products
     :user_product_suggestions: user_%d_product_suggestions_%s
     :store_all: store_all
