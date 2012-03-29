@@ -12,6 +12,14 @@ class UserDelayedObserver < DelayedObserver
     #user.host
 
     mine_fb_data(user)
+
+    if user.fb_permissions.include?(:publish_stream)
+      setting = user.setting
+
+      setting.fb_publish_stream = true
+      setting.save!
+    end
+    
   end
 
   # Delayed after_update
