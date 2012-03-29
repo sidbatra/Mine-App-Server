@@ -32,14 +32,6 @@
                 <li>
                   <a href="<%=new_invite_path(:src => 'bar')%>">Invite friends</a>
                 </li>
-                <li>
-                  <div style="padding: 1px 4px">
-                  	<a href="<%=new_product_path(:src => 'bar')%>" class="btn btn-primary">
-                  		<i class="icon-plus icon-white"></i>
-                    	Add item 
-                    </a>
-                  </div>
-                </li>
                 <li class="user-cell">
                   <a style="white-space: nowrap; display: block; padding-right: 10px;" href="<%=is_onboarding? ? 
                               "javascript:void(0)" : 
@@ -52,7 +44,6 @@
                   </a>
                 </li>
                 <li class="dropdown">
-                  <!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <b class="caret"></b>
                   </a>

@@ -42,11 +42,6 @@ ActionController::Routing::Routes.draw do |map|
                 :action     => :show,
                 :filter     => :copyright
 
-  # Deprecate in next version
-  map.product_d 'products/:id/:name',
-                :controller => :products,
-                :action     => :show
-
   map.product ':user_handle/p/:product_handle',
                 :controller => :products,
                 :action     => :show
@@ -77,7 +72,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:create,:show,:update]
 
   map.resources :products,
-                :only => [:new,:create,:index,:update,:destroy]
+                :only => [:create,:update,:destroy]
 
   map.resources :stores,
                 :only => [:index]

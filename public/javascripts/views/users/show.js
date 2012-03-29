@@ -19,46 +19,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     // -----
-    this.ownedProducts = new Denwen.Partials.Products.Products({
-                          el          : $('#centerstage'),
-                          owner_id    : this.user.get('id'),
-                          owner_name  : this.user.get('first_name'),
-                          filter      : 'user',
-                          type        : 'user',
-                          fragment    : 'owns'});
-
-    this.ownedProducts.bind(
-      Denwen.Callback.ProductsLoaded,
-      this.productsLoaded,
-      this);
-
-    this.ownedProducts.bind(
-      Denwen.Callback.ProductsRendered,
-      this.ownsRendered,
-      this);
-
-    // -----
-    this.wantedProducts = new Denwen.Partials.Products.Products({
-                            el        : $('#centerstage'),
-                            owner_id  : this.user.get('id'),
-                          owner_name  : this.user.get('first_name'),
-                            filter    : 'wanted',
-                            type      : 'user',
-                            fragment  : 'wants'});
-
-    this.wantedProducts.bind(
-      Denwen.Callback.ProductsLoaded,
-      this.productsLoaded,
-      this);
-
-    // -----
     if(this.isCurrentUser)
       new Denwen.Partials.Users.Byline({
                     model: this.user, 
                     el:$('#profile_bio')});
 
     // ----
-    this.routing();
+    //this.routing();
 
     // -----
     this.loadFacebookPlugs();

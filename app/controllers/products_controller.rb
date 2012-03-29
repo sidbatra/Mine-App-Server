@@ -1,82 +1,31 @@
-# Handle requests for the products resource
-#
 class ProductsController < ApplicationController
-  before_filter :login_required,  :only => [:new,:create,:edit,:update,:destroy]
-  before_filter :renew_session, :only => :show
+  before_filter :login_required
 
-  # Display UI for creating a new product
+  # Create a new product.
   #
-  def new
-    @product        = Product.new
-    @product.price  = 0
-
-    @suggestion   = params[:suggestion] ? 
-                      Suggestion.find(params[:suggestion]) : nil
-
-    @store        = params[:store] ? 
-                      Store.find_by_handle(params[:store]) : nil
-
-    @product.store_name = @store.name if @store
-
-  rescue => ex
-    handle_exception(ex)
-  ensure
-  end
-
-  # Create a new product
+  # There are two different ways of using /products [POST].
+  #
+  # The straightforward way is to pass all relevant params
+  # inside the params hash.
+  #
+  # The other way is to create a product from an existing one with
+  # a different store name. This requires passing a :source_product_id 
+  # param with the id of the original product and an optional store_name.
   #
   def create
     
-    if params[:product][:source_product_id] && params[:product][:clone]
-      params[:product] = populate_params_from_product(params[:product])
+    if params[:source_product_id] && params[:clone]
+      params = populate_params_from_product(params)
     end
 
-    if params[:product][:is_store_unknown] == '0'
-      params[:product][:store_id] = Store.add(
-                                      params[:product][:store_name],
-                                      self.current_user.id).id
+    if params[:is_store_unknown] == '0'
+      params[:store_id] = Store.add(
+                            params[:store_name],
+                            self.current_user.id).id
     end
 
-    @product  = Product.add(params[:product],self.current_user.id)
+    @product = Product.add(params,self.current_user.id)
 
-  rescue => ex
-    handle_exception(ex)
-  ensure
-    respond_to do |format|
-      format.html do
-        redirect_to  @error ? 
-                      new_product_path(
-                        :src => ProductNewSource::Error) :
-                      user_path(
-                        self.current_user.handle,
-                        :src    => UserShowSource::ProductCreate,
-                        :anchor => UserShowHash::Owns)
-
-      end
-      format.json 
-    end
-  end
-
-  # Fetch multiple products
-  #
-  def index
-    @filter     = params[:filter].to_sym
-
-    case @filter
-    when :user
-      @products   = Product.select(:id,:is_gift,:handle,:user_id,:store_id,
-                              :image_path,:is_hosted,
-                              :is_processed,:orig_thumb_url).
-                      with_store.
-                      with_user.
-                      for_user(params[:owner_id]).
-                      by_id
-
-      @key = KEYS[:user_products] % params[:owner_id]
-
-    else
-      raise IOError, "Invalid option"
-    end
   rescue => ex
     handle_exception(ex)
   ensure
@@ -85,22 +34,14 @@ class ProductsController < ApplicationController
     end
   end
 
-  # Display a product
+  # Display a specific product.
   #
   def show
+    user = User.find_by_handle(params[:user_handle])
 
-    if params[:id].present?
-      product = Product.find(params[:id])
-      redirect_to product_path(product.user.handle,product.handle)
-      return
-    end
-
-
-    user      = User.find_by_handle(params[:user_handle])
-    @product  = Product.with_store.with_user.find_by_user_id_and_handle(
-                          user.id,
-                          params[:product_handle])
-
+    @product = Product.find_by_user_id_and_handle(
+                 user.id,
+                 params[:product_handle])
 
     @next_product  = @product.next
     @next_product  ||= @product.user.products.first
@@ -111,20 +52,19 @@ class ProductsController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path if @error
   end
 
-  # Display form for editing a product
+  # Display page for editing a product.
   #
   def edit
-    user          = User.find_by_handle(params[:user_handle])
+    user = User.find_by_handle(params[:user_handle])
 
     raise IOError, "Unauthorized Access" if user.id != self.current_user.id
 
 
-    @product      = Product.with_store.find_by_user_id_and_handle(
-                              user.id,
-                              params[:product_handle])
+    @product = Product.find_by_user_id_and_handle(
+                user.id,
+                params[:product_handle])
 
     if @product.store
       @product.store_name = @product.store.name 
@@ -134,20 +74,18 @@ class ProductsController < ApplicationController
       @product.is_store_unknown = true
     end
 
-
-    @suggestion   = @product.suggestion
+    @suggestion = @product.suggestion
 
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to root_path if @error
   end
 
-  # Update product
+  # Update a product.
   #
   def update
-    @product        = Product.find(params[:id])
-    product_params  = params[:product]
+    @product = Product.find(params[:id])
+    product_params = params[:product]
 
     product_params[:user_id] = self.current_user.id
 
@@ -170,15 +108,15 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html do 
         redirect_to product_path(
-                    self.current_user.handle,
-                    @product.handle,
-                    :src => ProductShowSource::Updated)
+                      self.current_user.handle,
+                      @product.handle,
+                      :src => ProductShowSource::Updated)
       end
       format.json 
     end
   end
 
-  # Destroy a product if the curernt user has proper permissions
+  # Destroy a product.
   #
   def destroy
     product = Product.find(params[:id])
