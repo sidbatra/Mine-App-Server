@@ -92,17 +92,17 @@ ActionController::Routing::Routes.draw do |map|
   map.privacy 'privacy',
     :controller => :static,
     :action     => :show,
-    :filter     => :privacy
+    :aspect     => :privacy
 
   map.terms 'terms',
     :controller => :static,
     :action     => :show,
-    :filter     => :terms
+    :aspect     => :terms
 
   map.copyright 'copyright',
     :controller => :static,
     :action     => :show,
-    :filter     => :copyright
+    :aspect     => :copyright
 
 
   ##

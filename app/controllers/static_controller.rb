@@ -1,14 +1,9 @@
-# Handle all requests for static pages 
-#
 class StaticController < ApplicationController
 
-  # Render different static pages based on filters
+  # Display different static pages based on the aspect.
   #
   def show
-    @filter = params[:filter].to_s
-    
-    render :partial => @filter,
+    render :partial => params[:aspect].to_s,
            :layout  => "application"
-
   end
 end
