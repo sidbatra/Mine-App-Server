@@ -87,19 +87,13 @@ Rails::Initializer.run do |config|
                               File.join(Rails.root,'app','observers'),
                               File.join(Rails.root,'app','processors'),
                               File.join(Rails.root,'app','presenters'),
-                              File.join(Rails.root,'app','sweepers'),
                               File.join(Rails.root,'app','delayed_observers')]
 
 
   # Register observers
-  config.active_record.observers  = :product_observer, 
-                                    :user_observer, :following_observer,
-                                    :store_observer,
-                                    :invite_observer,
-                                    :ticker_action_observer,
-                                    :store_sweeper, :product_sweeper,
-                                    :user_sweeper, :shopping_sweeper, 
-                                    :suggestion_sweeper
+  config.active_record.observers  = :product_observer, :user_observer, 
+                                    :following_observer, :store_observer, 
+                                    :invite_observer, :ticker_action_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
