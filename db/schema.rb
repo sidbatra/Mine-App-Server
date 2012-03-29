@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329204545) do
+ActiveRecord::Schema.define(:version => 20120329212729) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -131,12 +131,14 @@ ActiveRecord::Schema.define(:version => 20120329204545) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "post_to_timeline",  :default => true
+    t.boolean  "post_to_timeline",   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "email_interaction", :default => true
-    t.boolean  "email_influencer",  :default => true
-    t.boolean  "email_update",      :default => true
+    t.boolean  "email_interaction",  :default => true
+    t.boolean  "email_influencer",   :default => true
+    t.boolean  "email_update",       :default => true
+    t.boolean  "fb_publish_actions", :default => true
+    t.boolean  "fb_publish_stream",  :default => false
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
