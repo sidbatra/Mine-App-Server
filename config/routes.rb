@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.fb_reply  'facebook/reply',
                 :controller => :users,
                 :action     => :create
-  
+
   map.privacy   'privacy',
                 :controller => :static,
                 :action     => :show,
@@ -97,6 +97,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :suggestions,
                 :only => [:index]
+
+  map.resources :facebook,
+                :only => [:index,:create]
 
   map.new_invite '/invite',
                   :controller => :invites,
