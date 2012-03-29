@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   #
   def renew_session
     if logged_in? && (!session[:last_renewed_at] || 
-                    Time.now - session[:last_renewed_at] > 3600)
+                    Time.now - session[:last_renewed_at] > 86400)
       
       self.current_user.touch
       session[:last_renewed_at] = Time.now

@@ -51,27 +51,6 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       this.productsLoaded,
       this);
 
-
-    // -----
-    new Denwen.Partials.Users.List({
-                          el      : $('#ifollowers_with_msg'),
-                          user    : this.user,
-                          filter  : 'ifollowers',
-                          count   : this.user.get('inverse_followings_count'),
-                          src     : 'following'});
-
-    // -----
-    new Denwen.Partials.Users.Stores({
-                          el    : '#user_stores_box',
-                          user  : this.user});
-
-
-    // -----
-    //if(!this.isCurrentUser && helpers.isLoggedIn())
-    //  new Denwen.Partials.Users.Following({
-    //                        el  : $('#following_box_' + this.user.get('id')),
-    //                        user_id : this.user.get('id')});
-
     // -----
     if(this.isCurrentUser)
       new Denwen.Partials.Users.Byline({

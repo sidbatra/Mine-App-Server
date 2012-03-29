@@ -1,5 +1,0 @@
-<%-cache @key do-%>
-  <%=@users.to_json(
-      :only     => [:id,:first_name,:last_name,:handle],
-      :methods  => :photo_url)-%>
-<%-end-%>
