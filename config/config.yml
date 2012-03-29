@@ -40,7 +40,6 @@ common: &common
     :store_all: store_all
     :store_top: store_top
     :store_suggest: store_suggest
-    :product_search: product_search_%s_%d
 
 development: &development
   <<: *common
