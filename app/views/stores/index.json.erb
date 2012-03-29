@@ -1,12 +1,8 @@
 <%-cache @key do-%>
-  <%-if @filter == :top || @filter == :for_user-%>
+  <%-if @filter == :for_user-%>
     <%=@stores.to_json(
         :only     => [:id,:name,:handle],
         :methods  => :thumbnail_url)-%>
-  <%-elsif @filter == :suggest-%>
-    <%=@stores.to_json(
-        :only     => [:id,:name,:handle],
-        :methods  => :large_url)-%>
   <%-elsif @filter == :all-%>
     <%=@stores.to_json(
         :only     => [:id,:name,:domain])-%>

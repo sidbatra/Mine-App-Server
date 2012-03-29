@@ -15,18 +15,6 @@ class StoresController < ApplicationController
     @filter = params[:filter].to_sym
 
     case @filter
-    when :top
-      @stores   = Store.select(:id,:name,:handle,:is_processed,:image_path).
-                        processed.
-                        popular.
-                        limit(20)
-      @key      = KEYS[:store_top]
-    when :suggest
-      @stores   = Store.select(:id,:name,:handle,:is_processed,:image_path).
-                        processed.
-                        popular.
-                        limit(60)
-      @key      = KEYS[:store_suggest]
     when :all
       @stores   = Store.select(:id,:name,:domain)
       @key      = KEYS[:store_all]
