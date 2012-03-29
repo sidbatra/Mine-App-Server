@@ -1,20 +1,16 @@
-# Handle requests for displaying and updating
-# user settings
-#
 class SettingsController < ApplicationController
   before_filter :login_required
 
-  # Display the settings available to the current user
+  # Display page for editing settings of the current user.
   #
   def index
     @settings = self.current_user.setting
   rescue => ex
     handle_exception(ex)
   ensure
-    redirect_to(root_path) if @error
   end
 
-  # Get the status of individual settings for the current user 
+  # Get the status of individual settings for the current user.
   #
   def show
     @filter = params[:id].to_sym
@@ -31,7 +27,7 @@ class SettingsController < ApplicationController
     end
   end
 
-  # Update settings for the current iser
+  # Update settings for the current user.
   #
   def update
     @settings = self.current_user.setting
