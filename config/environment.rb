@@ -97,10 +97,9 @@ Rails::Initializer.run do |config|
                                     :store_observer,
                                     :invite_observer,
                                     :ticker_action_observer,
-                                    :store_sweeper, :following_sweeper,
-                                    :product_sweeper,
-                                    :user_sweeper, 
-                                    :shopping_sweeper, :suggestion_sweeper
+                                    :store_sweeper, :product_sweeper,
+                                    :user_sweeper, :shopping_sweeper, 
+                                    :suggestion_sweeper
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
