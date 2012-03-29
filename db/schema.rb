@@ -9,16 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328180732) do
-
-  create_table "configurations", :force => true do |t|
-    t.integer  "variable"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "configurations", ["variable"], :name => "index_configurations_on_variable", :unique => true
+ActiveRecord::Schema.define(:version => 20120329204545) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
