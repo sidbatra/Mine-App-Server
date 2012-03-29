@@ -77,10 +77,6 @@
     Invite: 'invite'
   WelcomeFilter:
     Learn: 'intro'
-    Stores: 'stores'
-    Follow: 'follow'
-    Friends: 'friends'
-    Create: 'create'
     Share: 'share'
   OGObject:
     Item: "oncloset:item" 

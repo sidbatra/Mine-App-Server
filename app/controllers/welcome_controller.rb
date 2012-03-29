@@ -11,9 +11,6 @@ class WelcomeController < ApplicationController
     case @filter
     when WelcomeFilter::Learn
       @view     = "show"
-    when WelcomeFilter::Stores
-      @shopping = Shopping.new
-      @view     = "stores"
     when WelcomeFilter::Share
       @view     = "share"
     else
@@ -31,26 +28,12 @@ class WelcomeController < ApplicationController
   def create
     @filter = params[:id] 
 
-    case @filter
-    when WelcomeFilter::Stores
-      @success_target = welcome_path(WelcomeFilter::Share)
-      @error_target   = welcome_path(WelcomeFilter::Stores)
-
-      store_ids = params[:store_ids].split(',')
-
-      store_ids.each do |store_id|
-        Shopping.add(
-          self.current_user.id,
-          store_id,
-          ShoppingSource::User)
-      end
-
-    else
-      @success_target  = welcome_path(WelcomeFilter::Learn)
-      @error_target    = welcome_path(WelcomeFilter::Learn)
+    #case @filter
+    #  @success_target  = welcome_path(WelcomeFilter::Learn)
+    #  @error_target    = welcome_path(WelcomeFilter::Learn)
 
       raise IOError, "Incorrect welcome create ID"
-    end
+    #end
 
   rescue => ex
     handle_exception(ex)
