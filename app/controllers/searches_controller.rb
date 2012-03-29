@@ -1,14 +1,10 @@
-# Handle requests for the searches resource
-#
 class SearchesController < ApplicationController
-  before_filter :login_required,  :only => [:create]
+  before_filter :login_required
 
-  # Create a new search
+  # Create a new search.
   #
   def create
-    @search = Search.add(
-                        params,
-                        self.current_user.id)
+    @search = Search.add(params,self.current_user.id)
   rescue => ex
     handle_exception(ex)
   ensure
