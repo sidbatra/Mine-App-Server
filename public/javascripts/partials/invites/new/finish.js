@@ -89,7 +89,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
     }
     else {
       this.stopLoading();
-      dDrawer.error("Please allow Facebook permissions to send an invite.");
+      Denwen.Drawer.error("Please allow Facebook permissions to send an invite.");
       analytics.facebookPermissionsRejected();
     }
   },
@@ -125,7 +125,7 @@ Denwen.Partials.Invites.New.Finish = Backbone.View.extend({
   //
   inviteCreated: function() {
     //window.location.hash = ;
-    dDrawer.success("Invite sent successfully.");
+    Denwen.Drawer.success("Invite sent successfully.");
     analytics.inviteCompleted();
   },
 

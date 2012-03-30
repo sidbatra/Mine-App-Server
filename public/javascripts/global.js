@@ -8,7 +8,6 @@ var analytics     = new Denwen.Analytics();
 Denwen.A      = new Denwen.Analytics();
 Denwen.H      = new Denwen.Helpers();
 Denwen.Drawer = new Denwen.Partials.Common.MessageDrawer();
-var dDrawer       = new Denwen.Partials.Common.MessageDrawer();
 
 
 // Required to bypass rails CSRF protection, works in conjuction with

@@ -40,6 +40,6 @@ Denwen.Partials.Admin.Suggestions.Input = Backbone.View.extend({
   // Callback from uploader - error uploading file
   //
   fileUploadError: function(message) {
-    dDrawer.error('Error uploading file: ' + message);
+    Denwen.Drawer.error('Error uploading file: ' + message);
   }
 });

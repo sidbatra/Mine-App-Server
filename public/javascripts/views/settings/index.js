@@ -23,9 +23,9 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
     });
 
     if(this.updated == 'true')
-      dDrawer.success("Your changes have been saved.");
+      Denwen.Drawer.success("Your changes have been saved.");
     else if(this.updated == 'false')
-      dDrawer.error("Sorry, there was an error saving your changes.");
+      Denwen.Drawer.error("Sorry, there was an error saving your changes.");
 
     this.setAnalytics();
   },
