@@ -11,27 +11,6 @@ module DW
     #
     class NotificationManager
 
-      # Rehost the updated store image
-      #
-      def self.update_store(store_id)
-        store = Store.find(store_id)
-        store.host
-      end
-
-      # Notify Mailman about the new action
-      #
-      def self.new_action(action_id)
-        action  = Action.find(action_id)
-        Mailman.notify_owner_about_an_action(action)
-
-        if action.name == ActionName::Want && 
-           action.user.setting.post_to_timeline
-          DistributionManager.publish_want(
-                                action.user,
-                                action.actionable)
-        end
-      end
-
       # Notify Mailman about the new following
       # 
       def self.new_following(following_id)
