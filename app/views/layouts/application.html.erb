@@ -40,13 +40,6 @@
 
     <%=include_javascripts :application-%>
 
-    <script type="text/javascript">
-      setupDeviceVariables(
-        <%=is_mobile_device? ? true : false%>,
-        <%=is_device_ipad?%>,
-        <%=is_device_iphone?%>);
-    </script>
-
     <%=yield :javascript%>
 
     <script type="text/javascript">

@@ -119,7 +119,7 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   //
   setAnalytics: function() {
 
-    if(helpers.isOnboarding)
+    if(Denwen.H.isOnboarding)
       analytics.onboardingStoresView();
     else
       analytics.shoppingNewView(this.source);

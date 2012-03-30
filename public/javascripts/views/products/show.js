@@ -14,7 +14,7 @@ Denwen.Views.Products.Show = Backbone.View.extend({
 
     new Denwen.Partials.Facebook.Base();
 
-    if(helpers.isCurrentUser(this.product.get('user_id'))) {
+    if(Denwen.H.isCurrentUser(this.product.get('user_id'))) {
       new Denwen.Partials.Products.Endorsement({
                   model   : this.product,
                   el      : $('#product_endorsement_box'),

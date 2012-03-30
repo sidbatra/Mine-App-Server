@@ -1,4 +1,4 @@
-<%if(helpers.isCurrentUser(ownerID) && src == 'user'){%>
+<%if(Denwen.H.isCurrentUser(ownerID) && src == 'user'){%>
   <div style="margin-bottom: 15px; height: 38px;">
     <a href="/products/new?src=owns" 
         style="padding-bottom: 10px; margin-right: 7px;" 
@@ -14,7 +14,7 @@
 <%if(!products.length) {%> 
   <%if(src == 'user'){%>
 
-    <%if(helpers.isCurrentUser(ownerID)){%>
+    <%if(Denwen.H.isCurrentUser(ownerID)){%>
     
       <div class="alert alert-info caret-top-left" 
             style="padding-top: 11px; padding-right: 0px; margin-bottom: 0;">
@@ -30,7 +30,7 @@
               <a class="thumbnail disabled no-hover">
                 <div class="thumb-photo">
                   <img style="max-width: 130px; max-height: 130px;" 
-                        src="<%=helpers.imagePath('placeholders/' + image)%>" />
+                        src="<%=Denwen.H.imagePath('placeholders/' + image)%>" />
                 </div>
               </a>
             </li>
@@ -47,7 +47,7 @@
     <%}%>
 
   <%} else if(src == 'wanted') {%>
-      <%if(helpers.isCurrentUser(ownerID)){%>
+      <%if(Denwen.H.isCurrentUser(ownerID)){%>
       	<div class="alert alert-info">
         	Everything you 'Want' across the site will show up here.
         </div>

@@ -6,7 +6,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   initialize: function() {
     this.user           = new Denwen.Models.User(this.options.userJSON);
-    this.isCurrentUser  = helpers.isCurrentUser(this.user.get('id'));
+    this.isCurrentUser  = Denwen.H.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
     this.currentTab     = undefined;
 
@@ -156,7 +156,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
         this.currentUser.get('age'),
         this.currentUser.get('gender'));
 
-      analytics.trackVersion(helpers.version.slice(0,-2));
+      analytics.trackVersion(Denwen.H.version.slice(0,-2));
     }
 
     analytics.checkForEmailClickedEvent(this.source);

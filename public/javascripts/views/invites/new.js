@@ -95,7 +95,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //
   setAnalytics: function() {
 
-    if(helpers.isOnboarding)
+    if(Denwen.H.isOnboarding)
       analytics.inviteViewOnboarding();
     else
       analytics.inviteView(this.source);

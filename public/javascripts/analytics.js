@@ -87,7 +87,7 @@ Denwen.Analytics = Backbone.Model.extend({
   followingCreated: function(followedID) {
     mpq.track("Following Created",{
           'Followed ID'  : followedID,
-          'User ID'      : helpers.currentUserID()});
+          'User ID'      : Denwen.H.currentUserID()});
   },
 
   // User destroys a following
@@ -95,7 +95,7 @@ Denwen.Analytics = Backbone.Model.extend({
   followingDestroyed: function(followedID) {
     mpq.track("Following Destroyed",{
           'Followed ID'  : followedID,
-          'User ID'      : helpers.currentUserID()});
+          'User ID'      : Denwen.H.currentUserID()});
   },
 
   // User initiates the product ownership process
@@ -105,7 +105,7 @@ Denwen.Analytics = Backbone.Model.extend({
       'Source'          : source,
       'Source ID'       : sourceID,
       'Product ID'      : productID,
-      'User ID'         : helpers.currentUserID()});
+      'User ID'         : Denwen.H.currentUserID()});
   },
 
   // User cancels the product ownership process
@@ -115,7 +115,7 @@ Denwen.Analytics = Backbone.Model.extend({
       'Source'          : source,
       'Source ID'       : sourceID,
       'Product ID'      : productID,
-      'User ID'         : helpers.currentUserID()});
+      'User ID'         : Denwen.H.currentUserID()});
   },
 
   // User owns a product
@@ -125,7 +125,7 @@ Denwen.Analytics = Backbone.Model.extend({
       'Source'          : source,
       'Source ID'       : sourceID,
       'Product ID'      : productID,
-      'User ID'         : helpers.currentUserID()});
+      'User ID'         : Denwen.H.currentUserID()});
   },
 
   // User wants a product
@@ -135,7 +135,7 @@ Denwen.Analytics = Backbone.Model.extend({
       'Source'          : source,
       'Source ID'       : sourceID,
       'Product ID'      : productID,
-      'User ID'         : helpers.currentUserID()});
+      'User ID'         : Denwen.H.currentUserID()});
   },
 
   // User opts in to write a review during creation
@@ -274,7 +274,7 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   productCreated: function() {
     mpq.track("Item Created",{
-          'User ID'    : helpers.currentUserID()});
+          'User ID'    : Denwen.H.currentUserID()});
   },
 
   // User updates a product
@@ -282,7 +282,7 @@ Denwen.Analytics = Backbone.Model.extend({
   productUpdated: function(productID) {
     mpq.track("Product Updated",{
           'Product ID' : productID,
-          'User ID'    : helpers.currentUserID()});
+          'User ID'    : Denwen.H.currentUserID()});
   },
 
   // User clicks product to visit the original link
@@ -326,7 +326,7 @@ Denwen.Analytics = Backbone.Model.extend({
   userProductsView: function(type,userID) {
     mpq.track(
       'User ' + type.capitalize() + ' View',{
-        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'Is Own Profile'  : Denwen.H.isCurrentUser(userID),
         'id'              : userID});
   },
 
@@ -335,7 +335,7 @@ Denwen.Analytics = Backbone.Model.extend({
   userFollowersView: function(userID) {
     mpq.track(
       'User Followers View',{
-        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'Is Own Profile'  : Denwen.H.isCurrentUser(userID),
         'id'              : userID});
   },
 
@@ -344,7 +344,7 @@ Denwen.Analytics = Backbone.Model.extend({
   userIFollowersView: function(userID) {
     mpq.track(
       'User IFollowers View',{
-        'Is Own Profile'  : helpers.isCurrentUser(userID),
+        'Is Own Profile'  : Denwen.H.isCurrentUser(userID),
         'id'              : userID});
   },
 
@@ -468,7 +468,7 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Product Editing View", 
       {
       'Product ID'  : product_id,
-      'User ID'     : helpers.currentUserID(),
+      'User ID'     : Denwen.H.currentUserID(),
       'Source'      : source
       });
   },

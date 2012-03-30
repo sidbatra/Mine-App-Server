@@ -29,7 +29,7 @@ Denwen.Views.Products.New = Backbone.View.extend({
       this.suggestion.get('id'),
       this.suggestion.get('title'));
 
-    if(helpers.isOnboarding) 
+    if(Denwen.H.isOnboarding) 
       analytics.productNewViewOnboarding();
 
     analytics.checkForEmailClickedEvent(this.source);

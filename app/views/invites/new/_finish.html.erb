@@ -10,7 +10,7 @@
 			 	<div style="padding: 11px">
 			 	
 			 		<div class="user-block">
-	          <%=image_tag self.current_user.photo_url,
+	          <%=image_tag self.current_user.square_image_url,
 	              :class => "user-photo"%>
 			 			<strong><%=user_full_name(self.current_user)%></strong><br />
 			 			<span style="color: gray;">
