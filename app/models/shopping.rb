@@ -18,26 +18,27 @@ class Shopping < ActiveRecord::Base
   # Class Methods 
   #----------------------------------------------------------------------
 
-  # Add a new shopping 
+  # Factory method for creating a new shopping.
   #
   def self.add(user_id,store_id,source)
     shopping = find_or_create_by_user_id_and_store_id(
-                  :user_id      => user_id,
-                  :store_id     => store_id,
-                  :source       => source)
+                :user_id      => user_id,
+                :store_id     => store_id,
+                :source       => source)
   end
 
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Increment the products count
+  # Increment the products count.
   #
   def increment_products_count
     self.increment!(:products_count)
   end
 
-  # Decrement the products count
+  # Decrement the products count and destroy the record
+  # if the products_count goes down to zero.
   #
   def decrement_products_count
     self.decrement!(:products_count)

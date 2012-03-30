@@ -15,7 +15,7 @@ class HealthReport < ActiveRecord::Base
   # Class methods
   #----------------------------------------------------------------------
 
-  # Add a new health report
+  # Factory method for creating a health report.
   #
   def self.add(service)
     create!(
