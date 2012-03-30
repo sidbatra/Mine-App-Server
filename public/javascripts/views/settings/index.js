@@ -36,21 +36,21 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
     var name = checkBox.id.slice(8,checkBox.id.length);
 
     if($('#' + checkBox.id).is(':checked'))
-      analytics.settingTurnedOn(name);
+      Denwen.Track.settingTurnedOn(name);
     else
-      analytics.settingTurnedOff(name);
+      Denwen.Track.settingTurnedOff(name);
   },
 
   // Fire various tracking events
   //
   setAnalytics: function() {
-    analytics.settingsView(this.source);
+    Denwen.Track.settingsView(this.source);
 
     if(this.source == 'saved')
-      analytics.settingsUpdated();
+      Denwen.Track.settingsUpdated();
 
     if(this.source.slice(0,6) == 'email_')
-      analytics.unsubscribeInitiated(this.source.slice(6,this.source.length));
+      Denwen.Track.unsubscribeInitiated(this.source.slice(6,this.source.length));
   }
 
 });

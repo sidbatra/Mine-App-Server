@@ -31,7 +31,7 @@ Denwen.Partials.Products.Endorsement = Backbone.View.extend({
     $(this.textEl).html(this.model.escape('endorsement'));
 
     this.wipe();
-    analytics.endorsementEditingCompleted(this.source);
+    Denwen.Track.endorsementEditingCompleted(this.source);
   },
 
   // Called when the user wants to edit the endorsement
@@ -48,14 +48,14 @@ Denwen.Partials.Products.Endorsement = Backbone.View.extend({
     var textLength = $(this.inputEl).val().length;
     $(this.inputEl).selectRange(0,textLength);
 
-    analytics.endorsementEditingSelected(this.source);
+    Denwen.Track.endorsementEditingSelected(this.source);
   },
 
   // User cancel's endorsement editing
   //
   cancel: function() {
     this.wipe();
-    analytics.endorsementEditingCancelled(this.source);
+    Denwen.Track.endorsementEditingCancelled(this.source);
   },
 
   // Hides the active editing UI

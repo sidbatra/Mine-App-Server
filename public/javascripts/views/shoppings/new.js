@@ -85,7 +85,7 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
         "Continue <i class='icon-chevron-right icon-white'></i>"); 
     }
     
-    analytics.storePicked();
+    Denwen.Track.storePicked();
   },
 
   // Fired when a store is unpicked
@@ -99,7 +99,7 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
       $(this.buttonEl).html('Pick at least 3!');
     }
 
-    analytics.storeUnpicked();
+    Denwen.Track.storeUnpicked();
   },
 
   // Form submitted callback
@@ -120,11 +120,11 @@ Denwen.Views.Shoppings.New = Backbone.View.extend({
   setAnalytics: function() {
 
     if(Denwen.H.isOnboarding)
-      analytics.onboardingStoresView();
+      Denwen.Track.onboardingStoresView();
     else
-      analytics.shoppingNewView(this.source);
+      Denwen.Track.shoppingNewView(this.source);
 
-    analytics.checkForEmailClickedEvent(this.source);
+    Denwen.Track.checkForEmailClickedEvent(this.source);
   }
 
 });

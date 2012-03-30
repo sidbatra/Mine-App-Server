@@ -29,18 +29,18 @@ Denwen.Views.Products.Show = Backbone.View.extend({
   // User clicks the product image
   //
   productImageClicked: function() {
-    analytics.productClicked();
+    Denwen.Track.productClicked();
   },
 
   // Fire various tracking events
   //
   setAnalytics: function() {
-    analytics.userLandsOn(this.product.uniqueKey());
-    analytics.productProfileView(this.source,this.product.get('id'));
+    Denwen.Track.userLandsOn(this.product.uniqueKey());
+    Denwen.Track.productProfileView(this.source,this.product.get('id'));
 
     if(this.source == 'product_updated')
-      analytics.productUpdated(this.product.get('id'));
+      Denwen.Track.productUpdated(this.product.get('id'));
 
-    analytics.checkForEmailClickedEvent(this.source);
+    Denwen.Track.checkForEmailClickedEvent(this.source);
   }
 });

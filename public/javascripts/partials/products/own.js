@@ -103,7 +103,7 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
-      analytics.productException('No Store',mode);
+      Denwen.Track.productException('No Store',mode);
     }
     else {
       $(this.storeBoxEl).removeClass('error');

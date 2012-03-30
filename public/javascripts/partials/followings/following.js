@@ -62,7 +62,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
       this.trigger('addToUsersFollowed',this.userID);
     }
 
-    analytics.followingCreated(this.userID);
+    Denwen.Track.followingCreated(this.userID);
   },
 
   // Destroy the current following
@@ -83,7 +83,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
       this.trigger('removeFromUsersFollowed',this.userID);
     }
 
-    analytics.followingDestroyed(this.userID);
+    Denwen.Track.followingDestroyed(this.userID);
   },
 
   // Fired when the mouse leaves either create or destroy

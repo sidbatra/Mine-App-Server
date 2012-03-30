@@ -121,7 +121,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.endorsementEl).focus();
 
     if(!isRobot)
-      analytics.endorsementCreationSelected(this.mode);
+      Denwen.Track.endorsementCreationSelected(this.mode);
   },
 
   // Display product image 
@@ -158,7 +158,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     $(this.urlAlertBoxEl).hide();
 
-    analytics.productSearchCompleted(this.mode);
+    Denwen.Track.productSearchCompleted(this.mode);
 
     // Test if the website url matches a known store to populate
     // the store field
@@ -179,7 +179,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   productSearched: function(query,queryType) {
     this.searchesCount++;
-    analytics.productSearched(query,queryType,this.mode);
+    Denwen.Track.productSearched(query,queryType,this.mode);
 
     if(queryType == Denwen.ProductQueryType.Text) {
       
@@ -199,7 +199,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   productSearchCancelled: function(source) {
     this.searchesCount = 0;
-    analytics.productSearchCancelled(source,this.mode);
+    Denwen.Track.productSearchCancelled(source,this.mode);
   },
 
   // Fired when a product image is broken
@@ -217,7 +217,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     this.productImagesView.search();
 
-    analytics.productImageBroken(this.mode);
+    Denwen.Track.productImageBroken(this.mode);
   },
 
   // Form submitted callback
@@ -235,7 +235,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
       $(this.queryEl).addClass('incomplete');
       $(this.queryTextEl).addClass('incomplete');
-      analytics.productException('No Photo',this.mode);
+      Denwen.Track.productException('No Photo',this.mode);
     }
     else {
       $(this.queryEl).removeClass('incomplete');
@@ -246,7 +246,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       valid = false;
 
       $(this.titleBoxEl).addClass('error');
-      analytics.productException('No Title',this.mode);
+      Denwen.Track.productException('No Title',this.mode);
     }
     else {
       $(this.titleBoxEl).removeClass('error');
@@ -256,7 +256,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
-      analytics.productException('No Store',this.mode);
+      Denwen.Track.productException('No Store',this.mode);
     }
     else {
       $(this.storeBoxEl).removeClass('error');

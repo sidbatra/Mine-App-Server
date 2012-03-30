@@ -96,11 +96,11 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   setAnalytics: function() {
 
     if(Denwen.H.isOnboarding)
-      analytics.inviteViewOnboarding();
+      Denwen.Track.inviteViewOnboarding();
     else
-      analytics.inviteView(this.source);
+      Denwen.Track.inviteView(this.source);
 
-    analytics.checkForEmailClickedEvent(this.source);
+    Denwen.Track.checkForEmailClickedEvent(this.source);
   }
 
 });

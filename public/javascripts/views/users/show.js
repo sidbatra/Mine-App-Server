@@ -69,7 +69,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.ownedProducts.fetch();
     this.switchTabOn(this.ownsTab);
 
-    analytics.userProductsView(
+    Denwen.Track.userProductsView(
       Denwen.UserShowHash.Owns,
       this.user.get('id'));
   },
@@ -80,7 +80,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.wantedProducts.fetch();
     this.switchTabOn(this.wantsTab);
 
-    analytics.userProductsView(
+    Denwen.Track.userProductsView(
       Denwen.UserShowHash.Wants,
       this.user.get('id'));
   },
@@ -134,32 +134,32 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   setAnalytics: function() {
 
-    analytics.userLandsOn(this.user.uniqueKey());
+    Denwen.Track.userLandsOn(this.user.uniqueKey());
 
-    analytics.userProfileView(
+    Denwen.Track.userProfileView(
       this.source,
       this.user.get('id'));
 
     if(this.isCurrentUser) {
 
       if(this.source == 'product_create')
-        analytics.productCreated();
+        Denwen.Track.productCreated();
       else if(this.source == 'login')
-        analytics.userLogin();
+        Denwen.Track.userLogin();
       else if(this.source == 'user_create')
-        analytics.userCreated();
+        Denwen.Track.userCreated();
       else if(this.source == 'product_deleted')
-        analytics.productDeleted();
+        Denwen.Track.productDeleted();
 
-      analytics.identifyUser(
+      Denwen.Track.identifyUser(
         this.currentUser.get('email'),
         this.currentUser.get('age'),
         this.currentUser.get('gender'));
 
-      analytics.trackVersion(Denwen.H.version.slice(0,-2));
+      Denwen.Track.trackVersion(Denwen.H.version.slice(0,-2));
     }
 
-    analytics.checkForEmailClickedEvent(this.source);
+    Denwen.Track.checkForEmailClickedEvent(this.source);
   },
 
   // Callback when owns or wants are loaded

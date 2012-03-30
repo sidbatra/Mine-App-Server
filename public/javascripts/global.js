@@ -4,8 +4,7 @@
 
 // Global variables
 //
-var analytics     = new Denwen.Analytics();
-Denwen.A      = new Denwen.Analytics();
+Denwen.Track  = new Denwen.Analytics();
 Denwen.H      = new Denwen.Helpers();
 Denwen.Drawer = new Denwen.Partials.Common.MessageDrawer();
 

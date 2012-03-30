@@ -104,7 +104,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     $(this.queryEl).val('');
     $(this.cancelSearchEl).hide();
 
-    analytics.inviteStylePicked();
+    Denwen.Track.inviteStylePicked();
   },
 
   // Fired when the sub view has come into focus
@@ -138,7 +138,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
 
     if(query){
       $(this.cancelSearchEl).show();
-      analytics.friendSearched(query);
+      Denwen.Track.friendSearched(query);
     }
     else
       $(this.cancelSearchEl).hide();
@@ -158,7 +158,7 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
   //
   searchCancelled: function() {
     this.reset();
-    analytics.friendSearchCancelled();
+    Denwen.Track.friendSearchCancelled();
   }
   
 });

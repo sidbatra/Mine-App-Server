@@ -24,15 +24,15 @@ Denwen.Views.Products.New = Backbone.View.extend({
   //
   setAnalytics: function() {
 
-    analytics.productNewView(
+    Denwen.Track.productNewView(
       this.source,
       this.suggestion.get('id'),
       this.suggestion.get('title'));
 
     if(Denwen.H.isOnboarding) 
-      analytics.productNewViewOnboarding();
+      Denwen.Track.productNewViewOnboarding();
 
-    analytics.checkForEmailClickedEvent(this.source);
+    Denwen.Track.checkForEmailClickedEvent(this.source);
   }
 
 });

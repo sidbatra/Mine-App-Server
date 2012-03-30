@@ -22,9 +22,9 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    analytics.welcomeView();
-    analytics.userCreated(); 
-    analytics.identifyUser(
+    Denwen.Track.welcomeView();
+    Denwen.Track.userCreated(); 
+    Denwen.Track.identifyUser(
       this.currentUser.get('email'),
       this.currentUser.get('age'),
       this.currentUser.get('gender'));

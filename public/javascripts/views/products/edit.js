@@ -39,7 +39,7 @@ Denwen.Views.Products.Edit = Backbone.View.extend({
   //
   setAnalytics: function() {
 
-    analytics.productEditView(
+    Denwen.Track.productEditView(
         this.product.get('id'),
         this.source);
   }
