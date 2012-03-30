@@ -7,8 +7,8 @@ class FollowingObserver < ActiveRecord::Observer
     increment_counter(following)
 
     ProcessingQueue.push(
-      NotificationManager,
-      :new_following,
+      FollowingDelayedObserver,
+      :after_create,
       following.id) if following.send_email
   end
 

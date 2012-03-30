@@ -29,7 +29,6 @@ include CacheManagement
 include Cron
 include CryptoManagement 
 include ImageProcessing
-include NotificationManagement
 include MailmanInterface
 include Storage
 include QueueManagement
