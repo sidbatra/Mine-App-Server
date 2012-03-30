@@ -1,5 +1,3 @@
-# Observe events on the Ticker Action model
-#
 class TickerActionObserver < ActiveRecord::Observer
 
   # Delete facebook stories after a ticker action is destroyed
