@@ -32,7 +32,7 @@ class UserPresenter < BasePresenter
   #
   def large_picture(src)
     h.link_to h.image_tag(
-                user.large_photo_url, 
+                user.large_image_url, 
                 :class  => '',
                 :alt    => self.full_name),
               closet_path(src)
@@ -42,7 +42,7 @@ class UserPresenter < BasePresenter
   #
   def small_picture(src)
     h.link_to h.image_tag(
-                user.photo_url, 
+                user.square_image_url, 
                 :class  => "",
                 :alt    => ''),
               closet_path(src)

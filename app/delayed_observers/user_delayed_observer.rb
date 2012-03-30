@@ -1,5 +1,3 @@
-# Receive delayed events on the user model
-#
 class UserDelayedObserver < DelayedObserver
 
   # Delayed after_create

@@ -36,7 +36,7 @@
                   <a style="white-space: nowrap; display: block; padding-right: 10px;" href="<%=is_onboarding? ? 
                               "javascript:void(0)" : 
                               user_path(self.current_user.handle,:src => 'bar')%>">
-                     <%=image_tag self.current_user.photo_url, 
+                     <%=image_tag self.current_user.square_image_url, 
                                 :class => "avatar",
                                 :alt => ""
                                 %>

@@ -8,28 +8,24 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  has_many :products,       :dependent => :destroy
-  has_many :searches,       :dependent => :destroy
-  has_many :contacts,       :dependent => :destroy
-  has_many :shoppings,      :dependent => :destroy
-  has_many :stores,         :through   => :shoppings
-  has_one  :setting,        :dependent => :destroy 
+  has_many :products, :dependent => :destroy
+  has_many :searches, :dependent => :destroy
+  has_many :contacts, :dependent => :destroy
+  has_many :shoppings, :dependent => :destroy
+  has_many :stores, :through   => :shoppings
+  has_one  :setting, :dependent => :destroy 
   has_many :ticker_actions, :dependent => :destroy
-
   has_many :followings, :dependent  => :destroy
-  has_many :followers,  :through    => :followings,
+  has_many :followers, :through    => :followings,
                         :source     => :follower, 
                         :conditions => 'is_active = 1'
-
   has_many :inverse_followings, :class_name   => "Following", 
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
-
   has_many :ifollowers, :through    => :inverse_followings, 
                         :source     => :user, 
                         :conditions => 'is_active = 1'
-
-  has_many :invites,      :dependent => :destroy
+  has_many :invites, :dependent => :destroy
   has_many :received_invites, :class_name   => "Invite",
                               :foreign_key  => "recipient_id",
                               :primary_key  => "fb_user_id",
@@ -74,7 +70,8 @@ class User < ActiveRecord::Base
   # Class methods
   #----------------------------------------------------------------------
 
-  # Add a new user or find an existing one based on email
+  # Factory method to create a new user or update important fields
+  # of an existing user.
   #
   def self.add_from_fb(attributes,source)
     user = find_or_initialize_by_fb_user_id(
@@ -92,13 +89,13 @@ class User < ActiveRecord::Base
     user
   end
 
-  # Add a new user when an existing user invites a friend
+  # Factory method to create a user via an invite.
   #
   def self.add_from_invite(attributes)
     find_or_create_by_fb_user_id(attributes)
   end
 
-  # Find user by the token stored in their cookie
+  # Find user by the token stored in their cookie.
   #
   def self.find_by_cookie(token)
     find_by_remember_token(token)
@@ -110,59 +107,41 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
 
   # Whether the user has actually registered or is a stub user from
-  # an invite
+  # an invite.
+  #
+  # returns - Boolean. true if the user is registered false otherwise.
   #
   def is_registered?
     access_token.present?
   end
 
-  # Test is the user was created very recently
+  # Test is the user was created very recently.
   #
   def is_fresh
     (Time.now - self.created_at) < 60
   end
 
-  # URL for the user's image on fb of the given type
+  # URL for the user's image on fb.
+  #
+  # type - String:'square'. Type of fb image - square | small | normal | large
+  #
+  # returns - String. Url of the image.
   #
   def fb_image_url(type='square')
     "http://graph.facebook.com/" + fb_user_id + "/picture?type=#{type}" 
   end
 
-  # Relative path to the square image
-  #
-  def square_image_path
-    's_' + image_path
-  end
-
-  # Absolute url of the square thumbnail
+  # Convienience method to get the user's square fb image.
   #
   def square_image_url
-    are_images_hosted ?
-      FileSystem.url(square_image_path) :
-      fb_image_url('square')
-  end
-
-  # Old method for fetching square fb user image
-  #
-  def photo_url
     fb_image_url('square')
   end
- # alias :photo_url :square_image_url
 
-  # Absolute url of the large image
+  # Convienience method to get the user's large fb image.
   #
-  def image_url
-    are_images_hosted ?
-      FileSystem.url(image_path) :
-      fb_image_url('large')
-  end
-
-  # Old method for fetching large fb user image
-  #
-  def large_photo_url
+  def large_image_url
     fb_image_url('large')
   end
-  #alias :large_photo_url :image_url
 
   # Tests gender to see if user is male
   #
@@ -180,13 +159,13 @@ class User < ActiveRecord::Base
     gender && gender.first == 'f'
   end
 
-  # Test if the remember_token for the user cookie has expired
+  # Test if the remember_token for the user cookie has expired.
   #
   def remember_token?
     remember_token_expires_at && Time.now.utc < remember_token_expires_at 
   end
 
-  # Save a remember_token and its expiry representing the cookie
+  # Save a remember_token and its expiry representing the cookie.
   #
   def remember
     self.remember_token_expires_at  = 4.weeks.from_now.utc
@@ -196,7 +175,7 @@ class User < ActiveRecord::Base
     save(false)
   end
 
-  # Clear cookie information
+  # Clear cookie information.
   #
   def forget
     self.remember_token_expires_at  = nil
@@ -205,7 +184,7 @@ class User < ActiveRecord::Base
     save(false)
   end
 
-  # User age
+  # Calculate the user's age from their birthday.
   #
   def age
     if birthday.present?
@@ -219,57 +198,20 @@ class User < ActiveRecord::Base
     end
   end
 
-  # List of facebook friends
+  # List of facebook friends loaded via the open graph.
   #
   def fb_friends
     fb_user = FbGraph::User.new('me', :access_token => self.access_token)
     fb_user.friends
   end
 
-  # List of facebook permissions
+  # List of facebook permissions loaded via the open graph.
   #
   def fb_permissions
     fb_user = FbGraph::User.new('me', :access_token => self.access_token)
     fb_user.permissions
   end
 
-  # Host user's fb image
-  #
-  def host
-    return unless fb_user_id.present?
-
-    # Set to false to retrieve latest fb image
-    self.are_images_hosted = false
-
-    self.image_path  = Base64.encode64(
-                           SecureRandom.hex(10) + 
-                           Time.now.to_i.to_s).chomp + ".jpg"
-
-    image = MiniMagick::Image.open(image_url)
-
-    FileSystem.store(
-      image_path,
-      open(image.path),
-      "Content-Type"  => "image/jpeg",
-      "Expires"       => 1.year.from_now.
-                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
-
-
-    image = MiniMagick::Image.open(square_image_url)
-
-    FileSystem.store(
-      square_image_path,
-      open(image.path),
-      "Content-Type"  => "image/jpeg",
-      "Expires"       => 1.year.from_now.
-                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
-
-    self.are_images_hosted = true
-    save!
-
-  rescue => ex
-    LoggedException.add(__FILE__,__method__,ex)
-  end
 
   protected
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329224641) do
+ActiveRecord::Schema.define(:version => 20120330004459) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -221,8 +221,6 @@ ActiveRecord::Schema.define(:version => 20120329224641) do
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
     t.integer  "shoppings_count",           :default => 0
-    t.string   "image_path"
-    t.boolean  "are_images_hosted",         :default => false
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
