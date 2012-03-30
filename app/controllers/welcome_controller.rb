@@ -1,18 +1,16 @@
-# Handle all requests & logic for onboarding
-#
 class WelcomeController < ApplicationController
   before_filter :login_required
 
-  # Display the different steps during the onboarding
+  # Display the different steps during the onboarding.
   #
   def show
     @filter = params[:id]
 
     case @filter
     when WelcomeFilter::Learn
-      @view     = "show"
+      @view = "show"
     when WelcomeFilter::Share
-      @view     = "share"
+      @view = "share"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -23,7 +21,7 @@ class WelcomeController < ApplicationController
     @error ? redirect_to(root_path) : render(@view)
   end
 
-  # Handle onboarding related post requests
+  # Handle onboarding related post requests.
   #
   def create
     @filter = params[:id] 
