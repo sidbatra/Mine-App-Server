@@ -20,17 +20,13 @@ class Email < ActiveRecord::Base
   # Class methods
   #----------------------------------------------------------------------
 
-  # Add a new email 
+  # Factory method for creating a new email.
   #
   def self.add(attributes,message_id,request_id)
-    create!(
-      :recipient_id     => attributes[:recipient_id],
-      :sender_id        => attributes[:sender_id],
-      :emailable_id     => attributes[:emailable_id],
-      :emailable_type   => attributes[:emailable_type],
-      :purpose          => attributes[:purpose],
-      :message_id       => message_id,
-      :request_id       => request_id)
+    attributes[:message_id] = message_id
+    attributes[:request_id] = request_id
+
+    create!(attributes)
   end
 
 end
