@@ -22,12 +22,6 @@ module DW
                                       product.handle,
                                       :src  => 'fb',
                                       :host => CONFIG[:host]))
-
-        TickerAction.add(
-                      action.identifier,
-                      OGAction::Add,
-                      product,
-                      product.user_id)
       end
 
       # Publish a story whenever the user wants an item
@@ -44,8 +38,6 @@ module DW
                                       :src  => 'fb',
                                       :host => CONFIG[:host]),
                             :end_time => "4486147655") 
-
-        TickerAction.add(action.identifier,OGAction::Want,product,user.id)
       end
 
       # Update an open graph object - product
