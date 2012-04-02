@@ -24,6 +24,8 @@ include Enumerations
 enums = YAML.load_file("#{RAILS_ROOT}/config/enumerations.yml")
 DW::Enumerations.populate(enums[:ruby])
 
+include ActionController::UrlWriter
+
 include AmazonProductInterface
 include CacheManagement
 include Cron
