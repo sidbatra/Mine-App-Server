@@ -17,13 +17,15 @@ class User < ActiveRecord::Base
   has_many :followings, :dependent  => :destroy
   has_many :followers, :through    => :followings,
                         :source     => :follower, 
-                        :conditions => 'is_active = 1'
+                        :conditions => 'is_active = 1',
+                        :order => "followings.created_at DESC"
   has_many :inverse_followings, :class_name   => "Following", 
                                 :foreign_key  => "follower_id",
                                 :dependent    => :destroy
   has_many :ifollowers, :through    => :inverse_followings, 
                         :source     => :user, 
-                        :conditions => 'is_active = 1'
+                        :conditions => 'is_active = 1',
+                        :order => "followings.created_at DESC"
   has_many :invites, :dependent => :destroy
   has_many :received_invites, :class_name   => "Invite",
                               :foreign_key  => "recipient_id",
@@ -44,15 +46,10 @@ class User < ActiveRecord::Base
                   :conditions => {:products_count => count}}}
   named_scope :followings_count, lambda {|count| {
                   :conditions => {:followings_count => count}}}
-  named_scope :shoppings_count, lambda {|count| {
-                  :conditions => {:shoppings_count => count}}}
   named_scope :products_count_gt, lambda {|count| {
                   :conditions => {:products_count_gt => count}}}
   named_scope :followings_count_gt, lambda {|count| {
                   :conditions => {:followings_count_gt => count}}}
-  named_scope :shoppings_count_gt, lambda {|count| {
-                  :conditions => {:shoppings_count_gt => count}}}
-  named_scope :by_products_count, {:order => 'products_count DESC'}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
 
   named_scope :with_stores, :include => {:shoppings => :store}

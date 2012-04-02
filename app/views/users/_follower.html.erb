@@ -1,0 +1,9 @@
+<%cache ["v1",user,"follower"] do%>
+
+<%=image_tag user.square_image_url%>
+<%=link_to user.first_name + " " + user.last_name,
+    user_path(user.handle)%>
+
+<br>
+
+<%end%>

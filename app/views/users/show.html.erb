@@ -1,7 +1,6 @@
 <!-- Generate presenters to render this page -->
 <%@user_presenter = presenter_for(@user)%>
 
-<!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
   <%=render :partial  => "facebook/og",
             :locals   => {
@@ -9,16 +8,16 @@
               :type         => "link",
               :description  => @user_presenter.usage_description,
               :url          => @user_presenter.closet_url("fb"),
-              :image        => @user.products_count > 0 ? 
-                                @user.products.last.thumbnail_url : 
-                                ""}%>
+              :image        => ""}%>
 <%end%>
+
 
 <div class="container profile">
 
 	<div class="row">
     <div class="span12">
-	    <div class="well profile-card" style="height: 128px; margin-bottom: 12px;">
+	    <div class="well profile-card" 
+            style="height: 128px; margin-bottom: 12px;">
 	    	
 	    		<div class="profile-card-inner">
 		    		<div class="profile-img">
@@ -32,33 +31,24 @@
 					              :locals   => {:user => @user}%>
 			  		</div>
 			  	</div>
-			  	
-			  	<div class="profile-card-actions" id="user_stores_box" >
-					</div>
-			  	
-			  	<div class="profile-card-actions" id="ifollowers_with_msg">
-			  	</div>
 	
 	    </div> <!-- /well profile-card -->
     </div> <!-- /span12 -->
   </div> <!-- /row -->
 	
-	<%=render :partial => "misc/welcome", 
-	          :locals => {
-	          :src    => @user_presenter.source_id,
-	          :target => @user_presenter.closet_path('footer')} if !logged_in? &&
-	                               @source != "iframe"%>
-	          <!-- /logged out welcome -->
 
   <div class="row">
     <div class="span12">
     	<div class="well items">
     	
-    		<ul class="nav nav-tabs">
-				</ul>
-        
     		<div class="control-group">
-      		<div id="centerstage"></div>
+      		<div id="centerstage">
+            <%cache ["v1",@user,"followers"] do%>
+              <%=render :partial => "users/follower", 
+                  :collection => @user.ifollowers,
+                  :as => :user%>
+            <%end%>
+          </div>
       	</div>
       	
       </div> <!-- /well items-->
@@ -72,17 +62,17 @@
 
   <script type="text/javascript">
 
-    new Denwen.Views.Users.Show({
-          userJSON        : <%=@user.to_json(
-                                :only => [:id,:first_name,:last_name,
-                                          :handle,:byline,:followings_count,
-                                          :products_count,
-                                          :inverse_followings_count])%>,
-          currentUserJSON : <%=self.current_user.to_json(
-                                :only    => [:id,:first_name,:last_name,
-                                              :gender,:handle,:email],
-                                :methods => [:age])%>,
-          source          : "<%=@source%>"});
+    //new Denwen.Views.Users.Show({
+    //      userJSON        : <%#@user.to_json(
+    //                            :only => [:id,:first_name,:last_name,
+    //                                      :handle,:byline,:followings_count,
+    //                                      :products_count,
+    //                                      :inverse_followings_count])%>,
+    //      currentUserJSON : <%#self.current_user.to_json(
+    //                            :only    => [:id,:first_name,:last_name,
+    //                                          :gender,:handle,:email],
+    //                            :methods => [:age])%>,
+    //      source          : "<%#@source%>"});
 
   </script>
 <%end%>
