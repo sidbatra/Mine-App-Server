@@ -81,8 +81,6 @@ Capistrano::Configuration.instance(:must_exist).load do
         solr.index
       end
 
-      cache.clear
-
       if servers? :web or servers? :worker
         cron.update_web_proc
       end
