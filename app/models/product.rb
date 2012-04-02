@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  belongs_to :user,  :counter_cache => true
+  belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
   belongs_to :suggestion
 

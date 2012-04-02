@@ -48,6 +48,12 @@
                   :collection => @user.ifollowers,
                   :as => :user%>
             <%end%>
+            <br><br>
+            <%cache ["v1",@user,"products"] do%>
+              <%=render :partial => "products/card",
+                  :collection => @user.products.with_store.with_user.by_id,
+                  :as => :product%>
+            <%end%>
           </div>
       	</div>
       	

@@ -1,0 +1,9 @@
+<%cache ["v1",product,product.store ? product.store : "","card"] do %>
+
+<%=image_tag product.thumbnail_url%>
+<%=link_to product.title,product_path(product.user.handle,product.handle)%>
+<%=product.store ? product.store.name : ""%>
+
+<br>
+
+<%end%>
