@@ -23,10 +23,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :users,
     :action     => :create
 
-  map.canvas '/canvas',
-    :controller => :canvas,
-    :action     => :show
-
 
   ##
   # Resoure based routes
@@ -72,7 +68,7 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:index]
 
   map.resources :facebook,
-    :only => [:index,:create]
+    :only => [:index,:show,:create]
 
   map.new_invite 'invite',
     :controller => :invites,

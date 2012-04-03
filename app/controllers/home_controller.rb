@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   # the user isn't logged in.
   #
   def show
-    if logged_in? 
+    if logged_in? && !params[:id]
       render "feed/show", :layout => "application"
     elsif 
       detect_origin

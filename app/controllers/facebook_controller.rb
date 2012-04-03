@@ -1,6 +1,5 @@
-# Handle requests for all facebook related resources
-#
 class FacebookController < ApplicationController
+  layout nil
   
   # Handle facebook related get requests for real time updates 
   #
@@ -28,6 +27,14 @@ class FacebookController < ApplicationController
       format.json
     end
   end 
+
+  # Display the FB canvas ui.
+  #
+  def show
+  rescue => ex
+    handle_exception(ex)
+  ensure
+  end
 
   # Handle facebook related post requests for real time updates 
   #
