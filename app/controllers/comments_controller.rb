@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   #                        ids whose comments need to be fetched
   #
   def index
-    @comments   = {}
+    @comments   = []
     product_ids = params[:product_ids].split(",")
     products    = Product.find_all_by_id(product_ids, :include => :user)
    
@@ -56,7 +56,13 @@ class CommentsController < ApplicationController
 
     request.on_complete do |response|
       begin
-        @comments[product.id] = JSON.parse(response.body)
+        data = JSON.parse(response.body)['data']
+
+        data.each do |d| 
+          d['product_id'] = product.id
+        end
+
+        @comments += data 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end

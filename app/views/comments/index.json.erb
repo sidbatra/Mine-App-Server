@@ -1,1 +1,2 @@
-<%=@comments.to_json%>
+<%=@comments.to_json(
+    :only => ['id','product_id','from','name','created_time','message'])%>
