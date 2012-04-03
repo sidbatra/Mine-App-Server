@@ -27,6 +27,24 @@ class CommentsController < ApplicationController
     end
   end
 
+  # Create a new comment on facebook
+  #
+  def create
+   product  = Product.find(params[:product_id]) 
+   fb_post  = product.fb_post
+
+   @comment = fb_post ? 
+                fb_post.comment!(
+                  :message      => params[:message],
+                  :access_token => self.current_user.access_token) : 
+                nil
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
 
   protected
 

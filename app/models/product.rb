@@ -155,6 +155,20 @@ class Product < ActiveRecord::Base
     self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
   end
 
+  # Facebook post associated with the product
+  #
+  def fb_post
+    fb_post = nil
+
+    if self.fb_photo_id
+      fb_post = FbGraph::Photo.new(self.fb_photo_id)
+    elsif self.fb_action_id
+      fb_post = FbGraph::OpenGraph::Action.new(self.fb_action_id)
+    end
+
+    fb_post
+  end
+
   # Url for fetching facebook comments of the object (photo/action)
   # associated with the product
   #
