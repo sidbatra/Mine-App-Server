@@ -10,12 +10,14 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self    = this;
-    this.source = this.options.source;
-    this.feedEl = '#feed';
-    this.input  = new Denwen.Partials.Products.Input({
-                        el  : $('body'),
-                        mode: Denwen.ProductFormType.New});
+    var self      = this;
+    this.source   = this.options.source;
+    this.feedEl   = '#feed';
+    this.input    = new Denwen.Partials.Products.Input({
+                          el  : $('body'),
+                          mode: Denwen.ProductFormType.New});
+    
+    this.comments = new Denwen.Partials.Comments.Comments();
 
     this.input.bind(
       Denwen.Partials.Products.Input.Callback.ProductCreated,

@@ -9,7 +9,7 @@ var Denwen = {
   Partials    : { Users : {}, Products : {}, 
                   Facebook : {}, Stores : {}, Invites : { New: {}}, 
                   Common : {}, Followings : {}, 
-                  Contacts : {},
+                  Contacts : {}, Comments : {},
                   Admin : {Suggestions : {},Stores : {}}},
   Collections : {},
   Callbacks   : {}
