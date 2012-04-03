@@ -32,7 +32,8 @@ class Product < ActiveRecord::Base
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:endorsement,:store_id,:user_id,
-                  :source_product_id,:suggestion_id
+                  :source_product_id,:suggestion_id,
+                  :fb_action_id,:fb_photo_id
 
   #----------------------------------------------------------------------
   # Indexing

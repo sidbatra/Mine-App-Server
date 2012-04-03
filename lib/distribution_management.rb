@@ -22,6 +22,8 @@ module DW
                                       product.handle,
                                       :src  => 'fb',
                                       :host => CONFIG[:host]))
+
+        product.update_attributes({:fb_action_id => action.identifier})
       end
 
       # Update an open graph object - product
@@ -68,9 +70,11 @@ module DW
       #
       def self.publish_product_to_fb_album(product)
         fb_user = FbGraph::User.me(product.user.access_token)
-        fb_user.photo!(
+        photo = fb_user.photo!(
                   :url      => product.image_url,
                   :message  => product.title)  
+
+        product.update_attributes({:fb_photo_id => photo.identifier})
       end
 
       # Subscribe to real time updates for facebook permissions
