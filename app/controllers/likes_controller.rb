@@ -7,7 +7,7 @@ class LikesController < ApplicationController
   #                        ids whose likes need to be fetched
   #
   def index
-    @likes = {}
+    @likes = [] 
     product_ids = params[:product_ids].split(",")
     products    = Product.find_all_by_id(product_ids, :include => :user)
    
@@ -54,7 +54,14 @@ class LikesController < ApplicationController
 
     request.on_complete do |response|
       begin
-        @likes[product.id] = JSON.parse(response.body)
+        data = JSON.parse(response.body)['data']
+
+        data.each do |d| 
+          d['product_id'] = product.id
+          d['user_id']    = d['id']
+        end
+
+        @likes += data
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
