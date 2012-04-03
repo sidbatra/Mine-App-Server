@@ -131,6 +131,33 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.selectionEl).html("<img class='photo' id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
   },
 
+  // Hide and clean the product image box.
+  //
+  hideProductImage: function() {
+    $(this.selectionEl).hide();
+    $(this.selectionEl).html("");
+  },
+
+  // Display the query box area.
+  //
+  displayQueryBox: function() {
+    $(this.queryBoxEl).show();
+  },
+
+  // Hide the UI displaying extra steps.
+  //
+  hideExtraSteps: function() {
+    $(this.extraEl).hide();
+  },
+
+  // Reset UI and values of all form fields.
+  //
+  resetForm: function() {
+    $(this.formEl)[0].reset();
+    this.posting = false;
+    this.isStoreUnknownChanged();
+  },
+
   // Fired when a product is selected from the ProductImagesView
   //
   productSelected: function(productResult,title,attemptStoreSearch) {
@@ -302,6 +329,12 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // product - Backbone.Model. Freshly created product.
   //
   productCreated: function(product) {
+    this.hideProductImage();
+    this.hideExtraSteps();
+    this.resetForm();
+    this.displayQueryBox();
+    $(this.queryEl).focus();
+
     this.trigger(
       Denwen.Partials.Products.Input.Callback.ProductCreated,
       product);
@@ -312,8 +345,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   productCreationFailed: function() {
     this.trigger(
-      Denwen.Partials.Products.Input.Callback.ProductCreationFailed,
-      product);
+      Denwen.Partials.Products.Input.Callback.ProductCreationFailed);
   }
 });
 
