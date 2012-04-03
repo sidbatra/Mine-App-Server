@@ -1,18 +1,18 @@
 class HomeController < ApplicationController
-  before_filter :detect_origin
-  layout        'home'
 
-  # Display the home page.
+  # Display the root path which is the feed is
+  # the user is logged in or the home page is
+  # the user isn't logged in.
   #
   def show
-    if params[:id]
-      redirect_to root_path
-    elsif logged_in? 
-      redirect_to user_path(
-                    self.current_user.handle,
-                    :src => UserShowSource::HomeRedirect)
+    if logged_in? 
+      render "feed/show", :layout => "application"
+    elsif 
+      detect_origin
+      redirect_to root_path if params[:id]
     end
   end
+
 
   private 
 
