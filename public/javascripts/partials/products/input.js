@@ -311,16 +311,18 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     var self = this;
     var inputs = $(this.formEl + " :input");
-    var fields = {};
+    var fields = {render:true};
 
     inputs.each(function() {
       if(this.id.slice(0,8) == 'product_')
         fields[this.id.slice(8)] = this.value;
     });
 
-    var product = new Denwen.Models.Product(fields);
+    var product = new Denwen.Models.Product();
 
-    product.save({render:true},{
+    fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
+
+    product.save({product:fields},{
       success: function(data){self.productCreated(data);},
       error: function(){self.productCreationFailed();}});
       

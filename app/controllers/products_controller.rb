@@ -14,17 +14,17 @@ class ProductsController < ApplicationController
   #
   def create
 
-    if params[:source_product_id] && params[:clone]
+    if params[:product][:source_product_id] && params[:product][:clone]
       populate_params_from_product
     end
 
-    if params[:is_store_unknown] == '0'
-      params[:store_id] = Store.add(
-                            params[:store_name],
-                            self.current_user.id).id
+    if params[:product][:is_store_unknown] == '0'
+      params[:product][:store_id] = Store.add(
+                                      params[:product][:store_name],
+                                      self.current_user.id).id
     end
 
-    @product = Product.add(params,self.current_user.id)
+    @product = Product.add(params[:product],self.current_user.id)
 
   rescue => ex
     handle_exception(ex)
@@ -136,14 +136,14 @@ class ProductsController < ApplicationController
   # Populate params from the given product's source id
   #
   def populate_params_from_product
-    product = Product.find(params[:source_product_id])
+    product = Product.find(params[:product][:source_product_id])
 
-    params[:title]          = product.title
-    params[:source_url]     = product.source_url
-    params[:orig_image_url] = product.image_url
-    params[:orig_thumb_url] = product.thumbnail_url
-    params[:query]          = product.query
-    params[:endorsement]    = ''
+    params[:product][:title]          = product.title
+    params[:product][:source_url]     = product.source_url
+    params[:product][:orig_image_url] = product.image_url
+    params[:product][:orig_thumb_url] = product.thumbnail_url
+    params[:product][:query]          = product.query
+    params[:product][:endorsement]    = ''
 
     params
   end
