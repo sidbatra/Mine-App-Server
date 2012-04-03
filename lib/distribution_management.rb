@@ -24,22 +24,6 @@ module DW
                                       :host => CONFIG[:host]))
       end
 
-      # Publish a story whenever the user wants an item
-      #
-      def self.publish_want(user,product)
-        fb_app  = FbGraph::Application.new(CONFIG[:fb_app_id])
-        fb_user = FbGraph::User.me(user.access_token)  
-
-        action  = fb_user.og_action!(
-                            OGAction::Want,
-                            :item => product_url(
-                                      product.user.handle,
-                                      product.handle,
-                                      :src  => 'fb',
-                                      :host => CONFIG[:host]),
-                            :end_time => "4486147655") 
-      end
-
       # Update an open graph object - product
       # This updates all the actions associated with that object
       #
