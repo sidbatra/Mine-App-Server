@@ -11,8 +11,6 @@
 		              :locals   => {
 		                :f                => f,
                     :suggestion       => @suggestion,
-		                :placeholders     => @placeholders,
-		                :onboarding       => false,
 		                :submit_text      => "Save",
 		                :show_query_box   => false,
                     :show_extra_steps => true}%>
@@ -36,7 +34,7 @@
           el            : $('body'),
           productJSON   : <%=@product.to_json(
                               :only     => [:id,:user_id,:endorsement],
-                              :methods  => [:photo_url])%>,
+                              :methods  => [:giant_url])%>,
           source        : '<%=@source%>'});
   </script>
 

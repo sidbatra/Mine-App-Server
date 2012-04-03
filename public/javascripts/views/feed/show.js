@@ -15,7 +15,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.feedEl = '#feed';
     this.input  = new Denwen.Partials.Products.Input({
                         el  : $('body'),
-                        mode: 'new'});
+                        mode: Denwen.ProductFormType.New});
 
     this.input.bind(
       Denwen.Partials.Products.Input.Callback.ProductCreated,

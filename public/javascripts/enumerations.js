@@ -24,6 +24,11 @@ Facebook: 0,
 Email: 1
 }
 
+Denwen.ProductFormType = {
+New: "new",
+Edit: "edit"
+}
+
 Denwen.ProductQueryType = {
 URL: "url",
 Text: "text"

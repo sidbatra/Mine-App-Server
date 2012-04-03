@@ -105,6 +105,9 @@
     ProductResultsEmpty: 'productResultsEmpty'
     ProductResultsFinished: 'productResultsFinished'
     ProductResultsQueryEdit: 'productResultsQueryEdit'
+  ProductFormType:
+    New: 'new'
+    Edit: 'edit'
   ProductQueryType:
     Text: 'text'
     URL: 'url'

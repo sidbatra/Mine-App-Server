@@ -9,8 +9,8 @@
 		  <%form_for Product.new,
 		      :html => {:class => "well form-horizontal"} do |f|%>
 		
-		    <%=render :partial  => 'products/input', 
-		        :locals   => {
+		    <%=render :partial => 'products/input', 
+		        :locals => {
 		          :f                => f,
               :suggestion       => nil,
 		          :submit_text      => "Mine",

@@ -13,7 +13,8 @@ Denwen.Views.Products.Edit = Backbone.View.extend({
     var self         = this;
     this.product     = new Denwen.Models.Product(this.options.productJSON);
     this.input       = new Denwen.Partials.Products.Input({
-                                            el:$('body'),mode:'edit'});
+                            el:$('body'),
+                            mode:Denwen.ProductFormType.Edit});
     this.source      = this.options.source;
 
     this.updateUI();
@@ -25,7 +26,7 @@ Denwen.Views.Products.Edit = Backbone.View.extend({
   //
   updateUI: function() {
 
-    this.input.displayProductImage(this.product.get('photo_url'));
+    this.input.displayProductImage(this.product.get('giant_url'));
 
     this.input.isStoreUnknownChanged();
 
