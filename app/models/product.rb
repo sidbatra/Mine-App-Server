@@ -146,6 +146,20 @@ class Product < ActiveRecord::Base
       orig_image_url
   end
 
+  # Opengraph object id associated with the product
+  #
+  def fb_object_id
+    "10151461802635343"
+  end
+
+  # Url for fetching the facebook comments of the object (photo/action)
+  # associated with the product
+  #
+  def fb_comments_url
+    "https://graph.facebook.com/#{self.fb_object_id}/comments?" \
+    "access_token=#{self.user.access_token}"
+  end
+
   # Fetch image from the original source and host it on the Filesystem
   # along with copies at various sizes.
   #
