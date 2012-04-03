@@ -1,0 +1,6 @@
+  <%cache ["v1",user,"ifollowers"] do%>
+    <%=render :partial => "users/member", 
+        :collection => user.ifollowers,
+        :as => :user%>
+  <%end%>
+

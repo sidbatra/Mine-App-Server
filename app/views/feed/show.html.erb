@@ -1,1 +1,4 @@
-Hello ladies, does your man look like me
+<div class="container well">
+  <%=render :partial => "users/ifollowers",
+      :locals => {:user => self.current_user}%>
+</div>
