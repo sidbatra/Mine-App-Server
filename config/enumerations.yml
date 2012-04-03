@@ -78,14 +78,9 @@
     Share: 'share'
   OGObject:
     Item: "oncloset:item" 
-    Set: "oncloset:set" 
     Store: "oncloset:store" 
   OGAction:
     Add: "oncloset:add" 
-    Use: "oncloset:use" 
-    Want: "oncloset:want" 
-  OGProperty:
-    Length: "oncloset:length" 
 
 # Enumerations for javascript
 #
