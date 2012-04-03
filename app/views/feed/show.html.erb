@@ -1,4 +1,13 @@
 <div class="container well">
   <%=render :partial => "users/ifollowers",
       :locals => {:user => self.current_user}%>
+
+  <%cache ["v1",self.current_user,
+            self.current_user.ifollowers.map(&:updated_at).max.to_i,"feed"] do%>
+    
+    <%=render :partial => "products/display",
+        :collection => Product.with_user.with_store.by_id.
+                        for_users(self.current_user.ifollowers),
+        :as => :product%>
+  <%end%>
 </div>

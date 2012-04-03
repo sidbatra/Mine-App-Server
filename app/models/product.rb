@@ -22,6 +22,8 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
+  named_scope :for_users, lambda {|users| {:conditions => {
+                            :user_id => users.map(&:id)}}}
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
   named_scope :by_id,      :order => 'id DESC'
