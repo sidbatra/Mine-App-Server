@@ -83,7 +83,7 @@ Denwen.Partials.Products.Endorsement = Backbone.View.extend({
     var self = this;
 
     this.model.save(
-      {'endorsement':$(this.inputEl).val()},
+      {'product' : {'endorsement':$(this.inputEl).val()}},
       { 
         success : function() {self.changed();},
         error   : function(model,errors) {}
