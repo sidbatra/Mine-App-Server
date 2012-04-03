@@ -1,1 +1,4 @@
-<%=@product.to_json(:only => [:id])-%>
+<%-@product[:html] = render(
+                      :partial => "products/display.html.erb",
+                      :locals => {:product => @product}) if params[:render]%>
+<%=@product.to_json(:only => [:id,:html])-%>

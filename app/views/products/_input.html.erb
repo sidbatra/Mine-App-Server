@@ -7,12 +7,6 @@
   
 	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
 	
-		<%if !onboarding%>
-			<label id="query_text">
-	      Detailed item name <strong>or</strong> URL
-	    </label>
-	  <%end%>
-
     <%=f.text_field :query,
         :class    => "span4"%>
     	<a id="product_search" 
@@ -40,9 +34,6 @@
 		</div> <!-- /photo_box -->
 	</div>
 
-  <%if onboarding%>
-   <!-- currently unused -->
-  <%end%>
 
   <div id="extra_steps" 
       style="<%=show_extra_steps ? '' : 'display: none'%>">
@@ -75,14 +66,19 @@
 	  </div> <!-- /store -->  
 	  
 		<div class="strike-thru" id="endorsement_initiate">
-		  <%=link_to  "<i class='icon-pencil faded-30'></i> Add an optional review?", 
+		  <%=link_to  "<i class='icon-pencil faded-30'></i> "\
+                  "Add an optional review?", 
             "javascript:void(0)"%>
 		</div>
 		
-		<div class="control-group" id="endorsement_container" style="display:none">
+		<div class="control-group" 
+      id="endorsement_container" 
+      style="display:none">
+
       <label class="control-label" style="width: 120px;">
         Review
       </label>
+
 			<div class="controls" style="margin-left: 130px;">
 	      <%=f.text_area :endorsement,
 	            :value  => "",
@@ -91,7 +87,9 @@
 			</div>
     </div> <!-- /endorsement -->
 
-		<button type="submit" class="btn btn-large btn-primary" style="width: 420px;">
+		<button type="submit" 
+      class="btn btn-large btn-primary" 
+      style="width: 420px;">
 			<%=submit_text%>
 		</button> <!-- submit -->
     

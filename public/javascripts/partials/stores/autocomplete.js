@@ -9,7 +9,7 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
 
     this.stores = new Denwen.Collections.Stores();
     this.stores.fetch({
-          data      : {filter: 'all'},
+          data      : {aspect: 'all'},
           success   : function(collection){self.autocomplete();},
           error     : function(collection,errors){}});
   },

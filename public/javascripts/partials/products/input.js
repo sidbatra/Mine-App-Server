@@ -220,15 +220,12 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     Denwen.Track.productImageBroken(this.mode);
   },
 
-  // Form submitted callback
+  // Validate the fields of the form.
   //
-  post: function() {
-	
-    if(this.posting)
-      return false;
-
-    this.posting  = true;
-    var valid     = true;
+  // returns - Boolean. true if validation is successfuly.
+  //
+  validate: function() {
+    var valid = true;
 
     if($(this.imageEl).val().length < 1) {
       valid = false;
@@ -262,10 +259,67 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.storeBoxEl).removeClass('error');
     }
 
-    this.posting = valid;
-      
     return valid;
+  },
+
+  // Intercept the callback when the form is submitted and
+  // create a product via js always returning false to stop
+  // the form submission chain.
+  //
+  // returns - Boolean. false to stop the form submission chain.
+  //
+  post: function() {
+	
+    if(this.posting)
+      return false;
+
+    this.posting = this.validate();
+
+    if(!this.posting)
+      return false;
+
+    var self = this;
+    var inputs = $(this.formEl + " :input");
+    var fields = {};
+
+    inputs.each(function() {
+      if(this.id.slice(0,8) == 'product_')
+        fields[this.id.slice(8)] = this.value;
+    });
+
+    var product = new Denwen.Models.Product(fields);
+
+    product.save({render:true},{
+      success: function(data){self.productCreated(data);},
+      error: function(){self.productCreationFailed();}});
+      
+    return false;
+  },
+
+  // Callback after a product is successfully created.
+  // Wipe the form clean and trigger events for subscribers.
+  //
+  // product - Backbone.Model. Freshly created product.
+  //
+  productCreated: function(product) {
+    this.trigger(
+      Denwen.Partials.Products.Input.Callback.ProductCreated,
+      product);
+  },
+
+  // Callback after a production creation failed.
+  // Trigger events alerting subscribers.
+  //
+  productCreationFailed: function() {
+    this.trigger(
+      Denwen.Partials.Products.Input.Callback.ProductCreationFailed,
+      product);
   }
 });
 
-
+// Define callbacks.
+//
+Denwen.Partials.Products.Input.Callback = {
+  ProductCreated: "productCreated",
+  ProductCreationFailed: "productCreationFailed"
+};

@@ -27,7 +27,11 @@ class StoresController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
-    render @aspect
+    respond_to do |format|
+      format.json do
+        render @aspect
+      end
+    end
   end
 
 

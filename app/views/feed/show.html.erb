@@ -1,13 +1,49 @@
 <div class="container well">
-  <%=render :partial => "users/ifollowers",
+  <%#render :partial => "users/ifollowers",
       :locals => {:user => self.current_user}%>
+
+<div id="creation" class="creation">
+	<div class="row">
+		<div class="span6 offset3">
+		
+		  <%form_for Product.new,
+		      :html => {:class => "well form-horizontal"} do |f|%>
+		
+		    <%=render :partial  => 'products/input', 
+		        :locals   => {
+		          :f                => f,
+              :suggestion       => nil,
+		          :submit_text      => "Mine",
+		          :show_query_box   => true,
+              :show_extra_steps => false}%>
+		
+		  <%end%> <!-- /form -->
+		  
+		</div> <!-- /span6 -->
+	</div> <!-- /row -->
+</div> <!-- /creation -->
+
+
+<%=render 'products/chooser'%> 
+
 
   <%cache ["v1",self.current_user,
             self.current_user.ifollowers.map(&:updated_at).max.to_i,"feed"] do%>
     
-    <%=render :partial => "products/display",
-        :collection => Product.with_user.with_store.by_id.
-                        for_users(self.current_user.ifollowers),
-        :as => :product%>
-  <%end%>
+    <div id="feed">
+      <%=render :partial => "products/display",
+          :collection => Product.with_user.with_store.by_id.
+                          for_users(self.current_user.ifollowers),
+          :as => :product%>
+    <%end%>
+  </div>
 </div>
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+
+    new Denwen.Views.Feed.Show({
+          source : "<%=@source%>"});
+  </script>
+<%end%>

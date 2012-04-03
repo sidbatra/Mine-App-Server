@@ -13,9 +13,9 @@ class ProductsController < ApplicationController
   # param with the id of the original product and an optional store_name.
   #
   def create
-    
+
     if params[:source_product_id] && params[:clone]
-      params = populate_params_from_product(params)
+      populate_params_from_product
     end
 
     if params[:is_store_unknown] == '0'
@@ -135,7 +135,7 @@ class ProductsController < ApplicationController
 
   # Populate params from the given product's source id
   #
-  def populate_params_from_product(params)
+  def populate_params_from_product
     product = Product.find(params[:source_product_id])
 
     params[:title]          = product.title
