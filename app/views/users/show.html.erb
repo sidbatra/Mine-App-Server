@@ -48,11 +48,8 @@
 
             <br><br>
 
-            <%cache ["v1",@user,"products"] do%>
-              <%=render :partial => "products/card",
-                  :collection => @user.products.with_store.with_user.by_id,
-                  :as => :product%>
-            <%end%>
+            <%=render :partial => "users/products",
+                :locals => {:user => @user}%>
           </div>
       	</div>
       	
