@@ -293,7 +293,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // create a product via js always returning false to stop
   // the form submission chain.
   //
-  // returns - Boolean. false to stop the form submission chain.
+  // returns - Boolean. During mode new false to stop the form submission chain.
+  //                    During mode edit true to use html form submissions.
   //
   post: function() {
 	
@@ -304,6 +305,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     if(!this.posting)
       return false;
+
+    if(this.mode == Denwen.ProductFormType.Edit)
+      return true;
 
     var self = this;
     var inputs = $(this.formEl + " :input");
