@@ -152,11 +152,19 @@ class Product < ActiveRecord::Base
     self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
   end
 
-  # Url for fetching the facebook comments of the object (photo/action)
+  # Url for fetching facebook comments of the object (photo/action)
   # associated with the product
   #
   def fb_comments_url
     "https://graph.facebook.com/#{self.fb_object_id}/comments?" \
+    "access_token=#{self.user.access_token}"
+  end
+
+  # Url for fetching facebook likes of the object (photo/action)
+  # associated with the product
+  #
+  def fb_likes_url
+    "https://graph.facebook.com/#{self.fb_object_id}/likes?" \
     "access_token=#{self.user.access_token}"
   end
 
