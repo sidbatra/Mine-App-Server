@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     hydra = Typhoeus::Hydra.new
 
     products.each do |product|
-      hydra.queue fetch_facebook_comments(product)
+      hydra.queue fetch_facebook_comments(product) if product.fb_object_id 
     end
 
     hydra.run

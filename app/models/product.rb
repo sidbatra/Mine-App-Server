@@ -149,7 +149,7 @@ class Product < ActiveRecord::Base
   # Opengraph object id associated with the product
   #
   def fb_object_id
-    "10151461802635343"
+    self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
   end
 
   # Url for fetching the facebook comments of the object (photo/action)
