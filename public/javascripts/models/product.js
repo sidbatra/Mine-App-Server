@@ -12,6 +12,11 @@ Denwen.Models.Product = Backbone.Model.extend({
   initialize: function(){
     this.associate('store',Denwen.Models.Store);
     this.associate('user',Denwen.Models.User);
+
+    if(this.get('created_at')) {
+      var time = new Date(this.get('created_at'));
+      this.creationTimestamp = time.getTime() * 0.001;
+    }
   },
 
   // Base path to the product with any additional args
