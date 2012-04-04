@@ -10,6 +10,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.oldestItemTimestamp = 0;
     this.perPage = 10;
     this.loading = false;
     this.disabled = false;
@@ -42,8 +43,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     var self = this;
     var data = {per_page:this.perPage};
 
-    if(!this.feed.isEmpty())
-      data['before'] = this.feed.last().creationTimestamp;
+    if(this.oldestItemTimestamp)
+      data['before'] = this.oldestItemTimestamp;
 
     this.feed.fetch({
       add: true,
@@ -71,6 +72,20 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   //
   feedLoaded: function() {
     this.loading = false;
+
+    if(this.feed.isEmpty()) {
+      this.disabled = true;
+    }
+    else {
+      var newOldestItemTimestamp = this.feed.last().creationTimestamp;
+
+      if(this.oldestItemTimestamp == newOldestItemTimestamp)
+        this.disabled = true;
+
+      this.oldestItemTimestamp = newOldestItemTimestamp;
+    }
+
+    this.resizeEnded();
   },
 
   // Feed items loading failed. Fire events to subscribers.
