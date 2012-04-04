@@ -23,6 +23,7 @@ javascripts:
     - public/javascripts/collections/*.js
     - public/javascripts/partials/**/*.js
     - public/javascripts/views/**/*.js
+    - app/views/comments/*.jst
     - app/views/products/*.jst
     - app/views/users/*.jst
     - app/views/stores/*.jst

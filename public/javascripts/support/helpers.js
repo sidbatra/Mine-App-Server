@@ -109,6 +109,13 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   newShoppingsPath: function(src) {
     return 'shoppings/new?src=' + src;
+  },
+
+  // Generate facebook image url for the user
+  // with the given id 
+  //
+  fbImageUrl: function(id) {
+    return 'https://graph.facebook.com/' + id + '/picture?type=square';
   }
 
 });

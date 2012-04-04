@@ -109,10 +109,38 @@
 					</div> <!-- /thumbnail -->
 				</div> <!-- /control-group -->
 				
-				<div class="control-group" 
+        </div> <!-- /control-group -->
+        
+        <div class="control-group" 
+              id="comments_container"
               style="margin: 19px 13px 0;">
-		    </div>
-		    
+
+          <div id="comments_<%=@product.id%>" style="margin-bottom: 19px;"></div>
+        
+          <%if logged_in?%>
+            <div id="add_comment" style="clear: both;">
+              
+                <%=text_area_tag "comment_data",
+                    "",
+                    :rows  => "2",
+                    :style => "color: #99999; float: left;"\
+                              "height: 38px; width: 426px;",
+                    "ui-placeholder-color" => "#999999",
+                    "ui-text-color" => "#333333",
+                    "data-placeholder" => "Add a comment"%>
+                  
+                <input id="comment_post" 
+                        class="btn" 
+                        style="width: 56px; height: 48px; margin-left: 4px;" 
+                        value="Post" 
+                        title="Post" 
+                        type="button" 
+                        alt=""> 
+              
+            </div> <!-- /add_comment -->
+          <%end%> 
+        </div> <!-- comments_container -->		    
+ 
 		    <div id="feed_items" style="margin: 19px 13px 0;"></div>
 			
       </div> <!-- /well -->

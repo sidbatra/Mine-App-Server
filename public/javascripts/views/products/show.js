@@ -10,6 +10,9 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     this.product    = new Denwen.Models.Product(this.options.productJSON);
     this.source     = this.options.source;
 
+    this.comments   = new Denwen.Partials.Comments.Comments();
+    this.comments.fetch(this.product.get('id'));
+
     this.productImageEl = '#product_image';
 
     new Denwen.Partials.Facebook.Base();
