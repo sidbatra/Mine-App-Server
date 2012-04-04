@@ -30,6 +30,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users,
     :only => [:create,:show,:update]
 
+  map.resource :feed,
+    :controller => :feed,
+    :only => [:show]
+
   map.product ':user_handle/p/:product_handle',
     :controller => :products,
     :action     => :show

@@ -1,0 +1,10 @@
+<%=@products.to_json(
+    :only => [:id,:created_at,:title],
+    :methods => [:giant_url],
+    :include => {
+      :user => {
+        :only => [:id,:first_name,:last_name,:handle],
+        :methods => [:square_image_url]},
+      :store => {
+        :only => [:id,:name],
+        :methods => [:is_top,:thumbnail_url]}})%>
