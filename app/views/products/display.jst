@@ -1,2 +1,14 @@
-<%=product.escape('title')%>
-<br>
+<img src="<%=product.get('giant_url')%>" />
+<%=product.escape('title')%> <br>
+
+<img src="<%=product.get('user').get('square_image_url')%>" />
+<%=product.get('user').escape('first_name')%> 
+<%=product.get('user').escape('last_name')%>  <br>
+
+<%if(product.get('store')){%>
+  <%if(product.get('store').get('is_processed')){%>
+    <img src="<%=product.get('store').get('thumbnail_url')%>" />
+  <%}%>
+  <%=product.get('store').get('name')%>
+<%}%>
+<br><br>

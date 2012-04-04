@@ -15,6 +15,8 @@ class FeedController < ApplicationController
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
     @products = Product.
+                  select(:id,:created_at,:title,:handle,
+                          :image_path,:is_processed,:user_id,:store_id).
                   with_user.
                   with_store.
                   by_id.
