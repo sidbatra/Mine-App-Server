@@ -26,18 +26,6 @@
 
 <%=render 'products/chooser'%> 
 
-
-  <%cache ["v1",self.current_user,
-            self.current_user.ifollowers.map(&:updated_at).max.to_i,"feed"] do%>
-    
-    <div id="feed">
-      <%=render :partial => "products/display",
-          :collection => Product.with_user.with_store.by_id.
-                          for_users(self.current_user.ifollowers + 
-                                    [self.current_user]),
-          :as => :product%>
-    <%end%>
-  </div>
 </div>
 
 <%content_for :javascript do%>

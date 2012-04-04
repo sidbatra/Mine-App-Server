@@ -1,8 +1,0 @@
-
-  <%cache ["v2",product,product.store ? product.store : "","display"] do%>
-    <%=image_tag product.giant_url%>
-    <%=link_to product.title,product_path(product.user.handle,product.handle)%>
-    <%=product.user.first_name + " " + product.user.last_name%>
-    <%=product.store ? product.store.name : ""%>
-    <br>
-  <%end%>

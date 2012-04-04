@@ -311,7 +311,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
     var self = this;
     var inputs = $(this.formEl + " :input");
-    var fields = {render:true};
+    var fields = {};
 
     inputs.each(function() {
       if(this.id.slice(0,8) == 'product_')
