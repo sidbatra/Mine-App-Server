@@ -15,6 +15,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.disabled = false;
 
     this.feed = new Denwen.Collections.Feed();
+    this.feed.bind('add',this.feedItemAdded,this);
     this.fetch();
 
     this.windowListener = new Denwen.WindowListener();
@@ -51,9 +52,19 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       error: function(){self.feedLoadingFailed();}});
   },
 
+
   // -
-  // Callbacks from fetching the feed.
+  // Callbacks from fetching and populating the feed.
   // -
+
+  // Fired when a new feed item is added to the feed collection.
+  // Use this callback to render every added item.
+  //
+  feedItemAdded: function(product) {
+    var productDisplay = new Denwen.Partials.Products.Display({
+                              el: this.el,
+                              model: product});
+  },
 
   // Feed items successfully loaded. Fire events to subscribers 
   // and display items.
