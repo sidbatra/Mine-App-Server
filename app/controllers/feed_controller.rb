@@ -14,6 +14,11 @@ class FeedController < ApplicationController
     @after = params[:after] ? Time.at(params[:after].to_i) : nil
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
+
+    @key = ["v1",self.current_user,
+            self.current_user.ifollowers.map(&:updated_at).max.to_i,
+            "feed",@before ? @before.to_i : "",@per_page]
+
     @products = Product.
                   select(:id,:created_at,:title,:handle,
                           :image_path,:is_processed,:user_id,:store_id).
@@ -24,7 +29,7 @@ class FeedController < ApplicationController
                   before(@before).
                   limit(@per_page).
                   for_users(self.current_user.ifollowers + 
-                            [self.current_user])
+                            [self.current_user]) unless fragment_exist? @key
   rescue => ex
     handle_exception(ex)
   ensure

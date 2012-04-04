@@ -1,3 +1,4 @@
+<%-cache @key do-%>
 <%=@products.to_json(
     :only => [:id,:created_at,:title,:handle],
     :methods => [:giant_url],
@@ -8,3 +9,4 @@
       :store => {
         :only => [:id,:is_processed,:name],
         :methods => [:thumbnail_url]}})%>
+<%-end-%>
