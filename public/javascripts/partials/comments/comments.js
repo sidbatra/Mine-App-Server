@@ -29,11 +29,10 @@ Denwen.Partials.Comments.Comments = Backbone.View.extend({
   // Render the comments collection
   //
   render: function() {
-    var self = this;
-
     this.comments.each(function(comment){
-      var commentsEl = '#comments_' + comment.get('product_id');
-      $(commentsEl).append(Denwen.JST['comments/comment']({comment:comment}));
+      new Denwen.Partials.Comments.Comment({
+            comment : comment,
+            el      : '#comments_' + comment.get('product_id')});
     });
   }
 
