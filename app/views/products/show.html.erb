@@ -120,7 +120,7 @@
           <%if logged_in?%>
             <div id="add_comment" style="clear: both;">
               
-                <%=text_area_tag "comment_data",
+                <%=text_area_tag "comment_data_#{@product.id}",
                     "",
                     :rows  => "2",
                     :style => "color: #99999; float: left;"\
@@ -129,7 +129,7 @@
                     "ui-text-color" => "#333333",
                     "data-placeholder" => "Add a comment"%>
                   
-                <input id="comment_post" 
+                <input id="comment_post_<%=@product.id%>" 
                         class="btn" 
                         style="width: 56px; height: 48px; margin-left: 4px;" 
                         value="Post" 

@@ -155,6 +155,12 @@ class User < ActiveRecord::Base
     gender && gender.first == 'f'
   end
 
+  # Full name of the user
+  #
+  def full_name
+    self.first_name + ' ' + self.last_name
+  end
+
   # Test if the remember_token for the user cookie has expired.
   #
   def remember_token?

@@ -13,7 +13,7 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     this.comments   = new Denwen.Partials.Comments.Comments();
     this.comments.fetch(this.product.get('id'));
 
-    this.productImageEl = '#product_image';
+    new Denwen.Partials.Comments.New({product_id:this.product.get('id')});
 
     new Denwen.Partials.Facebook.Base();
 
@@ -23,6 +23,8 @@ Denwen.Views.Products.Show = Backbone.View.extend({
                   el      : $('#product_endorsement_box'),
                   source  : this.source});
     }
+
+    this.productImageEl = '#product_image';
 
     $(this.productImageEl).click(function(){self.productImageClicked();});
 

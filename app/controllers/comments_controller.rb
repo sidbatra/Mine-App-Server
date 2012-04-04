@@ -30,14 +30,23 @@ class CommentsController < ApplicationController
   # Create a new comment on facebook
   #
   def create
-   product  = Product.find(params[:product_id]) 
-   fb_post  = product.fb_post
+    product  = Product.find(params[:product_id]) 
+    fb_post  = product.fb_post
 
-   @comment = fb_post ? 
-                fb_post.comment!(
+    @comment = nil
+    
+    if fb_post
+      comment = fb_post.comment!(
                   :message      => params[:message],
-                  :access_token => self.current_user.access_token) : 
-                nil
+                  :access_token => self.current_user.access_token)
+
+      @comment = {:product_id   => product.id,
+                  :id           => comment.identifier,
+                  :messsage     => comment.message,
+                  :from         => {:name => self.current_user.full_name,
+                                    :id   => self.current_user.fb_user_id},
+                  :created_time => Time.now}
+    end
   rescue => ex
     handle_exception(ex)
   ensure

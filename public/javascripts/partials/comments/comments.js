@@ -1,5 +1,5 @@
-// Partial to load, display and create facebook comments 
-// for products
+// Partial to load and display all facebook comments 
+// for a single product
 //
 Denwen.Partials.Comments.Comments = Backbone.View.extend({
 
