@@ -49,6 +49,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Display the freshly created product in the feed.
   //
   productCreated: function(product) {
+    this.content.insert(product);
   },
 
   // Display a creation error.

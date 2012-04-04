@@ -17,9 +17,12 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   // Render the contents of the model.
   //
   render: function() {
-    this.el.append(
-      Denwen.JST['products/display'](
-        {product: this.model}));
+    var html = Denwen.JST['products/display']({product: this.model});
+
+    if(this.model.get('fresh'))
+      this.el.prepend(html);
+    else
+      this.el.append(html);
   }
 
 });

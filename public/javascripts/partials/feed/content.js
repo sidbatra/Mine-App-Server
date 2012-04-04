@@ -53,6 +53,16 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       error: function(){self.feedLoadingFailed();}});
   },
 
+  // Add a freshly created product into the collection and ui.
+  //
+  // product - Denwen.Models.Product. The product to be added 
+  //            to the collection.
+  //
+  insert: function(product) {
+    product.set({fresh:true});
+    this.feed.add(product,{at:0});
+  },
+
 
   // -
   // Callbacks from fetching and populating the feed.
@@ -60,6 +70,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
 
   // Fired when a new feed item is added to the feed collection.
   // Use this callback to render every added item.
+  //
+  // product - Denwen.Models.Product . The product added to the collection.
   //
   feedItemAdded: function(product) {
     var productDisplay = new Denwen.Partials.Products.Display({
