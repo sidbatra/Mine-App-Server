@@ -19,7 +19,7 @@ Denwen.WindowListener = Backbone.View.extend({
   scroll: function() {
    if ($(window).scrollTop() >= $(document).height() - 
                                   $(window).height() - 400)
-        this.trigger('documentScrolled');
+        this.trigger(Denwen.WindowListener.Callback.DocumentScrolled);
   },
 
   // Fired when the window resizes
@@ -29,7 +29,8 @@ Denwen.WindowListener = Backbone.View.extend({
       clearTimeout(this.resizeTimer);
   
     var self = this;
-    this.resizeTimer = setTimeout(function(){self.trigger('resizeEnded');},750);
+    this.resizeTimer = setTimeout(function(){
+                self.trigger(Denwen.WindowListener.Callback.ResizeEnded);},750);
   },
 
   // Tests if the document has filled the window completely
@@ -44,3 +45,10 @@ Denwen.WindowListener = Backbone.View.extend({
   }
 
 });
+
+// Define callbacks.
+//
+Denwen.WindowListener.Callback = {
+  DocumentScrolled: 'documentScrolled',
+  ResizeEnded: 'resizeEnded'
+}
