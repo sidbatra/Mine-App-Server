@@ -18,6 +18,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
                           mode: Denwen.ProductFormType.New});
     
     this.comments = new Denwen.Partials.Comments.Comments();
+    this.likes    = new Denwen.Partials.Likes.Likes();
 
     this.input.bind(
       Denwen.Partials.Products.Input.Callback.ProductCreated,
