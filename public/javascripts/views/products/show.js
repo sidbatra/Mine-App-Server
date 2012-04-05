@@ -15,6 +15,9 @@ Denwen.Views.Products.Show = Backbone.View.extend({
 
     new Denwen.Partials.Comments.New({product_id:this.product.get('id')});
 
+    this.likes = new Denwen.Partials.Likes.Likes();
+    this.likes.fetch(this.product.get('id'));
+
     new Denwen.Partials.Facebook.Base();
 
     if(Denwen.H.isCurrentUser(this.product.get('user_id'))) {

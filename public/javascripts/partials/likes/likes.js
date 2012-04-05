@@ -1,5 +1,5 @@
-// Partial to load, display and create facebook likes 
-// for products
+// Partial to load and display facebook likes 
+// for a single product 
 //
 Denwen.Partials.Likes.Likes = Backbone.View.extend({
 
@@ -29,7 +29,11 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
   // Render the likes collection
   //
   render: function() {
-    console.log(this.likes);
+    this.likes.each(function(like){
+      new Denwen.Partials.Likes.Like({
+            like  : like,
+            el    : '#likes_' + like.get('product_id')});
+    });
   }
 
 });
