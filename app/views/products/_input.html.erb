@@ -8,21 +8,17 @@
 	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
 	
     <%=f.text_field :query,
-        :class    => "span4"%>
+        :placeholder => "Detailed item name or URL",
+        :style => "width: 412px;"%>
     	<a id="product_search" 
-    					class="btn btn-primary" 
+    					class="btn btn-mid" 
     					value="" 
     					title="Search" 
     					type="button" 
     					alt="Search">
     		<i class="icon-camera icon-white"></i>
-    		Find photo
+    		Find item
     	</a>
-	
-			<p class="help-block">
-	      e.g. 'Sand Classic Uggs'. Brands and colors help.
-	    </p>
-    
 	</div> <!-- /query_box -->
 	
 	<div class="change-box">

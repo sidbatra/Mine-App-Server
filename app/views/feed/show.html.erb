@@ -1,33 +1,38 @@
 <div class="container">
 
-  <div class="self-box">
-    <%=link_to image_tag(self.current_user.square_image_url),
-        user_path(self.current_user.handle,:src => "feed_photo"),
-        :class => "user-photo"%>
-    <div class="user-name">
-      <p>
-        <%=link_to self.current_user.full_name,
-            user_path(self.current_user.handle,:src => "feed_name")%>
-      </p>
-    </div>
-  </div>
-
   <div class="col">
+
+    <div class="self-box">
+      <%=link_to image_tag(self.current_user.square_image_url),
+          user_path(self.current_user.handle,:src => "feed_photo"),
+          :class => "user-photo"%>
+      <div class="user-name">
+        <p>
+          <%=link_to self.current_user.full_name,
+              user_path(self.current_user.handle,:src => "feed_name")%>
+        </p>
+      </div>
+    </div> <!--self-box-->
 
     <%=render :partial => "users/ifollowers",
         :locals => {:user => self.current_user,:src => "feed"}%>
     
     <%=render :partial => "users/trinkets",
         :locals => {:src => "feed"}%>
-  </div>
+  </div> <!-- col -->
 
-  <div id="creation" class="creation">
-    <div class="row">
-      <div class="span6 offset3">
-      
-        <%form_for Product.new,
-            :html => {:class => "well form-horizontal"} do |f|%>
-      
+  <div class="col-triple">
+    <div id="creation" class="item creation">
+      <%form_for Product.new,
+          :html => {
+            :class => "form-horizontal",
+            :style => "margin-bottom: 0;"} do |f|%>
+    
+        <fieldset>
+          <h4 style="font-size: 15px; margin-bottom: 8px;">
+            Share a purchase
+          </h4>
+
           <%=render :partial => 'products/input', 
               :locals => {
                 :f => f,
@@ -35,20 +40,23 @@
                 :submit_text => "Mine",
                 :show_query_box => true,
                 :show_extra_steps => false}%>
+        </fieldset>
+      <%end%> <!-- /form -->
+    </div> <!-- /creation -->
+
+
+    <%=render 'products/chooser'%> 
+
+    <div id="feed" class="feed">
+    </div>
+
+  </div> <!-- col-triple-->
       
-        <%end%> <!-- /form -->
-        
-      </div> <!-- /span6 -->
-    </div> <!-- /row -->
-  </div> <!-- /creation -->
-
-
-  <%=render 'products/chooser'%> 
-
-  <div id="feed">
+  <div class="col">
+    <!-- Creation tips <br /> -->
   </div>
 
-</div>
+</div> <!-- container -->
 
 <%content_for :javascript do%>
 
