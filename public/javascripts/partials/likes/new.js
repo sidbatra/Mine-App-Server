@@ -13,6 +13,11 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     this.buttonEl     = '#like_post_' + this.productID;
 
     $(this.buttonEl).click(function(){self.post();});
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.CurrentUserLikes,
+                this.liked,
+                this);
   },
 
   // Create a like 
@@ -42,6 +47,14 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
             like  : like,
             el    : '#likes_' + this.productID}); 
       
+      this.liked(this.productID);
+    }
+  },
+
+  // Change the state of the button if a user likes/has liked an item
+  //
+  liked: function(productID) {
+    if(this.productID == productID) {
       $(this.buttonEl).attr('disabled', true);
     }
   }

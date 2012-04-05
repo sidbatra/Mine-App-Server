@@ -17,6 +17,7 @@ javascripts:
     - public/javascripts/support/analytics.js
     - public/javascripts/support/message_drawer.js
     - public/javascripts/support/helpers.js
+    - public/javascripts/support/notification_manager.js
     - public/javascripts/support/global.js
     - public/javascripts/support/window_listener.js
     - public/javascripts/models/*.js

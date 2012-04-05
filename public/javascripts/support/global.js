@@ -6,6 +6,7 @@
 //
 Denwen.Track  = new Denwen.Analytics();
 Denwen.H      = new Denwen.Helpers();
+Denwen.NM     = new Denwen.NotificationManager();
 Denwen.Drawer = new Denwen.Partials.Common.MessageDrawer();
 
 
