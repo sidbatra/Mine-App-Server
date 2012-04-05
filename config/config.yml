@@ -28,7 +28,7 @@ common: &common
   :edge_servers_count: 7
   :success: success
   :error: error
-  :name: OnCloset
+  :name: Mine
   :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
   :version: 3.1.1
   :keys:
