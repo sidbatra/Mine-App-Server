@@ -176,9 +176,10 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     if(this.images.isURLQuery() && !this.images.isEmpty()) {
       var self = this;
       setTimeout(function(){
-        if(!$(self.imagesEl).find("img:visible").length)
+        if(!$(self.imagesEl).find("img:visible").length && 
+            self.isSearchActive())
           Denwen.Drawer.error("Oops, no large photos found.");
-        },2500);
+        },1500);
     }
   },
 
