@@ -23,18 +23,15 @@
         <%=image_tag @user.large_image_url,
             :class => "user-photo"%>
       </div>
-      <p class="user-name"><%=@user.full_name%></p>
+      <p class="user-name">
+        <%=@user.full_name%>
+      </p>
     </div>
     
     <%=render :partial => "users/ifollowers",
         :locals => {:user => @user}%>
       
-    <div class="nav-box">
-      <%=link_to "<i class='icon-user'></i>Invite friends",
-          new_invite_path(:src => "profile")%>
-      <%=link_to "<i class='icon-cog'></i>Settings",
-          settings_path(:src => "profile")%>
-    </div>
+    <%=render :partial => "users/trinkets"%>
 
   </div> <!-- /col -->
 
