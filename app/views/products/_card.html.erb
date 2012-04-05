@@ -1,9 +1,34 @@
-<%cache ["v1",product,product.store ? product.store : "","card"] do %>
+<%cache ["v2",product,product.store ? product.store : "","card"] do %>
 
-<%=image_tag product.thumbnail_url%>
-<%=link_to product.title,product_path(product.user.handle,product.handle)%>
-<%=product.store ? product.store.name : ""%>
+<div class="item">
 
-<br>
+  <div class="actions" 
+        id="feedback" 
+        style="position: absolute; top: 12px; left: 12px;">
+
+    <a style="float: left; margin-right: -1px;" 
+        href="/" class="btn btn-small">Mine</a>
+    <a style="float: left; margin-right: -1px;" 
+        href="/" class="btn btn-small">
+        <i class="icon-like"></i>
+    </a>
+    <a style="float: left" 
+        href="/" 
+        class="btn btn-small">
+        <i class="icon-pencil"></i>
+    </a>
+  </div>
+
+  <%=link_to image_tag(product.giant_url),
+      product_path(product.user.handle,product.handle),
+      :class => "photo-box"%>
+
+  <div class="details">
+    <h5>
+      <%=product.title%>
+      <small><%=product.store ? product.store.name : ""%></small>
+    </h5>
+  </div>
+</div> 
 
 <%end%>

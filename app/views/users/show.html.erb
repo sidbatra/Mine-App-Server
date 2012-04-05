@@ -30,15 +30,16 @@
         :locals => {:user => @user}%>
       
     <div class="nav-box">
-      <a href="/invite.html.erb"><i class="icon-user"></i> Invite friends</a>
-      <a href="/settings.html.erb"><i class="icon-cog"></i> Settings</a>
+      <%=link_to "<i class='icon-user'></i>Invite friends",
+          new_invite_path(:src => "profile")%>
+      <%=link_to "<i class='icon-cog'></i>Settings",
+          settings_path(:src => "profile")%>
     </div>
 
   </div> <!-- /col -->
 
-      <%#render :partial => "users/products",
-          :locals => {:user => @user}%>
-  </div> <!-- /row -->
+  <%=render :partial => "users/products",
+      :locals => {:user => @user}%>
   
 </div> <!-- /container -->
 
