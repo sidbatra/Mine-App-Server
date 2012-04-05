@@ -1,6 +1,5 @@
 /* ----- basic -----*/
-.container { 
-	width: 945px; }
+.container, .navbar .container { width: 945px; }
 
 .col { 
 	width: 184px;
