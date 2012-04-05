@@ -6,6 +6,10 @@
   <%=f.hidden_field :orig_thumb_url%>
   
 	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
+
+    <h4 style="font-size: 15px; margin-bottom: 8px;">
+      Share a purchase
+    </h4>
 	
     <%=f.text_field :query,
         :placeholder => "Detailed item name or URL",
@@ -20,38 +24,38 @@
     		Find item
     	</a>
 	</div> <!-- /query_box -->
-	
-	<div class="change-box">
-			<div class="btn change-photo" id="product_change_photo">
-				Change photo
-			</div>
-		<div class="thumbnail photo-box" id="product_selection">
-			<!-- image inserted is #product_selection_photo.photo -->
-		</div> <!-- /photo_box -->
-	</div>
-
 
   <div id="extra_steps" 
       style="<%=show_extra_steps ? '' : 'display: none'%>">
+	
+    <div class="change-box">
+        <div class="btn change-photo" id="product_change_photo">
+          <i class="icon-camera"></i> Change photo
+        </div>
+      <div class="photo-box" id="product_selection">
+        <!-- image inserted is #product_selection_photo.photo -->
+      </div> <!-- /photo_box -->
+    </div>
   
 		<div class="control-group" id="title_box">
-      <label class="control-label" style="width: 120px;">
+      <label class="control-label" style="width: 145px;">
 				Item name
       </label>
-      <div class="controls" style="margin-left: 130px;">
+      <div class="controls" style="margin-left: 155px;">
 	      <%=f.text_field :title,
-	                  :style => "width: 200px;"%>
+            :size => 30,
+            :style => "width: 200px;"%>
       </div>
     </div> <!-- /title -->
 	
 		<div class="control-group" id="store_box">
-	    <label class="control-label" style="width: 120px;">
+	    <label class="control-label" style="width: 145px;">
 	      Store where bought
 	    </label>
-			<div class="controls" style="margin-left: 130px;">
+			<div class="controls" style="margin-left: 155px;">
 		    <%=f.text_field :store_name,
-		    						:autocomplete => :off,
-		                :style => "width: 200px;"%>
+            :autocomplete => :off,
+            :style => "width: 200px;"%>
 		    <span class="help-inline faded-80">          
 			    <%=f.label :is_store_unknown, 
 							"#{f.check_box :is_store_unknown} Not sure",
@@ -63,7 +67,7 @@
 	  
 		<div class="strike-thru" id="endorsement_initiate">
 		  <%=link_to  "<i class='icon-pencil faded-30'></i> "\
-                  "Add an optional review?", 
+                  "Add an optional note?", 
             "javascript:void(0)"%>
 		</div>
 		
@@ -71,11 +75,11 @@
       id="endorsement_container" 
       style="display:none">
 
-      <label class="control-label" style="width: 120px;">
+      <label class="control-label" style="width: 145px;">
         Review
       </label>
 
-			<div class="controls" style="margin-left: 130px;">
+			<div class="controls" style="margin-left: 155px;">
 	      <%=f.text_area :endorsement,
 	            :value  => "",
 	            :rows 	=> 6,
@@ -84,8 +88,8 @@
     </div> <!-- /endorsement -->
 
 		<button type="submit" 
-      class="btn btn-large btn-primary" 
-      style="width: 420px;">
+      class="btn btn-large btn-mid" 
+      style="width: 100%;">
 			<%=submit_text%>
 		</button> <!-- submit -->
     

@@ -29,15 +29,12 @@
             :style => "margin-bottom: 0;"} do |f|%>
     
         <fieldset>
-          <h4 style="font-size: 15px; margin-bottom: 8px;">
-            Share a purchase
-          </h4>
 
           <%=render :partial => 'products/input', 
               :locals => {
                 :f => f,
                 :suggestion => nil,
-                :submit_text => "Mine",
+                :submit_text => "Add to Mine",
                 :show_query_box => true,
                 :show_extra_steps => false}%>
         </fieldset>
