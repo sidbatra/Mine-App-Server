@@ -10,14 +10,16 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     this.product    = new Denwen.Models.Product(this.options.productJSON);
     this.source     = this.options.source;
 
-    this.likes = new Denwen.Partials.Likes.Likes();
-    this.likes.fetch(this.product.get('id'));
+    if(this.product.get('fb_object_id')) { 
+      this.likes = new Denwen.Partials.Likes.Likes();
+      this.likes.fetch(this.product.get('id'));
 
-    this.comments   = new Denwen.Partials.Comments.Comments();
-    this.comments.fetch(this.product.get('id'));
+      this.comments   = new Denwen.Partials.Comments.Comments();
+      this.comments.fetch(this.product.get('id'));
 
-    new Denwen.Partials.Likes.New({product_id:this.product.get('id')});
-    new Denwen.Partials.Comments.New({product_id:this.product.get('id')});
+      new Denwen.Partials.Likes.New({product_id:this.product.get('id')});
+      new Denwen.Partials.Comments.New({product_id:this.product.get('id')});
+    }
 
     new Denwen.Partials.Facebook.Base();
 

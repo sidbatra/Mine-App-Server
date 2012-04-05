@@ -112,13 +112,13 @@
         </div> <!-- /control-group -->
 
 
-        <div class="control-group" 
-              id="likes_container"
-              style="margin: 19px 13px 0;">
+        <%if logged_in? && @product.fb_object_id%>
+          <div class="control-group" 
+                id="likes_container"
+                style="margin: 19px 13px 0;">
 
-          <div id="likes_<%=@product.id%>" style="margin-bottom: 19px;"></div>
+            <div id="likes_<%=@product.id%>" style="margin-bottom: 19px;"></div>
 
-          <%if logged_in?%>
             <input id="like_post_<%=@product.id%>" 
                     class="btn" 
                     style="width: 56px; height: 48px; margin-left: 4px;" 
@@ -126,18 +126,15 @@
                     title="Like" 
                     type="button" 
                     alt=""> 
-          <%end%> 
-
-        </div><!--likes_container-->
+          </div><!--likes_container-->
  
         
-        <div class="control-group" 
-              id="comments_container"
-              style="margin: 19px 13px 0;">
+          <div class="control-group" 
+                id="comments_container"
+                style="margin: 19px 13px 0;">
 
-          <div id="comments_<%=@product.id%>" style="margin-bottom: 19px;"></div>
+            <div id="comments_<%=@product.id%>" style="margin-bottom: 19px;"></div>
         
-          <%if logged_in?%>
             <div id="add_comment" style="clear: both;">
               
                 <%=text_area_tag "comment_data_#{@product.id}",
@@ -158,8 +155,8 @@
                         alt=""> 
               
             </div> <!-- /add_comment -->
-          <%end%> 
-        </div> <!-- comments_container -->		    
+          </div> <!-- comments_container -->		    
+        <%end%>
 
 
 		    <div id="feed_items" style="margin: 19px 13px 0;"></div>
@@ -174,7 +171,8 @@
 
     new Denwen.Views.Products.Show({
           productJSON : <%=@product.to_json(
-                              :only => [:id,:user_id,:endorsement])%>,
+                              :only     => [:id,:user_id,:endorsement],
+                              :methods  => :fb_object_id )%>,
           source      : '<%=@source%>'});
 
   </script>
