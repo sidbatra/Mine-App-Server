@@ -1656,14 +1656,14 @@
           break
 
         case 38: // up arrow
-          if(!e.charCode) {
+          if(e.type === 'keydown') {
             e.preventDefault()
             this.prev()
           }
           break
 
         case 40: // down arrow
-          if(!e.charCode) {
+          if(e.type === 'keydown') {
             e.preventDefault()
             this.next()
           }
