@@ -126,8 +126,7 @@ class ProductsController < ApplicationController
   ensure
     redirect_to user_path(
                   self.current_user.handle,
-                  :src    => UserShowSource::ProductDeleted,
-                  :anchor => UserShowHash::Owns)
+                  :src    => UserShowSource::ProductDeleted)
   end
 
 

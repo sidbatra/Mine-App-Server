@@ -1,8 +1,9 @@
-<%cache ["v2",user,"ifollowers"] do%>
+<%cache ["v3",user,"ifollowers"] do%>
 <div class="list-box">
   <h4 style="margin-bottom: 14px;">Sharing with</h4>
   <ul class="object-list" style="margin: 0;">
     <%=render :partial => "users/member", 
+        :locals => {:src => src},
         :collection => user.ifollowers,
         :as => :user%>
   </ul>

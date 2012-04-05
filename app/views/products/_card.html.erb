@@ -1,4 +1,4 @@
-<%cache ["v2",product,product.store ? product.store : "","card"] do %>
+<%cache ["v3",product,product.store ? product.store : "","card"] do %>
 
 <div class="item">
 
@@ -20,13 +20,13 @@
   </div>
 
   <%=link_to image_tag(product.giant_url),
-      product_path(product.user.handle,product.handle),
+      product_path(product.user.handle,product.handle,:src => "profile"),
       :class => "photo-box"%>
 
   <div class="details">
     <h5>
-      <%=product.title%>
-      <small><%=product.store ? product.store.name : ""%></small>
+      <%=h product.title%>
+      <small><%=h product.store ? product.store.name : ""%></small>
     </h5>
   </div>
 </div> 

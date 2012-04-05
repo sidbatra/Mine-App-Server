@@ -29,9 +29,10 @@
     </div>
     
     <%=render :partial => "users/ifollowers",
-        :locals => {:user => @user}%>
+        :locals => {:user => @user,:src => "profile"}%>
       
-    <%=render :partial => "users/trinkets"%>
+    <%=render :partial => "users/trinkets",
+        :locals => {:src => "profile"}%>
 
   </div> <!-- /col -->
 

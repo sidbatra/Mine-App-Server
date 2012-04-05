@@ -10,7 +10,7 @@
         <%if logged_in?%>
           <ul class="nav pull-right">
             <li>
-              <%=link_to "Invite friends",new_invite_path%>
+              <%=link_to "Invite friends",new_invite_path(:src => "bar")%>
             </li>
             <li class="user-cell">
               <%=link_to image_tag(self.current_user.square_image_url,
