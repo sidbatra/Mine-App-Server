@@ -37,11 +37,13 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   created: function(like) {
     this.posting = false;
     
-    new Denwen.Partials.Likes.Like({
-          like  : like,
-          el    : '#likes_' + this.productID}); 
-    
-    $(this.buttonEl).attr('disabled', true);
+    if(like.get('user_id')) {
+      new Denwen.Partials.Likes.Like({
+            like  : like,
+            el    : '#likes_' + this.productID}); 
+      
+      $(this.buttonEl).attr('disabled', true);
+    }
   }
 
 });

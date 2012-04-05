@@ -40,12 +40,14 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   created: function(comment) {
     this.posting = false;
     
-    new Denwen.Partials.Comments.Comment({
-          comment : comment,
-          el      : '#comments_' + this.productID}); 
+    if(comment.get('id')) {
+      new Denwen.Partials.Comments.Comment({
+            comment : comment,
+            el      : '#comments_' + this.productID}); 
 
-    $(this.inputEl).val('');
-    $(this.inputEl).focus();
+      $(this.inputEl).val('');
+      $(this.inputEl).focus();
+    }
   }
 
 });
