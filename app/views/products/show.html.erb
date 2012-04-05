@@ -118,6 +118,16 @@
 
           <div id="likes_<%=@product.id%>" style="margin-bottom: 19px;"></div>
 
+          <%if logged_in?%>
+            <input id="like_post_<%=@product.id%>" 
+                    class="btn" 
+                    style="width: 56px; height: 48px; margin-left: 4px;" 
+                    value="Like" 
+                    title="Like" 
+                    type="button" 
+                    alt=""> 
+          <%end%> 
+
         </div><!--likes_container-->
  
         
