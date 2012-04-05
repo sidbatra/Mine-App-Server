@@ -1656,13 +1656,17 @@
           break
 
         case 38: // up arrow
-          e.preventDefault()
-          this.prev()
+          if(!e.charCode) {
+            e.preventDefault()
+            this.prev()
+          }
           break
 
         case 40: // down arrow
-          e.preventDefault()
-          this.next()
+          if(!e.charCode) {
+            e.preventDefault()
+            this.next()
+          }
           break
       }
 
