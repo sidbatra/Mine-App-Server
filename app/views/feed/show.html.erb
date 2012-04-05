@@ -8,7 +8,7 @@
           :class => "user-photo"%>
       <div class="user-name">
         <p>
-          <%=link_to self.current_user.full_name,
+          <%=link_to h(self.current_user.full_name),
               user_path(self.current_user.handle,:src => "feed_name")%>
         </p>
       </div>

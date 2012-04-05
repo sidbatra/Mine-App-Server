@@ -14,7 +14,7 @@
             </li>
             <li class="user-cell">
               <%=link_to image_tag(self.current_user.square_image_url,
-                          :class => "avatar") + self.current_user.full_name,
+                          :class => "avatar") + h(self.current_user.full_name),
                   user_path(self.current_user.handle,:src => "bar"),
                   :style => "white-space: nowrap; display: block; "\
                             "padding-right: 10px;"%>

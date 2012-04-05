@@ -1,6 +1,6 @@
 <%cache ["v3",user,"member"] do%>
 <li>
-  <%=link_to image_tag(user.square_image_url) + user.full_name,
+  <%=link_to image_tag(user.square_image_url) + h(user.full_name),
       user_path(user.handle,:src => src)%>
 </li>
 <%end%>
