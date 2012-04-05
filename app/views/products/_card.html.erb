@@ -1,4 +1,4 @@
-<%cache ["v3",product,product.store ? product.store : "","card"] do %>
+<%cache ["v4",product,product.store ? product.store : "","card"] do %>
 
 <div class="item">
 
@@ -25,7 +25,7 @@
 
   <div class="details">
     <h5>
-      <%=h product.title%>
+      <%=h truncate(product.title,:length => 40)%>
       <small><%=h product.store ? product.store.name : ""%></small>
     </h5>
   </div>
