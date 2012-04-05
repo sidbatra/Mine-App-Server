@@ -1,7 +1,9 @@
-<div class="container settings">
-	<div class="row settings">
-		<div class="span6 offset3">
-			<div class="well">
+<div class="container">
+  <div class="col">
+    &nbsp;
+  </div>
+	<div class="col-triple settings">
+			<div class="item">
 
 				 <%form_for @settings,:url => "/settings/#{@settings.id}",
 		      :html => {
@@ -11,57 +13,74 @@
 		      <fieldset>
 		
 						<!-- Notifications -->
-						
-						<legend>Notifications</legend>
+            <h4 style="font-size: 15px; margin-bottom: 18px;">
+              Notifications
+            </h4>
 						
 						<div class="control-group">
-							<label class="control-label" style="width: 80px;">Activity</label>
+							<label class="control-label" style="width: 80px;">
+                Activity
+              </label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :email_interaction,
-						                  "#{f.check_box :email_interaction} Email me when someone owns, wants, likes or comments 
-						                  on one of my items or sets",
-						                  :class => "checkbox"%>
+                    "#{f.check_box :email_interaction} "\
+                    "Email me when someone owns, wants, "\
+                    "likes or comments on one of my items or sets",
+                    :class => "checkbox"%>
 					    </div>
 						</div>
 						
 						<div class="control-group">
-							<label class="control-label" style="width: 80px;">Influencers</label>
+							<label class="control-label" style="width: 80px;">
+                Influencers
+              </label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :email_influencer,
-						                  "#{f.check_box :email_influencer} Email me when someone adds me as an influencer, 
-						                  or when my influencers add new items and sets",
-						                  :class => "checkbox"%>
+                    "#{f.check_box :email_influencer} Email me "\
+                    "when someone adds me as an influencer, "\
+                    "or when my influencers add new items and sets",
+                    :class => "checkbox"%>
 					    </div>              
 						</div>
 						
 						<div class="control-group">
-							<label class="control-label" style="width: 80px;">Upates</label>
+							<label class="control-label" style="width: 80px;">
+                Upates
+              </label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :email_update,
-						                  "#{f.check_box :email_update} Email me feature updates and reminders",
-						                  :class => "checkbox"%>
+                    "#{f.check_box :email_update} Email me feature "\
+                    "updates and reminders",
+                    :class => "checkbox"%>
 					    </div>              
 				    </div>
-						
 						<!-- /Notifications -->
+
 						<!-- Social Sharing -->
-						
-						<legend>Social Sharing</legend>
+            <h4 style="font-size: 15px; margin-bottom: 18px;">
+              Social Sharing
+            </h4>
 						
 						<div class="control-group">
-							<label class="control-label" style="width: 80px;">Facebook</label>
+							<label class="control-label" style="width: 80px;">
+                Facebook
+              </label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :post_to_timeline, 
-						    							"#{f.check_box :post_to_timeline} Post my new items and sets to my Timeline",
-						                  :class => "checkbox"%>
+                    "#{f.check_box :post_to_timeline} Post my new items "\
+                    "and sets to my Timeline",
+                    :class => "checkbox"%>
 						  </div>
 				    </div>
 						
 						<!-- /Social Sharing -->
 				    
-				    <div class="form-actions" style="padding-left: 100px; padding-bottom: 0px;">
+				    <div class="form-actions" 
+                  style="border-top:none; padding-left: 100px; 
+                          background: none;
+                          padding-bottom: 0px;">
 				    	<%=submit_tag "Save Changes",
-					                  :class  => 'btn btn-primary',
+					                  :class  => 'btn btn-mid',
 					                  :name   => nil%>
 				    </div>
 			    
@@ -69,9 +88,8 @@
 			                          
 			  <%end%> <!-- /form -->
 			 			  
-		  </div> <!-- /well -->
-	 	</div> <!-- /span6 -->
-	</div> <!-- /row -->
+		  </div> <!-- /item -->
+	 	</div> <!-- /col-triple -->
 </div> <!-- /container -->
 
 
