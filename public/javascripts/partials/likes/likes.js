@@ -35,6 +35,8 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
                   Denwen.NotificationManager.Callback.LikeFetched,
                   like);
     });
+
+    Denwen.NM.trigger(Denwen.NotificationManager.Callback.LikesFetched);
   }
 
 });

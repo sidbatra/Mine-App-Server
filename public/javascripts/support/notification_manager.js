@@ -16,5 +16,6 @@ Denwen.NotificationManager.Callback= {
   CommentFetched    : "commentFetched",
   CommentCreated    : "commentCreated",
   LikeFetched       : "likeFetched",
-  LikeCreated       : "likeCreated"
+  LikeCreated       : "likeCreated",
+  LikesFetched      : "likesFetched"
 };

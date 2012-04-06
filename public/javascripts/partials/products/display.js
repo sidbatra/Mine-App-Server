@@ -11,6 +11,10 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+
+    this.aggregateEl  = '#product_likes_' + this.model.get('id') + '_aggregate';
+    this.likes        = new Denwen.Collections.Likes();
+
     this.render();
 
     if(Denwen.H.isLoggedIn() && this.model.get('fb_object_id')) {
@@ -39,6 +43,11 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
     Denwen.NM.bind(
                 Denwen.NotificationManager.Callback.LikeCreated,
                 this.likeCreated,
+                this);
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.LikesFetched,
+                this.likesFetched,
                 this);
   },
 
@@ -70,6 +79,38 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
           onTop : onTop});
   },
 
+  // Render likes aggregation for the product
+  //
+  renderLikeAggregation: function() {
+    var names     = [];
+    var aggregate = "";
+
+    this.likes.each(function(like){
+      if(like.get('user_id') == Denwen.H.currentUser.get('fb_user_id')) {
+        names.splice(0,0,'You');
+      }
+      else {
+        names.push(like.get('name'));
+      }
+    });
+
+    if(names.length == 1) {
+      aggregate = names[0]
+      aggregate += aggregate == 'You' ? ' like this' : ' likes this'; 
+    }
+    else if(names.length == 2) {
+      aggregate = names.join(' and ') + ' like this';
+    }
+    else {
+      aggregate = names.slice(0,names.length-1).join(', ') + ' and ' +  
+                  names[names.length-1] + ' like this'; 
+    }
+
+    aggregate += ".";
+    
+    $(this.aggregateEl).html(aggregate);
+  },
+
   // Fired when a comment is fetched for the product
   //
   commentFetched: function(comment) {
@@ -96,14 +137,27 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
         this.renderLike(like,true);
         this.newLike.disable();  
       }
+      
+      this.likes.add(like);
     }
   },
 
   // Fired when a like is created for the product 
   //
   likeCreated: function(like) {
-    if(this.model.get('id') == like.get('product_id'))
+    if(this.model.get('id') == like.get('product_id')) {
+      this.likes.add(like);
+
       this.renderLike(like,true);
+      this.renderLikeAggregation();
+    }
+  },
+  
+  // Fired when all the likes associated with a product are fetched
+  //
+  likesFetched: function() {
+    if(this.likes.length)
+      this.renderLikeAggregation();
   }
 
 });
