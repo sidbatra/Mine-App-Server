@@ -54,9 +54,9 @@
 	border-radius: 0 !important; }
 	
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
-	color: #3389cc !important;
+/* 	color: #3389cc !important; */
 	text-decoration: none;
-	background-color: whiteSmoke; }
+	background-color: #555; }
 
 /* ----- feed, col-triple ----- */
 
