@@ -48,7 +48,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     if(comment.get('id')) {
       new Denwen.Partials.Comments.Comment({
             comment : comment,
-            el      : '#product_comments_' + this.productID}); 
+            el      : $('#product_comments_' + this.productID)}); 
 
       $(this.inputEl).val('');
       $(this.inputEl).focus();
