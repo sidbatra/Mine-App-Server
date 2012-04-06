@@ -80,10 +80,12 @@ class LikesController < ApplicationController
           aggregate = ""
         when 1
           aggregate = names.first
+          aggregate += aggregate == 'You' ? ' like this' : ' likes this'
         when 2
-          aggregate = names.join(" and ")
+          aggregate = names.join(" and ") + " like this"
         else
-          aggregate = names[0..-2].join(', ') + ' and ' + names.last
+          aggregate = names[0..-2].join(", ") + " and " + 
+                        names.last + " like this"
         end
           
         data.last['aggregate'] = aggregate if data.present?

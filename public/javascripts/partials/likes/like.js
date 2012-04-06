@@ -16,7 +16,7 @@ Denwen.Partials.Likes.Like = Backbone.View.extend({
     this.el.append(Denwen.JST['likes/like']({like:this.like}));
 
     if(this.like.get('aggregate'))
-      $(this.aggregateEl).html(this.like.get('aggregate') + ' like this');
+      $(this.aggregateEl).html(this.like.get('aggregate'));
   }
 
 });
