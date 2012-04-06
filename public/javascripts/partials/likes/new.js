@@ -49,7 +49,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   // Change the state of the button if a user likes/has liked an item
   //
   disable: function() {
-    $(this.buttonEl).attr('disabled', true);
+    $(this.buttonEl).addClass('pushed');
     $(this.buttonEl).unbind('click');
   }
 
