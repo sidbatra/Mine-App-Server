@@ -42,7 +42,7 @@ common: &common
 
 development: &development
   <<: *common
-  :host: drao.oncloset.com
+  :host: pleg.oncloset.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
   :dump_bucket: denwen-hasit-dumps
