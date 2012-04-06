@@ -10,7 +10,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     this.productID    = this.options.product_id;
     this.posting      = false;
 
-    this.buttonEl     = '#like_post_' + this.productID;
+    this.buttonEl     = '#product_create_like_' + this.productID;
 
     $(this.buttonEl).click(function(){self.post();});
 
@@ -45,7 +45,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     if(like.get('user_id')) {
       new Denwen.Partials.Likes.Like({
             like  : like,
-            el    : '#likes_' + this.productID}); 
+            el    : '#product_likes_' + this.productID}); 
       
       this.liked(this.productID);
     }

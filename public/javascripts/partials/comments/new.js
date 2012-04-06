@@ -10,10 +10,15 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     this.productID    = this.options.product_id;
     this.posting      = false;
 
-    this.inputEl      = '#comment_data_' + this.productID;
-    this.buttonEl     = '#comment_post_' + this.productID;
+    this.inputEl      = '#product_comment_data_' + this.productID;
+    $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
+  },
 
-    $(this.buttonEl).click(function(){self.post();});
+  // Fired after every keystroke on the comments data input.
+  //
+  commentKeystroke: function(e) {
+    if(e.keyCode==13)
+      this.post();
   },
 
   // Create a comment 
@@ -43,7 +48,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     if(comment.get('id')) {
       new Denwen.Partials.Comments.Comment({
             comment : comment,
-            el      : '#comments_' + this.productID}); 
+            el      : '#product_comments_' + this.productID}); 
 
       $(this.inputEl).val('');
       $(this.inputEl).focus();

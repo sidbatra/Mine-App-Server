@@ -6,13 +6,18 @@
           style="position: absolute; top: 20px; right: 20px;">
 
       <%if(Denwen.H.isCurrentUser(product.get('user').get('id'))){%>
-        <a style="float: right" href="/" class="btn">
+        <a style="float: right" 
+            href="<%=product.editPath('feed')%>" 
+            class="btn">
           <i class="icon-pencil"></i>
         </a>
       <%}%>
 
       <%if(product.get('fb_object_id')){%>
-        <a style="float: right; margin-right: -1px;" href="/" class="btn">
+        <a style="float: right; margin-right: -1px;" 
+            id="product_create_like_<%=product.get('id')%>"
+            href="javascript:void(0)" 
+            class="btn">
           <i class="icon-like"></i>
         </a>
       <%}%>
@@ -66,7 +71,10 @@
       <div class="comment-box new" style="margin-top: 15px;">
         <img class="user-photo" 
           src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
-        <input type="text" style="width: 475px;" placeholder="Add a comment">
+        <input type="text" 
+          id="product_comment_data_<%=product.get('id')%>"
+          style="width: 475px;" 
+          placeholder="Add a comment">
       </div>
     <%}%>
     
