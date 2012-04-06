@@ -63,34 +63,6 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert the user to start inviting friends 
-  #
-  def add_a_friend(user)
-    @user         = user
-    @action       = "Which of your friends has great style?"
-    @source       = "email_add_friend"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AddFriend)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
-  # Alert the user to start adding stores 
-  #
-  def add_a_store(user)
-    @user         = user
-    @action       = "Where do you like to shop?"
-    @source       = "email_add_store"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AddStore)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
   # Friend activity digest for the user 
   #
   def friend_activity_digest(user,friends,owns,wants)

@@ -9,19 +9,6 @@ module DW
     #
     class Mailman
 
-      # Email the owner about any action on a product
-      #
-      def self.notify_owner_about_an_action(action)
-        
-        if action.actionable.user.setting.email_interaction &&
-                action.user_id != action.actionable.user_id
-
-          UserMailer.deliver_new_action(action) 
-        end
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Email user being followed
       #
       def self.email_leader_about_follower(following)
@@ -106,18 +93,6 @@ module DW
       #
       def self.pester_users_with_no_items(users)
         pester_users(users,:deliver_add_an_item)
-      end
-
-      # Email users with no friends to try and make them invite
-      #
-      def self.pester_users_with_no_friends(users)
-        pester_users(users,:deliver_add_a_friend)
-      end
-
-      # Email users with no stores to try and make them add stores
-      #
-      def self.pester_users_with_no_stores(users)
-        pester_users(users,:deliver_add_a_store)
       end
 
 
