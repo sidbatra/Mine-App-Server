@@ -56,7 +56,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     $('html').keydown(function(e){self.globalKeystroke(e);});
 
-    $(this.queryEl).focus();
+    $(this.queryEl).placeholder();
+    //$(this.queryEl).focus();
   },
 
   // Display loading spinner on search more
@@ -131,8 +132,10 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
       $(this.repeatQueryEl).val(query);
     }
 
-    if(!query.length)
+    if(!query.length || query == $(this.queryEl).attr('placeholder')) {
+      $(this.repeatQueryEl).val('');
       return;
+    }
 
     this.startSpinner();
 

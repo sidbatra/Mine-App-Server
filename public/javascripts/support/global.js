@@ -28,36 +28,3 @@ function make_ie_compatible() {
     $.getScript('http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js');
   }
 }
-
-// Conditionally replace and add default text
-// in the given input field
-//
-function make_conditional_field(id) {
-
-  var el = $(id);
-  var placeholder = el.attr('data-placeholder');
-  var placeholderColor = el.attr('ui-placeholder-color');
-  var textColor = el.attr('ui-text-color');
-
-  if(el.val() == '') {
-    el.val(placeholder);
-    el.css('color',placeholderColor);
-  }
-  else {
-    el.css('color',textColor);
-  }
-
-  el.focus(function() { 
-    if(this.value == placeholder)
-      this.value = '';
-
-    this.style.color = textColor;
-  });
-
-  el.blur(function() {
-    if(this.value == '') { 
-      this.value = placeholder;
-      this.style.color = placeholderColor;
-    }
-  });
-}

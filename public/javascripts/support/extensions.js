@@ -74,3 +74,46 @@ $.fn.selectRange = function(start, end) {
         }
     });
 };
+
+// Test if the browser supports HTML5 placeholders.
+//
+jQuery.support.placeholder = (function(){
+    var i = document.createElement('input');
+    return 'placeholder' in i;
+})();
+
+
+// Cross browser placeholder functionality for input fields.
+// Input field must have a placeholder attribute.
+//
+$.fn.placeholder = function() {
+  
+  if($.support.placeholder)
+    return;
+
+  var placeholder = this.attr('placeholder');
+  var placeholderColor = "#999999";
+  var textColor = this.css('color');
+
+  if(this.val() == '') {
+    this.val(placeholder);
+    this.css('color',placeholderColor);
+  }
+  else {
+    this.css('color',textColor);
+  }
+
+  this.focus(function() { 
+    if(this.value == placeholder)
+      this.value = '';
+
+    this.style.color = textColor;
+  });
+
+  this.blur(function() {
+    if(this.value == '') { 
+      this.value = placeholder;
+      this.style.color = placeholderColor;
+    }
+  });
+}
