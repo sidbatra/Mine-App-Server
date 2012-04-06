@@ -1,6 +1,6 @@
-<div class="container creation">
-	<div class="row">
-		<div class="span6 offset3">
+<div class="container">
+	<div class="col-triple" style="margin-left: 189px;">
+    <div class="item creation">
 		
 		  <%form_for @product,:url => "/products/#{@product.id}",
 		        :html => {
@@ -17,9 +17,9 @@
 		
 		  <%end%> <!-- form -->
 
-		</div> <!-- /span6 -->
-	</div> <!-- /row -->
-</div> <!-- /container -->
+		</div> 
+	</div> 
+</div> 
 
 		
 <%=render 'chooser'%>	

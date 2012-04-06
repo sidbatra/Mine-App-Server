@@ -28,8 +28,6 @@
             :class => "form-horizontal",
             :style => "margin-bottom: 0;"} do |f|%>
     
-        <fieldset>
-
           <%=render :partial => 'products/input', 
               :locals => {
                 :f => f,
@@ -37,7 +35,6 @@
                 :submit_text => "Add to Mine",
                 :show_query_box => true,
                 :show_extra_steps => false}%>
-        </fieldset>
       <%end%> <!-- /form -->
     </div> <!-- /creation -->
 
