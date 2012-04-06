@@ -8,7 +8,6 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     var self          = this;
 
     this.productID    = this.options.product_id;
-    this.posting      = false;
 
     this.inputEl      = '#product_comment_data_' + this.productID;
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
@@ -24,15 +23,20 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   // Create a comment 
   //
   post: function() {
-    if(this.posting)
+    if(!$(this.inputEl).val())
       return;
 
     var self      = this;
-    this.posting  = true;
 
     var comment   = new Denwen.Models.Comment({
-                          product_id  : this.productID,
-                          message     : $(this.inputEl).val()});
+                     product_id : this.productID,
+                     message    : $(this.inputEl).val(),
+                     from       : {
+                                  'id'  :Denwen.H.currentUser.get('fb_user_id'),
+                                  'name':Denwen.H.currentUser.get('full_name')}
+                    });
+
+    this.render(comment);
 
     comment.save({},{
         success :  function(model) {self.created(model)},
@@ -40,18 +44,23 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     });
   },
 
+  // Render the comment created before sending the request
+  // to our server
+  //
+  render: function(comment) {
+    Denwen.NM.trigger(
+        Denwen.NotificationManager.Callback.CommentCreated,
+        comment);
+
+    $(this.inputEl).val('');
+    $(this.inputEl).focus();
+  },
+
   // Called when the comment is successfully created
   //
   created: function(comment) {
-    this.posting = false;
-    
-    if(comment.get('id')) {
-      Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.CommentCreated,
-          comment);
-
-      $(this.inputEl).val('');
-      $(this.inputEl).focus();
+    if(!comment.get('id')) {
+      console.log("error in creating");
     }
   }
 
