@@ -24,21 +24,21 @@
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :email_interaction,
                     "#{f.check_box :email_interaction} "\
-                    "Email me when someone owns, wants, "\
-                    "likes or comments on one of my items or sets",
+                    "Email me when someone likes "\
+                    "or comments on one of my items",
                     :class => "checkbox"%>
 					    </div>
 						</div>
 						
 						<div class="control-group">
 							<label class="control-label" style="width: 80px;">
-                Influencers
+                Friends
               </label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :email_influencer,
                     "#{f.check_box :email_influencer} Email me "\
-                    "when someone adds me as an influencer, "\
-                    "or when my influencers add new items and sets",
+                    "when someone adds me as a friend, "\
+                    "or when a friend adds new items",
                     :class => "checkbox"%>
 					    </div>              
 						</div>
@@ -67,8 +67,8 @@
               </label>
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :post_to_timeline, 
-                    "#{f.check_box :post_to_timeline} Post my new items "\
-                    "and sets to my Timeline",
+                    "#{f.check_box :post_to_timeline} Sync my Mine "\
+                    "with my Facebook Timeline",
                     :class => "checkbox"%>
 						  </div>
 				    </div>
