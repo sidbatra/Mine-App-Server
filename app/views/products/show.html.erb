@@ -27,17 +27,8 @@
   <script type="text/javascript">
 
     new Denwen.Views.Products.Show({
-        productJSON     : <%=@product.to_json(
-                            :only => [:id,:created_at,:title,
-                                        :handle,:endorsement],
-                            :methods => [:giant_url,:fb_object_id],
-                            :include => {
-                              :user => {
-                                :only => [:id,:first_name,:last_name,:handle],
-                                :methods => [:square_image_url]},
-                              :store => {
-                                :only => [:id,:is_processed,:name],
-                                :methods => [:thumbnail_url]}})%>,
+        productJSON     : <%=render :partial => "products/display.json.erb",
+                              :locals => {:object => @product}%>,
         source          : '<%=@source%>'});
 
   </script>
