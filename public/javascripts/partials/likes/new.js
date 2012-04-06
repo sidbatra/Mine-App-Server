@@ -43,9 +43,9 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     this.posting = false;
     
     if(like.get('user_id')) {
-      new Denwen.Partials.Likes.Like({
-            like  : like,
-            el    : $('#product_likes_' + this.productID)}); 
+      Denwen.NM.trigger(
+                  Denwen.NotificationManager.Callback.LikeCreated,
+                  like);
       
       this.liked(this.productID);
     }

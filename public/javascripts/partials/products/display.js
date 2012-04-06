@@ -27,6 +27,16 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
                 Denwen.NotificationManager.Callback.CommentCreated,
                 this.commentCreated,
                 this);
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.LikeFetched,
+                this.likeFetched,
+                this);
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.LikeCreated,
+                this.likeCreated,
+                this);
   },
 
   // Render the contents of the model.
@@ -48,18 +58,40 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
           el      : $('#product_comments_' + comment.get('product_id'))});
   },
 
-  // Fired when a single comment has been fetched for the product
+  // Render an individual like for the product
+  //
+  renderLike: function(like) {
+    new Denwen.Partials.Likes.Like({
+          like  : like,
+          el    : $('#product_likes_' + like.get('product_id'))});
+  },
+
+  // Fired when a comment is fetched for the product
   //
   commentFetched: function(comment) {
     if(this.model.get('id') == comment.get('product_id'))
       this.renderComment(comment);
   },
 
-  // Fired when a comment has been created for the product 
+  // Fired when a comment is created for the product 
   //
   commentCreated: function(comment) {
     if(this.model.get('id') == comment.get('product_id'))
       this.renderComment(comment);
+  },
+
+  // Fired when a like is fetched for the product
+  //
+  likeFetched: function(like) {
+    if(this.model.get('id') == like.get('product_id'))
+      this.renderLike(like);
+  },
+
+  // Fired when a like is created for the product 
+  //
+  likeCreated: function(like) {
+    if(this.model.get('id') == like.get('product_id'))
+      this.renderLike(like);
   }
 
 });
