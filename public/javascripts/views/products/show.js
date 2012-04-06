@@ -7,35 +7,23 @@ Denwen.Views.Products.Show = Backbone.View.extend({
   initialize: function() {
     var self  = this;
 
-    this.product      = new Denwen.Models.Product(this.options.productJSON);
-    this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
-    this.source       = this.options.source;
+    this.product = new Denwen.Models.Product(this.options.productJSON);
+    this.source = this.options.source;
+
+    console.log(this.product);
+    var productDisplay = new Denwen.Partials.Products.Display({
+                              el: $('#feed'),
+                              model: this.product});
 
     if(this.product.get('fb_object_id')) { 
-      this.likes = new Denwen.Partials.Likes.Likes({
-                        current_user  : this.currentUser});
-
+      this.likes = new Denwen.Partials.Likes.Likes();
       this.likes.fetch(this.product.get('id'));
 
-      this.comments   = new Denwen.Partials.Comments.Comments();
+      this.comments = new Denwen.Partials.Comments.Comments();
       this.comments.fetch(this.product.get('id'));
-
-      new Denwen.Partials.Likes.New({product_id:this.product.get('id')});
-      new Denwen.Partials.Comments.New({product_id:this.product.get('id')});
     }
 
     new Denwen.Partials.Facebook.Base();
-
-    if(Denwen.H.isCurrentUser(this.product.get('user_id'))) {
-      new Denwen.Partials.Products.Endorsement({
-                  model   : this.product,
-                  el      : $('#product_endorsement_box'),
-                  source  : this.source});
-    }
-
-    this.productImageEl = '#product_image';
-
-    $(this.productImageEl).click(function(){self.productImageClicked();});
 
     this.setAnalytics();
   },

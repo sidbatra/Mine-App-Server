@@ -15,165 +15,29 @@
               :store        => @product.store}%>
 <%end%>
 
-<div style=" width: 620px; margin: -9px auto 0;">
-	<%=render :partial => 'misc/welcome', 
-	      	:locals => {
-	        :src    => @product_presenter.source_id,
-	        :target => @product_presenter.path('footer')} unless logged_in?%>
-	        <!-- /welcome -->
+<div class="container">
+  <div class="col-triple" style="margin-left: 189px;">
+    <div id="feed" class="feed">
+    </div>
+  </div>
 </div>
 
-<div class="container item">
-	<div class="row">
-    <div class="span8 offset2">
-    	<div class="well">
-    		<div class="control-group">
-					<div class="thumbnail" 
-                style="background: white; text-align: center; 
-                        padding-top: 40px; position: relative; 
-                        min-height: 200px;">
-				
-						<div style="margin-left: 0; 
-                        position: absolute; top: 6px; left: 6px; width: 400px;">
-						
-							<%if @source == 'store' && @product.store%>
-			          <%@store_presenter = presenter_for(@product.store)%>
-			          <%=@product_presenter.breadcrumb(
-			                @store_presenter.name,
-			                @store_presenter.closet_path('product'))%>
-			        <%else%>
-			          <%=@product_presenter.breadcrumb(
-			                @user_presenter.closet_title(true),
-			                @user_presenter.closet_path('product'))%>
-			        <%end%> <!-- /back to user or store -->
-
-					    <%unless @next_product.id == @prev_product.id && 
-					             @next_product.id == @product.id%>
-					      <div class="btn-group">      
-					      	<%=@product_presenter.prev(@next_product,@product.user)%>  
-						      <%=@product_presenter.next(@prev_product,@product.user)%>
-						    </div>
-					    <%end%> <!-- /previous + next -->
-					  
-					  </div> <!-- /all navigation -->
-					  
-					  <%if logged_in?%>
-						  <div id="feedback" style="position: absolute; top: 6px; right: 6px;">
-						  
-								
-							    <%unless is_current_user(@product.user)%>
-								    <div class="btn-group" 
-                          id="own_box_container" 
-                          style="position: relative; width: 103px; "\
-                                "height: 28px;">
-								    	<a id="want_actionable" 
-                          href="javascript:void(0)" 
-                          class="btn" 
-                          style="width: 32px">
-								      	Want
-								     	</a>
-								      <a id="own_actionable" 
-                          href="javascript:void(0)" 
-                          class="btn" 
-                          style="29px;">
-								      	Own
-								      </a>
-								    </div>
-							    <%else%>  
-							    	<div class="btn-group" style="width: 126px;">
-								      <%=@product_presenter.edit_link%>
-								      <%=@product_presenter.destroy_link%>
-							      </div>
-							    <%end%>
-
-								
-							</div> 
-						<%end%> <!-- /feedback: own + want -->
-						
-
-						<%=@product_presenter.large_image%>
-						
-						
-						<div class="caption" style="text-align: left; padding-top: 18px;">
-							<h5 style="font-weight: normal">
-								<strong><%=h @product_presenter.title%></strong> 
-								<%=@product_presenter.byline%>
-							</h5>
-							<p style="margin: 0;">
-								<%=render :partial => 'endorsement',
-	           					:locals   => {:product  => @product}%>
-           		</p>			
-						</div> <!-- /caption -->
-						
-						
-					</div> <!-- /thumbnail -->
-				</div> <!-- /control-group -->
-				
-        </div> <!-- /control-group -->
-
-
-        <%if logged_in? && @product.fb_object_id%>
-          <div class="control-group" 
-                id="likes_container"
-                style="margin: 19px 13px 0;">
-
-            <div id="likes_<%=@product.id%>" style="margin-bottom: 19px;"></div>
-
-            <input id="like_post_<%=@product.id%>" 
-                    class="btn" 
-                    style="width: 56px; height: 48px; margin-left: 4px;" 
-                    value="Like" 
-                    title="Like" 
-                    type="button" 
-                    alt=""> 
-          </div><!--likes_container-->
- 
-        
-          <div class="control-group" 
-                id="comments_container"
-                style="margin: 19px 13px 0;">
-
-            <div id="comments_<%=@product.id%>" style="margin-bottom: 19px;"></div>
-        
-            <div id="add_comment" style="clear: both;">
-              
-                <%=text_area_tag "comment_data_#{@product.id}",
-                    "",
-                    :rows  => "2",
-                    :style => "color: #99999; float: left;"\
-                              "height: 38px; width: 426px;",
-                    "ui-placeholder-color" => "#999999",
-                    "ui-text-color" => "#333333",
-                    "data-placeholder" => "Add a comment"%>
-                  
-                <input id="comment_post_<%=@product.id%>" 
-                        class="btn" 
-                        style="width: 56px; height: 48px; margin-left: 4px;" 
-                        value="Post" 
-                        title="Post" 
-                        type="button" 
-                        alt=""> 
-              
-            </div> <!-- /add_comment -->
-          </div> <!-- comments_container -->		    
-        <%end%>
-
-
-		    <div id="feed_items" style="margin: 19px 13px 0;"></div>
-			
-      </div> <!-- /well -->
-    </div> <!-- /span12 -->
-  </div> <!-- /row -->
-</div> <!-- /container -->
 
 <%content_for :javascript do%>
   <script type="text/javascript">
 
     new Denwen.Views.Products.Show({
         productJSON     : <%=@product.to_json(
-                              :only     => [:id,:user_id,:endorsement],
-                              :methods  => :fb_object_id )%>,
-        currentUserJSON : <%=self.current_user.to_json(:only => :fb_user_id)%>,
+                            :only => [:id,:created_at,:title,
+                                        :handle,:endorsement],
+                            :methods => [:giant_url,:fb_object_id],
+                            :include => {
+                              :user => {
+                                :only => [:id,:first_name,:last_name,:handle],
+                                :methods => [:square_image_url]},
+                              :store => {
+                                :only => [:id,:is_processed,:name],
+                                :methods => [:thumbnail_url]}})%>,
         source          : '<%=@source%>'});
 
   </script>
