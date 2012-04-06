@@ -1,6 +1,6 @@
 <%=@product.to_json(
-    :only => [:id,:created_at,:title,:handle],
-    :methods => [:giant_url],
+    :only => [:id,:created_at,:title,:handle,:endorsement],
+    :methods => [:giant_url,:fb_object_id],
     :include => {
       :user => {
         :only => [:id,:first_name,:last_name,:handle],

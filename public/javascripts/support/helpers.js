@@ -5,6 +5,7 @@ Denwen.Helpers = Backbone.Model.extend({
   //Constructor logic
   //
   initialize: function() {
+    this.currentUser        = undefined;
     this.assetHost          = $('meta[name=asset_host]').attr('content');
     this.current_user_id    = $('meta[name=current_user_id]').attr('content');
     this.currentUserGender  = $('meta[name=current_user_gender]').attr('content');

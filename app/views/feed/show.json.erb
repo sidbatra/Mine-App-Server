@@ -1,6 +1,6 @@
 <%-cache @key do-%>
 <%=@products.to_json(
-    :only => [:id,:created_at,:title,:handle],
+    :only => [:id,:created_at,:title,:handle,:endorsement],
     :methods => [:giant_url,:fb_object_id],
     :include => {
       :user => {

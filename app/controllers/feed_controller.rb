@@ -20,7 +20,7 @@ class FeedController < ApplicationController
             "feed",@before ? @before.to_i : "",@per_page]
 
     @products = Product.
-                  select(:id,:created_at,:title,:handle,
+                  select(:id,:created_at,:title,:handle,:endorsement,
                           :image_path,:is_processed,:user_id,:store_id,
                           :fb_action_id,:fb_photo_id).
                   with_user.

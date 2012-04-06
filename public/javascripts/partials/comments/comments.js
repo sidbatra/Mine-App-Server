@@ -32,7 +32,7 @@ Denwen.Partials.Comments.Comments = Backbone.View.extend({
     this.comments.each(function(comment){
       new Denwen.Partials.Comments.Comment({
             comment : comment,
-            el      : '#comments_' + comment.get('product_id')});
+            el      : '#product_comments_' + comment.get('product_id')});
     });
   }
 

@@ -1,14 +1,8 @@
-<div class="comment" style="clear: both; min-height: 48px; margin-bottom: 10px; position: relative; padding-left: 58px;">
-
-  <img style="position: absolute; top: 0; left: 0; width: 48px; height: 48px;" 
-       src="<%=Denwen.H.fbImageUrl(comment.get('from')['id'])%>" alt=''/>
-
-  <div>
+<div class="comment-box">
+  <img class="user-photo" 
+    src="<%=Denwen.H.fbImageUrl(comment.get('from')['id'])%>" />
+  <h6>
     <%=comment.get('from')['name']%>
-    <span style="font-size: 10px; color: #777;"><%=jQuery.timeago(comment.get('created_time'))%></span>
-  </div>
-
-
+  </h6>
   <%=comment.escape('message')%>
-
 </div>

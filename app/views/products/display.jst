@@ -1,14 +1,75 @@
-<img src="<%=product.get('giant_url')%>" />
-<%=product.escape('title')%> <br>
+<div class="item">
 
-<img src="<%=product.get('user').get('square_image_url')%>" />
-<%=product.get('user').escape('first_name')%> 
-<%=product.get('user').escape('last_name')%>  <br>
+  <%if(Denwen.H.isLoggedIn()){%>
+    <div class="actions" 
+          id="feedback" 
+          style="position: absolute; top: 20px; right: 20px;">
 
-<%if(product.get('store')){%>
-  <%if(product.get('store').get('is_processed')){%>
-    <img src="<%=product.get('store').get('thumbnail_url')%>" />
+      <%if(Denwen.H.isCurrentUser(product.get('user').get('id'))){%>
+        <a style="float: right" href="/" class="btn">
+          <i class="icon-pencil"></i>
+        </a>
+      <%}%>
+
+      <%if(product.get('fb_object_id')){%>
+        <a style="float: right; margin-right: -1px;" href="/" class="btn">
+          <i class="icon-like"></i>
+        </a>
+      <%}%>
+    </div>
   <%}%>
-  <%=product.get('store').get('name')%>
-<%}%>
-<br><br>
+  
+  <div class="user-box">
+    <img class="user-photo" 
+          src="<%=product.get('user').get('square_image_url')%>" />
+
+    <%if(product.get('store') && product.get('store').get('is_processed')){%>
+      <img class="store-icon" 
+            src="<%=product.get('store').get('thumbnail_url')%>" />
+    <%}%>
+
+    <div style="float: left; margin-left: 4px;">
+      <h5>
+        <%=product.get('user').get('first_name')%> 
+        <%=product.get('user').get('last_name')%>
+      </h5>
+      <%=product.get('store') ? product.get('store').get('name') : ''%>
+      <%=jQuery.timeago(product.get('created_at'))%> 
+    </div>
+  </div>
+  
+  <a class="photo-box" 
+      target="_blank" 
+      href="">
+    <img src="<%=product.get('giant_url')%>" />
+  </a>
+  
+  <div class="details-box">
+    <h5>
+      <%=product.escape('title')%>
+    </h5>
+    <%=product.escape('endorsement')%>
+  </div>
+  
+  <div class="likes-box">
+    <div id="product_likes_<%=product.get('id')%>"
+      style="width: 100%; height: 28px; clear: both; margin-bottom: 5px;">
+    </div>
+  </div>
+  
+  <div class="comments-box">
+  
+    <div id="product_comments_<%=product.get('id')%>">
+    </div>
+    
+    <%if(Denwen.H.isLoggedIn()){%>
+      <div class="comment-box new" style="margin-top: 15px;">
+        <img class="user-photo" 
+          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+        <input type="text" style="width: 475px;" placeholder="Add a comment">
+      </div>
+    <%}%>
+    
+  </div> <!-- /comments -->
+  
+</div> <!-- /item -->	
