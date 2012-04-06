@@ -69,10 +69,22 @@
 	position: relative;
 	padding: 20px;
 	background: white;
+	color: #666;
 	margin-bottom: 4px;
 	border-left: 1px solid #e4e3e3;
 	border-right: 1px solid #e4e3e3; 
 	border-bottom: 1px solid #d8d7d7; }
+	
+.feed .item .user-box {
+	margin-top: -4px;
+	margin-bottom: 14px;
+	height: 36px;
+	width: 520px; }
+	
+.feed .item .user-box img {
+	width: 36px;
+	height: 36px;
+	float: left; }
 
 .feed .item .photo-box {
 	display: block;
@@ -81,37 +93,42 @@
 	background: white; }
 	
 .feed .item a.photo-box img {
-	max-width: 520px; }
+	max-width: 520px;
+  max-height: 390px; }
 	
-.feed .item .title {
-/* 	background: pink; */
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 28px; }
-
-.feed .item .title img {
-	width: 28px;
-	height: 28px;
-	margin-right: 4px;
-	vertical-align: top; }
+.feed .item .details-box,
+.feed .item .likes-box,
+.feed .item .comments-box {
+	margin-top: 18px; }
 	
-.feed .item .store {
-/* 	background: yellow; */
-	font-size: 14px;
-	line-height: 28px;
-	color: #999; }
-
-.feed .item .store img {
-	width: 28px;
+.feed .item .likes-box .user-photo {
 	height: 28px;
-	margin-right: 4px;
-	vertical-align: top; }
+	width: 28px; 
+	float: left; 
+	margin-right: 5px; }
 
-.feed .item .details {
-	margin-top: 20px; }
+.feed .item .comments-box .comment-box {
+	clear: both; 
+	min-height: 28px; 
+	margin-bottom: 12px; 
+	position: relative; 
+	padding-left: 35px; }
 
-.item .actions { display: none; }
-.item:hover .actions { display: block; }
+.feed .item .comments-box .comment-box .user-photo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 28px;
+	width: 28px; }
+	
+.feed .item .comments-box .comment-box h6 {
+	line-height: 1;
+	text-transform: none;
+	margin-bottom: 3px; }
+	
+.feed .item .comments-box .comment-box.new,
+.feed .item .comments-box .comment-box.new input {
+	margin-bottom: 0; }
 	
 /* ----- creation ----- */
 
@@ -174,6 +191,9 @@
 
 .grid .item .details {
 	margin-top: 10px; }
+
+.grid .item .actions { display: none; }
+.grid .item:hover .actions { display: block; }
 	
 /* ----- side boxes ----- */
 	
@@ -261,15 +281,12 @@
 	height: 28px;
 	font-size: 12px;
 	line-height: 28px;
-	margin-bottom: 5px; }
+	margin-bottom: 4px; }
 
 .object-list li img { 
 	float: left;
 	height: 28px;
 	width: 28px;
-/*-moz-border-radius: 14px;
-	-webkit-border-radius: 14px;
-	border-radius: 14px;*/
 	margin-right: 8px; }
 	
 .nav-box {
@@ -412,8 +429,9 @@ body {
 li { list-style: none; }
 
 h1, h2, h3, h4, h5, h6 { 
-	font-size: 13px;
 	color: #333; }
+
+h5 { font-size: 13px; }
 
 input, .btn {
 	-webkit-border-radius: 0;
