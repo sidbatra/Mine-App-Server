@@ -67,7 +67,7 @@
     <div id="product_comments_<%=product.get('id')%>">
     </div>
     
-    <%if(Denwen.H.isLoggedIn()){%>
+    <%if(Denwen.H.isLoggedIn() && product.get('fb_object_id')){%>
       <div class="comment-box new" style="margin-top: 15px;">
         <img class="user-photo" 
           src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
