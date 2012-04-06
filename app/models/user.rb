@@ -44,12 +44,8 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   named_scope :products_count, lambda {|count| {
                   :conditions => {:products_count => count}}}
-  named_scope :followings_count, lambda {|count| {
-                  :conditions => {:followings_count => count}}}
   named_scope :products_count_gt, lambda {|count| {
                   :conditions => {:products_count_gt => count}}}
-  named_scope :followings_count_gt, lambda {|count| {
-                  :conditions => {:followings_count_gt => count}}}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
 
   named_scope :with_stores, :include => {:shoppings => :store}
