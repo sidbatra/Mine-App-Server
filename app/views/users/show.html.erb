@@ -4,10 +4,10 @@
 <%content_for :head do%>
   <%=render :partial  => "facebook/og",
             :locals   => {
-              :title        => @user_presenter.closet_name,
+              :title        => "Tile for this page",
               :type         => "link",
-              :description  => @user_presenter.usage_description,
-              :url          => @user_presenter.closet_url("fb"),
+              :description  => "Description for this page",
+              :url          => user_url(@user.handle,:src => 'fb'),
               :image        => ""}%>
 <%end%>
 
