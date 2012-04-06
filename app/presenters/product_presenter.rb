@@ -62,110 +62,12 @@ class ProductPresenter < BasePresenter
                   :class => 'btn') : ''
   end
 
-  # Title of the product page
-  #
-  def page_title(user_name)
-    user_name + "'s " + product.title
-  end
-
-  # Truncated title
-  #
-  def preview_title
-    h.truncate(product.title, 
-            :length 	  => 80, 
-            :omissions 	=> '…')
-  end
-
-  # Store where the product was bought
-  #
-  def store_name
-    product.store ? product.store.name : ''
-  end
-
   # Description message for the product used in 
   # og description tag
   #
   def description
     product.store && product.store.is_approved ? 
       "available at #{product.store.name}" : ''
-  end
-
-  # Link to the store if it is a top store
-  #
-  def store_link(src)
-    link = ""
-
-    if product.store 
-      link += h.link_to_if product.store.is_top,
-                store_name,
-                store_path(product.store.handle,:src => src)
-    end
-
-    link
-  end
-
-  # Byline displayed on the product show page
-  #
-  def byline
-    html = ""
-    
-    if product.store
-      html += "bought at " +
-              store_link('product_store')
-    end
-
-    html
-  end
-
-  # Shorter product byline 
-  #
-  def shorter_byline
-    html = ""
-
-    if product.store
-      html = "Bought at" +
-              store_link('product_store')
-    end
-
-    html
-  end
-
-  # Preview image for the product, along with conditional links in IE
-  #
-  def preview_image
-    h.image_tag product.thumbnail_url, 
-                :class    => '',
-                :alt      => ''
-                # :onclick  => "if($.browser.msie && "\
-#                               "parseInt($.browser.version,10) == 7){"\
-#                               "window.location="\
-#                               "'#{path('profile')}'}"
-  end
-
-  # Large product image linked to its original source
-  #
-  def large_image
-    h.link_to h.image_tag(
-                  product.giant_url,
-                  :id => 'product_image',
-                  :alt => ''),
-              product.source_url,
-              :target => '_blank'
-  end
-
-  # id to uniquely identify a product view
-  #
-  def source_id
-    'product_' + product.id.to_s
-  end
-
-  # Link to go get back to the source url
-  #
-  def breadcrumb(title,path)
-    h.link_to "<i class='icon-arrow-left'></i> " + title,
-              path,
-              :style => 'float: left; margin-right: 5px;', 
-              :class => 'btn'  
   end
 
 
