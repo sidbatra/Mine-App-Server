@@ -14,8 +14,11 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
     this.render();
 
     if(Denwen.H.isLoggedIn() && this.model.get('fb_object_id')) {
-      new Denwen.Partials.Likes.New({product_id:this.model.get('id')});
-      new Denwen.Partials.Comments.New({product_id:this.model.get('id')});
+      this.newLike    = new Denwen.Partials.Likes.New(
+                              {product_id:this.model.get('id')});
+
+      this.newComment = new Denwen.Partials.Comments.New(
+                              {product_id:this.model.get('id')});
     }
 
     Denwen.NM.bind(
@@ -60,10 +63,11 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
 
   // Render an individual like for the product
   //
-  renderLike: function(like) {
+  renderLike: function(like,onTop) {
     new Denwen.Partials.Likes.Like({
           like  : like,
-          el    : $('#product_likes_' + like.get('product_id'))});
+          el    : $('#product_likes_' + like.get('product_id')),
+          onTop : onTop});
   },
 
   // Fired when a comment is fetched for the product
@@ -83,15 +87,23 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   // Fired when a like is fetched for the product
   //
   likeFetched: function(like) {
-    if(this.model.get('id') == like.get('product_id'))
-      this.renderLike(like);
+    if(this.model.get('id') == like.get('product_id')) {
+
+      if(Denwen.H.currentUser.get('fb_user_id') != like.get('user_id')) {
+        this.renderLike(like,false);
+      }
+      else {
+        this.renderLike(like,true);
+        this.newLike.disable();  
+      }
+    }
   },
 
   // Fired when a like is created for the product 
   //
   likeCreated: function(like) {
     if(this.model.get('id') == like.get('product_id'))
-      this.renderLike(like);
+      this.renderLike(like,true);
   }
 
 });

@@ -21,25 +21,19 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
 
     this.likes.fetch({
             data      : {product_ids : productIds},
-            success   : function() { self.render(); },
+            success   : function() { self.fetched(); },
             error     : function() {}});
   },
 
-  // Render the likes collection>
+  // Fired when the like collection is fetched from the server 
   //
-  render: function() {
+  fetched: function() {
     var self = this;
 
     this.likes.each(function(like){
       Denwen.NM.trigger(
                   Denwen.NotificationManager.Callback.LikeFetched,
                   like);
-
-      if(Denwen.H.currentUser.get('fb_user_id') == like.get('user_id')) {
-        Denwen.NM.trigger(
-                Denwen.NotificationManager.Callback.CurrentUserLikes,
-                like.get('product_id'));
-      }
     });
   }
 
