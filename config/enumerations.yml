@@ -39,11 +39,8 @@
     Suggestion: 2
     Invite: 3
   HealthReportService:
-    TopShopperUpdate: 0
     AnotherItemPrompt: 2
     AddItemsPrompt: 3
-    AddFriendsPrompt: 4
-    AddStoresPrompt: 5
     FriendsDigest: 7
     MaintainSearchIndex: 8
   HomeShowSource:

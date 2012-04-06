@@ -15,9 +15,6 @@ class Admin::HealthController < ApplicationController
         :time => 1.week.ago},
       {
         :id => HealthReportService::AddItemsPrompt,
-        :time => 3.days.ago},
-      {
-        :id => HealthReportService::AddFriendsPrompt,
         :time => 3.days.ago}]
 
     @services.each{|s| s[:report] = HealthReport.for_service(s[:id]).last}
