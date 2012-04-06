@@ -10,7 +10,6 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     this.product = new Denwen.Models.Product(this.options.productJSON);
     this.source = this.options.source;
 
-    console.log(this.product);
     var productDisplay = new Denwen.Partials.Products.Display({
                               el: $('#feed'),
                               model: this.product});

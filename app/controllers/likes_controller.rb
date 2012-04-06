@@ -61,11 +61,32 @@ class LikesController < ApplicationController
     request.on_complete do |response|
       begin
         data = JSON.parse(response.body)['data']
+        names = []
+        aggregate = ""
 
         data.each do |d| 
           d['product_id'] = product.id
           d['user_id']    = d['id']
+
+          if d['user_id'] == self.current_user.fb_user_id
+            names.insert 0,'You'
+          else
+            names << d['name']
+          end
         end
+
+        case names.length
+        when 0
+          aggregate = ""
+        when 1
+          aggregate = names.first
+        when 2
+          aggregate = names.join(" and ")
+        else
+          aggregate = names[0..-2].join(', ') + ' and ' + names.last
+        end
+          
+        data.last['aggregate'] = aggregate if data.present?
 
         @likes += data
       rescue => ex

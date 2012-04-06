@@ -12,7 +12,7 @@ Denwen.Partials.Comments.Comment = Backbone.View.extend({
   // Render an individual comment
   //
   render: function() {
-      $(this.el).append(Denwen.JST['comments/comment']({comment:this.comment}));
+    this.el.append(Denwen.JST['comments/comment']({comment:this.comment}));
   }
 
 });

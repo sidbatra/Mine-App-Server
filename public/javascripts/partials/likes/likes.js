@@ -33,7 +33,7 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
     this.likes.each(function(like){
       new Denwen.Partials.Likes.Like({
             like  : like,
-            el    : '#product_likes_' + like.get('product_id')});
+            el    : $('#product_likes_' + like.get('product_id'))});
       
       if(Denwen.H.currentUser.get('fb_user_id') == like.get('user_id')) {
         Denwen.NM.trigger(
