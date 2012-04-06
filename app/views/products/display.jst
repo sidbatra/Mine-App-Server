@@ -56,7 +56,9 @@
     <%=product.escape('endorsement')%>
   </div>
   
-  <div class="likes-box">
+  <div class="likes-box" 
+          id="product_likes_box_<%=product.get('id')%>"
+       style="display:none;">
     <span id="product_likes_<%=product.get('id')%>"></span>
     <span style="margin-left: 2px;" id="product_likes_<%=product.get('id')%>_aggregate"></span>
   </div>

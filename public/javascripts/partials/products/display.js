@@ -13,6 +13,7 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   initialize: function() {
 
     this.aggregateEl  = '#product_likes_' + this.model.get('id') + '_aggregate';
+    this.likesBoxEl   = '#product_likes_box_' + this.model.get('id');
     this.likes        = new Denwen.Collections.Likes();
 
     this.render();
@@ -150,14 +151,17 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
 
       this.renderLike(like,true);
       this.renderLikeAggregation();
+      $(this.likesBoxEl).show(); 
     }
   },
   
   // Fired when all the likes associated with a product are fetched
   //
   likesFetched: function() {
-    if(this.likes.length)
+    if(this.likes.length) {
       this.renderLikeAggregation();
+      $(this.likesBoxEl).show(); 
+    }
   }
 
 });
