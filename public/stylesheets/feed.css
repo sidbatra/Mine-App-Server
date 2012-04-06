@@ -69,7 +69,7 @@
 	position: relative;
 	padding: 20px;
 	background: white;
-	color: #666;
+	color: #777;
 	margin-bottom: 4px;
 	border-left: 1px solid #e4e3e3;
 	border-right: 1px solid #e4e3e3; 
@@ -78,6 +78,7 @@
 .feed .item .user-box {
 	margin-top: -4px;
 	margin-bottom: 14px;
+	font-size: 12px;
 	height: 36px;
 	width: 520px; }
 	
@@ -86,26 +87,38 @@
 	height: 36px;
 	float: left; }
 
+.feed .item .user-box .small {
+	padding-left: 4px;
+	font-size: 11px;
+	color: #999; }
+
 .feed .item .photo-box {
 	display: block;
 	line-height: 0;
 	text-align: center;
 	background: white; }
 	
-.feed .item a.photo-box img {
+.feed .item .photo-box img {
 	max-width: 520px;
   max-height: 390px; }
-	
-.feed .item .details-box,
-.feed .item .likes-box,
-.feed .item .comments-box {
-	margin-top: 18px; }
+
+.feed .item .photo-box,
+.feed .item .details-box {
+	margin-bottom: 18px; }
+
+.feed .item .likes-box {
+	margin-top: -5px;
+	line-height: 28px;
+	margin-bottom: 18px; }
 	
 .feed .item .likes-box .user-photo {
 	height: 28px;
 	width: 28px; 
-	float: left; 
+	float: left;
 	margin-right: 5px; }
+
+.feed .item .comments-box {
+	margin-bottom: 3px; }
 
 .feed .item .comments-box .comment-box {
 	clear: both; 
@@ -222,13 +235,12 @@
 	height: 100%;
 	width: 124px;
 	padding-left: 10px;
-	font-size: 15px;
 	font-weight: bold; }
 
 .self-box .user-name p {
 	display: table-cell; 
 	vertical-align: middle;
-	font-size: 15px;
+	font-size: 14px;
 	line-height: 22px; }
 
 .self-box .user-name a { color: #333; }
@@ -275,7 +287,7 @@
 	color: #666;
 	margin-bottom: 22px; }
 
-.list-box a { color: #666; }
+.list-box a { color: #777; }
 
 .object-list li { 
 	height: 28px;
@@ -422,7 +434,6 @@ input:focus, textarea:focus {
 body { 
 	padding-top: 0px;
 	background: #F2F0ED;
-	padding-bottom: 24px;
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
 	
@@ -430,8 +441,6 @@ li { list-style: none; }
 
 h1, h2, h3, h4, h5, h6 { 
 	color: #333; }
-
-h5 { font-size: 13px; }
 
 input, .btn {
 	-webkit-border-radius: 0;

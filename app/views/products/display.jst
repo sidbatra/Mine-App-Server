@@ -33,13 +33,13 @@
             src="<%=product.get('store').get('thumbnail_url')%>" />
     <%}%>
 
-    <div style="float: left; margin-left: 4px;">
+    <div style="float: left; margin-left: 8px;">
       <h5>
         <%=product.get('user').get('first_name')%> 
         <%=product.get('user').get('last_name')%>
       </h5>
       <%=product.get('store') ? product.get('store').get('name') : ''%>
-      <%=jQuery.timeago(product.get('created_at'))%> 
+      <span class="small"><%=jQuery.timeago(product.get('created_at'))%></span>
     </div>
   </div>
   
@@ -50,18 +50,15 @@
   </a>
   
   <div class="details-box">
-    <h5>
+    <h4 style="margin-bottom: 3px;">
       <%=product.escape('title')%>
-    </h5>
+    </h4>
     <%=product.escape('endorsement')%>
   </div>
   
   <div class="likes-box">
-    <div id="product_likes_<%=product.get('id')%>"
-      style="width: 100%; clear: both; margin-bottom: 5px;">
-    </div>
-    <div id="product_likes_<%=product.get('id')%>_aggregate">
-    </div>
+    <span id="product_likes_<%=product.get('id')%>"></span>
+    <span style="margin-left: 2px;" id="product_likes_<%=product.get('id')%>_aggregate"></span>
   </div>
   
   <div class="comments-box">
