@@ -16,28 +16,12 @@ class StorePresenter < BasePresenter
     h.store_url(store.handle,:src => src)
   end
 
-  # Link to larger store photo
-  #
-  def large_picture(src)
-    h.link_to h.image_tag(
-                store.large_url, 
-                :class  => "user_photo",
-                :alt    => ''),
-              closet_path(src)
-  end
-
   # Description message for the store's use of
   # the app. 
   #
   def usage_description
     "Shop at #{name}? Discover what your friends buy there on "\
     "#{CONFIG[:name]}."
-  end
-
-  # Unique identifier to be used a source
-  #
-  def source_id
-    "store_" + store.id.to_s
   end
 
 end
