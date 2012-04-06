@@ -13,5 +13,7 @@ Denwen.NotificationManager = Backbone.Model.extend({
 // Define callbacks.
 //
 Denwen.NotificationManager.Callback= {
-  CurrentUserLikes: "currentUserLikes",
+  CurrentUserLikes  : "currentUserLikes",
+  CommentFetched    : "commentFetched",
+  CommentCreated    : "commentCreated"
 };

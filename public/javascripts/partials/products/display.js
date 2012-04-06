@@ -17,6 +17,16 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
       new Denwen.Partials.Likes.New({product_id:this.model.get('id')});
       new Denwen.Partials.Comments.New({product_id:this.model.get('id')});
     }
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.CommentFetched,
+                this.commentFetched,
+                this);
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.CommentCreated,
+                this.commentCreated,
+                this);
   },
 
   // Render the contents of the model.
@@ -28,6 +38,28 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
       this.el.prepend(html);
     else
       this.el.append(html);
+  },
+
+  // Render an individual comment for the product
+  //
+  renderComment: function(comment) {
+    new Denwen.Partials.Comments.Comment({
+          comment : comment,
+          el      : $('#product_comments_' + comment.get('product_id'))});
+  },
+
+  // Fired when a single comment has been fetched for the product
+  //
+  commentFetched: function(comment) {
+    if(this.model.get('id') == comment.get('product_id'))
+      this.renderComment(comment);
+  },
+
+  // Fired when a comment has been created for the product 
+  //
+  commentCreated: function(comment) {
+    if(this.model.get('id') == comment.get('product_id'))
+      this.renderComment(comment);
   }
 
 });
