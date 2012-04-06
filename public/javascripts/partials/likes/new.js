@@ -56,6 +56,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   liked: function(productID) {
     if(this.productID == productID) {
       $(this.buttonEl).attr('disabled', true);
+      $(this.buttonEl).unbind('click');
     }
   }
 
