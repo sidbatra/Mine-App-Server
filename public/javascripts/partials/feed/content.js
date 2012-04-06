@@ -21,6 +21,11 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
 
     this.windowListener = new Denwen.WindowListener();
 
+    this.likes          = new Denwen.Partials.Likes.Likes();
+    this.comments       = new Denwen.Partials.Comments.Comments();
+
+    this.productIds     = [];
+
     this.windowListener.bind(
       Denwen.WindowListener.Callback.DocumentScrolled,
       this.documentScrolled,
@@ -77,6 +82,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     var productDisplay = new Denwen.Partials.Products.Display({
                               el: this.el,
                               model: product});
+
+    this.productIds.push(product.get('id'));
   },
 
   // Feed items successfully loaded. Fire events to subscribers 
@@ -95,6 +102,13 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
         this.disabled = true;
 
       this.oldestItemTimestamp = newOldestItemTimestamp;
+    }
+
+    if(this.productIds.length) {
+      this.likes.fetch(this.productIds.join(","));
+      this.comments.fetch(this.productIds.join(","));
+
+      this.productIds = []; 
     }
 
     this.resizeEnded();

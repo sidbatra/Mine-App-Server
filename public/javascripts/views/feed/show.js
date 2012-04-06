@@ -10,13 +10,15 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    var self    = this;
-    this.source = this.options.source;
-    this.feedEl = '#feed';
+    var self = this;
 
-    this.content = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
+    this.source       = this.options.source;
+    this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
-    this.input  = new Denwen.Partials.Products.Input({
+    this.feedEl   = '#feed';
+
+    this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
+    this.input    = new Denwen.Partials.Products.Input({
                           el  : $('body'),
                           mode: Denwen.ProductFormType.New});
 
@@ -31,7 +33,8 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
     
     this.comments = new Denwen.Partials.Comments.Comments();
-    this.likes    = new Denwen.Partials.Likes.Likes();
+    this.likes    = new Denwen.Partials.Likes.Likes({
+                          current_user  : this.currentUser});
 
     this.setAnalytics();
   },
