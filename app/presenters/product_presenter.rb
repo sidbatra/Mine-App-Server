@@ -30,6 +30,7 @@ class ProductPresenter < BasePresenter
                   :class => 'btn'
     end
   end
+  
 
   # Anchor tag for deleting the product
   #
