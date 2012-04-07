@@ -1,10 +1,10 @@
-<%cache ["v6",product,product.store ? product.store : "","card"] do %>
+<%cache ["v7",product,product.store ? product.store : "","card"] do %>
 
 <div class="item">
 
 	<%=image_tag(product.store.favicon_url, 
 			:class => "store-icon") if product.store && 
-																	product.store.favicon_path.present?%>
+                                  product.store.favicon_url.present?%>
 
   <%=link_to image_tag(product.giant_url),
       product_path(product.user.handle,product.handle,:src => "profile"),
