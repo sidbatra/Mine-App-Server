@@ -40,7 +40,8 @@ class LikesController < ApplicationController
 
       @like = {:product_id  => product.id,
                :user_id     => self.current_user.fb_user_id,
-               :name        => self.current_user.full_name} if like
+               :name        => self.current_user.full_name,
+               :id          => SecureRandom.hex(10)} if like
     end
   rescue => ex
     handle_exception(ex)

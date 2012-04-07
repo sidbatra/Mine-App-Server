@@ -24,7 +24,12 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     var self      = this;
     this.posting  = true;
 
-    var like = new Denwen.Models.Like({product_id : this.productID});
+    var like = new Denwen.Models.Like({
+                product_id  : this.productID,
+                user_id     : Denwen.H.currentUser.get('fb_user_id'),
+                name        : Denwen.H.currentUser.get('full_name')});
+
+    this.render(like);
 
     like.save({},{
         success :  function(model) {self.created(model)},
@@ -32,17 +37,22 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     });
   },
 
+  // Render the like before sending the request to the server 
+  //
+  render: function(like) {
+    Denwen.NM.trigger(
+                Denwen.NotificationManager.Callback.LikeCreated,
+                like);
+    
+    this.disable();
+  },
+
   // Called when the like is successfully created
   //
   created: function(like) {
-    this.posting = false;
-    
-    if(like.get('user_id')) {
-      Denwen.NM.trigger(
-                  Denwen.NotificationManager.Callback.LikeCreated,
-                  like);
-      
-      this.disable();
+    if(!like.get('id')) {
+      this.posting = false;
+      console.log("error in creating");
     }
   },
 
