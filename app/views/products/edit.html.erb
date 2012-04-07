@@ -4,7 +4,8 @@
 		
 		  <%form_for @product,:url => "/products/#{@product.id}",
 		        :html => {
-		          :class  => 'well form-horizontal',
+		          :class  => 'form-horizontal',
+		          :style  => 'margin-bottom: 0;',
 		          :id     => 'edit_product'} do |f|%>
 		
 		    <%=render :partial  => 'input', 
