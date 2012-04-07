@@ -21,6 +21,7 @@ class FeedController < ApplicationController
 
     @products = Product.
                   select(:id,:created_at,:title,:handle,:endorsement,
+                          :orig_thumb_url,:orig_image_url,
                           :image_path,:is_processed,:user_id,:store_id,
                           :fb_action_id,:fb_photo_id).
                   with_user.
