@@ -194,7 +194,7 @@
 	position: relative;
 	float: left;
 	width: 158px;
-	height: 220px;
+	height: 222px;
 	padding: 12px;
 	background: white;
 	margin: 0 5px 4px 0;
@@ -223,6 +223,16 @@
 
 .grid .item .details {
 	margin-top: 10px; }
+	
+.grid .item .store { 
+	color: #999; }
+
+.grid .item .store-icon {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	width: 24px; 
+	height: 24px; }
 
 .grid .item .actions { display: none; }
 .grid .item:hover .actions { display: block; }

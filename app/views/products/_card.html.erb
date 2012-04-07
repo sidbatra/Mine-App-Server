@@ -1,6 +1,10 @@
-<%cache ["v5",product,product.store ? product.store : "","card"] do %>
+<%cache ["v6",product,product.store ? product.store : "","card"] do %>
 
 <div class="item">
+
+	<%=image_tag(product.store.favicon_url, 
+			:class => "store-icon") if product.store && 
+																	product.store.favicon_path.present?%>
 
   <%=link_to image_tag(product.giant_url),
       product_path(product.user.handle,product.handle,:src => "profile"),
@@ -9,8 +13,10 @@
   <div class="details">
     <h5>
       <%=h truncate(product.title,:length => 40)%>
-      <small><%=h product.store ? product.store.name : ""%></small>
     </h5>
+    
+    <span class="store"><%=h product.store ? product.store.name : ""%></span>
+  
   </div>
 </div> 
 
