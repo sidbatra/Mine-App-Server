@@ -54,29 +54,35 @@
     <%=product.escape('endorsement')%>
   </div>
   
-  <div class="likes-box" 
-          id="product_likes_box_<%=product.get('id')%>"
-       style="display:none;">
-    <span id="product_likes_<%=product.get('id')%>"></span>
-    <span style="margin-left: 2px;" id="product_likes_<%=product.get('id')%>_aggregate"></span>
-  </div>
+  <div class="extras">
   
-  <div class="comments-box">
+  	<div class="box-out"></div>
   
-    <div id="product_comments_<%=product.get('id')%>">
-    </div>
-    
-    <%if(Denwen.H.isLoggedIn() && product.get('fb_object_id')){%>
-      <div class="comment-box new" style="margin-top: 15px;">
-        <img class="user-photo" 
-          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
-        <input type="text" 
-          id="product_comment_data_<%=product.get('id')%>"
-          style="width: 475px;" 
-          placeholder="Add a comment">
-      </div>
-    <%}%>
-    
-  </div> <!-- /comments -->
+	  <div class="likes-box" 
+	          id="product_likes_box_<%=product.get('id')%>"
+	       style="display:none;">
+	    <span id="product_likes_<%=product.get('id')%>"></span>
+	    <span style="margin-left: 2px;" id="product_likes_<%=product.get('id')%>_aggregate"></span>
+	  </div>
+	  
+	  <div class="comments-box">
+	  
+	    <div id="product_comments_<%=product.get('id')%>">
+	    </div>
+	    
+	    <%if(Denwen.H.isLoggedIn() && product.get('fb_object_id')){%>
+	      <div class="comment-box new" style="margin-top: 15px;">
+	        <img class="user-photo" 
+	          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+	        <input type="text" 
+	          id="product_comment_data_<%=product.get('id')%>"
+	          style="width: 475px;" 
+	          placeholder="Add a comment">
+	      </div>
+	    <%}%>
+	    
+	  </div> <!-- /comments -->
+  
+  </div> <!-- /extras -->
   
 </div> <!-- /item -->	

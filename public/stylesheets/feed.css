@@ -105,13 +105,7 @@
 .feed .item .photo-box,
 .feed .item .details-box {
 	margin-bottom: 18px; }
-
-
-/*	
-.feed .item .extras .box-out {
-	background: #555;
-	color: white !important; }
-
+	
 .feed .item .extras {
 	position: relative;
 	padding-top: 27px; }
@@ -120,15 +114,13 @@
 	position: absolute;
 	z-index: 0;
 	top: 0;
-	right: -18px;
-	bottom: -21px;
-	left: -18px;
-	background: #f8f8f8;
-
+	right: -21px;
+	bottom: -24px;
+	left: -21px;
+	background: #f2f2f2;
 	border-left: 1px solid #d8d7d7;
 	border-right: 1px solid #d8d7d7; 
-	border-bottom: 1px solid #d8d7d7;
- } */ 
+	border-bottom: 1px solid #d8d7d7; }
 
 .feed .item .likes-box {
 	position: relative;
