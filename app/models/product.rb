@@ -233,7 +233,7 @@ class Product < ActiveRecord::Base
 
       ImageUtilities.reduce_to_with_image(
                         image,
-                        {:width => 370,:height => 350})
+                        {:width => 520,:height => 390})
 
       FileSystem.store(
         giant_path,
