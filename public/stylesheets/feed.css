@@ -182,7 +182,18 @@
 	right: 0;
 	z-index: 10; }
 
-.creation .change-box { position: relative; }
+.creation .edit-box { position: relative; }
+
+.creation .btn.new { width: 210px; }
+.creation .btn.edit { width: 140px; }
+.creation .btn.cancel { width: 66px; }
+.creation a.delete-item {
+	height: 28px;
+	line-height: 28px;
+	position:absolute; 
+	color: #999;
+	position: absolute;
+	left: 20px; }
 
 /* ----- grid ----- */
 
@@ -613,7 +624,7 @@ footer p { text-align: center; }
 	border-top: 1px solid #dddddd;
 	padding-top: 16px;
 	margin-top: 25px;
-	color: #999999;
+	color: #999;
 	text-align: center; }
 
 .strike-thru span, 

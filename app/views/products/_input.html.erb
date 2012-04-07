@@ -29,7 +29,7 @@
   <div id="extra_steps" 
       style="<%=show_extra_steps ? '' : 'display: none'%>">
 	
-    <div class="change-box">
+    <div class="edit-box">
         <div class="btn change-photo" id="product_change_photo">
           <i class="icon-camera"></i> Change photo
         </div>
@@ -89,10 +89,18 @@
     </div> <!-- /endorsement -->
 
 		<button type="submit" 
-      class="btn btn-large btn-mid" 
-      style="width: 210px; margin-left: 155px;">
+      class="btn btn-mid <%=submit_class%>" 
+      style="margin-left: 155px;">
 			<%=submit_text%>
 		</button> <!-- submit -->
+		
+		<a class="btn" style="width: 44px; <%=show_cancel_button ? '' : 'display:none'%>">
+			Cancel
+		</a> <!-- cancel -->
+		
+		<a href="#" class="delete-item" style="<%=show_delete_button ? '' : 'display:none'%>">
+			<i class='icon-trash faded-30'></i> Delete item
+		</a> <!-- cancel -->
     
 	</div>
 

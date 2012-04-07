@@ -35,11 +35,10 @@ class ProductPresenter < BasePresenter
   #
   def destroy_link
     if h.logged_in? && h.current_user.id == product.user_id
-      h.link_to "Delete",
+      h.link_to "Delete item",
                 {:action => 'destroy',:id => product.id},
                 :method  => :delete,
-                :style   => 'width: 39px;',
-                :class   => 'btn',
+                :class   => 'delete-item',
                 :confirm => "Are you sure you want to delete this item?"
     end
   end
