@@ -1,6 +1,6 @@
-// Partial for loading and selecting a friend to invite
+// Partial for loading and searching friends to invite
 //
-Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
+Denwen.Partials.Invites.Friends = Backbone.View.extend({
   
   // Setup event handlers
   //
@@ -17,9 +17,6 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     this.contactsEl       = '#contacts';
     this.queryEl          = '#search_box';
     this.cancelSearchEl   = '#x_button';
-    this.buttonEl         = '#friend_picked_button';
-
-    this.contactPickers   = new Array();
 
     this.fetch();
   },
@@ -53,63 +50,14 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
     }
   },
 
-  // Hookup pick/unpick functionality for all friends 
+  // Hookup invite functionality for all friends 
   //
   hookup: function(contacts) {
     var self = this;
-    this.contactPickers = [];
 
     contacts.each(function(contact){
-      var contactPicker = new Denwen.Partials.Contacts.Picker({model:contact});
-
-      contactPicker.bind(
-        'contactPicked',
-        self.contactPicked,
-        self);
-      
-      self.contactPickers.push(contactPicker);
+      new Denwen.Partials.Invites.New({friend:contact});
     });
-  },
-
-  // Fired when a contact is picked
-  //
-  contactPicked: function(contactPicker) {
-    this.contact = contactPicker.model;
-    
-    $.each(this.contactPickers,function(i,picker) {
-      picker.disable();
-    });
-
-    contactPicker.enable();
-
-    $(this.buttonEl).attr(
-                      'href',
-                      '#friends-' + 
-                      this.contact.get('name').replace(' ','+') + '-' + 
-                      this.contact.get('third_party_id') + '/finish');
-
-    $(this.buttonEl).addClass('btn-primary');
-    $(this.buttonEl).removeClass('disabled'); 
-    $(this.buttonEl).html(
-      "Preview Invite <i class='icon-chevron-right icon-white'></i>");
-  },
-
-  // Fired when the friends sub view comes into focus
-  //
-  display: function() {
-
-    if(this.contacts && !this.contacts.isEmpty())
-      this.render(this.contacts);
-
-    $(this.queryEl).val('');
-    $(this.cancelSearchEl).hide();
-
-    Denwen.Track.inviteStylePicked();
-  },
-
-  // Fired when the sub view has come into focus
-  displayed: function() {
-    $(this.queryEl).focus();
   },
 
   // Render the contacts collection
@@ -122,6 +70,8 @@ Denwen.Partials.Invites.New.Friends = Backbone.View.extend({
         {contacts: contacts}));
 
     this.hookup(contacts);
+
+    $(this.queryEl).focus();
   },
 
   // Filter contacts based on the query
