@@ -11,9 +11,9 @@
 .navbar-inner { 
 	background: #555;
 	border-bottom: 1px solid white;
-	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
   -webkit-border-radius: 0 !important;
 	-moz-border-radius: 0 !important;
 	border-radius: 0 !important; }
@@ -24,6 +24,7 @@
 .navbar .brand {
 	color: white;
 	font-weight: bold;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 	padding: 9px 20px 11px; }
 
 .navbar a:hover {
@@ -787,32 +788,32 @@ footer p { text-align: center; }
 	float: left;
 	line-height: 86px;
 	font-size: 72px;
-	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
 	background: #555;
 	color: white;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 	text-align: center;
 	margin-right: 10px; }
 
-.invite .friends .thumbnails {
-	margin-left: -9px; }
-
-.invite .friends li {
-	margin: 0 0 7px 8px; 
-	width: 135px; }
-
-.invite .friends .thumbnail {
+.invite .friends li.user-box {
+	float: left;
+	margin: 0 0 5px 6px; 
+	width: 247px;
 	color: #333333; 
-	font-size: 11px;
+	background: whiteSmoke;
+	font-size: 12px;
 	line-height: 1.28;
-	height: 32px; }
+	height: 28px;
+	padding: 5px;
+	line-height: 28px; }
 	
-.invite .friends .thumbnail .thumb-photo {
+.invite .friends .user-box .user-photo {
 	float: left; 
-	height: 32px;
-	width: 32px;
-	margin-right: 8px; }
+	height: 28px;
+	width: 28px;
+	margin-right: 6px; }
 
 /* ----- settings ----- */ 
 
