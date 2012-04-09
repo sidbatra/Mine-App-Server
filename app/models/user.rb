@@ -210,6 +210,17 @@ class User < ActiveRecord::Base
     fb_user.permissions
   end
 
+  # Whether or not the user has provided fb permissions to post on his/her
+  # behalf. 
+  #
+  # Returns - true or false based on the value stored in database which will
+  # update regularly from the real time subscription api
+  #
+  def fb_publish_permission
+    setting = self.setting;
+    setting.fb_publish_actions && setting.fb_publish_stream 
+  end
+
 
   protected
 
