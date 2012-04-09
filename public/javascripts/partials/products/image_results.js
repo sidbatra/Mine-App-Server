@@ -7,7 +7,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   events: {
     "click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
-    "click #product_change_photo"     : "search",
+    "click #product_change_photo"     : "changePhotoClicked",
     "keypress #product_query"         : "queryKeystroke",
     "keypress #product_repeat_query"  : "queryKeystroke",
     "click #cancel_button"            : "cancelButtonClicked"
@@ -122,9 +122,16 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     $(this.moreEl).removeClass(this.loadClass);
   },
 
+  // Fired when the change photo element is clicked. Launch
+  // search with an extra parameter.
+  //
+  changePhotoClicked: function() {
+    this.search(true);
+  },
+
   // Launch the search UI
   //
-  search: function() {
+  search: function(changePhoto) {
     var query = $(this.repeatQueryEl).val();
     
     if(!query.length) {
@@ -134,6 +141,16 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     if(!query.length || query == $(this.queryEl).attr('placeholder')) {
       $(this.repeatQueryEl).val('');
+      return;
+    }
+
+    if(!changePhoto && query.match(/http.*(.jpg|.jpeg|.gif|.png|.bmp|.tif)$/)){
+      var productResult = new Denwen.Models.ImageResult({
+                                medium_url: query,
+                                large_url: query,
+                                source_url: query,
+                                uniq_id : ""});
+      this.productImageClicked(productResult);
       return;
     }
 
