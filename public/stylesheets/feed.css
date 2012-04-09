@@ -25,7 +25,8 @@
 	color: white;
 	font-weight: bold;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-	padding: 9px 20px 11px; }
+	padding: 9px 20px 11px; 
+	font-size: 22px; }
 
 .navbar a:hover {
 	color: white !important; }
@@ -355,6 +356,14 @@
 .icon-like {
 	background-image: url("/images/glyphicons-halflings-custom.png") !important;
   background-position: 0 0; }
+ 
+.btn span.loading { display: none; }
+.btn.load span.loading { 
+	display: block; 
+	text-align:center; }
+ 
+.btn.load span.in,
+.btn.load span.out { display: none; }
   
 .btn.pushed {
 	background: none; 
@@ -366,6 +375,12 @@
 	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); }
+  
+.btn span.in { display: none; }
+.btn span.out { display: block; }
+.btn.pushed span.in { display: block; }
+.btn.pushed span.out { display: none; }
+.btn.pushed span.loading { display: none; }
   
 .btn.pushed .icon-like {
 	background-image: url("/images/glyphicons-halflings-custom-white.png") !important; }
@@ -748,7 +763,6 @@ footer p { text-align: center; }
 	box-shadow: 0 0 18px rgba(0,0,0,0.4);
 	background-color: white;
 	z-index: -1; }
-
 	
 /* ----- invite ----- */
 
