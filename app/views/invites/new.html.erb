@@ -1,11 +1,90 @@
 
 <div class="container invite" id="container">
-	<div class="row">
-		<div class="span6 offset3">
-      <%=render "invites/new/friends"%>	
-      <%=render "invites/new/finish"%>
-	 	</div> <!-- /span6 -->
-	</div> <!-- /row -->
+
+	<!-- Preview -->
+	<div class="control-group">
+		
+		<div class="thumbnail fb-timeline">
+		 	<div style="padding: 11px">
+		 	
+		 		<div class="user-block">
+          <%=image_tag self.current_user.square_image_url,
+              :class => "user-photo"%>
+		 			<strong><%=user_full_name(self.current_user)%></strong><br />
+		 			<span style="color: gray;">
+            <%=Time.zone.now.strftime("%B %d")%>
+          </span>
+		 		</div> 
+		 		
+		 		<div class="above-content">
+		 		</div>
+		 		
+		 		<div class="display-content">
+		 			<div class="art-photo" id="friend_image"
+		 					 style="background-image: url('');">
+          </div>
+          <strong>
+            <div style="margin-bottom: 3px;">
+              <span id='friend_name_small'></span>'s OnCloset
+            </div>
+          </strong>
+		 			<span style="color: gray;">
+		 				OnCloset is an online closet for your latest purchases and 
+            daily style. It's fun, and free.
+		 			</span>
+		 		</div>
+		 		
+		 	</div> <!-- padding -->
+		 	
+	 		<div id="actions_area" 
+            class="form-actions" 
+            style="margin: 4px 0 0 0; padding-left: 111px;">
+
+        <button id="send_invite" class="btn btn-primary btn-large">
+          <i class="icon-envelope icon-white"></i> 
+            Send invite
+        </button>
+        <button id="cancel_invite" class="btn btn-large">
+          Cancel
+        </button>
+        <div class="loading small inline" 
+              style="margin-left: 10px; vertical-align: middle;">
+        </div>
+      </div>
+      
+		</div> <!-- /thumbnail -->
+	</div> <!-- /control-group -->
+	
+	
+	<div id="friends_container">
+	
+		<!-- search box -->
+		<div class="control-group" style="margin-bottom: 0;">
+	  	<div style="position: relative; width: 420px;">
+	
+	      <%=text_field_tag 'search_box', 
+	          nil, 
+	          :placeholder => '', 
+	          :style => 'width: 410px;'%>
+	
+	      <%=link_to  '&times;',
+	          'javascript:void(0)',
+	          :id    => 'x_button',
+	          :class => 'close',
+	          :style => "position: absolute; top: 5px; right: 8px; "\
+	                    "display: none;"%>
+	   	</div>
+	  </div>
+	  
+	  <!-- friends list -->
+		<div id="contacts" style="position: relative;">
+			<div class="loading large">
+			</div>
+		</div>
+	 
+	</div> <!-- friends container -->
+
+
 </div> <!-- /container -->
 
 <%content_for :javascript do%>
