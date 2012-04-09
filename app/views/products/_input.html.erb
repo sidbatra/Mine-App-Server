@@ -94,18 +94,16 @@
 			<%=submit_text%>
 		</button> <!-- submit -->
 		
-		<a class="btn" style="width: 44px; <%=show_cancel_button ? '' : 'display:none'%>">
-			Cancel
-		</a> <!-- cancel -->
+    <%=link_to "Cancel", :back, 
+        :class => "btn", 
+        :style => "width: 44px;" if show_cancel_button%>
 		
-    <%if show_delete_button%>
-      <%=link_to "<i class='icon-trash faded-30'></i> Delete item",
-                {:action => 'destroy',:id => f.object.id},
-                :method  => :delete,
-                :class   => 'delete-item',
-                :confirm => "Are you sure you want to delete this item?"%>
-    <%end%>
-    
+    <%=link_to "<i class='icon-trash faded-30'></i> Delete item",
+              {:action => 'destroy',:id => f.object.id},
+              :method  => :delete,
+              :class   => 'delete-item',
+              :confirm => "Are you sure you want "\
+                          "to delete this item?" if show_delete_button%>
 	</div>
 
   </fieldset>
