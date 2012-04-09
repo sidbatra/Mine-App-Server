@@ -11,6 +11,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
 
     this.inputEl      = '#product_comment_data_' + this.productID;
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
+    $(this.inputEl).placeholder();
   },
 
   // Fired after every keystroke on the comments data input.
