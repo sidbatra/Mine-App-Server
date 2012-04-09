@@ -17,39 +17,15 @@ class ProductPresenter < BasePresenter
     h.product_url product.user.handle,product.handle,:src => source
   end
 
-  # Anchor tag for editing the product
-  #
-  def edit_link
-    if h.logged_in? && h.current_user.id == product.user_id
-      h.link_to "<i class='icon-pencil'></i> Edit",
-                edit_product_path(
-                  product.user.handle,
-                  product.handle,
-                  :src   => 'product'),
-                  :style => 'width: 43px;',
-                  :class => 'btn'
-    end
-  end
-  
-
-  # Anchor tag for deleting the product
-  #
-  def destroy_link
-    if h.logged_in? && h.current_user.id == product.user_id
-      h.link_to "Delete item",
-                {:action => 'destroy',:id => product.id},
-                :method  => :delete,
-                :class   => 'delete-item',
-                :confirm => "Are you sure you want to delete this item?"
-    end
-  end
-
   # Link to the next product
   #
   def next(next_product,user)
 	    next_product ? 
         h.link_to("<i class='icon-chevron-right'></i>",
-                  product_path(user.handle,next_product.handle,:src => 'next'),
+                  product_path(
+                    user.handle,
+                    next_product.handle,
+                    :src => 'next'),
                   :class => 'btn') : ''
   end
 
@@ -58,7 +34,10 @@ class ProductPresenter < BasePresenter
   def prev(prev_product,user)
 	    prev_product ? 
         h.link_to("<i class='icon-chevron-left'></i>",
-                  product_path(user.handle,prev_product.handle,:src => 'previous'),
+                  product_path(
+                    user.handle,
+                    prev_product.handle,
+                    :src => 'previous'),
                   :class => 'btn') : ''
   end
 

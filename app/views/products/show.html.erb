@@ -1,7 +1,6 @@
 <!-- Generate presenters for the view -->
 <%@product_presenter  = presenter_for(@product)%>
 
-
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
