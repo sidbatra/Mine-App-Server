@@ -26,7 +26,8 @@ module DW
       # Email users with a digest of their friends activities 
       #
       def self.email_users_with_friend_activity(from)
-        products  = Product.with_store.created(from..Time.now) 
+        return
+        products  = Product.with_store.made(from)
         wants     = Action.
                       on_type('product').
                       named(ActionName::Want).
