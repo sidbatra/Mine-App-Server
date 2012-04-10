@@ -19,7 +19,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.feed.bind('add',this.feedItemAdded,this);
     this.fetch();
 
-    this.windowListener = new Denwen.WindowListener();
+    this.windowListener = new Denwen.WindowListener({
+                                element:'#' + this.el.attr('id')});
 
     this.likes          = new Denwen.Partials.Likes.Likes();
     this.comments       = new Denwen.Partials.Comments.Comments();

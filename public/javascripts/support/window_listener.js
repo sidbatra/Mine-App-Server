@@ -8,8 +8,9 @@ Denwen.WindowListener = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
+    this.element = this.options.element ? this.options.element : document;
     this.resizeTimer = null;
-  
+
     $(window).scroll(function(){self.scroll();});
     $(window).resize(function(){self.resize();});
   },
@@ -17,9 +18,10 @@ Denwen.WindowListener = Backbone.View.extend({
   // Fired when scrolling begins
   //
   scroll: function() {
-   if ($(window).scrollTop() >= $(document).height() - 
-                                  $(window).height() - 400)
-        this.trigger(Denwen.WindowListener.Callback.DocumentScrolled);
+   if ($(window).scrollTop() >= $(this.element).height() - 
+                                  $(window).height() - 400 &&
+        $(this.element).is(":visible"))
+      this.trigger(Denwen.WindowListener.Callback.DocumentScrolled);
   },
 
   // Fired when the window resizes
@@ -38,7 +40,7 @@ Denwen.WindowListener = Backbone.View.extend({
   isWindowEmpty: function() {
     var state = false;
 
-    if($(window).height() >= $(document).height() - 150)
+    if($(window).height() >= $(this.element).height() - 150)
       state = true;
 
     return state;
