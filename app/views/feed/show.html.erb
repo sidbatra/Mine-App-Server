@@ -21,7 +21,7 @@
         :locals => {:src => "feed"}%>
   </div> <!-- col -->
 
-  <div class="col-triple">
+  <div class="col-triple locked">
     <div id="creation" class="item creation">
       <%form_for Product.new,
           :html => {
@@ -40,7 +40,6 @@
                 :show_extra_steps => false}%>
       <%end%> <!-- /form -->
     </div> <!-- /creation -->
-
 
     <%=render 'products/chooser'%> 
 
