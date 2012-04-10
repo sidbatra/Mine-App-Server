@@ -1,11 +1,11 @@
 <li class="user-box" id="contact_picker_<%=contact.get('id')%>">
 	<img class="user-photo" src="<%=contact.imageURL()%>" />  
-	<%=Denwen.H.truncate(contact.get('name'), 22, '…')%>
+	<%=Denwen.H.truncate(contact.get('name'), 19, '…')%>
 	<a class="btn" 
         id="post_invite_<%=contact.get('id')%>" 
-     style="float: right; width: 38px; height: 18px;">
-		<span class="out hide-when-loading">Invite</span>
-		<span class="in hide-when-loading"><i class="icon-ok icon-white"></i></span>
+     style="float: right; width: 52px; height: 18px;">
+		<span class="out hide-when-loading"><i class="icon-envelope"></i> Invite</span>
+		<span class="in hide-when-loading"><i class="icon-ok icon-white"></i> Sent</span>
 		<div class="loading small inline" style="margin-top: 1px;"></div>
 	</a>
 </li> 
