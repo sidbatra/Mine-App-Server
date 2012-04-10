@@ -34,7 +34,12 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
   fetched: function() {
     if(this.setting.get('status')) {
       Denwen.H.currentUser.set({'fb_publish_permission':true});
-      //TODO update on server as well
+
+      this.setting = new Denwen.Models.Setting({id:'fb_publish_stream'});
+
+      this.setting.save({},{
+        success: function(model) {},
+        error: function(model,error) {}}); 
     }
 
     this.trigger('fbSettingsFetched');

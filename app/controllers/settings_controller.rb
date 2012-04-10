@@ -31,7 +31,12 @@ class SettingsController < ApplicationController
   #
   def update
     @settings = self.current_user.setting
-    @settings.update_attributes(params[:setting])
+
+    if params[:id]
+      @settings.update_attributes(params[:id] => true)
+    else
+      @settings.update_attributes(params[:setting])
+    end
 
     flash[:updated] = true
   rescue => ex
