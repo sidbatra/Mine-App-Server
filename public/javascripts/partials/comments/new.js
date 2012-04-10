@@ -12,13 +12,23 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     this.inputEl      = '#product_comment_data_' + this.productID;
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
     $(this.inputEl).placeholder();
+
+    this.fbPermissionsRequired = 'fb_publish_permissions';
+
+    this.fbSettings = new Denwen.Partials.Settings.Facebook({
+                            permissions : this.fbPermissionsRequired});
+
+    this.fbSettings.bind(
+                      'fbSettingsFetched',
+                      this.fbSettingsFetched,
+                      this);
   },
 
   // Fired after every keystroke on the comments data input.
   //
   commentKeystroke: function(e) {
     if(e.keyCode==13)
-      this.post();
+      this.prepare();
   },
 
   // Create a comment 
@@ -43,6 +53,30 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
         success :  function(model) {self.created(model)},
         error   :  function(model,errors) {}
     });
+  },
+
+  // Fired when the user wants to write a comment 
+  //
+  prepare: function() {
+    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
+      this.post();
+    else  
+      this.fbSettings.showPermissionsDialog();
+  },
+
+  // Fired when the updated fb permissions settings
+  // are fetched
+  //
+  fbSettingsFetched: function() {
+
+    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) {
+      Denwen.Track.facebookPermissionsAccepted();
+      this.post();
+    }
+    else {
+      Denwen.Drawer.error("Please allow Facebook permissions to write comments.");
+      Denwen.Track.facebookPermissionsRejected();
+    }
   },
 
   // Render the comment created before sending the request
