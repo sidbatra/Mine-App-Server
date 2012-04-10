@@ -24,6 +24,8 @@
     </div>
   <%}%>
   
+  
+  <!-- User -->
   <div class="user-box">
     <img class="user-photo" 
           src="<%=product.get('user').get('square_image_url')%>" />
@@ -43,10 +45,13 @@
     </div>
   </div>
   
+  <!-- Photo -->
   <div class="photo-box" >
     <img src="<%=product.get('giant_url')%>" />
   </div>
   
+  
+  <!-- Details -->
   <div class="details-box">
     <h4 style="margin-bottom: 3px;">
       <%=product.escape('title')%>
@@ -54,6 +59,7 @@
     <%=product.escape('endorsement')%>
   </div>
   
+  <!-- Likes -->
   <div class="likes-box" 
           id="product_likes_box_<%=product.get('id')%>"
        style="display:none;">
@@ -61,6 +67,7 @@
     <span style="margin-left: 2px;" id="product_likes_<%=product.get('id')%>_aggregate"></span>
   </div>
   
+  <!-- Comments -->
   <div class="comments-box">
   
     <div id="product_comments_<%=product.get('id')%>">
