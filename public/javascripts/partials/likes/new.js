@@ -12,7 +12,17 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
 
     this.buttonEl     = '#product_create_like_' + this.productID;
 
-    $(this.buttonEl).click(function(){self.post();});
+    $(this.buttonEl).click(function(){self.prepare();});
+
+    this.fbPermissionsRequired = 'fb_publish_permissions';
+
+    this.fbSettings = new Denwen.Partials.Settings.Facebook({
+                            permissions : this.fbPermissionsRequired});
+
+    this.fbSettings.bind(
+                      'fbSettingsFetched',
+                      this.fbSettingsFetched,
+                      this);
   },
 
   // Create a like 
@@ -35,6 +45,30 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
         success :  function(model) {self.created(model)},
         error   :  function(model,errors) {}
     });
+  },
+
+  // Fired when the user wants to create a like
+  //
+  prepare: function() {
+    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
+      this.post();
+    else  
+      this.fbSettings.showPermissionsDialog();
+  },
+
+  // Fired when the updated fb permissions settings
+  // are fetched
+  //
+  fbSettingsFetched: function() {
+
+    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) {
+      Denwen.Track.facebookPermissionsAccepted();
+      this.post();
+    }
+    else {
+      Denwen.Drawer.error("Please allow Facebook permissions to like.");
+      Denwen.Track.facebookPermissionsRejected();
+    }
   },
 
   // Render the like before sending the request to the server 

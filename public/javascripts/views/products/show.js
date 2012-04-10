@@ -24,7 +24,15 @@ Denwen.Views.Products.Show = Backbone.View.extend({
 
     new Denwen.Partials.Facebook.Base();
 
+    this.loadFacebookPlugs();
+
     this.setAnalytics();
+  },
+
+  // Load facebook code via partials
+  //
+  loadFacebookPlugs: function() {
+    new Denwen.Partials.Facebook.Base();
   },
 
   // User clicks the product image

@@ -36,7 +36,15 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.likes    = new Denwen.Partials.Likes.Likes({
                           current_user  : this.currentUser});
 
+    this.loadFacebookPlugs();
+
     this.setAnalytics();
+  },
+
+  // Load facebook code via partials
+  //
+  loadFacebookPlugs: function() {
+    new Denwen.Partials.Facebook.Base();
   },
 
   // Fire various tracking events
