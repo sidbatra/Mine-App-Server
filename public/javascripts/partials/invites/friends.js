@@ -53,10 +53,8 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
   // Hookup invite functionality for all friends 
   //
   hookup: function(contacts) {
-    var self = this;
-
     contacts.each(function(contact){
-      new Denwen.Partials.Invites.New({friend:contact});
+      new Denwen.Partials.Invites.New({recipient:contact});
     });
   },
 

@@ -14,7 +14,13 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     var self        = this; 
 
     this.recipient  = this.options.recipient;
-    this.buttonEl   = '#invite_button_' + this.recipient.get('id');
+    this.buttonEl   = '#post_invite_' + this.recipient.get('id');
+
+    this.fbSettings = new Denwen.Partials.Settings.Facebook;
+    this.fbSettings.bind(
+                      'fbSettingsFetched',
+                      this.fbSettingsFetched,
+                      this);
 
     $(this.buttonEl).click(function(){self.prepareToInvite();});
   },
@@ -31,45 +37,68 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     $(this.buttonEl).removeClass('load');
   },
 
+  // Fired when the updated fb permissions settings
+  // are fetched
+  //
+  fbSettingsFetched: function() {
+
+    if(Denwen.H.currentUser.get('fb_publish_permission')) {
+      Denwen.Track.facebookPermissionsAccepted();
+      this.sendInvite();
+    }
+    else {
+      this.stopLoading();
+      Denwen.Drawer.error("Please allow Facebook permissions to send an invite.");
+      Denwen.Track.facebookPermissionsRejected();
+    }
+  },
+
   // Fired when the user wants to send the invite
   //
-  prepareToSendInvite: function() {
-    
-    /*
-    if(this.setting.get('status'))
+  prepareToInvite: function() {
+
+    if(Denwen.H.currentUser.get('fb_publish_permission')) {
       this.sendInvite();
-    else 
-      this.fbPermissionsBox.show();*/
+    }
+    else { 
+      this.startLoading(); 
+      this.fbSettings.showPermissionsDialog();
+    }
+
+    this.startLoading();
   },
 
   // Send invite request to the server
   //
   sendInvite: function() {
-    /*
-    this.startLoading();
-
     var self = this;
 
     var invite = new Denwen.Models.Invite({
-                      recipient_id: this.fbID,
+                      recipient_id: this.recipient.get('third_party_id'),
                       platform: Denwen.InvitePlatform.Facebook,
-                      recipient_name: this.name});
+                      recipient_name: this.recipient.get('name')});
 
     invite.save({},{
       success: function(model) {self.inviteCreated()},
-      error: function(model,error) {self.inviteFailed()}}); */
+      error: function(model,error) {self.inviteFailed()}}); 
   },
 
   // Invite created
   //
   inviteCreated: function() {
-    Denwen.Drawer.success("Invite sent successfully.");
+    this.stopLoading();
+
+    $(this.buttonEl).addClass('pushed');
+    $(this.buttonEl).unbind('click');
+
     Denwen.Track.inviteCompleted();
   },
 
   // Invite fails to create
   //
   inviteFailed: function() {
+    this.stopLoading();
+    console.log("error in sending invite");
   }
 
 });
