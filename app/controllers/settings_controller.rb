@@ -32,8 +32,8 @@ class SettingsController < ApplicationController
   def update
     @settings = self.current_user.setting
 
-    if params[:id]
-      @settings.update_attributes(params[:id] => true)
+    if params[:id] && params[:value]
+      @settings.update_attributes(params[:id] => params[:value])
     else
       @settings.update_attributes(params[:setting])
     end
