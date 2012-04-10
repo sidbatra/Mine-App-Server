@@ -189,13 +189,13 @@
 	filter: alpha(opacity=90);
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 	height: 28px;
-	width: 120px;
+	width: 130px;
 	line-height: 28px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	text-align: center;
-	background: url('/images/black_35.png');
+	background: url('/images/black_40.png');
 	color: white;
 	position:absolute; 
 	top: 50%; 
@@ -533,8 +533,7 @@ a:hover {
 
 .thumbnail { 
 	background: white;
-	text-decoration: none !important;
-	cursor: pointer; }
+	text-decoration: none !important; }
 
 .alert { position: relative; }
 .alert-info h3 { color: #3A87AD; }
