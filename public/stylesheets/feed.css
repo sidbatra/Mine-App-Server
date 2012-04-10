@@ -185,8 +185,26 @@
   max-height: 390px; }
 
 .creation .change-photo {
+	opacity: 0.9;
+	filter: alpha(opacity=90);
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+	height: 28px;
+	width: 120px;
+	line-height: 28px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-align: center;
+	background: url('/images/black_35.png');
+	color: white;
 	position:absolute; 
-	top: 0; 
+	top: 50%; 
+	bottom: 50%;
+	left: 50%;
+	right: 50%;
+	margin-left: -59px;
+	margin-top: -14px;
+	cursor: pointer;
 	right: 0;
 	z-index: 10; }
 
@@ -642,6 +660,8 @@ footer p { text-align: center; }
 /* ---------- strike-thru text divider */
 
 .strike-thru {
+	width: 210px;
+	margin-left: 155px;
 	height: 9px;
 	border-top: 1px solid #dddddd;
 	padding-top: 16px;
@@ -651,7 +671,7 @@ footer p { text-align: center; }
 
 .strike-thru span, 
 .strike-thru a { 
-	padding: 0 10px;
+	padding: 0 6px;
 	background: white; 
 	position: relative;
 	color: inherit;
