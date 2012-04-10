@@ -686,10 +686,13 @@ footer p { text-align: center; }
 	bottom: 0;
 	text-align: left;
 	background: white;
-	overflow: scroll;
+	overflow: hidden;
 	padding-bottom: 60px;
 	padding-left: 15px;
 	z-index: 1050; }
+
+.chooser:hover {
+	overflow-y: scroll; }
 	
 .results {
 	margin-top: 45px;
