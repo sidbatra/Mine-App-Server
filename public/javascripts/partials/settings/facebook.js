@@ -5,7 +5,8 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.setting = new Denwen.Models.Setting({id:'publish_stream'});
+    this.permissions  = this.options.permissions;
+    this.setting      = new Denwen.Models.Setting({id:this.permissions});
   },
 
   // Show the facebook login dialog with extra permissions
@@ -15,7 +16,7 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
 
     FB.login(function(response) {
       self.fetchSettings();
-    },{scope: CONFIG['fb_extended_permissions']});  
+    },{scope: CONFIG[self.permissions]});  
   },
 
   // Fetch updated facebook permissions from the server 
@@ -33,15 +34,19 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
   //
   fetched: function() {
     if(this.setting.get('status')) {
-      Denwen.H.currentUser.set({'fb_publish_permission':true});
 
       this.setting = new Denwen.Models.Setting({
-                            id     : 'fb_publish_stream',
+                            id     : this.permissions,
                             value  : true});
 
       this.setting.save({},{
         success: function(model) {},
         error: function(model,error) {}}); 
+
+      var keys = {};
+      keys[this.permissions] = true;
+
+      Denwen.H.currentUser.get('setting').set(keys);
     }
 
     this.trigger('fbSettingsFetched');

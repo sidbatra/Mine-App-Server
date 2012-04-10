@@ -16,7 +16,11 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     this.recipient  = this.options.recipient;
     this.buttonEl   = '#post_invite_' + this.recipient.get('id');
 
-    this.fbSettings = new Denwen.Partials.Settings.Facebook;
+    this.fbPermissionsRequired = 'fb_extended_permissions';
+
+    this.fbSettings = new Denwen.Partials.Settings.Facebook({
+                            permissions : this.fbPermissionsRequired});
+
     this.fbSettings.bind(
                       'fbSettingsFetched',
                       this.fbSettingsFetched,
@@ -42,13 +46,13 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   //
   fbSettingsFetched: function() {
 
-    if(Denwen.H.currentUser.get('fb_publish_permission')) {
+    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) {
       Denwen.Track.facebookPermissionsAccepted();
       this.sendInvite();
     }
     else {
       this.stopLoading();
-      Denwen.Drawer.error("Please allow Facebook permissions to send an invite.");
+      Denwen.Drawer.error("Please allow Facebook permissions to send invites.");
       Denwen.Track.facebookPermissionsRejected();
     }
   },
@@ -57,7 +61,7 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   //
   prepareToInvite: function() {
 
-    if(Denwen.H.currentUser.get('fb_publish_permission')) {
+    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) {
       this.sendInvite();
     }
     else { 

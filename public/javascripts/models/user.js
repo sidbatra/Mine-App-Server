@@ -9,6 +9,7 @@ Denwen.Models.User = Backbone.Model.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.associate('setting',Denwen.Models.Setting);
   },
 
   // Validation logic

@@ -210,15 +210,23 @@ class User < ActiveRecord::Base
     fb_user.permissions
   end
 
-  # Whether or not the user has provided fb permissions to post on his/her
-  # behalf. 
+  # Whether or not the user has given fb extended permissions.
+  # The method uses FBGraph instead of the settings table
   #
-  # Returns - true or false based on the value stored in database which will
-  # update regularly from the real time subscription api
+  def fb_extended_permissions?
+    self.fb_permissions.include?(:publish_stream)
+  end
+
+  # Whether or not the user has given fb publish permission to post on
+  # his/her behalf. This includes both publish_actions & publish_stream
   #
-  def fb_publish_permission
-    setting = self.setting;
-    setting.fb_publish_actions && setting.fb_publish_stream 
+  # The method uses FBGraph instead of the settings table
+  #
+  def fb_publish_permissions?
+    fb_permissions = self.fb_permissions
+
+    fb_permissions.include?(:publish_actions) & 
+      fb_permissions.include?(:publish_stream)
   end
 
 

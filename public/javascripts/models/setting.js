@@ -9,7 +9,6 @@ Denwen.Models.Setting = Backbone.Model.extend({
   // Constructor logic
   //
   initialize: function() {
-
   }
 
 });

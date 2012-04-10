@@ -16,8 +16,10 @@ class SettingsController < ApplicationController
     @filter = params[:id].to_sym
 
     case @filter
-    when :publish_stream
-      @setting = {:status => self.current_user.fb_permissions.include?(@filter)}
+    when :fb_publish_permissions
+      @setting = {:status => self.current_user.fb_publish_permissions?}
+    when :fb_extended_permissions
+      @setting = {:status => self.current_user.fb_extended_permissions?}
     end
   rescue => ex
     handle_exception(ex)
@@ -30,10 +32,25 @@ class SettingsController < ApplicationController
   # Update settings for the current user.
   #
   def update
-    @settings = self.current_user.setting
+    @settings   = self.current_user.setting
 
     if params[:id] && params[:value]
-      @settings.update_attributes(params[:id] => params[:value])
+      @filter = params[:id].to_sym
+
+      case @filter
+      when :fb_publish_permissions
+        attributes = {:fb_publish_stream  => params[:value],
+                      :fb_publish_actions => params[:value]}
+
+      when :fb_extended_permissions
+        attributes = {:fb_publish_stream => params[:value]}
+
+      else
+        attributes = {params[:id] => params[:value]}
+      end
+
+      @settings.update_attributes(attributes)
+
     else
       @settings.update_attributes(params[:setting])
     end
