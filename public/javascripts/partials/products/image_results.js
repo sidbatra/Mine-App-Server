@@ -20,7 +20,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.mode           = this.options.mode;
 
     this.loadClass      = "load";
-    this.lockClass      = "locked";
     this.queryEl        = "#product_query";
     this.repeatQueryEl  = "#product_repeat_query";
     this.imagesBoxEl    = "#chooser";
@@ -60,6 +59,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
 
     $(this.queryEl).placeholder();
     //$(this.queryEl).focus();
+
+    $(this.imagesBoxEl).slimScroll({height:"100%"});
   },
 
   // Display loading spinner on search more
@@ -105,7 +106,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // Hide the search UI
   //
   stopSearch: function() {
-    this.unlockParent();
     $(this.shadowEl).fadeOut(500);
     $(this.imagesBoxEl).hide();
     $(this.queryEl).val($(this.repeatQueryEl).val());
@@ -123,18 +123,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   stopSpinner: function() {
     $(this.spinnerBoxEl).removeClass(this.loadClass);
     $(this.moreEl).removeClass(this.loadClass);
-  },
-
-  // Lock the parent to prevent scrolling in the background.
-  //
-  lockParent: function() {
-    $(this.imagesBoxEl).parent().addClass(this.lockClass);
-  },
-
-  // Unlock the parent to enable scrolling.
-  //
-  unlockParent: function() {
-    $(this.imagesBoxEl).parent().removeClass(this.lockClass);
   },
 
   // Fired when the change photo element is clicked. Launch
@@ -170,7 +158,6 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     }
 
     this.startSpinner();
-    this.lockParent();
 
     $(this.shadowEl).css("height","100%");
     $(this.shadowEl).fadeIn(500);

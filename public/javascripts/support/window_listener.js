@@ -11,13 +11,17 @@ Denwen.WindowListener = Backbone.View.extend({
     this.element = this.options.element ? this.options.element : document;
     this.resizeTimer = null;
 
-    $(window).scroll(function(){self.scroll();});
+    //TODO: broken. Change conditionally.
+    $(this.element).scroll(function(){self.scroll();});
+    //$(window).scroll(function(){self.scroll();});
     $(window).resize(function(){self.resize();});
   },
 
   // Fired when scrolling begins
   //
   scroll: function() {
+    //console.log(this.element,$(this.element).scrollTop(),$(window).scrollTop(),$(this.element).height(),$(window).height());
+
    if ($(window).scrollTop() >= $(this.element).height() - 
                                   $(window).height() - 400 &&
         $(this.element).is(":visible"))
@@ -39,6 +43,7 @@ Denwen.WindowListener = Backbone.View.extend({
   //
   isWindowEmpty: function() {
     var state = false;
+    //console.log(this.element,$(this.element).height(),$(window).height());
 
     if($(window).height() >= $(this.element).height() - 150)
       state = true;
