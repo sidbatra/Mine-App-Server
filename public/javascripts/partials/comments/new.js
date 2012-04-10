@@ -19,8 +19,13 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
                             permissions : this.fbPermissionsRequired});
 
     this.fbSettings.bind(
-                      'fbSettingsFetched',
-                      this.fbSettingsFetched,
+                      'fbPermissionsAccepted',
+                      this.fbPermissionsAccepted,
+                      this);
+
+    this.fbSettings.bind(
+                      'fbPermissionsRejected',
+                      this.fbPermissionsRejected,
                       this);
   },
 
@@ -64,19 +69,16 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
       this.fbSettings.showPermissionsDialog();
   },
 
-  // Fired when the updated fb permissions settings
-  // are fetched
+  // Fired when fb permissions are accepted 
   //
-  fbSettingsFetched: function() {
+  fbPermissionsAccepted: function() {
+    this.post();
+  },
 
-    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) {
-      Denwen.Track.facebookPermissionsAccepted();
-      this.post();
-    }
-    else {
-      Denwen.Drawer.error("Please allow Facebook permissions to write comments.");
-      Denwen.Track.facebookPermissionsRejected();
-    }
+  // Fired when fb permissions are rejected
+  //
+  fbPermissionsRejected: function() {
+    Denwen.Drawer.error("Please allow Facebook permissions to write comments.");
   },
 
   // Render the comment created before sending the request

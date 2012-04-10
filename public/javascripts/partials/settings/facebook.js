@@ -47,9 +47,14 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
       keys[this.permissions] = true;
 
       Denwen.H.currentUser.get('setting').set(keys);
-    }
 
-    this.trigger('fbSettingsFetched');
+      Denwen.Track.facebookPermissionsAccepted();
+      this.trigger('fbPermissionsAccepted');
+    }
+    else {
+      Denwen.Track.facebookPermissionsRejected();
+      this.trigger('fbPermissionsRejected');
+    }
   }
 
 });
