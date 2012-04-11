@@ -63,15 +63,10 @@
 
 /* ----- feed, col-triple ----- */
 
-
 .feed, .col-triple { 
 	width: 562px;
 	float: left;
 	margin-right: 5px; }
-	
-.col-triple.locked {	/* for chooser */
-	position: fixed; 
-	overflow: hidden; }
 
 .feed .item, .col-triple .item {
 	position: relative;
@@ -506,7 +501,6 @@ input:focus, textarea:focus {
 /* ---------- general tweaks to bootstrap */
 
 body { 	
-	overflow: hidden;
 	padding-top: 0px;
 	background: #F2F0ED;
 	-webkit-font-smoothing: antialiased;
@@ -688,14 +682,13 @@ footer p { text-align: center; }
 	background:white;
 	padding-bottom:20px;
 	padding-left:15px;
-	overflow:visible;
+	overflow: visible;
 	z-index:1050; }
 	
 .results { 
 	margin-top:45px;
-	height: 10000px;
 	text-align:center;
-	z-index: 1050; }
+/* 	z-index: 1050;  */}
 
 .chooser .search-bar{ 
 	position:fixed;
