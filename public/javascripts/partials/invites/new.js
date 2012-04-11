@@ -105,7 +105,6 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   //
   inviteFailed: function() {
     this.stopLoading();
-    console.log("error in sending invite");
   }
 
 });

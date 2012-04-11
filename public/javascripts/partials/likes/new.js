@@ -88,7 +88,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   created: function(like) {
     if(!like.get('id')) {
       this.posting = false;
-      console.log("error in creating");
+      //console.log("error in creating");
     }
   },
 
