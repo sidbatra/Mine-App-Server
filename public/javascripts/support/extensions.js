@@ -11,6 +11,22 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+// Parse a string that contains an iso8601 timestamp. 
+// Eg - "2012-04-05T18:20:17-07:00".
+// Found deep inside the source code of timeAgo.
+// https://github.com/rmm5t/jquery-timeago
+//
+// returns - Date. Date object parsed from the string.
+//
+String.prototype.toDate = function() {
+  var s = $.trim(this);
+  s = s.replace(/\.\d\d\d+/,""); // remove milliseconds
+  s = s.replace(/-/,"/").replace(/-/,"/");
+  s = s.replace(/T/," ").replace(/Z/," UTC");
+  s = s.replace(/([\+\-]\d\d)\:?(\d\d)/," $1$2"); // -04:00 -> -0400
+  return new Date(s);
+};
+
 var uncheckedkeycodes=/(8)|(13)|(16)|(17)|(18)/;  //keycodes that are not checked, even when limit has been reached.
 
 function restrictFieldSize($fields, optsize, optoutputdiv){
