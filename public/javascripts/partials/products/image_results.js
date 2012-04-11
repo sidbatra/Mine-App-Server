@@ -59,8 +59,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
       this);
 
     this.infiniteScroller.bind(
-      Denwen.InfiniteScroller.Callback.ResizeEnded,
-      this.resizeEnded,
+      Denwen.InfiniteScroller.Callback.EmptySpaceFound,
+      this.emptySpaceFound,
       this);
 
     $('html').keydown(function(e){self.globalKeystroke(e);});
@@ -205,7 +205,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.stopSpinner();
     $(this.shadowEl).css("height", $(document).height());
 
-    this.resizeEnded();
+    this.infiniteScroller.emptySpaceTest();
 
     if(this.images.isURLQuery() && !this.images.isEmpty()) {
       var self = this;
@@ -258,10 +258,11 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     }
   },
 
-  // Browser window resize ended callback
+  // Infinite scroller callback when the element hasn't filled out
+  // its fixed height.
   //
-  resizeEnded: function() {
-    if(this.isSearchActive() && this.infiniteScroller.isElementEmpty())  {
+  emptySpaceFound: function() {
+    if(this.isSearchActive()) {
       this.images.searchMore();
       this.enterSearchMoreLoading();
     }

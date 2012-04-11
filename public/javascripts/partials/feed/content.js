@@ -32,8 +32,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       this);
 
     this.infiniteScroller.bind(
-      Denwen.InfiniteScroller.Callback.ResizeEnded,
-      this.resizeEnded,
+      Denwen.InfiniteScroller.Callback.EmptySpaceFound,
+      this.emptySpaceFound,
       this);
   },
 
@@ -111,7 +111,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       this.productIds = []; 
     }
 
-    this.resizeEnded();
+    this.infiniteScroller.emptySpaceTest();
   },
 
   // Feed items loading failed. Fire events to subscribers.
@@ -131,13 +131,10 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.fetch();
   },
 
-  // Browser window resizing has just finished. Test if
-  // more products are required to fill the page.
+  // Document hasn't fully filled out the window.
   //
-  resizeEnded: function() {
-    if(this.infiniteScroller.isPageEmpty())  {
-      this.fetch();
-    }
+  emptySpaceFound: function() {
+    this.fetch();
   }
 
 });

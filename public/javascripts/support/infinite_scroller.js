@@ -35,7 +35,7 @@ Denwen.InfiniteScroller = Backbone.View.extend({
     else 
       $(this.element).scroll(function(){self.elementScroll();});
 
-    //$(window).resize(function(){self.resize();});
+    $(window).resize(function(){self.resize();});
   },
 
   // Fired when the entire window scrolls. A callback is triggered
@@ -62,29 +62,37 @@ Denwen.InfiniteScroller = Backbone.View.extend({
       this.trigger(Denwen.InfiniteScroller.Callback.EndReached);
   },
 
-  // Tests of the providede element has been filled to it's original height.
+  // Tests of the provided element has been filled to it's original height.
   //
   isElementEmpty: function() {
     return $(this.element).height() >= $(this.element)[0].scrollHeight - 
                                           this.emptyMargin;
-  }
+  },
 
-  // Fired when the window resizes
+  // Fired when the window resizes. Initiate an empty space test.
   //
-  //resize: function() {
-  //  if(this.resizeTimer != null)
-  //    clearTimeout(this.resizeTimer);
+  resize: function() {
+    if(this.resizeTimer != null)
+      clearTimeout(this.resizeTimer);
+  
+    var self = this;
+    this.resizeTimer = setTimeout(function(){
+                self.emptySpaceTest();},
+                750);
+  },
+
+  // Tests if the scrollable element has empty space left.
   //
-  //  var self = this;
-  //  this.resizeTimer = setTimeout(function(){
-  //              self.trigger(Denwen.WindowListener.Callback.ResizeEnded);},750);
-  //},
+  emptySpaceTest: function() {
+    if(this.pageMode ? this.isPageEmpty() : this.isElementEmpty())
+      this.trigger(Denwen.InfiniteScroller.Callback.EmptySpaceFound);
+  }
 
 });
 
 // Define callbacks.
 //
 Denwen.InfiniteScroller.Callback = {
-  EndReached : 'endReached',
-  ResizeEnded: 'resizeEnded'
+  EndReached: 'endReached',
+  EmptySpaceFound: 'emptySpaceFound'
 }
