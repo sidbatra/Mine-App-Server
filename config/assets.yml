@@ -6,7 +6,6 @@ javascripts:
   application:
     - public/javascripts/libs/jquery-1.7.1.js
     - public/javascripts/libs/jquery-timeago.js
-    - public/javascripts/libs/jquery-slimScroll-0.5.0.js
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/bootstrap.js
