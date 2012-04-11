@@ -168,7 +168,7 @@
 /* ----- creation ----- */
 
 .creation .photo-box {
-	min-height: 100px;
+	min-height: 200px;
   background: white url("/images/loading_spinner_large_trans.gif") no-repeat;
   background-position: center;
   text-align: center;
@@ -193,12 +193,10 @@
 	background: url('/images/black_40.png');
 	color: white;
 	position:absolute; 
-	top: 50%; 
-	bottom: 50%;
+	top: 10px; 
 	left: 50%;
 	right: 50%;
-	margin-left: -59px;
-	margin-top: -14px;
+	margin-left: -65px;
 	cursor: pointer;
 	right: 0;
 	z-index: 10; }
@@ -685,8 +683,19 @@ footer p { text-align: center; }
 	padding-left:15px;
 	overflow: visible;
 	z-index:1050; }
-
-/* cool shit */
+	
+.results { 
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	max-height: 100%;
+	margin-top:45px;
+	margin-bottom: 45px;
+	padding-bottom: 15px;
+	overflow-y: scroll;
+	text-align:center;
+	z-index: 1050; }
+	
 .results, .chooser { *zoom: 1; }
 
 .results:before,
@@ -695,25 +704,13 @@ footer p { text-align: center; }
 .chooser:after {
   display: table;
   content: ""; }
+  
 .chooser:after,
 .results:after {
   clear: both; }
-/* end of cool clearfix cool shit */
-	
-.results { 
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	max-height: 100%;
-	background: yellow;
-	margin-top:45px;
-	padding-bottom: 60px;
-	overflow: scroll !important;
-	text-align:center;
-	z-index: 1050; }
 
-.chooser .search-bar{ 
-	position:fixed;
+.chooser .search-bar { 
+	position: fixed;
 	top:0;
 	left:0;
 	right:0;
@@ -732,7 +729,7 @@ footer p { text-align: center; }
 
 .chooser .search-bar .close {
 	font-size: 36px; 
-	padding: 5px 5px 5px 15px; }
+	padding: 5px 10px; }
 
 .chooser .control-label.error { color: #B94A48; }
 
