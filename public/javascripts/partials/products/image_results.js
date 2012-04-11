@@ -50,10 +50,18 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
       this.productResultAdded,
       this);
     
-    this.windowListener = new Denwen.WindowListener({
+    this.infiniteScroller = new Denwen.InfiniteScroller({
                                 element:this.imagesEl});
-    this.windowListener.bind('documentScrolled',this.documentScrolled,this);
-    this.windowListener.bind('resizeEnded',this.resizeEnded,this);
+
+    this.infiniteScroller.bind(
+      Denwen.InfiniteScroller.Callback.EndReached,
+      this.endReached,
+      this);
+
+    this.infiniteScroller.bind(
+      Denwen.InfiniteScroller.Callback.ResizeEnded,
+      this.resizeEnded,
+      this);
 
     $('html').keydown(function(e){self.globalKeystroke(e);});
 
@@ -241,9 +249,9 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   },
 
   // Infinite scroll callback fired when user has 
-  // scrolled to the end of the page
+  // scrolled to the end of the element.
   //
-  documentScrolled: function() {
+  endReached: function() {
     if(this.isSearchActive()) {
       this.images.searchMore();
       this.enterSearchMoreLoading();
@@ -253,7 +261,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // Browser window resize ended callback
   //
   resizeEnded: function() {
-    if(this.isSearchActive() && this.windowListener.isElementEmpty())  {
+    if(this.isSearchActive() && this.infiniteScroller.isElementEmpty())  {
       this.images.searchMore();
       this.enterSearchMoreLoading();
     }

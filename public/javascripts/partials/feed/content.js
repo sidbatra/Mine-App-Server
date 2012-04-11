@@ -19,20 +19,20 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.feed.bind('add',this.feedItemAdded,this);
     this.fetch();
 
-    this.windowListener = new Denwen.WindowListener();
-
     this.likes          = new Denwen.Partials.Likes.Likes();
     this.comments       = new Denwen.Partials.Comments.Comments();
 
     this.productIds     = [];
 
-    this.windowListener.bind(
-      Denwen.WindowListener.Callback.DocumentScrolled,
-      this.documentScrolled,
+    this.infiniteScroller = new Denwen.InfiniteScroller();
+
+    this.infiniteScroller.bind(
+      Denwen.InfiniteScroller.Callback.EndReached,
+      this.endReached,
       this);
 
-    this.windowListener.bind(
-      Denwen.WindowListener.Callback.ResizeEnded,
+    this.infiniteScroller.bind(
+      Denwen.InfiniteScroller.Callback.ResizeEnded,
       this.resizeEnded,
       this);
   },
@@ -122,12 +122,12 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
 
 
   // -
-  // Callbacks from WindowListener
+  // Callbacks from InfiniteScroller
   // -
 
   // Document has reached end of scroll area. Load more products.
   //
-  documentScrolled: function() {
+  endReached: function() {
     this.fetch();
   },
 
@@ -135,7 +135,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   // more products are required to fill the page.
   //
   resizeEnded: function() {
-    if(this.windowListener.isPageEmpty())  {
+    if(this.infiniteScroller.isPageEmpty())  {
       this.fetch();
     }
   }
