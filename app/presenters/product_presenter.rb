@@ -17,30 +17,6 @@ class ProductPresenter < BasePresenter
     h.product_url product.user.handle,product.handle,:src => source
   end
 
-  # Link to the next product
-  #
-  def next(next_product,user)
-	    next_product ? 
-        h.link_to("<i class='icon-chevron-right'></i>",
-                  product_path(
-                    user.handle,
-                    next_product.handle,
-                    :src => 'next'),
-                  :class => 'btn') : ''
-  end
-
-  # Link to the prev product
-  #
-  def prev(prev_product,user)
-	    prev_product ? 
-        h.link_to("<i class='icon-chevron-left'></i>",
-                  product_path(
-                    user.handle,
-                    prev_product.handle,
-                    :src => 'previous'),
-                  :class => 'btn') : ''
-  end
-
   # Description message for the product used in 
   # og description tag
   #

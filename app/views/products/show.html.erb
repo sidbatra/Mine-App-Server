@@ -14,6 +14,21 @@
 <%end%>
 
 <div class="container">
+
+  <%=link_to("<i class='icon-chevron-left'></i>",
+            product_path(
+              @product.user.handle,
+              @next_product.handle,
+              :src => 'previous'),
+            :class => 'btn') if @next_product%>
+
+  <%=link_to("<i class='icon-chevron-right'></i>",
+            product_path(
+              @product.user.handle,
+              @prev_product.handle,
+              :src => 'next'),
+            :class => 'btn') if @prev_product%>
+
   <div class="col-triple" style="margin-left: 189px;">
     <div id="feed" class="feed">
     </div>
