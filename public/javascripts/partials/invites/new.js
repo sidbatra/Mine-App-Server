@@ -31,7 +31,8 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
                       this.fbPermissionsRejected,
                       this);
 
-    $(this.buttonEl).click(function(){self.prepareToInvite();});
+    if(!this.recipient.get('invited'))
+      $(this.buttonEl).click(function(){self.prepareToInvite();});
   },
 
   // Enter loading state
