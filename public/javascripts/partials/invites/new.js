@@ -92,6 +92,7 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   // Invite created
   //
   inviteCreated: function() {
+    this.recipient.set({'invited':true});
     this.stopLoading();
 
     $(this.buttonEl).addClass('pushed');
