@@ -135,7 +135,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   // more products are required to fill the page.
   //
   resizeEnded: function() {
-    if(this.windowListener.isWindowEmpty())  {
+    if(this.windowListener.isPageEmpty())  {
       this.fetch();
     }
   }

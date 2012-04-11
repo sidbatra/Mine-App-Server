@@ -8,48 +8,60 @@ Denwen.WindowListener = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
-    this.element = this.options.element ? this.options.element : document;
+    this.pageMode = true;
+    this.element = document;
+    
+    if(this.options.element) {
+      this.element = this.options.element;
+      this.pageMode = false;
+    }
+
     this.resizeTimer = null;
 
-    //TODO: broken. Change conditionally.
-    $(this.element).scroll(function(){self.scroll();});
-    //$(window).scroll(function(){self.scroll();});
-    $(window).resize(function(){self.resize();});
+    if(this.pageMode){
+      $(window).scroll(function(){self.pageScroll();});
+    }
+    else {
+      $(this.element).scroll(function(){self.elementScroll();});
+    }
+    //$(window).resize(function(){self.resize();});
   },
 
   // Fired when scrolling begins
   //
-  scroll: function() {
-    //console.log(this.element,$(this.element).scrollTop(),$(window).scrollTop(),$(this.element).height(),$(window).height());
-
-   if ($(window).scrollTop() >= $(this.element).height() - 
-                                  $(window).height() - 400 &&
-        $(this.element).is(":visible"))
+  pageScroll: function() {
+   if ($(window).scrollTop() >= $(document).height() -
+                                  $(window).height() - 400)
       this.trigger(Denwen.WindowListener.Callback.DocumentScrolled);
-  },
-
-  // Fired when the window resizes
-  //
-  resize: function() {
-    if(this.resizeTimer != null)
-      clearTimeout(this.resizeTimer);
-  
-    var self = this;
-    this.resizeTimer = setTimeout(function(){
-                self.trigger(Denwen.WindowListener.Callback.ResizeEnded);},750);
   },
 
   // Tests if the document has filled the window completely
   //
-  isWindowEmpty: function() {
-    var state = false;
-    //console.log(this.element,$(this.element).height(),$(window).height());
+  isPageEmpty: function() {
+    return $(window).height() >= $(document).height() - 150;
+  },
 
-    if($(window).height() >= $(this.element).height() - 150)
-      state = true;
+  //
+  elementScroll: function() {
+   if ($(this.element).scrollTop() >= $(this.element)[0].scrollHeight -
+                                  $(this.element).height() - 200)
+      this.trigger(Denwen.WindowListener.Callback.DocumentScrolled);
+  },
 
-    return state;
+  isElementEmpty: function() {
+    return $(this.element).height() >= $(this.element)[0].scrollHeight - 150;
   }
+
+  // Fired when the window resizes
+  //
+  //resize: function() {
+  //  if(this.resizeTimer != null)
+  //    clearTimeout(this.resizeTimer);
+  //
+  //  var self = this;
+  //  this.resizeTimer = setTimeout(function(){
+  //              self.trigger(Denwen.WindowListener.Callback.ResizeEnded);},750);
+  //},
 
 });
 

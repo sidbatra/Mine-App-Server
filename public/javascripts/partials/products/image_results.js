@@ -51,7 +51,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
       this);
     
     this.windowListener = new Denwen.WindowListener({
-                                element:this.imagesBoxEl});
+                                element:this.imagesEl});
     this.windowListener.bind('documentScrolled',this.documentScrolled,this);
     this.windowListener.bind('resizeEnded',this.resizeEnded,this);
 
@@ -104,6 +104,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // Hide the search UI
   //
   stopSearch: function() {
+    $("body").css("overflow","auto");
+
     $(this.shadowEl).fadeOut(500);
     $(this.imagesBoxEl).hide();
     $(this.queryEl).val($(this.repeatQueryEl).val());
@@ -155,6 +157,8 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
       return;
     }
 
+    $("body").css("overflow","hidden");
+
     this.startSpinner();
 
     $(this.shadowEl).css("height","100%");
@@ -193,8 +197,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.stopSpinner();
     $(this.shadowEl).css("height", $(document).height());
 
-    if(!this.images.page)
-      this.resizeEnded();
+    this.resizeEnded();
 
     if(this.images.isURLQuery() && !this.images.isEmpty()) {
       var self = this;
@@ -250,7 +253,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // Browser window resize ended callback
   //
   resizeEnded: function() {
-    if(this.isSearchActive() && this.windowListener.isWindowEmpty())  {
+    if(this.isSearchActive() && this.windowListener.isElementEmpty())  {
       this.images.searchMore();
       this.enterSearchMoreLoading();
     }
