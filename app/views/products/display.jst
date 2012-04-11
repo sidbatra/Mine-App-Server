@@ -27,8 +27,10 @@
   
   <!-- User -->
   <div class="user-box">
-    <img class="user-photo" 
-          src="<%=product.get('user').get('square_image_url')%>" />
+    <a href="<%=product.get('user').path('product_photo')%>">
+      <img class="user-photo" 
+            src="<%=product.get('user').get('square_image_url')%>" />
+    </a>
 
     <%if(product.get('store') && product.get('store').get('is_processed')){%>
       <img class="store-icon" 
@@ -37,8 +39,10 @@
 
     <div style="float: left; margin-left: 8px;">
       <h5>
-        <%=product.get('user').get('first_name')%> 
-        <%=product.get('user').get('last_name')%>
+        <a href="<%=product.get('user').path('product_name')%>">
+          <%=product.get('user').get('first_name')%> 
+          <%=product.get('user').get('last_name')%>
+        </a>
       </h5>
       <%=product.get('store') ? product.get('store').get('name') : ''%>
       <span class="small"><%=jQuery.timeago(product.get('created_at'))%></span>
