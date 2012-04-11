@@ -506,6 +506,7 @@ input:focus, textarea:focus {
 /* ---------- general tweaks to bootstrap */
 
 body { 	
+	overflow: hidden;
 	padding-top: 0px;
 	background: #F2F0ED;
 	-webkit-font-smoothing: antialiased;
@@ -692,8 +693,9 @@ footer p { text-align: center; }
 	
 .results { 
 	margin-top:45px;
-	height:500px;
-	text-align:center; }
+	height: 10000px;
+	text-align:center;
+	z-index: 1050; }
 
 .chooser .search-bar{ 
 	position:fixed;

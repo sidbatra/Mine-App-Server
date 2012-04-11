@@ -20,8 +20,12 @@
     <%=render :partial => "users/trinkets",
         :locals => {:src => "feed"}%>
   </div> <!-- col -->
+  
+  <%=render 'products/chooser'%>
+  	
 
   <div class="col-triple">
+  
     <div id="creation" class="item creation">
       <%form_for Product.new,
           :html => {
@@ -38,10 +42,9 @@
                 :show_delete_button => false,
                 :show_query_box => true,
                 :show_extra_steps => false}%>
-      <%end%> <!-- /form -->
-    </div> <!-- /creation -->
+      <%end%> <!-- /form --> 
     
-   	<%=render 'products/chooser'%> 
+    </div> <!-- /creation -->
 
     <div id="feed" class="feed">
     </div>
