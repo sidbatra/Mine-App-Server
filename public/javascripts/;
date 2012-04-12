@@ -11,11 +11,10 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     this.source  = this.options.source;
     this.friends = new Denwen.Collections.Users(this.options.friends);   
 
-    this.owner   = this.product.get('user');
-
     this.interaction = this.friends.any(function(friend) {
-                        return friend.get('id') == self.owner.get('id');
-                       }) | Denwen.H.isCurrentUser(self.owner.get('id'));
+                        return friend.get('id') == 
+                               self.product.get('user').get('id');
+                       });
     
     var productDisplay = new Denwen.Partials.Products.Display({
                               el          : $('#feed'),

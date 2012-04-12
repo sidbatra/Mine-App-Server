@@ -42,6 +42,8 @@
     new Denwen.Views.Products.Show({
         productJSON     : <%=render :partial => "products/display.json.erb",
                               :locals => {:object => @product}%>,
+        friends         : <%=logged_in? ? self.current_user.ifollowers.to_json(
+                                          :only => [:id]) : nil.to_json%>,
         source          : '<%=@source%>'});
 
   </script>

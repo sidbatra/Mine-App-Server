@@ -12,6 +12,9 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   //
   initialize: function() {
 
+    this.interaction  = typeof this.options.interaction == 'undefined' ?
+                          true : this.options.interaction;
+
     this.aggregateEl  = '#product_likes_' + this.model.get('id') + '_aggregate';
     this.likesBoxEl   = '#product_likes_box_' + this.model.get('id');
     this.likes        = new Denwen.Collections.Likes();
@@ -55,7 +58,9 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   // Render the contents of the model.
   //
   render: function() {
-    var html = Denwen.JST['products/display']({product: this.model});
+    var html = Denwen.JST['products/display']({
+                product     : this.model,
+                interaction : this.interaction});
 
     if(this.model.get('fresh'))
       this.el.prepend(html);
