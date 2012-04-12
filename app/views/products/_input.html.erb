@@ -38,70 +38,75 @@
       </div> <!-- /photo_box -->
     </div>
   
-		<div class="control-group" id="title_box">
-      <%=f.text_field :title,
-      		:class => "item-name",
-      		:placeholder => "Item name",
-          :size => 30%>
-    </div> <!-- /title -->
-	
-		<div class="control-group" id="store_box">
-	    <%=f.text_field :store_name,
-	    		:class => "item-store",
-          :autocomplete => :off,
-          :placeholder => "Store where bought"%>
-          
-	<!--
-	    <span class="help-inline faded-80">          
-		    <#=f.label :is_store_unknown, 
-						"#{f.check_box :is_store_unknown} Not sure",
-	          :class => "checkbox",
-	          :style => "padding-top: 5px;"%>
-      </span> 
-	-->
-	
-	  </div> <!-- /store --> 
-	  
-    <%if show_fb_share%>
-      <div class="fb-photo-toggle">
-        Post to your Mine Facebook album
-        
-        <a id="fb-photo-toggle-switch" class="toggle-switch unselectable">
-          <div class="on clearfix">
-            <div class="text">
-              On
-            </div>
-            <div class="knob">
-              &nbsp;
-            </div>
-          </div>
-          <div class="off clearfix">
-            <div class="knob">
-              &nbsp;
-            </div>
-            <div class="text">
-              Off
-            </div>
-          </div>
-        </a>
-      </div>
-    <%end%>
-
-		<button type="submit" 
-      class="btn btn-mid <%=submit_class%>">
-			<%=submit_text%>
-		</button> <!-- submit -->
+  	<div style="margin: 0 -16px -16px -16px; padding: 16px; background: #f6f4f2;">
+  
+			<div class="control-group" id="title_box">
+	      <%=f.text_field :title,
+	      		:class => "item-name",
+	      		:placeholder => "Item name",
+	          :size => 30%>
+	    </div> <!-- /title -->
 		
-    <%=link_to "Cancel", :back, 
-        :class => "btn", 
-        :style => "width: 44px;" if show_cancel_button%>
+			<div class="control-group" id="store_box">
+		    <%=f.text_field :store_name,
+		    		:class => "item-store",
+	          :autocomplete => :off,
+	          :placeholder => "Store where bought"%>
+	          
+		<!--
+		    <span class="help-inline faded-80">          
+			    <#=f.label :is_store_unknown, 
+							"#{f.check_box :is_store_unknown} Not sure",
+		          :class => "checkbox",
+		          :style => "padding-top: 5px;"%>
+	      </span> 
+		-->
 		
-    <%=link_to "<i class='icon-trash faded-30'></i> Delete item",
-              {:action => 'destroy',:id => f.object.id},
-              :method  => :delete,
-              :class   => 'delete-item',
-              :confirm => "Are you sure you want "\
-                          "to delete this item?" if show_delete_button%>
+		  </div> <!-- /store --> 
+		  
+	    <%if show_fb_share%>
+	      <div class="fb-photo-toggle">
+	        Post to your Mine Facebook album
+	        
+	        <a id="fb-photo-toggle-switch" class="toggle-switch unselectable">
+	          <div class="on clearfix">
+	            <div class="text">
+	              On
+	            </div>
+	            <div class="knob">
+	              &nbsp;
+	            </div>
+	          </div>
+	          <div class="off clearfix">
+	            <div class="knob">
+	              &nbsp;
+	            </div>
+	            <div class="text">
+	              Off
+	            </div>
+	          </div>
+	        </a>
+	      </div>
+	    <%end%>
+	
+			<button type="submit" 
+	      class="btn submit btn-mid <%=submit_class%>">
+				<%=submit_text%>
+			</button> <!-- submit -->
+			
+	    <%=link_to "Cancel", :back, 
+	        :class => "btn cancel", 
+	        :style => "width: 64px;" if show_cancel_button%>
+			
+	    <%=link_to "<i class='icon-trash faded-30'></i> Delete item",
+	              {:action => 'destroy',:id => f.object.id},
+	              :method  => :delete,
+	              :class   => 'delete-item',
+	              :confirm => "Are you sure you want "\
+	                          "to delete this item?" if show_delete_button%>
+	                          
+		</div> <!-- /inset-box -->
+		
 	</div>
 
   </fieldset>

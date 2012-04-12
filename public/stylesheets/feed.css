@@ -77,9 +77,6 @@
 	border-left: 1px solid #e4e3e3;
 	border-right: 1px solid #e4e3e3; 
 	border-bottom: 1px solid #d8d7d7; }
-
-.feed. item {
-	padding: 20px 20px 28px 20px; }
 	
 .feed .item .user-box {
 	margin-top: -4px;
@@ -186,7 +183,7 @@
 	opacity: 0.9;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 	height: 28px;
-	width: 130px;
+	width: 126px;
 	line-height: 27px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -225,7 +222,7 @@
 .creation .fb-photo-toggle {
 	height: 24px;
 	width: 296px;
-	margin: 8px 0 8px 110px; 
+	margin: 8px 0 0 110px; 
 	padding: 4px 0 4px 4px;
 	line-height: 24px; }
 
@@ -294,24 +291,34 @@
 .creation a.toggle-switch .off .knob { 
 	float: left;
 	margin-left: -1px; }
+	
+/* ----- submit button -----*/
 
-.creation .btn.new { 
+.creation .btn.submit { 
 	margin-left: 110px;
-	width: 300px;
+	margin-top: 8px;
 	height: 32px; }
 	
-.creation .btn.edit { 
-	width: 140px; 
+.creation .btn.submit.new {
+	width: 300px; }
+	
+.creation .btn.submit.edit { 
+	width: 210px; 
 	margin-left: 110px; }
 	
-.creation .btn.cancel { width: 66px; }
+.creation .btn.cancel { 
+	margin-top: 8px;
+	height: 22px;
+	line-height: 22px; }
+	
 .creation a.delete-item {
 	height: 28px;
 	line-height: 28px;
 	position:absolute; 
 	color: #999;
 	position: absolute;
-	left: 20px; }
+	left: 20px;
+	bottom: 22px; }
 
 /* ----- grid ----- */
 
