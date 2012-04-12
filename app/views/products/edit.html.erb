@@ -37,7 +37,7 @@
     new Denwen.Views.Products.Edit({
           el            : $('body'),
           productJSON   : <%=@product.to_json(
-                              :only     => [:id,:user_id,:endorsement],
+                              :only     => [:id,:user_id],
                               :methods  => [:giant_url])%>,
           source        : '<%=@source%>'});
   </script>

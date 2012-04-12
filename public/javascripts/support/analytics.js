@@ -138,30 +138,6 @@ Denwen.Analytics = Backbone.Model.extend({
       'User ID'         : Denwen.H.currentUserID()});
   },
 
-  // User opts in to write a review during creation
-  //
-  endorsementCreationSelected: function(mode) {
-    mpq.track('Endorsement Creation Selected',{'Mode':mode});
-  },
-
-  // User start editing endorsement
-  //
-  endorsementEditingSelected: function(source) {
-    mpq.track('Endorsement Editing Selected',{'source':source});
-  },
-
-  // User cancelled editing endorsement
-  //
-  endorsementEditingCancelled: function(source) {
-    mpq.track('Endorsement Editing Cancelled',{'source':source});
-  },
-
-  // User completed editing endorsement
-  //
-  endorsementEditingCompleted: function(source) {
-    mpq.track('Endorsement Editing Completed',{'source':source});
-  },
-
   // User clicks the invite friends button
   //
   inviteSelected: function(type) {

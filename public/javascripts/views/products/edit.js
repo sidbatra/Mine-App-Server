@@ -25,15 +25,9 @@ Denwen.Views.Products.Edit = Backbone.View.extend({
   // Update the UI based on the current product
   //
   updateUI: function() {
-
     this.input.displayProductImage(this.product.get('giant_url'));
 
     this.input.isStoreUnknownChanged();
-
-    var endorsement = this.product.get('endorsement');
-
-    if(endorsement.length) 
-      this.input.displayEndorsement(true,endorsement);
   },
 
   // Fire various tracking events

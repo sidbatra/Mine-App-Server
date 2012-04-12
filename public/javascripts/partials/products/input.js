@@ -5,7 +5,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // Event listeners
   //
   events: {
-    "click #endorsement_initiate" : "endorsementInitiated",
     "keypress #product_title" : "inputKeystroke",
     "keypress #product_store_name" : "inputKeystroke",
     "change #product_is_store_unknown" : "isStoreUnknownChanged"
@@ -37,9 +36,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.imageBrokenMsgEl     = '#product_image_broken_msg';
     this.selectionEl          = '#product_selection';
     this.photoSelectionEl     = 'product_selection_photo';
-    this.endorsementEl        = '#product_endorsement';
-    this.endorsementBoxEl     = '#endorsement_container';
-    this.endorsementStartEl   = '#endorsement_initiate';
     this.isStoreUnknownEl     = '#product_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
     this.sourceProductIDEl    = '#product_source_product_id';
@@ -100,28 +96,6 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.storeEl).removeAttr('disabled');
       $(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right_active');
     }
-  },
-
-  // User initiate creation of endorsement
-  //
-  endorsementInitiated: function() {
-    this.displayEndorsement(false,'');
-  },
-
-  // Display the endorsement UI without optional text and analytics
-  //
-  displayEndorsement: function(isRobot,endorsement) {
-
-    $(this.endorsementStartEl).hide();
-    $(this.endorsementBoxEl).show();
-
-    if(endorsement)
-      $(this.endorsementEl).val(endorsement);
-    else
-      $(this.endorsementEl).focus();
-
-    if(!isRobot)
-      Denwen.Track.endorsementCreationSelected(this.mode);
   },
 
   // Display product image 

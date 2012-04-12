@@ -142,7 +142,6 @@ class ProductsController < ApplicationController
     params[:product][:orig_image_url] = product.image_url
     params[:product][:orig_thumb_url] = product.thumbnail_url
     params[:product][:query]          = product.query
-    params[:product][:endorsement]    = ''
 
     params
   end
