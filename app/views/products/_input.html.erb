@@ -62,29 +62,30 @@
 	
 	  </div> <!-- /store --> 
 	  
-	  <div class="fb-photo-toggle">
-	  	Post to your Mine Facebook album
-	  	
-	  	<a id="fb-photo-toggle-switch" class="toggle-switch unselectable">
-	  		<div class="on clearfix">
-	  			<div class="text">
-	  				On
-	  			</div>
-	  			<div class="knob">
-	  				&nbsp;
-	  			</div>
-	  		</div>
-	  		<div class="off clearfix">
-	  			<div class="knob">
-	  				&nbsp;
-	  			</div>
-	  			<div class="text">
-	  				Off
-	  			</div>
-	  		</div>
-	  	</a>
-  	
-	  </div>
+    <%if show_fb_share%>
+      <div class="fb-photo-toggle">
+        Post to your Mine Facebook album
+        
+        <a id="fb-photo-toggle-switch" class="toggle-switch unselectable">
+          <div class="on clearfix">
+            <div class="text">
+              On
+            </div>
+            <div class="knob">
+              &nbsp;
+            </div>
+          </div>
+          <div class="off clearfix">
+            <div class="knob">
+              &nbsp;
+            </div>
+            <div class="text">
+              Off
+            </div>
+          </div>
+        </a>
+      </div>
+    <%end%>
 
 		<button type="submit" 
       class="btn btn-mid <%=submit_class%>">
