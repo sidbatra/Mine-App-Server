@@ -42,7 +42,8 @@
                 :show_delete_button => false,
                 :show_query_box => true,
                 :show_extra_steps => false,
-                :show_fb_share => true}%>
+                :show_fb_share => true,
+                :toggle_state => self.current_user.setting.post_to_fb_album?}%>
       <%end%> <!-- /form --> 
     
     </div> <!-- /creation -->

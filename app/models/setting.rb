@@ -13,6 +13,7 @@ class Setting < ActiveRecord::Base
   validates_inclusion_of  :email_update, :in => [true,false]
   validates_inclusion_of  :fb_publish_actions, :in => [true,false]
   validates_inclusion_of  :fb_publish_stream, :in => [true,false]
+  validates_inclusion_of  :post_to_fb_album, :in => [true,false]
 
 
   #----------------------------------------------------------------------
@@ -32,5 +33,11 @@ class Setting < ActiveRecord::Base
   def fb_publish_permissions
     self.fb_publish_actions & self.fb_publish_stream
   end
-   
+
+  # Whether or not the user's current settings enable posting
+  # photos to facebook album
+  #
+  def post_to_fb_album?  
+    self.fb_publish_stream & self.post_to_fb_album
+  end
 end
