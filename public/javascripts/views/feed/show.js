@@ -66,7 +66,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Display a creation error.
   //
   productCreationFailed: function() {
-    console.log("Error creating product");
+    //console.log("Error creating product");
   }
 
 });
