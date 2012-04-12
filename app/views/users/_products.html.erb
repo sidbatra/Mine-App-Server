@@ -1,6 +1,6 @@
 <%cache ["v2",user,"products"] do%>
 
-<div class="grid">
+<div class="grid" style="margin-left: 189px;">
   <%=render :partial => "products/card",
       :collection => user.products.with_store.with_user.by_id,
       :as => :product%>
