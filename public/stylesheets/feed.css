@@ -73,7 +73,7 @@
 	padding: 20px;
 	background: white;
 	color: #777;
-	margin-bottom: 6px;
+	margin-bottom: 8px;
 	border-left: 1px solid #e4e3e3;
 	border-right: 1px solid #e4e3e3; 
 	border-bottom: 1px solid #d8d7d7; }
@@ -203,8 +203,101 @@
 
 .creation .edit-box { position: relative; }
 
-.creation .btn.new { width: 210px; }
-.creation .btn.edit { width: 140px; }
+.creation .item-name,
+.creation .item-store {
+	border-color: #ddd;
+	margin-left: 110px;
+	height: 22px;
+	width: 290px; }
+
+.creation .item-store {
+	border-top: none; }
+
+
+/* ----- toggle switch ----- */
+	
+.creation .fb-photo-toggle {
+	height: 24px;
+	width: 296px;
+	margin: 8px 0 8px 110px; 
+	padding: 4px 0 4px 4px;
+	line-height: 24px; }
+
+.creation a.toggle-switch {
+	position: relative;
+	float: right;
+	display: block;	
+	width: 70px;
+	height: 22px;
+	line-height: 22px;
+	background: white;
+  border: solid 1px #ddd;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 11px;
+  color: #333 !important;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
+  
+.creation a.toggle-switch div.on { display: block; }
+.creation a.toggle-switch div.off { display: none; }
+
+.creation a.toggle-switch div.on,
+.creation a.toggle-switch div.off {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+
+.creation a.toggle-switch.off div.off { display: block; }
+.creation a.toggle-switch.off div.on { display: none; }   
+
+.creation a.toggle-switch .text { 
+	width: 60%;
+	text-align: center; }
+    
+.creation a.toggle-switch .knob { 
+	margin-top: -1px;
+	border: 1px solid #ccc;
+	box-sizing: border-box; 
+	width: 40%;
+	background-color: whiteSmoke;
+	background-image: -moz-linear-gradient(top, white, #E6E6E6);
+	background-image: -ms-linear-gradient(top, white, #E6E6E6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
+	background-image: -webkit-linear-gradient(top, white, #E6E6E6);
+	background-image: -o-linear-gradient(top, white, #E6E6E6);
+	background-image: linear-gradient(top, white, #E6E6E6);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0); }
+	
+.creation a.toggle-switch .knob .border {
+	width: 100%;
+	height: 100%;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+	
+.creation a.toggle-switch .on .text { float: left; }
+.creation a.toggle-switch .off .text { float: right; }
+
+.creation a.toggle-switch .on .knob {
+	float: right;
+	margin-right: -1px; }
+	
+.creation a.toggle-switch .off .knob { 
+	float: left;
+	margin-left: -1px; }
+
+.creation .btn.new { 
+	margin-left: 110px;
+	width: 300px;
+	height: 32px; }
+	
+.creation .btn.edit { 
+	width: 140px; 
+	margin-left: 110px; }
+	
 .creation .btn.cancel { width: 66px; }
 .creation a.delete-item {
 	height: 28px;

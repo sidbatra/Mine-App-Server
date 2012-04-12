@@ -60,6 +60,12 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
+  
+		$(document).ready(function(){
+			$('a#fb-photo-toggle-switch').mousedown(function(){
+		  	$(this).toggleClass("off");
+		    });
+		});
 
     new Denwen.Views.Feed.Show({
       source          : "<%=@source%>",

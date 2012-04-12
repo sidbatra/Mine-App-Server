@@ -38,59 +38,56 @@
       </div> <!-- /photo_box -->
     </div>
   
-		<div class="control-group" id="title_box">
-      <label class="control-label" style="width: 145px;">
-				Item name
-      </label>
-      <div class="controls" style="margin-left: 155px;">
-	      <%=f.text_field :title,
-            :size => 30,
-            :style => "width: 200px;"%>
-      </div>
+		<div id="title_box">
+      <%=f.text_field :title,
+      		:class => "item-name",
+      		:placeholder => "Item name",
+          :size => 30%>
     </div> <!-- /title -->
 	
-		<div class="control-group" id="store_box">
-	    <label class="control-label" style="width: 145px;">
-	      Store where bought
-	    </label>
-			<div class="controls" style="margin-left: 155px;">
-		    <%=f.text_field :store_name,
-            :autocomplete => :off,
-            :style => "width: 200px;"%>
-		    <span class="help-inline faded-80">          
-			    <%=f.label :is_store_unknown, 
-							"#{f.check_box :is_store_unknown} Not sure",
-		          :class => "checkbox",
-		          :style => "padding-top: 5px;"%>
-	      </span> 
-		  </div>
-	  </div> <!-- /store -->  
+		<div id="store_box">
+	    <%=f.text_field :store_name,
+	    		:class => "item-store",
+          :autocomplete => :off,
+          :placeholder => "Store where bought"%>
+          
+	<!--
+	    <span class="help-inline faded-80">          
+		    <#=f.label :is_store_unknown, 
+						"#{f.check_box :is_store_unknown} Not sure",
+	          :class => "checkbox",
+	          :style => "padding-top: 5px;"%>
+      </span> 
+	-->
+	
+	  </div> <!-- /store --> 
 	  
-		<div class="strike-thru" id="endorsement_initiate">
-		  <%=link_to  "<i class='icon-pencil faded-30'></i> "\
-                  "Add a note?", 
-            "javascript:void(0)"%>
-		</div>
-		
-		<div class="control-group" 
-      id="endorsement_container" 
-      style="display:none">
-
-      <label class="control-label" style="width: 145px;">
-        Note
-      </label>
-
-			<div class="controls" style="margin-left: 155px;">
-	      <%=f.text_area :endorsement,
-	            :value  => "",
-	            :rows 	=> 6,
-	            :style 	=> "width: 200px;"%>
-			</div>
-    </div> <!-- /endorsement -->
+	  <div class="fb-photo-toggle">
+	  	Post to your Mine Facebook album
+	  	
+	  	<a id="fb-photo-toggle-switch" class="toggle-switch unselectable">
+	  		<div class="on clearfix">
+	  			<div class="text">
+	  				On
+	  			</div>
+	  			<div class="knob">
+	  				&nbsp;
+	  			</div>
+	  		</div>
+	  		<div class="off clearfix">
+	  			<div class="knob">
+	  				&nbsp;
+	  			</div>
+	  			<div class="text">
+	  				Off
+	  			</div>
+	  		</div>
+	  	</a>
+  	
+	  </div>
 
 		<button type="submit" 
-      class="btn btn-mid <%=submit_class%>" 
-      style="margin-left: 155px;">
+      class="btn btn-mid <%=submit_class%>">
 			<%=submit_text%>
 		</button> <!-- submit -->
 		
