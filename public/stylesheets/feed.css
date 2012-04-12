@@ -165,6 +165,15 @@
 .feed .item .comments-box .comment-box.new input {
 	margin-bottom: 0; }
 	
+/* ----- product show ----- */
+
+.prev, .next {
+	position: absolute;
+	top: 20px; }
+	
+.prev { left: 145px; }
+.next { right: 150px; }
+	
 /* ----- creation ----- */
 
 .creation .photo-box {

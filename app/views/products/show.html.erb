@@ -13,27 +13,31 @@
               :store        => @product.store}%>
 <%end%>
 
-<div class="container">
+<div class="container" style="position: relative;">
 
   <%=link_to("<i class='icon-chevron-left'></i>",
             product_path(
               @product.user.handle,
               @next_product.handle,
               :src => 'previous'),
-            :class => 'btn') if @next_product%>
-
-  <%=link_to("<i class='icon-chevron-right'></i>",
-            product_path(
-              @product.user.handle,
-              @prev_product.handle,
-              :src => 'next'),
-            :class => 'btn') if @prev_product%>
+            :class => 'btn prev') if @next_product%>
 
   <div class="col-triple" style="margin-left: 189px;">
     <div id="feed" class="feed">
     </div>
   </div>
+
+  <%=link_to("<i class='icon-chevron-right'></i>",
+          product_path(
+            @product.user.handle,
+            @prev_product.handle,
+            :src => 'next'),
+          :class => 'btn next') if @prev_product%>
+  
+  
 </div>
+
+
 
 
 <%content_for :javascript do%>
