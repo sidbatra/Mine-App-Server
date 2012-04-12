@@ -7,7 +7,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   events: {
     "keypress #product_title" : "inputKeystroke",
     "keypress #product_store_name" : "inputKeystroke",
-    "change #product_is_store_unknown" : "isStoreUnknownChanged"
+    "change #product_is_store_unknown" : "isStoreUnknownChanged",
+    "mousedown #fb-photo-toggle-switch" : "switchToggled"
   },
 
   // Constructor logic
@@ -40,6 +41,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
     this.sourceProductIDEl    = '#product_source_product_id';
     this.urlAlertBoxEl        = '#url_alert_box';
+    this.switchEl             = '#fb-photo-toggle-switch';
     this.posting              = false;
 
     this.productImagesView  = new Denwen.Partials.Products.ImageResults({
@@ -49,6 +51,21 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.productImagesView.bind('productSearched',this.productSearched,this);
     this.productImagesView.bind('productSearchCancelled',
                                 this.productSearchCancelled,this);
+
+    this.fbPermissionsRequired = 'fb_extended_permissions';
+
+    this.fbSettings = new Denwen.Partials.Settings.Facebook({
+                            permissions : this.fbPermissionsRequired});
+
+    this.fbSettings.bind(
+                      'fbPermissionsAccepted',
+                      this.fbPermissionsAccepted,
+                      this);
+
+    this.fbSettings.bind(
+                      'fbPermissionsRejected',
+                      this.fbPermissionsRejected,
+                      this);
 
     $(this.formEl).submit(function(){return self.post();});
 
@@ -96,6 +113,34 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.storeEl).removeAttr('disabled');
       $(this.isStoreUnknownBoxEl).removeClass('creation_checkbox_right_active');
     }
+  },
+
+  // Returns the current state of the facebook photo toggle switch
+  // on -> true & off -> false
+  //
+  switchState: function() {
+    return !$(this.switchEl).hasClass('off');
+  },
+
+  // Fired when the fb photo switch is toggled
+  //
+  switchToggled: function() {
+    if(!Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) 
+      this.fbSettings.showPermissionsDialog();
+
+    $(this.switchEl).toggleClass("off");    
+  },
+
+  // Fired when fb permissions are accepted 
+  //
+  fbPermissionsAccepted: function() {
+  },
+
+  // Fired when fb permissions are rejected
+  //
+  fbPermissionsRejected: function() {
+    $(this.switchEl).toggleClass("off");    
+    Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
   },
 
   // Display product image 
@@ -299,6 +344,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     var product = new Denwen.Models.Product();
 
     fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
+    fields['post_to_fb_album'] = this.switchState(); 
 
     product.save({product:fields},{
       success: function(data){self.productCreated(data);},

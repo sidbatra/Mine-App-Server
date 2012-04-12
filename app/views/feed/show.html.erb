@@ -43,7 +43,7 @@
                 :show_query_box => true,
                 :show_extra_steps => false,
                 :show_fb_share => true,
-                :toggle_state => self.current_user.setting.post_to_fb_album?}%>
+                :fb_share_on => self.current_user.setting.post_to_fb_album?}%>
       <%end%> <!-- /form --> 
     
     </div> <!-- /creation -->
@@ -63,12 +63,6 @@
 
   <script type="text/javascript">
   
-		$(document).ready(function(){
-			$('a#fb-photo-toggle-switch').mousedown(function(){
-		  	$(this).toggleClass("off");
-		    });
-		});
-
     new Denwen.Views.Feed.Show({
       source          : "<%=@source%>",
       currentUserJSON : <%=self.current_user.to_json(:only => :fb_user_id)%>});
