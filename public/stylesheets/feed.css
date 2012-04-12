@@ -187,14 +187,15 @@
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 	height: 28px;
 	width: 130px;
-	line-height: 28px;
+	line-height: 27px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	text-align: center;
-	background: url('/images/black_35.png');
+	background: url('/images/black_40.png');
 	color: white;
 	position: absolute; 
+	font-weight: bold;
 	top: 50%;
 	bottom: 50%; 
 	left: 50%;
@@ -206,6 +207,8 @@
 	z-index: 10; }
 
 .creation .edit-box { position: relative; }
+
+.creation .control-group { margin: 0; }
 
 .creation .item-name,
 .creation .item-store {
