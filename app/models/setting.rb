@@ -40,4 +40,12 @@ class Setting < ActiveRecord::Base
   def post_to_fb_album?  
     self.fb_publish_stream & self.post_to_fb_album
   end
+
+  # Whether or not the user's current settings enable posting
+  # to facebook timeline 
+  #
+  def post_to_timeline?  
+    self.fb_publish_actions & self.post_to_timeline
+  end
+
 end
