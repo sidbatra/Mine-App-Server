@@ -90,8 +90,9 @@
 	    <%end%>
 	
 			<button type="submit" class="btn submit btn-mid <%=submit_class%>">
-	      <img class="loading inline" style="margin-bottom: 3px; text-align: center;" 
-	      		 src="/images/loading_blocks_small_dark_trans.gif" />
+        <%=image_tag "loading_blocks_small_dark_trans.gif",
+            :class => "loading inline",
+            :style => "margin-bottom: 3px; text-align: center;"%>
 				<span class="hide-when-loading">
 					<%=submit_text%>
 				</span>
