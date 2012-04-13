@@ -20,6 +20,7 @@ class SessionController < ApplicationController
                   :scope => [:email,
                              :user_likes,
                              :user_birthday,
+                             :user_photos,
                              :publish_actions,
                              :publish_stream])
   rescue => ex
