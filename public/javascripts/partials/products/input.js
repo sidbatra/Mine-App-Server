@@ -202,11 +202,15 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.imageBrokenMsgEl).removeClass('error');
 
     $(this.extraEl).show();
-    $(this.titleEl).val(title.replace(/^\s+|\s+$/g, '').toProperCase());
 
-    if(title.length)
-      $(this.storeEl).focus();
-    else
+    var properTitle = title.replace(/^\s+|\s+$/g, '').toProperCase();
+
+    if(properTitle.length)
+      $(this.titleEl).val(properTitle);
+
+    if($.support.placeholder)
+      title.length ? $(this.storeEl).focus() : $(this.titleEl).focus();
+    else if(title.length)
       $(this.titleEl).focus();
 
     $(this.urlAlertBoxEl).hide();

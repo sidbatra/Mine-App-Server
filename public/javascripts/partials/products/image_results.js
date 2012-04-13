@@ -66,7 +66,9 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     $('html').keydown(function(e){self.globalKeystroke(e);});
 
     $(this.queryEl).placeholder();
-    //$(this.queryEl).focus();
+
+    if($.support.placeholder)
+      $(this.queryEl).focus();
   },
 
   // Display loading spinner on search more
