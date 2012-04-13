@@ -722,7 +722,7 @@ footer p { text-align: center; }
 button .loading.inline { display: none; }
 
 .loading.large {
-	min-height: 40px;
+	min-height: 60px;
   background-image: url('/images/loading_spinner_large_trans.gif');
   background-position: center center;
   background-repeat: no-repeat; }
@@ -743,8 +743,8 @@ button .loading.inline { display: none; }
 	height: 16px;
   background: url('/images/loading_spinner_small_trans.gif') center center no-repeat; }
   
-.well .loading.large {
-  background-image: url('/images/loading_spinner_large_WhiteSmoke.gif'); }
+.loading.large.body{
+  background-image: url('/images/loading_spinner_large_body.gif'); }
 
 .load .loading.inline { /* turns inline loads on/off */
 	display: inline-block; }
