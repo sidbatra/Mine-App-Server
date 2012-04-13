@@ -1,5 +1,6 @@
 .migrations
 database.yml
+*.local.yml
 *.swp
 .sass-cache/
 log/

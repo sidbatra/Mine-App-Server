@@ -18,6 +18,12 @@ Rails::Initializer.run do |config|
 
   CONFIG = YAML.load_file("#{RAILS_ROOT}/config/config.yml")[RAILS_ENV]
 
+  local_config = "#{RAILS_ROOT}/config/config.local.yml"
+  
+  if File.exists? local_config
+    CONFIG.merge!(YAML.load_file(local_config)[RAILS_ENV]) 
+  end
+
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
   CONFIG[:revision]   = `git rev-parse HEAD`.chomp
 
