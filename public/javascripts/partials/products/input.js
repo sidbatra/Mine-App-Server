@@ -42,6 +42,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.sourceProductIDEl    = '#product_source_product_id';
     this.urlAlertBoxEl        = '#url_alert_box';
     this.switchEl             = '#fb-photo-toggle-switch';
+    this.switchOffClass       = 'off';
     this.posting              = false;
 
     this.productImagesView  = new Denwen.Partials.Products.ImageResults({
@@ -122,7 +123,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // on -> true & off -> false
   //
   switchState: function() {
-    return !$(this.switchEl).hasClass('off');
+    return !$(this.switchEl).hasClass(this.switchOffClass);
   },
 
   // Fired when the fb photo switch is toggled
@@ -131,7 +132,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     if(!Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) 
       this.fbSettings.showPermissionsDialog();
 
-    $(this.switchEl).toggleClass("off");    
+    $(this.switchEl).toggleClass(this.switchOffClass);
   },
 
   // Fired when fb permissions are accepted 
@@ -142,7 +143,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // Fired when fb permissions are rejected
   //
   fbPermissionsRejected: function() {
-    $(this.switchEl).toggleClass("off");    
+    $(this.switchEl).toggleClass(this.switchOffClass);
     Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
   },
 
