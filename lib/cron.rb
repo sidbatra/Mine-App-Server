@@ -28,12 +28,6 @@ module DW
       def self.email_users_with_friend_activity(from)
         return
         products  = Product.with_store.made(from)
-        wants     = Action.
-                      on_type('product').
-                      named(ActionName::Want).
-                      created(from..Time.now).
-                      with_actionable_and_owner
-
         
         owns_hash = {}
         products.each do |p|
@@ -41,13 +35,7 @@ module DW
           owns_hash[p.user_id] << p
         end
 
-        wants_hash = {}
-        wants.each do |w|
-          wants_hash[w.user_id] = [] unless wants_hash.has_key?(w.user_id)
-          wants_hash[w.user_id] << w.actionable
-        end
-        
-        users_with_activity = (products + wants).map(&:user_id).uniq
+        users_with_activity = products.map(&:user_id).uniq
         user_ids            = Following.active.
                                 find_all_by_user_id(users_with_activity).
                                 map(&:follower_id).uniq
@@ -60,8 +48,7 @@ module DW
         Mailman.email_users_friend_activity_digest(
                   users,
                   users_with_activity,
-                  owns_hash,
-                  wants_hash)
+                  owns_hash)
 
         HealthReport.add(HealthReportService::FriendsDigest)
 

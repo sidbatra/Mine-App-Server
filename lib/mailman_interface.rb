@@ -58,11 +58,9 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email users with a digest of their friends 
-      # wants and owns
+      # Email users with a digest of their friends items 
       #
-      def self.email_users_friend_activity_digest(
-                users,active_users,owns_hash,wants_hash)
+      def self.email_users_friend_activity_digest(users,active_users,owns_hash)
                 
         users.each do |user|
           begin
@@ -71,13 +69,11 @@ module DW
               active_friends  = friends.select{|f| active_users.include? f.id} 
 
               owns            = active_friends.map{|f| owns_hash[f.id]}
-              wants           = active_friends.map{|f| wants_hash[f.id]}
 
               UserMailer.deliver_friend_activity_digest(
                           user,
                           active_friends,
-                          owns,
-                          wants)
+                          owns)
               sleep 0.09
             end
           rescue => ex

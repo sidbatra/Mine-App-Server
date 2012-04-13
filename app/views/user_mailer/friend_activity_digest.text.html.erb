@@ -14,13 +14,4 @@ Hi <%=@user.first_name%>, <br />
                                    ""%><br />
   <%end if @owns[i]%>
 
-  <%@wants[i].each do |wanted_product|%>
-    <a href="<%=product_url(
-                  wanted_product.user.handle,
-                  wanted_product.handle,
-                  :src => @source)%>">
-    <%=wanted_product.title.strip%></a>
-    to <%=friend.is_male? ? "his" : "her"%> Wants <br /> 
-  <%end if @wants[i]%>
-
 <%end%>
