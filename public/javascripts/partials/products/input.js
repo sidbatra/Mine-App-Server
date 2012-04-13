@@ -75,6 +75,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
                               {el:$(this.storeEl)});
     this.autoComplete.bind(Denwen.Callback.StoresLoaded,
           this.storesLoaded,this);
+
+    $(this.storeEl).placeholder();
+    $(this.titleEl).placeholder();
   },
 
   // Callback from autocomplete when stores are loaded
@@ -289,7 +292,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.queryTextEl).removeClass('incomplete');
     }
 
-    if($(this.titleEl).val().length < 1) {
+    if($(this.titleEl).val().length < 1 || 
+        $(this.titleEl).val() == $(this.titleEl).attr('placeholder')) {
       valid = false;
 
       $(this.titleBoxEl).addClass('error');
@@ -299,7 +303,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
       $(this.titleBoxEl).removeClass('error');
     }
 
-    if(!this.isStoreUnknown() && $(this.storeEl).val().length < 1) {
+    if(!this.isStoreUnknown() && ($(this.storeEl).val().length < 1 || 
+          $(this.storeEl).val() == $(this.storeEl).attr('placeholder'))) {
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
