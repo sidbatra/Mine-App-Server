@@ -22,6 +22,7 @@ set :scm,           :git
 set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"
 set :user,          "manager"  
 set :deploy_via,    :remote_cache
+set :keep_releases, 10
 
 set :deploy_to,     "/vol/#{application}"
 set :use_sudo,      false
