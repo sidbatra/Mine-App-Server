@@ -24,6 +24,13 @@ class ProductsController < ApplicationController
                                       self.current_user.id).id
     end
 
+    unless params[:product][:post_to_fb_album].nil?
+      setting = self.current_user.setting
+
+      setting.post_to_fb_album = params[:product][:post_to_fb_album]
+      setting.save!
+    end
+
     @product = Product.add(params[:product],self.current_user.id)
 
   rescue => ex

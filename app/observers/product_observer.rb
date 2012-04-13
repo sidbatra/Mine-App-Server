@@ -13,10 +13,14 @@ class ProductObserver < ActiveRecord::Observer
       shopping.increment_products_count
     end
 
+    setting = product.user.setting
+
     ProcessingQueue.push(
       ProductDelayedObserver,
       :after_create,
-      product.id)
+      product.id,
+      setting.post_to_timeline?,
+      setting.post_to_fb_album?)
   end
 
   # Update shoppings for the product creator if store_id has been
