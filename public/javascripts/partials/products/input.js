@@ -59,14 +59,14 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
                             permissions : this.fbPermissionsRequired});
 
     this.fbSettings.bind(
-                      'fbPermissionsAccepted',
-                      this.fbPermissionsAccepted,
-                      this);
+      Denwen.Partials.Settings.Facebook.Callback.PermissionsAccepted,
+      this.fbPermissionsAccepted,
+      this);
 
     this.fbSettings.bind(
-                      'fbPermissionsRejected',
-                      this.fbPermissionsRejected,
-                      this);
+      Denwen.Partials.Settings.Facebook.Callback.PermissionsRejected,
+      this.fbPermissionsRejected,
+      this);
 
     $(this.formEl).submit(function(){return self.post();});
 

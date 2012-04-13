@@ -49,12 +49,19 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
       Denwen.H.currentUser.get('setting').set(keys);
 
       Denwen.Track.facebookPermissionsAccepted();
-      this.trigger('fbPermissionsAccepted');
+      this.trigger(Denwen.Partials.Settings.Facebook.Callback.PermissionsAccepted);
     }
     else {
       Denwen.Track.facebookPermissionsRejected();
-      this.trigger('fbPermissionsRejected');
+      this.trigger(Denwen.Partials.Settings.Facebook.Callback.PermissionsRejected);
     }
   }
 
 });
+
+// Define callbacks.
+//
+Denwen.Partials.Settings.Facebook.Callback = {
+  PermissionsAccepted: 'fbPermissionsAccepted',
+  PermissionsRejected: 'fbPermissionsRejected'
+}
