@@ -48,20 +48,18 @@
 	          :size => 30%>
 	    </div> <!-- /title -->
 		
-			<div class="control-group" id="store_box">
+			<div class="control-group" style="margin-top: 8px;" id="store_box">
 		    <%=f.text_field :store_name,
 		    		:class => "item-store",
 	          :autocomplete => :off,
 	          :placeholder => "Store where bought"%>
 	          
-		<!--
 		    <span class="help-inline faded-80">          
-			    <#=f.label :is_store_unknown, 
+			    <%=f.label :is_store_unknown, 
 							"#{f.check_box :is_store_unknown} Not sure",
 		          :class => "checkbox",
-		          :style => "padding-top: 5px;"%>
+		          :style => "height: 24px; padding-top: 6px; margin-bottom: 0; "%>
 	      </span> 
-		-->
 		
 		  </div> <!-- /store --> 
 		  
@@ -90,9 +88,12 @@
 	      </div>
 	    <%end%>
 	
-			<button type="submit" 
-	      class="btn submit btn-mid <%=submit_class%>">
-				<%=submit_text%>
+			<button type="submit" class="btn submit btn-mid <%=submit_class%>">
+	      <img class="loading inline" style="margin-bottom: 3px; text-align: center;" 
+	      		 src="/images/loading_blocks_small_dark_trans.gif" />
+				<span class="hide-when-loading">
+					<%=submit_text%>
+				</span>
 			</button> <!-- submit -->
 			
 	    <%=link_to "Cancel", :back, 

@@ -2,16 +2,10 @@
   <div class="navbar-inner">
     <div class="container">
     
-<!--
-      <#=link_to CONFIG[:name].upcase,
+      <%=link_to CONFIG[:name],
           root_path(:src => "bar"),
           :class => "brand"%>
           
--->
-      <%=link_to "Mine",
-          root_path(:src => "bar"),
-          :class => "brand"%>
-                
       <div class="nav-collapse">
         <%if logged_in?%>
           <ul class="nav pull-right">

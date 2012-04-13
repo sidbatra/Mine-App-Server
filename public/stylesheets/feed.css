@@ -202,16 +202,13 @@
 
 .creation .edit-box { position: relative; }
 
-.creation .control-group { margin: 0; }
+.creation .control-group { height: 32px; margin: 0; }
 
 .creation .item-name,
 .creation .item-store {
 	margin-left: 110px;
 	height: 22px;
 	width: 290px; }
-
-.creation .item-store {
-	margin-top: 8px; }
 
 
 /* ----- toggle switch ----- */
@@ -722,6 +719,8 @@ footer p { text-align: center; }
 
 /* ---------- loading animations */
 
+button .loading.inline { display: none; }
+
 .loading.large {
 	min-height: 40px;
   background-image: url('/images/loading_spinner_large_trans.gif');
@@ -737,7 +736,8 @@ footer p { text-align: center; }
 	height: 32px;
 	background: url('/images/loading_spinner_large_trans.gif') center center no-repeat; }
 
-.loading.small.inline {
+.loading.small.inline,
+.loading.small.inline.dark {
 	display: none;
 	width: 16px;
 	height: 16px;
@@ -791,6 +791,7 @@ footer p { text-align: center; }
 	position: fixed;
 	top: 0;
 	bottom: 0;
+	background: white;
 	max-height: 100%;
 	margin-top:45px;
 	margin-bottom: 45px;

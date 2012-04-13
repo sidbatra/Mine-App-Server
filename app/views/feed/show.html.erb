@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="col" style="position: fixed;">
+  <div class="col">
 
     <div class="self-box">
       <%=link_to image_tag(self.current_user.square_image_url),
@@ -24,7 +24,7 @@
   <%=render 'products/chooser'%>
   	
 
-  <div class="col-triple" style="margin-left: 189px;">
+  <div class="col-triple">
   
     <div id="creation" class="item creation">
       <%form_for Product.new,
