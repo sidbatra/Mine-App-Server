@@ -14,6 +14,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.perPage = 10;
     this.loading = false;
     this.disabled = false;
+    this.spinnerEl = '#feed-spinner';
 
     this.feed = new Denwen.Collections.Feed();
     this.feed.bind('add',this.feedItemAdded,this);
@@ -94,12 +95,15 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
 
     if(this.feed.isEmpty()) {
       this.disabled = true;
+      $(this.spinnerEl).hide();
     }
     else {
       var newOldestItemTimestamp = this.feed.last().creationTimestamp;
 
-      if(this.oldestItemTimestamp == newOldestItemTimestamp)
+      if(this.oldestItemTimestamp == newOldestItemTimestamp) {
         this.disabled = true;
+        $(this.spinnerEl).hide();
+      }
 
       this.oldestItemTimestamp = newOldestItemTimestamp;
     }
