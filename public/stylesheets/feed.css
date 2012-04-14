@@ -66,8 +66,9 @@
 
 .feed, .col-triple { 
 	width: 562px;
-	float: left;
 	margin-right: 5px; }
+
+.col-triple { float: left; }
 
 .feed .item, .col-triple .item {
 	position: relative;
