@@ -42,7 +42,9 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.sourceProductIDEl    = '#product_source_product_id';
     this.urlAlertBoxEl        = '#url_alert_box';
     this.switchEl             = '#fb-photo-toggle-switch';
+    this.submitButtonEl       = '#submit-button';
     this.switchOffClass       = 'off';
+    this.postingClass         = 'load';
     this.posting              = false;
 
     this.productImagesView  = new Denwen.Partials.Products.ImageResults({
@@ -346,6 +348,8 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     var inputs = $(this.formEl + " :input");
     var fields = {};
 
+    $(this.submitButtonEl).addClass(this.postingClass);
+
     inputs.each(function() {
       if(this.id.slice(0,8) == 'product_')
         fields[this.id.slice(8)] = this.value;
@@ -370,6 +374,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   //
   productCreated: function(product) {
     this.hideProductImage();
+    $(this.submitButtonEl).removeClass(this.postingClass);
     this.hideExtraSteps();
     this.resetForm();
     this.displayQueryBox();
@@ -384,6 +389,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // Trigger events alerting subscribers.
   //
   productCreationFailed: function() {
+    $(this.submitButtonEl).removeClass(this.postingClass);
     this.trigger(
       Denwen.Partials.Products.Input.Callback.ProductCreationFailed);
   }
