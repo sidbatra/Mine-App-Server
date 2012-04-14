@@ -95,7 +95,7 @@ $.fn.selectRange = function(start, end) {
 //
 jQuery.support.placeholder = (function(){
     var i = document.createElement('input');
-    return 'placeholder' in i;
+    return ('placeholder' in i) && !$.browser.mozilla;
 })();
 
 
