@@ -176,7 +176,7 @@ background-attachment: scroll; }
 
 .creation .photo-box {
 	min-height: 200px;
-  background: white url("/images/loading_spinner_large_trans.gif") no-repeat;
+  background: white url("/images/loading_blocks_small_light_trans.gif") no-repeat;
   background-position: center;
   text-align: center;
   display: none;
@@ -205,7 +205,7 @@ background-attachment: scroll; }
 	left: 50%;
 	right: 50%;
 	margin-top: -14px;
-	margin-left: -65px;
+	margin-left: -63px;
 	cursor: pointer;
 	right: 0;
 	z-index: 10; }
