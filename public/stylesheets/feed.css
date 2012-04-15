@@ -845,7 +845,7 @@ button .loading.inline { display: none; }
 	margin: 0 auto; }
 
 .chooser .search-bar .control-group.load {
-  background: url('/images/loading_spinner_small_trans.gif') center right no-repeat; }
+  background: url('/images/loading_blocks_small_light_trans.gif') center right no-repeat; }
 
 .chooser .search-bar .close {
 	font-size: 36px; 
