@@ -78,6 +78,14 @@ class ProductObserver < ActiveRecord::Observer
                   ShoppingSource::Product)
       shopping.decrement_products_count
     end
+
+    if product.fb_action_id
+      ProcessingQueue.push(
+        DistributionManager,
+        :delete_story,
+        product.fb_action_id,
+        product.user.access_token)
+    end
   end
 
 end
