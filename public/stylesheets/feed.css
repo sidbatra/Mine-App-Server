@@ -758,7 +758,7 @@ button .loading.inline { display: none; }
 	display: none;
 	width: 16px;
 	height: 16px;
-  background: url('/images/loading_spinner_small_trans.gif') center center no-repeat; }
+  background: url('/images/loading_blocks_small_light_trans.gif') center center no-repeat; }
   
 .loading.large.body{
   background-image: url('/images/loading_spinner_large_body.gif'); }
