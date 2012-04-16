@@ -63,12 +63,14 @@ class LikesController < ApplicationController
       begin
         data = JSON.parse(response.body)['data']
 
-        data.each do |d| 
-          d['product_id'] = product.id
-          d['user_id']    = d['id']
+        if data
+          data.each do |d| 
+            d['product_id'] = product.id
+            d['user_id']    = d['id']
+          end
+          @likes += data
         end
 
-        @likes += data
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end

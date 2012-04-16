@@ -67,11 +67,13 @@ class CommentsController < ApplicationController
       begin
         data = JSON.parse(response.body)['data']
 
-        data.each do |d| 
-          d['product_id'] = product.id
+        if data
+          data.each do |d| 
+            d['product_id'] = product.id
+          end
+          @comments += data 
         end
 
-        @comments += data 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
