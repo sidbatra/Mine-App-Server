@@ -181,7 +181,6 @@
   max-height: 390px; }
 
 .creation .change-photo {
-	opacity: 0.9;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 	height: 28px;
 	width: 126px;
@@ -903,10 +902,23 @@ button .loading.inline { display: none; }
 
 .photo-choice .btn { 
 	display: none;
-	width: 108px;
 	position: absolute; 
 	bottom: 10px; 
-	left: 15px; }
+	left: 40px;
+	right: 40px;
+/* 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
+/*
+	height: 30px;
+	line-height: 30px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-align: center;
+	background: #33CC66;
+*/
+/* 	background: url('/images/black_50.png'); */
+	color: white;
+/* 	font-weight: bold; } */}
 
 .photo-choice .item-photo {
   max-width: 160px;
