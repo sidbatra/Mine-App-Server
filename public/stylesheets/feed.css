@@ -78,13 +78,7 @@
 	margin-bottom: 8px;
 	border-left: 1px solid #e4e3e3;
 	border-right: 1px solid #e4e3e3; 
-	border-bottom: 1px solid #d8d7d7;
-	-webkit-transform-origin: 0px 0px;
--webkit-transition-delay: 0s, 0s;
--webkit-transition-duration: 0.6000000238418579s, 0.30000001192092896s;
--webkit-transition-property: all, opacity;
--webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1), cubic-bezier(0.25, 0.1, 0.25, 1);
-background-attachment: scroll; }
+	border-bottom: 1px solid #d8d7d7; }
 	
 .feed .item .user-box {
 	margin-top: -4px;
@@ -740,15 +734,15 @@ footer p { text-align: center; }
 .message-drawer {
 	z-index: 1051; 
 	position: fixed; 
-	width: 420px; /* total width w/padding: 469px */
+	width: 400px; /* total width w/padding: 449px */
 	left: 50%;
 	right: 50%; 
-	top: 47px; 
+	top: 3px; 
 	text-align: center;
-	margin-left: -238px;
-	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.1);
-	-moz-box-shadow: 0 2px 3px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.1);
-	box-shadow: 0 2px 3px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.1); }
+	margin-left: -229px;
+	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,.1);
+	-moz-box-shadow: 0 2px 3px rgba(0,0,0,.1);
+	box-shadow: 0 2px 3px rgba(0,0,0,.1); }
 
 /* ---------- loading animations */
 
