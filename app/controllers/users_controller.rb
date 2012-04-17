@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         elsif @target
           url = @target
         else
-          url = user_path(@user.handle,:src => UserShowSource::Login)
+          url = root_path(:src => FeedShowSource::Login)
         end
 
         redirect_to url
