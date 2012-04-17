@@ -1,5 +1,5 @@
 <%=object.to_json(
-    :only => [:id,:created_at,:title,:handle],
+    :only => [:id,:created_at,:title,:handle,:posting_to_fb],
     :methods => [:giant_url,:fb_object_id],
     :include => {
       :user => {

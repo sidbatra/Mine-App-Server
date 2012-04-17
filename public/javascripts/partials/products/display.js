@@ -21,7 +21,9 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
 
     this.render();
 
-    if(Denwen.H.isLoggedIn() && this.model.get('fb_object_id')) {
+    if(Denwen.H.isLoggedIn() && 
+      ((this.model.get('fb_object_id') && this.interaction) || 
+        this.model.get('posting_to_fb'))) {
       this.newLike    = new Denwen.Partials.Likes.New(
                               {product_id:this.model.get('id')});
 

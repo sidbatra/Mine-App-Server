@@ -32,6 +32,8 @@ class ProductsController < ApplicationController
     end
 
     @product = Product.add(params[:product],self.current_user.id)
+    @product[:posting_to_fb] = self.current_user.setting.post_to_timeline? |
+                                self.current_user.setting.post_to_fb_album?
 
   rescue => ex
     handle_exception(ex)
