@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417190158) do
+ActiveRecord::Schema.define(:version => 20120417212753) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -102,13 +102,11 @@ ActiveRecord::Schema.define(:version => 20120417190158) do
     t.string   "orig_thumb_url"
     t.integer  "store_id"
     t.string   "image_path"
-    t.boolean  "is_processed",          :default => false
+    t.boolean  "is_processed",      :default => false
     t.string   "source_product_id"
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
     t.string   "fb_photo_id"
-    t.boolean  "shared_to_fb_timeline", :default => false
-    t.boolean  "shared_to_fb_album",    :default => false
   end
 
   add_index "products", ["created_at"], :name => "index_products_on_created_at"
