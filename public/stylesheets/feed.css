@@ -485,7 +485,8 @@
 .btn.load span.in,
 .btn.load span.out { display: none; }
   
-.btn.pushed {
+.btn.pushed,
+.btn.like.load {
 	background: none; 
 	color: white;
 	background: #666;
