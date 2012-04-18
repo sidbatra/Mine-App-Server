@@ -8,17 +8,21 @@ class Admin::StoresController < ApplicationController
   #
   def index
     @filter = params[:filter].to_sym
+    @layout = "application"
 
     case @filter
     when :unapproved
-      @approved_stores  = Store.approved
-      @stores           = Store.unapproved.sorted
+      @approved_stores = Store.approved
+      @stores = Store.unapproved.sorted
     when :popular
-      @stores           = Store.products_count_gt(1).popular
+      @stores = Store.products_count_gt(1).popular
+    when :crawlable
+      @stores = [Store.fetch("american eagle"),Store.fetch("j.crew")]
+      @layout = nil
     end
 
     render :partial => @filter.to_s,
-           :layout  => "application"
+           :layout  => @layout
   end
 
   # Edit a store
