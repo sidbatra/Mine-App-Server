@@ -32,11 +32,11 @@ class ProductsController < ApplicationController
     end
 
     if setting.post_to_timeline?
-      params[:product][:fb_action_id] = FBSharing::Share
+      params[:product][:fb_action_id] = FBSharing::Underway
     end
 
     if setting.post_to_fb_album?
-      params[:product][:fb_photo_id] = FBSharing::Share
+      params[:product][:fb_photo_id] = FBSharing::Underway
     end
 
     @product = Product.add(params[:product],self.current_user.id)

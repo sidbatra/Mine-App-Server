@@ -151,8 +151,7 @@ class Product < ActiveRecord::Base
   # Opengraph object id associated with the product
   #
   def fb_object_id
-    self.fb_photo_id != FBSharing::Refuse.to_s ? 
-                        self.fb_photo_id : self.fb_action_id
+    self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
   end
 
   # Facebook post associated with the product
@@ -160,9 +159,9 @@ class Product < ActiveRecord::Base
   def fb_post
     fb_post = nil
 
-    if self.fb_photo_id != FBSharing::Refuse.to_s
+    if self.fb_photo_id
       fb_post = FbGraph::Photo.new(self.fb_photo_id)
-    elsif self.fb_action_id != FBSharing::Refuse.to_s
+    elsif self.fb_action_id
       fb_post = FbGraph::OpenGraph::Action.new(self.fb_action_id)
     end
 
@@ -189,33 +188,27 @@ class Product < ActiveRecord::Base
   # to facebook timeline
   #
   def share_to_fb_timeline?
-    self.fb_action_id == FBSharing::Share.to_s
+    self.fb_action_id == FBSharing::Underway
   end
 
   # Returns whether or not the product should be shared 
   # to facebook photo album 
   #
   def share_to_fb_album?
-    self.fb_photo_id == FBSharing::Share.to_s
+    self.fb_photo_id == FBSharing::Underway
   end
-
-  # Returns fb sharing state of the product 
+  
+  # Returns if the product is currently in process of being 
+  # shared to facebook
   #
-  def sharing_state
-    fb_action_id  = self.fb_action_id.to_i
-    fb_photo_id   = self.fb_photo_id.to_i
-
-    if fb_photo_id == FBSharing::Share || fb_action_id == FBSharing::Share
-      return FBSharing::Share
-    else
-      return [(fb_photo_id | fb_action_id),FBSharing::Shared].min 
-    end
+  def sharing_underway? 
+    self.fb_object_id == FBSharing::Underway
   end
 
   # Returns if the product sharing on facebook has finished 
   #
   def shared?
-    self.sharing_state == FBSharing::Shared
+    self.fb_object_id.present? & self.fb_object_id != FBSharing::Underway  
   end
 
   # Fetch image from the original source and host it on the Filesystem

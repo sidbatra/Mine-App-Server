@@ -22,7 +22,7 @@ Denwen.Views.Products.Show = Backbone.View.extend({
                               model       : this.product,
                               interaction : this.interaction});
 
-    if(this.product.get('sharing_state') && this.interaction) { 
+    if(this.product.get('fb_object_id') && this.interaction) { 
       this.likes = new Denwen.Partials.Likes.Likes();
       this.likes.fetch(this.product.get('id'));
 
