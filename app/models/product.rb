@@ -198,13 +198,6 @@ class Product < ActiveRecord::Base
     self.fb_photo_id == FBSharing::Underway
   end
   
-  # Returns if the product is currently in process of being 
-  # shared to facebook
-  #
-  def sharing_underway? 
-    self.fb_object_id == FBSharing::Underway
-  end
-
   # Returns if the product sharing on facebook has finished 
   #
   def shared?

@@ -41,6 +41,13 @@ Denwen.Models.Product = Backbone.Model.extend({
   //
   uniqueKey: function() {
     return 'product_' + this.get('id');
+  },
+  
+  // Returns whether or not the product is shared on facebook
+  //
+  isShared: function() {
+    return this.get('fb_object_id') && 
+           (this.get('fb_object_id') != Denwen.FBSharing.Underway); 
   }
 
 });

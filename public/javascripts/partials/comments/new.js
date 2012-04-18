@@ -7,9 +7,9 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   initialize: function() {
     var self          = this;
 
-    this.productID    = this.options.product_id;
+    this.product      = this.options.product;
 
-    this.inputEl      = '#product_comment_data_' + this.productID;
+    this.inputEl      = '#product_comment_data_' + this.product.get('id');
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
     $(this.inputEl).placeholder();
 
@@ -38,21 +38,22 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
 
   // Create a comment 
   //
-  post: function() {
+  post: function(render) {
     if(!$(this.inputEl).val())
       return;
 
     var self      = this;
 
     var comment   = new Denwen.Models.Comment({
-                     product_id : this.productID,
+                     product_id : this.product.get('id'),
                      message    : $(this.inputEl).val(),
                      from       : {
                                   'id'  :Denwen.H.currentUser.get('fb_user_id'),
                                   'name':Denwen.H.currentUser.get('full_name')}
                     });
 
-    this.render(comment);
+    if(render)
+      this.render(comment);
 
     comment.save({},{
         success :  function(model) {self.created(model)},
@@ -60,11 +61,24 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     });
   },
 
+  // Decide whether to create an optimistic comment or show a spinner
+  // and wait for feedback from the server
+  //
+  decide: function() {
+    if(this.product.isShared()) {
+      this.post(true);
+    }
+    else {
+      console.log("show spinner here");
+      this.post(false);
+    }
+  },
+
   // Fired when the user wants to write a comment 
   //
   prepare: function() {
     if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
-      this.post();
+      this.decide();
     else  
       this.fbSettings.showPermissionsDialog();
   },
@@ -72,7 +86,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   // Fired when fb permissions are accepted 
   //
   fbPermissionsAccepted: function() {
-    this.post();
+    this.decide();
   },
 
   // Fired when fb permissions are rejected
@@ -97,7 +111,10 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   //
   created: function(comment) {
     if(!comment.get('id')) {
-      console.log("error in creating");
+      Denwen.Drawer.error("Error in posting comment.");
+    }
+    else if(!this.product.isShared()) {
+      this.render(comment);
     }
   }
 
