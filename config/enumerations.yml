@@ -14,6 +14,10 @@
   InvitePlatform:
     Facebook: 0
     Email: 1
+  FBSharing:
+    Refuse: 0
+    Share: 1
+    Shared: 2
 
 # Enumerations for ruby. 
 #

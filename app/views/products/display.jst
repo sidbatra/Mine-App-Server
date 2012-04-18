@@ -13,8 +13,7 @@
         </a>
       <%}%>
 
-      <%if((product.get('fb_object_id') && interaction) || 
-            product.get('posting_to_fb')){%>
+      <%if(product.get('sharing_state') && interaction){%> 
         <a style="float: right; margin-right: -1px;" 
             id="product_create_like_<%=product.get('id')%>"
             href="javascript:void(0)" 
@@ -75,9 +74,7 @@
     <div id="product_comments_<%=product.get('id')%>">
     </div>
     
-    <%if(Denwen.H.isLoggedIn() && 
-        ((product.get('fb_object_id') && interaction) || 
-           product.get('posting_to_fb'))){%>
+    <%if(Denwen.H.isLoggedIn() && product.get('sharing_state') && interaction){%>
       <div class="comment-box new" style="margin-top: 15px;">
         <img class="user-photo" 
           src="<%=Denwen.H.currentUser.get('square_image_url')%>" />

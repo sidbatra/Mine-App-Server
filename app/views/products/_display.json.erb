@@ -1,6 +1,6 @@
 <%=object.to_json(
-    :only => [:id,:created_at,:title,:handle,:posting_to_fb],
-    :methods => [:giant_url,:fb_object_id],
+    :only => [:id,:created_at,:title,:handle],
+    :methods => [:giant_url,:sharing_state],
     :include => {
       :user => {
         :only => [:id,:first_name,:last_name,:handle],

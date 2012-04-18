@@ -19,6 +19,12 @@ ProductResultsEmpty: "productResultsEmpty",
 FileUploadProgress: "fileUploadProgress"
 }
 
+Denwen.FBSharing = {
+Refuse: 0,
+Shared: 2,
+Share: 1
+}
+
 Denwen.InvitePlatform = {
 Facebook: 0,
 Email: 1

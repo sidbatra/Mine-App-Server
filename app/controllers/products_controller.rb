@@ -24,16 +24,22 @@ class ProductsController < ApplicationController
                                       self.current_user.id).id
     end
 
-    unless params[:product][:post_to_fb_album].nil?
-      setting = self.current_user.setting
+    setting = self.current_user.setting
 
+    unless params[:product][:post_to_fb_album].nil?
       setting.post_to_fb_album = params[:product][:post_to_fb_album]
       setting.save!
     end
 
+    if setting.post_to_timeline?
+      params[:product][:fb_action_id] = FBSharing::Share
+    end
+
+    if setting.post_to_fb_album?
+      params[:product][:fb_photo_id] = FBSharing::Share
+    end
+
     @product = Product.add(params[:product],self.current_user.id)
-    @product[:posting_to_fb] = self.current_user.setting.post_to_timeline? |
-                                self.current_user.setting.post_to_fb_album?
 
   rescue => ex
     handle_exception(ex)

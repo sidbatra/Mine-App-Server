@@ -32,10 +32,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this.productCreationFailed,
       this);
     
-    this.comments = new Denwen.Partials.Comments.Comments();
-    this.likes    = new Denwen.Partials.Likes.Likes({
-                          current_user  : this.currentUser});
-
     this.loadFacebookPlugs();
 
     this.setAnalytics();

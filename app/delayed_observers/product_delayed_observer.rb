@@ -2,15 +2,15 @@ class ProductDelayedObserver < DelayedObserver
 
   # Delayed after_create.
   #
-  def self.after_create(product_id,post_to_timeline,post_to_fb_album)
+  def self.after_create(product_id)
     product = Product.find(product_id)
     product.host
 
-    if post_to_timeline
+    if product.share_to_fb_timeline? 
       DistributionManager.publish_add(product)
     end
 
-    if post_to_fb_album
+    if product.share_to_fb_album? 
       DistributionManager.publish_product_to_fb_album(product)
     end
   end
