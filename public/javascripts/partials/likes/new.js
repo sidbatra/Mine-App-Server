@@ -61,7 +61,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
       this.post(true);
     }
     else {
-      console.log("show spinner here");
+      $(this.buttonEl).addClass('load');
       this.post(false);
     }
   },
@@ -107,6 +107,8 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     else if(!this.product.isShared()) {
       this.render(like);
     }
+
+    $(this.buttonEl).removeClass('load');
   },
 
   // Change the state of the button if a user likes/has liked an item

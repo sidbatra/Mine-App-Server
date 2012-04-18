@@ -69,7 +69,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
       this.post(true);
     }
     else {
-      console.log("show spinner here");
+      $(this.inputEl).addClass('load');
       this.post(false);
     }
   },
@@ -116,6 +116,8 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     else if(!this.product.isShared()) {
       this.render(comment);
     }
+    
+    $(this.inputEl).removeClass('load');
   }
 
 });
