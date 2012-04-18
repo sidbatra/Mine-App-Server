@@ -10,11 +10,14 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    var self = this;
+
     this.successClass = 'alert-success';
     this.errorClass   = 'alert-error';
     this.infoClass    = 'alert-info';
 
     this.messengerEl  = $('#message-drawer');
+    $(this.messengerEl).bind('closed',function(){self.drawerClosed()});
   },
 
   // Display a new message with a new class in the drawer
@@ -26,7 +29,8 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
       timeout = 5000;
 
     if(!timeout)
-      text = '<a class="close" data-dismiss="alert">×</a>' + text;
+      text = "<div>" + "<a class='close' data-dismiss='alert'>×</a>" + 
+        text + "</div>";
 
     this.messengerEl.removeClass(this.successClass);
     this.messengerEl.removeClass(this.errorClass);
@@ -39,6 +43,12 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
 
     if(timeout)
       setTimeout(function(){self.messengerEl.fadeOut();},timeout);
+  },
+
+  // Fired when the user closes the drawer.
+  //
+  drawerClosed: function() {
+    this.messengerEl.hide();
   },
 
   // Display a success message
