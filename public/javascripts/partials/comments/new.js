@@ -97,7 +97,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   //
   created: function(comment) {
     if(!comment.get('id')) {
-      //console.log("error in creating");
+      console.log("error in creating");
     }
   }
 

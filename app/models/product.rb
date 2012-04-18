@@ -208,7 +208,7 @@ class Product < ActiveRecord::Base
   # Returns if the product sharing on facebook has finished 
   #
   def shared?
-    self.fb_object_id.present? & self.fb_object_id != FBSharing::Underway  
+    self.fb_object_id.present? & (self.fb_object_id != FBSharing::Underway) 
   end
 
   # Fetch image from the original source and host it on the Filesystem

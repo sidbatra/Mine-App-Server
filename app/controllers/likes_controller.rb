@@ -30,13 +30,12 @@ class LikesController < ApplicationController
   # Create a new like on facebook
   #
   def create
-    product  = Product.find(params[:product_id]) 
-    fb_post  = product.fb_post
-
-    @like = nil
+    product = Product.find(params[:product_id]) 
+    @like   = nil
     
-    if fb_post
-      like = fb_post.like!(:access_token => self.current_user.access_token) 
+    if product.shared? 
+      like = product.fb_post.like!(
+              :access_token => self.current_user.access_token) 
 
       @like = {:product_id  => product.id,
                :user_id     => self.current_user.fb_user_id,

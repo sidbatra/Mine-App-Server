@@ -31,12 +31,10 @@ class CommentsController < ApplicationController
   #
   def create
     product  = Product.find(params[:product_id]) 
-    fb_post  = product.fb_post
-
     @comment = nil
     
-    if fb_post
-      comment = fb_post.comment!(
+    if product.shared? 
+      comment = product.fb_post.comment!(
                   :message      => params[:message],
                   :access_token => self.current_user.access_token)
 
