@@ -14,11 +14,14 @@
       <%}%>
 
       <%if(product.get('fb_object_id') && interaction){%> 
-        <a style="float: right; margin-right: -1px;" 
+        <a style="float: right; margin-right: -1px; width: 14px;" 
             id="product_create_like_<%=product.get('id')%>"
             href="javascript:void(0)" 
             class="btn">
-          <i class="icon-like"></i>
+          <img class="loading inline" style="margin: 0 0 2px -1px;" src="/images/loading_blocks_small_dark_trans.gif" />
+   				<span class="hide-when-loading">
+          	<i class="icon-like"></i>
+          </span>
         </a>
       <%}%>
     </div>
@@ -80,7 +83,7 @@
           src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
         <input type="text" 
           id="product_comment_data_<%=product.get('id')%>"
-          style="width: 475px;" 
+          class=""
           placeholder="Add a comment">
       </div>
     <%}%>

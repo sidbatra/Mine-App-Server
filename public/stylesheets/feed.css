@@ -157,6 +157,14 @@
 .feed .item .comments-box .comment-box.new input {
 	margin-bottom: 0; }
 	
+.feed .item .comments-box .comment-box.new input { width: 475px; }
+	
+.feed .item .comments-box .comment-box.new input.load { 
+	background: url('/images/loading_blocks_small_light_trans.gif') 456px center no-repeat;
+	padding-right: 34px;
+	width: 445px; }
+
+	
 /* ----- product show ----- */
 
 .prev, .next {
@@ -736,7 +744,7 @@ footer p { text-align: center; }
 
 /* ---------- loading animations */
 
-button .loading.inline { display: none; }
+.btn .loading.inline { display: none; }
 
 .loading.large {
 	min-height: 60px;
