@@ -9,6 +9,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
 
     this.product      = this.options.product;
     this.posting      = false;
+    this.retry        = true;
 
     this.buttonEl     = '#product_create_like_' + this.product.get('id');
 
@@ -102,13 +103,24 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   created: function(like) {
     if(!like.get('id')) {
       this.posting = false;
-      Denwen.Drawer.error("Error in posting like.");
+
+      if(!this.product.isShared() && this.retry) {
+        var self    = this; 
+        this.retry  = false;
+
+        setTimeout(function(){
+                    self.post(false);
+                   },4000);
+      }
+      else {
+        $(this.buttonEl).removeClass('load');
+        Denwen.Drawer.error("Error posting like. Try again in a second.");
+      }
     }
     else if(!this.product.isShared()) {
+      $(this.buttonEl).removeClass('load');
       this.render(like);
     }
-
-    $(this.buttonEl).removeClass('load');
   },
 
   // Change the state of the button if a user likes/has liked an item

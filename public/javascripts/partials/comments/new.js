@@ -8,6 +8,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     var self          = this;
 
     this.product      = this.options.product;
+    this.retry        = true;
 
     this.inputEl      = '#product_comment_data_' + this.product.get('id');
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
@@ -111,13 +112,24 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   //
   created: function(comment) {
     if(!comment.get('id')) {
-      Denwen.Drawer.error("Error in posting comment.");
+      
+      if(!this.product.isShared() && this.retry) {
+        var self    = this; 
+        this.retry  = false;
+
+        setTimeout(function(){
+                    self.post(false);
+                   },4000);
+      }
+      else {
+        $(this.inputEl).removeClass('load');
+        Denwen.Drawer.error("Error posting comment. Try again in a second.");
+      }
     }
     else if(!this.product.isShared()) {
+      $(this.inputEl).removeClass('load');
       this.render(comment);
     }
-    
-    $(this.inputEl).removeClass('load');
   }
 
 });
