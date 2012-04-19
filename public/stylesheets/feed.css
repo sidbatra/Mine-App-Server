@@ -248,12 +248,23 @@
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
-  
-.creation a.toggle-switch div.on { display: block; }
-.creation a.toggle-switch div.off { display: none; }
 
 .creation a.toggle-switch div.on,
 .creation a.toggle-switch div.off {
+	height: 22px; }
+  
+.creation a.toggle-switch div.on { 
+	display: block;
+	background: #197dca;
+	color: white;
+	border: 1px solid #006699;
+	margin: -1px -1px 0 -1px;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15); }
+
+.creation a.toggle-switch div.off {
+	display: none;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
@@ -266,8 +277,8 @@
 	text-align: center; }
     
 .creation a.toggle-switch .knob { 
-	margin-top: -1px;
 	border: 1px solid #ccc;
+	margin-top: -1px;
 	box-sizing: border-box; 
 	width: 40%;
 	background-color: whiteSmoke;
@@ -279,6 +290,7 @@
 	background-image: linear-gradient(top, white, #E6E6E6);
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0); }
+
 	
 .creation a.toggle-switch .knob .border {
 	width: 100%;
