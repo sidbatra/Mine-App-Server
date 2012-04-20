@@ -1,0 +1,78 @@
+<div id="screen" class="container screen">
+
+	<div class="title">
+		<span class="name">Mine</span> is a simple service for sharing purchases with friends.
+	</div>
+
+	<div class="squares clearfix">
+		<div class="square m">
+			M
+		</div>
+		<div class="square item">
+			<%=image_tag 'home_mine/items/lumia.jpg'%>
+			<div class="m">M</div>
+		</div>
+		<div class="square item">
+			<%=image_tag 'home_mine/items/vans.jpg'%>
+			<div class="m">M</div>
+		</div>
+		<div class="square item">
+			<%=image_tag 'home_mine/items/foodinc.jpg'%>
+			<div class="m">M</div>
+		</div>
+		<div class="square item">
+			<%=image_tag 'home_mine/items/mms.jpg'%>
+			<div class="m">M</div>
+		</div>
+		
+		<%=link_to 	'<div class="log_in">Log in with</div><img src="/images/home_mine/fb.png" />', 
+							fb_auth_path(:src => @origin), 
+							:class => 'square fb'%>
+							
+	</div> <!-- /squares -->
+	
+</div> <!-- /screen -->
+
+
+
+<div class="steps">
+	<div class="container">
+		<div class="squares clearfix">
+		
+			<div class="square text">
+				Pick out the item you've just bought
+			</div>
+			<div class="rectangle">
+			</div>
+			
+			<div class="rectangle">
+			</div>
+			<div class="square text">
+				Your friends get notified, instantly
+			</div>
+			
+			<div class="square text">
+				Enjoy likes and comments on all your good stuff.
+			</div>
+			<div class="rectangle">
+			</div>	
+					
+		</div> <!-- /squares -->
+	</div>	
+</div> <!-- /steps -->
+
+
+
+<div class="action-bar">
+	<div class="container">
+	
+		<div class="rectangle">
+			Join Mine now. It’s fun, and free!
+		</div>		
+	
+		<%=link_to 	'<div class="log_in">Log in with</div><img src="/images/home_mine/fb.png" />', 
+				fb_auth_path(:src => @origin), 
+				:class => 'square fb'%>
+	
+	</div>
+</div> <!-- /action-bar -->
