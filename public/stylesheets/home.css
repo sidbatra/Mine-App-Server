@@ -9,6 +9,8 @@ body {
 	background: #F2F0ED;
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
+  
+a:hover { text-decoration: none !important; }
 
 .container {
 	width: 660px;
