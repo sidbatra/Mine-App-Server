@@ -36,5 +36,4 @@ stylesheets:
     - public/stylesheets/feed.css
   home:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets/feed.css
     - public/stylesheets/home.css

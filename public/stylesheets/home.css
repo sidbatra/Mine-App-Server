@@ -54,8 +54,13 @@ body {
 	color: white;
 	font-weight: bold;
 	font-size: 160px;
-	line-height: 200px;
-	text-align: center;  }
+	line-height: 194px;
+	text-align: center;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05); 
+	/* box-shadow:inset 0 0 20px #333333; */  }
 	
 .square.item { padding: 10px; }
 	
@@ -77,23 +82,38 @@ body {
 	background: #F2F0ED; }
 	
 .square.text {
-	padding: 10px;
-	color: #777;
+	padding: 16px;
+	color: white;
+	background: #555;
 	font-size: 22px;
 /* 	font-weight: bold; */
 	line-height: 30px; }
 	
-.square.fb {
-	background: #133783;
-	text-align: center; }
+a.square.fb {
+	background: #3b5998;
+	text-align: center;
+	-webkit-transition:background 0.25s ease-in;
+	 -moz-transition:background 0.25s ease-in; 
+   -o-transition:background 0.25s ease-in;  
+   transition:background 0.25s ease-in; }
 
-.square.fb .log_in {
+a.square.fb:hover{
+	background: #1f4696;
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05); }
+
+a.square.fb .log_in {
 	padding: 68px 0 6px;
 	color: #eee;
 	font-size: 13px; }
 	
 .steps {
 	background: white; }
+	
+.steps .square,
+.steps .rectangle {
+	margin-bottom: 48px; }
 	
 .action-bar {
 	height: 200px;
