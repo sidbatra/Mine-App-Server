@@ -112,6 +112,8 @@ a.square.fb:hover{
   background-image: linear-gradient(top, #4f628a, #193878);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4f628a', endColorstr='#193878', GradientType=0); }
 
+a.square.fb:active { border-top: 1px solid #4f628a; }
+
 a.square.fb .log_in {
 	padding: 68px 0 6px;
 	color: #eee;
