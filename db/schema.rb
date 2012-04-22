@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418184707) do
+ActiveRecord::Schema.define(:version => 20120422192752) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
     t.datetime "created_at"
   end
 
-  create_table "products", :force => true do |t|
+  create_table "purchases", :force => true do |t|
     t.string   "title"
     t.string   "handle"
     t.text     "endorsement"
@@ -109,13 +109,13 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
     t.string   "fb_photo_id"
   end
 
-  add_index "products", ["created_at"], :name => "index_products_on_created_at"
-  add_index "products", ["handle"], :name => "index_products_on_handle"
-  add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
-  add_index "products", ["source_product_id"], :name => "index_products_on_source_product_id"
-  add_index "products", ["store_id"], :name => "index_products_on_store_id"
-  add_index "products", ["suggestion_id"], :name => "index_products_on_suggestion_id"
-  add_index "products", ["user_id"], :name => "index_products_on_user_id"
+  add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
+  add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
+  add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
+  add_index "purchases", ["source_product_id"], :name => "index_purchases_on_source_product_id"
+  add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
+  add_index "purchases", ["suggestion_id"], :name => "index_purchases_on_suggestion_id"
+  add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
 
   create_table "searches", :force => true do |t|
     t.text     "query"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
     t.integer  "source"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "products_count", :default => 0
+    t.integer  "purchases_count", :default => 0
   end
 
   add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
@@ -158,13 +158,13 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
   create_table "stores", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "products_count", :default => 0
+    t.integer  "purchases_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_approved",    :default => false
+    t.boolean  "is_approved",     :default => false
     t.string   "handle"
     t.string   "image_path"
-    t.boolean  "is_processed",   :default => false
+    t.boolean  "is_processed",    :default => false
     t.string   "domain"
     t.string   "byline"
     t.text     "description"
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
   add_index "stores", ["is_approved"], :name => "index_stores_on_is_approved"
   add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
-  add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
+  add_index "stores", ["purchases_count"], :name => "index_stores_on_purchases_count"
 
   create_table "suggestions", :force => true do |t|
     t.string   "title",                     :null => false
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
     t.datetime "updated_at"
     t.string   "source"
     t.string   "byline",                    :default => ""
-    t.integer  "products_count",            :default => 0
+    t.integer  "purchases_count",           :default => 0
     t.integer  "followings_count",          :default => 0
     t.integer  "inverse_followings_count",  :default => 0
     t.string   "handle"
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(:version => 20120418184707) do
   add_index "users", ["gender"], :name => "index_users_on_gender"
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
   add_index "users", ["has_contacts_mined"], :name => "index_users_on_has_contacts_mined"
-  add_index "users", ["products_count"], :name => "index_users_on_products_count"
+  add_index "users", ["purchases_count"], :name => "index_users_on_purchases_count"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
