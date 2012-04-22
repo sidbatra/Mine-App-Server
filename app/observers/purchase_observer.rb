@@ -1,4 +1,4 @@
-class ProductObserver < ActiveRecord::Observer
+class PurchaseObserver < ActiveRecord::Observer
 
   # Update shoppings for the product creator and
   # hand off the rest to the product delayed observer.
