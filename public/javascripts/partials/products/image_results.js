@@ -8,7 +8,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     "click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
     "click #product_change_photo"     : "changePhotoClicked",
-    "keypress #product_query"         : "queryKeystroke",
+    "keypress #purchase_query"         : "queryKeystroke",
     "keypress #product_repeat_query"  : "queryKeystroke",
     "click #cancel_button"            : "cancelButtonClicked"
   },
@@ -20,7 +20,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.mode           = this.options.mode;
 
     this.loadClass      = "load";
-    this.queryEl        = "#product_query";
+    this.queryEl        = "#purchase_query";
     this.repeatQueryEl  = "#product_repeat_query";
     this.imagesBoxEl    = "#chooser";
     this.imagesEl       = "#results";

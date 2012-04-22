@@ -253,11 +253,11 @@ Denwen.Analytics = Backbone.Model.extend({
           'User ID'    : Denwen.H.currentUserID()});
   },
 
-  // User updates a product
+  // User updates a puchase
   //
-  productUpdated: function(productID) {
-    mpq.track("Product Updated",{
-          'Product ID' : productID,
+  purchaseUpdated: function(puchaseID) {
+    mpq.track("Puchase Updated",{
+          'Puchase ID' : puchaseID,
           'User ID'    : Denwen.H.currentUserID()});
   },
 
