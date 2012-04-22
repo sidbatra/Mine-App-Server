@@ -292,7 +292,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
       $(this.queryEl).addClass('incomplete');
       $(this.queryTextEl).addClass('incomplete');
-      Denwen.Track.productException('No Photo',this.mode);
+      Denwen.Track.purchaseException('No Photo',this.mode);
     }
     else {
       $(this.queryEl).removeClass('incomplete');
@@ -304,7 +304,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       valid = false;
 
       $(this.titleBoxEl).addClass('error');
-      Denwen.Track.productException('No Title',this.mode);
+      Denwen.Track.purchaseException('No Title',this.mode);
     }
     else {
       $(this.titleBoxEl).removeClass('error');
@@ -315,7 +315,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
-      Denwen.Track.productException('No Store',this.mode);
+      Denwen.Track.purchaseException('No Store',this.mode);
     }
     else {
       $(this.storeBoxEl).removeClass('error');
