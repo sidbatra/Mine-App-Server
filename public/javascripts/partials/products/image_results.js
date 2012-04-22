@@ -28,7 +28,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.moreEl         = "#scroll_for_more_results";
     this.spinnerBoxEl   = "#spinner_box";
 
-    this.images = new Denwen.Collections.ImageResults();
+    this.images = new Denwen.Collections.Products();
     this.images.bind(
       Denwen.Callback.ProductResultsLoaded,
       this.productResultsLoaded,
@@ -158,7 +158,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     }
 
     if(!changePhoto && query.match(/http.*(.jpg|.jpeg|.gif|.png|.bmp|.tif)$/)){
-      var productResult = new Denwen.Models.ImageResult({
+      var productResult = new Denwen.Models.Product({
                                 medium_url: query,
                                 large_url: query,
                                 source_url: query,

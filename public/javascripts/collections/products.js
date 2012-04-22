@@ -1,14 +1,12 @@
-// Collection of ImageResult models holding image search results
-//
-Denwen.Collections.ImageResults = Backbone.Collection.extend({
+Denwen.Collections.Products = Backbone.Collection.extend({
 
   // Model name
   //
-  model: Denwen.Models.ImageResult,
+  model: Denwen.Models.Product,
 
   // Route on the app server
   //
-  url: '/search',
+  url: '/products',
 
   // Constructor logic
   //
