@@ -18,18 +18,18 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.feedEl   = '#feed';
 
     this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
-    this.input    = new Denwen.Partials.Products.Input({
+    this.input    = new Denwen.Partials.Purchases.Input({
                           el  : $('body'),
-                          mode: Denwen.ProductFormType.New});
+                          mode: Denwen.PurchaseFormType.New});
 
     this.input.bind(
-      Denwen.Partials.Products.Input.Callback.ProductCreated,
-      this.productCreated,
+      Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
+      this.purchaseCreated,
       this);
 
     this.input.bind(
-      Denwen.Partials.Products.Input.Callback.ProductCreationFailed,
-      this.productCreationFailed,
+      Denwen.Partials.Purchases.Input.Callback.PurchaseCreationFailed,
+      this.purchaseCreationFailed,
       this);
     
     this.loadFacebookPlugs();
@@ -55,13 +55,13 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
   // Display the freshly created product in the feed.
   //
-  productCreated: function(product) {
+  purchaseCreated: function(product) {
     this.content.insert(product);
   },
 
   // Display a creation error.
   //
-  productCreationFailed: function() {
+  purchaseCreationFailed: function() {
     //console.log("Error creating product");
   }
 
