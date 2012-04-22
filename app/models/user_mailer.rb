@@ -35,14 +35,14 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert the user to add new products to their closet 
+  # Alert the user to add new purchases to their closet 
   #
-  def create_another_product(user)
+  def create_another_purchase(user)
     @user         = user
     @action       = "Bought something new this week?"
-    @source       = "email_another_product"
+    @source       = "email_another_purchase"
 
-    generate_attributes(@user,0,@user,EmailPurpose::AnotherProduct)
+    generate_attributes(@user,0,@user,EmailPurpose::AnotherPurchase)
 
     recipients    @user.email
     from          EMAILS[:contact]
