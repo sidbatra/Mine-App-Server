@@ -1,26 +1,26 @@
 <!-- Generate presenters for the view -->
-<%@product_presenter  = presenter_for(@product)%>
+<%@purchase_presenter  = presenter_for(@purchase)%>
 
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => @product_presenter.title, 
+              :title        => @purchase_presenter.title, 
               :type         => OGObject::Item, 
-              :description  => @product_presenter.description, 
-              :url          => @product_presenter.url('fb'),
-              :image        => @product_presenter.thumbnail_url,
-              :store        => @product.store}%>
+              :description  => @purchase_presenter.description, 
+              :url          => @purchase_presenter.url('fb'),
+              :image        => @purchase_presenter.thumbnail_url,
+              :store        => @purchase.store}%>
 <%end%>
 
 <div class="container" style="position: relative;">
 
   <%=link_to("<i class='icon-chevron-left'></i>",
-            product_path(
-              @product.user.handle,
-              @next_product.handle,
+            purchase_path(
+              @purchase.user.handle,
+              @next_purchase.handle,
               :src => 'previous'),
-            :class => 'btn prev') if @next_product%>
+            :class => 'btn prev') if @next_purchase%>
 
   <div class="col-triple" style="margin-left: 189px;">
     <div id="feed" class="feed">
@@ -28,11 +28,11 @@
   </div>
 
   <%=link_to("<i class='icon-chevron-right'></i>",
-          product_path(
-            @product.user.handle,
-            @prev_product.handle,
+          purchase_path(
+            @purchase.user.handle,
+            @prev_purchase.handle,
             :src => 'next'),
-          :class => 'btn next') if @prev_product%>
+          :class => 'btn next') if @prev_purchase%>
   
   
 </div>
@@ -43,9 +43,9 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
 
-    new Denwen.Views.Products.Show({
-        productJSON     : <%=render :partial => "products/display.json.erb",
-                              :locals => {:object => @product}%>,
+    new Denwen.Views.Purchases.Show({
+        purchaseJSON     : <%=render :partial => "purchases/display.json.erb",
+                              :locals => {:object => @purchase}%>,
         friends         : <%=logged_in? ? self.current_user.ifollowers.to_json(
                                           :only => [:id]) : nil.to_json%>,
         source          : '<%=@source%>'});
