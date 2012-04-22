@@ -7,11 +7,11 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   initialize: function() {
     var self          = this;
 
-    this.product      = this.options.product;
+    this.purchase      = this.options.purchase;
     this.posting      = false;
     this.retry        = true;
 
-    this.buttonEl     = '#product_create_like_' + this.product.get('id');
+    this.buttonEl     = '#purchase_create_like_' + this.purchase.get('id');
 
     $(this.buttonEl).click(function(){self.prepare();});
 
@@ -41,7 +41,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     this.posting  = true;
 
     var like = new Denwen.Models.Like({
-                product_id  : this.product.get('id'),
+                purchase_id  : this.purchase.get('id'),
                 user_id     : Denwen.H.currentUser.get('fb_user_id'),
                 name        : Denwen.H.currentUser.get('full_name')});
 
@@ -58,7 +58,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   // and wait for feedback from the server
   //
   decide: function() {
-    if(this.product.isShared()) {
+    if(this.purchase.isShared()) {
       this.post(true);
     }
     else {
@@ -104,7 +104,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     if(!like.get('id')) {
       this.posting = false;
 
-      if(!this.product.isShared() && this.retry) {
+      if(!this.purchase.isShared() && this.retry) {
         var self    = this; 
         this.retry  = false;
 
@@ -117,7 +117,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
         Denwen.Drawer.error("Error posting like. Try again in a second.");
       }
     }
-    else if(!this.product.isShared()) {
+    else if(!this.purchase.isShared()) {
       $(this.buttonEl).removeClass('load');
       this.render(like);
     }

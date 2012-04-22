@@ -7,10 +7,10 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   initialize: function() {
     var self          = this;
 
-    this.product      = this.options.product;
+    this.purchase      = this.options.purchase;
     this.retry        = true;
 
-    this.inputEl      = '#product_comment_data_' + this.product.get('id');
+    this.inputEl      = '#purchase_comment_data_' + this.purchase.get('id');
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
     $(this.inputEl).placeholder();
 
@@ -46,7 +46,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     var self      = this;
 
     var comment   = new Denwen.Models.Comment({
-                     product_id : this.product.get('id'),
+                     purchase_id : this.purchase.get('id'),
                      message    : $(this.inputEl).val(),
                      from       : {
                                   'id'  :Denwen.H.currentUser.get('fb_user_id'),
@@ -66,7 +66,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   // and wait for feedback from the server
   //
   decide: function() {
-    if(this.product.isShared()) {
+    if(this.purchase.isShared()) {
       this.post(true);
     }
     else {
@@ -113,7 +113,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   created: function(comment) {
     if(!comment.get('id')) {
       
-      if(!this.product.isShared() && this.retry) {
+      if(!this.purchase.isShared() && this.retry) {
         var self    = this; 
         this.retry  = false;
 
@@ -126,7 +126,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
         Denwen.Drawer.error("Error posting comment. Try again in a second.");
       }
     }
-    else if(!this.product.isShared()) {
+    else if(!this.purchase.isShared()) {
       $(this.inputEl).removeClass('load');
       this.render(comment);
     }

@@ -1,5 +1,5 @@
 // Partial to load and display facebook likes 
-// for a single product 
+// for a single purchase 
 //
 Denwen.Partials.Likes.Likes = Backbone.View.extend({
 
@@ -14,13 +14,13 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
     this.likes = new Denwen.Collections.Likes();
   },
 
-  // Fetch the likes for the given product ids
+  // Fetch the likes for the given purchase ids
   //
-  fetch: function(productIds) {
+  fetch: function(purchaseIds) {
     var self = this;
 
     this.likes.fetch({
-            data      : {product_ids : productIds},
+            data      : {purchase_ids : purchaseIds},
             success   : function() { self.fetched(); },
             error     : function() {}});
   },
