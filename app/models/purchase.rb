@@ -1,5 +1,4 @@
 class Purchase < ActiveRecord::Base
-  set_table_name :products
 
   #----------------------------------------------------------------------
   # Mixins

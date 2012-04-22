@@ -1,88 +1,88 @@
 class PurchaseObserver < ActiveRecord::Observer
 
-  # Update shoppings for the product creator and
-  # hand off the rest to the product delayed observer.
+  # Update shoppings for the purchase creator and
+  # hand off the rest to the purchase delayed observer.
   #
-  def after_create(product)
-    if product.store_id
+  def after_create(purchase)
+    if purchase.store_id
       shopping = Shopping.add(
-                  product.user_id,
-                  product.store_id,
-                  ShoppingSource::Product)
+                  purchase.user_id,
+                  purchase.store_id,
+                  ShoppingSource::Purchase)
 
-      shopping.increment_products_count
+      shopping.increment_purchases_count
     end
 
-    setting = product.user.setting
+    setting = purchase.user.setting
 
     ProcessingQueue.push(
-      ProductDelayedObserver,
+      PurchaseDelayedObserver,
       :after_create,
-      product.id)
+      purchase.id)
   end
 
-  # Update shoppings for the product creator if store_id has been
+  # Update shoppings for the purchase creator if store_id has been
   # modified.
-  # Mark the product for re-hosting if original url has changed.
+  # Mark the purchase for re-hosting if original url has changed.
   #
-  def before_update(product)
+  def before_update(purchase)
 
-    if product.orig_image_url_changed?
-      product.rehost = true
-      product.is_processed = false
+    if purchase.orig_image_url_changed?
+      purchase.rehost = true
+      purchase.is_processed = false
     end
 
-    if product.store_id_changed? 
-      if product.store_id
-        Store.increment_counter(:products_count,product.store_id) 
+    if purchase.store_id_changed? 
+      if purchase.store_id
+        Store.increment_counter(:purchases_count,purchase.store_id) 
 
         shopping = Shopping.add(
-                    product.user_id,
-                    product.store_id,
-                    ShoppingSource::Product)
-        shopping.increment_products_count
+                    purchase.user_id,
+                    purchase.store_id,
+                    ShoppingSource::Purchase)
+        shopping.increment_purchases_count
       end
 
-      if product.store_id_was
-        Store.decrement_counter(:products_count,product.store_id_was) 
+      if purchase.store_id_was
+        Store.decrement_counter(:purchases_count,purchase.store_id_was) 
 
         shopping = Shopping.add(
-                    product.user_id,
-                    product.store_id_was,
-                    ShoppingSource::Product)
-        shopping.decrement_products_count
+                    purchase.user_id,
+                    purchase.store_id_was,
+                    ShoppingSource::Purchase)
+        shopping.decrement_purchases_count
       end
     end
   end
 
-  # Hand off to product delayed observer with conditional
+  # Hand off to purchase delayed observer with conditional
   # rehosting.
   #
-  def after_update(product)
+  def after_update(purchase)
     ProcessingQueue.push(
-      ProductDelayedObserver,
+      PurchaseDelayedObserver,
       :after_update,
-      product.id,
-      {:rehost => product.rehost})
+      purchase.id,
+      {:rehost => purchase.rehost})
   end
 
-  # Update shoppings for the product creator.
+  # Update shoppings for the purchase creator.
   #
-  def after_destroy(product)
-    if product.store_id
+  def after_destroy(purchase)
+    if purchase.store_id
       shopping = Shopping.add(
-                  product.user_id,
-                  product.store_id,
-                  ShoppingSource::Product)
-      shopping.decrement_products_count
+                  purchase.user_id,
+                  purchase.store_id,
+                  ShoppingSource::Purchase)
+      shopping.decrement_purchases_count
     end
 
-    if product.fb_action_id
+    if purchase.fb_action_id
       ProcessingQueue.push(
         DistributionManager,
         :delete_story,
-        product.fb_action_id,
-        product.user.access_token)
+        purchase.fb_action_id,
+        purchase.user.access_token)
     end
   end
 

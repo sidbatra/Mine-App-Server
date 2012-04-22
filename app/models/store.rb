@@ -9,7 +9,7 @@ class Store < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to  :user
-  has_many    :products
+  has_many    :purchases
   has_many    :shoppings,   :dependent => :destroy
 
   #----------------------------------------------------------------------
@@ -21,14 +21,14 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
-  named_scope :with_products, :include => :products
+  named_scope :with_purchases, :include => :purchases
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :sorted,      :order      => 'name ASC'
-  named_scope :popular,     :order      => 'products_count DESC'
-  named_scope :products_count_gt, lambda {|count| {
-                  :conditions => {:products_count_gt => count}}}
+  named_scope :popular,     :order      => 'purchases_count DESC'
+  named_scope :purchases_count_gt, lambda {|count| {
+                  :conditions => {:purchases_count_gt => count}}}
 
   #----------------------------------------------------------------------
   # Attributes
@@ -66,22 +66,22 @@ class Store < ActiveRecord::Base
     is_processed
   end
 
-  # Move all products to an existing store.
+  # Move all purchases to an existing store.
   #
-  # store - Store. Move all products to this store.
+  # store - Store. Move all purchases to this store.
   #
-  def move_products_to(store)
-    self.products.each do |product|
-      product.store_id = store.id
-      product.save!
+  def move_purchases_to(store)
+    self.purchases.each do |purchase|
+      purchase.store_id = store.id
+      purchase.save!
     end
   end
 
-  # Change the store to unknown for all products.
+  # Change the store to unknown for all purchases.
   #
-  def change_products_store_to_unknown
-    self.products.each do |product|
-      product.make_store_unknown
+  def change_purchases_store_to_unknown
+    self.purchases.each do |purchase|
+      purchase.make_store_unknown
     end
   end
 
