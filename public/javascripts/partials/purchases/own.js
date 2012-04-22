@@ -1,6 +1,6 @@
-// Display the UI for claiming ownership of a product 
+// Display the UI for claiming ownership of a own 
 //
-Denwen.Partials.Products.Own  = Backbone.View.extend({
+Denwen.Partials.Purchases.Own  = Backbone.View.extend({
 
   // Event listeners
   //
@@ -14,16 +14,16 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   initialize: function() {
     var self        = this;
 
-    this.productID    = this.options.product_id;
+    this.ownID    = this.options.own_id;
     this.posting      = false;
     this.autocomplete = null;
 
     this.render();
 
-    this.boxEl                = $('#own_box_' + this.productID);
-    this.storeEl              = $('#product_store_name_' + this.productID);
-    this.storeBoxEl           = $('#product_store_box_' + this.productID);
-    this.isStoreUnknownEl     = $('#product_is_store_unknown_'+ this.productID);
+    this.boxEl                = $('#own_box_' + this.ownID);
+    this.storeEl              = $('#own_store_name_' + this.ownID);
+    this.storeBoxEl           = $('#own_store_box_' + this.ownID);
+    this.isStoreUnknownEl     = $('#own_is_store_unknown_'+ this.ownID);
 
     this.isStoreUnknownEl.change(function(){self.isStoreUnknownChanged();});
 
@@ -33,7 +33,7 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
   // Display the UI for claiming ownership
   //
   render: function() {
-    this.el.append(Denwen.JST['products/own']({id:this.productID}));
+    this.el.append(Denwen.JST['owns/own']({id:this.ownID}));
   },
 
   // Display the own box
@@ -63,15 +63,15 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
 
     var params = {
                   is_store_unknown:this.isStoreUnknown() ? '1' : '0',
-                  source_product_id:this.productID,
+                  source_own_id:this.ownID,
                   clone:true};
 
     if(!this.isStoreUnknown())
       params['store_name'] = this.storeEl.val();
 
 
-    var product = new Denwen.Models.Product(params); 
-    product.save();
+    var own = new Denwen.Models.Purchase(params); 
+    own.save();
 
     this.vanish();
     this.trigger('ownCreated');
@@ -103,7 +103,7 @@ Denwen.Partials.Products.Own  = Backbone.View.extend({
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
-      Denwen.Track.productException('No Store',mode);
+      Denwen.Track.ownException('No Store',mode);
     }
     else {
       $(this.storeBoxEl).removeClass('error');
