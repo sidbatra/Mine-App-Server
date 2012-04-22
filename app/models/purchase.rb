@@ -1,4 +1,5 @@
-class Product < ActiveRecord::Base
+class Purchase < ActiveRecord::Base
+  set_table_name :products
 
   #----------------------------------------------------------------------
   # Mixins
@@ -52,9 +53,9 @@ class Product < ActiveRecord::Base
   # Class methods
   #----------------------------------------------------------------------
 
-  # Factory method to create a new product.
+  # Factory method to create a new purchase.
   #
-  # returns - Product. Newly created product object.
+  # returns - Purchase. Newly created purchase object.
   #
   def self.add(attributes,user_id)
     attributes[:title]        = attributes[:title].strip
@@ -63,20 +64,20 @@ class Product < ActiveRecord::Base
     create!(attributes)
   end
 
-  # Perform full text search on all the indexed products using 
+  # Perform full text search on all the indexed purchases using 
   # solr + sunpot.
   #
   # query - String. Full text search query.
   # page - Integer:1. Pagination - the page of results to fetch
   # per_page - Integer:10. Pagination - number of results per page
   # 
-  # returns - Array. Array of product models matching the given query.
+  # returns - Array. Array of purchase models matching the given query.
   #
   def self.fulltext_search(query,page=1,per_page=10)
-    Product.search do 
-              fulltext query
-              paginate :per_page => per_page, :page => page
-            end.results
+    search do 
+      fulltext query
+      paginate :per_page => per_page, :page => page
+    end.results
   end
 
 
@@ -84,7 +85,7 @@ class Product < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Mark the product's store as unknown by setting store_id
+  # Mark the purchase's store as unknown by setting store_id
   # to nil.
   #
   def make_store_unknown
@@ -92,8 +93,8 @@ class Product < ActiveRecord::Base
     save!
   end
 
-  # Fetch the next product created by the user who created
-  # this product.
+  # Fetch the next purchase created by the user who created
+  # this purchase.
   #
   def next
     self.class.first(
@@ -102,8 +103,8 @@ class Product < ActiveRecord::Base
         :id_gt    => self.id})
   end
 
-  # Fetch the previous product created by the user who created
-  # this product.
+  # Fetch the previous purchase created by the user who created
+  # this purchase.
   #
   def previous
     self.class.last(
@@ -148,13 +149,13 @@ class Product < ActiveRecord::Base
       orig_image_url
   end
 
-  # Opengraph object id associated with the product
+  # Opengraph object id associated with the purchase
   #
   def fb_object_id
     self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
   end
 
-  # Facebook post associated with the product
+  # Facebook post associated with the purchase
   #
   def fb_post
     fb_post = nil
@@ -169,7 +170,7 @@ class Product < ActiveRecord::Base
   end
 
   # Url for fetching facebook comments of the object (photo/action)
-  # associated with the product
+  # associated with the purchase
   #
   def fb_comments_url
     "https://graph.facebook.com/#{self.fb_object_id}/comments?" \
@@ -177,28 +178,28 @@ class Product < ActiveRecord::Base
   end
 
   # Url for fetching facebook likes of the object (photo/action)
-  # associated with the product
+  # associated with the purchase
   #
   def fb_likes_url
     "https://graph.facebook.com/#{self.fb_object_id}/likes?" \
     "access_token=#{self.user.access_token}"
   end
 
-  # Returns whether or not the product should be shared 
+  # Returns whether or not the purchase should be shared 
   # to facebook timeline
   #
   def share_to_fb_timeline?
     self.fb_action_id == FBSharing::Underway
   end
 
-  # Returns whether or not the product should be shared 
+  # Returns whether or not the purchase should be shared 
   # to facebook photo album 
   #
   def share_to_fb_album?
     self.fb_photo_id == FBSharing::Underway
   end
   
-  # Returns if the product sharing on facebook has finished 
+  # Returns if the purchase sharing on facebook has finished 
   #
   def shared?
     self.fb_object_id.present? & (self.fb_object_id != FBSharing::Underway) 
