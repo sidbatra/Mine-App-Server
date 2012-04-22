@@ -1,5 +1,4 @@
-// Like model represents a facebook like on 
-// our products
+// Like model represents a facebook like 
 //
 Denwen.Models.Like = Backbone.Model.extend({
 

@@ -50,19 +50,19 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   },
 
   // --
-  // Callbacks from Products.Input
+  // Callbacks from Purchases.Input
   // --
 
-  // Display the freshly created product in the feed.
+  // Display the freshly created purchase in the feed.
   //
-  purchaseCreated: function(product) {
-    this.content.insert(product);
+  purchaseCreated: function(purchase) {
+    this.content.insert(purchase);
   },
 
   // Display a creation error.
   //
   purchaseCreationFailed: function() {
-    //console.log("Error creating product");
+    //console.log("Error creating purchase");
   }
 
 });
