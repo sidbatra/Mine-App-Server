@@ -1,11 +1,11 @@
-// Product model represents a product that a
+// Purchase model represents a purchase that a
 // user owns
 //
-Denwen.Models.Product = Backbone.Model.extend({
+Denwen.Models.Purchase = Backbone.Model.extend({
 
   // Route on the app server
   //
-  urlRoot: '/products',
+  urlRoot: '/purchases',
 
   // Constructor logic
   //
@@ -17,20 +17,20 @@ Denwen.Models.Product = Backbone.Model.extend({
       this.creationTimestamp = this.get('created_at').toDate().getTime() * 0.001;
   },
 
-  // Base path to the product with any additional args
+  // Base path to the purchase with any additional args
   //
   basePath: function() {
     return '/' + this.get('user').get('handle') + '/p/' + 
       this.get('handle');
   },
 
-  // Path to the product with the originating source
+  // Path to the purchase with the originating source
   //
   path: function(src) {
     return this.basePath() + '?src=' + src;
   },
 
-  // Path to the edit view of the product with an originating source
+  // Path to the edit view of the purchase with an originating source
   //
   editPath: function(src) {
     return this.basePath() + '/edit?src=' + src;
@@ -40,10 +40,10 @@ Denwen.Models.Product = Backbone.Model.extend({
   // model name and the id
   //
   uniqueKey: function() {
-    return 'product_' + this.get('id');
+    return 'purchase_' + this.get('id');
   },
   
-  // Returns whether or not the product is shared on facebook
+  // Returns whether or not the purchase is shared on facebook
   //
   isShared: function() {
     return this.get('fb_object_id') && 
