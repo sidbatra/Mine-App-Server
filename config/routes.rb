@@ -34,15 +34,15 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :feed,
     :only => [:show]
 
-  map.product ':user_handle/p/:product_handle',
-    :controller => :products,
+  map.purchase ':user_handle/p/:purchase_handle',
+    :controller => :purchases,
     :action     => :show
 
-  map.edit_product ':user_handle/p/:product_handle/edit',
-    :controller => :products,
+  map.edit_purchase ':user_handle/p/:purchase_handle/edit',
+    :controller => :purchases,
     :action     => :edit
 
-  map.resources :products,
+  map.resources :purchases,
     :only => [:create,:update,:destroy]
 
   map.store 's/:handle',
