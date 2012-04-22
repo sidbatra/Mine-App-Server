@@ -103,7 +103,7 @@ class SearchController < ApplicationController
   #           are added to the @results instance variable.
   #
   def search_inhouse_products(query,page,per_page)
-    @results[:inhouse] = Product.fulltext_search(
+    @results[:inhouse] = Purchase.fulltext_search(
                             query,
                             page+1,
                             per_page).map do |product|

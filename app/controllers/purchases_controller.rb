@@ -56,7 +56,7 @@ class PurchasesController < ApplicationController
 
     @purchase = Purchase.find_by_user_id_and_handle(
                  user.id,
-                 params[:product_handle])
+                 params[:purchase_handle])
 
     @next_purchase  = @purchase.next
     @next_purchase  ||= @purchase.user.purchases.first
@@ -79,7 +79,7 @@ class PurchasesController < ApplicationController
 
     @purchase = Purchase.find_by_user_id_and_handle(
                 user.id,
-                params[:product_handle])
+                params[:purchase_handle])
 
     if @purchase.store
       @purchase.store_name = @purchase.store.name 
@@ -122,7 +122,7 @@ class PurchasesController < ApplicationController
   ensure
     respond_to do |format|
       format.html do 
-        redirect_to product_path(
+        redirect_to purchase_path(
                       self.current_user.handle,
                       @purchase.handle,
                       :src => PurchaseShowSource::Updated)

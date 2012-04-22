@@ -15,7 +15,7 @@ class Admin::StoresController < ApplicationController
       @approved_stores = Store.approved
       @stores = Store.unapproved.sorted
     when :popular
-      @stores = Store.products_count_gt(1).popular
+      @stores = Store.purchases_count_gt(1).popular
     when :crawlable
       @stores = [Store.fetch("american eagle"),Store.fetch("j.crew")]
       @layout = nil
@@ -40,7 +40,7 @@ class Admin::StoresController < ApplicationController
     case filter
 
     # Update the store name. If the updated name is already in the
-    # database, then delete the store and move all its products to
+    # database, then delete the store and move all its purchases to
     # the existing store. Also handle cases for unknowns. 
     when :unapproved
       fetched_store   = Store.fetch(params[:name])
@@ -48,7 +48,7 @@ class Admin::StoresController < ApplicationController
 
       case type
       when :unknown
-        store.change_products_store_to_unknown
+        store.change_purchases_store_to_unknown
         store.destroy
 
         @store = nil
@@ -60,7 +60,7 @@ class Admin::StoresController < ApplicationController
 
           @store = store
         else
-          store.move_products_to(fetched_store)
+          store.move_purchases_to(fetched_store)
           store.destroy
 
           @store = fetched_store

@@ -27,7 +27,7 @@ class Admin::SuggestionsController < ApplicationController
   # Display a suggestion
   #
   def show
-    @suggestion = Suggestion.with_products.find(params[:id])
+    @suggestion = Suggestion.with_purchases.find(params[:id])
   end
 
   # Display UI for editing a suggestion
