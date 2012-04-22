@@ -18,7 +18,7 @@
         :locals => {:user => self.current_user,:src => "feed"}%>
     
     <%=render :partial => "users/trinkets",
-        :locals => {:src => "feed"}%>
+        :locals => {:user => self.current_user,:src => "feed"}%>
   </div> <!-- col -->
   
   <%=render 'products/chooser'%>
