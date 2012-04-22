@@ -97,7 +97,7 @@ Rails::Initializer.run do |config|
 
 
   # Register observers
-  config.active_record.observers  = :product_observer, :user_observer, 
+  config.active_record.observers  = :purchase_observer, :user_observer, 
                                     :following_observer, :store_observer, 
                                     :invite_observer 
 

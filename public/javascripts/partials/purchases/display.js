@@ -1,6 +1,6 @@
-// Partial for handling rendering and interactions of a product display.
+// Partial for handling rendering and interactions of a purchase display.
 //
-Denwen.Partials.Products.Display = Backbone.View.extend({
+Denwen.Partials.Purchases.Display = Backbone.View.extend({
 
 
   // Event listeners
@@ -15,8 +15,8 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
     this.interaction  = typeof this.options.interaction == 'undefined' ?
                           true : this.options.interaction;
 
-    this.aggregateEl  = '#product_likes_' + this.model.get('id') + '_aggregate';
-    this.likesBoxEl   = '#product_likes_box_' + this.model.get('id');
+    this.aggregateEl  = '#purchase_likes_' + this.model.get('id') + '_aggregate';
+    this.likesBoxEl   = '#purchase_likes_box_' + this.model.get('id');
     this.likes        = new Denwen.Collections.Likes();
 
     this.render();
@@ -25,8 +25,8 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
         this.model.get('fb_object_id') && 
         this.interaction) { 
 
-      this.newLike    = new Denwen.Partials.Likes.New({product:this.model});
-      this.newComment = new Denwen.Partials.Comments.New({product:this.model});
+      this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
+      this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
     }
 
     Denwen.NM.bind(
@@ -58,8 +58,8 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
   // Render the contents of the model.
   //
   render: function() {
-    var html = Denwen.JST['products/display']({
-                product     : this.model,
+    var html = Denwen.JST['purchases/display']({
+                purchase     : this.model,
                 interaction : this.interaction});
 
     if(this.model.get('fresh'))
@@ -68,24 +68,24 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
       this.el.append(html);
   },
 
-  // Render an individual comment for the product
+  // Render an individual comment for the purchase
   //
   renderComment: function(comment) {
     new Denwen.Partials.Comments.Comment({
           comment : comment,
-          el      : $('#product_comments_' + comment.get('product_id'))});
+          el      : $('#purchase_comments_' + comment.get('purchase_id'))});
   },
 
-  // Render an individual like for the product
+  // Render an individual like for the purchase
   //
   renderLike: function(like,onTop) {
     new Denwen.Partials.Likes.Like({
           like  : like,
-          el    : $('#product_likes_' + like.get('product_id')),
+          el    : $('#purchase_likes_' + like.get('purchase_id')),
           onTop : onTop});
   },
 
-  // Render likes aggregation for the product
+  // Render likes aggregation for the purchase
   //
   renderLikeAggregation: function() {
     var names     = [];
@@ -117,24 +117,24 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
     $(this.aggregateEl).html(aggregate);
   },
 
-  // Fired when a comment is fetched for the product
+  // Fired when a comment is fetched for the purchase
   //
   commentFetched: function(comment) {
-    if(this.model.get('id') == comment.get('product_id'))
+    if(this.model.get('id') == comment.get('purchase_id'))
       this.renderComment(comment);
   },
 
-  // Fired when a comment is created for the product 
+  // Fired when a comment is created for the purchase 
   //
   commentCreated: function(comment) {
-    if(this.model.get('id') == comment.get('product_id'))
+    if(this.model.get('id') == comment.get('purchase_id'))
       this.renderComment(comment);
   },
 
-  // Fired when a like is fetched for the product
+  // Fired when a like is fetched for the purchase
   //
   likeFetched: function(like) {
-    if(this.model.get('id') == like.get('product_id')) {
+    if(this.model.get('id') == like.get('purchase_id')) {
 
       if(Denwen.H.currentUser.get('fb_user_id') != like.get('user_id')) {
         this.renderLike(like,false);
@@ -148,10 +148,10 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
     }
   },
 
-  // Fired when a like is created for the product 
+  // Fired when a like is created for the purchase 
   //
   likeCreated: function(like) {
-    if(this.model.get('id') == like.get('product_id')) {
+    if(this.model.get('id') == like.get('purchase_id')) {
       this.likes.add(like);
 
       this.renderLike(like,true);
@@ -160,7 +160,7 @@ Denwen.Partials.Products.Display = Backbone.View.extend({
     }
   },
   
-  // Fired when all the likes associated with a product are fetched
+  // Fired when all the likes associated with a purchase are fetched
   //
   likesFetched: function() {
     if(this.likes.length) {

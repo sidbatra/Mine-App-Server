@@ -23,7 +23,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.likes          = new Denwen.Partials.Likes.Likes();
     this.comments       = new Denwen.Partials.Comments.Comments();
 
-    this.productIds     = [];
+    this.purchaseIds     = [];
 
     this.infiniteScroller = new Denwen.InfiniteScroller();
 
@@ -59,14 +59,14 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       error: function(){self.feedLoadingFailed();}});
   },
 
-  // Add a freshly created product into the collection and ui.
+  // Add a freshly created purchase into the collection and ui.
   //
-  // product - Denwen.Models.Product. The product to be added 
+  // purchase - Denwen.Models.Purchase. The purchase to be added 
   //            to the collection.
   //
-  insert: function(product) {
-    product.set({fresh:true});
-    this.feed.add(product,{at:0});
+  insert: function(purchase) {
+    purchase.set({fresh:true});
+    this.feed.add(purchase,{at:0});
   },
 
 
@@ -77,14 +77,14 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   // Fired when a new feed item is added to the feed collection.
   // Use this callback to render every added item.
   //
-  // product - Denwen.Models.Product . The product added to the collection.
+  // purchase - Denwen.Models.Purchase. The purchase added to the collection.
   //
-  feedItemAdded: function(product) {
-    var productDisplay = new Denwen.Partials.Products.Display({
+  feedItemAdded: function(purchase) {
+    var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el: this.el,
-                              model: product});
+                              model: purchase});
 
-    this.productIds.push(product.get('id'));
+    this.purchaseIds.push(purchase.get('id'));
   },
 
   // Feed items successfully loaded. Fire events to subscribers 
@@ -108,11 +108,11 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       this.oldestItemTimestamp = newOldestItemTimestamp;
     }
 
-    if(this.productIds.length) {
-      this.likes.fetch(this.productIds.join(","));
-      this.comments.fetch(this.productIds.join(","));
+    if(this.purchaseIds.length) {
+      this.likes.fetch(this.purchaseIds.join(","));
+      this.comments.fetch(this.purchaseIds.join(","));
 
-      this.productIds = []; 
+      this.purchaseIds = []; 
     }
 
     this.infiniteScroller.emptySpaceTest();
@@ -129,7 +129,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   // Callbacks from InfiniteScroller
   // -
 
-  // Document has reached end of scroll area. Load more products.
+  // Document has reached end of scroll area. Load more purchases.
   //
   endReached: function() {
     this.fetch();

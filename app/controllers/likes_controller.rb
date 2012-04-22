@@ -1,20 +1,20 @@
 class LikesController < ApplicationController
   before_filter :login_required
 
-  # List of facebook likes for products pushed to gallery or timeline
+  # List of facebook likes for purchases pushed to gallery or timeline
   # 
-  # params[:product_ids] - Comma separated list for all product 
+  # params[:purchase_ids] - Comma separated list for all purchase 
   #                        ids whose likes need to be fetched
   #
   def index
     @likes = [] 
-    product_ids = params[:product_ids].split(",")
-    products    = Product.find_all_by_id(product_ids, :include => :user)
+    purchase_ids = params[:purchase_ids].split(",")
+    purchases    = Purchase.find_all_by_id(purchase_ids, :include => :user)
    
     hydra = Typhoeus::Hydra.new
 
-    products.each do |product|
-      hydra.queue fetch_facebook_likes(product) if product.shared?
+    purchases.each do |purchase|
+      hydra.queue fetch_facebook_likes(purchase) if purchase.shared?
     end
 
     hydra.run
@@ -30,14 +30,14 @@ class LikesController < ApplicationController
   # Create a new like on facebook
   #
   def create
-    product = Product.find(params[:product_id]) 
+    purchase = Purchase.find(params[:purchase_id]) 
     @like   = nil
     
-    if product.shared? 
-      like = product.fb_post.like!(
+    if purchase.shared? 
+      like = purchase.fb_post.like!(
               :access_token => self.current_user.access_token) 
 
-      @like = {:product_id  => product.id,
+      @like = {:purchase_id  => purchase.id,
                :user_id     => self.current_user.fb_user_id,
                :name        => self.current_user.full_name,
                :id          => SecureRandom.hex(10)} if like
@@ -52,10 +52,10 @@ class LikesController < ApplicationController
 
   protected
 
-  # Fetch facebook likes for a particular product
+  # Fetch facebook likes for a particular purchase
   #
-  def fetch_facebook_likes(product)
-    url = product.fb_likes_url
+  def fetch_facebook_likes(purchase)
+    url = purchase.fb_likes_url
     request = Typhoeus::Request.new(url) 
 
     request.on_complete do |response|
@@ -64,7 +64,7 @@ class LikesController < ApplicationController
 
         if data
           data.each do |d| 
-            d['product_id'] = product.id
+            d['purchase_id'] = purchase.id
             d['user_id']    = d['id']
           end
           @likes += data

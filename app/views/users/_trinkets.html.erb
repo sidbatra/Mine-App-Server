@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 <div class="nav-box">
   <%=link_to "Invite friends",
       new_invite_path(:src => src),
         		:class => "btn btn-small"%>
 </div>
+=======
+<%if is_current_user(user)%>
+  <div class="nav-box">
+    <%=link_to "Invite friends",
+        new_invite_path(:src => src),
+              :class => "btn btn-small"%>
+  </div>
+<%end%>
+>>>>>>> feature-purchases
 

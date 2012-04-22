@@ -18,7 +18,7 @@
         :locals => {:user => self.current_user,:src => "feed"}%>
     
     <%=render :partial => "users/trinkets",
-        :locals => {:src => "feed"}%>
+        :locals => {:user => self.current_user,:src => "feed"}%>
   </div> <!-- col -->
   
   <%=render 'products/chooser'%>
@@ -27,12 +27,12 @@
   <div class="col-triple">
   
     <div id="creation" class="item creation">
-      <%form_for Product.new,
+      <%form_for Purchase.new,
           :html => {
             :class => "form-horizontal",
             :style => "margin-bottom: 0;"} do |f|%>
     
-          <%=render :partial => 'products/input', 
+          <%=render :partial => 'purchases/input', 
               :locals => {
                 :f => f,
                 :suggestion => nil,

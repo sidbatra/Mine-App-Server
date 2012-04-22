@@ -1,10 +1,10 @@
-// Collection of models within a feed.
+// Collection of Purchase models
 //
-Denwen.Collections.Feed = Backbone.Collection.extend({
+Denwen.Collections.Purchases = Backbone.Collection.extend({
 
   // Route on the app server
   //
-  url: '/feed',
+  url: '/purchases',
 
   // Base model
   //

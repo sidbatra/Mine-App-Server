@@ -31,19 +31,19 @@ class Shopping < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Increment the products count.
+  # Increment the purchases count.
   #
-  def increment_products_count
-    self.increment!(:products_count)
+  def increment_purchases_count
+    self.increment!(:purchases_count)
   end
 
-  # Decrement the products count and destroy the record
-  # if the products_count goes down to zero.
+  # Decrement the purchases count and destroy the record
+  # if the purchases_count goes down to zero.
   #
-  def decrement_products_count
-    self.decrement!(:products_count)
+  def decrement_purchases_count
+    self.decrement!(:purchases_count)
 
-    if self.products_count.zero? && self.source == ShoppingSource::Product
+    if self.purchases_count.zero? && self.source == ShoppingSource::Purchase
       self.destroy
     end
   end

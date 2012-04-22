@@ -1,7 +1,7 @@
 class FeedController < ApplicationController
   before_filter :login_required
 
-  # Fetch a feed of items(products only as of now) for
+  # Fetch a feed of items(purchases only as of now) for
   # the current user.
   #
   # params[:after] - Integer(Unix timestamp). Only fetch feed items 
@@ -19,7 +19,7 @@ class FeedController < ApplicationController
             self.current_user.ifollowers.map(&:updated_at).max.to_i,
             "feed",@before ? @before.to_i : "",@per_page]
 
-    @products = Product.
+    @purchases = Purchase.
                   select(:id,:created_at,:title,:handle,
                           :orig_thumb_url,:orig_image_url,
                           :image_path,:is_processed,:user_id,:store_id,

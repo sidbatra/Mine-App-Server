@@ -75,12 +75,4 @@ module ApplicationHelper
     request.request_uri.scan(/^\/welcome\//).present?
   end
 
-  # Whether the user is on the onboarding create view
-  #
-  def is_onboarding_create?
-    is_onboarding? && 
-      @controller.controller_name == 'products' &&
-      @controller.action_name == 'new'
-  end
-
 end

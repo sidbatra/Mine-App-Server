@@ -3,20 +3,21 @@
     <%=@suggestion.title%>
   </legend>
 
-  <h3>Products</h3>
+  <h3>Purchases</h3>
   <br>
 
   <table width="900">
-    <%@suggestion.products.each do |product|%>
+    <%@suggestion.purchases.all(:include => :user).each do |purchase|%>
       <tr>
         <td width="200">
-          <%=image_tag product.thumbnail_url%>
+          <%=image_tag purchase.thumbnail_url%>
         </td>
         <td width="300">
-          <%=link_to product.title,product_d_path(product.id,product.handle)%>
+          <%=link_to purchase.title,
+              purchase_path(purchase.user.handle,purchase.handle)%>
         </td>
         <td width="300">
-          <%=product.query%>
+          <%=purchase.query%>
         </td>
       </tr>
     <%end%>

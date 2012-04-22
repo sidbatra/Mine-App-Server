@@ -94,22 +94,10 @@ Denwen.Helpers = Backbone.Model.extend({
     return "<div id='blocker'></div>";
   },
 
-  // Generate path for creating a product via a placeholder
-  //
-  newProductPath: function(suggestion,src) {
-    return '/products/new?suggestion=' + suggestion + '&src=' + src;
-  },
-
   // Generate path for inviting users
   //
   newInvitePath: function(src) {
     return '/invite?src=' + src;
-  },
-
-  // Generate path for creating new shoppings
-  //
-  newShoppingsPath: function(src) {
-    return 'shoppings/new?src=' + src;
   },
 
   // Generate facebook image url for the user

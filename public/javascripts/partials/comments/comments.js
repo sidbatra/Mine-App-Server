@@ -1,5 +1,5 @@
 // Partial to load and display all facebook comments 
-// for a single product
+// for a single purchase
 //
 Denwen.Partials.Comments.Comments = Backbone.View.extend({
 
@@ -14,13 +14,13 @@ Denwen.Partials.Comments.Comments = Backbone.View.extend({
     this.comments = new Denwen.Collections.Comments();
   },
 
-  // Fetch the commments for the given product ids
+  // Fetch the commments for the given purchase ids
   //
-  fetch: function(productIds) {
+  fetch: function(purchaseIds) {
     var self = this;
 
     this.comments.fetch({
-            data      : {product_ids : productIds},
+            data      : {purchase_ids : purchaseIds},
             success   : function() { self.fetched(); },
             error     : function() {}
           });

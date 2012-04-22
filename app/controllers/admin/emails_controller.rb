@@ -17,8 +17,8 @@ class Admin::EmailsController < ApplicationController
     when :new_user
       render :text => UserMailer.preview_new_user(User.last)
 
-    when :create_another_product
-      render :text => UserMailer.preview_create_another_product(
+    when :create_another_purchase
+      render :text => UserMailer.preview_create_another_purchase(
                         User.last)
 
     when :add_an_item
@@ -34,7 +34,7 @@ class Admin::EmailsController < ApplicationController
       render :text => UserMailer.preview_friend_activity_digest(
                                   User.find(3),
                                   User.find_all_by_id([1,2]),
-                                  [Product.all[-5..-1],[Product.last]])
+                                  [Purchase.all[-5..-1],[Purchase.last]])
 
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)

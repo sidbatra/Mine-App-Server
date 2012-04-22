@@ -2,11 +2,11 @@
 	<div class="col-triple" style="margin-left: 189px;">
     <div class="item creation">
 		
-		  <%form_for @product,:url => "/products/#{@product.id}",
+		  <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
 		        :html => {
 		          :class  => 'form-horizontal',
 		          :style  => 'margin-bottom: 0;',
-		          :id     => 'edit_product'} do |f|%>
+		          :id     => 'edit_purchase'} do |f|%>
 		
 		    <%=render :partial  => 'input', 
 		              :locals   => {
@@ -27,7 +27,7 @@
 </div> 
 
 		
-<%=render 'chooser'%>	
+<%=render 'products/chooser'%>	
 
 
 
@@ -35,9 +35,9 @@
 
   <script type="text/javascript">
 
-    new Denwen.Views.Products.Edit({
+    new Denwen.Views.Purchases.Edit({
           el            : $('body'),
-          productJSON   : <%=@product.to_json(
+          purchaseJSON   : <%=@purchase.to_json(
                               :only     => [:id,:user_id],
                               :methods  => [:giant_url])%>,
           source        : '<%=@source%>'});

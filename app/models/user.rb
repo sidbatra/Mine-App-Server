@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  has_many :products, :dependent => :destroy
+  has_many :purchases, :dependent => :destroy
   has_many :searches, :dependent => :destroy
   has_many :contacts, :dependent => :destroy
   has_many :shoppings, :dependent => :destroy
@@ -42,10 +42,10 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
-  named_scope :products_count, lambda {|count| {
-                  :conditions => {:products_count => count}}}
-  named_scope :products_count_gt, lambda {|count| {
-                  :conditions => {:products_count_gt => count}}}
+  named_scope :purchases_count, lambda {|count| {
+                  :conditions => {:purchases_count => count}}}
+  named_scope :purchases_count_gt, lambda {|count| {
+                  :conditions => {:purchases_count_gt => count}}}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
 
   named_scope :with_stores, :include => {:shoppings => :store}

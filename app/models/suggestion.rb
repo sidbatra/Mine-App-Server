@@ -3,7 +3,7 @@ class Suggestion < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  has_many :products
+  has_many :purchases
 
   #----------------------------------------------------------------------
   # Validations
@@ -25,7 +25,7 @@ class Suggestion < ActiveRecord::Base
   named_scope :for_gender, lambda{|gender| {:conditions =>
                             ["gender = #{SuggestionGender::Neutral} or "\
                              "gender = #{SuggestionGender.value_for(gender)}"]}}
-  named_scope :with_products, :include => :products
+  named_scope :with_purchases, :include => :purchases
 
 
   #----------------------------------------------------------------------

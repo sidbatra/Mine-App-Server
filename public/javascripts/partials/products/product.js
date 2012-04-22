@@ -1,6 +1,6 @@
-// Partial for displaying a single image result
+// Partial for displaying a single product
 //
-Denwen.Partials.Products.ImageResult = Backbone.View.extend({
+Denwen.Partials.Products.Product = Backbone.View.extend({
 
   // Constructor logic
   //
@@ -16,7 +16,7 @@ Denwen.Partials.Products.ImageResult = Backbone.View.extend({
     this.imageTest  = this.options.imageTest;
     this.divID      = Math.random().toString(36).substring(7);
 
-    this.el.append(Denwen.JST['products/image_result']({
+    this.el.append(Denwen.JST['products/product']({
       thumbUrl:thumbUrl,
          divID:this.divID,
           hide:this.imageTest}));

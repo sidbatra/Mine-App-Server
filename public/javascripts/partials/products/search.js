@@ -1,6 +1,4 @@
-// Partial for displaying image results 
-// 
-Denwen.Partials.Products.ImageResults = Backbone.View.extend({
+Denwen.Partials.Products.Search = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -8,7 +6,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     "click #product_search"           : "search",
     "click #product_repeat_search"    : "search",
     "click #product_change_photo"     : "changePhotoClicked",
-    "keypress #product_query"         : "queryKeystroke",
+    "keypress #purchase_query"         : "queryKeystroke",
     "keypress #product_repeat_query"  : "queryKeystroke",
     "click #cancel_button"            : "cancelButtonClicked"
   },
@@ -20,7 +18,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.mode           = this.options.mode;
 
     this.loadClass      = "load";
-    this.queryEl        = "#product_query";
+    this.queryEl        = "#purchase_query";
     this.repeatQueryEl  = "#product_repeat_query";
     this.imagesBoxEl    = "#chooser";
     this.imagesEl       = "#results";
@@ -28,7 +26,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     this.moreEl         = "#scroll_for_more_results";
     this.spinnerBoxEl   = "#spinner_box";
 
-    this.images = new Denwen.Collections.ImageResults();
+    this.images = new Denwen.Collections.Products();
     this.images.bind(
       Denwen.Callback.ProductResultsLoaded,
       this.productResultsLoaded,
@@ -158,7 +156,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
     }
 
     if(!changePhoto && query.match(/http.*(.jpg|.jpeg|.gif|.png|.bmp|.tif)$/)){
-      var productResult = new Denwen.Models.ImageResult({
+      var productResult = new Denwen.Models.Product({
                                 medium_url: query,
                                 large_url: query,
                                 source_url: query,
@@ -194,7 +192,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // collection. Here its added into the dom via its view
   //
   productResultAdded: function(productResult) {
-    var imageView =  new Denwen.Partials.Products.ImageResult({
+    var imageView =  new Denwen.Partials.Products.Product({
                           model:productResult,
                           imageTest:this.images.isURLQuery(),
                           el:$(this.imagesEl)});

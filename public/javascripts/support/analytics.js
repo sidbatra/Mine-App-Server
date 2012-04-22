@@ -64,24 +64,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Shoppings Created");
   },
 
-  // User turns on a product
-  //
-  productTurnedOn: function() {
-    mpq.track("Product Turned On");
-  },
-
-  // User turns off a product
-  //
-  productTurnedOff: function() {
-    mpq.track("Product Turned Off");
-  },
-
-  // Modal view all selected for the given type
-  //
-  viewAllSelected: function(type) {
-    mpq.track("View All "+ type);
-  },
-
   // User creates a following
   //
   followingCreated: function(followedID) {
@@ -122,16 +104,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   ownCreated: function(source,sourceID,productID) {
     mpq.track('Own Created', {
-      'Source'          : source,
-      'Source ID'       : sourceID,
-      'Product ID'      : productID,
-      'User ID'         : Denwen.H.currentUserID()});
-  },
-
-  // User wants a product
-  //
-  wantCreated: function(source,sourceID,productID) {
-    mpq.track('Want Created', {
       'Source'          : source,
       'Source ID'       : sourceID,
       'Product ID'      : productID,
@@ -242,47 +214,32 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Validation exception 
   //
-  productException: function(type,mode) {
-    mpq.track("Product Exception",{'type':type,'Mode':mode});
+  purchaseException: function(type,mode) {
+    mpq.track("Purchase Exception",{'type':type,'Mode':mode});
   },
 
-  // User creates a product
+  // User creates a purchase
   //
-  productCreated: function() {
-    mpq.track("Item Created",{
-          'User ID'    : Denwen.H.currentUserID()});
+  purchaseCreated: function() {
+    mpq.track("Purchase Created");
   },
 
-  // User updates a product
+  // User updates a puchase
   //
-  productUpdated: function(productID) {
-    mpq.track("Product Updated",{
-          'Product ID' : productID,
-          'User ID'    : Denwen.H.currentUserID()});
+  purchaseUpdated: function(puchaseID) {
+    mpq.track("Puchase Updated");
   },
 
-  // User clicks product to visit the original link
+  // User clicks purchase to visit the original link
   //
-  productClicked: function() {
-    mpq.track("Product Clicked");
+  purchaseClicked: function() {
+    mpq.track("Purchase Clicked");
   },
 
-  // User deletes a product
+  // User deletes a purchase
   //
-  productDeleted: function() {
-    mpq.track("Item Deleted");
-  },
-
-  // User picks a store on the store onboarding page 
-  //
-  storePicked: function() {
-    mpq.track("Store Picked");
-  },
-
-  // User unpicks a store on the store onboarding page 
-  //
-  storeUnpicked: function() {
-    mpq.track("Store Unpicked");
+  purchaseDeleted: function() {
+    mpq.track("Purchase Deleted");
   },
 
   // Page view on user profile
@@ -294,34 +251,6 @@ Denwen.Analytics = Backbone.Model.extend({
       'source'    : source,
       'id'        : id
       });
-  },
-
-  // A type of user's products are 
-  // explictly viewed
-  //
-  userProductsView: function(type,userID) {
-    mpq.track(
-      'User ' + type.capitalize() + ' View',{
-        'Is Own Profile'  : Denwen.H.isCurrentUser(userID),
-        'id'              : userID});
-  },
-
-  // A user's followers are viewed
-  //
-  userFollowersView: function(userID) {
-    mpq.track(
-      'User Followers View',{
-        'Is Own Profile'  : Denwen.H.isCurrentUser(userID),
-        'id'              : userID});
-  },
-
-  // A user's ifollowers are viewed
-  //
-  userIFollowersView: function(userID) {
-    mpq.track(
-      'User IFollowers View',{
-        'Is Own Profile'  : Denwen.H.isCurrentUser(userID),
-        'id'              : userID});
   },
 
   // User views the settings page
@@ -354,30 +283,11 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Unsubscribe Initiated", {'Source' : source});
   },
 
-  // A store's products are explicitly viewed
+  // Page view on purchase profile
   //
-  storeProductsView: function(storeID) {
-    mpq.track('Store Products View',{
-      'id'        : storeID
-    });
-  },
-
-  // Page view on store profile
-  //
-  storeProfileView: function(source,id) {
+  purchaseProfileView: function(source,id) {
      mpq.track(
-      'Store Profile View',
-      {
-      'source'    : source,
-      'id'        : id
-      });
-  },
-
-  // Page view on product profile
-  //
-  productProfileView: function(source,id) {
-     mpq.track(
-      'Product Profile View',
+      'Purchase Profile View',
       {
         'source'  : source,
         'id'      : id
@@ -390,87 +300,21 @@ Denwen.Analytics = Backbone.Model.extend({
      mpq.track('Invite View',{'source' : source});
   },
 
-  // Page view on the shoppings new page
-  //
-  shoppingNewView: function(source) {
-     mpq.track(
-      'Shopping New View',{'source' : source});
-  },
-
-  // Fired when the invite view is opened during onboarding
-  //
-  inviteViewOnboarding: function() {
-    mpq.track("Onboarding Invite View");
-  },
-
   // Page view on the welcome view
   //
   welcomeView: function() {
     mpq.track("Onboarding Welcome");
   },
 
-  // User opens new product page
+  // User opens edit purchase page
   //
-  productNewView: function(source,suggestionID,suggestionTitle) {
-    mpq.track("Creation Template Opened", 
+  purchaseEditView: function(purchase_id,source) {
+    mpq.track("Purchase Editing View", 
       {
-      'source'  : source,
-      'Suggestion ID' : 's' + suggestionID,
-      'Suggestion Title' : suggestionTitle
-      });
-  },
-
-  // User lands on stores picker view during onboarding
-  //
-  onboardingStoresView: function() {
-    mpq.track("Onboarding Stores View");
-  },
-
-  // User lands on followings view during onboarding
-  //
-  onboardingFollowingView: function() {
-    mpq.track("Onboarding Following View");
-  },
-
-  // User lands on product new view during onboarding
-  //
-  productNewViewOnboarding: function() {
-    mpq.track("Onboarding Creation Template Opened");
-  },
-
-  // User opens edit product page
-  //
-  productEditView: function(product_id,source) {
-    mpq.track("Product Editing View", 
-      {
-      'Product ID'  : product_id,
+      'Purchase ID'  : purchase_id,
       'User ID'     : Denwen.H.currentUserID(),
       'Source'      : source
       });
-  },
-
-  // Style view is opened during onboarding
-  //
-  styleViewOnboarding: function() {
-    mpq.track("Onboarding Style View");
-  },
-
-  // Style view is opened outside onboarding
-  //
-  styleView: function(source) {
-    mpq.track("Style New View",{'Source':source});
-  },
-
-  // User selects a particular style
-  //
-  stylePicked: function() {
-    mpq.track("Style Picked");
-  },
-
-  // Sharing view is opened during onboarding
-  //
-  shareViewOnboarding: function() {
-    mpq.track("Onboarding Share View");
   }
 
 });

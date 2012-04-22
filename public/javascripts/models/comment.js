@@ -1,5 +1,4 @@
-// Comment model represents a facebook comment on 
-// our products
+// Comment model represents a facebook comment 
 //
 Denwen.Models.Comment = Backbone.Model.extend({
 

@@ -1,20 +1,20 @@
 class CommentsController < ApplicationController
   before_filter :login_required
 
-  # List of facebook comments for products pushed to gallery or timeline
+  # List of facebook comments for purchases pushed to gallery or timeline
   # 
-  # params[:product_ids] - Comma separated list for all product 
+  # params[:purchase_ids] - Comma separated list for all purchase 
   #                        ids whose comments need to be fetched
   #
   def index
     @comments   = []
-    product_ids = params[:product_ids].split(",")
-    products    = Product.find_all_by_id(product_ids, :include => :user)
+    purchase_ids = params[:purchase_ids].split(",")
+    purchases    = Purchase.find_all_by_id(purchase_ids, :include => :user)
    
     hydra = Typhoeus::Hydra.new
 
-    products.each do |product|
-      hydra.queue fetch_facebook_comments(product) if product.shared?
+    purchases.each do |purchase|
+      hydra.queue fetch_facebook_comments(purchase) if purchase.shared?
     end
 
     hydra.run
@@ -30,15 +30,15 @@ class CommentsController < ApplicationController
   # Create a new comment on facebook
   #
   def create
-    product  = Product.find(params[:product_id]) 
+    purchase  = Purchase.find(params[:purchase_id]) 
     @comment = nil
     
-    if product.shared? 
-      comment = product.fb_post.comment!(
+    if purchase.shared? 
+      comment = purchase.fb_post.comment!(
                   :message      => params[:message],
                   :access_token => self.current_user.access_token)
 
-      @comment = {:product_id   => product.id,
+      @comment = {:purchase_id   => purchase.id,
                   :id           => comment.identifier,
                   :messsage     => comment.message,
                   :from         => {:name => self.current_user.full_name,
@@ -55,10 +55,10 @@ class CommentsController < ApplicationController
 
   protected
 
-  # Fetch facebook comments for a particular product
+  # Fetch facebook comments for a particular purchase
   #
-  def fetch_facebook_comments(product)
-    url = product.fb_comments_url
+  def fetch_facebook_comments(purchase)
+    url = purchase.fb_comments_url
     request = Typhoeus::Request.new(url) 
 
     request.on_complete do |response|
@@ -67,7 +67,7 @@ class CommentsController < ApplicationController
 
         if data
           data.each do |d| 
-            d['product_id'] = product.id
+            d['purchase_id'] = purchase.id
           end
           @comments += data 
         end

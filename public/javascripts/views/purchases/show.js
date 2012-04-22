@@ -1,33 +1,33 @@
-// View js for Products/Show route
+// View js for Purchases/Show route
 //
-Denwen.Views.Products.Show = Backbone.View.extend({
+Denwen.Views.Purchases.Show = Backbone.View.extend({
   
   // Constructor logic
   //
   initialize: function() {
     var self  = this;
 
-    this.product = new Denwen.Models.Product(this.options.productJSON);
+    this.purchase = new Denwen.Models.Purchase(this.options.purchaseJSON);
     this.source  = this.options.source;
     this.friends = new Denwen.Collections.Users(this.options.friends);   
 
-    this.owner   = this.product.get('user');
+    this.owner   = this.purchase.get('user');
 
     this.interaction = this.friends.any(function(friend) {
                         return friend.get('id') == self.owner.get('id');
                        }) | Denwen.H.isCurrentUser(self.owner.get('id'));
     
-    var productDisplay = new Denwen.Partials.Products.Display({
+    var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el          : $('#feed'),
-                              model       : this.product,
+                              model       : this.purchase,
                               interaction : this.interaction});
 
-    if(this.product.get('fb_object_id') && this.interaction) { 
+    if(this.purchase.get('fb_object_id') && this.interaction) { 
       this.likes = new Denwen.Partials.Likes.Likes();
-      this.likes.fetch(this.product.get('id'));
+      this.likes.fetch(this.purchase.get('id'));
 
       this.comments = new Denwen.Partials.Comments.Comments();
-      this.comments.fetch(this.product.get('id'));
+      this.comments.fetch(this.purchase.get('id'));
     }
 
     new Denwen.Partials.Facebook.Base();
@@ -43,20 +43,20 @@ Denwen.Views.Products.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
   },
 
-  // User clicks the product image
+  // User clicks the purchase image
   //
-  productImageClicked: function() {
-    Denwen.Track.productClicked();
+  purchaseImageClicked: function() {
+    Denwen.Track.purchaseClicked();
   },
 
   // Fire various tracking events
   //
   setAnalytics: function() {
-    Denwen.Track.userLandsOn(this.product.uniqueKey());
-    Denwen.Track.productProfileView(this.source,this.product.get('id'));
+    Denwen.Track.userLandsOn(this.purchase.uniqueKey());
+    Denwen.Track.purchaseProfileView(this.source,this.purchase.get('id'));
 
-    if(this.source == 'product_updated')
-      Denwen.Track.productUpdated(this.product.get('id'));
+    if(this.source == 'purchase_updated')
+      Denwen.Track.purchaseUpdated(this.purchase.get('id'));
 
     Denwen.Track.checkForEmailClickedEvent(this.source);
   }
