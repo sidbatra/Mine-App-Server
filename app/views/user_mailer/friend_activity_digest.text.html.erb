@@ -5,7 +5,7 @@ Hi <%=@user.first_name%>, <br />
   <br /><%="#{friend.first_name} #{friend.last_name} added:"%><br /> 
 
   <%@owns[i].each do |owned_product|%>
-    <a href="<%=product_url(
+    <a href="<%=purchase_url(
                   friend.handle,
                   owned_product.handle,
                   :src => @source)%>">
