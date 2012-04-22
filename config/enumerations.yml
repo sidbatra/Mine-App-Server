@@ -30,7 +30,7 @@
     NewFollower: 1
     TopShopper: 4
     Welcome: 10
-    AnotherProduct: 13
+    AnotherPurchase: 13
     AddItem: 14
     AddFriend: 15
     AddStore: 16
@@ -51,10 +51,8 @@
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
     Logout: 'logout'
-  ProductNewSource:
-    Error: 'error'
-  ProductShowSource:
-    Updated: 'product_updated'
+  PurchaseShowSource:
+    Updated: 'purchase_updated'
   SearchSource:
     New: 0
     Edit: 1
@@ -68,10 +66,6 @@
   UserShowSource:
     HomeRedirect: 'home_redirect'
     UserCreate: 'user_create'
-    ProductCreate: 'product_create'
-    ProductDeleted: 'product_deleted'
-    ShoppingsCreate: 'shoppings_create'
-    ShoppingsCreateError: 'shoppings_create_error'
     Invite: 'invite'
   WelcomeFilter:
     Learn: 'intro'
@@ -105,10 +99,10 @@
     ProductResultsEmpty: 'productResultsEmpty'
     ProductResultsFinished: 'productResultsFinished'
     ProductResultsQueryEdit: 'productResultsQueryEdit'
-  ProductFormType:
+  PurchaseFormType:
     New: 'new'
     Edit: 'edit'
-  ProductQueryType:
+  PurchaseQueryType:
     Text: 'text'
     URL: 'url'
   ViewAllType:
