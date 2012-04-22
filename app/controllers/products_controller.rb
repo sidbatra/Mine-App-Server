@@ -1,6 +1,6 @@
-class SearchController < ApplicationController
+class ProductsController < ApplicationController
 
-  # Fetch a set of search results
+  # Fetch a set of products based on the given query.
   #
   def index
     @products   = []
@@ -312,4 +312,5 @@ class SearchController < ApplicationController
   end
 
 end
+
 
