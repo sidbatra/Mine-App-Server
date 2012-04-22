@@ -47,7 +47,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.postingClass         = 'load';
     this.posting              = false;
 
-    this.productImagesView  = new Denwen.Partials.Products.ImageResults({
+    this.productImagesView  = new Denwen.Partials.Products.Search({
                                   el:this.el,
                                   mode:this.mode});
     this.productImagesView.bind('productSelected',this.productSelected,this);

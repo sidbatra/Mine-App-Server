@@ -1,6 +1,4 @@
-// Partial for displaying image results 
-// 
-Denwen.Partials.Products.ImageResults = Backbone.View.extend({
+Denwen.Partials.Products.Search = Backbone.View.extend({
 
   // Setup event handlers
   //
@@ -194,7 +192,7 @@ Denwen.Partials.Products.ImageResults = Backbone.View.extend({
   // collection. Here its added into the dom via its view
   //
   productResultAdded: function(productResult) {
-    var imageView =  new Denwen.Partials.Products.ImageResult({
+    var imageView =  new Denwen.Partials.Products.Product({
                           model:productResult,
                           imageTest:this.images.isURLQuery(),
                           el:$(this.imagesEl)});
