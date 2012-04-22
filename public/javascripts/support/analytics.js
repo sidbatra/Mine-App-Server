@@ -373,11 +373,11 @@ Denwen.Analytics = Backbone.Model.extend({
       });
   },
 
-  // Page view on product profile
+  // Page view on purchase profile
   //
-  productProfileView: function(source,id) {
+  purchaseProfileView: function(source,id) {
      mpq.track(
-      'Product Profile View',
+      'Purchase Profile View',
       {
         'source'  : source,
         'id'      : id
@@ -438,12 +438,12 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Onboarding Creation Template Opened");
   },
 
-  // User opens edit product page
+  // User opens edit purchase page
   //
-  productEditView: function(product_id,source) {
-    mpq.track("Product Editing View", 
+  purchaseEditView: function(purchase_id,source) {
+    mpq.track("Purchase Editing View", 
       {
-      'Product ID'  : product_id,
+      'Purchase ID'  : purchase_id,
       'User ID'     : Denwen.H.currentUserID(),
       'Source'      : source
       });

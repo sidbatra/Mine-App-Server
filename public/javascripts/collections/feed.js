@@ -8,7 +8,7 @@ Denwen.Collections.Feed = Backbone.Collection.extend({
 
   // Base model
   //
-  model: Denwen.Models.Product,
+  model: Denwen.Models.Purchase,
 
   // Constructor logic
   //

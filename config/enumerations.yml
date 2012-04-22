@@ -102,7 +102,7 @@
   PurchaseFormType:
     New: 'new'
     Edit: 'edit'
-  PurchaseQueryType:
+  ProductQueryType:
     Text: 'text'
     URL: 'url'
   ViewAllType:

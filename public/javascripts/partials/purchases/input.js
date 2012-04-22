@@ -1,6 +1,6 @@
 // Partial for creating or editing a product
 //
-Denwen.Partials.Products.Input = Backbone.View.extend({
+Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
   // Event listeners
   //
@@ -39,7 +39,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.photoSelectionEl     = 'product_selection_photo';
     this.isStoreUnknownEl     = '#product_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
-    this.sourceProductIDEl    = '#product_source_product_id';
+    this.sourcePurchaseIDEl    = '#product_source_product_id';
     this.urlAlertBoxEl        = '#url_alert_box';
     this.switchEl             = '#fb-photo-toggle-switch';
     this.submitButtonEl       = '#submit-button';
@@ -151,14 +151,14 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
 
   // Display product image 
   //
-  displayProductImage: function(imageURL) {
+  displayPurchaseImage: function(imageURL) {
     $(this.selectionEl).show();
     $(this.selectionEl).html("<img class='photo' id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
   },
 
   // Hide and clean the product image box.
   //
-  hideProductImage: function() {
+  hidePurchaseImage: function() {
     $(this.selectionEl).hide();
     $(this.selectionEl).html("");
   },
@@ -183,21 +183,21 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     this.isStoreUnknownChanged();
   },
 
-  // Fired when a product is selected from the ProductImagesView
+  // Fired when a product is selected from the PurchaseImagesView
   //
   productSelected: function(productResult,title,attemptStoreSearch) {
     var self = this;
 
     this.searchesCount = 0;
 
-    this.displayProductImage(productResult.get('large_url'));
+    this.displayPurchaseImage(productResult.get('large_url'));
 
     document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
 
     $(this.websiteEl).val(productResult.get('source_url'));
     $(this.imageEl).val(productResult.get('large_url'));
     $(this.thumbEl).val(productResult.get('medium_url'));
-    $(this.sourceProductIDEl).val(productResult.get('uniq_id'));
+    $(this.sourcePurchaseIDEl).val(productResult.get('uniq_id'));
 
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
@@ -235,13 +235,13 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     } //attempt store search
   },
 
-  // Fired when a product is searched from the ProductImagesView
+  // Fired when a product is searched from the PurchaseImagesView
   //
   productSearched: function(query,queryType) {
     this.searchesCount++;
     Denwen.Track.productSearched(query,queryType,this.mode);
 
-    if(queryType == Denwen.ProductQueryType.Text) {
+    if(queryType == Denwen.PurchaseQueryType.Text) {
       
       if(query.split(' ').length == 1 && !this.oneWordToolTipDone) {
         Denwen.Drawer.info(CONFIG['one_word_query_msg'],0);
@@ -341,7 +341,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     if(!this.posting)
       return false;
 
-    if(this.mode == Denwen.ProductFormType.Edit)
+    if(this.mode == Denwen.PurchaseFormType.Edit)
       return true;
 
     var self = this;
@@ -355,7 +355,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
         fields[this.id.slice(8)] = this.value;
     });
 
-    var product = new Denwen.Models.Product();
+    var product = new Denwen.Models.Purchase();
 
     fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
     fields['post_to_fb_album'] = this.switchState(); 
@@ -373,7 +373,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   // product - Backbone.Model. Freshly created product.
   //
   productCreated: function(product) {
-    this.hideProductImage();
+    this.hidePurchaseImage();
     $(this.submitButtonEl).removeClass(this.postingClass);
     this.hideExtraSteps();
     this.resetForm();
@@ -381,7 +381,7 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
     $(this.queryEl).focus();
 
     this.trigger(
-      Denwen.Partials.Products.Input.Callback.ProductCreated,
+      Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
       product);
   },
 
@@ -391,13 +391,13 @@ Denwen.Partials.Products.Input = Backbone.View.extend({
   productCreationFailed: function() {
     $(this.submitButtonEl).removeClass(this.postingClass);
     this.trigger(
-      Denwen.Partials.Products.Input.Callback.ProductCreationFailed);
+      Denwen.Partials.Purchases.Input.Callback.PurchaseCreationFailed);
   }
 });
 
 // Define callbacks.
 //
-Denwen.Partials.Products.Input.Callback = {
-  ProductCreated: "productCreated",
-  ProductCreationFailed: "productCreationFailed"
+Denwen.Partials.Purchases.Input.Callback = {
+  PurchaseCreated: "productCreated",
+  PurchaseCreationFailed: "productCreationFailed"
 };
