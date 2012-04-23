@@ -12,19 +12,11 @@ body {
   
 a:hover { text-decoration: none !important; }
 
-.container {
+.intro.container {
 	width: 660px;
 	margin: 0 auto;
 	padding-top: 72px;
 	padding-bottom: 80px; }
-
-/*
-.screen { 
-	display: table; 
-	text-align: center; 
-	vertical-align: middle; 
-	min-height: 604px; }
-*/
 	
 .title {
 	font-size: 22px;
