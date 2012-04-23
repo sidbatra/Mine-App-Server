@@ -3,11 +3,11 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #product_search"           : "search",
-    "click #product_repeat_search"    : "search",
-    "click #product_change_photo"     : "changePhotoClicked",
-    "keypress #purchase_query"         : "queryKeystroke",
-    "keypress #product_repeat_query"  : "queryKeystroke",
+    "click #purchase_search"           : "search",
+    "click #purchase_repeat_search"    : "search",
+    "click #purchase_change_photo"     : "changePhotoClicked",
+    "keypress #purchase_query"        : "queryKeystroke",
+    "keypress #purchase_repeat_query"  : "queryKeystroke",
     "click #cancel_button"            : "cancelButtonClicked"
   },
 
@@ -19,7 +19,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     this.loadClass      = "load";
     this.queryEl        = "#purchase_query";
-    this.repeatQueryEl  = "#product_repeat_query";
+    this.repeatQueryEl  = "#purchase_repeat_query";
     this.imagesBoxEl    = "#chooser";
     this.imagesEl       = "#results";
     this.shadowEl       = "#shadow";
@@ -160,6 +160,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
                                 medium_url: query,
                                 large_url: query,
                                 source_url: query,
+                                title : "",
                                 uniq_id : ""});
       this.productImageClicked(productResult);
       return;
@@ -183,7 +184,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
                       query   : query,
                       source  : this.mode == 'new' ? 0 : 1});
 
-    setTimeout(function(){search.save();},500);
+    setTimeout(function(){search.save();},750);
 
     this.trigger('productSearched',query,this.images.queryType);
   },
