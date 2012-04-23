@@ -60,8 +60,8 @@ class ProductsController < ApplicationController
 
     unless fragment_exist? key
 
-      hydra.queue search_medium_web_images(sane_query,page,per_page)
-      hydra.queue search_large_web_images(sane_query,page,per_page)
+      hydra.queue search_web_images(sane_query,:medium,page,per_page)
+      hydra.queue search_web_images(sane_query,:large,page,per_page)
       hydra.queue search_amazon_products(sane_query,page,per_page)
       hydra.run
 
@@ -162,6 +162,7 @@ class ProductsController < ApplicationController
   # Search the web for medium images matching a query and pagination.
   #
   # query - String. Keywords to find images by.
+  # size - Symbol. Size bucket of the results. :medium or :large
   # page - Integer. Page number of results to be fetched.
   # per_page - Integer. Total results per page.
   #
@@ -169,57 +170,18 @@ class ProductsController < ApplicationController
   #           added to the @results  instance variable after they're 
   #           asynchronously fetched.
   #
-  def search_medium_web_images(query,page,per_page)
-    medium_url = WebSearch.on_images(query,:medium,per_page,page*per_page,true)
-    request = Typhoeus::Request.new(medium_url)
+  def search_web_images(query,size,page,per_page)
+    url = WebSearch.on_images(query,size,per_page,page*per_page,true)
+    request = Typhoeus::Request.new(url)
 
     request.on_complete do |response| 
       begin
         web_search = JSON.parse(response.body)["SearchResponse"] 
         total = web_search["Image"]["Total"]
         offset = web_search["Image"]["Offset"]
+        key = "web_" + size.to_s
 
-        @results[:web_medium] = web_search["Image"]["Results"].map do |product|
-                                begin
-                                  product_search_hash(
-                                    product["Thumbnail"]["Url"],
-                                    product["MediaUrl"],
-                                    product["Url"],
-                                    "",
-                                    "")
-                                rescue => ex
-                                  LoggedException.add(__FILE__,__method__,ex)
-                                end
-                              end if total - offset > per_page
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-    end
-
-    request
-  end
-
-  # Search the web for large images matching a query and pagination.
-  #
-  # query - String. Keywords to find images by.
-  # page - Integer. Page number of results to be fetched.
-  # per_page - Integer. Total results per page.
-  #
-  # returns - Typhoeus::Request. Typhoeus request object. Plus results are 
-  #           added to the @results  instance variable after they're 
-  #           asynchronously fetched.
-  #
-  def search_large_web_images(query,page,per_page)
-    large_url = WebSearch.on_images(query,:large,per_page,page*per_page,true)
-    request = Typhoeus::Request.new(large_url)
-
-    request.on_complete do |response| 
-      begin
-        web_search = JSON.parse(response.body)["SearchResponse"] 
-        total = web_search["Image"]["Total"]
-        offset = web_search["Image"]["Offset"]
-
-        @results[:web_large] = web_search["Image"]["Results"].map do |product|
+        @results[key.to_sym] = web_search["Image"]["Results"].map do |product|
                                 begin
                                   product_search_hash(
                                     product["Thumbnail"]["Url"],
