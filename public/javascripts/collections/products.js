@@ -61,12 +61,12 @@ Denwen.Collections.Products = Backbone.Collection.extend({
 
     if(this.query != sane_query) {
       this.query = sane_query;
-      this.trigger(Denwen.Collections.Products.QueryFixed,sane_query);
+      this.trigger(Denwen.Collections.Products.Callback.QueryFixed,sane_query);
     }
 
     if(!data['products'].length || this.isURLQuery()) {
       this.finished = true;
-      this.trigger(Denwen.Collections.Products.Finished);
+      this.trigger(Denwen.Collections.Products.Callback.Finished);
     }
 
     this.title = data['title'];
