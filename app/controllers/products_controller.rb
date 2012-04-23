@@ -112,7 +112,8 @@ class ProductsController < ApplicationController
                              product.thumbnail_url,
                              product.image_url,
                              product.source_url,
-                             product.id.to_s)
+                             "",
+                             product.title)
                          end
   end
 
@@ -143,7 +144,8 @@ class ProductsController < ApplicationController
                                 medium_url,
                                 large_url,
                                 product.get('DetailPageURL'),
-                                product.get('ASIN'))
+                                product.get('ASIN'),
+                                product.get('ItemAttributes/Title'))
 
                             rescue => ex
                               LoggedException.add(__FILE__,__method__,ex)
@@ -183,6 +185,7 @@ class ProductsController < ApplicationController
                                     product["Thumbnail"]["Url"],
                                     product["MediaUrl"],
                                     product["Url"],
+                                    "",
                                     "")
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
@@ -222,6 +225,7 @@ class ProductsController < ApplicationController
                                     product["Thumbnail"]["Url"],
                                     product["MediaUrl"],
                                     product["Url"],
+                                    "",
                                     "")
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
@@ -271,7 +275,7 @@ class ProductsController < ApplicationController
     end
 
     products = images.map do |image|
-                product_search_hash(image,"","","")
+                product_search_hash(image,"","","","")
                end
   rescue => ex
     LoggedException.add(__FILE__,__method__,ex)
@@ -303,12 +307,13 @@ class ProductsController < ApplicationController
         medium_image_url,
         large_image_url,
         source_url,
-        unique_id)
-    {
-      :medium_url => medium_image_url,
+        unique_id,
+        title)
+    { :medium_url => medium_image_url,
       :large_url  => large_image_url,
       :source_url => source_url,
-      :uniq_id    => unique_id}
+      :uniq_id    => unique_id,
+      :title => title}
   end
 
 end
