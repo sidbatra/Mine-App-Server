@@ -59,10 +59,10 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Show({
-          currentUser: <%=self.current_user.to_json(
-                            :only => [:id,:first_name,:last_name,
-                                        :gender,:handle,:email],
-                            :methods => [:age])%>});
+    //new Denwen.Views.Welcome.Show({
+    //      currentUser: <%#self.current_user.to_json(
+    //                        :only => [:id,:first_name,:last_name,
+    //                                    :gender,:handle,:email],
+    //                        :methods => [:age])%>});
   </script>
 <%end%>

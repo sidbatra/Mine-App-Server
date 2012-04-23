@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  layout 'home'
   before_filter :login_required
 
   # Display the different steps during the onboarding.
