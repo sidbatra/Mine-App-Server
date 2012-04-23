@@ -28,10 +28,10 @@ Denwen.Collections.Products = Backbone.Collection.extend({
     this.title      = '';
     this.page       = 0;
     this.searching  = true;
+    this.finished   = false;
     this.queryType  = this.query.match(/http/) ? 
                         Denwen.ProductQueryType.URL : 
                         Denwen.ProductQueryType.Text;
-    this.finished   = this.isURLQuery();
 
     this.fetchProducts();
   },
@@ -63,7 +63,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
       this.query = sane_query;
       this.trigger(Denwen.Callback.ProductResultsQueryEdit,sane_query);
     }
-    else if(!data['products'].length) {
+    else if(!data['products'].length || this.isURLQuery()) {
       this.finished = true;
       this.trigger(Denwen.Callback.ProductResultsFinished);
     }
