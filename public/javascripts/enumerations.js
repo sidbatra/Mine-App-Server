@@ -5,7 +5,6 @@
 // 
 
 Denwen.Callback = {
-ProductResultsQueryEdit: "productResultsQueryEdit",
 FileUploadDone: "fileUploadDone",
 ProductsLoaded: "productsLoaded",
 ProductResultsLoaded: "productResultsLoaded",

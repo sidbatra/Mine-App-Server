@@ -40,8 +40,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       this.productResultsFinished,
       this);
     this.images.bind(
-      Denwen.Callback.ProductResultsQueryEdit,
-      this.productResultsQueryEdit,
+      Denwen.Collections.Products.QueryFixed,
+      this.productResultsQueryFixed,
       this);
     this.images.bind(
       'add',
@@ -232,7 +232,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
   // Callback when there is a correction to the user query
   //
-  productResultsQueryEdit: function(query) {
+  productResultsQueryFixed: function(query) {
     $(this.repeatQueryEl).val(query);
   },
 
