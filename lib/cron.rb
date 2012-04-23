@@ -27,7 +27,7 @@ module DW
       #
       def self.email_users_with_friend_activity(from)
         return
-        products  = Product.with_store.made(from)
+        products  = Purchase.with_store.made(from)
         
         owns_hash = {}
         products.each do |p|
