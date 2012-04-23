@@ -87,15 +87,11 @@
 :javascript: &javascript
   <<: *common
   Callback:
-    ProductsLoaded: 'productsLoaded'
-    ProductsRendered: 'productsRendered'
-    UsersListLoaded: 'usersListLoaded'
     StoresLoaded: 'storesLoaded'
     FileSelected: 'fileSelected'
     FileUploadError: 'fileUploadError'
     FileUploadDone: 'fileUploadDone'
     FileUploadProgress: 'fileUploadProgress'
-    ProductResultsEmpty: 'productResultsEmpty'
   PurchaseFormType:
     New: 'new'
     Edit: 'edit'

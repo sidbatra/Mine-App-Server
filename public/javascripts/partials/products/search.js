@@ -32,7 +32,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       this.productResultsLoaded,
       this);
     this.images.bind(
-      Denwen.Callback.ProductResultsEmpty,
+      Denwen.Collections.Products.Callback.Empty,
       this.productResultsEmpty,
       this);
     this.images.bind(
@@ -212,7 +212,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       setTimeout(function(){
         if(!$(self.imagesEl).find("img:visible").length && 
             self.isSearchActive())
-          Denwen.Drawer.error("Oops, no large photos found.");
+          Denwen.Drawer.error("Oops, no products found. Try a different URL.");
         },1500);
     }
   },
@@ -221,7 +221,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   productResultsEmpty: function() {
     //this.stopSearch();
-    Denwen.Drawer.error("Oops, no photos for this item. Try a different search.");
+    Denwen.Drawer.error("Oops, no products found. Try a different search.");
   },
 
   // Callback when no more product search results are left

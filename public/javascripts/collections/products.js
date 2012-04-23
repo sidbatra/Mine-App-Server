@@ -114,7 +114,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
 
     if(this.isEmpty()) {
       this.finished = true;
-      this.trigger(Denwen.Callback.ProductResultsEmpty);
+      this.trigger(Denwen.Collections.Products.Callback.Empty);
     }
   },
 
@@ -142,6 +142,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
 //
 Denwen.Collections.Products.Callback = {
   Loaded : 'loaded',
+  Empty : 'empty',
   Fininished : 'finished',
   QueryFixed : 'queryFixed'
 }
