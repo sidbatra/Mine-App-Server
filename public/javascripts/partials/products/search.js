@@ -36,7 +36,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       this.productResultsEmpty,
       this);
     this.images.bind(
-      Denwen.Callback.ProductResultsFinished,
+      Denwen.Collections.Products.Finished,
       this.productResultsFinished,
       this);
     this.images.bind(

@@ -97,7 +97,6 @@
     FileUploadProgress: 'fileUploadProgress'
     ProductResultsLoaded: 'productResultsLoaded'
     ProductResultsEmpty: 'productResultsEmpty'
-    ProductResultsFinished: 'productResultsFinished'
     ProductResultsQueryEdit: 'productResultsQueryEdit'
   PurchaseFormType:
     New: 'new'

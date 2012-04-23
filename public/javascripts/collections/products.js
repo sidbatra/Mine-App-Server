@@ -63,9 +63,10 @@ Denwen.Collections.Products = Backbone.Collection.extend({
       this.query = sane_query;
       this.trigger(Denwen.Callback.ProductResultsQueryEdit,sane_query);
     }
-    else if(!data['products'].length || this.isURLQuery()) {
+
+    if(!data['products'].length || this.isURLQuery()) {
       this.finished = true;
-      this.trigger(Denwen.Callback.ProductResultsFinished);
+      this.trigger(Denwen.Collections.Products.Finished);
     }
 
     this.title = data['title'];
@@ -98,8 +99,8 @@ Denwen.Collections.Products = Backbone.Collection.extend({
     var self = this;
 
     this.fetch({
-      add : true,
-      data : {page: this.page,q: this.query},
+      add: true,
+      data: {page: this.page,q: this.query},
       success: function() {self.productsLoaded();},
       error: function(r,s,e){}});
   },
@@ -136,3 +137,9 @@ Denwen.Collections.Products = Backbone.Collection.extend({
   }
 
 });
+
+// Define callbacks.
+//
+Denwen.Collections.Products.Callback = {
+  Fininished : 'finished'
+}
