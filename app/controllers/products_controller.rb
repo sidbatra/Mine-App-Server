@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     unless fragment_exist? @key
 
       if @sane_query.match(/http/)
-        @title,@description,@products = product_url_search(@sane_query)
+        @title,@products = product_url_search(@sane_query)
       else
         @key,@sane_query,@products = product_text_search(
                                       @sane_query,
@@ -246,7 +246,6 @@ class ProductsController < ApplicationController
   def product_url_search(query)
     products = []
     title = ""
-    description = ""
 
     agent = Mechanize.new
     agent.user_agent_alias = 'Mac Safari'
@@ -267,12 +266,6 @@ class ProductsController < ApplicationController
                end
 
       title = agent.page.title
-
-      tags = agent.page.search("meta[@name='description']/@content")
-
-      if tags.present? && tags.first
-        description = tags.first.value if tags.first.value
-      end
     else
       images = [query]
     end
@@ -283,7 +276,7 @@ class ProductsController < ApplicationController
   rescue => ex
     LoggedException.add(__FILE__,__method__,ex)
   ensure
-    return [title,description,products]
+    return [title,products]
   end
 
   # Generates a cache key for the results of a query at a page.
