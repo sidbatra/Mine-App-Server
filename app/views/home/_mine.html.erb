@@ -25,9 +25,14 @@
 			<div class="m">M</div>
 		</div>
 		
-		<%=link_to 	'<div class="log_in">Log in with</div><img src="/images/home_mine/fb.png" />', 
-							fb_auth_path(:src => @origin), 
-							:class => 'square fb'%>
+			<%=link_to 	'<div class="hide-when-loading">
+									   <div class="log_in">
+									     Log in with
+									   </div>
+									   <img src="/images/home_mine/fb.png" />
+									 </div>', 
+						fb_auth_path(:src => @origin), 
+						:class => 'square fb'%>
 							
 	</div> <!-- /squares -->
 	

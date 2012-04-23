@@ -100,11 +100,16 @@ a.square.fb {
 	-o-transition:background 0.25s ease-in;  
 	transition:background 0.25s ease-in; }
 
-
 a.square.fb:hover{
 	background: #1f4696; }
 
 a.square.fb:active { border-top: 1px solid #4f628a; }
+
+a.square.fb.load { 
+	cursor: default;
+	background: #1f4696 url('/images/loading_blocks_small_blue_trans.gif') no-repeat center; }
+	
+.load .hide-when-loading { display: none; }
 
 a.square.fb .log_in {
 	padding: 68px 0 6px;

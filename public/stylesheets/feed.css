@@ -797,14 +797,14 @@ footer p { text-align: center; }
 	display: none;
 	width: 32px;
 	height: 32px;
-	background: url('/images/loading_spinner_large_trans.gif') center center no-repeat; }
+	background: url('/images/loading_spinner_large_trans.gif') center no-repeat; }
 
 .loading.small.inline,
 .loading.small.inline.dark {
 	display: none;
 	width: 16px;
 	height: 16px;
-  background: url('/images/loading_blocks_small_light_trans.gif') center center no-repeat; }
+  background: url('/images/loading_blocks_small_light_trans.gif') center no-repeat; }
   
 .loading.large.body{
   background-image: url('/images/loading_spinner_large_body.gif'); }
@@ -818,8 +818,8 @@ footer p { text-align: center; }
 .load .loading.inline { /* turns inline loads on/off */
 	display: inline-block; }
 
-.load .hide-when-loading {
-	display: none; }
+.load .hide-when-loading { display: none; }
+.load .show-when-loading { display: inline-block; }
 	
 /* ---------- strike-thru text divider */
 
