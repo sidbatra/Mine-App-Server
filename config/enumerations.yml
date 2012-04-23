@@ -95,7 +95,6 @@
     FileUploadError: 'fileUploadError'
     FileUploadDone: 'fileUploadDone'
     FileUploadProgress: 'fileUploadProgress'
-    ProductResultsLoaded: 'productResultsLoaded'
     ProductResultsEmpty: 'productResultsEmpty'
   PurchaseFormType:
     New: 'new'

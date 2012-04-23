@@ -110,7 +110,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
   productsLoaded: function() {
     this.searching = false;
 
-    this.trigger(Denwen.Callback.ProductResultsLoaded);
+    this.trigger(Denwen.Collections.Products.Callback.Loaded);
 
     if(this.isEmpty()) {
       this.finished = true;
@@ -141,6 +141,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
 // Define callbacks.
 //
 Denwen.Collections.Products.Callback = {
+  Loaded : 'loaded',
   Fininished : 'finished',
   QueryFixed : 'queryFixed'
 }
