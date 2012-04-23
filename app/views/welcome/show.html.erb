@@ -1,60 +1,47 @@
-<%=render :partial  => "headers/onboarding"%>
-
-<div class="container">
-	<div style="width: 640px; margin: 0 150px;">
-		<div class="well">
-			<fieldset>
-				<legend>
-					Welcome to OnCloset, <%=self.current_user.first_name%>!
-					
-					<%=link_to 'Share <i class="icon-chevron-right icon-white"></i>',
-						        welcome_path(WelcomeFilter::Share),
-						        :class => 'btn btn-large btn-primary',
-						        :style => 'float: right;'%>
-				</legend>
-			
-				<div id="example" class="control-group" style="position: relative;">
+<div class="steps">
+	<div class="container">
+	
+		<div class="title">
+			Welcome to Mine, <span class="name">Pierre</span>. <br />
+			You'll be sharing in seconds.
+		</div>
+	
+		<div class="squares clearfix">
 		
-			    <%=image_tag 'intro.jpg', 
-			        :style => 'margin-bottom: 4px;'%>
-			    
-			    <div id="style" 
-	              title="What's your style?",
-	       data-content="Geek? Shopaholic? Foodie? Set your style whichever way suits you best.",
-	              class="q-point" 
-	              style="position: absolute; top: 10px; left: 15px; 
-	                      width: 260px; height: 90px; 
-	                      background-position: center 55px;"></div>
-			    
-			    <div id="influencers" 
-	              title="Who influences you?",
-	       data-content="Add friends with good taste, and get notified when they buy something new.",
-	              class="q-point" 
-	              style="position: absolute; top: 10px; left: 286px; 
-	                      width: 154px; height: 75px; 
-	                      background-position: center 40px;"></div>
-			    
-			    <div id="stores" 
-	              title="Where do you shop?",
-	       data-content="Add stores, then discover new items through others that also shop there.",
-	              class="q-point" 
-	              style="position: absolute; top: 10px; left: 438px; 
-	                      width: 154px; height: 75px; 
-	                      background-position: center 40px;"></div>
-			    
-			    <div id="items" 
-	              title="What are you favorite buys?",
-	       data-content="From shoes to jewelry to electronics,<br />fill your OnCloset however you like.",
-	              class="q-point"
-	              style="position: absolute; top: 121px; left: 0; 
-	                      width: 600px; height: 140px;
-	                      background-position: center 105px;"></div>
-					        
-				 </div> <!-- /control-group -->
-			</fieldset>
-		</div> <!-- /well -->
-	</div> <!-- /640px -->
-</div> <!-- /container -->
+			<div class="square text">
+				Mine is your personal catalog of all your stuff.
+			</div>
+			<div class="rectangle">
+				<%=image_tag 'home_mine/steps/step1.jpg'%>
+			</div>
+			
+			<div class="rectangle">
+				<%=image_tag 'home_mine/steps/step2.jpg'%>
+			</div>
+			<div class="square text">
+				It syncs neatly with your Facebook Timeline.
+			</div>
+			
+			<div class="square text last">
+				You can post beautiful items as large photos.
+			</div>
+			<div class="rectangle last">
+				<%=image_tag 'home_mine/steps/step3.jpg'%>
+			</div>	
+					
+		</div> <!-- /squares -->
+	</div>	
+</div> <!-- /steps -->
+
+
+
+<div class="bottom-bar">
+	<div class="container">
+
+			<a class="btn btn-large go">Got it. Show me Mine &#9658;</a>
+	
+	</div>
+</div> <!-- /bottom-bar -->
 
 
 <%content_for :javascript do%>
