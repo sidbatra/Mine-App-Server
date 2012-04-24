@@ -29,23 +29,23 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     this.products = new Denwen.Collections.Products();
     this.products.bind(
       Denwen.Collections.Products.Callback.Loaded,
-      this.productResultsLoaded,
+      this.productsLoaded,
       this);
     this.products.bind(
       Denwen.Collections.Products.Callback.Empty,
-      this.productResultsEmpty,
+      this.productsNotFound,
       this);
     this.products.bind(
       Denwen.Collections.Products.Callback.Finished,
-      this.productResultsFinished,
+      this.productsFinished,
       this);
     this.products.bind(
       Denwen.Collections.Products.Callback.QueryFixed,
-      this.productResultsQueryFixed,
+      this.productQueryFixed,
       this);
     this.products.bind(
       'add',
-      this.productResultAdded,
+      this.productAdded,
       this);
     
     this.infiniteScroller = new Denwen.InfiniteScroller({
@@ -192,7 +192,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   // Fired when a product result is added to the result
   // collection. Here its added into the dom via its view
   //
-  productResultAdded: function(productResult) {
+  productAdded: function(productResult) {
     var imageView =  new Denwen.Partials.Products.Product({
                           model:productResult,
                           imageTest:this.products.isURLQuery(),
@@ -202,7 +202,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
   // Callback whenever product search results are loaded
   //
-  productResultsLoaded: function() {
+  productsLoaded: function() {
     this.stopSpinner();
     $(this.shadowEl).css("height", $(document).height());
 
@@ -220,30 +220,30 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
   // Callback when no product search results are found
   //
-  productResultsEmpty: function() {
+  productsNotFound: function() {
     //this.stopSearch();
     Denwen.Drawer.error("Oops, no products found. Try a different search.");
   },
 
   // Callback when no more product search results are left
   //
-  productResultsFinished: function() {
+  productsFinished: function() {
     $(this.moreEl).hide();
   },
 
   // Callback when there is a correction to the user query
   //
-  productResultsQueryFixed: function(query) {
+  productQueryFixed: function(query) {
     $(this.repeatQueryEl).val(query);
   },
 
   // Fired when the user selects a product image on a
   // ProductImageView
   //
-  productImageClicked: function(productResult) {
+  productImageClicked: function(product) {
     this.trigger(
       'productSelected',
-      productResult,
+      product,
       this.products.currentSearchTitle(),
       this.products.isURLQuery());
     this.stopSearch();
