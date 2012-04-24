@@ -148,18 +148,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.switchEl).toggleClass(this.switchOffClass);
   },
 
-  // Fired when fb permissions are accepted 
-  //
-  fbPermissionsAccepted: function() {
-  },
-
-  // Fired when fb permissions are rejected
-  //
-  fbPermissionsRejected: function() {
-    $(this.switchEl).toggleClass(this.switchOffClass);
-    Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
-  },
-
   // Display purchase image 
   //
   displayPurchaseImage: function(imageURL) {
@@ -192,103 +180,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.formEl)[0].reset();
     this.posting = false;
     this.isStoreUnknownChanged();
-  },
-
-  // Fired when a product is selected from the PurchaseImagesView
-  //
-  productSelected: function(productResult,title,attemptStoreSearch) {
-    var self = this;
-
-    this.searchesCount = 0;
-
-    this.displayPurchaseImage(productResult.get('large_url'));
-
-    document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
-
-    $(this.websiteEl).val(productResult.get('source_url'));
-    $(this.imageEl).val(productResult.get('large_url'));
-    $(this.thumbEl).val(productResult.get('medium_url'));
-    $(this.sourcePurchaseIDEl).val(productResult.get('uniq_id'));
-
-    $(this.queryBoxEl).hide();
-    $(this.onboardingEl).hide();
-    $(this.onboardingMsgEl).hide();
-    $(this.imageBrokenMsgEl).removeClass('error');
-
-    $(this.extraEl).show();
-
-    var properTitle = title.replace(/^\s+|\s+$/g, '').toProperCase();
-
-    if(properTitle.length)
-      $(this.titleEl).val(properTitle);
-
-    if($.support.placeholder)
-      title.length ? $(this.storeEl).focus() : $(this.titleEl).focus();
-    else if(title.length)
-      $(this.titleEl).focus();
-
-    $(this.urlAlertBoxEl).hide();
-
-    Denwen.Track.productSearchCompleted(this.mode);
-
-    // Test if the website url matches a known store to populate
-    // the store field
-    //
-    if(attemptStoreSearch) {
-      var sourceURL = productResult.get('source_url').toLowerCase();
-
-      if(this.stores) {
-        this.stores.each(function(store){
-          if(store.get('domain') && sourceURL.search(store.get('domain')) != -1) 
-            $(self.storeEl).val(store.get('name'));
-        });
-      }
-    } //attempt store search
-  },
-
-  // Fired when a product is searched from the ProductsImageView
-  //
-  productSearched: function(query,queryType) {
-    this.searchesCount++;
-    Denwen.Track.productSearched(query,queryType,this.mode);
-
-    if(queryType == Denwen.ProductQueryType.Text) {
-      
-      if(query.split(' ').length == 1 && !this.oneWordToolTipDone) {
-        Denwen.Drawer.info(CONFIG['one_word_query_msg'],0);
-        this.oneWordToolTipDone = true;
-      }
-      else if(this.searchesCount == CONFIG['multi_query_threshold'] && 
-                !this.urlToolTipDone) {
-        Denwen.Drawer.info(CONFIG['multi_query_msg'],0);
-        this.urlToolTipDone = true;
-      }
-    }
-  },
-
-  // Fired when a product search is cancelled
-  //
-  productSearchCancelled: function(source) {
-    this.searchesCount = 0;
-    Denwen.Track.productSearchCancelled(source);
-  },
-
-  // Fired when a product image is broken
-  //
-  productImageBroken: function() {
-    $(this.selectionEl).hide();
-    $(this.selectionEl).html('');
-    $(this.imageEl).val('');
-    $(this.thumbEl).val('');
-
-    $(this.queryEl).focus();
-    $(this.queryBoxEl).show();
-    $(this.extraEl).hide();
-    $(this.imageBrokenMsgEl).addClass('error');
-
-    this.productSearch.search();
-
-    Denwen.Track.productImageBroken(this.mode);
   },
 
   // Validate the fields of the form.
@@ -378,6 +269,28 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     return false;
   },
 
+
+  //
+  // Callbacks from fb permissions interface.
+  //
+
+  // Fired when fb permissions are accepted 
+  //
+  fbPermissionsAccepted: function() {
+  },
+
+  // Fired when fb permissions are rejected
+  //
+  fbPermissionsRejected: function() {
+    $(this.switchEl).toggleClass(this.switchOffClass);
+    Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
+  },
+
+
+  //
+  // Callbacks from purchase creation.
+  //
+
   // Callback after a purchase is successfully created.
   // Wipe the form clean and trigger events for subscribers.
   //
@@ -403,12 +316,115 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.submitButtonEl).removeClass(this.postingClass);
     this.trigger(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreationFailed);
+  },
+
+
+  //
+  // Callbacks from product search.
+  //
+
+  // Fired when a product is selected 
+  //
+  productSelected: function(product,title,attemptStoreSearch) {
+    var self = this;
+
+    this.searchesCount = 0;
+
+    this.displayPurchaseImage(product.get('large_url'));
+
+    document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
+
+    $(this.websiteEl).val(product.get('source_url'));
+    $(this.imageEl).val(product.get('large_url'));
+    $(this.thumbEl).val(product.get('medium_url'));
+    $(this.sourcePurchaseIDEl).val(product.get('uniq_id'));
+
+    $(this.queryBoxEl).hide();
+    $(this.onboardingEl).hide();
+    $(this.onboardingMsgEl).hide();
+    $(this.imageBrokenMsgEl).removeClass('error');
+
+    $(this.extraEl).show();
+
+    var properTitle = title.replace(/^\s+|\s+$/g, '').toProperCase();
+
+    if(properTitle.length)
+      $(this.titleEl).val(properTitle);
+
+    if($.support.placeholder)
+      title.length ? $(this.storeEl).focus() : $(this.titleEl).focus();
+    else if(title.length)
+      $(this.titleEl).focus();
+
+    $(this.urlAlertBoxEl).hide();
+
+    Denwen.Track.productSearchCompleted(this.mode);
+
+    // Test if the website url matches a known store to populate
+    // the store field
+    //
+    if(attemptStoreSearch) {
+      var sourceURL = product.get('source_url').toLowerCase();
+
+      if(this.stores) {
+        this.stores.each(function(store){
+          if(store.get('domain') && sourceURL.search(store.get('domain')) != -1) 
+            $(self.storeEl).val(store.get('name'));
+        });
+      }
+    } //attempt store search
+  },
+
+  // Fired when a product image is broken
+  //
+  productImageBroken: function() {
+    $(this.selectionEl).hide();
+    $(this.selectionEl).html('');
+    $(this.imageEl).val('');
+    $(this.thumbEl).val('');
+
+    $(this.queryEl).focus();
+    $(this.queryBoxEl).show();
+    $(this.extraEl).hide();
+    $(this.imageBrokenMsgEl).addClass('error');
+
+    this.productSearch.search();
+
+    Denwen.Track.productImageBroken(this.mode);
+  },
+
+  // Fired when a product is searched from the ProductsImageView
+  //
+  productSearched: function(query,queryType) {
+    this.searchesCount++;
+    Denwen.Track.productSearched(query,queryType,this.mode);
+
+    if(queryType == Denwen.ProductQueryType.Text) {
+      
+      if(query.split(' ').length == 1 && !this.oneWordToolTipDone) {
+        Denwen.Drawer.info(CONFIG['one_word_query_msg'],0);
+        this.oneWordToolTipDone = true;
+      }
+      else if(this.searchesCount == CONFIG['multi_query_threshold'] && 
+                !this.urlToolTipDone) {
+        Denwen.Drawer.info(CONFIG['multi_query_msg'],0);
+        this.urlToolTipDone = true;
+      }
+    }
+  },
+
+  // Fired when a product search is cancelled
+  //
+  productSearchCancelled: function(source) {
+    this.searchesCount = 0;
+    Denwen.Track.productSearchCancelled(source);
   }
+
 });
 
 // Define callbacks.
 //
 Denwen.Partials.Purchases.Input.Callback = {
-  PurchaseCreated: "productCreated",
-  PurchaseCreationFailed: "productCreationFailed"
+  PurchaseCreated: "purchaseCreated",
+  PurchaseCreationFailed: "purchaseCreationFailed"
 };
