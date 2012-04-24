@@ -9,12 +9,12 @@ class PurchasesController < ApplicationController
   # inside the params hash.
   #
   # The other way is to create a purchase from an existing one with
-  # a different store name. This requires passing a :source_product_id 
+  # a different store name. This requires passing a :source_purchase_id 
   # param with the id of the original purchase and an optional store_name.
   #
   def create
 
-    if params[:purchase][:source_product_id] && params[:purchase][:clone]
+    if params[:purchase][:source_purchase_id] && params[:purchase][:clone]
       populate_params_from_purchase
     end
 
@@ -150,7 +150,7 @@ class PurchasesController < ApplicationController
   # Populate params from the given purchase's source id
   #
   def populate_params_from_purchase
-    purchase = Purchase.find(params[:purchase][:source_product_id])
+    purchase = Purchase.find(params[:purchase][:source_purchase_id])
 
     params[:purchase][:title]          = purchase.title
     params[:purchase][:source_url]     = purchase.source_url

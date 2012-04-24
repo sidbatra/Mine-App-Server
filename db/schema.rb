@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422192752) do
+ActiveRecord::Schema.define(:version => 20120424040601) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(:version => 20120422192752) do
     t.string   "orig_thumb_url"
     t.integer  "store_id"
     t.string   "image_path"
-    t.boolean  "is_processed",      :default => false
-    t.string   "source_product_id"
+    t.boolean  "is_processed",       :default => false
+    t.string   "source_purchase_id"
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
     t.string   "fb_photo_id"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20120422192752) do
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
   add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
   add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
-  add_index "purchases", ["source_product_id"], :name => "index_purchases_on_source_product_id"
+  add_index "purchases", ["source_purchase_id"], :name => "index_purchases_on_source_purchase_id"
   add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
   add_index "purchases", ["suggestion_id"], :name => "index_purchases_on_suggestion_id"
   add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"

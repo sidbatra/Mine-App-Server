@@ -39,7 +39,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.photoSelectionEl     = 'purchase_selection_photo';
     this.isStoreUnknownEl     = '#purchase_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
-    this.sourcePurchaseIDEl    = '#purchase_source_product_id';
     this.urlAlertBoxEl        = '#url_alert_box';
     this.switchEl             = '#fb-photo-toggle-switch';
     this.submitButtonEl       = '#submit-button';
@@ -342,7 +341,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.websiteEl).val(product.get('source_url'));
     $(this.imageEl).val(product.get('large_url'));
     $(this.thumbEl).val(product.get('medium_url'));
-    $(this.sourcePurchaseIDEl).val(product.get('uniq_id'));
 
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
