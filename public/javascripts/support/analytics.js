@@ -202,8 +202,8 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // User cancels product search
   //
-  productSearchCancelled: function(source,mode) {
-    mpq.track("Product Cancelled",{'Source':source,'Mode':mode});
+  productSearchCancelled: function(source) {
+    mpq.track("Product Cancelled",{'Source':source});
   },
 
   // User selects a product

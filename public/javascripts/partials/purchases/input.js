@@ -47,13 +47,24 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.postingClass         = 'load';
     this.posting              = false;
 
-    this.productImagesView  = new Denwen.Partials.Products.Search({
+    this.productSearch  = new Denwen.Partials.Products.Search({
                                   el:this.el,
                                   mode:this.mode});
-    this.productImagesView.bind('productSelected',this.productSelected,this);
-    this.productImagesView.bind('productSearched',this.productSearched,this);
-    this.productImagesView.bind('productSearchCancelled',
-                                this.productSearchCancelled,this);
+
+    this.productSearch.bind(
+      Denwen.Partials.Products.Search.Callback.ProductSelected,
+      this.productSelected,
+      this);
+
+    this.productSearch.bind(
+      Denwen.Partials.Products.Search.Callback.ProductSearched,
+      this.productSearched,
+      this);
+
+    this.productSearch.bind(
+      Denwen.Partials.Products.Search.Callback.Cancelled,
+      this.productSearchCancelled,
+      this);
 
     this.fbPermissionsRequired = 'fb_extended_permissions';
 
@@ -259,7 +270,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   productSearchCancelled: function(source) {
     this.searchesCount = 0;
-    Denwen.Track.productSearchCancelled(source,this.mode);
+    Denwen.Track.productSearchCancelled(source);
   },
 
   // Fired when a product image is broken
@@ -275,7 +286,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.extraEl).hide();
     $(this.imageBrokenMsgEl).addClass('error');
 
-    this.productImagesView.search();
+    this.productSearch.search();
 
     Denwen.Track.productImageBroken(this.mode);
   },

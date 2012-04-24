@@ -98,7 +98,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   globalKeystroke: function(e) {
     if(e.which == 27 && this.isSearchActive()) {
       this.stopSearch();
-      this.trigger('productSearchCancelled','escape');
+      this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled);
     }
   },
 
@@ -106,7 +106,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   cancelButtonClicked: function() {
     this.stopSearch();
-    this.trigger('productSearchCancelled','cross');
+    this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled);
   },
 
   // Hide the search UI
@@ -186,7 +186,10 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     setTimeout(function(){search.save();},750);
 
-    this.trigger('productSearched',query,this.products.queryType);
+    this.trigger(
+      Denwen.Partials.Products.Search.Callback.ProductSearched,
+      query,
+      this.products.queryType);
   },
 
 
@@ -245,15 +248,20 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     $(this.repeatQueryEl).val(query);
   },
 
-  // Fired when the user selects a product image on a
-  // ProductImageView
+
+  //
+  // Callbacks from product model objects.
+  //
+
+  // Fired when the user selects a product image 
   //
   productImageClicked: function(product) {
     this.trigger(
-      'productSelected',
+      Denwen.Partials.Products.Search.Callback.ProductSelected,
       product,
       this.products.currentSearchTitle(),
       this.products.isURLQuery());
+
     this.stopSearch();
   },
 
@@ -284,3 +292,10 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
 });
 
+// Define callbacks.
+//
+Denwen.Partials.Products.Search.Callback = {
+  ProductSelected : 'productSelected',
+  ProductSearched : 'productSearched',
+  Cancelled : 'cancelled'
+}
