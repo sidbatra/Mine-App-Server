@@ -8,21 +8,25 @@
 		<div class="square m">
 			M
 		</div>
-		<div class="square item">
+		<div class="square item" id="square_item_1">
 			<%=image_tag 'home_mine/items/macbook.jpg'%>
-			<div class="m">M</div>
+			<%=image_tag 'home_mine/items/belt.jpg', :hidden => true%>
+			<%=image_tag 'home_mine/items/tattoo.jpg', :hidden => true%>
 		</div>
-		<div class="square item">
+		<div class="square item" id="square_item_2">
 			<%=image_tag 'home_mine/items/belt.jpg'%>
-			<div class="m">M</div>
+			<%=image_tag 'home_mine/items/macbook.jpg', :hidden => true%>
+			<%=image_tag 'home_mine/items/tattoo.jpg', :hidden => true%>
 		</div>
-		<div class="square item">
+		<div class="square item" id="square_item_3">
 			<%=image_tag 'home_mine/items/plaid.jpg'%>
-			<div class="m">M</div>
+			<%=image_tag 'home_mine/items/macbook.jpg', :hidden => true%>
+			<%=image_tag 'home_mine/items/belt.jpg', :hidden => true%>
 		</div>
-		<div class="square item">
+		<div class="square item" id="square_item_4">
 			<%=image_tag 'home_mine/items/tattoo.jpg'%>
-			<div class="m">M</div>
+			<%=image_tag 'home_mine/items/plaid.jpg', :hidden => true%>
+			<%=image_tag 'home_mine/items/belt.jpg', :hidden => true%>
 		</div>
 		
 			<%=link_to 	'<div class="hide-when-loading">

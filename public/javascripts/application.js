@@ -3,7 +3,7 @@
 var Denwen = {
   Models      : {},
   Views       : { Users : {}, Purchases : {}, 
-                  Invites : {}, Welcome : {}, 
+                  Invites : {}, Welcome : {},
                   Admin : {Suggestions : {},Stores : {}}, 
                   Settings : {}, Feed : {}},
   Partials    : { Users : {}, Products : {}, Purchases : {}, 

@@ -21,11 +21,36 @@
 
   <script type="text/javascript">
   
-/*
-     $(document).ready(function() {
-           $("div.screen").height($(window).height());
-     });
-*/
+    function index() {
+      var index = Math.floor(Math.random()*indexes.length);
+      var value = indexes[index];
+
+      indexes.push(previousValue);
+      previousValue = value;
+      indexes.splice(indexes.indexOf(value),1);
+
+      return value;
+    }
+
+    function animate(index) {
+      var self = this;
+      $('#square_item_' + index).cycle({ 
+                                  fx        : 'fade',
+                                  speed     : 800,
+                                  timeout   : 2500,
+                                  pause     : 1,
+                                  autostop  : 1,
+                                  end       : function() {
+                                                self.animate(self.index());
+                                              }
+                                  });
+    }
+
+    $(document).ready(function() {
+      indexes       = [2,3,4];
+      previousValue = 1;
+      animate(1);
+    });
   
      mpq.register_once({'landed_on' : '<%=@origin%>'});
      mpq.register_once({'Campaign' : '<%=@campaign%>'});
