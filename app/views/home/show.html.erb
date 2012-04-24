@@ -46,7 +46,15 @@
                                   });
     }
 
+    function preLoad() {
+      var img = new Image();
+      img.src = "<%=image_path(
+                      'loading_blocks_small_blue_trans.gif')[/[^?]+/]%>";
+    }
+
     $(document).ready(function() {
+      preLoad();
+
       indexes       = [2,3,4];
       previousValue = 1;
       animate(1);
