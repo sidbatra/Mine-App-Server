@@ -24,6 +24,9 @@ module DW
                                       :host => CONFIG[:host]))
 
         purchase.update_attributes({:fb_action_id => action.identifier})
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Update an open graph object - purchase
@@ -33,8 +36,8 @@ module DW
         http = Net::HTTP.new('graph.facebook.com')
         http.request_post('/',"id=#{url}&scrape=true")
 
-        rescue => ex
-          LoggedException.add(__FILE__,__method__,ex)
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Delete a published story. 
@@ -42,6 +45,9 @@ module DW
       def self.delete_story(og_action_id,access_token)
         action = FbGraph::OpenGraph::Action.new(og_action_id) 
         action.destroy(:access_token => access_token)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Post an invite on a friends facebook wall 
@@ -63,6 +69,9 @@ module DW
           :name         => "#{friend.first_name}'s #{CONFIG[:name]}",
           :description  => "#{CONFIG[:description]}",
           :caption      => "#{CONFIG[:host]}")
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Publish added purchases to facebook album
@@ -74,6 +83,9 @@ module DW
                   :message  => purchase.title)  
 
         purchase.update_attributes({:fb_photo_id => photo.identifier})
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
 
       # Subscribe to real time updates for facebook permissions
@@ -98,8 +110,8 @@ module DW
               "/#{CONFIG[:fb_app_id]}/subscriptions",
               params.map{|k,v| "#{k}=#{v}"}.join('&'))
 
-        rescue => ex
-          LoggedException.add(__FILE__,__method__,ex)
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
       end
     
     end #distribution manager
