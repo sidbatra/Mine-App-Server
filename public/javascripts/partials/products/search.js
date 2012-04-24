@@ -189,6 +189,11 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     this.trigger('productSearched',query,this.products.queryType);
   },
 
+
+  //
+  // Callbacks from products collection.
+  //
+
   // Fired when a product result is added to the result
   // collection. Here its added into the dom via its view
   //
@@ -197,7 +202,10 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
                           model:productResult,
                           imageTest:this.products.isURLQuery(),
                           el:$(this.productsEl)});
-    imageView.bind('productImageClicked',this.productImageClicked,this);
+    imageView.bind(
+      Denwen.Partials.Products.Product.Callback.Clicked,
+      this.productImageClicked,
+      this);
   },
 
   // Callback whenever product search results are loaded
@@ -248,6 +256,11 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       this.products.isURLQuery());
     this.stopSearch();
   },
+
+
+  //
+  // Callbacks from infinite scroller.
+  //
 
   // Infinite scroll callback fired when user has 
   // scrolled to the end of the element.

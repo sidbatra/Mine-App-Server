@@ -32,7 +32,7 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   // Fired when the image is clicked
   //
   clicked: function() {
-    this.trigger('productImageClicked',this.model);
+    this.trigger(Denwen.Partials.Products.Product.Callback.Clicked,this.model);
   },
 
   // Fired when the image is loaded
@@ -48,3 +48,8 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   }
 });
 
+// Define callbacks.
+//
+Denwen.Partials.Products.Product.Callback = {
+  Clicked : 'clicked'
+}
