@@ -29,17 +29,13 @@
 			<%=image_tag 'home_mine/items/belt.jpg', :hidden => true%>
 		</div>
 		
-			<%=link_to 	'<div class="hide-when-loading">
-									   <div class="log_in">
-									     Log in with
-									   </div>
-									   <img src="/images/home_mine/fb.png" />
-									 </div>', 
-						fb_auth_path(:src => @origin), 
-						:class    => 'square fb',
-            :id       => 'fb_login_button',
-            :onclick  => 
-              "document.getElementById('fb_login_button').className += ' load'"%>
+			<%=link_to "<div class='hide-when-loading'>" +
+          "<div class='log_in'>Log in with</div>" +
+          image_tag('home_mine/fb.png') +
+          "</div>",
+          fb_auth_path(:src => @origin), 
+          :class    => 'square fb',
+          :onclick  => "this.className += ' load'"%>
 							
 	</div> <!-- /squares -->
 	
@@ -85,9 +81,12 @@
 			Join Mine now. It’s fun, and free!
 		</div>		
 	
-		<%=link_to 	'<div class="log_in">Log in with</div><img src="/images/home_mine/fb.png" />', 
-				fb_auth_path(:src => @origin), 
-				:class => 'square fb'%>
-	
+    <%=link_to "<div class='hide-when-loading'>" +
+        "<div class='log_in'>Log in with</div>" +
+        image_tag('home_mine/fb.png') +
+        "</div>",
+        fb_auth_path(:src => @origin), 
+        :class    => 'square fb',
+        :onclick  => "this.className += ' load'"%>
 	</div>
 </div> <!-- /action-bar -->
