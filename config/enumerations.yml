@@ -87,7 +87,6 @@
 :javascript: &javascript
   <<: *common
   Callback:
-    StoresLoaded: 'storesLoaded'
     FileSelected: 'fileSelected'
     FileUploadError: 'fileUploadError'
     FileUploadDone: 'fileUploadDone'

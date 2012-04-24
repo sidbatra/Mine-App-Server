@@ -17,7 +17,9 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
   // Apply autocomplete funcitonality after the stores have been fetched
   //
   autocomplete: function() {
-    this.trigger(Denwen.Callback.StoresLoaded,this.stores);
+    this.trigger(
+      Denwen.Partials.Stores.Autocomplete.Callback.StoresLoaded,
+      this.stores);
 
     this.el.typeahead({
               source:this.stores.pluck('name'),
@@ -28,3 +30,9 @@ Denwen.Partials.Stores.Autocomplete = Backbone.View.extend({
                                         replace(/[^\w]/g,''));}});
   }
 });
+
+// Define callbacks.
+//
+Denwen.Partials.Stores.Autocomplete.Callback = {
+  StoresLoaded : 'storesLoaded'
+}

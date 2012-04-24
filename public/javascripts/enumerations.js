@@ -6,7 +6,6 @@
 
 Denwen.Callback = {
 FileUploadDone: "fileUploadDone",
-StoresLoaded: "storesLoaded",
 FileUploadError: "fileUploadError",
 FileSelected: "fileSelected",
 FileUploadProgress: "fileUploadProgress"

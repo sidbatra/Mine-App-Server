@@ -66,6 +66,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.productSearchCancelled,
       this);
 
+
     this.fbPermissionsRequired = 'fb_extended_permissions';
 
     this.fbSettings = new Denwen.Partials.Settings.Facebook({
@@ -81,14 +82,18 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.fbPermissionsRejected,
       this);
 
+
     $(this.formEl).submit(function(){return self.post();});
 
     restrictFieldSize($(this.storeEl),254,'charsremain');
 
+
     this.autoComplete = new Denwen.Partials.Stores.Autocomplete(
                               {el:$(this.storeEl)});
-    this.autoComplete.bind(Denwen.Callback.StoresLoaded,
-          this.storesLoaded,this);
+    this.autoComplete.bind(
+      Denwen.Partials.Stores.Autocomplete.Callback.StoresLoaded,
+      this.storesLoaded,
+      this);
 
     $(this.storeEl).placeholder();
     $(this.titleEl).placeholder();
