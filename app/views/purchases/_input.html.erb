@@ -4,6 +4,10 @@
   <%=f.hidden_field :source_url%>
   <%=f.hidden_field :orig_image_url%>
   <%=f.hidden_field :orig_thumb_url%>
+  <%=hidden_field_tag 'purchase_product_external_id','',
+      :name => 'purchase[product][external_id]'%>
+  <%=hidden_field_tag 'purchase_product_title','',
+      :name => 'purchase[product][title]'%>
   
 	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
 

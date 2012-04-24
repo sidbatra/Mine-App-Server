@@ -29,6 +29,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.onboardingMsgEl      = '#onboarding_create_msg';
     this.titleEl              = '#purchase_title';
     this.titleBoxEl           = '#title_box';
+    this.productTitleEl       = '#purchase_product_title';
+    this.productExternalIDEl  = '#purchase_product_external_id';
     this.storeEl              = '#purchase_store_name';
     this.storeBoxEl           = '#store_box';
     this.websiteEl            = '#purchase_source_url';
@@ -341,6 +343,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.websiteEl).val(product.get('source_url'));
     $(this.imageEl).val(product.get('large_url'));
     $(this.thumbEl).val(product.get('medium_url'));
+
+    $(this.productTitleEl).val(product.get('title'));
+    $(this.productExternalIDEl).val(product.get('uniq_id'));
 
     $(this.queryBoxEl).hide();
     $(this.onboardingEl).hide();
