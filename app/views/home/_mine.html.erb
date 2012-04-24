@@ -36,7 +36,10 @@
 									   <img src="/images/home_mine/fb.png" />
 									 </div>', 
 						fb_auth_path(:src => @origin), 
-						:class => 'square fb'%>
+						:class    => 'square fb',
+            :id       => 'fb_login_button',
+            :onclick  => 
+              "document.getElementById('fb_login_button').className += ' load'"%>
 							
 	</div> <!-- /squares -->
 	
