@@ -6,17 +6,8 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   //
   initialize: function() {
     this.currentUser = new Denwen.Models.User(this.options.currentUser);
-    this.qEls = ['#style','#stores','#influencers','#items'];
 
     this.setAnalytics();
-
-    _.each(this.qEls,function(qEl){
-      $(qEl).popover({
-        placement: 'bottom',
-        animation: true,
-        delay : 0
-      });    
-    });
   },
 
   // Fire tracking events

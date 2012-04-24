@@ -2,7 +2,8 @@
 	<div class="container">
 	
 		<div class="title">
-			Welcome to Mine, <span class="name">Pierre</span>. <br />
+			Welcome to Mine, 
+      <span class="name"><%=self.current_user.first_name%></span>. <br />
 			<span style="color: #ccc;">You'll be sharing in seconds.</span>
 		</div>
 	
@@ -12,11 +13,13 @@
 				Add friends to see what they buy and where they shop.
 			</div>
 			<div class="rectangle">
-				<%=image_tag 'home_mine/intro/intro1-female.jpg'%>
+				<%=image_tag "home_mine/intro/"\
+                      "intro1-#{user_gender(self.current_user)}.jpg"%>
 			</div>
 			
 			<div class="rectangle">
-				<%=image_tag 'home_mine/intro/intro2-female.jpg'%>
+				<%=image_tag "home_mine/intro/"\
+                      "intro2-#{user_gender(self.current_user)}.jpg"%>
 			</div>
 			<div class="square text">
 				Mine syncs neatly with your Facebook Timeline.
@@ -37,9 +40,9 @@
 
 <div class="bottom-bar">
 	<div class="container">
-
-			<a class="btn btn-large go">Got it. Show me Mine <i class="large-icon-chevron-right"></i></a>
-	
+    <%=link_to "Got it. Show me Mine <i class='large-icon-chevron-right'></i>",
+        root_path,
+        :class => "btn btn-large go"%>
 	</div>
 </div> <!-- /bottom-bar -->
 
