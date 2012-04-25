@@ -77,7 +77,9 @@ class PurchaseObserver < ActiveRecord::Observer
       shopping.decrement_purchases_count
     end
 
-    if purchase.fb_action_id
+    if purchase.fb_action_id && 
+        purchase.fb_action_id != FBSharing::Underway
+
       ProcessingQueue.push(
         DistributionManager,
         :delete_story,
