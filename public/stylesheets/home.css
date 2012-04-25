@@ -122,7 +122,9 @@ a.square.fb .log_in {
 	background: #555; }
 
 .action-bar .container,
-.bottom-bar .container { padding: 0; }
+.bottom-bar .container { 
+	padding: 0;
+	position: relative; }
 	
 .action-bar .square,
 .action-bar .rectangle {
@@ -131,8 +133,8 @@ a.square.fb .log_in {
 .action-bar .rectangle {
 	background: none;
 	line-height: 180px;
+	padding: 10px 16px;
 	color: white;
-	padding: 10px;
 	font-weight: bold;
 	font-size: 22px; }
 	
@@ -157,10 +159,10 @@ a.square.fb .log_in {
 	border-radius: 0 !important; }
 	
 footer, footer a, footer a:hover {
-	padding-top: 10px;
-	text-align: center;
-	color: #bbb; }
-	
+	position: absolute;
+	bottom: 10px;
+	left: 16px;
+	color: #999; }
 	
 [class^="large-icon-"],
 [class*=" large-icon"] {
