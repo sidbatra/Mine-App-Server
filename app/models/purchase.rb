@@ -10,6 +10,7 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
+  belongs_to :product
   belongs_to :suggestion
 
   #----------------------------------------------------------------------

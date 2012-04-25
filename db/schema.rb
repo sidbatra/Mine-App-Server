@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424040601) do
+ActiveRecord::Schema.define(:version => 20120424212510) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -89,6 +89,22 @@ ActiveRecord::Schema.define(:version => 20120424040601) do
     t.datetime "created_at"
   end
 
+  create_table "products", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "source_url"
+    t.text     "orig_image_url"
+    t.string   "orig_image_url_hash"
+    t.string   "image_path"
+    t.boolean  "is_processed",        :default => false
+    t.integer  "store_id"
+    t.string   "external_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["orig_image_url_hash"], :name => "index_products_on_orig_image_url_hash", :unique => true
+
   create_table "purchases", :force => true do |t|
     t.string   "title"
     t.string   "handle"
@@ -99,7 +115,7 @@ ActiveRecord::Schema.define(:version => 20120424040601) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "orig_thumb_url"
+    t.text     "orig_thumb_url"
     t.integer  "store_id"
     t.string   "image_path"
     t.boolean  "is_processed",       :default => false
@@ -107,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20120424040601) do
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
     t.string   "fb_photo_id"
+    t.integer  "product_id"
   end
 
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"

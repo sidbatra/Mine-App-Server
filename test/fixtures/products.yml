@@ -2,14 +2,20 @@
 
 one:
   title: MyString
-  endorsement: MyString
-  website_url: MyString
-  image_url: MyString
-  user_id: 1
+  description: MyText
+  source_url: MyText
+  orig_image_url: MyText
+  image_path: MyString
+  is_processed: false
+  store_id: 1
+  external_id: MyString
 
 two:
   title: MyString
-  endorsement: MyString
-  website_url: MyString
-  image_url: MyString
-  user_id: 1
+  description: MyText
+  source_url: MyText
+  orig_image_url: MyText
+  image_path: MyString
+  is_processed: false
+  store_id: 1
+  external_id: MyString

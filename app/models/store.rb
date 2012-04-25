@@ -10,6 +10,7 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   belongs_to  :user
   has_many    :purchases
+  has_many    :products
   has_many    :shoppings,   :dependent => :destroy
 
   #----------------------------------------------------------------------
