@@ -14,9 +14,15 @@ class PurchasesController < ApplicationController
   #
   def create
 
-    if params[:purchase][:source_purchase_id] && params[:purchase][:clone]
-      populate_params_from_purchase
+    if params[:purchase][:product]
+      product = Product.find_by_orig_image_url(
+                  params[:purchase][:orig_image_url])
+      params[:purchase][:product_id] = product.id if product
     end
+
+    #if params[:purchase][:source_purchase_id] && params[:purchase][:clone]
+    #  populate_params_from_purchase
+    #end
 
     if params[:purchase][:is_store_unknown] == '0'
       params[:purchase][:store_id] = Store.add(
@@ -149,16 +155,16 @@ class PurchasesController < ApplicationController
 
   # Populate params from the given purchase's source id
   #
-  def populate_params_from_purchase
-    purchase = Purchase.find(params[:purchase][:source_purchase_id])
+  #def populate_params_from_purchase
+  #  purchase = Purchase.find(params[:purchase][:source_purchase_id])
 
-    params[:purchase][:title]          = purchase.title
-    params[:purchase][:source_url]     = purchase.source_url
-    params[:purchase][:orig_image_url] = purchase.image_url
-    params[:purchase][:orig_thumb_url] = purchase.thumbnail_url
-    params[:purchase][:query]          = purchase.query
+  #  params[:purchase][:title]          = purchase.title
+  #  params[:purchase][:source_url]     = purchase.source_url
+  #  params[:purchase][:orig_image_url] = purchase.image_url
+  #  params[:purchase][:orig_thumb_url] = purchase.thumbnail_url
+  #  params[:purchase][:query]          = purchase.query
 
-    params
-  end
+  #  params
+  #end
 
 end

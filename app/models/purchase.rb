@@ -34,20 +34,9 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   attr_accessor :is_store_unknown, :store_name, :rehost
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
-                  :query,:store_id,:user_id,
+                  :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
                   :fb_action_id,:fb_photo_id
-
-  #----------------------------------------------------------------------
-  # Indexing
-  #----------------------------------------------------------------------
-  searchable do
-    text :title, :boost => 2
-    text :query
-    text :store do
-      store ? store.name : ""
-    end
-  end
 
   #----------------------------------------------------------------------
   # Class methods
@@ -58,28 +47,22 @@ class Purchase < ActiveRecord::Base
   # returns - Purchase. Newly created purchase object.
   #
   def self.add(attributes,user_id)
-    attributes[:title]        = attributes[:title].strip
-    attributes[:user_id]      = user_id
+    attributes[:title] = attributes[:title].strip
+    attributes[:user_id] = user_id
 
-    create!(attributes)
+    purchase = new(attributes)
+
+    unless attributes[:product_id]
+      purchase.build_product({
+        :title => attributes[:product][:title],
+        :source_url => attributes[:source_url],
+        :orig_image_url => attributes[:orig_image_url],
+        :external_id => attributes[:product][:external_id]})
+    end
+
+    purchase.save!
+    purchase
   end
-
-  # Perform full text search on all the indexed purchases using 
-  # solr + sunpot.
-  #
-  # query - String. Full text search query.
-  # page - Integer:1. Pagination - the page of results to fetch
-  # per_page - Integer:10. Pagination - number of results per page
-  # 
-  # returns - Array. Array of purchase models matching the given query.
-  #
-  def self.fulltext_search(query,page=1,per_page=10)
-    search do 
-      fulltext query
-      paginate :per_page => per_page, :page => page
-    end.results
-  end
-
 
   #----------------------------------------------------------------------
   # Instance methods
