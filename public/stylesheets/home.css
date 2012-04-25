@@ -82,6 +82,10 @@ a:hover { text-decoration: none !important; }
 	background: #555;
 	font-size: 22px;
 	line-height: 30px; }
+
+.square.text.light {
+	color: #777;
+	background: #F2F0ED; }
 	
 a.square.fb {
 	background: #3b5998;
