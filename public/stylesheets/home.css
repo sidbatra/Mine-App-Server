@@ -6,7 +6,8 @@
 	box-sizing: border-box; }
 
 body { 	
-	background: #F2F0ED;
+/* 	background: #F2F0ED; */
+	background: #efeeec url('/images/home_mine/graydient.png') repeat-x top center;
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
   
@@ -15,8 +16,10 @@ a:hover { text-decoration: none !important; }
 .container {
 	width: 660px;
 	margin: 0 auto;
-	padding-top: 72px;
-	padding-bottom: 80px; }
+	padding-top: 64px;
+	padding-bottom: 72px; }
+
+.screen { min-height: 624px; }
 	
 .title {
 	font-size: 22px;
