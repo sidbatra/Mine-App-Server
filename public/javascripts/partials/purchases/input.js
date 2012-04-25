@@ -254,12 +254,14 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     var self = this;
     var inputs = $(this.formEl + " :input");
-    var fields = {};
+    var fields = {product:{}};
 
     $(this.submitButtonEl).addClass(this.postingClass);
 
     inputs.each(function() {
-      if(this.id.slice(0,9) == 'purchase_')
+      if(this.id.slice(0,17) == 'purchase_product_')
+        fields['product'][this.id.slice(17)] = this.value;
+      else if(this.id.slice(0,9) == 'purchase_')
         fields[this.id.slice(9)] = this.value;
     });
 
@@ -271,7 +273,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     purchase.save({purchase:fields},{
       success: function(data){self.purchaseCreated(data);},
       error: function(){self.purchaseCreationFailed();}});
-      
+    
     return false;
   },
 
