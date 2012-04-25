@@ -96,9 +96,11 @@ a.square.fb:hover{
 
 a.square.fb:active { border-top: 1px solid #4f628a; }
 
-a.square.fb.load { 
-	cursor: default;
-	background: #1f4696 url('/images/loading_blocks_small_blue_trans.gif') no-repeat center; }
+a.square.fb .loading { display: none; }
+a.square.fb.load { cursor: default; }
+a.square.fb.load .loading { 
+	display: inline-block;
+	padding-top: 94px; }
 	
 .load .hide-when-loading { display: none; }
 
