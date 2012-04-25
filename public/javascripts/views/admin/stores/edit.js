@@ -26,22 +26,22 @@ Denwen.Views.Admin.Stores.Edit = Backbone.View.extend({
                             config : this.uploadConfig});
 
     this.imageUploader.bind(
-      Denwen.Callback.FileUploadDone,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadDone,
       this.imageUploadDone,
       this);
 
     this.faviconUploader.bind(
-      Denwen.Callback.FileUploadDone,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadDone,
       this.faviconUploadDone,
       this);
 
     this.imageUploader.bind(
-      Denwen.Callback.FileUploadError,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadError,
       this.fileUploadError,
       this);
 
     this.faviconUploader.bind(
-      Denwen.Callback.FileUploadError,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadError,
       this.fileUploadError,
       this);
   },

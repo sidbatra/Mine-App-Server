@@ -86,17 +86,9 @@
 #
 :javascript: &javascript
   <<: *common
-  Callback:
-    FileSelected: 'fileSelected'
-    FileUploadError: 'fileUploadError'
-    FileUploadDone: 'fileUploadDone'
-    FileUploadProgress: 'fileUploadProgress'
   PurchaseFormType:
     New: 'new'
     Edit: 'edit'
   ProductQueryType:
     Text: 'text'
     URL: 'url'
-  ViewAllType:
-    UserStores: 'User Stores'
-

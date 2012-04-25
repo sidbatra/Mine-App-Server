@@ -20,12 +20,12 @@ Denwen.Partials.Admin.Suggestions.Input = Backbone.View.extend({
                           config : this.uploadConfig});
 
     this.imageUploader.bind(
-      Denwen.Callback.FileUploadDone,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadDone,
       this.imageUploadDone,
       this);
 
     this.imageUploader.bind(
-      Denwen.Callback.FileUploadError,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadError,
       this.fileUploadError,
       this);
   },

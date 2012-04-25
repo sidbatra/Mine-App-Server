@@ -11,8 +11,7 @@ var Denwen = {
                   Common : {}, Followings : {}, Settings : {}, 
                   Comments : {}, Likes :{}, Feed:{},
                   Admin : {Suggestions : {},Stores : {}}},
-  Collections : {},
-  Callbacks   : {}
+  Collections : {}
 };
 
 

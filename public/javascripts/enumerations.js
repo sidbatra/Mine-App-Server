@@ -4,13 +4,6 @@
 // and rerun "rake js:dump:enums"
 // 
 
-Denwen.Callback = {
-FileUploadDone: "fileUploadDone",
-FileUploadError: "fileUploadError",
-FileSelected: "fileSelected",
-FileUploadProgress: "fileUploadProgress"
-}
-
 Denwen.FBSharing = {
 Underway: "1"
 }
@@ -33,8 +26,4 @@ Edit: "edit"
 Denwen.UserShowHash = {
 Owns: "owns",
 Wants: "wants"
-}
-
-Denwen.ViewAllType = {
-UserStores: "User Stores"
 }
