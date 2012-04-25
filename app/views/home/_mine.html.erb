@@ -193,16 +193,6 @@
       setTimeout(function(){animate();},initialDelay);
     }
 
-    // Tracking methods for the page.
-    //
-    function analytics() {
-       mpq.register_once({'landed_on' : '<%=@origin%>'});
-       mpq.register_once({'Campaign' : '<%=@campaign%>'});
-       mpq.track('landed on homepage',{
-        'source'  : '<%=@source%>',
-        'origin'  : '<%=@origin%>'});
-    }
-
     // Preload any dynamic images needed for the page.
     //
     function preLoad() {
@@ -211,9 +201,11 @@
                       'loading_blocks_small_blue_trans.gif')[/[^?]+/]%>";
     }
 
-
     $(document).ready(function() {
-      analytics();
+
+  		if($(window).height() < 688 )
+ 	 			$("div#screen").height($(window).height());
+
       preLoad();
       setup();
     });

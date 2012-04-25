@@ -20,13 +20,6 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
-  
-  	$(document).ready(function() {
-  		if($(window).height() < 688 ) {
- 	 			$("div#screen").height($(window).height());
- 	 		}
- 	 	});
-  		
      mpq.register_once({'landed_on' : '<%=@origin%>'});
      mpq.register_once({'Campaign' : '<%=@campaign%>'});
      mpq.track('landed on homepage',{
