@@ -6,12 +6,12 @@ class PurchaseDelayedObserver < DelayedObserver
     purchase = Purchase.find(purchase_id)
     purchase.host
 
-    if purchase.share_to_fb_timeline? 
-      DistributionManager.publish_add(purchase)
-    end
-
     if purchase.share_to_fb_album? 
       DistributionManager.publish_purchase_to_fb_album(purchase)
+    end
+
+    if purchase.share_to_fb_timeline? 
+      DistributionManager.publish_add(purchase)
     end
   end
 
