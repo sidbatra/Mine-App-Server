@@ -66,7 +66,16 @@ module ApplicationHelper
   #
   def email_link
     "<a href='mailto:#{EMAILS[:contact]}'>" +
-      EMAILS[:contact].split(' ').last[1..-2] + "</a>"
+      contact_email +
+      "</a>"
+  end
+
+  # Public. Extract actual contact email from EMAILS to field.
+  #
+  # returns a String contact email.
+  #
+  def contact_email
+    EMAILS[:contact].split(' ').last[1..-2] 
   end
 
   # Whether the user is undergoing onboarding 

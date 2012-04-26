@@ -4,15 +4,15 @@ class StorePresenter < BasePresenter
   presents :store
   delegate :name, :to => :store
 
-  # Relative path of the store's closet
+  # Relative path of the store page.
   #
-  def closet_path(src)
+  def path(src)
     h.store_path(store.handle,:src => src)
   end
 
-  # Absolute url of the store's closet
+  # Absolute url of the store's page.
   #
-  def closet_url(src)
+  def url(src)
     h.store_url(store.handle,:src => src)
   end
 

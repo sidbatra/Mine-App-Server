@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert the user to add new purchases to their closet 
+  # Alert the user to add new purchases 
   #
   def create_another_purchase(user)
     @user         = user
@@ -98,7 +98,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @user_deleted.first_name + ", is deleted from OnCloset"
+    subject       @user_deleted.first_name + ", is deleted"
   end
 
   # Extend the method_missing method to enable email

@@ -29,52 +29,44 @@ common: &common
   :success: success
   :error: error
   :name: Mine
-  :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
-  :version: 3.1.1
-  :keys:
-    :user_ifollowers: user_%d_ifollowers
-    :user_followers: user_%d_followers
-    :user_products: user_%d_products
-    :user_product_suggestions: user_%d_product_suggestions_%s
-    :store_all: store_all
-    :store_top: store_top
-    :store_suggest: store_suggest
+  :description: "Mine - A simple service for sharing purchases with friends."
+  :version: 3.9.0
 
 development: &development
   <<: *common
-  :host: pleg.oncloset.com
+  :host: pleg.getmine.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
   :dump_bucket: denwen-hasit-dumps
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: 
   :emails:
-    :noreply: OnCloset <noreply@oncloset.com>
-    :contact: OnCloset <contact@oncloset.com>
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
 
 staging: &staging
   <<: *common
-  :host: staging.oncloset.com
+  :host: staging.getmine.com
   :s3_bucket: denwen-hasit-filesystem
   :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-staging
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://de04moj4hdgby.cloudfront.net 
   :emails:
-    :noreply: OnCloset <noreply@oncloset.com>
-    :contact: OnCloset <contact@oncloset.com>
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
 
 production: &production
   <<: *common
-  :host: oncloset.com
+  :host: getmine.com
   :s3_bucket: denwen-hasit-filesystem
   :dump_bucket: denwen-hasit-dumps
   :asset_bucket: denwen-hasit-production
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
   :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
   :emails:
-    :noreply: OnCloset <noreply@oncloset.com>
-    :contact: OnCloset <contact@oncloset.com>
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
 
 test: &test
   <<: *development
