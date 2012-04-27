@@ -1,0 +1,75 @@
+class FacebookController < ApplicationController
+  layout nil
+  
+  # Handle facebook related get requests for real time updates 
+  #
+  def index
+    @filter = params[:filter].to_sym
+  
+    case @filter
+    when :subscriptions
+      mode          = params['hub.mode']
+      challenge     = params['hub.challenge']
+      verify_token  = params['hub.verify_token']
+
+      unless mode && challenge && verify_token == CONFIG[:fb_verify_token] 
+        raise IOError, "Incorrect params for fb subscription verification" 
+      end
+
+    else
+      raise IOError, "Incorrect facebook index filter"
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end 
+
+  # Display the FB canvas ui.
+  #
+  def show
+  rescue => ex
+    handle_exception(ex)
+  ensure
+  end
+
+  # Handle facebook related post requests for real time updates 
+  #
+  def create
+    @filter = params[:filter].to_sym
+  
+    case @filter
+    when :subscriptions
+      object  = params[:object]
+      entry   = params[:entry]
+
+      unless object == 'permissions' && entry 
+        raise IOError, "Incorrect params for fb subscription updates"
+      end
+
+      user_fb_ids = entry.map{|permission| permission['uid']} 
+      users       = User.find_all_by_fb_user_id(user_fb_ids)
+      
+      users.each do |user|
+        ProcessingQueue.push(
+          UserDelayedObserver,
+          :after_fb_permissions_update,
+          user.id)
+      end
+  
+    else
+      raise IOError, "Incorrect facebook create filter"
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
+
+end

@@ -9,102 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321214752) do
-
-  create_table "achievement_sets", :force => true do |t|
-    t.integer  "owner_id"
-    t.datetime "expired_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "for"
-  end
-
-  add_index "achievement_sets", ["created_at"], :name => "index_achievement_sets_on_created_at"
-  add_index "achievement_sets", ["for", "owner_id"], :name => "index_achievement_sets_on_for_and_owner_id"
-
-  create_table "achievements", :force => true do |t|
-    t.integer  "achievable_id"
-    t.string   "achievable_type"
-    t.integer  "user_id"
-    t.integer  "achievement_set_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "achievements", ["achievable_id", "achievable_type"], :name => "index_achievements_on_achievable_id_and_achievable_type"
-  add_index "achievements", ["achievement_set_id"], :name => "index_achievements_on_achievement_set_id"
-  add_index "achievements", ["user_id"], :name => "index_achievements_on_user_id"
-
-  create_table "actions", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "actionable_type"
-    t.integer  "actionable_id"
-  end
-
-  add_index "actions", ["actionable_id", "actionable_type", "name", "user_id"], :name => "index_actionable_name_user_id", :unique => true
-  add_index "actions", ["created_at"], :name => "index_actions_on_created_at"
-  add_index "actions", ["name"], :name => "index_actions_on_name"
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.string   "handle"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "weight",     :default => 0
-  end
-
-  add_index "categories", ["handle"], :name => "index_categories_on_handle", :unique => true
-  add_index "categories", ["weight"], :name => "index_categories_on_weight"
-
-  create_table "collection_parts", :force => true do |t|
-    t.integer  "collection_id"
-    t.integer  "product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "collection_parts", ["collection_id"], :name => "index_collection_parts_on_collection_id"
-  add_index "collection_parts", ["product_id"], :name => "index_collection_parts_on_product_id"
-
-  create_table "collections", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "comments_count", :default => 0
-    t.integer  "actions_count",  :default => 0
-    t.string   "name",           :default => ""
-    t.string   "image_path"
-    t.boolean  "is_processed",   :default => false
-    t.string   "handle"
-  end
-
-  add_index "collections", ["created_at"], :name => "index_collections_on_created_at"
-  add_index "collections", ["handle"], :name => "index_collections_on_handle"
-  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
-
-  create_table "comments", :force => true do |t|
-    t.text     "data"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "commentable_type"
-    t.integer  "commentable_id"
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
-
-  create_table "configurations", :force => true do |t|
-    t.integer  "variable"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "configurations", ["variable"], :name => "index_configurations_on_variable", :unique => true
+ActiveRecord::Schema.define(:version => 20120425023943) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -167,12 +72,10 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
     t.datetime "updated_at"
     t.integer  "platform",       :default => 0
     t.string   "recipient_name"
-    t.integer  "style_id"
   end
 
   add_index "invites", ["platform"], :name => "index_invites_on_platform"
   add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
-  add_index "invites", ["style_id"], :name => "index_invites_on_style_id"
   add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id", :unique => true
 
   create_table "logged_exceptions", :force => true do |t|
@@ -188,38 +91,47 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
 
   create_table "products", :force => true do |t|
     t.string   "title"
+    t.text     "description"
+    t.text     "source_url"
+    t.text     "orig_image_url"
+    t.string   "orig_image_url_hash"
+    t.string   "image_path"
+    t.boolean  "is_processed",        :default => false
+    t.integer  "store_id"
+    t.string   "external_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["orig_image_url_hash"], :name => "index_products_on_orig_image_url_hash", :unique => true
+
+  create_table "purchases", :force => true do |t|
+    t.string   "title"
     t.string   "handle"
     t.text     "endorsement"
     t.text     "source_url"
     t.text     "orig_image_url"
-    t.boolean  "is_hosted",         :default => false
     t.string   "query"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "orig_thumb_url"
-    t.integer  "comments_count",    :default => 0
+    t.text     "orig_thumb_url"
     t.integer  "store_id"
-    t.float    "price"
-    t.integer  "category_id"
     t.string   "image_path"
-    t.boolean  "is_processed",      :default => false
-    t.boolean  "is_gift",           :default => false
-    t.integer  "actions_count",     :default => 0
-    t.string   "source_product_id"
+    t.boolean  "is_processed",       :default => false
+    t.integer  "source_purchase_id"
     t.integer  "suggestion_id"
+    t.string   "fb_action_id"
+    t.string   "fb_photo_id"
+    t.integer  "product_id"
   end
 
-  add_index "products", ["actions_count"], :name => "index_products_on_actions_count"
-  add_index "products", ["category_id"], :name => "index_products_on_category_id"
-  add_index "products", ["comments_count"], :name => "index_products_on_comments_count"
-  add_index "products", ["created_at"], :name => "index_products_on_created_at"
-  add_index "products", ["handle"], :name => "index_products_on_handle"
-  add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
-  add_index "products", ["source_product_id"], :name => "index_products_on_source_product_id"
-  add_index "products", ["store_id"], :name => "index_products_on_store_id"
-  add_index "products", ["suggestion_id"], :name => "index_products_on_suggestion_id"
-  add_index "products", ["user_id"], :name => "index_products_on_user_id"
+  add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
+  add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
+  add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
+  add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
+  add_index "purchases", ["suggestion_id"], :name => "index_purchases_on_suggestion_id"
+  add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
 
   create_table "searches", :force => true do |t|
     t.text     "query"
@@ -234,12 +146,14 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "post_to_timeline",  :default => true
+    t.boolean  "post_to_timeline",   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "email_interaction", :default => true
-    t.boolean  "email_influencer",  :default => true
-    t.boolean  "email_update",      :default => true
+    t.boolean  "email_influencer",   :default => true
+    t.boolean  "email_update",       :default => true
+    t.boolean  "fb_publish_actions", :default => true
+    t.boolean  "fb_publish_stream",  :default => false
+    t.boolean  "post_to_fb_album",   :default => true
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -250,37 +164,23 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
     t.integer  "source"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "products_count", :default => 0
+    t.integer  "purchases_count", :default => 0
   end
 
   add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
   add_index "shoppings", ["store_id"], :name => "index_shoppings_on_store_id"
   add_index "shoppings", ["user_id", "store_id"], :name => "index_shoppings_on_user_id_and_store_id", :unique => true
 
-  create_table "specialties", :force => true do |t|
-    t.integer  "store_id"
-    t.integer  "category_id"
-    t.integer  "weight",      :default => 0
-    t.boolean  "is_top",      :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "specialties", ["category_id"], :name => "index_specialties_on_category_id"
-  add_index "specialties", ["store_id", "category_id"], :name => "index_specialties_on_store_id_and_category_id"
-  add_index "specialties", ["store_id", "is_top"], :name => "index_specialties_on_store_id_and_is_top"
-  add_index "specialties", ["weight"], :name => "index_specialties_on_weight"
-
   create_table "stores", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "products_count", :default => 0
+    t.integer  "purchases_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_approved",    :default => false
+    t.boolean  "is_approved",     :default => false
     t.string   "handle"
     t.string   "image_path"
-    t.boolean  "is_processed",   :default => false
+    t.boolean  "is_processed",    :default => false
     t.string   "domain"
     t.string   "byline"
     t.text     "description"
@@ -291,17 +191,7 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
   add_index "stores", ["is_approved"], :name => "index_stores_on_is_approved"
   add_index "stores", ["is_processed"], :name => "index_stores_on_is_processed"
   add_index "stores", ["name"], :name => "index_stores_on_name", :unique => true
-  add_index "stores", ["products_count"], :name => "index_stores_on_products_count"
-
-  create_table "styles", :force => true do |t|
-    t.string   "title"
-    t.string   "image_path"
-    t.integer  "weight",     :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "styles", ["weight"], :name => "index_styles_on_weight"
+  add_index "stores", ["purchases_count"], :name => "index_stores_on_purchases_count"
 
   create_table "suggestions", :force => true do |t|
     t.string   "title",                     :null => false
@@ -314,19 +204,6 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
 
   add_index "suggestions", ["gender"], :name => "index_suggestions_on_gender"
   add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
-
-  create_table "ticker_actions", :force => true do |t|
-    t.string   "og_action_id"
-    t.string   "og_action_type"
-    t.integer  "ticker_actionable_id"
-    t.string   "ticker_actionable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  add_index "ticker_actions", ["ticker_actionable_id", "ticker_actionable_type"], :name => "index_ticker_actions_on_ticker_actionable_id_and_type"
-  add_index "ticker_actions", ["user_id"], :name => "index_ticker_actions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -343,20 +220,15 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
     t.datetime "updated_at"
     t.string   "source"
     t.string   "byline",                    :default => ""
-    t.integer  "products_count",            :default => 0
+    t.integer  "purchases_count",           :default => 0
     t.integer  "followings_count",          :default => 0
     t.integer  "inverse_followings_count",  :default => 0
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
-    t.integer  "collections_count",         :default => 0
     t.integer  "shoppings_count",           :default => 0
-    t.string   "image_path"
-    t.boolean  "are_images_hosted",         :default => false
-    t.integer  "style_id"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
-  add_index "users", ["collections_count"], :name => "index_users_on_collections_count"
   add_index "users", ["created_at"], :name => "index_users_on_created_at"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["fb_user_id"], :name => "index_users_on_fb_user_id", :unique => true
@@ -364,10 +236,9 @@ ActiveRecord::Schema.define(:version => 20120321214752) do
   add_index "users", ["gender"], :name => "index_users_on_gender"
   add_index "users", ["handle"], :name => "index_users_on_handle", :unique => true
   add_index "users", ["has_contacts_mined"], :name => "index_users_on_has_contacts_mined"
-  add_index "users", ["products_count"], :name => "index_users_on_products_count"
+  add_index "users", ["purchases_count"], :name => "index_users_on_purchases_count"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
-  add_index "users", ["style_id"], :name => "index_users_on_style_id"
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
 
 end

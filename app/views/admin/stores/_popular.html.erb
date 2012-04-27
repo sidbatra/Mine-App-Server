@@ -3,7 +3,7 @@
     <%@stores.each do |store|%>
       <tr>
         <td><%=link_to store.name, store_path(store.handle)%></td>
-        <td width="50"><%=store.products_count%></td>
+        <td width="50"><%=store.purchases_count%></td>
         <td><%=store.domain ? 
                 link_to(store.domain,'http://' + store.domain) : 
                 'Not Found'%></td>

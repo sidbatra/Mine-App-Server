@@ -8,7 +8,7 @@
               :title        => @store_presenter.name,
               :type         => OGObject::Store,
               :description  => @store_presenter.usage_description,
-              :url          => @store_presenter.closet_url('fb'),
+              :url          => @store_presenter.url('fb'),
               :image        => @store.large_url}%>
 <%end%>
 
@@ -16,54 +16,22 @@
 
 	<div class="row">
     <div class="span12">
-    	<div class="well profile-card" style="height: 128px; margin-bottom: 12px;">
+    	<div class="well profile-card" 
+            style="height: 128px; margin-bottom: 12px;">
     		<div class="profile-card-inner">
 		    	<div class="profile-img">
-    				<%=@store_presenter.large_picture('picture')%>
     			</div>
-    			<h1 style="padding-bottom: 4px; line-height: 1;"><%=@store_presenter.name%></h1>
+    			<h1 style="padding-bottom: 4px; line-height: 1;">
+          </h1>
     		</div>
-    		
-    		<!-- <div class="profile-card-actions" id="top_shoppers"></div> -->
-				
-				<div class="profile-card-actions" id="related_stores_box"></div>
-				
-				<div class="profile-card-actions" id="top_products" style="width: 128px;"></div>
     		
     	</div> <!-- /well profile-card -->
     </div> <!-- /span12 -->
   </div> <!-- /row -->
  
-	<%=render :partial => 'misc/welcome', 
-	          :locals => {
-	          :src    => @store_presenter.source_id,
-	          :target => @store_presenter.closet_path('footer')} unless logged_in?%>
-	          <!-- /logged-out welcome -->
-
   <div class="row">
     <div class="span12">
     	<div class="well items">
-    	
-				<ul class="nav nav-tabs">
-				
-          <%=link_to "<i class='icon-plus icon-white'></i> "\
-                      "Add item bought here",
-              new_product_path(:store => @store.handle,:src => 'store'),
-              :class => "btn btn-primary",
-              :style => "float: right"%>
-					
-  				<li class="active" id="products_tab">
-    				<a>
-    					<span class="tab-text">Latest Buys</span>
-    					<div class="loading small inline" style="margin-bottom: -4px;">
-              </div>
-    				</a>
-  				</li>
- 				</ul>
- 				
-    		<div class="control-group">  
-	    		<div id="centerstage"></div>
-	    	</div>
 	    </div> <!-- /well -->
 	  </div> <!-- /span12 -->
   </div> <!-- /row -->
@@ -72,13 +40,4 @@
 
 
 <%content_for :javascript do%>
-  <%#render :partial => "misc/feedback"%>
-
-  <script type='text/javascript'>
-
-    new Denwen.Views.Stores.Show({
-          storeJSON    : <%=@store.to_json(:only => [:id,:name])%>,
-          source       : "<%=@source%>"});
-
-  </script>
 <%end%>

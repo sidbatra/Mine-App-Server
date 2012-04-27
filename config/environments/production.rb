@@ -18,5 +18,5 @@ ActionController::Base.asset_host = File.join(
 
 
 # Cache settings
-config.cache_store = :mem_cache_store, 'denwen-felvy.afhe3c.0001.use1.cache.amazonaws.com:11211', { :namespace => 'production' }
+config.cache_store = :mem_cache_store, 'denwen-mine.afhe3c.0001.use1.cache.amazonaws.com:11211', { :namespace => 'production' }
 config.action_controller.page_cache_directory = RAILS_ROOT + "/public/cache"

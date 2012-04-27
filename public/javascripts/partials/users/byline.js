@@ -30,7 +30,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     $(this.textEl).html(this.model.escape('byline'));
 
     this.wipe();
-    analytics.bylineEditingCompleted();
+    Denwen.Track.bylineEditingCompleted();
   },
 
   // Called when the user wants to edit the byline
@@ -44,14 +44,14 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     $(this.inputEl).show();
     $(this.inputEl).focus();
 
-    analytics.bylineEditingSelected();
+    Denwen.Track.bylineEditingSelected();
   },
 
   // User cancel's byline editing
   //
   cancel: function() {
     this.wipe();
-    analytics.bylineEditingCancelled();
+    Denwen.Track.bylineEditingCancelled();
   },
 
   // Hides the active editing UI

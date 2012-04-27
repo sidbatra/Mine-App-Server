@@ -44,7 +44,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
 
             // Button Settings
             button_placeholder_id : this.el.attr('id'),
-            button_image_url: helpers.imagePath('transparent.gif'),
+            button_image_url: Denwen.H.imagePath('transparent.gif'),
             button_width: 350,
             button_height: 46,
             button_cursor: SWFUpload.CURSOR.HAND,
@@ -52,7 +52,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
             button_action : SWFUpload.BUTTON_ACTION.SELECT_FILE,
             
             // Flash Settings
-            flash_url : helpers.swfPath('swfupload.swf'),
+            flash_url : Denwen.H.swfPath('swfupload.swf'),
             debug: false
           });
 
@@ -61,7 +61,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
   // Callback - file is selected
   //
   fileQueuedHandler: function(file) {
-    this.trigger(Denwen.Callback.FileSelected,file);
+    this.trigger(Denwen.Partials.Common.Uploader.Callback.FileSelected,file);
     this.uploader.startUpload();
   },
 
@@ -69,7 +69,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
   //
   uploadProgressHandler: function(file,bytesLoaded) {
     var percent = Math.ceil((bytesLoaded / file.size) * 100);
-    this.trigger(Denwen.Callback.FileUploadProgress,file,percent);
+    this.trigger(Denwen.Partials.Common.Uploader.Callback.FileUploadProgress,file,percent);
   },
 
   // Callback - file finished uploading (not 100% reliable)
@@ -84,7 +84,7 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
     var absolutePath = this.config['server'] + relativePath;
 
     this.trigger(
-      Denwen.Callback.FileUploadDone,
+      Denwen.Partials.Common.Uploader.Callback.FileUploadDone,
       file,
       relativePath,
       absolutePath);
@@ -101,8 +101,16 @@ Denwen.Partials.Common.Uploader = Backbone.View.extend({
     default:
       break;
     }
-    this.trigger(Denwen.Callback.FileUploadError,message);
+    this.trigger(Denwen.Partials.Common.Uploader.Callback.FileUploadError,message);
   }
 
 });
 
+// Define callbacks.
+//
+Denwen.Partials.Common.Uploader.Callback = {
+  FileSelected: 'fileSelected',
+  FileUploadError: 'fileUploadError',
+  FileUploadDone: 'fileUploadDone',
+  FileUploadProgress: 'fileUploadProgress'
+}

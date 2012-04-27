@@ -10,35 +10,32 @@ javascripts:
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/bootstrap.js
     - public/javascripts/libs/swfupload.js
-    - public/javascripts/extensions.js
+    - public/javascripts/support/extensions.js
     - public/javascripts/config.js
     - public/javascripts/application.js
     - public/javascripts/enumerations.js
-    - public/javascripts/analytics.js
-    - public/javascripts/message_drawer.js
-    - public/javascripts/helpers.js
-    - public/javascripts/global.js
-    - public/javascripts/window_listener.js
+    - public/javascripts/support/analytics.js
+    - public/javascripts/support/message_drawer.js
+    - public/javascripts/support/helpers.js
+    - public/javascripts/support/notification_manager.js
+    - public/javascripts/support/global.js
+    - public/javascripts/support/infinite_scroller.js
     - public/javascripts/models/*.js
     - public/javascripts/collections/*.js
     - public/javascripts/partials/**/*.js
     - public/javascripts/views/**/*.js
     - app/views/comments/*.jst
-    - app/views/actions/*.jst
+    - app/views/likes/*.jst
     - app/views/products/*.jst
-    - app/views/users/*.jst
-    - app/views/stores/*.jst
-    - app/views/followings/*.jst
+    - app/views/purchases/*.jst
     - app/views/contacts/*.jst
-    - app/views/collections/*.jst
-    - app/views/suggestions/*.jst
   home:
     - public/javascripts/libs/jquery-1.7.1.js
+    - public/javascripts/libs/jquery-cycle.js
 stylesheets:
   application:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets/velcro.css
+    - public/stylesheets/feed.css
   home:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets/velcro.css
     - public/stylesheets/home.css

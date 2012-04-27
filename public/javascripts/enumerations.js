@@ -4,21 +4,8 @@
 // and rerun "rake js:dump:enums"
 // 
 
-Denwen.ViewAllType = {
-UserStores: "User Stores",
-IFollowers: "IFollowers",
-RelatedStores: "Related Stores"
-}
-
-Denwen.UserShowHash = {
-Collections: "uses",
-Owns: "owns",
-Wants: "wants"
-}
-
-Denwen.ProductQueryType = {
-URL: "url",
-Text: "text"
+Denwen.FBSharing = {
+Underway: "1"
 }
 
 Denwen.InvitePlatform = {
@@ -26,22 +13,17 @@ Facebook: 0,
 Email: 1
 }
 
-Denwen.Callback = {
-ProductResultsQueryEdit: "productResultsQueryEdit",
-FileUploadDone: "fileUploadDone",
-ProductsLoaded: "productsLoaded",
-ProductResultsLoaded: "productResultsLoaded",
-StoresLoaded: "storesLoaded",
-CollectionsListLoaded: "collectionsListLoaded",
-UsersListLoaded: "usersListLoaded",
-FileUploadError: "fileUploadError",
-ProductResultsFinished: "productResultsFinished",
-FileSelected: "fileSelected",
-ProductsRendered: "productsRendered",
-ProductResultsEmpty: "productResultsEmpty",
-FileUploadProgress: "fileUploadProgress"
+Denwen.ProductQueryType = {
+URL: "url",
+Text: "text"
 }
 
-Denwen.InviteNewHash = {
-Styles: "styles"
+Denwen.PurchaseFormType = {
+New: "new",
+Edit: "edit"
+}
+
+Denwen.UserShowHash = {
+Owns: "owns",
+Wants: "wants"
 }

@@ -1,25 +1,17 @@
-# Handle all requests & logic for onboarding
-#
 class WelcomeController < ApplicationController
+  layout 'home'
   before_filter :login_required
 
-  # Display the different steps during the onboarding
+  # Display the different steps during the onboarding.
   #
   def show
     @filter = params[:id]
 
     case @filter
     when WelcomeFilter::Learn
-      @view     = "show"
-    when WelcomeFilter::Style
-      @styles   = Style.by_weight
-      @sender   = self.current_user.received_invites.last.user rescue nil
-      @view     = "style"
-    when WelcomeFilter::Stores
-      @shopping = Shopping.new
-      @view     = "stores"
+      @view = "show"
     when WelcomeFilter::Share
-      @view     = "share"
+      @view = "share"
     else
       raise IOError, "Incorrect welcome show ID"
     end
@@ -30,41 +22,17 @@ class WelcomeController < ApplicationController
     @error ? redirect_to(root_path) : render(@view)
   end
 
-  # Handle onboarding related post requests
+  # Handle onboarding related post requests.
   #
   def create
     @filter = params[:id] 
 
-    case @filter
-    when WelcomeFilter::Style
-      @success_target = welcome_path(WelcomeFilter::Stores)
-      @error_target   = welcome_path(WelcomeFilter::Style)
-
-      style = Style.find(params[:style_id])
-
-      self.current_user.update_attributes(
-        :style_id => style.id,
-        :byline => style.title)
-
-    when WelcomeFilter::Stores
-      @success_target = welcome_path(WelcomeFilter::Share)
-      @error_target   = welcome_path(WelcomeFilter::Stores)
-
-      store_ids = params[:store_ids].split(',')
-
-      store_ids.each do |store_id|
-        Shopping.add(
-          self.current_user.id,
-          store_id,
-          ShoppingSource::User)
-      end
-
-    else
-      @success_target  = welcome_path(WelcomeFilter::Learn)
-      @error_target    = welcome_path(WelcomeFilter::Learn)
+    #case @filter
+    #  @success_target  = welcome_path(WelcomeFilter::Learn)
+    #  @error_target    = welcome_path(WelcomeFilter::Learn)
 
       raise IOError, "Incorrect welcome create ID"
-    end
+    #end
 
   rescue => ex
     handle_exception(ex)

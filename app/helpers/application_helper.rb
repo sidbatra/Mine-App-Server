@@ -66,21 +66,22 @@ module ApplicationHelper
   #
   def email_link
     "<a href='mailto:#{EMAILS[:contact]}'>" +
-      EMAILS[:contact].split(' ').last[1..-2] + "</a>"
+      contact_email +
+      "</a>"
+  end
+
+  # Public. Extract actual contact email from EMAILS to field.
+  #
+  # returns a String contact email.
+  #
+  def contact_email
+    EMAILS[:contact].split(' ').last[1..-2] 
   end
 
   # Whether the user is undergoing onboarding 
   #
   def is_onboarding?
     request.request_uri.scan(/^\/welcome\//).present?
-  end
-
-  # Whether the user is on the onboarding create view
-  #
-  def is_onboarding_create?
-    is_onboarding? && 
-      @controller.controller_name == 'products' &&
-      @controller.action_name == 'new'
   end
 
 end

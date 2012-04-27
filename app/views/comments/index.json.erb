@@ -1,8 +1,2 @@
-<%-cache @key do-%>
-  <%=@comments.to_json(
-      :only => [:id,:data,:created_at],
-      :include => {
-        :user => {
-          :only => [:id,:first_name,:last_name,:handle],
-          :methods  => [:photo_url]}})-%>
-<%-end-%>
+<%=@comments.to_json(
+    :only => ['id','purchase_id','from','name','created_time','message'])%>

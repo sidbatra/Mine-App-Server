@@ -2,10 +2,9 @@
 <div class="container well" id="container">
   <h1><%=user_full_name(@user)%><h1>
   <h3><%=@user.byline%></h3>
-  <h3><%=link_to 'Link to Closet',user_path(@user.handle)%><h3>
+  <h3><%=link_to 'Link to Profile',user_path(@user.handle)%><h3>
   <h3><%=link_to 'Link to FB',"https://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%><h3>
-  <h3><%=@user.products_count%> Products</h3>
-  <h3><%=@user.collections_count%> Collections</h3>
+  <h3><%=@user.purchases_count%> Purchases</h3>
   <h3><%=link_to "Think before you click",
             {:controller => 'admin/users',:action => 'destroy',:id => @user.id},
             :method => :delete,
@@ -14,14 +13,14 @@
   <table>
     <tr>
         <td width="400"><i>QUERY</i></td>
-        <td width="400"><i>PRODUCT</i></td>
+        <td width="400"><i>PURCHASE</i></td>
     </tr>
     <tr height="20"></tr>
-    <%@collection.each do |c| %>
+    <%@set.each do |c| %>
       <tr>
-        <%if c.class == Product%>
+        <%if c.class == Purchase%>
           <td></td>
-          <td><u><%= link_to h(c.title), product_path(@user.handle,c.handle)%></u></td>
+          <td><u><%= link_to h(c.title), purchase_path(@user.handle,c.handle)%></u></td>
         <%else%>
           <td><%=c.query%></td>
         <%end%>

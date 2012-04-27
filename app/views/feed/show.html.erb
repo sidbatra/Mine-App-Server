@@ -1,0 +1,80 @@
+<div class="container">
+
+  <div class="col">
+
+    <div class="self-box">
+      <%=link_to image_tag(self.current_user.square_image_url),
+          user_path(self.current_user.handle,:src => "feed_photo"),
+          :class => "user-photo"%>
+      <div class="user-name">
+        <p>
+          <%=link_to h(self.current_user.full_name),
+              user_path(self.current_user.handle,:src => "feed_name")%>
+        </p>
+      </div>
+    </div> <!--self-box-->
+
+    <%=render :partial => "users/ifollowers",
+        :locals => {:user => self.current_user,:src => "feed"}%>
+    
+    <%=render :partial => "users/trinkets",
+        :locals => {:user => self.current_user,:src => "feed"}%>
+  </div> <!-- col -->
+  
+  <%=render 'purchases/chooser'%>
+  	
+
+  <div class="col-triple">
+  
+    <div id="creation" class="item creation">
+      <%form_for Purchase.new,
+          :html => {
+            :class => "form-horizontal",
+            :style => "margin-bottom: 0;"} do |f|%>
+    
+          <%=render :partial => 'purchases/input', 
+              :locals => {
+                :f => f,
+                :suggestion => nil,
+                :submit_text => "Add to Mine",
+                :submit_class => "new",
+                :show_cancel_button => false,
+                :show_delete_button => false,
+                :show_query_box => true,
+                :show_extra_steps => false,
+                :show_fb_share => true,
+                :fb_share_on => self.current_user.setting.post_to_fb_album?}%>
+      <%end%> <!-- /form --> 
+    
+    </div> <!-- /creation -->
+
+    <div id="feed" class="feed">
+    </div>
+
+    
+    <div id="feed-spinner" class="loading blocks body" style="height: 60px;">
+    </div>
+    
+
+  </div> <!-- col-triple-->
+      
+<!--
+  <div class="col">
+    Two ways to add an item:<br />
+    By detailed name: 'Bodum Chambord 32 Ounce French Press'
+    By URL 'http://
+  </div>
+-->
+
+</div> <!-- container -->
+
+<%content_for :javascript do%>
+
+  <script type="text/javascript">
+  
+    new Denwen.Views.Feed.Show({
+      source          : "<%=@source%>",
+      currentUserJSON : <%=self.current_user.to_json(:only => :fb_user_id)%>});
+
+  </script>
+<%end%>

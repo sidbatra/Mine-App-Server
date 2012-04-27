@@ -3,8 +3,8 @@ class Following < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  belongs_to :user
-  belongs_to :follower, :class_name => "User"
+  belongs_to :user, :touch => true
+  belongs_to :follower, :touch => true, :class_name => "User"
 
   #----------------------------------------------------------------------
   # Validations 
@@ -27,7 +27,15 @@ class Following < ActiveRecord::Base
   # Class Methods 
   #----------------------------------------------------------------------
 
-  # Add a new following
+  # Factory method for adding a following. If the following already
+  # exists it's status is made active again.
+  #
+  # user_id - Integer. User id who's being followed.
+  # follower_id - Integer. User id who's following.
+  # source - FollowingSource:Manual. Source of creation.
+  # send_email - Boolean:true. Notify user_id via email.
+  #
+  # returns - Following. The created or updated following.
   #
   def self.add(
         user_id,
@@ -35,21 +43,19 @@ class Following < ActiveRecord::Base
         source = FollowingSource::Manual,
         send_email = true)
 
-    following = find_or_create_by_user_id_and_follower_id(
+    following = find_or_initialize_by_user_id_and_follower_id(
                   :user_id      => user_id,
                   :follower_id  => follower_id,
                   :source       => source,
                   :send_email   => send_email)
-
-    unless following.is_active
-      following.is_active = true
-      following.save!
-    end
-
+    following.is_active = true
+    following.save!
     following
   end
 
-  # Find a following
+  # Find a following where follower_id is following user_id.
+  #
+  # returns - Following. Following object is found nil otherwise.
   #
   def self.fetch(user_id,follower_id)
     find_by_user_id_and_follower_id(user_id,follower_id)
@@ -60,7 +66,7 @@ class Following < ActiveRecord::Base
   # Instance Methods 
   #----------------------------------------------------------------------
 
-  # Disable an existing following
+  # Disable an existing following.
   #
   def remove
     self.is_active = false

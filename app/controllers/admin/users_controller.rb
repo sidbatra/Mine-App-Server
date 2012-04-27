@@ -27,12 +27,13 @@ class Admin::UsersController < ApplicationController
   end
 
 
-  # Display the user's queries and products. 
+  # Display the user's queries and purchases. 
   #
   def show
-    @user       = User.find_by_handle(params[:id])
-    @collection = (@user.searches + @user.products).sort{
-                   |x,y| x.created_at <=> y.created_at}
+    @user = User.find_by_handle(params[:id])
+    @set  = (@user.searches + @user.purchases).sort do |x,y| 
+              x.created_at <=> y.created_at
+            end
   end
 
   # Destroy the user
@@ -55,8 +56,7 @@ class Admin::UsersController < ApplicationController
     count = User.updated(time).by_updated_at.count
     users = User.updated(time).by_updated_at.limit(150)
 
-    active_count = [Product,Action,Collection,
-                      Comment,Search].map do |model|
+    active_count = [Purchase,Search].map do |model|
                      model.select(:user_id).made(time).map(&:user_id)
                    end.flatten.uniq.count
 

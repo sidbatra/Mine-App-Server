@@ -36,7 +36,8 @@ namespace :instances do
                         :environment => @environment,
                         :type => type,
                         :installed => '0',
-                        :name => "Closet #{@environment.capitalize} "\
+                        :name => "#{@config[:name]} "\
+                                  "#{@environment.capitalize} "\
                                   "#{type.capitalize}"})
 
         if type == TYPES[:web]
@@ -107,8 +108,8 @@ namespace :instances do
     # Open a connection to AWS
     #
     def self.connect_to_aws
-      config = YAML.load_file("config/config.yml")[@environment]
-      AWSConnection.establish(config[:aws_access_id],config[:aws_secret_key])
+      @config = YAML.load_file("config/config.yml")[@environment]
+      AWSConnection.establish(@config[:aws_access_id],@config[:aws_secret_key])
     end
 
   end #instances module

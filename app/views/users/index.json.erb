@@ -1,8 +1,0 @@
-<%-cache @key do-%>
-  <%-if @filter == :stars || @filter == :top_shoppers-%>
-    <%-@users=@achievers.map(&:achievable)-%>
-  <%-end-%>
-  <%=@users.to_json(
-      :only     => [:id,:first_name,:last_name,:handle],
-      :methods  => :photo_url)-%>
-<%-end-%>

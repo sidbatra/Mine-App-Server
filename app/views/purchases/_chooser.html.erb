@@ -1,0 +1,54 @@
+	<div id="chooser" class="chooser" style="display:none;">
+	
+		<form class="form-horizontal search-bar">
+			
+			<a id="cancel_button" class="close" href="javascript:void(0)">
+				&times;
+			</a>
+		
+			<div id="spinner_box" class="control-group">
+			
+				<label id="purchase_image_broken_msg" class="control-label">
+					<span class="default">
+						Select your
+					</span>
+					<span class="error">
+						Image unavailable!
+					</span>
+				</label>
+				
+				<div class="controls" style="margin-left: 150px;">
+				
+					<input  id="purchase_repeat_query" 
+		              class="input-xlarge" 
+		              name="products[query]" 
+		              type="text" 
+		              value="">
+					<input id="purchase_repeat_search" 
+		              class="btn" 
+		              value="Go" 
+		              title="Search" 
+		              type="button" 
+		              alt="Search">
+		              
+        </div> <!-- controls -->     
+      
+      </div> <!-- /control-group -->
+		</form> <!-- /search-bar -->
+
+		<div class="results" id="results">
+    </div>
+
+	
+		<div class="scroll-instructions" id="scroll_for_more_results">
+	      <span class="hide-when-loading">
+	      	Scroll down for more 
+          <b class="caret" style="vertical-align: middle;"></b>
+	      </span>
+	      <div class="loading small inline" 
+          style="margin-bottom: 4px; vertical-align: middle;"></div>
+	  </div>
+	  
+	</div> <!-- chooser -->
+	
+	<div class="shadow" id="shadow"></div>

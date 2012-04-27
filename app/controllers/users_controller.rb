@@ -1,10 +1,15 @@
-# Handle requests for the user resource
-#
 class UsersController < ApplicationController
-  before_filter :login_required,  :only => :update
-  before_filter :renew_session, :only => :show
+  before_filter :login_required, :only => :update
 
-  # Create a user based on token received from facebook
+  # Create a new user.
+  #
+  # The users/create url or its alias facebook/reply is a callback
+  # url used by Facebook after a user has encountered a login with
+  # fb dialog. If a valid access_token has been provided a new user
+  # is created or an old one is fetched & it's fields updated.
+  #
+  # The flow is then redirected to onboarding or the user's feed
+  # based on their status.
   #
   def create
     using = params[:using] ? params[:using].to_sym : :facebook
@@ -29,7 +34,7 @@ class UsersController < ApplicationController
         elsif @target
           url = @target
         else
-          url = user_path(@user.handle,:src => UserShowSource::Login)
+          url = root_path(:src => FeedShowSource::Login)
         end
 
         redirect_to url
@@ -39,47 +44,15 @@ class UsersController < ApplicationController
     end
   end
 
-  # Display user's profile
+  # Display a user's profile.
   #
   def show
-
-    if params[:id].present?
-      redirect_to user_path(User.find(params[:id]).handle)
-      return
-    end
-
     @user = User.find_by_handle(params[:handle])
-    @styles = Style.by_weight
   end
   
-  # Fetch group of users based on different filters 
-  #
-  def index
-    @filter   = params[:filter].to_sym
-
-    case @filter
-    when :followers
-      @users      = User.find(params[:id]).followers
-      @key        = KEYS[:user_followers] % params[:id]
-    when :ifollowers
-      @users      = User.find(params[:id]).ifollowers.by_updated_at
-      @key        = KEYS[:user_ifollowers] % params[:id]
-    when :stars
-      @achievers  = AchievementSet.current_star_users
-      @key        = KEYS[:star_users]
-    when :top_shoppers
-      @achievers  = AchievementSet.current_top_shoppers(params[:store_id])
-      @key        = KEYS[:store_top_shoppers] % params[:store_id]
-    end
-  rescue => ex
-    handle_exception(ex)
-  ensure
-    respond_to do |format|
-      format.json
-    end
-  end
-
-  # Update user's byline
+  # Update a user. To ensure security only the currently logged
+  # in user is updated and all updateable attributes are listed
+  # in the User model.
   #
   def update
 
@@ -97,7 +70,8 @@ class UsersController < ApplicationController
 
   protected
 
-  # Create current user via fb oauth
+  # Use the OAuth token sent by Facebook to create a new user
+  # or fetch and update an existing user.
   #
   def create_from_fb
     @target                   = params[:target]          

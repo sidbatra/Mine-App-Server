@@ -14,16 +14,19 @@ class Search < ActiveRecord::Base
   validates_inclusion_of  :source, :in => SearchSource.values
 
   #----------------------------------------------------------------------
+  # Attributes
+  #----------------------------------------------------------------------
+  attr_accessible :query,:user_id,:source
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
-  # Add a new search
+  # Factory method for creating a new search.
   #
   def self.add(attributes,user_id)
-    create!(
-      :query        => attributes['query'],
-      :source       => attributes['source'],
-      :user_id      => user_id)
+    attributes[:user_id] = user_id
+    create!(attributes)
   end
 
 end

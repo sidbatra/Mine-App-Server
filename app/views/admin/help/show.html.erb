@@ -13,10 +13,6 @@
   Example - <%=link_to 'Anna Smith',admin_user_path('anna-smith')%>
   <br>
 
-  <br> <h3>Collections</h3>
-  <%=link_to 'Recent',
-              admin_collections_path(:filter => 'recent')%> <br>
-
   <br> <h3>Stores</h3> 
   <%=link_to 'Unapproved',
               admin_stores_path(:filter => 'unapproved')%> <br>
@@ -31,10 +27,6 @@
   <br> <h3>Suggestions</h3> 
   <%=link_to 'New', new_admin_suggestion_path%> <br>
   <%=link_to 'All', admin_suggestions_path%> <br>
-
-  <br> <h3>Styles</h3> 
-  <%=link_to 'New', new_admin_style_path%> <br>
-  <%=link_to 'All', admin_styles_path%> <br>
 
   <br> <h3>Emails</h3> 
   <%=link_to 'All', admin_emails_path%> <br>

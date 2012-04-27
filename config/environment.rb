@@ -18,6 +18,12 @@ Rails::Initializer.run do |config|
 
   CONFIG = YAML.load_file("#{RAILS_ROOT}/config/config.yml")[RAILS_ENV]
 
+  local_config = "#{RAILS_ROOT}/config/config.local.yml"
+  
+  if File.exists? local_config
+    CONFIG.merge!(YAML.load_file(local_config)[RAILS_ENV]) 
+  end
+
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
   CONFIG[:revision]   = `git rev-parse HEAD`.chomp
 
@@ -87,23 +93,13 @@ Rails::Initializer.run do |config|
                               File.join(Rails.root,'app','observers'),
                               File.join(Rails.root,'app','processors'),
                               File.join(Rails.root,'app','presenters'),
-                              File.join(Rails.root,'app','sweepers'),
                               File.join(Rails.root,'app','delayed_observers')]
 
 
   # Register observers
-  config.active_record.observers  = :product_observer, :comment_observer, 
-                                    :user_observer, :following_observer,
-                                    :action_observer, :store_observer,
-                                    :achievement_set_observer,
-                                    :collection_observer,:invite_observer,
-                                    :ticker_action_observer,
-                                    :store_sweeper, :following_sweeper,
-                                    :product_sweeper, :collection_part_sweeper,
-                                    :user_sweeper, :achievement_set_sweeper,
-                                    :comment_sweeper, :action_sweeper,
-                                    :collection_sweeper, :specialty_sweeper,
-                                    :shopping_sweeper, :suggestion_sweeper
+  config.active_record.observers  = :purchase_observer, :user_observer, 
+                                    :following_observer, :store_observer, 
+                                    :invite_observer, :product_observer 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.

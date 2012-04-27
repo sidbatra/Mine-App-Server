@@ -3,8 +3,7 @@
 # IMP: Run "rake js:dump:config" after editing.
 #
 shared: &shared
-  :products_threshold: 5
-  :min_entries_for_view_all: 6
+  :dummy: 0
 
 # Constants shared across deployment environments
 #
@@ -15,126 +14,59 @@ common: &common
   :aws_associate_tag: oncl-20
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
-  :fb_app_namespace: oncloset
+  :fb_app_token: 245230762190915|FCdWaSQb3KYtAIuxfBtODKf_nww
+  :fb_app_namespace: dw_mine
+  :fb_verify_token: eea0e1c440ae3d754be314a60c33ea2b
   :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :age_bucket_size: 5
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
   :queue:
-    :proc: hasit_processing
+    :proc: mine_processing
   :max_processing_attempts: 3
   :asset_hosts_count: 4
   :edge_servers_count: 7
   :success: success
   :error: error
-  :name: OnCloset
-  :description: "OnCloset is an online closet for your latest purchases and daily style. It's fun, and free."
-  :version: 3.1.1
-  :collection_base_image: private/collection_base.jpg
-  :keys:
-    :user_category_count: user_%d_category_%d_count
-    :user_ifollowers: user_%d_ifollowers
-    :user_ifollowers_preview: user_%d_ifollowers_preview
-    :user_followers: user_%d_followers
-    :user_followers_preview: user_%d_followers_preview
-    :user_top_stores: user_%d_top_stores
-    :user_top_products: user_%d_top_products
-    :user_products_in_category: user_%d_category_%d_products
-    :user_like_products_in_category: user_%d_category_%d_like_products
-    :user_want_products_in_category: user_%d_category_%d_want_products
-    :user_product_suggestions: user_%d_product_suggestions_%s
-    :store_category_count: store_%d_category_%d_count
-    :store_top_products: store_%d_top_products
-    :store_top_shoppers: store_%d_top_shoppers
-    :store_products_in_category: store_%d_category_%d_products
-    :store_all: store_all
-    :store_top: store_top
-    :store_suggest: store_suggest
-    :store_related_in_category: category_%d_related_stores
-    :star_users: star_users
-    :collection_products: collection_%d_products
-    :user_collections: user_%d_collections
-    :comment_commentable: comment_commentable_%d_%s
-    :action_actionable: action_actionable_%d_%s
-    :product_search: product_search_%s_%d
-  :msg:
-    :product:
-      :shoes:
-        :query: Search for a photo of your shoes
-        :query_eg: e.g. 'Zara high heeled boot'
-        :title: Item name
-        :endorsement_eg: 
-      :accessories:
-        :query: Search for a photo of your accessory
-        :query_eg: e.g. 'Longchamp canvas bag'
-        :title: Item name
-        :endorsement_eg: 
-      :clothing:
-        :query: Search for a photo of your clothing item
-        :query_eg: e.g. 'BB dakota romaine belted coat'
-        :title: Item name
-        :endorsement_eg: 
-      :decor:
-        :query: Search for a photo of your decor item
-        :query_eg: e.g. 'Amy butler organic pillows'
-        :title: Item name
-        :endorsement_eg: 
-      :cosmetics:
-        :query: Search for a photo of your cosmetics
-        :query_eg: e.g. 'Jouer mineral face powder'
-        :title: Item name
-        :endorsement_eg: 
-      :electronics:
-        :query: Search for a photo of your electronics
-        :query_eg: e.g. 'White iPad 2 3G'
-        :title: Item name
-        :endorsement_eg: 
-      :jewelry:
-        :query: Search for a photo of your jewelry
-        :query_eg: e.g. 'Tiffany orchid necklace'
-        :title: Item name
-        :endorsement_eg: 
-      :anything:
-        :query: Search for a photo of your item
-        :query_eg: e.g. 'Moleskine notebook'
-        :title: Item name
-        :endorsement_eg: 
+  :name: Mine
+  :description: "Mine - A simple service for sharing purchases with friends."
+  :version: 3.9.0
 
 development: &development
   <<: *common
-  :host: drao.oncloset.com
+  :host: pleg.getmine.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
-  :dump_bucket: denwen-hasit-dumps
+  :dump_bucket: denwen-mine-dumps
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: 
   :emails:
-    :noreply: OnCloset <noreply@oncloset.com>
-    :contact: OnCloset <contact@oncloset.com>
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
 
 staging: &staging
   <<: *common
-  :host: staging.oncloset.com
+  :host: staging.getmine.com
   :s3_bucket: denwen-hasit-filesystem
-  :dump_bucket: denwen-hasit-dumps
-  :asset_bucket: denwen-hasit-staging
+  :dump_bucket: denwen-mine-dumps
+  :asset_bucket: denwen-mine-staging
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
-  :asset_host: http://de04moj4hdgby.cloudfront.net 
+  :asset_host: http://d33e0ac60th09p.cloudfront.net
   :emails:
-    :noreply: OnCloset <noreply@oncloset.com>
-    :contact: OnCloset <contact@oncloset.com>
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
 
 production: &production
   <<: *common
-  :host: oncloset.com
+  :host: getmine.com
   :s3_bucket: denwen-hasit-filesystem
-  :dump_bucket: denwen-hasit-dumps
-  :asset_bucket: denwen-hasit-production
+  :dump_bucket: denwen-mine-dumps
+  :asset_bucket: denwen-mine-production
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
-  :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
+  :asset_host: http://d3sqjd4akk98do.cloudfront.net
   :emails:
-    :noreply: OnCloset <noreply@oncloset.com>
-    :contact: OnCloset <contact@oncloset.com>
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
 
 test: &test
   <<: *development
@@ -146,8 +78,8 @@ test: &test
 javascript: &javascript
   <<: *shared
   :fb_extended_permissions: 'publish_stream'
+  :fb_publish_permissions: 'publish_actions,publish_stream'
   :one_word_query_msg: "<strong>Tip:</strong> Try adding brands and colors, e.g. 'Vans Brown Tweed Slip ons'" 
   :multi_query_msg: "<strong>Tip:</strong> Add items by URL for the perfect photo every time."
   :multi_query_threshold: 5
-  :minimum_products_in_collection: 2
 

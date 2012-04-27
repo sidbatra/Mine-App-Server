@@ -1,49 +1,35 @@
-# Observe events on the Store model
-#
 class StoreObserver < ActiveRecord::Observer
 
-  # New store is created
-  #
-  def after_create(store)
-  end
-
-  # Store is going to be updated
+  # Test the store object for the following events:
+  #   rehosting - if image path is changed
+  #   domain update - if the store has just been approved
+  #   metadata update - if the store domain has changed.
   #
   def before_update(store)
     if store.image_path_changed?
-      store.rehost        = true
+      store.rehost = true
       store.is_processed  = false
     end
 
-    store.reupdate_domain   = store.is_approved_changed? && 
-                                store.is_approved &&
-                                !store.domain_changed?
+    store.reupdate_domain = store.is_approved_changed? && 
+                              store.is_approved &&
+                              !store.domain_changed?
 
     store.reupdate_metadata = store.domain_changed? && 
                                 store.domain.present?
   end
 
-  # A store is updated
+  # Hand over to the delayed observer with conditional
+  # event triggers.
   #
   def after_update(store)
     ProcessingQueue.push(
-      NotificationManager,
-      :update_store,
-      store.id) if store.rehost
-
-    ProcessingQueue.push(
-      store,
-      :update_domain) if store.reupdate_domain
-
-    ProcessingQueue.push(
-      store,
-      :update_metadata) if store.reupdate_metadata
+      StoreDelayedObserver,
+      :after_update,
+      store.id,
+      :rehost => store.rehost,
+      :reupdate_domain => store.reupdate_domain,
+      :reupdate_metadata => store.reupdate_metadata) 
   end
-
-  # A store is delted
-  #
-  def after_destroy(store)
-  end
-
 
 end

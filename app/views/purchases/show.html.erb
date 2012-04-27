@@ -1,0 +1,55 @@
+<!-- Generate presenters for the view -->
+<%@purchase_presenter  = presenter_for(@purchase)%>
+
+<!-- Inject facebook og tags into the head -->
+<%content_for :head do%>
+  <%=render :partial  => 'facebook/og',
+            :locals   => {
+              :title        => @purchase_presenter.title, 
+              :type         => OGObject::Item, 
+              :description  => @purchase_presenter.description, 
+              :url          => @purchase_presenter.url('fb'),
+              :image        => @purchase_presenter.thumbnail_url,
+              :store        => @purchase.store}%>
+<%end%>
+
+<div class="container" style="position: relative;">
+
+  <%=link_to("<i class='icon-chevron-left'></i>",
+            purchase_path(
+              @purchase.user.handle,
+              @next_purchase.handle,
+              :src => 'previous'),
+            :class => 'btn prev') if @next_purchase%>
+
+  <div class="col-triple" style="margin-left: 189px;">
+    <div id="feed" class="feed">
+    </div>
+  </div>
+
+  <%=link_to("<i class='icon-chevron-right'></i>",
+          purchase_path(
+            @purchase.user.handle,
+            @prev_purchase.handle,
+            :src => 'next'),
+          :class => 'btn next') if @prev_purchase%>
+  
+  
+</div>
+
+
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+
+    new Denwen.Views.Purchases.Show({
+        purchaseJSON     : <%=render :partial => "purchases/display.json.erb",
+                              :locals => {:object => @purchase}%>,
+        friends         : <%=logged_in? ? self.current_user.ifollowers.to_json(
+                                          :only => [:id]) : nil.to_json%>,
+        source          : '<%=@source%>'});
+
+  </script>
+<%end%>
+

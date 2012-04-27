@@ -10,7 +10,7 @@
 #
 # Output - Log. Written to log/clerk.rb.log
 #
-# Usage - RAILS_ENV=development RAILS_PATH=/vol/closet lib/daemons/clerk_ctl start
+# Usage - RAILS_ENV=development RAILS_PATH=/vol/mine lib/daemons/clerk_ctl start
 #
 
 require 'rubygems'

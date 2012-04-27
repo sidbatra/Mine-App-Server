@@ -33,7 +33,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
     var invites = response['to'];
 
     new Denwen.Partials.Invites.BatchInvite({fb_user_ids : invites});
-    analytics.inviteCompleted(invites.length);
+    Denwen.Track.inviteCompleted(invites.length);
     
     return invites;
   },
@@ -42,7 +42,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   //
   inviteCallback: function(response) {
     if(!response) {
-      analytics.inviteRejected();
+      Denwen.Track.inviteRejected();
       this.trigger('inviteCancelled');
     }
     else {
@@ -55,7 +55,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   //
   multiInviteCallback: function(response) {
     if(!response) {
-      analytics.inviteRejected();
+      Denwen.Track.inviteRejected();
     }
     else {
       this.save(response);
@@ -66,12 +66,12 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
   //
   sendCallback: function(response) {
     if(!response) {
-      analytics.inviteRejected();
+      Denwen.Track.inviteRejected();
       this.trigger('inviteCancelled');
     }
     else {
       new Denwen.Partials.Invites.BatchInvite({fb_user_ids : new Array(this.fbID)});
-      analytics.inviteCompleted(1);
+      Denwen.Track.inviteCompleted(1);
       this.trigger('inviteCompleted',this.fbID);
     } 
   },
@@ -89,7 +89,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
       to: this.fbID}, 
       function(response) {self.sendCallback(response)});
 
-    analytics.inviteSelected('single');
+    Denwen.Track.inviteSelected('single');
   },
 
   // Show facebook single invite dialog 
@@ -104,7 +104,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
       to: fb_id}, 
       function(response) {self.inviteCallback(response)});
 
-    analytics.inviteSelected('single');
+    Denwen.Track.inviteSelected('single');
   },
 
   // Show facebook multi invite dialog 
@@ -117,7 +117,7 @@ Denwen.Partials.Facebook.Invite = Backbone.View.extend({
       title: CONFIG['fb_invite_title']},
       function(response) {self.multiInviteCallback(response)});
 
-    analytics.inviteSelected('multi');
+    Denwen.Track.inviteSelected('multi');
   }
 
 });

@@ -4,26 +4,16 @@ class StorePresenter < BasePresenter
   presents :store
   delegate :name, :to => :store
 
-  # Relative path of the store's closet
+  # Relative path of the store page.
   #
-  def closet_path(src)
+  def path(src)
     h.store_path(store.handle,:src => src)
   end
 
-  # Absolute url of the store's closet
+  # Absolute url of the store's page.
   #
-  def closet_url(src)
+  def url(src)
     h.store_url(store.handle,:src => src)
-  end
-
-  # Link to larger store photo
-  #
-  def large_picture(src)
-    h.link_to h.image_tag(
-                store.large_url, 
-                :class  => "user_photo",
-                :alt    => ''),
-              closet_path(src)
   end
 
   # Description message for the store's use of
@@ -32,12 +22,6 @@ class StorePresenter < BasePresenter
   def usage_description
     "Shop at #{name}? Discover what your friends buy there on "\
     "#{CONFIG[:name]}."
-  end
-
-  # Unique identifier to be used a source
-  #
-  def source_id
-    "store_" + store.id.to_s
   end
 
 end

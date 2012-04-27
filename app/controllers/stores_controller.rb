@@ -1,57 +1,47 @@
-# Handle requests for the store resource
-#
 class StoresController < ApplicationController
-  before_filter :renew_session, :only => :show
 
-  # Display a store
+  # Display a specific store. 
+  #
+  # This has been gutted for the time being and there isn't
+  # a way for the user to arrive at this page. It's used as a
+  # shell for OG tags.
   #
   def show
     @store  = Store.find_by_handle(params[:handle])
   end
 
-  # Fetch list of stores
+  # List of stores conditional on a given aspect.
+  #
+  # params[:aspect] - Controls the bundle of stores to
+  #                   to listed.
+  # :all - An aspect of all returns all stores in the db.
   #
   def index
-    @filter = params[:filter].to_sym
+    @aspect = params[:aspect].to_sym
 
-    case @filter
-    when :top
-      @stores   = Store.select(:id,:name,:handle,:is_processed,:image_path).
-                        processed.
-                        popular.
-                        limit(20)
-      @key      = KEYS[:store_top]
-    when :suggest
-      @stores   = Store.select(:id,:name,:handle,:is_processed,:image_path).
-                        processed.
-                        popular.
-                        limit(60)
-      @key      = KEYS[:store_suggest]
+    case @aspect
     when :all
-      @stores   = Store.select(:id,:name,:domain)
-      @key      = KEYS[:store_all]
-    when :for_user
-      @stores   = Store.select('stores.id',:name,:handle,:is_processed,
-                                :image_path).
-                        processed.
-                        for_user(params[:user_id])
-      @key      = KEYS[:user_top_stores] % params[:user_id]
-    when :related
-      @category_id  = Specialty.top_category_id_for_store(params[:store_id])
-      @stores       = Store.select('stores.id',:name,:handle,:is_processed,
-                                    :image_path).
-                            processed.
-                            for_specialty(@category_id).
-                            limit(11)
-      @key          = KEYS[:store_related_in_category] % @category_id
+      all
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
     respond_to do |format|
-      format.json
+      format.json do
+        render @aspect
+      end
     end
+  end
+
+
+  protected
+
+  # Fetch all stores for the :all aspect on the index route
+  #
+  def all
+    @key = "v1/stores/all"
+    @stores = Store.select(:id,:name,:domain) unless fragment_exist? @key
   end
   
 end

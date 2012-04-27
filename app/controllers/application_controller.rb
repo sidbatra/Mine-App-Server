@@ -1,43 +1,22 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-#
 class ApplicationController < ActionController::Base
   helper :all 
   protect_from_forgery 
   filter_parameter_logging :password, :secret 
   before_filter :track_source
 
-
   include ExceptionLoggable, DW::AuthenticationSystem, DW::RequestManagement
 
   protected
 
-  # Populate the source variable for analytics before
-  # every request
+  # Populate the @source variable before every request using the :src param.
+  # if :src isn't present set @source to 'direct'.
   #
   def track_source
-    @source       = params[:src] ? params[:src].to_s : 'direct'
+    @source = params[:src] ? params[:src].to_s : 'direct'
   end
 
-  # Renew an active session after a certain time period to mark
-  # the user as an active user on the site
-  #
-  def renew_session
-    if logged_in? && (!session[:last_renewed_at] || 
-                    Time.now - session[:last_renewed_at] > 3600)
-      
-      self.current_user.touch
-      session[:last_renewed_at] = Time.now
-    end
-  end
-
-  # Test is the format of the current request is json
-  #
-  def is_json?
-    request.format == Mime::JSON
-  end
-
-  # Prepare parameters for the image uploder
+  # Prepare uploader config for uploading directly to Amazon S3. Store
+  # the config as a hash into @upload_config.
   #
   def generate_uploader
     u = {}

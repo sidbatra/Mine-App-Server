@@ -1,15 +1,15 @@
-// Collection of Comment models
+// Collection of Comment models 
 //
 Denwen.Collections.Comments = Backbone.Collection.extend({
 
-  // Route on the app server
+  // Model Name
+  //
+  model: Denwen.Models.Comment,
+
+  // Route on the app server 
   //
   url: '/comments',
 
-  // Base model
-  //
-  model: Denwen.Models.Comment,
-  
   // Constructor logic
   //
   initialize: function() {

@@ -1,0 +1,96 @@
+<div class="item">
+
+  <%if(Denwen.H.isLoggedIn()){%>
+    <div class="actions" 
+          id="feedback" 
+          style="position: absolute; top: 20px; right: 20px;">
+
+      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
+        <a style="float: right" 
+            href="<%=purchase.editPath('feed')%>" 
+            class="btn">
+          <i class="icon-pencil"></i>
+        </a>
+      <%}%>
+
+      <%if(purchase.get('fb_object_id') && interaction){%> 
+        <a style="float: right; margin-right: -1px; width: 14px;" 
+            id="purchase_create_like_<%=purchase.get('id')%>"
+            href="javascript:void(0)" 
+            class="btn like">
+          <img class="loading inline" 
+            style="margin: 0 0 2px -1px;" 
+            src="<%=Denwen.H.imagePath("loading_blocks_small_dark_trans.gif")%>" />
+   				<span class="hide-when-loading">
+          	<i class="icon-like"></i>
+          </span>
+        </a>
+      <%}%>
+    </div>
+  <%}%>
+  
+  
+  <!-- User -->
+  <div class="user-box">
+    <a href="<%=purchase.get('user').path('purchase_photo')%>">
+      <img class="user-photo" 
+            src="<%=purchase.get('user').get('square_image_url')%>" />
+    </a>
+
+    <%if(purchase.get('store') && purchase.get('store').get('is_processed')){%>
+      <img class="store-icon" 
+            src="<%=purchase.get('store').get('thumbnail_url')%>" />
+    <%}%>
+
+    <div style="float: left; margin-left: 8px;">
+      <h5>
+        <a class="user-name" href="<%=purchase.get('user').path('purchase_name')%>">
+          <%=purchase.get('user').get('first_name')%> 
+          <%=purchase.get('user').get('last_name')%>
+        </a>
+      </h5>
+      <%=purchase.get('store') ? purchase.get('store').get('name') : ''%>
+      <span class="small"><%=jQuery.timeago(purchase.get('created_at'))%></span>
+    </div>
+  </div>
+  
+  <!-- Photo -->
+  <div class="photo-box" >
+    <img src="<%=purchase.get('giant_url')%>" />
+  </div>
+  
+  
+  <!-- Details -->
+  <div class="title-box">
+     <%=purchase.escape('title')%>
+  </div>
+  
+  <!-- Likes -->
+  <div class="likes-box" 
+          id="purchase_likes_box_<%=purchase.get('id')%>"
+       style="display:none;">
+    <span id="purchase_likes_<%=purchase.get('id')%>"></span>
+    <span style="margin-left: 2px;" 
+      id="purchase_likes_<%=purchase.get('id')%>_aggregate"></span>
+  </div>
+  
+  <!-- Comments -->
+  <div class="comments-box">
+  
+    <div id="purchase_comments_<%=purchase.get('id')%>">
+    </div>
+    
+    <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id') && interaction){%>
+      <div class="comment-box new" style="margin-top: 15px;">
+        <img class="user-photo" 
+          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+        <input type="text" 
+          id="purchase_comment_data_<%=purchase.get('id')%>"
+          class=""
+          placeholder="Add a comment">
+      </div>
+    <%}%>
+    
+  </div> <!-- /comments -->
+  
+</div> <!-- /item -->	

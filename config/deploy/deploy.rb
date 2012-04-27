@@ -25,6 +25,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
 
       if servers? :search
+        solr.install
         solr.start
         solr.index
       end
@@ -79,8 +80,6 @@ Capistrano::Configuration.instance(:must_exist).load do
       if servers? :search
         solr.index
       end
-
-      cache.clear
 
       if servers? :web or servers? :worker
         cron.update_web_proc

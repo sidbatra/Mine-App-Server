@@ -1,111 +1,53 @@
-<!-- Generate presenters to render this page -->
-<%@user_presenter = presenter_for(@user)%>
-
-<!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
   <%=render :partial  => "facebook/og",
             :locals   => {
-              :title        => @user_presenter.closet_name,
+              :title        => "Tile for this page",
               :type         => "link",
-              :description  => @user_presenter.usage_description,
-              :url          => @user_presenter.closet_url("fb"),
-              :image        => @user.products_count > 0 ? 
-                                @user.products.last.thumbnail_url : 
-                                ""}%>
+              :description  => "Description for this page",
+              :url          => user_url(@user.handle,:src => 'fb'),
+              :image        => ""}%>
 <%end%>
 
-<div class="container profile">
 
-	<div class="row">
-    <div class="span12">
-	    <div class="well profile-card" style="height: 128px; margin-bottom: 12px;">
-	    	
-	    		<div class="profile-card-inner">
-		    		<div class="profile-img">
-							<%=@user_presenter.large_picture('picture')%>
-						</div>
-		    		<h1 style="padding-bottom: 4px; line-height: 1;">
-              <%=@user_presenter.full_name%>
-            </h1>
-		    		<div id="profile_bio">
-					    <%=render :partial  => 'byline',
-					              :locals   => {:user => @user}%>
-			  		</div>
-			  	</div>
-			  	
-			  	<div class="profile-card-actions" id="user_stores_box" >
-					</div>
-			  	
-			  	<div class="profile-card-actions" id="ifollowers_with_msg">
-			  	</div>
-	
-	    </div> <!-- /well profile-card -->
-    </div> <!-- /span12 -->
-  </div> <!-- /row -->
-	
-	<%=render :partial => "misc/welcome", 
-	          :locals => {
-	          :src    => @user_presenter.source_id,
-	          :target => @user_presenter.closet_path('footer')} if !logged_in? &&
-	                               @source != "iframe"%>
-	          <!-- /logged out welcome -->
+<div class="container">
 
-  <div class="row">
-    <div class="span12">
-    	<div class="well items">
-    	
-    		<ul class="nav nav-tabs">
-  				<li id="owns_tab">
-    				<a href="#<%=UserShowHash::Owns%>" 
-                style="text-align: center; width: 38px;">
-    					<span class="hide-when-loading">Owns</span>
-    					<div class="loading small inline" style="margin-bottom: -4px;">
-              </div>
-    				</a>
-  				</li>
-  				<li id="wants_tab">
-  					<a href="#<%=UserShowHash::Wants%>" 
-                style="text-align: center; width: 38px;">
-  						<span class="hide-when-loading">Wants</span>
-  						<div class="loading small inline" style="margin-bottom: -4px;">
-              </div>
-  					</a>
-  				</li>
-          <%if is_current_user(@user) or !@user.collections_count.zero?%>
-            <li id="collections_tab">
-              <a href="#<%=UserShowHash::Collections%>" 
-                  style="text-align: center; width: 38px;">
-                <span class="hide-when-loading">Uses</span>
-                <div class="loading small inline" style="margin-bottom: -4px;">
-                </div>
-              </a>
-            </li>
-          <%end%>
-				</ul>
-        
-    		<div class="control-group">
-      		<div id="centerstage"></div>
-      	</div>
-      	
-      </div> <!-- /well items-->
-    </div> <!-- /span12 -->
-  </div> <!-- /row -->
+  <div class="col">
+
+    <div class="user-box">
+      <div class="photo-box">
+        <div class="border">
+        </div>
+        <%=image_tag @user.large_image_url,
+            :class => "user-photo"%>
+      </div>
+      <p class="user-name">
+        <%=h @user.full_name%>
+      </p>
+    </div>
+    
+    <%=render :partial => "users/ifollowers",
+        :locals => {:user => @user,:src => "profile"}%>
+      
+    <%=render :partial => "users/trinkets",
+        :locals => {:user => @user,:src => "profile"}%>
+
+  </div> <!-- /col -->
+
+  <%=render :partial => "users/purchases",
+      :locals => {:user => @user}%>
   
-</div> <!-- /container profile -->
+</div> <!-- /container -->
 
 
 <%content_for :javascript do%>
 
-  <script type="text/javascript">
+  <script type="text/javascript">  
 
     new Denwen.Views.Users.Show({
-          styles          : <%=@styles.shuffle.to_json(
-                                  :only => [:id,:title],
-                                  :methods => [:image_url])%>,
           userJSON        : <%=@user.to_json(
                                 :only => [:id,:first_name,:last_name,
                                           :handle,:byline,:followings_count,
-                                          :collections_count,:products_count,
+                                          :purchases_count,
                                           :inverse_followings_count])%>,
           currentUserJSON : <%=self.current_user.to_json(
                                 :only    => [:id,:first_name,:last_name,

@@ -1,12 +1,101 @@
-
 <div class="container invite" id="container">
-	<div class="row">
-		<div class="span6 offset3">
-      <%=render "invites/new/styles"%>
-      <%=render "invites/new/friends"%>	
-      <%=render "invites/new/finish"%>
-	 	</div> <!-- /span6 -->
-	</div> <!-- /row -->
+
+  <div class="col">
+    &nbsp;
+  </div>
+  
+  <div class="col-triple invite">
+  
+  	<div class="item">
+  	
+  		<h4 style="font-size: 15px; margin-bottom: 18px;">
+      	Invite friends 
+      	<span style="padding-left: 3px; color: #999; font-size: 13px; font-weight: normal;">
+      		Your invite will look like this:
+      	</span>
+      </h4>
+
+		<!-- Preview -->
+		
+		<div style="margin: 0 -20px; padding: 15px 20px; background: whiteSmoke; 
+		border-bottom: 1px solid #E4E3E3; border-top: 1px solid #E4E3E3;">
+			
+			<div class="thumbnail fb-timeline">
+			 	<div style="padding: 11px">
+			 	
+			 		<div class="user-block">
+	          <%=image_tag self.current_user.square_image_url,
+	              :class => "user-photo"%>
+			 			<strong><%=user_full_name(self.current_user)%></strong><br />
+			 			<span style="color: gray;">
+	            <%=Time.zone.now.strftime("%B %d")%>
+	          </span>
+			 		</div> 
+			 		
+			 		<div class="above-content">
+			 			I’d like us to share purchases using <%=CONFIG[:name]%> — 
+            a simple service that tells you when friends 
+            buy something interesting.
+			 		</div>
+			 		
+			 		<div class="display-content">
+			 			<div class="art-photo" id="friend_image"
+			 					 style="background-image: url('');">
+			 				<b>M</b>
+	          </div>
+	          <strong>
+	            <div style="margin-bottom: 3px;">
+	              <%=CONFIG[:name]%> - Click to start yours.
+	            </div>
+	          </strong>
+			 			<span style="color: gray;">
+			 				Your <%=CONFIG[:name]%> is a place to log and 
+              share purchases with friends. <br />
+			 				It’s fun, and totally free. 
+			 				<br />		
+			 				<br />	 				
+			 				Will-You-Be-Mine.com
+			 			</span>
+			 		</div>
+			 		
+			 	</div> <!-- padding -->
+    
+			</div> <!-- /thumbnail -->
+			
+		</div> <! -- gray box -->
+		
+			<div id="friends_container">
+			
+				<!-- search box -->
+				<div class="control-group" style="margin: 24px 5px 18px;">
+			  	<div style="position: relative;">
+			
+			      <%=text_field_tag 'search_box', 
+			          nil, 
+			          :placeholder => "Type a friend's name", 
+			          :style => 'width: 500px; margin-bottom: 0px;'%>
+			
+			      <%=link_to  '&times;',
+			          'javascript:void(0)',
+			          :id    => 'x_button',
+			          :class => 'close',
+			          :style => "position: absolute; top: 5px; right: 8px; "\
+			                    "display: none;"%>
+			   	</div>
+			  </div>
+			  
+			  <!-- friends list -->
+				<div id="contacts" style="position: relative;">
+					  <div class="loading blocks body" style="height: 60px;">
+    				</div>
+				</div>
+			 
+			</div> <!-- friends container -->
+			
+		</div> <!-- /item -->
+
+	</div> <!-- col triple invite -->
+
 </div> <!-- /container -->
 
 <%content_for :javascript do%>
@@ -15,7 +104,6 @@
           source  : '<%=@source%>',
          friends  : <%=self.current_user.ifollowers.to_json(
                             :only => [:fb_user_id])%>,
-          styles  : <%=@styles.to_json(:only => [:id,:title])%>,
           el      : $('#container')});
   </script>
 <%end%>

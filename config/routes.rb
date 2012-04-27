@@ -1,188 +1,143 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.root :controller  => :home,
-            :action     => :show
+    :action => :show
 
-  map.welcome_create '/welcome/create',
-                :controller => :products,
-                :action     => :new
+  map.home 'home/:id', 
+    :controller => :home, 
+    :action => :show
 
-  map.home      '/home/:id',
-                :controller => :home,
-                :action     => :show
+  map.login 'facebook/authenticate',
+    :controller => :session,
+    :action     => :create
 
-  map.login     'facebook/authenticate',
-                :controller => :session,
-                :action     => :create
+  map.logout 'logout',
+    :controller => :session,
+    :action     => :destroy
 
-  map.logout    '/logout',
-                :controller => :session,
-                :action     => :destroy
+  map.fb_auth 'facebook/authenticate',
+    :controller => :session,
+    :action     => :create
 
-  map.fb_auth   'facebook/authenticate',
-                :controller => :session,
-                :action     => :create
+  map.fb_reply 'facebook/reply',
+    :controller => :users,
+    :action     => :create
 
-  map.fb_reply  'facebook/reply',
-                :controller => :users,
-                :action     => :create
-  
-  map.privacy   'privacy',
-                :controller => :static,
-                :action     => :show,
-                :filter     => :privacy
 
-  map.terms     'terms',
-                :controller => :static,
-                :action     => :show,
-                :filter     => :terms
-
-  map.terms     'copyright',
-                :controller => :static,
-                :action     => :show,
-                :filter     => :copyright
-
-  # Deprecate in next version
-  map.product_d 'products/:id/:name',
-                :controller => :products,
-                :action     => :show
-
-  map.product ':user_handle/p/:product_handle',
-                :controller => :products,
-                :action     => :show
-
-  map.edit_product ':user_handle/p/:product_handle/edit',
-                    :controller => :products,
-                    :action     => :edit
-
-  # Deprecate in next version
-  map.collection_d  ':user_handle/c/:id',
-                    :controller => :collections,
-                    :action     => :show
-
-  map.collection  ':user_handle/s/:handle',
-                  :controller => :collections,
-                  :action     => :show
-
-  map.edit_collection  ':user_handle/s/:handle/edit',
-                        :controller => :collections,
-                        :action     => :edit
-
-  map.store   's/:handle',
-                :controller => :stores,
-                :action     => :show
-
-  map.connect 'admin/stores/unapproved',
-              :controller   => 'admin/stores',
-              :action       => :index,
-              :filter       => :unapproved
-
-  map.connect 'admin/stores/popular',
-              :controller   => 'admin/stores',
-              :action       => :index,
-              :filter       => :popular
-
-  # Exception manager
-  map.logged_exceptions 'admin/logged_exceptions/:action/:id', 
-              :controller => 'logged_exceptions'
-
+  ##
+  # Resoure based routes
+  ##
   map.resources :users,
-                :only => [:create,:show,:update,:index]
+    :only => [:create,:show,:update]
 
-  map.resources :products,
-                :only => [:new,:create,:index,:update,:destroy]
+  map.resource :feed,
+    :controller => :feed,
+    :only => [:show]
+
+  map.purchase ':user_handle/p/:purchase_handle',
+    :controller => :purchases,
+    :action     => :show
+
+  map.edit_purchase ':user_handle/p/:purchase_handle/edit',
+    :controller => :purchases,
+    :action     => :edit
+
+  map.resources :purchases,
+    :only => [:create,:update,:destroy]
+
+  map.store 's/:handle',
+    :controller => :stores,
+    :action     => :show
 
   map.resources :stores,
-                :only => [:index]
+    :only => [:index]
 
   map.resources :comments,
-                :only => [:create,:index]
+    :only => [:index,:create]
 
-  map.resources :actions,
-                :only => [:create,:index]
+  map.resources :likes,
+    :only => [:index,:create]
 
-  map.resources :followings,
-                :only => [:create,:show,:destroy]
+  #map.resources :followings,
+  #  :only => [:create,:show,:destroy]
 
   map.resources :searches,
-                :only => [:create]
+    :only => [:create]
 
-  map.resources :search,
-                :only => [:index],
-                :controller => :search
-
-  map.resources :invites,
-                :only => [:create]
+  map.resources :products,
+    :only => [:index]
 
   map.resources :suggestions,
-                :only => [:index]
+    :only => [:index]
 
-  map.new_invite '/invite',
-                  :controller => :invites,
-                  :action => :new
+  map.resources :facebook,
+    :only => [:index,:show,:create]
+
+  map.new_invite 'invite',
+    :controller => :invites,
+    :action     => :new
+
+  map.resources :invites,
+    :only => [:create]
 
   map.resources :contacts,
-                :only => [:index]
-
-  map.resources :collections,
-                :only => [:create,:new,:index,:update,:destroy]
+    :only => [:index]
 
   map.resources :welcome,
-                :only       => [:show,:create],
-                :controller => :welcome
+    :only       => [:show,:create],
+    :controller => :welcome
 
   map.resources :settings,
-                :only => [:index,:update,:show]
+    :only => [:index,:update,:show]
 
-  # Admin routes
-  map.resources :admin_users, 
-                :as         => 'admin/users', 
-                :controller => 'admin/users',
-                :only       => [:index,:show,:destroy]
-  
-  map.resources :admin_stores, 
-                :as         => 'admin/stores', 
-                :controller => 'admin/stores',
-                :only       => [:index,:edit,:update]
 
-  map.resources :admin_collections, 
-                :as         => 'admin/collections', 
-                :controller => 'admin/collections',
-                :only       => :index
+  ##
+  # Routes for static pages
+  ##
+  map.privacy 'privacy',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :privacy
 
-  map.resources :admin_emails,
-                :as         => 'admin/emails',
-                :controller => 'admin/emails',
-                :only       => [:index,:show]
+  map.terms 'terms',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :terms
 
-  map.resources :admin_health,
-                :as         => 'admin/health',
-                :controller => 'admin/health',
-                :only       => :index
+  map.copyright 'copyright',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :copyright
 
-  map.resources :admin_suggestions,
-                :as         => 'admin/suggestions',
-                :controller => 'admin/suggestions'
 
-  map.resources :admin_styles,
-                :as         => 'admin/styles',
-                :controller => 'admin/styles',
-                :only       => [:new,:create,:index,:edit,:update,:destroy]
+  ##
+  # Admin namespace routes routes
+  ##
 
-  map.admin '/admin',
-                :controller => 'admin/help',
-                :action     => :show
+  map.logged_exceptions 'admin/logged_exceptions/:action/:id', 
+    :controller => 'logged_exceptions'
 
-  map.canvas    '/canvas',
-                :controller => :canvas,
-                :action     => :show
+  map.admin 'admin',
+    :controller => 'admin/help',
+    :action     => :show
+
+  map.namespace(:admin) do |admin|
+    admin.resources :users, :only => [:index,:show,:destroy]
+    admin.resources :stores, :only => [:index,:edit,:update]
+    admin.resources :emails, :only => [:index,:show]
+    admin.resources :health, :only => [:index]
+    admin.resources :suggestions
+  end
+
+
+  ##
+  # Catch all route for user profiles
+  ##
+  map.user ':handle',
+    :controller => :users,
+    :action     => :show
   
   Jammit::Routes.draw(map)
-        
-
-  map.user  '/:handle',
-            :controller => :users,
-            :action     => :show
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

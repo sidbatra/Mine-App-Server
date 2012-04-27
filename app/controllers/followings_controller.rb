@@ -1,10 +1,8 @@
-# Handle requests related to the followings resource
-#
 class FollowingsController < ApplicationController
   before_filter :login_required
 
   # Create a new following from the current user towards
-  # the given user
+  # the given user.
   #
   def create
     @following = Following.add(params[:user_id],self.current_user.id)
@@ -16,7 +14,7 @@ class FollowingsController < ApplicationController
     end
   end
 
-  # Fetch the status of a following 
+  # Fetch the status of a following.
   #
   def show
     @following = Following.fetch(params[:id],self.current_user.id)
@@ -29,7 +27,7 @@ class FollowingsController < ApplicationController
     end
   end
 
-  # Destroy a following
+  # Destroy a following.
   #
   def destroy
     following = Following.find(params[:id])

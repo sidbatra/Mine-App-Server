@@ -5,6 +5,9 @@ production:
     log_level: WARNING
     min_memory: 150M
     max_memory: 2G
+    solr_home: /vol/mine/shared/solr
+    data_path: /vol/mine/shared/solr/data
+    pid_dir: /vol/mine/shared/solr/pids
   auto_commit_after_request: false
 
 staging:
@@ -14,6 +17,9 @@ staging:
     log_level: WARNING
     min_memory: 50M
     max_memory: 150M
+    solr_home: /vol/mine/shared/solr
+    data_path: /vol/mine/shared/solr/data
+    pid_dir: /vol/mine/shared/solr/pids
   auto_commit_after_request: false
 
 development:

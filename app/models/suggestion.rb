@@ -1,8 +1,9 @@
 class Suggestion < ActiveRecord::Base
+
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
-  has_many :products
+  has_many :purchases
 
   #----------------------------------------------------------------------
   # Validations
@@ -10,7 +11,6 @@ class Suggestion < ActiveRecord::Base
   validates_presence_of :title
   validates_inclusion_of :gender, :in => SuggestionGender.values
   
-
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
@@ -25,23 +25,25 @@ class Suggestion < ActiveRecord::Base
   named_scope :for_gender, lambda{|gender| {:conditions =>
                             ["gender = #{SuggestionGender::Neutral} or "\
                              "gender = #{SuggestionGender.value_for(gender)}"]}}
-  named_scope :with_products, :include => :products
+  named_scope :with_purchases, :include => :purchases
+
 
   #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
-  # Add a new suggestion
+  # Factory method for creating a new suggestion.
   #
   def self.add(attributes)
     create(attributes)
   end
 
+
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
 
-  # Absolute url of the image
+  # Absolute url of the suggestion image.
   #
   def image_url
     FileSystem.url(image_path)

@@ -1,17 +1,12 @@
-<li>
-	<a class="thumbnail" 
-      id="contact_picker_<%=contact.get('id')%>"
-			href="javascript:void(0)">
-	
-		<img class="thumb-photo" 
-		      src="<%=contact.imageURL()%>" />
-		      
-		<div class="caption" style="position: relative; height: 31px; padding: 1px 4px 0 0;">
-     	<div class="overflow-fade">
-				<i class="icon-ok icon-white" style="float: right; margin: 50% 6px 0 0; position: relative; top: -11px;"></i>
-			</div>
-			<%=helpers.truncate(contact.get('name'), 20, '…')%>
-		</div>
-	</a> 
+<li class="user-box" id="contact_picker_<%=contact.get('id')%>">
+	<img class="user-photo" src="<%=contact.imageURL()%>" />  
+	<%=Denwen.H.truncate(contact.get('name'), 19, '…')%>
+	<a class="btn <%=contact.get('invited') ? 'pushed' : ''%>" 
+        id="post_invite_<%=contact.get('id')%>" 
+     style="float: right; width: 52px; height: 18px;">
+		<span class="out hide-when-loading"><i class="icon-envelope"></i> Invite</span>
+		<span class="in hide-when-loading"><i class="icon-ok icon-white"></i> Sent</span>
+		<div class="loading small inline" style="margin-top: 1px;"></div>
+	</a>
 </li> 
 

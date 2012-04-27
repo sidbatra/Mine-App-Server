@@ -2,18 +2,16 @@
 //
 var Denwen = {
   Models      : {},
-  Views       : { Users : {}, Products : {}, Stores : {},
-                  Invites : {}, Welcome : {}, 
-                  Admin : {Styles : {},Suggestions : {},Stores : {}}, 
-                  Collections : {}, Shoppings : {}, Followings : {}, 
-                  Settings : {}, Styles : {}},
-  Partials    : { Users : {}, Products : {}, Comments : {}, Commentables : {}, 
-                  Facebook : {}, Stores : {}, Invites : { New: {}}, 
-                  Actionables  : {}, Collections : {}, Common : {}, Styles : {},
-                  Suggestions : {}, Contacts : {},
-                  Admin : {Styles : {},Suggestions : {},Stores : {}}},
-  Collections : {},
-  Callbacks   : {}
+  Views       : { Users : {}, Purchases : {}, 
+                  Invites : {}, Welcome : {},
+                  Admin : {Suggestions : {},Stores : {}}, 
+                  Settings : {}, Feed : {}},
+  Partials    : { Users : {}, Products : {}, Purchases : {}, 
+                  Facebook : {}, Stores : {}, Invites : {}, 
+                  Common : {}, Followings : {}, Settings : {}, 
+                  Comments : {}, Likes :{}, Feed:{},
+                  Admin : {Suggestions : {},Stores : {}}},
+  Collections : {}
 };
 
 

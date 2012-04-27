@@ -1,14 +1,12 @@
-# Observe events on the User model
-#
 class UserObserver < ActiveRecord::Observer
 
-  # Fired before a user is created
+  # Build settings for a user who's about to be created.
   #
   def before_create(user)
     user.build_setting  
   end
 
-  # Alert notification manager about a new user 
+  # Hand off to the delayed observer.
   #
   def after_create(user)
     ProcessingQueue.push(
@@ -17,15 +15,19 @@ class UserObserver < ActiveRecord::Observer
       user.id) if user.is_registered?
   end
 
-  # Set flags to be used in after_update before an update finishes
+  # Test the user object for the following events:
+  #   recreate - Treat like a fresh user if user was earlier made 
+  #               for an invite.
+  #   mine_fb_data - Mine facebook data.
   #
   def before_update(user)
     user[:recreate] = user.access_token_was.nil? && user.access_token.present?
     user[:mine_fb_data] = user.access_token_changed? && !user[:recreate]
   end
 
-  # Alert notification manager to mine contacts based on the 
-  # flag set in before_update
+  # Hand over to the delayed observer after refering to the events setup in
+  # the before_update method.
+  #
   #
   def after_update(user)
 

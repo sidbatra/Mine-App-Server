@@ -1,109 +1,55 @@
-// Manage user interactions on a rendered product preview
+// Partial for displaying a single product
 //
 Denwen.Partials.Products.Product = Backbone.View.extend({
-  
+
   // Constructor logic
   //
   initialize: function() {
+    this.render();
+  },
+
+  // Override render method for displaying view
+  //
+  render: function() {
     var self        = this;
+    var thumbUrl    = this.model.get('medium_url');
+    this.imageTest  = this.options.imageTest;
+    this.divID      = Math.random().toString(36).substring(7);
 
-    this.source     = this.options.source;
-    this.sourceID   = this.options.sourceID;
-    this.ownBox     = null;
+    this.el.append(Denwen.JST['products/product']({
+      thumbUrl:thumbUrl,
+         divID:this.divID,
+          hide:this.imageTest}));
 
-    this.owns         = false;
-    this.wants        = false;
-    this.activeClass  = 'active';
+    this.divEl = $('#' + this.divID);
 
-    this.ownEl      = '#own_product_' + this.model.get('id');
-    this.wantEl     = '#want_product_' + this.model.get('id');
-    this.ownBoxEl   = '#own_box_container_' + this.model.get('id');
+    this.divEl.click(function(){self.clicked();});
 
-    $(this.ownEl).click(function(){self.ownClicked();});
-    $(this.wantEl).click(function(){self.wantClicked();});
-
-
-    this.ownBox = new Denwen.Partials.Products.Own({
-                              el          : $(this.ownBoxEl),
-                              product_id  : this.model.get('id')});
-
-    this.ownBox.bind('ownCreated',this.ownCreated,this);
-    this.ownBox.bind('ownCancelled',this.ownCancelled,this);
+    if(this.imageTest)
+      this.divEl.find("img").load(function(){self.imageLoaded(this)});
   },
 
-  // Create the action initiated by the user
+  // Fired when the image is clicked
   //
-  createAction: function(name) {
-    var action = new Denwen.Models.Action();
-    action.save({
-      name        : name,
-      source_id   : this.model.get('id'),
-      source_type : 'product'});
+  clicked: function() {
+    this.trigger(Denwen.Partials.Products.Product.Callback.Clicked,this.model);
   },
 
-  // Fired when the own button is clicked
+  // Fired when the image is loaded
   //
-  ownClicked: function() {
-    if(this.owns)
-      return;
-    
-    this.owns = true;
+  imageLoaded: function(image) {
+    var aspectRatio = image.width / image.height;
 
-    this.ownBox.display();
-    $(this.ownEl).addClass('held');
-    $(this.ownBoxEl).addClass(this.activeClass);
-
-    analytics.ownInitiated(
-                this.source,
-                this.sourceID,
-                this.model.get('id'));
-  },
-
-  // Callback from ownBox when an own is created
-  //
-  ownCreated: function() {
-    $(this.ownEl).removeClass('held');
-    $(this.ownEl).removeClass('hover_shadow_light');
-    $(this.ownEl).addClass('disabled');
-    $(this.ownBoxEl).removeClass(this.activeClass);
-
-    this.createAction('own');
-
-    analytics.ownCreated(
-                this.source,
-                this.sourceID,
-                this.model.get('id'));
-  },
-
-  // Callback from ownBox when an own is cancelled
-  //
-  ownCancelled: function() {
-    $(this.ownEl).removeClass('held');
-    $(this.ownBoxEl).removeClass(this.activeClass);
-    this.owns = false;
-
-    analytics.ownCancelled(
-                this.source,
-                this.sourceID,
-                this.model.get('id'));
-  },
-
-  // Fired when the want button is clicked
-  //
-  wantClicked: function() {
-    if(this.wants)
-      return;
-    
-    $(this.wantEl).removeClass('hover_shadow_light');
-    $(this.wantEl).addClass('disabled');
-
-    this.createAction('want');
-    this.wants = true;
-
-    analytics.wantCreated(
-                this.source,
-                this.sourceID,
-                this.model.get('id'));
+    if((!image.width && !image.height) || (image.width > 149 && 
+        image.height > 149 &&
+        aspectRatio < 3 &&
+        aspectRatio > 0.3))
+        this.divEl.show();
   }
-
 });
+
+// Define callbacks.
+//
+Denwen.Partials.Products.Product.Callback = {
+  Clicked : 'clicked'
+}

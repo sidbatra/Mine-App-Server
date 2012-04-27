@@ -1,8 +1,6 @@
-# Observe events on the Invite model
-#
 class InviteObserver < ActiveRecord::Observer
 
-  # An invite is created
+  # Hand off processing to invite delayed observers.
   #
   def after_create(invite)
     ProcessingQueue.push(

@@ -1,17 +1,18 @@
-// Render a single comment
+// Partial to display single facebook comment
 //
 Denwen.Partials.Comments.Comment = Backbone.View.extend({
 
   // Constructor logic
   //
   initialize: function() {
+    this.comment = this.options.comment; 
     this.render();
   },
 
-  // Render the comment
+  // Render an individual comment
   //
   render: function() {
-    //$(this.el).prepend(Denwen.JST['comments/comment']({comment:this.model}));
+    this.el.append(Denwen.JST['comments/comment']({comment:this.comment}));
   }
 
 });

@@ -41,10 +41,17 @@
     <%=include_javascripts :application-%>
 
     <script type="text/javascript">
-      setupDeviceVariables(
-        <%=is_mobile_device? ? true : false%>,
-        <%=is_device_ipad?%>,
-        <%=is_device_iphone?%>);
+      <%if logged_in?%>
+        Denwen.H.currentUser = new Denwen.Models.User(
+                               <%=self.current_user.to_json(
+                                 :only    => [:id,:fb_user_id],
+                                 :methods => [:square_image_url,:full_name],
+                                 :include => {
+                                  :setting => {
+                                   :only    => [],
+                                   :methods => [:fb_publish_permissions,
+                                                :fb_extended_permissions]}})%>);
+      <%end%>
     </script>
 
     <%=yield :javascript%>
@@ -54,6 +61,3 @@
     </script>
   </body>
 </html>
-
-
-

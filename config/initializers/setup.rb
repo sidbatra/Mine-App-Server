@@ -1,7 +1,6 @@
 # Abstracts the initialization away from config/environment.rb
 #
 
-MSG         = CONFIG[:msg]
 EMAILS      = CONFIG[:emails]
 KEYS        = CONFIG[:keys]
 Q           = CONFIG[:queue]
@@ -25,12 +24,13 @@ include Enumerations
 enums = YAML.load_file("#{RAILS_ROOT}/config/enumerations.yml")
 DW::Enumerations.populate(enums[:ruby])
 
+include ActionController::UrlWriter
+
 include AmazonProductInterface
 include CacheManagement
 include Cron
 include CryptoManagement 
 include ImageProcessing
-include NotificationManagement
 include MailmanInterface
 include Storage
 include QueueManagement

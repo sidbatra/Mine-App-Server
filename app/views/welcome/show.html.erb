@@ -1,68 +1,58 @@
-<%=render :partial  => "headers/onboarding"%>
-
-<div class="container">
-	<div style="width: 640px; margin: 0 150px;">
-		<div class="well">
-			<fieldset>
-				<legend>
-					Welcome to OnCloset, <%=self.current_user.first_name%>!
-					
-					<%=link_to 'Pick your style <i class="icon-chevron-right icon-white"></i>',
-						        welcome_path(WelcomeFilter::Style),
-						        :class => 'btn btn-large btn-primary',
-						        :style => 'float: right;'%>
-				</legend>
-			
-				<div id="example" class="control-group" style="position: relative;">
+<div class="steps">
+	<div class="container">
+	
+		<div class="title">
+			Welcome to Mine, 
+      <span class="name"><%=self.current_user.first_name%></span>. <br />
+			<span style="color: #ccc;">You'll be sharing your first purchase in seconds.</span>
+		</div>
+	
+		<div class="squares clearfix">
 		
-			    <%=image_tag 'intro.jpg', 
-			        :style => 'margin-bottom: 4px;'%>
-			    
-			    <div id="style" 
-	              title="What's your style?",
-	       data-content="Geek? Shopaholic? Foodie? Set your style whichever way suits you best.",
-	              class="q-point" 
-	              style="position: absolute; top: 10px; left: 15px; 
-	                      width: 260px; height: 90px; 
-	                      background-position: center 55px;"></div>
-			    
-			    <div id="influencers" 
-	              title="Who influences you?",
-	       data-content="Add friends with good taste, and get notified when they buy something new.",
-	              class="q-point" 
-	              style="position: absolute; top: 10px; left: 286px; 
-	                      width: 154px; height: 75px; 
-	                      background-position: center 40px;"></div>
-			    
-			    <div id="stores" 
-	              title="Where do you shop?",
-	       data-content="Add stores, then discover new items through others that also shop there.",
-	              class="q-point" 
-	              style="position: absolute; top: 10px; left: 438px; 
-	                      width: 154px; height: 75px; 
-	                      background-position: center 40px;"></div>
-			    
-			    <div id="items" 
-	              title="What are you favorite buys?",
-	       data-content="From shoes to jewelry to electronics,<br />fill your OnCloset however you like.",
-	              class="q-point"
-	              style="position: absolute; top: 121px; left: 0; 
-	                      width: 600px; height: 140px;
-	                      background-position: center 105px;"></div>
-					        
-				 </div> <!-- /control-group -->
-			</fieldset>
-		</div> <!-- /well -->
-	</div> <!-- /640px -->
-</div> <!-- /container -->
+			<div class="square text light">
+				Add friends to see what they buy and where they shop.
+			</div>
+			<div class="rectangle">
+				<%=image_tag "home_mine/intro/"\
+                      "intro1-#{user_gender(self.current_user)}.jpg"%>
+			</div>
+			
+			<div class="rectangle">
+				<%=image_tag "home_mine/intro/"\
+                      "intro2-#{user_gender(self.current_user)}.jpg"%>
+			</div>
+			<div class="square text light">
+				Mine syncs neatly with your Facebook Timeline.
+			</div>
+			
+			<div class="square text light last">
+				Flick a switch to post favorites as large photos.
+			</div>
+			<div class="rectangle last">
+				<%=image_tag 'home_mine/intro/intro3.jpg'%>
+			</div>	
+					
+		</div> <!-- /squares -->
+	</div>	
+</div> <!-- /steps -->
+
+
+
+<div class="bottom-bar">
+	<div class="container">
+    <%=link_to "Got it. Show me Mine <i class='large-icon-chevron-right large-icon-white'></i>",
+        root_path,
+        :class => "btn btn-primary btn-large go"%>
+	</div>
+</div> <!-- /bottom-bar -->
 
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Show({
-          currentUser: <%=self.current_user.to_json(
-                            :only => [:id,:first_name,:last_name,
-                                        :gender,:handle,:email],
-                            :methods => [:age])%>});
+    //new Denwen.Views.Welcome.Show({
+    //      currentUser: <%#self.current_user.to_json(
+    //                        :only => [:id,:first_name,:last_name,
+    //                                    :gender,:handle,:email],
+    //                        :methods => [:age])%>});
   </script>
 <%end%>

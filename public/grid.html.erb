@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Grid</title>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+	  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	  <!--[if lt IE 9]>
+	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	  <![endif]-->
+	  
+	  <link href="stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	  <link href="stylesheets/feed.css" media="screen" rel="stylesheet" type="text/css" />
+	  <script src="javascripts/libs/jquery-1.7.1.js" type="text/javascript"></script>
+	  <script src="javascripts/libs/bootstrap.js" type="text/javascript"></script>
+	  
+  </head>
+	<body>
+		
+		<!-- header -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+        
+          <a href="/feed.html.erb" class="brand">MINE</a>
+                    
+          <div class="nav-collapse">
+            <ul class="nav pull-right">
+                         
+              <li>
+                <a href="/settings.html.erb"> Invite friends</a>
+              </li>
+              <li class="user-cell">
+                <a style="white-space: nowrap; display: block; padding-right: 10px;" href="/grid.html.erb">
+                  <img class="avatar" src="http://graph.facebook.com/517379696/picture?type=square" />
+                  Pierre Legrain
+                </a>
+              </li>
+              <li class="dropdown">
+                <!-- replacing link to "<#=new_product_path(:src => 'bar')%>" with "#" -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                	<li>
+                  	<a href="/settings.html.erb">Settings</a>
+                  </li>
+                  <li>
+                    <a href="/feed.html.erb">Log Out</a>
+                  </li>
+                </ul>
+              </li>
+              
+            </ul> <!-- /nav -->
+          </div> <!-- /nav-collapse -->
+        </div> <!-- /container -->
+      </div> <!-- /navbar-inner -->
+    </div> <!-- /navbar navbar-fixed-top -->
+	
+		<div class="container">
+		
+			<div class="col">
+			
+				<div class="user-box">
+					<div class="photo-box">
+						<div class="border"></div>
+						<img class="user-photo" src="http://graph.facebook.com/1285740725/picture?type=large" />
+					</div>
+					<p class="user-name">Prashanth Nandhabalan</p>
+				</div>
+				
+				<div class="list-box">
+				
+					<h4 style="margin-bottom: 14px;">Sharing with</h4>
+					<ul class="object-list" style="margin: 0;">
+						<li><a href="/grid.html.erb"><img src="http://graph.facebook.com/15402933/picture?type=square" />Dan Sack</a></li>
+						<li><a href="/grid.html.erb#"><img src="http://graph.facebook.com/513303014/picture?type=square" />Chris Couhault</a></li>
+						<li><a href="/grid.html.erb"><img src="http://graph.facebook.com/699760342/picture?type=square" />Deepak Rao</a></li>
+						<li><a href="/grid.html.erb"><img src="http://graph.facebook.com/502835064/picture?type=square" />Siddharth Batra</a></li>
+						<li><a href="/grid.html.erb"><img src="http://graph.facebook.com/21072/picture?type=square" />Shayne Fitz-Coy</a></li>
+						<li><a href="/grid.html.erb"><img src="http://graph.facebook.com/1618084/picture?type=square" />Arar Han</a></li>
+						<li><a href="/grid.html.erb"><img src="http://graph.facebook.com/213492/picture?type=square" />Caitlin Hogan</a></li>
+					</ul>
+					
+				</div> <!-- /list-box -->
+					
+				<div class="nav-box">
+					<a href="/invite.html.erb"><i class="icon-user"></i> Invite friends</a>
+					<a href="/settings.html.erb"><i class="icon-cog"></i> Settings</a>
+				</div>
+
+			</div> <!-- /col -->
+
+		
+			<!-- grid -->
+			<div class="grid">
+			
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="/item.html.erb">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NWZhZDdlOGFkZmQzMTI5YmFjZDExMzMxNjg4MTU5.jpg" />
+					</a>
+					<div class="details">
+						<h5>Cotton-cashmere Half-zip Sweater in caspian blue  <small>J.Crew</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small pushed">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="/item.html.erb">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NTliNTFjM2Q1YzA0ZDVkZTQ4NzMxMzIwNjk0ODIz.jpg" />
+					</a>
+					<div class="details">
+						<h5>Bodum Single-Cup Coffee Press <small>Target</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small pushed"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="/item.html.erb">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_ZjFiOThlNDY2YzQzYmNmMTIwY2UxMzI4NTczNzMz.jpg" />
+					</a>
+					<div class="details">
+						<h5>Polo Sport Water Basics Shower Gel <small>UltraFragrances.com</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="/item.html.erb">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_YTQ2OTIwNDVkNjE0ZTE3ZWY0ODExMzI4NTY3OTUx.jpg" />
+					</a>
+					<div class="details">
+						<h5>Wireless Keyboard <small>Apple Store</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.jcrew.com/mens_category/sweaters/merino/PRDOVR~46880/46880.jsp">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NzdiMDhkYTI4ZmU2YmVhYmY3NTIxMzMyMzY5NzEz.jpg" />
+					</a>
+					<div class="details">
+						<h5>Cotton-cashmere Half-zip Sweater in gray <small>J.Crew</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://shopping.cherchons.com/r/jean-stretch-taille-haute.html/">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_YmY1NGYzNmExMmY1NzRlZDIwNTcxMzIxODQzMjc1.jpg" />
+					</a>
+					<div class="details">
+						<h5>Levi's 517 Straight Leg Jeans <small>Nordstrom Rack</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.flatpanelshd.com/news.php?subaction=showfull&id=1280235460">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NWQ3ODFjNzEwNmNkMjM1OGUxYjQxMzI4NTYyMjUx.jpg" />
+					</a>
+					<div class="details">
+						<h5>LED Cinema Display 27" <small>Apple Store</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://skinflint.co.uk/eu/620361">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_ZjVlODEzMGJkN2RhYzdjODM3Y2QxMzMxODM2NjI0.jpg" />
+					</a>
+					<div class="details">
+						<h5>iPad 2 with blue Smart Cover  <small>Apple Store</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.parfumerie.nl/zoek-op-merk/armani/code-homme/giorgio-armani-code-homme-75-gr-deodorant-stick">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_MDA5NGJlNDBhMTI0NDBmMDczODUxMzI4NTYxODM3.jpg" />
+					</a>
+					<div class="details">
+						<h5>Armani Code Deodorant Stick <small>Amazon</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://kitchendinner.com/Electronics/brother-dcp7040-multi-function-lase.htm">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_MWIzMzBlOGEzNDZkOTNiNTkzMTkxMzIxODYzOTQ2.jpg" />
+					</a>
+					<div class="details">
+						<h5>Rugged Hard Drive 500GB <small>Amazon</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.ozonesocks.com/emoticon.html">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_Y2M4MDRkOGNkOTRkYWZmMTFlN2UxMzMxNzk1NzU5.jpg" />
+					</a>
+					<div class="details">
+						<h5>Ozone Emoticon Socks <small>Karma</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.nicetoys.com/mouserugsmatrix.html">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NDRkYWIxMGViMzljY2UyMmFjMTExMzI4NTYxNTM1.jpg" />
+					</a>
+					<div class="details">
+						<h5>Lextra Freud Mouse Rug <small>Barnes & Noble</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.totes.co.uk/details.aspx?PID=35148">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_Mzg0NDE1NzAwMjM3YWE2YzFhOWMxMzI4NTYxMzA1.jpg" />
+					</a>
+					<div class="details">
+						<h5>Isotoner Men's Reversible Knit Scarf <small>Amazon</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://pulse2.com/category/nintendo-wii/">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NmFiM2JkZmVlMjgwYTRmNTU2MWExMzMyMzg4Mjkw.jpg" />
+					</a>
+					<div class="details">
+						<h5>Nintendo Wii <small>Target</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://www.youbeli.com/apple-magic-mouse-p-6698.html">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_ZTBmYjM2MWM4YjAzYjUyZmU0MTgxMzIxNzYyNTUz.jpg" />
+					</a>
+					<div class="details">
+						<h5>Magic Mouse <small>Apple Store</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://uncrate.com/stuff/new-balance-991/">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_ZWNlODcyYzQ0ZmRiOThlZTYxZWQxMzI4NDk2NDIz.jpg" />
+					</a>
+					<div class="details">
+						<h5>New Balance 991s <small>Sports Authority</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://paulstamatiou.com/review-nikon-d90-dslr-camera">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NzVmZWIwNmNhMGEzMGMxZjA2N2QxMzI0OTM1MDI5.jpg" />
+					</a>
+					<div class="details">
+						<h5>Nikon D90 <small>TekServe</small></h5>
+					</div>
+				</div> <!-- /item -->
+				
+				<div class="item">
+				
+					<div class="actions" id="feedback" style="position: absolute; top: 12px; left: 12px;">
+						<a style="float: left; margin-right: -1px;" href="/" class="btn btn-small">Mine</a>
+				    <a style="float: left; margin-right: -1px;" href="/" class="btn btn-small"><i class="icon-like"></i></a>
+				    <a style="float: left" href="/" class="btn btn-small"><i class="icon-pencil"></i></a>
+					</div>
+				
+					<a class="photo-box" target="_blank" href="http://citysole.com/blog/2010/06/03/vans-e-street-black-pewter/">
+						<img src="http://d1nmlfaeq5l5rw.cloudfront.net/g_NmQyMTA0OTViN2M2YzMxYzhkMDQxMzI4NTY4MTEw.jpg" />
+					</a>
+					<div class="details">
+						<h5>Gray Surf Siders <small>Vans</small></h5>
+					</div>
+				</div> <!-- /item -->
+
+			</div> <!-- /grid -->
+		</div> <!-- /container -->
+		
+	  <footer style="text-align: center;">
+    	<p>
+      	© 2012
+      </p>
+    </footer>
+	
+	</body>
+</html>

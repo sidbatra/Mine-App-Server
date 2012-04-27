@@ -1,29 +1,8 @@
-<%-cache @key do-%>
-  <%-if @filter == :user || @filter == :wanted-%>
-    <%=@products.to_json(
-        :only     => [:id,:is_gift,:handle,
-                        :user_id],
-        :methods  => [:thumbnail_url],
-        :include  => {
-          :store  => {
-            :only     => [:id,:name,:handle],
-            :methods  => [:is_top,:favicon_url]},
-          :user => {
-            :only => [:id,:handle]}})-%>
-  <%-elsif @filter  == :store-%>
-    <%=@products.to_json(
-        :only     => [:id,:is_gift,:handle,
-                        :user_id],
-        :methods  => [:thumbnail_url],
-        :include  => {
-          :user => {
-            :only => [:id,:first_name,:last_name,:handle],
-            :methods  => [:photo_url]}})-%>
-  <%-elsif @filter == :top || @filter == :used-%>
-    <%=@products.to_json(
-        :only     => [:id,:title,:handle],
-        :include  => {
-          :user => {
-            :only => [:id,:handle]}})-%>
-  <%-end-%>
+<%-cache @key, :expires_in => 4.hours do-%>
+  <%={
+      :title => @title,
+      :query => @query,
+      :sane_query => @sane_query,
+      :page => @page,
+      :products => @products}.to_json-%>
 <%-end-%>
