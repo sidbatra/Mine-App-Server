@@ -19,7 +19,7 @@ require 'config/deploy/cron'
 set :application,   "mine"
 
 set :scm,           :git
-set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"
+set :repository,    "git@github.com:Denwen/Mine-App-Server.git"
 set :user,          "manager"  
 set :deploy_via,    :remote_cache
 set :keep_releases, 10
