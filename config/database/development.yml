@@ -22,7 +22,7 @@ development:
   pool: 5
   username: root
   password: s8mtime7rooT
-  host: denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
+  host: denwen-mine-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
   port: 3306
 
 # Warning: The database defined as "test" will be erased and
@@ -36,7 +36,7 @@ test:
   pool: 5
   username: root
   password: s8mtime7rooT
-  host: denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
+  host: denwen-mine-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
   port: 3306
 
 staging:
@@ -47,7 +47,7 @@ staging:
   pool: 5
   username: root
   password: s8mtime7rooT
-  host: denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
+  host: denwen-mine-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
   port: 3306
 
 production:
@@ -58,5 +58,5 @@ production:
   pool: 5
   username: root
   password: s8mtime7rooT
-  host: denwen-teams-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
+  host: denwen-mine-production.cm7fec8nnv4c.us-east-1.rds.amazonaws.com  
   port: 3306
