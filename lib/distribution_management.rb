@@ -11,17 +11,17 @@ module DW
     
       # Publish a story whenever the user adds an item
       #
-      def self.publish_add(purchase)
+      def self.publish_share(purchase)
         fb_app  = FbGraph::Application.new(CONFIG[:fb_app_id])
         fb_user = FbGraph::User.me(purchase.user.access_token)  
 
         action  = fb_user.og_action!(
-                            OGAction::Add,
-                            :item => purchase_url(
-                                      purchase.user.handle,
-                                      purchase.handle,
-                                      :src  => 'fb',
-                                      :host => CONFIG[:host]))
+                            OGAction::Share,
+                            :purchase => purchase_url(
+                                          purchase.user.handle,
+                                          purchase.handle,
+                                          :src  => 'fb',
+                                          :host => CONFIG[:host]))
 
         purchase.update_attributes({:fb_action_id => action.identifier})
 

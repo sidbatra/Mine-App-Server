@@ -45,9 +45,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :purchases,
     :only => [:create,:update,:destroy]
 
-  map.store 's/:handle',
-    :controller => :stores,
-    :action     => :show
+  #map.store 's/:handle',
+  #  :controller => :stores,
+  #  :action     => :show
 
   map.resources :stores,
     :only => [:index]
@@ -71,7 +71,7 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:index]
 
   map.resources :facebook,
-    :only => [:index,:show,:create]
+    :only => [:index,:create]
 
   map.new_invite 'invite',
     :controller => :invites,

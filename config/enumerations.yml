@@ -71,10 +71,10 @@
     Learn: 'intro'
     Share: 'share'
   OGObject:
-    Item: "dw_mine:item" 
-    Store: "dw_mine:store" 
+    Purchase: "dw_mine:purchase" 
+    StoreName: "dw_mine:store_name" 
   OGAction:
-    Add: "dw_mine:add" 
+    Share: "dw_mine:share" 
 
 # Enumerations for javascript
 #

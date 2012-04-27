@@ -22,7 +22,7 @@ class PurchasePresenter < BasePresenter
   #
   def description
     purchase.store && purchase.store.is_approved ? 
-      "available at #{purchase.store.name}" : ''
+      "bought at #{purchase.store.name}" : ''
   end
 
 
