@@ -99,7 +99,7 @@ Rails::Initializer.run do |config|
   # Register observers
   config.active_record.observers  = :purchase_observer, :user_observer, 
                                     :following_observer, :store_observer, 
-                                    :invite_observer 
+                                    :invite_observer, :product_observer 
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
