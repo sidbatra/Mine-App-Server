@@ -18,7 +18,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: true
-  database: hasit_development
+  database: mine_development
   pool: 5
   username: root
   password: s8mtime7rooT
@@ -32,7 +32,7 @@ test:
   adapter: mysql
   encoding: utf8
   reconnect: true
-  database: hasit_test
+  database: mine_sbat_test
   pool: 5
   username: root
   password: s8mtime7rooT
@@ -43,7 +43,7 @@ staging:
   adapter: mysql
   encoding: utf8
   reconnect: true
-  database: hasit_staging
+  database: mine_staging
   pool: 5
   username: root
   password: s8mtime7rooT
@@ -54,7 +54,7 @@ production:
   adapter: mysql
   encoding: utf8
   reconnect: true
-  database: hasit_production
+  database: mine_production
   pool: 5
   username: root
   password: s8mtime7rooT

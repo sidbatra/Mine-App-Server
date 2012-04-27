@@ -2,7 +2,7 @@ production:
   adapter: mysql
   encoding: utf8
   reconnect: true
-  database: hasit_production
+  database: mine_production
   pool: 5
   username: root
   password: s8mtime7rooT
