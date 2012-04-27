@@ -9,14 +9,14 @@ NameVirtualHost *:80
 <VirtualHost *:80>
 
   # Admin email, Server Name (domain name) and any aliases
-  ServerName  closet.com
+  ServerName  getmine.com
 
   # Index file and Document Root (where the public files are located)
-  DocumentRoot /vol/closet/current/public
+  DocumentRoot /vol/mine/current/public
   RailsEnv staging
   PassengerMinInstances 3
 
-  <Directory /vol/closet/current/public>
+  <Directory /vol/mine/current/public>
        AllowOverride all      
        Options -MultiViews
 
@@ -36,8 +36,8 @@ NameVirtualHost *:80
 
   # Custom log file productions
   LogLevel warn
-  ErrorLog  /vol/closet/current/log/error.log
-  CustomLog /vol/closet/current/log/access.log combined
+  ErrorLog  /vol/mine/current/log/error.log
+  CustomLog /vol/mine/current/log/access.log combined
 
 </VirtualHost>
 

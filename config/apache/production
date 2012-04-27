@@ -9,20 +9,20 @@ NameVirtualHost *:80
 <VirtualHost *:80>
 
   # Admin email, Server Name (domain name) and any aliases
-  ServerName  closet.com
+  ServerName  getmine.com
 
   # Index file and Document Root (where the public files are located)
-  DocumentRoot /vol/closet/current/public
+  DocumentRoot /vol/mine/current/public
   RailsEnv production
   PassengerMinInstances 3
 
-  <Directory /vol/closet/current/public>
+  <Directory /vol/mine/current/public>
        AllowOverride all      
        Options -MultiViews
 
        RewriteEngine on
-       RewriteCond %{HTTP_HOST} www.oncloset.com
-       RewriteRule ^(.*)$ http://oncloset.com/$1 [L,R=permanent]
+       RewriteCond %{HTTP_HOST} www.getmine.com
+       RewriteRule ^(.*)$ http://getmine.com/$1 [L,R=permanent]
 
     <FilesMatch "\.(ico|eot|svg|ttf|woff)$">
        FileETag none
@@ -40,8 +40,8 @@ NameVirtualHost *:80
 
   # Custom log file productions
   LogLevel warn
-  ErrorLog  /vol/closet/current/log/error.log
-  CustomLog /vol/closet/current/log/access.log combined
+  ErrorLog  /vol/mine/current/log/error.log
+  CustomLog /vol/mine/current/log/access.log combined
 
 </VirtualHost>
 
@@ -49,30 +49,30 @@ NameVirtualHost *:80
 <VirtualHost *:443>
 
   # Admin email, Server Name (domain name) and any aliases
-  ServerName  closet.com
+  ServerName  getmine.com
 
   # Index file and Document Root (where the public files are located)
-  DocumentRoot /vol/closet/current/public
+  DocumentRoot /vol/mine/current/public
   RailsEnv production
   PassengerMinInstances 3
 
-  <Directory /vol/closet/current/public>
+  <Directory /vol/mine/current/public>
        AllowOverride all      
        Options -MultiViews
 
        RewriteEngine on
-       RewriteCond %{HTTP_HOST} www.oncloset.com
-       RewriteRule ^(.*)$ https://oncloset.com/$1 [L,R=permanent]
+       RewriteCond %{HTTP_HOST} www.getmine.com
+       RewriteRule ^(.*)$ https://getmine.com/$1 [L,R=permanent]
   </Directory>
 
   # Custom log file productions
   LogLevel warn
-  ErrorLog  /vol/closet/current/log/error.log
-  CustomLog /vol/closet/current/log/access.log combined
+  ErrorLog  /vol/mine/current/log/error.log
+  CustomLog /vol/mine/current/log/access.log combined
   SSLEngine on
-  SSLCertificateFile /vol/closet/current/private/ssl/oncloset.com.crt
-  SSLCertificateKeyFile /vol/closet/current/private/ssl/oncloset.com.key
-  SSLCertificateChainFile /vol/closet/current/private/ssl/gd_bundle.crt
+  SSLCertificateFile /vol/mine/current/private/ssl/getmine.com.crt
+  SSLCertificateKeyFile /vol/mine/current/private/ssl/getmine.com.key
+  SSLCertificateChainFile /vol/mine/current/private/ssl/gd_bundle.crt
 </VirtualHost>
 
 
