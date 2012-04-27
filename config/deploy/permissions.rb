@@ -4,7 +4,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Setup remote permissions for ssh"
     task :remote do
-      run "rm .ssh/known_hosts"
+      run "rm .ssh/known_hosts &> /dev/null"
     end
     
     desc "Setup proper permissions for new files"
