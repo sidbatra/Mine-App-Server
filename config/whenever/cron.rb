@@ -7,7 +7,7 @@ end
 
 
 every 1.day, :at => '12:15pm' do
-  runner "ProcessingQueue.push(CronWorker,:email_users_with_friend_activity,1.day.ago)"
+  #runner "ProcessingQueue.push(CronWorker,:email_users_with_friend_activity,1.day.ago)"
 end
 
 
@@ -17,9 +17,9 @@ end
 
 
 every [:monday,:friday], :at => '6:00pm' do
-  runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_items)"
+  #runner "ProcessingQueue.push(CronWorker,:scoop_users_with_no_items)"
 end
 
 every :sunday, :at => '8:15pm' do
-  runner "ProcessingQueue.push(CronWorker,:email_to_create_another_product)"
+  #runner "ProcessingQueue.push(CronWorker,:email_to_create_another_product)"
 end
