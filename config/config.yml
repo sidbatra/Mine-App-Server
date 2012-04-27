@@ -22,7 +22,7 @@ common: &common
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
   :queue:
-    :proc: hasit_processing
+    :proc: mine_processing
   :max_processing_attempts: 3
   :asset_hosts_count: 4
   :edge_servers_count: 7
@@ -37,7 +37,7 @@ development: &development
   :host: pleg.getmine.com
   :s3_bucket: denwen-hasit-filesystem
   :asset_bucket: /
-  :dump_bucket: denwen-hasit-dumps
+  :dump_bucket: denwen-mine-dumps
   :edge_server: http://s3.amazonaws.com/denwen-hasit-filesystem
   :asset_host: 
   :emails:
@@ -48,10 +48,10 @@ staging: &staging
   <<: *common
   :host: staging.getmine.com
   :s3_bucket: denwen-hasit-filesystem
-  :dump_bucket: denwen-hasit-dumps
-  :asset_bucket: denwen-hasit-staging
+  :dump_bucket: denwen-mine-dumps
+  :asset_bucket: denwen-mine-staging
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
-  :asset_host: http://de04moj4hdgby.cloudfront.net 
+  :asset_host: http://d33e0ac60th09p.cloudfront.net
   :emails:
     :noreply: Mine <noreply@getmine.com>
     :contact: Mine <contact@getmine.com>
@@ -60,10 +60,10 @@ production: &production
   <<: *common
   :host: getmine.com
   :s3_bucket: denwen-hasit-filesystem
-  :dump_bucket: denwen-hasit-dumps
-  :asset_bucket: denwen-hasit-production
+  :dump_bucket: denwen-mine-dumps
+  :asset_bucket: denwen-mine-production
   :edge_server: http://d1nmlfaeq5l5rw.cloudfront.net
-  :asset_host: http://d2enf9yjxhdcvb.cloudfront.net
+  :asset_host: http://d3sqjd4akk98do.cloudfront.net
   :emails:
     :noreply: Mine <noreply@getmine.com>
     :contact: Mine <contact@getmine.com>
