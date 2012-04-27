@@ -16,7 +16,7 @@ require 'config/deploy/permissions'
 require 'config/deploy/cron'
 
 
-set :application,   "closet"
+set :application,   "mine"
 
 set :scm,           :git
 set :repository,    "git@github.com:Denwen/Hasit-App-Server.git"

@@ -71,10 +71,10 @@
     Learn: 'intro'
     Share: 'share'
   OGObject:
-    Item: "oncloset:item" 
-    Store: "oncloset:store" 
+    Item: "mine:item" 
+    Store: "mine:store" 
   OGAction:
-    Add: "oncloset:add" 
+    Add: "mine:add" 
 
 # Enumerations for javascript
 #

@@ -1,13 +1,13 @@
 # Full paths of logs to farm
 
-- /vol/closet/current/log/access.log
-- /vol/closet/current/log/error.log
-- /vol/closet/current/log/production.log
-- /vol/closet/current/log/staging.log
-- /vol/closet/current/log/processor.rb.log
-- /vol/closet/current/log/deploy.rb.log
-- /vol/closet/current/log/cron.log
-- /vol/closet/current/log/sunspot-solr-staging.log
-- /vol/closet/current/log/sunspot-solr-production.log
+- /vol/mine/current/log/access.log
+- /vol/mine/current/log/error.log
+- /vol/mine/current/log/production.log
+- /vol/mine/current/log/staging.log
+- /vol/mine/current/log/processor.rb.log
+- /vol/mine/current/log/deploy.rb.log
+- /vol/mine/current/log/cron.log
+- /vol/mine/current/log/sunspot-solr-staging.log
+- /vol/mine/current/log/sunspot-solr-production.log
 - /vol/apache2/log/error.log
 - /vol/apache2/log/other_vhosts_access.log

@@ -1,4 +1,4 @@
-/vol/closet/shared/log/*.log /vol/apache2/log/*.log {
+/vol/mine/shared/log/*.log /vol/apache2/log/*.log {
 	daily
   rotate 30
 	missingok

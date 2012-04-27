@@ -15,7 +15,7 @@ common: &common
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
   :fb_app_token: 245230762190915|FCdWaSQb3KYtAIuxfBtODKf_nww
-  :fb_app_namespace: oncloset
+  :fb_app_namespace: mine
   :fb_verify_token: eea0e1c440ae3d754be314a60c33ea2b
   :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :age_bucket_size: 5
