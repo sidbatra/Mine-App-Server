@@ -79,7 +79,7 @@ module DW
       def self.publish_purchase_to_fb_album(purchase)
         fb_user = FbGraph::User.me(purchase.user.access_token)
         photo = fb_user.photo!(
-                  :url      => purchase.image_url,
+                  :url      => purchase.unit_url,
                   :message  => purchase.title)  
 
         purchase.update_attributes({:fb_photo_id => photo.identifier})

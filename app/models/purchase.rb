@@ -267,8 +267,12 @@ class Purchase < ActiveRecord::Base
 
       # Create unit.
       #
-      base = MiniMagick::Image.open(CONFIG[:fb_unit_base])
-      overlay = MiniMagick::Image.open(CONFIG[:fb_unit_overlay])
+      base = MiniMagick::Image.open(File.join(
+                                      RAILS_ROOT,
+                                      CONFIG[:fb_unit_base]))
+      overlay = MiniMagick::Image.open(File.join(
+                                        RAILS_ROOT,
+                                        CONFIG[:fb_unit_overlay]))
       image = MiniMagick::Image.open(file_path)
 
       base = base.composite(image) do |canvas|
