@@ -254,18 +254,18 @@ class Purchase < ActiveRecord::Base
 
       # Create tiny thumbnail
       #
-      image = MiniMagick::Image.open(file_path)
+      #image = MiniMagick::Image.open(file_path)
 
-      ImageUtilities.reduce_to_with_image(
-                        image,
-                        {:width => 180,:height => 180})
+      #ImageUtilities.reduce_to_with_image(
+      #                  image,
+      #                  {:width => 180,:height => 180})
 
-      FileSystem.store(
-        thumbnail_path,
-        open(image.path),
-        "Content-Type" => "image/jpeg",
-        "Expires"      => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+      #FileSystem.store(
+      #  thumbnail_path,
+      #  open(image.path),
+      #  "Content-Type" => "image/jpeg",
+      #  "Expires"      => 1.year.from_now.
+      #                      strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
       # Create square thumbnail
       #
