@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425023943) do
+ActiveRecord::Schema.define(:version => 20120428001716) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20120425023943) do
     t.datetime "updated_at"
   end
 
+  add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
   add_index "products", ["orig_image_url_hash"], :name => "index_products_on_orig_image_url_hash", :unique => true
 
   create_table "purchases", :force => true do |t|
