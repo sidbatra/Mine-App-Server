@@ -31,8 +31,10 @@ common: &common
   :name: Mine
   :description: "Mine - A simple service for sharing purchases with friends."
   :version: 3.9.0
-  :fb_unit_base: private/facebook-unit/base.jpg
-  :fb_unit_overlay: private/facebook-unit/overlay.png
+  :images:
+    :white_200x200: private/images/white_200x200.jpg
+    :fb_unit_base: private/images/facebook-unit/base.jpg
+    :fb_unit_overlay: private/images/facebook-unit/overlay.png
 
 development: &development
   <<: *common

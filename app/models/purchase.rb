@@ -102,6 +102,14 @@ class Purchase < ActiveRecord::Base
     "t_" + image_path
   end
 
+  # Public. Path on the filesystem to the square image.
+  #
+  # returns the String path on the filesystem.
+  #
+  def square_path
+    "s_" + image_path
+  end
+
   # Path on filesystem for the processed hosted giant image.
   #
   def giant_path
@@ -123,6 +131,16 @@ class Purchase < ActiveRecord::Base
     is_processed ? 
       FileSystem.url(thumbnail_path) :
       (orig_thumb_url.present? ? orig_thumb_url : orig_image_url)
+  end
+
+  # Public. Absolute url on the filesystem for square_url.
+  #
+  # returns the String absolute url on the filesystem.
+  #
+  def square_url
+    is_processed ?
+      FileSystem.url(square_path) : 
+      orig_image_url
   end
   
   # Url of the giant copy of the image.
@@ -249,6 +267,25 @@ class Purchase < ActiveRecord::Base
         "Expires"      => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
 
+      # Create square thumbnail
+      #
+      base = MiniMagick::Image.open(File.join(
+                                      RAILS_ROOT,
+                                      IMAGES[:white_200x200]))
+      image = MiniMagick::Image.open(file_path)
+
+      base = base.composite(image) do |canvas|
+        canvas.gravity "Center"
+        canvas.geometry "200x200+0+0"
+      end
+
+      FileSystem.store(
+        square_path,
+        open(base.path),
+        "Content-Type" => "image/jpeg",
+        "Expires"      => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
       # Create giant thumbnail
       #
       image = MiniMagick::Image.open(file_path)
@@ -269,10 +306,10 @@ class Purchase < ActiveRecord::Base
       #
       base = MiniMagick::Image.open(File.join(
                                       RAILS_ROOT,
-                                      CONFIG[:fb_unit_base]))
+                                      IMAGES[:fb_unit_base]))
       overlay = MiniMagick::Image.open(File.join(
                                         RAILS_ROOT,
-                                        CONFIG[:fb_unit_overlay]))
+                                        IMAGES[:fb_unit_overlay]))
       image = MiniMagick::Image.open(file_path)
 
       base = base.composite(image) do |canvas|
