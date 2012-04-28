@@ -151,56 +151,6 @@ class Product < ActiveRecord::Base
     LoggedException.add(__FILE__,__method__,ex)
   end
 
-  # Fetch image from the original source and host it on the Filesystem
-  # along with copies at various sizes.
-  #
-  def temp_host
-    self.image_path = Base64.encode64(
-                       SecureRandom.hex(10) + 
-                       Time.now.to_i.to_s).chomp + ".jpg"
-
-    tempfile  = Tempfile.new(image_path)
-    file_path = tempfile.path
-
-    system("wget -U '#{CONFIG[:user_agent]}' '#{self.purchases.first.image_url}' "\
-            "-T 30 -t 3 "\
-            "--output-document '#{file_path}'")
-
-
-    if File.exists? file_path
-
-      # Store original image
-      #
-      FileSystem.store(
-        image_path,
-        open(file_path),
-        "Content-Type"  => "image/jpeg",
-        "Expires"       => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
-
-      # Create thumbnail
-      #
-      image = MiniMagick::Image.open(file_path)
-
-      ImageUtilities.reduce_to_with_image(
-                        image,
-                        {:width => 180,:height => 180})
-
-      FileSystem.store(
-        thumbnail_path,
-        open(image.path),
-        "Content-Type" => "image/jpeg",
-        "Expires"      => 1.year.from_now.
-                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
-
-      self.is_processed = true
-      self.save!
-    end
-
-  rescue => ex
-    LoggedException.add(__FILE__,__method__,ex)
-  end
-
 
   #----------------------------------------------------------------------
   # Instance methods
