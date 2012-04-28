@@ -108,6 +108,15 @@ class Purchase < ActiveRecord::Base
     "g_" + image_path
   end
 
+  # Public. Path on the filesystem to the processed unit for
+  # a purchase.
+  #
+  # returns the String path on the filesystem.
+  #
+  def unit_path
+    "u_" + image_path
+  end
+
   # Conditional upon hosting and orig_thumb_url status.
   #
   def thumbnail_url
@@ -121,6 +130,16 @@ class Purchase < ActiveRecord::Base
   def giant_url
     is_processed ?
       FileSystem.url(giant_path) : 
+      orig_image_url
+  end
+
+  # Public. Absolute url on the filesystem for unit_path.
+  #
+  # returns the String absolute url on the filesystem.
+  #
+  def unit_url
+    is_processed ?
+      FileSystem.url(unit_path) :
       orig_image_url
   end
 
@@ -241,6 +260,30 @@ class Purchase < ActiveRecord::Base
       FileSystem.store(
         giant_path,
         open(image.path),
+        "Content-Type" => "image/jpeg",
+        "Expires"      => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+
+      # Create unit.
+      #
+      base = MiniMagick::Image.open(CONFIG[:fb_unit_base])
+      overlay = MiniMagick::Image.open(CONFIG[:fb_unit_overlay])
+      image = MiniMagick::Image.open(file_path)
+
+      base = base.composite(image) do |canvas|
+        canvas.gravity "Center"
+        canvas.geometry "480x480+0+0"
+      end
+
+      base = base.composite(overlay) do |canvas|
+        canvas.gravity "NorthWest"
+        canvas.geometry "79x93+506+16"
+      end
+
+      FileSystem.store(
+        unit_path,
+        open(base.path),
         "Content-Type" => "image/jpeg",
         "Expires"      => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
