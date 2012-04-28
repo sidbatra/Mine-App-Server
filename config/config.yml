@@ -30,7 +30,7 @@ common: &common
   :error: error
   :name: Mine
   :description: "Mine - A simple service for sharing purchases with friends."
-  :version: 3.9.2
+  :version: 3.9.3
   :images:
     :white_200x200: private/images/white_200x200.jpg
     :fb_unit_base: private/images/facebook-unit/base.jpg
