@@ -337,6 +337,34 @@ class Purchase < ActiveRecord::Base
     LoggedException.add(__FILE__,__method__,ex)
   end
 
+  # Public. Temporary method for creating_urls are all existing purchases.
+  #
+  def temp_host
+    base = MiniMagick::Image.open(File.join(
+                                    RAILS_ROOT,
+                                    IMAGES[:white_200x200]))
+    self.is_processed = true
+    image = MiniMagick::Image.open(image_url)
+    self.is_processed = false
+
+    base = base.composite(image) do |canvas|
+      canvas.gravity "Center"
+      canvas.geometry "200x200+0+0"
+    end
+
+    FileSystem.store(
+      square_path,
+      open(base.path),
+      "Content-Type" => "image/jpeg",
+      "Expires"      => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
+    
+    self.is_processed = true
+    self.save!
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
+  end
+
 
   protected
 
