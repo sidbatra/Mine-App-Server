@@ -67,14 +67,15 @@
     HomeRedirect: 'home_redirect'
     UserCreate: 'user_create'
     Invite: 'invite'
+    PurchaseDeleted: 'purchase_deleted'
   WelcomeFilter:
     Learn: 'intro'
     Share: 'share'
   OGObject:
-    Item: "mine:item" 
-    Store: "mine:store" 
+    Purchase: "dw_mine:purchase" 
+    StoreName: "dw_mine:store_name" 
   OGAction:
-    Add: "mine:add" 
+    Share: "dw_mine:share" 
 
 # Enumerations for javascript
 #

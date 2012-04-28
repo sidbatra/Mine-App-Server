@@ -6,12 +6,6 @@
 <meta property="og:description" content ="<%=h(description)%>"/>
 <meta property="fb:app_id" content="<%=CONFIG[:fb_app_id]%>"/>
 <meta property="og:image" content="<%=image%>"/>
-<%-if defined?(purchases)-%>
-<%-purchases.each do |purchase|-%>
-<meta property="<%=OGObject::Item%>" content="<%=purchase_url(purchase.user.handle,purchase.handle,:src => 'fb')%>"/>
-<%-end-%>
-<meta property="<%=OGProperty::Length%>" content="<%=purchases.length%>"/>
-<%-end-%>
-<%-if defined?(store) && store.present? && store.is_processed-%>
-<meta property="<%=OGObject::Store%>" content="<%=store_url(store.handle,:src => 'fb')%>"/>
+<%-if defined?(store) && store.present? && store.is_approved-%>
+<meta property="<%=OGObject::StoreName%>" content="<%=store.name%>"/>
 <%-end-%>

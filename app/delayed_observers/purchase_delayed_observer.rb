@@ -11,7 +11,7 @@ class PurchaseDelayedObserver < DelayedObserver
     end
 
     if purchase.share_to_fb_timeline? 
-      DistributionManager.publish_add(purchase)
+      DistributionManager.publish_share(purchase)
     end
   end
 

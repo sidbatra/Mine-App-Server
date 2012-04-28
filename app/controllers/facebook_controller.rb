@@ -28,14 +28,6 @@ class FacebookController < ApplicationController
     end
   end 
 
-  # Display the FB canvas ui.
-  #
-  def show
-  rescue => ex
-    handle_exception(ex)
-  ensure
-  end
-
   # Handle facebook related post requests for real time updates 
   #
   def create

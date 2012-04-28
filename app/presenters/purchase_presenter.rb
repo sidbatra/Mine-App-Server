@@ -3,6 +3,7 @@
 class PurchasePresenter < BasePresenter
   presents :purchase
   delegate :thumbnail_url, :to => :purchase
+  delegate :square_url, :to => :purchase
   delegate :title, :to => :purchase
 
   # Relative path for the purchase
@@ -22,7 +23,7 @@ class PurchasePresenter < BasePresenter
   #
   def description
     purchase.store && purchase.store.is_approved ? 
-      "available at #{purchase.store.name}" : ''
+      "Bought at #{purchase.store.name}" : ''
   end
 
 

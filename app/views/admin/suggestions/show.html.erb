@@ -10,7 +10,7 @@
     <%@suggestion.purchases.all(:include => :user).each do |purchase|%>
       <tr>
         <td width="200">
-          <%=image_tag purchase.thumbnail_url%>
+          <%=image_tag purchase.square_url%>
         </td>
         <td width="300">
           <%=link_to purchase.title,

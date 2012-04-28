@@ -102,10 +102,27 @@ class Purchase < ActiveRecord::Base
     "t_" + image_path
   end
 
+  # Public. Path on the filesystem to the square image.
+  #
+  # returns the String path on the filesystem.
+  #
+  def square_path
+    "s_" + image_path
+  end
+
   # Path on filesystem for the processed hosted giant image.
   #
   def giant_path
     "g_" + image_path
+  end
+
+  # Public. Path on the filesystem to the processed unit for
+  # a purchase.
+  #
+  # returns the String path on the filesystem.
+  #
+  def unit_path
+    "u_" + image_path
   end
 
   # Conditional upon hosting and orig_thumb_url status.
@@ -115,12 +132,32 @@ class Purchase < ActiveRecord::Base
       FileSystem.url(thumbnail_path) :
       (orig_thumb_url.present? ? orig_thumb_url : orig_image_url)
   end
+
+  # Public. Absolute url on the filesystem for square_url.
+  #
+  # returns the String absolute url on the filesystem.
+  #
+  def square_url
+    is_processed ?
+      FileSystem.url(square_path) : 
+      orig_image_url
+  end
   
   # Url of the giant copy of the image.
   #
   def giant_url
     is_processed ?
       FileSystem.url(giant_path) : 
+      orig_image_url
+  end
+
+  # Public. Absolute url on the filesystem for unit_path.
+  #
+  # returns the String absolute url on the filesystem.
+  #
+  def unit_url
+    is_processed ?
+      FileSystem.url(unit_path) :
       orig_image_url
   end
 
@@ -217,15 +254,34 @@ class Purchase < ActiveRecord::Base
 
       # Create tiny thumbnail
       #
+      #image = MiniMagick::Image.open(file_path)
+
+      #ImageUtilities.reduce_to_with_image(
+      #                  image,
+      #                  {:width => 180,:height => 180})
+
+      #FileSystem.store(
+      #  thumbnail_path,
+      #  open(image.path),
+      #  "Content-Type" => "image/jpeg",
+      #  "Expires"      => 1.year.from_now.
+      #                      strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create square thumbnail
+      #
+      base = MiniMagick::Image.open(File.join(
+                                      RAILS_ROOT,
+                                      IMAGES[:white_200x200]))
       image = MiniMagick::Image.open(file_path)
 
-      ImageUtilities.reduce_to_with_image(
-                        image,
-                        {:width => 180,:height => 180})
+      base = base.composite(image) do |canvas|
+        canvas.gravity "Center"
+        canvas.geometry "200x200+0+0"
+      end
 
       FileSystem.store(
-        thumbnail_path,
-        open(image.path),
+        square_path,
+        open(base.path),
         "Content-Type" => "image/jpeg",
         "Expires"      => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
@@ -241,6 +297,34 @@ class Purchase < ActiveRecord::Base
       FileSystem.store(
         giant_path,
         open(image.path),
+        "Content-Type" => "image/jpeg",
+        "Expires"      => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+
+      # Create unit.
+      #
+      base = MiniMagick::Image.open(File.join(
+                                      RAILS_ROOT,
+                                      IMAGES[:fb_unit_base]))
+      overlay = MiniMagick::Image.open(File.join(
+                                        RAILS_ROOT,
+                                        IMAGES[:fb_unit_overlay]))
+      image = MiniMagick::Image.open(file_path)
+
+      base = base.composite(image) do |canvas|
+        canvas.gravity "Center"
+        canvas.geometry "480x480+0+0"
+      end
+
+      base = base.composite(overlay) do |canvas|
+        canvas.gravity "NorthWest"
+        canvas.geometry "79x93+506+16"
+      end
+
+      FileSystem.store(
+        unit_path,
+        open(base.path),
         "Content-Type" => "image/jpeg",
         "Expires"      => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
