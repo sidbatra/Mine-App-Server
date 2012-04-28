@@ -27,9 +27,9 @@ class Product < ActiveRecord::Base
   # Indexing
   #----------------------------------------------------------------------
   searchable do
-    text :title, :boost => 2
+    text :title, :boost => 3
     text :description
-    text :store do
+    text :store, :boost => 2 do
       store ? store.name : ""
     end
   end
