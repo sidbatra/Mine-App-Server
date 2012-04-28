@@ -67,6 +67,7 @@
     HomeRedirect: 'home_redirect'
     UserCreate: 'user_create'
     Invite: 'invite'
+    PurchaseDeleted: 'purchase_deleted'
   WelcomeFilter:
     Learn: 'intro'
     Share: 'share'
