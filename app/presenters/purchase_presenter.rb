@@ -3,6 +3,7 @@
 class PurchasePresenter < BasePresenter
   presents :purchase
   delegate :thumbnail_url, :to => :purchase
+  delegate :square_url, :to => :purchase
   delegate :title, :to => :purchase
 
   # Relative path for the purchase
