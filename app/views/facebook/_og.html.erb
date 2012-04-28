@@ -6,6 +6,6 @@
 <meta property="og:description" content ="<%=h(description)%>"/>
 <meta property="fb:app_id" content="<%=CONFIG[:fb_app_id]%>"/>
 <meta property="og:image" content="<%=image%>"/>
-<%-if defined?(store) && store.present?-%>
+<%-if defined?(store) && store.present? && store.is_approved-%>
 <meta property="<%=OGObject::StoreName%>" content="<%=store.name%>"/>
 <%-end-%>
