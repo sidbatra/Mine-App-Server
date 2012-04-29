@@ -17,6 +17,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
 
     this.aggregateEl  = '#purchase_likes_' + this.model.get('id') + '_aggregate';
     this.likesBoxEl   = '#purchase_likes_box_' + this.model.get('id');
+    this.likesCountEl = '#purchase_likes_' + this.model.get('id') + '_count';
     this.likes        = new Denwen.Collections.Likes();
 
     this.render();
@@ -85,6 +86,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
           onTop : onTop});
   },
 
+  // Render like count for the purchase
+  //
+  renderLikeCount : function(count) {
+    $(this.likesCountEl).html(Denwen.JST['likes/count']({count:count}));
+  },
+
   // Render likes aggregation for the purchase
   //
   renderLikeAggregation: function() {
@@ -136,12 +143,14 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   likeFetched: function(like) {
     if(this.model.get('id') == like.get('purchase_id')) {
 
-      if(Denwen.H.currentUser.get('fb_user_id') != like.get('user_id')) {
-        this.renderLike(like,false);
-      }
-      else {
-        this.renderLike(like,true);
-        this.newLike.disable();  
+      if(Denwen.H.isLoggedIn()) {
+        if(Denwen.H.currentUser.get('fb_user_id') != like.get('user_id')) {
+          this.renderLike(like,false);
+        }
+        else {
+          this.renderLike(like,true);
+          this.newLike.disable();  
+        }
       }
       
       this.likes.add(like);
@@ -164,8 +173,14 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   likesFetched: function() {
     if(this.likes.length) {
-      this.renderLikeAggregation();
-      $(this.likesBoxEl).show(); 
+      if(Denwen.H.isLoggedIn()) {
+        this.renderLikeAggregation();
+        $(this.likesBoxEl).show(); 
+      }
+      else {
+        this.renderLikeCount(this.likes.length);
+        $(this.likesCountEl).show();
+      }
     }
   }
 

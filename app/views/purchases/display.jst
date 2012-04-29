@@ -27,9 +27,9 @@
         </a>
       <%}%>
     </div>
-  <%}%>
+  <%}%> 
   
-  
+
   <!-- User -->
   <div class="user-box">
     <a href="<%=purchase.get('user').path('purchase_photo')%>">
@@ -72,6 +72,10 @@
     <span id="purchase_likes_<%=purchase.get('id')%>"></span>
     <span style="margin-left: 2px;" 
       id="purchase_likes_<%=purchase.get('id')%>_aggregate"></span>
+  </div>
+  
+  <div id="purchase_likes_<%=purchase.get('id')%>_count" 
+        style="display:none;">
   </div>
   
   <!-- Comments -->
