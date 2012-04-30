@@ -7,10 +7,43 @@ Denwen.Analytics = Backbone.Model.extend({
   initialize: function() {
   },
 
-  // Track the version number of the application
+  // Public. Wrapped around mixpanel's track method.
   //
-  trackVersion: function(version) {
-    mpq.register({'Version' : 'v' + version});
+  // name - The String to be tracked.
+  // options - The Hash of associated options with the 
+  //            action. (default: {})
+  //
+  action: function(name,options) {
+    if(options == undefined)
+      options = {};
+
+    mixpanel.track(name,options);
+  },
+
+  // Public. Track the version number of the application as a variable.
+  //
+  // version - The String in a MAJOR.MINOR.PATCH format.
+  //
+  version: function(version) {
+    mixpanel.register({"Version" : 'v' + version.slice(0,version.length-2)});
+  },
+
+  // Public. Track email clicks if the given source indicates that 
+  // the user landed on a page via an email.
+  //
+  // source - The String source for a page.
+  //
+  isEmailClicked: function(source) {
+    if(source.slice(0,6) == 'email_')
+      this.emailClicked(source.slice(6,source.length));
+  },
+
+  // Public. Track links clicked from an email.
+  //
+  // source - The String source for which email link was clicked.
+  //
+  emailClicked: function(source) {
+    mixpanel.track("Email Clicked", {"Source" : source});
   },
   
   // Track the page the user landed on
@@ -65,20 +98,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   facebookPermissionsAccepted: function() {
     mpq.track("Facebook Permissions Accepted");
-  },
-
-  // Test if the given source indicates that the user came from
-  // an email and fire an special email clicked tracking event
-  //
-  checkForEmailClickedEvent: function(source) {
-    if(source.slice(0,6) == 'email_')
-      this.emailClicked(source.slice(6,source.length));
-  },
-
-  // User visits the site from an email
-  //
-  emailClicked: function(source) {
-    mpq.track("Email Clicked", {'Source' : source});
   },
 
   // User searches a friend for inviting 

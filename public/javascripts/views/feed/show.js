@@ -46,7 +46,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Fire various tracking events
   //
   setAnalytics: function() {
-    Denwen.Track.checkForEmailClickedEvent(this.source);
+    Denwen.Track.action("Feed View",{"Source" : this.source});
+    Denwen.Track.version(Denwen.H.version);
+    Denwen.Track.isEmailClicked(this.source);
   },
 
   // --
