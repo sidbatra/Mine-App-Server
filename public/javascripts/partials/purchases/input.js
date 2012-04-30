@@ -407,7 +407,10 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   productSearched: function(query,queryType) {
     this.searchesCount++;
-    Denwen.Track.productSearched(query,queryType,this.mode);
+
+    Denwen.Track.action("Product Searched",{
+      "Query Type" : queryType,
+      "Source" : this.mode});
 
     if(queryType == Denwen.ProductQueryType.Text) {
       
@@ -427,7 +430,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   productSearchCancelled: function(source) {
     this.searchesCount = 0;
-    Denwen.Track.productSearchCancelled(source);
+    Denwen.Track.action("Product Search Cancelled",{"Source" : source});
   }
 
 });

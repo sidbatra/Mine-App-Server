@@ -112,26 +112,10 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Friend Search Cancelled"); 
   },
 
-  // User searches a product
-  //
-  productSearched: function(query,queryType,mode) {
-    mpq.track("Searched a product", 
-      {
-        'query':query,
-        'Mode':mode,
-        'Type':queryType});
-  },
-
   // Fired when an image selected by the user is broken
   //
   productImageBroken: function(mode) {
     mpq.track("Product Image Broken",{'Mode':mode});
-  },
-
-  // User cancels product search
-  //
-  productSearchCancelled: function(source) {
-    mpq.track("Product Cancelled",{'Source':source});
   },
 
   // User selects a product

@@ -98,7 +98,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   globalKeystroke: function(e) {
     if(e.which == 27 && this.isSearchActive()) {
       this.stopSearch();
-      this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled);
+      this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled,'Escape Key');
     }
   },
 
@@ -106,7 +106,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   cancelButtonClicked: function() {
     this.stopSearch();
-    this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled);
+    this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled,'X Button');
   },
 
   // Hide the search UI
