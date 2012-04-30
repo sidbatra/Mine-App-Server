@@ -20,9 +20,9 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
-     mixpanel.register_once({'Origin' : '<%=@origin%>'});
-     mixpanel.register_once({'Home Page' : '<%=@home%>'});
-     mixpanel.track('Home View',{'Source' : '<%=@source%>'});
+     mixpanel.register_once({"Origin" : "<%=@origin%>"});
+     mixpanel.register_once({"Home Page" : "<%=@home%>"});
+     mixpanel.track("Home View",{"Source" : "<%=@source%>"});
   </script>
 
 <%end%>

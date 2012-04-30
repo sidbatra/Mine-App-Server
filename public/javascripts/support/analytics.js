@@ -7,14 +7,6 @@ Denwen.Analytics = Backbone.Model.extend({
   initialize: function() {
   },
 
-  // Identify a user and associate a friendly name tag
-  //
-  identifyUser: function(email,age,gender) {
-    mpq.name_tag(email);
-    mpq.register_once({'age' : age}); 
-    mpq.register_once({'Gender' : gender}); 
-  },
-
   // Track the version number of the application
   //
   trackVersion: function(version) {
@@ -31,13 +23,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   userLogin: function() {
     mpq.track("User Logged In Again");
-  },
-
-  // User created
-  //
-  userCreated: function() {
-    mpq.track("$born");
-    mpq.track("User Logged In");
   },
 
   // User clicks the invite friends button
@@ -222,12 +207,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   inviteView: function(source) {
      mpq.track('Invite View',{'source' : source});
-  },
-
-  // Page view on the welcome view
-  //
-  welcomeView: function() {
-    mpq.track("Onboarding Welcome");
   },
 
   // User opens edit purchase page
