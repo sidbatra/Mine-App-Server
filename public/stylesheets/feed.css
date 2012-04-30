@@ -8,6 +8,10 @@
 	
 /* ----- header ----- */
 
+ul.nav { height: 40px; }
+
+/* .navbar { margin-bottom: 0; } */
+
 .navbar-inner { 
 	background: #555;
 	filter: none;
@@ -173,8 +177,8 @@
 	position: absolute;
 	top: 20px; }
 	
-.prev { left: 145px; }
-.next { right: 150px; }
+.prev { left: 660px; }
+.next { right: 214px; }
 	
 /* ----- creation ----- */
 
@@ -749,7 +753,7 @@ label { color: #666; }
 
 .well { position: relative; }
 
-footer { margin-top: 32px; }
+footer { margin-top: 24px; }
 footer, footer a, footer a:hover { color: #ccc; }
 footer p { text-align: center; }
 

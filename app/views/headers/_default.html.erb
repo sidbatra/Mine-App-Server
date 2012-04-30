@@ -11,7 +11,7 @@
           root_path(:src => "bar"),
           :class => "brand"%>
           
-      <div class="nav-collapse">
+      <div class="nav-collapse" style="position: relative;">
         <%if logged_in?%>
           <ul class="nav pull-right">
             <li>
@@ -40,6 +40,16 @@
               </ul>
             </li>
           </ul> <!-- /nav -->
+        <%else%>
+        	
+        	<div style="position: absolute; left: 0; right: 0; height: 40px; color: #ddd; font-size: 13px; line-height: 40px; text-align: center;">
+        		Mine is a simple service for sharing purchases  with friends.  
+        		
+        		<%=link_to 'Sign up<i style="margin-top: 2px;" class="icon-chevron-right icon-white"></i>', 
+				        fb_auth_path(:src => @origin), 
+				        :style => 'font-weight: bold; color: white;'%>
+        	</div>
+        
         <%end%>
       </div> <!-- /nav-collapse -->
     </div> <!-- /container -->
