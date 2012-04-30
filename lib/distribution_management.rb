@@ -60,9 +60,12 @@ module DW
         
         fb_friend.feed!(
           :message      => "I’d like to share purchases using "\
-                           "#{CONFIG[:name]} — a simple service that will "\
-                           "notify you when I buy something.",
-          :picture      => ActionController::Base.helpers.image_path('mine-90-555.gif'), 
+                           "#{CONFIG[:name]} — a simple service that "\
+                           "notifies you when I buy something.",
+          :picture      => RAILS_ENV != 'development' ? 
+                                         helpers.image_path('mine-90-555.gif') :
+                                         "#{CONFIG[:host]}/" + 
+                                         helpers.image_path('mine-90-555.gif'),
           :link         => home_url(
                             "invite", 
                             :host => CONFIG[:host]),
@@ -112,6 +115,15 @@ module DW
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
+      end
+
+
+      protected
+
+      # View helper methods
+      #
+      def self.helpers
+       ActionController::Base.helpers 
       end
     
     end #distribution manager
