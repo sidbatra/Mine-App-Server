@@ -49,7 +49,7 @@
           <%=purchase.get('user').get('last_name')%>
         </a>
       </h5>
-      <%=purchase.get('store') ? purchase.get('store').get('name') : ''%>
+      <%=purchase.get('store') ? 'Bought this from ' + purchase.get('store').get('name') : ''%>
       <span class="small"><%=jQuery.timeago(purchase.get('created_at'))%></span>
     </div>
   </div>
