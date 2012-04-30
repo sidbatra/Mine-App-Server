@@ -23,8 +23,7 @@ class HomeController < ApplicationController
     session[:home]    ||= 'mine'
     session[:origin]  ||= params[:id] ? params[:id].to_s : 'direct'
     @home               = session[:home]
-    @campaign           = session[:origin]
-    @origin             = session[:origin] + '_' + @home
+    @origin             = session[:origin]
   end
 
 end
