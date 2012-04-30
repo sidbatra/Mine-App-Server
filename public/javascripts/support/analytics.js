@@ -112,12 +112,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Friend Search Cancelled"); 
   },
 
-  // Fired when an image selected by the user is broken
-  //
-  productImageBroken: function(mode) {
-    mpq.track("Product Image Broken",{'Mode':mode});
-  },
-
   // Validation exception 
   //
   purchaseException: function(type,mode) {

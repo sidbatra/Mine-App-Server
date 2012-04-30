@@ -400,7 +400,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     this.productSearch.search();
 
-    Denwen.Track.productImageBroken(this.mode);
+    Denwen.Track.action("Product Image Broken");
   },
 
   // Fired when a product is searched from the ProductsImageView
