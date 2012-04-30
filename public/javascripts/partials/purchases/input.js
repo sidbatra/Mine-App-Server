@@ -368,7 +368,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     $(this.urlAlertBoxEl).hide();
 
-    Denwen.Track.productSearchCompleted(this.mode);
+    Denwen.Track.action("Product Selected");
 
     // Test if the website url matches a known store to populate
     // the store field
@@ -408,9 +408,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   productSearched: function(query,queryType) {
     this.searchesCount++;
 
-    Denwen.Track.action("Product Search Started",{
-      "Query Type" : queryType,
-      "Source" : this.mode});
+    Denwen.Track.action("Product Search Started",{"Query Type" : queryType});
 
     if(queryType == Denwen.ProductQueryType.Text) {
       

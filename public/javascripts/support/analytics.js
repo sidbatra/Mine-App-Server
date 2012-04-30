@@ -118,12 +118,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Product Image Broken",{'Mode':mode});
   },
 
-  // User selects a product
-  //
-  productSearchCompleted: function(mode) {
-    mpq.track("Product Selected",{'Mode':mode});
-  },
-
   // Validation exception 
   //
   purchaseException: function(type,mode) {
