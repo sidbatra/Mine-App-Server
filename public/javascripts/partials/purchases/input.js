@@ -408,7 +408,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   productSearched: function(query,queryType) {
     this.searchesCount++;
 
-    Denwen.Track.action("Product Searched",{
+    Denwen.Track.action("Product Search Started",{
       "Query Type" : queryType,
       "Source" : this.mode});
 
