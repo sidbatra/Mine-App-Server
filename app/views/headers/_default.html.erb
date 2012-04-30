@@ -2,6 +2,11 @@
   <div class="navbar-inner">
     <div class="container">
     
+    
+    	<%=link_to image_tag('mine-40-555.gif'),
+    			user_path(self.current_user.handle,:src => "bar"), 
+    			:style => "float:left; padding-right: 5px;"%>
+    			
       <%=link_to CONFIG[:name],
           root_path(:src => "bar"),
           :class => "brand"%>
