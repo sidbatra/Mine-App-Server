@@ -64,7 +64,7 @@ module DW
                            "notifies you when I buy something.",
           :picture      => RAILS_ENV != 'development' ? 
                                          helpers.image_path('mine-90-555.gif') :
-                                         "#{CONFIG[:host]}/" + 
+                                         CONFIG[:host] + 
                                          helpers.image_path('mine-90-555.gif'),
           :link         => home_url(
                             "invite", 
