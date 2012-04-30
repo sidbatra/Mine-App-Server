@@ -25,7 +25,7 @@ class Invite < ActiveRecord::Base
   # Facetory method for creating an invite.
   #
   def self.add(attributes)
-    find_or_create_by_user_id_and_recipient_id(attributes)
+    create!(attributes)
   end
 
 end

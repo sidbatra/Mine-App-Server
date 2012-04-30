@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428001716) do
+ActiveRecord::Schema.define(:version => 20120430191710) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20120428001716) do
 
   add_index "invites", ["platform"], :name => "index_invites_on_platform"
   add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
-  add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id", :unique => true
+  add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"

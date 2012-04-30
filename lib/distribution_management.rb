@@ -52,21 +52,21 @@ module DW
 
       # Post an invite on a friends facebook wall 
       #
-      def self.post_on_friends_wall(user,friend)
+      def self.post_on_friends_wall(user,friend_fb_id)
         fb_friend = FbGraph::User.new(
-                              friend.fb_user_id, 
+                              friend_fb_id, 
                               :access_token => user.access_token)
 
         
         fb_friend.feed!(
-          :message      => "I set up your #{CONFIG[:name]} with style set to "\
-                           "\"#{friend.byline}\"!",
-          :picture      => friend.image_url, 
-          :link         => user_url(
-                            friend.handle,
-                            :src  => UserShowSource::Invite,
+          :message      => "I’d like to share purchases using "\
+                           "#{CONFIG[:name]} — a simple service that will "\
+                           "notify you when I buy something.",
+          :picture      => ActionController::Base.helpers.image_path('mine-90-555.gif'), 
+          :link         => home_url(
+                            "invite", 
                             :host => CONFIG[:host]),
-          :name         => "#{friend.first_name}'s #{CONFIG[:name]}",
+          :name         => "Mine - Click to start yours.",
           :description  => "#{CONFIG[:description]}",
           :caption      => "#{CONFIG[:host]}")
 
