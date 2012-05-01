@@ -59,36 +59,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   userLandsOn: function(page) {
     mpq.register_once({'landed_on' : page}); 
-  },
-
-  // User views the settings page
-  //
-  settingsView: function(source) {
-    mpq.track('Settings View',{'Source' : source});
-  },
-
-  // User turns on a setting
-  //
-  settingTurnedOn: function(name) {
-    mpq.track('Setting Turned On',{'Name' : name});
-  },
-
-  // User turns off a setting
-  //
-  settingTurnedOff: function(name) {
-    mpq.track('Setting Turned Off',{'Name' : name});
-  },
-
-  // User updates settings
-  //
-  settingsUpdated: function() {
-    mpq.track('Settings Updated');
-  },
-
-  // User visits the settings page with an unsubscription in mind
-  //
-  unsubscribeInitiated: function(source) {
-    mpq.track("Unsubscribe Initiated", {'Source' : source});
   }
 
 });

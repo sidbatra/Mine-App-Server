@@ -53,6 +53,8 @@
   SearchSource:
     New: 0
     Edit: 1
+  SettingsIndexSource:
+    Updated: 'updated'
   ShoppingSource:
     User: 0
     Purchase: 1

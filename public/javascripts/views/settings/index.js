@@ -12,7 +12,6 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
-    this.updated = this.options.updated;
     this.source = this.options.source;
 
     // Attach listeners on to setting checkboex
@@ -22,11 +21,10 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
         $('#' + input.id).change(function(){self.settingToggled(this)});
     });
 
-    if(this.updated == 'true')
-      Denwen.Drawer.success("Your changes have been saved.");
-    else if(this.updated == 'false')
-      Denwen.Drawer.error("Sorry, there was an error saving your changes.");
+    // -----
+    this.displayFlashMessage();
 
+    // -----
     this.setAnalytics();
   },
 
@@ -36,21 +34,31 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
     var name = checkBox.id.slice(8,checkBox.id.length);
 
     if($('#' + checkBox.id).is(':checked'))
-      Denwen.Track.settingTurnedOn(name);
+      Denwen.Track.action('Setting Turned On',{'Name' : name});
     else
-      Denwen.Track.settingTurnedOff(name);
+      Denwen.Track.action('Setting Turned Off',{'Name' : name});
+  },
+
+  // Public. Display a success or failure message if an update
+  // has been initiated.
+  //
+  displayFlashMessage: function() {
+    if(Denwen.Flash.get('updated') == true) {
+      Denwen.Drawer.success("Your changes have been saved.");
+      Denwen.Track.action("Settings Updated");
+    }
+    else if(Denwen.Flash.get('updated') == false)
+      Denwen.Drawer.error("Sorry, there was an error saving your changes.");
   },
 
   // Fire various tracking events
   //
   setAnalytics: function() {
-    Denwen.Track.settingsView(this.source);
-
-    if(this.source == 'saved')
-      Denwen.Track.settingsUpdated();
+    Denwen.Track.action("Settings View",{"Source" : this.source});
 
     if(this.source.slice(0,6) == 'email_')
-      Denwen.Track.unsubscribeInitiated(this.source.slice(6,this.source.length));
+      Denwen.Track.action("Unsubscribe Initiated",{
+        "Source" : this.source.slice(6,this.source.length)});
   }
 
 });
