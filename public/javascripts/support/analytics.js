@@ -61,12 +61,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.register_once({'landed_on' : page}); 
   },
 
-  // User signs in
-  //
-  userLogin: function() {
-    mpq.track("User Logged In Again");
-  },
-
   // User clicks the invite friends button
   //
   inviteSelected: function(type) {

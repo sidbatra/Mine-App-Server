@@ -48,6 +48,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   //
   setAnalytics: function() {
     Denwen.Track.action("Feed View",{"Source" : this.source});
+
+    if(this.source == 'login')
+      Denwen.Track.action("User Logged In");
+
     Denwen.Track.version(Denwen.H.version);
     Denwen.Track.isEmailClicked(this.source);
   },
