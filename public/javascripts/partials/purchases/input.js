@@ -152,6 +152,11 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.fbSettings.showPermissionsDialog();
 
     $(this.switchEl).toggleClass(this.switchOffClass);
+
+    if(this.switchState())
+      Denwen.Track.action("Purchase FB Photo On");
+    else
+      Denwen.Track.action("Purchase FB Photo Off");
   },
 
   // Display purchase image 
