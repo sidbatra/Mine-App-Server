@@ -97,18 +97,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Invite Friend Picked");
   },
 
-  // User rejects the additional facebook permissions
-  //
-  facebookPermissionsRejected: function() {
-    mpq.track("Facebook Permissions Rejected");
-  },
-
-  // User accepts the additional facebook permissions
-  //
-  facebookPermissionsAccepted: function() {
-    mpq.track("Facebook Permissions Accepted");
-  },
-
   // User searches a friend for inviting 
   //
   friendSearched: function(query) {
