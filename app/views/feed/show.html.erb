@@ -48,32 +48,19 @@
     
     </div> <!-- /creation -->
 
-    <div class="feed">
-    
-    	<div style="position: relative; top: -26px;">
-	    	<b class="caret" style="position: relative; bottom: -2px; margin-left: 20px; filter: alpha(opacity100); opacity: 1; border: 8px solid transparent; border-bottom: 8px solid #555;"></b>
-	    	<div style="padding: 14px 20px; background: #555; color: white; font-size: 14px; line-height: 20px;">
-	    		<b>Type the name of the first purchase you’d like to share</b><br />
-					<span style="color: #ccc;">e.g. ‘TOMS Red Women’s Classics’</span>
-				</div>
-				<%=image_tag('placeholders/toms.jpg')%>
-			</div>
-			
-			
-			<div style="position: relative; top: -26px;">
-	    	<b class="caret" style="position: relative; bottom: -2px; margin-left: 20px; filter: alpha(opacity100); opacity: 1; border: 8px solid transparent; border-bottom: 8px solid #555;"></b>
-	    	<div style="padding: 14px 20px; background: #555; color: white; font-size: 14px; line-height: 20px;">
-	    		<b>Type the name of the first purchase you’d like to share</b><br />
-					<span style="color: #ccc;">e.g. ‘Bose QuietComfort 15 Acoustic Headphones’</span>
-				</div>
-				<%=image_tag('placeholders/headphones.jpg')%>
-			</div>
-			
-    </div>
+    <div id="feed" class="feed">
 
+      <%if self.current_user.purchases_count.zero?%>
+        <%=render :partial => "feed/placeholder",
+            :locals => {:user => self.current_user}%> 
+      <%end%>
+
+    </div> <!-- feed -->
     
-    <div id="feed-spinner" class="loading blocks body" style="height: 60px;">
-    </div>
+    <div id="feed-spinner" 
+          class="loading blocks body" 
+          style="height: 60px;">
+    </div> 
     
 
   </div> <!-- col-triple-->
