@@ -68,6 +68,8 @@ ul.nav { height: 40px; }
 
 /* ----- feed, col-triple ----- */
 
+/* .feed { position: relative; } */
+
 .feed, .col-triple { 
 	width: 562px;
 	margin-right: 5px; }
