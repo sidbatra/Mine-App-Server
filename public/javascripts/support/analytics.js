@@ -61,18 +61,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.register_once({'landed_on' : page}); 
   },
 
-  // User updates a puchase
-  //
-  purchaseUpdated: function(puchaseID) {
-    mpq.track("Puchase Updated");
-  },
-
-  // User clicks purchase to visit the original link
-  //
-  purchaseClicked: function() {
-    mpq.track("Purchase Clicked");
-  },
-
   // User deletes a purchase
   //
   purchaseDeleted: function() {
@@ -128,17 +116,6 @@ Denwen.Analytics = Backbone.Model.extend({
       {
         'source'  : source,
         'id'      : id
-      });
-  },
-
-  // User opens edit purchase page
-  //
-  purchaseEditView: function(purchase_id,source) {
-    mpq.track("Purchase Editing View", 
-      {
-      'Purchase ID'  : purchase_id,
-      'User ID'     : Denwen.H.currentUserID(),
-      'Source'      : source
       });
   }
 

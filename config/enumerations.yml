@@ -51,8 +51,8 @@
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
     Logout: 'logout'
-  PurchaseShowSource:
-    Updated: 'purchase_updated'
+  PurchaseEditSource:
+    Updated: 'updated'
   SearchSource:
     New: 0
     Edit: 1

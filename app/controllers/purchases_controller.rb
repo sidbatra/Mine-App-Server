@@ -125,15 +125,18 @@ class PurchasesController < ApplicationController
       @purchase.update_attributes(purchase_params) 
     end
 
+    flash[:updated] = true
+
   rescue => ex
     handle_exception(ex)
+    flash[:updated] = false
   ensure
     respond_to do |format|
       format.html do 
-        redirect_to purchase_path(
+        redirect_to edit_purchase_path(
                       self.current_user.handle,
                       @purchase.handle,
-                      :src => PurchaseShowSource::Updated)
+                      :src => PurchaseEditSource::Updated)
       end
       format.json 
     end
