@@ -59,6 +59,8 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   //
   purchaseCreated: function(purchase) {
     this.content.insert(purchase);
+
+    Denwen.Track.action("Purchase Created");
   },
 
   // Display a creation error.

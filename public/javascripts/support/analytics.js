@@ -109,12 +109,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.track("Friend Search Cancelled"); 
   },
 
-  // User creates a purchase
-  //
-  purchaseCreated: function() {
-    mpq.track("Purchase Created");
-  },
-
   // User updates a puchase
   //
   purchaseUpdated: function(puchaseID) {
