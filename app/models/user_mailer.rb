@@ -3,6 +3,7 @@
 #
 class UserMailer < ActionMailer::Base
   layout 'email'
+  helper :application
 
   # Welcome email for the user on sign up
   #
