@@ -89,17 +89,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   unsubscribeInitiated: function(source) {
     mpq.track("Unsubscribe Initiated", {'Source' : source});
-  },
-
-  // Page view on purchase profile
-  //
-  purchaseProfileView: function(source,id) {
-     mpq.track(
-      'Purchase Profile View',
-      {
-        'source'  : source,
-        'id'      : id
-      });
   }
 
 });

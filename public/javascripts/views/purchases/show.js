@@ -49,21 +49,10 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
   },
 
-  // User clicks the purchase image
-  //
-  purchaseImageClicked: function() {
-    Denwen.Track.purchaseClicked();
-  },
-
   // Fire various tracking events
   //
   setAnalytics: function() {
-    //Denwen.Track.userLandsOn(this.purchase.uniqueKey());
-    //Denwen.Track.purchaseProfileView(this.source,this.purchase.get('id'));
-
-    //if(this.source == 'purchase_updated')
-    //  Denwen.Track.purchaseUpdated(this.purchase.get('id'));
-
-    //Denwen.Track.checkForEmailClickedEvent(this.source);
+    Denwen.Track.action("Purchase View",{"Source" : this.source});
+    Denwen.Track.isEmailClicked(this.source);
   }
 });
