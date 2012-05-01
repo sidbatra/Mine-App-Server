@@ -22,8 +22,3 @@ Denwen.PurchaseFormType = {
 New: "new",
 Edit: "edit"
 }
-
-Denwen.UserShowHash = {
-Owns: "owns",
-Wants: "wants"
-}

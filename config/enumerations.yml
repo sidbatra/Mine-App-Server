@@ -8,9 +8,6 @@
 #      enumerations in JS friendly format.
 #
 :common: &common
-  UserShowHash:
-    Owns: 'owns'
-    Wants: 'wants'
   InvitePlatform:
     Facebook: 0
     Email: 1
@@ -64,9 +61,6 @@
     Male: 1
     Female: 2
   UserShowSource:
-    HomeRedirect: 'home_redirect'
-    UserCreate: 'user_create'
-    Invite: 'invite'
     PurchaseDeleted: 'purchase_deleted'
   WelcomeFilter:
     Learn: 'intro'

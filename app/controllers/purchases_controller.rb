@@ -147,12 +147,15 @@ class PurchasesController < ApplicationController
   def destroy
     purchase = Purchase.find(params[:id])
     purchase.destroy if purchase.user_id == self.current_user.id
+
+    flash[:destroyed] = true
   rescue => ex
     handle_exception(ex)
+    flash[:destroyed] = false
   ensure
     redirect_to user_path(
                   self.current_user.handle,
-                  :src    => UserShowSource::PurchaseDeleted)
+                  :src => UserShowSource::PurchaseDeleted)
   end
 
 
