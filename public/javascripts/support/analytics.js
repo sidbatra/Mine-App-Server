@@ -45,6 +45,15 @@ Denwen.Analytics = Backbone.Model.extend({
   emailClicked: function(source) {
     mixpanel.track("Email Clicked", {"Source" : source});
   },
+
+  // Public. Track validation errors during the creation
+  // of a purchase.
+  //
+  // name - The String name of the error.
+  //
+  purchaseValidationError: function(name) {
+    mixpanel.track("Purchase Validation Error",{'Name' : name});
+  },
   
   // Track the page the user landed on
   //
@@ -110,12 +119,6 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   friendSearchCancelled: function() {
     mpq.track("Friend Search Cancelled"); 
-  },
-
-  // Validation exception 
-  //
-  purchaseException: function(type,mode) {
-    mpq.track("Purchase Exception",{'type':type,'Mode':mode});
   },
 
   // User creates a purchase
