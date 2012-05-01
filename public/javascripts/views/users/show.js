@@ -41,6 +41,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   setAnalytics: function() {
     Denwen.Track.action("User View",{"Source" : this.source});
     Denwen.Track.isEmailClicked(this.source);
+    Denwen.Track.origin("user");
   }
   
 });

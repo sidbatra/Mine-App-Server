@@ -54,5 +54,6 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
   setAnalytics: function() {
     Denwen.Track.action("Purchase View",{"Source" : this.source});
     Denwen.Track.isEmailClicked(this.source);
+    Denwen.Track.origin("purchase");
   }
 });

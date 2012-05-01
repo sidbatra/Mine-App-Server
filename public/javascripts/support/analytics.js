@@ -55,10 +55,10 @@ Denwen.Analytics = Backbone.Model.extend({
     mixpanel.track("Purchase Validation Error",{'Name' : name});
   },
   
-  // Track the page the user landed on
+  // Public. Track origin of the user.
   //
-  userLandsOn: function(page) {
-    mpq.register_once({'landed_on' : page}); 
+  origin: function(origin) {
+    mixpanel.register_once({"Origin" : origin});
   }
 
 });
