@@ -41,7 +41,7 @@
             </li>
           </ul> <!-- /nav -->
         <%else%>
-        	
+
         	<div style="position: absolute; left: 0; right: 0; height: 40px; color: #ddd; font-size: 13px; line-height: 40px; text-align: center;">
         		Mine is a simple service for sharing purchases  with friends.  
         		
@@ -49,6 +49,16 @@
 				        fb_auth_path(:src => @origin), 
 				        :style => 'font-weight: bold; color: white;'%>
         	</div>
+        	
+        	<ul class="nav pull-right">
+            <li>
+              <%=link_to 'Log In', 
+				        	fb_auth_path(:src => @origin), 
+				        	:style => ''%>
+            </li>
+          </ul> <!-- /nav -->
+
+        	
         
         <%end%>
       </div> <!-- /nav-collapse -->
