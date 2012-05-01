@@ -3,7 +3,7 @@
   <%if(Denwen.H.isLoggedIn()){%>
     <div class="actions" 
           id="feedback" 
-          style="position: absolute; top: 20px; right: 100px;">
+          style="position: absolute; top: 20px; right: <%=extraMargin ? '100px' : '20px'%>;">
 
       <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
         <a style="float: right" 
@@ -49,7 +49,7 @@
           <%=purchase.get('user').get('last_name')%>
         </a>
       </h5>
-      <%=purchase.get('store') ? 'Bought this from ' + purchase.get('store').get('name') : ''%>
+      <%=purchase.get('store') ? 'Bought this from ' + purchase.get('store').escape('name') : ''%>
       <span class="small"><%=jQuery.timeago(purchase.get('created_at'))%></span>
     </div>
   </div>

@@ -20,7 +20,8 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el          : $('#feed'),
                               model       : this.purchase,
-                              interaction : this.interaction});
+                              interaction : this.interaction,
+                              extraMargin : true});
 
     if(this.purchase.get('fb_object_id')) { 
 
@@ -57,12 +58,12 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
   // Fire various tracking events
   //
   setAnalytics: function() {
-    Denwen.Track.userLandsOn(this.purchase.uniqueKey());
-    Denwen.Track.purchaseProfileView(this.source,this.purchase.get('id'));
+    //Denwen.Track.userLandsOn(this.purchase.uniqueKey());
+    //Denwen.Track.purchaseProfileView(this.source,this.purchase.get('id'));
 
-    if(this.source == 'purchase_updated')
-      Denwen.Track.purchaseUpdated(this.purchase.get('id'));
+    //if(this.source == 'purchase_updated')
+    //  Denwen.Track.purchaseUpdated(this.purchase.get('id'));
 
-    Denwen.Track.checkForEmailClickedEvent(this.source);
+    //Denwen.Track.checkForEmailClickedEvent(this.source);
   }
 });
