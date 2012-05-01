@@ -121,6 +121,8 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
       $(this.buttonEl).removeClass('load');
       this.render(like);
     }
+
+    Denwen.Track.action("Like Created");
   },
 
   // Change the state of the button if a user likes/has liked an item
