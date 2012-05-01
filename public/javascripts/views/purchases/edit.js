@@ -17,10 +17,13 @@ Denwen.Views.Purchases.Edit = Backbone.View.extend({
                             mode:Denwen.PurchaseFormType.Edit});
     this.source      = this.options.source;
 
+    // -----
     this.updateUI();
 
+    // -----
     this.displayFlashMessage();
 
+    // -----
     this.setAnalytics();
   },
 

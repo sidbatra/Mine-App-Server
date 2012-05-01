@@ -61,23 +61,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.register_once({'landed_on' : page}); 
   },
 
-  // User deletes a purchase
-  //
-  purchaseDeleted: function() {
-    mpq.track("Purchase Deleted");
-  },
-
-  // Page view on user profile
-  //
-  userProfileView: function(source,id) {
-     mpq.track(
-      'User Profile View',
-      {
-      'source'    : source,
-      'id'        : id
-      });
-  },
-
   // User views the settings page
   //
   settingsView: function(source) {
