@@ -32,7 +32,7 @@
 
   <!-- User -->
   <div class="user-box">
-    <a href="<%=purchase.get('user').path('purchase_photo')%>">
+    <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
       <img class="user-photo" 
             src="<%=purchase.get('user').get('square_image_url')%>" />
     </a>
@@ -44,7 +44,8 @@
 
     <div style="float: left; margin-left: 8px;">
       <h5>
-        <a class="user-name" href="<%=purchase.get('user').path('purchase_name')%>">
+        <a class="user-name" 
+            href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
           <%=purchase.get('user').get('first_name')%> 
           <%=purchase.get('user').get('last_name')%>
         </a>

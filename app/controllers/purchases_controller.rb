@@ -70,6 +70,8 @@ class PurchasesController < ApplicationController
     @prev_purchase  = @purchase.previous
     @prev_purchase  ||= @purchase.user.purchases.last
 
+    @origin = 'purchase'
+
   rescue => ex
     handle_exception(ex)
   ensure
