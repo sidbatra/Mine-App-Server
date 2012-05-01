@@ -61,48 +61,6 @@ Denwen.Analytics = Backbone.Model.extend({
     mpq.register_once({'landed_on' : page}); 
   },
 
-  // User clicks the invite friends button
-  //
-  inviteSelected: function(type) {
-    mpq.track("Invite Clicked", {'type':type});
-  },
-
-  // User opens invite dialog and rejects it
-  //
-  inviteRejected: function() {
-    mpq.track("Invite Rejected");
-  },
-  
-  // User opens invite dialog and completes it
-  //
-  inviteCompleted: function() {
-    mpq.track("Invite Completed");
-  },
-  
-  // User cancels invite
-  //
-  inviteCancelled: function() {
-    mpq.track("Invite Cancelled");
-  },
-
-  // User picks a friend for inviting 
-  //
-  inviteFriendPicked: function() {
-    mpq.track("Invite Friend Picked");
-  },
-
-  // User searches a friend for inviting 
-  //
-  friendSearched: function(query) {
-    mpq.track("Friend Searched", {'query':query});
-  },
-
-  // User cancels a friend search 
-  //
-  friendSearchCancelled: function() {
-    mpq.track("Friend Search Cancelled"); 
-  },
-
   // User updates a puchase
   //
   purchaseUpdated: function(puchaseID) {
@@ -171,12 +129,6 @@ Denwen.Analytics = Backbone.Model.extend({
         'source'  : source,
         'id'      : id
       });
-  },
-
-  // Page view on the invite page
-  //
-  inviteView: function(source) {
-     mpq.track('Invite View',{'source' : source});
   },
 
   // User opens edit purchase page

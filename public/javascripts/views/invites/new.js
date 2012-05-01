@@ -18,6 +18,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
 
     // -----
     this.loadFacebookPlugs();
+
+    // -----
+    this.setAnalytics();
   },
 
   // Load facebook code via partials
@@ -29,7 +32,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    Denwen.Track.inviteView(this.source);
+    Denwen.Track.action("Invite View",{"Source" : this.source});
   }
 
 });
