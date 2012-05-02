@@ -80,10 +80,23 @@ module DW
       # Publish added purchases to facebook album
       #
       def self.publish_purchase_to_fb_album(purchase)
+        text = ""
+        text << "#{purchase.title} "
+
+        if purchase.store && purchase.store.is_approved
+          text << "bought at #{purchase.store.name} " 
+        end
+
+        text << purchase_url(
+                  purchase.user.handle,
+                  purchase.handle,
+                  :src  => 'album',
+                  :host => CONFIG[:host])
+
         fb_user = FbGraph::User.me(purchase.user.access_token)
         photo = fb_user.photo!(
                   :url      => purchase.unit_url,
-                  :message  => purchase.title)  
+                  :message  => text)
 
         purchase.update_attributes({:fb_photo_id => photo.identifier})
 
