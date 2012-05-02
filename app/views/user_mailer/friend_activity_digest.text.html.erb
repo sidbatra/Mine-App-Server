@@ -11,8 +11,7 @@
 												<td valign="top" style="font-family:Helvetica Neue, Helvetica, Arial,sans-serif;color:#777; font-size:24px;border-collapse:collapse;vertical-align:top">
 													<font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="4" color="#777777">
 														<b>
-															Hey 
-															<font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="4" color="#555555"><%=@user.first_name%></font>,
+															<font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="4" color="#555555">Hey <%=@user.first_name%></font>,
 														</b>
 													</font>
 												</td>
@@ -85,20 +84,16 @@
 																					
 																					<font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="4" color="#777777">
 																						<font color="#589111">
-																							<a href="<%=root_url(:src => @source)%>" style="color:#fff;text-decoration:none;font-family:Helvetica Neue, Helvetica, Arial,sans-serif;font-weight:bold;padding:8px 12px;width:84px;text-align:center;
-																								text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-																							  background-color: #6f6f6f;
-																							  background-image: -moz-linear-gradient(top, #8a8a8a, #535353);
-																							  background-image: -ms-linear-gradient(top, #8a8a8a, #535353);
-																							  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8a8a8a), to(#535353));
-																							  background-image: -webkit-linear-gradient(top, #8a8a8a, #535353);
-																							  background-image: -o-linear-gradient(top, #8a8a8a, #535353);
-																							  background-image: linear-gradient(top, #8a8a8a, #535353);
-																							  background-repeat: repeat-x;
-																							  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8a8a8a', endColorstr='#535353', GradientType=0);
-																							  border-color: #626262 #656565 #484848;
-																							  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-																							  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);" 
+																							<a href="<%=root_url(:src => @source)%>" style="
+																								color:white;
+																								text-decoration:none;
+																								font-family:Helvetica Neue, Helvetica, Arial,sans-serif;
+																								font-weight:bold;
+																								padding:8px 12px;
+																								width:84px;
+																								text-align:center;
+																								background-color: #6f6f6f;
+																								border-bottom: 1px solid #cccccc;" 
 																							target="_blank">
                                                 <%if @friends.length == 1%>
                                                   View <%=@friends.first.is_male? ? 'his' : 'her'%> purchases

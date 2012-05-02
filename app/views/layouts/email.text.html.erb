@@ -1,6 +1,6 @@
 
-<div style="width:100%!important;margin:0;padding:0; -webkit-text-size-adjust:none; text-rendering: optimizelegibility;-webkit-font-smoothing: antialiased;">
-  <table cellpadding="0" cellspacing="0" border="0" style="line-height:100%!important;width:100%!important;background:#fff;margin:0;padding:0">
+<div style="width:100%!important;margin:0;padding:0; -webkit-text-size-adjust:none; text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased;">
+  <table cellpadding="0" cellspacing="0" border="0" style="line-height:100%!important;width:100%!important;background:white;margin:0;padding:0">
     <tbody>
       <tr>
         <td valign="top" style="border-collapse:collapse;vertical-align:top">
@@ -31,13 +31,13 @@
                         
                         <!-- Logo -->
                         
-                        <td width="40" height="40" valign="top" style="border-collapse:collapse;vertical-align:top">
+                        <td width="40" height="47" valign="top" style="border-collapse:collapse;vertical-align:top">
                           <a href="<%=root_url(:src => @source)%>" target="_blank" style="text-decoration:none;">
-                            <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="40" height="40" style="height: 40px; width: 40px; line-height: 40px; text-align: center; color: #fff; background: #555; background-color: #555; outline:none;text-decoration:none;border:none;display:block">
+                            <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="40" height="47" style="width: 40px; height: 47px; outline:none; text-decoration:none; border:none; display:block">
                               <%if Rails.env.start_with? 'd'%>
-                                <%=image_tag "http://#{CONFIG[:host]}/images/mine-40-555.gif",:alt => ""%>
+                                <%=image_tag "http://#{CONFIG[:host]}/images/mine-80-555-trans.png",:alt => "", :style => "width: 40px; height: 47px;"%>
                               <%else%>
-                                <%=image_tag "mine-40-555.gif",:alt => ""%>
+                                <%=image_tag "mine-80-555-trans.png",:alt => "", :style => "width: 40px; height: 47px;"%>
                               <%end%>
                             </div>
                           </a>
@@ -45,17 +45,19 @@
                         
                         <!-- /Logo -->
                         
-                        <td width="10" style="border-collapse:collapse;vertical-align:top">
+                        <td width="20" style="width: 20px; border-collapse:collapse;vertical-align:top">
                         </td>
                         
                         <!-- Boilerplate text -->
                         
-                        <td height="30" width="470" style="text-align:left;font-family:Helvetica Neue, Helvetica, Arial,sans-serif;font-size:9px;color:#bbbbbb;border-collapse:collapse;vertical-align:top">
+                        <td height="40" width="470" style="text-align:left;font-family:Helvetica Neue, Helvetica, Arial,sans-serif;line-height: 14px; font-size:9px;color:#bbbbbb;border-collapse:collapse;">
                           <font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="1" color="#999999">This message was sent to 
                           
                             <!-- Recipient's address -->
                             
-                            <%=@user.email%>
+                            <a href="" style="text-decoration:none;color:#999999">
+                            	<%=@user.email%>.
+                            </a>
                             
                             <!-- /Recipient's address -->
                             
@@ -64,13 +66,13 @@
                             <!-- Unsubscribe link -->
                             
                             <a href="<%=settings_url(:src => @source)%>" style="font-weight:bold;text-decoration:none;color:#999999" target="_blank">
-                              <font color="#999">change your notification settings here. 
+                              <font color="#999">change your notification settings. 
                               </font>
                             </a>
                             
                             <!-- /Unsubscribe link -->
                             
-                            <br><%=CONFIG[:name]%> - 855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA
+                            <%=CONFIG[:name]%> - <a href="" style="text-decoration:none;color:#999999">855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA</a>
                           </font>
                         </td>
                         
