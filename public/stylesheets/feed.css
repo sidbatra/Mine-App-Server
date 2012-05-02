@@ -281,14 +281,14 @@ ul.nav { height: 40px; }
 .creation a.toggle-switch.off div.on { display: none; }   
 
 .creation a.toggle-switch .text { 
-	width: 60%;
+	width: 42px;
 	text-align: center; }
     
 .creation a.toggle-switch .knob { 
 	border: 1px solid #ccc;
 	margin-top: -1px;
 	box-sizing: border-box; 
-	width: 40%;
+	width: 27px;
 	background-color: whiteSmoke;
 	background-image: -moz-linear-gradient(top, white, #E6E6E6);
 	background-image: -ms-linear-gradient(top, white, #E6E6E6);
