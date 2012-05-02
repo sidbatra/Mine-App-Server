@@ -38,7 +38,7 @@
 																				
 																				<td valign="top" style="border-collapse:collapse;vertical-align:top;">
                                           <%@friends.each do |friend|%>
-                                            <a href="<%=user_url(friend.handle,:src => @source)%>" target="_blank" style="padding-right: 10px; text-decoration: none;">
+                                            <a href="<%=user_url(friend.handle,:src => @source)%>" target="_blank" style="padding-right: 5px; text-decoration: none;">
                                               <img src="<%=friend.square_image_url%>" />
                                             </a>
                                           <%end%>
