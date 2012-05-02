@@ -58,22 +58,27 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email users with a digest of their friends items 
+      # Public. Email users whose friends have added purchases.
       #
-      def self.email_users_friend_activity_digest(users,active_users,owns_hash)
+      # users - The Array of User objects whose friends have added purchases.
+      # purchases - The Hash with keys as user ids who have added 
+      #                     purchases and values as Arrays of their purchases.
+      #
+      def self.email_users_friend_activity_digest(users,purchases)
                 
         users.each do |user|
           begin
             if user.setting.email_influencer
-              friends         = user.ifollowers
-              active_friends  = friends.select{|f| active_users.include? f.id} 
-
-              owns            = active_friends.map{|f| owns_hash[f.id]}
-
+              friends = user.ifollowers
+              active_friends = friends.select{|f| purchases.key? f.id} 
+              #friends_purchases = active_friends.map{|f| purchases[f.id]}
+              friends_purchases = []
+              
               UserMailer.deliver_friend_activity_digest(
                           user,
                           active_friends,
-                          owns)
+                          friends_purchases)
+
               sleep 0.09
             end
           rescue => ex

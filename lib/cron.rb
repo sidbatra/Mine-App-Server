@@ -23,32 +23,28 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email users with a digest of their friends activities 
+      # Public. Dispatch digest emails to all users whose friends
+      # have added new purchaes in a time period.
+      #
+      # from - The Time period for preparing a digest.
       #
       def self.email_users_with_friend_activity(from)
-        return
-        products  = Purchase.with_store.made(from)
-        
-        owns_hash = {}
-        products.each do |p|
-          owns_hash[p.user_id] = [] unless owns_hash.has_key?(p.user_id)
-          owns_hash[p.user_id] << p
+
+        purchases = {}
+
+        Purchase.with_store.made(from).each do |p|
+          purchases[p.user_id] = [] unless purchases.key?(p.user_id)
+          purchases[p.user_id] << p
         end
 
-        users_with_activity = products.map(&:user_id).uniq
-        user_ids            = Following.active.
-                                find_all_by_user_id(users_with_activity).
-                                map(&:follower_id).uniq
+        user_ids = Following.active.
+                    find_all_by_user_id(purchases.keys).
+                    map(&:follower_id).uniq
 
-        users               = User.
-                                with_ifollowers.
-                                with_setting.
-                                find_all_by_id(user_ids)
+        users = User.with_ifollowers.with_setting.find_all_by_id(user_ids)
 
-        Mailman.email_users_friend_activity_digest(
-                  users,
-                  users_with_activity,
-                  owns_hash)
+        Mailman.email_users_friend_activity_digest(users,purchases)
+
 
         HealthReport.add(HealthReportService::FriendsDigest)
 

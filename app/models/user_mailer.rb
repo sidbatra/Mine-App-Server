@@ -66,21 +66,21 @@ class UserMailer < ActionMailer::Base
 
   # Friend activity digest for the user 
   #
-  def friend_activity_digest(user,friends,owns)
-    @user         = user
-    @friends      = friends
-    @owns         = owns
-    @action       = "What " 
+  def friend_activity_digest(user,friends,purchases)
+    @user      = user
+    @friends   = friends
+    @purchases = purchases
+    @action    = "What " 
 
     if @friends.length == 1
-      @action         += @friends[0].first_name
+      @action += @friends[0].first_name
     else
-      @action         += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
-                         "#{@friends[-1].first_name}" 
+      @action += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
+                 "#{@friends[-1].first_name}" 
     end
 
-    @action       += " shared this week"
-    @source       = "email_friend_digest"
+    @action += " shared this week"
+    @source = "email_friend_digest"
 
     generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)
 

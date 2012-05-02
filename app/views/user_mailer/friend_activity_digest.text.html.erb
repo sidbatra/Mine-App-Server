@@ -100,7 +100,11 @@
 																							  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 																							  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);" 
 																							target="_blank">
-																								View their purchases
+                                                <%if @friends.length == 1%>
+                                                  View <%=@friends.first.is_male? ? 'his' : 'her'%> purchases
+                                                <%else%>
+                                                  View their purchases
+                                                <%end%>
 																							</a>
 																						</font>
 																					</font>
