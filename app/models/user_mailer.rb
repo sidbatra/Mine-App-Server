@@ -79,7 +79,7 @@ class UserMailer < ActionMailer::Base
                          "#{@friends[-1].first_name}" 
     end
 
-    @action       += " added today"
+    @action       += " shared this week"
     @source       = "email_friend_digest"
 
     generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)

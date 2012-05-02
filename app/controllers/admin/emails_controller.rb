@@ -33,7 +33,7 @@ class Admin::EmailsController < ApplicationController
     when :friend_activity_digest
       render :text => UserMailer.preview_friend_activity_digest(
                                   User.find(3),
-                                  User.find_all_by_id([1,2]),
+                                  User.find_all_by_id([1,2,13,12]),
                                   [Purchase.all[-5..-1],[Purchase.last]])
 
     when :user_deleted
