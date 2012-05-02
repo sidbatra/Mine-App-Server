@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   #
   def new_user(user)
     @user         = user
-    @action       = "Welcome to #{CONFIG[:name]}!"
+    @action       = "Welcome to #{CONFIG[:name]}"
     @source       = "email_welcome"
 
     generate_attributes(@user,0,@user,EmailPurpose::Welcome)
@@ -26,8 +26,7 @@ class UserMailer < ActionMailer::Base
     @user         = following.user
     @source       = "email_follower"
 
-    @action       = @follower.first_name + " " + @follower.last_name + 
-                    " is sharing purchases with you."
+    @action       = "View #{@follower.first_name}'s Mine"
 
     generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
 
@@ -70,7 +69,7 @@ class UserMailer < ActionMailer::Base
     @user      = user
     @friends   = friends
     @purchases = purchases
-    @action    = "What " 
+    @action    = "View what " 
 
     if @friends.length == 1
       @action += @friends[0].first_name
@@ -79,7 +78,7 @@ class UserMailer < ActionMailer::Base
                  "#{@friends[-1].first_name}" 
     end
 
-    @action += " shared this week"
+    @action += " bought this week"
     @source = "email_friend_digest"
 
     generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)

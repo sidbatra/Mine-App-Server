@@ -52,7 +52,7 @@
 																						Just a quick note to say<br />
 																						<a href="<%=user_url(@follower.handle,:src => @source)%>" style="color:#197DCA;font-weight:bold" target="_blank">
 																							<font color="#197DCA"><%=@follower.full_name%></font></a> 
-																							is now sharing purchases with you.
+																							is now sharing <%=@follower.is_male? ? 'his' : 'her'%> purchases with you.
 																					</font>
 																				</td>
 																				
