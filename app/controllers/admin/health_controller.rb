@@ -6,7 +6,7 @@ class Admin::HealthController < ApplicationController
     @services = [
       {
         :id => HealthReportService::FriendsDigest,
-        :time => 1.day.ago},
+        :time => 1.week.ago},
       {
         :id => HealthReportService::MaintainSearchIndex,
         :time => 1.day.ago},
