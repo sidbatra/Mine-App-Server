@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
     @source       = "email_follower"
 
     @action       = @follower.first_name + " " + @follower.last_name + 
-                    " thinks you influence each other's style!"
+                    " is sharing purchases with you."
 
     generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
 
