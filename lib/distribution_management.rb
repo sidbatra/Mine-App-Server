@@ -52,21 +52,24 @@ module DW
 
       # Post an invite on a friends facebook wall 
       #
-      def self.post_on_friends_wall(user,friend)
+      def self.post_on_friends_wall(user,friend_fb_id)
         fb_friend = FbGraph::User.new(
-                              friend.fb_user_id, 
+                              friend_fb_id, 
                               :access_token => user.access_token)
 
         
         fb_friend.feed!(
-          :message      => "I set up your #{CONFIG[:name]} with style set to "\
-                           "\"#{friend.byline}\"!",
-          :picture      => friend.image_url, 
-          :link         => user_url(
-                            friend.handle,
-                            :src  => UserShowSource::Invite,
+          :message      => "I’d like to share purchases using "\
+                           "#{CONFIG[:name]} — a simple service that "\
+                           "notifies you when I buy something.",
+          :picture      => RAILS_ENV != 'development' ? 
+                                         helpers.image_path('mine-90-555.gif') :
+                                         CONFIG[:host] + 
+                                         helpers.image_path('mine-90-555.gif'),
+          :link         => home_url(
+                            "invite", 
                             :host => CONFIG[:host]),
-          :name         => "#{friend.first_name}'s #{CONFIG[:name]}",
+          :name         => "Mine - Click to start yours.",
           :description  => "#{CONFIG[:description]}",
           :caption      => "#{CONFIG[:host]}")
 
@@ -77,10 +80,23 @@ module DW
       # Publish added purchases to facebook album
       #
       def self.publish_purchase_to_fb_album(purchase)
+        text = ""
+        text << "#{purchase.title} "
+
+        if purchase.store && purchase.store.is_approved
+          text << "bought from #{purchase.store.name} " 
+        end
+
+        text << purchase_url(
+                  purchase.user.handle,
+                  purchase.handle,
+                  :src  => 'album',
+                  :host => CONFIG[:host])
+
         fb_user = FbGraph::User.me(purchase.user.access_token)
         photo = fb_user.photo!(
                   :url      => purchase.unit_url,
-                  :message  => purchase.title)  
+                  :message  => text)
 
         purchase.update_attributes({:fb_photo_id => photo.identifier})
 
@@ -112,6 +128,15 @@ module DW
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
+      end
+
+
+      protected
+
+      # View helper methods
+      #
+      def self.helpers
+       ActionController::Base.helpers 
       end
     
     end #distribution manager

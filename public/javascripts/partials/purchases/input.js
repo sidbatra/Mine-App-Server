@@ -152,6 +152,11 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.fbSettings.showPermissionsDialog();
 
     $(this.switchEl).toggleClass(this.switchOffClass);
+
+    if(this.switchState())
+      Denwen.Track.action("Purchase FB Photo On");
+    else
+      Denwen.Track.action("Purchase FB Photo Off");
   },
 
   // Display purchase image 
@@ -200,7 +205,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
       $(this.queryEl).addClass('incomplete');
       $(this.queryTextEl).addClass('incomplete');
-      Denwen.Track.purchaseException('No Photo',this.mode);
     }
     else {
       $(this.queryEl).removeClass('incomplete');
@@ -212,7 +216,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       valid = false;
 
       $(this.titleBoxEl).addClass('error');
-      Denwen.Track.purchaseException('No Title',this.mode);
+      Denwen.Track.purchaseValidationError('No Title');
     }
     else {
       $(this.titleBoxEl).removeClass('error');
@@ -223,7 +227,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       valid = false;
 
       $(this.storeBoxEl).addClass('error');
-      Denwen.Track.purchaseException('No Store',this.mode);
+      Denwen.Track.purchaseValidationError('No Store');
     }
     else {
       $(this.storeBoxEl).removeClass('error');
@@ -368,7 +372,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     $(this.urlAlertBoxEl).hide();
 
-    Denwen.Track.productSearchCompleted(this.mode);
+    Denwen.Track.action("Product Selected");
 
     // Test if the website url matches a known store to populate
     // the store field
@@ -400,14 +404,15 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     this.productSearch.search();
 
-    Denwen.Track.productImageBroken(this.mode);
+    Denwen.Track.action("Product Image Broken");
   },
 
   // Fired when a product is searched from the ProductsImageView
   //
   productSearched: function(query,queryType) {
     this.searchesCount++;
-    Denwen.Track.productSearched(query,queryType,this.mode);
+
+    Denwen.Track.action("Product Search Started",{"Query Type" : queryType});
 
     if(queryType == Denwen.ProductQueryType.Text) {
       
@@ -427,7 +432,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   productSearchCancelled: function(source) {
     this.searchesCount = 0;
-    Denwen.Track.productSearchCancelled(source);
+    Denwen.Track.action("Product Search Cancelled",{"Source" : source});
   }
 
 });

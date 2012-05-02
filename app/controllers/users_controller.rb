@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   #
   def show
     @user = User.find_by_handle(params[:handle])
+    @origin = 'user'
   end
   
   # Update a user. To ensure security only the currently logged

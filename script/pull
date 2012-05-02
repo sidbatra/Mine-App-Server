@@ -13,5 +13,9 @@ if [ $migration_count -ne $new_migration_count ] ; then
 fi
 
 touch tmp/restart.txt
-sudo RAILS_ENV=development lib/daemons/processor_ctl restart > /dev/null &
-sudo RAILS_ENV=development RAILS_PATH=/vol/closet lib/daemons/clerk_ctl restart > /dev/null &
+
+sudo RAILS_ENV=development lib/daemons/processor_ctl stop > /dev/null &
+sudo RAILS_ENV=development lib/daemons/processor_ctl start > /dev/null &
+
+sudo RAILS_ENV=development lib/daemons/clerk_ctl stop > /dev/null &
+sudo RAILS_ENV=development lib/daemons/clerk_ctl start > /dev/null &

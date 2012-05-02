@@ -70,6 +70,8 @@ class PurchasesController < ApplicationController
     @prev_purchase  = @purchase.previous
     @prev_purchase  ||= @purchase.user.purchases.last
 
+    @origin = 'purchase'
+
   rescue => ex
     handle_exception(ex)
   ensure
@@ -123,15 +125,18 @@ class PurchasesController < ApplicationController
       @purchase.update_attributes(purchase_params) 
     end
 
+    flash[:updated] = true
+
   rescue => ex
     handle_exception(ex)
+    flash[:updated] = false
   ensure
     respond_to do |format|
       format.html do 
-        redirect_to purchase_path(
+        redirect_to edit_purchase_path(
                       self.current_user.handle,
                       @purchase.handle,
-                      :src => PurchaseShowSource::Updated)
+                      :src => PurchaseEditSource::Updated)
       end
       format.json 
     end
@@ -142,12 +147,15 @@ class PurchasesController < ApplicationController
   def destroy
     purchase = Purchase.find(params[:id])
     purchase.destroy if purchase.user_id == self.current_user.id
+
+    flash[:destroyed] = true
   rescue => ex
     handle_exception(ex)
+    flash[:destroyed] = false
   ensure
     redirect_to user_path(
                   self.current_user.handle,
-                  :src    => UserShowSource::PurchaseDeleted)
+                  :src => UserShowSource::PurchaseDeleted)
   end
 
 

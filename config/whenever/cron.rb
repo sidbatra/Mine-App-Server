@@ -6,8 +6,8 @@ every 1.hour do
 end
 
 
-every 1.day, :at => '12:15pm' do
-  #runner "ProcessingQueue.push(CronWorker,:email_users_with_friend_activity,1.day.ago)"
+every :wednesday, :at => '12:15pm' do
+  runner "ProcessingQueue.push(CronWorker,:email_users_with_friend_activity,1.week.ago)"
 end
 
 

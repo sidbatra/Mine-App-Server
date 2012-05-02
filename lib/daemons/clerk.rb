@@ -5,13 +5,15 @@
 # * Generate javascript config & enumeration files when base yaml is modified.
 # * Generate css files from less files.
 #
-# ENV['RAILS_PATH'] - String. Root folder for the Rails application.
 # ENV['RAILS_ENV'] - String. Current Rails environment.
 #
 # Output - Log. Written to log/clerk.rb.log
 #
-# Usage - RAILS_ENV=development RAILS_PATH=/vol/mine lib/daemons/clerk_ctl start
+# Usage - RAILS_ENV=development lib/daemons/clerk_ctl start
 #
+
+ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
+
 
 require 'rubygems'
 require 'rb-inotify'

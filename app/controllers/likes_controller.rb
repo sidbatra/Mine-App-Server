@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => :index
 
   # List of facebook likes for purchases pushed to gallery or timeline
   # 

@@ -3,6 +3,8 @@
 # Process objects from different models in the processing queue
 #
 
+ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
+
 require File.dirname(__FILE__) + "/../../config/environment"
 
 

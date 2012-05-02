@@ -8,7 +8,7 @@
                                   purchase.store.favicon_url.present?%>
 -->
 
-  <%=link_to image_tag(purchase.square_url),
+  <%=link_to image_tag(purchase.square_url,:alt => ""),
       purchase_path(purchase.user.handle,purchase.handle,:src => "profile"),
       :class => "photo-box"%>
 

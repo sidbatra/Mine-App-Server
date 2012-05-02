@@ -40,8 +40,8 @@
 
 <div class="bottom-bar">
 	<div class="container">
-    <%=link_to "Got it. Show me Mine <i class='large-icon-chevron-right large-icon-white'></i>",
-        root_path,
+    <%=link_to "Share a purchase <i class='large-icon-chevron-right large-icon-white'></i>",
+        root_path(:src => "welcome"),
         :class => "btn btn-primary btn-large go"%>
 	</div>
 </div> <!-- /bottom-bar -->
@@ -49,10 +49,13 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    //new Denwen.Views.Welcome.Show({
-    //      currentUser: <%#self.current_user.to_json(
-    //                        :only => [:id,:first_name,:last_name,
-    //                                    :gender,:handle,:email],
-    //                        :methods => [:age])%>});
+    mixpanel.track("Welcome View");
+    mixpanel.track("$born");
+    mixpanel.track("User Created");
+
+    mixpanel.name_tag("<%=self.current_user.email%>");
+
+    mixpanel.register_once({"Age" : <%=self.current_user.age%>}); 
+    mixpanel.register_once({"Gender" : "<%=self.current_user.gender%>"}); 
   </script>
 <%end%>

@@ -17,8 +17,13 @@ Denwen.Views.Purchases.Edit = Backbone.View.extend({
                             mode:Denwen.PurchaseFormType.Edit});
     this.source      = this.options.source;
 
+    // -----
     this.updateUI();
 
+    // -----
+    this.displayFlashMessage();
+
+    // -----
     this.setAnalytics();
   },
 
@@ -30,13 +35,20 @@ Denwen.Views.Purchases.Edit = Backbone.View.extend({
     this.input.isStoreUnknownChanged();
   },
 
+  // Public. Display a success or failure message if an update
+  // has been initiated.
+  //
+  displayFlashMessage: function() {
+    if(Denwen.Flash.get('updated') == true)
+      Denwen.Drawer.success("Your changes have been saved.");
+    else if(Denwen.Flash.get('updated') == false)
+      Denwen.Drawer.error("Sorry, there was an error saving your changes.");
+  },
+
   // Fire various tracking events
   //
   setAnalytics: function() {
-
-    Denwen.Track.purchaseEditView(
-        this.purchase.get('id'),
-        this.source);
+    Denwen.Track.action("Purchase Edit View",{"Source" : this.source});
   }
 
 });

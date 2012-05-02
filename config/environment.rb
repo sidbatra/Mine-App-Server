@@ -3,6 +3,7 @@
 RAILS_LOC = Dir.pwd
 
 ENV['RAILS_ENV']    ||= 'production'
+ENV['RAILS_PATH']   ||= '.'
 ENV['CACHE_IN_DEV'] = 'false'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
@@ -25,7 +26,7 @@ Rails::Initializer.run do |config|
   end
 
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
-  CONFIG[:revision]   = `git rev-parse HEAD`.chomp
+  CONFIG[:revision]   = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
 
   config.gem('amazon-ecs',
               :version => '2.2.4',

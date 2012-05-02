@@ -41,6 +41,8 @@
     <%=include_javascripts :application-%>
 
     <script type="text/javascript">
+      Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);
+
       <%if logged_in?%>
         Denwen.H.currentUser = new Denwen.Models.User(
                                <%=self.current_user.to_json(

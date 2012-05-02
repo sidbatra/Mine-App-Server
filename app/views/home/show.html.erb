@@ -2,11 +2,11 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => "Join me on #{CONFIG[:name]}",
+              :title        => "#{CONFIG[:name]} - Share purchases with friends.",
               :type         => 'website',
               :description  => "#{CONFIG[:description]}", 
               :url          => root_url,
-              :image        => image_path('On_fb.jpg')}%>
+              :image        => image_path('home_mine/mine-200-555.gif')}%>
 <%end%>
 
 
@@ -20,12 +20,9 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
-     mpq.register_once({'landed_on' : '<%=@origin%>'});
-     mpq.register_once({'Campaign' : '<%=@campaign%>'});
-     mpq.track('landed on homepage',{
-      'source'  : '<%=@source%>',
-      'origin'  : '<%=@origin%>'});
+     mixpanel.register_once({"Origin" : "<%=@origin%>"});
+     mixpanel.register_once({"Home Page" : "<%=@home%>"});
+     mixpanel.track("Home View",{"Source" : "<%=@source%>"});
   </script>
 
 <%end%>
-

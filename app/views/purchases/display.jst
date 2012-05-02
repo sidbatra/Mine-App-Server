@@ -3,7 +3,7 @@
   <%if(Denwen.H.isLoggedIn()){%>
     <div class="actions" 
           id="feedback" 
-          style="position: absolute; top: 20px; right: 20px;">
+          style="position: absolute; top: 20px; right: <%=extraMargin ? '100px' : '20px'%>;">
 
       <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
         <a style="float: right" 
@@ -27,12 +27,12 @@
         </a>
       <%}%>
     </div>
-  <%}%>
+  <%}%> 
   
-  
+
   <!-- User -->
   <div class="user-box">
-    <a href="<%=purchase.get('user').path('purchase_photo')%>">
+    <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
       <img class="user-photo" 
             src="<%=purchase.get('user').get('square_image_url')%>" />
     </a>
@@ -44,12 +44,13 @@
 
     <div style="float: left; margin-left: 8px;">
       <h5>
-        <a class="user-name" href="<%=purchase.get('user').path('purchase_name')%>">
+        <a class="user-name" 
+            href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
           <%=purchase.get('user').get('first_name')%> 
           <%=purchase.get('user').get('last_name')%>
         </a>
       </h5>
-      <%=purchase.get('store') ? purchase.get('store').get('name') : ''%>
+      <%=purchase.get('store') ? 'Bought this from ' + purchase.get('store').escape('name') : ''%>
       <span class="small"><%=jQuery.timeago(purchase.get('created_at'))%></span>
     </div>
   </div>
@@ -72,6 +73,10 @@
     <span id="purchase_likes_<%=purchase.get('id')%>"></span>
     <span style="margin-left: 2px;" 
       id="purchase_likes_<%=purchase.get('id')%>_aggregate"></span>
+  </div>
+  
+  <div id="purchase_likes_<%=purchase.get('id')%>_count" 
+        style="display:none;">
   </div>
   
   <!-- Comments -->

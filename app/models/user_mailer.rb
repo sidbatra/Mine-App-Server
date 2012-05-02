@@ -3,12 +3,13 @@
 #
 class UserMailer < ActionMailer::Base
   layout 'email'
+  helper :application
 
   # Welcome email for the user on sign up
   #
   def new_user(user)
     @user         = user
-    @action       = "Welcome to #{CONFIG[:name]}!"
+    @action       = "Welcome to #{CONFIG[:name]}"
     @source       = "email_welcome"
 
     generate_attributes(@user,0,@user,EmailPurpose::Welcome)
@@ -25,8 +26,7 @@ class UserMailer < ActionMailer::Base
     @user         = following.user
     @source       = "email_follower"
 
-    @action       = @follower.first_name + " " + @follower.last_name + 
-                    " thinks you influence each other's style!"
+    @action       = "View #{@follower.first_name}'s Mine"
 
     generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
 
@@ -65,21 +65,21 @@ class UserMailer < ActionMailer::Base
 
   # Friend activity digest for the user 
   #
-  def friend_activity_digest(user,friends,owns)
-    @user         = user
-    @friends      = friends
-    @owns         = owns
-    @action       = "What " 
+  def friend_activity_digest(user,friends,purchases)
+    @user      = user
+    @friends   = friends
+    @purchases = purchases
+    @action    = "View what " 
 
     if @friends.length == 1
-      @action         += @friends[0].first_name
+      @action += @friends[0].first_name
     else
-      @action         += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
-                         "#{@friends[-1].first_name}" 
+      @action += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
+                 "#{@friends[-1].first_name}" 
     end
 
-    @action       += " added today"
-    @source       = "email_friend_digest"
+    @action += " bought this week"
+    @source = "email_friend_digest"
 
     generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)
 

@@ -49,11 +49,18 @@
     </div> <!-- /creation -->
 
     <div id="feed" class="feed">
-    </div>
 
+      <%if self.current_user.purchases_count.zero?%>
+        <%=render :partial => "feed/placeholder",
+            :locals => {:user => self.current_user}%> 
+      <%end%>
+
+    </div> <!-- feed -->
     
-    <div id="feed-spinner" class="loading blocks body" style="height: 60px;">
-    </div>
+    <div id="feed-spinner" 
+          class="loading blocks body" 
+          style="height: 60px;">
+    </div> 
     
 
   </div> <!-- col-triple-->
@@ -71,10 +78,8 @@
 <%content_for :javascript do%>
 
   <script type="text/javascript">
-  
     new Denwen.Views.Feed.Show({
       source          : "<%=@source%>",
       currentUserJSON : <%=self.current_user.to_json(:only => :fb_user_id)%>});
-
   </script>
 <%end%>

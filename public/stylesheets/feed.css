@@ -8,6 +8,10 @@
 	
 /* ----- header ----- */
 
+ul.nav { height: 40px; }
+
+/* .navbar { margin-bottom: 0; } */
+
 .navbar-inner { 
 	background: #555;
 	filter: none;
@@ -63,6 +67,8 @@
 	background-color: #555; }
 
 /* ----- feed, col-triple ----- */
+
+/* .feed { position: relative; } */
 
 .feed, .col-triple { 
 	width: 562px;
@@ -173,8 +179,8 @@
 	position: absolute;
 	top: 20px; }
 	
-.prev { left: 145px; }
-.next { right: 150px; }
+.prev { left: 660px; }
+.next { right: 214px; }
 	
 /* ----- creation ----- */
 
@@ -275,14 +281,14 @@
 .creation a.toggle-switch.off div.on { display: none; }   
 
 .creation a.toggle-switch .text { 
-	width: 60%;
+	width: 42px;
 	text-align: center; }
     
 .creation a.toggle-switch .knob { 
 	border: 1px solid #ccc;
 	margin-top: -1px;
 	box-sizing: border-box; 
-	width: 40%;
+	width: 27px;
 	background-color: whiteSmoke;
 	background-image: -moz-linear-gradient(top, white, #E6E6E6);
 	background-image: -ms-linear-gradient(top, white, #E6E6E6);
@@ -352,12 +358,7 @@
 	height: 160px;
 	padding: 12px;
 	background: white;
-	margin: 0 5px 4px 0;
-/*
-	border-left: 1px solid #e4e3e3;
-	border-right: 1px solid #e4e3e3; 
-	border-bottom: 1px solid #d8d7d7;
-*/ }
+	margin: 0 5px 4px 0; }
 
 .grid .item a.photo-box {
 	display: table-cell;
@@ -448,8 +449,8 @@
 	
 .user-box .photo-box {
 	position: relative;
-	width: 164px;
-	height: 164px;
+	width: 148px;
+	height: 148px;
 	padding: 10px;
 /*
 	border-left: 1px solid #e4e3e3;
@@ -464,12 +465,12 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 164px;
-	height: 164px;
+	width: 148px;
+	height: 148px;
 	border: 10px solid white; }
 
 .user-box .photo-box img {
-	height: 164px;
+	height: 148px;
 	overflow: hidden;
 	max-width: none;
 	margin-left: -50%;
@@ -749,7 +750,7 @@ label { color: #666; }
 
 .well { position: relative; }
 
-footer { margin-top: 32px; }
+footer { margin-top: 24px; }
 footer, footer a, footer a:hover { color: #ccc; }
 footer p { text-align: center; }
 
@@ -1015,10 +1016,7 @@ footer p { text-align: center; }
 	float: left;
 	line-height: 86px;
 	font-size: 72px;
-	-webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
-	background: #555;
+	background: #555 url('/images/mine-90-555.gif');
 	color: white;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 	text-align: center;

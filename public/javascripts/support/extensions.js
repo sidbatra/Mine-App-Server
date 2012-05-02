@@ -111,7 +111,7 @@ $.fn.placeholder = function() {
   var placeholderColor = "#999999";
   var textColor = this.css('color');
 
-  if(this.val() == '') {
+  if(this.val() == '' || this.val() == placeholder) {
     this.val(placeholder);
     this.css('color',placeholderColor);
   }

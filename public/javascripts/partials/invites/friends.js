@@ -18,6 +18,8 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
     this.queryEl          = '#search_box';
     this.cancelSearchEl   = '#x_button';
 
+    this.friendSearchTracked = false;
+
     this.fetch();
   },
 
@@ -86,7 +88,11 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
 
     if(query){
       $(this.cancelSearchEl).show();
-      Denwen.Track.friendSearched(query);
+
+      if(!this.friendSearchTracked) {
+        this.friendSearchTracked = true;
+        Denwen.Track.action("Invite Friend Search Started");
+      }
     }
     else
       $(this.cancelSearchEl).hide();
@@ -106,7 +112,7 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
   //
   searchCancelled: function() {
     this.reset();
-    Denwen.Track.friendSearchCancelled();
+    Denwen.Track.action("Invite Friend Search Cancelled");
   }
   
 });

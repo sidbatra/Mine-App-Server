@@ -13,8 +13,6 @@ class PurchaseObserver < ActiveRecord::Observer
       shopping.increment_purchases_count
     end
 
-    setting = purchase.user.setting
-
     ProcessingQueue.push(
       PurchaseDelayedObserver,
       :after_create,

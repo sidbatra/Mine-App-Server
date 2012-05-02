@@ -62,7 +62,7 @@ class SettingsController < ApplicationController
   ensure
     respond_to do |format|
       format.html do 
-        redirect_to settings_path(:src => @error ? 'error' : 'saved')
+        redirect_to settings_path(:src => SettingsIndexSource::Updated)
       end
       format.json 
     end

@@ -16,3 +16,18 @@ class ActiveRecord::Base
                                           :updated_at => time_ago..Time.now}}}
 end
 
+
+# Extension of ruby's Array class
+#
+#class Array
+#
+#  # Public. Convert the array into a hash with each entry
+#  # in the array becoming a key and true becoming the value.
+#  #
+#  # Returns the Hash formed from the array.
+#  #
+#  #def to_hash
+#  #  Hash[*self.zip([true] * self.length).flatten]
+#  #end
+#
+#end

@@ -130,6 +130,8 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
       $(this.inputEl).removeClass('load');
       this.render(comment);
     }
+
+    Denwen.Track.action("Comment Created");
   }
 
 });

@@ -3,8 +3,8 @@
 	<%=Denwen.H.truncate(contact.get('name'), 19, '…')%>
 	<a class="btn <%=contact.get('invited') ? 'pushed' : ''%>" 
         id="post_invite_<%=contact.get('id')%>" 
-     style="float: right; width: 52px; height: 18px;">
-		<span class="out hide-when-loading"><i class="icon-envelope"></i> Invite</span>
+     style="float: right; width: 36px; height: 18px;">
+		<span class="out hide-when-loading">Send</span>
 		<span class="in hide-when-loading"><i class="icon-ok icon-white"></i> Sent</span>
 		<div class="loading small inline" style="margin-top: 1px;"></div>
 	</a>

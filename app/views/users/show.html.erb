@@ -1,11 +1,11 @@
 <%content_for :head do%>
   <%=render :partial  => "facebook/og",
             :locals   => {
-              :title        => "Tile for this page",
+              :title        => "#{@user.full_name}'s Mine",
               :type         => "link",
-              :description  => "Description for this page",
+              :description  => CONFIG[:description],
               :url          => user_url(@user.handle,:src => 'fb'),
-              :image        => ""}%>
+              :image        => image_path('home_mine/mine-200-555.gif')}%>
 <%end%>
 
 
@@ -49,10 +49,6 @@
                                           :handle,:byline,:followings_count,
                                           :purchases_count,
                                           :inverse_followings_count])%>,
-          currentUserJSON : <%=self.current_user.to_json(
-                                :only    => [:id,:first_name,:last_name,
-                                              :gender,:handle,:email],
-                                :methods => [:age])%>,
           source          : "<%=@source%>"});
 
   </script>

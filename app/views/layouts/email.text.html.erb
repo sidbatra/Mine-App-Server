@@ -1,18 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-  </head>
 
-  <body>
-    <%=yield%>
+<div style="width:100%!important;margin:0;padding:0; -webkit-text-size-adjust:none; text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased;">
+  <table cellpadding="0" cellspacing="0" border="0" style="line-height:100%!important;width:100%!important;background:white;margin:0;padding:0">
+    <tbody>
+      <tr>
+        <td valign="top" style="border-collapse:collapse;vertical-align:top">
+          <table cellpadding="0" cellspacing="0" border="0" align="center" style="background-color:#ffffff">
+            <tbody>
+              <tr>
+                <td height="30" colspan="3" style="border-collapse:collapse;vertical-align:top">
+                </td>
+              </tr>
+              <tr>
+                <td width="30" style="border-collapse:collapse;vertical-align:top">
+                </td>
+<%=yield%>
 
-    <br><br>
-    Thanks, <br>
-    <%=CONFIG[:name]%>
+                <td width="30" style="border-collapse:collapse;vertical-align:top">
+                </td>
+              </tr>
+              
+              <!-- Footer -->
+              
+              <tr style="background-color:#F2F0ED;background:#F2F0ED;">
+                <td width="30" style="background-color:#F2F0ED;background:#F2F0ED;border-collapse:collapse;vertical-align:top">
+                </td>
+                <td style="padding:15px 0 15px 0;border-collapse:collapse;vertical-align:top">
+                  <table cellpadding="0" cellspacing="0" border="0" align="left">
+                    <tbody>
+                      <tr>
+                        
+                        <!-- Logo -->
+                        
+                        <td width="40" height="47" valign="top" style="border-collapse:collapse;vertical-align:top">
+                          <a href="<%=root_url(:src => @source)%>" target="_blank" style="text-decoration:none;">
+                            <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="40" height="47" style="width: 40px; height: 47px; outline:none; text-decoration:none; border:none; display:block">
+                              <%if Rails.env.start_with? 'd'%>
+                                <%=image_tag "http://#{CONFIG[:host]}/images/mine-80-555-trans.png",:alt => "", :style => "width: 40px; height: 47px;"%>
+                              <%else%>
+                                <%=image_tag "mine-80-555-trans.png",:alt => "", :style => "width: 40px; height: 47px;"%>
+                              <%end%>
+                            </div>
+                          </a>
+                        </td>
+                        
+                        <!-- /Logo -->
+                        
+                        <td width="20" style="width: 20px; border-collapse:collapse;vertical-align:top">
+                        </td>
+                        
+                        <!-- Boilerplate text -->
+                        
+                        <td height="40" width="470" style="text-align:left;font-family:Helvetica Neue, Helvetica, Arial,sans-serif;line-height: 14px; font-size:9px;color:#bbbbbb;border-collapse:collapse;">
+                          <font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="1" color="#999999">This message was sent to 
+                          
+                            <!-- Recipient's address -->
+                            
+                            <a href="" style="text-decoration:none;color:#999999">
+                            	<%=@user.email%>.
+                            </a>
+                            
+                            <!-- /Recipient's address -->
+                            
+                            If you don't want to receive these emails from <%=CONFIG[:name]%> in the future you can 
+                            
+                            <!-- Unsubscribe link -->
+                            
+                            <a href="<%=settings_url(:src => @source)%>" style="font-weight:bold;text-decoration:none;color:#999999" target="_blank">
+                              <font color="#999">change your notification settings. 
+                              </font>
+                            </a>
+                            
+                            <!-- /Unsubscribe link -->
+                            
+                            <%=CONFIG[:name]%> - <a href="" style="text-decoration:none;color:#999999">855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA</a>
+                          </font>
+                        </td>
+                        
+                        <!-- /Boilerplate text -->
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="30" style="border-collapse:collapse;vertical-align:top">
+                </td>
+              </tr>
+              
+              <!-- /Footer -->
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div> <!-- /Full-width	container -->	
 
-    <br><br>
-    <span style="font-size: 10px; color: #999999;">
-    	&copy; 2012 <%=CONFIG[:name]%> All this feedback blowing your mind?
-    <%=link_to "Manage your settings", settings_url(:src => @source),:style => "color: inherit; text-decoration: none;"%></span>
-  </body>
-</html>

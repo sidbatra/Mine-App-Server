@@ -21,8 +21,7 @@ class SessionController < ApplicationController
                              :user_likes,
                              :user_birthday,
                              :user_photos,
-                             :publish_actions,
-                             :publish_stream])
+                             :publish_actions])
   rescue => ex
     handle_exception(ex)
     target_url = root_path(:src => HomeShowSource::LoginError)

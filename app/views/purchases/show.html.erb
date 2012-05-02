@@ -13,28 +13,30 @@
               :store        => @purchase.store}%>
 <%end%>
 
-<div class="container" style="position: relative;">
+<%content_for :body_attribute do%>
+  <%="style='background-color: #222;'"-%>
+<%end%>
 
-  <%=link_to("<i class='icon-chevron-left'></i>",
-            purchase_path(
-              @purchase.user.handle,
-              @next_purchase.handle,
-              :src => 'previous'),
-            :class => 'btn prev') if @next_purchase%>
+<div class="container" style="position: relative;">
 
   <div class="col-triple" style="margin-left: 189px;">
     <div id="feed" class="feed">
     </div>
   </div>
 
-  <%=link_to("<i class='icon-chevron-right'></i>",
-          purchase_path(
-            @purchase.user.handle,
-            @prev_purchase.handle,
-            :src => 'next'),
-          :class => 'btn next') if @prev_purchase%>
-  
-  
+	<%=link_to "<i class='icon-chevron-left'></i>",
+      @next_purchase ? purchase_path(
+                        @purchase.user.handle,
+                        @next_purchase.handle, 
+                        :src => 'previous') : 'javascript:void(0)',
+      :class => "btn prev #{@next_purchase ? '' : 'disabled'}"%>
+
+	<%=link_to "<i class='icon-chevron-right'></i>",
+      @prev_purchase ? purchase_path(
+                        @purchase.user.handle,
+                        @prev_purchase.handle, 
+                        :src => 'next') : 'javascript:void(0)',
+      :class => "btn next #{@prev_purchase ? '' : 'disabled'}"%>
 </div>
 
 

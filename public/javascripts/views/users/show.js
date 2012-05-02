@@ -6,20 +6,13 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   initialize: function() {
     this.user           = new Denwen.Models.User(this.options.userJSON);
-    this.isCurrentUser  = Denwen.H.isCurrentUser(this.user.get('id'));
     this.source         = this.options.source;
-
-    if(this.options.currentUserJSON != 'false')
-      this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
-
-    // -----
-    //if(this.isCurrentUser)
-    //  new Denwen.Partials.Users.Byline({
-    //                model: this.user, 
-    //                el:$('#profile_bio')});
 
     // -----
     this.loadFacebookPlugs();
+
+    // -----
+    this.displayFlashMessage();
 
     // -----
     this.setAnalytics();
@@ -31,30 +24,24 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     new Denwen.Partials.Facebook.Base();
   },
 
+  // Public. Display a success or failure message if a flash related
+  // event has been initiated.
+  //
+  displayFlashMessage: function() {
+    if(Denwen.Flash.get('destroyed') == true) {
+      Denwen.Drawer.success("Your purchase has been deleted.");
+      Denwen.Track.action("Purchase Deleted");
+    }
+    else if(Denwen.Flash.get('destroyed') == false)
+      Denwen.Drawer.error("Sorry, there was an error deleting your purchase.");
+  },
+
   // Fire various tracking events 
   //
   setAnalytics: function() {
-
-    Denwen.Track.userLandsOn(this.user.uniqueKey());
-
-    Denwen.Track.userProfileView(
-      this.source,
-      this.user.get('id'));
-
-    if(this.isCurrentUser) {
-
-      if(this.source == 'purchase_deleted')
-        Denwen.Track.purchaseDeleted();
-
-      Denwen.Track.identifyUser(
-        this.currentUser.get('email'),
-        this.currentUser.get('age'),
-        this.currentUser.get('gender'));
-
-      Denwen.Track.trackVersion(Denwen.H.version.slice(0,-2));
-    }
-
-    Denwen.Track.checkForEmailClickedEvent(this.source);
+    Denwen.Track.action("User View",{"Source" : this.source});
+    Denwen.Track.isEmailClicked(this.source);
+    Denwen.Track.origin("user");
   }
   
 });
