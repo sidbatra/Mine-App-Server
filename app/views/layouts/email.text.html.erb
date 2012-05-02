@@ -39,7 +39,11 @@
                             <td width="40" height="40" valign="top" style="border-collapse:collapse;vertical-align:top">
                               <a href="<%=root_url(:src => @source)%>" target="_blank" style="text-decoration:none;">
                                 <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="40" height="40" style="height: 40px; width: 40px; line-height: 40px; text-align: center; color: #fff; background: #555; background-color: #555; outline:none;text-decoration:none;border:none;display:block">
-                                  <%=image_tag "mine-40-555.gif",:alt => ""%>
+                                  <%if Rails.env.start_with? 'd'%>
+                                    <%=image_tag "http://#{CONFIG[:host]}/images/mine-40-555.gif",:alt => ""%>
+                                  <%else%>
+                                    <%=image_tag "mine-40-555.gif",:alt => ""%>
+                                  <%end%>
                                 </div>
                               </a>
                             </td>
