@@ -2,14 +2,15 @@
 
 # Automatically deploy releases when a change is detected
 #
-# RAILS_PATH : String. Location of the rails app.
 # RAILS_ENV : String. Deployment environment.
 # REPO_BRANCH : String. Branch to checked for new commits.
 # BOT_PASSWORD : String. Password for the chat bot.
 #
 # Usage:
-# REPO_BRANCH=develop RAILS_PATH=/vol/staging RAILS_ENV=staging BOT_PASSWORD=*** lib/daemons/deploy_ctl start
+# REPO_BRANCH=develop RAILS_ENV=staging BOT_PASSWORD=*** lib/daemons/deploy_ctl start
 #
+
+ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
 
 require 'rubygems'
 require 'xmpp4r-simple'
