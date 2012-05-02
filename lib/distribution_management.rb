@@ -84,7 +84,7 @@ module DW
         text << "#{purchase.title} "
 
         if purchase.store && purchase.store.is_approved
-          text << "bought at #{purchase.store.name} " 
+          text << "bought from #{purchase.store.name} " 
         end
 
         text << purchase_url(
