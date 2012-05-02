@@ -2,7 +2,7 @@
 <%content_for :head do%>
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => "Join me on #{CONFIG[:name]}",
+              :title        => "#{CONFIG[:name]} - Share purchases with friends.",
               :type         => 'website',
               :description  => "#{CONFIG[:description]}", 
               :url          => root_url,
