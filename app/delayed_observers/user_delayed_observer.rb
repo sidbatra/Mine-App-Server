@@ -27,8 +27,8 @@ class UserDelayedObserver < DelayedObserver
     permissions = user.fb_permissions
     setting     = user.setting
 
-    setting.fb_publish_stream   = permissions.include?(:publish_stream)
-    setting.fb_publish_actions  = permissions.include?(:publish_actions)
+    setting.fb_publish_stream = permissions.include?(:publish_stream)
+    #setting.fb_publish_actions = permissions.include?(:publish_actions)
     
     setting.save!
   end
