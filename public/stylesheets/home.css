@@ -20,11 +20,11 @@ a:hover { text-decoration: none !important; }
 	padding-bottom: 72px; }
 
 .screen { 
+	position: relative;
 	/* needs default box-sizing for js */
 	-moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box;
-	/* 	min-height: 624px; */
 	min-height: 488px; }
 	
 .title {
@@ -53,17 +53,14 @@ a:hover { text-decoration: none !important; }
 	width: 408px;
 	background: #F2F0ED; }
 
-.square.m {
+.square.logo { 
 	background: #555;
-	color: white;
-	font-weight: bold;
-	font-size: 160px;
-	line-height: 194px;
-	text-align: center;
-	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.05); }
+	-webkit-transition:background 0.25s ease-in;
+	-moz-transition:background 0.25s ease-in; 
+	-o-transition:background 0.25s ease-in;  
+	transition:background 0.25s ease-in; }
+	
+.square.logo:hover { background: #424242; }
 	
 .square.item img {
 	max-width: 200px;
@@ -81,6 +78,8 @@ a:hover { text-decoration: none !important; }
 	text-align: center;
 	font-weight: bold;
 	background: #F2F0ED; }
+
+.square.item:hover { opacity: 0.8; }
 	
 .last { margin-bottom: 0 !important; }
 	

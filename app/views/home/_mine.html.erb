@@ -6,16 +6,12 @@
 
 	<div class="squares clearfix">
 	
-		<div class="square">
-				<%=image_tag 'home_mine/mine-200-555.gif', 
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square logo">
+				<%=image_tag 'home_mine/mine-200-white-trans.png', 
           :size => "200x200"%>
-		</div>
-<!--
-		<div class="square m">
-			M
-		</div>
--->
-		<div class="square item" animate="true">
+		</a>
+
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square item" animate="true">
 			<%=image_tag 'home_mine/items/lumia.jpg', 
           :size => "200x200"%>
 			<%=image_tag 'home_mine/items/sweater.jpg', 
@@ -34,8 +30,9 @@
           :size => "200x200", :style => "display:none"%>
       <%=image_tag 'home_mine/items/alarm.jpg', 
           :size => "200x200", :style => "display:none"%>
-		</div>
-		<div class="square item" animate="true">
+		</a>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square item" animate="true">
 			<%=image_tag 'home_mine/items/jeans.jpg', 
           :size => "200x200"%>
 			<%=image_tag 'home_mine/items/whiskey.jpg', 
@@ -54,8 +51,9 @@
           :size => "200x200", :style => "display:none"%>
       <%=image_tag 'home_mine/items/mat.jpg', 
           :size => "200x200", :style => "display:none"%>
-		</div>
-		<div class="square item" animate="true">
+		</a>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square item" animate="true">
 			<%=image_tag 'home_mine/items/toms.jpg', 
           :size => "200x200"%>
 			<%=image_tag 'home_mine/items/stand.jpg', 
@@ -74,8 +72,9 @@
           :size => "200x200", :style => "display:none"%>
       <%=image_tag 'home_mine/items/watch.jpg', 
           :size => "200x200", :style => "display:none"%>
-		</div>
-		<div class="square item" animate="true">
+		</a>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square item" animate="true">
 			<%=image_tag 'home_mine/items/tattoo.jpg', 
           :size => "200x200"%>
 			<%=image_tag 'home_mine/items/plaid.jpg', 
@@ -94,7 +93,7 @@
           :size => "200x200", :style => "display:none"%>
       <%=image_tag 'home_mine/items/lamp.jpg', 
           :size => "200x200", :style => "display:none"%>
-		</div>
+		</a>
 		
 		
     <%=link_to image_tag('loading_blocks_small_blue_trans.gif', 
@@ -109,6 +108,15 @@
         :onclick  => "this.className += ' load'"%>
 							
 	</div> <!-- /squares -->
+	
+	<div style="position: absolute; bottom: 8px; width: 100%; text-align: center;">
+		<b class="caret" 
+	      style="position: relative; bottom: -2px;
+	              filter: alpha(opacity100); opacity: 1; 
+	              border: 12px solid transparent; 
+	              border-top: 12px solid #555;">
+	  </b>
+  </div>	
 	
 </div> <!-- /screen -->
 
