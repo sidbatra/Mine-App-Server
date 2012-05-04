@@ -1,100 +1,107 @@
 <div class="container screen" id="screen">
 
 	<div class="title">
-		<span class="name">Mine</span> is a simple service for sharing purchases with friends.
+		<span class="name">Mine</span> | Been shopping? Show friends what you bought!
 	</div>
 
 	<div class="squares clearfix">
 	
-		<div class="square">
-				<%=image_tag 'home_mine/mine-200-555.gif', 
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square logo">
+				<%=image_tag 'home_mine/tags.gif', 
           :size => "200x200"%>
-		</div>
-<!--
-		<div class="square m">
-			M
-		</div>
--->
-		<div class="square item" animate="true">
-			<%=image_tag 'home_mine/items/lumia.jpg', 
-          :size => "200x200"%>
-			<%=image_tag 'home_mine/items/sweater.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/backpack.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/tie.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/daisy.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/stool.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/tshirt.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/ring.jpg', 
-          :size => "200x200", :style => "display:none"%>
-      <%=image_tag 'home_mine/items/alarm.jpg', 
-          :size => "200x200", :style => "display:none"%>
-		</div>
-		<div class="square item" animate="true">
-			<%=image_tag 'home_mine/items/jeans.jpg', 
-          :size => "200x200"%>
-			<%=image_tag 'home_mine/items/whiskey.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/vans.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/yellowbag.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/shades.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/iphone.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/cushion.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/cap.jpg', 
-          :size => "200x200", :style => "display:none"%>
-      <%=image_tag 'home_mine/items/mat.jpg', 
-          :size => "200x200", :style => "display:none"%>
-		</div>
-		<div class="square item" animate="true">
-			<%=image_tag 'home_mine/items/toms.jpg', 
-          :size => "200x200"%>
-			<%=image_tag 'home_mine/items/stand.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/adidas.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/headphones.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/foodinc.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/shoe.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/macbook.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/lipstick.jpg', 
-          :size => "200x200", :style => "display:none"%>
-      <%=image_tag 'home_mine/items/watch.jpg', 
-          :size => "200x200", :style => "display:none"%>
-		</div>
-		<div class="square item" animate="true">
-			<%=image_tag 'home_mine/items/tattoo.jpg', 
-          :size => "200x200"%>
-			<%=image_tag 'home_mine/items/plaid.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/blanket.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/jeans2.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/belt.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/sofa.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/mms.jpg', 
-          :size => "200x200", :style => "display:none"%>
-			<%=image_tag 'home_mine/items/pleasures.jpg', 
-          :size => "200x200", :style => "display:none"%>
-      <%=image_tag 'home_mine/items/lamp.jpg', 
-          :size => "200x200", :style => "display:none"%>
-		</div>
+		</a>
+
+		<a href="<%=fb_auth_path(:src => @origin)%>">
+			<div class="square item" animate="true">
+				<%=image_tag 'home_mine/items/lumia.jpg', 
+	          :size => "200x200"%>
+				<%=image_tag 'home_mine/items/sweater.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/backpack.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/tie.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/daisy.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/stool.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/tshirt.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/ring.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+	      <%=image_tag 'home_mine/items/alarm.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+			</div>
+		</a>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>">
+			<div class="square item" animate="true">
+				<%=image_tag 'home_mine/items/jeans.jpg', 
+	          :size => "200x200"%>
+				<%=image_tag 'home_mine/items/whiskey.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/vans.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/yellowbag.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/shades.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/iphone.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/cushion.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/cap.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+	      <%=image_tag 'home_mine/items/mat.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+			</div>
+		</a>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>">
+			<div class="square item" animate="true">
+				<%=image_tag 'home_mine/items/toms.jpg', 
+	          :size => "200x200"%>
+				<%=image_tag 'home_mine/items/stand.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/adidas.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/headphones.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/foodinc.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/shoe.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/macbook.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/lipstick.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+	      <%=image_tag 'home_mine/items/watch.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+			</div>
+		</a>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>">
+			<div class="square item" animate="true">
+				<%=image_tag 'home_mine/items/tattoo.jpg', 
+	          :size => "200x200"%>
+				<%=image_tag 'home_mine/items/plaid.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/blanket.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/jeans2.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/belt.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/sofa.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/mms.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+				<%=image_tag 'home_mine/items/pleasures.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+	      <%=image_tag 'home_mine/items/lamp.jpg', 
+	          :size => "200x200", :style => "display:none"%>
+			</div>
+		</a>
 		
 		
     <%=link_to image_tag('loading_blocks_small_blue_trans.gif', 
@@ -102,12 +109,22 @@
         "<div class='hide-when-loading'>" +
         "<div class='log_in'>Log in with</div>" +
         image_tag('home_mine/fb.png') +
+        image_tag('home_mine/fb-anim.gif', :style => 'vertical-align: bottom') +
         "</div>",
         fb_auth_path(:src => @origin), 
         :class    => 'square fb',
         :onclick  => "this.className += ' load'"%>
 							
 	</div> <!-- /squares -->
+	
+	<div style="position: absolute; bottom: 8px; width: 100%; text-align: center;">
+		<b class="caret" 
+	      style="position: relative; bottom: -2px;
+	              filter: alpha(opacity100); opacity: 1; 
+	              border: 12px solid transparent; 
+	              border-top: 12px solid #555;">
+	  </b>
+  </div>	
 	
 </div> <!-- /screen -->
 
@@ -157,6 +174,7 @@
         "<div class='hide-when-loading'>" +
         "<div class='log_in'>Log in with</div>" +
         image_tag('home_mine/fb.png') +
+        image_tag('home_mine/fb-anim.gif', :style => 'vertical-align: bottom') +
         "</div>",
         fb_auth_path(:src => @origin), 
         :class    => 'square fb',
