@@ -31,11 +31,11 @@ a:hover { text-decoration: none !important; }
 	font-size: 22px;
 	line-height: 30px;
 	color: #777;
-	font-weight: bold;
+
 	text-align: center;
 	padding-bottom: 42px; }
 
-.title .name { color: #555; }
+.title .name { color: #555; font-weight: bold; }
 
 .squares {
 	padding-left: 22px; }
