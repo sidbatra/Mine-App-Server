@@ -6,11 +6,6 @@
 
 	<div class="squares clearfix">
 	
-		<a href="<%=fb_auth_path(:src => @origin)%>" class="square logo">
-				<%=image_tag 'home_mine/tags.gif', 
-          :size => "200x200"%>
-		</a>
-
 		<a href="<%=fb_auth_path(:src => @origin)%>">
 			<div class="square item" animate="true">
 				<%=image_tag 'home_mine/items/lumia.jpg', 
@@ -32,6 +27,11 @@
 	      <%=image_tag 'home_mine/items/alarm.jpg', 
 	          :size => "200x200", :style => "display:none"%>
 			</div>
+		</a>
+	
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="square logo">
+				<%=image_tag 'home_mine/tags.gif', 
+          :size => "200x200"%>
 		</a>
 		
 		<a href="<%=fb_auth_path(:src => @origin)%>">
@@ -80,6 +80,17 @@
 			</div>
 		</a>
 		
+		<%=link_to image_tag('loading_blocks_small_blue_trans.gif', 
+                :class => 'loading') + 
+        "<div class='hide-when-loading'>" +
+        "<div class='log_in'>Log in with</div>" +
+        image_tag('home_mine/fb.png') +
+        image_tag('home_mine/fb-anim.gif', :style => 'vertical-align: bottom') +
+        "</div>",
+        fb_auth_path(:src => @origin), 
+        :class    => 'square fb',
+        :onclick  => "this.className += ' load'"%>
+		
 		<a href="<%=fb_auth_path(:src => @origin)%>">
 			<div class="square item" animate="true">
 				<%=image_tag 'home_mine/items/tattoo.jpg', 
@@ -102,18 +113,6 @@
 	          :size => "200x200", :style => "display:none"%>
 			</div>
 		</a>
-		
-		
-    <%=link_to image_tag('loading_blocks_small_blue_trans.gif', 
-                :class => 'loading') + 
-        "<div class='hide-when-loading'>" +
-        "<div class='log_in'>Log in with</div>" +
-        image_tag('home_mine/fb.png') +
-        image_tag('home_mine/fb-anim.gif', :style => 'vertical-align: bottom') +
-        "</div>",
-        fb_auth_path(:src => @origin), 
-        :class    => 'square fb',
-        :onclick  => "this.className += ' load'"%>
 							
 	</div> <!-- /squares -->
 	
