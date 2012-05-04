@@ -14,6 +14,7 @@ body {
 a:hover { text-decoration: none !important; }
 
 .container {
+	z-index: 500;
 	width: 660px;
 	margin: 0 auto;
 	padding-top: 64px;
@@ -27,11 +28,21 @@ a:hover { text-decoration: none !important; }
 	box-sizing: border-box;
 	min-height: 488px; }
 	
+.background {
+	background-size: cover;
+	z-index: -10 !important;
+	background-position: 50% 50%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 700px; }
+	
 .title {
 	font-size: 22px;
 	line-height: 30px;
 	color: #777;
-
 	text-align: center;
 	padding-bottom: 42px; }
 
@@ -78,8 +89,6 @@ a:hover { text-decoration: none !important; }
 	text-align: center;
 	font-weight: bold;
 	background: #F2F0ED; }
-
-.square.item:hover { opacity: 0.8; }
 	
 .last { margin-bottom: 0 !important; }
 	
@@ -121,6 +130,7 @@ a.square.fb .log_in {
 	font-size: 13px; }
 	
 .steps {
+	z-index: 1000;
 	background: white; }
 	
 .steps .square,
