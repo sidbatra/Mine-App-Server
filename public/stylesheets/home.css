@@ -14,6 +14,7 @@ body {
 a:hover { text-decoration: none !important; }
 
 .container {
+	z-index: 500;
 	width: 660px;
 	margin: 0 auto;
 	padding-top: 64px;
@@ -26,6 +27,16 @@ a:hover { text-decoration: none !important; }
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box;
 	min-height: 488px; }
+	
+.background {
+	background-size: cover;
+	z-index: -10 !important;
+	background-position: 50% 50%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%; }
 	
 .title {
 	font-size: 22px;
@@ -121,6 +132,7 @@ a.square.fb .log_in {
 	font-size: 13px; }
 	
 .steps {
+	z-index: 1000;
 	background: white; }
 	
 .steps .square,
