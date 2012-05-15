@@ -1,4 +1,6 @@
-<div class="item">
+<div id="purchase-<%=purchase.get('id')%>" 
+  style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
+  class="item">
 
   <%if(Denwen.H.isLoggedIn()){%>
     <div class="actions" 
