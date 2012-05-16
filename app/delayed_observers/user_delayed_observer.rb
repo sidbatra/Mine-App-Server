@@ -39,6 +39,14 @@ class UserDelayedObserver < DelayedObserver
   # Mine user's fb data
   #
   def self.mine_fb_data(user)
+    mine_fb_friends(user)
+    compute_friend_score(user)
+  end
+  
+  # Mine user's facebook friends to populate contacts
+  # and existing friends on the app.
+  #
+  def self.mine_fb_friends(user)
     fb_friends        = user.fb_friends
 
     fb_friends_ids    = fb_friends.map(&:identifier)
@@ -55,6 +63,53 @@ class UserDelayedObserver < DelayedObserver
 
     user.has_contacts_mined = true
     user.save!
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
+  end
+
+  # Compute a weight for each contact fetched from facebook.
+  #
+  def self.compute_friend_score(user)
+    contacts = Contact.select(:third_party_id).
+                for_user(user.id).
+                map(&:third_party_id)
+    contacts = Hash[*contacts.zip([true] * contacts.length).flatten]
+    weights = Hash.new(0)
+
+    fb_user = FbGraph::User.new('me', :access_token => user.access_token)
+    photos = fb_user.photos(:limit => 75)
+
+    photos.each do |photo|
+      photo.likes.each do |like| 
+        weights[like.identifier] += 1
+      end
+
+      photo.comments.each do |comment| 
+        weights[comment.from.identifier] += 3 if comment.from
+      end
+
+      photo.tags.each do |tag| 
+        weights[tag.user.identifier] += 5 if tag.user
+      end
+    end
+
+    columns = [:user_id,:third_party_id,:weight]
+    values = []
+
+    weights.each do |fb_user_id,weight|
+      values << [user.id,fb_user_id,weight] if contacts.key? fb_user_id
+    end
+
+    Contact.import(
+      columns,
+      values, {
+        :validate => false,
+        :timestamps => false,
+        :on_duplicate_key_update => [:weight]}) if values.present?
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
   end
 
 end

@@ -9,6 +9,7 @@ class Contact < ActiveRecord::Base
   # Named Scopes
   #----------------------------------------------------------------------
   named_scope :by_name, :order => :name
+  named_scope :by_weight, :order => "weight DESC"
   named_scope :for_user, lambda {|user_id| {
                 :conditions => {:user_id => user_id}}}
 
