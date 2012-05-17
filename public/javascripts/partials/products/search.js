@@ -115,7 +115,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     $("body").css("overflow","auto");
 
     $(this.shadowEl).fadeOut(500);
-    $(this.productsBoxEl).hide();
+    $(this.productsBoxEl).fadeOut(250);
     $(this.queryEl).val($(this.repeatQueryEl).val());
     $(this.repeatQueryEl).val('');
   },
@@ -173,7 +173,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     $(this.shadowEl).css("height","100%");
     $(this.shadowEl).fadeIn(500);
     $(this.productsEl).html('');
-    $(this.productsBoxEl).show();
+    $(this.productsBoxEl).fadeIn(250);
     $(this.moreEl).show();
     $(this.repeatQueryEl).focus();
     $(this.repeatQueryEl).val($(this.repeatQueryEl).val());
