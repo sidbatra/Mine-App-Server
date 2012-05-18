@@ -32,6 +32,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreationFailed,
       this.purchaseCreationFailed,
       this);
+
+
+    this.suggestions = new Denwen.Partials.Feed.Suggestions({
+                            el:$(this.feelEl)});
     
     this.loadFacebookPlugs();
 
