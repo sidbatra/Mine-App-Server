@@ -47,8 +47,53 @@
       <%end%> <!-- /form --> 
     
     </div> <!-- /creation -->
+    
 
-    <div id="feed" class="feed">
+
+    <div id="feedballs" class="feed">
+    
+      <div class="suggestion">
+      	<span class="prompt">
+      		Add an item of clothing
+      	</span>
+      </div>
+      
+      <div class="suggestion">
+      	<span class="prompt">
+      		Add your phone
+      	</span>
+      </div>
+      
+      <div class="suggestion started">
+      	<span class="prompt">
+      		Add your phone
+      	</span>
+      	<div class="create">
+	      	<input id="purchase_query" name="purchase[query]" 
+	      	placeholder="Detailed item name or URL" size="30" type="text">
+	      	<a id="purchase_search" class="btn btn-mid" value="" title="Search" type="button" alt="Search">
+	    			Pick item <i class="icon-chevron-right icon-white"></i>
+	    		</a>
+    		</div>
+      </div>
+ 
+      <div class="suggestion">
+      	<span class="prompt">
+      		Add your jeans
+      	</span>
+      </div>
+      
+      <div class="suggestion">
+      	<span class="prompt">
+      		Add your laptop
+      	</span>
+      </div>
+      
+      <div class="suggestion">
+      	<span class="prompt">
+      		Add your jacket
+      	</span>
+      </div>
 
       <%if self.current_user.purchases_count.zero?%>
         <%=render :partial => "feed/placeholder",
