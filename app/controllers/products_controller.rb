@@ -84,9 +84,12 @@ class ProductsController < ApplicationController
   #
   def check_spelling(text)
     spellcheck_url = WebSearch.for_spelling(text,true)
-    response = JSON.parse(Typhoeus::Request.get(spellcheck_url).body)
-    response = response["SearchResponse"]["Spell"]
-    text = response["Results"][0]["Value"] if response
+
+    response = Typhoeus::Request.get(spellcheck_url,
+                :username => "",
+                :password => CONFIG[:windows_azure_key]).body
+    response = JSON.parse(response)["d"]["results"]
+    text = response[0]["Value"] if response.present?
   rescue => ex
       LoggedException.add(__FILE__,__method__,ex)
   ensure
@@ -172,27 +175,27 @@ class ProductsController < ApplicationController
   #
   def search_web_images(query,size,page,per_page)
     url = WebSearch.on_images(query,size,per_page,page*per_page,true)
-    request = Typhoeus::Request.new(url)
+    request = Typhoeus::Request.new(url,
+                :username => "",
+                :password => CONFIG[:windows_azure_key])
 
     request.on_complete do |response| 
       begin
-        web_search = JSON.parse(response.body)["SearchResponse"] 
-        total = web_search["Image"]["Total"]
-        offset = web_search["Image"]["Offset"]
+        web_search = JSON.parse(response.body)["d"]
         key = "web_" + size.to_s
 
-        @results[key.to_sym] = web_search["Image"]["Results"].map do |product|
+        @results[key.to_sym] = web_search["results"].map do |product|
                                 begin
                                   product_search_hash(
-                                    product["Thumbnail"]["Url"],
+                                    product["Thumbnail"]["MediaUrl"],
                                     product["MediaUrl"],
-                                    product["Url"],
+                                    product["SourceUrl"],
                                     "",
                                     "")
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                 end
-                              end if total - offset > per_page
+                              end #if web_search["__next"]
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
