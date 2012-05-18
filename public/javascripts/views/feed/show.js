@@ -35,7 +35,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
 
     this.suggestions = new Denwen.Partials.Feed.Suggestions({
-                            el:$(this.feelEl)});
+                            el:$(this.feedEl)});
     
     this.loadFacebookPlugs();
 

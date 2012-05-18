@@ -28,7 +28,13 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
   // Render the loaded suggestions.
   //
   suggestionsLoaded: function() {
-    console.log(this.suggestions);
+    var self = this;
+
+	  this.suggestions.each(function(suggestion){
+      var suggestion = new Denwen.Partials.Suggestions.Suggestion({
+                            el:self.el,
+                            model:suggestion});
+    });
   },
 
   // Fail silently. 
