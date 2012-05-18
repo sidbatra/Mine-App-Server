@@ -140,7 +140,7 @@ class Store < ActiveRecord::Base
   #
   def update_domain
     web_search  = WebSearch.on_pages(name,1)
-    self.domain = URI.parse(web_search.Web["Results"][0]["Url"]).host
+    self.domain = URI.parse(web_search.results[0]["Url"]).host
 
     save! 
   end
