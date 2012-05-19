@@ -47,6 +47,7 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
 
     this.trigger(
       Denwen.Partials.Suggestions.Suggestion.Callback.Searched,
+      $(this.inputEl).val(),
       this.model);
   }
 });

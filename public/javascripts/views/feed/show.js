@@ -36,6 +36,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     this.suggestions = new Denwen.Partials.Feed.Suggestions({
                             el:$(this.feedEl)});
+
+    this.suggestions.bind( 
+      Denwen.Partials.Feed.Suggestions.Callback.Searched,
+      this.suggestionSearched,
+      this); 
+
     
     this.loadFacebookPlugs();
 
@@ -78,6 +84,15 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   //
   purchaseCreationFailed: function() {
     //console.log("Error creating purchase");
+  },
+
+  // --
+  // Callbacks from Feed.Suggestions
+  // --
+
+  suggestionSearched: function(query,suggestionID) {
+    console.log(query,suggestionID);
   }
+
 
 });
