@@ -42,6 +42,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.isStoreUnknownEl     = '#purchase_is_store_unknown';
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
     this.urlAlertBoxEl        = '#url_alert_box';
+    this.suggestionEl         = '#purchase_suggestion_id';
     this.switchEl             = '#fb-photo-toggle-switch';
     this.submitButtonEl       = '#submit-button';
     this.switchOffClass       = 'off';
@@ -433,6 +434,19 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   productSearchCancelled: function(source) {
     this.searchesCount = 0;
     Denwen.Track.action("Product Search Cancelled",{"Source" : source});
+  },
+
+  // Launch search via a suggestion.
+  //
+  // query - The String to be searched.
+  // suggestionID - The Integer id for the suggestion that launched the search.
+  //
+  searchViaSuggestion: function(query,suggestionID) {
+
+    $(this.queryEl).val(query);
+    $(this.suggestionEl).val(suggestionID);
+
+    this.productSearch.search();
   }
 
 });

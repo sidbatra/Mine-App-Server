@@ -91,7 +91,8 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // --
 
   suggestionSearched: function(query,suggestionID) {
-    console.log(query,suggestionID);
+    window.scrollTo(0,0);
+    this.input.searchViaSuggestion(query,suggestionID);
   }
 
 
