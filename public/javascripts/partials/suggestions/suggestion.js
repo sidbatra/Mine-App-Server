@@ -12,6 +12,8 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
 
     this.render();
 
+    $(this.inputEl).placeholder();
+
     $(this.inputEl).keypress(function(e){self.inputKeypress(e)});
     $(this.submitEl).click(function(){self.submitClicked()});
     $(this.promptEl).click(function(){self.promptClicked()});
@@ -28,7 +30,9 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   //
   promptClicked: function() {
     $(this.suggestionEl).addClass("started");
-    $(this.inputEl).focus();
+
+    if($.support.placeholder)
+      $(this.inputEl).focus();
   },
 
   // Fired when a key is pressed on the input.
@@ -48,15 +52,16 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   // a search via a suggestion.
   //
   triggerSearchedCallback: function() {
+    var query = $(this.inputEl).val();
 
-    if(!$(this.inputEl).val().length)
+    if(!query.length || $(this.inputEl).attr('placeholder') == query)
       return;
 
     $(this.suggestionEl).fadeOut(300);
 
     this.trigger(
       Denwen.Partials.Suggestions.Suggestion.Callback.Searched,
-      $(this.inputEl).val(),
+      query,
       this.model);
   }
 });
