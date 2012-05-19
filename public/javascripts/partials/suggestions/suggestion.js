@@ -6,7 +6,6 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
     var self = this;
 
     this.suggestionEl = "#suggestion-" + this.model.get('id');
-    this.promptEl = "#suggestion-prompt-" + this.model.get('id');
     this.inputEl = "#suggestion-input-" + this.model.get('id');
     this.submitEl = "#suggestion-button-" + this.model.get('id');
 
@@ -16,7 +15,7 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
 
     $(this.inputEl).keypress(function(e){self.inputKeypress(e)});
     $(this.submitEl).click(function(){self.submitClicked()});
-    $(this.promptEl).click(function(){self.promptClicked()});
+    $(this.suggestionEl).click(function(){self.promptClicked()});
   },
 
   // Override render method for displaying view
