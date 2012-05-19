@@ -1,1 +1,7 @@
-<%=suggestion.get('title')%> <br>
+<div id="suggestion-<%=suggestion.get('id')%>">
+  <%=suggestion.get('title')%> <br>
+  <input type="text" id="suggestion-input-<%=suggestion.get('id')%>" />
+  <a href="#"
+      id="suggestion-button-<%=suggestion.get('id')%>">Submit</a>
+</div>
+<br>
