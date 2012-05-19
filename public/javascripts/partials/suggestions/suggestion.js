@@ -6,6 +6,7 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
     var self = this;
 
     this.suggestionEl = "#suggestion-" + this.model.get('id');
+    this.promptEl = "#suggestion-prompt-" + this.model.get('id');
     this.inputEl = "#suggestion-input-" + this.model.get('id');
     this.submitEl = "#suggestion-button-" + this.model.get('id');
 
@@ -13,6 +14,7 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
 
     $(this.inputEl).keypress(function(e){self.inputKeypress(e)});
     $(this.submitEl).click(function(){self.submitClicked()});
+    $(this.promptEl).click(function(){self.promptClicked()});
   },
 
   // Override render method for displaying view
@@ -20,6 +22,13 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   render: function() {
     this.el.prepend(Denwen.JST['suggestions/suggestion']({
       suggestion:this.model}));
+  },
+
+  // Fired when the prompt is pressed.
+  //
+  promptClicked: function() {
+    $(this.suggestionEl).addClass("started");
+    $(this.inputEl).focus();
   },
 
   // Fired when a key is pressed on the input.

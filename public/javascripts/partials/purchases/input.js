@@ -442,7 +442,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // suggestionID - The Integer id for the suggestion that launched the search.
   //
   searchViaSuggestion: function(query,suggestionID) {
-
     $(this.queryEl).val(query);
     $(this.suggestionEl).val(suggestionID);
 

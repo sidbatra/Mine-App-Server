@@ -5,7 +5,7 @@ class SuggestionsController < ApplicationController
   #
   def index
     suggestion_ids = Purchase.select(:suggestion_id).
-                      for_users([self.current_user.id]).
+                      for_users([self.current_user]).
                       map(&:suggestion_id).uniq.compact
 
     @suggestions = Suggestion.select(:id,:title,:weight).

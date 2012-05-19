@@ -1,7 +1,18 @@
-<div id="suggestion-<%=suggestion.get('id')%>">
-  <%=suggestion.get('title')%> <br>
-  <input type="text" id="suggestion-input-<%=suggestion.get('id')%>" />
-  <a href="#"
-      id="suggestion-button-<%=suggestion.get('id')%>">Submit</a>
+<div class="suggestion" id="suggestion-<%=suggestion.get('id')%>">
+  <span class="prompt" id="suggestion-prompt-<%=suggestion.get('id')%>">
+    + <%=suggestion.get('title')%>
+  </span>
+  <div class="create">
+    <input id="suggestion-input-<%=suggestion.get('id')%>" 
+      placeholder="Detailed item name or URL" 
+      size="30" 
+      type="text">
+    <a id="suggestion-button-<%=suggestion.get('id')%>"
+        class="btn btn-mid" 
+        value="" 
+        title="Search" 
+        type="button" alt="Search">
+      Pick item <i class="icon-chevron-right icon-white"></i>
+    </a>
+  </div>
 </div>
-<br>
