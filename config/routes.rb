@@ -34,6 +34,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :feed,
     :only => [:show]
 
+  map.short_purchase '/p/:purchase_id',
+    :controller => :purchases,
+    :action => :show
+
   map.purchase ':user_handle/p/:purchase_handle',
     :controller => :purchases,
     :action     => :show
