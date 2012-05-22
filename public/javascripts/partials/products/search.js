@@ -285,7 +285,10 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     this.infiniteScroller.emptySpaceTest();
 
-    if(this.products.isURLQuery() && !this.products.isEmpty()) {
+    if(this.products.isURLQuery() && 
+        !this.products.unmatchedQuery && 
+        !this.products.isEmpty()) {
+
       var self = this;
       setTimeout(function(){
         if(!$(self.productsEl).find("img:visible").length && 
