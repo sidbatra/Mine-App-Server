@@ -34,13 +34,13 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
-    this.suggestions = new Denwen.Partials.Feed.Suggestions({
-                            el:$(this.feedEl)});
+    //this.suggestions = new Denwen.Partials.Feed.Suggestions({
+    //                        el:$(this.feedEl)});
 
-    this.suggestions.bind( 
-      Denwen.Partials.Feed.Suggestions.Callback.Searched,
-      this.suggestionSearched,
-      this); 
+    //this.suggestions.bind( 
+    //  Denwen.Partials.Feed.Suggestions.Callback.Searched,
+    //  this.suggestionSearched,
+    //  this); 
 
     
     this.loadFacebookPlugs();
