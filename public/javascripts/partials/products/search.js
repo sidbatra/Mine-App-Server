@@ -312,6 +312,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   productQueryFixed: function(query) {
     $(this.repeatQueryEl).val(query);
+    this.router.navigate("search/" + encodeURIComponent(query));
   },
 
 
