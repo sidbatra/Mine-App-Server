@@ -87,10 +87,8 @@ module DW
           text << "bought from #{purchase.store.name} " 
         end
 
-        text << purchase_url(
-                  purchase.user.handle,
-                  purchase.handle,
-                  :src  => 'album',
+        text << short_purchase_url(
+                  Cryptography.obfuscate(purchase.id),
                   :host => CONFIG[:host])
 
         fb_user = FbGraph::User.me(purchase.user.access_token)
