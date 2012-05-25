@@ -16,9 +16,6 @@ class Admin::StoresController < ApplicationController
       @stores = Store.unapproved.sorted
     when :popular
       @stores = Store.purchases_count_gt(1).popular
-    when :crawlable
-      @stores = [Store.fetch("american eagle"),Store.fetch("j.crew")]
-      @layout = nil
     end
 
     render :partial => @filter.to_s,
