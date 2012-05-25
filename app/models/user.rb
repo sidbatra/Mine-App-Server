@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
   # Save a remember_token and its expiry representing the cookie.
   #
   def remember
-    self.remember_token_expires_at  = 4.weeks.from_now.utc
+    self.remember_token_expires_at  = 1.weeks.from_now.utc
     self.remember_token             = Cryptography.encrypt_with_salt(
                                         SecureRandom.hex(10),
                                         remember_token_expires_at)
