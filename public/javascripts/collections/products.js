@@ -17,6 +17,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
     this.searching  = false;
     this.finished   = false;
     this.queryType  = Denwen.ProductQueryType.Text;
+    this.unmatchedQuery = false;
   },
 
   // Initiate a new search
@@ -32,6 +33,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
     this.queryType  = this.query.match(/http/) ? 
                         Denwen.ProductQueryType.URL : 
                         Denwen.ProductQueryType.Text;
+    this.unmatchedQuery = false;
 
     this.fetchProducts();
   },
@@ -58,6 +60,13 @@ Denwen.Collections.Products = Backbone.Collection.extend({
   //
   parse: function(data) {
     var sane_query = data['sane_query'];
+    var query = data['query'];
+
+    if(this.query != query) {
+      this.unmatchedQuery = true;
+      return [];
+    }
+
 
     if(this.query != sane_query) {
       this.query = sane_query;
@@ -114,7 +123,9 @@ Denwen.Collections.Products = Backbone.Collection.extend({
 
     if(this.isEmpty()) {
       this.finished = true;
-      this.trigger(Denwen.Collections.Products.Callback.Empty);
+
+      if(!this.unmatchedQuery)
+        this.trigger(Denwen.Collections.Products.Callback.Empty);
     }
   },
 

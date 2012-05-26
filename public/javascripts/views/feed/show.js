@@ -32,6 +32,16 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreationFailed,
       this.purchaseCreationFailed,
       this);
+
+
+    //this.suggestions = new Denwen.Partials.Feed.Suggestions({
+    //                        el:$(this.feedEl)});
+
+    //this.suggestions.bind( 
+    //  Denwen.Partials.Feed.Suggestions.Callback.Searched,
+    //  this.suggestionSearched,
+    //  this); 
+
     
     this.loadFacebookPlugs();
 
@@ -54,6 +64,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     Denwen.Track.version(Denwen.H.version);
     Denwen.Track.isEmailClicked(this.source);
+
+    mixpanel.name_tag(Denwen.H.currentUser.get('email'));
+    mixpanel.register_once({"Age" : Denwen.H.currentUser.get('age')}); 
+    mixpanel.register_once({"Gender" : Denwen.H.currentUser.get('gender')}); 
   },
 
   // --
@@ -74,6 +88,16 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   //
   purchaseCreationFailed: function() {
     //console.log("Error creating purchase");
+  },
+
+  // --
+  // Callbacks from Feed.Suggestions
+  // --
+
+  suggestionSearched: function(query,suggestionID) {
+    window.scrollTo(0,0);
+    this.input.searchViaSuggestion(query,suggestionID);
   }
+
 
 });

@@ -19,7 +19,7 @@ class Suggestion < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
-  named_scope :by_weight, :order => 'weight DESC'
+  named_scope :by_weight, :order => 'weight'
   named_scope :except, lambda{|ids| {:conditions => 
                         {:id_ne => ids}} if ids.present?}
   named_scope :for_gender, lambda{|gender| {:conditions =>

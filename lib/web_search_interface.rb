@@ -8,14 +8,12 @@ module DW
     # WebSearch class
     #
     class WebSearch
+      attr_accessor :results
 
       # Web search constants
       #
-      SOURCES = {:web => 'Web',:image => 'Image',:spell => 'Spell'}
-      LIMITS  = {:web => 'Web.Count',:image => 'Image.Count'}
-      OFFSETS = {:web => 'Web.Offset',:image => 'Image.Offset'}
-      IMAGE_SIZES = {
-                      :small => 'Size:Small',
+      SOURCES = {:web => 'Web',:image => 'Image',:spell => 'SpellingSuggestions'}
+      IMAGE_SIZES = { :small => 'Size:Small',
                       :medium => 'Size:Medium',
                       :large => 'Size:Large'}
 
@@ -29,7 +27,7 @@ module DW
       # returns - WebSearch object.
       #
       def self.on_pages(query,limit=10,offset=0,url_only=false)
-        url = build_url(query,[:web],{:web => limit},{:web => offset})
+        url = build_url(query,:web,limit,offset,{})
         url_only ? url.to_s : fetch_response(url)
       end
 
@@ -44,18 +42,18 @@ module DW
       # returns - WebSearch object.
       #
       def self.on_images(query,size,limit=10,offset=0,url_only=false)
-        extras = size == :all ? {} : {'Image.Filters' => IMAGE_SIZES[size]}
-        url = build_url(
-                query,[:image],
-                {:image => limit},
-                {:image => offset},
-                extras)
+        extras = size == :all ? 
+                  {} : 
+                  {'ImageFilters' => "'#{IMAGE_SIZES[size]}'"}
+
+        url = build_url(query,:image,limit,offset,extras)
         url_only ? url.to_s : fetch_response(url)
       end
 
       # Use web search api for spelling correction
+      #
       def self.for_spelling(query,url_only=false)
-        url = build_url(query,[:spell],{},{})
+        url = build_url(query,:spell,1,0,{})
         url_only ? url.to_s : fetch_response(url)
       end
 
@@ -64,34 +62,38 @@ module DW
 
       # Construct the url for performing a web search
       #
-      def self.build_url(query,sources,limits,offsets,extras={})
+      def self.build_url(query,source,limit,offset,extras={})
         params = {
-          'AppId'   => CONFIG[:bing_app_id],
-          'Version' => '2.2', 
-          'Market'  => 'en-US',
-          'Query'   => CGI.escape(query),
-          'Sources' => sources.map{|s| SOURCES[s]}.join('+')}
+          'Market' => "'en-US'",
+          'Query' => "'#{CGI.escape(query)}'",
+          '$format' => "Json",
+          '$top' => limit,
+          '$skip' => offset}
 
-        limits.each{|k,v| params[LIMITS[k]] = v}
-        offsets.each{|k,v| params[OFFSETS[k]] = v}
         extras.each{|k,v| params[k] = v}
         
-        URI::HTTP.build([
-              nil,'api.bing.net',nil,'/json.aspx',
-              params.map{|k,v| "#{k}=#{v}"}.join('&'),nil])
+        URI::HTTPS.build([
+          nil,"api.datamarket.azure.com",
+          nil,"/Data.ashx/Bing/Search/#{SOURCES[source]}",
+          params.map{|k,v| "#{k}=#{v}"}.join('&'),nil])
       end
 
       # Fetch json response from the given url via the
       #  third party search api
       #
       def self.fetch_response(url)
-        http      = Net::HTTP.new(url.host,url.port)
-        response  = http.request(Net::HTTP::Get.new(url.request_uri))
+        #http      = Net::HTTP.new(url.host,url.port)
+        #request   = Net::HTTP::Get.new(url.request_uri)
+        ##request.basic_auth "",CONFIG[:windows_azure_key]
+        #response  = http.request(request)
 
-        body = ""
-        body = response.body if response.code == "200"
+        #body = ""
+        #body = response.body if response.code == "200"
 
-        new(body)
+        #new(body)
+        new(Typhoeus::Request.get(url.to_s,
+              :username => "",
+              :password => CONFIG[:windows_azure_key]).body)
       end
 
 
@@ -99,14 +101,7 @@ module DW
       # keys of the params hash available as instance variables
       #
       def initialize(body)
-        params = JSON.parse(body)["SearchResponse"]
-        params.each do |k,v|
-          self.instance_variable_set("@#{k}",v)
-          self.class.send(
-            :define_method,
-            k,
-            proc{self.instance_variable_get("@#{k}")})
-        end
+        @results = JSON.parse(body)["d"]["results"]
       end
 
     end #web search

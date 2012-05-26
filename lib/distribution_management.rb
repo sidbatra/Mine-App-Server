@@ -87,10 +87,8 @@ module DW
           text << "bought from #{purchase.store.name} " 
         end
 
-        text << purchase_url(
-                  purchase.user.handle,
-                  purchase.handle,
-                  :src  => 'album',
+        text << short_purchase_url(
+                  Cryptography.obfuscate(purchase.id),
                   :host => CONFIG[:host])
 
         fb_user = FbGraph::User.me(purchase.user.access_token)
@@ -107,12 +105,12 @@ module DW
       # Subscribe to real time updates for facebook permissions
       # of our userbase 
       #
-      def self.subscribe_to_fb_permissions_updates
+      def self.subscribe_to_fb_updates(object,fields)
         http = Net::HTTP.new('graph.facebook.com',443)
         
         params = {
-          'object'        => 'permissions',
-          'fields'        => 'publish_actions,publish_stream',
+          'object'        => object,
+          'fields'        => fields, 
           'callback_url'  => facebook_index_url(
                               :host   => CONFIG[:host],
                               :filter => 'subscriptions'),

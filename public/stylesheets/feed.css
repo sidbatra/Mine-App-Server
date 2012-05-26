@@ -87,7 +87,7 @@ ul.nav { height: 40px; }
 	border-right: 1px solid #e4e3e3; 
 	border-bottom: 1px solid #d8d7d7;
 */ }
-	
+		
 .feed .item .user-box {
 	margin-top: -4px;
 	margin-bottom: 14px;
@@ -172,6 +172,76 @@ ul.nav { height: 40px; }
 	padding-right: 34px;
 	width: 445px; }
 
+/* ----- suggestions ----- */
+
+.feed .suggestion {
+	cursor: pointer; 
+	height: 90px;
+	border: 4px solid white;
+	background: white; 
+	margin-bottom: 8px; 
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #999; 
+  text-align: center; 
+  line-height: 90px; 
+  -webkit-transition:background 0.15s ease-in;
+	-moz-transition:background 0.15s ease-in; 
+	-o-transition:background 0.15s ease-in;  
+	transition:background 0.15s ease-in; }
+  
+.feed .suggestion:hover {
+	color: #555;
+	background: #f8f8f8; }
+
+.feed .suggestion:hover, .feed .suggestion.started {
+	color: #555;
+	background: #f8f8f8; }
+
+.feed .suggestion .create {
+	display: none; }	
+	
+.feed .suggestion.started {
+	cursor: default; }
+	
+.feed .suggestion.started .create {
+	display: block; }
+	
+.feed .suggestion.started .prompt {
+	display: none; }
+
+.feed .suggestion.started .create {
+	padding: 25px; }
+	
+.feed .suggestion.started input {
+	height: 30px;
+	line-height: 30px;
+	width: 366px;
+	padding-left: 6px;
+	padding-right: 6px;
+	font-size: 18px;
+	display: block;
+	float: left;
+	border-width: 2px;
+  outline: 0; }
+
+.feed .suggestion.started .btn {
+	height: 32px; 
+	line-height: 30px;
+	font-size: 18px;
+	display: block;
+	float: left; }
+
+.feed .suggestion.started .btn i {
+	vertical-align: baseline; }
+  
+.feed .suggestion.started input:hover, 
+.feed .suggestion.started input:active, 
+.feed .suggestion.started input:focus {
+  box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	border: 2px solid #73b8ee }
 	
 /* ----- product show ----- */
 
@@ -641,6 +711,7 @@ input:focus, textarea:focus {
 body { 	
 	padding-top: 0px;
 	background: #F2F0ED;
+	background: #efeeec url('/images/home_mine/graydient.png') repeat-x top center;
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
 	

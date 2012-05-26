@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515225507) do
+ActiveRecord::Schema.define(:version => 20120526010607) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20120515225507) do
     t.string   "byline"
     t.text     "description"
     t.string   "favicon_path"
+    t.boolean  "crawlable",       :default => false
   end
 
   add_index "stores", ["handle"], :name => "index_stores_on_handle", :unique => true

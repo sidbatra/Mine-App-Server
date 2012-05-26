@@ -18,6 +18,7 @@ common: &common
   :fb_app_namespace: dw_mine
   :fb_verify_token: eea0e1c440ae3d754be314a60c33ea2b
   :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
+  :windows_azure_key: ruuxSwIt0kdjqOGCubB75QxxbqQn9s5yKqF/NqkAb5Y=
   :age_bucket_size: 5
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
@@ -30,7 +31,7 @@ common: &common
   :error: error
   :name: Mine
   :description: "Mine is a simple service for sharing purchases with friends. It’s fun, and totally free."
-  :version: 4.0.5
+  :version: 4.0.6
   :images:
     :white_200x200: private/images/white_200x200.jpg
     :fb_unit_base: private/images/facebook-unit/base.jpg

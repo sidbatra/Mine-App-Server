@@ -26,6 +26,7 @@ class Store < ActiveRecord::Base
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
+  named_scope :crawlable,   :conditions => {:crawlable => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'purchases_count DESC'
   named_scope :purchases_count_gt, lambda {|count| {
@@ -36,7 +37,7 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   attr_accessor :rehost, :reupdate_domain, :reupdate_metadata
   attr_accessible :name,:user_id,:image_path,:is_approved,
-                    :domain,:byline,:description,:favicon_path
+                    :domain,:byline,:description,:favicon_path,:crawlable
 
   #----------------------------------------------------------------------
   # Class methods
@@ -140,7 +141,7 @@ class Store < ActiveRecord::Base
   #
   def update_domain
     web_search  = WebSearch.on_pages(name,1)
-    self.domain = URI.parse(web_search.Web["Results"][0]["Url"]).host
+    self.domain = URI.parse(web_search.results[0]["Url"]).host
 
     save! 
   end

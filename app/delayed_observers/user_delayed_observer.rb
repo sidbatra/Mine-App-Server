@@ -33,15 +33,14 @@ class UserDelayedObserver < DelayedObserver
     setting.save!
   end
 
-
-  protected
-
   # Mine user's fb data
   #
   def self.mine_fb_data(user)
     mine_fb_friends(user)
     compute_friend_score(user)
   end
+
+  protected
   
   # Mine user's facebook friends to populate contacts
   # and existing friends on the app.
@@ -81,13 +80,26 @@ class UserDelayedObserver < DelayedObserver
     photos = fb_user.photos(:limit => 75)
 
     photos.each do |photo|
+      next if photo.tags.length > 7
+
       photo.likes.each do |like| 
         weights[like.identifier] += 1
       end
 
+
+      comment_hash = Hash.new(0)
+
       photo.comments.each do |comment| 
-        weights[comment.from.identifier] += 3 if comment.from
+        next unless comment.from
+
+        id = comment.from.identifier
+
+        unless comment_hash.key? id
+          weights[id] += 3 
+          comment_hash[id] = true
+        end
       end
+
 
       photo.tags.each do |tag| 
         weights[tag.user.identifier] += 5 if tag.user

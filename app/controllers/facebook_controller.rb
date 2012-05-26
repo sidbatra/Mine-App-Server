@@ -38,18 +38,29 @@ class FacebookController < ApplicationController
       object  = params[:object]
       entry   = params[:entry]
 
-      unless object == 'permissions' && entry 
+      unless object && entry 
         raise IOError, "Incorrect params for fb subscription updates"
       end
 
       user_fb_ids = entry.map{|permission| permission['uid']} 
       users       = User.find_all_by_fb_user_id(user_fb_ids)
       
-      users.each do |user|
-        ProcessingQueue.push(
-          UserDelayedObserver,
-          :after_fb_permissions_update,
-          user.id)
+      if object == 'permissions'
+        users.each do |user|
+          ProcessingQueue.push(
+            UserDelayedObserver,
+            :after_fb_permissions_update,
+            user.id)
+        end
+
+      elsif object == 'user'
+        users.each do |user|
+          ProcessingQueue.push(
+            UserDelayedObserver,
+            :mine_fb_data,
+            user) if user.updated_at > 30.days.ago
+        end 
+        
       end
   
     else

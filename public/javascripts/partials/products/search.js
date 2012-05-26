@@ -3,8 +3,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   // Setup event handlers
   //
   events: {
-    "click #purchase_search"           : "search",
-    "click #purchase_repeat_search"    : "search",
+    "click #purchase_search"           : "initiateSearch",
+    "click #purchase_repeat_search"    : "initiateSearch",
     "click #purchase_change_photo"     : "changePhotoClicked",
     "keypress #purchase_query"         : "queryKeystroke",
     "keypress #purchase_repeat_query"  : "queryKeystroke",
@@ -67,6 +67,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     if($.support.placeholder)
       $(this.queryEl).focus();
+
+    this.router = this.routing();
   },
 
   // Display loading spinner on search more
@@ -87,7 +89,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   queryKeystroke: function(e) {
     if(e.keyCode == 13) {
-      this.search();
+      this.initiateSearch();
       return false;
     }
   },
@@ -118,6 +120,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     $(this.productsBoxEl).fadeOut(250);
     $(this.queryEl).val($(this.repeatQueryEl).val());
     $(this.repeatQueryEl).val('');
+
+    this.router.navigate("");
   },
 
   // Enter into spinning mode
@@ -137,12 +141,14 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   // search with an extra parameter.
   //
   changePhotoClicked: function() {
-    this.search(true);
+    this.initiateSearch(true);
   },
 
-  // Launch the search UI
+  // Initiate a product search by changing the window.location
+  // hash to the search query.
   //
-  search: function(changePhoto) {
+  initiateSearch: function(changePhoto) {
+
     var query = $(this.repeatQueryEl).val();
     
     if(!query.length) {
@@ -154,6 +160,66 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       $(this.repeatQueryEl).val('');
       return;
     }
+
+    var hash = "search/" + encodeURIComponent(query);
+
+    if(changePhoto == true)
+      hash += "/change";
+
+    this.router.navigate(hash,{trigger:true});
+  },
+
+  // Use Backbone router for reacting to changes in URL
+  // hash fragments. Used to launch searches.
+  //
+  routing: function() {
+    var self = this;
+
+    var routerExtension = Backbone.Router.extend({
+
+      // Listen to routes
+      //
+      routes: {
+      },
+
+      // Custom regex based routes.
+      //
+      initialize: function() {
+        this.route(/^search\/(.*?)$/,"search",this.search);
+        this.route(/^search\/(.*?)\/change$/,"change",this.change);
+        this.route(":data","stop",this.stop);
+      },
+
+      // Stop search when data is empty.
+      //
+      stop: function(data) {
+        if(!data.length && self.isSearchActive())
+          self.stopSearch();
+      },
+
+      // Launch search with change photo as true.
+      //
+      change: function(query) {
+        this.search(query,true);
+      },
+
+      // Launch search. 
+      //
+      search: function(query,changePhoto) {
+        $(self.repeatQueryEl).val(query);
+        self.search(query,changePhoto);
+      }
+    });
+
+    var router = new routerExtension();
+    Backbone.history.start();
+
+    return router;
+  },
+
+  // Launch the search UI
+  //
+  search: function(query,changePhoto) {
 
     if(!changePhoto && query.match(/http.*(.jpg|.jpeg|.gif|.png|.bmp|.tif)$/)){
       var productResult = new Denwen.Models.Product({
@@ -219,7 +285,10 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     this.infiniteScroller.emptySpaceTest();
 
-    if(this.products.isURLQuery() && !this.products.isEmpty()) {
+    if(this.products.isURLQuery() && 
+        !this.products.unmatchedQuery && 
+        !this.products.isEmpty()) {
+
       var self = this;
       setTimeout(function(){
         if(!$(self.productsEl).find("img:visible").length && 
@@ -246,6 +315,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   productQueryFixed: function(query) {
     $(this.repeatQueryEl).val(query);
+    this.router.navigate("search/" + encodeURIComponent(query));
   },
 
 

@@ -58,17 +58,22 @@ class PurchasesController < ApplicationController
   # Display a specific purchase.
   #
   def show
-    user = User.find_by_handle(params[:user_handle])
+    
+    if params[:purchase_id]
+      @purchase = Purchase.find(Cryptography.deobfuscate params[:purchase_id])
+    else
+      user = User.find_by_handle(params[:user_handle])
 
-    @purchase = Purchase.find_by_user_id_and_handle(
-                 user.id,
-                 params[:purchase_handle])
+      @purchase = Purchase.find_by_user_id_and_handle(
+                   user.id,
+                   params[:purchase_handle])
+    end
 
-    @next_purchase  = @purchase.next
-    @next_purchase  ||= @purchase.user.purchases.first
+    @next_purchase = @purchase.next
+    @next_purchase ||= @purchase.user.purchases.first
 
-    @prev_purchase  = @purchase.previous
-    @prev_purchase  ||= @purchase.user.purchases.last
+    @prev_purchase = @purchase.previous
+    @prev_purchase ||= @purchase.user.purchases.last
 
     @origin = 'purchase'
 
