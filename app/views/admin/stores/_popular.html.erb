@@ -2,7 +2,7 @@
   <table with="900">
     <%@stores.each do |store|%>
       <tr>
-        <td><%=link_to store.name, store_path(store.handle)%></td>
+        <td><%=link_to store.name, "#"%></td>
         <td width="50"><%=store.purchases_count%></td>
         <td><%=store.domain ? 
                 link_to(store.domain,'http://' + store.domain) : 
