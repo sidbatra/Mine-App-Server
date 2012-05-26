@@ -105,12 +105,12 @@ module DW
       # Subscribe to real time updates for facebook permissions
       # of our userbase 
       #
-      def self.subscribe_to_fb_permissions_updates
+      def self.subscribe_to_fb_updates(object,fields)
         http = Net::HTTP.new('graph.facebook.com',443)
         
         params = {
-          'object'        => 'permissions',
-          'fields'        => 'publish_actions,publish_stream',
+          'object'        => object,
+          'fields'        => fields, 
           'callback_url'  => facebook_index_url(
                               :host   => CONFIG[:host],
                               :filter => 'subscriptions'),

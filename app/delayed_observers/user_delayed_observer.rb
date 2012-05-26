@@ -33,15 +33,14 @@ class UserDelayedObserver < DelayedObserver
     setting.save!
   end
 
-
-  protected
-
   # Mine user's fb data
   #
   def self.mine_fb_data(user)
     mine_fb_friends(user)
     compute_friend_score(user)
   end
+
+  protected
   
   # Mine user's facebook friends to populate contacts
   # and existing friends on the app.
