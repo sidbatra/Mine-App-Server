@@ -26,6 +26,7 @@ class Store < ActiveRecord::Base
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
+  named_scope :crawlable,   :conditions => {:crawlable => true}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'purchases_count DESC'
   named_scope :purchases_count_gt, lambda {|count| {
