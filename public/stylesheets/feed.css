@@ -711,7 +711,7 @@ input:focus, textarea:focus {
 body { 	
 	padding-top: 0px;
 	background: #F2F0ED;
-	background: #efeeec url('/images/home_mine/graydient.png') repeat-x top center;
+/* 	background: #efeeec url('/images/home_mine/graydient.png') repeat-x top center; */
 	-webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; }
 	
