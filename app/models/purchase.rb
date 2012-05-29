@@ -36,7 +36,7 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:fb_photo_id
+                  :fb_action_id
 
   #----------------------------------------------------------------------
   # Class methods
@@ -172,21 +172,13 @@ class Purchase < ActiveRecord::Base
   # Opengraph object id associated with the purchase
   #
   def fb_object_id
-    self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
+    self.fb_action_id
   end
 
   # Facebook post associated with the purchase
   #
   def fb_post
-    fb_post = nil
-
-    if self.fb_photo_id
-      fb_post = FbGraph::Photo.new(self.fb_photo_id)
-    elsif self.fb_action_id
-      fb_post = FbGraph::OpenGraph::Action.new(self.fb_action_id)
-    end
-
-    fb_post
+    self.fb_action_id ? FbGraph::OpenGraph::Action.new(self.fb_action_id) : nil
   end
 
   # Url for fetching facebook comments of the object (photo/action)
@@ -212,13 +204,6 @@ class Purchase < ActiveRecord::Base
     self.fb_action_id == FBSharing::Underway
   end
 
-  # Returns whether or not the purchase should be shared 
-  # to facebook photo album 
-  #
-  def share_to_fb_album?
-    self.fb_photo_id == FBSharing::Underway
-  end
-  
   # Returns if the purchase sharing on facebook has finished 
   #
   def shared?

@@ -77,31 +77,6 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Publish added purchases to facebook album
-      #
-      def self.publish_purchase_to_fb_album(purchase)
-        text = ""
-        text << "#{purchase.title} "
-
-        if purchase.store && purchase.store.is_approved
-          text << "bought from #{purchase.store.name} " 
-        end
-
-        text << short_purchase_url(
-                  Cryptography.obfuscate(purchase.id),
-                  :host => CONFIG[:host])
-
-        fb_user = FbGraph::User.me(purchase.user.access_token)
-        photo = fb_user.photo!(
-                  :url      => purchase.unit_url,
-                  :message  => text)
-
-        purchase.update_attributes({:fb_photo_id => photo.identifier})
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Subscribe to real time updates for facebook permissions
       # of our userbase 
       #

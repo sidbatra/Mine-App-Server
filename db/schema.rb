@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529181202) do
+ActiveRecord::Schema.define(:version => 20120529195733) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(:version => 20120529181202) do
     t.integer  "source_purchase_id"
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
-    t.string   "fb_photo_id"
     t.integer  "product_id"
   end
 
