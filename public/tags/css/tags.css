@@ -1,0 +1,345 @@
+body { 
+	background: #eee;
+	overflow-x: hidden;
+	font-size: 14px;
+	text-rendering: optimizelegibility; }
+
+a { color: #0ab0ed; }
+a:hover { 
+	color: #177dbe;
+	text-decoration: none; }
+
+
+/* Header Nav
+==================================================================== */
+
+.header {
+	height: 72px;
+	background: #fff;
+	margin-bottom: 36px; }
+	
+.nav {
+ height: 72px;
+ line-height: 72px; }
+
+.logo {
+	font-size: 54px;
+	letter-spacing:-2px;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased; }
+	
+a.menu-item {
+	color: #575E62;
+	height: 40px;
+	margin-top: 15px;
+	margin-left: 16px;
+	font-family: RooneyLightItalic, Georgia;
+	font-size: 15px;
+	border: 1px solid #EEE;
+	float: right;
+	display: inline-block;
+	padding: 0px 20px;
+	line-height: 40px; }
+	
+a.menu-item:hover { background: #f8f8f8; }
+	
+a.menu-item.add-item { 
+	background: #ee472a; 
+	border-color: transparent; 
+	color: white; }
+
+a.menu-item.add-item:hover { background: #e4156d; }
+
+a.menu-item.add-item .icon-mine.icon-white {
+	background-image: url("/tags/img/glyphicons-halflings-custom-white.png")!important;
+	background-position: -24px 0;
+	vertical-align: -2px; }
+
+a.menu-item.user-menu { padding-left: 50px; }
+
+a.menu-item.user-menu .self-photo {
+	width: 40px;
+	height: 40px;
+	top: 0;
+	left: 0;
+	-webkit-border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px; }
+
+.container, .nav, footer .inner {
+	width: 820px;
+	margin: 0 auto; }
+	
+.friends { 
+	padding: 0 0 24px;
+	line-height: 0;
+	border-bottom: 1px dotted #CCC;
+	margin-bottom: 36px; }
+	
+.friends p {
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 13px; }
+
+.friends a.friend { 
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	color: white;
+	font-weight: bold;
+	line-height: 50px;
+	font-size: 32px;
+	text-align: center; }
+
+.friends a.invite { display: inline-block; }
+	
+footer {
+	height: 36px;
+	line-height: 36px;
+	margin-top: 64px;
+	background: #f8f8f8; }
+
+footer, footer a, footer a:hover { color: #ccc; }
+	
+	
+/* Item
+==================================================================== */
+
+.item { 
+	margin-bottom: 42px; }
+	
+.item .title-box {
+	width: 520px;
+	font-size: 24px;
+	line-height: 32px;
+	color: #666;
+	padding-left: 80px;
+	margin-bottom: 16px; 
+	float: left; }
+	
+.item .title-box .user-photo {
+	width: 64px;
+	height: 64px; 
+	top: 0;
+	left: 0;}
+	
+.item .user-name, .item .item-name,
+.item .store-name {
+	font-weight: bold; }
+
+.item .item-name,
+.item .store-name {
+	font-weight: bold;
+	color: #555; }
+	
+.item .title-box .time {
+	font-family: 'RooneyLightItalic', Georgia;
+	font-weight: normal;
+	color: #999;
+	font-size: 14px; 
+	white-space: nowrap; }
+
+.item .photo {
+	width: 520px; 
+	height: 520px; 
+	background: #FFF; 
+	text-align: center;
+	line-height: 520px;
+	float: left; }
+	
+
+/* Item Actions + Comments
+==================================================================== */
+
+.item .actions, .item .comments {
+	width: 300px; 
+	float: left; }
+
+.item .actions {
+	margin-bottom: 16px;
+	padding: 26px 24px 0; }
+	
+.item .actions a {
+	color: #fff;
+	height: 32px;
+	margin-right: 2px;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	font-size: 14px;
+	background: #0AB0ED;
+	display: inline-block;
+	padding: 0px 12px;
+	line-height: 32px; }
+
+.item .actions a:hover { background: #177dbe; }
+
+.item .actions .icon-like.icon-white {
+	background-image: url("/tags/img/glyphicons-halflings-custom-white.png")!important;
+	background-position: 0 0;
+	vertical-align: -2px; }
+
+.item .actions .icon-mine.icon-white {
+	background-image: url("/tags/img/glyphicons-halflings-custom-white.png")!important;
+	background-position: -24px 0;
+	vertical-align: -2px; }
+
+.item .actions .icon-pencil.icon-white { vertical-align: -2px; }
+	
+.item .comments {
+	height: 520px;
+	padding: 24px;
+	background: #f8f8f8;
+	border-radius: 0 5px 5px 0; 
+	font-size: 15px;
+	line-height: 24px; }
+
+	
+.item .comments .endorsement,
+.item .comments .likes-box {
+	border-bottom: 1px dotted #ccc;
+	padding-bottom: 12px;
+	margin-bottom: 18px; }
+	
+.item .comments .likes-box {
+	height: 28px;
+	color: #555;
+	margin-bottom: 18px;
+	overflow: hidden;
+	white-space: nowrap; }
+
+.item .comments .likes-box .fader {
+	top: 0;
+	right: 0;
+	width: 28px;
+	height: 28px;
+	z-index: 5000;
+	background: url("/tags/img/fade-right-f8f8f8.png") top right ; }
+	
+.item .comments .likes-box .text {
+	padding-right: 6px; } 
+
+.item .comments .likes-box .num {
+	-webkit-font-smoothing: antialiased;
+	font-weight: bold; 
+	font-size: 36px; }
+
+.item .comments .likes-box .user-photo {
+	vertical-align: baseline; }
+
+.item .comments .comment-box {
+	min-height: 28px;
+	margin-bottom: 12px;
+	padding-left: 36px; 
+	clear: both;
+	color: #575E62;
+	font-family: 'RooneyLightItalic', Georgia; }
+
+.item .comments .user-photo,
+.item .comments .self-photo {
+	width: 28px;
+	height: 28px;
+	top: 0;
+	left: 0; }
+
+.item .comments .user-name {
+	font-family: Arial;
+	font-size: 11px;
+	color: #333;
+	font-weight: bold;
+	line-height: 1;
+	text-transform: none;
+	margin-bottom: 4px; }
+	
+.item .comments input {
+	font-family: 'RooneyLightItalic', Georgia;
+	width: 100%;
+	height: 28px;
+	padding-left: 36px;
+	margin-bottom: 0;
+	font-size: 15px; }
+	
+	
+/* General Classes
+==================================================================== */
+
+.fixed    { position: fixed; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+
+.square {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0; }
+
+.border-box {
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; }
+	
+.rounded-5 {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; }
+	
+.rounded-8 {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px; }
+	
+.cell-blue { 
+	height: 32px;
+	line-height: 32px;
+	font-size: 14px;
+	font-family: RooneyLightItalic, Georgia;
+	padding: 0 12px;
+	background: #0AB0ED;
+	color: white;
+	vertical-align: bottom; }
+	
+.cell-blue:hover { 
+	background: #177dbe;
+	color: white; }
+	
+.transition-bg {
+	-webkit-transition: background .15s ease-in;
+	-moz-transition: background .15s ease-in;
+	-o-transition: background .15s ease-in;
+	transition: background .15s ease-in; }
+	
+.transition-color {
+	-webkit-transition: color .15s ease-in;
+	-moz-transition: color .15s ease-in;
+	-o-transition: color .15s ease-in;
+	transition: color .15s ease-in; }
+
+/* Media Queries
+==================================================================== */
+
+@media screen and (max-width: 800px) {
+
+	.container, .nav, footer .inner { width: 520px; }
+
+  .item .actions, .item .comments {
+   width: 520px;
+   height: auto !important; }
+   
+   .item .actions {
+   	padding: 0; } 
+
+}
+   
+   
+/* Fonts
+==================================================================== */
+
+@font-face {
+    font-family: 'RooneyLightItalic';
+    src: url('/tags/type/rooney-lightitalic-webfont.eot');
+    src: url('/tags/type/rooney-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/tags/type/rooney-lightitalic-webfont.woff') format('woff'),
+         url('/tags/type/rooney-lightitalic-webfont.ttf') format('truetype'),
+         url('/tags/type/rooney-lightitalic-webfont.svg#RooneyLightItalic') format('svg');
+    font-style: normal;
+    font-weight: normal; }
