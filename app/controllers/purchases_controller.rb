@@ -32,17 +32,13 @@ class PurchasesController < ApplicationController
 
     setting = self.current_user.setting
 
-    unless params[:purchase][:post_to_fb_album].nil?
-      setting.post_to_fb_album = params[:purchase][:post_to_fb_album]
+    unless params[:purchase][:post_to_timeline].nil?
+      setting.post_to_timeline = params[:purchase][:post_to_timeline]
       setting.save!
     end
 
     if setting.post_to_timeline?
       params[:purchase][:fb_action_id] = FBSharing::Underway
-    end
-
-    if setting.post_to_fb_album?
-      params[:purchase][:fb_photo_id] = FBSharing::Underway
     end
 
     @purchase = Purchase.add(params[:purchase],self.current_user.id)

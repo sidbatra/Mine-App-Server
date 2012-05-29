@@ -32,15 +32,14 @@ class SettingsController < ApplicationController
   # Update settings for the current user.
   #
   def update
-    @settings   = self.current_user.setting
+    @settings = self.current_user.setting
 
     if params[:id] && params[:value]
       @filter = params[:id].to_sym
 
       case @filter
       when :fb_publish_permissions
-        attributes = {:fb_publish_stream  => params[:value],
-                      :fb_publish_actions => params[:value]}
+        attributes = {:fb_publish_actions => params[:value]}
 
       when :fb_extended_permissions
         attributes = {:fb_publish_stream => params[:value]}

@@ -218,15 +218,12 @@ class User < ActiveRecord::Base
   end
 
   # Whether or not the user has given fb publish permission to post on
-  # his/her behalf. This includes both publish_actions & publish_stream
+  # his/her behalf. 
   #
   # The method uses FBGraph instead of the settings table
   #
   def fb_publish_permissions?
-    fb_permissions = self.fb_permissions
-
-    fb_permissions.include?(:publish_actions) & 
-      fb_permissions.include?(:publish_stream)
+    self.fb_permissions.include?(:publish_actions)
   end
 
 

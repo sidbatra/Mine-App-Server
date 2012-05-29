@@ -69,7 +69,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
-    this.fbPermissionsRequired = 'fb_extended_permissions';
+    this.fbPermissionsRequired = 'fb_publish_permissions';
 
     this.fbSettings = new Denwen.Partials.Settings.Facebook({
                             permissions : this.fbPermissionsRequired});
@@ -273,7 +273,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     var purchase = new Denwen.Models.Purchase();
 
     fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
-    fields['post_to_fb_album'] = this.switchState(); 
+    fields['post_to_timeline'] = this.switchState(); 
 
     purchase.save({purchase:fields},{
       success: function(data){self.purchaseCreated(data);},

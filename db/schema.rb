@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528172959) do
+ActiveRecord::Schema.define(:version => 20120529181202) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -166,7 +166,6 @@ ActiveRecord::Schema.define(:version => 20120528172959) do
     t.boolean  "email_update",       :default => true
     t.boolean  "fb_publish_actions", :default => true
     t.boolean  "fb_publish_stream",  :default => false
-    t.boolean  "post_to_fb_album",   :default => true
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
