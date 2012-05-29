@@ -16,12 +16,14 @@ module DW
         fb_user = FbGraph::User.me(purchase.user.access_token)  
 
         action  = fb_user.og_action!(
-                            OGAction::Share,
-                            :purchase => purchase_url(
-                                          purchase.user.handle,
-                                          purchase.handle,
-                                          :src  => 'fb',
-                                          :host => CONFIG[:host]))
+                    OGAction::Share,
+                    "image[0][url]"             => purchase.unit_url,
+                    "image[0][user_generated]"  => true,
+                    "purchase"                  => purchase_url(
+                                                      purchase.user.handle,
+                                                      purchase.handle,
+                                                      :src  => 'fb',
+                                                      :host => CONFIG[:host]))
 
         purchase.update_attributes({:fb_action_id => action.identifier})
 
