@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
   #                        ids whose comments need to be fetched
   #
   def index
-    @comments   = []
-    purchase_ids = params[:purchase_ids].split(",")
-    purchases    = Purchase.find_all_by_id(purchase_ids, :include => :user)
+    @comments     = []
+    purchase_ids  = params[:purchase_ids].split(",")
+    purchases     = Purchase.find_all_by_id(purchase_ids, :include => :user)
    
     hydra = Typhoeus::Hydra.new
 
@@ -31,14 +31,14 @@ class CommentsController < ApplicationController
   #
   def create
     purchase  = Purchase.find(params[:purchase_id]) 
-    @comment = nil
+    @comment  = nil
     
     if purchase.shared? 
       comment = purchase.fb_post.comment!(
                   :message      => params[:message],
                   :access_token => self.current_user.access_token)
 
-      @comment = {:purchase_id   => purchase.id,
+      @comment = {:purchase_id  => purchase.id,
                   :id           => comment.identifier,
                   :messsage     => comment.message,
                   :from         => {:name => self.current_user.full_name,
@@ -58,7 +58,7 @@ class CommentsController < ApplicationController
   # Fetch facebook comments for a particular purchase
   #
   def fetch_facebook_comments(purchase)
-    url = purchase.fb_comments_url
+    url = purchase.fb_comments_url(self.current_user.access_token)
     request = Typhoeus::Request.new(url) 
 
     request.on_complete do |response|

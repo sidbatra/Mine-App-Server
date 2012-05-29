@@ -184,17 +184,17 @@ class Purchase < ActiveRecord::Base
   # Url for fetching facebook comments of the object (photo/action)
   # associated with the purchase
   #
-  def fb_comments_url
+  def fb_comments_url(access_token)
     "https://graph.facebook.com/#{self.fb_object_id}/comments?" \
-    "access_token=#{self.user.access_token}"
+    "access_token=#{access_token}"
   end
 
   # Url for fetching facebook likes of the object (photo/action)
   # associated with the purchase
   #
-  def fb_likes_url
+  def fb_likes_url(access_token)
     "https://graph.facebook.com/#{self.fb_object_id}/likes?" \
-    "access_token=#{self.user.access_token}"
+    "access_token=#{access_token}"
   end
 
   # Returns whether or not the purchase should be shared 

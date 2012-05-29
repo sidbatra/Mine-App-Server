@@ -55,7 +55,7 @@ class LikesController < ApplicationController
   # Fetch facebook likes for a particular purchase
   #
   def fetch_facebook_likes(purchase)
-    url = purchase.fb_likes_url
+    url = purchase.fb_likes_url(self.current_user.access_token)
     request = Typhoeus::Request.new(url) 
 
     request.on_complete do |response|
