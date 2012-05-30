@@ -32,12 +32,13 @@ a:hover {
 	font-size: 54px;
 	letter-spacing:-2px;
 	font-weight: bold;
+	color: #222;
 	-webkit-font-smoothing: antialiased; }
 	
 a.menu-item {
 	height: 40px;
 	margin-top: 15px;
-	margin-left: 16px;
+	margin-left: 8px;
 	font-family: RooneyLightItalic, Georgia;
 	font-size: 15px;
 	border: 1px solid #EEE;
@@ -65,31 +66,24 @@ a.menu-item.user-menu .self-photo {
 	width: 820px;
 	margin: 0 auto; }
 	
-.friends { 
+.invite-box { 
 	padding: 0 0 24px;
 	line-height: 0;
 	border-bottom: 1px dotted #CCC;
 	margin-bottom: 36px; }
 	
-.friends p {
+.invite-box p {
 	color: #666;
 	font-weight: bold;
 	font-size: 15px;
 	margin-bottom: 13px; }
 
-.friends a.friend { 
+.invite-box a.friend { 
 	display: inline-block;
 	width: 50px;
-	height: 50px;
-	vertical-align: middle;
-	background-repeat: no-repeat;
-	color: white;
-	font-weight: bold;
-	line-height: 50px;
-	font-size: 32px;
-	text-align: center; }
+	height: 50px; }
 
-.friends a.invite { display: inline-block; }
+.invite-box a.invite { display: inline-block; }
 	
 footer {
 	height: 36px;
@@ -165,6 +159,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-size: 15px;
 	line-height: 24px; }
 	
+/* .item .comments .endorsement { font-family: 'RooneyLightItalic', Georgia; } */
+	
 .item .comments .endorsement,
 .item .comments .likes-box {
 	border-bottom: 1px dotted #ccc;
@@ -184,7 +180,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 28px;
 	height: 28px;
 	z-index: 5000;
-	background: url("/tags/img/fade-right-f8f8f8.png") top right ; }
+	background: url("/tags/img/fade-right.png") top right ; }
 	
 .item .comments .likes-box .text {
 	padding-right: 6px; } 
@@ -228,6 +224,86 @@ footer, footer a, footer a:hover { color: #ccc; }
 	padding-left: 36px;
 	margin-bottom: 0;
 	font-size: 15px; }
+
+
+/* Profile
+==================================================================== */	
+
+.user-box { 
+	padding: 0 0 24px;
+	line-height: 0;border-bottom: 1px dotted #CCC;
+	margin-bottom: 36px; }
+	
+.user-box .photo-box {
+	float: left;
+	width: 140px;
+	height: 140px;
+	padding: 10px;
+	overflow: hidden;
+	background: yellow;
+	text-align: center; }
+	
+.user-box .photo-box .border {
+	top: 0;
+	left: 0;
+	width: 140px;
+	height: 140px;
+	background: transparent;
+	border: 10px solid white; }
+	
+.user-box .photo-box img {
+/* 	height: 148px; */
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	max-width: none;
+	margin-left: -50%;
+	margin-right: -50%; }
+
+.user-box .text-box {
+	width: 340px;
+	height: 160px;
+	padding-left: 20px;
+/* 	background: pink; */
+	float:left; }
+	
+.user-box .text-box .user-name {
+	font-size: 32px;
+	line-height: 42px;
+	font-weight: bold; }
+
+.user-box .text-box .user-bio {
+	font-size: 20px;
+	line-height: 28px;
+	color: #999;
+	font-family: 'RooneyLightItalic', Georgia;}
+
+.user-box .friends-box { 
+	padding-left: 24px;
+	margin-top: 12px;
+	float:left; }
+
+.user-box .friends-box p {
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 6px;
+	margin-bottom: 8px; }
+
+.user-box .friends-box .friend {
+	display: inline-block; }
+	
+.user-box .friends-box .friend img { 
+	width: 32px;
+	height: 32px; }
+	
+.user-box .friends-box .fader {
+	bottom: 0;
+	right: 0;
+	width: 32px;
+	height: 32px;
+	z-index: 5000;
+	background: url("/tags/img/fade-right.png") bottom right no-repeat; }
 	
 	
 /* Buttons
@@ -318,7 +394,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .btn.btn-mine { 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: bold; }
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased; }
 	
 .btn.btn-red { background: #EE472A; }
 .btn.btn-red:hover { background: #E4156D; }
@@ -349,6 +426,11 @@ footer, footer a, footer a:hover { color: #ccc; }
 	-moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box; }
+
+.rounded-3 {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px; }
 	
 .rounded-5 {
 	-webkit-border-radius: 5px;
@@ -371,6 +453,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	-moz-transition: color .15s ease-in;
 	-o-transition: color .15s ease-in;
 	transition: color .15s ease-in; }
+	
 
 /* Media Queries
 ==================================================================== */
@@ -379,13 +462,15 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 	.container, .nav, footer .inner { width: 520px; }
 
-  .item .actions, .item .comments {
+  .item .actions, 
+  .item .comments,
+  .user-box .friends-box {
    width: 520px;
    height: auto !important; }
    
-   .item .actions {
+   .item .actions,
+   .user-box .friends-box {
    	padding: 0; } 
-
 }
    
    
