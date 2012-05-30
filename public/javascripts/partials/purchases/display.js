@@ -62,6 +62,11 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                 Denwen.NotificationManager.Callback.LikesFetched,
                 this.likesFetched,
                 this);
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.DisableLikes,
+                this.disableLikes,
+                this);
   },
 
   // Render the contents of the model.
@@ -185,6 +190,13 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       this.renderLikeAggregation();
       $(this.likesBoxEl).show(); 
     }
+  },
+
+  // Disable posting of likes 
+  //
+  disableLikes: function(like) {
+    if(this.model.get('id') == like.get('purchase_id'))
+      console.log('disable likes for ' + like.get('purchase_id'));
   },
   
   // Fired when all the likes associated with a purchase are fetched

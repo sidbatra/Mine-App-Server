@@ -60,15 +60,23 @@ class LikesController < ApplicationController
 
     request.on_complete do |response|
       begin
-        data = JSON.parse(response.body)['likes']['data']
+        json  = JSON.parse(response.body)
+        id    = json['id']
+        error = json['error']
 
-        if data
+        if error || !id
+          data = [{'purchase_id'  => purchase.id,
+                   'error'        => true}]
+        else
+          data = json['likes']['data']
+            
           data.each do |d| 
             d['purchase_id'] = purchase.id
             d['user_id']     = d['id']
           end
-          @likes += data
         end
+
+        @likes += data
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

@@ -8,7 +8,12 @@ Denwen.Partials.Likes.Like = Backbone.View.extend({
     this.like   = this.options.like; 
     this.onTop  = this.options.onTop;
 
-    this.render();
+    if(!this.like.get('error'))
+      this.render();
+    else
+      Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.DisableLikes,
+          this.like);
   },
 
   // Render an individual like 
