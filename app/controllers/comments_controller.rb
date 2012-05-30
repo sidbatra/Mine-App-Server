@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   def index
     @comments     = []
     purchase_ids  = params[:purchase_ids].split(",")
-    purchases     = Purchase.find_all_by_id(purchase_ids, :include => :user)
+    purchases     = Purchase.find_all_by_id(purchase_ids)
    
     hydra = Typhoeus::Hydra.new
 
@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
 
     request.on_complete do |response|
       begin
-        data = JSON.parse(response.body)['data']
+        data = JSON.parse(response.body)['comments']['data']
 
         if data
           data.each do |d| 

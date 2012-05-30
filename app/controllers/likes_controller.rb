@@ -9,7 +9,7 @@ class LikesController < ApplicationController
   def index
     @likes = [] 
     purchase_ids = params[:purchase_ids].split(",")
-    purchases    = Purchase.find_all_by_id(purchase_ids, :include => :user)
+    purchases    = Purchase.find_all_by_id(purchase_ids)
    
     hydra = Typhoeus::Hydra.new
 
@@ -60,12 +60,12 @@ class LikesController < ApplicationController
 
     request.on_complete do |response|
       begin
-        data = JSON.parse(response.body)['data']
+        data = JSON.parse(response.body)['likes']['data']
 
         if data
           data.each do |d| 
             d['purchase_id'] = purchase.id
-            d['user_id']    = d['id']
+            d['user_id']     = d['id']
           end
           @likes += data
         end
