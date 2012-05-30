@@ -86,11 +86,19 @@ a.menu-item.user-menu .self-photo {
 
 .create-box {
 	background: #f8f8f8; 
-	padding: 18px 0;"
+	padding: 20px 0;
 	line-height: 0;
 	border-bottom: 1px dotted #CCC;
 	margin-bottom: 36px;
 	text-align: center; }
+	
+.create-box input {
+	font-family: 'RooneyLightItalic', Georgia;
+	width: 348px;
+	padding: 0 8px;
+	height: 42px;
+	margin-bottom: 0;
+	font-size: 15px; }
 	
 footer {
 	height: 36px;
@@ -211,8 +219,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 	border-radius: 0 5px 5px 0; 
 	font-size: 15px;
 	line-height: 24px; }
-	
-/* .item .comments .endorsement { font-family: 'RooneyLightItalic', Georgia; } */
 	
 .item .comments .endorsement,
 .item .comments .likes-box {

@@ -55,10 +55,16 @@
 	</div> <!-- /invite -->
 	
 	<div class="create-box">
-		<div>
-			<a class="btn btn-large btn-red border-box" style="width: 220px;" href="/">
-		  	<i class="icon-mine icon-white"></i> Add a new purchase
-			</a>
+	
+		<a id="add-purchase" onclick="clickAddPurchase();" class="btn btn-large btn-red border-box" style="width: 220px;">
+	  	<i class="icon-mine icon-white"></i> Add a new purchase
+		</a>
+		
+		<div id="enter-item-name" style="display: none;">
+			<input class="border-box" placeholder="Enter detailed item name or URL" type="text" />
+			<a class="btn btn-large btn-red border-box" style="" href="/">
+		  	Pick a photo <i class="icon-chevron-right icon-white"></i>
+			</a> 
 		</div>
 	</div>
 	
@@ -117,7 +123,7 @@
 			
 				<div class="add-comment-box relative">
 					<img class="self-photo absolute" src="http://graph.facebook.com/632542967/picture?type=square" />
-					<input class="square border-box" type="text" placeholder="Add a comment…" />
+					<input class="border-box" type="text" placeholder="Add a comment…" />
 				</div>
 				
 			</div> <!-- /comments -->
@@ -176,7 +182,7 @@
 			
 				<div class="add-comment-box relative">
 					<img class="self-photo absolute" src="http://graph.facebook.com/632542967/picture?type=square" />
-					<input class="square border-box" type="text" placeholder="Add a comment…" />
+					<input class="border-box" type="text" placeholder="Add a comment…" />
 				</div>
 				
 			</div> <!-- /comments -->
@@ -224,7 +230,7 @@
 			
 				<div class="add-comment-box relative">
 					<img class="self-photo absolute" src="http://graph.facebook.com/632542967/picture?type=square" />
-					<input class="square border-box" type="text" placeholder="Add a comment…" />
+					<input class="border-box" type="text" placeholder="Add a comment…" />
 				</div>
 				
 			</div> <!-- /comments -->
@@ -248,6 +254,15 @@
     <script src="/tags/js/jquery.js"></script>
     <script src="/tags/js/css3-mediaqueries.js"></script>
     <script src="/tags/js/bootstrap-tooltip.js"></script>
+    
+    <script type="text/javascript">
+    
+    	function clickAddPurchase() {
+		  	$('#add-purchase').hide();
+		  	$('#enter-item-name').show();
+		  }
+  
+    </script>
 
 </body>
 </html>
