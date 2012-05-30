@@ -6,7 +6,13 @@ Denwen.Partials.Comments.Comment = Backbone.View.extend({
   //
   initialize: function() {
     this.comment = this.options.comment; 
-    this.render();
+
+    if(!this.comment.get('error'))
+      this.render();
+    else
+      Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.DisableComments,
+          this.comment);
   },
 
   // Render an individual comment

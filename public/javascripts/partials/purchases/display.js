@@ -44,6 +44,11 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                 this);
 
     Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.DisableComments,
+                this.disableComments,
+                this);
+
+    Denwen.NM.bind(
                 Denwen.NotificationManager.Callback.LikeFetched,
                 this.likeFetched,
                 this);
@@ -142,6 +147,13 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   commentCreated: function(comment) {
     if(this.model.get('id') == comment.get('purchase_id'))
       this.renderComment(comment);
+  },
+
+  // Disable posting of comments 
+  //
+  disableComments: function(comment) {
+    if(this.model.get('id') == comment.get('purchase_id'))
+      console.log('disable comments for ' + comment.get('purchase_id'));
   },
 
   // Fired when a like is fetched for the purchase

@@ -63,15 +63,23 @@ class CommentsController < ApplicationController
 
     request.on_complete do |response|
       begin
-        data = JSON.parse(response.body)['comments']['data']
+        json  = JSON.parse(response.body)
+        id    = json['id']
+        error = json['error']
 
-        if data
+        if error || !id
+          data = [{'purchase_id'  => purchase.id,
+                   'error'        => true}]
+        else
+          data = json['comments']['data']
+            
           data.each do |d| 
             d['purchase_id'] = purchase.id
           end
-          @comments += data 
         end
-
+        
+        @comments += data 
+          
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
