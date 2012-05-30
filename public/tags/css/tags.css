@@ -69,8 +69,7 @@ a.menu-item.user-menu .self-photo {
 .invite-box { 
 	padding: 0 0 24px;
 	line-height: 0;
-	border-bottom: 1px dotted #CCC;
-	margin-bottom: 36px; }
+	border-bottom: 1px dotted #CCC; }
 	
 .invite-box p {
 	color: #666;
@@ -84,6 +83,14 @@ a.menu-item.user-menu .self-photo {
 	height: 50px; }
 
 .invite-box a.invite { display: inline-block; }
+
+.create-box {
+	background: #f8f8f8; 
+	padding: 18px 0;"
+	line-height: 0;
+	border-bottom: 1px dotted #CCC;
+	margin-bottom: 36px;
+	text-align: center; }
 	
 footer {
 	height: 36px;
@@ -286,7 +293,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	height: 140px;
 	padding: 10px;
 	overflow: hidden;
-	background: yellow;
+	background: white;
 	text-align: center; }
 	
 .user-box .photo-box .border {
@@ -298,7 +305,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	border: 10px solid white; }
 	
 .user-box .photo-box img {
-/* 	height: 148px; */
+	/*height: 148px;*/
 	top: 0;
 	left: 0;
 	overflow: hidden;
@@ -310,7 +317,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 340px;
 	height: 160px;
 	padding-left: 20px;
-/* 	background: pink; */
 	float:left; }
 	
 .user-box .text-box .user-name {
@@ -342,7 +348,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	margin-bottom: 8px; }
 
 .user-box .friends-box .friend {
-	display: inline-block; }
+	display: inline; }
 	
 .user-box .friends-box .friend img { 
 	width: 32px;
