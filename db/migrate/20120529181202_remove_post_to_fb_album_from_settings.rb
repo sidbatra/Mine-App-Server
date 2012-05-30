@@ -4,5 +4,6 @@ class RemovePostToFbAlbumFromSettings < ActiveRecord::Migration
   end
 
   def self.down
+    add_column :settings, :post_to_fb_album, :boolean, :default => true
   end
 end

@@ -4,6 +4,6 @@ class RemoveFbPhotoIdFromPurchases < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :purchases, :fb_photo_id
+    add_column :purchases, :fb_photo_id, :string
   end
 end
