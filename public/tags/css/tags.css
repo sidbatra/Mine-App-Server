@@ -92,9 +92,55 @@ footer {
 	background: #f8f8f8; }
 
 footer, footer a, footer a:hover { color: #ccc; }
+
+/* Profile Card
+==================================================================== */
+
+.cards {}
+
+.card {
+	width: 248px; 
+	margin: 0 24px 28px 0; 
+	float: left;
+	background: #f8f8f8; }
+
+.card .photo {
+	width: 248px; 
+	height: 248px; 
+	background: #FFF; 
+	text-align: center;
+	line-height: 248px; }
+
+.card .photo img {
+	max-width: 224px;
+	max-height: 224px; }
+
+.card .actions {
+	padding: 12px 0 0 12px; }
 	
+.card .title-box {
+	padding: 12px 12px 14px;
+	font-size: 15px;
+	line-height: 20px;
+	color: #666; }
 	
-/* Item
+.card .item-name,
+.card .store-name {
+	font-weight: bold; }
+
+.card .item-name,
+.card .store-name {
+	font-weight: bold;
+	color: #555; }
+	
+.card .title-box .time {
+	font-family: 'RooneyLightItalic', Georgia;
+	font-weight: normal;
+	color: #999;
+	font-size: 14px; 
+	white-space: nowrap; }
+	
+/* Feed Item
 ==================================================================== */
 
 .item { 
@@ -138,7 +184,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	text-align: center;
 	line-height: 520px;
 	float: left; }
-	
+
 
 /* Item Actions + Comments
 ==================================================================== */
@@ -268,20 +314,25 @@ footer, footer a, footer a:hover { color: #ccc; }
 	float:left; }
 	
 .user-box .text-box .user-name {
+	padding-top: 14px;
 	font-size: 32px;
-	line-height: 42px;
+	line-height: 36px;
 	font-weight: bold; }
 
 .user-box .text-box .user-bio {
-	font-size: 20px;
-	line-height: 28px;
+	padding-top: 6px;
+	font-size: 18px;
+	line-height: 24px;
 	color: #999;
 	font-family: 'RooneyLightItalic', Georgia;}
 
 .user-box .friends-box { 
 	padding-left: 24px;
 	margin-top: 12px;
-	float:left; }
+	float:left;
+	width: 248px;
+	overflow-x: hidden;
+	white-space: nowrap; }
 
 .user-box .friends-box p {
 	color: #666;
@@ -467,6 +518,8 @@ footer, footer a, footer a:hover { color: #ccc; }
   .user-box .friends-box {
    width: 520px;
    height: auto !important; }
+   
+   .cards { width: 544px; }
    
    .item .actions,
    .user-box .friends-box {
