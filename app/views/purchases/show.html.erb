@@ -48,8 +48,6 @@
     new Denwen.Views.Purchases.Show({
         purchaseJSON     : <%=render :partial => "purchases/display.json.erb",
                               :locals => {:object => @purchase}%>,
-        friends         : <%=logged_in? ? self.current_user.ifollowers.to_json(
-                                          :only => [:id]) : nil.to_json%>,
         source          : '<%=@source%>'});
 
   </script>

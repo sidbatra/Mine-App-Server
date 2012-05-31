@@ -15,7 +15,7 @@
         </a>
       <%}%>
 
-      <%if(purchase.get('fb_object_id') && interaction){%> 
+      <%if(purchase.get('fb_object_id')){%> 
         <a style="float: right; margin-right: -1px; width: 14px;" 
             id="purchase_create_like_<%=purchase.get('id')%>"
             href="javascript:void(0)" 
@@ -87,7 +87,7 @@
     <div id="purchase_comments_<%=purchase.get('id')%>">
     </div>
     
-    <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id') && interaction){%>
+    <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id')){%>
       <div class="comment-box new" style="margin-top: 15px;">
         <img class="user-photo" 
           src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
