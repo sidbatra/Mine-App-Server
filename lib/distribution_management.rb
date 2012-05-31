@@ -19,11 +19,14 @@ module DW
                     OGAction::Share,
                     "image[0][url]"             => purchase.unit_url,
                     "image[0][user_generated]"  => true,
-                    "purchase"                  => purchase_url(
-                                                      purchase.user.handle,
-                                                      purchase.handle,
-                                                      :src  => 'fb',
-                                                      :host => CONFIG[:host]))
+                    "message"   => short_purchase_url(
+                                    Cryptography.obfuscate(purchase.id),
+                                    :host => CONFIG[:host]),
+                    "purchase"  => purchase_url(
+                                    purchase.user.handle,
+                                    purchase.handle,
+                                    :src  => 'fb',
+                                    :host => CONFIG[:host]))
 
         purchase.update_attributes({:fb_action_id => action.identifier})
 
