@@ -109,6 +109,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-size: 15px;
 	margin: 0; }
 
+.create-box { z-index: 1050; position: fixed; top: 16px; }
+
 .create-box .panel textarea,
 .create-box .panel input {
 	width: 100%;
@@ -203,7 +205,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 .create-box .panel a.toggle-switch div.on { 
 	display: block;
 	background: #177DBE;
-/* 	background: #0AB0ED; */
 	color: white;
 	border: 1px solid transparent;
 	margin: -1px -1px 0 -1px;
@@ -229,16 +230,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	margin-top: -1px;
 	box-sizing: border-box; 
 	width: 32px;
-	background-color: whiteSmoke;
-/*background-image: -moz-linear-gradient(top, white, #E6E6E6);
-	background-image: -ms-linear-gradient(top, white, #E6E6E6);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
-	background-image: -webkit-linear-gradient(top, white, #E6E6E6);
-	background-image: -o-linear-gradient(top, white, #E6E6E6);
-	background-image: linear-gradient(top, white, #E6E6E6);
-	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0); */
-	}
+	background-color: whiteSmoke; }
 	
 .create-box .panel a.toggle-switch .knob .border {
 	width: 100%;
@@ -305,6 +297,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	line-height: 520px;
 	float: left; }
 	
+.item .photo .change-photo {
+	top: 24px;
+	left: 24px; }
+	
 .item .photo img {
 	max-width: 440px; 
 	max-height: 440px; }
@@ -348,7 +344,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	right: 0;
 	width: 28px;
 	height: 28px;
-	z-index: 5000;
+	z-index: 500;
 	background: url("/tags/img/fade-right.png") top right ; }
 	
 .item .panel .likes-box .text {
@@ -475,7 +471,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	right: 0;
 	width: 32px;
 	height: 32px;
-	z-index: 5000;
+	z-index: 500;
 	background: url("/tags/img/fade-right.png") bottom right no-repeat; }
 	
 /* Profile Card
@@ -611,6 +607,19 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn.btn-red { background: #EE472A; }
 .btn.btn-red:hover { background: #E4156D; }
 
+.btn.btn-black { 
+	background: black; 
+	opacity: 0.4;
+  filter: alpha(opacity=40); 
+  -webkit-transition: opacity .15s ease-in;
+	-moz-transition: opacity .15s ease-in;
+	-o-transition: opacity .15s ease-in;
+	transition: opacity .15s ease-in; }
+	
+.btn.btn-black:hover {
+	opacity: 0.6;
+  filter: alpha(opacity=60); }
+
 .btn.btn-white { 
 	background: white; 
 	color: #575E62; 
@@ -739,7 +748,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 @media screen and (max-width: 800px) {
 
 	.container, .nav, footer .inner { width: 520px; }
-
+	
+	.item,
   .item .actions, 
   .item .panel,
   .user-box .friends-box {
