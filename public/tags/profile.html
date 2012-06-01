@@ -24,10 +24,19 @@
 	<div class="nav">
 		<a href="index.html" class="logo">mine</a>
 		
-		<a class="menu-item user-menu transition-bg rounded-8 relative" href="profile.html">
-			<img class="self-photo absolute" src="http://graph.facebook.com/3001245/picture?type=square" />
-	  	Craig Dos Santos
-		</a>
+		<div class="btn-group" style="float: right; margin-top: 15px;">
+  		<button class="btn btn-large btn-white btn-user relative" style="float: left;">
+  			<img class="self-photo absolute" src="http://graph.facebook.com/3001245/picture?type=square" />
+  			Craig Dos Santos
+  		</button>
+  		<button class="btn btn-large btn-white dropdown-toggle" style="float: right;" data-toggle="dropdown">
+    		<i class="icon-chevron-down"></i>
+  		</button>
+  		<ul class="dropdown-menu">
+    		<li><a href="#">Settings</a></li>
+				<li><a href="#">Log Out</a></li>
+  		</ul>
+		</div>
 		
 	</div>
 </div> <!-- /header -->
@@ -173,6 +182,7 @@
     <script src="/tags/js/jquery.js"></script>
     <script src="/tags/js/css3-mediaqueries.js"></script>
     <script src="/tags/js/bootstrap-tooltip.js"></script>
+    <script src="/tags/js/bootstrap-dropdown.js"></script>
 
 </body>
 </html>

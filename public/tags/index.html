@@ -25,26 +25,23 @@
 		<a href="index.html" class="logo">mine</a>
 		
 		<div class="btn-group" style="float: right; margin-top: 15px;">
-			<a class="btn btn-large btn-white dropdown-toggle" data-toggle="dropdown" href="#">
-				Craig Dos Santos
-				<span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a href="#">Action</a></li>
-				<li><a href="#">Action</a></li>
-				<li><a href="#">Action</a></li>
-     	</ul>
+  		<button class="btn btn-large btn-white btn-user relative" style="float: left;">
+  			<img class="self-photo absolute" src="http://graph.facebook.com/3001245/picture?type=square" />
+  			Craig Dos Santos
+  		</button>
+  		<button class="btn btn-large btn-white dropdown-toggle" style="float: right;" data-toggle="dropdown">
+    		<i class="icon-chevron-down"></i>
+  		</button>
+  		<ul class="dropdown-menu">
+    		<li><a href="#">Settings</a></li>
+				<li><a href="#">Log Out</a></li>
+  		</ul>
 		</div>
-		
-		<a class="menu-item user-menu transition-bg rounded-8 relative" href="profile.html">
-			<img class="self-photo absolute" src="http://graph.facebook.com/3001245/picture?type=square" />
-	  	Craig Dos Santos
-		</a>
 		
 	</div>
 </div> <!-- /header -->
 
-<div class="container feed">
+<div class="container">
 
 	<div class="invite-box">
 		<!-- <p>You're sharing purchases with:</p> -->
@@ -68,17 +65,22 @@
 	
 	<div class="create-box">
 	
-		<a id="add-purchase" onclick="clickAddPurchase();" class="btn btn-large btn-red border-box" style="width: 220px;">
-	  	<i class="icon-mine icon-white"></i> Add a new purchase
-		</a>
+		<div class="search-box">
 		
-		<div id="enter-item-name" style="display: none;">
-			<input class="border-box" placeholder="Enter detailed item name or URL" type="text" />
-			<a class="btn btn-large btn-red border-box" style="" href="/">
-		  	Pick a photo <i class="icon-chevron-right icon-white"></i>
-			</a> 
-		</div>
-	</div>
+			<a id="add-purchase" onclick="clickAddPurchase();" class="btn btn-large btn-red border-box" style="width: 220px;">
+		  	<i class="icon-mine icon-white"></i> Add a new purchase
+			</a>
+			
+			<div id="enter-item-name" style="display: none;">
+				<input class="border-box enter-item-name" placeholder="Enter detailed item name or URL" type="text" />
+				<a href="create.html" class="btn btn-large btn-red border-box" href="/">
+			  	Pick a photo <i class="icon-chevron-right icon-white"></i>
+				</a> 
+			</div>
+			
+		</div> <!-- /search-box -->
+		
+	</div> <!-- /create-box -->
 	
 	<div class="feed">
 
@@ -101,7 +103,7 @@
 				<img src="http://d2lxhjuhtvdpxn.cloudfront.net/g_OGZhZTVkNWVhMzNjZDQxZjZjZGIxMzM3ODc0NjM5.jpg" />
 			</div>
 			
-			<div class="comments border-box">
+			<div class="panel border-box">
 				
 				<div class="endorsement">
 					My friend works at the company, so she got it for me. It's a home workout system that has gotten pretty popular of late...
@@ -162,7 +164,7 @@
 				<img src="http://d2lxhjuhtvdpxn.cloudfront.net/g_MWJjMjM5NWQyYTVlZTM1NDZlN2IxMzM4MDk3ODYy.jpg" />
 			</div>
 			
-			<div class="comments border-box">
+			<div class="panel border-box">
 			
 				<div class="endorsement">
 					It's a home workout system that has gotten pretty popular of late...
@@ -220,7 +222,7 @@
 				<img src="http://d2lxhjuhtvdpxn.cloudfront.net/g_NzAxYjUzOGM5ZWEzNjcyNzE5MTUxMzM3OTA2MTE5.jpg" />
 			</div>
 			
-			<div class="comments border-box">
+			<div class="panel border-box">
 			
 				<div class="comment-box relative">
 					<img class="user-photo absolute" src="https://graph.facebook.com/604431/picture?type=square" />
