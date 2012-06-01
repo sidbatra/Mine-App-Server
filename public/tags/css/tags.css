@@ -29,11 +29,9 @@ a:hover {
  line-height: 72px; }
 
 .logo {
-	font-size: 54px;
-	letter-spacing:-2px;
-	font-weight: bold;
-	color: #222;
-	-webkit-font-smoothing: antialiased; }
+	margin-top: 4px;
+	height: 78px;
+	width: 203px; }
 	
 .btn-user { 
 	padding-left: 50px !important;
@@ -51,11 +49,6 @@ a:hover {
 .btn-group .icon-chevron-down {
 	opacity: 0.75;
   filter: alpha(opacity=75); }
-
-.btn-group.open .icon-chevron-down {
-	background-image: url("../img/glyphicons-halflings-white.png"); 
-	opacity: 1;
-  filter: alpha(opacity=100);}
 
 .container, .nav, footer .inner {
 	width: 820px;
@@ -109,7 +102,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-size: 15px;
 	margin: 0; }
 
-.create-box { z-index: 1050; position: fixed; top: 16px; }
+/* .create-box { z-index: 1050; position: fixed; top: 16px; } */
+/* .create-box { z-index: 1050; position: absolute; } */
 
 .create-box .panel textarea,
 .create-box .panel input {
@@ -645,7 +639,7 @@ footer, footer a, footer a:hover { color: #ccc; }
           box-shadow: none; }
 
 .btn-group.open .btn.dropdown-toggle { 
-	background-color: #575E62; 
+	background-color: #eee; 
 	color: white;
 	  -webkit-transition: none;
 	   -moz-transition: none;
