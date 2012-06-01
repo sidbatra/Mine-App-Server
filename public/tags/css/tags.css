@@ -114,10 +114,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 100%;
 	font-size: 15px;
 	padding: 8px 6px;
-	margin-bottom: 12px;
+	margin-bottom: 16px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
-.create-box .panel input {
+	
+.create-box .panel .store-name { 
+	width: 170px;
+	float: left;
 	height: 38px; 
 	line-height: 38px; }
 
@@ -126,11 +128,11 @@ footer, footer a, footer a:hover { color: #ccc; }
 .create-box .panel label {
 	line-height: 1; 
 	height: 13px;
-	float: right;
+	float: left;
 	color: #666;
-	margin-top: -4px; 
 	font-size: 13px; 
 	padding: 0 0 0 18px;
+	margin-left: 8px;
 	cursor: pointer;
 	opacity: 0.6;
   filter: alpha(opacity=60); }
@@ -146,26 +148,21 @@ footer, footer a, footer a:hover { color: #ccc; }
   height: 13px;
   padding: 0;
   margin: 0; }
-  
-.create-box .panel .add-review {
+ 
+.create-box .panel .btn.add-review {
+	text-align: left;
+	background: #eee; 
+	color: #999;
 	display: block;
-	height: 16px;
-	text-align: center;
-	line-height: 1;
-	font-family: 'RooneyLightItalic', Georgia;
-	border-bottom: 1px dotted #CCC; 
-	margin-bottom: 27px; }
+	margin-top: 20px;
+	margin-bottom: 20px; }
 
-.create-box .panel .add-review .btn {
-	background: #f8f8f8; 
-	color: #999; }
-
-.create-box .panel .add-review .btn .icon-pencil {
+.create-box .panel .btn.add-review .icon-pencil {
 	opacity: 0.4;
   filter: alpha(opacity=40); }
   
-.create-box .panel .add-review:hover .btn { color: #666; }
-.create-box .panel .add-review:hover .icon-pencil {
+.create-box .panel .btn.add-review:hover { color: #666; }
+.create-box .panel .btn.add-review:hover .icon-pencil {
 	opacity: 1;
   filter: alpha(opacity=100); }
   
@@ -284,8 +281,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 	top: 0;
 	left: 0;}
 	
-.feed .item .user-name, .item .item-name,
-.item .store-name {
+.feed .item .user-name, .feed.item .item-name,
+.feed.item .store-name {
 	font-weight: bold; }
 
 .feed .item .item-name,
@@ -749,11 +746,11 @@ footer, footer a, footer a:hover { color: #ccc; }
    width: 520px;
    height: auto !important; }
    
-   .cards { width: 544px; }
+  .cards { width: 544px; }
    
-   .item .actions,
-   .user-box .friends-box {
-   	padding: 0; } 
+  .item .actions,
+  .user-box .friends-box {
+  	padding: 0; } 
 }
    
    
