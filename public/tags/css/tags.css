@@ -403,6 +403,13 @@ footer, footer a, footer a:hover { color: #ccc; }
 	height: 28px;
 	margin-bottom: 0; }	
 
+.item .blurb {
+	border-bottom: 1px dotted #CCC;
+	padding-bottom: 24px;
+	margin-bottom: 18px; 
+	font-size: 20px; 
+	font-weight: bold; 
+	line-height: 30px; }
 
 /* Profile
 ==================================================================== */	
