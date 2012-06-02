@@ -17,8 +17,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
 
     this.purchaseEl   = '#purchase-' + this.model.get('id');
     this.aggregateEl  = '#purchase_likes_' + this.model.get('id') + '_aggregate';
+    this.aggregateTextEl  = '#purchase_likes_' + this.model.get('id') + '_aggregate_text';
     this.likesBoxEl   = '#purchase_likes_box_' + this.model.get('id');
-    this.likesCountEl = '#purchase_likes_' + this.model.get('id') + '_count';
     this.likes        = new Denwen.Collections.Likes();
 
     this.render();
@@ -96,42 +96,39 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
           onTop : onTop});
   },
 
-  // Render like count for the purchase
-  //
-  renderLikeCount : function(count) {
-    $(this.likesCountEl).html(Denwen.JST['likes/count']({count:count}));
-  },
-
   // Render likes aggregation for the purchase
   //
   renderLikeAggregation: function() {
-    var names     = [];
-    var aggregate = "";
+    if(!this.likes.length)
+      return;
+    //var names     = [];
+    //var aggregate = "";
 
-    this.likes.each(function(like){
-      if(like.get('user_id') == Denwen.H.currentUser.get('fb_user_id')) {
-        names.splice(0,0,'You');
-      }
-      else {
-        names.push(like.get('name'));
-      }
-    });
+    //this.likes.each(function(like){
+    //  if(like.get('user_id') == Denwen.H.currentUser.get('fb_user_id')) {
+    //    names.splice(0,0,'You');
+    //  }
+    //  else {
+    //    names.push(like.get('name'));
+    //  }
+    //});
 
-    if(names.length == 1) {
-      aggregate = names[0]
-      aggregate += aggregate == 'You' ? ' like this' : ' likes this'; 
-    }
-    else if(names.length == 2) {
-      aggregate = names.join(' and ') + ' like this';
-    }
-    else {
-      aggregate = names.slice(0,names.length-1).join(', ') + ' and ' +  
-                  names[names.length-1] + ' like this'; 
-    }
+    //if(names.length == 1) {
+    //  aggregate = names[0]
+    //  aggregate += aggregate == 'You' ? ' like this' : ' likes this'; 
+    //}
+    //else if(names.length == 2) {
+    //  aggregate = names.join(' and ') + ' like this';
+    //}
+    //else {
+    //  aggregate = names.slice(0,names.length-1).join(', ') + ' and ' +  
+    //              names[names.length-1] + ' like this'; 
+    //}
 
-    aggregate += ".";
+    //aggregate += ".";
     
-    $(this.aggregateEl).html(aggregate);
+    $(this.aggregateEl).html(this.likes.length);
+    $(this.aggregateTextEl).html(this.likes.length == 1 ? 'like' : 'likes');
   },
 
   // Fired when a comment is fetched for the purchase
@@ -196,15 +193,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when all the likes associated with a purchase are fetched
   //
   likesFetched: function() {
-    if(this.likes.length) {
-      if(Denwen.H.isLoggedIn()) {
-        this.renderLikeAggregation();
-        $(this.likesBoxEl).show(); 
-      }
-      else {
-        this.renderLikeCount(this.likes.length);
-        $(this.likesCountEl).show();
-      }
+    if(Denwen.H.isLoggedIn()) {
+      this.renderLikeAggregation();
+      $(this.likesBoxEl).show(); 
     }
   }
 

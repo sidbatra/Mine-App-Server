@@ -1,9 +1,9 @@
 <%=object.to_json(
-    :only => [:id,:created_at,:title,:handle],
+    :only => [:id,:created_at,:title,:handle,:endorsement],
     :methods => [:giant_url,:fb_object_id],
     :include => {
       :user => {
-        :only => [:id,:first_name,:last_name,:handle],
+        :only => [:id,:first_name,:last_name,:gender,:handle],
         :methods => [:square_image_url]},
       :store => {
         :only => [:id,:is_processed,:name],

@@ -21,7 +21,7 @@ class FeedController < ApplicationController
 
     @purchases = Purchase.
                   select(:id,:created_at,:title,:handle,
-                          :orig_thumb_url,:orig_image_url,
+                          :orig_thumb_url,:orig_image_url,:endorsement,
                           :image_path,:is_processed,:user_id,:store_id,
                           :fb_action_id).
                   with_user.
