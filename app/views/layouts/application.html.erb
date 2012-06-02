@@ -29,10 +29,10 @@
     <%=yield%>
 
     <%unless is_onboarding?%>
-      <footer style="text-align: center;">
-      	<p>
-        	<%=CONFIG[:name]%> © 2012 · <%=email_link%>
-        </p>
+      <footer>
+        <div class="inner">
+          <%=CONFIG[:name]%> © 2012 · <%=email_link%>
+        </div>
       </footer>
     <%end%>
 
