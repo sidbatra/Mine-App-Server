@@ -89,7 +89,7 @@
 
       <%cache ["v1",@user,"stores"] do%>
         <%@user.shoppings.by_count.with_store.each do |shopping|%>
-          <%cache ["v1",shopping.store,"store"] do%>
+          <%cache ["v1",shopping.store,"user"] do%>
             <div class="friend">
               <%=image_tag(shopping.store.thumbnail_url)%>
             </div>
@@ -99,6 +99,15 @@
 		</div> <!-- /friends-box -->
 	
 	</div> <!-- /user-box -->
+
+
+	<div class="cards clearfix">
+    <%cache ["v2",@user,"purchases"] do%>
+      <%=render :partial => "purchases/card",
+          :collection => @user.purchases.with_store.with_user.by_id,
+          :as => :purchase%>
+    <%end%>
+	</div> <!-- /cards -->
 
 </div> <!-- /container -->
 
