@@ -45,57 +45,45 @@
   
   <%=render 'purchases/chooser'%>
   	
-
-  <div class="col-triple">
+  <div id="creation" class="create-box">
+    <%form_for Purchase.new,
+        :html => {
+          :class => "form-horizontal",
+          :style => "margin-bottom: 0;"} do |f|%>
   
-    <div id="creation" class="item creation">
-      <%form_for Purchase.new,
-          :html => {
-            :class => "form-horizontal",
-            :style => "margin-bottom: 0;"} do |f|%>
-    
-          <%#render :partial => 'purchases/input', 
-              :locals => {
-                :f => f,
-                :suggestion => nil,
-                :submit_text => "Add to Mine",
-                :submit_class => "new",
-                :show_cancel_button => false,
-                :show_delete_button => false,
-                :show_query_box => true,
-                :show_extra_steps => false,
-                :show_fb_share => true,
-                :fb_share_on => self.current_user.setting.post_to_timeline?}%>
-      <%end%> <!-- /form --> 
-    
-    </div> <!-- /creation -->
+        <%=render :partial => 'purchases/input', 
+            :locals => {
+              :f => f,
+              :suggestion => nil,
+              :submit_text => "Add to Mine",
+              :submit_class => "new",
+              :show_cancel_button => false,
+              :show_delete_button => false,
+              :show_query_box => true,
+              :show_extra_steps => false,
+              :show_fb_share => true,
+              :fb_share_on => self.current_user.setting.post_to_timeline?}%>
+    <%end%> <!-- /form --> 
+  
+  </div> <!-- create-box -->
     
 
 
-    <div id="feed" class="feed">
+  <div id="feed" class="feed">
 
-      <%if self.current_user.purchases_count.zero?%>
-        <%=render :partial => "feed/placeholder",
-            :locals => {:user => self.current_user}%> 
-      <%end%>
+    <%if self.current_user.purchases_count.zero?%>
+      <%=render :partial => "feed/placeholder",
+          :locals => {:user => self.current_user}%> 
+    <%end%>
 
-    </div> <!-- feed -->
+  </div> <!-- feed -->
+  
+  <div id="feed-spinner" 
+        class="loading blocks body" 
+        style="height: 60px;">
+  </div> 
     
-    <div id="feed-spinner" 
-          class="loading blocks body" 
-          style="height: 60px;">
-    </div> 
-    
 
-  </div> <!-- col-triple-->
-      
-<!--
-  <div class="col">
-    Two ways to add an item:<br />
-    By detailed name: 'Bodum Chambord 32 Ounce French Press'
-    By URL 'http://
-  </div>
--->
 
 </div> <!-- container -->
 

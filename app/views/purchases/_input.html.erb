@@ -9,25 +9,21 @@
   <%=hidden_field_tag 'purchase_product_title','',
       :name => 'purchase[product][title]'%>
   
-	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
+	<div id="query_box" 
+    class="search-box" 
+    style="<%=show_query_box ? '' : 'display:none'%>">
 
-    <h4 style="padding-bottom: 8px;">
-      What did you buy?
-    </h4>
-	
-    <%=f.text_field :query,
-        :placeholder => "Detailed item name or URL",
-        :style => "width: 414px; height: 22px; float: left;"%>
-    	<a id="purchase_search" 
-    					class="btn btn-mid" 
-    					value="" 
-    					style="width: 76px; height: 22px; line-height: 22px; float: right;"
-    					title="Search" 
-    					type="button" 
-    					alt="Search">
-    			Pick item <i class="icon-chevron-right icon-white"></i>
-    	</a>
-	</div> <!-- /query_box -->
+    <div id="enter-item-name">
+      <%=f.text_field :query,
+          :placeholder => "Enter detailed item name or URL",
+          :class => "border-box enter-item-name"%>
+        <a id="purchase_search" 
+            class="btn btn-large btn-red border-box" 
+            alt="Search">
+            Pick a photo <i class="icon-chevron-right icon-white"></i>
+        </a>
+    </div>
+	</div> <!-- /search-box -->
 
   <div id="extra_steps" 
       style="<%=show_extra_steps ? '' : 'display: none'%>">
