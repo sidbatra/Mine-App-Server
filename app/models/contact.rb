@@ -34,4 +34,17 @@ class Contact < ActiveRecord::Base
     import fields,data
   end
 
+
+  #----------------------------------------------------------------------
+  # Instance Methods 
+  #----------------------------------------------------------------------
+
+  # Image url for the contact.
+  #
+  # returns String image path or nil if not found.
+  #
+  def image_url
+    "http://graph.facebook.com/#{third_party_id}/picture?type=square"
+  end
+
 end

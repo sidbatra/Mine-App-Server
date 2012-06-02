@@ -120,7 +120,7 @@ class User < ActiveRecord::Base
   # returns - String. Url of the image.
   #
   def fb_image_url(type='square')
-    "http://graph.facebook.com/" + fb_user_id + "/picture?type=#{type}" 
+    "http://graph.facebook.com/#{fb_user_id}/picture?type=#{type}" 
   end
 
   # Convienience method to get the user's square fb image.
