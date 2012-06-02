@@ -5,11 +5,11 @@
               :type         => "link",
               :description  => CONFIG[:description],
               :url          => user_url(@user.handle,:src => 'fb'),
-              :image        => image_path('home_mine/mine-200-555.gif')}%>
+              :image        => image_path('mine_78_2x.png')}%>
 <%end%>
 
 
-<div class="container">
+<!--div class="container">
 
   <div class="col">
 
@@ -25,18 +25,83 @@
       </p>
     </div>
     
-    <%=render :partial => "users/ifollowers",
+    <%#render :partial => "users/ifollowers",
         :locals => {:user => @user,:src => "profile"}%>
       
-    <%=render :partial => "users/trinkets",
+    <%#render :partial => "users/trinkets",
         :locals => {:user => @user,:src => "profile"}%>
 
-  </div> <!-- /col -->
+  </div> 
 
-  <%=render :partial => "users/purchases",
+  <%#render :partial => "users/purchases",
       :locals => {:user => @user}%>
   
+</div--> 
+
+
+
+<div class="container profile">
+
+	<div class="user-box clearfix">
+
+	  <div class="photo-box relative">
+	    <div class="border absolute">
+	    </div>
+
+      <%=image_tag @user.large_image_url,
+          :class => "user-photo"%>
+	  </div> <!-- /photo-box -->
+	  
+
+	  <div class="text-box">
+			<div class="user-name">
+        <%=h @user.full_name%>
+        <br/>
+      </div>
+			<div class="user-bio">
+        <%=h @user.byline%>
+      </div>
+		</div> <!-- /text-box -->
+	
+
+		<div class="friends-box relative">
+			<div class="fader absolute">
+      </div>
+
+			<p>Sharing purchases with:</p>
+
+      <%cache ["v5",@user,"ifollowers","profile"] do%>
+        <%@user.ifollowers.limit(7).each do |user|%>
+          <%cache ["v4",user,"ifollower","profile"] do%>
+            <%=link_to image_tag(user.square_image_url), 
+                user_path(user.handle,:src => "profile"),
+                :class => "friend"%>
+          <%end%>
+        <%end%>
+      <%end%>
+		</div> <!-- /friends-box -->
+		
+		<div class="friends-box relative">
+			<div class="fader absolute">
+      </div>
+
+			<p>Buys things from:</p>
+
+      <%cache ["v1",@user,"stores"] do%>
+        <%@user.shoppings.by_count.with_store.each do |shopping|%>
+          <%cache ["v1",shopping.store,"store"] do%>
+            <div class="friend">
+              <%=image_tag(shopping.store.thumbnail_url)%>
+            </div>
+          <%end if shopping.store.image_path.present?%>
+        <%end%>
+      <%end%>
+		</div> <!-- /friends-box -->
+	
+	</div> <!-- /user-box -->
+
 </div> <!-- /container -->
+
 
 
 <%content_for :javascript do%>

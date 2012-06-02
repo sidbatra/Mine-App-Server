@@ -9,6 +9,7 @@ javascripts:
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/bootstrap.js
+    - public/javascripts/libs/css3-mediaqueries.js
     - public/javascripts/libs/swfupload.js
     - public/javascripts/support/extensions.js
     - public/javascripts/config.js

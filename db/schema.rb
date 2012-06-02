@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529195733) do
+ActiveRecord::Schema.define(:version => 20120602192212) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20120529195733) do
     t.integer  "purchases_count", :default => 0
   end
 
+  add_index "shoppings", ["purchases_count"], :name => "index_shoppings_on_purchases_count"
   add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
   add_index "shoppings", ["store_id"], :name => "index_shoppings_on_store_id"
   add_index "shoppings", ["user_id", "store_id"], :name => "index_shoppings_on_user_id_and_store_id", :unique => true
