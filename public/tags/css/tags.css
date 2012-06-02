@@ -24,20 +24,24 @@ a:hover {
 	background: #fff;
 	margin-bottom: 36px; }
 	
-.nav {
+.header .navigation {
  height: 72px;
  line-height: 72px; }
 
-.logo {
+.header .navigation .action {
+	float:right;
+	margin-top: 15px; }
+
+.header .logo {
 	margin-top: 4px;
 	height: 78px;
 	width: 203px; }
 	
-.btn-user { 
+.header .btn-user { 
 	padding-left: 50px !important;
 	overflow-y: hidden; }
 
-.btn-user .self-photo {
+.header .btn-user .self-photo {
 	width: 42px;
 	height: 42px;
 	top: 0;
@@ -46,31 +50,37 @@ a:hover {
 	-moz-border-radius: 5px 0 0 5px;
 	border-radius: 5px 0 0 5px; }
 	
-.btn-group .icon-chevron-down {
+.header .btn-group .icon-chevron-down {
 	opacity: 0.75;
   filter: alpha(opacity=75); }
 
-.container, .nav, footer .inner {
+.container, .header .navigation, footer .inner {
 	width: 820px;
 	margin: 0 auto; }
 	
-.invite-box { 
+.thumbnail-box { 
 	padding: 0 0 36px;
-	line-height: 0;
 	border-bottom: 1px dotted #CCC; }
 	
-.invite-box p {
+.thumbnail-box p {
 	color: #666;
 	font-weight: bold;
 	font-size: 15px;
 	margin-bottom: 13px; }
 
-.invite-box a.friend { 
+.thumbnail-box .thumb { 
 	display: inline-block;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size: 50px auto;
+	vertical-align: middle;
 	width: 50px;
 	height: 50px; }
 
-.invite-box a.invite { display: inline-block; }
+.thumbnail-box .btn { 
+	display: inline-block;
+	vertical-align: bottom;
+	margin-top: 18px; }
 	
 footer {
 	height: 36px;
@@ -291,9 +301,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	line-height: 520px;
 	float: left; }
 	
-.item .photo .change-photo {
+.item .photo .navigation {
 	top: 24px;
-	left: 24px; }
+	left: 24px;
+	line-height: 1; }
 	
 .item .photo img {
 	max-width: 440px; 
@@ -625,6 +636,9 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn.btn-white.btn-large { padding: 11px 15px; }
 .btn.btn-white.btn-mini { padding: 1px 5px; }
 
+.btn.btn-facebook { background: #3B5998; }
+.btn.btn-facebook:hover { background: #1F4696; }
+
 .icon-like.icon-white {
 	background-image: url("/tags/img/glyphicons-halflings-custom-white.png")!important;
 	background-position: 0 0; }
@@ -632,6 +646,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 .icon-mine.icon-white {
 	background-image: url("/tags/img/glyphicons-halflings-custom-white.png")!important;
 	background-position: -24px 0; }
+	
+.icon-facebook.icon-white {
+	background-image: url("/tags/img/glyphicons-halflings-custom-white.png")!important;
+  background-position: -48px 0; }
 	
 .btn-group > .dropdown-toggle {
   -webkit-box-shadow: none;
@@ -741,7 +759,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 @media screen and (max-width: 800px) {
 
-	.container, .nav, footer .inner { width: 520px; }
+	.container, .header .navigation, footer .inner { width: 520px; }
 	
 	.item,
   .item .actions, 
