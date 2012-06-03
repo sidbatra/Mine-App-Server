@@ -31,9 +31,16 @@ Denwen.Partials.Comments.Comments = Backbone.View.extend({
   //
   fetched: function() {
     this.comments.each(function(comment){
-      Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.CommentFetched,
+      if(comment.get('error')) {
+        Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.DisableComments,
           comment);
+      }
+      else {
+        Denwen.NM.trigger(
+            Denwen.NotificationManager.Callback.CommentFetched,
+            comment);
+      }
     });
   }
 

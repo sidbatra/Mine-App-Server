@@ -9,7 +9,7 @@
       </p>
 
       <%cache ["v1",self.current_user,"contacts","feed"] do%>
-        <%self.current_user.contacts.by_weight.limit(10).each do |contact|%>
+        <%self.current_user.contacts.by_weight.limit(7).each do |contact|%>
           <%cache ["v5",contact,"invite","feed"] do%>
             <%=link_to "",
                 new_invite_path(:src => "user-image"),
@@ -25,7 +25,7 @@
       </p>
 
       <%cache ["v1",self.current_user,"ifollowers","feed"] do%>
-        <%self.current_user.ifollowers.limit(10).each do |user|%>
+        <%self.current_user.ifollowers.limit(35).each do |user|%>
           <%cache ["v5",user,"ifollower","feed"] do%>
             <%=link_to "",
                 user_path(user.handle,:src => "feed"),

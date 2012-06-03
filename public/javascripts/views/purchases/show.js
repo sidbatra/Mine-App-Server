@@ -12,8 +12,7 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
 
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el          : $('#feed'),
-                              model       : this.purchase,
-                              extraMargin : true});
+                              model       : this.purchase});
 
     if(Denwen.H.isLoggedIn() && this.purchase.get('fb_object_id')) { 
 

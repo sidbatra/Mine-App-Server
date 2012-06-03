@@ -8,21 +8,18 @@ Denwen.Partials.Likes.Like = Backbone.View.extend({
     this.like   = this.options.like; 
     this.onTop  = this.options.onTop;
 
-    if(!this.like.get('error'))
-      this.render();
-    else
-      Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.DisableLikes,
-          this.like);
+    this.render();
   },
 
   // Render an individual like 
   //
   render: function() {
+    var html = Denwen.JST['likes/like']({like:this.like});
+
     if(!this.onTop)
-      this.el.append(Denwen.JST['likes/like']({like:this.like}));
+      this.el.append(html);
     else
-      this.el.prepend(Denwen.JST['likes/like']({like:this.like}));
+      this.el.prepend(html);
   }
 
 });

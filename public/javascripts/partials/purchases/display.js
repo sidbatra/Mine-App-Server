@@ -67,9 +67,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Render the contents of the model.
   //
   render: function() {
-    var html = Denwen.JST['purchases/display']({
-                purchase : this.model,
-                extraMargin : this.extraMargin});
+    var html = Denwen.JST['purchases/display']({purchase : this.model});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
@@ -99,8 +97,6 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Render likes aggregation for the purchase
   //
   renderLikeAggregation: function() {
-    if(!this.likes.length)
-      return;
     //var names     = [];
     //var aggregate = "";
 
@@ -193,7 +189,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when all the likes associated with a purchase are fetched
   //
   likesFetched: function() {
-    if(Denwen.H.isLoggedIn()) {
+    if(Denwen.H.isLoggedIn() && !this.likes.isEmpty()) {
       this.renderLikeAggregation();
       $(this.likesBoxEl).show(); 
     }

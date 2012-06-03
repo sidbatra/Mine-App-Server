@@ -63,9 +63,11 @@
   	
   	<div class="panel-contents border-box">
 
-	    <div class="endorsement">
-	      <%=purchase.escape('endorsement')%>
-	    </div>
+      <%if(purchase.get('endorsement')){%>
+        <div class="endorsement">
+          <%=purchase.escape('endorsement')%>
+        </div>
+      <%}%>
 	
 	    <!-- Likes -->
 	    <div class="likes-box relative" 
