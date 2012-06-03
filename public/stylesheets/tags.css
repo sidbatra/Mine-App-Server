@@ -514,7 +514,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 28px;
 	height: 28px;
 	z-index: 500;
-	background: url("/images/fade-right.png") top right ; }
+	background: url("/images/fade-right.png") top left; }
 	
 .item .panel .likes-box .text {
 	padding-right: 6px; } 
@@ -664,7 +664,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 32px;
 	height: 32px;
 	z-index: 500;
-	background: url("/images/fade-right.png") bottom right no-repeat; }
+	background: url("/images/fade-right.png") bottom left no-repeat; }
 	
 /* Profile Card
 ==================================================================== */
@@ -692,10 +692,22 @@ footer, footer a, footer a:hover { color: #ccc; }
 	padding: 12px 0 0 12px; }
 	
 .card .title-box {
+	overflow: hidden;
+	height: 90px;
 	padding: 12px 12px 14px;
 	font-size: 15px;
 	line-height: 20px;
 	color: #666; }
+
+.card .title-box span { white-space: nowrap; }
+
+.card .title-box .fader {
+	width: 44px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 500;
+	background: url("/images/fade-right.png") top left ; }
 	
 .card .item-name,
 .card .store-name {

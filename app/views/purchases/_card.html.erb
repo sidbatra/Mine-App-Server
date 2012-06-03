@@ -10,20 +10,23 @@
       <%=image_tag purchase.square_url, :alt => ""%>
     </div>
     
-    <div class="title-box border-box">
+    <div class="title-box border-box relative">
+    
+    	<div class="fader absolute"></div>
+    	
       <span class="item-name">
-        <%=h truncate(purchase.title,:length => 50)%>
-      </span> 
+        <%=h truncate(purchase.title,:length => 50)%><br />
+      </span>
 
       <%if purchase.store%>
         from 
         <span class="store-name">
-          <%=h truncate(purchase.store.name,:length => 50)%>
+          <%=h truncate(purchase.store.name,:length => 50)%><br />
         </span> 
       <%end%>
 
       <span class="time">
-        <%=time_ago_in_words purchase.created_at%>
+        Bought <%=time_ago_in_words purchase.created_at%>
       </span>
     </div>
     
