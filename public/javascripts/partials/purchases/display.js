@@ -15,10 +15,14 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.extraMargin  = this.options.extraMargin == undefined ?
                           false : true;
 
-    this.purchaseEl   = '#purchase-' + this.model.get('id');
-    this.aggregateEl  = '#purchase_likes_' + this.model.get('id') + '_aggregate';
-    this.aggregateTextEl  = '#purchase_likes_' + this.model.get('id') + '_aggregate_text';
-    this.likesBoxEl   = '#purchase_likes_box_' + this.model.get('id');
+    this.purchaseEl = '#purchase-' + this.model.get('id');
+    this.likesEl = '#purchase_likes_' + this.model.get('id');
+    this.likesBoxEl  = '#purchase_likes_box_' + this.model.get('id');
+    this.aggregateEl = '#purchase_likes_' + this.model.get('id') + '_aggregate';
+    this.aggregateTextEl = '#purchase_likes_' + this.model.get('id') + '_aggregate_text';
+    this.commentsEl = '#purchase_comments_' + this.model.get('id');
+
+
     this.likes        = new Denwen.Collections.Likes();
 
     this.render();
@@ -41,6 +45,11 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     Denwen.NM.bind(
                 Denwen.NotificationManager.Callback.DisableComments,
                 this.disableComments,
+                this);
+
+    Denwen.NM.bind(
+                Denwen.NotificationManager.Callback.CommentsFetched,
+                this.commentsFetched,
                 this);
 
     Denwen.NM.bind(
@@ -82,7 +91,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   renderComment: function(comment) {
     new Denwen.Partials.Comments.Comment({
           comment : comment,
-          el      : $('#purchase_comments_' + comment.get('purchase_id'))});
+          el      : $(this.commentsEl)});
   },
 
   // Render an individual like for the purchase
@@ -90,7 +99,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   renderLike: function(like,onTop) {
     new Denwen.Partials.Likes.Like({
           like  : like,
-          el    : $('#purchase_likes_' + like.get('purchase_id')),
+          el    : $(this.likesEl),
           onTop : onTop});
   },
 
@@ -146,6 +155,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   disableComments: function(comment) {
     if(this.model.get('id') == comment.get('purchase_id'))
       console.log('disable comments for ' + comment.get('purchase_id'));
+  },
+
+  // All comments have been fetched.
+  //
+  commentsFetched: function() {
+    
   },
 
   // Fired when a like is fetched for the purchase

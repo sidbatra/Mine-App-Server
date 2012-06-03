@@ -42,6 +42,8 @@ Denwen.Partials.Comments.Comments = Backbone.View.extend({
             comment);
       }
     });
+
+    Denwen.NM.trigger(Denwen.NotificationManager.Callback.CommentsFetched);
   }
 
 });
