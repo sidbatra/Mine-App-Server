@@ -1,4 +1,4 @@
-<%cache ["v9",purchase,purchase.store ? purchase.store : "","card"] do %>
+<%cache ["v10",purchase,purchase.store ? purchase.store : "","card"] do %>
 
   <a href="<%=purchase_path(
                 purchase.user.handle,
@@ -15,13 +15,13 @@
     	<div class="fader absolute"></div>
     	
       <span class="item-name">
-        <%=h truncate(purchase.title,:length => 50)%><br />
+        <%=h purchase.title%><br />
       </span>
 
       <%if purchase.store%>
         from 
         <span class="store-name">
-          <%=h truncate(purchase.store.name,:length => 50)%><br />
+          <%=h purchase.store.name%><br />
         </span> 
       <%end%>
 
