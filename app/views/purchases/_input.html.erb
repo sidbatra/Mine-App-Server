@@ -40,84 +40,89 @@
           <i class="icon-chevron-left icon-white"></i> Change photo
         </a>
       </div>
+      
+	    <%=link_to "<i class='icon-trash icon-white'></i> Delete item",
+	        {:action => 'destroy',:id => f.object.id},
+	        :method  => :delete,
+	        :class   => 'btn btn-black absolute',
+	        :style   => 'bottom: 24px; right: 24px;',
+	        :confirm => "Are you sure you want "\
+	                    "to delete this item?" if show_delete_button%>
 
       <div id="purchase_selection">
-        <!-- image inserted is #purchase_selection_photo -->
-      </div> 
+      </div>
+      
     </div> <!-- /photo -->
   
   	<div class="panel border-box">
+  		
+  		<div class="panel-contents border-box">
   
-      <%=f.text_area :title,
-          :rows => nil,
-          :cols => nil,
-          :class => "border-box item-name",
-          :placeholder => "Item name",
-          :style => "margin-top: 4px;"%>
-		
-      <%=f.text_field :store_name,
-          :class => "border-box store-name",
-          :autocomplete => :off,
-          :placeholder => "Store where bought"%>
-	          
-			<div class="border-box" style="height: 38px; padding: 12px 0 0 8px" id="store_box">
-        <%=f.label :is_store_unknown, 
-            "#{f.check_box(:is_store_unknown,:class => "check absolute")} Not sure",
-            :class => "relative clearfix boder-box"%>
-		  </div> 
-
-      <div id="initiate_endorsement" class="btn btn-large add-review">
-        <i class="icon-pencil"></i> Add a review?
-      </div>
-				
-      <%=f.text_area :endorsement,
-          :class => "border-box review",
-          :rows => 5,
-          :placeholder => "Review",
-          :style => "margin-top: 4px;display: none;"%>
-		  
-	    <%if show_fb_share%>
-	      <div class="post-to border-box rounded-8">
-	        Facebook
-          <a id="fb-photo-toggle-switch" 
-              class="toggle-switch unselectable rounded-5 <%='off' if !fb_share_on%>">
-	          <div class="on clearfix rounded-5">
-	            <div class="text">
-	              On
-	            </div>
-	            <div class="knob rounded-5">
-	              &nbsp;
-	            </div>
-	          </div>
-	          <div class="off clearfix rounded-5">
-	            <div class="knob rounded-5">
-	              &nbsp;
-	            </div>
-	            <div class="text">
-	              Off
-	            </div>
-	          </div>
-	        </a>
-	      </div>
-	    <%end%>
+	      <%=f.text_area :title,
+	          :rows => nil,
+	          :cols => nil,
+	          :class => "border-box item-name",
+	          :placeholder => "Item name",
+	          :style => "margin-top: 4px;"%>
+			
+	      <%=f.text_field :store_name,
+	          :class => "border-box store-name",
+	          :autocomplete => :off,
+	          :placeholder => "Store where bought"%>
+		          
+				<div class="border-box" style="height: 38px; padding: 12px 0 0 8px" id="store_box">
+	        <%=f.label :is_store_unknown, 
+	            "#{f.check_box(:is_store_unknown,:class => "check absolute")} Not sure",
+	            :class => "relative clearfix boder-box"%>
+			  </div> 
 	
-			<button id="submit-button" 
-          type="submit" 
-          class="btn btn-large btn-red border-box"
-          style="width: 100%; margin-top: 24px">
-					<i class="icon-ok icon-white"></i> <%=submit_text%>
-			</button> <!-- submit -->
-			
-	    <%=link_to "Cancel", :back, 
-	        :class => "btn cancel", 
-	        :style => "width: 64px;" if show_cancel_button%>
-			
-	    <%=link_to "<i class='icon-trash faded-30'></i> Delete item",
-	              {:action => 'destroy',:id => f.object.id},
-	              :method  => :delete,
-	              :class   => 'delete-item',
-	              :confirm => "Are you sure you want "\
-	                          "to delete this item?" if show_delete_button%>
+	      <div id="initiate_endorsement" class="btn btn-large add-review">
+	        <i class="icon-pencil"></i> Add a review?
+	      </div>
+					
+	      <%=f.text_area :endorsement,
+	          :class => "border-box review",
+	          :rows => 5,
+	          :placeholder => "Review",
+	          :style => "margin-top: 4px;display: none;"%>
+			  
+		    <%if show_fb_share%>
+		      <div class="post-to border-box rounded-8">
+		        Facebook
+	          <a id="fb-photo-toggle-switch" 
+	              class="toggle-switch unselectable rounded-5 <%='off' if !fb_share_on%>">
+		          <div class="on clearfix rounded-5">
+		            <div class="text">
+		              On
+		            </div>
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		          </div>
+		          <div class="off clearfix rounded-5">
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		            <div class="text">
+		              Off
+		            </div>
+		          </div>
+		        </a>
+		      </div>
+		    <%end%>
+		
+				<button id="submit-button" 
+	          type="submit" 
+	          class="btn btn-large btn-red border-box"
+	          style="width: 100%; margin-top: 24px;">
+						<i class="icon-ok icon-white"></i> <%=submit_text%>
+				</button> <!-- submit -->
+				
+		    <%=link_to "Cancel", :back, 
+		        :class => "btn btn-large btn-black border-box",
+		        :style => "width: 100%; margin-top: 16px;" if show_cancel_button%>
+		                          
+			</div> <!-- /panel-contents -->                          
 	                          
 		</div> <!-- /panel -->
 		
