@@ -33,6 +33,9 @@ Denwen.Views.Purchases.Edit = Backbone.View.extend({
     this.input.displayPurchaseImage(this.purchase.get('giant_url'));
 
     this.input.isStoreUnknownChanged();
+
+    if(this.purchase.get('endorsement'))
+      this.input.endorsementInitiated();
   },
 
   // Public. Display a success or failure message if an update

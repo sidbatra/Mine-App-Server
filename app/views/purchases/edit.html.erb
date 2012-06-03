@@ -1,33 +1,32 @@
 <div class="container">
-	<div class="col-triple" style="margin-left: 189px;">
-    <div class="item creation">
-		
-		  <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
-		        :html => {
-		          :class  => 'form-horizontal',
-		          :style  => 'margin-bottom: 0;',
-		          :id     => 'edit_purchase'} do |f|%>
-		
-		    <%=render :partial  => 'input', 
-		              :locals   => {
-		                :f                => f,
-                    :suggestion       => @suggestion,
-		                :submit_text      => "Save Changes",
-		                :submit_class     => "edit",
-		                :show_cancel_button => true,
-		                :show_delete_button => true,
-		                :show_query_box   => false,
-                    :show_extra_steps => true,
-                    :show_fb_share => false}%>
-		
+
+  <%=render 'purchases/chooser'%>	
+
+	<div id="creation" class="create-box">
+    <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
+          :html => {
+            :class  => 'form-horizontal',
+            :style  => 'margin-bottom: 0;',
+            :id     => 'edit_purchase'} do |f|%>
+  
+      <%=render :partial  => 'input', 
+                :locals   => {
+                  :f                => f,
+                  :suggestion       => @suggestion,
+                  :submit_text      => "Save Changes",
+                  :submit_class     => "edit",
+                  :show_cancel_button => true,
+                  :show_delete_button => true,
+                  :show_query_box   => false,
+                  :show_extra_steps => true,
+                  :show_fb_share => false}%>
+  
 		  <%end%> <!-- form -->
+	</div>  <!-- create-box -->
 
-		</div> 
-	</div> 
-</div> 
+</div> <!-- container -->
 
 		
-<%=render 'purchases/chooser'%>	
 
 
 
@@ -38,7 +37,7 @@
     new Denwen.Views.Purchases.Edit({
           el            : $('body'),
           purchaseJSON   : <%=@purchase.to_json(
-                              :only     => [:id,:user_id],
+                              :only     => [:id,:user_id,:endorsement],
                               :methods  => [:giant_url])%>,
           source        : '<%=@source%>'});
   </script>

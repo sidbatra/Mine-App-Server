@@ -180,9 +180,12 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
   // User initiates endorsements.
   //
-  endorsementInitiated: function() {
+  endorsementInitiated: function(e) {
     $(this.initEndorsementEl).hide();
     $(this.endorsementEl).show();
+
+    if(!e)
+      return;
 
     if($.support.placeholder)
       $(this.endorsementEl).focus();
