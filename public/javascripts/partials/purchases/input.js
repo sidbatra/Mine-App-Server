@@ -348,7 +348,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.hideExtraSteps();
     this.resetForm();
     this.displayQueryBox();
-    $(this.queryEl).focus();
+    $(this.querySubBoxEl).hide();
+    $(this.initPurchaseEl).show();
 
     this.trigger(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
