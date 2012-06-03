@@ -16,6 +16,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                           false : true;
 
     this.purchaseEl = '#purchase-' + this.model.get('id');
+    this.panelEl = '#purchase_panel_' + this.model.get('id');
     this.likesEl = '#purchase_likes_' + this.model.get('id');
     this.likesBoxEl  = '#purchase_likes_box_' + this.model.get('id');
     this.aggregateEl = '#purchase_likes_' + this.model.get('id') + '_aggregate';
@@ -136,6 +137,15 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     $(this.aggregateTextEl).html(this.likes.length == 1 ? 'like' : 'likes');
   },
 
+  // Test if the comments have overflown the outer div and correct with
+  // css scorlling magic if this have.
+  //
+  testOverflow: function() {
+    if($(this.commentsEl).offset().top + $(this.commentsEl).height() + 50 > 
+          $(this.purchaseEl).offset().top + $(this.purchaseEl).height())
+      $(this.panelEl).addClass('overflowing');
+  },
+
   // Fired when a comment is fetched for the purchase
   //
   commentFetched: function(comment) {
@@ -146,8 +156,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when a comment is created for the purchase 
   //
   commentCreated: function(comment) {
-    if(this.model.get('id') == comment.get('purchase_id'))
+    if(this.model.get('id') == comment.get('purchase_id')) {
       this.renderComment(comment);
+      this.testOverflow();
+    }
   },
 
   // Disable posting of comments 
@@ -160,7 +172,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // All comments have been fetched.
   //
   commentsFetched: function() {
-    
+    this.testOverflow();
   },
 
   // Fired when a like is fetched for the purchase
