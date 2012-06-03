@@ -1,9 +1,0 @@
-<%cache ["v2",user,"purchases"] do%>
-
-<div class="grid">
-  <%=render :partial => "purchases/card",
-      :collection => user.purchases.with_store.with_user.by_id,
-      :as => :purchase%>
-</div>
-<%end%>
-
