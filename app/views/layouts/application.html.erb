@@ -15,7 +15,7 @@
     <%=version_meta_tag%>
   </head>
 
-  <body <%=yield :body_attribute%>>
+  <body <%=yield :body_attribute%> id="body">
   	
   	<!-- wrapper for sticky footer -->
   	<div class="wrapper">
@@ -67,5 +67,6 @@
     <script type="text/javascript">
       make_ie_compatible();
     </script>
+    
   </body>
 </html>

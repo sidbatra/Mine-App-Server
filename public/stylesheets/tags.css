@@ -462,6 +462,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	line-height: 1; }
 	
 .item .photo img {
+	min-height: 240px;
 	max-width: 440px; 
 	max-height: 440px; }
 
@@ -471,7 +472,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .item .actions, .item .panel {
 	width: 300px; 
-	float: left; }
+	float: left;
+	overflow-y: hidden; }
 
 .item .actions {
 	margin-bottom: 16px;
@@ -479,12 +481,17 @@ footer, footer a, footer a:hover { color: #ccc; }
 	
 .item .panel {
 	height: 520px;
-	padding: 24px;
+	padding: 24px 0;
 	background: #f8f8f8;
 	border-radius: 0 5px 5px 0; 
 	text-align: left;
 	font-size: 15px;
 	line-height: 24px; }
+
+.item .panel .panel-contents {
+	padding-left: 24px; 
+	padding-right: 24px;
+	overflow-x: hidden;  }
 	
 .item .panel .endorsement,
 .item .panel .likes-box {
@@ -557,6 +564,22 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-size: 20px; 
 	font-weight: bold; 
 	line-height: 30px; }
+	
+/* when panel content overflows */
+.item .panel.overflowing .panel-contents {
+	height: 444px; 
+	overflow-y: scroll; }
+	
+.item .panel.overflowing .panel-contents .add-comment-box {
+	position: absolute;
+	bottom: 24px;
+	left: 24px;
+	right: 24px;
+	padding-top: 12px;
+	background: url("/images/fade-bottom-strip-f8f8f8.png") top left repeat-x; }
+
+.item .panel.overflowing .panel-contents .add-comment-box .self-photo { top: 12px; }
+
 
 /* Profile
 ==================================================================== */	
@@ -927,9 +950,19 @@ footer, footer a, footer a:hover { color: #ccc; }
 	.item,
   .item .actions, 
   .item .panel,
+  .item .panel .panel-contents,
   .user-box .friends-box {
    width: 520px;
    height: auto !important; }
+   
+  /* no overflow abs. positioned add-comment-box when narrow */
+  .item .panel-contents.overflowing { overflow-y: visible; }
+	.item .panel.overflowing .panel-contents .add-comment-box {
+		position: relative !important;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0; }
    
   .cards { width: 544px; }
    

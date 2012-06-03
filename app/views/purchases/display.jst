@@ -59,52 +59,55 @@
   </div>
 
   
-  <div class="panel border-box">
+  <div class="panel border-box relative">
+  	
+  	<div class="panel-contents border-box">
 
-    <div class="endorsement">
-      <%=purchase.escape('endorsement')%>
-    </div>
+	    <div class="endorsement">
+	      <%=purchase.escape('endorsement')%>
+	    </div>
+	
+	    <!-- Likes -->
+	    <div class="likes-box relative" 
+	            id="purchase_likes_box_<%=purchase.get('id')%>"
+	         style="display:none;">
+	
+	      <div class="fader absolute">
+	      </div>
+	
+	      <span class="num"
+	        id="purchase_likes_<%=purchase.get('id')%>_aggregate">
+	      </span>
+	
+	      <span class="text"
+	        id="purchase_likes_<%=purchase.get('id')%>_aggregate_text">
+	      </span>
+	
+	      <span id="purchase_likes_<%=purchase.get('id')%>">
+	      </span>
+	    </div>
+	    
+	    <!-- Comments -->
+	    <div class="comments-box">
+	    
+	      <div id="purchase_comments_<%=purchase.get('id')%>">
+	      </div>
+	      
+	      <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id')){%>
+	        <div class="add-comment-box relative">
+	          <img class="self-photo absolute" 
+	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+	          <input type="text" 
+	            id="purchase_comment_data_<%=purchase.get('id')%>"
+	            class="border-box"
+	            placeholder="Add a comment...">
+	        </div>
+	      <%}%>
+	      
+	    </div> <!-- /comments -->
+	    
+	  </div> <!-- /panel-contents -->
 
-    <!-- Likes -->
-    <div class="likes-box relative" 
-            id="purchase_likes_box_<%=purchase.get('id')%>"
-         style="display:none;">
+  </div> <!-- /panel -->
 
-      <div class="fader absolute">
-      </div>
-
-      <span class="num"
-        id="purchase_likes_<%=purchase.get('id')%>_aggregate">
-      </span>
-
-      <span class="text"
-        id="purchase_likes_<%=purchase.get('id')%>_aggregate_text">
-      </span>
-
-      <span id="purchase_likes_<%=purchase.get('id')%>">
-      </span>
-    </div>
-    
-    <!-- Comments -->
-    <div class="comments-box">
-    
-      <div id="purchase_comments_<%=purchase.get('id')%>">
-      </div>
-      
-      <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id')){%>
-        <div class="add-comment-box relative">
-          <img class="self-photo absolute" 
-            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
-          <input type="text" 
-            id="purchase_comment_data_<%=purchase.get('id')%>"
-            class="border-box"
-            placeholder="Add a comment...">
-        </div>
-      <%}%>
-      
-    </div> <!-- /comments -->
-
-  </div> <!-- /endorsement -->
-
-  
 </div> <!-- /item -->	
