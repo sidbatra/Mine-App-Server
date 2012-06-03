@@ -33,13 +33,13 @@
 		</div> <!-- /text-box -->
 	
 
-		<div class="friends-box relative">
-			<div class="fader absolute">
-      </div>
+    <%cache ["v6",@user,"ifollowers","profile"] do%>
+      <div class="friends-box relative">
+        <div class="fader absolute">
+        </div>
 
-			<p>Sharing purchases with:</p>
+        <p>Sharing purchases with:</p>
 
-      <%cache ["v5",@user,"ifollowers","profile"] do%>
         <%@user.ifollowers.limit(7).each do |user|%>
           <%cache ["v4",user,"ifollower","profile"] do%>
             <%=link_to image_tag(user.square_image_url), 
@@ -47,25 +47,32 @@
                 :class => "friend"%>
           <%end%>
         <%end%>
-      <%end%>
-		</div> <!-- /friends-box -->
+      </div> <!-- /friends-box -->
+    <%end unless @user.inverse_followings_count.zero?%>
 		
-		<div class="friends-box relative">
-			<div class="fader absolute">
-      </div>
 
-			<p>Buys things from:</p>
+    <%cache ["v2",@user,"stores"] do%>
+      <%shoppings = @user.shoppings.by_count.
+                      with_store.select{|s| s.store.image_path.present?}%>
 
-      <%cache ["v1",@user,"stores"] do%>
-        <%@user.shoppings.by_count.with_store.each do |shopping|%>
-          <%cache ["v1",shopping.store,"user"] do%>
-            <div class="friend">
-              <%=image_tag(shopping.store.thumbnail_url)%>
-            </div>
-          <%end if shopping.store.image_path.present?%>
-        <%end%>
+      <%if shoppings.present?%>
+        <div class="friends-box relative">
+          <div class="fader absolute">
+          </div>
+
+          <p>Buys things from:</p>
+
+          <%shoppings.each do |shopping|%>
+            <%cache ["v1",shopping.store,"user"] do%>
+              <div class="friend">
+                <%=image_tag(shopping.store.thumbnail_url)%>
+              </div>
+            <%end%>
+          <%end%>
+        </div> <!-- /friends-box -->
       <%end%>
-		</div> <!-- /friends-box -->
+
+    <%end unless @user.shoppings_count.zero?%>
 	
 	</div> <!-- /user-box -->
 
