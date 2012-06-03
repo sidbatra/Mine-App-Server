@@ -16,17 +16,22 @@
   </head>
 
   <body <%=yield :body_attribute%>>
+  	
+  	<!-- wrapper for sticky footer -->
+  	<div class="wrapper">
     
-    <div id="fb-root"></div>    
-
-    <%=render "headers/default" unless is_onboarding?%>
-    
-    <div id="message-drawer" 
-          class="message-drawer faded-95 alert"
-          style="display: none;">
-		</div>
- 
-    <%=yield%>
+	    <div id="fb-root"></div>    
+	
+	    <%=render "headers/default" unless is_onboarding?%>
+	    
+	    <div id="message-drawer" 
+	          class="message-drawer faded-95 alert"
+	          style="display: none;">
+			</div>
+	 
+	    <%=yield%>
+	  
+	  </div> <!-- /wrapper -->
 
     <%unless is_onboarding?%>
       <footer>
