@@ -9,18 +9,18 @@
 
       <div class="btn-group" style="float: right; margin-top: 15px;">
 
-        <button class="btn btn-large btn-white btn-user relative" 
+        <a class="btn btn-large btn-white btn-user relative" 
             style="float: left;">
             <%=image_tag self.current_user.square_image_url,
                 :class => "self-photo absolute"%>
             <%=h self.current_user.full_name%>
-        </button>
+        </a>
 
-        <button class="btn btn-large btn-white dropdown-toggle" 
+        <a class="btn btn-large btn-white dropdown-toggle" 
           style="float: right;" 
           data-toggle="dropdown">
           <i class="icon-chevron-down"></i>
-        </button>
+        </a>
 
         <ul class="dropdown-menu">
           <li><%=link_to "Settings",settings_path(:src => "bar")%></li>

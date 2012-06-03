@@ -52,8 +52,8 @@ a:hover {
 	overflow-y: hidden; }
 
 .header .btn-user .self-photo {
-	width: 42px;
-	height: 42px;
+	width: 40px;
+	height: 40px;
 	top: 0;
 	left: 0;
 	-webkit-border-radius: 5px 0 0 5px;
@@ -718,11 +718,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn {
   display: inline-block;
   *display: inline;
-  padding: 7px 12px;
+  padding: 0 12px;
+  height: 32px;
   margin-bottom: 0;
   *margin-left: .3em;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 32px;
   font-family: 'RooneyLightItalic', Georgia;
   font-weight: normal !important;
   color: white;
@@ -774,9 +775,10 @@ footer, footer a, footer a:hover { color: #ccc; }
           box-shadow: none; }
 
 .btn-large {
-  padding: 12px 16px;
+  padding: 0 16px;
+  height: 42px;
   font-size: 15px;
-  line-height: normal;
+  line-height: 42px;
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
           border-radius: 8px; }
@@ -786,9 +788,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn-mini [class^="icon-"] { margin-top: -1px; }
 
 .btn-mini {
-  padding: 2px 6px;
+  padding: 0 6px;
+  height: 18px;
   font-size: 11px;
-  line-height: 14px; }
+  line-height: 18px; }
 	
 .btn.btn-red { background: #EE472A; }
 .btn.btn-red:hover { background: #E4156D; }
@@ -813,9 +816,9 @@ footer, footer a, footer a:hover { color: #ccc; }
 	
 .btn.btn-white:hover { background: #eee; }
 
-.btn.btn-white { padding: 6px 12px; }
-.btn.btn-white.btn-large { padding: 11px 15px; }
-.btn.btn-white.btn-mini { padding: 1px 5px; }
+.btn.btn-white { height: 30px; }
+.btn.btn-white.btn-large { height: 40px; }
+.btn.btn-white.btn-mini { height: 16px; }
 
 .btn.btn-facebook { background: #3B5998; }
 .btn.btn-facebook:hover { background: #1F4696; }
