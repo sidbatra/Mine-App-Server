@@ -65,9 +65,6 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     $(this.queryEl).placeholder();
 
-    if($.support.placeholder)
-      $(this.queryEl).focus();
-
     this.router = this.routing();
   },
 

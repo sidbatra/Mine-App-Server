@@ -261,6 +261,142 @@ footer, footer a, footer a:hover { color: #ccc; }
 	float: left;
 	margin-left: -1px; }
 	
+/* Chooser
+==================================================================== */
+
+.chooser { 
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	height: 100%;
+	text-align:left;
+	background:white;
+	padding-bottom:20px;
+	padding-left:15px;
+	overflow: visible;
+	z-index:1050; }
+	
+.results { 
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	background: white;
+	max-height: 100%;
+	margin-top:45px;
+	margin-bottom: 45px;
+	padding-bottom: 15px;
+	overflow-y: scroll;
+	text-align:center;
+	z-index: 1050; }
+	
+.results, .chooser { *zoom: 1; }
+
+.results:before,
+.results:after,
+.chooser:before,
+.chooser:after {
+  display: table;
+  content: ""; }
+  
+.chooser:after,
+.results:after {
+  clear: both; }
+
+.chooser .search-bar { 
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	background:white;
+	padding:8px 0;
+	z-index:9999;
+	border-bottom:1px solid #ddd; }
+
+.chooser .search-bar .control-group {
+	width: 500px; 
+	border-right: 110px solid transparent;
+	margin: 0 auto; }
+
+.chooser .search-bar .control-group.load {
+  background: url('/images/loading_blocks_small_light_trans.gif') center right no-repeat; }
+
+.chooser .search-bar .close {
+	font-size: 36px; 
+	padding: 5px 10px; }
+
+.chooser .control-label.error { color: #B94A48; }
+
+.chooser .control-label span.error { display: block; }
+.chooser .control-label span.error { display: none; }
+
+.chooser .control-label.error span.error { display: block; }
+.chooser .control-label.error span.default { display: none; }
+	
+.chooser .cancel {
+  position: fixed;
+  top: 16px;
+  right: 13px;
+  padding: 2px;
+  width: 24px;
+  height: 24px;
+  background-image: url("/images/close.png");
+  background-repeat: no-repeat;
+	z-index: 1032; }
+  
+.photo-choice {
+  width: 160px;
+  height: 160px;
+  line-height: 158px;
+  float: left;
+  margin: 15px 15px 0px 0px;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #eeeeee; }
+
+.photo-choice:hover .btn {
+  display: block; }
+
+.photo-choice .btn { 
+	display: none;
+	position: absolute; 
+	bottom: 10px; 
+	left: 30px;
+	right: 30px; }
+
+.photo-choice .item-photo {
+  max-width: 160px;
+  max-height: 158px;
+  vertical-align: middle; }
+  
+.scroll-instructions {
+	height:44px;
+	width:auto;
+	line-height:44px;
+	border-top:1px solid #ddd;
+	text-align:center;
+	position:fixed;
+	background:white;
+	right:0;
+	left:0;
+	bottom:0;
+	display:none;
+	z-index: 1051; }
+
+.shadow {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 6000;
+	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 18px rgba(0,0,0,0.4);
+	box-shadow: 0 0 18px rgba(0,0,0,0.4);
+	background-color: white;
+	z-index: -1; }
 	
 /* Feed Item
 ==================================================================== */

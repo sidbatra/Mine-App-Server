@@ -8,7 +8,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     "keypress #purchase_title" : "inputKeystroke",
     "keypress #purchase_store_name" : "inputKeystroke",
     "change #purchase_is_store_unknown" : "isStoreUnknownChanged",
-    "mousedown #fb-photo-toggle-switch" : "switchToggled"
+    "mousedown #fb-photo-toggle-switch" : "switchToggled",
+    "click #initiate_endorsement" : "endorsementInitiated",
+    "click #initiate_purchase" : "purchaseInitiated"
   },
 
   // Constructor logic
@@ -21,7 +23,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.urlToolTipDone       = false;
 
     this.formEl               = '#' + this.mode + '_purchase';
+    this.initPurchaseEl       = '#initiate_purchase';
     this.queryEl              = '#purchase_query';
+    this.querySubBoxEl        = '#query_sub_box';
     this.queryBoxEl           = '#query_box';
     this.queryTextEl          = '#query_text';
     this.extraEl              = '#extra_steps';
@@ -33,6 +37,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.productExternalIDEl  = '#purchase_product_external_id';
     this.storeEl              = '#purchase_store_name';
     this.storeBoxEl           = '#store_box';
+    this.initEndorsementEl    = '#initiate_endorsement';
+    this.endorsementEl        = '#purchase_endorsement';
     this.websiteEl            = '#purchase_source_url';
     this.thumbEl              = '#purchase_orig_thumb_url';
     this.imageEl              = '#purchase_orig_image_url';
@@ -107,6 +113,16 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.stores = stores;
   },
 
+  // User initiates a purchase.
+  //
+  purchaseInitiated: function() {
+    $(this.initPurchaseEl).hide();
+    $(this.querySubBoxEl).show();
+
+    if($.support.placeholder)
+      $(this.queryEl).focus();
+  },
+
   // Catch keystrokes on inputs to stop form submissions
   //
   inputKeystroke: function(e) {
@@ -160,11 +176,21 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       Denwen.Track.action("Purchase FB Photo Off");
   },
 
+  // User initiates endorsements.
+  //
+  endorsementInitiated: function() {
+    $(this.initEndorsementEl).hide();
+    $(this.endorsementEl).show();
+
+    if($.support.placeholder)
+      $(this.endorsementEl).focus();
+  },
+
   // Display purchase image 
   //
   displayPurchaseImage: function(imageURL) {
     $(this.selectionEl).show();
-    $(this.selectionEl).html("<img class='photo' id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
+    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
   },
 
   // Hide and clean the product image box.
