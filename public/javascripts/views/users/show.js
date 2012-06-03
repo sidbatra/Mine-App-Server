@@ -8,6 +8,12 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.user           = new Denwen.Models.User(this.options.userJSON);
     this.source         = this.options.source;
 
+
+    // -----
+    if(Denwen.H.isCurrentUser(this.user.get('id')))
+      new Denwen.Partials.Users.Byline({
+            el: $('#user_byline_box'),
+            model: this.user});
     // -----
     this.loadFacebookPlugs();
 

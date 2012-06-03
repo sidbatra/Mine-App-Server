@@ -27,9 +27,9 @@
         <%=h @user.full_name%>
         <br/>
       </div>
-			<div class="user-bio">
-        <%=h @user.byline%>
-      </div>
+
+      <%=render :partial => "byline",
+          :locals => {:user => @user}%>
 		</div> <!-- /text-box -->
 	
 
