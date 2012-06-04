@@ -57,7 +57,7 @@ module DW
 
       # Post an invite on a friends facebook wall 
       #
-      def self.post_on_friends_wall(user,friend_fb_id)
+      def self.post_invite_on_friends_wall(user,friend_fb_id)
         fb_friend = FbGraph::User.new(
                               friend_fb_id, 
                               :access_token => user.access_token)
@@ -66,11 +66,11 @@ module DW
         fb_friend.feed!(
           :message      => "I’d like to share purchases using "\
                            "#{CONFIG[:name]} — a simple service that "\
-                           "notifies you when I buy something.",
+                           "will notify you when I buy something.",
           :picture      => RAILS_ENV != 'development' ? 
-                                         helpers.image_path('mine-90-555.gif') :
+                                         helpers.image_path('mine_70_2x.png') :
                                          CONFIG[:host] + 
-                                         helpers.image_path('mine-90-555.gif'),
+                                         helpers.image_path('mine_70_2x.png'),
           :link         => home_url(
                             "invite", 
                             :host => CONFIG[:host]),

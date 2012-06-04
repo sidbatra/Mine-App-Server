@@ -6,7 +6,7 @@ class InviteDelayedObserver < DelayedObserver
     invite = Invite.find(invite_id)
     sender = User.find(invite.user_id)
 
-    DistributionManager.post_on_friends_wall(sender,invite.recipient_id)
+    DistributionManager.post_invite_on_friends_wall(sender,invite.recipient_id)
   end
 
 end
