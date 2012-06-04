@@ -1,8 +1,9 @@
   <div class="blurb">
      Get updated when Mike buys something.
-     <a class="btn btn-large btn-red border-box" style="margin-top: 18px; width: 100%;">
-       Join <span class="mine">mine</span> now. It"s free.
-     </a>
+     <%=link_to "Join <span class='mine'>mine</span> now. It's free.",
+        fb_auth_path(:src => @origin), 
+        :class => "btn btn-large btn-red border-box",
+        :style => "margin-top: 18px; width: 100%;"%>
    </div>
 
 
