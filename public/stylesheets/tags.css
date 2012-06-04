@@ -609,7 +609,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	border: 10px solid white; }
 	
 .user-box .photo-box img {
-	/*height: 148px;*/
+	height: 148px;
 	top: 0;
 	left: 0;
 	overflow: hidden;
