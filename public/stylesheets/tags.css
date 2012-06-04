@@ -1,3 +1,116 @@
+/* Invite
+==================================================================== */
+
+.invite .preview-box {
+	width: 520px;
+	margin: 0 auto; }
+
+.invite .preview-box p {
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 13px; }
+
+.invite .fb-timeline {
+	font-family: Lucida Grande, Verdana, Arial;
+	width: 518px;
+	padding: 4px;
+	background: white;
+	font-size: 11px;
+	line-height: 1.28;
+	border: 1px solid #C4CDE0;
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
+
+.invite .fb-timeline .user-block {
+	border-bottom: 1px solid #e5e5e5;
+	color: #3B5998;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	height: 32px; }
+
+.invite .fb-timeline .user-block .user-photo {
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-right: 8px; }
+
+.invite .fb-timeline .above-content {
+	color: #333;
+	margin: 15px 0;
+	font-size: 13px;
+	line-height: 18px; }
+
+.invite .fb-timeline .display-content {
+	color: #3B5998;
+	height: 90px; }
+
+.invite .fb-timeline .display-content .art-photo {
+	height: 90px;
+	width: 90px;
+	line-height: 0;
+	background-position: center center;
+	background-size: auto 90px;
+	background-repeat: no-repeat;
+	float: left;
+	font-size: 72px;
+	color: white;
+	text-align: center;
+	margin-right: 10px; }
+
+.invite .fb-timeline .display-content .art-photo img {
+	padding-top: 2px;
+	width: 70px;
+	height: 70px; }
+	
+.invite .search-box{ 
+	width: 520px;
+	margin: 18px auto; }
+	
+.invite .search-box input {
+	font-family: 'RooneyLightItalic', Georgia;
+	width: 518px;
+	padding: 0 8px;
+	height: 42px;
+	font-size: 15px;
+	margin: 0; }
+	
+.invite .search-box .close {
+	top: 7px;
+	right: 15px;
+	font-size: 28px;
+	line-height: 28px;
+	font-family: Arial;
+	vertical-align: bottom; }
+
+.invite .friends li.user-box {
+	float: left;
+	margin: 0 0 5px 6px; 
+	width: 247px;
+	color: #333333; 
+	background: whiteSmoke;
+	font-size: 12px;
+	line-height: 1.28;
+	height: 28px;
+	padding: 5px;
+	line-height: 28px; }
+	
+.invite .friends .user-box .user-photo {
+	float: left; 
+	height: 28px;
+	width: 28px;
+	margin-right: 6px; }
+
+
+
+
+
+
+
+
+
+
 * { margin: 0; }
 
 html, body { height: 100%; }
@@ -505,6 +618,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	padding-left: 24px; 
 	padding-right: 24px;
 	overflow-x: hidden;  }
+	
+.item .panel .endorsement {
+	font-weight: bold;
+	color: #666; }
 	
 .item .panel .endorsement,
 .item .panel .likes-box {
