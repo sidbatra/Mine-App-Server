@@ -24,7 +24,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.commentsEl = '#purchase_comments_' + this.model.get('id');
 
 
-    this.likes        = new Denwen.Collections.Likes();
+    this.likes = new Denwen.Collections.Likes();
+
+    this.likesRendered = false;
+    this.commentsRendered = false;
 
     this.render();
 
@@ -172,7 +175,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // All comments have been fetched.
   //
   commentsFetched: function() {
-    this.testOverflow();
+    if(!this.commentsRendered) {
+      this.testOverflow();
+      this.commentsRendered = true;
+    }
   },
 
   // Fired when a like is fetched for the purchase
@@ -216,9 +222,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when all the likes associated with a purchase are fetched
   //
   likesFetched: function() {
-    if(Denwen.H.isLoggedIn() && !this.likes.isEmpty()) {
+    if(Denwen.H.isLoggedIn() && !this.likes.isEmpty() && !this.likesRendered) {
       this.renderLikeAggregation();
       $(this.likesBoxEl).show(); 
+      this.likesRendered = true;
     }
   }
 
