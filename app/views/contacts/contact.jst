@@ -1,6 +1,6 @@
 <li class="friend border-box rounded-3 three-to-two" id="contact_picker_<%=contact.get('id')%>">
 	<img class="user-photo rounded-3" src="<%=contact.imageURL()%>" />  
-	<%=Denwen.H.truncate(contact.get('name'), 17, '…')%>
+	<%=Denwen.H.truncate(contact.get('name'), 15, '…')%>
 	<a class="btn btn-white <%=contact.get('invited') ? 'pushed' : ''%>" 
         id="post_invite_<%=contact.get('id')%>" 
      style="float: right;">
