@@ -14,7 +14,9 @@
             <%=link_to "",
                 new_invite_path(:src => "user-image"),
                 :style => "background: url('#{contact.image_url}')",
-                :class => "thumb"%>
+                :class => "thumb",
+                :rel => "tooltip",
+                :title => "Invite #{contact.name}"%>
           <%end%>
         <%end%>
       <%end%>
@@ -30,7 +32,9 @@
             <%=link_to "",
                 user_path(user.handle,:src => "feed"),
                 :style => "background: url('#{user.square_image_url}')",
-                :class => "thumb"%>
+                :class => "thumb",
+                :rel => "tooltip",
+                :title => user.full_name%>
           <%end%>
         <%end%>
       <%end%>

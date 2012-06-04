@@ -42,6 +42,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     //  this.suggestionSearched,
     //  this); 
 
+    $("a[rel='tooltip']").tooltip();
     
     this.loadFacebookPlugs();
 
