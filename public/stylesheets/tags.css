@@ -1047,6 +1047,49 @@ footer, footer a, footer a:hover { color: #ccc; }
   text-decoration: none;
   background-color: #eee; }
   
+ 
+/* Loading Animations
+==================================================================== */
+
+.btn .loading.inline { display: none; }
+
+.loading.large {
+	min-height: 60px;
+  background-image: url('/images/loading_spinner_large_trans.gif');
+  background-position: center center;
+  background-repeat: no-repeat; }
+
+.loading.large.left {
+	background-position: center left; }
+  
+.loading.large.inline {
+	display: none;
+	width: 32px;
+	height: 32px;
+	background: url('/images/loading_spinner_large_trans.gif') center no-repeat; }
+
+.loading.small.inline,
+.loading.small.inline.dark {
+	display: none;
+	width: 16px;
+	height: 16px;
+  background: url('/images/loading_blocks_small_light_trans.gif') center no-repeat; }
+  
+.loading.large.body{
+  background-image: url('/images/loading_spinner_large_body.gif'); }
+
+.loading.blocks.body {
+	min-height: 60px;
+	background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('/images/loading_blocks_body.gif'); }
+
+.load .loading.inline { /* turns inline loads on/off */
+	display: inline-block; }
+
+.load .hide-when-loading { display: none; }
+.load .show-when-loading { display: inline-block; }
+  
 
 /* General Classes
 ==================================================================== */
