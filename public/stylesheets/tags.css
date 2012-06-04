@@ -66,13 +66,14 @@
 	
 .invite .search-box{ 
 	width: 520px;
-	margin: 18px auto; }
+	margin: 18px auto 24px; }
 	
 .invite .search-box input {
 	font-family: 'RooneyLightItalic', Georgia;
 	width: 518px;
 	padding: 0 8px;
 	height: 42px;
+	line-height: 42px;
 	font-size: 15px;
 	margin: 0; }
 	
@@ -84,23 +85,27 @@
 	font-family: Arial;
 	vertical-align: bottom; }
 
-.invite .friends li.user-box {
+.invite .friends-box li.friend {
 	float: left;
-	margin: 0 0 5px 6px; 
-	width: 247px;
-	color: #333333; 
-	background: whiteSmoke;
+	list-style-type: none;
+	margin-top: 0;
+	padding: 4px;
+	margin-bottom: 20px; 
+	margin-left: 0px;
+	width: 248px;
+	color: #666; 
+	background: white;
 	font-size: 12px;
-	line-height: 1.28;
-	height: 28px;
-	padding: 5px;
-	line-height: 28px; }
+	line-height: 32px; }
 	
-.invite .friends .user-box .user-photo {
+.invite .friends-box li.friend .user-photo {
 	float: left; 
-	height: 28px;
-	width: 28px;
-	margin-right: 6px; }
+	height: 32px;
+	width: 32px;
+	margin-right: 6px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px; }
 
 
 
@@ -798,11 +803,13 @@ footer, footer a, footer a:hover { color: #ccc; }
 /* Profile Card
 ==================================================================== */
 
-.cards {}
+.cards { margin-right: -38px; }
 
 .card {
 	width: 248px; 
-	margin: 0 24px 28px 0; 
+	margin-top: 0;
+	margin-bottom: 28px;
+	margin-left: 0; 
 	float: left;
 	background: #f8f8f8; }
 
@@ -1053,6 +1060,9 @@ footer, footer a, footer a:hover { color: #ccc; }
 .relative { position: relative; }
 .absolute { position: absolute; }
 
+.three-to-two { margin-right: 38px; }
+/* see media queries for 2-span variant */
+
 .square {
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -1115,11 +1125,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 		right: 0;
 		bottom: 0; }
    
-  .cards { width: 544px; }
-   
   .item .actions,
   .user-box .friends-box {
   	padding: 0; } 
+  	
+  .three-to-two { margin-right: 24px; }
+  .cards { margin-right: -24px; }
 }
    
    
