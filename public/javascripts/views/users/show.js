@@ -14,6 +14,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       new Denwen.Partials.Users.Byline({
             el: $('#user_byline_box'),
             model: this.user});
+
+    $("a[rel='tooltip']").tooltip();
+
     // -----
     this.loadFacebookPlugs();
 

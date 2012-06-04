@@ -44,7 +44,9 @@
           <%cache ["v4",user,"ifollower","profile"] do%>
             <%=link_to image_tag(user.square_image_url), 
                 user_path(user.handle,:src => "profile"),
-                :class => "friend"%>
+                :class => "friend",
+                :rel => "tooltip",
+                :title => user.full_name%>
           <%end%>
         <%end%>
       </div> <!-- /friends-box -->
@@ -64,9 +66,12 @@
 
           <%shoppings.each do |shopping|%>
             <%cache ["v1",shopping.store,"user"] do%>
-              <div class="friend">
+              <a href="javascript:void(0)" 
+                  class="friend" 
+                  rel="tooltip" 
+                  title="<%=shopping.store.name%>">
                 <%=image_tag(shopping.store.thumbnail_url)%>
-              </div>
+              </a>
             <%end%>
           <%end%>
         </div> <!-- /friends-box -->
