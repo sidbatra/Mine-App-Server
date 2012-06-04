@@ -4,11 +4,12 @@
 
   <div class="title-box relative border-box">
 
-    <a href="<%=purchase.get('user').path('purchase_photo')%>">
+    <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
       <img class="user-photo absolute" src="<%=purchase.get('user').get('square_image_url')%>"/>
     </a>
 
-    <a class="user-name" href="<%=purchase.get('user').path('purchase_name')%>">
+    <a class="user-name" 
+        href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
         <%=purchase.get('user').escape('first_name')%>   
         <%=purchase.get('user').escape('last_name')%>   
     </a> 
