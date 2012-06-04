@@ -65,11 +65,11 @@ class PurchasesController < ApplicationController
                    params[:purchase_handle])
     end
 
-    @next_purchase = @purchase.next
-    @next_purchase ||= @purchase.user.purchases.first
+    #@next_purchase = @purchase.next
+    #@next_purchase ||= @purchase.user.purchases.first
 
-    @prev_purchase = @purchase.previous
-    @prev_purchase ||= @purchase.user.purchases.last
+    #@prev_purchase = @purchase.previous
+    #@prev_purchase ||= @purchase.user.purchases.last
 
     @origin = 'purchase'
 

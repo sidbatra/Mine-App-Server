@@ -8,11 +8,12 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
     var self  = this;
 
     this.purchase = new Denwen.Models.Purchase(this.options.purchaseJSON);
+    this.panel = this.options.panel;
     this.source  = this.options.source;
 
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
-                              el          : $('#feed'),
-                              model       : this.purchase});
+                              el : $('#feed'),
+                              model : this.purchase});
 
     if(Denwen.H.isLoggedIn()) {
     
@@ -26,6 +27,10 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
 
       $('#purchase_thumb_' + this.purchase.get('id')).addClass('selected');
     }
+    else {
+      $('#purchase_panel_content_' + this.purchase.get('id')).html(this.panel);
+    }
+    
 
     new Denwen.Partials.Facebook.Base();
 
