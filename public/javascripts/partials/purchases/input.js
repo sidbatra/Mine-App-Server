@@ -119,8 +119,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.initPurchaseEl).hide();
     $(this.querySubBoxEl).show();
 
-    if($.support.placeholder)
-      $(this.queryEl).focus();
+    $(this.queryEl).phocus();
 
     Denwen.Track.action("Purchase Initiated");
   },
@@ -187,8 +186,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     if(!e)
       return;
 
-    if($.support.placeholder)
-      $(this.endorsementEl).focus();
+    $(this.endorsementEl).focus();
 
     Denwen.Track.action("Purchase Endorsement Initiated");
   },

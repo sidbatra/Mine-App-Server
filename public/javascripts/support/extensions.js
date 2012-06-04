@@ -133,3 +133,11 @@ $.fn.placeholder = function() {
     }
   });
 }
+
+// Focus on an input element only is placeholder
+// support isn't present.
+//
+$.fn.phocus = function() {
+  if($.support.placeholder)
+    this.focus();
+}
