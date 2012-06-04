@@ -630,7 +630,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-weight: bold; }
 
 .user-box .text-box .user-bio {
-	padding-top: 6px;
+	padding: 6px 0px;
 	font-size: 18px;
 	line-height: 24px;
 	color: #999;
@@ -823,6 +823,11 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn.btn-black:hover {
 	opacity: 0.6;
   filter: alpha(opacity=60); }
+  
+.btn.btn-gray {
+	text-align: left;
+	background: #EEE;
+	color: #999; }
 
 .btn.btn-white { 
 	background: white; 
