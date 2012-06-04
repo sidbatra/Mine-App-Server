@@ -195,7 +195,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   displayPurchaseImage: function(imageURL) {
     $(this.selectionEl).show();
-    $(this.selectionEl).html("<img id='" + this.photoSelectionEl + "' src='" + imageURL + "' />");
+    $(this.selectionEl).html(Denwen.JST['purchases/preview']({
+      id: this.photoSelectionEl,
+      imageURL: imageURL}));
   },
 
   // Hide and clean the product image box.
