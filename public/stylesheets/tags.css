@@ -1,115 +1,95 @@
-/* Invite
+/* Mine Button
 ==================================================================== */
 
-.invite .preview-box {
-	width: 520px;
-	margin: 0 auto; }
 
-.invite .preview-box p {
-	color: #666;
-	font-weight: bold;
-	font-size: 15px;
-	margin-bottom: 13px; }
 
-.invite .fb-timeline {
-	font-family: Lucida Grande, Verdana, Arial;
-	width: 518px;
-	padding: 4px;
-	background: white;
-	font-size: 11px;
-	line-height: 1.28;
-	border: 1px solid #C4CDE0;
-	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
 
-.invite .fb-timeline .user-block {
-	border-bottom: 1px solid #e5e5e5;
-	color: #3B5998;
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-	height: 32px; }
 
-.invite .fb-timeline .user-block .user-photo {
-	width: 32px;
-	height: 32px;
-	float: left;
-	margin-right: 8px; }
 
-.invite .fb-timeline .above-content {
-	color: #333;
-	margin: 15px 0;
-	font-size: 13px;
-	line-height: 18px; }
 
-.invite .fb-timeline .display-content {
-	color: #3B5998;
-	height: 90px; }
 
-.invite .fb-timeline .display-content .art-photo {
-	height: 90px;
-	width: 90px;
-	line-height: 0;
-	background-position: center center;
-	background-size: auto 90px;
-	background-repeat: no-repeat;
-	float: left;
-	font-size: 72px;
-	color: white;
+
+
+/* Onboarding
+==================================================================== */
+
+.onboarding { padding-top: 64px; }
+
+.onboarding .heading {
+	font-size: 24px;
+	line-height: 36px;
+	color: #666; 
 	text-align: center;
-	margin-right: 10px; }
+	margin-bottom: 64px; }
 
-.invite .fb-timeline .display-content .art-photo img {
-	padding-top: 2px;
-	width: 70px;
-	height: 70px; }
-	
-.invite .search-box{ 
-	width: 520px;
-	margin: 18px auto 24px; }
-	
-.invite .search-box input {
-	font-family: 'RooneyLightItalic', Georgia;
-	width: 518px;
-	padding: 0 8px;
-	height: 42px;
-	line-height: 42px;
-	font-size: 15px;
+.onboarding ul { 
+	width: 100%; 
 	margin: 0; }
 	
-.invite .search-box .close {
-	top: 7px;
-	right: 15px;
-	font-size: 28px;
-	line-height: 28px;
-	font-family: Arial;
-	vertical-align: bottom; }
-
-.invite .friends-box li.friend {
-	float: left;
-	list-style-type: none;
-	margin-top: 0;
-	padding: 4px;
-	margin-bottom: 20px; 
-	margin-left: 0px;
-	width: 246px;
-	color: #666; 
-	border: 1px solid #ccc;
-	background: white;
-	font-size: 12px;
-	line-height: 32px;
-	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
+.onboarding ul li {
+	width: 20%;
+	height: 100px;
+	float:left;
+	list-style:none;
+	text-align:center; }
 	
-.invite .friends-box li.friend .user-photo {
-	float: left; 
-	height: 32px;
-	width: 32px;
-	margin-right: 6px; }
+.onboarding ul li a {
+	display: block;
+	background: #f8f8f8;
+	color:#666;
+	height: 100px; }
+
+.onboarding ul li a:hover { background: white; }
+	
+.onboarding ul li a .title {
+	font-family: 'RooneyLightItalic', Georgia;
+	font-size:15px; 
+	top: -24px;
+	width: 20%;
+	text-align: center; }
+	
+.onboarding ul li a img {
+	position:absolute;
+	left:0;
+	top: 100px;
+	margin-left:-9999px;
+	width:100%;
+	clear:left; }
+
+.onboarding ul li a:hover img { margin-left:0; }
 
 
 
+/*
+
+.onboarding .categories,
+.onboarding .examples { 
+	font-size: 0;
+	line-height: 0; }
+
+.onboarding .category,
+.onboarding .example {
+	width: 20%;
+	display: inline-block;
+	height: 100px;
+	background: #f8f8f8;
+	background-position: center; 
+	cursor: pointer; }
+
+.onboarding .category:hover,
+.onboarding .example { background: white; }
+
+.onboarding .category .title {
+	font-size: 15px;
+	font-weight: bold;
+	color: #666; 
+	top: -20px;
+	right: 0;
+	left: 0;
+	text-align: center; }
+	
+.onboarding .category:hover .title { color: #333; }
+*/
 
 
 
@@ -861,6 +841,117 @@ footer, footer a, footer a:hover { color: #ccc; }
 	color: #999;
 	font-size: 14px; 
 	white-space: nowrap; }
+	
+	
+/* Invite
+==================================================================== */
+
+.invite .preview-box {
+	width: 520px;
+	margin: 0 auto; }
+
+.invite .preview-box p {
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 13px; }
+
+.invite .fb-timeline {
+	font-family: Lucida Grande, Verdana, Arial;
+	width: 518px;
+	padding: 4px;
+	background: white;
+	font-size: 11px;
+	line-height: 1.28;
+	border: 1px solid #C4CDE0;
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
+
+.invite .fb-timeline .user-block {
+	border-bottom: 1px solid #e5e5e5;
+	color: #3B5998;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	height: 32px; }
+
+.invite .fb-timeline .user-block .user-photo {
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-right: 8px; }
+
+.invite .fb-timeline .above-content {
+	color: #333;
+	margin: 15px 0;
+	font-size: 13px;
+	line-height: 18px; }
+
+.invite .fb-timeline .display-content {
+	color: #3B5998;
+	height: 90px; }
+
+.invite .fb-timeline .display-content .art-photo {
+	height: 90px;
+	width: 90px;
+	line-height: 0;
+	background-position: center center;
+	background-size: auto 90px;
+	background-repeat: no-repeat;
+	float: left;
+	font-size: 72px;
+	color: white;
+	text-align: center;
+	margin-right: 10px; }
+
+.invite .fb-timeline .display-content .art-photo img {
+	padding-top: 2px;
+	width: 70px;
+	height: 70px; }
+	
+.invite .search-box{ 
+	width: 520px;
+	margin: 18px auto 24px; }
+	
+.invite .search-box input {
+	font-family: 'RooneyLightItalic', Georgia;
+	width: 518px;
+	padding: 0 8px;
+	height: 42px;
+	line-height: 42px;
+	font-size: 15px;
+	margin: 0; }
+	
+.invite .search-box .close {
+	top: 7px;
+	right: 15px;
+	font-size: 28px;
+	line-height: 28px;
+	font-family: Arial;
+	vertical-align: bottom; }
+
+.invite .friends-box li.friend {
+	float: left;
+	list-style-type: none;
+	margin-top: 0;
+	padding: 4px;
+	margin-bottom: 20px; 
+	margin-left: 0px;
+	width: 246px;
+	color: #666; 
+	border: 1px solid #ccc;
+	background: white;
+	font-size: 12px;
+	line-height: 32px;
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
+	
+.invite .friends-box li.friend .user-photo {
+	float: left; 
+	height: 32px;
+	width: 32px;
+	margin-right: 6px; }
 	
 	
 /* Buttons

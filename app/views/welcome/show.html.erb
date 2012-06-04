@@ -1,50 +1,102 @@
-<div class="steps">
-	<div class="container">
+<div class="container onboarding">
+
+	<div class="heading">
+		Welcome to mine, Pierre. <br />
+		What type of purchase would you like to share first?
+	</div>
 	
-		<div class="title">
-			Welcome to Mine, 
-      <span class="name"><%=self.current_user.first_name%></span>. <br />
-			<span style="color: #ccc;">You'll be sharing your first purchase in seconds.</span>
+	
+<ul class="relative">
+		<li>
+			<a href="/">
+				<div class="title absolute">Shoes</div>
+				<img src="http://farm4.static.flickr.com/3029/2776612842_1756099f61.jpg">
+			</a>
+		</li>
+		<li>
+			<a href="/">
+				<div class="title absolute">Clothing</div>
+				<img src="http://farm4.static.flickr.com/3276/2776614876_a8d32c8ecb.jpg">
+			</a>
+		</li>
+		<li>
+			<a href="/">
+				<div class="title absolute">Accessories</div>
+				<img src="http://farm4.static.flickr.com/3092/2776616190_66e45f4b86.jpg">
+			</a>
+		</li>
+		<li>
+			<a href="/">
+				<div class="title absolute">Media</div>
+				<img src="http://farm4.static.flickr.com/3092/2776616190_66e45f4b86.jpg">
+			</a>
+		</li>
+		<li>
+			<a href="/">
+				<div class="title absolute">Technology</div>
+				<img src="http://farm4.static.flickr.com/3092/2776616190_66e45f4b86.jpg">
+			</a>
+		</li>
+	</ul>
+
+	
+	
+	
+	
+	
+	
+<!--
+	
+	<div class="picker-box">
+
+		<div class="categories">
+		
+			<div class="category relative">
+				<div class="title absolute">Shoes</div>
+			</div>
+			
+			<div class="category relative">
+				<div class="title absolute">Clothing</div>
+			</div>
+			
+			<div class="category relative">
+				<div class="title absolute">Electronics</div>
+			</div>
+			
+			<div class="category relative">
+				<div class="title absolute">Decor</div>
+			</div>
+			
+			<div class="category relative">
+				<div class="title absolute">Jewelry</div>
+			</div>
+			
+		</div>
+		
+		<div class="examples">
+		
+			<div class="example">
+			</div>
+			
+			<div class="example">
+			</div>
+			
+			<div class="example">
+			</div>
+			
+			<div class="example">
+			</div>
+			
+			<div class="example">
+			</div>
+			
 		</div>
 	
-		<div class="squares clearfix">
-		
-			<div class="square text light">
-				Add friends to see what they buy and where they shop.
-			</div>
-			<div class="rectangle">
-				<%=image_tag "home_mine/intro/"\
-                      "intro1-#{user_gender(self.current_user)}.jpg"%>
-			</div>
-			
-			<div class="rectangle">
-				<%=image_tag "home_mine/intro/"\
-                      "intro2-#{user_gender(self.current_user)}.jpg"%>
-			</div>
-			<div class="square text light">
-				Mine syncs neatly with your Facebook Timeline.
-			</div>
-			
-			<div class="square text light last">
-				Flick a switch to post favorites as large photos.
-			</div>
-			<div class="rectangle last">
-				<%=image_tag 'home_mine/intro/intro3.jpg'%>
-			</div>	
-					
-		</div> <!-- /squares -->
-	</div>	
-</div> <!-- /steps -->
+	</div> <!-- picker-box -->
 
 
+</div>	
 
-<div class="bottom-bar">
-	<div class="container">
-    <%=link_to "Share a purchase <i class='large-icon-chevron-right large-icon-white'></i>",
-        root_path(:src => "welcome"),
-        :class => "btn btn-primary btn-large go"%>
-	</div>
-</div> <!-- /bottom-bar -->
 
 
 <%content_for :javascript do%>
