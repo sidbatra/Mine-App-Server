@@ -855,6 +855,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-size: 15px;
 	margin-bottom: 13px; }
 
+.invite .preview-box p .fb-favicon {
+	vertical-align: -2px;
+	padding-right: 2px; }
+
 .invite .fb-timeline {
 	font-family: Lucida Grande, Verdana, Arial;
 	width: 518px;
@@ -1204,6 +1208,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0; }
+	
+.fb-favicon {
+	width: 14px;
+	height: 14px; 
+	display: inline-block;
+	background: url("/images/fb-icons.gif") -1px -289px; }
 
 .border-box {
 	-moz-box-sizing: border-box; 
