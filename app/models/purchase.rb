@@ -220,6 +220,11 @@ class Purchase < ActiveRecord::Base
     self.fb_object_id.nil?
   end
 
+  def deleted_from_fb
+    self.fb_action_id = nil
+    self.save!
+  end
+
   # Fetch image from the original source and host it on the Filesystem
   # along with copies at various sizes.
   #
