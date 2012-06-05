@@ -637,8 +637,13 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-weight: bold; 
 	font-size: 36px; }
 
-.item .panel .likes-box .user-photo {
-	vertical-align: baseline; }
+.item .panel .likes-box .user-photo-box { 
+	display: inline-block;
+	vertical-align: top; }
+	
+.item .panel .likes-box .user-photo-box .user-photo { 
+	width: 28px;
+	height: 28px; }
 
 .item .panel .comment-box {
 	min-height: 28px;
@@ -654,6 +659,16 @@ footer, footer a, footer a:hover { color: #ccc; }
 	height: 28px;
 	top: 0;
 	left: 0; }
+
+/* adds fb icons if .fb class added*/
+.item .panel .fb-11 { display: none; }
+.item .panel.fb .fb-11 {
+	display: block;
+	z-index: 100;
+	width: 11px;
+	height: 11px;
+	top: 19px;
+	left: 19px; }
 
 .item .panel .user-name {
 	font-family: Arial;
@@ -856,6 +871,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	margin-bottom: 13px; }
 
 .invite .preview-box p .fb-favicon {
+	display: inline-block;
 	vertical-align: -2px;
 	padding-right: 2px; }
 
@@ -1212,8 +1228,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 .fb-favicon {
 	width: 14px;
 	height: 14px; 
-	display: inline-block;
 	background: url("/images/fb-icons.gif") -1px -289px; }
+	
+.fb-11 {
+	width: 11px;
+	height: 11px; 
+	background: url("/images/fb-icons.gif") -3px -116px; }
 
 .border-box {
 	-moz-box-sizing: border-box; 
