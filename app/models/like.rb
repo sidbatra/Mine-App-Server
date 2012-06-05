@@ -38,5 +38,11 @@ class Like < ActiveRecord::Base
   def name 
     self.user.full_name
   end
+  
+  # Facebook user id of the like owner
+  #
+  def fb_user_id
+    self.user.fb_user_id
+  end
 
 end

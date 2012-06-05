@@ -7,9 +7,10 @@ class LikesController < ApplicationController
   #                        ids whose likes need to be fetched
   #
   def index
-    @likes = [] 
     purchase_ids = params[:purchase_ids].split(",")
     purchases    = Purchase.find_all_by_id(purchase_ids)
+
+    @likes       = Like.with_user.find_all_by_purchase_id(purchase_ids) 
    
     hydra = Typhoeus::Hydra.new
 
@@ -37,10 +38,18 @@ class LikesController < ApplicationController
       like = purchase.fb_post.like!(
               :access_token => self.current_user.access_token) 
 
-      @like = {:purchase_id  => purchase.id,
-               :user_id     => self.current_user.fb_user_id,
+      @like = {:purchase_id => purchase.id,
+               :fb_user_id  => self.current_user.fb_user_id,
                :name        => self.current_user.full_name,
                :id          => SecureRandom.hex(10)} if like
+    
+    elsif purchase.native?
+      like = Like.add(purchase.id,self.current_user.id)
+
+      @like = {:purchase_id => purchase.id,
+               :fb_user_id  => self.current_user.fb_user_id,
+               :name        => self.current_user.full_name,
+               :id          => like.id} 
     end
   rescue => ex
     handle_exception(ex)
@@ -72,7 +81,7 @@ class LikesController < ApplicationController
             
           data.each do |d| 
             d['purchase_id'] = purchase.id
-            d['user_id']     = d['id']
+            d['fb_user_id']  = d['id']
           end
         end
 

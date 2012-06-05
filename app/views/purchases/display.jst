@@ -34,13 +34,11 @@
   <%if(Denwen.H.isLoggedIn()){%>
     <div class="actions border-box" id="feedback">
 
-      <%if(purchase.get('fb_object_id')){%> 
-        <a href="javascript:void(0)"
-            id="purchase_create_like_<%=purchase.get('id')%>"
-            class="btn">
-          <i class="icon-like icon-white"></i>
-        </a>
-      <%}%>
+      <a href="javascript:void(0)"
+          id="purchase_create_like_<%=purchase.get('id')%>"
+          class="btn">
+        <i class="icon-like icon-white"></i>
+      </a>
 
       <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
         <a href="<%=purchase.editPath('feed')%>" 
