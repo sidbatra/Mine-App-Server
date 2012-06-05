@@ -1306,10 +1306,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 @font-face {
     font-family: 'RooneyLightItalic';
-    src: url('/tags/type/rooney-lightitalic-webfont.eot');
-    src: url('/tags/type/rooney-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/tags/type/rooney-lightitalic-webfont.woff') format('woff'),
-         url('/tags/type/rooney-lightitalic-webfont.ttf') format('truetype'),
-         url('/tags/type/rooney-lightitalic-webfont.svg#RooneyLightItalic') format('svg');
+    src: url('/type/rooney-lightitalic-webfont.eot');
+    src: url('/type/rooney-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/type/rooney-lightitalic-webfont.woff') format('woff'),
+         url('/type/rooney-lightitalic-webfont.ttf') format('truetype'),
+         url('/type/rooney-lightitalic-webfont.svg#RooneyLightItalic') format('svg');
     font-style: normal;
     font-weight: normal; }
