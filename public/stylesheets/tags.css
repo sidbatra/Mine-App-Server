@@ -1,95 +1,19 @@
-/* Mine Button
-==================================================================== */
-
-
-
-
-
-
-
-
-
-
 /* Onboarding
 ==================================================================== */
-
-.onboarding { padding-top: 64px; }
 
 .onboarding .heading {
 	font-size: 24px;
 	line-height: 36px;
 	color: #666; 
 	text-align: center;
-	margin-bottom: 64px; }
-
-.onboarding ul { 
-	width: 100%; 
-	margin: 0; }
+	margin-bottom: 36px; }
 	
-.onboarding ul li {
-	width: 20%;
-	height: 100px;
-	float:left;
-	list-style:none;
-	text-align:center; }
-	
-.onboarding ul li a {
-	display: block;
-	background: #f8f8f8;
-	color:#666;
-	height: 100px; }
-
-.onboarding ul li a:hover { background: white; }
-	
-.onboarding ul li a .title {
-	font-family: 'RooneyLightItalic', Georgia;
-	font-size:15px; 
-	top: -24px;
-	width: 20%;
-	text-align: center; }
-	
-.onboarding ul li a img {
-	position:absolute;
-	left:0;
-	top: 100px;
-	margin-left:-9999px;
-	width:100%;
-	clear:left; }
-
-.onboarding ul li a:hover img { margin-left:0; }
-
-
-
-/*
-
-.onboarding .categories,
-.onboarding .examples { 
-	font-size: 0;
-	line-height: 0; }
-
-.onboarding .category,
-.onboarding .example {
-	width: 20%;
-	display: inline-block;
-	height: 100px;
-	background: #f8f8f8;
-	background-position: center; 
-	cursor: pointer; }
-
-.onboarding .category:hover,
-.onboarding .example { background: white; }
-
-.onboarding .category .title {
-	font-size: 15px;
+.onboarding .cards .title-box { 
 	font-weight: bold;
-	color: #666; 
-	top: -20px;
-	right: 0;
-	left: 0;
-	text-align: center; }
-	
-.onboarding .category:hover .title { color: #333; }
-*/
+	height: auto; }
+
+
+
 
 
 
@@ -1088,7 +1012,6 @@ footer, footer a, footer a:hover { color: #ccc; }
           box-shadow: none; }
 
 .btn-group.open .btn.dropdown-toggle { 
-	background-color: #eee; 
 	color: white;
 	  -webkit-transition: none;
 	   -moz-transition: none;
@@ -1097,6 +1020,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	-webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none; }
+
+.btn-group.open .btn-mine.dropdown-toggle { 
+	background: #177DBE; }
+          
 
 .dropdown-menu {
   position: absolute;
