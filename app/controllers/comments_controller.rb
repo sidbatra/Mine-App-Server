@@ -76,7 +76,10 @@ class CommentsController < ApplicationController
         id    = json['id']
         error = json['error']
 
-        if error || !id
+        if error 
+          purchase.fb_action_id = nil
+          purchase.save!
+
           data = [{'purchase_id'  => purchase.id,
                    'error'        => true}]
         else
