@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604231434) do
+ActiveRecord::Schema.define(:version => 20120605190617) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(:version => 20120604231434) do
   add_index "invites", ["platform"], :name => "index_invites_on_platform"
   add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
   add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["purchase_id", "user_id"], :name => "index_likes_on_purchase_id_and_user_id", :unique => true
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"

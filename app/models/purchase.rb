@@ -9,6 +9,7 @@ class Purchase < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   has_many :comments, :dependent => :destroy
+  has_many :likes, :dependent => :destroy
   belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
   belongs_to :product
