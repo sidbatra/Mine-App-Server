@@ -57,8 +57,9 @@
     </div>
   <%}%> 
   
-  <div class="photo rounded-5">
-    <img src="<%=purchase.get('giant_url')%>" />
+  <div class="photo rounded-5 relative">
+  	<img class="stamp absolute" src="<%=Denwen.H.imagePath('mine_stamp_54_2x.png')%>">
+    <img class="item-photo" src="<%=purchase.get('giant_url')%>" />
   </div>
 
   

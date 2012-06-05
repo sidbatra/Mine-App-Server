@@ -566,10 +566,16 @@ footer, footer a, footer a:hover { color: #ccc; }
 	left: 24px;
 	line-height: 1; }
 	
-.item .photo img {
+.item .photo img.item-photo {
 	min-height: 240px;
 	max-width: 440px; 
 	max-height: 440px; }
+	
+.item .photo img.stamp {
+	width: 54px;
+	height: 54px;
+	top: 19px;
+	right: 19px; }
 
 
 /* Item Actions + Comments
