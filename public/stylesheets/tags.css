@@ -708,9 +708,9 @@ footer, footer a, footer a:hover { color: #ccc; }
 	bottom: 24px;
 	left: 24px;
 	right: 24px;
+	background: #f8f8f8;
 	padding-top: 11px;
 	border-top: 1px solid #ddd;
-	background: #f8f8f8;
 	-webkit-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
 	-moz-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
 	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
@@ -1298,7 +1298,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 		top: 0;
 		left: 0;
 		right: 0;
-		bottom: 0; }
+		bottom: 0;
+		padding-top: none;
+		border-top: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none; }
    
   .item .actions,
   .user-box .friends-box {
