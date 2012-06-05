@@ -103,6 +103,7 @@ class PurchasesController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
+    redirect_to(root_path) if @error
   end
 
   # Update a purchase.
