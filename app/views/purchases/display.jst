@@ -62,7 +62,7 @@
 
   
   <div id="purchase_panel_<%=purchase.get('id')%>" 
-      class="panel fb border-box relative">
+      class="panel border-box relative <%=purchase.get('fb_object_id') ? 'fb' : ''%>" >
   	
   	<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box">

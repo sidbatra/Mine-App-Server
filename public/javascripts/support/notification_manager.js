@@ -16,9 +16,9 @@ Denwen.NotificationManager.Callback= {
   CommentFetched            : "commentFetched",
   CommentCreated            : "commentCreated",
   CommentsFetched           : "commentsFetched",
-  DisableComments           : "disableComments",
+  FallbackToNativeComments  : "fallbackToNativeComments",
   LikeFetched               : "likeFetched",
   LikeCreated               : "likeCreated",
   LikesFetched              : "likesFetched",
-  DisableLikes              : "disableLikes"
+  FallbackToNativeLikes     : "fallbackToNativeLikes",
 };

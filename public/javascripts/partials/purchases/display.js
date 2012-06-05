@@ -47,8 +47,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                 this);
 
     Denwen.NM.bind(
-                Denwen.NotificationManager.Callback.DisableComments,
-                this.disableComments,
+                Denwen.NotificationManager.Callback.FallbackToNativeComments,
+                this.fallbackToNativeComments,
                 this);
 
     Denwen.NM.bind(
@@ -72,8 +72,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                 this);
 
     Denwen.NM.bind(
-                Denwen.NotificationManager.Callback.DisableLikes,
-                this.disableLikes,
+                Denwen.NotificationManager.Callback.FallbackToNativeLikes,
+                this.fallbackToNativeLikes,
                 this);
   },
 
@@ -144,7 +144,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // css scorlling magic if this have.
   //
   testOverflow: function() {
-    if($(this.commentsEl).offset().top + $(this.commentsEl).height() + 50 > 
+    if($(this.commentsEl).offset().top + $(this.commentsEl).height() +  65 > 
           $(this.purchaseEl).offset().top + $(this.purchaseEl).height())
       $(this.panelEl).addClass('overflowing');
   },
@@ -165,11 +165,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     }
   },
 
-  // Disable posting of comments 
+  // Fallback to native comments when shared item is deleted from 
+  // facebook
   //
-  disableComments: function(comment) {
+  fallbackToNativeComments: function(comment) {
     if(this.model.get('id') == comment.get('purchase_id'))
-      console.log('disable comments for ' + comment.get('purchase_id'));
+      $(this.panelEl).removeClass('fb');
   },
 
   // All comments have been fetched.
@@ -212,11 +213,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     }
   },
 
-  // Disable posting of likes 
+  // Fallback to native likes when shared item is deleted 
+  // from fb
   //
-  disableLikes: function(like) {
+  fallbackToNativeLikes: function(like) {
     if(this.model.get('id') == like.get('purchase_id'))
-      console.log('disable likes for ' + like.get('purchase_id'));
+      $(this.panelEl).removeClass('fb');
   },
   
   // Fired when all the likes associated with a purchase are fetched
