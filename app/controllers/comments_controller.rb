@@ -42,8 +42,16 @@ class CommentsController < ApplicationController
                   :id           => comment.identifier,
                   :messsage     => comment.message,
                   :from         => {:name => self.current_user.full_name,
-                                    :id   => self.current_user.fb_user_id},
-                  :created_time => Time.now}
+                                    :id   => self.current_user.fb_user_id}}
+
+    elsif purchase.native?
+      comment = Comment.add(params,self.current_user.id) 
+
+      @comment = {:purchase_id  => comment.purchase_id,
+                  :id           => comment.id,
+                  :messsage     => comment.message,
+                  :from         => {:name => self.current_user.full_name,
+                                    :id   => self.current_user.fb_user_id}}
     end
   rescue => ex
     handle_exception(ex)

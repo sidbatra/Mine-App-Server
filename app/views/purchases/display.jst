@@ -100,7 +100,7 @@
 	      <div id="purchase_comments_<%=purchase.get('id')%>">
 	      </div>
 	      
-	      <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id')){%>
+	      <%if(Denwen.H.isLoggedIn()){%>
 	        <div class="add-comment-box relative">
 	          <img class="self-photo absolute" 
 	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />

@@ -8,6 +8,7 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
+  has_many :comments, :dependent => :destroy
   belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
   belongs_to :product
@@ -209,7 +210,13 @@ class Purchase < ActiveRecord::Base
   # Returns if the purchase sharing on facebook has finished 
   #
   def shared?
-    self.fb_object_id.present? & (self.fb_object_id != FBSharing::Underway) 
+    !self.native? & (self.fb_object_id != FBSharing::Underway) 
+  end
+
+  # Returns if the purchase is native to the mine network 
+  #
+  def native?
+    self.fb_object_id.nil?
   end
 
   # Fetch image from the original source and host it on the Filesystem
