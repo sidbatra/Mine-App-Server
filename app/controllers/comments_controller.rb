@@ -7,9 +7,10 @@ class CommentsController < ApplicationController
   #                        ids whose comments need to be fetched
   #
   def index
-    @comments     = []
     purchase_ids  = params[:purchase_ids].split(",")
     purchases     = Purchase.find_all_by_id(purchase_ids)
+
+    @comments     = Comment.with_user.find_all_by_purchase_id(purchase_ids) 
    
     hydra = Typhoeus::Hydra.new
 

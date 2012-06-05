@@ -16,14 +16,11 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
                               model : this.purchase});
 
     if(Denwen.H.isLoggedIn()) {
-    
-      if(this.purchase.get('fb_object_id')) { 
-        this.likes = new Denwen.Partials.Likes.Likes();
-        this.likes.fetch(this.purchase.get('id'));
+      this.likes = new Denwen.Partials.Likes.Likes();
+      this.likes.fetch(this.purchase.get('id'));
 
-        this.comments = new Denwen.Partials.Comments.Comments();
-        this.comments.fetch(this.purchase.get('id'));
-      }
+      this.comments = new Denwen.Partials.Comments.Comments();
+      this.comments.fetch(this.purchase.get('id'));
 
       $('#purchase_thumb_' + this.purchase.get('id')).addClass('selected');
     }

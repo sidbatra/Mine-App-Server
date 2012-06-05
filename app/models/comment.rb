@@ -31,4 +31,15 @@ class Comment < ActiveRecord::Base
       :user_id          => user_id)
   end
 
+  #----------------------------------------------------------------------
+  # Instance methods
+  #----------------------------------------------------------------------
+
+  # Facebook like user object of the comment owner 
+  # 
+  def from
+    {:name  => self.user.full_name,
+     :id    => self.user.fb_user_id}
+  end
+
 end
