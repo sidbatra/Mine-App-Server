@@ -170,7 +170,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   fallbackToNativeComments: function(comment) {
     if(this.model.get('id') == comment.get('purchase_id'))
-      $(this.panelEL).removeClass('fb');
+      $(this.panelEl).removeClass('fb');
   },
 
   // All comments have been fetched.
@@ -218,7 +218,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   fallbackToNativeLikes: function(like) {
     if(this.model.get('id') == like.get('purchase_id'))
-      $(this.panelEL).removeClass('fb');
+      $(this.panelEl).removeClass('fb');
   },
   
   // Fired when all the likes associated with a purchase are fetched
