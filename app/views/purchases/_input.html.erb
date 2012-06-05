@@ -11,11 +11,13 @@
     class="search-box" 
     style="<%=show_query_box ? '' : 'display:none'%>">
 
-    <a id="initiate_purchase" class="btn btn-large btn-red border-box" style="width: 220px;">
+    <a id="initiate_purchase" 
+        class="btn btn-large btn-red border-box" 
+        style="width: 220px;<%=!show_query_sub_box ? '' : 'display:none;'%>">
       <i class="icon-mine icon-white"></i> Add a new purchase
     </a>
 
-    <div id="query_sub_box" style="display:none">
+    <div id="query_sub_box" style="<%=show_query_sub_box ? '' : 'display:none'%>">
       <%=f.text_field :query,
           :placeholder => "Enter detailed item name or URL",
           :class => "border-box enter-item-name"%>

@@ -105,6 +105,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     $(this.storeEl).placeholder();
     $(this.titleEl).placeholder();
+
+    if($(this.queryEl).is(":visible"))
+      $(this.queryEl).phocus();
   },
 
   // Callback from autocomplete when stores are loaded
