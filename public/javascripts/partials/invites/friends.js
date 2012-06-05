@@ -32,9 +32,19 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
     this.contacts.fetch({
           success:  function(collection){
                       self.removeFriends();
-                      self.render(self.contacts);},
+                      self.render(self.contacts);
+                      if($(self.queryEl).val().length)self.filter();},
           error:    function(collection,errors){}
           });
+  },
+
+  // Interface to launch an explicit search.
+  //
+  search: function(query) {
+    $(this.queryEl).val(query);
+
+    if(this.contacts && !this.contacts.isEmpty())
+      this.filter();
   },
 
   // Filter out existing friends from contacts
@@ -100,7 +110,7 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
 
   // Reset the search box and the contacts list 
   //
-  reset :function() {
+  reset: function() {
     $(this.queryEl).val('');
     $(this.queryEl).focus();
     $(this.cancelSearchEl).hide();
