@@ -1000,9 +1000,9 @@ footer, footer a, footer a:hover { color: #ccc; }
   vertical-align: middle;
   cursor: pointer;
   background: #0AB0ED;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
   border: none;
   box-shadow: none;
   text-shadow: none;
@@ -1048,9 +1048,9 @@ footer, footer a, footer a:hover { color: #ccc; }
   height: 42px;
   font-size: 15px;
   line-height: 42px;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px; }
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
 .btn-large [class^="icon-"] { margin-top: 2px; }
