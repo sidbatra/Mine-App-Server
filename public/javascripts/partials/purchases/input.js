@@ -407,6 +407,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     $(this.urlAlertBoxEl).hide();
 
+    window.scrollTo(0,$(this.formEl).offset().top - 20);
+
     Denwen.Track.action("Product Selected");
 
     // Test if the website url matches a known store to populate
@@ -437,7 +439,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.extraEl).hide();
     $(this.imageBrokenMsgEl).addClass('error');
 
-    this.productSearch.search();
+    this.productSearch.initiateSearch(true);
 
     Denwen.Track.action("Product Image Broken");
   },
