@@ -48,6 +48,10 @@ Denwen.Models.Purchase = Backbone.Model.extend({
   isShared: function() {
     return this.get('fb_object_id') && 
            (this.get('fb_object_id') != Denwen.FBSharing.Underway); 
+  },
+
+  hasSharingUnderway: function() {
+    return this.get('fb_object_id') == Denwen.FBSharing.Underway;
   }
 
 });
