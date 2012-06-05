@@ -660,16 +660,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 	top: 0;
 	left: 0; }
 
-/* adds fb icons if .fb class added*/
-.item .panel .fb-11 { display: none; }
-.item .panel.fb .fb-11 {
-	display: block;
-	z-index: 100;
-	width: 11px;
-	height: 11px;
-	top: 19px;
-	left: 19px; }
-
 .item .panel .user-name {
 	font-family: Arial;
 	font-size: 11px;
@@ -677,7 +667,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-weight: bold;
 	line-height: 1;
 	text-transform: none;
-	margin-bottom: 4px; }
+	margin-bottom: 3px; }
 	
 .feed .item .panel .add-comment-box input {
 	font-family: 'RooneyLightItalic', Georgia;
@@ -695,9 +685,22 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-weight: bold; 
 	line-height: 30px; }
 	
+/* adds fb icons if .fb class added*/
+.item .panel .fb-11 { display: none; }
+.item .panel.fb .fb-11 {
+	display: block;
+	z-index: 100;
+	width: 11px;
+	height: 11px;
+	top: 17px;
+	left: 19px; }
+
+/* top +11px for overflowing gradient padding */
+.item .panel.overflowing.fb .add-comment-box .fb-11 { top:28px; }
+	
 /* when panel content overflows */
 .item .panel.overflowing .panel-contents {
-	height: 444px; 
+	height: 433px; 
 	overflow-y: scroll; }
 	
 .item .panel.overflowing .panel-contents .add-comment-box {
@@ -705,10 +708,15 @@ footer, footer a, footer a:hover { color: #ccc; }
 	bottom: 24px;
 	left: 24px;
 	right: 24px;
-	padding-top: 12px;
-	background: url("/images/fade-bottom-strip-f8f8f8.png") top left repeat-x; }
+	padding-top: 11px;
+	border-top: 1px solid #ddd;
+	background: #f8f8f8;
+	-webkit-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.05);
+	z-index: 101; }
 
-.item .panel.overflowing .panel-contents .add-comment-box .self-photo { top: 12px; }
+.item .panel.overflowing .panel-contents .add-comment-box .self-photo { top: 11px; }
 
 
 /* Profile
@@ -992,9 +1000,9 @@ footer, footer a, footer a:hover { color: #ccc; }
   vertical-align: middle;
   cursor: pointer;
   background: #0AB0ED;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
   border: none;
   box-shadow: none;
   text-shadow: none;
@@ -1040,9 +1048,9 @@ footer, footer a, footer a:hover { color: #ccc; }
   height: 42px;
   font-size: 15px;
   line-height: 42px;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px; }
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
 .btn-large [class^="icon-"] { margin-top: 2px; }

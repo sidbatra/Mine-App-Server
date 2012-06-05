@@ -62,7 +62,7 @@
 
   
   <div id="purchase_panel_<%=purchase.get('id')%>" 
-      class="panel border-box relative">
+      class="panel fb border-box relative">
   	
   	<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box">
@@ -103,6 +103,7 @@
 	        <div class="add-comment-box relative">
 	          <img class="self-photo absolute" 
 	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+	          <div class="fb-11 absolute"></div>
 	          <input type="text" 
 	            id="purchase_comment_data_<%=purchase.get('id')%>"
 	            class="border-box"
