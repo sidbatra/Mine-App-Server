@@ -78,7 +78,8 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   // Fired when the user wants to write a comment 
   //
   prepare: function() {
-    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
+    if(this.purchase.isNative() || 
+          Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
       this.decide();
     else  
       this.fbSettings.showPermissionsDialog();
