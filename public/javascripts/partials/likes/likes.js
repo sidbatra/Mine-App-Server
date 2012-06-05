@@ -33,7 +33,7 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
     this.likes.each(function(like){
       if(like.get('error')) {
         Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.DisableLikes,
+          Denwen.NotificationManager.Callback.FallbackToNativeLikes,
           like);
       }
       else {

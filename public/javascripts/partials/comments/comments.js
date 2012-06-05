@@ -33,7 +33,7 @@ Denwen.Partials.Comments.Comments = Backbone.View.extend({
     this.comments.each(function(comment){
       if(comment.get('error')) {
         Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.DisableComments,
+          Denwen.NotificationManager.Callback.FallbackToNativeComments,
           comment);
       }
       else {
