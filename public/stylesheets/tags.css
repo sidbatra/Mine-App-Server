@@ -2,16 +2,85 @@
 ==================================================================== */
 
 .onboarding .heading {
+	-webkit-font-smoothing: antialiased;
 	font-size: 24px;
-	line-height: 36px;
+	line-height: 32px;
 	color: #666; 
 	text-align: center;
-	margin-bottom: 36px; }
+	margin-bottom: 24px; }
 	
-.onboarding .cards .title-box { 
-	font-weight: bold;
-	height: auto; }
+.onboarding input.first-item  {
+	font-family: 'RooneyLightItalic', Georgia;
+	width: 348px;
+	padding: 0 8px;
+	height: 42px;
+	font-size: 15px;
+	margin: 0; }
 
+.onboarding .hint {
+	-webkit-font-smoothing: antialiased;
+/* 	font-family: 'RooneyLightItalic', Georgia; */
+	font-size: 15px;
+	line-height: 1;
+	color: #777; 
+	text-align: center;
+	margin-top: 18px; }
+
+.onboarding .hint span.nike {
+	font-family: Arial;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-style: oblique;
+	font-size: 12px;
+	color: #888;
+	letter-spacing: -1px;
+	padding: 0 12px 15px 10px;
+	background: url('/images/ob/swoosh.png') bottom left no-repeat; }
+	
+.onboarding .examples { 
+	color: #666;
+	margin-top: 36px;
+	border-top: 1px dotted #CCC;
+	padding-top: 18px; }
+
+.onboarding .examples p {
+	color: #666;
+	font-weight: bold;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 13px; }
+
+.onboarding .examples .example {
+	line-height: 20px;
+	height: 72px;
+	width: 446px;
+	background: #f8f8f8;
+	margin: 0 auto 12px; }
+	
+.onboarding .examples .example .text { 
+	float: left;
+	padding-top: 15px; }
+
+.onboarding .examples .item-photo { 
+	width: 62px;
+	height: 62px;
+	padding: 5px;
+	background: white;
+	float: left; 
+	margin-right: 10px; }
+	
+.onboarding .examples .item-name { 
+	font-family: 'RooneyLightItalic', Georgia;
+	font-size: 20px; }
+	
+.onboarding .examples .sub { 
+	font-size: 12px;
+	color: #999; }	
+	
+.onboarding .examples .user-name { 
+/* 	color: #555;  */
+	font-weight: bold; }	
+	
 
 
 
