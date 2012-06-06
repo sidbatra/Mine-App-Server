@@ -32,11 +32,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.onboardingEl         = '#onboarding';
     this.onboardingMsgEl      = '#onboarding_create_msg';
     this.titleEl              = '#purchase_title';
-    this.titleBoxEl           = '#title_box';
     this.productTitleEl       = '#purchase_product_title';
     this.productExternalIDEl  = '#purchase_product_external_id';
     this.storeEl              = '#purchase_store_name';
-    this.storeBoxEl           = '#store_box';
     this.initEndorsementEl    = '#initiate_endorsement';
     this.endorsementEl        = '#purchase_endorsement';
     this.websiteEl            = '#purchase_source_url';
@@ -252,22 +250,22 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
         $(this.titleEl).val() == $(this.titleEl).attr('placeholder')) {
       valid = false;
 
-      $(this.titleBoxEl).addClass('error');
+      $(this.titleEl).addClass('error');
       Denwen.Track.purchaseValidationError('No Title');
     }
     else {
-      $(this.titleBoxEl).removeClass('error');
+      $(this.titleEl).removeClass('error');
     }
 
     if(!this.isStoreUnknown() && ($(this.storeEl).val().length < 1 || 
           $(this.storeEl).val() == $(this.storeEl).attr('placeholder'))) {
       valid = false;
 
-      $(this.storeBoxEl).addClass('error');
+      $(this.storeEl).addClass('error');
       Denwen.Track.purchaseValidationError('No Store');
     }
     else {
-      $(this.storeBoxEl).removeClass('error');
+      $(this.storeEl).removeClass('error');
     }
 
     return valid;
