@@ -619,7 +619,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	height: 28px;
 	color: #555;
 	margin-bottom: 18px;
-	overflow: hidden;
+	overflow-y: hidden;
 	white-space: nowrap; }
 
 .item .panel .likes-box .fader {
@@ -640,7 +640,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .item .panel .likes-box .user-photo-box { 
 	display: inline-block;
-	vertical-align: top; }
+/* 	vertical-align: top; */ }
 	
 .item .panel .likes-box .user-photo-box .user-photo { 
 	width: 28px;
