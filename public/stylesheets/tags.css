@@ -7,7 +7,10 @@
 	line-height: 32px;
 	color: #666; 
 	text-align: center;
+	margin-top: -12px;
 	margin-bottom: 24px; }
+
+.onboarding .create-box .search-box { padding: 0; }
 	
 .onboarding input.first-item  {
 	font-family: 'RooneyLightItalic', Georgia;
@@ -38,9 +41,10 @@
 	
 .onboarding .examples { 
 	color: #666;
-	margin-top: 42px;
+	background: white;
+	margin-top: 36px;
 	border-top: 1px dotted #CCC;
-	padding-top: 18px; }
+	padding: 18px 0; }
 
 .onboarding .examples p {
 	color: #666;
