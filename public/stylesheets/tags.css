@@ -233,6 +233,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 348px;
 	padding: 0 8px;
 	height: 42px;
+	line-height: 42px;
 	font-size: 15px;
 	margin: 0; }
 
@@ -1168,7 +1169,42 @@ footer, footer a, footer a:hover { color: #ccc; }
   color: #575E62;
   text-decoration: none;
   background-color: #eee; }
-  
+
+/*
+textarea, input[type="text"], input[type="password"], 
+input[type="datetime"], input[type="datetime-local"], 
+input[type="date"], input[type="month"], input[type="time"], 
+input[type="week"], input[type="number"], input[type="email"], 
+input[type="url"], input[type="search"], input[type="tel"], 
+input[type="color"], .uneditable-input { 
+	border-width: 2px;
+	border-color: #d5d5d5;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none; }
+	
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: #0AB0ED;
+  border-width: 2px;
+  outline: 0;
+  outline: thin dotted \9; }
+*/
+
  
 /* Loading Animations
 ==================================================================== */
@@ -1224,6 +1260,15 @@ footer, footer a, footer a:hover { color: #ccc; }
 .fixed    { position: fixed; }
 .relative { position: relative; }
 .absolute { position: absolute; }
+
+.error { color: #b94a48 !important; }
+input.error, textarea.error { border-color: #b94a48 !important; }
+
+input.error:focus, textarea.error:focus {
+	border-color: #b94a48 !important;
+  -webkit-box-shadow: 0 0 6px #d59392;
+     -moz-box-shadow: 0 0 6px #d59392;
+          box-shadow: 0 0 6px #d59392; }
 
 .three-to-two { margin-right: 38px; }
 /* see media queries for 2-span variant */
