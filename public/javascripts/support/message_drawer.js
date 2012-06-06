@@ -23,6 +23,8 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
   // Display a new message with a new class in the drawer
   //
   display: function(text,newClass,timeout) {
+    return;
+
     var self = this;
 
     if(timeout == undefined)
