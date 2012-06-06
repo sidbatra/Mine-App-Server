@@ -10,9 +10,17 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.hintEl = '#hint';
+    this.examplesEl = '#examples';
+
     this.input = new Denwen.Partials.Purchases.Input({
                         el  : $('body'),
                         mode: Denwen.PurchaseFormType.New});
+
+    this.input.bind(
+      Denwen.Partials.Purchases.Input.Callback.ProductSelected,
+      this.productSelected,
+      this);
 
     this.input.bind(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
@@ -37,6 +45,13 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // --
   // Callbacks from Purchases.Input
   // --
+
+  // Cleanup ui after a product has been selected.
+  //
+  productSelected: function(product) {
+    $(this.hintEl).hide();
+    $(this.examplesEl).hide();
+  },
 
   // Display the freshly created purchase in the feed.
   //

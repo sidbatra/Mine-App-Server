@@ -425,6 +425,10 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
         });
       }
     } //attempt store search
+
+    this.trigger(
+      Denwen.Partials.Purchases.Input.Callback.ProductSelected,
+      product);
   },
 
   // Fired when a product image is broken
@@ -490,6 +494,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 // Define callbacks.
 //
 Denwen.Partials.Purchases.Input.Callback = {
+  ProductSelected: "productSelected",
   PurchaseCreated: "purchaseCreated",
   PurchaseCreationFailed: "purchaseCreationFailed"
 };
