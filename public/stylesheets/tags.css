@@ -132,10 +132,10 @@ a:hover {
 	float:right;
 	margin-top: 15px; }
 
-.header .logo {
-	margin-top: 4px;
-	height: 78px;
-	width: 203px; }
+.header .navigation .logo {
+	top: 4px;
+	left: 0;
+	height: 78px; }
 	
 .header .btn-user { 
 	padding-left: 50px !important;

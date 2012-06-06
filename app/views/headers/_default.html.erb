@@ -1,8 +1,8 @@
 <div class="header">
-	<div class="navigation">
+	<div class="navigation relative">
 		
     <%=link_to_if !is_onboarding?,
-        image_tag("mine_78_2x.png", :class => "logo"),
+        image_tag("mine_78_2x.png", :class => "logo absolute"),
         root_path(:src => "bar")%>
 		
     <%if logged_in?%>
