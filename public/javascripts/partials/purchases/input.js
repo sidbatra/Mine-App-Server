@@ -20,6 +20,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.mode                 = this.options.mode;
     this.scrollOnSelection    = this.options.scrollOnSelection == undefined ? 
                                   true : this.options.scrollOnSelection;
+    this.resetOnCreation      = this.options.resetOnCreation == undefined ? 
+                                  true : this.options.resetOnCreation;
     this.searchesCount        = 0;
     this.oneWordToolTipDone   = false;
     this.urlToolTipDone       = false;
@@ -346,13 +348,16 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // purchase - Backbone.Model.Purchase. Freshly created purchase.
   //
   purchaseCreated: function(purchase) {
-    this.hidePurchaseImage();
-    $(this.submitButtonEl).removeClass(this.postingClass);
-    this.hideExtraSteps();
-    this.resetForm();
-    this.displayQueryBox();
-    $(this.querySubBoxEl).hide();
-    $(this.initPurchaseEl).show();
+
+    if(this.resetOnCreation) {
+      this.hidePurchaseImage();
+      $(this.submitButtonEl).removeClass(this.postingClass);
+      this.hideExtraSteps();
+      this.resetForm();
+      this.displayQueryBox();
+      $(this.querySubBoxEl).hide();
+      $(this.initPurchaseEl).show();
+    }
 
     this.trigger(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,

@@ -73,7 +73,8 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Create();
+    new Denwen.Views.Welcome.Create({
+          nextURL : "<%=root_path(:src => 'welcome')%>"});
   </script>
 <%end%>
 
