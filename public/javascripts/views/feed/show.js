@@ -66,9 +66,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     Denwen.Track.version(Denwen.H.version);
     Denwen.Track.isEmailClicked(this.source);
 
-    mixpanel.name_tag(Denwen.H.currentUser.get('email'));
-    mixpanel.register_once({"Age" : Denwen.H.currentUser.get('age')}); 
-    mixpanel.register_once({"Gender" : Denwen.H.currentUser.get('gender')}); 
+    Denwen.Track.user(
+      Denwen.H.currentUser.get('email'),
+      Denwen.H.currentUser.get('age'),
+      Denwen.H.currentUser.get('gender')); 
   },
 
   // --

@@ -144,7 +144,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // css scorlling magic if this have.
   //
   testOverflow: function() {
-    if($(this.commentsEl).offset().top + $(this.commentsEl).height() +  65 > 
+    if($(this.commentsEl).offset().top + $(this.commentsEl).height() +  75 > 
           $(this.purchaseEl).offset().top + $(this.purchaseEl).height())
       $(this.panelEl).addClass('overflowing');
   },

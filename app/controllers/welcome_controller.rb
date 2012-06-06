@@ -9,8 +9,8 @@ class WelcomeController < ApplicationController
     case @filter
     when WelcomeFilter::Learn
       @view = "show"
-    when WelcomeFilter::Share
-      @view = "share"
+    when WelcomeFilter::Create
+      @view = "create"
     else
       raise IOError, "Incorrect welcome show ID"
     end

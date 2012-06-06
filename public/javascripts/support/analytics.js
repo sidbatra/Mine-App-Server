@@ -20,6 +20,19 @@ Denwen.Analytics = Backbone.Model.extend({
     mixpanel.track(name,options);
   },
 
+  // Public. Track useful attributes about the current user.
+  //
+  // email - The String email of the user.
+  // age - The Integer age of the user.
+  // gender - The String gender of the user. Male or Female.
+  //
+  user: function(email,age,gender) {
+    mixpanel.name_tag(email);
+
+    mixpanel.register_once({"Age" : age});
+    mixpanel.register_once({"Gender" : gender});
+  },
+
   // Public. Track the version number of the application as a variable.
   //
   // version - The String in a MAJOR.MINOR.PATCH format.
