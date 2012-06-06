@@ -1,6 +1,6 @@
 <div class="container onboarding">
 
-	<div class="heading" id="step_1">
+	<div class="heading">
 		<b>Welcome, Pierre</b><br />
 			Thanks for being one of the first to join mine.
 	</div>
@@ -14,17 +14,19 @@
 	
 	<h3>How does it work?</h3>
 	<p>
-		When you add a new purchase, friends you've invited will see it in their feed of items when they log in.
+		When you add a new purchase, friends you've invited will 
+    see it in their feed of items when they log in.
 		You can also share out more widely to your Facebook friends.
 	</p>
 
-	<a class="btn btn-large" style="display: block; margin: 24px 100px 12px;">
-		Ok, show me how to add a purchase
-		<i class="icon-chevron-right icon-white"></i>
-	</a>
+  <%=link_to "Ok, show me how to add a purchase 
+              <i class='icon-chevron-right icon-white'></i>",
+      welcome_path(WelcomeFilter::Create),
+      :class => "btn btn-large",
+      :style => "display: block; margin: 24px 100px 12px;"%>
 	
 	<p class="sub">Have a question? 
-		<a href="mailto:Mine &lt;contact@getmine.com&gt;">Email us.</a>
+		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us.</a>
 	</p>
 
 </div>	<!-- /container -->
