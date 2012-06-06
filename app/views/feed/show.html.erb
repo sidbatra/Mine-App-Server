@@ -77,12 +77,6 @@
 
 
   <div id="feed" class="feed">
-
-    <%if self.current_user.purchases_count.zero?%>
-      <%=render :partial => "feed/placeholder",
-          :locals => {:user => self.current_user}%> 
-    <%end%>
-
   </div> <!-- feed -->
   
   <div id="feed-spinner" 

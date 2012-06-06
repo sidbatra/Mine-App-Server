@@ -16,7 +16,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     this.feedEl   = '#feed';
-    this.feedPlaceholderEl = '#feed-placeholder';
 
     this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
     this.input    = new Denwen.Partials.Purchases.Input({
@@ -79,7 +78,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Display the freshly created purchase in the feed.
   //
   purchaseCreated: function(purchase) {
-    $(this.feedPlaceholderEl).hide();
 
     this.content.insert(purchase);
 
