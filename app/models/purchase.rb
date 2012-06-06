@@ -315,13 +315,13 @@ class Purchase < ActiveRecord::Base
       base = base.composite(image) do |canvas|
         canvas.quality "100"
         canvas.gravity "Center"
-        canvas.geometry "960x960+0+0"
+        canvas.geometry "407x407+0+0"
       end
 
       base = base.composite(overlay) do |canvas|
         canvas.quality "100"
         canvas.gravity "NorthWest"
-        canvas.geometry "128x128+1028+68"
+        canvas.geometry "54x54+447+19"
       end
 
       FileSystem.store(
