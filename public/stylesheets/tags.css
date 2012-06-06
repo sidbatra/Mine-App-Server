@@ -365,7 +365,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 .create-box .panel a.toggle-switch.off div.on { display: none; }   
 
 .create-box .panel a.toggle-switch .text { 
-	width: 43px;
+	width: 42px;
 	text-align: center; }
     
 .create-box .panel a.toggle-switch .knob { 
