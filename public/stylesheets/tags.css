@@ -1070,16 +1070,16 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .btn.btn-black { 
 	background: black; 
-	opacity: 0.4;
-  filter: alpha(opacity=40); 
+	opacity: 0.3;
+  filter: alpha(opacity=30); 
   -webkit-transition: opacity .15s ease-in;
 	-moz-transition: opacity .15s ease-in;
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
 	
 .btn.btn-black:hover {
-	opacity: 0.6;
-  filter: alpha(opacity=60); }
+	opacity: 0.5;
+  filter: alpha(opacity=50); }
   
 .btn.btn-gray {
 	text-align: left;
