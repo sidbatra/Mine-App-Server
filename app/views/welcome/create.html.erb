@@ -34,78 +34,36 @@
 	
 	<div class="hint">Tip: Adding your item's 
 		<span style="color:#F7921E">c</span><span style="color:#EF4923">o</span><span style="color:#B61F8E">l</span><span style="color:#00AEEF">o</span><span style="color:#65BC46">r</span> 
-		and <span class="nike">brand</span> can help you find it.
-	</div>
+    and <span class="nike">brand</span> can help you find it.
+	</div> <!-- /hint -->
 	
 	<div class="examples">
 		<p>Recently added examples:</p>
 		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NzAxYjUzOGM5ZWEzNjcyNzE5MTUxMzM3OTA2MTE5.jpg" />
-			<div class="text">
-				<span class="item-name">"Cole Haan Air Bria"</span><br />
-				<span class="sub">added by <span class="user-name">Natala Menezes</span></span>
-			</div>
-		</div>
+    <%@samples = [
+      {:user => "Natala Menezes",:title => "Cole Haan Air Bria", :image => "natala.jpg"},
+      {:user => "Richard Perez",:title => "Cohen Brothers Collection Box Set", :image => "richard.jpg"},
+      {:user => "Craig Dos Santos",:title => "TRX Pro Kit", :image => "craig.jpg"},
+      {:user => "Gabrielle Adams",:title => "Blue and white Marimekko Duvet", :image => "gabe.jpg"},
+      {:user => "Dawoon Kang",:title => "InStyle Magazine June 2012", :image => "dawoon.jpg"},
+      {:user => "Mike Hudack",:title => "Black LED Alarm Clock White Light", :image => "mike.jpg"},
+      {:user => "David Blumenstein",:title => "Nook Color Tablet", :image => "david.jpg"},
+      {:user => "Cathy Vigrass",:title => "Gap 1969 Jeans", :image => "cathy.jpg"}]%>
+
+    <%@samples.each do |sample|%>
+      <div class="example rounded-5">
+
+        <%=image_tag "products/#{sample[:image]}",
+            :class => "item-photo rounded-3"%>
+
+        <div class="text">
+          <span class="item-name">"<%=sample[:title]%>"</span><br />
+          <span class="sub">added by <span class="user-name"><%=sample[:user]%></span></span>
+        </div>
+      </div>
+    <%end%>
 		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MWJjMjM5NWQyYTVlZTM1NDZlN2IxMzM4MDk3ODYy.jpg" />
-			<div class="text">
-				<span class="item-name">"Cohen Brothers Collection Box Set"</span><br />
-				<span class="sub">added by <span class="user-name">Richard Perez</span></span>
-			</div>
-		</div>
-		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZDRiZGZhZTBmY2RhYjcwOTA0MjQxMzM3MzgwMTc0.jpg" />
-			<div class="text">
-				<span class="item-name">"TRX Pro Kit"</span><br />
-				<span class="sub">added by <span class="user-name">Craig Dos Santos</span></span>
-			</div>
-		</div>
-		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NmY4MTg0NmE4YzE3YTgyYTY2NWExMzIwODQ3ODY1.jpg" />
-			<div class="text">
-				<span class="item-name">"Blue and white Marimekko Duvet"</span><br />
-				<span class="sub">added by <span class="user-name">Gabrielle Adams</span></span>
-			</div>
-		</div>
-		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcSQlTZR2AHOGPA2p-92IitO_2FzvBjPi0HDaoDaRGlbJwtmldHrzg" />
-			<div class="text">
-				<span class="item-name">"InStyle Magazine June 2012"</span><br />
-				<span class="sub">added by <span class="user-name">Dawoon Kang</span></span>
-			</div>
-		</div>
-		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NjI0Njc4ZWU4ODkxMWFjM2M4NjIxMzM3ODc0Njk4.jpg" />
-			<div class="text">
-				<span class="item-name">"Black LED Alarm Clock White Light"</span><br />
-				<span class="sub">added by <span class="user-name">Mike Hudack</span></span>
-			</div>
-		</div>
-		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MDdhMzM3MmRjYjgyNDMyNjcxZGYxMzMxOTM1OTM3.jpg" />
-			<div class="text">
-				<span class="item-name">"Nook Color Tablet"</span><br />
-				<span class="sub">added by <span class="user-name">David Blumenstein</span></span>
-			</div>
-		</div>
-		
-		<div class="example rounded-5">
-			<img class="item-photo rounded-3" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZmExYjMwNmNlZDA2ZmUzMWY1Y2ExMzI4NTAyOTU4.jpg" />
-			<div class="text">
-				<span class="item-name">"Gap 1969 Jeans"</span><br />
-				<span class="sub">added by <span class="user-name">Cathy Vigrass</span></span>
-			</div>
-		</div>
-		
-		
-	</div>
+	</div> <!-- /examples -->
 	
 </div>	<!-- /container -->
 
