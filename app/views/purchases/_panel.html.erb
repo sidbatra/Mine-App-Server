@@ -1,5 +1,5 @@
   <div class="blurb">
-     Get updated when Mike buys something.
+     Get updated when <%=@purchase.user.first_name%> buys something.
      <%=link_to "Join <span class='mine'>mine</span> now. It's free.",
         fb_auth_path(:src => @origin), 
         :class => "btn btn-large btn-red border-box",
