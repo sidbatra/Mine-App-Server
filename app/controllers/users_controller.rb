@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => :update
+  before_filter :login_required, :only => [:show,:update]
 
   # Create a new user.
   #
