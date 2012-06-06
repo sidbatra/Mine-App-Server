@@ -4,13 +4,6 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    mixpanel.track("Welcome View");
-    mixpanel.track("$born");
-    mixpanel.track("User Created");
-
-    mixpanel.name_tag("<%=self.current_user.email%>");
-
-    mixpanel.register_once({"Age" : <%=self.current_user.age%>}); 
-    mixpanel.register_once({"Gender" : "<%=self.current_user.gender%>"}); 
+    new Denwen.Views.Welcome.Show();
   </script>
 <%end%>
