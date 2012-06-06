@@ -1261,14 +1261,14 @@ input[type="color"]:focus,
 .relative { position: relative; }
 .absolute { position: absolute; }
 
-.error { color: #b94a48 !important; }
-input.error, textarea.error { border-color: #b94a48 !important; }
+.error { color: #d5432b !important; }
+input.error, textarea.error { border-color: #d5432b !important; }
 
 input.error:focus, textarea.error:focus {
 	border-color: #b94a48 !important;
-  -webkit-box-shadow: 0 0 6px #d59392;
-     -moz-box-shadow: 0 0 6px #d59392;
-          box-shadow: 0 0 6px #d59392; }
+  -webkit-box-shadow: 0 0 6px #d5432b;
+     -moz-box-shadow: 0 0 6px #d5432b;
+          box-shadow: 0 0 6px #d5432b; }
 
 .three-to-two { margin-right: 38px; }
 /* see media queries for 2-span variant */
