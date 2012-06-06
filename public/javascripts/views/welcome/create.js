@@ -15,6 +15,7 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
 
     this.input = new Denwen.Partials.Purchases.Input({
                         el  : $('body'),
+                        scrollOnSelection : false,
                         mode: Denwen.PurchaseFormType.New});
 
     this.input.bind(

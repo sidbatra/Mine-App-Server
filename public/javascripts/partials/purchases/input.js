@@ -18,6 +18,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   initialize: function() {
     var self                  = this;
     this.mode                 = this.options.mode;
+    this.scrollOnSelection    = this.options.scrollOnSelection == undefined ? 
+                                  true : this.options.scrollOnSelection;
     this.searchesCount        = 0;
     this.oneWordToolTipDone   = false;
     this.urlToolTipDone       = false;
@@ -408,7 +410,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     $(this.urlAlertBoxEl).hide();
 
-    window.scrollTo(0,$(this.formEl).offset().top - 20);
+    if(this.scrollOnSelection) 
+      window.scrollTo(0,$(this.formEl).offset().top - 20);
 
     Denwen.Track.action("Product Selected");
 
