@@ -34,8 +34,8 @@ common: &common
   :version: 4.0.7
   :images:
     :white_200x200: private/images/white_200x200.jpg
-    :fb_unit_base: private/images/facebook-unit/base.jpg
-    :fb_unit_overlay: private/images/facebook-unit/overlay.png
+    :fb_unit_base: private/images/facebook-unit/base_2x.jpg
+    :fb_unit_overlay: private/images/facebook-unit/overlay_2x.png
 
 development: &development
   <<: *common
