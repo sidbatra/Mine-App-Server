@@ -19,7 +19,6 @@
 
 .onboarding .hint {
 	-webkit-font-smoothing: antialiased;
-/* 	font-family: 'RooneyLightItalic', Georgia; */
 	font-size: 15px;
 	line-height: 1;
 	color: #777; 
@@ -78,7 +77,6 @@
 	color: #999; }	
 	
 .onboarding .examples .user-name { 
-/* 	color: #555;  */
 	font-weight: bold; }	
 	
 
@@ -609,24 +607,27 @@ footer, footer a, footer a:hover { color: #ccc; }
 	font-weight: bold;
 	color: #666; }
 	
-.item .panel .endorsement,
-.item .panel .likes-box {
+.item .panel .endorsement {
 	border-bottom: 1px dotted #ccc;
 	padding-bottom: 12px;
 	margin-bottom: 18px; }
 	
 .item .panel .likes-box {
 	height: 28px;
+	line-height: 1;
 	color: #555;
+	margin-top: -4px;
+	padding-bottom: 16px;
 	margin-bottom: 18px;
+	border-bottom: 1px dotted #ccc;
 	overflow-y: hidden;
 	white-space: nowrap; }
 
 .item .panel .likes-box .fader {
 	top: 0;
 	right: 0;
+	bottom: 0;
 	width: 28px;
-	height: 28px;
 	z-index: 500;
 	background: url("/images/fade-right.png") top left; }
 	
@@ -640,7 +641,8 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .item .panel .likes-box .user-photo-box { 
 	display: inline-block;
-/* 	vertical-align: top; */ }
+	vertical-align: top;
+	margin-top: 4px; }
 	
 .item .panel .likes-box .user-photo-box .user-photo { 
 	width: 28px;
