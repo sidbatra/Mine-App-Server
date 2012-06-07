@@ -1070,8 +1070,6 @@ footer, footer a, footer a:hover { color: #ccc; }
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none; }
-          
-.btn.pushed, .btn.load { background: #177DBE; }
 
 .btn-large {
   padding: 0 16px;
@@ -1138,7 +1136,26 @@ footer, footer a, footer a:hover { color: #ccc; }
 .icon-facebook.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -48px 0; }
-	
+
+
+/* ----- loading buttons ----- */
+.btn.pushed, .btn.load { background: #177DBE; }	
+  
+.icon-loading {
+	display: none;
+  width: 16px;
+  height: 16px;
+  *margin-right: .3em;
+  background-image: url("/images/loading-blocks-dark-trans.gif"); 
+  background-repeat: no-repeat !important;
+  background-position: center center !important; }
+
+.icon-loading.icon-white { background: url("/images/loading-blocks-white-trans.gif"); }
+.btn.load .icon-loading { display: inline-block; }
+.btn.load .icon-like    { display: none;  }
+
+
+/* ----- btn groups & dropdowns ----- */	
 .btn-group > .dropdown-toggle {
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
