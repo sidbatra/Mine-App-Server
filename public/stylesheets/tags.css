@@ -1070,6 +1070,8 @@ footer, footer a, footer a:hover { color: #ccc; }
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none; }
+          
+.btn.pushed, .btn.load { background: #177DBE; }
 
 .btn-large {
   padding: 0 16px;
