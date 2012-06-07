@@ -33,6 +33,34 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
+  end 
+
+  # Alert user when a new comment is added on a 
+  # thread to which the user belongs
+  #
+  def new_comment(comment,user)
+    @owner        = comment.purchase.user
+    @comment      = comment
+    @user         = user
+    @action       = @comment.user.first_name + " " + @comment.user.last_name
+    @source       = "email_comment"
+
+    if @owner.id == @user.id
+      @action    += " just commented on your "
+    elsif @owner.id == @comment.user.id 
+      @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
+    else
+      @action    += " also commented on #{@owner.first_name} "\
+                    "#{@owner.last_name}'s "
+    end
+
+    @action     += comment.purchase.title + "!"
+
+    generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action 
   end
 
   # Alert the user to add new purchases 

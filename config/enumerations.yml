@@ -24,6 +24,7 @@
     Want: 'want'
   EmailPurpose:
     Admin: 99
+    NewComment: 0
     NewFollower: 1
     TopShopper: 4
     Welcome: 10

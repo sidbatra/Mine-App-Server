@@ -31,6 +31,18 @@ class Comment < ActiveRecord::Base
       :user_id          => user_id)
   end
 
+  # Fetch all the user ids participating in the comment thread on
+  # for the given commentable details
+  #
+  def self.user_ids_in_thread_with(comment)
+    user_ids = all(
+                :select     => 'user_id',
+                :conditions => {:purchase_id => comment.purchase_id}
+                ).map(&:user_id)
+    user_ids << comment.purchase.user_id
+    user_ids.uniq
+  end
+
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------

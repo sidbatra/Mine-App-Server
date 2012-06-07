@@ -1,0 +1,11 @@
+Hi <%=@user.first_name%>,<br /><br />
+
+<%=@action%><br /><br />
+
+"<%=h @comment.message%>"<br /><br />
+
+<a href="<%=purchase_url(
+              @comment.purchase.user.handle,
+              @comment.purchase.handle,
+              :src => @source)%>">
+View comment thread</a>
