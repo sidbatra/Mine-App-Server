@@ -14,7 +14,12 @@
         <%=purchase.get('user').escape('last_name')%>   
     </a> 
 
-    bought <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
+    bought 
+
+    <%if(purchase.get('store')){%>
+      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
+    <%}%>
+
     <span class="item-name">
       <%=purchase.escape('title')%>
     </span> 
