@@ -85,7 +85,7 @@
 
   
   <div id="purchase_panel_<%=purchase.get('id')%>" 
-      class="panel border-box relative <%=purchase.get('fb_object_id') ? 'fb' : ''%>" >
+      class="panel border-box relative <%=!purchase.isNative() ? 'fb' : ''%>" >
   	
   	<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box">

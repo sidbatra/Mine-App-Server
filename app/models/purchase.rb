@@ -174,7 +174,7 @@ class Purchase < ActiveRecord::Base
   # Opengraph object id associated with the purchase
   #
   def fb_object_id
-    self.fb_action_id
+    nil #self.fb_action_id
   end
 
   # Facebook post associated with the purchase
