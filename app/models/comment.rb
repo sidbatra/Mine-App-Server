@@ -17,6 +17,8 @@ class Comment < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :with_user, :include => :user
+  named_scope :for, lambda{|object| {:conditions => {
+                                      :purchase_id => object}}}
 
   #----------------------------------------------------------------------
   # Class methods
@@ -35,10 +37,7 @@ class Comment < ActiveRecord::Base
   # for the given commentable details
   #
   def self.user_ids_in_thread_with(comment)
-    user_ids = all(
-                :select     => 'user_id',
-                :conditions => {:purchase_id => comment.purchase_id}
-                ).map(&:user_id)
+    user_ids = select(:user_id).for(comment.purchase_id).map(&:user_id)
     user_ids << comment.purchase.user_id
     user_ids.uniq
   end
