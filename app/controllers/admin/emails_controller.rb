@@ -30,6 +30,12 @@ class Admin::EmailsController < ApplicationController
     when :add_a_store
       render :text => UserMailer.preview_add_a_store(User.last)
 
+    when :new_comment
+      render :text => UserMailer.preview_new_comment(Comment.last,User.last)
+
+    when :new_like
+      render :text => UserMailer.preview_new_like(Like.last)
+
     when :friend_activity_digest
       render :text => UserMailer.preview_friend_activity_digest(
                                   User.find(3),
