@@ -385,7 +385,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     this.searchesCount = 0;
 
-    this.displayPurchaseImage(product.get('large_url'));
+    this.displayPurchaseImage(product.get('large_url') + 'breakit');
 
     document.getElementById(this.photoSelectionEl).onerror = function(){self.productImageBroken()};
 

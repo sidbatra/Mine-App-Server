@@ -449,19 +449,26 @@ footer, footer a, footer a:hover { color: #ccc; }
 	z-index:9999;
 	border-bottom:1px solid #ddd; }
 
+.chooser .search-bar input.search-field {
+	font-family: 'RooneyLightItalic', Georgia;
+	height: 22px;
+	line-height: 22px; }
+	  
 .chooser .search-bar .control-group {
 	width: 500px; 
 	border-right: 110px solid transparent;
 	margin: 0 auto; }
 
 .chooser .search-bar .control-group.load {
-  background: url('/images/loading_blocks_small_light_trans.gif') center right no-repeat; }
+  background: url('/images/loading_blocks_small_light_trans.gif') 428px center no-repeat; }
 
 .chooser .search-bar .close {
 	font-size: 36px; 
 	padding: 5px 10px; }
+	
+.chooser .control-label { height: 22px; line-height: 22px; }	
 
-.chooser .control-label.error { color: #B94A48; }
+.chooser .control-label.error { color: #B94A48; font-weight: bold; }
 
 .chooser .control-label span.error { display: block; }
 .chooser .control-label span.error { display: none; }
