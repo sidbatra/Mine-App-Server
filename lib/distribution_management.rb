@@ -19,9 +19,11 @@ module DW
                     OGAction::Share,
                     "image[0][url]"             => purchase.unit_url,
                     "image[0][user_generated]"  => true,
-                    "message"   => short_purchase_url(
-                                    Cryptography.obfuscate(purchase.id),
-                                    :host => CONFIG[:host]),
+                    "message"   => (purchase.endorsement? ? 
+                                    purchase.endorsement + ' '  : '') +
+                                      short_purchase_url(
+                                      Cryptography.obfuscate(purchase.id),
+                                      :host => CONFIG[:host]),
                     "purchase"  => purchase_url(
                                     purchase.user.handle,
                                     purchase.handle,
