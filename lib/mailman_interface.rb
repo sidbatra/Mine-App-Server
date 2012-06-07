@@ -39,6 +39,19 @@ module DW
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
+      
+      # Email the owner about a like on his/her purchase 
+      #
+      def self.email_owner_about_a_like(like)
+        
+        if like.purchase.user.setting.email_influencer &&
+                like.user_id != like.purchase.user_id
+
+          UserMailer.deliver_new_like(like) 
+        end
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
 
       # Email all the users on the comment thread
       #

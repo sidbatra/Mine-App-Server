@@ -26,6 +26,7 @@
     Admin: 99
     NewComment: 0
     NewFollower: 1
+    NewLike: 2
     TopShopper: 4
     Welcome: 10
     AnotherPurchase: 13
