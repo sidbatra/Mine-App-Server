@@ -3,18 +3,19 @@
 	<div class="preview-box">
 
 	<p>
-		<span class="fb-favicon"></span> Your invite will look like this on their Timeline:
+		<span class="fb-favicon"></span> Send a personal invite to their Facebook message inbox:
 	</p>
 
-	<div class="fb-timeline border-box rounded-3">
+	<!--
+<div class="fb-timeline border-box rounded-3">
 	 	<div style="padding: 11px">
 	 	
 	 		<div class="user-block">
-        <%=image_tag self.current_user.square_image_url,
+        <#=image_tag self.current_user.square_image_url,
             :class => "user-photo"%>
-	 			<strong><%=user_full_name(self.current_user)%></strong><br />
+	 			<strong><#=user_full_name(self.current_user)%></strong><br />
 	 			<span style="color: gray;">
-          <%=Time.zone.now.strftime("%B %d")%> via Mine
+          <#=Time.zone.now.strftime("%B %d")%> via Mine
         </span>
 	 		</div> 
 	 		
@@ -29,20 +30,20 @@
         </div>
         <strong>
           <div style="margin-bottom: 3px;">
-            <%=CONFIG[:name]%> - Click to start yours.
+            <#=CONFIG[:name]%> - Click to start yours.
           </div>
         </strong>
 	 			<span style="color: gray;">
-	 				Your <%=CONFIG[:name]%> is a place to log and 
+	 				Your <#=CONFIG[:name]%> is a place to log and 
           share purchases with friends. <br />
 	 				It’s fun, and totally free. 
 	 				<br />		
 	 				<br />	 				
-	 				<%=CONFIG[:host]%>
+	 				<#=CONFIG[:host]%>
 	 			</span>
 	 		</div>
 	 		
-	 	</div> <!-- padding -->
+	 	</div>
 
 	</div> <!-- /fb-timeline -->
 	
