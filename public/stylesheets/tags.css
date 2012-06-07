@@ -5,10 +5,12 @@
 	
 .onboarding p {
 	color: #666;
-	font-size: 15px;
-	line-height: 24px;}
+	font-size: 15px !important;
+	line-height: 24px; }
 
 .onboarding p.sub {
+	margin-top: 12px;
+	font-size: 11px;
 	color: #999;
 	text-align: center; }
 
@@ -20,6 +22,9 @@
 	text-align: center;
 	margin-top: -12px;
 	margin-bottom: 24px; }
+	
+.onboarding ol { 
+	padding-left: 50px; }
 
 .onboarding .create-box .search-box { padding: 0; }
 	

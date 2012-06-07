@@ -1,8 +1,8 @@
 <div class="container onboarding" style="width: 520px;">
 
 	<div class="heading">
-		<b>Welcome, <%=self.current_user.first_name%></b><br />
-			Thanks for being one of the first to join mine.
+		<b>Hi <%=self.current_user.first_name%>!</b><br />
+			Thanks for being one of our earliest members.<br />
 	</div>
 	
 	<h3>What is mine?</h3>
@@ -23,8 +23,14 @@
               <i class='icon-chevron-right icon-white'></i>",
       welcome_path(WelcomeFilter::Create),
       :class => "btn btn-large",
-      :style => "display: block; margin: 24px 100px 12px;"%>
+      :style => "display: block; margin: 16px 100px 18px;"%>
 	
+	<img src="/images/ob/6.jpg" />
+	<img src="/images/ob/4.jpg" />
+	<img src="/images/ob/1.jpg" />
+	<img src="/images/ob/3.jpg" />
+	<img src="/images/ob/5.jpg" />
+		
 	<p class="sub">Have a question? 
 		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us.</a>
 	</p>
