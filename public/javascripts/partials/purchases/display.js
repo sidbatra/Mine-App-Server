@@ -188,7 +188,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     if(this.model.get('id') == like.get('purchase_id')) {
 
       if(Denwen.H.isLoggedIn()) {
-        if(Denwen.H.currentUser.get('fb_user_id') != like.get('user_id')) {
+        if(Denwen.H.currentUser.get('fb_user_id') != like.get('fb_user_id')) {
           this.renderLike(like,false);
         }
         else {
