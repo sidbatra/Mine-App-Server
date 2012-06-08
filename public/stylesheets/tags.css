@@ -1096,17 +1096,17 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn.btn-red:hover { background: #E4156D; }
 
 .btn.btn-black { 
-	background: black; 
-	opacity: 0.3;
-  filter: alpha(opacity=30); 
+	opacity: 0.8;
+  filter: alpha(opacity=80); 
+	background: url('/images/colors/black-40.png');
   -webkit-transition: opacity .15s ease-in;
 	-moz-transition: opacity .15s ease-in;
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
 	
 .btn.btn-black:hover {
-	opacity: 0.5;
-  filter: alpha(opacity=50); }
+	opacity: 1;
+  filter: alpha(opacity=100); }
   
 .btn.btn-gray {
 	text-align: left;

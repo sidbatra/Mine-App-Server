@@ -1,22 +1,46 @@
+<div class="wrapper">
 
-
-<div class="background" style="background-image: url('/images/home/girl-orange.jpg')"></div>
-<div class="dimmer"></div>
-
-
-<div class="box">
-	<img class="logo" src="/images/home/mine-tall.png" />
-	<p>
-		<span class="sub">A service for saying</span><br />
-		‘Hey, I just bought this.’
-	</p>
-	<a href="<%=fb_auth_path(:src => @origin)%>" class="btn btn-large btn-facebook">
-		<i class="icon-facebook icon-white"></i> Log in with Facebook
-	</a>
+	<div class="background" style="background-image: url('/images/home/girl-orange.jpg')"></div>
+	<div class="dimmer"></div>
 	
-	<br />
-	<br />
-	<br />
+	<div class="box clearfix">
+	
+		<img class="logo" src="/images/home/mine-tall.png" />
+		
+		<p>
+			<span class="sub">A service for saying</span><br />
+			‘Hey, I just bought this.’
+		</p>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" class="btn btn-large btn-facebook">
+			<i class="icon-facebook icon-white"></i> Log in with Facebook
+		</a>
+		
+<!--
+		<br />
+		
+		<a class="btn btn-black">
+			Learn more
+		</a>
+-->
+		
+		<br />
+		<br />
+		<br />
+	
+		<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
+		
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		<div style="height: 1px; width: 100%; clear: both;"></div>
+	
+	</div> <!-- /box -->
 
-	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
-</div>
+</div> <!-- /wrapper -->
+
+<footer>
+	Mine © 2012 · About us · <a href="mailto:Mine &lt;contact@getmine.com&gt;">Email us</a>
+</footer>
