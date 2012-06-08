@@ -198,6 +198,9 @@ footer a:hover {
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #E4156D; }	
 
+.btn-facebook.pushed, .btn-facebook.pushed:hover,
+.btn-facebook.load, .btn-facebook.load:hover { background: #1F4696; }	
+
 .btn-white.pushed, .btn-white.pushed:hover,
 .btn-white.load, .btn-white.load:hover { background: #555; color: white; }	
 
