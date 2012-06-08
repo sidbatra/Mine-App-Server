@@ -12,6 +12,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   initialize: function() {
 
+    this.interaction  = this.options.interaction == undefined ?
+                          true : this.options.interaction;
     this.extraMargin  = this.options.extraMargin == undefined ?
                           false : true;
 
@@ -31,7 +33,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
 
     this.render();
 
-    if(Denwen.H.isLoggedIn()) { 
+    if(Denwen.H.isLoggedIn() && this.interaction) { 
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
     }
@@ -80,7 +82,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Render the contents of the model.
   //
   render: function() {
-    var html = Denwen.JST['purchases/display']({purchase : this.model});
+    var html = Denwen.JST['purchases/display']({
+                purchase    : this.model,
+                interaction : this.interaction});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);

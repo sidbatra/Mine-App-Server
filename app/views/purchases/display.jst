@@ -39,12 +39,14 @@
   <%if(Denwen.H.isLoggedIn()){%>
     <div class="actions border-box" id="feedback">
 
-      <a href="javascript:void(0)"
-          id="purchase_create_like_<%=purchase.get('id')%>"
-          class="btn">
-        <i class="icon-loading icon-white"></i>
-        <i class="icon-like icon-white hide-when-loading"></i>
-      </a> 		
+      <%if(interaction){%> 
+        <a href="javascript:void(0)"
+            id="purchase_create_like_<%=purchase.get('id')%>"
+            class="btn">
+          <i class="icon-loading icon-white"></i>
+          <i class="icon-like icon-white hide-when-loading"></i>
+        </a> 		
+      <%}%>
 
       <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
         <a href="<%=purchase.editPath('feed')%>" 
@@ -107,7 +109,7 @@
 	      <div id="purchase_comments_<%=purchase.get('id')%>">
 	      </div>
 	      
-	      <%if(Denwen.H.isLoggedIn()){%>
+	      <%if(Denwen.H.isLoggedIn() && interaction){%>
 	        <div class="add-comment-box relative">
 	          <img class="self-photo absolute" 
 	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
