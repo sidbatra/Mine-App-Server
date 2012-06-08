@@ -16,8 +16,10 @@
 			‘Hey, I just bought this.’
 		</p>
 		
-		<a href="<%=fb_auth_path(:src => @origin)%>" class="btn btn-large btn-facebook"
-			style="width: 170px;">
+		<a href="<%=fb_auth_path(:src => @origin)%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook"
+        style="width: 170px;">
 			<span class="hide-when-loading">
 				<i class="icon-facebook icon-white"></i> Log in with Facebook
 			</span>
