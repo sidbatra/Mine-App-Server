@@ -1,11 +1,15 @@
 <div class="wrapper">
 
-	<div class="background" style="background-image: url('/images/home/girl-orange.jpg')"></div>
-	<div class="dimmer"></div>
+	<div class="background" 
+        style="background-image: url('<%=image_path "home/girl-orange.jpg"%>')">
+  </div>
+
+	<div class="dimmer">
+  </div>
 	
 	<div class="box clearfix">
 	
-		<img class="logo" src="/images/home/mine-tall.png" />
+    <%=image_tag "home/mine-tall.png", :class => "logo"%>
 		
 		<p>
 			<span class="sub">A service for saying</span><br />
@@ -31,7 +35,7 @@
 		<br />
 		<br />
 	
-		<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
+    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
 		
 		<br />
 		<br />
@@ -45,5 +49,5 @@
 </div> <!-- /wrapper -->
 
 <footer>
-	Mine © 2012 <!-- · About us -->· <a href="mailto:Mine &lt;contact@getmine.com&gt;">Email us</a>
+	Mine © 2012 <!-- · About us -->· <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
 </footer>
