@@ -751,9 +751,11 @@ footer, footer a, footer a:hover { color: #ccc; }
 ==================================================================== */	
 
 .user-box { 
-	padding: 0 0 24px;
+	padding: 0 0 36px;
+/*
 	line-height: 0;border-bottom: 1px dotted #CCC;
-	margin-bottom: 36px; }
+	margin-bottom: 36px;
+*/ }
 	
 .user-box .photo-box {
 	float: left;
@@ -1139,7 +1141,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 
 /* ----- loading button states ----- */
-.btn.pushed, .btn.load { background: #177DBE; cursor: default; }	
+.btn.pushed, .btn-pushed:hover, 
+.btn.load, .btn.load:hover { background: #177DBE; cursor: default; }
+
+.btn-red.pushed, .btn-red.pushed:hover,
+.btn-red.load, .btn-red.load:hover { background: #E4156D; }	
+
 .btn-white.pushed, .btn-white.pushed:hover,
 .btn-white.load, .btn-white.load:hover { background: #555; color: white; }	
 

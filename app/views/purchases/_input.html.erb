@@ -126,7 +126,10 @@
 	          type="submit" 
 	          class="btn btn-large btn-red border-box"
 	          style="width: 100%; margin-top: 24px;">
-						<i class="icon-ok icon-white"></i> <%=submit_text%>
+	          <span class="hide-when-loading">
+							<i class="icon-ok icon-white"></i> <%=submit_text%>
+						</span>
+						<i class="icon-loading icon-white"></i>
 				</button> <!-- submit -->
 				
 		    <%=link_to "Cancel", :back, 
