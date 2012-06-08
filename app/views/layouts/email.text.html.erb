@@ -31,13 +31,13 @@
                         
                         <!-- Logo -->
                         
-                        <td width="40" height="47" valign="top" style="border-collapse:collapse;vertical-align:top">
+                        <td width="50" height="50" valign="top" style="border-collapse:collapse;vertical-align:top">
                           <a href="<%=root_url(:src => @source)%>" target="_blank" style="text-decoration:none;">
-                            <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="40" height="47" style="width: 40px; height: 47px; outline:none; text-decoration:none; border:none; display:block">
+                            <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="50" height="50" style="width: 50px; height: 50px; outline:none; text-decoration:none; border:none; display:block">
                               <%if Rails.env.start_with? 'd'%>
-                                <%=image_tag "http://#{CONFIG[:host]}/images/mine-80-555-trans.png",:alt => "", :style => "width: 40px; height: 47px;"%>
+                                <%=image_tag "http://#{CONFIG[:host]}/images/mine_100_2x.png",:alt => "", :style => "width: 50px; height: 50px;"%>
                               <%else%>
-                                <%=image_tag "mine-80-555-trans.png",:alt => "", :style => "width: 40px; height: 47px;"%>
+                                <%=image_tag "mine_100_2x.png",:alt => "", :style => "width: 50px; height: 50px;"%>
                               <%end%>
                             </div>
                           </a>
