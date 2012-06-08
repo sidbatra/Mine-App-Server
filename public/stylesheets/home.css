@@ -23,7 +23,6 @@ p {
 	font-size: 24px;
 	line-height: 36px;
 	color: white;
-/* 	font-weight: bold; */
 	padding: 19px 0 18px; }
 
 .sub { 
@@ -41,7 +40,7 @@ p {
 	z-index: -2; }
 
 .dimmer {
-	background: rgba(0, 0, 0, 0.25);
+	background: url('/images/colors/black-25.png');
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -53,7 +52,7 @@ footer, .push {
 	color: #ccc;
 	height: 36px;
 	line-height: 36px;
-	background: url('/images/colors/black-40.png'); }
+	background: url('/images/colors/black-25.png'); }
   
 footer a { color: #ccc; }
 footer a:hover { 
