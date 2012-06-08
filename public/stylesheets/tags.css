@@ -396,6 +396,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 .create-box .panel a.toggle-switch .off .knob { 
 	float: left;
 	margin-left: -1px; }
+
 	
 /* Chooser
 ==================================================================== */
@@ -1223,11 +1224,15 @@ footer, footer a, footer a:hover { color: #ccc; }
   white-space: nowrap; }
 
 .dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
 .dropdown-menu .active > a,
 .dropdown-menu .active > a:hover {
   color: #575E62;
   text-decoration: none;
   background-color: #eee; }
+  
+.typeahead.dropdown-menu {
+	width: 250px !important; }
 
 
 /* Message Drawer
