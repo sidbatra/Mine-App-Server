@@ -43,8 +43,8 @@ class UserMailer < ActionMailer::Base
     @user         = @purchase.user 
     @source       = "email_like"
 
-    @action       = "#{@actor.first_name} #{@actor.last_name} likes your " +
-                    @purchase.title + "!"
+    @action       = "#{@actor.first_name} likes your " +
+                    @purchase.title 
 
     generate_attributes(@user,@actor.id,like,EmailPurpose::NewLike)
 
@@ -59,8 +59,10 @@ class UserMailer < ActionMailer::Base
   def new_comment(comment,user)
     @owner        = comment.purchase.user
     @comment      = comment
+    @actor        = comment.user
+    @purchase     = comment.purchase
     @user         = user
-    @action       = @comment.user.first_name + " " + @comment.user.last_name
+    @action       = ""
     @source       = "email_comment"
 
     if @owner.id == @user.id
@@ -72,13 +74,13 @@ class UserMailer < ActionMailer::Base
                     "#{@owner.last_name}'s "
     end
 
-    @action     += comment.purchase.title + "!"
+    @action     += comment.purchase.title 
 
     generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @action 
+    subject       @comment.user.first_name + " " + @action 
   end
 
   # Alert the user to add new purchases 
