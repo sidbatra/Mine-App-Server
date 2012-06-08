@@ -467,12 +467,12 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     if(queryType == Denwen.ProductQueryType.Text) {
       
       if(query.split(' ').length == 1 && !this.oneWordToolTipDone) {
-        Denwen.Drawer.info(CONFIG['one_word_query_msg'],0);
+        //Denwen.Drawer.info(CONFIG['one_word_query_msg'],0);
         this.oneWordToolTipDone = true;
       }
       else if(this.searchesCount == CONFIG['multi_query_threshold'] && 
                 !this.urlToolTipDone) {
-        Denwen.Drawer.info(CONFIG['multi_query_msg'],0);
+        //Denwen.Drawer.info(CONFIG['multi_query_msg'],0);
         this.urlToolTipDone = true;
       }
     }
