@@ -66,7 +66,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   // and wait for feedback from the server
   //
   decide: function() {
-    if(this.purchase.isShared()) {
+    if(!this.purchase.hasSharingUnderway()) {
       this.post(true);
     }
     else {
@@ -78,7 +78,8 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   // Fired when the user wants to write a comment 
   //
   prepare: function() {
-    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
+    if(this.purchase.isNative() || 
+          Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired))
       this.decide();
     else  
       this.fbSettings.showPermissionsDialog();
@@ -113,7 +114,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   created: function(comment) {
     if(!comment.get('id')) {
       
-      if(!this.purchase.isShared() && this.retry) {
+      if(this.purchase.hasSharingUnderway() && this.retry) {
         var self    = this; 
         this.retry  = false;
 
@@ -126,7 +127,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
         Denwen.Drawer.error("Error posting comment. Try again in a second.");
       }
     }
-    else if(!this.purchase.isShared()) {
+    else if(this.purchase.hasSharingUnderway()) {
       $(this.inputEl).removeClass('load');
       this.render(comment);
     }

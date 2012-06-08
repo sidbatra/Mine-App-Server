@@ -31,9 +31,16 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
     var self = this;
 
     this.likes.each(function(like){
-      Denwen.NM.trigger(
-                  Denwen.NotificationManager.Callback.LikeFetched,
-                  like);
+      if(like.get('error')) {
+        Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.FallbackToNativeLikes,
+          like);
+      }
+      else {
+        Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.LikeFetched,
+          like);
+      }
     });
 
     Denwen.NM.trigger(Denwen.NotificationManager.Callback.LikesFetched);

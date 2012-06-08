@@ -24,8 +24,8 @@
 							<div class="controls" style="margin-left: 100px;">
 						    <%=f.label :email_influencer,
                     "#{f.check_box :email_influencer} Email me "\
-                    "when a friend starts sharing with me, "\
-                    "and when friends share new purchases",
+                    "when a friend joins mine, or likes or comments on my items, and a weekly digest of friend purchases",
+
                     :class => "checkbox"%>
 					    </div>              
 						</div>
@@ -43,25 +43,6 @@
 				    </div>
 						<!-- /Notifications -->
 
-						<!-- Social Sharing -->
-            <h4 style="font-size: 15px; margin-bottom: 18px;">
-              Social Sharing
-            </h4>
-						
-						<div class="control-group">
-							<label class="control-label" style="width: 80px;">
-                Facebook
-              </label>
-							<div class="controls" style="margin-left: 100px;">
-						    <%=f.label :post_to_timeline, 
-                    "#{f.check_box :post_to_timeline} Sync my "\
-                    "#{CONFIG[:name]} with my Facebook Timeline",
-                    :class => "checkbox"%>
-						  </div>
-				    </div>
-						
-						<!-- /Social Sharing -->
-				    
 				    <div class="form-actions" 
                   style="border-top:none; padding-left: 100px; 
                           background: none;

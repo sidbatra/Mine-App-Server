@@ -13,31 +13,63 @@
               :store        => @purchase.store}%>
 <%end%>
 
-<%content_for :body_attribute do%>
-  <%="style='background-color: #222;'"-%>
-<%end%>
 
-<div class="container" style="position: relative;">
+<div class="container">
+	
+	<%if logged_in?%>
+	
+    <div class="thumbnail-box">
+      <p>Recently purchased by <%=@purchase.user.first_name%>:</p>
 
-  <div class="col-triple" style="margin-left: 189px;">
-    <div id="feed" class="feed">
-    </div>
+      <%cache ["v3",@purchase.user,"purchases","preview"] do%>
+        <%@purchase.user.purchases.with_user.
+                    by_id.limit(13).each do |purchase|%>
+          <%cache ["v3",purchase,"teaser","purchase"] do%>
+            <div id="purchase_thumb_<%=purchase.id%>" class="thumb frameable">
+              <%=link_to image_tag(purchase.square_url),
+                  purchase_url(
+                    purchase.user.handle,
+                    purchase.handle,
+                    :src => 'gallery')%>
+            </div>
+          <%end%>
+        <%end%>
+      <%end%>
+
+      <%=link_to "View all "\
+                 "<i class='icon-chevron-right icon-white'></i>",
+          user_path(@purchase.user.handle,:src => 'gallery'), 
+          :class => "btn btn-black"%>
+    </div> <!-- /thumbnail-box -->
+    
+  <%else%>
+    <%@panel = render("panel",:layout => false)%>
+  <%end%>
+
+  <div id="feed" class="feed">
   </div>
 
-	<%=link_to "<i class='icon-chevron-left'></i>",
-      @next_purchase ? purchase_path(
-                        @purchase.user.handle,
-                        @next_purchase.handle, 
-                        :src => 'previous') : 'javascript:void(0)',
-      :class => "btn prev #{@next_purchase ? '' : 'disabled'}"%>
+<!--
+  <%#if logged_in?%>
+    <div class="navigation absolute">
+      <%#link_to "<i class='icon-chevron-left icon-white'></i>",
+          @next_purchase ? purchase_path(
+                            @purchase.user.handle,
+                            @next_purchase.handle, 
+                            :src => 'previous') : 'javascript:void(0)',
+          :class => "btn btn-black #{@next_purchase ? '' : 'disabled'}"%>
 
-	<%=link_to "<i class='icon-chevron-right'></i>",
-      @prev_purchase ? purchase_path(
-                        @purchase.user.handle,
-                        @prev_purchase.handle, 
-                        :src => 'next') : 'javascript:void(0)',
-      :class => "btn next #{@prev_purchase ? '' : 'disabled'}"%>
-</div>
+      <%#link_to "<i class='icon-chevron-right icon-white'></i>",
+          @prev_purchase ? purchase_path(
+                            @purchase.user.handle,
+                            @prev_purchase.handle, 
+                            :src => 'next') : 'javascript:void(0)',
+          :class => "btn btn-black #{@prev_purchase ? '' : 'disabled'}"%>
+    </div>
+  <%#end%>
+-->
+
+</div> <!-- /container -->
 
 
 
@@ -46,11 +78,12 @@
   <script type="text/javascript">
 
     new Denwen.Views.Purchases.Show({
-        purchaseJSON     : <%=render :partial => "purchases/display.json.erb",
-                              :locals => {:object => @purchase}%>,
-        friends         : <%=logged_in? ? self.current_user.ifollowers.to_json(
-                                          :only => [:id]) : nil.to_json%>,
-        source          : '<%=@source%>'});
+        purchaseJSON : <%=render :partial => "purchases/display.json.erb",
+                            :locals => {:object => @purchase}%>,
+        panel : <%=@panel.to_json%>,
+        friends : <%=logged_in? ? self.current_user.ifollowers.to_json(
+                                    :only => [:id]) : nil.to_json%>,
+        source : '<%=@source%>'});
 
   </script>
 <%end%>

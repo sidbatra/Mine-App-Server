@@ -1,69 +1,46 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-    
-    
-    	<%=link_to image_tag('mine-40-555.gif'),
-    			root_path(:src => "bar"), 
-    			:style => "float:left; padding-right: 5px;"%>
-    			
-      <%=link_to CONFIG[:name],
-          root_path(:src => "bar"),
-          :class => "brand"%>
-          
-      <div class="nav-collapse" style="position: relative;">
-        <%if logged_in?%>
-          <ul class="nav pull-right">
-            <li>
-              <%=link_to "Invite friends",new_invite_path(:src => "bar")%>
-            </li>
-            <li class="user-cell">
-              <%=link_to image_tag(self.current_user.square_image_url,
-                          :class => "avatar") + h(self.current_user.full_name),
-                  user_path(self.current_user.handle,:src => "bar"),
-                  :style => "white-space: nowrap; display: block; "\
-                            "padding-right: 10px;"%>
-            </li>
-            <li class="dropdown">
-              <a href="javascript:void(0)" 
-                  class="dropdown-toggle" 
-                  data-toggle="dropdown">
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <%=link_to "Settings",settings_path(:src => "bar")%>
-                </li>
-                <li>
-                  <%=link_to "Log Out",logout_path%>
-                </li>
-              </ul>
-            </li>
-          </ul> <!-- /nav -->
-        <%else%>
+<div class="header">
+	<div class="navigation relative">
+		
+    <%=link_to_if !is_onboarding?,
+        image_tag("mine_78_2x.png", :class => "logo absolute"),
+        root_path(:src => "bar")%>
+		
+    <%if logged_in?%>
 
-        	<div style="position: absolute; left: 50%; right: 50%; width: 562px; margin-left: -281px; height: 40px; 
-                color: #ddd; font-size: 13px; line-height: 40px; 
-                text-align: center;">
+      <div class="btn-group" style="float: right; margin-top: 15px;">
 
-        		Mine is a simple service for sharing purchases  with friends.  
-        		
-        		<%=link_to 'Sign up<i style="margin-top: 2px;" class="icon-chevron-right icon-white"></i>', 
-				        fb_auth_path(:src => @origin), 
-				        :style => 'font-weight: bold; color: white;'%>
-        	</div>
-        	
-        	<ul class="nav pull-right">
-            <li>
-              <%=link_to 'Log In', 
-				        	fb_auth_path(:src => @origin), 
-				        	:class => ''%>
-            </li>
-          </ul> <!-- /nav -->
+        <a href="<%=is_onboarding? ? 
+                      'javascript:void(0)' :
+                      user_path(self.current_user.handle,:src => "bar")%>"
+            class="btn btn-large btn-white btn-user relative" 
+            style="float: left;">
+            <%=image_tag self.current_user.square_image_url,
+                :class => "self-photo absolute"%>
+            <%=h self.current_user.full_name%>
+        </a>
 
+        <%if !is_onboarding?%>
+          <a class="btn btn-large btn-white dropdown-toggle" 
+            style="float: right;" 
+            data-toggle="dropdown">
+            <i class="icon-chevron-down"></i>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li><%=link_to "Settings",settings_path(:src => "bar")%></li>
+            <li><%=link_to "Log Out",logout_path%></li>
+          </ul>
         <%end%>
-      </div> <!-- /nav-collapse -->
-    </div> <!-- /container -->
-  </div> <!-- /navbar-inner -->
-</div> <!-- /navbar navbar-fixed-top -->
 
+      </div> <!-- /btn-group -->
+
+    <%else%>
+      <%=link_to "<i class='icon-facebook icon-white'></i> "\
+                  "Log in with Facebook "\
+                  "<i class='icon-chevron-right icon-white'></i>",
+          fb_auth_path(:src => @origin), 
+          :class => "btn btn-large btn-facebook action"%>
+    <%end%>
+      
+	</div> <!-- /navigation -->
+</div> <!-- /header -->

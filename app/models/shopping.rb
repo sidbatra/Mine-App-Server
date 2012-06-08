@@ -15,6 +15,12 @@ class Shopping < ActiveRecord::Base
   validates_inclusion_of  :source, :in => ShoppingSource.values
 
   #----------------------------------------------------------------------
+  # Named scopes
+  #----------------------------------------------------------------------
+  named_scope :by_count, :order => 'purchases_count DESC'
+  named_scope :with_store, :include => :store
+
+  #----------------------------------------------------------------------
   # Class Methods 
   #----------------------------------------------------------------------
 

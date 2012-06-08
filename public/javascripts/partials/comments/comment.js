@@ -6,6 +6,7 @@ Denwen.Partials.Comments.Comment = Backbone.View.extend({
   //
   initialize: function() {
     this.comment = this.options.comment; 
+
     this.render();
   },
 

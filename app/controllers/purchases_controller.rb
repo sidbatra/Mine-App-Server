@@ -32,17 +32,13 @@ class PurchasesController < ApplicationController
 
     setting = self.current_user.setting
 
-    unless params[:purchase][:post_to_fb_album].nil?
-      setting.post_to_fb_album = params[:purchase][:post_to_fb_album]
+    unless params[:purchase][:post_to_timeline].nil?
+      setting.post_to_timeline = params[:purchase][:post_to_timeline]
       setting.save!
     end
 
     if setting.post_to_timeline?
       params[:purchase][:fb_action_id] = FBSharing::Underway
-    end
-
-    if setting.post_to_fb_album?
-      params[:purchase][:fb_photo_id] = FBSharing::Underway
     end
 
     @purchase = Purchase.add(params[:purchase],self.current_user.id)
@@ -69,11 +65,11 @@ class PurchasesController < ApplicationController
                    params[:purchase_handle])
     end
 
-    @next_purchase = @purchase.next
-    @next_purchase ||= @purchase.user.purchases.first
+    #@next_purchase = @purchase.next
+    #@next_purchase ||= @purchase.user.purchases.first
 
-    @prev_purchase = @purchase.previous
-    @prev_purchase ||= @purchase.user.purchases.last
+    #@prev_purchase = @purchase.previous
+    #@prev_purchase ||= @purchase.user.purchases.last
 
     @origin = 'purchase'
 
@@ -107,6 +103,7 @@ class PurchasesController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
+    redirect_to(root_path) if @error
   end
 
   # Update a purchase.

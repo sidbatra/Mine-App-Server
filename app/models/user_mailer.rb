@@ -33,6 +33,54 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
+  end 
+
+  # Alert the owner whenever someone likes his/her purchase
+  #
+  def new_like(like)
+    @purchase     = like.purchase
+    @actor        = like.user 
+    @user         = @purchase.user 
+    @source       = "email_like"
+
+    @action       = "#{@actor.first_name} likes your " +
+                    @purchase.title 
+
+    generate_attributes(@user,@actor.id,like,EmailPurpose::NewLike)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end 
+
+  # Alert user when a new comment is added on a 
+  # thread to which the user belongs
+  #
+  def new_comment(comment,user)
+    @owner        = comment.purchase.user
+    @comment      = comment
+    @actor        = comment.user
+    @purchase     = comment.purchase
+    @user         = user
+    @action       = ""
+    @source       = "email_comment"
+
+    if @owner.id == @user.id
+      @action    += " just commented on your "
+    elsif @owner.id == @comment.user.id 
+      @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
+    else
+      @action    += " also commented on #{@owner.first_name} "\
+                    "#{@owner.last_name}'s "
+    end
+
+    @action     += comment.purchase.title 
+
+    generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @comment.user.first_name + " " + @action 
   end
 
   # Alert the user to add new purchases 

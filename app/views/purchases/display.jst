@@ -1,103 +1,130 @@
 <div id="purchase-<%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
-  class="item">
+  class="item clearfix">
+
+  <div class="title-box relative border-box">
+
+    <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
+      <img class="user-photo absolute" src="<%=purchase.get('user').get('square_image_url')%>" />
+    </a>
+
+    <a class="user-name" 
+        href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
+        <%=purchase.get('user').escape('first_name')%>   
+        <%=purchase.get('user').escape('last_name')%>   
+    </a> 
+
+    bought 
+
+    <%if(purchase.get('store')){%>
+      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
+    <%}%>
+
+    <span class="item-name">
+      <%=purchase.escape('title')%>
+    </span> 
+
+    <%if(purchase.get('store')){%>
+      from 
+      <span class="store-name">
+        <%=purchase.get('store').escape('name')%>
+      </span> 
+    <%}%>
+
+    <span class="time">
+      added <%=$.timeago(purchase.get('created_at'))%>
+    </span>
+  </div>
 
   <%if(Denwen.H.isLoggedIn()){%>
-    <div class="actions" 
-          id="feedback" 
-          style="position: absolute; top: 20px; right: <%=extraMargin ? '100px' : '20px'%>;">
+    <div class="actions border-box" id="feedback">
 
-      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-        <a style="float: right" 
-            href="<%=purchase.editPath('feed')%>" 
+      <%if(interaction){%> 
+        <a href="javascript:void(0)"
+            id="purchase_create_like_<%=purchase.get('id')%>"
             class="btn">
-          <i class="icon-pencil"></i>
-        </a>
+          <i class="icon-loading icon-white"></i>
+          <i class="icon-like icon-white hide-when-loading"></i>
+        </a> 		
       <%}%>
 
-      <%if(purchase.get('fb_object_id') && interaction){%> 
-        <a style="float: right; margin-right: -1px; width: 14px;" 
-            id="purchase_create_like_<%=purchase.get('id')%>"
-            href="javascript:void(0)" 
-            class="btn like">
-          <img class="loading inline" 
-            style="margin: 0 0 2px -1px;" 
-            src="<%=Denwen.H.imagePath("loading_blocks_small_dark_trans.gif")%>" />
-   				<span class="hide-when-loading">
-          	<i class="icon-like"></i>
-          </span>
+      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
+        <a href="<%=purchase.editPath('feed')%>" 
+            class="btn">
+          <i class="icon-pencil icon-white"></i>
         </a>
+      <%}else{%>
+<!--
+				<a class="btn mine relative" href="javascript:void(0)">
+          <i class="icon-mine icon-white"></i> mine
+        </a>
+-->
+        
+        
       <%}%>
     </div>
   <%}%> 
   
+  <div class="photo rounded-5 relative">
+  	<img class="stamp absolute" src="<%=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" />
+    <img class="item-photo" src="<%=purchase.get('giant_url')%>" />
+  </div>
 
-  <!-- User -->
-  <div class="user-box">
-    <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
-      <img class="user-photo" 
-            src="<%=purchase.get('user').get('square_image_url')%>" />
-    </a>
+  
+  <div id="purchase_panel_<%=purchase.get('id')%>" 
+      class="panel border-box relative <%=!purchase.isNative() ? 'fb' : ''%>" >
+  	
+  	<div id="purchase_panel_content_<%=purchase.get('id')%>" 
+      class="panel-contents border-box">
 
-    <%if(purchase.get('store') && purchase.get('store').get('is_processed')){%>
-      <img class="store-icon" 
-            src="<%=purchase.get('store').get('thumbnail_url')%>" />
-    <%}%>
+      <%if(purchase.get('endorsement')){%>
+        <div class="endorsement">
+          <%=purchase.escape('endorsement')%>
+        </div>
+      <%}%>
+	
+	    <!-- Likes -->
+	    <div class="likes-box relative" 
+	            id="purchase_likes_box_<%=purchase.get('id')%>"
+	         style="display:none;">
+	
+	      <div class="fader absolute">
+	      </div>
+	
+	      <span class="num"
+	        id="purchase_likes_<%=purchase.get('id')%>_aggregate">
+	      </span>
+	
+	      <span class="text"
+	        id="purchase_likes_<%=purchase.get('id')%>_aggregate_text">
+	      </span>
+	
+	      <span id="purchase_likes_<%=purchase.get('id')%>">
+	      </span>
+	    </div>
+	    
+	    <!-- Comments -->
+	    <div class="comments-box">
+	    
+	      <div id="purchase_comments_<%=purchase.get('id')%>">
+	      </div>
+	      
+	      <%if(Denwen.H.isLoggedIn() && interaction){%>
+	        <div class="add-comment-box relative">
+	          <img class="self-photo absolute" 
+	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+	          <div class="fb-11 absolute"></div>
+	          <input type="text" 
+	            id="purchase_comment_data_<%=purchase.get('id')%>"
+	            class="border-box"
+	            placeholder="Add a comment...">
+	        </div>
+	      <%}%>
+	      
+	    </div> <!-- /comments -->
+	    
+	  </div> <!-- /panel-contents -->
 
-    <div style="float: left; margin-left: 8px;">
-      <h5>
-        <a class="user-name" 
-            href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
-          <%=purchase.get('user').get('first_name')%> 
-          <%=purchase.get('user').get('last_name')%>
-        </a>
-      </h5>
-      <%=purchase.get('store') ? 'Bought this from ' + purchase.get('store').escape('name') : ''%>
-      <span class="small"><%=jQuery.timeago(purchase.get('created_at'))%></span>
-    </div>
-  </div>
-  
-  <!-- Photo -->
-  <div class="photo-box" >
-    <img src="<%=purchase.get('giant_url')%>" />
-  </div>
-  
-  
-  <!-- Details -->
-  <div class="title-box">
-     <%=purchase.escape('title')%>
-  </div>
-  
-  <!-- Likes -->
-  <div class="likes-box" 
-          id="purchase_likes_box_<%=purchase.get('id')%>"
-       style="display:none;">
-    <span id="purchase_likes_<%=purchase.get('id')%>"></span>
-    <span style="margin-left: 2px;" 
-      id="purchase_likes_<%=purchase.get('id')%>_aggregate"></span>
-  </div>
-  
-  <div id="purchase_likes_<%=purchase.get('id')%>_count" 
-        style="display:none;">
-  </div>
-  
-  <!-- Comments -->
-  <div class="comments-box">
-  
-    <div id="purchase_comments_<%=purchase.get('id')%>">
-    </div>
-    
-    <%if(Denwen.H.isLoggedIn() && purchase.get('fb_object_id') && interaction){%>
-      <div class="comment-box new" style="margin-top: 15px;">
-        <img class="user-photo" 
-          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
-        <input type="text" 
-          id="purchase_comment_data_<%=purchase.get('id')%>"
-          class=""
-          placeholder="Add a comment">
-      </div>
-    <%}%>
-    
-  </div> <!-- /comments -->
-  
+  </div> <!-- /panel -->
+
 </div> <!-- /item -->	

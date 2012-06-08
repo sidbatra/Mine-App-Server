@@ -8,6 +8,8 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
+  has_many :comments, :dependent => :destroy
+  has_many :likes, :dependent => :destroy
   belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
   belongs_to :product
@@ -36,7 +38,7 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:fb_photo_id
+                  :fb_action_id,:endorsement
 
   #----------------------------------------------------------------------
   # Class methods
@@ -172,37 +174,31 @@ class Purchase < ActiveRecord::Base
   # Opengraph object id associated with the purchase
   #
   def fb_object_id
-    self.fb_photo_id ? self.fb_photo_id : self.fb_action_id
+    nil #self.fb_action_id
   end
 
   # Facebook post associated with the purchase
   #
   def fb_post
-    fb_post = nil
-
-    if self.fb_photo_id
-      fb_post = FbGraph::Photo.new(self.fb_photo_id)
-    elsif self.fb_action_id
-      fb_post = FbGraph::OpenGraph::Action.new(self.fb_action_id)
-    end
-
-    fb_post
+    self.fb_action_id ? FbGraph::OpenGraph::Action.new(self.fb_action_id) : nil
   end
 
   # Url for fetching facebook comments of the object (photo/action)
   # associated with the purchase
   #
-  def fb_comments_url
-    "https://graph.facebook.com/#{self.fb_object_id}/comments?" \
-    "access_token=#{self.user.access_token}"
+  def fb_comments_url(access_token)
+    "https://graph.facebook.com/#{self.fb_object_id}?" \
+    "access_token=#{access_token}&fields=id,comments&" \
+    "comments.limit=50"
   end
 
   # Url for fetching facebook likes of the object (photo/action)
   # associated with the purchase
   #
-  def fb_likes_url
-    "https://graph.facebook.com/#{self.fb_object_id}/likes?" \
-    "access_token=#{self.user.access_token}"
+  def fb_likes_url(access_token)
+    "https://graph.facebook.com/#{self.fb_object_id}?" \
+    "access_token=#{access_token}&fields=id,likes&" \
+    "likes.limit=50"
   end
 
   # Returns whether or not the purchase should be shared 
@@ -212,17 +208,21 @@ class Purchase < ActiveRecord::Base
     self.fb_action_id == FBSharing::Underway
   end
 
-  # Returns whether or not the purchase should be shared 
-  # to facebook photo album 
-  #
-  def share_to_fb_album?
-    self.fb_photo_id == FBSharing::Underway
-  end
-  
   # Returns if the purchase sharing on facebook has finished 
   #
   def shared?
-    self.fb_object_id.present? & (self.fb_object_id != FBSharing::Underway) 
+    !self.native? & (self.fb_object_id != FBSharing::Underway) 
+  end
+
+  # Returns if the purchase is native to the mine network 
+  #
+  def native?
+    self.fb_object_id.nil?
+  end
+
+  def deleted_from_fb
+    self.fb_action_id = nil
+    self.save!
   end
 
   # Fetch image from the original source and host it on the Filesystem
@@ -313,13 +313,15 @@ class Purchase < ActiveRecord::Base
       image = MiniMagick::Image.open(file_path)
 
       base = base.composite(image) do |canvas|
+        canvas.quality "100"
         canvas.gravity "Center"
-        canvas.geometry "480x480+0+0"
+        canvas.geometry "407x407+0+0"
       end
 
       base = base.composite(overlay) do |canvas|
+        canvas.quality "100"
         canvas.gravity "NorthWest"
-        canvas.geometry "79x93+506+16"
+        canvas.geometry "54x54+447+19"
       end
 
       FileSystem.store(

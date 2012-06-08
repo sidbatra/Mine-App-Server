@@ -16,7 +16,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
     this.feedEl   = '#feed';
-    this.feedPlaceholderEl = '#feed-placeholder';
 
     this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
     this.input    = new Denwen.Partials.Purchases.Input({
@@ -42,6 +41,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     //  this.suggestionSearched,
     //  this); 
 
+    $("a[rel='tooltip']").tooltip();
     
     this.loadFacebookPlugs();
 
@@ -65,9 +65,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     Denwen.Track.version(Denwen.H.version);
     Denwen.Track.isEmailClicked(this.source);
 
-    mixpanel.name_tag(Denwen.H.currentUser.get('email'));
-    mixpanel.register_once({"Age" : Denwen.H.currentUser.get('age')}); 
-    mixpanel.register_once({"Gender" : Denwen.H.currentUser.get('gender')}); 
+    Denwen.Track.user(
+      Denwen.H.currentUser.get('email'),
+      Denwen.H.currentUser.get('age'),
+      Denwen.H.currentUser.get('gender')); 
   },
 
   // --
@@ -77,7 +78,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Display the freshly created purchase in the feed.
   //
   purchaseCreated: function(purchase) {
-    $(this.feedPlaceholderEl).hide();
 
     this.content.insert(purchase);
 

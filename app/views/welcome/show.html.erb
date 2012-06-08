@@ -1,61 +1,45 @@
-<div class="steps">
-	<div class="container">
-	
-		<div class="title">
-			Welcome to Mine, 
-      <span class="name"><%=self.current_user.first_name%></span>. <br />
-			<span style="color: #ccc;">You'll be sharing your first purchase in seconds.</span>
-		</div>
-	
-		<div class="squares clearfix">
-		
-			<div class="square text light">
-				Add friends to see what they buy and where they shop.
-			</div>
-			<div class="rectangle">
-				<%=image_tag "home_mine/intro/"\
-                      "intro1-#{user_gender(self.current_user)}.jpg"%>
-			</div>
-			
-			<div class="rectangle">
-				<%=image_tag "home_mine/intro/"\
-                      "intro2-#{user_gender(self.current_user)}.jpg"%>
-			</div>
-			<div class="square text light">
-				Mine syncs neatly with your Facebook Timeline.
-			</div>
-			
-			<div class="square text light last">
-				Flick a switch to post favorites as large photos.
-			</div>
-			<div class="rectangle last">
-				<%=image_tag 'home_mine/intro/intro3.jpg'%>
-			</div>	
-					
-		</div> <!-- /squares -->
-	</div>	
-</div> <!-- /steps -->
+<div class="container onboarding" style="width: 520px;">
 
-
-
-<div class="bottom-bar">
-	<div class="container">
-    <%=link_to "Share a purchase <i class='large-icon-chevron-right large-icon-white'></i>",
-        root_path(:src => "welcome"),
-        :class => "btn btn-primary btn-large go"%>
+	<div class="heading">
+		<b>Hi <%=self.current_user.first_name%>!</b><br />
+			Thanks for being one of our earliest members.<br />
 	</div>
-</div> <!-- /bottom-bar -->
+	
+	<h3>What is mine?</h3>
+	<p>
+		Mine is a simple service for sharing purchases with friends.<br />
+		Whether it's for a specific recommendation or just plain curiosity, 
+		people often want to learn from what their friends are buying. 
+	</p>
+	
+	<h3>How does it work?</h3>
+	<p>
+		When you add a new purchase, friends you've invited will 
+    see it in their feed of items when they log in.
+		You can also share out more widely to your Facebook friends.
+	</p>
+
+  <%=link_to "Ok, show me how to add a purchase 
+              <i class='icon-chevron-right icon-white'></i>",
+      welcome_path(WelcomeFilter::Create),
+      :class => "btn btn-large",
+      :style => "display: block; margin: 16px 100px 18px;"%>
+	
+  <%=image_tag 'ob/6.jpg'%>
+  <%=image_tag 'ob/4.jpg'%>
+  <%=image_tag 'ob/1.jpg'%>
+  <%=image_tag 'ob/3.jpg'%>
+  <%=image_tag 'ob/5.jpg'%>
+		
+	<p class="sub">Have a question? 
+		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us.</a>
+	</p>
+
+</div>	<!-- /container -->
 
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    mixpanel.track("Welcome View");
-    mixpanel.track("$born");
-    mixpanel.track("User Created");
-
-    mixpanel.name_tag("<%=self.current_user.email%>");
-
-    mixpanel.register_once({"Age" : <%=self.current_user.age%>}); 
-    mixpanel.register_once({"Gender" : "<%=self.current_user.gender%>"}); 
+    new Denwen.Views.Welcome.Show();
   </script>
 <%end%>

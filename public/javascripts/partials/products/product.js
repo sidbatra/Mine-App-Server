@@ -40,8 +40,8 @@ Denwen.Partials.Products.Product = Backbone.View.extend({
   imageLoaded: function(image) {
     var aspectRatio = image.width / image.height;
 
-    if((!image.width && !image.height) || (image.width > 149 && 
-        image.height > 149 &&
+    if((!image.width && !image.height) || (
+        (image.width > 149 || image.height > 149) &&
         aspectRatio < 3 &&
         aspectRatio > 0.3))
         this.divEl.show();

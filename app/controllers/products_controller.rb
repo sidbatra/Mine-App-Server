@@ -223,7 +223,16 @@ class ProductsController < ApplicationController
     if agent.page.is_a? Mechanize::Page
       base_uri = URI.parse(URI.encode(query))
       
-      images = agent.page.images.map do |img| 
+      images = []
+
+      #begin
+      #  og_image = agent.page.parser.at('meta[property="og:image"]')
+      #  images << og_image['content'] if og_image
+      #rescue
+      #  LoggedException.add(__FILE__,__method__,ex)
+      #end
+        
+      images += agent.page.images.map do |img| 
                 begin
                   img.src.match(/^http/) ? 
                     img.src : 

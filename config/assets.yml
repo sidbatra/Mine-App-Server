@@ -9,6 +9,7 @@ javascripts:
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/bootstrap.js
+    - public/javascripts/libs/css3-mediaqueries.js
     - public/javascripts/libs/swfupload.js
     - public/javascripts/support/extensions.js
     - public/javascripts/config.js
@@ -31,12 +32,10 @@ javascripts:
     - app/views/contacts/*.jst
     - app/views/suggestions/*.jst
   home:
-    - public/javascripts/libs/jquery-1.7.1.js
-    - public/javascripts/libs/jquery-cycle.js
 stylesheets:
   application:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets/feed.css
+    - public/stylesheets/tags.css
   home:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/home.css

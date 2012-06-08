@@ -21,7 +21,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     this.inputEl    = '#user_byline';
 
     restrictFieldSize($(this.inputEl),254,'charsremain');
-    make_conditional_field(this.inputEl);
+    $(this.inputEl).placeholder();
   },
 
   // Called when the byline has been saved on the server
@@ -30,7 +30,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     $(this.textEl).html(this.model.escape('byline'));
 
     this.wipe();
-    Denwen.Track.bylineEditingCompleted();
+    Denwen.Track.action("Byline Editing Completed");
   },
 
   // Called when the user wants to edit the byline
@@ -44,14 +44,14 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     $(this.inputEl).show();
     $(this.inputEl).focus();
 
-    Denwen.Track.bylineEditingSelected();
+    Denwen.Track.action("Byline Editing Initiated");
   },
 
   // User cancel's byline editing
   //
   cancel: function() {
     this.wipe();
-    Denwen.Track.bylineEditingCancelled();
+    Denwen.Track.action("Byline Editing Cancelled");
   },
 
   // Hides the active editing UI
@@ -80,7 +80,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
 
     var self = this;
 
-    if($(this.inputEl).val() == $(this.inputEl).attr('data-placeholder'))
+    if($(this.inputEl).val() == $(this.inputEl).attr('placeholder'))
       return;
 
     this.model.save(

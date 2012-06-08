@@ -43,11 +43,18 @@ Denwen.Models.Purchase = Backbone.Model.extend({
     return 'purchase_' + this.get('id');
   },
   
-  // Returns whether or not the purchase is shared on facebook
+  // Returns if the purchase is currently in the process of being 
+  // shared to facebook
   //
-  isShared: function() {
-    return this.get('fb_object_id') && 
-           (this.get('fb_object_id') != Denwen.FBSharing.Underway); 
+  hasSharingUnderway: function() {
+    return this.get('fb_object_id') == Denwen.FBSharing.Underway;
+  },
+
+  // Returns if the purchase is native to the mine network 
+  //
+  isNative: function() {
+    return true;
+    //return this.get('fb_object_id') == null;
   }
 
 });

@@ -1,22 +1,20 @@
-
+<div id="user_byline_box">
       <%if is_current_user(user)%>
 
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
-              :class  => '',
+              :class  => 'user-bio border-box',
               :rows   => '2',
-              :style  => "width: 286px; margin-top: 4px; "\
+              :style  => "width: 100%; padding: 7px; margin-top: 3px;"\
                          "#{self.current_user.byline.present? ? 
                               'display:none;' : ''}",
-              "ui-placeholder-color" => "#999999",
-              "ui-text-color" => "#333333",
-              "data-placeholder" => "What's your style?"%>
+              :placeholder => "What's your style?"%>
           
           <%=link_to  'Save', 
                       'javascript:void(0)', 
                       :id     => 'user_update',
-                      :class     => 'btn',
+                      :class  => 'btn',
                       :style  => self.current_user.byline.present? ?
                                   'display:none' :
                                   ''%>                        
@@ -28,13 +26,13 @@
                         '' :
                         'display:none'%>">
           
-          	<span class="byline" id="user_byline_text">
+          	<div class="user-bio" id="user_byline_text">
           		<%=h self.current_user.byline%>
-          	</span>
+          	</div>
           	
-          	<%=link_to  'Edit', 
+          	<%=link_to  '<i class="icon-pencil icon-white"></i> Edit', 
 	                      'javascript:void(0)', 
-	                      :class  => '',
+	                      :class  => 'btn btn-black',
 	                      :id     => 'user_edit',
 	                      :style  => self.current_user.byline.present? ?
 	                                  '' :
@@ -42,9 +40,8 @@
           </div>
           
       <%elsif user.byline.present?%>
-					<div class="byline">
-          	<span id="user_byline_text">
-		          <%=user.byline%>
-	          </span>
-	         </div>
+					<div class="user-bio">
+            <%=user.byline%>
+         </div>
       <%end%> 
+</div>

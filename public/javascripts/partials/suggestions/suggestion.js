@@ -30,8 +30,7 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   promptClicked: function() {
     $(this.suggestionEl).addClass("started");
 
-    if($.support.placeholder)
-      $(this.inputEl).focus();
+    $(this.inputEl).phocus();
   },
 
   // Fired when a key is pressed on the input.

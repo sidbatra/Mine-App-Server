@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :purchases, :dependent => :destroy
   has_many :searches, :dependent => :destroy
   has_many :contacts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :likes, :dependent => :destroy
   has_many :shoppings, :dependent => :destroy
   has_many :stores, :through   => :shoppings
   has_one  :setting, :dependent => :destroy 
@@ -120,7 +122,7 @@ class User < ActiveRecord::Base
   # returns - String. Url of the image.
   #
   def fb_image_url(type='square')
-    "http://graph.facebook.com/" + fb_user_id + "/picture?type=#{type}" 
+    "http://graph.facebook.com/#{fb_user_id}/picture?type=#{type}" 
   end
 
   # Convienience method to get the user's square fb image.
@@ -218,15 +220,12 @@ class User < ActiveRecord::Base
   end
 
   # Whether or not the user has given fb publish permission to post on
-  # his/her behalf. This includes both publish_actions & publish_stream
+  # his/her behalf. 
   #
   # The method uses FBGraph instead of the settings table
   #
   def fb_publish_permissions?
-    fb_permissions = self.fb_permissions
-
-    fb_permissions.include?(:publish_actions) & 
-      fb_permissions.include?(:publish_stream)
+    self.fb_permissions.include?(:publish_actions)
   end
 
 

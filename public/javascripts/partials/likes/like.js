@@ -14,10 +14,12 @@ Denwen.Partials.Likes.Like = Backbone.View.extend({
   // Render an individual like 
   //
   render: function() {
+    var html = Denwen.JST['likes/like']({like:this.like});
+
     if(!this.onTop)
-      this.el.append(Denwen.JST['likes/like']({like:this.like}));
+      this.el.append(html);
     else
-      this.el.prepend(Denwen.JST['likes/like']({like:this.like}));
+      this.el.prepend(html);
   }
 
 });

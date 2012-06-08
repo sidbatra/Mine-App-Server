@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528172959) do
+ActiveRecord::Schema.define(:version => 20120607172825) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["purchase_id"], :name => "index_comments_on_purchase_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -80,6 +91,16 @@ ActiveRecord::Schema.define(:version => 20120528172959) do
   add_index "invites", ["recipient_id"], :name => "index_invites_on_recipient_id"
   add_index "invites", ["user_id", "recipient_id"], :name => "index_invites_on_user_id_and_recipient_id"
 
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["purchase_id", "user_id"], :name => "index_likes_on_purchase_id_and_user_id", :unique => true
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
+
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
     t.string   "controller_name"
@@ -125,7 +146,6 @@ ActiveRecord::Schema.define(:version => 20120528172959) do
     t.integer  "source_purchase_id"
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
-    t.string   "fb_photo_id"
     t.integer  "product_id"
   end
 
@@ -166,7 +186,6 @@ ActiveRecord::Schema.define(:version => 20120528172959) do
     t.boolean  "email_update",       :default => true
     t.boolean  "fb_publish_actions", :default => true
     t.boolean  "fb_publish_stream",  :default => false
-    t.boolean  "post_to_fb_album",   :default => true
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -180,6 +199,7 @@ ActiveRecord::Schema.define(:version => 20120528172959) do
     t.integer  "purchases_count", :default => 0
   end
 
+  add_index "shoppings", ["purchases_count"], :name => "index_shoppings_on_purchases_count"
   add_index "shoppings", ["source"], :name => "index_shoppings_on_source"
   add_index "shoppings", ["store_id"], :name => "index_shoppings_on_store_id"
   add_index "shoppings", ["user_id", "store_id"], :name => "index_shoppings_on_user_id_and_store_id", :unique => true

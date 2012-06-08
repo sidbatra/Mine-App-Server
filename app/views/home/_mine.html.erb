@@ -1,252 +1,56 @@
-<div class="container screen" id="screen">
+<div class="wrapper">
 
-	<div class="title">
-		<span class="name">Mine</span> is a simple service for sharing purchases with friends.
-	</div>
+	<div class="background" 
+        style="background-image: url('<%=image_path "home/girl-orange.jpg"%>')">
+  </div>
 
-	<div class="squares clearfix">
+	<div class="dimmer">
+  </div>
 	
-		<a href="<%=fb_auth_path(:src => @origin)%>" class="square logo">
-				<%=image_tag 'home_mine/mine-200-white-trans.png', 
-          :size => "200x200"%>
-		</a>
-
-		<a href="<%=fb_auth_path(:src => @origin)%>">
-			<div class="square item" animate="true">
-				<%=image_tag 'home_mine/items/lumia.jpg', 
-	          :size => "200x200"%>
-				<%=image_tag 'home_mine/items/sweater.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/backpack.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/tie.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/daisy.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/stool.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/tshirt.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/ring.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-	      <%=image_tag 'home_mine/items/alarm.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-			</div>
+	<div class="box clearfix">
+	
+    <%=image_tag "home/mine-tall.png", :class => "logo"%>
+		
+		<p>
+			<span class="sub">A service for saying</span><br />
+			‘Hey, I just bought this.’
+		</p>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook"
+        style="width: 170px;">
+			<span class="hide-when-loading">
+				<i class="icon-facebook icon-white"></i> Log in with Facebook
+			</span>
+				<i class="icon-loading icon-white"></i>
 		</a>
 		
-		<a href="<%=fb_auth_path(:src => @origin)%>">
-			<div class="square item" animate="true">
-				<%=image_tag 'home_mine/items/jeans.jpg', 
-	          :size => "200x200"%>
-				<%=image_tag 'home_mine/items/whiskey.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/vans.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/yellowbag.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/shades.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/iphone.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/cushion.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/cap.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-	      <%=image_tag 'home_mine/items/mat.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-			</div>
+<!--
+		<br />
+		
+		<a class="btn btn-black">
+			Learn more
 		</a>
+-->
 		
-		<a href="<%=fb_auth_path(:src => @origin)%>">
-			<div class="square item" animate="true">
-				<%=image_tag 'home_mine/items/toms.jpg', 
-	          :size => "200x200"%>
-				<%=image_tag 'home_mine/items/stand.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/adidas.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/headphones.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/foodinc.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/shoe.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/macbook.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/lipstick.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-	      <%=image_tag 'home_mine/items/watch.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-			</div>
-		</a>
-		
-		<a href="<%=fb_auth_path(:src => @origin)%>">
-			<div class="square item" animate="true">
-				<%=image_tag 'home_mine/items/tattoo.jpg', 
-	          :size => "200x200"%>
-				<%=image_tag 'home_mine/items/plaid.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/blanket.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/jeans2.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/belt.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/sofa.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/mms.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-				<%=image_tag 'home_mine/items/pleasures.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-	      <%=image_tag 'home_mine/items/lamp.jpg', 
-	          :size => "200x200", :style => "display:none"%>
-			</div>
-		</a>
-		
-		
-    <%=link_to image_tag('loading_blocks_small_blue_trans.gif', 
-                :class => 'loading') + 
-        "<div class='hide-when-loading'>" +
-        "<div class='log_in'>Log in with</div>" +
-        image_tag('home_mine/fb.png') +
-        image_tag('home_mine/fb-anim.gif', :style => 'vertical-align: bottom') +
-        "</div>",
-        fb_auth_path(:src => @origin), 
-        :class    => 'square fb',
-        :onclick  => "this.className += ' load'"%>
-							
-	</div> <!-- /squares -->
+		<br />
+		<br />
+		<br />
 	
-	<div style="position: absolute; bottom: 8px; width: 100%; text-align: center;">
-		<b class="caret" 
-	      style="position: relative; bottom: -2px;
-	              filter: alpha(opacity100); opacity: 1; 
-	              border: 12px solid transparent; 
-	              border-top: 12px solid #555;">
-	  </b>
-  </div>	
-	
-</div> <!-- /screen -->
-
-
-
-<div class="steps">
-	<div class="container">
-		<div class="squares clearfix">
+    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
 		
-			<div class="square text">
-				1. Pick out the item you've just bought:
-			</div>
-			<div class="rectangle">
-				<%=image_tag 'home_mine/steps/step1.jpg'%>
-			</div>
-			
-			<div class="rectangle">
-				<%=image_tag 'home_mine/steps/step2.jpg'%>
-			</div>
-			<div class="square text">
-				2. Your friends get notified, instantly.
-			</div>
-			
-			<div class="square text last">
-				3. Enjoy likes and comments on all your good stuff.
-			</div>
-			<div class="rectangle last">
-				<%=image_tag 'home_mine/steps/step3.jpg'%>
-			</div>	
-					
-		</div> <!-- /squares -->
-	</div>	
-</div> <!-- /steps -->
-
-
-
-<div class="action-bar">
-	<div class="container">
-	
-		<div class="rectangle">
-			Join Mine now. It’s fun, and free!
-		</div>		
-	
+		<br />
+		<br />
+		<br />
+		<br />
 		
-    <%=link_to image_tag('loading_blocks_small_blue_trans.gif', 
-                :class => 'loading') + 
-        "<div class='hide-when-loading'>" +
-        "<div class='log_in'>Log in with</div>" +
-        image_tag('home_mine/fb.png') +
-        image_tag('home_mine/fb-anim.gif', :style => 'vertical-align: bottom') +
-        "</div>",
-        fb_auth_path(:src => @origin), 
-        :class    => 'square fb',
-        :onclick  => "this.className += ' load'"%>
-        
-  <footer>
-  	Mine © 2012 · <%=contact_email%>
-  </footer>
-  
-	</div>
-</div> <!-- /action-bar -->
+		<div style="height: 1px; width: 100%; clear: both;"></div>
+	
+	</div> <!-- /box -->
 
+</div> <!-- /wrapper -->
 
-<%content_for :javascript do%>
-
-  <script type="text/javascript">
-    var animatedDivs = [];
-    var previousIndex = -1;
-    var initialDelay = 1000;
-    var animationInterval = 2000;
-    var effectSpeed = 800;
-  
-    // Animate recursively calls itself to animate
-    // a random but not repeated div.
-    //
-    function animate() {
-      var index = -1;
-      var indexes = [];
-
-      for(var i=0;i<animatedDivs.length;i++)
-        if(previousIndex != i)
-          indexes.push(i)
-
-      var index = indexes[Math.floor(Math.random()*indexes.length)];
-
-      $($(animatedDivs[index])).cycle('next');
-
-      previousIndex = index;
-
-      setTimeout(function(){animate();},animationInterval);
-    }
-
-    // Apply the cycle plugin to divs marked for animation and begin
-    // the animation flow.
-    //
-    function setup() {
-      animatedDivs = $('div[animate=true]');
-      animatedDivs.cycle({
-        fx : 'fade',
-        speed : effectSpeed
-      }).cycle('pause');
-
-      setTimeout(function(){animate();},initialDelay);
-    }
-
-    // Preload any dynamic images needed for the page.
-    //
-    function preLoad() {
-      var img = new Image();
-      img.src = "<%=image_path(
-                      'loading_blocks_small_blue_trans.gif')[/[^?]+/]%>";
-    }
-
-    $(document).ready(function() {
-
-  		if(($(window).height() < 688) && ($(window).height() > 624))
- 	 			$("div#screen").height($(window).height());
-
-      preLoad();
-      setup();
-    });
-  
-  </script>
-
-<%end%>
+<footer>
+	Mine © 2012 <!-- · About us -->· <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
+</footer>

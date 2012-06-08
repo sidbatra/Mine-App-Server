@@ -1,2 +1,3 @@
 <%=@comments.to_json(
-    :only => ['id','purchase_id','from','name','created_time','message'])%>
+    :only => ['id','purchase_id','from','name','message','error'],
+    :methods => [:from])%>

@@ -39,6 +39,42 @@ module DW
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
+      
+      # Email the owner about a like on his/her purchase 
+      #
+      def self.email_owner_about_a_like(like)
+        
+        if like.purchase.user.setting.email_influencer &&
+                like.user_id != like.purchase.user_id
+
+          UserMailer.deliver_new_like(like) 
+        end
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Email all the users on the comment thread
+      #
+      def self.email_users_in_comment_thread(comment)
+        user_ids  = Comment.user_ids_in_thread_with(comment)
+        users     = User.with_setting.find_all_by_id(user_ids)
+
+        users.each do |user|
+          begin
+            
+            if user.setting.email_influencer && 
+                user.id != comment.user.id
+
+              UserMailer.deliver_new_comment(comment,user) 
+            end
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
 
       # Prompt given users to create another product 
       #

@@ -31,11 +31,11 @@ common: &common
   :error: error
   :name: Mine
   :description: "Mine is a simple service for sharing purchases with friends. It’s fun, and totally free."
-  :version: 4.0.7
+  :version: 5.0.0
   :images:
     :white_200x200: private/images/white_200x200.jpg
-    :fb_unit_base: private/images/facebook-unit/base.jpg
-    :fb_unit_overlay: private/images/facebook-unit/overlay.png
+    :fb_unit_base: private/images/facebook-unit/base-520x520.jpg
+    :fb_unit_overlay: private/images/facebook-unit/overlay-gray.png
 
 development: &development
   <<: *common
@@ -83,7 +83,7 @@ test: &test
 javascript: &javascript
   <<: *shared
   :fb_extended_permissions: 'publish_stream'
-  :fb_publish_permissions: 'publish_actions,publish_stream'
+  :fb_publish_permissions: 'publish_actions'
   :one_word_query_msg: "<strong>Tip:</strong> Try adding brands and colors, e.g. 'Vans Brown Tweed Slip ons'" 
   :multi_query_msg: "<strong>Tip:</strong> Add items by URL for the perfect photo every time."
   :multi_query_threshold: 5

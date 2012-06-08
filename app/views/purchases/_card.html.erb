@@ -1,27 +1,35 @@
-<%cache ["v8",purchase,purchase.store ? purchase.store : "","card"] do %>
+<%cache ["v11",purchase,purchase.store ? purchase.store : "","card"] do %>
 
-<div class="item">
+  <a href="<%=purchase_path(
+                purchase.user.handle,
+                purchase.handle,
+                :src => "profile")%>" 
+      class="card relative rounded-5 three-to-two">
 
-<!--
-  <#=image_tag(purchase.store.favicon_url, 
-      :class => "store-icon") if purchase.store && 
-                                  purchase.store.favicon_url.present?%>
--->
-
-  <%=link_to image_tag(purchase.square_url,:alt => ""),
-      purchase_path(purchase.user.handle,purchase.handle,:src => "profile"),
-      :class => "photo-box"%>
-
-<!--
-  <div class="details">
-    <h5>
-      <3=h truncate(purchase.title,:length => 40)%>
-    </h5>
+    <div class="photo rounded-5">
+      <%=image_tag purchase.square_url, :alt => ""%>
+    </div>
     
-    <span class="store"><#=h purchase.store ? purchase.store.name : ""%></span>
-  
-  </div>
--->
-</div> 
+    <div class="title-box border-box relative">
+    
+    	<div class="fader absolute"></div>
+    	
+      <span class="item-name">
+        <%=h purchase.title%><br />
+      </span>
+
+      <%if purchase.store%>
+        from 
+        <span class="store-name">
+          <%=h purchase.store.name%><br />
+        </span> 
+      <%end%>
+
+      <span class="time">
+        Added <%=time_ago_in_words purchase.created_at%> ago
+      </span>
+    </div>
+    
+  </a> <!-- /card -->
 
 <%end%>

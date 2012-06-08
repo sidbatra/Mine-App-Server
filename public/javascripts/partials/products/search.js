@@ -65,9 +65,6 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     $(this.queryEl).placeholder();
 
-    if($.support.placeholder)
-      $(this.queryEl).focus();
-
     this.router = this.routing();
   },
 
@@ -326,13 +323,13 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   // Fired when the user selects a product image 
   //
   productImageClicked: function(product) {
+    this.stopSearch();
+
     this.trigger(
       Denwen.Partials.Products.Search.Callback.ProductSelected,
       product,
       this.products.currentSearchTitle(),
       this.products.isURLQuery());
-
-    this.stopSearch();
   },
 
 
