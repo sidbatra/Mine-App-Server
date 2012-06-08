@@ -1,14 +1,21 @@
 <li class="friend border-box rounded-3 three-to-two" id="contact_picker_<%=contact.get('id')%>">
 	<img class="user-photo rounded-3" src="<%=contact.imageURL()%>" />  
 	<%=Denwen.H.truncate(contact.get('name'), 15, '…')%>
+	
 	<a class="btn btn-white <%=contact.get('invited') ? 'pushed' : ''%>" 
         id="post_invite_<%=contact.get('id')%>" 
-     style="float: right;">
-		<span class="out hide-when-loading"><i class="icon-envelope"></i> Invite</span>
-		<!--
-<span class="in hide-when-loading"><i class="icon-ok icon-white"></i> Sent</span>
-		<div class="loading small inline" style="margin-top: 1px;"></div>
--->
+     style="float: right; width: 56px;">
+     
+		<span class="hide-when-loading out">
+			<i class="icon-envelope"></i> Invite
+		</span>
+		
+		<i class="icon-loading icon-white"></i>
+		
+		<span class="in">
+			<i class="icon-ok icon-white"></i> Sent
+		</span>
+		
 	</a>
 </li> 
 
