@@ -15,15 +15,28 @@ module DW
         fb_app  = FbGraph::Application.new(CONFIG[:fb_app_id])
         fb_user = FbGraph::User.me(purchase.user.access_token)  
 
+        message = "I just bought this"
+
+        if purchase.store && purchase.store.is_approved
+          message << " from #{purchase.store.name}"
+        end
+
+        message << ". "
+
+        if purchase.endorsement.present?
+          message << purchase.endorsement 
+          message << " "
+        end
+
+        message << short_purchase_url(
+                    Cryptography.obfuscate(purchase.id),
+                    :host => CONFIG[:host])
+
         action  = fb_user.og_action!(
                     OGAction::Share,
                     "image[0][url]"             => purchase.unit_url,
                     "image[0][user_generated]"  => true,
-                    "message"   => (purchase.endorsement? ? 
-                                    purchase.endorsement + ' '  : '') +
-                                      short_purchase_url(
-                                      Cryptography.obfuscate(purchase.id),
-                                      :host => CONFIG[:host]),
+                    "message"   => message,
                     "purchase"  => purchase_url(
                                     purchase.user.handle,
                                     purchase.handle,
