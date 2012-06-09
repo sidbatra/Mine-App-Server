@@ -54,17 +54,17 @@
 	    <p>Mine is a very simple service for sharing purchases with friends.<br />
 	    	Buy something, add it to your Mine, and friends you specify get to know about it.</p>
 	    	
-	     <%=image_tag "ob/learn-more-modal.gif",
+	     <%=image_tag "about/learn-more-modal.gif",
      			:style => "padding: 2px 0 10px;"%>
 	    	
 	    <p>We came up with the idea when we realized how much of what we buy is influenced by the people around us.
-	    	And how much we miss out on when we don't see the choices our friends are making every day.</p>
+	    	And how much we miss out on when we don't see the choices our friends make every day.</p>
 	    
 	    <p>We really hope you enjoy using mine. It's still early days, so:
 	    	<ol>
-	    		<li>You'll notice mine getting better and better, every week
-	    		<li>We want to hear what you think! Email us 24/7 with comments and questions 
-	    		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">here</a>
+	    		<li>You'll notice mine getting better and better, every week.
+	    		<li>We want to hear what you think. Please email us with comments and questions 
+	    		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">here</a>.
 	    	</ol>
 	    </p>
 	    
@@ -86,15 +86,43 @@
 	<div class="modal fade hide" id="aboutUs">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>About Mine</h3>
+	    <h3>The team</h3>
 	  </div>
+	  
 	  <div class="modal-body">
-	    <p>One fine body…</p>
+	  	<p>We believe that ownership data —the ongoing log of what we all choose to buy— will transform commerce for the better in the years ahead.<p>
+	  	<p>If you feel the same way, <a href="mailto:Mine &lt;<%=contact_email%>&gt;">get in touch</a>.<br />
+	  		We're always looking for amazing people to help us get there.</p>
+			
+			<div style="padding: 8px 0 16px;">
+			
+			 	<%=image_tag "about/deepak.jpg",
+     			:style => "margin-right: 8px;"%>
+     			
+     		<%=image_tag "about/sid.jpg",
+     			:style => "margin-right: 8px;"%>
+     		
+     		<%=image_tag "about/pierre.jpg",
+     			:style => "margin-right: 8px;"%>
+     			
+     		<%=image_tag "about/natala.jpg",
+     			:style => "margin-right: 8px;"%>
+     	
+     	</div>
+     	
+     	<p>Deepak, Sid, Pierre and Natala</p>
+     	
+     	<p>
+     		Mine is funded by the wonderful people at 
+     		<a href="http://www.harrisonmetal.com"/>Harrison Metal Capital.</a>
+     	</p>
 	  </div>
-	  <div class="modal-footer">
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
-	    <a href="#" class="btn btn-primary">Save changes</a>
-	  </div>
+	  
+    <div class="modal-footer" style="text-align: left;">		
+    	Stop by and see us:<br />
+    	Mine - 855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA
+   	</div>
+   	
 	</div> <!-- /modal -->
 
 </div> <!-- /wrapper -->
