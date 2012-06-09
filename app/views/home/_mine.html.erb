@@ -26,20 +26,16 @@
 				<i class="icon-loading icon-white"></i>
 		</a>
 		
-<!--
+		<br />
 		<br />
 		
-		<a class="btn btn-black">
-			Learn more
-		</a>
--->
+		<a class="btn btn-white" data-toggle="modal" href="#learnMore" style="display: inline-block;">Learn more</a>
 		
-		<br />
 		<br />
 		<br />
 	
     <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
-		
+	
 		<br />
 		<br />
 		<br />
@@ -48,9 +44,61 @@
 		<div style="height: 1px; width: 100%; clear: both;"></div>
 	
 	</div> <!-- /box -->
+	
+	<div class="modal fade hide" id="learnMore">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>Thanks for discovering Mine</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>Mine is a very simple service for sharing purchases with friends.<br />
+	    	Buy something, add it to your Mine, and friends you specify get to know about it.</p>
+	    	
+	     <%=image_tag "ob/learn-more-modal.gif",
+     			:style => "padding: 2px 0 10px;"%>
+	    	
+	    <p>We came up with the idea when we realized how much of what we buy is influenced by the people around us.
+	    	And how much we miss out on when we don't see the choices our friends are making every day.</p>
+	    
+	    <p>We really hope you enjoy using mine. It's still early days, so:
+	    	<ol>
+	    		<li>You'll notice mine getting better and better, every week
+	    		<li>We want to hear what you think! Email us 24/7 with comments and questions 
+	    		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">here</a>
+	    	</ol>
+	    </p>
+	    
+	    </p>
+	  </div>
+	  <div class="modal-footer">
+	    <a href="<%=fb_auth_path(:src => @origin)%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook"
+        style="width: 170px;">
+				<span class="hide-when-loading">
+					<i class="icon-facebook icon-white"></i> Log in with Facebook
+				</span>
+				<i class="icon-loading icon-white"></i>
+		</a>
+	  </div>
+	</div> <!-- /modal -->
+	
+	<div class="modal fade hide" id="aboutUs">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>About Mine</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>One fine body…</p>
+	  </div>
+	  <div class="modal-footer">
+	    <a href="#" class="btn" data-dismiss="modal">Close</a>
+	    <a href="#" class="btn btn-primary">Save changes</a>
+	  </div>
+	</div> <!-- /modal -->
 
 </div> <!-- /wrapper -->
 
 <footer>
-	Mine © 2012 <!-- · About us -->· <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
+	Mine © 2012 · <a data-toggle="modal" href="#aboutUs">About us</a> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
 </footer>
