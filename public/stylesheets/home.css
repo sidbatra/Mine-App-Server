@@ -5,7 +5,10 @@
 
 html, body { height: 100%; }
 
-body {  text-align: center; }
+a { color: #ccc; }
+a:hover { 
+	color: white;
+	text-decoration: none; }
 
 .wrapper {
 	min-height: 100%;
@@ -18,7 +21,9 @@ body {  text-align: center; }
 	width: 180px;
 	z-index: 1; }
 	
-p {
+.box { text-align: center; }
+	
+.box p {
 	font-family: 'RooneyLightItalic', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 24px;
 	line-height: 36px;
@@ -48,16 +53,17 @@ p {
 	height: 100%;
 	z-index: -1; }
 	
+.modal-body a { color: #177DBE; }
+.modal-footer { text-align: center; }
+	
 footer, .push {
+	text-align: center;
 	color: #ccc;
 	height: 36px;
 	line-height: 36px;
 	background: url('/images/colors/black-25.png'); }
   
-footer a { color: #ccc; }
-footer a:hover { 
-	color: white;
-	text-decoration: none; }
+
 	
 	
 	
