@@ -44,6 +44,7 @@ class FacebookController < ApplicationController
 
       user_fb_ids = entry.map{|permission| permission['uid']} 
       users       = User.find_all_by_fb_user_id(user_fb_ids)
+      users       = users.select{|user| user.updated_at > 30.days.ago}
       
       if object == 'permissions'
         users.each do |user|
@@ -51,14 +52,14 @@ class FacebookController < ApplicationController
             UserDelayedObserver,
             :after_fb_permissions_update,
             user.id)
-        end
+        end 
 
       elsif object == 'user'
         users.each do |user|
           ProcessingQueue.push(
             UserDelayedObserver,
             :mine_fb_data,
-            user) if user.updated_at > 30.days.ago
+            user) 
         end 
         
       end
