@@ -42,6 +42,9 @@ class Admin::EmailsController < ApplicationController
                                   User.find_all_by_id([1,2,13,12]),
                                   [Purchase.all[-5..-1],[Purchase.last]])
 
+    when :revive_user
+      render :text => UserMailer.preview_revive_user(User.last)
+
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)
 

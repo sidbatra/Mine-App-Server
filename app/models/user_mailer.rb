@@ -136,6 +136,19 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Revive an old user.
+  #
+  def revive_user(user)
+    @user = user
+    @source = "email_revive"
+
+    generate_attributes(@user,0,@user,EmailPurpose::Revive)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       "Nice subject"
+  end
+
   # Safety check email whenever a user is deleted
   #
   def user_deleted(admin,user)
