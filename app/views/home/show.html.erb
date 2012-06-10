@@ -23,6 +23,10 @@
      mixpanel.register_once({"Origin" : "<%=@origin%>"});
      mixpanel.register_once({"Home Page" : "<%=@home%>"});
      mixpanel.track("Home View",{"Source" : "<%=@source%>"});
+
+    var source = "<%=@source%>";
+    if(source.slice(0,6) == 'email_')
+      mixpanel.track("Email Clicked",{"Source":source.slice(6,source.length)});
   </script>
 
 <%end%>
