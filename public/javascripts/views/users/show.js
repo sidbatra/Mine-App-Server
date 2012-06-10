@@ -15,6 +15,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
             el: $('#user_byline_box'),
             model: this.user});
 
+    // -----
+    $("span.timeago").timeago();
+
+    // -----
     $("a[rel='tooltip']").tooltip();
 
     // -----
