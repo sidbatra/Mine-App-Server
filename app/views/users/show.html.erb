@@ -33,14 +33,14 @@
 		</div> <!-- /text-box -->
 	
 
-    <%cache ["v6",@user,"ifollowers","profile"] do%>
+    <%cache ["v7",@user,"ifollowers","profile"] do%>
       <div class="friends-box relative">
         <div class="fader absolute">
         </div>
 
         <p>Sharing purchases with:</p>
 
-        <%@user.ifollowers.limit(7).each do |user|%>
+        <%@user.ifollowers.each do |user|%>
           <%cache ["v4",user,"ifollower","profile"] do%>
             <%=link_to image_tag(user.square_image_url), 
                 user_path(user.handle,:src => "profile"),
@@ -83,7 +83,7 @@
 
 
 	<div class="cards clearfix">
-    <%cache ["v3",@user,"purchases"] do%>
+    <%cache ["v4",@user,"purchases"] do%>
       <%=render :partial => "purchases/card",
           :collection => @user.purchases.with_store.with_user.by_id,
           :as => :purchase%>

@@ -2,7 +2,7 @@
 # emails to users
 #
 class UserMailer < ActionMailer::Base
-  layout 'email'
+  layout 'email', :except => :revive_user
   helper :application
 
   # Welcome email for the user on sign up
@@ -134,6 +134,19 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
+  end
+
+  # Revive an old user.
+  #
+  def revive_user(user)
+    @user = user
+    @source = "email_revive"
+
+    generate_attributes(@user,0,@user,EmailPurpose::Revive)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       "Your OnCloset is now called 'Mine'. Invite friends to win an iPhone"
   end
 
   # Safety check email whenever a user is deleted

@@ -1,4 +1,4 @@
-<%cache ["v11",purchase,purchase.store ? purchase.store : "","card"] do %>
+<%cache ["v12",purchase,purchase.store ? purchase.store : "","card"] do %>
 
   <a href="<%=purchase_path(
                 purchase.user.handle,
@@ -26,7 +26,7 @@
       <%end%>
 
       <span class="time">
-        Added <%=time_ago_in_words purchase.created_at%> ago
+        Added <span class="timeago" title="<%=purchase.created_at%>"></span> ago
       </span>
     </div>
     
