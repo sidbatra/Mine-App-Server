@@ -98,14 +98,12 @@ module DW
       #
       def self.revive
         users = User.all.select{|u| (u.age <= 25 || u.age >=35) && 
-                                  u.updated_at < 15.days.ago && 
-                                  u.gender.start_with?('f')}
-                                  puts users.count
-                                  return
+                                  u.created_at < 2.months.ago && 
+                                  u.gender && u.gender.start_with?('f')}
         users.each do |user|
           begin
             puts user.full_name
-            #UserMailer.deliver_revive_user(user)
+            UserMailer.deliver_revive_user(user)
             sleep 0.09
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
