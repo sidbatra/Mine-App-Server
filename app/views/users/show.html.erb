@@ -33,14 +33,14 @@
 		</div> <!-- /text-box -->
 	
 
-    <%cache ["v6",@user,"ifollowers","profile"] do%>
+    <%cache ["v7",@user,"ifollowers","profile"] do%>
       <div class="friends-box relative">
         <div class="fader absolute">
         </div>
 
         <p>Sharing purchases with:</p>
 
-        <%@user.ifollowers.limit(7).each do |user|%>
+        <%@user.ifollowers.each do |user|%>
           <%cache ["v4",user,"ifollower","profile"] do%>
             <%=link_to image_tag(user.square_image_url), 
                 user_path(user.handle,:src => "profile"),
