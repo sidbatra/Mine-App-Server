@@ -25,7 +25,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Regenerate the index"
     task :index do
-      rake "sunspot:solr:index", :local => true
+      rake "sunspot:solr:index", {:local => true,:background => true}
     end
   end
 

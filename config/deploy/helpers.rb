@@ -7,6 +7,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     #   local - Boolean. Run rake task in remote app folder or
     #             local deploy folder. Default - false
     #   sudo - Boolean. Run with sudo or not. Default - false.
+    #   background - Boolean. Run rake task in background. Default - false.
     #
     # returns - Boolean. true.
     #
@@ -14,7 +15,8 @@ Capistrano::Configuration.instance(:must_exist).load do
       command = "#{options[:local] ? "run_locally" : "run"} \""\
                 "cd #{options[:local] ? Dir.pwd : current_path} && "\
                 "#{options[:sudo] ? "sudo" :""} "\
-                "rake #{name} RAILS_ENV=#{environment}\"" 
+                "rake #{name} RAILS_ENV=#{environment} "\
+                "#{options[:background] ? "&" : ""} \""
       eval command
       true
     end
