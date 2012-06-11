@@ -1,7 +1,7 @@
 <div class="wrapper">
 
 	<div class="background" 
-        style="background-image: url('<%=image_path "home/girl-orange.jpg"%>')">
+        style="background-image: url('<%=image_path "home/yellow.jpg"%>')">
   </div>
 
 	<div class="dimmer">
@@ -12,17 +12,20 @@
     <%=image_tag "home/mine-tall.png", :class => "logo"%>
 		
 		<p>
-			<span class="sub">A service for saying</span><br />
-			‘Hey, I just bought this.’
+			<span class="">
+				A free service<br />
+				for logging and sharing purchases.
+			</span>
 		</p>
 		
 		<a href="<%=fb_auth_path(:src => @origin)%>" 
         id="fb-login-main"
         onclick="this.className += ' load';"
         class="btn btn-large btn-facebook"
-        style="width: 170px;">
+        style="width: 190px;">
 			<span class="hide-when-loading">
-				<i class="icon-facebook icon-white"></i> Log in with Facebook
+				<i class="icon-facebook icon-white"></i> Log in with Facebook 
+				<i class="icon-chevron-right icon-white"></i>
 			</span>
 				<i class="icon-loading icon-white"></i>
 		</a>
@@ -30,10 +33,12 @@
 		<br />
 		<br />
 		
-		<a class="btn btn-white" data-toggle="modal" href="#learnMore" style="display: inline-block;">Learn more</a>
+	<!--
+	<a class="btn btn-white" data-toggle="modal" href="#learnMore" style="display: inline-block;">Learn more</a>
 		
 		<br />
 		<br />
+-->
 	
     <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
 	
@@ -130,5 +135,5 @@
 </div> <!-- /wrapper -->
 
 <footer>
-	Mine © 2012 · <a data-toggle="modal" href="#aboutUs">About us</a> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
+	Mine © 2012 · <a data-toggle="modal" href="#learnMore">Learn more</a> · <a data-toggle="modal" href="#aboutUs">About us</a> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
 </footer>
