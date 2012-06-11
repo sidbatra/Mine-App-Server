@@ -2,7 +2,7 @@
 # emails to users
 #
 class UserMailer < ActionMailer::Base
-  layout 'email'
+  layout 'email', :except => :revive_user
   helper :application
 
   # Welcome email for the user on sign up
