@@ -146,7 +146,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Nice subject"
+    subject       "Your OnCloset is now called 'Mine'. Log in to win an iPhone"
   end
 
   # Safety check email whenever a user is deleted
