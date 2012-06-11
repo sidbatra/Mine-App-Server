@@ -103,6 +103,8 @@ module DW
         users.each do |user|
           begin
             puts user.full_name
+            user.access_token = nil
+            user.forget
             UserMailer.deliver_revive_user(user)
             sleep 0.09
           rescue => ex
