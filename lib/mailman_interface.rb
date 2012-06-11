@@ -96,15 +96,25 @@ module DW
 
       # Revive dead users.
       #
-      def self.revive
-        users = User.all.select{|u| (u.age <= 25 || u.age >=35) && 
-                                  u.created_at < 2.months.ago && 
-                                  u.gender && u.gender.start_with?('f')}
+      def self.revive(offset=0)
+        users = User.offset(offset).
+                  limit(500).
+                  all(
+                    :conditions => [
+                      "(birthday > ? or birthday < ?) and created_at < ? "\
+                      "and gender = 'female'",
+                      26.years.ago,35.years.ago,2.months.ago])
+
+        puts users.count
+
+        User.update_all({
+            :access_token => nil,
+            :remember_token_expires_at => nil,
+            :remember_token => nil}, {:id => users.map(&:id)})
+
         users.each do |user|
           begin
             puts user.full_name
-            user.access_token = nil
-            user.forget
             UserMailer.deliver_revive_user(user)
             sleep 0.09
           rescue => ex
