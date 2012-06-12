@@ -15,10 +15,12 @@ namespace :git do
       system "git merge --no-ff origin/develop"
       system "git push"
 
-      version = YAML.load_file("config/config.yml")['production'][:version]
+      if message != "SKIP"
+        version = YAML.load_file("config/config.yml")['production'][:version]
 
-      system "git tag -a #{version} -m \"#{message}\""
-      system "git push origin #{version}"
+        system "git tag -a #{version} -m \"#{message}\""
+        system "git push origin #{version}"
+      end
     end #master
 
   end #merge
