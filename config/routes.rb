@@ -133,6 +133,14 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :suggestions
   end
 
+  ##
+  # Try link for twitter.
+  ##
+  map.connect 'try',
+    :controller => :home,
+    :action => :show,
+    :id => 'twitter'
+
 
   ##
   # Catch all route for user profiles
