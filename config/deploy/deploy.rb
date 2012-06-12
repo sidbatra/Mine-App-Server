@@ -77,10 +77,6 @@ Capistrano::Configuration.instance(:must_exist).load do
         workers.restart
       end
 
-      if servers? :search
-        solr.index
-      end
-
       if servers? :web or servers? :worker
         cron.update_web_proc
       end
@@ -102,6 +98,10 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
 
       monit.restart
+
+      if servers? :search
+        solr.index
+      end
     end
 
   end

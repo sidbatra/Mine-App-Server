@@ -18,7 +18,7 @@ AWS::S3::Base.establish_connection!(
   :access_key_id      => config[:aws_access_id],
   :secret_access_key  => config[:aws_secret_key])
 
-objects = AWS::S3::Bucket.objects('denwen-hasit-dumps',:prefix => folder)
+objects = AWS::S3::Bucket.objects('denwen-mine-dumps',:prefix => folder)
 regex = Regexp.new("#{folder}/.*_#{environment}.log")
 
 Dir.mkdir(folder) unless File.directory?(folder)
