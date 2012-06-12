@@ -100,7 +100,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       monit.restart
 
       if servers? :search
-        solr.index
+        #solr.index
       end
     end
 
