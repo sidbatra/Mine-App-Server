@@ -1,0 +1,147 @@
+<div class="wrapper">
+
+	<div class="background" 
+        style="background-image: url('<%=image_path "home/girl-orange.jpg"%>')">
+  </div>
+
+	<div class="dimmer">
+  </div>
+	
+	<div class="box clearfix">
+	
+    <%=image_tag "home/mine-tall.png", :class => "logo"%>
+		
+		<p>
+			<span class="">
+				A free service<br />
+				for whatever people who click on ads like.
+			</span>
+		</p>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" 
+        id="fb-login-main"
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook"
+        style="width: 190px;">
+			<span class="hide-when-loading">
+				<i class="icon-facebook icon-white"></i> Log in with Facebook 
+				<i class="icon-chevron-right icon-white"></i>
+			</span>
+				<i class="icon-loading icon-white"></i>
+		</a>
+		
+		<br />
+		
+			<span class="assurance">
+				Mine never shares without your permission.
+			</span>
+		
+		<br />
+		<br />
+		
+	<!--
+	<a class="btn btn-white" data-toggle="modal" href="#learnMore" style="display: inline-block;">Learn more</a>
+		
+		<br />
+		<br />
+-->
+	
+    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
+	
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		<div style="height: 1px; width: 100%; clear: both;"></div>
+	
+	</div> <!-- /box -->
+	
+	<div class="modal fade hide" id="learnMore">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>Thanks for discovering Mine</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>Mine is a very simple service for sharing purchases with friends.<br />
+	    	Buy something, add it to your Mine, and friends you specify get to know about it.</p>
+	    	
+	     <%=image_tag "about/learn-more-modal.gif",
+     			:style => "padding: 2px 0 10px;"%>
+	    	
+	    <p>We came up with the idea when we realized how much of what we buy is influenced by the people around us.
+	    	And how much we miss out on when we don't see the choices our friends make every day.</p>
+	    
+	    <p>We're just getting started, so:
+	    	<ol>
+	    		<li>You'll notice mine getting better and better, every week.
+	    		<li>We want to hear what you think. Please email us your comments or questions 
+	    		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">here</a>.
+	    	</ol>
+	    	We hope you enjoy sharing with Mine.<br />
+	    </p>
+	    
+	    </p>
+	  </div>
+	  <div class="modal-footer">
+			<a href="<%=fb_auth_path(:src => @origin)%>" 
+	        id="fb-login-main"
+	        onclick="this.className += ' load';"
+	        class="btn btn-large btn-facebook"
+	        style="width: 190px;">
+				<span class="hide-when-loading">
+					<i class="icon-facebook icon-white"></i> Log in with Facebook 
+					<i class="icon-chevron-right icon-white"></i>
+				</span>
+					<i class="icon-loading icon-white"></i>
+			</a>
+	  </div>
+	</div> <!-- /modal -->
+	
+	<div class="modal fade hide" id="aboutUs">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">×</button>
+	    <h3>The team</h3>
+	  </div>
+	  
+	  <div class="modal-body">
+	  	<p>We believe that ownership data —the ongoing log of what we all choose to buy— will transform commerce for the better in the years ahead.<p>
+	  	<p>If you feel the same way, <a href="mailto:Mine &lt;<%=contact_email%>&gt;">get in touch</a>.<br />
+	  		We're always looking for amazing people to help us get there.</p>
+			
+			<div style="padding: 8px 0 16px;">
+			
+			 	<%=image_tag "about/deepak.jpg",
+     			:style => "margin-right: 6px;"%>
+     			
+     		<%=image_tag "about/sid.jpg",
+     			:style => "margin-right: 6px;"%>
+     		
+     		<%=image_tag "about/pierre.jpg",
+     			:style => "margin-right: 6px;"%>
+     			
+     		<%=image_tag "about/natala.jpg",
+     			:style => "margin-right: 6px;"%>
+     	
+     	</div>
+     	
+     	<p>Deepak, Sid, Pierre and Natala</p>
+     	
+     	<p>
+     		Mine is funded by the wonderful people at 
+     		<a href="http://www.harrisonmetal.com"/>Harrison Metal Capital.</a>
+     	</p>
+	  </div>
+	  
+    <div class="modal-footer" style="text-align: left;">		
+    	Stop by and see us:<br />
+    	Mine - 855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA
+   	</div>
+   	
+	</div> <!-- /modal -->
+
+</div> <!-- /wrapper -->
+
+<footer>
+	Mine © 2012 · <a data-toggle="modal" href="#learnMore">Learn more</a> · <a data-toggle="modal" href="#aboutUs">About us</a> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us</a>
+</footer>

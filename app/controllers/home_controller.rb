@@ -20,7 +20,9 @@ class HomeController < ApplicationController
   # and the curent request.
   #
   def detect_origin
-    session[:home]    ||= 'mine'
+    session[:home]    ||= params[:id] && params[:id].to_s == 'adwords' ? 
+                            'adwords' : 
+                            'mine'
     session[:origin]  ||= params[:id] ? params[:id].to_s : 'direct'
     @home               = session[:home]
     @origin             = session[:origin]

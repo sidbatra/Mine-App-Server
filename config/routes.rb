@@ -134,12 +134,17 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   ##
-  # Try link for twitter.
+  # Links for distribution sources.
   ##
   map.connect 'try',
     :controller => :home,
     :action => :show,
     :id => 'twitter'
+
+  map.connect 'adwords',
+    :controller => :home,
+    :action => :show,
+    :id => 'adwords'
 
 
   ##
