@@ -30,9 +30,13 @@ a:hover {
 	color: white;
 	padding: 19px 0 18px; }
 
-.sub { 
+.box .sub { 
 	color: #ccc;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+.box .assurance {
+	color: white;
+	font-size: 10px; }
 
 .background {
 	background-size: cover;
