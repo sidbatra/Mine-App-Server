@@ -45,7 +45,7 @@ Rails::Initializer.run do |config|
               :version => '1.1.0',
               :lib => false)
   config.gem('fb_graph',
-              :version => '2.4.0')
+              :version => '2.4.17')
   config.gem('grit',
               :version => '2.4.1',
               :lib => false)
