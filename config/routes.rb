@@ -146,6 +146,15 @@ ActionController::Routing::Routes.draw do |map|
     :action => :show,
     :id => 'adwords'
 
+  map.connect 'beta',
+    :controller => :home,
+    :action => :show,
+    :id => 'beta'
+
+  map.connect 'tastemaker',
+    :controller => :home,
+    :action => :show,
+    :id => 'tastemaker'
 
   ##
   # Catch all route for user profiles
