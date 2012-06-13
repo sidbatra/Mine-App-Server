@@ -88,7 +88,7 @@ class UsersController < ApplicationController
                                     :src    => @source,
                                     :target => @target)
       client.authorization_code = params[:code]
-      access_token              = client.access_token!
+      access_token              = client.access_token!(:client_auth_body)
     end
 
     raise IOError, "Error fetching access token" unless access_token
