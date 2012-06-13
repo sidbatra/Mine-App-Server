@@ -17,11 +17,12 @@ a:hover {
 	margin: 0 auto -36px; }
 
 .logo {
-	margin-top: 5%;
-	width: 180px;
+	margin-top: 4%;
+	width: 160px;
 	z-index: 1; }
 	
-.box { text-align: center; }
+.box { 
+	text-align: center; }
 	
 .box p {
 	font-family: 'RooneyLightItalic', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -33,6 +34,16 @@ a:hover {
 .box .sub { 
 	color: #ccc;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+.box ul {
+	font-family: 'RooneyLightItalic', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: white;
+	font-size: 14px;
+	line-height: 28px;
+	list-style: none;
+	margin-left: 0; }
+
+.box ul li { line-height: 21px; }
 
 .box .assurance {
 	color: white;
