@@ -10,14 +10,17 @@
     <table>
       <%bucket[:users].each do |user|%>
         <tr>
-          <td width="200">
+          <td width="150">
             <%=link_to user_full_name(user),user_path(user.handle)%>
           </td>
           <td width="200">
-            <%="joined #{time_ago_in_words(user.created_at)} ago"%>
+            <%="joined #{time_ago_in_words(user.created_at)}"%>
+          </td>
+          <td width="100">
+            <%="#{user.purchases_count} items"%>
           </td>
           <td width="200">
-            <%="#{user.purchases_count} items"%>
+            <%="#{truncate(user.email,:length => 50)}"%>
           </td>
           <td width="200">
             <%=link_to 'Admin View',admin_user_path(user.handle)%>
