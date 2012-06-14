@@ -49,6 +49,28 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Tweet about the purchase 
+      #
+      def self.tweet(purchase)
+        client = TwitterOAuth::Client.new(
+                    :consumer_key     => CONFIG[:tw_consumer_key], 
+                    :consumer_secret  => CONFIG[:tw_consumer_secret],
+                    :token            => purchase.user.tw_access_token,
+                    :secret           => purchase.user.tw_access_token_secret)
+        
+        if client.authorized?
+          message = "just bought this " + short_purchase_url(
+                                            Cryptography.obfuscate(purchase.id),
+                                            :host => CONFIG[:host])
+
+          tweet = client.update(message)
+          purchase.update_attributes({:tweet_id => tweet["id"]})
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Update an open graph object - purchase
       # This updates all the actions associated with that object
       #

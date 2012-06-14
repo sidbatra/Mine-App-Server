@@ -45,4 +45,11 @@ class Setting < ActiveRecord::Base
     self.fb_publish_actions & self.post_to_timeline
   end
 
+  # Whether or not the user's current settings enable posting 
+  # to twitter
+  #
+  def post_to_twitter?  
+    self.share_to_twitter & self.tw_permissions
+  end
+
 end

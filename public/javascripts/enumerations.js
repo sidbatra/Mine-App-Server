@@ -22,3 +22,7 @@ Denwen.PurchaseFormType = {
 New: "new",
 Edit: "edit"
 }
+
+Denwen.TWSharing = {
+Underway: "1"
+}

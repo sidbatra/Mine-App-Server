@@ -9,6 +9,10 @@ class PurchaseDelayedObserver < DelayedObserver
     if purchase.share_to_fb_timeline? && purchase.is_processed
       DistributionManager.publish_share(purchase)
     end
+
+    if purchase.share_to_twitter? && purchase.is_processed
+      DistributionManager.tweet(purchase)
+    end
   end
 
   # Delayed after_update.

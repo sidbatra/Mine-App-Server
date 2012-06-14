@@ -4,8 +4,8 @@ class TwitterController < ApplicationController
     @filter = params[:filter].to_sym
 
     client = TwitterOAuth::Client.new(
-                :consumer_key => '5M8DIWAdEJRKlTW5d9vw',
-                :consumer_secret => 'JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc')
+                :consumer_key     => CONFIG[:tw_consumer_key], 
+                :consumer_secret  => CONFIG[:tw_consumer_secret]) 
 
     case @filter
     when :authenticate

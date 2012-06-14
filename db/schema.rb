@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120613235815) do
+ActiveRecord::Schema.define(:version => 20120614230100) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20120613235815) do
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
     t.integer  "product_id"
+    t.string   "tweet_id"
   end
 
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"

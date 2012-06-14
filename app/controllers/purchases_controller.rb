@@ -46,6 +46,10 @@ class PurchasesController < ApplicationController
       params[:purchase][:fb_action_id] = FBSharing::Underway
     end
 
+    if setting.post_to_twitter?
+      params[:purchase][:tweet_id] = TWSharing::Underway
+    end
+
     @purchase = Purchase.add(params[:purchase],self.current_user.id)
 
   rescue => ex
