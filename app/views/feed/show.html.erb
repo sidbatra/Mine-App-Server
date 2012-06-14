@@ -50,6 +50,32 @@
 
   
   <%=render 'purchases/chooser'%>
+  
+  <div class="suggestions-box relative">
+  	
+  	<div class="fader absolute left"></div>
+  	<div class="fader absolute right"></div>
+    
+		<a class="btn btn-black">
+			<i class="icon-mine icon-white"></i> Add your phone
+		</a>
+		<a class="btn btn-black">
+			<i class="icon-mine icon-white"></i> Add your shoes
+		</a>
+		<a class="btn btn-black">
+			<i class="icon-mine icon-white"></i> Add your favorite game
+		</a>
+		<a class="btn btn-black">
+			<i class="icon-mine icon-white"></i> Add your bag
+		</a>
+		<a class="btn btn-black">
+			<i class="icon-mine icon-white"></i> Add your makeup
+		</a>
+		<a class="btn btn-black">
+			<i class="icon-mine icon-white"></i> Add your balls
+		</a>
+	</div>
+    
   	
   <div id="creation" class="create-box">
     <%form_for Purchase.new,
@@ -76,20 +102,6 @@
   
   </div> <!-- create-box -->
   
-  <div class="suggestions-box">
-		<a class="btn btn-black">
-			<i class='icon-plus icon-white'></i> Add your phone
-		</a>
-		<a class="btn btn-black">
-			<i class='icon-plus icon-white'></i> Add your shoes
-		</a>
-		<a class="btn btn-black">
-			<i class='icon-plus icon-white'></i> Add your favorite game
-		</a>
-	</div>
-    
-
-
   <div id="feed" class="feed">
   </div> <!-- feed -->
   

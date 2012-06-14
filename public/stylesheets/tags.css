@@ -329,7 +329,25 @@ footer, footer a, footer a:hover { color: #ccc; }
 .suggestions-box {
 	padding: 16px 0;
 	background: #666;
-	text-align: center; }
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden; }
+	
+.suggestions-box .fader.right{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 28px;
+	z-index: 500;
+	background: url("/images/fade-right.png") 0 -200px; }
+
+.suggestions-box .fader.left {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 28px;
+	z-index: 500;
+	background: url("/images/fade-left.png") -22px -200px; }
 	
 
 /* Switch Toggle
