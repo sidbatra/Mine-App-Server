@@ -195,7 +195,7 @@ class ProductsController < ApplicationController
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                 end
-                              end #if web_search["__next"]
+                              end if web_search["__next"] || page.zero?
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
