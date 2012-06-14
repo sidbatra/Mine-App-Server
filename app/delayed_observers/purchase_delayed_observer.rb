@@ -6,7 +6,7 @@ class PurchaseDelayedObserver < DelayedObserver
     purchase = Purchase.find(purchase_id)
     purchase.host
 
-    if purchase.share_to_fb_timeline? 
+    if purchase.share_to_fb_timeline? && purchase.is_processed
       DistributionManager.publish_share(purchase)
     end
   end
@@ -17,11 +17,13 @@ class PurchaseDelayedObserver < DelayedObserver
     purchase = Purchase.find(purchase_id)
     purchase.host if options[:rehost]
     
-    DistributionManager.update_object(
-                          purchase_url(
-                            purchase.user.handle,
-                            purchase.handle,
-                            :host => CONFIG[:host]))
+    if purchase.shared? && purchase.is_processed
+      DistributionManager.update_object(
+                            purchase_url(
+                              purchase.user.handle,
+                              purchase.handle,
+                              :host => CONFIG[:host]))
+    end
   end
 
 end
