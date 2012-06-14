@@ -1166,8 +1166,8 @@ footer, footer a, footer a:hover { color: #ccc; }
   background-position: center center !important; }
 
 .icon-loading.icon-white { background: url("/images/loading-blocks-white-trans.gif"); }
-.btn.load .icon-loading { display: inline-block; }
-.btn.load .hide-when-loading { display: none; }
+.load .icon-loading { display: inline-block; }
+.load .hide-when-loading { display: none; }
 
 
 /* ----- btn groups & dropdowns ----- */	

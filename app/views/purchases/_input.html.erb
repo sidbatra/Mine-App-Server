@@ -101,10 +101,11 @@
 		      <div class="post-to border-box rounded-8">
 		        Facebook
 	          <a id="fb-photo-toggle-switch" 
-	              class="toggle-switch unselectable rounded-5 <%='off' if !fb_share_on%>">
+	              class="toggle-switch unselectable rounded-5 <%='off' if !fb_share_on%> load">
 		          <div class="on clearfix rounded-5">
 		            <div class="text">
-		              On
+		          		<span class="hide-when-loading">On</span>
+		          		<i class="icon-loading icon-white"></i>
 		            </div>
 		            <div class="knob rounded-5">
 		              &nbsp;
