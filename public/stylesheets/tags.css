@@ -1352,7 +1352,9 @@ footer, footer a, footer a:hover { color: #ccc; }
 .absolute { position: absolute; }
 
 .error { color: #d5432b !important; }
-input.error, textarea.error { border-color: #d5432b !important; }
+input.error, textarea.error { 
+	border-color: #d5432b !important;
+	background: #fce1dd; }
 
 input.error:focus, textarea.error:focus {
 	border-color: #b94a48 !important;
