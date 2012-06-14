@@ -39,7 +39,7 @@ namespace :stores do
     desc "Dump two text files containing crawlable stores"
     task :crawlable => :environment do |e,args|
     begin
-      stores = Store.find_all_by_name(["forever 21","j.crew","american eagle"])
+      stores = Store.crawlable.select{|s| s.products.count.zero?}
 
       url_file = File.open(File.join(RAILS_ROOT,"urls.txt"),"w")
       hash_file = File.open(File.join(RAILS_ROOT,"hash.txt"),"w")
