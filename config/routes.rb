@@ -23,6 +23,15 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :users,
     :action     => :create
 
+  map.tw_auth 'twitter/authenticate',
+    :controller => :twitter,
+    :action     => :create,
+    :filter     => :authenticate
+
+  map.tw_reply 'twitter/reply',
+    :controller => :twitter,
+    :action     => :create,
+    :filter     => :reply
 
   ##
   # Resoure based routes

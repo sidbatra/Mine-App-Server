@@ -2,7 +2,8 @@ class Setting < ActiveRecord::Base
   belongs_to :user
   attr_accessible :post_to_timeline, 
                     :email_influencer, :email_update,
-                    :fb_publish_stream, :fb_publish_actions
+                    :fb_publish_stream, :fb_publish_actions,
+                    :share_to_twitter
 
   #----------------------------------------------------------------------
   # Validations
@@ -12,6 +13,7 @@ class Setting < ActiveRecord::Base
   validates_inclusion_of  :email_update, :in => [true,false]
   validates_inclusion_of  :fb_publish_actions, :in => [true,false]
   validates_inclusion_of  :fb_publish_stream, :in => [true,false]
+  validates_inclusion_of  :share_to_twitter, :in => [true,false]
 
 
   #----------------------------------------------------------------------
@@ -30,6 +32,10 @@ class Setting < ActiveRecord::Base
   #
   def fb_publish_permissions
     self.fb_publish_actions
+  end
+
+  def tw_permissions
+    self.user.tw_permissions?
   end
 
   # Whether or not the user's current settings enable posting

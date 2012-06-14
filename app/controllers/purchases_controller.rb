@@ -37,6 +37,11 @@ class PurchasesController < ApplicationController
       setting.save!
     end
 
+    unless params[:purchase][:share_to_twitter].nil?
+      setting.share_to_twitter = params[:purchase][:share_to_twitter]
+      setting.save!
+    end
+
     if setting.post_to_timeline?
       params[:purchase][:fb_action_id] = FBSharing::Underway
     end

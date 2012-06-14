@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607172825) do
+ActiveRecord::Schema.define(:version => 20120613235815) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
     t.boolean  "email_update",       :default => true
     t.boolean  "fb_publish_actions", :default => true
     t.boolean  "fb_publish_stream",  :default => false
+    t.boolean  "share_to_twitter",   :default => false
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -260,6 +261,9 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
     t.string   "handle"
     t.boolean  "has_contacts_mined",        :default => false
     t.integer  "shoppings_count",           :default => 0
+    t.string   "tw_access_token"
+    t.string   "tw_access_token_secret"
+    t.string   "tw_user_id"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

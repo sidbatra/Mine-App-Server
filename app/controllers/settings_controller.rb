@@ -20,6 +20,8 @@ class SettingsController < ApplicationController
       @setting = {:status => self.current_user.fb_publish_permissions?}
     when :fb_extended_permissions
       @setting = {:status => self.current_user.fb_extended_permissions?}
+    when :tw_permissions
+      @setting = {:status => self.current_user.tw_permissions?}
     end
   rescue => ex
     handle_exception(ex)

@@ -229,6 +229,13 @@ class User < ActiveRecord::Base
     self.fb_permissions.include?(:publish_actions)
   end
 
+  # Whether or not the user has authorized our twitter application
+  # and in turn given us read/write permissions
+  #
+  def tw_permissions?
+    self.tw_access_token.present? & self.tw_access_token_secret.present?
+  end
+
 
   protected
 
