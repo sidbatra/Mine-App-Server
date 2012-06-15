@@ -30,8 +30,9 @@
               :search_action => "Search <i class='icon-search icon-white'></i>",
               :show_extra_steps => false,
               :show_fb_share => true,
-              :show_tw_share => false,
-              :fb_share_on => self.current_user.setting.post_to_timeline?}%>
+              :show_tw_share => true,
+              :fb_share_on => self.current_user.setting.post_to_timeline?,
+              :tw_share_on => self.current_user.setting.post_to_twitter?}%>
     <%end%> <!-- /form --> 
   
   </div> <!-- create-box -->
