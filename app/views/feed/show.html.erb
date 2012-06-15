@@ -90,8 +90,10 @@
               :show_extra_steps => false,
               :show_fb_share => true,
               :show_tw_share => true,
+              :show_tumblr_share => true,
               :fb_share_on => self.current_user.setting.post_to_timeline?,
-              :tw_share_on => self.current_user.setting.post_to_twitter?}%>
+              :tw_share_on => self.current_user.setting.post_to_twitter?,
+              :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
     <%end%> <!-- /form --> 
   
   </div> <!-- create-box -->

@@ -42,12 +42,21 @@ class PurchasesController < ApplicationController
       setting.save!
     end
 
+    unless params[:purchase][:share_to_tumblr].nil?
+      setting.share_to_tumblr = params[:purchase][:share_to_tumblr]
+      setting.save!
+    end
+
     if setting.post_to_timeline?
       params[:purchase][:fb_action_id] = FBSharing::Underway
     end
 
     if setting.post_to_twitter?
       params[:purchase][:tweet_id] = TWSharing::Underway
+    end
+    
+    if setting.post_to_tumblr?
+      #params[:purchase][:tumblr_id] = TumblrSharing::Underway
     end
 
     @purchase = Purchase.add(params[:purchase],self.current_user.id)

@@ -37,6 +37,8 @@ class SettingsController < ApplicationController
     when :tw_permissions
       @setting = {:status => self.current_user.tw_permissions?}
 
+    when :tumblr_permissions
+      @setting = {:status => self.current_user.tumblr_permissions?}
     end
   rescue => ex
     handle_exception(ex)

@@ -247,6 +247,13 @@ class User < ActiveRecord::Base
     self.tw_access_token.present? & self.tw_access_token_secret.present?
   end
 
+  # Whether or not the user has authorized our tumblr application
+  # and in turn given us read/write permissions
+  #
+  def tumblr_permissions?
+    self.tumblr_access_token.present? & self.tumblr_access_token_secret.present?
+  end
+
 
   protected
 

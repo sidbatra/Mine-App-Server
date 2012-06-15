@@ -149,6 +149,31 @@
 		      </div>
 		    <%end%>
 		
+		    <%if show_tumblr_share%>
+		      <div class="post-to border-box rounded-8">
+		        Tumblr
+	          <a id="tumblr-share-toggle-switch" 
+	              class="toggle-switch unselectable rounded-5 <%='off' if !tumblr_share_on%>">
+		          <div class="on clearfix rounded-5">
+		            <div class="text">
+		              <span class="hide-when-loading">On</span>
+		          		<i class="icon-loading icon-white"></i>
+		            </div>
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		          </div>
+		          <div class="off clearfix rounded-5">
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		            <div class="text">
+		              Off
+		            </div>
+		          </div>
+		        </a>
+		      </div>
+		    <%end%>
 		
 				<button id="submit-button" 
 	          type="submit" 

@@ -10,7 +10,7 @@ class TwitterController < ApplicationController
     case @filter
     when :authenticate
       request_token = client.request_token(:oauth_callback => tw_reply_url)
-      session[:request_token] = request_token
+      session[:tw_request_token] = request_token
       redirect_to request_token.authorize_url
 
     when :reply
@@ -18,8 +18,8 @@ class TwitterController < ApplicationController
 
       if oauth_verifier
         access_token = client.authorize(
-                                session[:request_token].token,
-                                session[:request_token].secret,
+                                session[:tw_request_token].token,
+                                session[:tw_request_token].secret,
                                 :oauth_verifier => oauth_verifier)  
 
         self.current_user.tw_access_token = access_token.token

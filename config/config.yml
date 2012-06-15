@@ -19,6 +19,8 @@ common: &common
   :fb_verify_token: eea0e1c440ae3d754be314a60c33ea2b
   :tw_consumer_key: 5M8DIWAdEJRKlTW5d9vw
   :tw_consumer_secret: JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc
+  :tumblr_consumer_key: 89jCI6WNG1Ym9wYLkJ1FfDVTZCsMbdtJoSwPbBzSb6ueJMbo0G
+  :tumblr_consumer_secret: L7BbVCPlAYq0ewzxEEEiJyIzgY8Ihj9YxALq9Ol0ueLnStNBwM 
   :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :windows_azure_key: ruuxSwIt0kdjqOGCubB75QxxbqQn9s5yKqF/NqkAb5Y=
   :age_bucket_size: 5
