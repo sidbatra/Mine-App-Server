@@ -96,8 +96,7 @@
               :show_fb_share => true,
               :show_tw_share => true,
               :fb_share_on => self.current_user.setting.post_to_timeline?,
-              :tw_share_on => self.current_user.tw_permissions? & 
-                              self.current_user.setting.share_to_twitter}%>
+              :tw_share_on => self.current_user.setting.post_to_twitter?}%>
     <%end%> <!-- /form --> 
   
   </div> <!-- create-box -->
