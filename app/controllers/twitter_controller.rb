@@ -12,16 +12,21 @@ class TwitterController < ApplicationController
       request_token = client.request_token(:oauth_callback => tw_reply_url)
       session[:request_token] = request_token
       redirect_to request_token.authorize_url
+
     when :reply
-      access_token = client.authorize(
-                              session[:request_token].token,
-                              session[:request_token].secret,
-                              :oauth_verifier => params[:oauth_verifier])  
+      oauth_verifier = params[:oauth_verifier]
 
-      self.current_user.tw_access_token = access_token.token
-      self.current_user.tw_access_token_secret = access_token.secret
+      if oauth_verifier
+        access_token = client.authorize(
+                                session[:request_token].token,
+                                session[:request_token].secret,
+                                :oauth_verifier => oauth_verifier)  
 
-      self.current_user.save!
+        self.current_user.tw_access_token = access_token.token
+        self.current_user.tw_access_token_secret = access_token.secret
+
+        self.current_user.save!
+      end
     else
       raise IOError, "Incorrect twitter create filter"
     end
