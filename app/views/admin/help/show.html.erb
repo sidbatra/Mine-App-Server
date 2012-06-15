@@ -6,8 +6,14 @@
   <%=link_to 'Health Report',admin_health_index_path%> <br>
 
   <br> <h3>Users</h3> 
-  <%=link_to 'Daily, Weekly, Biweekly, Monthly Active',
-              admin_users_path(:filter => 'active')%> <br>
+  <%=link_to 'Daily',
+              admin_users_path(:filter => 'active',:period => 'daily')%> <br>
+  <%=link_to 'Weekly',
+              admin_users_path(:filter => 'active',:period => 'weekly')%> <br>
+  <%=link_to 'Bi-Weekly',
+              admin_users_path(:filter => 'active',:period => 'biweekly')%> <br>
+  <%=link_to 'Monthly',
+              admin_users_path(:filter => 'active',:period => 'monthly')%> <br>
 
   Admin View of User. /admin/users/{handle} 
   Example - <%=link_to 'Anna Smith',admin_user_path('anna-smith')%>

@@ -10,16 +10,21 @@ class Admin::UsersController < ApplicationController
 
     case @filter
     when :active
-      @buckets = [{:time => 1.day.ago,  :name => 'daily'},
-                  {:time => 1.week.ago, :name => 'weekly'},
-                  {:time => 15.days.ago,:name => 'biweekly'},
-                  {:time => 1.month.ago,:name => 'monthly'}]
+      @period = params[:period].to_sym
+      @time = 1.day.ago
 
-      @buckets.each do |bucket|
-        bucket[:users],
-        bucket[:count],
-        bucket[:active_count] = active_users_in_time_period(bucket[:time])
+      case @period
+      when :daily
+        @time = 1.day.ago
+      when :weekly
+        @time = 1.week.ago
+      when :biweekly
+        @time = 15.days.ago
+      when :monthly
+        @time = 1.month.ago
       end
+
+      @users,@active_count = active_users_in_time_period(@time)
     end
 
     render :partial => @filter.to_s,
@@ -53,14 +58,11 @@ class Admin::UsersController < ApplicationController
   # Fetch users who have been active in the given time period
   #
   def active_users_in_time_period(time)
-    count = User.visited(time).by_visited_at.count
-    users = User.visited(time).by_visited_at.limit(150)
-
     active_count = [Purchase,Search,Like,Comment].map do |model|
-                     model.select(:user_id).made(time).map(&:user_id)
-                   end.flatten.uniq.count
+                         model.select(:user_id).made(time).map(&:user_id)
+                       end.flatten.uniq.count
 
-    [users,count,active_count]
+    [User.visited(time).by_visited_at,active_count]
   end
 
 
