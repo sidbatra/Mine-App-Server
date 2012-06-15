@@ -95,6 +95,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.fbPermissionsRejected,
       this);
 
+
     this.twSettings = new Denwen.Partials.Settings.Twitter();
 
     this.twSettings.bind(
@@ -106,6 +107,15 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       Denwen.Partials.Settings.Twitter.Callback.AuthRejected,
       this.twAuthRejected,
       this);
+
+
+    this.tokens = new Denwen.Partials.Settings.Tokens();
+
+    this.tokens.bind(
+      Denwen.Partials.Settings.Tokens.Callback.FBDead,
+      this.fbTokenDead,
+      this);
+
 
     $(this.formEl).submit(function(){return self.post();});
 
@@ -139,6 +149,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.querySubBoxEl).show();
 
     $(this.queryEl).phocus();
+
+    this.tokens.fetchStatus();
 
     Denwen.Track.action("Purchase Initiated");
   },
@@ -394,6 +406,12 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     Denwen.Drawer.error("Please allow Twitter Access for posting tweets.");
   },
 
+  //
+  // Callbacks from tokens interface.
+  //
+  fbTokenDead: function() {
+    $(this.fbSwitchEl).addClass(this.switchOffClass);
+  },
 
   //
   // Callbacks from purchase creation.

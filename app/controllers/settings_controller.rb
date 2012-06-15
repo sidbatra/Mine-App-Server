@@ -16,17 +16,17 @@ class SettingsController < ApplicationController
     @filter = params[:id].to_sym
 
     case @filter
-    when :fb_token_status
-      status = true
+    when :tokens
+      fb = true
 
       begin
         self.current_user.fb_permissions 
       rescue => ex
-        status = false
+        fb = false
         self.current_user.setting.revoke_fb_permissions
       end
 
-      @setting = {:status => status}
+      @setting = {:facebook => fb}
 
     when :fb_publish_permissions
       @setting = {:status => self.current_user.fb_publish_permissions?}
