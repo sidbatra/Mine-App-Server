@@ -10,6 +10,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     "change #purchase_is_store_unknown" : "isStoreUnknownChanged",
     "mousedown #fb-photo-toggle-switch" : "fbSwitchToggled",
     "mousedown #tw-share-toggle-switch" : "twSwitchToggled",
+    "mousedown #tumblr-share-toggle-switch" : "tumblrSwitchToggled",
     "click #initiate_endorsement" : "endorsementInitiated",
     "click #initiate_purchase" : "purchaseInitiated"
   },
@@ -54,6 +55,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.suggestionEl         = '#purchase_suggestion_id';
     this.fbSwitchEl           = '#fb-photo-toggle-switch';
     this.twSwitchEl           = '#tw-share-toggle-switch';
+    this.tumblrSwitchEl       = '#tumblr-share-toggle-switch';
     this.submitButtonEl       = '#submit-button';
     this.switchOffClass       = 'off';
     this.switchLoadingClass   = 'load';
@@ -106,6 +108,19 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.twSettings.bind(
       Denwen.Partials.Settings.Twitter.Callback.AuthRejected,
       this.twAuthRejected,
+      this);
+
+
+    this.tumblrSettings = new Denwen.Partials.Settings.Tumblr();
+
+    this.tumblrSettings.bind(
+      Denwen.Partials.Settings.Tumblr.Callback.AuthAccepted,
+      this.tumblrAuthAccepted,
+      this);
+
+    this.tumblrSettings.bind(
+      Denwen.Partials.Settings.Tumblr.Callback.AuthRejected,
+      this.tumblrAuthRejected,
       this);
 
 
@@ -201,6 +216,13 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     return !$(this.twSwitchEl).hasClass(this.switchOffClass);
   },
 
+  // Returns the current state of the tumblr photo toggle switch
+  // on -> true & off -> false
+  //
+  tumblrSwitchState: function() {
+    return !$(this.tumblrSwitchEl).hasClass(this.switchOffClass);
+  },
+
   // Fired when the fb photo switch is toggled
   //
   fbSwitchToggled: function() {
@@ -229,6 +251,22 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       Denwen.Track.action("Purchase TW Photo On");
     else
       Denwen.Track.action("Purchase TW Photo Off");
+  },
+
+  // Fired when the tumblr photo switch is toggled
+  //
+  tumblrSwitchToggled: function() {
+    if(!Denwen.H.currentUser.get('setting').get('tumblr_permissions')) { 
+      $(this.tumblrSwitchEl).addClass(this.switchLoadingClass);
+      this.tumblrSettings.showAuthDialog();
+    }
+
+    $(this.tumblrSwitchEl).toggleClass(this.switchOffClass);
+
+    if(this.tumblrSwitchState())
+      Denwen.Track.action("Purchase Tumblr Photo On");
+    else
+      Denwen.Track.action("Purchase Tumblr Photo Off");
   },
 
   // User initiates endorsements.
@@ -405,6 +443,26 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.twSwitchEl).toggleClass(this.switchOffClass);
     Denwen.Drawer.error("Please allow Twitter Access for posting tweets.");
   },
+
+
+  //
+  // Callbacks from tumblr permissions interface.
+  //
+
+  // Fired when tumblr auth is accepted 
+  //
+  tumblrAuthAccepted: function() {
+    $(this.tumblrSwitchEl).removeClass(this.switchLoadingClass);
+  },
+
+  // Fired when tumblr auth is rejected
+  //
+  tumblrAuthRejected: function() {
+    $(this.tumblrSwitchEl).removeClass(this.switchLoadingClass);
+    $(this.tumblrSwitchEl).toggleClass(this.switchOffClass);
+    Denwen.Drawer.error("Please allow access for posting to Tumblr.");
+  },
+
 
   //
   // Callbacks from tokens interface.
