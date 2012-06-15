@@ -44,7 +44,7 @@ class FacebookController < ApplicationController
 
       user_fb_ids = entry.map{|permission| permission['uid']} 
       users       = User.find_all_by_fb_user_id(user_fb_ids)
-      users       = users.select{|user| user.updated_at > 30.days.ago}
+      users       = users.select{|user| user.visited_at > 30.days.ago}
       
       if object == 'permissions'
         users.each do |user|
