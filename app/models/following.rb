@@ -49,7 +49,7 @@ class Following < ActiveRecord::Base
                   :source       => source,
                   :send_email   => send_email)
     following.is_active = true
-    following.save!
+    following.save! if following.changed?
     following
   end
 
