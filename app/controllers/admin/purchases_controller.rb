@@ -18,8 +18,8 @@ class Admin::PurchasesController < ApplicationController
   #
   #
   def show
-    if params[:purchase_id]
-      @purchase = Purchase.find(Cryptography.deobfuscate params[:purchase_id])
+    if params[:id]
+      @purchase = Purchase.find(params[:id])
     else
       user = User.find_by_handle(params[:user_handle])
 

@@ -31,7 +31,7 @@
       <tr>
         <td>
           <%=link_to purchase.title,
-              admin_purchase_path(purchase.user.handle,purchase.handle)%>
+              admin_full_purchase_path(purchase.user.handle,purchase.handle)%>
         </td>
         <td>
           <%=time_ago_in_words(purchase.created_at)%>

@@ -1,0 +1,47 @@
+<div class="container well" id="container">
+  <b>
+    Recent <%=@comments.length%> Comments
+  </b> 
+  <br/><br/>
+
+  <table border="1">
+    <tr>
+      <td width="250">
+        <b>Text</b>
+      </td>
+      <td width="100">
+        <b>Created</b>
+      </td>
+      <td width="200">
+        <b>Purchase</b>
+      </td>
+      <td width="200">
+        <b>User</b>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <%@comments.each do |comment|%>
+      <tr>
+        <td>
+          <%=comment.message%>
+        </td>
+        <td>
+          <%=time_ago_in_words(comment.created_at)%>
+        </td>
+        <td>
+          <%=link_to comment.purchase.title,
+              admin_purchase_path(comment.purchase.id)%>
+        </td>
+        <td>
+          <%=link_to user_full_name(comment.user),
+              admin_user_path(comment.user.handle)%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+
+  <br/><br/><br/>
+</div>
+
+
