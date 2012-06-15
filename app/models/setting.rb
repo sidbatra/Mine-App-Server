@@ -26,6 +26,14 @@ class Setting < ActiveRecord::Base
   def fb_extended_permissions
     self.fb_publish_stream
   end
+  
+  # Disable fb permissions, primarily used as a raction
+  # to expired tokens.
+  #
+  def revoke_fb_permissions
+    self.fb_publish_actions = false
+    save!
+  end
 
   # Whether or not the user has given fb publish permissions.
   # The method uses the value stored in our db instead of FBGraph 
