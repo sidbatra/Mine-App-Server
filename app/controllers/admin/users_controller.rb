@@ -53,10 +53,10 @@ class Admin::UsersController < ApplicationController
   # Fetch users who have been active in the given time period
   #
   def active_users_in_time_period(time)
-    count = User.updated(time).by_updated_at.count
-    users = User.updated(time).by_updated_at.limit(150)
+    count = User.visited(time).by_visited_at.count
+    users = User.visited(time).by_visited_at.limit(150)
 
-    active_count = [Purchase,Search].map do |model|
+    active_count = [Purchase,Search,Like,Comment].map do |model|
                      model.select(:user_id).made(time).map(&:user_id)
                    end.flatten.uniq.count
 

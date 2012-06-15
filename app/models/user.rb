@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
   named_scope :purchases_count_gt, lambda {|count| {
                   :conditions => {:purchases_count_gt => count}}}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
+  named_scope :by_visited_at, {:order => 'visited_at DESC'}
+
+  named_scope :visited, lambda{|time| {
+                          :conditions => {:visited_at_gt => time}}}
 
   named_scope :with_stores, :include => {:shoppings => :store}
   named_scope :with_setting, :include => :setting
