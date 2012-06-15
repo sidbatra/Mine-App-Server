@@ -1151,6 +1151,17 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn.btn-facebook { background: #3B5998; }
 .btn.btn-facebook:hover { background: #1F4696; }
 
+.btn.checklist .icon-ok { display:none; }
+
+.btn.checklist.done { 
+	cursor: default;
+	text-decoration: line-through; 
+	opacity: 0.5; 
+	background: none; }
+	
+.btn.checklist.done [class^="icon-"] { display: none; }
+.btn.checklist.done .icon-ok { display: inline-block; }
+
 .icon-like.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
 	background-position: 0 0; }
@@ -1162,6 +1173,22 @@ footer, footer a, footer a:hover { color: #ccc; }
 .icon-facebook.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -48px 0; }
+ 
+.icon-shoe.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -72px 0; }
+  
+.icon-phone.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -96px 0; }
+  
+.icon-media.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -120px 0; }
+
+.icon-bag.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -144px 0; }
 
 
 /* ----- loading button states ----- */

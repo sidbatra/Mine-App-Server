@@ -20,7 +20,7 @@
     <div id="query_sub_box" style="<%=show_query_sub_box ? '' : 'display:none'%>">
       <%=f.text_field :query,
           :placeholder => local_assigns[:search_placeholder].nil? ? 
-                            "Enter detailed item name or URL" :
+                            "Enter item name, brand, color, store or URL" :
                             search_placeholder,
           :class => "border-box enter-item-name"%>
       <a id="purchase_search" 
