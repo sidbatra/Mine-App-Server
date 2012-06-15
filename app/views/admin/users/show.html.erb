@@ -1,6 +1,7 @@
 
 <div class="container well" id="container">
   <h1><%=user_full_name(@user)%><h1>
+  <%=image_tag @user.large_image_url%>
   <h3><%=@user.byline%></h3>
   <h3><%=@user.email%></h3>
   <h3><%=link_to 'Link to Profile',user_path(@user.handle)%><h3>
@@ -11,19 +12,19 @@
             :method => :delete,
             :confirm  => "There is no undo on this, sure?"%></h3>
   <br><br>
-  <table>
+  <table border="0" width="100%">
     <tr>
-        <td width="400"><i>QUERY</i></td>
-        <td width="400"><i>PURCHASE</i></td>
+        <td width="10%"><i>TIME</i></td>
+        <td width="80%"><i>PURCHASE or QUERY</i></td>
     </tr>
     <tr height="20"></tr>
     <%@set.each do |c| %>
       <tr>
+        <td><%=time_ago_in_words c.created_at%></td>
         <%if c.class == Purchase%>
-          <td></td>
           <td><u><%= link_to h(c.title), purchase_path(@user.handle,c.handle)%></u></td>
         <%else%>
-          <td><%=c.query%></td>
+          <td style="overflow:hidden;white-space:nowrap"><%=c.query%></td>
         <%end%>
         </td>
       </tr>
