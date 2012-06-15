@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   #
   def show
     if logged_in? && !params[:id]
+      track_visit
       render "feed/show", :layout => "application"
     elsif 
       detect_origin

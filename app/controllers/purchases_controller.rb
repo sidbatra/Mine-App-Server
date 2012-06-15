@@ -63,6 +63,7 @@ class PurchasesController < ApplicationController
   # Display a specific purchase.
   #
   def show
+    track_visit
     
     if params[:purchase_id]
       @purchase = Purchase.find(Cryptography.deobfuscate params[:purchase_id])
