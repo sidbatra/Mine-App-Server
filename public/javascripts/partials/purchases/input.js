@@ -56,6 +56,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.twSwitchEl           = '#tw-share-toggle-switch';
     this.submitButtonEl       = '#submit-button';
     this.switchOffClass       = 'off';
+    this.switchLoadingClass   = 'load';
     this.postingClass         = 'load';
     this.posting              = false;
 
@@ -206,7 +207,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   twSwitchToggled: function() {
     if(!Denwen.H.currentUser.get('setting').get('tw_permissions')) { 
-      $(this.twSwitchEl).addClass('load');
+      $(this.twSwitchEl).addClass(this.switchLoadingClass);
       this.twSettings.showAuthDialog();
     }
 
@@ -382,13 +383,13 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when tw auth is accepted 
   //
   twAuthAccepted: function() {
-    $(this.twSwitchEl).removeClass('load');
+    $(this.twSwitchEl).removeClass(this.switchLoadingClass);
   },
 
   // Fired when tw auth is rejected
   //
   twAuthRejected: function() {
-    $(this.twSwitchEl).removeClass('load');
+    $(this.twSwitchEl).removeClass(this.switchLoadingClass);
     $(this.twSwitchEl).toggleClass(this.switchOffClass);
     Denwen.Drawer.error("Please allow Twitter Access for posting tweets.");
   },
