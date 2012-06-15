@@ -61,6 +61,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     if(this.source == 'login')
       Denwen.Track.action("User Logged In");
+    else if(this.source == 'welcome')
+      Denwen.Track.action("Purchase Created");
+      
 
     Denwen.Track.version(Denwen.H.version);
     Denwen.Track.isEmailClicked(this.source);

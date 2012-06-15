@@ -65,8 +65,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   //
   purchaseCreated: function(purchase) {
     window.location.href = this.nextURL;
-
-    Denwen.Track.action("Welcome Purchase Created");
   },
 
   // Display a creation error.
