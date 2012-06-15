@@ -105,6 +105,13 @@ class User < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
+  # Updated the visited_at datetime to the current time.
+  #
+  def visited
+    self.visited_at = Time.now
+    self.save!
+  end
+
   # Whether the user has actually registered or is a stub user from
   # an invite.
   #
