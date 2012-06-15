@@ -19,6 +19,12 @@
   Example - <%=link_to 'Anna Smith',admin_user_path('anna-smith')%>
   <br>
 
+  <br> <h3>Activity</h3> 
+  <%=link_to 'Purchases',
+              admin_purchases_path(:filter => 'recent')%> <br>
+  <%=link_to 'Comments',
+              admin_comments_path(:filter => 'recent')%> <br>
+
   <br> <h3>Stores</h3> 
   <%=link_to 'Unapproved',
               admin_stores_path(:filter => 'unapproved')%> <br>
