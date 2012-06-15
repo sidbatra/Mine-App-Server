@@ -136,11 +136,15 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
     admin.resources :users, :only => [:index,:show,:destroy]
-    admin.resources :purchases, :only => [:index,:show]
+    admin.resources :purchases, :only => [:index]
     admin.resources :stores, :only => [:index,:edit,:update]
     admin.resources :emails, :only => [:index,:show]
     admin.resources :health, :only => [:index]
     admin.resources :suggestions
+
+    admin.purchase ':user_handle/p/:purchase_handle',
+      :controller => :purchases,
+      :action     => :show
   end
 
   ##
@@ -172,7 +176,7 @@ ActionController::Routing::Routes.draw do |map|
   map.user ':handle',
     :controller => :users,
     :action     => :show
-  
+
   Jammit::Routes.draw(map)
 
   # Install the default routes as the lowest priority.

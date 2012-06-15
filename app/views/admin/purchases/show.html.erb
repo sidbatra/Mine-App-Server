@@ -1,0 +1,20 @@
+
+<div class="container well" id="container">
+  <h1><%=@purchase.title%><h1>
+
+  <%=image_tag @purchase.giant_url%>
+
+  <h3>
+    <%=link_to @purchase.user.full_name,
+        admin_user_path(@purchase.user.handle)%>
+  </h3>
+
+  <h3>
+    <%=link_to 'Link to Purchase Page',
+          purchase_path(@purchase.user.handle,@purchase.handle)%>
+  <h3>
+
+  <h3> Facebook - <%=@purchase.fb_action_id%></h3>
+  <h3> Twitter - <%=@purchase.tweet_id%></h3>
+
+</div>

@@ -1,6 +1,8 @@
 class Admin::PurchasesController < ApplicationController
   before_filter :admin_required
 
+  #
+  #
   def index
     @filter = params[:filter].to_sym
 
@@ -11,6 +13,20 @@ class Admin::PurchasesController < ApplicationController
 
     render :partial => @filter.to_s,
            :layout => "application"
+  end
+
+  #
+  #
+  def show
+    if params[:purchase_id]
+      @purchase = Purchase.find(Cryptography.deobfuscate params[:purchase_id])
+    else
+      user = User.find_by_handle(params[:user_handle])
+
+      @purchase = Purchase.find_by_user_id_and_handle(
+                   user.id,
+                   params[:purchase_handle])
+    end
   end
 
 end
