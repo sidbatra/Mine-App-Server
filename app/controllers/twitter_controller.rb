@@ -24,6 +24,7 @@ class TwitterController < ApplicationController
 
         self.current_user.tw_access_token = access_token.token
         self.current_user.tw_access_token_secret = access_token.secret
+        self.current_user.tw_user_id = access_token.params['user_id']
 
         self.current_user.save!
       end
