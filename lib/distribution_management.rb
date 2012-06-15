@@ -59,9 +59,15 @@ module DW
                     :secret           => purchase.user.tw_access_token_secret)
         
         if client.authorized?
-          message = "just bought this " + short_purchase_url(
-                                            Cryptography.obfuscate(purchase.id),
-                                            :host => CONFIG[:host])
+          message = "Just bought this "
+
+          if purchase.store && purchase.store.is_approved
+            message << "from #{purchase.store.name} "
+          end
+
+          message << short_purchase_url(
+                      Cryptography.obfuscate(purchase.id),
+                      :host => CONFIG[:host])
 
           tweet = client.update(message)
           purchase.update_attributes({:tweet_id => tweet["id"]})
