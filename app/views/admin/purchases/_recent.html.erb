@@ -1,0 +1,58 @@
+<div class="container well" id="container">
+  <b>
+    Recent <%=@purchases.length%> Purchases
+  </b> 
+  <br/><br/>
+
+  <table border="1">
+    <tr>
+      <td width="250">
+        <b>Title</b>
+      </td>
+      <td width="100">
+        <b>Created</b>
+      </td>
+      <td width="100">
+        <b>Photo</b>
+      </td>
+      <td width="30">
+        <b>Facebook</b>
+      </td>
+      <td width="200">
+        <b>Twitter</b>
+      </td>
+      <td width="200">
+        <b>User</b>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <%@purchases.each do |purchase|%>
+      <tr>
+        <td>
+          <%=link_to purchase.title,
+              admin_purchase_path(purchase.user.handle,purchase.handle)%>
+        </td>
+        <td>
+          <%=time_ago_in_words(purchase.created_at)%>
+        </td>
+        <td>
+          <%=image_tag purchase.square_url%>
+        </td>
+        <td>
+          <%=purchase.fb_action_id%>
+        </td>
+        <td>
+          <%=purchase.tweet_id%>
+        </td>
+        <td>
+          <%=link_to user_full_name(purchase.user),
+              admin_user_path(purchase.user.handle)%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+
+  <br/><br/><br/>
+</div>
+

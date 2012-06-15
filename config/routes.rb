@@ -136,6 +136,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
     admin.resources :users, :only => [:index,:show,:destroy]
+    admin.resources :purchases, :only => [:index,:show]
     admin.resources :stores, :only => [:index,:edit,:update]
     admin.resources :emails, :only => [:index,:show]
     admin.resources :health, :only => [:index]
