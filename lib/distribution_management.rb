@@ -21,13 +21,12 @@ module DW
           message << " from #{purchase.store.name}"
         end
 
-        message << ". "
-
         if purchase.endorsement.present?
+          message << ". "
           message << purchase.endorsement 
-          message << " "
         end
 
+        message << " "
         message << short_purchase_url(
                     Cryptography.obfuscate(purchase.id),
                     :host => CONFIG[:host])
@@ -91,12 +90,18 @@ module DW
         name    = client.info.user.blogs.select{|blog| blog.primary}.first.name
         url     = name + '.tumblr.com'
 
-        message = "Just bought this "
+        message = "Just bought this"
 
         if purchase.store && purchase.store.is_approved
-          message << "from #{purchase.store.name} "
+          message << " from #{purchase.store.name}"
         end
 
+        if purchase.endorsement.present?
+          message << ". "
+          message << purchase.endorsement 
+        end
+
+        message << " "
         message << short_purchase_url(
                     Cryptography.obfuscate(purchase.id),
                     :host => CONFIG[:host])
