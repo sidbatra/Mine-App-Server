@@ -130,102 +130,103 @@ footer, footer a, footer a:hover { color: #ccc; }
 /* Onboarding
 ==================================================================== */
 
-.container.onboarding { }
-	
-.onboarding p {
-	color: #666;
-	font-size: 15px !important;
-	line-height: 24px; }
-
-.onboarding p.sub {
-	margin-top: 12px;
-	font-size: 11px;
-	color: #999;
-	text-align: center; }
+.container.onboarding {}
 
 .onboarding .heading {
 	-webkit-font-smoothing: antialiased;
 	font-size: 24px;
 	line-height: 32px;
+	font-weight: bold;
 	color: #333; 
 	text-align: center;
-	margin-top: -12px;
-	margin-bottom: 24px; }
+	margin-bottom: 36px; }
 	
-.onboarding ol { 
-	padding-left: 50px; }
-
-.onboarding .create-box .search-box { padding: 0; }
-	
-.onboarding input.first-item  {
+.onboarding .card { background: #666; }
+.onboarding .card .photo { background: url('/images/colors/black-40.png'); }
+.onboarding .card .title-box {
+	padding-top: 18px;
 	font-family: 'RooneyLightItalic', Georgia;
-	width: 348px;
-	padding: 0 8px;
-	height: 42px;
-	font-size: 15px;
-	margin: 0; }
+	color: white;
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: normal !important;
+	text-align: center; }
 
-.onboarding .hint {
-	-webkit-font-smoothing: antialiased;
-	font-size: 15px;
-	line-height: 1;
-	color: #777; 
-	text-align: center;
-	margin-top: 18px; }
+.onboarding .card:hover,
+.onboarding .card:active { background: #00AEEF; }
 
-.onboarding .hint span.nike {
-	font-family: Arial;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-style: oblique;
-	font-size: 12px;
-	color: #888;
-	letter-spacing: -1px; }
+.onboarding .card:hover .photo,
+.onboarding .card:active .photo { background: #177AC0; }
 	
-.onboarding .examples { 
-	color: #666;
+.onboarding .create-box { 
+	padding: 0;
+	height: 338px; 
 	background: white;
-	margin-top: 36px;
-	border-top: 1px dotted #CCC;
-	padding: 18px 0; }
+	background: #666;
+	border: 0;
+	line-height: 24px;
+	margin-botto: 48px; }
 
-.onboarding .examples p {
-	color: #666;
-	font-weight: bold;
-	text-align: center;
-	font-size: 15px;
-	margin-bottom: 13px; }
-
-.onboarding .examples .example {
-	line-height: 20px;
-	height: 72px;
-	width: 446px;
+.onboarding .create-box .first-box {	
+	padding: 0;
+	height: 248px;
 	background: #f8f8f8;
-	margin: 0 auto 12px; }
-	
-.onboarding .examples .example .text { 
-	float: left;
-	padding-top: 15px; }
+	background: url('/images/colors/black-40.png');
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; }
 
-.onboarding .examples .item-photo { 
-	width: 62px;
-	height: 62px;
-	padding: 5px;
-	background: white;
-	float: left; 
-	margin-right: 10px; }
-	
-.onboarding .examples .item-name { 
-	font-family: 'RooneyLightItalic', Georgia;
-	font-size: 20px; }
-	
-.onboarding .examples .sub { 
-	font-size: 12px;
-	color: #999; }	
-	
-.onboarding .examples .user-name { 
-	font-weight: bold; }	
+.onboarding .create-box .first-box .tip {
+	font-size: 18px;
+	font-weight: bold;
+	color: #666;
+	color: white;
+	width: 446px;
+	margin: 0 auto;
+	text-align: left;
+	padding: 72px 0 12px; }
 
+.onboarding .create-box .first-box .caret-box {
+	width: 446px;
+	left: 50%;
+	right: 50%;
+	bottom: 0;
+	margin-left: -223px;
+	text-align: left; }
+
+.onboarding .create-box .first-box .caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	vertical-align: bottom;
+	border-bottom: 18px solid #666;
+	border-right: 18px solid transparent;
+	border-left: 18px solid transparent;
+	border-top: 0px solid transparent;
+	content: "";
+	opacity: 1;
+	filter: alpha(opacity=100); }
+	
+.onboarding .create-box .first-box .search-box { padding: 0; }
+
+.onboarding .create-box .first-box .search-box .btn { 
+	width: 101px; }
+
+.onboarding .create-box .first-box .search-box input { 
+	width: 340px;
+	line-height: auto; }
+
+	
+.onboarding .create-box .example {
+	width: 446px;
+	margin: 0 auto;
+	text-align: left;
+	height: 90px;
+	line-height: 90px;
+	color: white;
+	font-size: 18px;
+	font-family: 'RooneyLightItalic', Georgia; }
+	
 
 /* Creation
 ==================================================================== */
@@ -1439,6 +1440,12 @@ input.error:focus, textarea.error:focus {
 	-moz-transition: color .15s ease-in;
 	-o-transition: color .15s ease-in;
 	transition: color .15s ease-in; }
+	
+.unselectable { 
+  -moz-user-select: none; 
+  -khtml-user-select: none; 
+  -webkit-user-select: none; 
+  -o-user-select: none; } 
 	
 
 /* Media Queries
