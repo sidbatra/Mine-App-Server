@@ -13,6 +13,10 @@ class PurchaseDelayedObserver < DelayedObserver
     if purchase.share_to_twitter? && purchase.is_processed
       DistributionManager.tweet(purchase)
     end
+
+    if purchase.share_to_tumblr? && purchase.is_processed
+      DistributionManager.post_to_tumblr(purchase)
+    end
   end
 
   # Delayed after_update.

@@ -38,7 +38,7 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:endorsement,:tweet_id
+                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id
 
   #----------------------------------------------------------------------
   # Class methods
@@ -213,6 +213,13 @@ class Purchase < ActiveRecord::Base
   #
   def share_to_twitter?
     self.tweet_id == TWSharing::Underway
+  end
+
+  # Returns whether or not the purchase should be shared 
+  # to tumblr 
+  #
+  def share_to_tumblr?
+    self.tumblr_post_id == TumblrSharing::Underway
   end
 
   # Returns if the purchase sharing on facebook has finished 

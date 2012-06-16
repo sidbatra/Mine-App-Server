@@ -77,6 +77,46 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Post the purchase to the owners tumblr blog 
+      #
+      def self.post_to_tumblr(purchase)
+        Tumblife.configure do |config|
+          config.consumer_key       = CONFIG[:tumblr_consumer_key]
+          config.consumer_secret    = CONFIG[:tumblr_consumer_secret]
+          config.oauth_token        = purchase.user.tumblr_access_token 
+          config.oauth_token_secret = purchase.user.tumblr_access_token_secret
+        end
+
+        client  = Tumblife.client
+        name    = client.info.user.blogs.select{|blog| blog.primary}.first.name
+        url     = name + '.tumblr.com'
+
+        message = "Just bought this "
+
+        if purchase.store && purchase.store.is_approved
+          message << "from #{purchase.store.name} "
+        end
+
+        message << short_purchase_url(
+                    Cryptography.obfuscate(purchase.id),
+                    :host => CONFIG[:host])
+
+        post = client.photo(
+                        url,
+                        :source   => purchase.unit_url,
+                        :caption  => message,
+                        :link     => purchase_url(
+                                        purchase.user.handle,
+                                        purchase.handle,
+                                        :src  => 'tumblr',
+                                        :host => CONFIG[:host]))
+
+        purchase.update_attributes({:tumblr_post_id => post["id"]})
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Update an open graph object - purchase
       # This updates all the actions associated with that object
       #

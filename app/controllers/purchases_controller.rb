@@ -56,7 +56,7 @@ class PurchasesController < ApplicationController
     end
     
     if setting.post_to_tumblr?
-      #params[:purchase][:tumblr_id] = TumblrSharing::Underway
+      params[:purchase][:tumblr_post_id] = TumblrSharing::Underway
     end
 
     @purchase = Purchase.add(params[:purchase],self.current_user.id)

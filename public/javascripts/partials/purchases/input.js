@@ -400,6 +400,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
     fields['post_to_timeline'] = this.fbSwitchState(); 
     fields['share_to_twitter'] = this.twSwitchState(); 
+    fields['share_to_tumblr']  = this.tumblrSwitchState(); 
 
     purchase.save({purchase:fields},{
       success: function(data){self.purchaseCreated(data);},
