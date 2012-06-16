@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615232557) do
+ActiveRecord::Schema.define(:version => 20120616225814) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -232,12 +232,16 @@ ActiveRecord::Schema.define(:version => 20120615232557) do
   add_index "stores", ["purchases_count"], :name => "index_stores_on_purchases_count"
 
   create_table "suggestions", :force => true do |t|
-    t.string   "title",                     :null => false
+    t.string   "title",                           :null => false
     t.string   "image_path"
-    t.integer  "weight",     :default => 0
+    t.integer  "weight",           :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "gender",     :default => 0
+    t.integer  "gender",           :default => 0
+    t.string   "short_title"
+    t.string   "small_image_path"
+    t.string   "thing"
+    t.string   "example"
   end
 
   add_index "suggestions", ["gender"], :name => "index_suggestions_on_gender"
