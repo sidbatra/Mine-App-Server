@@ -142,6 +142,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	margin-bottom: 36px; }
 	
 .onboarding .card { background: #666; }
+.onboarding .card .mine-logo { display: none; }
 .onboarding .card .photo { background: url('/images/colors/black-40.png'); }
 .onboarding .card .title-box {
 	padding-top: 18px;
@@ -157,6 +158,11 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .onboarding .card:hover .photo,
 .onboarding .card:active .photo { background: #177AC0; }
+
+.onboarding .card:hover .mine-logo { 
+	display: block;
+	top: 12px;
+	right: 12px; }
 	
 .onboarding .create-box { 
 	padding: 0;
