@@ -58,7 +58,7 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
         self.suggestionDelegate);
     });
 
-    this.el.fadeIn(250);
+    this.el.show();
   },
 
   // Fail silently. 

@@ -91,10 +91,13 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.content.insert(purchase);
 
     if(this.suggestions.areActive()) {
-      $(this.suggestionsEl).fadeIn(250);
+      $(this.suggestionsEl).show();
 
-      if(purchase.get('suggestion_id'))
-        console.log('with id');
+      if(purchase.get('suggestion_id')) {
+        Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.SuggestionFinished,
+          purchase.get('suggestion_id'));
+      }
     }
 
     Denwen.Track.action("Purchase Created");

@@ -9,8 +9,14 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
 
     this.render();
 
-    if(!this.model.get('done'))
+    if(!this.model.get('done')) {
       $(this.suggestionEl).click(function(){self.clicked()});
+
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.SuggestionFinished,
+        this.suggestionFinished,
+        this);
+    }
   },
 
   // Override render method for displaying view
@@ -26,9 +32,18 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
     this.trigger(
       Denwen.Partials.Suggestions.Suggestion.Callback.Clicked,
       this.model);
-  }
-});
+  },
 
+  // --
+  // Callbacks from NotificationManager
+  // --
+
+  suggestionFinished: function(suggestionID) {
+    if(this.model.get('id') == suggestionID)
+      $(this.suggestionEl).addClass('done');
+  }
+
+});
 // Define callbacks.
 //
 Denwen.Partials.Suggestions.Suggestion.Callback = {
