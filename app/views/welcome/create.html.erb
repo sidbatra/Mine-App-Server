@@ -8,7 +8,7 @@
 	</div>
 	
 
-	<div class="cards clearfix">
+	<div id="cards" class="cards clearfix">
     <%@suggestions.each do |suggestion|%>
       <a id="suggestion_<%=suggestion.id%>" 
           href="javascript:void(0)" 
@@ -62,7 +62,7 @@
 		            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
 		  <%end%> <!-- /form --> 
 		  
-		  <div class="caret-box absolute">
+		  <div id="caret" class="caret-box absolute">
 			  <div class="caret">
 	  		</div>
   		</div>
@@ -81,6 +81,7 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Welcome.Create({
-          nextURL : "<%=root_path(:src => 'welcome')%>"});
+          nextURL : "<%=root_path(:src => 'welcome')%>",
+          suggestions : <%=@suggestions.to_json%>});
   </script>
 <%end%>

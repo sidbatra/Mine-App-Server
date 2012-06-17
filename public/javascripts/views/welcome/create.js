@@ -10,12 +10,19 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.nextURL = this.options.nextURL;
+    var self = this;
 
-    this.step1Heading = '#step_1';
-    this.step2Heading = '#step_2';
-    this.hintEl = '#hint';
-    this.examplesEl = '#examples';
+    this.nextURL = this.options.nextURL;
+    this.suggestions = new Denwen.Collections.Suggestions(
+                            this.options.suggestions);
+
+    this.cardsEl = '#cards';
+    this.creationEl = '#creation';
+    this.step1HeadingEl = '#step_1';
+    this.step2HeadingEl = '#step_2';
+    this.tipEl = '#tip';
+    this.exampleEl = '#example';
+    this.caretEl = '#caret';
 
     this.input = new Denwen.Partials.Purchases.Input({
                         el  : $('body'),
@@ -39,6 +46,13 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
       this);
 
 
+    this.suggestions.each(function(suggestion){
+      $('#suggestion_' + suggestion.get('id')).click(function(){
+        self.suggestionClicked(suggestion);
+      });
+    });
+
+
     this.setAnalytics();
   },
 
@@ -49,16 +63,36 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   },
 
   // --
+  // Callbacks from Suggestion Clicks
+  // --
+  suggestionClicked: function(suggestion) {
+    $(this.tipEl).html(Denwen.JST['welcome/create/tip']({
+                      thing:suggestion.get('thing')}));
+    $(this.exampleEl).html(Denwen.JST['welcome/create/example']({
+                      example:suggestion.get('example')}));
+    $(this.step2HeadingEl).html(Denwen.JST['welcome/create/heading']({
+                      thing:suggestion.get('thing')}));
+
+    $(this.cardsEl).hide();
+    $(this.creationEl).show();
+
+    this.input.queryPhocus();
+    this.input.setSuggestion(suggestion.get('id'));
+  },
+
+  // --
   // Callbacks from Purchases.Input
   // --
 
   // Cleanup ui after a product has been selected.
   //
   productSelected: function(product) {
-    $(this.step1Heading).hide();
-    $(this.step2Heading).show();
-    $(this.hintEl).hide();
-    $(this.examplesEl).hide();
+    $(this.step1HeadingEl).hide();
+    $(this.step2HeadingEl).show();
+
+    $(this.tipEl).hide();
+    $(this.caretEl).hide();
+    $(this.exampleEl).hide();
   },
 
   // Display the freshly created purchase in the feed.

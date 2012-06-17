@@ -629,6 +629,18 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.suggestionEl).val(suggestionID);
 
     this.productSearch.search();
+  },
+
+  // Set suggestion id in the hidden field.
+  //
+  setSuggestion: function(suggestionID) {
+    $(this.suggestionEl).val(suggestionID);
+  },
+
+  // Call phocus method on the primary query box.
+  //
+  queryPhocus: function() {
+    $(this.queryEl).phocus();
   }
 
 });
