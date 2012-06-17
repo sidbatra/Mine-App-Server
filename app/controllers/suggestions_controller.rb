@@ -8,9 +8,12 @@ class SuggestionsController < ApplicationController
                       for_users([self.current_user]).
                       map(&:suggestion_id).uniq.compact
 
-    @suggestions = Suggestion.select(:id,:title,:weight).
-                    by_weight.
-                    except(suggestion_ids)
+    @suggestions = Suggestion.select(:id,:short_title,:thing).
+                    by_weight.limit(3)
+
+    @suggestions.each do |suggestion| 
+      suggestion[:done] = suggestion_ids.include? suggestion.id
+    end
 
   rescue => ex
     handle_exception(ex)

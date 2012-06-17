@@ -10,6 +10,8 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.suggestionDelegate = this.options.suggestionDelegate;
+
     this.suggestions = new Denwen.Collections.Suggestions();
     this.fetch();
   },
@@ -34,34 +36,25 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
   suggestionsLoaded: function() {
     var self = this;
 
+    if(this.suggestions.every(function(suggestion){return suggestion.get('done');}))
+      return;
+
 	  this.suggestions.each(function(suggestion){
       var suggestion = new Denwen.Partials.Suggestions.Suggestion({
                             el:self.el,
                             model:suggestion});
       suggestion.bind(
-        Denwen.Partials.Suggestions.Suggestion.Callback.Searched,
-        self.suggestionSearched,
-        self);
+        Denwen.Partials.Suggestions.Suggestion.Callback.Clicked,
+        self.suggestionDelegate.suggestionClicked,
+        self.suggestionDelegate);
     });
+
+    this.el.fadeIn(250);
   },
 
   // Fail silently. 
   //
   suggestionsLoadingFailed: function() {
-  },
-
-
-  // --
-  // Callbacks from Suggestions.Suggestion partials.
-  // --
-
-  // Fired when a suggestion is searched.
-  //
-  suggestionSearched: function(query,suggestion) {
-    this.trigger(
-      Denwen.Partials.Feed.Suggestions.Callback.Searched,
-      query,
-      suggestion.get('id'));
   }
 
 });

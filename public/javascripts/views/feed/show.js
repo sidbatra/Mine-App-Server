@@ -15,7 +15,8 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.source       = this.options.source;
     this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
-    this.feedEl   = '#feed';
+    this.feedEl = '#feed';
+    this.suggestionsEl = '#suggestions';
 
     this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
     this.input    = new Denwen.Partials.Purchases.Input({
@@ -33,13 +34,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
-    //this.suggestions = new Denwen.Partials.Feed.Suggestions({
-    //                        el:$(this.feedEl)});
+    this.suggestions = new Denwen.Partials.Feed.Suggestions({
+                            el:$(this.suggestionsEl),
+                            suggestionDelegate:this});
 
-    //this.suggestions.bind( 
-    //  Denwen.Partials.Feed.Suggestions.Callback.Searched,
-    //  this.suggestionSearched,
-    //  this); 
 
     $("a[rel='tooltip']").tooltip();
     
@@ -97,9 +95,8 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Callbacks from Feed.Suggestions
   // --
 
-  suggestionSearched: function(query,suggestionID) {
-    window.scrollTo(0,0);
-    this.input.searchViaSuggestion(query,suggestionID);
+  suggestionClicked: function(suggestion) {
+    console.log(suggestion);
   }
 
 
