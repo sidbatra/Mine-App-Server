@@ -55,8 +55,7 @@
     <%form_for Purchase.new,
         :html => {
           :class => "form-horizontal",
-          :style => "margin-bottom: 0;"} do |f|%>
-          
+          :style => "margin-bottom: 0;"} do |f|%>   
        
 		  <div id="suggestions" 
             class="suggestions-box relative" 
@@ -64,9 +63,9 @@
 		  	
 		  	<div class="fader absolute left"></div>
 		  	<div class="fader absolute right"></div>
-			</div>
+			</div> <!-- /suggestions -->
 		       
-  
+		  
         <%=render :partial => 'purchases/input', 
             :locals => {
               :f => f,
