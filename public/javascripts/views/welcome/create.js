@@ -78,6 +78,8 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
 
     this.input.queryPhocus();
     this.input.setSuggestion(suggestion.get('id'));
+
+    Denwen.Track.action("Suggestion Card Clicked");
   },
 
   // --
