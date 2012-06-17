@@ -11,6 +11,7 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
   //
   initialize: function() {
     this.suggestionDelegate = this.options.suggestionDelegate;
+    this.active = true;
 
     this.suggestions = new Denwen.Collections.Suggestions();
     this.fetch();
@@ -27,6 +28,12 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
       error: function(){self.suggestionsLoadingFailed();}});
   },
 
+  // Whether suggestions are being displayed.
+  //
+  areActive: function() {
+    return this.active;
+  },
+
   // --
   // Callbacks from fetching suggestions
   // --
@@ -36,8 +43,10 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
   suggestionsLoaded: function() {
     var self = this;
 
-    if(this.suggestions.every(function(suggestion){return suggestion.get('done');}))
+    if(this.suggestions.every(function(suggestion){return suggestion.get('done');})) {
+      this.active = false;
       return;
+    }
 
 	  this.suggestions.each(function(suggestion){
       var suggestion = new Denwen.Partials.Suggestions.Suggestion({
@@ -58,9 +67,3 @@ Denwen.Partials.Feed.Suggestions = Backbone.View.extend({
   }
 
 });
-
- // Define callbacks.
-//
- Denwen.Partials.Feed.Suggestions.Callback = { 
-   Searched : 'searched' 
- } 

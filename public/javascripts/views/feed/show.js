@@ -24,6 +24,11 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
                           mode: Denwen.PurchaseFormType.New});
 
     this.input.bind(
+      Denwen.Partials.Purchases.Input.Callback.PurchaseInitiated,
+      this.purchaseInitiated,
+      this);
+
+    this.input.bind(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
       this.purchaseCreated,
       this);
@@ -76,11 +81,21 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Callbacks from Purchases.Input
   // --
 
+  purchaseInitiated: function() {
+    $(this.suggestionsEl).hide();
+  },
+
   // Display the freshly created purchase in the feed.
   //
   purchaseCreated: function(purchase) {
-
     this.content.insert(purchase);
+
+    if(this.suggestions.areActive()) {
+      $(this.suggestionsEl).fadeIn(250);
+
+      if(purchase.get('suggestion_id'))
+        console.log('with id');
+    }
 
     Denwen.Track.action("Purchase Created");
   },
@@ -96,7 +111,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // --
 
   suggestionClicked: function(suggestion) {
-    console.log(suggestion);
+    $(this.suggestionsEl).hide();
+
+    this.input.setSuggestion(suggestion.get('id'));
+    this.input.purchaseInitiated();
+
+    Denwen.Track.action("Suggestion Clicked"); 
   }
 
 

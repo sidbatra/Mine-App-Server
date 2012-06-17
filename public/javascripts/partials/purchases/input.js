@@ -168,6 +168,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.tokens.fetchStatus();
 
     Denwen.Track.action("Purchase Initiated");
+
+    this.trigger(
+      Denwen.Partials.Purchases.Input.Callback.PurchaseInitiated);
   },
 
   // Catch keystrokes on inputs to stop form submissions
@@ -314,6 +317,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Reset UI and values of all form fields.
   //
   resetForm: function() {
+    $(this.suggestionEl).val('');
     $(this.formEl)[0].reset();
     this.posting = false;
     this.isStoreUnknownChanged();
@@ -483,6 +487,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   purchaseCreated: function(purchase) {
 
+    purchase.set({'suggestion_id':$(this.suggestionEl).val()});
+
     if(this.resetOnCreation) {
       this.hidePurchaseImage();
       $(this.submitButtonEl).removeClass(this.postingClass);
@@ -648,6 +654,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 // Define callbacks.
 //
 Denwen.Partials.Purchases.Input.Callback = {
+  PurchaseInitiated: "purchaseInitiated",
   ProductSelected: "productSelected",
   PurchaseCreated: "purchaseCreated",
   PurchaseCreationFailed: "purchaseCreationFailed"
