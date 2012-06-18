@@ -1,6 +1,9 @@
 <a id="suggestion_<%=suggestion.get('id')%>" 
-    class="btn btn-black checklist <%=suggestion.get('done') ? 'done' : ''%>">
+    class="btn btn-black checklist relative<%=suggestion.get('done') ? 'done' : ''%>">
   <i class="icon-ok icon-white"></i>
   <i class="icon-<%=suggestion.get('thing').replace(" ","-")%> icon-white"></i> 
   <%=suggestion.get('short_title')%>
+  <div class="caret absolute"></div>
 </a>
+
+

@@ -82,7 +82,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // --
 
   purchaseInitiated: function() {
-    $(this.suggestionsEl).hide();
+    //$(this.suggestionsEl).hide();
   },
 
   // Display the freshly created purchase in the feed.
@@ -114,7 +114,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // --
 
   suggestionClicked: function(suggestion) {
-    $(this.suggestionsEl).hide();
+    //$(this.suggestionsEl).hide();
 
     this.input.setSuggestion(suggestion.get('id'));
     this.input.purchaseInitiated();
