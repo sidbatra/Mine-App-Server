@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
     @source = params[:src] ? params[:src].to_s : 'direct'
   end
 
+  # Mark current user as visited once every so often.
+  #
+  def track_visit
+    if logged_in? && 
+        (session[:visited_at].nil? || session[:visited_at] < 30.minutes.ago)
+      self.current_user.visited
+      session[:visited_at] = Time.now
+    end
+  end
+
   # Prepare uploader config for uploading directly to Amazon S3. Store
   # the config as a hash into @upload_config.
   #

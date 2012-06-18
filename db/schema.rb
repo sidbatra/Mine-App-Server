@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607172825) do
+ActiveRecord::Schema.define(:version => 20120616225814) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
     t.integer  "suggestion_id"
     t.string   "fb_action_id"
     t.integer  "product_id"
+    t.string   "tweet_id"
+    t.string   "tumblr_post_id"
   end
 
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
@@ -186,6 +188,8 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
     t.boolean  "email_update",       :default => true
     t.boolean  "fb_publish_actions", :default => true
     t.boolean  "fb_publish_stream",  :default => false
+    t.boolean  "share_to_twitter",   :default => false
+    t.boolean  "share_to_tumblr",    :default => false
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -228,12 +232,16 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
   add_index "stores", ["purchases_count"], :name => "index_stores_on_purchases_count"
 
   create_table "suggestions", :force => true do |t|
-    t.string   "title",                     :null => false
+    t.string   "title",                           :null => false
     t.string   "image_path"
-    t.integer  "weight",     :default => 0
+    t.integer  "weight",           :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "gender",     :default => 0
+    t.integer  "gender",           :default => 0
+    t.string   "short_title"
+    t.string   "small_image_path"
+    t.string   "thing"
+    t.string   "example"
   end
 
   add_index "suggestions", ["gender"], :name => "index_suggestions_on_gender"
@@ -249,17 +257,24 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
     t.string   "access_token"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.boolean  "is_admin",                  :default => false
+    t.boolean  "is_admin",                   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source"
-    t.string   "byline",                    :default => ""
-    t.integer  "purchases_count",           :default => 0
-    t.integer  "followings_count",          :default => 0
-    t.integer  "inverse_followings_count",  :default => 0
+    t.string   "byline",                     :default => ""
+    t.integer  "purchases_count",            :default => 0
+    t.integer  "followings_count",           :default => 0
+    t.integer  "inverse_followings_count",   :default => 0
     t.string   "handle"
-    t.boolean  "has_contacts_mined",        :default => false
-    t.integer  "shoppings_count",           :default => 0
+    t.boolean  "has_contacts_mined",         :default => false
+    t.integer  "shoppings_count",            :default => 0
+    t.string   "tw_access_token"
+    t.string   "tw_access_token_secret"
+    t.string   "tw_user_id"
+    t.datetime "visited_at"
+    t.string   "tumblr_access_token"
+    t.string   "tumblr_access_token_secret"
+    t.string   "tumblr_user_id"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
@@ -274,5 +289,6 @@ ActiveRecord::Schema.define(:version => 20120607172825) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
+  add_index "users", ["visited_at"], :name => "index_users_on_visited_at"
 
 end

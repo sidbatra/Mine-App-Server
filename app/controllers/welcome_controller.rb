@@ -10,6 +10,8 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Learn
       @view = "show"
     when WelcomeFilter::Create
+      @suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
+                      by_weight.limit(3)
       @view = "create"
     else
       raise IOError, "Incorrect welcome show ID"

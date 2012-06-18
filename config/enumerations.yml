@@ -13,6 +13,10 @@
     Email: 1
   FBSharing:
     Underway: '1'
+  TWSharing:
+    Underway: '1'
+  TumblrSharing:
+    Underway: '1'
 
 # Enumerations for ruby. 
 #

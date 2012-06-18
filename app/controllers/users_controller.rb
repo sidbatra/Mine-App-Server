@@ -47,6 +47,8 @@ class UsersController < ApplicationController
   # Display a user's profile.
   #
   def show
+    track_visit
+
     @user = User.find_by_handle(params[:handle])
     @origin = 'user'
   end

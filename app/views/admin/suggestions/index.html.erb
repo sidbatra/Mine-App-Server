@@ -20,7 +20,14 @@
           <%=suggestion.gender%>
         </td>
         <td width="150">
-          <%=image_tag suggestion.image_url,:width => 100%>
+          <%if suggestion.image_path.present?%>
+            <%=image_tag suggestion.image_url,:width => 100%>
+          <%end%>
+        </td>
+        <td width="150">
+          <%if suggestion.small_image_path.present?%>
+            <%=image_tag suggestion.small_image_url,:width => 30%>
+          <%end%>
         </td>
         <td>
           <%=link_to "Edit",edit_admin_suggestion_path(suggestion)%>

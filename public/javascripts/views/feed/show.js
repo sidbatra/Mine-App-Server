@@ -15,12 +15,18 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.source       = this.options.source;
     this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
 
-    this.feedEl   = '#feed';
+    this.feedEl = '#feed';
+    this.suggestionsEl = '#suggestions';
 
     this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
     this.input    = new Denwen.Partials.Purchases.Input({
                           el  : $('body'),
                           mode: Denwen.PurchaseFormType.New});
+
+    this.input.bind(
+      Denwen.Partials.Purchases.Input.Callback.PurchaseInitiated,
+      this.purchaseInitiated,
+      this);
 
     this.input.bind(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
@@ -33,13 +39,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
-    //this.suggestions = new Denwen.Partials.Feed.Suggestions({
-    //                        el:$(this.feedEl)});
+    this.suggestions = new Denwen.Partials.Feed.Suggestions({
+                            el:$(this.suggestionsEl),
+                            suggestionDelegate:this});
 
-    //this.suggestions.bind( 
-    //  Denwen.Partials.Feed.Suggestions.Callback.Searched,
-    //  this.suggestionSearched,
-    //  this); 
 
     $("a[rel='tooltip']").tooltip();
     
@@ -61,6 +64,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     if(this.source == 'login')
       Denwen.Track.action("User Logged In");
+    else if(this.source == 'welcome')
+      Denwen.Track.action("Purchase Created");
+      
 
     Denwen.Track.version(Denwen.H.version);
     Denwen.Track.isEmailClicked(this.source);
@@ -75,11 +81,24 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Callbacks from Purchases.Input
   // --
 
+  purchaseInitiated: function() {
+    $(this.suggestionsEl).hide();
+  },
+
   // Display the freshly created purchase in the feed.
   //
   purchaseCreated: function(purchase) {
-
     this.content.insert(purchase);
+
+    if(this.suggestions.areActive()) {
+      $(this.suggestionsEl).show();
+
+      if(purchase.get('suggestion_id')) {
+        Denwen.NM.trigger(
+          Denwen.NotificationManager.Callback.SuggestionFinished,
+          purchase.get('suggestion_id'));
+      }
+    }
 
     Denwen.Track.action("Purchase Created");
   },
@@ -94,9 +113,13 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Callbacks from Feed.Suggestions
   // --
 
-  suggestionSearched: function(query,suggestionID) {
-    window.scrollTo(0,0);
-    this.input.searchViaSuggestion(query,suggestionID);
+  suggestionClicked: function(suggestion) {
+    $(this.suggestionsEl).hide();
+
+    this.input.setSuggestion(suggestion.get('id'));
+    this.input.purchaseInitiated();
+
+    Denwen.Track.action("Suggestion Clicked"); 
   }
 
 

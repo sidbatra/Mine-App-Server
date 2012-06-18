@@ -46,6 +46,12 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('fb_graph',
               :version => '2.4.17')
+  config.gem('twitter_oauth',
+              :version => '0.4.3')
+  config.gem('oauth',
+              :version => '0.4.6')
+  config.gem('tumblife',
+              :version => '1.2.0')
   config.gem('grit',
               :version => '2.4.1',
               :lib => false)

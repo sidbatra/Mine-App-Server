@@ -23,6 +23,25 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :users,
     :action     => :create
 
+  map.tw_auth 'twitter/authenticate',
+    :controller => :twitter,
+    :action     => :create,
+    :filter     => :authenticate
+
+  map.tw_reply 'twitter/reply',
+    :controller => :twitter,
+    :action     => :create,
+    :filter     => :reply
+
+  map.tumblr_auth 'tumblr/authenticate',
+    :controller => :tumblr,
+    :action     => :create,
+    :filter     => :authenticate
+
+  map.tumblr_reply 'tumblr/reply',
+    :controller => :tumblr,
+    :action     => :create,
+    :filter     => :reply
 
   ##
   # Resoure based routes
@@ -127,10 +146,17 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
     admin.resources :users, :only => [:index,:show,:destroy]
+    admin.resources :purchases, :only => [:index,:show]
     admin.resources :stores, :only => [:index,:edit,:update]
+    admin.resources :comments, :only => [:index]
     admin.resources :emails, :only => [:index,:show]
     admin.resources :health, :only => [:index]
     admin.resources :suggestions
+
+    admin.full_purchase ':user_handle/p/:purchase_handle',
+      :controller => :purchases,
+      :action     => :show
+
   end
 
   ##
@@ -162,7 +188,7 @@ ActionController::Routing::Routes.draw do |map|
   map.user ':handle',
     :controller => :users,
     :action     => :show
-  
+
   Jammit::Routes.draw(map)
 
   # Install the default routes as the lowest priority.

@@ -3,6 +3,7 @@ class UserObserver < ActiveRecord::Observer
   # Build settings for a user who's about to be created.
   #
   def before_create(user)
+    user.visited_at = Time.now
     user.build_setting  
   end
 

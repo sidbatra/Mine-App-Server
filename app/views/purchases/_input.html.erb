@@ -10,7 +10,7 @@
 	<div id="query_box" 
     class="search-box" 
     style="<%=show_query_box ? '' : 'display:none'%>">
-
+		
     <a id="initiate_purchase" 
         class="btn btn-large btn-red border-box" 
         style="width: 220px;<%=!show_query_sub_box ? '' : 'display:none;'%>">
@@ -20,7 +20,7 @@
     <div id="query_sub_box" style="<%=show_query_sub_box ? '' : 'display:none'%>">
       <%=f.text_field :query,
           :placeholder => local_assigns[:search_placeholder].nil? ? 
-                            "Enter detailed item name or URL" :
+                            "Enter item name, brand, color, store or URL" :
                             search_placeholder,
           :class => "border-box enter-item-name"%>
       <a id="purchase_search" 
@@ -104,7 +104,60 @@
 	              class="toggle-switch unselectable rounded-5 <%='off' if !fb_share_on%>">
 		          <div class="on clearfix rounded-5">
 		            <div class="text">
-		              On
+		          		<span class="hide-when-loading">On</span>
+		          		<i class="icon-loading icon-white"></i>
+		            </div>
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		          </div>
+		          <div class="off clearfix rounded-5">
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		            <div class="text">
+		              Off
+		            </div>
+		          </div>
+		        </a>
+		      </div>
+		    <%end%>
+
+		    <%if show_tw_share%>
+		      <div class="post-to border-box rounded-8">
+		        Twitter 
+	          <a id="tw-share-toggle-switch" 
+	              class="toggle-switch unselectable rounded-5 <%='off' if !tw_share_on%>">
+		          <div class="on clearfix rounded-5">
+		            <div class="text">
+		              <span class="hide-when-loading">On</span>
+		          		<i class="icon-loading icon-white"></i>
+		            </div>
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		          </div>
+		          <div class="off clearfix rounded-5">
+		            <div class="knob rounded-5">
+		              &nbsp;
+		            </div>
+		            <div class="text">
+		              Off
+		            </div>
+		          </div>
+		        </a>
+		      </div>
+		    <%end%>
+		
+		    <%if show_tumblr_share%>
+		      <div class="post-to border-box rounded-8">
+		        Tumblr
+	          <a id="tumblr-share-toggle-switch" 
+	              class="toggle-switch unselectable rounded-5 <%='off' if !tumblr_share_on%>">
+		          <div class="on clearfix rounded-5">
+		            <div class="text">
+		              <span class="hide-when-loading">On</span>
+		          		<i class="icon-loading icon-white"></i>
 		            </div>
 		            <div class="knob rounded-5">
 		              &nbsp;
@@ -125,7 +178,7 @@
 				<button id="submit-button" 
 	          type="submit" 
 	          class="btn btn-large btn-red border-box"
-	          style="width: 100%; margin-top: 24px;">
+	          style="width: 100%; margin-top: 16px;">
 	          <span class="hide-when-loading">
 							<i class="icon-ok icon-white"></i> <%=submit_text%>
 						</span>

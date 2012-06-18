@@ -14,12 +14,13 @@ class Suggestion < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessible :title,:image_path,:weight,:gender
+  attr_accessible :title,:short_title,:example,:thing,:image_path,
+                  :small_image_path,:weight,:gender
 
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
-  named_scope :by_weight, :order => 'weight'
+  named_scope :by_weight, :order => 'weight DESC'
   named_scope :except, lambda{|ids| {:conditions => 
                         {:id_ne => ids}} if ids.present?}
   named_scope :for_gender, lambda{|gender| {:conditions =>
@@ -47,6 +48,12 @@ class Suggestion < ActiveRecord::Base
   #
   def image_url
     FileSystem.url(image_path)
+  end
+
+  # Absolute url of the small suggestion image.
+  #
+  def small_image_url
+    FileSystem.url(small_image_path)
   end
 
 end

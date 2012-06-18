@@ -1,17 +1,6 @@
-<div class="suggestion" id="suggestion-<%=suggestion.get('id')%>">
-  <span class="prompt">
-    + <%=suggestion.get('title')%>
-  </span>
-  <div class="create">
-    <input id="suggestion-input-<%=suggestion.get('id')%>" 
-      placeholder="Detailed item name or URL" 
-      type="text">
-    <a id="suggestion-button-<%=suggestion.get('id')%>"
-        class="btn btn-mid" 
-        value="" 
-        title="Search" 
-        type="button" alt="Search">
-      Pick item <i class="icon-chevron-right icon-white"></i>
-    </a>
-  </div>
-</div>
+<a id="suggestion_<%=suggestion.get('id')%>" 
+    class="btn btn-black checklist <%=suggestion.get('done') ? 'done' : ''%>">
+  <i class="icon-ok icon-white"></i>
+  <i class="icon-<%=suggestion.get('thing').replace(" ","-")%> icon-white"></i> 
+  <%=suggestion.get('short_title')%>
+</a>

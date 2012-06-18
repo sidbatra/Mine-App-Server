@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
   named_scope :purchases_count_gt, lambda {|count| {
                   :conditions => {:purchases_count_gt => count}}}
   named_scope :by_updated_at, {:order => 'updated_at DESC'}
+  named_scope :by_visited_at, {:order => 'visited_at DESC'}
+
+  named_scope :visited, lambda{|time| {
+                          :conditions => {:visited_at_gt => time}}}
 
   named_scope :with_stores, :include => {:shoppings => :store}
   named_scope :with_setting, :include => :setting
@@ -100,6 +104,13 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
+
+  # Updated the visited_at datetime to the current time.
+  #
+  def visited
+    self.visited_at = Time.now
+    self.save!
+  end
 
   # Whether the user has actually registered or is a stub user from
   # an invite.
@@ -227,6 +238,20 @@ class User < ActiveRecord::Base
   #
   def fb_publish_permissions?
     self.fb_permissions.include?(:publish_actions)
+  end
+
+  # Whether or not the user has authorized our twitter application
+  # and in turn given us read/write permissions
+  #
+  def tw_permissions?
+    self.tw_access_token.present? & self.tw_access_token_secret.present?
+  end
+
+  # Whether or not the user has authorized our tumblr application
+  # and in turn given us read/write permissions
+  #
+  def tumblr_permissions?
+    self.tumblr_access_token.present? & self.tumblr_access_token_secret.present?
   end
 
 

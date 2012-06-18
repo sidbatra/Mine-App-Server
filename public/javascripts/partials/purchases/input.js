@@ -8,7 +8,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     "keypress #purchase_title" : "inputKeystroke",
     "keypress #purchase_store_name" : "inputKeystroke",
     "change #purchase_is_store_unknown" : "isStoreUnknownChanged",
-    "mousedown #fb-photo-toggle-switch" : "switchToggled",
+    "mousedown #fb-photo-toggle-switch" : "fbSwitchToggled",
+    "mousedown #tw-share-toggle-switch" : "twSwitchToggled",
+    "mousedown #tumblr-share-toggle-switch" : "tumblrSwitchToggled",
     "click #initiate_endorsement" : "endorsementInitiated",
     "click #initiate_purchase" : "purchaseInitiated"
   },
@@ -51,9 +53,12 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.isStoreUnknownBoxEl  = '#is_store_unknown_box';
     this.urlAlertBoxEl        = '#url_alert_box';
     this.suggestionEl         = '#purchase_suggestion_id';
-    this.switchEl             = '#fb-photo-toggle-switch';
+    this.fbSwitchEl           = '#fb-photo-toggle-switch';
+    this.twSwitchEl           = '#tw-share-toggle-switch';
+    this.tumblrSwitchEl       = '#tumblr-share-toggle-switch';
     this.submitButtonEl       = '#submit-button';
     this.switchOffClass       = 'off';
+    this.switchLoadingClass   = 'load';
     this.postingClass         = 'load';
     this.posting              = false;
 
@@ -93,6 +98,40 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
+    this.twSettings = new Denwen.Partials.Settings.Twitter();
+
+    this.twSettings.bind(
+      Denwen.Partials.Settings.Twitter.Callback.AuthAccepted,
+      this.twAuthAccepted,
+      this);
+
+    this.twSettings.bind(
+      Denwen.Partials.Settings.Twitter.Callback.AuthRejected,
+      this.twAuthRejected,
+      this);
+
+
+    this.tumblrSettings = new Denwen.Partials.Settings.Tumblr();
+
+    this.tumblrSettings.bind(
+      Denwen.Partials.Settings.Tumblr.Callback.AuthAccepted,
+      this.tumblrAuthAccepted,
+      this);
+
+    this.tumblrSettings.bind(
+      Denwen.Partials.Settings.Tumblr.Callback.AuthRejected,
+      this.tumblrAuthRejected,
+      this);
+
+
+    this.tokens = new Denwen.Partials.Settings.Tokens();
+
+    this.tokens.bind(
+      Denwen.Partials.Settings.Tokens.Callback.FBDead,
+      this.fbTokenDead,
+      this);
+
+
     $(this.formEl).submit(function(){return self.post();});
 
     restrictFieldSize($(this.storeEl),254,'charsremain');
@@ -126,7 +165,12 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     $(this.queryEl).phocus();
 
+    this.tokens.fetchStatus();
+
     Denwen.Track.action("Purchase Initiated");
+
+    this.trigger(
+      Denwen.Partials.Purchases.Input.Callback.PurchaseInitiated);
   },
 
   // Catch keystrokes on inputs to stop form submissions
@@ -164,22 +208,68 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Returns the current state of the facebook photo toggle switch
   // on -> true & off -> false
   //
-  switchState: function() {
-    return !$(this.switchEl).hasClass(this.switchOffClass);
+  fbSwitchState: function() {
+    return !$(this.fbSwitchEl).hasClass(this.switchOffClass);
+  },
+
+  // Returns the current state of the twitter photo toggle switch
+  // on -> true & off -> false
+  //
+  twSwitchState: function() {
+    return !$(this.twSwitchEl).hasClass(this.switchOffClass);
+  },
+
+  // Returns the current state of the tumblr photo toggle switch
+  // on -> true & off -> false
+  //
+  tumblrSwitchState: function() {
+    return !$(this.tumblrSwitchEl).hasClass(this.switchOffClass);
   },
 
   // Fired when the fb photo switch is toggled
   //
-  switchToggled: function() {
+  fbSwitchToggled: function() {
     if(!Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) 
       this.fbSettings.showPermissionsDialog();
 
-    $(this.switchEl).toggleClass(this.switchOffClass);
+    $(this.fbSwitchEl).toggleClass(this.switchOffClass);
 
-    if(this.switchState())
+    if(this.fbSwitchState())
       Denwen.Track.action("Purchase FB Photo On");
     else
       Denwen.Track.action("Purchase FB Photo Off");
+  },
+
+  // Fired when the tw photo switch is toggled
+  //
+  twSwitchToggled: function() {
+    if(!Denwen.H.currentUser.get('setting').get('tw_permissions')) { 
+      $(this.twSwitchEl).addClass(this.switchLoadingClass);
+      this.twSettings.showAuthDialog();
+    }
+
+    $(this.twSwitchEl).toggleClass(this.switchOffClass);
+
+    if(this.twSwitchState())
+      Denwen.Track.action("Purchase TW Photo On");
+    else
+      Denwen.Track.action("Purchase TW Photo Off");
+  },
+
+  // Fired when the tumblr photo switch is toggled
+  //
+  tumblrSwitchToggled: function() {
+    if(!Denwen.H.currentUser.get('setting').get('tumblr_permissions')) { 
+      $(this.tumblrSwitchEl).addClass(this.switchLoadingClass);
+      this.tumblrSettings.showAuthDialog();
+    }
+
+    $(this.tumblrSwitchEl).toggleClass(this.switchOffClass);
+
+    if(this.tumblrSwitchState())
+      Denwen.Track.action("Purchase Tumblr Photo On");
+    else
+      Denwen.Track.action("Purchase Tumblr Photo Off");
   },
 
   // User initiates endorsements.
@@ -227,6 +317,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Reset UI and values of all form fields.
   //
   resetForm: function() {
+    $(this.suggestionEl).val('');
     $(this.formEl)[0].reset();
     this.posting = false;
     this.isStoreUnknownChanged();
@@ -311,7 +402,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     var purchase = new Denwen.Models.Purchase();
 
     fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
-    fields['post_to_timeline'] = this.switchState(); 
+    fields['post_to_timeline'] = this.fbSwitchState(); 
+    fields['share_to_twitter'] = this.twSwitchState(); 
+    fields['share_to_tumblr']  = this.tumblrSwitchState(); 
 
     purchase.save({purchase:fields},{
       success: function(data){self.purchaseCreated(data);},
@@ -333,10 +426,55 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when fb permissions are rejected
   //
   fbPermissionsRejected: function() {
-    $(this.switchEl).toggleClass(this.switchOffClass);
+    $(this.fbSwitchEl).toggleClass(this.switchOffClass);
     Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
   },
 
+
+  //
+  // Callbacks from tw permissions interface.
+  //
+
+  // Fired when tw auth is accepted 
+  //
+  twAuthAccepted: function() {
+    $(this.twSwitchEl).removeClass(this.switchLoadingClass);
+  },
+
+  // Fired when tw auth is rejected
+  //
+  twAuthRejected: function() {
+    $(this.twSwitchEl).removeClass(this.switchLoadingClass);
+    $(this.twSwitchEl).toggleClass(this.switchOffClass);
+    Denwen.Drawer.error("Please allow Twitter Access for posting tweets.");
+  },
+
+
+  //
+  // Callbacks from tumblr permissions interface.
+  //
+
+  // Fired when tumblr auth is accepted 
+  //
+  tumblrAuthAccepted: function() {
+    $(this.tumblrSwitchEl).removeClass(this.switchLoadingClass);
+  },
+
+  // Fired when tumblr auth is rejected
+  //
+  tumblrAuthRejected: function() {
+    $(this.tumblrSwitchEl).removeClass(this.switchLoadingClass);
+    $(this.tumblrSwitchEl).toggleClass(this.switchOffClass);
+    Denwen.Drawer.error("Please allow access for posting to Tumblr.");
+  },
+
+
+  //
+  // Callbacks from tokens interface.
+  //
+  fbTokenDead: function() {
+    $(this.fbSwitchEl).addClass(this.switchOffClass);
+  },
 
   //
   // Callbacks from purchase creation.
@@ -348,6 +486,8 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // purchase - Backbone.Model.Purchase. Freshly created purchase.
   //
   purchaseCreated: function(purchase) {
+
+    purchase.set({'suggestion_id':$(this.suggestionEl).val()});
 
     if(this.resetOnCreation) {
       this.hidePurchaseImage();
@@ -495,6 +635,18 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.suggestionEl).val(suggestionID);
 
     this.productSearch.search();
+  },
+
+  // Set suggestion id in the hidden field.
+  //
+  setSuggestion: function(suggestionID) {
+    $(this.suggestionEl).val(suggestionID);
+  },
+
+  // Call phocus method on the primary query box.
+  //
+  queryPhocus: function() {
+    $(this.queryEl).phocus();
   }
 
 });
@@ -502,6 +654,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 // Define callbacks.
 //
 Denwen.Partials.Purchases.Input.Callback = {
+  PurchaseInitiated: "purchaseInitiated",
   ProductSelected: "productSelected",
   PurchaseCreated: "purchaseCreated",
   PurchaseCreationFailed: "purchaseCreationFailed"

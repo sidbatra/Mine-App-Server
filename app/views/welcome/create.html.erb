@@ -1,80 +1,92 @@
 <div class="container onboarding">
 
 	<div class="heading" id="step_1">
-		<b>Adding purchases is easy.</b><br />
-			It's like searching on the web. Try this:
+		Pick the item you’d like to add first:
 	</div>
 	
-	<div class="heading" id="step_2" style="display:none;">
-		<span class="mine">Add a few details and you're done.</span>
+	<div class="heading" id="step_2" style="display:none;" >
+	</div>
+
+	<div class="heading" id="step_3" style="display:none;" >
+    Add a few details and you're done.
 	</div>
 	
-  <%=render 'purchases/chooser'%>
-  	
-  <div id="creation" class="create-box" style="background: none; border: none;">
-    <%form_for Purchase.new,
-        :html => {
-          :class => "form-horizontal",
-          :style => "margin-bottom: 0;"} do |f|%>
-  
-        <%=render :partial => 'purchases/input', 
-            :locals => {
-              :f => f,
-              :suggestion => nil,
-              :submit_text => "Add to <span class='mine'>mine</span>",
-              :show_cancel_button => false,
-              :show_delete_button => false,
-              :show_query_box => true,
-              :show_query_sub_box => true,
-              :search_placeholder => "Type your best description of a recent purchase.",
-              :search_action => "Search <i class='icon-search icon-white'></i>",
-              :show_extra_steps => false,
-              :show_fb_share => true,
-              :fb_share_on => self.current_user.setting.post_to_timeline?}%>
-    <%end%> <!-- /form --> 
-  
-  </div> <!-- create-box -->
 	
-	<div id="hint" class="hint">Tip: Adding your item's 
-		<span style="color:#F7921E">c</span><span style="color:#EF4923">o</span><span style="color:#B61F8E">l</span><span style="color:#00AEEF">o</span><span style="color:#65BC46">r</span> 
-    and <span class="nike">brand</span> can help you find it.
-	</div> <!-- /hint -->
-	
-	<div id="examples" class="examples">
-		<p>Here are some real examples:</p>
-		
-    <%@samples = [
-      {:user => "Natala Menezes",:title => "Cole Haan Air Bria", :image => "natala.jpg"},
-      {:user => "Richard Perez",:title => "Cohen Brothers Collection Box Set", :image => "richard.jpg"},
-      {:user => "Craig Dos Santos",:title => "TRX Pro Kit", :image => "craig.jpg"},
-      {:user => "Gabrielle Adams",:title => "Blue and white Marimekko Duvet", :image => "gabe.jpg"},
-      {:user => "Dawoon Kang",:title => "InStyle Magazine June 2012", :image => "dawoon.jpg"},
-      {:user => "Mike Hudack",:title => "Black LED Alarm Clock White Light", :image => "mike.jpg"},
-      {:user => "David Blumenstein",:title => "Nook Color Tablet", :image => "david.jpg"},
-      {:user => "Cathy Vigrass",:title => "Gap 1969 Jeans", :image => "cathy.jpg"}]%>
 
-    <%@samples.each do |sample|%>
-      <div class="example rounded-5">
-
-        <%=image_tag "products/#{sample[:image]}",
-            :class => "item-photo rounded-3"%>
-
-        <div class="text">
-          <span class="item-name">"<%=sample[:title]%>"</span><br />
-          <span class="sub">added by <span class="user-name"><%=sample[:user]%></span></span>
+	<div id="cards" class="cards clearfix">
+    <%@suggestions.each do |suggestion|%>
+      <a id="suggestion_<%=suggestion.id%>" 
+          href="javascript:void(0)" 
+          class="card relative rounded-5 three-to-two">
+        <div class="photo rounded-5">
+          <%=image_tag "ob/mine-select-32.png",
+              :class => "mine-logo absolute"%>
+          <%=image_tag suggestion.image_url,
+              :class => ""%>
         </div>
-      </div>
+      
+        <div class="title-box border-box relative">
+          <%=suggestion.title%>
+        </div>	
+      </a>
     <%end%>
-		
-	</div> <!-- /examples -->
+  </div>
 	
+
+  <%=render 'purchases/chooser'%>
+  
+  <div id="creation" class="create-box rounded-5" style="display:none">
+  	
+  	<div class="first-box relative">
+  	
+  		<div id="tip" class="tip">
+  		</div>
+  
+		  <%form_for Purchase.new,
+		      :html => {
+		        :class => "form-horizontal",
+		        :style => "margin-bottom: 0;"} do |f|%>
+		
+		      <%=render :partial => 'purchases/input', 
+		          :locals => {
+		            :f => f,
+		            :suggestion => nil,
+		            :submit_text => "Add to <span class='mine'>mine</span>",
+		            :show_cancel_button => false,
+		            :show_delete_button => false,
+		            :show_query_box => true,
+		            :show_query_sub_box => true,
+		            :search_placeholder => "Type your item's brand, color, name, store etc.",
+		            :search_action => "Find <i class='icon-search icon-white'></i>",
+		            :show_extra_steps => false,
+		            :show_fb_share => true,
+		            :show_tw_share => true,
+		            :show_tumblr_share => true,
+		            :fb_share_on => self.current_user.setting.post_to_timeline?,
+		            :tw_share_on => self.current_user.setting.post_to_twitter?,
+		            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+		  <%end%> <!-- /form --> 
+		  
+		  <div id="caret" class="caret-box absolute">
+			  <div class="caret">
+	  		</div>
+  		</div>
+	  
+	  </div> <!-- /first-box -->
+	  
+	  <div id="example" class="example">
+	  </div>
+	  
+	</div> <!-- create-box -->
+
+		
 </div>	<!-- /container -->
 
 
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Welcome.Create({
-          nextURL : "<%=root_path(:src => 'welcome')%>"});
+          nextURL : "<%=root_path(:src => 'welcome')%>",
+          suggestions : <%=@suggestions.to_json%>});
   </script>
 <%end%>
-

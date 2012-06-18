@@ -8,7 +8,7 @@
 
 
   <div class="thumbnail-box">
-    <p><%=@purchase.user.first_name%>"s recent purchases:</p>
+    <p><%=@purchase.user.first_name%>'s recent purchases:</p>
 
     <%cache ["v1",@purchase.user,"purchases","preview","loggedout"] do%>
       <%@purchase.user.purchases.by_id.limit(10).each do |purchase|%>

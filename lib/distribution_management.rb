@@ -21,13 +21,12 @@ module DW
           message << " from #{purchase.store.name}"
         end
 
-        message << ". "
-
         if purchase.endorsement.present?
+          message << ". "
           message << purchase.endorsement 
-          message << " "
         end
 
+        message << " "
         message << short_purchase_url(
                     Cryptography.obfuscate(purchase.id),
                     :host => CONFIG[:host])
@@ -44,6 +43,80 @@ module DW
                                     :host => CONFIG[:host]))
 
         purchase.update_attributes({:fb_action_id => action.identifier})
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Tweet about the purchase 
+      #
+      def self.tweet(purchase)
+        client = TwitterOAuth::Client.new(
+                    :consumer_key     => CONFIG[:tw_consumer_key], 
+                    :consumer_secret  => CONFIG[:tw_consumer_secret],
+                    :token            => purchase.user.tw_access_token,
+                    :secret           => purchase.user.tw_access_token_secret)
+        
+        if client.authorized?
+          message = "Just bought this "
+
+          if purchase.store && purchase.store.is_approved
+            message << "from #{purchase.store.name} "
+          end
+
+          message << short_purchase_url(
+                      Cryptography.obfuscate(purchase.id),
+                      :host => CONFIG[:host])
+
+          tweet = client.update(message)
+          purchase.update_attributes({:tweet_id => tweet["id"]})
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Post the purchase to the owners tumblr blog 
+      #
+      def self.post_to_tumblr(purchase)
+        Tumblife.configure do |config|
+          config.consumer_key       = CONFIG[:tumblr_consumer_key]
+          config.consumer_secret    = CONFIG[:tumblr_consumer_secret]
+          config.oauth_token        = purchase.user.tumblr_access_token 
+          config.oauth_token_secret = purchase.user.tumblr_access_token_secret
+        end
+
+        client  = Tumblife.client
+        name    = client.info.user.blogs.select{|blog| blog.primary}.first.name
+        url     = name + '.tumblr.com'
+
+        message = "Just bought this"
+
+        if purchase.store && purchase.store.is_approved
+          message << " from #{purchase.store.name}"
+        end
+
+        if purchase.endorsement.present?
+          message << ". "
+          message << purchase.endorsement 
+        end
+
+        message << " "
+        message << short_purchase_url(
+                    Cryptography.obfuscate(purchase.id),
+                    :host => CONFIG[:host])
+
+        post = client.photo(
+                        url,
+                        :source   => purchase.unit_url,
+                        :caption  => message,
+                        :link     => purchase_url(
+                                        purchase.user.handle,
+                                        purchase.handle,
+                                        :src  => 'tumblr',
+                                        :host => CONFIG[:host]))
+
+        purchase.update_attributes({:tumblr_post_id => post["id"]})
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

@@ -49,14 +49,23 @@
 	</div> <!-- /thumbnail-box -->
 
   
-  <%=render 'purchases/chooser'%>
+  <%=render 'purchases/chooser'%>   
   	
   <div id="creation" class="create-box">
     <%form_for Purchase.new,
         :html => {
           :class => "form-horizontal",
-          :style => "margin-bottom: 0;"} do |f|%>
-  
+          :style => "margin-bottom: 0;"} do |f|%>   
+       
+		  <div id="suggestions" 
+            class="suggestions-box relative" 
+            style="display:none">
+		  	
+		  	<div class="fader absolute left"></div>
+		  	<div class="fader absolute right"></div>
+			</div> <!-- /suggestions -->
+		       
+		  
         <%=render :partial => 'purchases/input', 
             :locals => {
               :f => f,
@@ -68,13 +77,15 @@
               :show_query_sub_box => false,
               :show_extra_steps => false,
               :show_fb_share => true,
-              :fb_share_on => self.current_user.setting.post_to_timeline?}%>
+              :show_tw_share => true,
+              :show_tumblr_share => true,
+              :fb_share_on => self.current_user.setting.post_to_timeline?,
+              :tw_share_on => self.current_user.setting.post_to_twitter?,
+              :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
     <%end%> <!-- /form --> 
   
   </div> <!-- create-box -->
-    
-
-
+  
   <div id="feed" class="feed">
   </div> <!-- feed -->
   
