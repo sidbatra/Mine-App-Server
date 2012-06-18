@@ -4,11 +4,15 @@ Denwen.Partials.Settings.Tokens = Backbone.View.extend({
   //
   initialize: function() {
     this.setting = new Denwen.Models.Setting({id:'tokens'});
+    this.finished = false;
   },
 
   // Fetch status of tokens from server.
   //
   fetchStatus: function() {
+    if(this.finished)
+      return;
+
     var self = this;
 
     this.setting.fetch({
@@ -32,6 +36,8 @@ Denwen.Partials.Settings.Tokens = Backbone.View.extend({
     else {
       this.trigger(Denwen.Partials.Settings.Tokens.Callback.FBAlive);
     }
+
+    this.finished = true;
   }
 
 });

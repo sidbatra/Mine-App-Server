@@ -21,5 +21,6 @@ Denwen.NotificationManager.Callback= {
   LikeCreated               : "likeCreated",
   LikesFetched              : "likesFetched",
   FallbackToNativeLikes     : "fallbackToNativeLikes",
+  SuggestionClicked         : "suggestionClicked",
   SuggestionFinished        : "suggestionFinished"
 };

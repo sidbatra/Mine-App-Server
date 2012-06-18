@@ -8,9 +8,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     "keypress #purchase_title" : "inputKeystroke",
     "keypress #purchase_store_name" : "inputKeystroke",
     "change #purchase_is_store_unknown" : "isStoreUnknownChanged",
-    "mousedown #fb-photo-toggle-switch" : "fbSwitchToggled",
-    "mousedown #tw-share-toggle-switch" : "twSwitchToggled",
-    "mousedown #tumblr-share-toggle-switch" : "tumblrSwitchToggled",
+    "click #fb-photo-toggle-switch" : "fbSwitchToggled",
+    "click #tw-share-toggle-switch" : "twSwitchToggled",
+    "click #tumblr-share-toggle-switch" : "tumblrSwitchToggled",
     "click #initiate_endorsement" : "endorsementInitiated",
     "click #initiate_purchase" : "purchaseInitiated"
   },
