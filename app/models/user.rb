@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
   validates_presence_of   :first_name
   validates_presence_of   :last_name
   validates_presence_of   :fb_user_id
-  validates_length_of     :byline, :maximum => 130
 
   #----------------------------------------------------------------------
   # Named scopes
