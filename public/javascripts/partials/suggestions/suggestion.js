@@ -5,12 +5,19 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
+    this.activeClass = 'active';
+
     this.suggestionEl = "#suggestion_" + this.model.get('id');
 
     this.render();
 
     if(!this.model.get('done')) {
       $(this.suggestionEl).click(function(){self.clicked()});
+
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.SuggestionClicked,
+        this.suggestionClicked,
+        this);
 
       Denwen.NM.bind(
         Denwen.NotificationManager.Callback.SuggestionFinished,
@@ -29,6 +36,8 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   // Fired when suggestion is clicked.
   //
   clicked: function() {
+     $(this.suggestionEl).addClass(this.activeClass);
+
     this.trigger(
       Denwen.Partials.Suggestions.Suggestion.Callback.Clicked,
       this.model);
@@ -37,10 +46,19 @@ Denwen.Partials.Suggestions.Suggestion = Backbone.View.extend({
   // --
   // Callbacks from NotificationManager
   // --
+  
+  suggestionClicked: function(suggestionID) {
+    if(this.model.get('id') != suggestionID) {
+      $(this.suggestionEl).removeClass(this.activeClass);
+    }
+  },
 
   suggestionFinished: function(suggestionID) {
-    if(this.model.get('id') == suggestionID)
+    if(this.model.get('id') == suggestionID) {
+      $(this.suggestionEl).removeClass(this.activeClass);
       $(this.suggestionEl).addClass('done');
+      $(this.suggestionEl).unbind('click');
+    }
   }
 
 });

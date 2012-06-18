@@ -29,6 +29,11 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
     this.input.bind(
+      Denwen.Partials.Purchases.Input.Callback.ProductSelected,
+      this.productSelected,
+      this);
+
+    this.input.bind(
       Denwen.Partials.Purchases.Input.Callback.PurchaseCreated,
       this.purchaseCreated,
       this);
@@ -82,7 +87,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // --
 
   purchaseInitiated: function() {
-    //$(this.suggestionsEl).hide();
+  },
+
+  productSelected: function() {
+    $(this.suggestionsEl).hide();
   },
 
   // Display the freshly created purchase in the feed.
@@ -106,7 +114,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Display a creation error.
   //
   purchaseCreationFailed: function() {
-    //console.log("Error creating purchase");
   },
 
   // --
@@ -114,10 +121,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // --
 
   suggestionClicked: function(suggestion) {
-    //$(this.suggestionsEl).hide();
-
     this.input.setSuggestion(suggestion.get('id'));
     this.input.purchaseInitiated();
+
+    Denwen.NM.trigger(
+      Denwen.NotificationManager.Callback.SuggestionClicked,
+      suggestion.get('id'));
 
     Denwen.Track.action("Suggestion Clicked"); 
   }
