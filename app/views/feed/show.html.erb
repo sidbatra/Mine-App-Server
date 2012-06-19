@@ -25,9 +25,7 @@
 
     <%else%>
       <p>
-      	<a href="<%=is_onboarding? ? 
-                      'javascript:void(0)' :
-                      user_path(self.current_user.handle,:src => "bar")%>">
+      	<a href="<%=user_path(self.current_user.handle,:src => "sharing-with")%>">
             <%=image_tag self.current_user.square_image_url,
             		:style => "width: 18px; height: 18px; vertical-align: -3px;"%>
             <%=h self.current_user.first_name%>
