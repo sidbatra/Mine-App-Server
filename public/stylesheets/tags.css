@@ -49,10 +49,6 @@ a:hover {
 	margin-top: 4px;
 	float: left;
 	height: 78px; }
-	
-.header .btn-group .icon-chevron-down {
-	opacity: 0.75;
-  filter: alpha(opacity=75); }
 
 .container, .header .navigation, footer .inner {
 	width: 820px;
@@ -1224,6 +1220,12 @@ footer, footer a, footer a:hover { color: #ccc; }
 .btn.btn-white.btn-large { height: 40px; }
 .btn.btn-white.btn-mini { height: 16px; }
 
+	
+.btn.btn-white [class^="icon-"],
+.btn.btn-white [class*=" icon-"] {
+	opacity: 0.75;
+  filter: alpha(opacity=75); }
+
 .btn.btn-facebook { background: #3B5998; }
 .btn.btn-facebook:hover { background: #1F4696; }
 
@@ -1313,7 +1315,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 
 .btn-group.open .btn-mine.dropdown-toggle { 
 	background: #177DBE; }
-          
 
 .dropdown-menu {
   position: absolute;
