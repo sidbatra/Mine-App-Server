@@ -50,19 +50,6 @@ a:hover {
 	float: left;
 	height: 78px; }
 	
-.header .btn-user { 
-	padding-left: 50px !important;
-	overflow-y: hidden; }
-
-.header .btn-user .self-photo {
-	width: 40px;
-	height: 40px;
-	top: 0;
-	left: 0;
-	-webkit-border-radius: 5px 0 0 5px;
-	-moz-border-radius: 5px 0 0 5px;
-	border-radius: 5px 0 0 5px; }
-	
 .header .btn-group .icon-chevron-down {
 	opacity: 0.75;
   filter: alpha(opacity=75); }
@@ -113,7 +100,7 @@ a:hover {
 	border-bottom: 4px solid #0AB0ED;
 	margin-bottom: 0px; }
 
-.thumbnail-box .btn { 
+.thumbnail-box .btn.go-to-invite { 
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 18px; }
@@ -1139,6 +1126,42 @@ footer, footer a, footer a:hover { color: #ccc; }
   height: 18px;
   font-size: 11px;
   line-height: 18px; }
+  
+.btn-user {
+	overflow-y: hidden;
+	padding-left: 38px !important; }
+
+.btn-user.btn-mini { 
+	padding-left: 22px !important; }
+  
+.btn-user.btn-large { 
+	padding-left: 50px !important; }
+	
+.btn-user .self-photo {
+	width: 32px;
+	height: 32px;
+	top: 0;
+	left: 0;
+	-webkit-border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px; }
+
+.btn-user.btn-mini .self-photo {
+	width: 18px;
+	height: 18px; }
+
+.btn-user.btn-large .self-photo {
+	width: 42px;
+	height: 42px; }
+
+.btn-user.btn-large.btn-white .self-photo {
+	width: 40px;
+	height: 40px;
+	top: 0;
+	left: 0;
+	-webkit-border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px; }
 	
 .btn.btn-red { background: #EE472A; }
 .btn.btn-red:hover { background: #E4156D; }
