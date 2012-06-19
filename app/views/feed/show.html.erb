@@ -28,8 +28,8 @@
         You're sharing purchases with:
       </p>
 
-      <%cache ["v1",self.current_user,"ifollowers","feed"] do%>
-        <%self.current_user.ifollowers.limit(35).each do |user|%>
+      <%cache ["v2",self.current_user,"ifollowers","feed"] do%>
+        <%self.current_user.ifollowers.each do |user|%>
           <%cache ["v5",user,"ifollower","feed"] do%>
             <%=link_to "",
                 user_path(user.handle,:src => "feed"),
