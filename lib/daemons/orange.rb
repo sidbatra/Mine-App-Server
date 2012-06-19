@@ -77,7 +77,7 @@ end
   begin
     if @count < 100
       @count += 1
-      Twitter.update tweet
+      Twitter.update(tweet,:in_reply_to_status_id => status.id)
     else
       @count = 0
       @reset_at = Time.now + 3600
