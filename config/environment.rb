@@ -46,8 +46,6 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('fb_graph',
               :version => '2.4.17')
-  config.gem('twitter_oauth',
-              :version => '0.4.3')
   config.gem('oauth',
               :version => '0.4.6')
   config.gem('tumblife',
@@ -81,6 +79,8 @@ Rails::Initializer.run do |config|
               :version => '1.3.1')
   config.gem('typhoeus',
               :version => '0.3.3')
+  config.gem('twitter_oauth',
+              :version => '0.4.3')
   config.gem('xmpp4r',
               :version => '0.5',
               :lib => false)
