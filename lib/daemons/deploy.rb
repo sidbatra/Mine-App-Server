@@ -34,6 +34,10 @@ config = YAML.load_file(File.join(
                           'config',
                           'config.yml'))[ENV['RAILS_ENV']]
 
+AWS::S3::Base.establish_connection!(
+  :access_key_id     => config[:aws_access_id],
+  :secret_access_key => config[:aws_secret_key])
+
 DW::AWSManagement::AWSConnection.establish(
                                   config[:aws_access_id],
                                   config[:aws_secret_key])
@@ -61,12 +65,12 @@ while($running) do
         rake deploy:release env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
 
       AWS::S3::S3Object.store(
-        revision_sha,
+        revision_sha + ".txt",
         open(log_file),
         config[:dump_bucket])
 
       log_url = AWS::S3::S3Object.url_for(
-                  revision_sha,
+                  revision_sha + ".txt",
                   config[:dump_bucket],
                   :expires_in => 86400)
 
@@ -109,12 +113,12 @@ while($running) do
         rake deploy:install env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
 
       AWS::S3::S3Object.store(
-        revision_sha,
+        revision_sha + ".txt",
         open(log_file),
         config[:dump_bucket])
 
       log_url = AWS::S3::S3Object.url_for(
-                  revision_sha,
+                  revision_sha + ".txt",
                   config[:dump_bucket],
                   :expires_in => 86400)
 
