@@ -203,7 +203,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 .onboarding .create-box .first-box .search-box input { 
 	width: 340px;
 	line-height: auto; }
-
 	
 .onboarding .create-box .example {
 	width: 446px;
@@ -245,8 +244,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 100%;
 	font-size: 15px;
 	padding: 8px 6px;
-	margin-bottom: 16px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+	margin-bottom: 16px; }
 	
 .create-box .panel .store-name { 
 	width: 170px;
@@ -381,7 +379,7 @@ footer, footer a, footer a:hover { color: #ccc; }
   
 .create-box .panel a.toggle-switch div.on { 
 	display: block;
-	background: #177DBE;
+	background: #0AB0ED;
 	color: white;
 	border: 1px solid transparent;
 	margin: -1px -1px 0 -1px;
@@ -494,14 +492,13 @@ footer, footer a, footer a:hover { color: #ccc; }
 	top:0;
 	left:0;
 	right:0;
-	background:white;
+	background: white;
 	padding:8px 0;
 	text-align: left;
 	z-index:9999;
-	border-bottom: 2px solid #eee; }
+	border-bottom: 1px solid #eee; }
 
 .chooser .search-bar input.search-field {
-	font-family: 'RooneyLightItalic', Georgia;
 	height: 22px;
 	font-size: 15px;
 	line-height: 22px; }
@@ -757,7 +754,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 	margin-bottom: 3px; }
 	
 .feed .item .panel .add-comment-box input {
-	font-family: 'RooneyLightItalic', Georgia;
 	padding-left: 36px;
 	font-size: 15px;
 	width: 100%;
@@ -1030,7 +1026,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 	margin: 18px auto 24px; }
 	
 .invite .search-box input {
-	font-family: 'RooneyLightItalic', Georgia;
 	width: 518px;
 	padding: 0 8px;
 	height: 42px;
@@ -1457,16 +1452,17 @@ footer, footer a, footer a:hover { color: #ccc; }
 .absolute { position: absolute; }
 
 .error { color: #d5432b !important; }
-input.error, textarea.error { 
+input.error, 
+textarea.error { 
 	border-color: #d5432b !important;
-	background: #fce1dd; }
+	background: #fdece9 !important; }
 
 input.error:focus, textarea.error:focus {
 	border-color: #b94a48 !important;
   -webkit-box-shadow: 0 0 6px #d5432b;
      -moz-box-shadow: 0 0 6px #d5432b;
           box-shadow: 0 0 6px #d5432b; }
-
+          
 .three-to-two { margin-right: 38px; }
 /* see media queries for 2-span variant */
 
@@ -1527,6 +1523,39 @@ input.error:focus, textarea.error:focus {
   -khtml-user-select: none; 
   -webkit-user-select: none; 
   -o-user-select: none; } 
+  
+
+/* Text Field Bootstrap Overrides
+==================================================================== */
+
+input, textarea { font-family: 'RooneyLightItalic'; }
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+	background: #e6f7fd;
+	color: #177DBE;
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0); }
 	
 
 /* Media Queries
