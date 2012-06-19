@@ -54,7 +54,8 @@ end
   "sharing cool stuff you buy - you can try it out here: "\
   "http://getmine.com/try"]
 
-
+@count = 0
+@reset_at = Time.now - 10
 @client = TweetStream::Daemon.new
 
 @client.track("just bought") do |status|
@@ -65,15 +66,24 @@ end
   name = ""
   name = status.user.name.split(" ").first if status.user.name
 
-  next if name.nil? || name.length.zero?
+  next if name.nil? || name.length.zero? || Time.now < @reset_at
 
 
   tweet = "@#{status.user.screen_name} #{@templates.choice.gsub("@name",name)}"
 
   puts "#{tweet.length} #{tweet}"
 
+  
   begin
-    #Twitter.update tweet
+    if @count < 100
+      @count += 1
+      Twitter.update tweet
+    else
+      @count = 0
+      @reset_at = Time.now + 3600
+      puts "\n\nResetting\n\n"
+    end
+
   rescue => ex
     puts "Exception - #{ex.message}"
   end
