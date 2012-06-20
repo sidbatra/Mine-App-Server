@@ -26,7 +26,7 @@ Denwen.Partials.Common.MessageDrawer = Backbone.View.extend({
     var self = this;
 
     if(timeout == undefined)
-      timeout = 5000;
+      timeout = 3500;
 
     if(!timeout)
       text = "<div>" + "<a class='close' data-dismiss='alert'>×</a>" + 

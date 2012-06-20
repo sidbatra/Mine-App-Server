@@ -1,4 +1,12 @@
 	<div id="chooser" class="chooser" style="display:none;">
+				
+		<!--
+		<div class="loader">
+			<#=image_tag "loading_tags_32_bw.gif",
+   			:style => ""%>
+   			Did you add a color and a brand?
+ 		</div>
+		-->
 	
 		<form class="form-horizontal search-bar">
 			
@@ -6,7 +14,7 @@
 				&times;
 			</a>
 		
-			<div id="spinner_box" class="control-group">
+			<div id="spinner_box" class="control-group" style="border: 0;">
 			
 				<label id="purchase_image_broken_msg" class="control-label">
 					<span class="default">
@@ -20,7 +28,7 @@
 				<div class="controls" style="margin-left: 150px;">
 				
 					<input  id="purchase_repeat_query" 
-		              class="search-field" 
+		              class="search-field highlight-on-focus" 
 		              name="products[query]" 
 		              type="text" 
 		              value="">
@@ -37,6 +45,7 @@
 		</form> <!-- /search-bar -->
 
 		<div class="results" id="results">
+
     </div>
 
 	

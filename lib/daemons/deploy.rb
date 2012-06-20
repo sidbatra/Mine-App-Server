@@ -15,6 +15,7 @@ ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
 require 'rubygems'
 require 'xmpp4r-simple'
 require 'grit'
+require 'aws/s3'
 require ENV['RAILS_PATH'] + '/lib/aws_management'
 
 bot_email = "deusexmachinaneo@gmail.com"
@@ -32,6 +33,10 @@ config = YAML.load_file(File.join(
                           ENV['RAILS_PATH'],
                           'config',
                           'config.yml'))[ENV['RAILS_ENV']]
+
+AWS::S3::Base.establish_connection!(
+  :access_key_id     => config[:aws_access_id],
+  :secret_access_key => config[:aws_secret_key])
 
 DW::AWSManagement::AWSConnection.establish(
                                   config[:aws_access_id],
@@ -59,6 +64,16 @@ while($running) do
       `cd #{ENV['RAILS_PATH']} && \
         rake deploy:release env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
 
+      AWS::S3::S3Object.store(
+        revision_sha + ".txt",
+        open(log_file),
+        config[:dump_bucket])
+
+      log_url = AWS::S3::S3Object.url_for(
+                  revision_sha + ".txt",
+                  config[:dump_bucket],
+                  :expires_in => 86400)
+
       if `cat #{log_file}`.scan(/exception|error|fail|timeout/i).present?
         raise IOError, "Failed release"
       end
@@ -67,7 +82,7 @@ while($running) do
 
       jabber.deliver(
         admin_email,
-        "#{ENV['RAILS_ENV']} #{revision_sha[0..9]}")
+        "#{ENV['RAILS_ENV']} #{revision_sha[0..9]} - #{log_url}")
     end
 
   rescue => ex
@@ -75,7 +90,7 @@ while($running) do
 
     jabber.deliver(
       admin_email,
-      "#{ENV['RAILS_ENV']} release FAILED")
+      "#{ENV['RAILS_ENV']} release FAILED - #{log_url}")
   end
 
 
@@ -97,6 +112,16 @@ while($running) do
       `cd #{ENV['RAILS_PATH']} && \
         rake deploy:install env=#{ENV['RAILS_ENV']} 1>&2 2>> #{log_file}`
 
+      AWS::S3::S3Object.store(
+        revision_sha + ".txt",
+        open(log_file),
+        config[:dump_bucket])
+
+      log_url = AWS::S3::S3Object.url_for(
+                  revision_sha + ".txt",
+                  config[:dump_bucket],
+                  :expires_in => 86400)
+
       if `cat #{log_file}`.scan(/exception|error|fail|timeout/i).present?
         raise IOError, "Failed installation"
       end
@@ -105,7 +130,7 @@ while($running) do
 
       jabber.deliver(
         admin_email,
-        "#{ENV['RAILS_ENV']} installed #{revision_sha[0..9]}")
+        "#{ENV['RAILS_ENV']} installed #{revision_sha[0..9]} - #{log_url}")
     end
 
   rescue => ex
@@ -113,7 +138,7 @@ while($running) do
 
     jabber.deliver(
       admin_email,
-      "#{ENV['RAILS_ENV']} installation FAILED")
+      "#{ENV['RAILS_ENV']} installation FAILED - #{log_url}")
   end
 
 

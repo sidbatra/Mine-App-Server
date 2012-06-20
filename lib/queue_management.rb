@@ -10,7 +10,7 @@ module DW
     #
     class QueueManager
 
-      @@sqs = Aws::Sqs.new(
+      @sqs = Aws::Sqs.new(
                 CONFIG[:aws_access_id],
                 CONFIG[:aws_secret_key],
                 {:connection_mode => :single})
@@ -25,7 +25,7 @@ module DW
         puts name
         puts visibility
 
-        Aws::Sqs::Queue.create(@@sqs,name,true,visibility)
+        Aws::Sqs::Queue.create(@sqs,name,true,visibility)
       end
 
       # Returns a global queue object based on the given suffix. Global
@@ -38,7 +38,7 @@ module DW
         puts name
         puts visibility
 
-        Aws::Sqs::Queue.create(@@sqs,name,true,visibility)
+        Aws::Sqs::Queue.create(@sqs,name,true,visibility)
       end
 
     end
@@ -100,17 +100,17 @@ module DW
 
 
     # Base Queue object overriden to create specific queue. 
-    # The @@queue class variable is overriden in each child class
+    # The @queue class variable is overriden in each child class
     # to specify a queue object provided by QueueManager
     #
     class Queue
 
-      @@queue = nil
+      @queue = nil
 
       # Return a new payload object if any exists in the queue
       #
       def self.pop
-        message = @@queue.pop
+        message = @queue.pop
         payload = YAML.load(message.body) if message
         payload
       end
@@ -130,13 +130,13 @@ module DW
           payload = Payload.new(*args)
         end
 
-        @@queue.push(payload.to_yaml)
+        @queue.push(payload.to_yaml)
       end
 
       # Clear the queue
       #
       def self.clear
-        @@queue.clear
+        @queue.clear
       end
 
     end
@@ -149,12 +149,22 @@ module DW
     class ProcessingQueue < Queue
 
       if Rails.env != 'development'
-        @@queue = QueueManager.fetch_global_queue(Q[:proc],90)
+        @queue = QueueManager.fetch_global_queue(Q[:proc],90)
       else
-        @@queue = QueueManager.fetch_local_queue(Q[:proc],90)
+        @queue = QueueManager.fetch_local_queue(Q[:proc],90)
       end
     end
 
+    # Similar to the ProcessingQueue class but with a lower priority.
+    #
+    class SecondaryProcessingQueue < Queue
+
+      if Rails.env != 'development'
+        @queue = QueueManager.fetch_global_queue(Q[:secondary_proc],90)
+      else
+        @queue = QueueManager.fetch_local_queue(Q[:secondary_proc],90)
+      end
+    end
 
   end #queue management
 

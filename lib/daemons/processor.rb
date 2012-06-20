@@ -18,6 +18,7 @@ logger = Logger.new(File.join(RAILS_ROOT,"log/processor.rb.log"))
 
 while($running) do
   payload = ProcessingQueue.pop
+  payload = SecondaryProcessingQueue.pop unless payload
 
   if payload
 

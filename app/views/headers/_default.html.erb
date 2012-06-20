@@ -18,6 +18,10 @@
                 :class => "self-photo absolute"%>
             <%=h self.current_user.full_name%>
         </a>
+        
+        <%=link_to "<i class='icon-home'></i>", 
+        		root_path(:src => "bar-icon"),
+        		:class => "btn btn-large btn-white"%>
 
         <%if !is_onboarding?%>
           <a class="btn btn-large btn-white dropdown-toggle" 
