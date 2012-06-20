@@ -39,7 +39,7 @@ namespace :products do
       products = Product.find_all_by_is_processed(false)
 
       products.each do |product|
-        ProcessingQueue.push(
+        SecondaryProcessingQueue.push(
           ProductDelayedObserver,
           :after_create,
           product.id)
