@@ -76,56 +76,6 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Prompt given users to create another product 
-      #
-      def self.prompt_users_to_create_another_product(users)
-        users.each do |user|
-          begin
-            if user.setting.email_update
-              UserMailer.deliver_create_another_product(user)
-              sleep 0.09
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
-      # Revive dead users.
-      #
-      def self.revive(offset=0)
-        users = User.offset(offset).
-                  limit(500).
-                  all(
-                    :conditions => [
-                      "(birthday > ? or birthday < ?) and created_at < ? "\
-                      "and gender = 'female'",
-                      26.years.ago,35.years.ago,2.months.ago])
-
-        puts users.count
-
-        User.update_all({
-            :access_token => nil,
-            :remember_token_expires_at => nil,
-            :remember_token => nil}, {:id => users.map(&:id)})
-
-        users.each do |user|
-          begin
-            puts user.full_name
-            UserMailer.deliver_revive_user(user)
-            sleep 0.09
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Public. Email users whose friends have added purchases.
       #
       # users - The Array of User objects whose friends have added purchases.
@@ -147,36 +97,6 @@ module DW
                           active_friends,
                           friends_purchases)
 
-              sleep 0.09
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
-      # Email users with no items to try and win them back
-      #
-      def self.pester_users_with_no_items(users)
-        pester_users(users,:deliver_add_an_item)
-      end
-
-
-      protected
-
-      # Generic methods that iterates over the given users
-      # and calls the given mailer method with only the user
-      # as an argument. Primary usage are the multiple pester
-      # methods that fire on different triggers
-      #
-      def self.pester_users(users,mailer_method)
-        users.each do |user|
-          begin
-            if user.setting.email_update
-              UserMailer.send(mailer_method,user)
               sleep 0.09
             end
           rescue => ex

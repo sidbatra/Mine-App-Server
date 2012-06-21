@@ -17,19 +17,6 @@ class Admin::EmailsController < ApplicationController
     when :new_user
       render :text => UserMailer.preview_new_user(User.last)
 
-    when :create_another_purchase
-      render :text => UserMailer.preview_create_another_purchase(
-                        User.last)
-
-    when :add_an_item
-      render :text => UserMailer.preview_add_an_item(User.last)
-
-    when :add_a_friend
-      render :text => UserMailer.preview_add_a_friend(User.last)
-
-    when :add_a_store
-      render :text => UserMailer.preview_add_a_store(User.last)
-
     when :new_comment
       render :text => UserMailer.preview_new_comment(Comment.last,User.last)
 
@@ -41,9 +28,6 @@ class Admin::EmailsController < ApplicationController
                                   User.find(3),
                                   User.find_all_by_id([1,2,13,12]),
                                   [Purchase.all[-5..-1],[Purchase.last]])
-
-    when :revive_user
-      render :text => UserMailer.preview_revive_user(User.last)
 
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)

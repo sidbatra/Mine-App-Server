@@ -47,8 +47,6 @@
     Suggestion: 2
     Invite: 3
   HealthReportService:
-    AnotherItemPrompt: 2
-    AddItemsPrompt: 3
     FriendsDigest: 7
     MaintainSearchIndex: 8
   HomeShowSource:

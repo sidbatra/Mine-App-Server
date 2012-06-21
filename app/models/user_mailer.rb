@@ -83,34 +83,6 @@ class UserMailer < ActionMailer::Base
     subject       @comment.user.first_name + " " + @action 
   end
 
-  # Alert the user to add new purchases 
-  #
-  def create_another_purchase(user)
-    @user         = user
-    @action       = "Bought something new this week?"
-    @source       = "email_another_purchase"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AnotherPurchase)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-  
-  # Alert the user to start adding items 
-  #
-  def add_an_item(user)
-    @user         = user
-    @action       = "Are you wearing your favorite shoes?"
-    @source       = "email_add_item"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AddItem)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
   # Friend activity digest for the user 
   #
   def friend_activity_digest(user,friends,purchases)
@@ -134,19 +106,6 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
-  end
-
-  # Revive an old user.
-  #
-  def revive_user(user)
-    @user = user
-    @source = "email_revive"
-
-    generate_attributes(@user,0,@user,EmailPurpose::Revive)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       "Your OnCloset is now called 'Mine'. Invite friends to win an iPhone"
   end
 
   # Safety check email whenever a user is deleted
