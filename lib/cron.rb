@@ -39,6 +39,17 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Email users after a certain time period of joining.
+      #
+      def self.email_users_after_joining
+        Mailman.after_join_suggestions
+
+        HealthReport.add(HealthReportService::AfterJoinEmails)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Maintain the search index 
       #
       def self.maintain_search_index

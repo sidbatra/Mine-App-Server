@@ -16,7 +16,7 @@ every 1.day, :at => '4:00pm' do
 end
 
 every 1.day, :at => '9:00am' do
-  runner "ProcessingQueue.push(Mailman,:after_join_suggestions)"
+  runner "ProcessingQueue.push(CronWorker,:email_users_after_joining)"
 end
 
 #every [:monday,:friday], :at => '6:00pm' do

@@ -48,6 +48,7 @@
   HealthReportService:
     FriendsDigest: 7
     MaintainSearchIndex: 8
+    AfterJoinEmails: 9
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
