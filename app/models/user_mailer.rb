@@ -23,8 +23,15 @@ class UserMailer < ActionMailer::Base
   #
   def after_join_suggestions(user,suggestions,suggestions_done_ids)
     @user = user
-    @suggestions = suggestions
-    @suggestions_done_ids = suggestions_done_ids
+    @suggestion = nil
+
+
+    suggestions.each do |suggestion|
+      unless suggestions_done_ids.include? suggestion.id
+        @suggestion = suggestion
+        break
+      end
+    end
 
     @source = "email_suggestions"
 
@@ -32,7 +39,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Subject goes here"
+    subject       "Hello"
   end
 
   # Alert the owner whenever someone likes his/her purchase
