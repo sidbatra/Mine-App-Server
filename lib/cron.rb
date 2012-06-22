@@ -30,7 +30,7 @@ module DW
 
         users = User.with_ifollowers.with_setting.find_all_by_id(user_ids)
 
-        Mailman.email_users_friend_activity_digest(users,purchases)
+        Mailman.email_users_friend_activity_digest(users,purchases,from)
 
 
         HealthReport.add(HealthReportService::FriendsDigest)

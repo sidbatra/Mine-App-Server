@@ -99,19 +99,22 @@ module DW
       # purchases - The Hash with keys as user ids who have added 
       #                     purchases and values as Arrays of their purchases.
       #
-      def self.email_users_friend_activity_digest(users,purchases)
+      def self.email_users_friend_activity_digest(users,purchases,from)
                 
         users.each do |user|
           begin
             if user.setting.email_influencer
               friends = user.ifollowers
-              active_friends = friends.select{|f| purchases.key? f.id} 
+              active_friends = friends.select{|f| purchases.key?(f.id)}
+              new_friends = friends.select{|f| f.created_at > from}
+
               #friends_purchases = active_friends.map{|f| purchases[f.id]}
               friends_purchases = []
               
               UserMailer.deliver_friend_activity_digest(
                           user,
                           active_friends,
+                          new_friends,
                           friends_purchases)
 
               sleep 0.09

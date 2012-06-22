@@ -85,9 +85,10 @@ class UserMailer < ActionMailer::Base
 
   # Friend activity digest for the user 
   #
-  def friend_activity_digest(user,friends,purchases)
+  def friend_activity_digest(user,friends,new_friends,purchases)
     @user      = user
     @friends   = friends
+    @new_friends = new_friends
     @purchases = purchases
     @action    = "View what " 
 
