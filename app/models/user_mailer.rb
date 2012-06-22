@@ -65,21 +65,20 @@ class UserMailer < ActionMailer::Base
     @source       = "email_comment"
 
     if @owner.id == @user.id
-      @action    += " just commented on your "
+      @action    << " just commented on your "
     elsif @owner.id == @comment.user.id 
-      @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
+      @action    << " also commented on #{@owner.is_male? ? 'his' : 'her'} "
     else
-      @action    += " also commented on #{@owner.first_name} "\
-                    "#{@owner.last_name}'s "
+      @action    << " also commented on #{@owner.first_name}'s "
     end
 
-    @action     += comment.purchase.title 
+    @action     << comment.purchase.title 
 
     generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @comment.user.first_name + " " + @action 
+    subject       "#{@comment.user.first_name} #{@action}"
   end
 
   # Friend activity digest for the user 
