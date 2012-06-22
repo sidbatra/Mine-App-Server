@@ -233,7 +233,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the tw photo switch is toggled
   //
   twSwitchToggled: function() {
-    if(!Denwen.H.currentUser.get('setting').get('tw_permissions')) { 
+    if(!Denwen.H.currentUser.get('setting').get('tw_auth')) { 
       $(this.twSwitchEl).addClass(this.switchLoadingClass);
       this.twAuth.showAuthDialog();
     }
@@ -249,7 +249,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the tumblr photo switch is toggled
   //
   tumblrSwitchToggled: function() {
-    if(!Denwen.H.currentUser.get('setting').get('tumblr_permissions')) { 
+    if(!Denwen.H.currentUser.get('setting').get('tumblr_auth')) { 
       $(this.tumblrSwitchEl).addClass(this.switchLoadingClass);
       this.tumblrAuth.showAuthDialog();
     }
