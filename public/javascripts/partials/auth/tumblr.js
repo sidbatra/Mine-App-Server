@@ -1,12 +1,12 @@
-// Partial for displaying and fetching tumblr permissions 
+// Partial for tumblr authorization 
 //
-Denwen.Partials.Settings.Tumblr = Backbone.View.extend({
+Denwen.Partials.Auth.Tumblr = Backbone.View.extend({
 
   // Constructor logic
   //
   initialize: function() {
-    this.permissions = 'tumblr_permissions';
-    this.setting = new Denwen.Models.Setting({id:this.permissions});
+    this.auth = 'tumblr_auth';
+    this.setting = new Denwen.Models.Setting({id:this.auth});
   },
 
   // Show the tumblr auth popup 
@@ -42,16 +42,16 @@ Denwen.Partials.Settings.Tumblr = Backbone.View.extend({
   fetched: function() {
     if(this.setting.get('status')) {
       var keys = {};
-      keys[this.permissions] = true;
+      keys[this.auth] = true;
 
       Denwen.H.currentUser.get('setting').set(keys);
 
       Denwen.Track.action("Tumblr Authorization Accepted");
-      this.trigger(Denwen.Partials.Settings.Tumblr.Callback.AuthAccepted);
+      this.trigger(Denwen.Partials.Auth.Tumblr.Callback.AuthAccepted);
     }
     else {
       Denwen.Track.action("Tumblr Authorization Rejected");
-      this.trigger(Denwen.Partials.Settings.Tumblr.Callback.AuthRejected);
+      this.trigger(Denwen.Partials.Auth.Tumblr.Callback.AuthRejected);
     }
   }
 
@@ -59,7 +59,7 @@ Denwen.Partials.Settings.Tumblr = Backbone.View.extend({
 
 // Define callbacks.
 //
-Denwen.Partials.Settings.Tumblr.Callback = {
+Denwen.Partials.Auth.Tumblr.Callback = {
   AuthAccepted: 'tumblrAuthAccepted',
   AuthRejected: 'tumblrAuthRejected'
 }

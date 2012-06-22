@@ -98,28 +98,28 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
-    this.twSettings = new Denwen.Partials.Settings.Twitter();
+    this.twAuth = new Denwen.Partials.Auth.Twitter();
 
-    this.twSettings.bind(
-      Denwen.Partials.Settings.Twitter.Callback.AuthAccepted,
+    this.twAuth.bind(
+      Denwen.Partials.Auth.Twitter.Callback.AuthAccepted,
       this.twAuthAccepted,
       this);
 
-    this.twSettings.bind(
-      Denwen.Partials.Settings.Twitter.Callback.AuthRejected,
+    this.twAuth.bind(
+      Denwen.Partials.Auth.Twitter.Callback.AuthRejected,
       this.twAuthRejected,
       this);
 
 
-    this.tumblrSettings = new Denwen.Partials.Settings.Tumblr();
+    this.tumblrAuth = new Denwen.Partials.Auth.Tumblr();
 
-    this.tumblrSettings.bind(
-      Denwen.Partials.Settings.Tumblr.Callback.AuthAccepted,
+    this.tumblrAuth.bind(
+      Denwen.Partials.Auth.Tumblr.Callback.AuthAccepted,
       this.tumblrAuthAccepted,
       this);
 
-    this.tumblrSettings.bind(
-      Denwen.Partials.Settings.Tumblr.Callback.AuthRejected,
+    this.tumblrAuth.bind(
+      Denwen.Partials.Auth.Tumblr.Callback.AuthRejected,
       this.tumblrAuthRejected,
       this);
 
@@ -245,7 +245,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   twSwitchToggled: function() {
     if(!Denwen.H.currentUser.get('setting').get('tw_permissions')) { 
       $(this.twSwitchEl).addClass(this.switchLoadingClass);
-      this.twSettings.showAuthDialog();
+      this.twAuth.showAuthDialog();
     }
 
     $(this.twSwitchEl).toggleClass(this.switchOffClass);
@@ -261,7 +261,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   tumblrSwitchToggled: function() {
     if(!Denwen.H.currentUser.get('setting').get('tumblr_permissions')) { 
       $(this.tumblrSwitchEl).addClass(this.switchLoadingClass);
-      this.tumblrSettings.showAuthDialog();
+      this.tumblrAuth.showAuthDialog();
     }
 
     $(this.tumblrSwitchEl).toggleClass(this.switchOffClass);

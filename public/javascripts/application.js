@@ -6,7 +6,7 @@ var Denwen = {
                   Invites : {}, Admin : {Suggestions : {},Stores : {}}, 
                   Settings : {}, Feed : {}, Welcome : {}},
   Partials    : { Users : {}, Products : {}, Purchases : {}, 
-                  Facebook : {}, Stores : {}, Invites : {}, 
+                  Facebook : {}, Stores : {}, Invites : {}, Auth : {}, 
                   Common : {}, Followings : {}, Settings : {}, 
                   Comments : {}, Likes :{}, Feed:{}, Suggestions : {},
                   Admin : {Suggestions : {},Stores : {}}},

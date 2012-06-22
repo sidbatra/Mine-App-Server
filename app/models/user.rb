@@ -243,14 +243,14 @@ class User < ActiveRecord::Base
   # Whether or not the user has authorized our twitter application
   # and in turn given us read/write permissions
   #
-  def tw_permissions?
+  def tw_authorized?
     self.tw_access_token.present? & self.tw_access_token_secret.present?
   end
 
   # Whether or not the user has authorized our tumblr application
   # and in turn given us read/write permissions
   #
-  def tumblr_permissions?
+  def tumblr_authorized?
     self.tumblr_access_token.present? & self.tumblr_access_token_secret.present?
   end
 

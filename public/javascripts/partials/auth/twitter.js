@@ -1,12 +1,12 @@
-// Partial for displaying and fetching twitter permissions 
+// Partial for twitter authorization 
 //
-Denwen.Partials.Settings.Twitter = Backbone.View.extend({
+Denwen.Partials.Auth.Twitter = Backbone.View.extend({
 
   // Constructor logic
   //
   initialize: function() {
-    this.permissions = 'tw_permissions';
-    this.setting = new Denwen.Models.Setting({id:this.permissions});
+    this.auth = 'tw_auth';
+    this.setting = new Denwen.Models.Setting({id:this.auth});
   },
 
   // Show the twitter auth popup 
@@ -42,16 +42,16 @@ Denwen.Partials.Settings.Twitter = Backbone.View.extend({
   fetched: function() {
     if(this.setting.get('status')) {
       var keys = {};
-      keys[this.permissions] = true;
+      keys[this.auth] = true;
 
       Denwen.H.currentUser.get('setting').set(keys);
 
       Denwen.Track.action("Twitter Authorization Accepted");
-      this.trigger(Denwen.Partials.Settings.Twitter.Callback.AuthAccepted);
+      this.trigger(Denwen.Partials.Auth.Twitter.Callback.AuthAccepted);
     }
     else {
       Denwen.Track.action("Twitter Authorization Rejected");
-      this.trigger(Denwen.Partials.Settings.Twitter.Callback.AuthRejected);
+      this.trigger(Denwen.Partials.Auth.Twitter.Callback.AuthRejected);
     }
   }
 
@@ -59,7 +59,7 @@ Denwen.Partials.Settings.Twitter = Backbone.View.extend({
 
 // Define callbacks.
 //
-Denwen.Partials.Settings.Twitter.Callback = {
+Denwen.Partials.Auth.Twitter.Callback = {
   AuthAccepted: 'twAuthAccepted',
   AuthRejected: 'twAuthRejected'
 }
