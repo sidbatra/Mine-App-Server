@@ -14,6 +14,7 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
 
     this.nextURL = this.options.nextURL;
     this.source = this.options.source;
+    this.currentSuggestionID = this.options.currentSuggestionID;
     this.suggestions = new Denwen.Collections.Suggestions(
                             this.options.suggestions);
 
@@ -53,6 +54,13 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
         self.suggestionClicked(suggestion);
       });
     });
+
+    if(this.currentSuggestionID) {
+      suggestion = this.suggestions.get(this.currentSuggestionID);
+
+      if(suggestion)
+        this.suggestionClicked(suggestion);
+    }
 
 
     this.setAnalytics();
