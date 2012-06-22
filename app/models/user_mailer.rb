@@ -33,13 +33,14 @@ class UserMailer < ActionMailer::Base
       end
     end
 
+    @action = "Add your first #{@suggestion.thing} on mine"
     @source = "email_suggestions"
 
     generate_attributes(@user,0,@user,EmailPurpose::Suggestions)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Hello"
+    subject       @action
   end
 
   # Alert the owner whenever someone likes his/her purchase

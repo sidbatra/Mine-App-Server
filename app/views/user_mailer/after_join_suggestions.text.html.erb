@@ -3,7 +3,7 @@
                           :locals => {
                             :url => welcome_url(WelcomeFilter::Create,:suggestion_id => @suggestion.id,:src => @source),
                             :image => "header-image-add-#{@suggestion.thing.gsub(' ','-')}.jpg",
-                            :alt => "Mine: "}%>
+                            :alt => @action}%>
                     <%end%>
 
                     <%=render :partial => "action_button",
