@@ -1263,6 +1263,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -144px 0; }
 
+.icon-top.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -192px 0; }
+
 
 /* ----- loading button states ----- */
 .btn.pushed, .btn-pushed:hover, 
