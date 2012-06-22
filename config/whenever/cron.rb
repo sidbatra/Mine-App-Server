@@ -19,6 +19,12 @@ every 1.day, :at => '9:00am' do
   runner "ProcessingQueue.push(CronWorker,:email_users_after_joining)"
 end
 
+
+every :sunday, :at => '5:00pm' do
+  runner "ProcessingQueue.push(CronWorker,:email_add_purchase_reminder)"
+end
+
+
 #every [:monday,:friday], :at => '6:00pm' do
 #end
 #every :sunday, :at => '8:15pm' do

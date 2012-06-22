@@ -50,6 +50,17 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Reminder email for adding purachases.
+      #
+      def self.email_add_purchase_reminder
+        Mailman.add_purchase_reminder
+
+        HealthReport.add(HealthReportService::AddPurchaseEmails)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Maintain the search index 
       #
       def self.maintain_search_index

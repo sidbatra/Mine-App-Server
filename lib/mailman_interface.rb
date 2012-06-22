@@ -128,6 +128,27 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Email users with a reminder to add new purchases.
+      #
+      def self.add_purchase_reminder
+
+        User.all.with_setting.each do |user|
+          begin
+
+            if user.setting.email_update 
+              UserMailer.deliver_add_purchase_reminder(user)
+            end
+
+            sleep 0.09
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #mailman
 
   end #mailman interface

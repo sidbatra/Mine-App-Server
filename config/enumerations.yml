@@ -38,6 +38,7 @@
     AddStore: 16
     FriendDigest: 18
     Suggestions: 20
+    AddPurchase: 21
   FeedShowSource:
     Login: 'login'
   FollowingSource:
@@ -49,6 +50,7 @@
     FriendsDigest: 7
     MaintainSearchIndex: 8
     AfterJoinEmails: 9
+    AddPurchaseEmails: 10
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'

@@ -109,6 +109,20 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Reminder to add a new purchase.
+  #
+  def add_purchase_reminder(user)
+    @user = user
+
+    @source = "email_purchase_reminder"
+
+    generate_attributes(@user,0,@user,EmailPurpose::AddPurchase)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       "Subject goes here"
+  end
+
   # Safety check email whenever a user is deleted
   #
   def user_deleted(admin,user)

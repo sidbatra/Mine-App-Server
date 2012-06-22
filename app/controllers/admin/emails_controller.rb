@@ -32,6 +32,9 @@ class Admin::EmailsController < ApplicationController
                                   User.find_all_by_id([1,2,13,12]),
                                   User.find_all_by_id([12,99]),
                                   [Purchase.all[-5..-1],[Purchase.last]])
+    
+    when :add_purchase_reminder
+      render :text => UserMailer.preview_add_purchase_reminder(User.first)
 
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)
