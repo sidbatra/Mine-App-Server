@@ -94,17 +94,18 @@ class UserMailer < ActionMailer::Base
     @user      = user
     @friends   = friends
     @new_friends = new_friends
+    @all_friends = (@friends + @new_friends).uniq
     @purchases = purchases
     @action    = "View what " 
 
     if @friends.length == 1
-      @action += @friends[0].first_name
+      @action << @friends[0].first_name
     else
-      @action += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
+      @action << "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
                  "#{@friends[-1].first_name}" 
     end
 
-    @action += " bought this week"
+    @action << " bought this week"
     @source = "email_friend_digest"
 
     generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)
