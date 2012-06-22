@@ -35,22 +35,6 @@ class UserMailer < ActionMailer::Base
     subject       "Subject goes here"
   end
 
-  # Alert user when someone starts following him/her
-  #
-  def new_follower(following) 
-    @follower     = following.follower 
-    @user         = following.user
-    @source       = "email_follower"
-
-    @action       = "View #{@follower.first_name}'s Mine"
-
-    generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end 
-
   # Alert the owner whenever someone likes his/her purchase
   #
   def new_like(like)

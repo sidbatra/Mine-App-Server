@@ -11,9 +11,6 @@ class Admin::EmailsController < ApplicationController
   def show
     case params[:id].to_sym
 
-    when :new_follower
-      render :text => UserMailer.preview_new_follower(Following.last)
-
     when :new_user
       render :text => UserMailer.preview_new_user(User.last)
     
