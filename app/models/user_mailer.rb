@@ -49,7 +49,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "#{@actor.full_name} #{@action}"
+    subject       "#{@actor.first_name} #{@action}"
   end 
 
   # Alert user when a new comment is added on a 
