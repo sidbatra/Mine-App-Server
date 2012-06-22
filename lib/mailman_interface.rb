@@ -43,10 +43,9 @@ module DW
 
         User.with_purchases.with_setting.made(start,finish).each do |user|
           begin
-
             suggestions_done_ids = user.purchases.map(&:suggestion_id).uniq.compact
 
-            if suggestions_done_ids.length < suggestions.length
+            if user.setting.email_update && suggestions_done_ids.length < suggestions.length
               UserMailer.deliver_after_join_suggestions(user,suggestions,suggestions_done_ids)
             end
 
