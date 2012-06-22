@@ -124,14 +124,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
-    this.tokens = new Denwen.Partials.Settings.Tokens();
-
-    this.tokens.bind(
-      Denwen.Partials.Settings.Tokens.Callback.FBDead,
-      this.fbTokenDead,
-      this);
-
-
     $(this.formEl).submit(function(){return self.post();});
 
     restrictFieldSize($(this.storeEl),254,'charsremain');
@@ -164,8 +156,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.querySubBoxEl).show();
 
     $(this.queryEl).phocus();
-
-    this.tokens.fetchStatus();
 
     Denwen.Track.action("Purchase Initiated");
 
@@ -468,13 +458,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     Denwen.Drawer.error("Please allow access for posting to Tumblr.");
   },
 
-
-  //
-  // Callbacks from tokens interface.
-  //
-  fbTokenDead: function() {
-    $(this.fbSwitchEl).addClass(this.switchOffClass);
-  },
 
   //
   // Callbacks from purchase creation.

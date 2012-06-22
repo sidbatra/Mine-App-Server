@@ -33,6 +33,7 @@ class Setting < ActiveRecord::Base
   #
   def revoke_fb_permissions
     self.fb_publish_actions = false
+    self.fb_publish_stream  = false
     save!
   end
 
@@ -41,6 +42,12 @@ class Setting < ActiveRecord::Base
   #
   def fb_publish_permissions
     self.fb_publish_actions
+  end
+
+  # Whether or not the user has accepted facebook authorization
+  #
+  def fb_auth
+    self.user.fb_authorized?
   end
 
   # Whether or not the user has accepted twitter authorization
@@ -59,7 +66,7 @@ class Setting < ActiveRecord::Base
   # to facebook timeline 
   #
   def post_to_timeline?  
-    self.fb_publish_actions & self.post_to_timeline
+    self.fb_publish_actions & self.post_to_timeline & self.fb_auth
   end
 
   # Whether or not the user's current settings enable posting 
