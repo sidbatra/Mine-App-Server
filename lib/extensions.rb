@@ -6,8 +6,8 @@ class ActiveRecord::Base
   named_scope :select, lambda {|*args| {:select => args.join(",")}}
   named_scope :limit, lambda {|limit| {:limit => limit}}
   named_scope :offset, lambda {|offset| {:offset => offset}}
-  named_scope :made, lambda{|time_ago| {:conditions => {
-                                          :created_at => time_ago..Time.now}}}
+  named_scope :made, lambda{|*args| {:conditions => {
+                                          :created_at => args.first..(args[1] ? args[1] : Time.now)}}}
   named_scope :after, lambda{|time| {:conditions => {
                                           :created_at_gt => time}} if time}
   named_scope :before, lambda{|time| {:conditions => {
