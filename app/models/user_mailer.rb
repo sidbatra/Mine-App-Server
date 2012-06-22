@@ -43,14 +43,13 @@ class UserMailer < ActionMailer::Base
     @user         = @purchase.user 
     @source       = "email_like"
 
-    @action       = "#{@actor.first_name} likes your " +
-                    @purchase.title 
+    @action       = "just liked your #{@purchase.title}"
 
     generate_attributes(@user,@actor.id,like,EmailPurpose::NewLike)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @action
+    subject       "#{@actor.full_name} #{@action}"
   end 
 
   # Alert user when a new comment is added on a 
