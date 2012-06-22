@@ -13,6 +13,7 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     var self = this;
 
     this.nextURL = this.options.nextURL;
+    this.source = this.options.source;
     this.suggestions = new Denwen.Collections.Suggestions(
                             this.options.suggestions);
 
@@ -60,7 +61,8 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Fire tracking events
   //
   setAnalytics: function() {
-    Denwen.Track.action("Welcome Create View");
+    Denwen.Track.action("Welcome Create View",{"Source" : this.source});
+    Denwen.Track.isEmailClicked(this.source);
   },
 
   // --
