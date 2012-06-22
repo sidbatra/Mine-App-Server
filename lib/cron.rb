@@ -9,19 +9,6 @@ module DW
     # accessible to the cron schduler
     #
     class CronWorker
-      
-      # Ping users who have made a product to create another
-      # product 
-      #
-      def self.email_to_create_another_product
-        users = User.with_setting.products_count_gt(0)
-        Mailman.prompt_users_to_create_another_product(users)
-
-        HealthReport.add(HealthReportService::AnotherItemPrompt)
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
 
       # Public. Dispatch digest emails to all users whose friends
       # have added new purchaes in a time period.
@@ -43,7 +30,7 @@ module DW
 
         users = User.with_ifollowers.with_setting.find_all_by_id(user_ids)
 
-        Mailman.email_users_friend_activity_digest(users,purchases)
+        Mailman.email_users_friend_activity_digest(users,purchases,from)
 
 
         HealthReport.add(HealthReportService::FriendsDigest)
@@ -52,13 +39,23 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email users who haven't added an item to win them back
+      # Public. Email users after a certain time period of joining.
       #
-      def self.scoop_users_with_no_items
-        users = User.with_setting.products_count(0)
-        Mailman.pester_users_with_no_items(users)
+      def self.email_users_after_joining
+        Mailman.after_join_suggestions
 
-        HealthReport.add(HealthReportService::AddItemsPrompt)
+        HealthReport.add(HealthReportService::AfterJoinEmails)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Public. Reminder email for adding purachases.
+      #
+      def self.email_add_purchase_reminder
+        Mailman.add_purchase_reminder
+
+        HealthReport.add(HealthReportService::AddPurchaseEmails)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

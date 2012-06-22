@@ -2,7 +2,7 @@
 # emails to users
 #
 class UserMailer < ActionMailer::Base
-  layout 'email', :except => :revive_user
+  layout 'email'
   helper :application
 
   # Welcome email for the user on sign up
@@ -19,21 +19,21 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Alert user when someone starts following him/her
+  # Suggestions for a new user to add more purchases.
   #
-  def new_follower(following) 
-    @follower     = following.follower 
-    @user         = following.user
-    @source       = "email_follower"
+  def after_join_suggestions(user,suggestions,suggestions_done_ids)
+    @user = user
+    @suggestions = suggestions
+    @suggestions_done_ids = suggestions_done_ids
 
-    @action       = "View #{@follower.first_name}'s Mine"
+    @source = "email_suggestions"
 
-    generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
+    generate_attributes(@user,0,@user,EmailPurpose::Suggestions)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @action
-  end 
+    subject       "Subject goes here"
+  end
 
   # Alert the owner whenever someone likes his/her purchase
   #
@@ -83,39 +83,12 @@ class UserMailer < ActionMailer::Base
     subject       @comment.user.first_name + " " + @action 
   end
 
-  # Alert the user to add new purchases 
-  #
-  def create_another_purchase(user)
-    @user         = user
-    @action       = "Bought something new this week?"
-    @source       = "email_another_purchase"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AnotherPurchase)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-  
-  # Alert the user to start adding items 
-  #
-  def add_an_item(user)
-    @user         = user
-    @action       = "Are you wearing your favorite shoes?"
-    @source       = "email_add_item"
-
-    generate_attributes(@user,0,@user,EmailPurpose::AddItem)
-
-    recipients    @user.email
-    from          EMAILS[:contact]
-    subject       @action
-  end
-
   # Friend activity digest for the user 
   #
-  def friend_activity_digest(user,friends,purchases)
+  def friend_activity_digest(user,friends,new_friends,purchases)
     @user      = user
     @friends   = friends
+    @new_friends = new_friends
     @purchases = purchases
     @action    = "View what " 
 
@@ -136,17 +109,18 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  # Revive an old user.
+  # Reminder to add a new purchase.
   #
-  def revive_user(user)
+  def add_purchase_reminder(user)
     @user = user
-    @source = "email_revive"
 
-    generate_attributes(@user,0,@user,EmailPurpose::Revive)
+    @source = "email_purchase_reminder"
+
+    generate_attributes(@user,0,@user,EmailPurpose::AddPurchase)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Your OnCloset is now called 'Mine'. Invite friends to win an iPhone"
+    subject       "Subject goes here"
   end
 
   # Safety check email whenever a user is deleted

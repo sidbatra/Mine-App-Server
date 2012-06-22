@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
 
   named_scope :with_stores, :include => {:shoppings => :store}
   named_scope :with_setting, :include => :setting
+  named_scope :with_purchases, :include => :purchases
   named_scope :with_ifollowers, :include => :ifollowers
 
   #----------------------------------------------------------------------

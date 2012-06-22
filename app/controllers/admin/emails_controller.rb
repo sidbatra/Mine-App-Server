@@ -11,24 +11,14 @@ class Admin::EmailsController < ApplicationController
   def show
     case params[:id].to_sym
 
-    when :new_follower
-      render :text => UserMailer.preview_new_follower(Following.last)
-
     when :new_user
       render :text => UserMailer.preview_new_user(User.last)
+    
+    when :after_join_suggestions
+      suggestions = Suggestion.by_weight.limit(3)
+      suggestions_done_ids = suggestions[0..1].map(&:id)
 
-    when :create_another_purchase
-      render :text => UserMailer.preview_create_another_purchase(
-                        User.last)
-
-    when :add_an_item
-      render :text => UserMailer.preview_add_an_item(User.last)
-
-    when :add_a_friend
-      render :text => UserMailer.preview_add_a_friend(User.last)
-
-    when :add_a_store
-      render :text => UserMailer.preview_add_a_store(User.last)
+      render :text => UserMailer.preview_after_join_suggestions(User.last,suggestions,suggestions_done_ids)
 
     when :new_comment
       render :text => UserMailer.preview_new_comment(Comment.last,User.last)
@@ -40,10 +30,11 @@ class Admin::EmailsController < ApplicationController
       render :text => UserMailer.preview_friend_activity_digest(
                                   User.find(3),
                                   User.find_all_by_id([1,2,13,12]),
+                                  User.find_all_by_id([12,99]),
                                   [Purchase.all[-5..-1],[Purchase.last]])
-
-    when :revive_user
-      render :text => UserMailer.preview_revive_user(User.last)
+    
+    when :add_purchase_reminder
+      render :text => UserMailer.preview_add_purchase_reminder(User.first)
 
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)

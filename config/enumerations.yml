@@ -29,7 +29,6 @@
   EmailPurpose:
     Admin: 99
     NewComment: 0
-    NewFollower: 1
     NewLike: 2
     TopShopper: 4
     Welcome: 10
@@ -38,7 +37,8 @@
     AddFriend: 15
     AddStore: 16
     FriendDigest: 18
-    Revive: 19
+    Suggestions: 20
+    AddPurchase: 21
   FeedShowSource:
     Login: 'login'
   FollowingSource:
@@ -47,10 +47,10 @@
     Suggestion: 2
     Invite: 3
   HealthReportService:
-    AnotherItemPrompt: 2
-    AddItemsPrompt: 3
     FriendsDigest: 7
     MaintainSearchIndex: 8
+    AfterJoinEmails: 9
+    AddPurchaseEmails: 10
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'

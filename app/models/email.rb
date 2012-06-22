@@ -17,6 +17,12 @@ class Email < ActiveRecord::Base
   validates_inclusion_of  :purpose, :in => EmailPurpose.values
 
   #----------------------------------------------------------------------
+  # Named scopes
+  #----------------------------------------------------------------------
+  named_scope :for, lambda{|purpose| {:conditions => {
+                                      :purpose => purpose}}}
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 

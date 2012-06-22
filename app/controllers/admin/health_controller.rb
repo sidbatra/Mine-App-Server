@@ -11,11 +11,11 @@ class Admin::HealthController < ApplicationController
         :id => HealthReportService::MaintainSearchIndex,
         :time => 1.day.ago},
       {
-        :id => HealthReportService::AnotherItemPrompt,
-        :time => 1.week.ago},
+        :id => HealthReportService::AfterJoinEmails,
+        :time => 1.day.ago},
       {
-        :id => HealthReportService::AddItemsPrompt,
-        :time => 3.days.ago}]
+        :id => HealthReportService::AddPurchaseEmails,
+        :time => 1.week.ago}]
 
     @services.each{|s| s[:report] = HealthReport.for_service(s[:id]).last}
   end

@@ -9,22 +9,39 @@ module DW
     #
     class Mailman
 
-      # Email user being followed
+      # Welcome email for the new user
       #
-      def self.email_leader_about_follower(following)
-        
-        if following.user.setting.email_influencer
-          UserMailer.deliver_new_follower(following) 
-        end
+      def self.welcome_new_user(user)
+        UserMailer.deliver_new_user(user)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Welcome email for the new user
+      # Public. Email users with a suggestion based on their
+      # current suggestion filling progress.
       #
-      def self.welcome_new_user(user)
-        UserMailer.deliver_new_user(user)
+      def self.after_join_suggestions
+        yest = Time.now - 24.hours
+        start = DateTime.new(yest.year,yest.month,yest.day,0,0,0)
+        finish = DateTime.new(yest.year,yest.month,yest.day,23,59,59)
+
+        suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
+                        by_weight.limit(3)
+
+        User.with_purchases.with_setting.made(start,finish).each do |user|
+          begin
+            suggestions_done_ids = user.purchases.map(&:suggestion_id).uniq.compact
+
+            if user.setting.email_update && suggestions_done_ids.length < suggestions.length
+              UserMailer.deliver_after_join_suggestions(user,suggestions,suggestions_done_ids)
+            end
+
+            sleep 0.09
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
@@ -76,75 +93,28 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Prompt given users to create another product 
-      #
-      def self.prompt_users_to_create_another_product(users)
-        users.each do |user|
-          begin
-            if user.setting.email_update
-              UserMailer.deliver_create_another_product(user)
-              sleep 0.09
-            end
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
-      # Revive dead users.
-      #
-      def self.revive(offset=0)
-        users = User.offset(offset).
-                  limit(500).
-                  all(
-                    :conditions => [
-                      "(birthday > ? or birthday < ?) and created_at < ? "\
-                      "and gender = 'female'",
-                      26.years.ago,35.years.ago,2.months.ago])
-
-        puts users.count
-
-        User.update_all({
-            :access_token => nil,
-            :remember_token_expires_at => nil,
-            :remember_token => nil}, {:id => users.map(&:id)})
-
-        users.each do |user|
-          begin
-            puts user.full_name
-            UserMailer.deliver_revive_user(user)
-            sleep 0.09
-          rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
-          end
-        end
-
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      end
-
       # Public. Email users whose friends have added purchases.
       #
       # users - The Array of User objects whose friends have added purchases.
       # purchases - The Hash with keys as user ids who have added 
       #                     purchases and values as Arrays of their purchases.
       #
-      def self.email_users_friend_activity_digest(users,purchases)
+      def self.email_users_friend_activity_digest(users,purchases,from)
                 
         users.each do |user|
           begin
             if user.setting.email_influencer
               friends = user.ifollowers
-              active_friends = friends.select{|f| purchases.key? f.id} 
+              active_friends = friends.select{|f| purchases.key?(f.id)}
+              new_friends = friends.select{|f| f.created_at > from}
+
               #friends_purchases = active_friends.map{|f| purchases[f.id]}
               friends_purchases = []
               
               UserMailer.deliver_friend_activity_digest(
                           user,
                           active_friends,
+                          new_friends,
                           friends_purchases)
 
               sleep 0.09
@@ -158,29 +128,20 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Email users with no items to try and win them back
+      # Public. Email users with a reminder to add new purchases.
       #
-      def self.pester_users_with_no_items(users)
-        pester_users(users,:deliver_add_an_item)
-      end
+      def self.add_purchase_reminder
 
-
-      protected
-
-      # Generic methods that iterates over the given users
-      # and calls the given mailer method with only the user
-      # as an argument. Primary usage are the multiple pester
-      # methods that fire on different triggers
-      #
-      def self.pester_users(users,mailer_method)
-        users.each do |user|
+        User.all.with_setting.each do |user|
           begin
-            if user.setting.email_update
-              UserMailer.send(mailer_method,user)
-              sleep 0.09
+
+            if user.setting.email_update 
+              UserMailer.deliver_add_purchase_reminder(user)
             end
+
+            sleep 0.09
           rescue => ex
-            LoggedException.add(__FILE__,__method__,ex)    
+            LoggedException.add(__FILE__,__method__,ex)
           end
         end
 
