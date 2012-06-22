@@ -2,15 +2,25 @@
 <div class="container well" id="container">
   <h1><%=user_full_name(@user)%><h1>
   <%=image_tag @user.large_image_url%>
-  <h3><%=@user.byline%></h3>
-  <h3><%=@user.email%></h3>
+  <h3><b>Byline: </b><%=@user.byline%></h3>
+  <h3><b>Age: </b><%=@user.age%></h3>
+  <h3><b>Source: </b><%=@user.source%></h3>
+  <h3><b>Email: </b><%=@user.email%></h3>
+  
+  <br>
+
   <h3><%=link_to 'Link to Profile',user_path(@user.handle)%><h3>
   <h3><%=link_to 'Link to FB',"https://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%><h3>
-  <h3><%=@user.purchases_count%> Purchases</h3>
   <h3><%=link_to "Think before you click",
             {:controller => 'admin/users',:action => 'destroy',:id => @user.id},
             :method => :delete,
             :confirm  => "There is no undo on this, sure?"%></h3>
+  <br>
+
+  <h3><%=@user.purchases_count%> Purchases</h3>
+  <h3><%=@user.inverse_followings_count%> Friends</h3>
+
+  <br>
   <br><br>
   <table border="0" width="100%">
     <tr>
