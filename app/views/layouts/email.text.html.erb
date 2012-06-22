@@ -1,99 +1,122 @@
 
-<div style="width:100%!important;margin:0;padding:0; -webkit-text-size-adjust:none; text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased;">
-  <table cellpadding="0" cellspacing="0" border="0" style="line-height:100%!important;width:100%!important;background:white;margin:0;padding:0">
+<!-- background -->
+<span style="display:block;
+              color:#555;
+              font-family:Arial,sans-serif;
+              padding-top:15px;
+              padding-right:15px;
+              padding-bottom:15px;
+              padding-left:15px;
+              background-color:#eeeeee">
+  
+  <!-- inner box -->
+  <table width="600" 
+    cellpadding="0" 
+    cellspacing="0" 
+    align="center" 
+    style="display:table;
+            border-collapse:collapse;
+            margin-left:auto;
+            margin-right:auto;
+            margin-bottom:0;
+            margin-top:0;
+            text-align:left;">
+
     <tbody>
       <tr>
-        <td valign="top" style="border-collapse:collapse;vertical-align:top">
-          <table cellpadding="0" cellspacing="0" border="0" align="center" style="background-color:#ffffff">
-            <tbody>
-              <tr>
-                <td height="30" colspan="3" style="border-collapse:collapse;vertical-align:top">
-                </td>
-              </tr>
-              <tr>
-                <td width="30" style="border-collapse:collapse;vertical-align:top">
-                </td>
-<%=yield%>
+        <td>
+          <table width="600" 
+            cellpadding="0" 
+            cellspacing="0" 
+            align="left" 
+            style="display:table;
+                    border-collapse:collapse;
+                    border-spacing:0;
+                    float:left">
 
-                <td width="30" style="border-collapse:collapse;vertical-align:top">
+            <tbody>
+            
+              <%=yield :header%>
+              
+              <tr>
+                <td style="background: #f8f8f8;
+                            text-align:center;
+                            padding:0;margin-left:0;
+                            margin-right:0;
+                            margin-top:0; 
+                            -webkit-border-radius: 0 0 5px 5px;
+                            -moz-border-radius: 0 0 5px 5px;
+                            border-radius: 0 0 5px 5px; 
+                            margin-bottom:0" 
+                    valign="top">
+                  
+                  <div>
+                    <p style="min-height:33px;
+                              margin-left:0;
+                              margin-right:0;
+                              margin-top:0;
+                              margin-bottom:0;
+                              padding:0">
+                      &nbsp;
+                    </p>
+
+                    <%=yield%>
+                    
+                    <p style="min-height:10px;
+                              margin-left:0;
+                              margin-right:0;
+                              margin-top:0;
+                              margin-bottom:0;
+                              padding:0">
+                      &nbsp;
+                    </p>
+                  </div>
                 </td>
               </tr>
-              
-              <!-- Footer -->
-              
-              <tr style="background-color:#F2F0ED;background:#F2F0ED;">
-                <td width="30" style="background-color:#F2F0ED;background:#F2F0ED;border-collapse:collapse;vertical-align:top">
-                </td>
-                <td style="padding:15px 0 15px 0;border-collapse:collapse;vertical-align:top">
-                  <table cellpadding="0" cellspacing="0" border="0" align="left">
-                    <tbody>
-                      <tr>
-                        
-                        <!-- Logo -->
-                        
-                        <td width="50" height="50" valign="top" style="border-collapse:collapse;vertical-align:top">
-                          <a href="<%=root_url(:src => @source)%>" target="_blank" style="text-decoration:none;">
-                            <div alt="<%=CONFIG[:name]%>" title="<%=CONFIG[:name]%>" width="50" height="50" style="width: 50px; height: 50px; outline:none; text-decoration:none; border:none; display:block">
-                              <%if Rails.env.start_with? 'd'%>
-                                <%=image_tag "http://#{CONFIG[:host]}/images/mine_100_2x.png",:alt => "", :style => "width: 50px; height: 50px;"%>
-                              <%else%>
-                                <%=image_tag "mine_100_2x.png",:alt => "", :style => "width: 50px; height: 50px;"%>
-                              <%end%>
-                            </div>
-                          </a>
-                        </td>
-                        
-                        <!-- /Logo -->
-                        
-                        <td width="20" style="width: 20px; border-collapse:collapse;vertical-align:top">
-                        </td>
-                        
-                        <!-- Boilerplate text -->
-                        
-                        <td height="40" width="470" style="text-align:left;font-family:Helvetica Neue, Helvetica, Arial,sans-serif;line-height: 14px; font-size:9px;color:#bbbbbb;border-collapse:collapse;">
-                          <font face="Helvetica Neue, Helvetica, Arial,sans-serif" size="1" color="#999999">This message was sent to 
-                          
-                            <!-- Recipient's address -->
-                            
-                            <a href="#" style="text-decoration:none;color:#999999">
-                            	<%=@user.email%>.
-                            </a>
-                            
-                            <!-- /Recipient's address -->
-                            
-                            If you don't want to receive these emails from <%=CONFIG[:name]%> in the future you can 
-                            
-                            <!-- Unsubscribe link -->
-                            
-                            <a href="<%=settings_url(:src => @source)%>" style="font-weight:bold;text-decoration:none;color:#999999" target="_blank">
-                              <font color="#999">change your notification settings. 
-                              </font>
-                            </a>
-                            
-                            <!-- /Unsubscribe link -->
-                            
-                            <%=CONFIG[:name]%> - <a href="#" style="text-decoration:none;color:#999999">855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA</a>
-                          </font>
-                        </td>
-                        
-                        <!-- /Boilerplate text -->
-                        
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-                <td width="30" style="border-collapse:collapse;vertical-align:top">
-                </td>
-              </tr>
-              
-              <!-- /Footer -->
-              
             </tbody>
           </table>
         </td>
       </tr>
     </tbody>
   </table>
-  
-</div> <!-- /Full-width	container -->	
+  <!-- /inner box -->
+    
 
+  <!-- footer -->
+  <p style="min-height:35px;
+            margin-left:0;
+            margin-right:0;
+            margin-top:0;
+            margin-bottom:0;
+            padding:0">
+    &nbsp;
+  </p>
+
+  <p align="center" 
+      style="color:#cccccc;
+              font-size:12px;
+              line-height:18px;
+              margin-top:0;
+              margin-bottom:35px;
+              padding:0">
+
+    <font face="Arial" color="#ccc">
+      This message was sent to you by <%=CONFIG[:name]%>
+
+      <br>
+      <a href="javascript:void(0)"
+          style="color:#cccccc;text-decoration:none;">
+        855 El Camino Real Building 5 #309 Palo Alto CA 94301
+      </a>
+
+      <br>
+      <a href="<%=settings_url(:src => @source)%>" 
+          style="color:#cccccc;text-decoration:none;">
+        Click here to change your notification settings.
+      </a>
+    </font>
+  </p>
+  <!-- /footer -->
+
+</span>
+<!-- /background -->

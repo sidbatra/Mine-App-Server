@@ -1,0 +1,23 @@
+              <!-- header image -->
+              <tr width="600">
+                <td width="600">
+                  <a href="<%=url%>" 
+                    target="_blank">
+                    <img src="<%=image_path "#{(is_dev? ? "http://#{CONFIG[:host]}/images/" : '')}email/#{image}"%>"
+                      vspace="0" 
+                      hspace="0" 
+                      alt="<%=alt%>"
+                      width="600" 
+                      align="middle" 
+                      style="background-color:#111;
+                        color:#fafafa;
+                        display:block;
+                        -webkit-border-radius: 5px 5px 0 0;
+                        -moz-border-radius: 5px 5px 0 0;
+                        border-radius: 5px 5px 0 0;
+                        float:left;" 
+                      border="0">
+                  </a>
+                </td>
+              </tr>
+              <!-- /header image -->

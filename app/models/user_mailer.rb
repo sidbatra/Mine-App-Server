@@ -3,7 +3,7 @@
 #
 class UserMailer < ActionMailer::Base
   layout 'email'
-  helper :application
+  helper :application, :emails
 
   # Welcome email for the user on sign up
   #
@@ -120,7 +120,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Subject goes here"
+    subject       "Bought anything new this week?"
   end
 
   # Safety check email whenever a user is deleted
