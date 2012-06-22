@@ -13,6 +13,7 @@ elsif !['staging','development'].include? ARGV[0]
 else
   target_env  = ARGV[0]
   password    = ARGV[1]
+  tables      = ARGV[2]
 end
 
 user        = 'root'
@@ -29,14 +30,16 @@ target_host = config[target_env]['host']
 target_db   = config[target_env]['database']
 
 
-# Drop the target database to ensure a clean copy
-system("mysql -u #{user} -h #{target_host} -p#{password} -e 'drop database #{target_db}'")
+unless tables
+  # Drop the target database to ensure a clean copy
+  system("mysql -u #{user} -h #{target_host} -p#{password} -e 'drop database #{target_db}'")
 
-# Recreate the target database
-system("mysql -u #{user} -h #{target_host} -p#{password} -e 'create database #{target_db}'")
+  # Recreate the target database
+  system("mysql -u #{user} -h #{target_host} -p#{password} -e 'create database #{target_db}'")
+end
 
 # Dump the source database into a sql file
-system("mysqldump -u #{user} -h #{source_host} -p#{password} #{source_db} > #{sql_file}")
+system("mysqldump -u #{user} -h #{source_host} -p#{password} #{source_db} #{tables} > #{sql_file}")
 
 # Copy the production databse into the source database via the sql file
 system("mysql -u #{user} -h #{target_host} -p#{password} #{target_db} < #{sql_file}")
