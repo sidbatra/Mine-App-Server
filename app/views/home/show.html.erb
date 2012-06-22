@@ -27,13 +27,6 @@
     var source = "<%=@source%>";
     if(source.slice(0,6) == 'email_')
       mixpanel.track("Email Clicked",{"Source":source.slice(6,source.length)});
-
-    if(source == 'email_revive') {
-      $('#fb-login-main').addClass('load');
-      setTimeout(function(){
-          window.location.href = "<%=fb_auth_path(:src => @origin)%>";},
-          500);
-    }
   </script>
 
 <%end%>
