@@ -2,7 +2,7 @@
 # emails to users
 #
 class UserMailer < ActionMailer::Base
-  layout 'email', :except => :revive_user
+  layout 'email'
   helper :application
 
   # Welcome email for the user on sign up
@@ -17,6 +17,22 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       @action
+  end
+
+  # Suggestions for a new user to add more purchases.
+  #
+  def after_join_suggestions(user,suggestions,suggestions_done_ids)
+    @user = user
+    @suggestions = suggestions
+    @suggestions_done_ids = suggestions_done_ids
+
+    @source = "email_suggestions"
+
+    generate_attributes(@user,0,@user,EmailPurpose::Suggestions)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       "Subject goes here"
   end
 
   # Alert user when someone starts following him/her

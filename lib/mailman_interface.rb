@@ -30,6 +30,36 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Email users with a suggestion based on their
+      # current suggestion filling progress.
+      #
+      def self.after_join_suggestions
+        yest = Time.now - 24.hours
+        start = DateTime.new(yest.year,yest.month,yest.day,0,0,0)
+        finish = DateTime.new(yest.year,yest.month,yest.day,23,59,59)
+
+        suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
+                        by_weight.limit(3)
+
+        User.with_purchases.with_setting.made(start,finish).each do |user|
+          begin
+
+            suggestions_done_ids = user.purchases.map(&:suggestion_id).uniq.compact
+
+            if suggestions_done_ids.length < suggestions.length
+              UserMailer.deliver_after_join_suggestions(user,suggestions,suggestions_done_ids)
+            end
+
+            sleep 0.09
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Email admins when a user is deleted
       #
       def self.email_admin_about_deleted_user(user)

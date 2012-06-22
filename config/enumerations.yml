@@ -38,7 +38,7 @@
     AddFriend: 15
     AddStore: 16
     FriendDigest: 18
-    Revive: 19
+    Suggestions: 20
   FeedShowSource:
     Login: 'login'
   FollowingSource:

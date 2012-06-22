@@ -16,6 +16,12 @@ class Admin::EmailsController < ApplicationController
 
     when :new_user
       render :text => UserMailer.preview_new_user(User.last)
+    
+    when :after_join_suggestions
+      suggestions = Suggestion.by_weight.limit(3)
+      suggestions_done_ids = suggestions[0..1].map(&:id)
+
+      render :text => UserMailer.preview_after_join_suggestions(User.last,suggestions,suggestions_done_ids)
 
     when :new_comment
       render :text => UserMailer.preview_new_comment(Comment.last,User.last)
