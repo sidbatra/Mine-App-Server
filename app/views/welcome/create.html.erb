@@ -2,21 +2,23 @@
 	style="background-image: url('<%=image_path "ob/man-blurred.jpg"%>')">
 </div>
 
-<div class="dimmer sixty"></div>
+<div class="dimmer sixty">
+</div>
 
 <div class="onboarding">
 
 	<div id="box" class="box border-box rounded-8">
 
 		<div class="heading" id="step_1">
-			<%=image_tag "ob/mine-tags-48-2x.png", :class => "logo"%><br>
+			<%=image_tag "ob/mine-tags-48-2x.png", :class => "logo"%>
+      <br>
 			<h2>Pick something you’d like to add first:</h2>
 		</div>
 		
-		<div class="heading" id="step_2" style="display:none;" >
+		<div class="heading" id="step_2" style="display:none;">
 		</div>
 	
-		<div class="heading" id="step_3" style="display:none;" >
+		<div class="heading" id="step_3" style="display:none;">
 	    <h2>Add a few details and you're done:</h2>
 		</div>
 	
@@ -25,6 +27,7 @@
 	      <a id="suggestion_<%=suggestion.id%>" 
 	          href="javascript:void(0)" 
 	          class="suggestion relative">
+
 	        <div class="top rounded-5 transition-bg">
 	        	<%=image_tag suggestion.image_url,
 	              :class => "shape"%>
