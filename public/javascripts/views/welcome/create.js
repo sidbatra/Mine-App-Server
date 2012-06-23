@@ -25,7 +25,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     this.step2HeadingEl = '#step_2';
     this.step3HeadingEl = '#step_3';
     this.exampleEl = '#example';
-    this.caretEl = '#caret';
 
     this.input = new Denwen.Partials.Purchases.Input({
                         el  : $('body'),
@@ -105,7 +104,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     $(this.step2HeadingEl).hide();
     $(this.step3HeadingEl).show();
 
-    $(this.caretEl).hide();
     $(this.exampleEl).hide();
   },
 
