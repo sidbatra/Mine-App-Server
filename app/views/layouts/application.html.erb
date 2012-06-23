@@ -33,11 +33,13 @@
 	  
 	  </div> <!-- /wrapper -->
 
-    <footer>
-      <div class="inner">
-        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
-      </div>
-    </footer>
+		<%if !is_onboarding?%>
+	    <footer>
+	      <div class="inner">
+	        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
+	      </div>
+	    </footer>
+	  <%end%>
 
     <%=render :partial => "misc/analytics"%>
 

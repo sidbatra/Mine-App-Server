@@ -18,12 +18,12 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     this.suggestions = new Denwen.Collections.Suggestions(
                             this.options.suggestions);
 
+		this.boxEl = '#box';
     this.cardsEl = '#cards';
     this.creationEl = '#creation';
     this.step1HeadingEl = '#step_1';
     this.step2HeadingEl = '#step_2';
     this.step3HeadingEl = '#step_3';
-    this.tipEl = '#tip';
     this.exampleEl = '#example';
     this.caretEl = '#caret';
 
@@ -77,8 +77,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Callbacks from Suggestion Clicks
   // --
   suggestionClicked: function(suggestion) {
-    $(this.tipEl).html(Denwen.JST['welcome/create/tip']({
-                      thing:suggestion.get('thing')}));
     $(this.exampleEl).html(Denwen.JST['welcome/create/example']({
                       example:suggestion.get('example')}));
     $(this.step2HeadingEl).html(Denwen.JST['welcome/create/heading']({
@@ -103,10 +101,10 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Cleanup ui after a product has been selected.
   //
   productSelected: function(product) {
+  	$(this.boxEl).addClass('itemized');
     $(this.step2HeadingEl).hide();
     $(this.step3HeadingEl).show();
 
-    $(this.tipEl).hide();
     $(this.caretEl).hide();
     $(this.exampleEl).hide();
   },
