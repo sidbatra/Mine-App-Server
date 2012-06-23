@@ -666,7 +666,7 @@ footer, footer a, footer a:hover { color: #ccc; }
 .item .photo {
 	width: 520px; 
 	height: 520px; 
-	background: #FFF; 
+	background: white url('/images/loading-blocks-dark-trans.gif') center no-repeat; 
 	text-align: center;
 	line-height: 520px;
 	float: left;
