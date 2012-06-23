@@ -1545,6 +1545,11 @@ textarea.highlight-on-focus:focus {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px; }
+
+.rounded-16 {
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	border-radius: 16px; }
 	
 .transition-bg {
 	-webkit-transition: background .15s ease-in;
