@@ -9,7 +9,7 @@ body {
 	text-rendering: optimizelegibility; }
 
 a { 
-	color: #0ab0ed;
+	color: #099CDE;
 	-webkit-transition: color .15s ease-in;
 	-moz-transition: color .15s ease-in;
 	-o-transition: color .15s ease-in;
@@ -109,14 +109,14 @@ a:hover {
 	
 .thumbnail-box .thumb.frameable:hover {
 	cursor: pointer;
-	border: 4px solid #0AB0ED;
+	border: 4px solid #099CDE;
 	margin-top: -4px;
 	margin-right: 0;
 	margin-bottom: 0px;
 	margin-left: -4px; }
 
 .thumbnail-box .thumb.selected { 
-	border-bottom: 4px solid #0AB0ED;
+	border-bottom: 4px solid #099CDE;
 	margin-bottom: 0px; }
 
 .thumbnail-box .btn.go-to-invite { 
@@ -278,7 +278,10 @@ footer, footer a, footer a:hover { color: #ccc; }
 	padding-top: 0;
 	padding-bottom: 0;}
 
-.create-box .panel textarea.review { margin-bottom: 24px; }
+.create-box .panel textarea.review { 
+	margin-top: 4px;
+	margin-bottom: 24px;
+	height: 72px; }
 
 .create-box .panel label {
 	line-height: 1; 
@@ -403,7 +406,7 @@ footer, footer a, footer a:hover { color: #ccc; }
   
 .create-box .panel a.toggle-switch div.on { 
 	display: block;
-	background: #0AB0ED;
+	background: #099CDE;
 	color: white;
 	border: 1px solid transparent;
 	margin: -1px -1px 0 -1px;
@@ -1110,7 +1113,7 @@ footer, footer a, footer a:hover { color: #ccc; }
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background: #0AB0ED;
+  background: #099CDE;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
