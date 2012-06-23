@@ -789,7 +789,6 @@ footer, footer a, footer a:hover { color: #ccc; }
 	width: 100%;
 	height: 28px;
 	line-height: 1;
-	line-height: 28px\0/ !important;
 	margin-bottom: 0; }	
 
 .item .blurb {
@@ -1160,6 +1159,7 @@ footer, footer a, footer a:hover { color: #ccc; }
   height: 42px;
   font-size: 15px;
   line-height: 42px;
+  line-height: 40px\0/ !important;
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
           border-radius: 8px; }
