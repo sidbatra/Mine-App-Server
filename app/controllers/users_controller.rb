@@ -101,7 +101,11 @@ class UsersController < ApplicationController
                 "gender,email,birthday",
                 :access_token => access_token)
 
-    @user = User.add_from_fb(fb_user,@source)
+    @user   = User.add_from_fb(fb_user,@source)
+
+    setting = @user.setting
+    setting.fb_publish_actions = true
+    setting.save!
 
     raise IOError, "Error creating user" unless @user
 
