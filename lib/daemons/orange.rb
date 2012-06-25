@@ -10,10 +10,10 @@
 ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
 
 
-CONSUMER_KEY       = 'rGFRyGeuMegI45ZoQrK0Q'
-CONSUMER_SECRET    = 'BiyIaWQTIejCXJomvmtgRpikwAJ4MX2cZL3J5gSQ'
-OAUTH_TOKEN        = '45032868-LPwicmNtjVmIpNGtqQ4jD7MtfjjwAoDygJEiZeuK0'
-OAUTH_TOKEN_SECRET = 'xr0FiF97RBqdqRHz7oPB9dwkM1ZKFg5XyGVflf3ApBk'
+CONSUMER_KEY       = '5M8DIWAdEJRKlTW5d9vw'
+CONSUMER_SECRET    = 'JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc'
+OAUTH_TOKEN        = '20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04'
+OAUTH_TOKEN_SECRET = 'cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU'
 
 
 require 'rubygems'
