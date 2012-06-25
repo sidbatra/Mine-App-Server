@@ -20,8 +20,13 @@ require 'rubygems'
 require 'tweetstream'
 
 
-LOGGER = Logger.new(File.join(ENV['RAILS_PATH'],"log/orange.rb.log"))
-@logger = LOGGER
+$running = true
+Signal.trap("TERM") do 
+  $running = false
+end
+
+
+@logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/orange.rb.log"))
 
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
@@ -56,7 +61,7 @@ end
 
 @count = 0
 @reset_at = Time.now - 10
-@client = TweetStream::Daemon.new
+@client = TweetStream::Client.new
 
 @client.track("just bought") do |status|
   next if status.text.match /Stardoll|RT/
@@ -65,7 +70,7 @@ end
           !status.in_reply_to_status_id.nil? || 
           !status.in_reply_to_user_id.nil?
 
-  puts "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
+  @logger.info "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
 
   name = ""
   name = status.user.name.split(" ").first if status.user.name
@@ -75,24 +80,27 @@ end
 
   tweet = "@#{status.user.screen_name} #{@templates.choice.gsub("@name",name)}"
 
-  puts "#{tweet.length} #{tweet}"
+  @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
 
   
   begin
-    if @count < 1
-      @count += 1
-      Twitter.update(tweet,:in_reply_to_status_id => status.id)
-    else
+    @count += 1
+    Twitter.update(tweet,:in_reply_to_status_id => status.id)
+
+    if @count >= 1
       @count = 0
       @reset_at = Time.now + rand(60) + 300
-      puts "\n\nResetting\n\n"
+      @logger.info "Resetting"
     end
 
   rescue => ex
-    puts "Exception - #{ex.message}"
+    @logger.info "Exception - #{ex.message}"
   end
+
+
+  break if !$running
   
-  puts "\n"
+  @logger.info "\n"
 end
 
 @client.stop
