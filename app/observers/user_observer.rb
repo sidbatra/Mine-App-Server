@@ -17,13 +17,11 @@ class UserObserver < ActiveRecord::Observer
   end
 
   # Test the user object for the following events:
-  #   recreate - Treat like a fresh user if user was earlier made 
-  #               for an invite.
   #   mine_fb_data - Mine facebook data.
   #
   def before_update(user)
-    #user[:recreate] = user.access_token_was.nil? && user.access_token.present?
-    #user[:mine_fb_data] = user.access_token_changed? && !user[:recreate]
+    user[:mine_fb_data] = user.access_token_changed? && 
+                          user.access_token.present?
   end
 
   # Hand over to the delayed observer after refering to the events setup in

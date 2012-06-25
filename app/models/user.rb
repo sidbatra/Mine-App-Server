@@ -248,8 +248,10 @@ class User < ActiveRecord::Base
       begin
         self.fb_permissions
         true
-      rescue => ex
+      rescue FbGraph::InvalidToken => ex
         self.access_token = nil
+        save!
+
         self.setting.revoke_fb_permissions
         false
       end
