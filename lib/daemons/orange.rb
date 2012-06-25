@@ -59,7 +59,11 @@ end
 @client = TweetStream::Daemon.new
 
 @client.track("just bought") do |status|
-  next if status.text.match "Stardoll"
+  next if status.text.match /Stardoll|RT/
+  next unless status.text.match /http/
+  next if !status.in_reply_to_screen_name.nil? || 
+          !status.in_reply_to_status_id.nil? || 
+          !status.in_reply_to_user_id.nil?
 
   puts "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
 
@@ -75,12 +79,12 @@ end
 
   
   begin
-    if @count < 100
+    if @count < 1
       @count += 1
       Twitter.update(tweet,:in_reply_to_status_id => status.id)
     else
       @count = 0
-      @reset_at = Time.now + 3600
+      @reset_at = Time.now + rand(60) + 300
       puts "\n\nResetting\n\n"
     end
 
