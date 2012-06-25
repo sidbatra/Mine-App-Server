@@ -136,6 +136,11 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.tumblrAuthRejected,
       this);
 
+    Denwen.NM.bind(
+      Denwen.NotificationManager.Callback.FBTokenDead,
+      this.fbTokenDead,
+      this);
+
 
     $(this.formEl).submit(function(){return self.post();});
 
@@ -440,6 +445,14 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   fbPermissionsRejected: function() {
     $(this.fbSwitchEl).toggleClass(this.switchOffClass);
     Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
+  },
+
+
+  //
+  // Callbacks from fb token interface.
+  //
+  fbTokenDead: function() {
+    $(this.fbSwitchEl).addClass(this.switchOffClass);
   },
 
 

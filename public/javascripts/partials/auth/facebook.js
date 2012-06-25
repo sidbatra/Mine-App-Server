@@ -16,7 +16,7 @@ Denwen.Partials.Auth.Facebook = Backbone.View.extend({
     var authWindow = window.open(
                               '/facebook/authenticate?target=popup', 
                               'Facebook Authorization', 
-                              'width=800, height=600');
+                              'width=1024, height=600');
 
     var authInterval = window.setInterval(function(){
                                   if(authWindow.closed) {
@@ -42,7 +42,9 @@ Denwen.Partials.Auth.Facebook = Backbone.View.extend({
   fetched: function() {
     if(this.setting.get('status')) {
       var keys = {};
+
       keys[this.auth] = true;
+      keys[Denwen.Settings.FbPublishPermissions] = true;
 
       Denwen.H.currentUser.get('setting').set(keys);
 

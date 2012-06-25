@@ -33,6 +33,7 @@ Denwen.Partials.Settings.FBAccessToken = Backbone.View.extend({
       keys[Denwen.Settings.FbExtendedPermissions] = false;
 
       Denwen.H.currentUser.get('setting').set(keys);
+      Denwen.NM.trigger(Denwen.NotificationManager.Callback.FBTokenDead);
     }
   }
 
