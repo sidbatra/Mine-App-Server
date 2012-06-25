@@ -5,8 +5,8 @@ Denwen.Partials.Auth.Tumblr = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.auth = 'tumblr_auth';
-    this.setting = new Denwen.Models.Setting({id:this.auth});
+    this.auth     = Denwen.Settings.TumblrAuth;
+    this.setting  = new Denwen.Models.Setting({id:this.auth});
   },
 
   // Show the tumblr auth popup 

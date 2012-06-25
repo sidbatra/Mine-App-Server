@@ -98,6 +98,19 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
+    this.fbAuth = new Denwen.Partials.Auth.Facebook();
+
+    this.fbAuth.bind(
+      Denwen.Partials.Auth.Facebook.Callback.AuthAccepted,
+      this.fbAuthAccepted,
+      this);
+
+    this.fbAuth.bind(
+      Denwen.Partials.Auth.Facebook.Callback.AuthRejected,
+      this.fbAuthRejected,
+      this);
+
+
     this.twAuth = new Denwen.Partials.Auth.Twitter();
 
     this.twAuth.bind(
@@ -219,8 +232,16 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the fb photo switch is toggled
   //
   fbSwitchToggled: function() {
-    if(!Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) 
+    var setting = Denwen.H.currentUser.get('setting');
+
+    if(!setting.get(Denwen.Settings.FbAuth)) { 
+      $(this.fbSwitchEl).addClass(this.switchLoadingClass);
+      this.fbAuth.showAuthDialog();
+    }
+    else if(!setting.get(this.fbPermissionsRequired)) { 
+      $(this.fbSwitchEl).addClass(this.switchLoadingClass);
       this.fbSettings.showPermissionsDialog();
+    }
 
     $(this.fbSwitchEl).toggleClass(this.switchOffClass);
 
@@ -233,7 +254,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the tw photo switch is toggled
   //
   twSwitchToggled: function() {
-    if(!Denwen.H.currentUser.get('setting').get('tw_auth')) { 
+    if(!Denwen.H.currentUser.get('setting').get(Denwen.Settings.TwAuth)) { 
       $(this.twSwitchEl).addClass(this.switchLoadingClass);
       this.twAuth.showAuthDialog();
     }
@@ -249,7 +270,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the tumblr photo switch is toggled
   //
   tumblrSwitchToggled: function() {
-    if(!Denwen.H.currentUser.get('setting').get('tumblr_auth')) { 
+    if(!Denwen.H.currentUser.get('setting').get(Denwen.Settings.TumblrAuth)) {
       $(this.tumblrSwitchEl).addClass(this.switchLoadingClass);
       this.tumblrAuth.showAuthDialog();
     }
@@ -411,6 +432,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when fb permissions are accepted 
   //
   fbPermissionsAccepted: function() {
+    $(this.fbSwitchEl).removeClass(this.switchLoadingClass);
   },
 
   // Fired when fb permissions are rejected
@@ -422,7 +444,26 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
 
   //
-  // Callbacks from tw permissions interface.
+  // Callbacks from fb auth interface.
+  //
+
+  // Fired when fb auth is accepted 
+  //
+  fbAuthAccepted: function() {
+    $(this.fbSwitchEl).removeClass(this.switchLoadingClass);
+  },
+
+  // Fired when fb auth is rejected
+  //
+  fbAuthRejected: function() {
+    $(this.fbSwitchEl).removeClass(this.switchLoadingClass);
+    $(this.fbSwitchEl).toggleClass(this.switchOffClass);
+    Denwen.Drawer.error("Please allow access for posting to Facebook.");
+  },
+
+
+  //
+  // Callbacks from tw auth interface.
   //
 
   // Fired when tw auth is accepted 
@@ -441,7 +482,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
 
   //
-  // Callbacks from tumblr permissions interface.
+  // Callbacks from tumblr auth interface.
   //
 
   // Fired when tumblr auth is accepted 

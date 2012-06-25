@@ -22,8 +22,8 @@ class UserObserver < ActiveRecord::Observer
   #   mine_fb_data - Mine facebook data.
   #
   def before_update(user)
-    user[:recreate] = user.access_token_was.nil? && user.access_token.present?
-    user[:mine_fb_data] = user.access_token_changed? && !user[:recreate]
+    #user[:recreate] = user.access_token_was.nil? && user.access_token.present?
+    #user[:mine_fb_data] = user.access_token_changed? && !user[:recreate]
   end
 
   # Hand over to the delayed observer after refering to the events setup in

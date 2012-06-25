@@ -37,7 +37,7 @@ class UsersController < ApplicationController
           url = root_path(:src => FeedShowSource::Login)
         end
 
-        redirect_to url
+        redirect_to url unless url == 'popup'
       end
 
       format.json

@@ -5,8 +5,8 @@ Denwen.Partials.Auth.Twitter = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
-    this.auth = 'tw_auth';
-    this.setting = new Denwen.Models.Setting({id:this.auth});
+    this.auth     = Denwen.Settings.TwAuth; 
+    this.setting  = new Denwen.Models.Setting({id:this.auth});
   },
 
   // Show the twitter auth popup 

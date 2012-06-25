@@ -23,6 +23,12 @@ New: "new",
 Edit: "edit"
 }
 
+Denwen.Settings = {
+TwAuth: "tw_auth",
+FbAuth: "fb_auth",
+TumblrAuth: "tumblr_auth"
+}
+
 Denwen.TWSharing = {
 Underway: "1"
 }
