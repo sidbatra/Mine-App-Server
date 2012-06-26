@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
         (session[:visited_at].nil? || session[:visited_at] < 30.minutes.ago)
       self.current_user.visited
       session[:visited_at] = Time.now
+      session[:renewed] = true
+    else
+      session[:renewed] = false    
     end
   end
 

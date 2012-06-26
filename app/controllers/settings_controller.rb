@@ -16,29 +16,23 @@ class SettingsController < ApplicationController
     @filter = params[:id].to_sym
 
     case @filter
-    when :tokens
-      fb = true
-
-      begin
-        self.current_user.fb_permissions 
-      rescue => ex
-        fb = false
-        self.current_user.setting.revoke_fb_permissions
-      end
-
-      @setting = {:facebook => fb}
-
     when :fb_publish_permissions
       @setting = {:status => self.current_user.fb_publish_permissions?}
 
     when :fb_extended_permissions
       @setting = {:status => self.current_user.fb_extended_permissions?}
 
-    when :tw_permissions
-      @setting = {:status => self.current_user.tw_permissions?}
+    when :fb_auth
+      @setting = {:status => self.current_user.fb_authorized?}
 
-    when :tumblr_permissions
-      @setting = {:status => self.current_user.tumblr_permissions?}
+    when :tw_auth
+      @setting = {:status => self.current_user.tw_authorized?}
+
+    when :tumblr_auth
+      @setting = {:status => self.current_user.tumblr_authorized?}
+
+    when :fb_access_token
+      @setting = {:status => self.current_user.fb_access_token_valid?}
     end
   rescue => ex
     handle_exception(ex)

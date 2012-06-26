@@ -1,21 +1,21 @@
-// Partial for displaying and fetching twitter permissions 
+// Partial for tumblr authorization 
 //
-Denwen.Partials.Settings.Twitter = Backbone.View.extend({
+Denwen.Partials.Auth.Tumblr = Backbone.View.extend({
 
   // Constructor logic
   //
   initialize: function() {
-    this.permissions = 'tw_permissions';
-    this.setting = new Denwen.Models.Setting({id:this.permissions});
+    this.auth     = Denwen.Settings.TumblrAuth;
+    this.setting  = new Denwen.Models.Setting({id:this.auth});
   },
 
-  // Show the twitter auth popup 
+  // Show the tumblr auth popup 
   //
   showAuthDialog: function() {
     var self = this;
     var oauthWindow = window.open(
-                              '/twitter/authenticate', 
-                              'Twitter Authorization', 
+                              '/tumblr/authenticate', 
+                              '', 
                               'width=800, height=600');
 
     var oauthInterval = window.setInterval(function(){
@@ -26,7 +26,7 @@ Denwen.Partials.Settings.Twitter = Backbone.View.extend({
                                 },1000);
   },
 
-  // Fetch updated twitter permissions from the server 
+  // Fetch updated tumblr permissions from the server 
   //
   fetchSettings: function() {
     var self = this;
@@ -42,16 +42,16 @@ Denwen.Partials.Settings.Twitter = Backbone.View.extend({
   fetched: function() {
     if(this.setting.get('status')) {
       var keys = {};
-      keys[this.permissions] = true;
+      keys[this.auth] = true;
 
       Denwen.H.currentUser.get('setting').set(keys);
 
-      Denwen.Track.action("Twitter Authorization Accepted");
-      this.trigger(Denwen.Partials.Settings.Twitter.Callback.AuthAccepted);
+      Denwen.Track.action("Tumblr Authorization Accepted");
+      this.trigger(Denwen.Partials.Auth.Tumblr.Callback.AuthAccepted);
     }
     else {
-      Denwen.Track.action("Twitter Authorization Rejected");
-      this.trigger(Denwen.Partials.Settings.Twitter.Callback.AuthRejected);
+      Denwen.Track.action("Tumblr Authorization Rejected");
+      this.trigger(Denwen.Partials.Auth.Tumblr.Callback.AuthRejected);
     }
   }
 
@@ -59,7 +59,7 @@ Denwen.Partials.Settings.Twitter = Backbone.View.extend({
 
 // Define callbacks.
 //
-Denwen.Partials.Settings.Twitter.Callback = {
-  AuthAccepted: 'twAuthAccepted',
-  AuthRejected: 'twAuthRejected'
+Denwen.Partials.Auth.Tumblr.Callback = {
+  AuthAccepted: 'tumblrAuthAccepted',
+  AuthRejected: 'tumblrAuthRejected'
 }

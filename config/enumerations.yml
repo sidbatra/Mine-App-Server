@@ -96,3 +96,10 @@
   ProductQueryType:
     Text: 'text'
     URL: 'url'
+  Settings:
+    FbAuth: 'fb_auth'
+    TwAuth: 'tw_auth'
+    TumblrAuth: 'tumblr_auth'
+    FbAccessToken: 'fb_access_token'
+    FbPublishPermissions: 'fb_publish_permissions'
+    FbExtendedPermissions: 'fb_extended_permissions'

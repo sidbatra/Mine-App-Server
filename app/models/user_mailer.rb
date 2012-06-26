@@ -3,7 +3,7 @@
 #
 class UserMailer < ActionMailer::Base
   layout 'email'
-  helper :application
+  helper :application, :emails
 
   # Welcome email for the user on sign up
   #
@@ -23,16 +23,24 @@ class UserMailer < ActionMailer::Base
   #
   def after_join_suggestions(user,suggestions,suggestions_done_ids)
     @user = user
-    @suggestions = suggestions
-    @suggestions_done_ids = suggestions_done_ids
+    @suggestion = nil
 
+
+    suggestions.each do |suggestion|
+      unless suggestions_done_ids.include? suggestion.id
+        @suggestion = suggestion
+        break
+      end
+    end
+
+    @action = "Add your first #{@suggestion.thing} on mine"
     @source = "email_suggestions"
 
     generate_attributes(@user,0,@user,EmailPurpose::Suggestions)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Subject goes here"
+    subject       @action
   end
 
   # Alert the owner whenever someone likes his/her purchase
@@ -43,14 +51,13 @@ class UserMailer < ActionMailer::Base
     @user         = @purchase.user 
     @source       = "email_like"
 
-    @action       = "#{@actor.first_name} likes your " +
-                    @purchase.title 
+    @action       = "just liked your #{@purchase.title}"
 
     generate_attributes(@user,@actor.id,like,EmailPurpose::NewLike)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @action
+    subject       "#{@actor.first_name} #{@action}"
   end 
 
   # Alert user when a new comment is added on a 
@@ -66,21 +73,20 @@ class UserMailer < ActionMailer::Base
     @source       = "email_comment"
 
     if @owner.id == @user.id
-      @action    += " just commented on your "
+      @action    << " just commented on your "
     elsif @owner.id == @comment.user.id 
-      @action    += " also commented on #{@owner.is_male? ? 'his' : 'her'} "
+      @action    << " also commented on #{@owner.is_male? ? 'his' : 'her'} "
     else
-      @action    += " also commented on #{@owner.first_name} "\
-                    "#{@owner.last_name}'s "
+      @action    << " also commented on #{@owner.first_name}'s "
     end
 
-    @action     += comment.purchase.title 
+    @action     << comment.purchase.title 
 
     generate_attributes(@user,@comment.user.id,@comment,EmailPurpose::NewComment)
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       @comment.user.first_name + " " + @action 
+    subject       "#{@comment.user.first_name} #{@action}"
   end
 
   # Friend activity digest for the user 
@@ -89,17 +95,18 @@ class UserMailer < ActionMailer::Base
     @user      = user
     @friends   = friends
     @new_friends = new_friends
+    @all_friends = (@friends + @new_friends).uniq
     @purchases = purchases
     @action    = "View what " 
 
     if @friends.length == 1
-      @action += @friends[0].first_name
+      @action << @friends[0].first_name
     else
-      @action += "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
+      @action << "#{@friends[0..-2].map(&:first_name).join(", ")} and "\
                  "#{@friends[-1].first_name}" 
     end
 
-    @action += " bought this week"
+    @action << " bought this week"
     @source = "email_friend_digest"
 
     generate_attributes(@user,0,@user,EmailPurpose::FriendDigest)
@@ -120,7 +127,7 @@ class UserMailer < ActionMailer::Base
 
     recipients    @user.email
     from          EMAILS[:contact]
-    subject       "Subject goes here"
+    subject       "Bought anything new this week?"
   end
 
   # Safety check email whenever a user is deleted

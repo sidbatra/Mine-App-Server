@@ -37,7 +37,7 @@ class UsersController < ApplicationController
           url = root_path(:src => FeedShowSource::Login)
         end
 
-        redirect_to url
+        redirect_to url unless url == 'popup'
       end
 
       format.json
@@ -101,9 +101,13 @@ class UsersController < ApplicationController
                 "gender,email,birthday",
                 :access_token => access_token)
 
-    @user = User.add_from_fb(fb_user,@source)
+    @user   = User.add_from_fb(fb_user,@source)
 
     raise IOError, "Error creating user" unless @user
+
+    setting = @user.setting
+    setting.fb_publish_actions = true
+    setting.save!
 
     @onboard = @user[:recreate]
 

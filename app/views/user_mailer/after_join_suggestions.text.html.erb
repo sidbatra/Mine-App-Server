@@ -1,8 +1,15 @@
-<%@suggestions.each do |suggestion|%>
-  <%=suggestion.title%> <br/><%=@suggestions_done_ids.include?(suggestion.id)%>
-  <br/><br/>
-<%end%>
+                    <%content_for :header do%>
+                      <%=render :partial => "header_image",
+                          :locals => {
+                            :url => welcome_url(WelcomeFilter::Create,:suggestion_id => @suggestion.id,:src => @source),
+                            :image => "header-image-add-#{@suggestion.thing.gsub(' ','-')}.jpg",
+                            :alt => @action}%>
+                    <%end%>
 
-<br/>
-
-well hello hello <%=@user.first_name%>
+                    <%=render :partial => "action_button",
+                        :locals => {
+                          :url => welcome_url(WelcomeFilter::Create,:suggestion_id => @suggestion.id,:src => @source),
+                          :text => "Add your first #{@suggestion.thing} on "\
+                                    "<font face='Arial' "\
+                                    "style='font-style: normal;'> "\
+                                    "<b>#{CONFIG[:name].downcase}</b>"}%>

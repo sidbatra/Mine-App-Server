@@ -33,6 +33,7 @@ class Setting < ActiveRecord::Base
   #
   def revoke_fb_permissions
     self.fb_publish_actions = false
+    self.fb_publish_stream  = false
     save!
   end
 
@@ -43,37 +44,43 @@ class Setting < ActiveRecord::Base
     self.fb_publish_actions
   end
 
+  # Whether or not the user has accepted facebook authorization
+  #
+  def fb_auth
+    self.user.fb_authorized?
+  end
+
   # Whether or not the user has accepted twitter authorization
   #
-  def tw_permissions
-    self.user.tw_permissions?
+  def tw_auth
+    self.user.tw_authorized?
   end
 
   # Whether or not the user has accepted tumblr authorization
   #
-  def tumblr_permissions
-    self.user.tumblr_permissions?
+  def tumblr_auth
+    self.user.tumblr_authorized?
   end
 
   # Whether or not the user's current settings enable posting
   # to facebook timeline 
   #
   def post_to_timeline?  
-    self.fb_publish_actions & self.post_to_timeline
+    self.fb_publish_actions & self.post_to_timeline & self.fb_auth
   end
 
   # Whether or not the user's current settings enable posting 
   # to twitter
   #
   def post_to_twitter?  
-    self.share_to_twitter & self.tw_permissions
+    self.share_to_twitter & self.tw_auth
   end
 
   # Whether or not the user's current settings enable posting 
   # to tumblr 
   #
   def post_to_tumblr?  
-    self.share_to_tumblr & self.tumblr_permissions
+    self.share_to_tumblr & self.tumblr_auth
   end
 
 end

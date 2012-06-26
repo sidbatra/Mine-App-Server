@@ -1,1 +1,15 @@
-hello <%=@user.full_name%>
+                    <%content_for :header do%>
+                      <%=render :partial => "header_image",
+                          :locals => {
+                            :url => root_url(:src => @source),
+                            :image => "header-image-reminder.jpg",
+                            :alt => "Mine: Bought anything new this week?."}%>
+                    <%end%>
+
+                    <%=render :partial => "action_button",
+                        :locals => {
+                          :url => root_url(:src => @source),
+                          :text => "Add your latest purchase on "\
+                                    "<font face='Arial' "\
+                                    "style='font-style: normal;'> "\
+                                    "<b>#{CONFIG[:name].downcase}</b>"}%>

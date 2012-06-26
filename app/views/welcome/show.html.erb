@@ -1,41 +1,44 @@
-<div class="container onboarding" style="width: 520px;">
+<div class="background-cover" 
+	style="background-image: url('<%=image_path "ob/man-blurred.jpg"%>')">
+</div>
 
-	<div class="heading">
-		<b>Hi <%=self.current_user.first_name%>!</b><br />
-			Thanks for being one of our earliest members.<br />
-	</div>
-	
-	<h3>What is mine?</h3>
-	<p>
-		Mine is a simple service for sharing purchases with friends.<br />
-		Whether it's for a specific recommendation or just plain curiosity, 
-		people often want to learn from what their friends are buying. 
-	</p>
-	
-	<h3>How does it work?</h3>
-	<p>
-		When you add a new purchase, friends you've invited will 
-    see it in their feed of items when they log in.
-		You can also share out more widely to your Facebook friends.
-	</p>
+<div class="dimmer sixty">
+</div>
 
-  <%=link_to "Ok, show me how to add a purchase 
-              <i class='icon-chevron-right icon-white'></i>",
-      welcome_path(WelcomeFilter::Create),
-      :class => "btn btn-large",
-      :style => "display: block; margin: 16px 100px 18px;"%>
+<div class="onboarding">
+
+	<div class="box border-box rounded-8">
 	
-  <%=image_tag 'ob/6.jpg'%>
-  <%=image_tag 'ob/4.jpg'%>
-  <%=image_tag 'ob/1.jpg'%>
-  <%=image_tag 'ob/3.jpg'%>
-  <%=image_tag 'ob/5.jpg'%>
+		<div class="heading">
+			<%=image_tag "ob/mine-tags-48-2x.png", :class => "logo"%><br>
+			<h2>Welcome, <%=self.current_user.first_name%>!</h2>
+			Here's all you need to know.
+		</div>
 		
-	<p class="sub">Have a question? 
-		<a href="mailto:Mine &lt;<%=contact_email%>&gt;">Email us.</a>
-	</p>
+		<h3>Mine is crazy simple.</h3>
+		<p>
+			Just type in what you bought, pick the perfect picture, and add where you got it. That’s it.
+		</p>
+		
+		<h3>Mine gives you complete control.</h3>
+		<p>
+			Flick a switch to publish to Facebook, Twitter, Tumblr, or keep things within Mine. Mine doesn’t auto-share. 
+		</p>
+		
+		<h3>Mine gets great when 5 or more friends use it.</h3>
+		<p>
+			You’ll be amazed at what you learn from each other through the products and services you’ve chosen.
+		</p>
+	
+	  <%=link_to "Pick something nice you bought recently 
+	              <i class='icon-chevron-right icon-white'></i>",
+	      welcome_path(WelcomeFilter::Create),
+	      :class => "btn btn-large btn-red",
+	      :style => "display: block; margin: 28px auto 8px;"%>
+      
+  </div>
 
-</div>	<!-- /container -->
+</div>	<!-- /onboarding -->
 
 
 <%content_for :javascript do%>

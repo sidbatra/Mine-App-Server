@@ -81,7 +81,7 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
 
     this.hookup(contacts);
 
-    $(this.queryEl).focus();
+    $(this.queryEl).phocus();
   },
 
   // Filter contacts based on the query

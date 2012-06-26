@@ -10,18 +10,23 @@
 ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
 
 
-CONSUMER_KEY       = 'rGFRyGeuMegI45ZoQrK0Q'
-CONSUMER_SECRET    = 'BiyIaWQTIejCXJomvmtgRpikwAJ4MX2cZL3J5gSQ'
-OAUTH_TOKEN        = '45032868-LPwicmNtjVmIpNGtqQ4jD7MtfjjwAoDygJEiZeuK0'
-OAUTH_TOKEN_SECRET = 'xr0FiF97RBqdqRHz7oPB9dwkM1ZKFg5XyGVflf3ApBk'
+CONSUMER_KEY       = '5M8DIWAdEJRKlTW5d9vw'
+CONSUMER_SECRET    = 'JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc'
+OAUTH_TOKEN        = '20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04'
+OAUTH_TOKEN_SECRET = 'cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU'
 
 
 require 'rubygems'
 require 'tweetstream'
 
 
-LOGGER = Logger.new(File.join(ENV['RAILS_PATH'],"log/orange.rb.log"))
-@logger = LOGGER
+$running = true
+Signal.trap("TERM") do 
+  $running = false
+end
+
+
+@logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/orange.rb.log"))
 
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
@@ -56,12 +61,16 @@ end
 
 @count = 0
 @reset_at = Time.now - 10
-@client = TweetStream::Daemon.new
+@client = TweetStream::Client.new
 
 @client.track("just bought") do |status|
-  next if status.text.match "Stardoll"
+  next if status.text.match /Stardoll|RT/
+  next unless status.text.match /http/
+  next if !status.in_reply_to_screen_name.nil? || 
+          !status.in_reply_to_status_id.nil? || 
+          !status.in_reply_to_user_id.nil?
 
-  puts "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
+  @logger.info "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
 
   name = ""
   name = status.user.name.split(" ").first if status.user.name
@@ -71,24 +80,27 @@ end
 
   tweet = "@#{status.user.screen_name} #{@templates.choice.gsub("@name",name)}"
 
-  puts "#{tweet.length} #{tweet}"
+  @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
 
   
   begin
-    if @count < 100
-      @count += 1
-      Twitter.update(tweet,:in_reply_to_status_id => status.id)
-    else
+    @count += 1
+    Twitter.update(tweet,:in_reply_to_status_id => status.id)
+
+    if @count >= 1
       @count = 0
-      @reset_at = Time.now + 3600
-      puts "\n\nResetting\n\n"
+      @reset_at = Time.now + rand(60) + 300
+      @logger.info "Resetting"
     end
 
   rescue => ex
-    puts "Exception - #{ex.message}"
+    @logger.info "Exception - #{ex.message}"
   end
+
+
+  break if !$running
   
-  puts "\n"
+  @logger.info "\n"
 end
 
 @client.stop

@@ -33,11 +33,13 @@
 	  
 	  </div> <!-- /wrapper -->
 
-    <footer>
-      <div class="inner">
-        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
-      </div>
-    </footer>
+		<%if !is_onboarding?%>
+	    <footer>
+	      <div class="inner">
+	        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
+	      </div>
+	    </footer>
+	  <%end%>
 
     <%=render :partial => "misc/analytics"%>
 
@@ -57,8 +59,13 @@
                                    :only    => [],
                                    :methods => [:fb_publish_permissions,
                                                 :fb_extended_permissions,
-                                                :tw_permissions,
-                                                :tumblr_permissions]}})%>);
+                                                :fb_auth,
+                                                :tw_auth,
+                                                :tumblr_auth]}})%>);
+
+       <%if session[:renewed] && self.current_user.setting.fb_auth%>
+          new Denwen.Partials.Settings.FBAccessToken();
+       <%end%>
       <%end%>
     </script>
 

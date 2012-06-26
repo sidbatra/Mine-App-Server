@@ -1,6 +1,6 @@
 
 <div class="container well" id="container">
-  <h1><%=@purchase.title%><h1>
+  <h2><%=@purchase.title%><h2>
 
   <%=image_tag @purchase.giant_url%>
 
@@ -14,7 +14,17 @@
           purchase_path(@purchase.user.handle,@purchase.handle)%>
   <h3>
 
+  <br>
+
+  <b>Endorsement</b>
+  <h4>
+    <%=@purchase.endorsement%>
+  </h4>
+
+  <br>
+
   <h3> Facebook - <%=@purchase.fb_action_id%></h3>
   <h3> Twitter - <%=@purchase.tweet_id%></h3>
+  <h3> Tumblr - <%=@purchase.tumblr_post_id%></h3>
 
 </div>

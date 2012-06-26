@@ -240,17 +240,43 @@ class User < ActiveRecord::Base
     self.fb_permissions.include?(:publish_actions)
   end
 
+  # Whether or not we have a valid and non expired access token 
+  # for facebook. If not update the database 
+  #
+  def fb_access_token_valid?
+    if self.access_token.present? 
+      begin
+        self.fb_permissions
+        true
+      rescue FbGraph::InvalidToken => ex
+        self.access_token = nil
+        save!
+
+        self.setting.revoke_fb_permissions
+        false
+      end
+    else 
+      false
+    end
+  end
+
+  # Whether or not the user has authorized our facebook application
+  #
+  def fb_authorized?
+    self.access_token.present? 
+  end
+
   # Whether or not the user has authorized our twitter application
   # and in turn given us read/write permissions
   #
-  def tw_permissions?
+  def tw_authorized?
     self.tw_access_token.present? & self.tw_access_token_secret.present?
   end
 
   # Whether or not the user has authorized our tumblr application
   # and in turn given us read/write permissions
   #
-  def tumblr_permissions?
+  def tumblr_authorized?
     self.tumblr_access_token.present? & self.tumblr_access_token_secret.present?
   end
 

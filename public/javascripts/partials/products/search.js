@@ -49,7 +49,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
       this);
     
     this.infiniteScroller = new Denwen.InfiniteScroller({
-                                element:this.productsEl});
+                                element:this.productsEl,
+                                scrollMargin: 1500});
 
     this.infiniteScroller.bind(
       Denwen.InfiniteScroller.Callback.EndReached,

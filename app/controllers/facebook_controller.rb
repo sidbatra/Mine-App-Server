@@ -61,7 +61,8 @@ class FacebookController < ApplicationController
           ProcessingQueue.push(
             UserDelayedObserver,
             :mine_fb_data,
-            user) 
+            user,
+            true) 
         end 
         
       end
