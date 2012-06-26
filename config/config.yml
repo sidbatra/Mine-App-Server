@@ -38,7 +38,7 @@ common: &common
   :error: error
   :name: Mine
   :description: "Mine is a simple service for sharing purchases with friends. It’s fun, and totally free."
-  :version: 5.0.4
+  :version: 5.0.5
   :images:
     :white_200x200: private/images/white_200x200.jpg
     :fb_unit_base: private/images/facebook-unit/base-520x520.jpg
