@@ -35,7 +35,11 @@ class UserDelayedObserver < DelayedObserver
 
   # Mine user's fb data
   #
-  def self.mine_fb_data(user)
+  def self.mine_fb_data(user,check=false)
+
+    if(check && user.fb_access_token_valid?)
+      return 
+
     mine_fb_friends(user)
     compute_friend_score(user)
   end
