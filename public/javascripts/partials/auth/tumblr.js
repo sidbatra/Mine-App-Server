@@ -15,7 +15,7 @@ Denwen.Partials.Auth.Tumblr = Backbone.View.extend({
     var self = this;
     var oauthWindow = window.open(
                               '/tumblr/authenticate', 
-                              'Tumblr Authorization', 
+                              '', 
                               'width=800, height=600');
 
     var oauthInterval = window.setInterval(function(){
