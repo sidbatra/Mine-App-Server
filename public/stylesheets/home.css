@@ -26,7 +26,7 @@ a:hover {
 	background: url('/images/colors/black-60.png');
 	top: 0;
 	bottom: 0;
-	left: 32px;
+	left: 5%;
 	width: 384px;
 	padding-top: 13%;
 	text-align: center; }
@@ -48,6 +48,7 @@ a:hover {
 
 .box .share-to {
 	font-family: 'RooneyLightItalic', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: normal;
 	color: white;
 	font-size: 12px; }
 	
@@ -83,7 +84,7 @@ a:hover {
 footer, .push {
 	position: absolute;
 	bottom: 0;
-	left: 32px;
+	left: 5%;
 	text-align: center;
 	color: #ccc;
 	height: 36px;
