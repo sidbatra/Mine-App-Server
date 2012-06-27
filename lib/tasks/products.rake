@@ -15,9 +15,9 @@ namespace :products do
       columns = [:title,:description,:source_url,:orig_image_url,
                   :orig_image_url_hash,:store_id]
 
-      values  = []
 
       Dir.glob("#{dir}/*").each do |file_name|
+        values = []
         file = File.open(file_name) 
 
         file.each do |line|
@@ -32,10 +32,12 @@ namespace :products do
 
           values << [title,description,source_url,orig_image_url,
                       orig_image_url_hash,store_id]
-        end#file
-      end#Dir
+        end #lines
 
-      Product.import columns,values,{:validate => false}
+        Product.import columns,values,{:validate => false}
+
+      end #files
+
       products = Product.find_all_by_is_processed(false)
 
       products.each do |product|
