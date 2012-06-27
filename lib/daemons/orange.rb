@@ -12,8 +12,8 @@ ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
 
 CONSUMER_KEY       = '5M8DIWAdEJRKlTW5d9vw'
 CONSUMER_SECRET    = 'JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc'
-OAUTH_TOKEN        = '20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04'
-OAUTH_TOKEN_SECRET = 'cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU'
+OAUTH_TOKEN        = ['20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04','158595960-hIOCkVpoyRAbQl6y2QgdDjYnkpGwEPOnWczk5HPA']
+OAUTH_TOKEN_SECRET = ['cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU','B9cTjc6HZ0Pso03d1LVzEhDBYOYqNzMxoernFcY9zg']
 
 
 require 'rubygems'
@@ -28,23 +28,18 @@ end
 
 @logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/orange.rb.log"))
 
+
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
   config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = OAUTH_TOKEN
-  config.oauth_token_secret = OAUTH_TOKEN_SECRET
+  config.oauth_token        = OAUTH_TOKEN[0]
+  config.oauth_token_secret = OAUTH_TOKEN_SECRET[0]
   config.auth_method        = :oauth
-end
-
-Twitter.configure do |config|
-  config.consumer_key       = CONSUMER_KEY
-  config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = OAUTH_TOKEN
-  config.oauth_token_secret = OAUTH_TOKEN_SECRET
 end
 
 
 @templates = [
+  [
   "@name I've built a site called 'Mine' "\
   "for tweeting stuff you've bought. See if you like "\
   "http://getmine.com/try",
@@ -57,7 +52,19 @@ end
   ":))",
   "Awesome! I'm actually working on a site for "\
   "sharing cool stuff you buy - you can try it out here: "\
-  "http://getmine.com/try"]
+  "http://getmine.com/try"],
+  [
+  "@name have you heard of Mine, a site for tweeting "\
+  "about things you buy? It's awesome! http://getmine.com/try",
+  "Hey @name don't you use Mine for tweeting about things you buy? "\
+  "Really, really easy! http://getmine.com/try",
+  "Try tweeting stuff you've bought through Mine - it's a great "\
+  "new service I'm building: http://getmine.com/try",
+  "@name Have you tried Mine for tweeting your stuff? "\
+  "like this: http://getmine.com/Deepak-Rao/p/Nike-Fuel-Band", 
+  "Try http://getmine.com/try for tweeting pics of your stuff! "\
+  "e.g my new Nike fuel band: http://bit.ly/NCbHUF"]
+]
 
 @count = 0
 @reset_at = Time.now - 10
@@ -78,20 +85,28 @@ end
   next if name.nil? || name.length.zero? || Time.now < @reset_at
 
 
-  tweet = "@#{status.user.screen_name} #{@templates.choice.gsub("@name",name)}"
+  tweet = "@#{status.user.screen_name} "\
+          "#{@templates[@count].choice.gsub("@name",name)}"
 
   @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
+
+
+  Twitter.configure do |config|
+    config.consumer_key       = CONSUMER_KEY
+    config.consumer_secret    = CONSUMER_SECRET
+    config.oauth_token        = OAUTH_TOKEN[@count]
+    config.oauth_token_secret = OAUTH_TOKEN_SECRET[@count]
+  end
 
   
   begin
     @count += 1
     Twitter.update(tweet,:in_reply_to_status_id => status.id)
 
-    if @count >= 1
-      @count = 0
-      @reset_at = Time.now + rand(60) + 300
-      @logger.info "Resetting"
-    end
+    @reset_at = Time.now + rand(60) + 150
+    @logger.info "Resetting"
+    
+    @count = 0 if @count >= 2
 
   rescue => ex
     @logger.info "Exception - #{ex.message}"
