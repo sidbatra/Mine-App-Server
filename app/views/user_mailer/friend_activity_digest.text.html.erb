@@ -72,26 +72,29 @@
                               <%-end-%>
                               just shared a few things they bought.
                               <br>
+                              
+                              
+                              <%if @new_friends.present?%>
+                                <strong style="color:#333333">
+                                  <b>
+                                    New people:
+                                  </b>
+                                </strong> 
 
-                              <strong style="color:#333333">
-                                <b>
-                                  New people:
-                                </b>
-                              </strong> 
+                                <%@new_friends.each_with_index do |friend,i|%>
+                                  <%=link_to friend.first_name,
+                                      user_url(friend.handle,:src => @source),
+                                      :style => "color:#177DBE;
+                                                  font-weight:bold;
+                                                  text-decoration:none;"%><%=@new_friends.length > 1 && i < @new_friends.length - 2 ? ',' :''%>
 
-                              <%@new_friends.each_with_index do |friend,i|%>
-                                <%=link_to friend.first_name,
-                                    user_url(friend.handle,:src => @source),
-                                    :style => "color:#177DBE;
-                                                font-weight:bold;
-                                                text-decoration:none;"%><%=@new_friends.length > 1 && i < @new_friends.length - 2 ? ',' :''%>
-
-                                <%-if @new_friends.length > 1 && i == @new_friends.length-2-%>
-                                  and
+                                  <%-if @new_friends.length > 1 && i == @new_friends.length-2-%>
+                                    and
+                                  <%-end-%>
                                 <%-end-%>
-                              <%-end-%>
 
-                              joined Mine. They're now sharing purchases with you.
+                                joined Mine. They're now sharing purchases with you.
+                              <%end%>
                             </font>
                           </p>
                         </td>
