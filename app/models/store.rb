@@ -24,10 +24,12 @@ class Store < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :with_purchases, :include => :purchases
+  named_scope :with_crawl_datum, :include => :crawl_datum
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
-  named_scope :crawlable,   :conditions => {:crawlable => true}
+  named_scope :crawlable,   :joins => :crawl_datum, 
+                            :conditions => {:crawl_data => {:active => true}}
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'purchases_count DESC'
   named_scope :purchases_count_gt, lambda {|count| {
@@ -38,7 +40,7 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   attr_accessor :rehost, :reupdate_domain, :reupdate_metadata
   attr_accessible :name,:user_id,:image_path,:is_approved,
-                    :domain,:byline,:description,:favicon_path,:crawlable
+                    :domain,:byline,:description,:favicon_path
 
   #----------------------------------------------------------------------
   # Class methods
