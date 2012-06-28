@@ -8,13 +8,13 @@
 
 
 ENV['RAILS_PATH'] = File.dirname(__FILE__) + "/../../"
+ORANGE_CONFIG     = YAML.load_file(File.join(
+                                          ENV['RAILS_PATH'],
+                                          'config/orange.yml'))
 
-
-CONSUMER_KEY       = '5M8DIWAdEJRKlTW5d9vw'
-CONSUMER_SECRET    = 'JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc'
-OAUTH_TOKEN        = ['20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04','158595960-hIOCkVpoyRAbQl6y2QgdDjYnkpGwEPOnWczk5HPA']
-OAUTH_TOKEN_SECRET = ['cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU','B9cTjc6HZ0Pso03d1LVzEhDBYOYqNzMxoernFcY9zg']
-
+CONSUMER_KEY      = ORANGE_CONFIG[:consumer_key]
+CONSUMER_SECRET   = ORANGE_CONFIG[:consumer_secret]
+ACCOUNTS          = ORANGE_CONFIG[:accounts]
 
 require 'rubygems'
 require 'tweetstream'
@@ -26,48 +26,20 @@ Signal.trap("TERM") do
 end
 
 
-@logger = Logger.new(File.join(ENV['RAILS_PATH'],"log/orange.rb.log"))
+@logger   = Logger.new(File.join(ENV['RAILS_PATH'],'log/orange.rb.log'))
+@count    = 0 
+@reset_at = Time.now - 10
 
 
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
   config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = OAUTH_TOKEN[0]
-  config.oauth_token_secret = OAUTH_TOKEN_SECRET[0]
+  config.oauth_token        = ACCOUNTS[@count][:token] 
+  config.oauth_token_secret = ACCOUNTS[@count][:secret] 
   config.auth_method        = :oauth
 end
 
 
-@templates = [
-  [
-  "@name I've built a site called 'Mine' "\
-  "for tweeting stuff you've bought. See if you like "\
-  "http://getmine.com/try",
-  "@name I just built a site called "\
-  "'Mine' for doing that! Try http://getmine.com/try ",
-  "That's awesome @name - I just built a "\
-  "site called 'Mine' for doing that! try it out! http://getmine.com/try",
-  "Hey @name, saw that and thought you "\
-  "could use a site called 'Mine' http://getmine.com/try (yes, I built it "\
-  ":))",
-  "Awesome! I'm actually working on a site for "\
-  "sharing cool stuff you buy - you can try it out here: "\
-  "http://getmine.com/try"],
-  [
-  "@name have you heard of Mine, a site for tweeting "\
-  "about things you buy? It's awesome! http://getmine.com/try",
-  "Hey @name don't you use Mine for tweeting about things you buy? "\
-  "Really, really easy! http://getmine.com/try",
-  "Try tweeting stuff you've bought through Mine - it's a great "\
-  "new service I'm building: http://getmine.com/try",
-  "@name Have you tried Mine for tweeting your stuff? "\
-  "like this: http://getmine.com/Deepak-Rao/p/Nike-Fuel-Band", 
-  "Try http://getmine.com/try for tweeting pics of your stuff! "\
-  "e.g my new Nike fuel band: http://bit.ly/NCbHUF"]
-]
-
-@count = 0
-@reset_at = Time.now - 10
 @client = TweetStream::Client.new
 
 @client.track("just bought") do |status|
@@ -86,7 +58,7 @@ end
 
 
   tweet = "@#{status.user.screen_name} "\
-          "#{@templates[@count].choice.gsub("@name",name)}"
+          "#{ACCOUNTS[@count][:templates].choice[:tweet].gsub("@name",name)}"
 
   @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
 
@@ -94,8 +66,8 @@ end
   Twitter.configure do |config|
     config.consumer_key       = CONSUMER_KEY
     config.consumer_secret    = CONSUMER_SECRET
-    config.oauth_token        = OAUTH_TOKEN[@count]
-    config.oauth_token_secret = OAUTH_TOKEN_SECRET[@count]
+    config.oauth_token        = ACCOUNTS[@count][:token] 
+    config.oauth_token_secret = ACCOUNTS[@count][:secret] 
   end
 
   
