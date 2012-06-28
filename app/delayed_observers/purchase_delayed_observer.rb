@@ -11,7 +11,8 @@ class PurchaseDelayedObserver < DelayedObserver
     end
 
     if purchase.share_to_twitter? && purchase.is_processed
-      DistributionManager.tweet(purchase)
+      image = MiniMagick::Image.open(purchase.unit_url)
+      DistributionManager.tweet(purchase,image.path)
     end
 
     if purchase.share_to_tumblr? && purchase.is_processed
