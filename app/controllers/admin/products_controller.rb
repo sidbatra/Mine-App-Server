@@ -5,7 +5,6 @@ class Admin::ProductsController < ApplicationController
   #
   def index
     @filter = params[:filter].to_sym
-    @layout = "application"
 
     case @filter
     when :store
