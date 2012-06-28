@@ -9,9 +9,10 @@ class Store < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to  :user
+  has_one     :crawl_datum, :dependent => :destroy
   has_many    :purchases
   has_many    :products
-  has_many    :shoppings,   :dependent => :destroy
+  has_many    :shoppings, :dependent => :destroy
 
   #----------------------------------------------------------------------
   # Validations

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628013520) do
+ActiveRecord::Schema.define(:version => 20120628225800) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(:version => 20120628013520) do
   add_index "contacts", ["third_party_id"], :name => "index_contacts_on_third_party_id"
   add_index "contacts", ["user_id", "third_party_id"], :name => "index_contacts_on_user_id_and_third_party_id", :unique => true
   add_index "contacts", ["weight"], :name => "index_contacts_on_weight"
+
+  create_table "crawl_data", :force => true do |t|
+    t.integer  "store_id"
+    t.boolean  "active",     :default => false
+    t.string   "launch_url"
+    t.datetime "crawled_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "crawl_data", ["active"], :name => "index_crawl_data_on_active"
+  add_index "crawl_data", ["crawled_at"], :name => "index_crawl_data_on_crawled_at"
+  add_index "crawl_data", ["store_id"], :name => "index_crawl_data_on_store_id", :unique => true
 
   create_table "emails", :force => true do |t|
     t.integer  "recipient_id"

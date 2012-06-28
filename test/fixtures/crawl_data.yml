@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  crawl: false
+  launch_url: MyString
+  crawled_at: 2012-06-28 22:58:00
+
+two:
+  crawl: false
+  launch_url: MyString
+  crawled_at: 2012-06-28 22:58:00
