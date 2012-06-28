@@ -14,8 +14,16 @@ class Admin::StoresController < ApplicationController
     when :unapproved
       @approved_stores = Store.approved
       @stores = Store.unapproved.sorted
+      
     when :popular
       @stores = Store.purchases_count_gt(1).popular
+
+    when :crawled
+      store_ids = Product.select(:store_id).
+                    group(:store_id).
+                    map(&:store_id).
+                    compact
+      @stores = Store.find(store_ids)
     end
 
     render :partial => @filter.to_s,

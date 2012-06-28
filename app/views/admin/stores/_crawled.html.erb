@@ -1,0 +1,23 @@
+<div class="container well" id="container">
+  <table with="900" border="1">
+      <tr>
+        <td width="200">
+          <b>Name</b>
+        </td>
+        <td width="150">
+          <b>Crawled Products</b>
+        </td>
+        <td width="100">
+          <b>Edit</b>
+        </td>
+      </tr>
+    <%@stores.each do |store|%>
+      <tr>
+        <td><%=store.name%></td>
+        <td><%=link_to "View Products"%></td>
+        <td><%=link_to 'Edit View',edit_admin_store_path(store.handle)%></td>
+      </tr>
+    <%end%>
+  </table>
+</div>
+
