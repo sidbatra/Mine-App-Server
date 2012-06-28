@@ -49,6 +49,9 @@ end
           !status.in_reply_to_status_id.nil? || 
           !status.in_reply_to_user_id.nil?
 
+  break if !$running
+
+
   @logger.info "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
 
   name = ""
@@ -84,8 +87,6 @@ end
     @logger.info "Exception - #{ex.message}"
   end
 
-
-  break if !$running
   
   @logger.info "\n"
 end
