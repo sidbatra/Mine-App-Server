@@ -69,11 +69,13 @@ class Product < ActiveRecord::Base
   # returns - An Array of product models matching the given query.
   #
   def self.fulltext_search(query,store_id=nil,page=1,per_page=10)
-    search do 
-      fulltext query
-      with(:store_id, store_id) if store_id.present?
-      paginate :per_page => per_page, :page => page
-    end.results
+    search = search do 
+                fulltext query
+                with(:store_id, store_id) if store_id.present?
+                paginate :per_page => per_page, :page => page
+             end
+
+    [search.results,search.total]
   end
 
   # Public. Relative path of the thumbnail image on the filesystem.

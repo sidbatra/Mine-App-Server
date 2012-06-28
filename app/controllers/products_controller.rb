@@ -110,7 +110,7 @@ class ProductsController < ApplicationController
                             query,
                             nil,
                             page+1,
-                            per_page).map do |product|
+                            per_page).first.map do |product|
 
                            product_search_hash(
                              product.thumbnail_url,
