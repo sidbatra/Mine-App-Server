@@ -27,7 +27,8 @@ class Product < ActiveRecord::Base
   # Indexing
   #----------------------------------------------------------------------
   searchable do
-    text :title, :boost => 3
+    integer :store_id
+    text :title, :boost => 5
     text :description
     text :store, :boost => 2 do
       store ? store.name : ""
@@ -61,16 +62,20 @@ class Product < ActiveRecord::Base
   # solr + sunpot.
   #
   # query - The String query.
+  # store_id - The Integer store_id to search. (default: nil).
   # page - The Integer page number of results (default: 1).
   # per_page - The Integer number of results per page (default: 10).
   # 
   # returns - An Array of product models matching the given query.
   #
-  def self.fulltext_search(query,page=1,per_page=10)
-    search do 
-      fulltext query
-      paginate :per_page => per_page, :page => page
-    end.results
+  def self.fulltext_search(query,store_id=nil,page=1,per_page=10)
+    search = search do 
+                fulltext query
+                with(:store_id, store_id) if store_id.present?
+                paginate :per_page => per_page, :page => page
+             end
+
+    [search.results,search.total]
   end
 
   # Public. Relative path of the thumbnail image on the filesystem.

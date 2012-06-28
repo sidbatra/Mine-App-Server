@@ -5,18 +5,26 @@ class Admin::ProductsController < ApplicationController
   #
   def index
     @filter = params[:filter].to_sym
-    @layout = "application"
 
     case @filter
     when :store
+      @query = params[:q]
       @store = Store.find(params[:store_id])
-      @count = 500
-      @total = Product.for_store(@store.id).count
       @page = params[:page] ? params[:page].to_i : 0
-      @products = Product.for_store(@store.id).
-                    limit(@count).
-                    offset(@count * @page)
-      @stores = Store.unapproved.sorted
+
+      @count = 100
+
+      if @query
+        @products,@total = Product.fulltext_search(@query,
+                              @store.id,
+                              @page+1,
+                              @count)
+      else
+        @total = Product.for_store(@store.id).count
+        @products = Product.for_store(@store.id).
+                      limit(@count).
+                      offset(@count * @page)
+      end
 
     end
 

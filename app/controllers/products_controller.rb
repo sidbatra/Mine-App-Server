@@ -108,8 +108,9 @@ class ProductsController < ApplicationController
   def search_inhouse_products(query,page,per_page)
     @results[:inhouse] = Product.fulltext_search(
                             query,
+                            nil,
                             page+1,
-                            per_page).map do |product|
+                            per_page).first.map do |product|
 
                            product_search_hash(
                              product.thumbnail_url,

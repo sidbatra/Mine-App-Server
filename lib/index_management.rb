@@ -11,7 +11,7 @@ module DW
       # Regenerate the search index
       #
       def self.regenerate
-        Product.with_store.reindex
+        Product.with_store.reindex(:batch_size => 1000,:batch_commit => false)
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
