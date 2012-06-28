@@ -4,6 +4,7 @@
 #
 class ActiveRecord::Base 
   named_scope :select, lambda {|*args| {:select => args.join(",")}}
+  named_scope :group, lambda {|*args| {:group => args.join(",")}}
   named_scope :limit, lambda {|limit| {:limit => limit}}
   named_scope :offset, lambda {|offset| {:offset => offset}}
   named_scope :made, lambda{|*args| {:conditions => {
