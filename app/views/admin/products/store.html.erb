@@ -3,10 +3,23 @@
   <h1><%=@store.name%></h1>
 
   <br>
+
+  <%form_tag admin_products_path, :method => 'get' do%>
+    <%=hidden_field_tag :filter, "store"%>
+    <%=hidden_field_tag :store_id, @store.id%>
+    <%=text_field_tag :q, @query%>
+  <%end%>
+
+  <br>
   
-  <%=link_to "<h3>Next Page - #{@count * (@page+1)} / #{@total}</h3>",
+  <h3>Page <%=@page+1%> of <%=@total%> Products</h3>
+
+  <br>
+  
+  <%=link_to "<h3>Next Page</h3>",
       admin_products_path(
         :filter => "store",
+        :q => @query,
         :store_id => @store.id,
         :page => @page+1)%>
 
@@ -39,17 +52,12 @@
     <%end%>
   </table>
 
-
-  <br>
-  
-  <%=link_to "<h3>Next Page</h3>",
-      admin_products_path(
-        :filter => "store",
-        :store_id => params[:store_id],
-        :page => @page+1)%>
-
-  <br>
-
 </div>
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    $('#q').focus();
+  </script>
+<%end%>
 
 
