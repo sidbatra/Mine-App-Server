@@ -14,7 +14,9 @@
     <%@stores.each do |store|%>
       <tr>
         <td><%=store.name%></td>
-        <td><%=link_to "View Products"%></td>
+        <td><%=link_to "View Products",admin_products_path(
+                                        :filter => "store",
+                                        :store_id => store.id)%></td>
         <td><%=link_to 'Edit View',edit_admin_store_path(store.handle)%></td>
       </tr>
     <%end%>
