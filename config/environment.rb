@@ -7,7 +7,7 @@ ENV['RAILS_PATH']   ||= '.'
 ENV['CACHE_IN_DEV'] = 'false'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -28,6 +28,24 @@ Rails::Initializer.run do |config|
   CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
   CONFIG[:revision]   = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
 
+  config.gem('actionmailer',
+              :version => '2.3.14',
+              :lib => false)
+  config.gem('actionpack',
+              :version => '2.3.14',
+              :lib => false)
+  config.gem('activerecord',
+              :version => '2.3.14',
+              :lib => false)
+  config.gem('activeresource',
+              :version => '2.3.14',
+              :lib => false)
+  config.gem('activesupport',
+              :version => '2.3.14',
+              :lib => false)
+  config.gem('rails',
+              :version => '2.3.14',
+              :lib => false)
   config.gem('amazon-ecs',
               :version => '2.2.4',
               :lib => 'amazon/ecs')
