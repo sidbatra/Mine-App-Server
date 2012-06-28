@@ -21,6 +21,9 @@
       <td width="200">
         <b>Email</b>
       </td>
+      <td width="100">
+        <b>Source</b>
+      </td>
       <td width="120">
         <b>Link</b>
       </td>
@@ -43,6 +46,9 @@
         </td>
         <td>
           <%="#{truncate(user.email,:length => 50)}"%>
+        </td>
+        <td>
+          <%=user.source%>
         </td>
         <td>
           <%=link_to 'Admin View',admin_user_path(user.handle)%>

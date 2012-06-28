@@ -1,0 +1,55 @@
+<div class="container well" id="container">
+
+  <h1><%=@store.name%></h1>
+
+  <br>
+  
+  <%=link_to "<h3>Next Page - #{@count * (@page+1)} / #{@total}</h3>",
+      admin_products_path(
+        :filter => "store",
+        :store_id => @store.id,
+        :page => @page+1)%>
+
+  <br>
+
+  <table with="900" border="1">
+      <tr>
+        <td width="200">
+          <b>Title</b>
+        </td>
+        <td width="150">
+          <b>Image</b>
+        </td>
+        <td width="150">
+          <b>Description</b>
+        </td>
+        <td width="150">
+          <b>Link</b>
+        </td>
+      </tr>
+    <%@products.each do |product|%>
+      <tr>
+        <td><%=product.title%></td>
+        <td><%=link_to image_tag(product.thumbnail_url,"max-height" => 180),
+                product.image_url,
+                :target => "_blank"%></td>
+        <td><%=product.description%></td>
+        <td><%=link_to "Link",product.source_url,:target => "_blank"%></td>
+      </tr>
+    <%end%>
+  </table>
+
+
+  <br>
+  
+  <%=link_to "<h3>Next Page</h3>",
+      admin_products_path(
+        :filter => "store",
+        :store_id => params[:store_id],
+        :page => @page+1)%>
+
+  <br>
+
+</div>
+
+

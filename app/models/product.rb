@@ -37,6 +37,8 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
+  named_scope :for_store, lambda {|store_id| {:conditions => {
+                                      :store_id => store_id}}}
   named_scope :with_store, :include => :store
 
   #----------------------------------------------------------------------

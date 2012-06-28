@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120616225814) do
+ActiveRecord::Schema.define(:version => 20120628013520) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20120616225814) do
 
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
   add_index "products", ["orig_image_url_hash"], :name => "index_products_on_orig_image_url_hash", :unique => true
+  add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
   create_table "purchases", :force => true do |t|
     t.string   "title"
