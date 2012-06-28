@@ -1,11 +1,13 @@
 <div class="container well" id="container">
 
+  <h1><%=@store.name%></h1>
+
   <br>
   
   <%=link_to "<h3>Next Page - #{@count * (@page+1)} / #{@total}</h3>",
       admin_products_path(
         :filter => "store",
-        :store_id => params[:store_id],
+        :store_id => @store.id,
         :page => @page+1)%>
 
   <br>

@@ -9,11 +9,11 @@ class Admin::ProductsController < ApplicationController
 
     case @filter
     when :store
-      @store_id = params[:store_id]
+      @store = Store.find(params[:store_id])
       @count = 500
-      @total = Product.for_store(@store_id).count
+      @total = Product.for_store(@store.id).count
       @page = params[:page] ? params[:page].to_i : 0
-      @products = Product.for_store(@store_id).
+      @products = Product.for_store(@store.id).
                     limit(@count).
                     offset(@count * @page)
       @stores = Store.unapproved.sorted
