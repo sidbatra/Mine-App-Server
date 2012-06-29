@@ -1,6 +1,6 @@
 <div class="container well" id="container">
 
-  <h1><%=@store.name%></h1>
+  <h1><%=h @store.name%></h1>
 
   <br>
 
@@ -12,7 +12,7 @@
 
   <br>
   
-  <h3>Page <%=@page+1%> of <%=@total%> Products</h3>
+  <h3>Page <%=h @page+1%> of <%=h @total%> Products</h3>
 
   <br>
   

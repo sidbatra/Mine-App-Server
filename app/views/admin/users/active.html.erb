@@ -1,6 +1,6 @@
 <div class="container well" id="container">
   <b>
-    <%=@users.count%> <%=@period%> Visitors (<%=@active_count%> Active)
+    <%=@users.count%> <%=h @period%> Visitors (<%=@active_count%> Active)
   </b> 
   <br/><br/>
 
@@ -48,7 +48,7 @@
           <%="#{truncate(user.email,:length => 50)}"%>
         </td>
         <td>
-          <%=user.source%>
+          <%=h user.source%>
         </td>
         <td>
           <%=link_to 'Admin View',admin_user_path(user.handle)%>

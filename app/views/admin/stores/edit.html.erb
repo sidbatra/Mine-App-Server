@@ -23,7 +23,7 @@
 
     <div id='store_image'>
       <%if @store.image_path.present?%>
-        <img src="<%=@store.image_url%>" />
+        <img src="<%=h @store.image_url%>" />
       <%else%>
         No Image
       <%end%>
@@ -31,7 +31,7 @@
 
     <div id='store_favicon'>
       <%if @store.favicon_path.present?%>
-        <img src="<%=@store.favicon_url%>" />
+        <img src="<%=h @store.favicon_url%>" />
       <%else%>
         No Favicon
       <%end%>
