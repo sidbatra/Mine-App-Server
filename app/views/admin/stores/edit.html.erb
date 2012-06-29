@@ -14,8 +14,12 @@
     <%=f.label :is_approved,"Is Approved"%>
     <%=f.check_box :is_approved%>
 
-    <%#f.label :crawlable,"Crawlable"%>
-    <%#f.check_box :crawlable%>
+    <%f.fields_for @store.crawl_datum do |j|%>
+      <%=f.label :crawlable,"Crawlable"%>
+      <%=j.check_box :active%>
+      <br>
+      Launch URL - <%=j.text_field :launch_url%>
+    <%end%>
 
     <div id='store_image'>
       <%if @store.image_path.present?%>

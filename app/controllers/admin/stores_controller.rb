@@ -73,6 +73,7 @@ class Admin::StoresController < ApplicationController
       end # type
 
     when :generic
+      store.crawl_datum.update_attributes(params[:store][:crawl_datum])
       store.update_attributes(params[:store])
 
     end # filter
