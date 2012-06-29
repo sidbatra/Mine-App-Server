@@ -4,9 +4,8 @@ class Admin::ProductsController < ApplicationController
   # Fetch products based on different filters
   #
   def index
-    @filter = params[:filter].to_sym
 
-    case @filter
+    case params[:filter].to_sym
     when :store
       @query = params[:q]
       @store = Store.find(params[:store_id])
@@ -26,8 +25,9 @@ class Admin::ProductsController < ApplicationController
                       offset(@count * @page)
       end
 
+      @view = "store"
     end
 
-    render @filter.to_s
+    render @view
   end
 end
