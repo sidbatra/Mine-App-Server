@@ -41,7 +41,7 @@
           
       <%elsif user.byline.present?%>
 					<div class="user-bio">
-            <%=user.byline%>
+            <%=h user.byline%>
          </div>
       <%end%> 
 </div>
