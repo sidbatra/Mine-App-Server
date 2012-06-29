@@ -14,28 +14,12 @@
     <%=f.label :is_approved,"Is Approved"%>
     <%=f.check_box :is_approved%>
 
-    <%=f.label :crawlable,"Crawlable"%>
-    <%=f.check_box :crawlable%>
-
-    <div id='store_image'>
-      <%if @store.image_path.present?%>
-        <img src="<%=@store.image_url%>" />
-      <%else%>
-        No Image
-      <%end%>
-    </div>
-
-    <div id='store_favicon'>
-      <%if @store.favicon_path.present?%>
-        <img src="<%=@store.favicon_url%>" />
-      <%else%>
-        No Favicon
-      <%end%>
-    </div>
-
-    Click below to Add/Change Main store Image <br>
-    <a href='javasvript:void(0)' id='image_uploader'>
-    </a> 
+    <%f.fields_for @store.crawl_datum do |j|%>
+      <%=f.label :crawlable,"Crawlable"%>
+      <%=j.check_box :active%>
+      <br>
+      Launch URL - <%=j.text_field :launch_url%>
+    <%end%>
 
     <div id='store_image'>
       <%if @store.image_path.present?%>

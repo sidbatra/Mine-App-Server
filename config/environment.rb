@@ -79,6 +79,9 @@ Rails::Initializer.run do |config|
               :version => '1.3.1')
   config.gem('typhoeus',
               :version => '0.3.3')
+  config.gem('twitter',
+              :version => '2.5.0',
+              :lib => false)
   config.gem('twitter_oauth',
               :version => '0.4.3')
   config.gem('xmpp4r',

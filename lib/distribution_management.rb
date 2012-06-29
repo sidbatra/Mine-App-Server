@@ -50,27 +50,26 @@ module DW
 
       # Tweet about the purchase 
       #
-      def self.tweet(purchase)
-        client = TwitterOAuth::Client.new(
-                    :consumer_key     => CONFIG[:tw_consumer_key], 
-                    :consumer_secret  => CONFIG[:tw_consumer_secret],
-                    :token            => purchase.user.tw_access_token,
-                    :secret           => purchase.user.tw_access_token_secret)
-        
-        if client.authorized?
-          message = "Just bought this "
-
-          if purchase.store && purchase.store.is_approved
-            message << "from #{purchase.store.name} "
-          end
-
-          message << short_purchase_url(
-                      Cryptography.obfuscate(purchase.id),
-                      :host => CONFIG[:host])
-
-          tweet = client.update(message)
-          purchase.update_attributes({:tweet_id => tweet["id"]})
+      def self.tweet(purchase,image_path)
+        Twitter.configure do |config|
+          config.consumer_key       = CONFIG[:tw_consumer_key]
+          config.consumer_secret    = CONFIG[:tw_consumer_secret]
+          config.oauth_token        = purchase.user.tw_access_token
+          config.oauth_token_secret = purchase.user.tw_access_token_secret 
         end
+        
+        message = "Just bought this "
+
+        if purchase.store && purchase.store.is_approved
+          message << "from #{purchase.store.name} "
+        end
+
+        message << short_purchase_url(
+                    Cryptography.obfuscate(purchase.id),
+                    :host => CONFIG[:host])
+
+        tweet = Twitter.update_with_media(message,File.new(image_path))
+        purchase.update_attributes({:tweet_id => tweet.id})
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

@@ -39,15 +39,13 @@ namespace :stores do
     desc "Dump two text files containing crawlable stores"
     task :crawlable => :environment do |e,args|
     begin
-      stores = Store.crawlable
+      stores = Store.crawlable.with_crawl_datum
 
       url_file = File.open(File.join(RAILS_ROOT,"urls.txt"),"w")
       hash_file = File.open(File.join(RAILS_ROOT,"hash.txt"),"w")
 
       stores.each do |store|
-        next unless store.domain.present?
-
-        url_file.puts "http://#{store.domain}\tnutch.score=20"
+        url_file.puts "#{store.crawl_datum.launch_url}\tnutch.score=20"
         hash_file.puts "#{store.domain}\t#{store.id}"
       end
 

@@ -1,5 +1,11 @@
 class StoreObserver < ActiveRecord::Observer
 
+  # Build crawl datum for the store about to be created.
+  #
+  def before_create(store)
+    store.build_crawl_datum
+  end
+
   # Test the store object for the following events:
   #   rehosting - if image path is changed
   #   domain update - if the store has just been approved
