@@ -6,9 +6,8 @@ class Admin::UsersController < ApplicationController
   # Fetch sets of users based on different filters
   # 
   def index 
-    @filter = params[:filter].to_sym
 
-    case @filter
+    case params[:filter].to_sym
     when :active
       @period = params[:period].to_sym
       @time = 1.day.ago
@@ -25,10 +24,10 @@ class Admin::UsersController < ApplicationController
       end
 
       @users,@active_count = active_users_in_time_period(@time)
+      @view = "active"
     end
 
-    render :partial => @filter.to_s,
-           :layout  => "application"
+    render @view
   end
 
 
