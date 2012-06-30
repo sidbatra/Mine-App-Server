@@ -33,7 +33,7 @@
 	  
 	  </div> <!-- /wrapper -->
 
-		<%if !is_onboarding?%>
+		<%if logged_in? && !is_onboarding?%>
 	    <footer>
 	      <div class="inner">
 	        <%=CONFIG[:name]%> © 2012 · <%=email_link%>

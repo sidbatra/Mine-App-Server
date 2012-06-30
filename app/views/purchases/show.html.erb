@@ -42,12 +42,98 @@
           :class => "btn btn-black"%>
     </div> <!-- /thumbnail-box -->
     
+     <div id="feed" class="feed">
+ 		 </div>
+    
   <%else%>
-    <%@panel = render("panel",:layout => false)%>
+  
+  <div class="logged-out">
+  
+  	<div class="dimmer eighty">
+  	</div>
+  	
+  	<div class="item-header">
+  	
+			<%=image_tag "mine_54_horizontal_2x.png",
+						:class => "logo"%>
+						
+			<span class="text">
+				Use <span class="mine">mine</span> to tell friends when you buy good stuff.
+			</span>
+			
+      <%=link_to  "<i class='icon-facebook icon-white'></i> "\
+                  "Join Dihan on <span class='mine'>mine</span> now</span>",
+          fb_auth_path(:src => @origin), 
+          :class => "btn btn-large btn-red"%>
+	          
+    </div> <!-- /logged-out-item-header -->
+  	
+		<div id="" class="item">
+		
+		  <div class="photo rounded-5 relative">
+		  	<img class="stamp absolute" src="/images/mine_stamp_54_2x.png">
+		    <img class="item-photo" src="http://s3.amazonaws.com/denwen-mine-filesystem/g_MzcwM2MzYmM2YjEwYTdiNzEyNGExMzQwODI5MTg1.jpg">
+		  </div>
+		  
+		  <div id="" class="panel border-box relative ">
+		  	
+		  	<div id="" class="panel-contents border-box">
+		  		
+		  		<div class="title-box relative border-box">
+				    <img class="user-photo" src="http://graph.facebook.com/516534321/picture?type=square">
+				    <span class="user-name">
+				    	Dihan Algama
+				    </span> bought his 
+				    <span class="item-name">
+				    	Jack Wills Polo
+				    </span> from 
+				    <span class="store-name">
+				    	Jack Wills Store
+				    </span> 
+				  </div> <!-- /title-box -->
+				  
+				  <div class="thumbnail-box">
+				  
+					  <h5>Dihan also bought:</h5>
+					  
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MTBjMmJjY2VlMGVhNTM1OTUyZjAxMzQwNjgwNzQ5.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZjA2YTIxMjE1OGU3OTI2NzY2MmUxMzQwMDU2NzIx.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YzFmNTY5OWY3YmM4ODcyNzc5MzkxMzQwMDU2NTI0.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NTBjYjBlYTZhMWE3MjY2NTAwNzgxMzQwMDU3MzM0.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_Y2U2OTUxYjlhNzBlMmMyMzNkNzkxMzQwMDU2NDEz.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NGVjMjk5YTRjZWEyMjA1YWJkZmMxMzQwMDU2Mzcw.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NTUwMTRkN2M4ZTMwODMwZWQwOWUxMzQwMDU2MTg3.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NDVhZmJjN2M5YmQ0ZjcwMjJiMmYxMzQwMDU2MTk3.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NWVjZDQyMTRlY2ZmYjVhMWNiYWQxMzQwMDU2MDMw.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MjliOTFhZjA4MTM2MWI0MTMzNDUxMzQwMDU1OTkx.jpg" />
+					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YWI1Yzc4Zjg5YTRlNzI4OGM1OTUxMzM3OTg5Njgz.jpg" />
+						
+						<div class="sub">
+						  Know Dihan?
+						  <%=link_to  "Log in",
+		          		fb_auth_path(:src => @origin)%> 
+		          to view his mine.
+	          </div>
+          
+          </div> <!--/thumbnail-box -->
+          
+          <div class="marketing-box">
+          	<div class="bubble rounded-5">
+	          	<p>Dihan uses <span class="mine">mine</span> to tell friends when he buys something they might like.</p>
+	          	<p>He can share with select friends on <span class="mine">mine</span>, or publish to Facebook, Twitter or Tumblr.</p>
+	          	<p>It's easy, and free.</p>
+          	</div>
+          </div> <!-- /marketing-box -->
+		  	
+		  	</div> <!-- /panel-contents -->
+		
+		  </div> <!-- /panel -->
+		
+		</div> <!-- /item -->
+	
+	</div> <!-- /logged-out -->
+	
   <%end%>
-
-  <div id="feed" class="feed">
-  </div>
 
 <!--
   <%#if logged_in?%>
