@@ -895,6 +895,20 @@ footer, footer a, footer a:hover { color: #ccc; }
 .logged-out .item .panel .marketing-box .bubble {
 	background: #ffffcc;
 	padding: 12px; }
+	
+.usage-sequence-box { 
+	font-size: 0;
+	margin-top: 16px;
+	background: #444;
+	padding: 12px; }
+
+.usage-sequence-box .btn { width: 25%; }
+
+footer.dark {
+	background: url('/images/colors/black-25.png');
+	text-align: center; }
+
+footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
 
 /* Profile
@@ -1225,7 +1239,7 @@ footer, footer a, footer a:hover { color: #ccc; }
   padding: 0 16px;
   height: 42px;
   font-size: 15px;
-  line-height: 40px;
+  line-height: 42px;
   line-height: 40px\0/ !important;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
