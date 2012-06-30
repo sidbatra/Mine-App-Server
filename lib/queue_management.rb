@@ -1,44 +1,43 @@
 module DW
 
-  # Set of classes and methods for handling series of global
-  # queues used across the application
-  #
   module QueueManagement
 
 
-    # System's interface to the creation, retrieval and deletion of queues
-    #
     class QueueManager
 
-      @sqs = Aws::Sqs.new(
-                CONFIG[:aws_access_id],
-                CONFIG[:aws_secret_key],
-                {:connection_mode => :single})
-      
-
-      # Returns a local queue object based on the given suffix. Local queues
-      # have a prefix of the environment type and the machine_id
+      # Public. Setup AWS credentials and connection_mode for the service.
+      # 
+      # aws_access_id - The String AWS access id.
+      # aws_secret_key - The String AWS secret key.
+      # connection_mode - The Symbol for threading options - 
+      #                   :single,:per_thread,:per_request. 
+      #                   See: https://github.com/appoxy/aws/ (default: :single)
       #
-      def self.fetch_local_queue(suffix,visibility)
-        name = [RAILS_ENV,CONFIG[:machine_id],suffix].join("_") 
-
-        puts name
-        puts visibility
-
-        Aws::Sqs::Queue.create(@sqs,name,true,visibility)
+      def self.setup(aws_access_id,aws_secret_key,connection_mode=:single)
+        @aws_access_id = aws_access_id
+        @aws_secret_key = aws_secret_key
+        @connection_mode = connection_mode
+      end
+        
+      # Public. Open a connection and fetch an Aws::Sqs::Queue.
+      #
+      # Returns the Aws::Sqs::Queue.
+      def self.fetch(name,visibility)
+        Aws::Sqs::Queue.create(sqs,name,true,visibility)
       end
 
-      # Returns a global queue object based on the given suffix. Global
-      # queue objects have a prefix for the current environment and are
-      # shared across the application framework
+
+      private
+
+      # Private: Getter method for Aws::Sqs object. Enables
+      # lazily creating an SqsInterface.
       #
-      def self.fetch_global_queue(suffix,visibility)
-        name = [RAILS_ENV,suffix].join("_") 
-
-        puts name
-        puts visibility
-
-        Aws::Sqs::Queue.create(@sqs,name,true,visibility)
+      # Returns the Aws::Sqs.
+      def self.sqs
+        @sqs ||= Aws::Sqs.new(
+                  @aws_access_id,
+                  @aws_secret_key,
+                  {:connection_mode => @connection_mode})
       end
 
     end
@@ -99,18 +98,22 @@ module DW
     end
 
 
-    # Base Queue object overriden to create specific queue. 
-    # The @queue class variable is overriden in each child class
-    # to specify a queue object provided by QueueManager
-    #
     class Queue
 
-      @queue = nil
+      # Public. Constructor logic.
+      #
+      # name - The String name of the queue.
+      # visibility - The Integer visibility of an item in the queue.
+      #
+      def initialize(name,visibility=90)
+        @name = name
+        @visibility = visibility
+      end
 
       # Return a new payload object if any exists in the queue
       #
-      def self.pop
-        message = @queue.pop
+      def pop
+        message = queue.pop
         payload = YAML.load(message.body) if message
         payload
       end
@@ -119,7 +122,7 @@ module DW
       # a new one using its klass and an unlimited number of arguments
       # or by using an existing one
       #
-      def self.push(*args)
+      def push(*args)
         raise IOError, "klass name or payload needed" if args.size == 0
 
         payload = nil
@@ -130,40 +133,25 @@ module DW
           payload = Payload.new(*args)
         end
 
-        @queue.push(payload.to_yaml)
+        queue.push(payload.to_yaml)
       end
 
-      # Clear the queue
+      # Public: Clear all entries in the queue.
       #
-      def self.clear
-        @queue.clear
+      def clear
+        queue.clear
       end
 
-    end
 
-
-    # Inheirted from the Queue class, ProcessingQueue is the primary glue 
-    # between most components of the application and has a dedicated server
-    # with multiple workers processing its entries
-    #
-    class ProcessingQueue < Queue
-
-      if Rails.env != 'development'
-        @queue = QueueManager.fetch_global_queue(Q[:proc],90)
-      else
-        @queue = QueueManager.fetch_local_queue(Q[:proc],90)
+      private
+      
+      # Private. Getter method for the queue. Enables opening
+      # lazy connections.
+      #
+      def queue
+        @queue ||= QueueManager.fetch(@name,@visibility)
       end
-    end
 
-    # Similar to the ProcessingQueue class but with a lower priority.
-    #
-    class SecondaryProcessingQueue < Queue
-
-      if Rails.env != 'development'
-        @queue = QueueManager.fetch_global_queue(Q[:secondary_proc],90)
-      else
-        @queue = QueueManager.fetch_local_queue(Q[:secondary_proc],90)
-      end
     end
 
   end #queue management
