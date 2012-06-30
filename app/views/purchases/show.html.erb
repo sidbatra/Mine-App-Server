@@ -61,8 +61,9 @@
 				Use <span class="mine">mine</span> to tell friends when you buy good stuff.
 			</span>
 			
-      <%=link_to  "<i class='icon-facebook icon-white'></i> "\
-                  "Join Dihan on <span class='mine'>mine</span> now</span>",
+      <%=link_to  "<span class='hide-when-loading'><i class='icon-facebook icon-white'></i> "\
+                  "Join Dihan on <span class='mine'>mine</span> now</span></span>"\
+                  "<i class='icon-loading icon-white'></i>",
           fb_auth_path(:src => @origin), 
           :class => "btn btn-large btn-red"%>
 	          
@@ -75,7 +76,7 @@
 		    <img class="item-photo" src="http://s3.amazonaws.com/denwen-mine-filesystem/g_MzcwM2MzYmM2YjEwYTdiNzEyNGExMzQwODI5MTg1.jpg">
 		  </div>
 		  
-		  <div id="" class="panel border-box relative ">
+		  <div id="" class="panel border-box relative">
 		  	
 		  	<div id="" class="panel-contents border-box">
 		  		
