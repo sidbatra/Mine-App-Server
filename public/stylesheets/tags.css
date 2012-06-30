@@ -870,7 +870,7 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 .logged-out .item .panel .title-box { 
 	font-size: 18px;
 	line-height: 27px;
-	color: #333;
+	color: #555;
 	font-family: 'RooneyLightItalic', Georgia;
 	padding-bottom: 12px; }
 	
@@ -882,10 +882,11 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 .logged-out .item .panel .title-box .item-name,
 .logged-out .item .panel .title-box .store-name {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: bold; }
+	font-weight: bold;
+	color: #333; }
 
 .logged-out .item .panel .thumbnail-box {
-	padding: 12px 0;
+	padding: 12px 0 8px;
 	border-top: 1px solid #ddd; }
 
 .logged-out .item .panel .thumbnail-box h5 { color: #777; padding-bottom: 6px; }
@@ -900,7 +901,7 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	font-size: 15px;
 	line-height: 22px; 
 	color: #999;
-	padding: 12px 0;
+	padding: 18px 0;
 	border-top: 1px solid #ddd; } 
 
 .logged-out .item .panel .marketing-box .bubble {
