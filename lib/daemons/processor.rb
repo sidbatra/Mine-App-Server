@@ -33,7 +33,7 @@ while($running) do
       payload.failed
 
       if payload.attempts < CONFIG[:max_processing_attempts]
-        logger.info "Recovering #{payload.to_s} #{end_time - start_time}"
+        logger.info "Recovering #{payload.to_s}"
         payload.queue.push(payload)
       else
         LoggedException.add(__FILE__,__method__,ex)
