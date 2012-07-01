@@ -34,15 +34,10 @@ include CryptoManagement
 include ImageProcessing
 include MailmanInterface
 include Storage
-include QueueManagement
 include DistributionManagement
 include WebSearchInterface
 
 
-# Disable updates in ThinkingSphinx to use the delayed delta
-# gem without using delayed_job
-#
-#ThinkingSphinx.updates_enabled = false
 
 ActionMailer::Base.delivery_method          = :amazon_ses
 ActionMailer::Base.custom_amazon_ses_mailer = AWS::SES::Base.new(
