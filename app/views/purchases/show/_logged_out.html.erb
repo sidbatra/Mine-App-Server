@@ -1,0 +1,135 @@
+    <%content_for :footer_attribute do%>
+      class="dark"
+    <%end%>
+
+    <div class="logged-out">
+    
+      <div class="dimmer eighty">
+      </div>
+      
+      <div class="item-header">
+      
+        <%=image_tag "mine_54_horizontal_2x.png",
+            :class => "logo"%>
+              
+        <span class="text">
+          Use 
+          <span class="mine">
+            <%=CONFIG[:name].downcase%>
+          </span> 
+          to tell friends when you buy good stuff.
+        </span>
+        
+        <a href="<%=fb_auth_path(:src => @origin)%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-large btn-red">
+          <span class='hide-when-loading'>
+            <i class='icon-facebook icon-white'></i>
+            Join <%=h @purchase.user.first_name%> on 
+            <span class='mine'><%=CONFIG[:name].downcase%></span> now
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+              
+      </div> <!-- /logged-out-item-header -->
+      
+
+      <div class="item clearfix">
+      
+        <div class="photo rounded-5 relative">
+          <%=image_tag "mine_stamp_54_2x.png",
+              :class => "stamp absolute"%>
+          <%=image_tag @purchase.giant_url,
+              :class => "item-photo"%>
+        </div>
+        
+
+        <div class="panel border-box relative">
+          
+          <div class="panel-contents border-box">
+            
+            <div class="title-box relative border-box">
+
+              <%=image_tag @purchase.user.square_image_url,
+                  :class => "user-photo"%>
+
+              <span class="user-name">
+                <%=truncate h(@purchase.user.full_name),:length => 28%>
+              </span> 
+
+              bought <%=user_pronoun @purchase.user%>
+
+              <span class="item-name">
+                <%=truncate h(@purchase.title),:length => 50%>
+              </span> 
+
+              <%if @purchase.store%>
+                from 
+                <span class="store-name">
+                  <%=truncate h(@purchase.store.name),:length => 28%>
+                </span> 
+              <%end%>
+            </div> <!-- /title-box -->
+            
+            <div class="thumbnail-box">
+            
+              <h5><%=h @purchase.user.first_name%> also bought:</h5>
+
+              <%cache ["v2",@purchase.user,"purchases","preview","loggedout"] do%>
+                <%@purchase.user.purchases.by_id.limit(14).each do |purchase|%>
+                  <%cache ["v2",purchase,"teaser","purchase","loggedout"] do%>
+                    <div class="thumb">
+                      <%=image_tag purchase.square_url%>
+                    </div>
+                  <%end%>
+                <%end%>
+              <%end%>
+              
+              <div class="sub">
+                Know <%=h @purchase.user.first_name%>?
+
+                <%=link_to "Log in",
+                    fb_auth_path(:src => @origin)%> 
+
+                to view <%=user_pronoun @purchase.user%> <span class="mine">mine</span>.
+              </div>
+            
+            </div> <!--/thumbnail-box -->
+            
+
+            <div class="marketing-box">
+              <div class="bubble rounded-5">
+                <p>
+                  <%=h @purchase.user.first_name%> uses 
+                  <span class="mine"><%=CONFIG[:name].downcase%></span> 
+                  to tell friends when <%=user_singular_pronoun @purchase.user%>
+                  buys something they might like.
+                </p>
+                <p>
+                  <%=user_singular_pronoun(@purchase.user).capitalize%> can share with 
+                  select friends on <span class="mine"><%=CONFIG[:name].downcase%></span>, 
+                  or publish to Facebook, Twitter or Tumblr.
+                </p>
+                <p>
+                  <span class="mine"><%=CONFIG[:name].downcase%></span> never auto-shares.
+                </p>
+              </div>
+            </div> <!-- /marketing-box -->
+
+          
+          </div> <!-- /panel-contents -->
+      
+        </div> <!-- /panel -->
+      
+      </div> <!-- /item -->
+    
+    </div> <!-- /logged-out -->
+
+
+    <%content_for :javascript do%>
+      <script type="text/javascript">
+        new Denwen.Views.Purchases.Show({
+            source : '<%=@source%>'});
+      </script>
+    <%end%>
+
