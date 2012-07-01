@@ -132,7 +132,7 @@ module DW
       #
       def self.add_purchase_reminder
 
-        User.all.with_setting.each do |user|
+        User.with_setting.each do |user|
           begin
 
             if user.setting.email_update 
