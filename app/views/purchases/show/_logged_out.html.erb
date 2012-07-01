@@ -13,11 +13,7 @@
             :class => "logo"%>
               
         <span class="text">
-          Use 
-          <span class="mine">
-            <%=CONFIG[:name].downcase%>
-          </span> 
-          to tell friends when you buy good stuff.
+					Tell friends when you buy good stuff.
         </span>
         
         <a href="<%=fb_auth_path(:src => @origin)%>" 
@@ -34,7 +30,7 @@
       </div> <!-- /logged-out-item-header -->
       
 
-      <div class="item clearfix">
+      <div class="item clearfix shaded">
       
         <div class="photo rounded-5 relative">
           <%=image_tag "mine_stamp_54_2x.png",
@@ -98,7 +94,7 @@
             
 
             <div class="marketing-box">
-              <div class="bubble rounded-5">
+              <div class="bubble rounded-5 shaded">
                 <p>
                   <%=h @purchase.user.first_name%> uses 
                   <span class="mine"><%=CONFIG[:name].downcase%></span> 
@@ -111,7 +107,7 @@
                   or to Facebook, Twitter or Tumblr.
                 </p>
                 <p>
-                  <span class="mine"><%=CONFIG[:name].downcase%></span> never auto-shares.
+                  <span class="mine"><%=CONFIG[:name].downcase%></span> <em>never</em> auto-shares.
                 </p>
               </div>
             </div> <!-- /marketing-box -->

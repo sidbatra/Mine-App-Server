@@ -893,16 +893,21 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	border-top: 1px solid #ddd; }
 
 .logged-out .item .panel .thumbnail-box h5 { color: #777; padding-bottom: 6px; }
-.logged-out .item .panel .thumbnail-box .thumb { height: 28px; width: 28px; }
+.logged-out .item .panel .thumbnail-box .thumb,
+.logged-out .item .panel .thumbnail-box .thumb img { 
+	height: 28px; 
+	width: 28px; 
+	line-height: 28px; }
+	
 .logged-out .item .panel .thumbnail-box .sub { 
+	line-height: 32px;
 	font-size: 12px;
 	font-family: 'RooneyLightItalic', Georgia; 
 	color: #777; }
 
 .logged-out .item .panel .marketing-box {
-/* 	font-family: 'RooneyLightItalic', Georgia; */
 	font-size: 13px;
-	line-height: 18px; 
+	line-height: 20px; 
 	color: #999;
 	padding: 18px 0;
 	border-top: 1px solid #ddd; } 
