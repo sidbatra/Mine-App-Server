@@ -102,13 +102,13 @@
                 <p>
                   <%=h @purchase.user.first_name%> uses 
                   <span class="mine"><%=CONFIG[:name].downcase%></span> 
-                  to tell friends when <%=user_singular_pronoun @purchase.user%>
-                  buys something they might like.
+                  to tell friends <%=user_singular_pronoun @purchase.user%>'s
+                  bought something they might like.
                 </p>
                 <p>
                   <%=user_singular_pronoun(@purchase.user).capitalize%> can share with 
-                  select friends on <span class="mine"><%=CONFIG[:name].downcase%></span>, 
-                  or publish to Facebook, Twitter or Tumblr.
+                  select <span class="mine"><%=CONFIG[:name].downcase%></span> friends 
+                  or to Facebook, Twitter or Tumblr.
                 </p>
                 <p>
                   <span class="mine"><%=CONFIG[:name].downcase%></span> never auto-shares.
