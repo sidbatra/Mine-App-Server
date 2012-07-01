@@ -47,6 +47,8 @@ a:hover {
 	left: 0; }
 
 .dimmer.sixty { background: url('/images/colors/black-60.png'); }
+.dimmer.seventy { background: url('/images/colors/black-70.png'); }
+.dimmer.seventy-five { background: url('/images/colors/black-75.png'); }
 .dimmer.eighty { background: url('/images/colors/black-80.png'); }
 .dimmer.hundred { background: black; }
 
@@ -1575,6 +1577,14 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 	font-weight: bold !important;
 	-webkit-font-smoothing: antialiased; }
+
+.f:after {
+	content: "f";
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
+	font-weight: bold; 
+	font-size: 18px; 
+	padding-right: 6px; 
+	vertical-align: -1px; }
 
 .fixed    { position: fixed; }
 .relative { position: relative; }

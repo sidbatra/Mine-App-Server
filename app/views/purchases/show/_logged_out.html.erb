@@ -4,7 +4,11 @@
 
     <div class="logged-out">
     
-      <div class="dimmer eighty">
+    		<div class="background-cover" 
+        	style="background-image: url('<%=image_path "blurrydemo.jpg"%>')">
+  			</div>
+    
+      <div class="dimmer seventy-five">
       </div>
       
       <div class="item-header">
@@ -18,9 +22,9 @@
         
         <a href="<%=fb_auth_path(:src => @origin)%>" 
             onclick="this.className += ' load';"
-            class="btn btn-large btn-red">
+            class="btn btn-large btn-red shaded">
           <span class='hide-when-loading'>
-            <i class='icon-facebook icon-white'></i>
+          	<span class="f"></span> 
             Join <%=h @purchase.user.first_name%> on 
             <span class='mine'><%=CONFIG[:name].downcase%></span> now
           </span>
