@@ -43,58 +43,68 @@ module DW
     end
 
 
-    # The object pushed onto all the queues
-    #
     class Payload
-      attr_accessor :klass,:method,:attempts,:arguments
+      attr_reader :attempts
 
-      # Initialize with klass name and method to be executed along
-      # with optional arguments
+      # Public. Create a payload with an object a method of that
+      # object and optional arguments for that method.
       #
-      def initialize(*args)
-        raise IOError, "klass name needed" if args.size < 2
-        
-        @attempts   = 0
-        @klass      = args.first.is_a?(ActiveRecord::Base) ? 
-                        args.first.to_yaml  : 
-                        args.first.to_s.split("::").last
-        @method     = args[1]
-        @arguments  = args[2..-1]
+      # object - The Object the payload carries.
+      # method - The Symbol method name for the object.
+      # args - The optional array of arguments for the method.
+      #
+      # Returns nothing.
+      # Raises ArgumentError if object or method aren't present.
+      def initialize(object,method,*args)
+        raise ArgumentError, "klass name needed" unless object && method
+
+        @attempts = 0
+        @object = object.is_a?(Class) ? 
+                    object.to_s.split("::").last :
+                    object.to_yaml 
+        @method = method
+        @arguments = args
       end
 
-      # Process the payload object by mapping to an object of the given
-      # klass and running the given method with the given arguments
+      # Public. Call the method on the carried object with
+      # the carried arguments. If the carried object is an
+      # ActiveRecord::Base object, reload it from the db
+      # to get a fresh state.
       #
+      # Returns the result of the method call on the object.
       def process
-        object = @klass.match(/ruby\/object/) ?
-                  YAML.load(@klass) :
-                  Object.const_get(@klass)
+        if @object.start_with? "--- "
+          object = YAML.load(@object)
 
-        if object.is_a? ActiveRecord::Base
-          object = object.class.find object.id
+          if object.is_a? ActiveRecord::Base
+            object = object.class.find object.id 
+          end
+        else
+          object = Object.const_get(@object)
         end
 
-        object.send(@method.to_sym,*arguments)
+        object.send(@method.to_sym,*@arguments)
       end
 
       # Returns an identifying name for the object
       #
-      def object_name
-        if @klass.match(/ruby\/object/)
-          object = YAML.load(@klass)
-          object.class.name + '_' + object.id.to_s
-        else
-          Object.const_get(@klass).name
-        end
+      #def object_name
+      #  if @object.match(/ruby\/object/)
+      #    object = YAML.load(@object)
+      #    object.class.name + '_' + object.id.to_s
+      #  else
+      #    Object.const_get(@object).name
+      #  end
+      #end
+
+      # Public. Mark the instance as failed by increaseing
+      # the number of attempts to process it.
+      #
+      # Returns the Integer number of attempts used.
+      def failed
+        @attempts += 1
       end
 
-      # Test based on the total attempts whether the payload should
-      # receover from failure or not
-      #
-      def recover?
-        @attempts += 1
-        @attempts < CONFIG[:max_processing_attempts]
-      end
     end
 
 
@@ -105,26 +115,31 @@ module DW
       # name - The String name of the queue.
       # visibility - The Integer visibility of an item in the queue.
       #
+      # Returns nothing.
       def initialize(name,visibility=90)
         @name = name
         @visibility = visibility
       end
 
-      # Return a new payload object if any exists in the queue
+      # Public. Pop the first entry in the queue and create a payload
+      # object from it.
       #
+      # Returns the Payload object if found or nil.
       def pop
         message = queue.pop
         payload = YAML.load(message.body) if message
         payload
       end
 
-      # Push a payload object onto the processing queue either by creating
-      # a new one using its klass and an unlimited number of arguments
-      # or by using an existing one
+      # Push a new entry onto the queue. 
       #
+      # args - This can either be a Payload object or a Class or any ruby object
+      # including ActiveRecord::Base objects followed by a symbol for a method and optional
+      # method arguments. During processing ActiveRecord::Base
+      # objects are fetched again from the DB to avoid staleness.
+      #
+      # Returns nothing.
       def push(*args)
-        raise IOError, "klass name or payload needed" if args.size == 0
-
         payload = nil
 
         if args.first.class == Payload
@@ -138,6 +153,7 @@ module DW
 
       # Public: Clear all entries in the queue.
       #
+      # Returns nothing.
       def clear
         queue.clear
       end
@@ -148,6 +164,7 @@ module DW
       # Private. Getter method for the queue. Enables opening
       # lazy connections.
       #
+      # Returns the Aws::Sqs::Queue object the QueueManager creates.
       def queue
         @queue ||= QueueManager.fetch(@name,@visibility)
       end

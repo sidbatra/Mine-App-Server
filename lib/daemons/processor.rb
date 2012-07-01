@@ -27,18 +27,20 @@ while($running) do
       payload.process
       end_time = Time.now
 
-      logger.info "Finished processing "\
-                  "#{payload.object_name} "\
-                  "#{payload.method} "\
-                  "#{payload.arguments.join("|")} "\
-                  "#{end_time - start_time}"
+      #logger.info "Finished processing "\
+      #            "#{payload.object_name} "\
+      #            "#{payload.method} "\
+      #            "#{payload.arguments.join("|")} "\
+      #            "#{end_time - start_time}"
 
     rescue => ex
-      if payload.recover?
-        logger.info "Recovering "\
-                    "#{payload.object_name} "\
-                    "#{payload.method} "\
-                    "#{payload.arguments.join("|")}"
+      payload.failed
+
+      if payload.attempts < CONFIG[:max_processing_attempts]
+        #logger.info "Recovering "\
+        #            "#{payload.object_name} "\
+        #            "#{payload.method} "\
+        #            "#{payload.arguments.join("|")}"
         ProcessingQueue.push(payload)
       else
         LoggedException.add(__FILE__,__method__,ex)
