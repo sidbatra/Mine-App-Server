@@ -74,7 +74,7 @@ module DW
       #
       # Returns the result of the method call on the object.
       def process
-        if @object.start_with? "--- "
+        if is_object_yaml?
           object = YAML.load(@object)
 
           if object.is_a? ActiveRecord::Base
@@ -101,7 +101,7 @@ module DW
       def to_s
         output = ""
 
-        if @object.start_with? "--- "
+        if is_object_yaml?
           object = YAML.load(@object)
           output << object.class.name 
         else
@@ -110,6 +110,16 @@ module DW
 
         output << " :#{@method} #{@arguments.join("|")}"
         output
+      end
+
+
+      private 
+
+      # Private. Test if the object is a ruby object in YAML.
+      #
+      # Returns the Boolean value of the test.
+      def is_object_yaml?
+        @object.start_with? "--- "
       end
 
     end
