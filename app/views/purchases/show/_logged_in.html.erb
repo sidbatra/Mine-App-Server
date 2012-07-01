@@ -25,3 +25,14 @@
      <div id="feed" class="feed">
  		 </div>
 
+
+    <%content_for :javascript do%>
+      <script type="text/javascript">
+        new Denwen.Views.Purchases.Show({
+            purchaseJSON : <%=render :partial => "purchases/display.json.erb",
+                                :locals => {:object => @purchase}%>,
+            friends : <%=self.current_user.ifollowers.to_json(:only => [:id])%>,
+            source : '<%=@source%>'});
+      </script>
+    <%end%>
+

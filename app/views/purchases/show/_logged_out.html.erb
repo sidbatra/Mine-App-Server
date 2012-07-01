@@ -120,3 +120,11 @@
     
     </div> <!-- /logged-out -->
 
+
+    <%content_for :javascript do%>
+      <script type="text/javascript">
+        new Denwen.Views.Purchases.Show({
+            source : '<%=@source%>'});
+      </script>
+    <%end%>
+
