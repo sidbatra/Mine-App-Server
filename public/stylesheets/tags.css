@@ -128,6 +128,10 @@ a:hover {
 	vertical-align: top;
 	margin-top: 18px; }
 	
+footer {
+  text-align: center;
+}
+
 footer, .push {
 	height: 32px;
 	line-height: 32px;
@@ -137,8 +141,7 @@ footer, .push {
 footer, footer a, footer a:hover { color: #ccc; }
 
 footer.dark {
-	background: url('/images/colors/black-25.png');
-	text-align: center; }
+	background: url('/images/colors/black-25.png');}
 
 footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 

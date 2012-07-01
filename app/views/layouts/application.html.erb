@@ -33,22 +33,15 @@
 	  
 	  </div> <!-- /wrapper -->
 
-		<%if logged_in? && !is_onboarding?%>
-	    <footer>
-	      <div class="inner">
-	        <%=CONFIG[:name]%> © 2012 · <%=email_link%>
-	      </div>
-	    </footer>
-	  <%else%>
-	  	<footer class="dark">
-	      <div class="inner relative">
-	      <div class="absolute border-box" style="height: 26px; left: 20px; bottom: 0; overflow: hidden;">
-	      	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
-	      </div>
-	      <%=CONFIG[:name]%> © 2012 · Palo Alto CA · <a href="mailto:contact@getmine.com">Contact Us</a>
-	      </div>
-	    </footer>
-	  <%end%>
+    <footer <%=yield :footer_attribute-%>>
+      <div class="inner relative">
+      <div class="absolute border-box" 
+        style="height: 26px; left: 20px; bottom: 0; overflow: hidden;">
+        <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
+      </div>
+      <%=CONFIG[:name]%> © 2012 · Palo Alto CA · <%=email_link%>
+      </div>
+    </footer>
 	  
 
     <%=render :partial => "misc/analytics"%>
