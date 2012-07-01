@@ -39,6 +39,7 @@ stylesheets:
   application:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/tags.css
+    - public/stylesheets/iphone.css
   home:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/home.css

@@ -78,7 +78,7 @@ a:hover {
 	height: 78px; }
 
 .container, .header .navigation, footer .inner {
-	width: 820px;
+	width: 860px;
 	padding-left: 20px;
 	padding-right: 20px;
 	margin: 0 auto; }
@@ -1708,10 +1708,10 @@ input[type="color"]:focus,
 /* Media Queries
 ==================================================================== */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
 
 	.container, .header .navigation, footer .inner { 
-		width: 520px; }
+		width: 560px; }
 	
 	.item,
 	.item .actions, 
