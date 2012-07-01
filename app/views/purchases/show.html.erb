@@ -17,144 +17,10 @@
 <div class="container">
 	
 	<%if logged_in?%>
-	
-    <div class="thumbnail-box">
-      <p>Recently purchased by <%=@purchase.user.first_name%>:</p>
-
-      <%cache ["v3",@purchase.user,"purchases","preview"] do%>
-        <%@purchase.user.purchases.with_user.
-                    by_id.limit(13).each do |purchase|%>
-          <%cache ["v3",purchase,"teaser","purchase"] do%>
-            <div id="purchase_thumb_<%=purchase.id%>" class="thumb frameable">
-              <%=link_to image_tag(purchase.square_url),
-                  purchase_url(
-                    purchase.user.handle,
-                    purchase.handle,
-                    :src => 'gallery')%>
-            </div>
-          <%end%>
-        <%end%>
-      <%end%>
-
-      <%=link_to "View all "\
-                 "<i class='icon-chevron-right icon-white'></i>",
-          user_path(@purchase.user.handle,:src => 'gallery'), 
-          :class => "btn btn-black"%>
-    </div> <!-- /thumbnail-box -->
-    
-     <div id="feed" class="feed">
- 		 </div>
-    
+    <%=render "purchases/show/logged_in"%>
   <%else%>
-  
-  <div class="logged-out">
-  
-  	<div class="dimmer eighty">
-  	</div>
-  	
-  	<div class="item-header">
-  	
-			<%=image_tag "mine_54_horizontal_2x.png",
-						:class => "logo"%>
-						
-			<span class="text">
-				Use <span class="mine">mine</span> to tell friends when you buy good stuff.
-			</span>
-			
-      <%=link_to  "<span class='hide-when-loading'><i class='icon-facebook icon-white'></i> "\
-                  "Join Dihan on <span class='mine'>mine</span> now</span></span>"\
-                  "<i class='icon-loading icon-white'></i>",
-          fb_auth_path(:src => @origin), 
-          :class => "btn btn-large btn-red"%>
-	          
-    </div> <!-- /logged-out-item-header -->
-  	
-		<div id="" class="item clearfix">
-		
-		  <div class="photo rounded-5 relative">
-		  	<img class="stamp absolute" src="/images/mine_stamp_54_2x.png">
-		    <img class="item-photo" src="http://s3.amazonaws.com/denwen-mine-filesystem/g_MzcwM2MzYmM2YjEwYTdiNzEyNGExMzQwODI5MTg1.jpg">
-		  </div>
-		  
-		  <div id="" class="panel border-box relative">
-		  	
-		  	<div id="" class="panel-contents border-box">
-		  		
-		  		<div class="title-box relative border-box">
-				    <img class="user-photo" src="http://graph.facebook.com/516534321/picture?type=square">
-				    <span class="user-name">
-				    	Dihan Algama
-				    </span> bought his 
-				    <span class="item-name">
-				    	Jack Wills Polo
-				    </span> from 
-				    <span class="store-name">
-				    	Jack Wills Store
-				    </span> 
-				  </div> <!-- /title-box -->
-				  
-				  <div class="thumbnail-box">
-				  
-					  <h5>Dihan also bought:</h5>
-					  
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MTBjMmJjY2VlMGVhNTM1OTUyZjAxMzQwNjgwNzQ5.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZjA2YTIxMjE1OGU3OTI2NzY2MmUxMzQwMDU2NzIx.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YzFmNTY5OWY3YmM4ODcyNzc5MzkxMzQwMDU2NTI0.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NTBjYjBlYTZhMWE3MjY2NTAwNzgxMzQwMDU3MzM0.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_Y2U2OTUxYjlhNzBlMmMyMzNkNzkxMzQwMDU2NDEz.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NGVjMjk5YTRjZWEyMjA1YWJkZmMxMzQwMDU2Mzcw.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NTUwMTRkN2M4ZTMwODMwZWQwOWUxMzQwMDU2MTg3.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NDVhZmJjN2M5YmQ0ZjcwMjJiMmYxMzQwMDU2MTk3.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NWVjZDQyMTRlY2ZmYjVhMWNiYWQxMzQwMDU2MDMw.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MjliOTFhZjA4MTM2MWI0MTMzNDUxMzQwMDU1OTkx.jpg" />
-					  <img class="thumb" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YWI1Yzc4Zjg5YTRlNzI4OGM1OTUxMzM3OTg5Njgz.jpg" />
-						
-						<div class="sub">
-						  Know Dihan?
-						  <%=link_to  "Log in",
-		          		fb_auth_path(:src => @origin)%> 
-		          to view his <span class="mine">mine</span>.
-	          </div>
-          
-          </div> <!--/thumbnail-box -->
-          
-          <div class="marketing-box">
-          	<div class="bubble rounded-5">
-	          	<p>Dihan uses <span class="mine">mine</span> to tell friends when he buys something they might like.</p>
-	          	<p>He can share with select friends on <span class="mine">mine</span>, or publish to Facebook, Twitter or Tumblr.</p>
-	          	<p><span class="mine">mine</span> never auto-shares.</p>
-          	</div>
-          </div> <!-- /marketing-box -->
-		  	
-		  	</div> <!-- /panel-contents -->
-		
-		  </div> <!-- /panel -->
-		
-		</div> <!-- /item -->
-	
-	</div> <!-- /logged-out -->
-	
+    <%=render "purchases/show/logged_out"%>
   <%end%>
-
-<!--
-  <%#if logged_in?%>
-    <div class="navigation absolute">
-      <%#link_to "<i class='icon-chevron-left icon-white'></i>",
-          @next_purchase ? purchase_path(
-                            @purchase.user.handle,
-                            @next_purchase.handle, 
-                            :src => 'previous') : 'javascript:void(0)',
-          :class => "btn btn-black #{@next_purchase ? '' : 'disabled'}"%>
-
-      <%#link_to "<i class='icon-chevron-right icon-white'></i>",
-          @prev_purchase ? purchase_path(
-                            @purchase.user.handle,
-                            @prev_purchase.handle, 
-                            :src => 'next') : 'javascript:void(0)',
-          :class => "btn btn-black #{@prev_purchase ? '' : 'disabled'}"%>
-    </div>
-  <%#end%>
--->
 
 </div> <!-- /container -->
 
@@ -164,13 +30,13 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
 
-    new Denwen.Views.Purchases.Show({
-        purchaseJSON : <%=render :partial => "purchases/display.json.erb",
-                            :locals => {:object => @purchase}%>,
-        panel : <%=@panel.to_json%>,
-        friends : <%=logged_in? ? self.current_user.ifollowers.to_json(
-                                    :only => [:id]) : nil.to_json%>,
-        source : '<%=@source%>'});
+    //new Denwen.Views.Purchases.Show({
+    //    purchaseJSON : <%#render :partial => "purchases/display.json.erb",
+    //                        :locals => {:object => @purchase}%>,
+    //    panel : <%#@panel.to_json%>,
+    //    friends : <%#logged_in? ? self.current_user.ifollowers.to_json(
+    //                                :only => [:id]) : nil.to_json%>,
+    //    source : '<%#@source%>'});
 
   </script>
 <%end%>
