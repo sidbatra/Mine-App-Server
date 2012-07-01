@@ -703,10 +703,10 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	max-height: 440px; }
 	
 .item .photo img.stamp {
-	width: 54px;
-	height: 54px;
-	top: 19px;
-	right: 19px; }
+	width: 48px;
+	height: 48px;
+	top: 18px;
+	right: 18px; }
 
 
 /* Item Actions + Comments
@@ -1710,7 +1710,7 @@ input[type="color"]:focus,
 /* Media Queries - Tablets
 ==================================================================== */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
 
 	.container, .header .navigation, footer .inner { 
 		width: 540px; }
@@ -1720,7 +1720,7 @@ input[type="color"]:focus,
 	.item .panel,
 	.item .panel .panel-contents,
 	.user-box .friends-box {
-		width: 520px;
+		width: 100%;
 		height: auto !important; }
 	 
 	.item .photo { 
@@ -1765,8 +1765,9 @@ input[type="color"]:focus,
 /* Media Queries - Mobile - Repeats all of Tablet in case Tablet is ditched
 ==================================================================== */
    
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 540px) {
 
+	/* --- basics --- */
 	body { background: #333; }	
 	.hide-on-mobile { display: none; }
 	footer .inner { text-align: right; }
@@ -1774,10 +1775,11 @@ input[type="color"]:focus,
 	.dimmer { display: none; }
 
 	.container, .header .navigation, footer .inner { 
-		width: auto;
+		width: 100%;
 		padding-left: 10px;
 		padding-right: 10px; }
 	
+	/* --- item --- */
 	.item,
 	.item .actions, 
 	.item .panel,
@@ -1787,7 +1789,8 @@ input[type="color"]:focus,
 	 	height: auto !important; }
 	 
 	.item .photo { 
-	 	width: auto;
+	 	width: 100%;
+	 	padding: 18px;
 	 	height: auto;
 	 	line-height: 1;
 	 	-webkit-border-radius: 5px 5px 0 0; 
@@ -1803,7 +1806,18 @@ input[type="color"]:focus,
 		height: 32px;
 		top: 16px;
 		right: 16px; }
-		
+	
+	.item .panel { 
+		padding: 18px 0;
+	 	-webkit-border-radius: 0 0 5px 5px; 
+	    	-moz-border-radius: 0 0 5px 5px;  
+	         	border-radius: 0 0 5px 5px; }
+	         	
+	.item .panel .panel-contents {
+		padding-left: 18px;
+		padding-right: 18px; }
+	
+	/* --- logged-out item --- */
 	.logged-out .item-header { 
 		padding: 12px 0; }
 	
@@ -1814,14 +1828,6 @@ input[type="color"]:focus,
 	.logged-out .item-header .text {
 		vertical-align: -2px;
 		font-size: 12px; }
-	         
-	.item .panel { 
-	 	-webkit-border-radius: 0 0 5px 5px; 
-	    	-moz-border-radius: 0 0 5px 5px;  
-	         	border-radius: 0 0 5px 5px; }
-	         
-	.onboarding .box.itemized {
-		width: auto; }
 			
 	.logged-out .item-header .btn { 
 		width: 100%;
@@ -1834,6 +1840,9 @@ input[type="color"]:focus,
 	
 	.logged-out .item .panel .title-box .user-photo { 
 		vertical-align: -8px; }
+		
+	.onboarding .box.itemized {
+		width: auto; }
    
   /* no overflow abs. positioned add-comment-box when narrow */
   .item .panel-contents.overflowing { overflow-y: visible; }
