@@ -2,9 +2,13 @@
       class="dark"
     <%end%>
 
-    <div class="logged-out">
+    <div class="logged-out unselectable">
     
-      <div class="dimmer eighty">
+    		<div class="background-cover" 
+        	style="background-image: url('<%=image_path "blurrydemo.jpg"%>')">
+  			</div>
+    
+      <div class="dimmer seventy-five">
       </div>
       
       <div class="item-header">
@@ -13,18 +17,14 @@
             :class => "logo"%>
               
         <span class="text">
-          Use 
-          <span class="mine">
-            <%=CONFIG[:name].downcase%>
-          </span> 
-          to tell friends when you buy good stuff.
+					Tell friends when you buy good stuff.
         </span>
         
         <a href="<%=fb_auth_path(:src => @origin)%>" 
             onclick="this.className += ' load';"
-            class="btn btn-large btn-red">
+            class="btn btn-large btn-red shaded">
           <span class='hide-when-loading'>
-            <i class='icon-facebook icon-white'></i>
+          	<span class="f"></span> 
             Join <%=h @purchase.user.first_name%> on 
             <span class='mine'><%=CONFIG[:name].downcase%></span> now
           </span>
@@ -34,9 +34,9 @@
       </div> <!-- /logged-out-item-header -->
       
 
-      <div class="item clearfix">
+      <div class="item clearfix shaded">
       
-        <div class="photo rounded-5 relative">
+        <div class="photo rounded-5 relative border-box">
           <%=image_tag "mine_stamp_54_2x.png",
               :class => "stamp absolute"%>
           <%=image_tag @purchase.giant_url,
@@ -98,20 +98,20 @@
             
 
             <div class="marketing-box">
-              <div class="bubble rounded-5">
+              <div class="bubble rounded-5 shaded">
                 <p>
                   <%=h @purchase.user.first_name%> uses 
                   <span class="mine"><%=CONFIG[:name].downcase%></span> 
-                  to tell friends when <%=user_singular_pronoun @purchase.user%>
-                  buys something they might like.
+                  to tell friends when <%=user_singular_pronoun @purchase.user%> buys
+                  something they might like.
                 </p>
                 <p>
                   <%=user_singular_pronoun(@purchase.user).capitalize%> can share with 
-                  select friends on <span class="mine"><%=CONFIG[:name].downcase%></span>, 
-                  or publish to Facebook, Twitter or Tumblr.
+                  select <span class="mine"><%=CONFIG[:name].downcase%></span> friends 
+                  or to Facebook, Twitter or Tumblr.
                 </p>
                 <p>
-                  <span class="mine"><%=CONFIG[:name].downcase%></span> never auto-shares.
+                  <span class="mine"><%=CONFIG[:name].downcase%></span> <em>never</em> auto-shares.
                 </p>
               </div>
             </div> <!-- /marketing-box -->
