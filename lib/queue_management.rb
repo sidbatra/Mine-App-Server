@@ -44,6 +44,7 @@ module DW
 
 
     class Payload
+      attr_accessor :queue
       attr_reader :attempts
 
       # Public. Create a payload with an object a method of that
@@ -56,7 +57,7 @@ module DW
       # Returns nothing.
       # Raises ArgumentError if object or method aren't present.
       def initialize(object,method,*args)
-        raise ArgumentError, "klass name needed" unless object && method
+        raise ArgumentError, "object and method required" unless object && method
 
         @attempts = 0
         @object = object.is_a?(Class) ? 
@@ -86,23 +87,29 @@ module DW
         object.send(@method.to_sym,*@arguments)
       end
 
-      # Returns an identifying name for the object
-      #
-      #def object_name
-      #  if @object.match(/ruby\/object/)
-      #    object = YAML.load(@object)
-      #    object.class.name + '_' + object.id.to_s
-      #  else
-      #    Object.const_get(@object).name
-      #  end
-      #end
-
       # Public. Mark the instance as failed by increaseing
       # the number of attempts to process it.
       #
       # Returns the Integer number of attempts used.
       def failed
         @attempts += 1
+      end
+
+      # Public. Override to_s for a loggable output.
+      #
+      # Returns the String form of the Payload.
+      def to_s
+        output = ""
+
+        if @object.start_with? "--- "
+          object = YAML.load(@object)
+          output << object.class.name 
+        else
+          output << Object.const_get(@object).name
+        end
+
+        output << " :#{@method} #{@arguments.join("|")}"
+        output
       end
 
     end
@@ -127,7 +134,12 @@ module DW
       # Returns the Payload object if found or nil.
       def pop
         message = queue.pop
-        payload = YAML.load(message.body) if message
+
+        if message
+          payload = YAML.load(message.body) 
+          payload.queue = self
+        end
+
         payload
       end
 
@@ -144,6 +156,7 @@ module DW
 
         if args.first.class == Payload
           payload = args.first
+          payload.queue = nil
         else
           payload = Payload.new(*args)
         end
