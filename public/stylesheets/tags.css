@@ -35,6 +35,12 @@ a:hover {
 	bottom: 0;
 	width: 100%;
 	height: 100%;
+	z-index: -2; 
+	text-align: center; }
+
+.background-cover img {
+	margin-top: -10%;
+	width: 100%;
 	z-index: -2; }
 	
 .dimmer {
@@ -1711,6 +1717,8 @@ input[type="color"]:focus,
 ==================================================================== */
 
 @media screen and (max-width: 840px) {
+
+	.background-cover { display: none; }
 
 	.container, .header .navigation, footer .inner { 
 		width: 540px; }

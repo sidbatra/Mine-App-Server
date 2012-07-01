@@ -2,10 +2,10 @@
       class="dark"
     <%end%>
 
-    <div class="logged-out unselectable">
+    <div class="logged-out">
     
-    		<div class="background-cover" 
-        	style="background-image: url('<%=image_path "blurrydemo.jpg"%>')">
+  			<div class="background-cover">
+  				 <%=image_tag "blurrydemo.jpg"%>
   			</div>
     
       <div class="dimmer seventy-five">
@@ -31,8 +31,7 @@
           <i class='icon-loading icon-white'></i>
         </a>
               
-      </div> <!-- /logged-out-item-header -->
-      
+      </div> <!-- /logged-out-item-header -->   
 
       <div class="item clearfix shaded">
       
@@ -42,7 +41,6 @@
           <%=image_tag @purchase.giant_url,
               :class => "item-photo"%>
         </div>
-        
 
         <div class="panel border-box relative">
           
