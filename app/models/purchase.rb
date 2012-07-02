@@ -101,7 +101,7 @@ class Purchase < ActiveRecord::Base
   # Path on filesystem for the processed hosted image thumbnail.
   #
   def thumbnail_path
-    "t_" + image_path
+    "t_#{image_path}"
   end
 
   # Public. Path on the filesystem to the square image.
@@ -109,13 +109,21 @@ class Purchase < ActiveRecord::Base
   # returns the String path on the filesystem.
   #
   def square_path
-    "s_" + image_path
+    "s_#{image_path}"
+  end
+
+  # Public. Path on the filesystem to the blurred image.
+  #
+  # returns the String path on the filesystem.
+  #
+  def blur_path
+    "b_#{image_path}"
   end
 
   # Path on filesystem for the processed hosted giant image.
   #
   def giant_path
-    "g_" + image_path
+    "g_#{image_path}"
   end
 
   # Public. Path on the filesystem to the processed unit for
@@ -135,13 +143,21 @@ class Purchase < ActiveRecord::Base
       (orig_thumb_url.present? ? orig_thumb_url : orig_image_url)
   end
 
-  # Public. Absolute url on the filesystem for square_url.
+  # Public. Absolute url on the filesystem for square_path.
   #
-  # returns the String absolute url on the filesystem.
-  #
+  # Returns the String absolute url.
   def square_url
     is_processed ?
       FileSystem.url(square_path) : 
+      orig_image_url
+  end
+
+  # Public. Absolute url on the filesystem for the blur_path.
+  #
+  # Returns the String absolute url.
+  def blur_url
+    is_processed ?
+      FileSystem.url(blur_path) : 
       orig_image_url
   end
   
@@ -296,6 +312,21 @@ class Purchase < ActiveRecord::Base
       FileSystem.store(
         square_path,
         open(base.path),
+        "Content-Type" => "image/jpeg",
+        "Expires"      => 1.year.from_now.
+                            strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+      # Create blurred thumbnail
+      #
+      image = MiniMagick::Image.open(base.path)
+
+      image.combine_options do |canvas|
+        canvas.blur "2.5x2.5"
+      end
+
+      FileSystem.store(
+        blur_path,
+        open(image.path),
         "Content-Type" => "image/jpeg",
         "Expires"      => 1.year.from_now.
                             strftime("%a, %d %b %Y %H:%M:%S GMT"))
