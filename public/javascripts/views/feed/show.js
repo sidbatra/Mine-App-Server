@@ -77,9 +77,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     Denwen.Track.isEmailClicked(this.source);
 
     Denwen.Track.user(
+      Denwen.H.currentUser.get('id'),
+      Denwen.H.currentUser.get('full_name'),
       Denwen.H.currentUser.get('email'),
       Denwen.H.currentUser.get('age'),
-      Denwen.H.currentUser.get('gender')); 
+      Denwen.H.currentUser.get('gender'),
+      Denwen.H.currentUser.get('created_at')); 
   },
 
   // --
