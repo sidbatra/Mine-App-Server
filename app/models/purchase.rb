@@ -255,6 +255,29 @@ class Purchase < ActiveRecord::Base
     self.save!
   end
 
+  # Temporary method for hosting blurred images for each purchase.
+  #
+  def host_blur
+    self.is_processed = true
+
+    # Create blurred thumbnail
+    #
+    image = MiniMagick::Image.open(square_url)
+
+    image.combine_options do |canvas|
+      canvas.blur "2.5x2.5"
+    end
+
+    FileSystem.store(
+      blur_path,
+      open(image.path),
+      "Content-Type" => "image/jpeg",
+      "Expires"      => 1.year.from_now.
+                          strftime("%a, %d %b %Y %H:%M:%S GMT"))
+
+    self.save!
+  end
+
   # Fetch image from the original source and host it on the Filesystem
   # along with copies at various sizes.
   #
