@@ -18,13 +18,18 @@ class Like < ActiveRecord::Base
   named_scope :with_user, :include => :user
 
   #----------------------------------------------------------------------
+  # Attributes
+  #----------------------------------------------------------------------
+  attr_accessible :purchase_id, :user_id
+
+  #----------------------------------------------------------------------
   # Class methods
   #----------------------------------------------------------------------
 
   # Add a new like 
   #
   def self.add(purchase_id,user_id)
-    create!(
+    find_or_create_by_purchase_id_and_user_id(
       :purchase_id      => purchase_id, 
       :user_id          => user_id)
   end

@@ -21,16 +21,21 @@ class Shopping < ActiveRecord::Base
   named_scope :with_store, :include => :store
 
   #----------------------------------------------------------------------
+  # Attributes
+  #----------------------------------------------------------------------
+  attr_accessible :user_id, :store_id, :source
+
+  #----------------------------------------------------------------------
   # Class Methods 
   #----------------------------------------------------------------------
 
   # Factory method for creating a new shopping.
   #
   def self.add(user_id,store_id,source)
-    shopping = find_or_create_by_user_id_and_store_id(
-                :user_id      => user_id,
-                :store_id     => store_id,
-                :source       => source)
+    find_or_create_by_user_id_and_store_id(
+      :user_id  => user_id,
+      :store_id => store_id,
+      :source   => source)
   end
 
   #----------------------------------------------------------------------

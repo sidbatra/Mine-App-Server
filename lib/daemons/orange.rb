@@ -78,10 +78,10 @@ end
     @count += 1
     Twitter.update(tweet,:in_reply_to_status_id => status.id)
 
-    @reset_at = Time.now + rand(60) + 150
+    @reset_at = Time.now + rand(60) + 100
     @logger.info "Resetting"
     
-    @count = 0 if @count >= 2
+    @count = 0 if @count >= 3 
 
   rescue => ex
     @logger.info "Exception - #{ex.message}"

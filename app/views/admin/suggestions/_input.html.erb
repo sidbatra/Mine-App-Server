@@ -11,13 +11,13 @@
 
     <div id='suggestion_image'>
       <%if @suggestion.image_path.present?%>
-        <img src="<%=@suggestion.image_url%>" />
+        <img src="<%=h @suggestion.image_url%>" />
       <%end%>
     </div>
 
     <div id='suggestion_small_image'>
       <%if @suggestion.small_image_path.present?%>
-        <img src="<%=@suggestion.short_image_url%>" />
+        <img src="<%=h @suggestion.short_image_url%>" />
       <%end%>
     </div>
 

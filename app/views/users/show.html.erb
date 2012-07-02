@@ -9,7 +9,7 @@
 <%end%>
 
 
-<div class="container profile">
+<div class="container profile border-box">
 
 	<div class="user-box clearfix">
 
@@ -104,7 +104,7 @@
                                           :handle,:byline,:followings_count,
                                           :purchases_count,
                                           :inverse_followings_count])%>,
-          source          : "<%=@source%>"});
+          source          : "<%=h @source%>"});
 
   </script>
 <%end%>

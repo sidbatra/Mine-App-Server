@@ -20,11 +20,3 @@ $.ajaxSetup({
           $('meta[name="csrf-token"]').attr('content'));
   }
 }); 
-
-// Ensure IE 7 compatability with Backbone.js via json2
-//
-function make_ie_compatible() {
-  if($.browser.msie && parseInt($.browser.version,10) < 8) {
-    $.getScript('http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js');
-  }
-}

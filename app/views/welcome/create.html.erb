@@ -87,7 +87,7 @@
     new Denwen.Views.Welcome.Create({
           nextURL : "<%=root_path(:src => 'welcome')%>",
           suggestions : <%=@suggestions.to_json%>,
-          currentSuggestionID : <%=@current_suggestion_id%>,
-          source : "<%=@source%>"});
+          currentSuggestionID : <%=h @current_suggestion_id%>,
+          source : "<%=h @source%>"});
   </script>
 <%end%>

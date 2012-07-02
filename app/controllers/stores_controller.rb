@@ -17,11 +17,11 @@ class StoresController < ApplicationController
   # :all - An aspect of all returns all stores in the db.
   #
   def index
-    @aspect = params[:aspect].to_sym
 
-    case @aspect
+    case params[:aspect].to_sym
     when :all
       all
+      @view = "all"
     end
 
   rescue => ex
@@ -29,7 +29,7 @@ class StoresController < ApplicationController
   ensure
     respond_to do |format|
       format.json do
-        render @aspect
+        render @view
       end
     end
   end

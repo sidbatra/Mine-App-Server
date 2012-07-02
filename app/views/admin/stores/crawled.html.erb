@@ -13,7 +13,7 @@
       </tr>
     <%@stores.each do |store|%>
       <tr>
-        <td><%=store.name%></td>
+        <td><%=h store.name%></td>
         <td><%=link_to "View Products",admin_products_path(
                                         :filter => "store",
                                         :store_id => store.id)%></td>

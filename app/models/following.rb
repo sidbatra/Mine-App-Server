@@ -17,6 +17,7 @@ class Following < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessor :send_email, :is_active_toggled
+  attr_accessible :follower_id, :user_id, :send_email, :source
 
   #----------------------------------------------------------------------
   # Named scopes

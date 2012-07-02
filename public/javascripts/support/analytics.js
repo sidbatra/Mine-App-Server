@@ -22,15 +22,27 @@ Denwen.Analytics = Backbone.Model.extend({
 
   // Public. Track useful attributes about the current user.
   //
+  // id - The integer database id of the user.
+  // name - The String ull name pf the user.
   // email - The String email of the user.
   // age - The Integer age of the user.
   // gender - The String gender of the user. Male or Female.
+  // createdAt - The String timestamp of when the user joined.
   //
-  user: function(email,age,gender) {
+  // Returns nothing.
+  user: function(id,name,email,age,gender,createdAt) {
+    mixpanel.identify(id);
     mixpanel.name_tag(email);
 
     mixpanel.register_once({"Age" : age});
     mixpanel.register_once({"Gender" : gender});
+
+    mixpanel.people.set({
+      "$email": email,
+      "$created": createdAt,
+      "$name": name,
+      "Gender": gender,
+      "Age": age});
   },
 
   // Public. Track the version number of the application as a variable.

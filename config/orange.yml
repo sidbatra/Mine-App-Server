@@ -40,5 +40,25 @@
     {
     :tweet: "@name I built http://getmine.com/try for tweeting purchases. Like to try it?",
     :media: nil}]
+  },
+  {
+  :token: 619625766-vf9XyAPiQASEFAjM6hf0wA9xga4Q786G4PBkWUn1, 
+  :secret: vYodFPCJffsrG7LH8vT2faszdTqTKoXNACodp6znXc,
+  :templates: [
+    {
+    :tweet: "Hey @name I'm actually working on a site for tweeting purchases. Try it? thx! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name that's cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
+    :media: nil},
+    {
+    :tweet: "Awesome! I'm working on a simple site for sharing cool stuff you buy. You can try it here: http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name have you tried http://getmine.com/try for tweeting purchases? It's easy to use and looks great. Try it!",
+    :media: nil},
+    {
+    :tweet: "Hey @name I'm testing http://getmine.com/try with people sharing purchases on here. Love you to try it! thx!",
+    :media: nil}]
   }
 ]

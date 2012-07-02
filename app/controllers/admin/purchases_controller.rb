@@ -4,15 +4,14 @@ class Admin::PurchasesController < ApplicationController
   #
   #
   def index
-    @filter = params[:filter].to_sym
 
-    case @filter
+    case params[:filter].to_sym
     when :recent
       @purchases = Purchase.with_user.by_id.limit(300)
+      @view = "recent"
     end
 
-    render :partial => @filter.to_s,
-           :layout => "application"
+    render @view
   end
 
   #

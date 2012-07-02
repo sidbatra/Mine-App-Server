@@ -12,7 +12,7 @@ module DW
     #
     def self.included(base)
       base.send :helper_method, :is_mobile_device?, :is_device?,
-                  :is_device_iphone?, :is_device_ipad?
+                  :is_device_iphone?, :is_device_ipad?, :is_ie?
     end
 
     # Tests if the request has an JSON mime type
@@ -93,6 +93,16 @@ module DW
     #
     def is_device_ipad?
       @is_device_ipad ||= is_device?('ipad')
+    end
+
+    #----------------------------------------------------------------------
+    # Browser related queries
+    #----------------------------------------------------------------------
+
+    # Test if the current browser is IE.
+    #
+    def is_ie?
+      request.user_agent.to_s =~ /MSIE/ && request.user_agent.to_s !~ /Opera/
     end
 
   end

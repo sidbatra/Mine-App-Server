@@ -1,18 +1,15 @@
 class Admin::CommentsController < ApplicationController
   before_filter :admin_required
 
-  #
-  #
   def index
-    @filter = params[:filter].to_sym
 
-    case @filter
+    case params[:filter].to_sym
     when :recent
       @comments = Comment.with_user.with_purchase.by_id.limit(300)
+      @view = "recent"
     end
 
-    render :partial => @filter.to_s,
-           :layout => "application"
+    render @view
   end
 
 end

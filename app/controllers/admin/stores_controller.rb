@@ -7,16 +7,16 @@ class Admin::StoresController < ApplicationController
   # Fetch group of stores based on different filters 
   #
   def index
-    @filter = params[:filter].to_sym
-    @layout = "application"
 
-    case @filter
+    case params[:filter].to_sym
     when :unapproved
       @approved_stores = Store.approved
       @stores = Store.unapproved.sorted
+      @view = "unapproved"
       
     when :popular
       @stores = Store.purchases_count_gt(1).popular
+      @view = "popular"
 
     when :crawled
       store_ids = Product.select(:store_id).
@@ -24,10 +24,10 @@ class Admin::StoresController < ApplicationController
                     map(&:store_id).
                     compact
       @stores = Store.find(store_ids)
+      @view = "crawled"
     end
 
-    render :partial => @filter.to_s,
-           :layout  => @layout
+    render @view
   end
 
   # Edit a store
