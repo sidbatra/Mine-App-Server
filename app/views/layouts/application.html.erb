@@ -4,6 +4,7 @@
     <%=render :partial => "misc/head"%> 
 
     <%=include_stylesheets :application-%>
+    <%=include_stylesheets :mobile if is_mobile_device?-%>
 
     <%=yield :head%>
 
