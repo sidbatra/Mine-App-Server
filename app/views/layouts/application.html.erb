@@ -41,6 +41,7 @@
     <%=render :partial => "misc/analytics"%>
 
     <%=include_javascripts :application-%>
+    <%=include_javascripts :ie if is_ie?-%>
 
     <script type="text/javascript">
       Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);

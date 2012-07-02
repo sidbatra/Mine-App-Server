@@ -9,7 +9,6 @@ javascripts:
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/bootstrap.js
-    - public/javascripts/libs/css3-mediaqueries.js
     - public/javascripts/libs/swfupload.js
     - public/javascripts/support/extensions.js
     - public/javascripts/config.js
@@ -35,6 +34,8 @@ javascripts:
   home:
     - public/javascripts/libs/jquery-1.7.1.js
     - public/javascripts/libs/bootstrap-home.js
+  ie:
+    - public/javascripts/libs/css3-mediaqueries.js
 stylesheets:
   application:
     - public/stylesheets/bootstrap.css
