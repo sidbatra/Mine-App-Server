@@ -65,31 +65,35 @@ end
 
   @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
 
-
-  Twitter.configure do |config|
-    config.consumer_key       = CONSUMER_KEY
-    config.consumer_secret    = CONSUMER_SECRET
-    config.oauth_token        = ACCOUNTS[@count][:token] 
-    config.oauth_token_secret = ACCOUNTS[@count][:secret] 
-  end
-
   
   begin
-    @count += 1
-    Twitter.update(tweet,:in_reply_to_status_id => status.id)
 
     Twitter.configure do |config|
       config.consumer_key       = CONSUMER_KEY
       config.consumer_secret    = CONSUMER_SECRET
-      config.oauth_token        = ACCOUNTS[2][:token] 
-      config.oauth_token_secret = ACCOUNTS[2][:secret] 
+      config.oauth_token        = ACCOUNTS[@count][:token] 
+      config.oauth_token_secret = ACCOUNTS[@count][:secret] 
     end
 
-    tweet = Twitter.home_timeline.find do |tweet| 
-              tweet.user.id != ACCOUNTS[2][:tw_user_id]
-            end
+    @count += 1
+    Twitter.update(tweet,:in_reply_to_status_id => status.id)
 
-    Twitter.update(tweet.text)
+
+    if @count < 3
+      Twitter.configure do |config|
+        config.consumer_key       = CONSUMER_KEY
+        config.consumer_secret    = CONSUMER_SECRET
+        config.oauth_token        = ACCOUNTS[2][:token] 
+        config.oauth_token_secret = ACCOUNTS[2][:secret] 
+      end
+
+      tweet = Twitter.home_timeline.find do |tweet| 
+                tweet.user.id != ACCOUNTS[2][:tw_user_id]
+              end
+
+      Twitter.update(tweet.text)
+    end
+
 
     @reset_at = Time.now + rand(60) + 100
     @logger.info "Resetting"
