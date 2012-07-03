@@ -4,9 +4,11 @@
 
     <div class="logged-out">
     
-      <div class="background-cover"
-        style="background-image: url('<%=image_path @purchase.blur_url%>')">
-      </div>
+      <%unless is_phone_device?%>
+        <div class="background-cover"
+          style="background-image: url('<%=image_path @purchase.blur_url%>')">
+        </div>
+      <%end%>
     
       <div class="dimmer seventy-five">
       </div>
