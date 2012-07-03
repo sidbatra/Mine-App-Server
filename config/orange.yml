@@ -42,9 +42,9 @@
     :media: nil}]
   },
   {
-  :token: 621545739-sU4RsKRE0dZRdmzk18x4TLGopYCVy4Nxjnytdatl, 
-  :secret: FOLqfagnpZo7ifjtMrzfSR0z198p3sa0Gcdo3sqvcSc,
-  :tw_user_id: 621545739,
+  :token: 45032868-u6AmUUC3Lwb64TVQifzkEgey9r6zayISQXy0aJ2SF, 
+  :secret: 4TJIHLVPDrA29dohWvdn6lxcferKWPFCEelZpHIVo,
+  :tw_user_id: 45032868,
   :templates: [
     {
     :tweet: "Hey @name I'm actually working on a site for tweeting purchases. Try it? thx! http://getmine.com/try",
