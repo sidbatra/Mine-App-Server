@@ -18,13 +18,9 @@ class Admin::StoresController < ApplicationController
       @stores = Store.purchases_count_gt(1).popular
       @view = "popular"
 
-    when :crawled
-      store_ids = Product.select(:store_id).
-                    group(:store_id).
-                    map(&:store_id).
-                    compact
-      @stores = Store.find(store_ids)
-      @view = "crawled"
+    when :crawlable
+      @stores = Store.crawlable
+      @view = "crawlable"
     end
 
     render @view
