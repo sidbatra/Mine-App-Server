@@ -61,5 +61,25 @@
     {
     :tweet: "Hey @name I'm testing http://getmine.com/try with people sharing purchases on here. Love you to try it! thx!",
     :media: nil}]
+  },
+  {
+  :token: 222575900-PhzdRuJVuyIJP9W4TmHZrDXDtuBYaMojaPT1LDki,
+  :secret: uP90oTC9hThJ5ZsdKQ164o23RaruneXvNHOfmxGfjM,
+  :templates: [
+    {
+    :tweet: "Hey @name! I've created a site especially for tweeting purchases. See if you like it: http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name that's cool! On Mine (http://getmine.com/try) you can tweet pics of what you bought. You'll love it!",
+    :media: nil},
+    {
+    :tweet: "Awesome! I'm working on a simple site for sharing cool stuff you buy. I think you'd love it! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name have you tried Mine (http://getmine.com/try) for tweeting purchases? It looks great, you'd love it!",
+    :media: nil},
+    {
+    :tweet: "Hey @name! I'm testing http://getmine.com/try with people sharing purchases on here. I Think you'd love it",
+    :media: nil}]
   }
 ]
