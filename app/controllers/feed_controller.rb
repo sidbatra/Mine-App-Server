@@ -15,7 +15,7 @@ class FeedController < ApplicationController
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
 
-    @key = ["v1",self.current_user,
+    @key = ["v2",self.current_user,
             self.current_user.ifollowers.map(&:updated_at).max.to_i,
             "feed",@before ? @before.to_i : "",@per_page]
 
