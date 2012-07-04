@@ -10,13 +10,19 @@ class CommentsController < ApplicationController
     purchase_ids  = params[:purchase_ids].split(",")
     purchases     = Purchase.find_all_by_id(purchase_ids)
 
-    @comments     = Comment.with_user.for(purchase_ids) 
-   
+    native_purchase_ids = []
+
     hydra = Typhoeus::Hydra.new
 
     purchases.each do |purchase|
-      hydra.queue fetch_facebook_comments(purchase) if purchase.shared?
+      if purchase.shared?
+        hydra.queue fetch_facebook_comments(purchase)
+      else
+        native_purchase_ids << purchase.id
+      end
     end
+
+    @comments = Comment.with_user.for(native_purchase_ids)
 
     hydra.run
     
