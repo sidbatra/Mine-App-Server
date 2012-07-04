@@ -68,6 +68,8 @@ module DW
                     Cryptography.obfuscate(purchase.id),
                     :host => CONFIG[:host])
 
+        message << " #mine"
+
         tweet = Twitter.update_with_media(message,File.new(image_path))
         purchase.update_attributes({:tweet_id => tweet.id})
 

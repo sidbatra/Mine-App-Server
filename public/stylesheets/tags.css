@@ -1578,12 +1578,14 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 .mine { 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 	font-weight: bold !important;
+	font-style: normal !important;
 	-webkit-font-smoothing: antialiased; }
 
 .f:after {
 	content: "f";
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
 	font-weight: bold; 
+	font-style: normal !important;
 	font-size: 18px; 
 	padding-right: 6px; 
 	vertical-align: -1px; }

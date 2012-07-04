@@ -11,8 +11,9 @@ module DW
     # Inclusion hook to add helper methods
     #
     def self.included(base)
-      base.send :helper_method, :is_mobile_device?, :is_device?,
-                  :is_device_iphone?, :is_device_ipad?, :is_ie?
+      base.send :helper_method, :is_tablet_device?, :is_mobile_device?, 
+                :is_android_tablet_device?, :is_device?, :is_phone_device?, 
+                :is_device_ipad?, :is_ie?
     end
 
     # Tests if the request has an JSON mime type
@@ -70,14 +71,34 @@ module DW
     # Device related queries
     #----------------------------------------------------------------------
 
-    # Test is the current request is from a mobile device
+    # Test if the current request is from a mobile device
     #
     def is_mobile_device?
       request.user_agent.to_s.downcase =~ 
         Regexp.new(CONFIG[:mobile_user_agents])
     end
 
-    # Test is the current request is from a specific device
+    # Test if the current request is from an android tablet.
+    #
+    def is_android_tablet_device?
+      agent = request.user_agent.to_s
+      agent =~ /Android/ && agent !~ /Mobile/
+    end
+
+    # Test if the current request is from a tablet device.
+    #
+    def is_tablet_device?
+      request.user_agent.to_s.downcase =~ 
+        Regexp.new(CONFIG[:tablet_user_agents]) || is_android_tablet_device?
+    end
+
+    # Test if the current request is from a mobile phone.
+    #
+    def is_phone_device?
+      is_mobile_device? && !is_tablet_device?
+    end
+
+    # Test if the current request is from a specific device
     #
     def is_device?(device)
       request.user_agent.to_s.downcase.include?(device.to_s.downcase)
