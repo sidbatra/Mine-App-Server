@@ -22,7 +22,8 @@
 	.item .actions, 
 	.item .panel,
 	.item .panel .panel-contents,
-	.user-box .friends-box {
+	.user-box .friends-box,
+	.box {
 		width: auto;
 	 	height: auto !important; }
 	 
@@ -102,4 +103,24 @@
   	
   .three-to-two { margin-right: 24px; }
   .cards { margin-right: -24px; }
+  
+  /* --- home --- */
+  
+  .top {
+  	padding: 18px 18px 18px 68px;
+  	font-size: 13px;
+  	line-height: 18px;
+  	height: auto; }
+   
+  .top .user-photo { 
+   	width: 40px;
+   	height: 40px;
+   	left: 18px;
+   	top: 18px; }
+   	
+  .bottom { 
+  	height: auto;
+  	line-height: 1;
+  	padding: 18px; }
+   
 }

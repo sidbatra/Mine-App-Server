@@ -31,7 +31,7 @@
 	.onboarding .box.itemized {
 		width: 520px; }
 		
-		/* --- logged-out item --- */
+	/* --- logged-out item --- */
 	.logged-out .item-header { 
 		padding: 14px 0 12px !important; }
 			
@@ -59,4 +59,5 @@
   	
   .three-to-two { margin-right: 24px; }
   .cards { margin-right: -24px; }
+  
 }

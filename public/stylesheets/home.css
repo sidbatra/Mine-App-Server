@@ -59,8 +59,13 @@ a:hover {
 /* Home Basics
 ==================================================================== */
 
-body { background: #444; }
-
+body { 
+	background: #444; }
+	
+.wrapper {
+	overflow: hidden; }
+	
+.background-cover { display: block !important; }
 
 /* Header, Container and Footer
 ==================================================================== */
@@ -136,6 +141,7 @@ footer .like-button-box {
 	width: 300px; 
 	float: right; }
 
+
 /* Home item
 ==================================================================== */	
 
@@ -144,13 +150,13 @@ footer .like-button-box {
 	width: 520px; }
 
 .top {
-	background: #f8f8f8;
-	padding: 20px;
+	background: #eee;
+	padding: 20px 20px 20px 80px;
 	-webkit-border-radius: 5px 5px 0 0; 
     -moz-border-radius: 5px 5px 0 0;   
   		border-radius: 5px 5px 0 0;
   font-family: 'RooneyLightItalic';
-  color: #666;
+  color: #555;
   font-size: 16px;
   line-height: 24px; }
 
@@ -162,23 +168,37 @@ footer .like-button-box {
 .top .user-photo {
 	width: 48px;
 	height: 48px;
-	float: left;
-	padding-right: 12px; }
+	left: 20px;
+	top: 20px;
+	float: left; }
+
+.dark-slice {
+	background: url('/images/colors/black-30.png'); 
+ 	top: 0;
+ 	left: -1000px;
+ 	right: -1000px;
+ 	bottom: -1000px;
+ 	z-index: -1; }
 
 .bottom {
 	background: white;
 	padding: 20px;
+	height: 380px;
+	line-height: 340px;
 	-webkit-border-radius: 0 0 5px 5px; 
     -moz-border-radius: 0 0 5px 5px;   
   		border-radius: 0 0 5px 5px; 
   color: #ccc;
   font-size: 13px;
-  text-align: center;
-  margin-bottom: 12px; }
+  text-align: center; }
  
 .bottom .item-photo { max-width: 80%; }
 
-.bottom .item-details { padding-top: 12px; }
+.bottom .item-details { 
+	bottom: 20px;
+	width: 100%;
+	line-height: 1;
+	text-align: center; }
 
 /*
 .item {

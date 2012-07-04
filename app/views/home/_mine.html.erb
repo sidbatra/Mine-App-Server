@@ -1,6 +1,6 @@
 <div class="wrapper">
 	
-	<div class="container border-box">
+	<div class="container border-box home">
 
 		<div class="logged-out">
 			
@@ -35,58 +35,43 @@
 			  </a>
 			        
 			</div> <!-- /item-header --> 
-			
-			<div class="box">
-				<div class="top">
+
+			<div class="box relative">
+				<div class="top border-box relative">
 					<%=image_tag "home/mike.jpg",
-		      	 :class => "user-photo"%>
-					<span class="em">Mike</span> is using <span class="em">mine</span> to show <span class="em"> a few close friends </span> the audio setup he's buying for his new apartment:
+		      	 :class => "user-photo absolute"%>
+					<span class="em">Mike</span> is using <span class="em">mine</span> to show <span class="em"> a few close friends </span> the audio setup he bought for his new apartment:
 				</div>
-				<div class="bottom">
+				<div class="bottom border-box relative">
+					<div class="dark-slice absolute"></div>
 					<%=image_tag "home/radio.jpg",
 		      	 :class => "item-photo"%>
-		      	 
-		    	<div class="item-details">Sangean WR2 Digital Radio bought from J&R</div>
+					<!--
+		    	<div class="item-details absolute">
+		    		Sangean WR2 Digital Radio, bought from J&R
+		    	</div>
+					-->
 				</div>
 			</div>
-			
-			<div class="box">
-				<div class="top">
+								
+<!--
+			<div class="box relative">
+				<div class="top border-box">
 					<%=image_tag "home/natalia.jpg",
 		      	 :class => "user-photo"%>
 					<span class="em">Natalia</span> uses <span class="em">mine</span> to post <span class="em">her latest and greatest weekend #haul</span> to her Twitter and Tumblr:
 				</div>
-				<div class="bottom">
+				<div class="bottom border-box relative">
+					<div class="dark-slice absolute"></div>
 					<%=image_tag "home/coral.jpg",
-		      	 :class => "item-photo"%>
-		      	 
-		    	<div class="item-details">Paige Coral Skinny Mid Rise Jeans bought from Nordstrom</div>
+		      	 :class => "item-photo"%> 
+		    	<div class="item-details absolute">
+		    		Paige Coral Skinny Mid Rise Jeans bought from Nordstrom
+		    	</div>
 				</div>
 			</div>
-			
-						<div class="box">
-				<div class="top">
-					<%=image_tag "home/mike.jpg",
-		      	 :class => "user-photo"%>
-					<span class="em">Mike</span> is using <span class="em">mine</span> to show <span class="em"> a few close friends </span> the audio setup he's buying for his new apartment:
-				</div>
-				<div class="bottom">
-					<%=image_tag "home/radio.jpg",
-		      	 :class => "item-photo"%>
-		      	 
-		    	<div class="item-details">Sangean WR2 Digital Radio bought from J&R</div>
-				</div>
-			</div>
-<!--
-			<div class="photo rounded-5 relative border-box shaded">
-				<#=image_tag "mine_stamp_54_2x.png",
-		      	:class => "stamp absolute"%>
-    
-        <img class="item-photo" src="http://s3.amazonaws.com/denwen-mine-filesystem/g_MzcwM2MzYmM2YjEwYTdiNzEyNGExMzQwODI5MTg1.jpg">
-      </div>
 -->
 
-		
 		</div> <!-- /logged-out -->
 	
 	</div> <!-- /container -->
