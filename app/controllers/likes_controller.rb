@@ -10,13 +10,19 @@ class LikesController < ApplicationController
     purchase_ids = params[:purchase_ids].split(",")
     purchases    = Purchase.find_all_by_id(purchase_ids)
 
-    @likes       = Like.with_user.find_all_by_purchase_id(purchase_ids) 
+    native_purchase_ids = []
    
     hydra = Typhoeus::Hydra.new
 
     purchases.each do |purchase|
-      hydra.queue fetch_facebook_likes(purchase) if purchase.shared?
+      if purchase.shared?
+        hydra.queue fetch_facebook_likes(purchase) 
+      else
+        native_purchase_ids << purchase.id
+      end
     end
+
+    @likes = Like.with_user.find_all_by_purchase_id(native_purchase_ids)
 
     hydra.run
     
