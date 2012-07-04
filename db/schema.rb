@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628234836) do
+ActiveRecord::Schema.define(:version => 20120704013639) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(:version => 20120628234836) do
 
   create_table "crawl_data", :force => true do |t|
     t.integer  "store_id"
-    t.boolean  "active",     :default => false
+    t.boolean  "active",       :default => false
     t.string   "launch_url"
     t.datetime "crawled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "use_og_image", :default => false
   end
 
   add_index "crawl_data", ["active"], :name => "index_crawl_data_on_active"
