@@ -1,0 +1,60 @@
+/* Media Queries - Tablets
+==================================================================== */
+
+@media screen and (max-width: 840px) {
+
+	.background-cover { display: none; }
+
+	.container, .header .navigation, footer .inner { 
+		width: 540px; }
+	
+	.item,
+	.item .actions, 
+	.item .panel,
+	.item .panel .panel-contents,
+	.user-box .friends-box {
+		width: 100%;
+		height: auto !important; }
+	 
+	.item .photo { 
+	 	-webkit-border-radius: 5px 5px 0 0; 
+	  	-moz-border-radius: 5px 5px 0 0;  
+	         border-radius: 5px 5px 0 0; }
+	         
+	.item .panel { 
+	 	-webkit-border-radius: 0 0 5px 5px; 
+	  	-moz-border-radius: 0 0 5px 5px;  
+	    	border-radius: 0 0 5px 5px; }
+	         
+	.onboarding .box.itemized {
+		width: 520px; }
+		
+		/* --- logged-out item --- */
+	.logged-out .item-header { 
+		padding: 12px 0 !important; }
+			
+	.logged-out .item-header .btn { 
+	 	width: 100% !important;
+	 	margin: 16px 0 !important; }
+   
+  /* no overflow abs. positioned add-comment-box when narrow */
+  .item .panel-contents.overflowing { overflow-y: visible; }
+	.item .panel.overflowing .panel-contents .add-comment-box {
+		position: relative !important;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding-top: none;
+		border-top: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none; }
+   
+  .item .actions,
+  .user-box .friends-box {
+  	padding: 0; } 
+  	
+  .three-to-two { margin-right: 24px; }
+  .cards { margin-right: -24px; }
+}

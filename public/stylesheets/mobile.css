@@ -55,19 +55,19 @@
 	
 	/* --- logged-out item --- */
 	.logged-out .item-header { 
-		padding: 12px 0; }
+		padding: 12px 0 !important; }
 	
 	.logged-out .item-header .logo { 
-		height: 32px;
-		padding-right: 4px; }
+		height: 32px !important;
+		padding-right: 4px !important; }
 	
 	.logged-out .item-header .text {
-		vertical-align: -2px;
-		font-size: 12px; }
+		vertical-align: -2px !important;
+		font-size: 12px !important; }
 			
 	.logged-out .item-header .btn { 
-		width: 100%;
-	 	margin: 12px 0; }
+	 	width: 100% !important;
+	 	margin: 12px 0 !important; }
 	 	
 	.logged-out .item .panel .title-box { 
 		font-size: 15px;
