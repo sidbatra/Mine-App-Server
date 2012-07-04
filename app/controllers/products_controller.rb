@@ -219,7 +219,7 @@ class ProductsController < ApplicationController
 
     agent = Mechanize.new
     agent.user_agent_alias = 'Mac Safari'
-    agent.get(query)
+    agent.get(URI.encode(query))
 
     if agent.page.is_a? Mechanize::Page
       base_uri = URI.parse(URI.encode(query))
