@@ -53,8 +53,7 @@ Denwen.Models.Purchase = Backbone.Model.extend({
   // Returns if the purchase is native to the mine network 
   //
   isNative: function() {
-    return true;
-    //return this.get('fb_object_id') == null;
+    return this.get('fb_object_id') == null;
   }
 
 });
