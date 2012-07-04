@@ -104,6 +104,11 @@ footer.dark {
 
 footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
+footer .like-button-box {
+	height: 26px; 
+	bottom: 0; 
+	overflow: hidden; }
+
 
 /* Thumbnail Box
 ==================================================================== */

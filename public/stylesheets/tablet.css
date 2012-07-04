@@ -8,6 +8,8 @@
 	.container, .header .navigation, footer .inner { 
 		width: 540px; }
 	
+	footer .like-button-box { padding-left: 0 !important; }
+	
 	.item,
 	.item .actions, 
 	.item .panel,
@@ -31,11 +33,11 @@
 		
 		/* --- logged-out item --- */
 	.logged-out .item-header { 
-		padding: 12px 0 !important; }
+		padding: 14px 0 12px !important; }
 			
 	.logged-out .item-header .btn { 
 	 	width: 100% !important;
-	 	margin: 16px 0 !important; }
+	 	float: none !important; }
    
   /* no overflow abs. positioned add-comment-box when narrow */
   .item .panel-contents.overflowing { overflow-y: visible; }

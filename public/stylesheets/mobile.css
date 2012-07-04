@@ -15,6 +15,8 @@
 		padding-left: 10px;
 		padding-right: 10px; }
 	
+	footer .like-button-box { padding-left: 0 !important; }
+	
 	/* --- item --- */
 	.item,
 	.item .actions, 
@@ -55,7 +57,7 @@
 	
 	/* --- logged-out item --- */
 	.logged-out .item-header { 
-		padding: 12px 0 !important; }
+		padding: 14px 0 12px !important; }
 	
 	.logged-out .item-header .logo { 
 		height: 32px !important;
@@ -67,7 +69,7 @@
 			
 	.logged-out .item-header .btn { 
 	 	width: 100% !important;
-	 	margin: 12px 0 !important; }
+	 	float: none !important; }
 	 	
 	.logged-out .item .panel .title-box { 
 		font-size: 15px;

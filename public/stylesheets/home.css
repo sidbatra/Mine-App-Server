@@ -109,6 +109,11 @@ footer.dark {
 
 footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
+footer .like-button-box {
+	height: 26px; 
+	bottom: 0; 
+	overflow: hidden; }
+
 
 /* Logged-out header
 ==================================================================== */	
@@ -131,10 +136,77 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	width: 300px; 
 	float: right; }
 
+/* Home item
+==================================================================== */	
 
+.box {
+	margin: 0 auto;
+	width: 520px; }
 
+.top {
+	background: #f8f8f8;
+	padding: 20px;
+	-webkit-border-radius: 5px 5px 0 0; 
+    -moz-border-radius: 5px 5px 0 0;   
+  		border-radius: 5px 5px 0 0;
+  font-family: 'RooneyLightItalic';
+  color: #666;
+  font-size: 16px;
+  line-height: 24px; }
 
+.top span.em {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #333;
+	font-weight: bold; }
+	
+.top .user-photo {
+	width: 48px;
+	height: 48px;
+	float: left;
+	padding-right: 12px; }
 
+.bottom {
+	background: white;
+	padding: 20px;
+	-webkit-border-radius: 0 0 5px 5px; 
+    -moz-border-radius: 0 0 5px 5px;   
+  		border-radius: 0 0 5px 5px; 
+  color: #ccc;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 12px; }
+ 
+.bottom .item-photo { max-width: 80%; }
+
+.bottom .item-details { padding-top: 12px; }
+
+/*
+.item {
+	width: 520px;
+	margin: 0 auto; }
+	
+.item .intro {
+	height: 88px;
+	background: #f8f8f8;
+}
+
+.item .photo {
+	width: 520px; 
+	height: 520px; 
+	padding: 24px;
+	background: white url('/images/loading-blocks-dark-trans.gif') center no-repeat; 
+	text-align: center;
+	line-height: 472px;
+	-webkit-border-radius: 5px !important; 
+     -moz-border-radius: 5px !important;  
+          border-radius: 5px !important; }
+  
+.item .photo img.stamp {
+	width: 48px;
+	height: 48px;
+	top: 18px;
+	right: 18px; }
+*/
 
 
 
