@@ -78,6 +78,59 @@ class Product < ActiveRecord::Base
     [search.results,search.total]
   end
 
+  # Public. Load crawled products from an S3 bucket and import tme
+  # into the database.
+  #
+  # bucket - The String name of the S3 bucket.
+  # prefix - The String prefix marking where the products are in the bucket.
+  #
+  # Returns nothing
+  #
+  def self.import_crawled(bucket,prefix)
+    columns = [:title,:description,:source_url,:orig_image_url,
+                :orig_image_url_hash,:store_id]
+                
+    AWS::S3::Bucket.objects(bucket,:prefix => prefix).each do |object|
+      next if object.key.match("\\$folder\\$")
+
+      values = []
+
+      object.value.split("\n").each do |line|
+        product = line.split("\t")
+
+        source_url          = product[0]
+        title               = product[1]
+        orig_image_url      = product[2]
+        orig_image_url_hash = Digest::SHA1.hexdigest(orig_image_url)
+        store_id            = product[3]
+        description         = product[4]
+
+        values << [title,description,source_url,orig_image_url,
+                    orig_image_url_hash,store_id]
+      end #lines
+
+      Product.import columns,values,{:validate => false}
+    end #files
+
+
+    products = Product.find_all_by_is_processed(false)
+
+    products.each do |product|
+      SecondaryProcessingQueue.push(
+        ProductDelayedObserver,
+        :after_create,
+        product.id)
+    end
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
+  end
+
+
+  #----------------------------------------------------------------------
+  # Instance methods
+  #----------------------------------------------------------------------
+
   # Public. Relative path of the thumbnail image on the filesystem.
   #
   # Returns the String thumbnail image path.
