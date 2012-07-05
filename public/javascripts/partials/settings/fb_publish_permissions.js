@@ -1,11 +1,11 @@
 // Partial for displaying and fetching facebook permission 
 //
-Denwen.Partials.Settings.Facebook = Backbone.View.extend({
+Denwen.Partials.Settings.FBPublishPermissions = Backbone.View.extend({
 
   // Constructor logic
   //
   initialize: function() {
-    this.permissions  = this.options.permissions;
+    this.permissions  = Denwen.Settings.FbPublishPermissions; 
     this.setting      = new Denwen.Models.Setting({id:this.permissions});
   },
 
@@ -16,7 +16,7 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
 
     FB.login(function(response) {
       self.fetchSettings();
-    },{scope: CONFIG[self.permissions]});  
+    },{scope:'publish_actions'});  
   },
 
   // Fetch updated facebook permissions from the server 
@@ -49,15 +49,17 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
       Denwen.H.currentUser.get('setting').set(keys);
 
       Denwen.Track.action("Facebook Permissions Accepted",{
-        "Permissions":CONFIG[this.permissions]});
+        "Permissions":this.permissions});
 
-      this.trigger(Denwen.Partials.Settings.Facebook.Callback.PermissionsAccepted);
+      this.trigger(
+        Denwen.Partials.Settings.FBPublishPermissions.Callback.Accepted);
     }
     else {
       Denwen.Track.action("Facebook Permissions Rejected",{
-        "Permissions":CONFIG[this.permissions]});
+        "Permissions":this.permissions});
 
-      this.trigger(Denwen.Partials.Settings.Facebook.Callback.PermissionsRejected);
+      this.trigger(
+        Denwen.Partials.Settings.FBPublishPermissions.Callback.Rejected);
     }
   }
 
@@ -65,7 +67,7 @@ Denwen.Partials.Settings.Facebook = Backbone.View.extend({
 
 // Define callbacks.
 //
-Denwen.Partials.Settings.Facebook.Callback = {
-  PermissionsAccepted: 'fbPermissionsAccepted',
-  PermissionsRejected: 'fbPermissionsRejected'
+Denwen.Partials.Settings.FBPublishPermissions.Callback = {
+  Accepted: 'fbPermissionsAccepted',
+  Rejected: 'fbPermissionsRejected'
 }

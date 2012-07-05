@@ -16,23 +16,6 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     this.recipient  = this.options.recipient;
     this.buttonEl   = '#post_invite_' + this.recipient.get('id');
 
-    /*
-    this.fbPermissionsRequired = 'fb_extended_permissions';
-
-    this.fbSettings = new Denwen.Partials.Settings.Facebook({
-                            permissions : this.fbPermissionsRequired});
-
-    this.fbSettings.bind(
-      Denwen.Partials.Settings.Facebook.Callback.PermissionsAccepted,
-      this.fbPermissionsAccepted,
-      this);
-
-    this.fbSettings.bind(
-      Denwen.Partials.Settings.Facebook.Callback.PermissionsRejected,
-      this.fbPermissionsRejected,
-      this);
-    */
-
     if(!this.recipient.get('invited'))
       $(this.buttonEl).click(function(){self.prepareToInvite();});
   },
@@ -49,33 +32,9 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     $(this.buttonEl).removeClass('load');
   },
 
-  /*
-  // Fired when fb permissions are accepted 
-  //
-  fbPermissionsAccepted: function() {
-    this.sendInvite();
-  },
-
-  // Fired when fb permissions are rejected
-  //
-  fbPermissionsRejected: function() {
-    this.stopLoading();
-    Denwen.Drawer.error("Please allow Facebook permissions to send invites.");
-  },
-  */
-
   // Fired when the user wants to send the invite
   //
   prepareToInvite: function() {
-    /*
-    if(Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) {
-      this.sendInvite();
-    }
-    else { 
-      this.startLoading(); 
-      this.fbSettings.showPermissionsDialog();
-    }*/
-
     this.startLoading();
     this.showSendDialog();
 

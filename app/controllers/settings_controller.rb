@@ -19,9 +19,6 @@ class SettingsController < ApplicationController
     when :fb_publish_permissions
       @setting = {:status => self.current_user.fb_publish_permissions?}
 
-    when :fb_extended_permissions
-      @setting = {:status => self.current_user.fb_extended_permissions?}
-
     when :fb_auth
       @setting = {:status => self.current_user.fb_authorized?}
 
@@ -53,9 +50,6 @@ class SettingsController < ApplicationController
       case @filter
       when :fb_publish_permissions
         attributes = {:fb_publish_actions => params[:value]}
-
-      when :fb_extended_permissions
-        attributes = {:fb_publish_stream => params[:value]}
 
       else
         attributes = {params[:id] => params[:value]}
