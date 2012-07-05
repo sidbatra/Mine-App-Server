@@ -251,8 +251,8 @@ class Purchase < ActiveRecord::Base
   end
 
   def deleted_from_fb
-    self.fb_action_id = nil
-    self.save!
+    #self.fb_action_id = nil
+    #self.save!
   end
 
   # Temporary method for hosting blurred images for each purchase.
