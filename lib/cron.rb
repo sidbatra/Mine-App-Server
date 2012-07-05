@@ -76,6 +76,25 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Find crawlable stores and launch a crawl job
+      # via the crawl queue.
+      #
+      def self.launch_crawl
+        json = Store.crawlable.with_crawl_datum.map do |store|
+                { :id => store.id, 
+                  :domain => store.domain, 
+                  :launch_url => store.crawl_datum.launch_url,
+                  :use_og_image => store.crawl_datum.use_og_image}
+               end.to_json
+
+        CrawlQueue.push(Object.const_set("Crawler",Class.new),:start,json)
+
+        HealthReport.add(HealthReportService::LaunchCrawl)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #cron worker
 
   end # Cron

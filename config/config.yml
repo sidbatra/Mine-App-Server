@@ -32,6 +32,7 @@ common: &common
   :queue:
     :proc: mine_processing
     :secondary_proc: mine_secondary_processing
+    :crawl: crawl
   :max_processing_attempts: 3
   :asset_hosts_count: 4
   :edge_servers_count: 7
