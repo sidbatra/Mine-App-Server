@@ -46,7 +46,11 @@ namespace :stores do
 
       stores.each do |store|
         url_file.puts "#{store.crawl_datum.launch_url}\tnutch.score=20"
-        hash_file.puts "#{store.domain}\t#{store.id}"
+        hash_file.puts ({ 
+                        :id => store.id, 
+                        :domain => store.domain, 
+                        :use_og_image => store.crawl_datum.use_og_image
+                        }.to_json.to_s)
       end
 
       url_file.close
