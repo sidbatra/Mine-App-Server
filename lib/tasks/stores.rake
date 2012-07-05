@@ -33,34 +33,4 @@ namespace :stores do
 
   end #update
 
-
-  namespace :dump do
-    
-    desc "Dump two text files containing crawlable stores"
-    task :crawlable => :environment do |e,args|
-    begin
-      stores = Store.crawlable.with_crawl_datum
-
-      url_file = File.open(File.join(RAILS_ROOT,"urls.txt"),"w")
-      hash_file = File.open(File.join(RAILS_ROOT,"hash.txt"),"w")
-
-      stores.each do |store|
-        url_file.puts "#{store.crawl_datum.launch_url}\tnutch.score=20"
-        hash_file.puts ({ 
-                        :id => store.id, 
-                        :domain => store.domain, 
-                        :use_og_image => store.crawl_datum.use_og_image
-                        }.to_json.to_s)
-      end
-
-      url_file.close
-      hash_file.close
-
-    rescue => ex
-      puts "Critical error while dumping crawlable stores"
-      LoggedException.add(__FILE__,__method__,ex)
-    end
-    end
-  end #dump
-
 end #stores

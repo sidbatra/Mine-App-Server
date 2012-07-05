@@ -25,6 +25,10 @@ every :sunday, :at => '5:00pm' do
 end
 
 
+#every 15.days, :at => '7:00am' do
+#  runner "ProcessingQueue.push(CronWorker,:launch_crawl)"
+#end
+
 #every [:monday,:friday], :at => '6:00pm' do
 #end
 #every :sunday, :at => '8:15pm' do
