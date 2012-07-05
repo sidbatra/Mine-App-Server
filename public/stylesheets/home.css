@@ -147,7 +147,7 @@ footer .like-button-box {
 
 .box {
 	margin: 0 auto;
-	width: 520px; }
+/* 	width: 520px; */ }
 
 .top {
 	background: #eee;
@@ -192,13 +192,29 @@ footer .like-button-box {
   font-size: 13px;
   text-align: center; }
  
-.bottom .item-photo { max-width: 80%; }
+.bottom .item-photo { max-width: 100%; }
 
 .bottom .item-details { 
 	bottom: 20px;
 	width: 100%;
 	line-height: 1;
 	text-align: center; }
+	
+
+/* Slides.js
+==================================================================== */	
+
+.slides_container {
+	margin: 0 auto;
+  width: 520px;
+  height: 470px; }
+  
+.slides_container div {
+  width: 520px;
+  height: 470px;
+  display: block; }
+
+
 
 /*
 .item {

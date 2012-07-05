@@ -122,5 +122,14 @@
   	height: auto;
   	line-height: 1;
   	padding: 18px; }
+  
+  .bottom .item-photo {
+/*   	max-width: 100%; */
+  	max-height: 150px !important;
+  }
+  
+  .slides_container,
+	.slides_container div {
+		width: auto; }
    
 }
