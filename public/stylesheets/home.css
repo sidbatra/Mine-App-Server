@@ -65,7 +65,7 @@ body {
 	background: #444; }
 
 .shares { 
-	height: 16px;
+	height: 14px;
 	vertical-align: baseline; }
 
 .shares.inactive,
@@ -411,10 +411,18 @@ footer .like-button-box {
 	background: #ffffcc;
 	padding: 12px 16px; }
 
+/* Slides.JS
+==================================================================== */
+
+.slides_container { 
+	width: 520px; 
+	float: left; }
 
 
 /* Home Logged-out item
 ==================================================================== */
+
+.home .logged-out .item { background: white; }
 
 .home .logged-out .item .photo .description {
 	bottom: 24px;
@@ -423,7 +431,10 @@ footer .like-button-box {
 	font-size: 12px;
 	line-height: 1; }
 
-.home .logged-out .item .panel { padding: 0; }
+.home .logged-out .item ul { 
+	margin: 0;
+	padding: 0;
+	float: right; }
 	
 .home .item .panel .panel-contents {
 	padding-left: 28px; 
@@ -466,7 +477,11 @@ footer .like-button-box {
 
 .home .item .panel .panel-contents.current { 
 	background: #099CDE;
-	border-bottom: 1px solid #099CDE; }
+	-webkit-transition: background 0.75s ease-out;
+	-moz-transition: background 0.75s ease-out;
+	-o-transition: background 0.75s ease-out;
+	transition: background 0.75s ease-out;
+	border-bottom: 1px solid transparent; }
 	
 .home .logged-out .item .panel .panel-contents.current .title-box,
 .home .logged-out .item .panel .panel-contents.current .title-box .em { 
