@@ -26,7 +26,8 @@
             onclick="this.className += ' load';"
             class="btn btn-large btn-red shaded">
           <span class='hide-when-loading'>
-          	<span class="f"></span> 
+            <%=image_tag "social/f-box.png",
+            		:class => "f-box"%>
             Join <%=h @purchase.user.first_name%> on 
             <span class='mine'><%=CONFIG[:name].downcase%></span> now
           </span>
