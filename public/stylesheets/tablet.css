@@ -58,4 +58,21 @@
   .three-to-two { margin-right: 24px; }
   .cards { margin-right: -24px; }
   
+  /* home page */
+  
+  .home .item .panel .panel-contents { padding: 20px 24px; }
+  
+  .home .item .panel .panel-contents.one {
+  	-webkit-border-top-right-radius: 0px;
+		-moz-border-top-right-radius: 0px;
+		border-top-right-radius: 0px; }
+		
+	.home .item .panel .panel-contents.three {
+  	-webkit-border-bottom-left-radius: 5px;
+		-moz-border-bottom-left-radius: 5px;
+		border-bottom-left-radius: 5px; }
+		
+  .home .logged-out .item .panel .panel-contents .title-box { padding: 0; }
+  .home .item .panel .panel-contents .caret { display: none; }
+
 }

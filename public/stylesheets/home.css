@@ -64,16 +64,6 @@ a:focus { outline: none; }
 ==================================================================== */
 
 body { background: #444; }
-
-.shares { 
-	height: 15px;
-	vertical-align: baseline; }
-
-.shares.inactive,
-.current .shares.active { display: inline-block; }
-
-.shares.active,
-.current .shares.inactive { display: none; }
 	
 
 /* Header, Container and Footer
@@ -450,17 +440,8 @@ footer .like-button-box {
 	overflow-x: auto;
 	height: 173px;
 	border-bottom: 1px solid #ddd; }
-
-.home .item .panel .panel-contents.one { 
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-top-right-radius: 5px;
-	border-top-right-radius: 5px; }
 	
-.home .item .panel .panel-contents.three { 
-	height: 174px;
-	-webkit-border-bottom-right-radius: 5px;
-	-moz-border-bottom-right-radius: 5px;
-	border-bottom-right-radius: 5px; }
+.home .item .panel .panel-contents.three { height: 174px; }
 
 .home .item .panel .panel-contents .caret { 
 	z-index: 10000;
@@ -508,6 +489,16 @@ footer .like-button-box {
 .home .logged-out .item .panel ul {
 	margin: 0;
 	padding: 0; }
+
+.home .shares { 
+	height: 15px;
+	vertical-align: baseline; }
+
+.home .shares.inactive,
+.home .current .shares.active { display: inline-block; }
+
+.home .shares.active,
+.home .current .shares.inactive { display: none; }
 	
 
 /* Buttons
