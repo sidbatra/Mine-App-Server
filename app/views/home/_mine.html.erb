@@ -42,8 +42,9 @@
 
           <div class="slides_container">
             <!-- photo 1 -->
-            <div class="photo rounded-5 relative border-box"
-              style="background-image: url('<%=image_path "home/radio.jpg"%>')">
+            <div class="photo rounded-5 relative border-box">
+              <%=image_tag "home/radio.jpg",
+                  :class => "story"%>
               <%=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description rounded-3 absolute" style="color: #777;">
@@ -51,8 +52,9 @@
               </div>
             </div>
             
-            <div class="photo rounded-5 relative border-box"
-              style="background-image: url('<%=image_path "home/pajamas.jpg"%>');display:none">
+            <div class="photo rounded-5 relative border-box" style="display: none;">
+              <%=image_tag "home/pajamas.jpg",
+                  :class => "story"%>
               <%=image_tag "mine_stamp_white_54_2x.png",
                   :class => "stamp absolute"%>
               <div class="description light rounded-3 absolute">
@@ -61,8 +63,9 @@
               </div>
             </div>
             
-            <div class="photo rounded-5 relative border-box"
-              style="background-image: url('<%=image_path "home/fuelband.jpg"%>');display:none">
+            <div class="photo rounded-5 relative border-box" style="display: none;">
+              <%=image_tag "home/fuelband.jpg",
+                  :class => "story"%>
               <%=image_tag "mine_stamp_white_54_2x.png",
                   :class => "stamp absolute"%>
               <div class="description light rounded-3 absolute" style="color: #999;">

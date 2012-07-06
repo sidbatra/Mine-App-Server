@@ -60,6 +60,11 @@
   
   /* home page */
   
+  .home .logged-out .item .photo img.story {
+		-webkit-border-radius: 5px 5px 0 0;
+		-moz-border-radius: 5px 5px 0 0;
+		border-radius: 5px 5px 0 0; }
+  
   .home .item .panel .panel-contents { padding: 20px 24px; }
   
   .home .item .panel .panel-contents.one {
