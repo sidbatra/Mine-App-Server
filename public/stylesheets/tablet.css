@@ -7,9 +7,7 @@
 
 	.container, .header .navigation, footer .inner { 
 		width: 540px; }
-	
-	footer .like-button-box { padding-left: 0 !important; }
-	
+		
 	.item,
 	.item .actions, 
 	.item .panel,

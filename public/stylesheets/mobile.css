@@ -15,8 +15,6 @@
 		padding-left: 10px;
 		padding-right: 10px; }
 	
-	footer .like-button-box { padding-left: 0 !important; }
-	
 	/* --- item --- */
 	.item,
 	.item .actions, 
@@ -105,28 +103,6 @@
   .cards { margin-right: -24px; }
   
   /* --- home --- */
-  
-  .top {
-  	padding: 18px 18px 18px 68px;
-  	font-size: 13px;
-  	line-height: 18px;
-  	height: auto; }
-   
-  .top .user-photo { 
-   	width: 40px;
-   	height: 40px;
-   	left: 18px;
-   	top: 18px; }
-   	
-  .bottom { 
-  	height: auto;
-  	line-height: 1;
-  	padding: 18px; }
-  
-  .bottom .item-photo {
-/*   	max-width: 100%; */
-  	max-height: 150px !important;
-  }
   
   .slides_container,
 	.slides_container div {
