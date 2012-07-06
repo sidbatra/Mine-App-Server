@@ -21,6 +21,8 @@ a {
 a:hover { 
 	color: #177dbe;
 	text-decoration: none; }
+
+a:focus { outline: none; }
 	
 .wrapper {
 	min-height: 100%;
