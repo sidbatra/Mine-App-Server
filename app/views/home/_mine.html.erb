@@ -34,112 +34,116 @@
         </a>
               
       </div> <!-- /logged-out-item-header --> 
+
       
       <div class="item clearfix shaded rounded-5">
       
-      	<!-- photo 1 -->
-        <div class="photo rounded-5 relative border-box"
-        	style="background-image: url('<%=image_path "home/radio.jpg"%>')">
-          <%=image_tag "mine_stamp_white_54_2x.png",
-              :class => "stamp absolute"%>
-          <div class="description rounded-3 absolute" style="color: #777;">
-          	Sangean WR-11 Wooden Cabinet Receiver, bought from Target 
-          </div>
-        </div>
-        
-        <!-- photo 2 -->
-<!--
-        <div class="photo rounded-5 relative border-box"
-        	style="background-image: url('<#=image_path "home/pajamas.jpg"%>')">
-          <#=image_tag "mine_stamp_white_54_2x.png",
-              :class => "stamp absolute"%>
-          <div class="description light rounded-3 absolute">
-          	<span style="color: #555;">Drawstring Wide-Leg </span>
-          	<span style="color: #ccc;">Jeans, bought from Citizens of Humanity</span>
-          </div>
-        </div>
--->
-        
-        <!-- photo 3 -->
-<!--
-        <div class="photo rounded-5 relative border-box"
-        	style="background-image: url('<#=image_path "home/fuelband.jpg"%>')">
-          <#=image_tag "mine_stamp_white_54_2x.png",
-              :class => "stamp absolute"%>
-          <div class="description light rounded-3 absolute" style="color: #999;">
-          	Nike Fuel Band, bought from Niketown 
-          </div>
-        </div>
--->
+        <div id="slides">
 
-        <div class="panel border-box relative">
-	          
-	          <!-- 1 -->
-	          <div class="panel-contents border-box relative one current">
-	          	<div class="caret absolute"></div>
-	            
-	            <div class="title-box relative border-box">
-	
-	              <%=image_tag "home/mike.jpg",
-	                  :class => "user-photo rounded-3"%>
-	
-	              <span class="em">Mike</span> 
-	              is using <span class="em">mine</span> to show 
-	              <span class="em"> a few close friends</span> 
-	              some neat stuff he bought for his new apartment.
-	
-	            </div> <!-- /title-box -->
-	          
-	          </div> <!-- /panel-contents -->
-	          
-	          
-	          <!-- 2 -->
-	          <div class="panel-contents border-box relative two">
-	          	<div class="caret absolute"></div>
-	            
-	            <div class="title-box relative border-box">
-	
-	              <%=image_tag "home/natalia.jpg",
-	                  :class => "user-photo rounded-3"%>
-	
-	              <span class="em">Natalia</span> uses <span class="em">mine</span> 
-	              to post her latest weekend shopping haul
-	              to <span class="em">her followers</span> on 
-	              	<%=image_tag "home/tumblr2x.png",
-	                  	:class => "shares tb active"%>
-	                <%=image_tag "home/tumblr2x_black.png", 
-	               			:class => "shares tb inactive"%> and 
-	              	<%=image_tag "home/twitter2x.png",
-	                  	:class => "shares tw active"%>
-	                <%=image_tag "home/twitter2x_black.png", 
-	                		:class => "shares tw inactive"%>.
-	            </div> <!-- /title-box -->
-	          
-	          </div> <!-- /panel-contents -->
-	          
-	          
-	          <!-- 3 -->
-	          <div class="panel-contents border-box relative three">
-	          	<div class="caret absolute"></div>
-	            
-	            <div class="title-box relative border-box">
-	
-	              <%=image_tag "home/craig.jpg",
-	                  :class => "user-photo rounded-3"%>
-	
-	              <span class="em">Craig</span> 
-	              uses <span class="em">mine</span> to catalog what he buys. 
-	              He shares reviews of his faves with 
-	              <span class="em">friends</span> on 
-	              	<%=image_tag "home/fb2x.png",
-	                  	:class => "shares fb active"%>
-	                 <%=image_tag "home/fb2x_black.png", 
-	                		:class => "shares fb inactive"%>.
-	            </div> <!-- /title-box -->
-	          
-	          </div> <!-- /panel-contents -->
-      
-        </div> <!-- /panel -->
+          <div class="slides_container">
+            <!-- photo 1 -->
+            <div class="photo rounded-5 relative border-box"
+              style="background-image: url('<%=image_path "home/radio.jpg"%>')">
+              <%=image_tag "mine_stamp_white_54_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description rounded-3 absolute" style="color: #777;">
+                Sangean WR-11 Wooden Cabinet Receiver, bought from Target 
+              </div>
+            </div>
+            
+            <div class="photo rounded-5 relative border-box"
+              style="background-image: url('<%=image_path "home/pajamas.jpg"%>');display:none">
+              <%=image_tag "mine_stamp_white_54_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description light rounded-3 absolute">
+                <span style="color: #555;">Drawstring Wide-Leg </span>
+                <span style="color: #ccc;">Jeans, bought from Citizens of Humanity</span>
+              </div>
+            </div>
+            
+            <div class="photo rounded-5 relative border-box"
+              style="background-image: url('<%=image_path "home/fuelband.jpg"%>');display:none">
+              <%=image_tag "mine_stamp_white_54_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description light rounded-3 absolute" style="color: #999;">
+                Nike Fuel Band, bought from Niketown 
+              </div>
+            </div>
+          </div> <!--slides_container-->
+
+
+          <ul class="panel border-box relative paginator">
+              
+            <!-- 1 -->
+            <li class="panel-contents border-box relative one current">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/mike.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Mike</span> 
+                  is using <span class="em">mine</span> to show 
+                  <span class="em"> a few close friends</span> 
+                  some neat stuff he bought for his new apartment.
+    
+                </div> <!-- /title-box -->
+              </a>
+            </li> <!-- /panel-contents -->
+            
+            
+            <!-- 2 -->
+            <li class="panel-contents border-box relative two">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/natalia.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Natalia</span> uses <span class="em">mine</span> 
+                  to post her latest weekend shopping haul
+                  to <span class="em">her followers</span> on 
+                    <%=image_tag "home/tumblr2x.png",
+                        :class => "shares tb active"%>
+                    <%=image_tag "home/tumblr2x_black.png", 
+                        :class => "shares tb inactive"%> and 
+                    <%=image_tag "home/twitter2x.png",
+                        :class => "shares tw active"%>
+                    <%=image_tag "home/twitter2x_black.png", 
+                        :class => "shares tw inactive"%>.
+                </div> <!-- /title-box -->
+              </a>
+            </li> <!-- /panel-contents -->
+            
+            
+            <!-- 3 -->
+            <li class="panel-contents border-box relative three">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/craig.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Craig</span> 
+                  uses <span class="em">mine</span> to catalog what he buys. 
+                  He shares reviews of his faves with 
+                  <span class="em">friends</span> on 
+                    <%=image_tag "home/fb2x.png",
+                        :class => "shares fb active"%>
+                     <%=image_tag "home/fb2x_black.png", 
+                        :class => "shares fb inactive"%>.
+                </div> <!-- /title-box -->
+              </a>
+            </li> <!-- /panel-contents -->
+        
+          </ul> <!-- /panel -->
+        </div> <!-- slides -->
       
       </div> <!-- /item -->
 
@@ -157,3 +161,18 @@
       Mine © 2012 · Palo Alto CA<span class="hide-on-mobile"> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Contact Us</a></span>
   </div>
 </footer>
+
+<%content_for :javascript do%>
+<script type="text/javascript">
+  $('#slides').slides({
+    effect: 'fade',
+    crossfade: true,
+    fadeSpeed: 1500,
+    generatePagination: false,
+    play: 3500,
+    pause: 3500,
+    bigTarget: true,
+    paginationClass: 'paginator',
+    currentClass: 'current'});
+</script>
+<%end%>
