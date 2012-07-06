@@ -1,3 +1,6 @@
+/* Basics
+==================================================================== */
+
 * { margin: 0; }
 
 html, body { height: 100%; }
@@ -18,6 +21,8 @@ a {
 a:hover { 
 	color: #177dbe;
 	text-decoration: none; }
+
+a:focus { outline: none; }
 	
 .wrapper {
 	min-height: 100%;
@@ -46,6 +51,7 @@ a:hover {
 	bottom: 0;
 	left: 0; }
 
+.dimmer.twenty { background: url('/images/colors/black-20.png'); }
 .dimmer.sixty { background: url('/images/colors/black-60.png'); }
 .dimmer.seventy { background: url('/images/colors/black-70.png'); }
 .dimmer.seventy-five { background: url('/images/colors/black-75.png'); }
@@ -53,7 +59,7 @@ a:hover {
 .dimmer.hundred { background: black; }
 
 
-/* Header Nav
+/* Header, Container and Footer
 ==================================================================== */
 
 .header {
@@ -85,6 +91,30 @@ a:hover {
 
 .container { padding-bottom: 64px; }
 	
+footer { text-align: center; }
+
+footer, .push {
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	background: #f8f8f8; }
+
+footer, footer a, footer a:hover { color: #ccc; }
+
+footer.dark {
+	background: url('/images/colors/black-25.png');}
+
+footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
+
+footer .like-button-box {
+	height: 26px; 
+	bottom: 0; 
+	overflow: hidden; }
+
+
+/* Thumbnail Box
+==================================================================== */
+
 .thumbnail-box { 
 	padding: 0 0 36px;
 	font-size: 0; }
@@ -129,23 +159,6 @@ a:hover {
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 18px; }
-	
-footer {
-  text-align: center;
-}
-
-footer, .push {
-	height: 32px;
-	line-height: 32px;
-	font-size: 12px;
-	background: #f8f8f8; }
-
-footer, footer a, footer a:hover { color: #ccc; }
-
-footer.dark {
-	background: url('/images/colors/black-25.png');}
-
-footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
 
 /* Onboarding
@@ -853,7 +866,8 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
 .item .panel.overflowing .panel-contents .add-comment-box .self-photo { top: 11px; }
 
-/* Logged-out item
+
+/* Logged-out header
 ==================================================================== */	
 
 .logged-out .item-header { 
@@ -865,29 +879,31 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	
 .logged-out .item-header .text {
 	vertical-align: -6px;
-	font-size: 15px;
+	font-size: 18px;
 	color: white;
 	font-family: 'RooneyLightItalic', Georgia; }
 
 .logged-out .item-header .btn { 
-	margin-top: 8px;
+	margin-top: 9px;
 	width: 300px; 
 	float: right; }
+	
+
+/* Logged-out item
+==================================================================== */	
 	
 .logged-out .item .panel .title-box { 
 	font-size: 18px;
 	line-height: 27px;
-	color: #555;
+	color: #777;
 	font-family: 'RooneyLightItalic', Georgia;
 	padding-bottom: 12px; }
 	
 .logged-out .item .panel .title-box .user-photo { 
 	vertical-align: -7px;
-	padding-right: 2px; }
+	margin-right: 2px; }
 
-.logged-out .item .panel .title-box .user-name,
-.logged-out .item .panel .title-box .item-name,
-.logged-out .item .panel .title-box .store-name {
+.logged-out .item .panel .title-box .em {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	color: #333; }
@@ -919,16 +935,6 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 .logged-out .item .panel .marketing-box .bubble {
 	background: #ffffcc;
 	padding: 12px 16px; }
-	
-/*
-.usage-sequence-box { 
-	font-size: 0;
-	margin-top: 16px;
-	background: #444;
-	padding: 12px; }
-
-.usage-sequence-box .btn { width: 25%; }
-*/
 
 
 /* Profile
@@ -1011,6 +1017,7 @@ footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 	height: 32px;
 	z-index: 500;
 	background: url("/images/fade-right.png") 0 -100px no-repeat; }
+	
 	
 /* Profile Card
 ==================================================================== */
@@ -1648,6 +1655,11 @@ textarea.highlight-on-focus:focus {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px; }
+
+.rounded-5 {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; }
 	
 .rounded-8 {
 	-webkit-border-radius: 8px;
@@ -1658,6 +1670,28 @@ textarea.highlight-on-focus:focus {
 	-webkit-border-radius: 16px;
 	-moz-border-radius: 16px;
 	border-radius: 16px; }
+
+.top-right {
+	-webkit-border-top-left-radius: 0;
+	-moz-border-top-left-radius: 0;
+	border-top-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-bottom-left-radius: 0;
+	border-bottom-left-radius: 0; }
+
+.bottom-right {
+	-webkit-border-top-left-radius: 0;
+	-moz-border-top-left-radius: 0;
+	border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-top-right-radius: 0;
+	border-top-right-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-bottom-left-radius: 0;
+	border-bottom-left-radius: 0; }
 	
 .transition-bg {
 	-webkit-transition: background .15s ease-in;
@@ -1707,64 +1741,6 @@ input[type="color"]:focus,
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0); }
-         	
-
-/* Media Queries - Tablets
-==================================================================== */
-
-@media screen and (max-width: 840px) {
-
-	.background-cover { display: none; }
-
-	.container, .header .navigation, footer .inner { 
-		width: 540px; }
-	
-	.item,
-	.item .actions, 
-	.item .panel,
-	.item .panel .panel-contents,
-	.user-box .friends-box {
-		width: 100%;
-		height: auto !important; }
-	 
-	.item .photo { 
-	 	-webkit-border-radius: 5px 5px 0 0; 
-	  	-moz-border-radius: 5px 5px 0 0;  
-	         border-radius: 5px 5px 0 0; }
-	         
-	.item .panel { 
-	 	-webkit-border-radius: 0 0 5px 5px; 
-	  	-moz-border-radius: 0 0 5px 5px;  
-	    	border-radius: 0 0 5px 5px; }
-	         
-	.onboarding .box.itemized {
-		width: 520px; }
-			
-	.logged-out .item-header .btn { 
-	 	width: 100%;
-	 	margin: 16px 0; }
-   
-  /* no overflow abs. positioned add-comment-box when narrow */
-  .item .panel-contents.overflowing { overflow-y: visible; }
-	.item .panel.overflowing .panel-contents .add-comment-box {
-		position: relative !important;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		padding-top: none;
-		border-top: none;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none; }
-   
-  .item .actions,
-  .user-box .friends-box {
-  	padding: 0; } 
-  	
-  .three-to-two { margin-right: 24px; }
-  .cards { margin-right: -24px; }
-}
 
    
 /* Fonts

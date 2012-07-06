@@ -15,18 +15,15 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
 
     $(this.buttonEl).click(function(){self.prepare();});
 
-    this.fbPermissionsRequired = 'fb_publish_permissions';
-
-    this.fbSettings = new Denwen.Partials.Settings.Facebook({
-                            permissions : this.fbPermissionsRequired});
+    this.fbSettings = new Denwen.Partials.Settings.FBPublishPermissions();
 
     this.fbSettings.bind(
-      Denwen.Partials.Settings.Facebook.Callback.PermissionsAccepted,
+      Denwen.Partials.Settings.FBPublishPermissions.Callback.Accepted,
       this.fbPermissionsAccepted,
       this);
 
     this.fbSettings.bind(
-      Denwen.Partials.Settings.Facebook.Callback.PermissionsRejected,
+      Denwen.Partials.Settings.FBPublishPermissions.Callback.Rejected,
       this.fbPermissionsRejected,
       this);
   },
@@ -71,7 +68,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   //
   prepare: function() {
     if(this.purchase.isNative() || 
-          Denwen.H.currentUser.get('setting').get(this.fbPermissionsRequired)) 
+        Denwen.H.currentUser.get('setting').get(Denwen.Settings.FbPublishPermissions))
       this.decide();
     else   
       this.fbSettings.showPermissionsDialog();

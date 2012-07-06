@@ -82,18 +82,15 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
-    this.fbPermissionsRequired = 'fb_publish_permissions';
-
-    this.fbSettings = new Denwen.Partials.Settings.Facebook({
-                            permissions : this.fbPermissionsRequired});
+    this.fbSettings = new Denwen.Partials.Settings.FBPublishPermissions();
 
     this.fbSettings.bind(
-      Denwen.Partials.Settings.Facebook.Callback.PermissionsAccepted,
+      Denwen.Partials.Settings.FBPublishPermissions.Callback.Accepted,
       this.fbPermissionsAccepted,
       this);
 
     this.fbSettings.bind(
-      Denwen.Partials.Settings.Facebook.Callback.PermissionsRejected,
+      Denwen.Partials.Settings.FBPublishPermissions.Callback.Rejected,
       this.fbPermissionsRejected,
       this);
 
@@ -135,6 +132,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       Denwen.Partials.Auth.Tumblr.Callback.AuthRejected,
       this.tumblrAuthRejected,
       this);
+
 
     Denwen.NM.bind(
       Denwen.NotificationManager.Callback.FBTokenDead,
@@ -243,7 +241,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       $(this.fbSwitchEl).addClass(this.switchLoadingClass);
       this.fbAuth.showAuthDialog();
     }
-    else if(!setting.get(this.fbPermissionsRequired)) { 
+    else if(!setting.get(Denwen.Settings.FbPublishPermissions)) { 
       $(this.fbSwitchEl).addClass(this.switchLoadingClass);
       this.fbSettings.showPermissionsDialog();
     }

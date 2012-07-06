@@ -33,11 +33,11 @@ Rails::Initializer.run do |config|
               :lib => 'amazon/ecs')
   config.gem('ar-extensions', 
               :version => '0.9.2')
-  config.gem('aws',
-              :version => '2.5.6')
   config.gem('aws-s3',
               :lib => 'aws/s3',
               :version => '0.6.2')
+  config.gem('aws',
+              :version => '2.5.6')
   config.gem('aws-ses', 
               :lib => 'aws/ses', 
               :version => '0.4.3')

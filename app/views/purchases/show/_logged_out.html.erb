@@ -53,19 +53,19 @@
               <%=image_tag @purchase.user.square_image_url,
                   :class => "user-photo"%>
 
-              <span class="user-name">
+              <span class="em">
                 <%=truncate h(@purchase.user.full_name),:length => 28%>
               </span> 
 
               bought <%=user_pronoun @purchase.user%>
 
-              <span class="item-name">
+              <span class="em">
                 <%=truncate h(@purchase.title),:length => 50%>
               </span> 
 
               <%if @purchase.store%>
                 from 
-                <span class="store-name">
+                <span class="em">
                   <%=truncate h(@purchase.store.name),:length => 28%>
                 </span> 
               <%end%>

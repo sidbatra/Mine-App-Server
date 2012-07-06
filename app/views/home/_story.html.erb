@@ -1,0 +1,181 @@
+<div class="wrapper">
+	
+	<div class="container border-box home">
+
+		<div class="logged-out">
+			
+			<%unless is_phone_device?%>
+				<div class="background-cover" 
+	      	style="background-image: url('<%=image_path "home/blur-bg.jpg"%>')">
+	  		</div>
+			<%end%>
+			
+			<div class="dimmer twenty">
+			</div>
+			
+      <div class="item-header">
+      
+        <%=image_tag "mine_54_horizontal_2x.png",
+            :class => "logo"%>
+              
+        <span class="text">
+					Tell friends when you buy good stuff.
+        </span>
+        
+        <a href="<%=fb_auth_path(:src => @origin)%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-large btn-red shaded">
+          <span class='hide-when-loading'>
+          	<span class="f"></span> 
+            Start your 
+            <span class='mine'><%=CONFIG[:name].downcase%></span> now
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+              
+      </div> <!-- /logged-out-item-header --> 
+
+      
+      <div class="item clearfix shaded rounded-5">
+      
+        <div id="slides">
+
+          <div class="slides_container">
+            <!-- photo 1 -->
+            <div class="photo rounded-5 relative border-box">
+              <%=image_tag "home/radio.jpg",
+                  :class => "story"%>
+              <%=image_tag "mine_stamp_white_54_35_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description rounded-3 absolute" style="color: #777;">
+                Sangean WR-11 Wooden Cabinet Receiver, bought from Target 
+              </div>
+            </div>
+            
+            <div class="photo rounded-5 relative border-box" style="display: none;">
+              <%=image_tag "home/pajamas.jpg",
+                  :class => "story"%>
+              <%=image_tag "mine_stamp_white_54_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description light rounded-3 absolute">
+                <span style="color: #555;">Drawstring Wide-Leg </span>
+                <span style="color: #ccc;">Jeans, bought from Citizens of Humanity</span>
+              </div>
+            </div>
+            
+            <div class="photo rounded-5 relative border-box" style="display: none;">
+              <%=image_tag "home/fuelband.jpg",
+                  :class => "story"%>
+              <%=image_tag "mine_stamp_white_54_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description light rounded-3 absolute" style="color: #999;">
+                Nike Fuel Band, bought from Niketown 
+              </div>
+            </div>
+          </div> <!--slides_container-->
+
+
+          <ul class="panel border-box relative paginator">
+              
+            <!-- 1 -->
+            <li class="panel-contents border-box relative rounded-5 top-right one current">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/mike.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Mike</span> 
+                  is using <span class="em">mine</span> to show 
+                  <span class="em"> a few close friends</span> 
+                  some neat stuff he bought for his new apartment.
+    
+                </div> <!-- /title-box -->
+              </a>
+            </li> <!-- /panel-contents -->
+            
+            
+            <!-- 2 -->
+            <li class="panel-contents border-box relative two">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/natalia.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Natalia</span> uses <span class="em">mine</span> 
+                  to post her latest weekend shopping haul
+                  to <span class="em">her followers</span> on 
+                    <%=image_tag "social/tb_fff_15_2x.png",
+                        :class => "shares tb active"%>
+                    <%=image_tag "social/tb_666_15_2x.png", 
+                        :class => "shares tb inactive"%> and 
+                    <%=image_tag "social/tw_fff_15_2x.png",
+                        :class => "shares tw active"%>
+                    <%=image_tag "social/tw_666_15_2x.png", 
+                        :class => "shares tw inactive"%>
+                </div> <!-- /title-box -->
+              </a>
+            </li> <!-- /panel-contents -->
+            
+            
+            <!-- 3 -->
+            <li class="panel-contents border-box relative rounded-5 bottom-right three">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/craig.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Craig</span> 
+                  uses <span class="em">mine</span> to catalog what he buys. 
+                  He shares reviews of his faves with 
+                  <span class="em">friends</span> on 
+                    <%=image_tag "social/fb_fff_15_2x.png",
+                        :class => "shares fb active"%>
+                     <%=image_tag "social/fb_666_15_2x.png", 
+                        :class => "shares fb inactive"%>
+                </div> <!-- /title-box -->
+              </a>
+            </li> <!-- /panel-contents -->
+        
+          </ul> <!-- /panel -->
+        </div> <!-- slides -->
+      
+      </div> <!-- /item -->
+
+		</div> <!-- /logged-out -->
+	
+	</div> <!-- /container -->
+
+</div> <!-- /wrapper -->
+
+<footer class="dark">
+	<div class="inner relative border-box">
+  	<div class="like-button-box absolute border-box">
+    	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowtransparency="true"></iframe>
+    </div>
+      Mine © 2012 · Palo Alto CA<span class="hide-on-mobile"> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Contact Us</a></span>
+  </div>
+</footer>
+
+<%content_for :javascript do%>
+<script type="text/javascript">
+  $('#slides').slides({
+    effect: 'fade',
+    crossfade: true,
+    fadeSpeed: 750,
+    generatePagination: false,
+    play: 5500,
+    pause: 2000,
+    bigTarget: true,
+    paginationClass: 'paginator',
+    currentClass: 'current'});
+</script>
+<%end%>

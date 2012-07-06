@@ -1,87 +1,41 @@
-/* Media Queries - Mobile - Repeats all of Tablet in case Tablet is ditched
+/* Media Queries - Tablets
 ==================================================================== */
-   
-@media screen and (max-width: 540px) {
 
-	/* --- basics --- */
-	body { background: #333; }	
-	.hide-on-mobile { display: none; }
-	footer .inner { text-align: right; }
+@media screen and (max-width: 840px) {
+
 	.background-cover { display: none; }
-	.dimmer { display: none; }
 
 	.container, .header .navigation, footer .inner { 
-		width: 100%;
-		padding-left: 10px;
-		padding-right: 10px; }
-	
-	/* --- item --- */
+		width: 540px; }
+		
 	.item,
 	.item .actions, 
 	.item .panel,
 	.item .panel .panel-contents,
-	.user-box .friends-box,
-	.box {
-		width: auto;
-	 	height: auto !important; }
+	.user-box .friends-box {
+		width: 100%;
+		height: auto !important; }
 	 
 	.item .photo { 
-	 	width: 100%;
-	 	padding: 18px;
-	 	height: auto;
-	 	line-height: 1;
 	 	-webkit-border-radius: 5px 5px 0 0; 
-	  -moz-border-radius: 5px 5px 0 0;  
-	  border-radius: 5px 5px 0 0; }
-	
-	.item .photo img.item-photo {
-		max-width: 100%; 
-		max-height: 532px; }
-		
-	.item .photo img.stamp {
-		width: 32px;
-		height: 32px;
-		top: 16px;
-		right: 16px; }
-	
+	  	-moz-border-radius: 5px 5px 0 0;  
+	         border-radius: 5px 5px 0 0; }
+	         
 	.item .panel { 
-		padding: 18px 0;
 	 	-webkit-border-radius: 0 0 5px 5px; 
-	    	-moz-border-radius: 0 0 5px 5px;  
-	         	border-radius: 0 0 5px 5px; }
-	         	
-	.item .panel .panel-contents {
-		padding-left: 18px;
-		padding-right: 18px; }
-	
+	  	-moz-border-radius: 0 0 5px 5px;  
+	    	border-radius: 0 0 5px 5px; }
+	         
+	.onboarding .box.itemized {
+		width: 520px; }
+		
 	/* --- logged-out item --- */
 	.logged-out .item-header { 
 		padding: 14px 0 12px !important; }
-	
-	.logged-out .item-header .logo { 
-		height: 32px !important;
-		padding-right: 4px !important; }
-	
-	.logged-out .item-header .text {
-		vertical-align: -2px !important;
-		font-size: 12px !important; }
 			
 	.logged-out .item-header .btn { 
 	 	width: 100% !important;
 	 	float: none !important; }
-	 	
-	.logged-out .item .panel .title-box { 
-		font-size: 15px;
-		line-height: 22px;
-		padding-bottom: 12px; }
-	
-	.logged-out .item .panel .title-box .user-photo {
-		width: 24px;
-		height: 24px; 
-		vertical-align: -6px; }
-		
-	.onboarding .box.itemized {
-		width: auto; }
    
   /* no overflow abs. positioned add-comment-box when narrow */
   .item .panel-contents.overflowing { overflow-y: visible; }
@@ -106,20 +60,12 @@
   
   /* home page */
   
-  .slides_container { 
-		width: 100%;
-	 	height: auto !important; }
-  
-  .home .shares { height: 12px; }
-  
   .home .logged-out .item .photo img.story {
 		-webkit-border-radius: 5px 5px 0 0;
 		-moz-border-radius: 5px 5px 0 0;
 		border-radius: 5px 5px 0 0; }
-
-  .home .logged-out .item .photo .description { display: none; }
   
-  .home .item .panel .panel-contents { padding: 16px 18px; }
+  .home .item .panel .panel-contents { padding: 20px 24px; }
   
   .home .item .panel .panel-contents.one {
   	-webkit-border-top-right-radius: 0px;
@@ -133,5 +79,5 @@
 		
   .home .logged-out .item .panel .panel-contents .title-box { padding: 0; }
   .home .item .panel .panel-contents .caret { display: none; }
-  
+
 }
