@@ -24,12 +24,12 @@
         
         <a href="<%=fb_auth_path(:src => @origin)%>" 
             onclick="this.className += ' load';"
-            class="btn btn-large btn-red shaded">
+            class="btn btn-large btn-facebook shaded">
           <span class='hide-when-loading'>
           	<%=image_tag "social/f-box.png",
             :class => "f-box"%>
-            Start your 
-            <span class='mine'><%=CONFIG[:name].downcase%></span> now
+            Log in to  
+            <span class='mine'><%=CONFIG[:name].downcase%></span> with Facebook
           </span>
           <i class='icon-loading icon-white'></i>
         </a>
@@ -42,14 +42,26 @@
         <div id="slides">
 
           <div class="slides_container">
-            <!-- photo 1 -->
-            <div class="photo rounded-5 relative border-box" style="background: url('<%=image_path "home/radio.jpg"%>');">
-              <%=image_tag "home/radio.jpg",
+          
+						<!--
+            <div class="photo rounded-5 relative border-box" style="background: url('<#=image_path "home/radio.jpg"%>');">
+              <#=image_tag "home/radio.jpg",
                   :class => "story"%>
-              <%=image_tag "mine_stamp_white_54_35_2x.png",
+              <#=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description rounded-3 absolute" style="color: #777;">
                 Sangean WR-11 Wooden Receiver, bought from Target 
+              </div>
+            </div>
+						-->
+            
+            <div class="photo rounded-5 relative border-box" style="background: url('<%=image_path "home/grey.jpg"%>');">
+              <%=image_tag "home/grey.jpg",
+                  :class => "story"%>
+              <%=image_tag "mine_stamp_white_54_35_2x.png",
+                  :class => "stamp absolute"%>
+              <div class="description rounded-3 absolute" style="color: #999;">
+                Fifty Shades of Grey, bought and signed at Barnes & Noble 
               </div>
             </div>
             
@@ -78,20 +90,38 @@
 
           <ul class="panel border-box relative paginator">
               
-            <!-- 1 -->
+            <!-- 1A 
             <li class="panel-contents border-box relative rounded-5 top-right one current">
               <a href="#">
                 <div class="caret absolute"></div>
                 
                 <div class="title-box relative border-box">
     
-                  <%=image_tag "home/mike.jpg",
+                  <#=image_tag "home/mike.jpg",
                       :class => "user-photo rounded-3"%>
     
                   <span class="em">Mike</span> 
                   is using <span class="em">mine</span> to show 
                   <span class="em"> a few close friends</span> 
                   some neat stuff he bought for his new apartment.
+    
+                </div> 
+              </a>
+            </li> /panel-contents -->
+            
+            <!-- 1B -->
+            <li class="panel-contents border-box relative rounded-5 top-right one current">
+              <a href="#">
+                <div class="caret absolute"></div>
+                
+                <div class="title-box relative border-box">
+    
+                  <%=image_tag "home/gabe.jpg",
+                      :class => "user-photo rounded-3"%>
+    
+                  <span class="em">Gabrielle</span> 
+                  is using <span class="em">mine</span> to share her recent book, movie and app choices with
+                  <span class="em"> a few close friends</span>.
     
                 </div> <!-- /title-box -->
               </a>
