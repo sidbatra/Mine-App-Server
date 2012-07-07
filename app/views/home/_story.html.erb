@@ -26,7 +26,8 @@
             onclick="this.className += ' load';"
             class="btn btn-large btn-red shaded">
           <span class='hide-when-loading'>
-          	<span class="f"></span> 
+          	<%=image_tag "social/f-box.png",
+            :class => "f-box"%>
             Start your 
             <span class='mine'><%=CONFIG[:name].downcase%></span> now
           </span>
@@ -42,20 +43,20 @@
 
           <div class="slides_container">
             <!-- photo 1 -->
-            <div class="photo rounded-5 relative border-box">
+            <div class="photo rounded-5 relative border-box" style="background: url('<%=image_path "home/radio.jpg"%>');">
               <%=image_tag "home/radio.jpg",
                   :class => "story"%>
               <%=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description rounded-3 absolute" style="color: #777;">
-                Sangean WR-11 Wooden Cabinet Receiver, bought from Target 
+                Sangean WR-11 Wooden Receiver, bought from Target 
               </div>
             </div>
             
-            <div class="photo rounded-5 relative border-box" style="display: none;">
+            <div class="photo rounded-5 relative border-box" style="display: none; background: url('<%=image_path "home/pajamas.jpg"%>');">
               <%=image_tag "home/pajamas.jpg",
                   :class => "story"%>
-              <%=image_tag "mine_stamp_white_54_2x.png",
+              <%=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description light rounded-3 absolute">
                 <span style="color: #555;">Drawstring Wide-Leg </span>
@@ -63,10 +64,10 @@
               </div>
             </div>
             
-            <div class="photo rounded-5 relative border-box" style="display: none;">
+            <div class="photo rounded-5 relative border-box" style="display: none; background: url('<%=image_path "home/fuelband.jpg"%>');">
               <%=image_tag "home/fuelband.jpg",
                   :class => "story"%>
-              <%=image_tag "mine_stamp_white_54_2x.png",
+              <%=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description light rounded-3 absolute" style="color: #999;">
                 Nike Fuel Band, bought from Niketown 
@@ -113,8 +114,7 @@
                     <%=image_tag "social/tb_fff_15_2x.png",
                         :class => "shares tb active"%>
                     <%=image_tag "social/tb_666_15_2x.png", 
-                        :class => "shares tb inactive"%> and 
-                    <%=image_tag "social/tw_fff_15_2x.png",
+                        :class => "shares tb inactive"%> and <%=image_tag "social/tw_fff_15_2x.png",
                         :class => "shares tw active"%>
                     <%=image_tag "social/tw_666_15_2x.png", 
                         :class => "shares tw inactive"%>

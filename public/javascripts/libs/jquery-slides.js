@@ -373,12 +373,15 @@
 				});
 			} else {
 				// if no preloader fade in start slide
-				control.children(':eq(' + start + ')').fadeIn(option.fadeSpeed, option.fadeEasing, function(){
-					// let the script know everything is loaded
-					loaded = true;
-					// call the loaded funciton
-					option.slidesLoaded();
-				});
+				//control.children(':eq(' + start + ')').fadeIn(option.fadeSpeed, option.fadeEasing, function(){
+				//	// let the script know everything is loaded
+				//	loaded = true;
+				//	// call the loaded funciton
+				//	option.slidesLoaded();
+				//});
+				control.children(':eq(' + start + ')').css({display:'block'});
+        loaded = true;
+        option.slidesLoaded();
 			}
 			
 			// click slide for next

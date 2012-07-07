@@ -1360,6 +1360,12 @@ footer .like-button-box {
 .btn.btn-facebook { background: #3B5998; }
 .btn.btn-facebook:hover { background: #1F4696; }
 
+.btn.btn-large img.f-box {
+	height: 20px; 
+	vertical-align: -4px; 
+	padding-right: 6px; 
+	margin-left: -12px; }
+
 .btn.checklist .icon-ok { display:none; }
 
 .btn.checklist.done { 
