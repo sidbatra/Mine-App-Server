@@ -31,9 +31,10 @@
 		
 	/* --- logged-out item --- */
 	.logged-out .item-header { 
-		padding: 14px 0 12px !important; }
+		padding: 14px 0 30px !important; }
 			
 	.logged-out .item-header .btn { 
+		margin-top: 9px;
 	 	width: 100% !important;
 	 	float: none !important; }
    

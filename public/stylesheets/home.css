@@ -9,8 +9,7 @@ body {
 	background: #eee;
 	overflow-x: hidden;
 	font-size: 14px;
-	text-rendering: optimizelegibility;
-	 -webkit-font-smoothing: antialiased; }
+	text-rendering: optimizelegibility; }
 
 a { 
 	color: #099CDE;
@@ -332,10 +331,12 @@ footer .like-button-box {
 
 
 /* Logged-out header
-==================================================================== */	
+==================================================================== */
+
+.logged-out { -webkit-font-smoothing: antialiased; }
 
 .logged-out .item-header { 
-	padding: 16px 0; }
+	padding: 24px 0 16px; }
 	
 .logged-out .item-header .logo { 
 	height: 54px;
@@ -348,9 +349,16 @@ footer .like-button-box {
 	font-family: 'RooneyLightItalic', Georgia; }
 
 .logged-out .item-header .btn { 
-	margin-top: 9px;
+	margin-top: -2px;
 	width: 300px; 
 	float: right; }
+
+.logged-out .item-header .btn .reassurance {
+	width: 100%; 
+	top: 33px; 
+	left: 0; 
+	text-align: center; 
+	font-size: 12px; }
 	
 
 /* Logged-out item
@@ -448,6 +456,11 @@ footer .like-button-box {
 	overflow-x: auto;
 	height: 173px;
 	border-bottom: 1px solid #ddd; }
+	
+.home .item .panel .panel-contents .friend-photo {
+	width: 16px;
+	height: 16px; 
+	vertical-align: -2px; }
 	
 .home .item .panel .panel-contents.three { height: 174px; }
 
@@ -675,7 +688,7 @@ footer .like-button-box {
 	height: 20px; 
 	vertical-align: -4px; 
 	padding-right: 6px; 
-	margin-left: -12px; }
+	margin-left: -8px; }
 
 .btn.checklist .icon-ok { display:none; }
 
