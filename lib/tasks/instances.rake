@@ -6,11 +6,15 @@ namespace :instances do
   AVAILABILITY_ZONE  = 'us-east-1b'
   SECURITY_GROUP     = 'sg-7c5fca15'
   TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
-                        :search => 'search', :generic => 'generic'}
+                        :search => 'search', :generic => 'generic', 
+                        :crawler => 'crawler'}
   REPOS              = {'web' => 'app','proc' => 'app','cron' => 'app',
-                        'search' => 'app', 'generic' => 'none'}
+                        'search' => 'app', 'generic' => 'none',
+                        'crawler' => 'crawler'}
   SEARCH_IPS         = {'staging' => '23.21.154.238', 
                         'production' => '23.21.152.127'}
+  CRAWLER_IPS        = {'staging' => '23.23.124.176',
+                        'production' => '23.23.124.178'}
   ENVIRONMENTS       = ['production','staging','development']
   SPECS_REGEX        = "^(((#{TYPES.values.join('|')}){1}:(\\d)+)[,]{0,1})+$"
 
@@ -51,6 +55,11 @@ namespace :instances do
         if type == TYPES[:search]
           instance = instances.last
           instance.apply_elastic_ip(SEARCH_IPS[@environment])
+        end
+
+        if type == TYPES[:crawler]
+          instance = instances.last
+          instance.apply_elastic_ip(CRAWLER_IPS[@environment])
         end
       end
     end
