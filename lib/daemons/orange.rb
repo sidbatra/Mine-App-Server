@@ -95,10 +95,10 @@ end
     end
 
 
-    @reset_at = Time.now + rand(60) + 75 
+    @reset_at = Time.now + rand(60) + 60 
     @logger.info "Resetting"
     
-    @count = 0 if @count >= 4 
+    @count = 0 if @count >= 5 
 
   rescue => ex
     @logger.info "Exception - #{ex.message}"
