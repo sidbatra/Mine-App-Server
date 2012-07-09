@@ -77,14 +77,16 @@
             
             <div class="thumbnail-box">
             
-              <h5><%=h @purchase.user.first_name%> also bought:</h5>
+              <%if @purchase.user.purchases_count > 1%>
+                <h5><%=h @purchase.user.first_name%> also bought:</h5>
 
-              <%cache ["v2",@purchase.user,"purchases","preview","loggedout"] do%>
-                <%@purchase.user.purchases.by_id.limit(14).each do |purchase|%>
-                  <%cache ["v2",purchase,"teaser","purchase","loggedout"] do%>
-                    <div class="thumb rounded-3">
-                      <%=image_tag purchase.square_url%>
-                    </div>
+                <%cache ["v2",@purchase.user,"purchases","preview","loggedout"] do%>
+                  <%@purchase.user.purchases.by_id.limit(14).each do |purchase|%>
+                    <%cache ["v2",purchase,"teaser","purchase","loggedout"] do%>
+                      <div class="thumb rounded-3">
+                        <%=image_tag purchase.square_url%>
+                      </div>
+                    <%end%>
                   <%end%>
                 <%end%>
               <%end%>
