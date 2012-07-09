@@ -100,6 +100,7 @@ while($running) do
             :age => 5.minutes,
             :tags => {
               :installed => "0",
+              :repo => "app",
               :environment => ENV['RAILS_ENV']}).count.zero?
 
       revision_sha = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
