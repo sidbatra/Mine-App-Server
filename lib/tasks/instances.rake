@@ -7,6 +7,8 @@ namespace :instances do
   SECURITY_GROUP     = 'sg-7c5fca15'
   TYPES              = {:web => 'web',:proc => 'proc',:cron => 'cron',
                         :search => 'search', :generic => 'generic'}
+  REPOS              = {'web' => 'app','proc' => 'app','cron' => 'app',
+                        'search' => 'app', 'generic' => 'none'}
   SEARCH_IPS         = {'staging' => '23.21.154.238', 
                         'production' => '23.21.152.127'}
   ENVIRONMENTS       = ['production','staging','development']
@@ -35,6 +37,7 @@ namespace :instances do
                       :tags => {
                         :environment => @environment,
                         :type => type,
+                        :repo => REPOS[type],
                         :installed => '0',
                         :name => "#{@config[:name]} "\
                                   "#{@environment.capitalize} "\
