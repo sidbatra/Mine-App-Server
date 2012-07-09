@@ -31,18 +31,18 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   // Returns nothing.
   user: function(id,name,email,age,gender,createdAt) {
-    mixpanel.identify(id);
+    //mixpanel.identify(id);
     mixpanel.name_tag(email);
 
     mixpanel.register_once({"Age" : age});
     mixpanel.register_once({"Gender" : gender});
 
-    mixpanel.people.set({
-      "$email": email,
-      "$created": createdAt,
-      "$name": name,
-      "Gender": gender,
-      "Age": age});
+    //mixpanel.people.set({
+    //  "$email": email,
+    //  "$created": createdAt,
+    //  "$name": name,
+    //  "Gender": gender,
+    //  "Age": age});
   },
 
   // Public. Track the version number of the application as a variable.
