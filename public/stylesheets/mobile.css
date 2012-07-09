@@ -121,12 +121,6 @@
   	background-position: center !important; }
   
   .home .shares { height: 12px; }
-  
-  .home .logged-out .item .photo img.story {
-  	display: none;
-		-webkit-border-radius: 5px 5px 0 0;
-		-moz-border-radius: 5px 5px 0 0;
-		border-radius: 5px 5px 0 0; }
 
   .home .logged-out .item .photo .description { display: none; }
 
