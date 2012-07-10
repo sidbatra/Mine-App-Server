@@ -4,6 +4,7 @@
   {
   :token: 20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04,
   :secret: cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU,
+  :handle: pierrelegrain,
   :templates: [
     {
     :tweet: "@name I just built a site for tweeting pics of what you bought called 'Mine', here: http://getmine.com/try",
@@ -24,6 +25,7 @@
   {
   :token: 158595960-hIOCkVpoyRAbQl6y2QgdDjYnkpGwEPOnWczk5HPA,
   :secret: B9cTjc6HZ0Pso03d1LVzEhDBYOYqNzMxoernFcY9zg,
+  :handle: dpkrao,
   :templates: [
     {
     :tweet: "@name looks great! On Mine (http://getmine.com/try) you can tweet pics of what you bought. Try it out!",
@@ -45,6 +47,7 @@
   :token: 45032868-u6AmUUC3Lwb64TVQifzkEgey9r6zayISQXy0aJ2SF, 
   :secret: 4TJIHLVPDrA29dohWvdn6lxcferKWPFCEelZpHIVo,
   :tw_user_id: 45032868,
+  :handle: sarahatmine,
   :templates: [
     {
     :tweet: "@name that's cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
@@ -65,6 +68,7 @@
   {
   :token: 222575900-PhzdRuJVuyIJP9W4TmHZrDXDtuBYaMojaPT1LDki,
   :secret: uP90oTC9hThJ5ZsdKQ164o23RaruneXvNHOfmxGfjM,
+  :handle: NataliasMine,
   :templates: [
     {
     :tweet: "@name that's awesome! I'm working on http://getmine.com/try for sharing cool stuff you buy. You'll love it!",
@@ -85,6 +89,7 @@
   {
   :token: 203171199-jobUkvNVdlmZStS3BxUQHbRGDggs76cml7A8tiAQ, 
   :secret: bo9dvzPtKU7QB2Aa8VCbgCl9ij3GQTgqRk5N74Fjo, 
+  :handle: gabbysmine,
   :templates: [
     {
     :tweet: "Hey @name that looks really cool - you should show it off on your Mine page! http://getmine.com/try",
