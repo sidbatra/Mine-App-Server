@@ -8,12 +8,12 @@ module DW
       #
       # query - The String query for the search.
       # limit - The Integer max results per page.
-      # offset - The Integer page number of results.
+      # page - The Integer page number of results.
       # url_only - Boolean:false. Only return the url without running request.
       #
       # returns - The String URL for running a product search.
       #
-      def self.search_products(query,limit=10,page=0,url_only=true)
+      def self.search_products(query,limit=10,page=1,url_only=true)
         url = build_url(query,limit,page)
         url_only ? url.to_s : fetch_response(url)
       end
@@ -30,7 +30,7 @@ module DW
           'q' => "#{CGI.escape(query)}",
           'thumbnails' => "180:*",
           'maxResults' => limit,
-          'startIndex' => page}
+          'startIndex' => (page-1)*limit + 1}
 
         extras.each{|k,v| params[k] = v}
         
