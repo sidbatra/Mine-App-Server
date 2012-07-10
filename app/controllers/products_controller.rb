@@ -71,9 +71,10 @@ class ProductsController < ApplicationController
 
       products = @results[:google] + 
                   @results[:inhouse] + 
-                  @results[:amazon] + 
-                  @results[:web_medium] + 
-                  @results[:web_large]
+                  @results[:amazon] 
+
+      products += @results[:web_large] + 
+                  @results[:web_medium] if products.length < 10 || page > 1
     end
 
     [key,sane_query,products]
@@ -156,6 +157,7 @@ class ProductsController < ApplicationController
 
                             rescue => ex
                               LoggedException.add(__FILE__,__method__,ex)
+                              nil
                             end
                           end.compact
       rescue => ex
@@ -189,6 +191,9 @@ class ProductsController < ApplicationController
         @results[key.to_sym] = google_shopping["items"].map do |item|
                                 begin
                                   product = item["product"]
+
+                                  next unless product && product["images"]
+
                                   product_search_hash(
                                     product["images"][0]["thumbnails"][0]["link"],
                                     product["images"][0]["link"],
@@ -197,8 +202,9 @@ class ProductsController < ApplicationController
                                     product["title"])
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
+                                  nil
                                 end
-                              end if google_shopping["items"]
+                              end.compact if google_shopping["items"]
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
@@ -239,8 +245,9 @@ class ProductsController < ApplicationController
                                     "")
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
+                                  nil
                                 end
-                              end if web_search["__next"] || page.zero?
+                              end.compact if web_search["__next"] || page.zero?
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
