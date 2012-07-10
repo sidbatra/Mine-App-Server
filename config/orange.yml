@@ -136,5 +136,26 @@
     {
     :tweet: "Saw ur tweet @name - I built this for tweeting stuff you've bought: http://getmine.com/try You'll love it!",
     :media: nil}]
+  },
+  {
+  :token: 128315504-DtZvx6vmlDxHsyy9yQswG3gS2Lyez70QRMFBhbbs,
+  :secret: IJdpua5PSADtHaZFuDyRHhdpxdikI9Lkm08Hp4, 
+  :handle: jennyfstanton,
+  :templates: [
+    {
+    :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "That is so neat - @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought?",
+    :media: nil},
+    {
+    :tweet: "Love it! @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought? Try it!",
+    :media: nil},
+    {
+    :tweet: "Wow that's neat. @name you should try posting on http://getmine.com/try for tweeting what you just bought!",
+    :media: nil}]
   }
 ]
