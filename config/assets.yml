@@ -34,6 +34,7 @@ javascripts:
   home:
     - public/javascripts/libs/jquery-1.7.1.js
     - public/javascripts/libs/jquery-slides.js
+    - public/javascripts/libs/bootstrap-home.js
   ie:
     - public/javascripts/libs/css3-mediaqueries.js
 stylesheets:
