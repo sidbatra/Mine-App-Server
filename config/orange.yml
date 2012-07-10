@@ -115,5 +115,26 @@
     {
     :tweet: "OMG @name I love it! Please please start a Mine page for all the cool stuff you have! http://getmine.com/try",
     :media: nil}]
+  },
+  {
+  :token: 28276812-JWecBVP3nnRVvmPCJKfUo7wyIcbaADVqGkKANu02x, 
+  :secret: 5Fhm5xNVAntSA9KzjgRP0wtkcWt5vh0bwZjVFkoWKVg, 
+  :handle: JulietsMine,
+  :templates: [
+    {
+    :tweet: "@name That's cool! You should try Mine http://getmine.com/try for tweeting what you bought. You'd love it!",
+    :media: nil},
+    {
+    :tweet: "@name Cool! Tried Mine http://getmine.com/try for tweeting pics of what you bought? You'd love it!",
+    :media: nil},
+    {
+    :tweet: "@name that's awesome! I'm working on http://getmine.com/try for sharing cool stuff you buy. Def try it!",
+    :media: nil},
+    {
+    :tweet: "pretty neat @name! I built a site for sharing stuff you buy http://getmine.com/try You'll love it!",
+    :media: nil},
+    {
+    :tweet: "Saw ur tweet @name - I built this for tweeting stuff you've bought: http://getmine.com/try You'll love it!",
+    :media: nil}]
   }
 ]
