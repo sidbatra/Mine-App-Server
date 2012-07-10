@@ -81,5 +81,34 @@
     {
     :tweet: "Hey @name! I'm testing http://getmine.com/try with people sharing purchases on here. I Think you'd love it",
     :media: nil}]
+  },
+  {
+  :token: 203171199-jobUkvNVdlmZStS3BxUQHbRGDggs76cml7A8tiAQ, 
+  :secret: bo9dvzPtKU7QB2Aa8VCbgCl9ij3GQTgqRk5N74Fjo, 
+  :templates: [
+    {
+    :tweet: "Hey @name that looks really cool - you should show it off on your Mine page! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "Hey @name, where did you get that? You can tell others about your recent purchases at http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "Want! Where can I buy that? @name You should start a Mine account for stuff you buy! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name Did you get it on sale? Btw you might like http://getmine.com/try for tweeting stuff you've bought!",
+    :media: nil},
+    {
+    :tweet: "I want that too! @name had you heard of http://getmine.com/try for tweeting about stuff you've bought?",
+    :media: nil},
+    {
+    :tweet: "@name you should show that off on a Mine page! I think you might like it: http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name where can I buy that? Please add it on Mine, here: http://getmine.com/try!",
+    :media: nil},
+    {
+    :tweet: "OMG @name I love it! Please please start a Mine page for all the cool stuff you have! http://getmine.com/try",
+    :media: nil}]
   }
 ]

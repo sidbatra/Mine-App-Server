@@ -43,7 +43,8 @@ end
 @client = TweetStream::Client.new
 
 @client.track("just bought") do |status|
-  next if status.text.match /Stardoll|RT|getmine.com/
+  next if status.source.match /getmine.com/
+  next if status.text.match /Stardoll|RT/
   next unless status.text.match /http/
   next if !status.in_reply_to_screen_name.nil? || 
           !status.in_reply_to_status_id.nil? || 
@@ -95,10 +96,10 @@ end
     end
 
 
-    @reset_at = Time.now + rand(60) + 75 
+    @reset_at = Time.now + rand(60) + 60 
     @logger.info "Resetting"
     
-    @count = 0 if @count >= 4 
+    @count = 0 if @count >= 5 
 
   rescue => ex
     @logger.info "Exception - #{ex.message}"

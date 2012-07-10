@@ -53,13 +53,15 @@ class ProductsController < ApplicationController
     @results = {:web_medium => [],
                 :web_large  => [],
                 :amazon     => [],
-                :inhouse    => []}
+                :inhouse    => [],
+                :google     => []}
 
     sane_query = check_spelling(query)
     key = generate_cache_key(sane_query,page)
 
     unless fragment_exist? key
 
+      hydra.queue search_google_shopping(sane_query,page,per_page)
       hydra.queue search_web_images(sane_query,:medium,page,per_page)
       hydra.queue search_web_images(sane_query,:large,page,per_page)
       hydra.queue search_amazon_products(sane_query,page,per_page)
@@ -67,10 +69,12 @@ class ProductsController < ApplicationController
 
       search_inhouse_products(sane_query,page,per_page)
 
-      products = @results[:inhouse] + 
-                  @results[:amazon] + 
-                  @results[:web_medium] + 
-                  @results[:web_large]
+      products = @results[:google] + 
+                  @results[:inhouse] + 
+                  @results[:amazon] 
+
+      products += @results[:web_large] + 
+                  @results[:web_medium] if products.length < 10 || page > 1
     end
 
     [key,sane_query,products]
@@ -153,12 +157,58 @@ class ProductsController < ApplicationController
 
                             rescue => ex
                               LoggedException.add(__FILE__,__method__,ex)
+                              nil
                             end
                           end.compact
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
     end 
+
+    request
+  end
+
+  # Search via google shopping api.
+  #
+  # query - The String query to search the api.
+  # page - The Integer page number of results to display.
+  # per_page - The Integer total results on the page.
+  #
+  # returns - Typhoeus::Request. Typhoeus request object. Plus results are 
+  #           added to the @results  instance variable after they're 
+  #           asynchronously fetched.
+  #
+  def search_google_shopping(query,page,per_page)
+    url = GoogleShopping.search_products(query,per_page,page+1,true)
+
+    request = Typhoeus::Request.new(url)
+
+    request.on_complete do |response| 
+      begin
+        google_shopping = JSON.parse(response.body)
+        key = "google"
+
+        @results[key.to_sym] = google_shopping["items"].map do |item|
+                                begin
+                                  product = item["product"]
+
+                                  next unless product && product["images"]
+
+                                  product_search_hash(
+                                    product["images"][0]["thumbnails"][0]["link"],
+                                    product["images"][0]["link"],
+                                    product["link"],
+                                    product["googleId"],
+                                    product["title"])
+                                rescue => ex
+                                  LoggedException.add(__FILE__,__method__,ex)
+                                  nil
+                                end
+                              end.compact if google_shopping["items"]
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+    end
 
     request
   end
@@ -195,8 +245,9 @@ class ProductsController < ApplicationController
                                     "")
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
+                                  nil
                                 end
-                              end if web_search["__next"] || page.zero?
+                              end.compact if web_search["__next"] || page.zero?
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end

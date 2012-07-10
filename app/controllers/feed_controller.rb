@@ -15,12 +15,12 @@ class FeedController < ApplicationController
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
 
-    @key = ["v2",self.current_user,
+    @key = ["v3",self.current_user,
             self.current_user.ifollowers.map(&:updated_at).max.to_i,
             "feed",@before ? @before.to_i : "",@per_page]
 
     @purchases = Purchase.
-                  select(:id,:created_at,:title,:handle,
+                  select(:id,:created_at,:title,:handle,:source_url,
                           :orig_thumb_url,:orig_image_url,:endorsement,
                           :image_path,:is_processed,:user_id,:store_id,
                           :fb_action_id).

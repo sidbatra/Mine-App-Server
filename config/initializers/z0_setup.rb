@@ -31,6 +31,7 @@ include AmazonProductInterface
 include CacheManagement
 include Cron
 include CryptoManagement 
+include GoogleShoppingInterface
 include ImageProcessing
 include MailmanInterface
 include Storage
