@@ -10,7 +10,7 @@
     :tweet: "@name I just built a site for tweeting pics of what you bought called 'Mine', here: http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "@name Cool! I just built 'Mine' a site for tweeting pics of what you bought, here: http://getmine.com/try",
+    :tweet: "@name cool! I just built 'Mine' a site for tweeting pics of what you bought, here: http://getmine.com/try",
     :media: nil},
     {
     :tweet: "Hey @name, I built a site called 'Mine' for tweeting purchases, see if you like it! http://getmine.com/try",
@@ -125,7 +125,7 @@
     :tweet: "@name That's cool! You should try Mine http://getmine.com/try for tweeting what you bought. You'd love it!",
     :media: nil},
     {
-    :tweet: "@name Cool! Tried Mine http://getmine.com/try for tweeting pics of what you bought? You'd love it!",
+    :tweet: "@name cool! Tried Mine http://getmine.com/try for tweeting pics of what you bought? You'd love it!",
     :media: nil},
     {
     :tweet: "@name that's awesome! I'm working on http://getmine.com/try for sharing cool stuff you buy. Def try it!",
@@ -146,7 +146,7 @@
     :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com",
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com/try",
     :media: nil},
     {
     :tweet: "That is so neat - @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought?",
