@@ -22,6 +22,9 @@ class SessionController < ApplicationController
                              :user_birthday,
                              :user_photos,
                              :publish_actions])
+
+    target_url << '&display=touch' if is_phone_device?
+
   rescue => ex
     handle_exception(ex)
     target_url = root_path(:src => HomeShowSource::LoginError)
