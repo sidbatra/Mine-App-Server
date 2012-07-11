@@ -583,7 +583,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     if(properTitle.length)
       $(this.titleEl).val(properTitle);
 
-    if($.support.placeholder)
+    if($.support.placeholder && !attemptStoreSearch)
       title.length ? $(this.storeEl).focus() : $(this.titleEl).focus();
     else if(title.length)
       $(this.titleEl).focus();
