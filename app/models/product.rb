@@ -172,7 +172,8 @@ class Product < ActiveRecord::Base
     tempfile  = Tempfile.new(image_path)
     file_path = tempfile.path
 
-    system("wget -U '#{CONFIG[:user_agent]}' '#{orig_image_url}' "\
+    system("wget --no-check-certificate "\
+            "-U '#{CONFIG[:user_agent]}' '#{orig_image_url}' "\
             "-T 30 -t 3 "\
             "--output-document '#{file_path}'")
 
