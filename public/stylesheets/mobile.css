@@ -5,7 +5,7 @@
 
 	/* --- basics --- */
 	body { background: #333; }	
-	.hide-on-mobile { display: none; }
+	.hide-on-mobile { display: none !important; }
 	footer .inner { text-align: right; }
 	.background-cover { display: none; }
 	.dimmer { display: none; }
@@ -16,6 +16,9 @@
 		padding-right: 10px; }
 	
 	/* --- item --- */
+	
+	.feed .item { margin-bottom: 10px; }
+	
 	.item,
 	.item .actions, 
 	.item .panel,
@@ -45,7 +48,9 @@
 		right: 16px; }
 	
 	.item .panel { 
-		padding: 18px 0;
+		padding: 16px 0 18px;
+		font-size: 13px;
+		line-height: 18px;
 	 	-webkit-border-radius: 0 0 5px 5px; 
 	    	-moz-border-radius: 0 0 5px 5px;  
 	         	border-radius: 0 0 5px 5px; }
@@ -53,6 +58,45 @@
 	.item .panel .panel-contents {
 		padding-left: 18px;
 		padding-right: 18px; }
+		
+  .item .panel .title-box { 
+		font-size: 15px;
+		line-height: 22px; }
+	
+	.item .panel .title-box .user-photo {
+		width: 24px;
+		height: 24px; 
+		vertical-align: -6px; }
+		
+	.item .panel .likes-box { padding-bottom: 12px; }
+	
+	.item .panel .likes-box .num { font-size: 30px; }
+	
+	.item .panel .likes-box .user-photo-box .user-photo { 
+		width: 24px;
+		height: 24px; }
+		
+	.item .panel .user-photo,
+	.item .panel .self-photo {
+		width: 24px;
+		height: 24px; }
+	
+	.item .panel .comment-box { padding-left: 32px; }
+	
+	.feed .item .panel .add-comment-box input {
+		padding-left: 4px;
+		font-size: 13px;
+		height: 28px;
+		line-height: 1; }
+	
+	.item .panel.fb .fb-11 {
+		display: block;
+		z-index: 100;
+		width: 11px;
+		height: 11px;
+		top: 13px;
+		left: 15px; }
+		
 	
 	/* --- logged-out item --- */
 	.logged-out .item-header { 
@@ -69,16 +113,6 @@
 	.logged-out .item-header .btn { 
 	 	width: 100% !important;
 	 	float: none !important; }
-	 	
-	.logged-out .item .panel .title-box { 
-		font-size: 15px;
-		line-height: 22px;
-		padding-bottom: 12px; }
-	
-	.logged-out .item .panel .title-box .user-photo {
-		width: 24px;
-		height: 24px; 
-		vertical-align: -6px; }
 		
 	.onboarding .box.itemized {
 		width: auto; }
@@ -163,6 +197,6 @@
 		-o-transition: border-bottom-color 0.75s ease-out;
 		transition: border-bottom-color 0.75s ease-out; }
 		
-  .home .logged-out .item .panel .panel-contents .title-box { padding: 0; }
+  .home .item .panel .panel-contents .title-box { padding: 0; }
   
 }
