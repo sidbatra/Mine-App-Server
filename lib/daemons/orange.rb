@@ -96,7 +96,7 @@ end
     end
 
 
-    @reset_at = Time.now + rand(60) + 25 
+    @reset_at = Time.now + rand(25) + 35 
     @logger.info "Resetting"
     
     @count = 0 if @count >= 10 
