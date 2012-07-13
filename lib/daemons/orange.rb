@@ -34,8 +34,8 @@ end
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
   config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = ACCOUNTS[@count][:token] 
-  config.oauth_token_secret = ACCOUNTS[@count][:secret] 
+  config.oauth_token        = ACCOUNTS[2][:token] 
+  config.oauth_token_secret = ACCOUNTS[2][:secret] 
   config.auth_method        = :oauth
 end
 
