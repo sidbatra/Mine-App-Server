@@ -4,7 +4,7 @@
 @media screen and (max-width: 540px) {
 
 	/* --- basics --- */
-	body { background: #333; }	
+	body { background: #ddd; }	
 	.hide-on-mobile { display: none !important; }
 	footer .inner { text-align: right; }
 	.background-cover { display: none; }

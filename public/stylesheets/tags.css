@@ -6,7 +6,7 @@
 html, body { height: 100%; }
 
 body { 
-	background: #eee;
+	background: #333;
 	overflow-x: hidden;
 	font-size: 14px;
 	text-rendering: optimizelegibility; }
@@ -705,7 +705,7 @@ footer .like-button-box {
 .item .panel {
 	height: 520px;
 	padding: 24px 0;
-	background: #f8f8f8;
+	background: #f7f7f7;
 	-webkit-border-radius: 0 5px 5px 0; 
      -moz-border-radius: 0 5px 5px 0; 
           border-radius: 0 5px 5px 0; 
@@ -734,9 +734,9 @@ footer .like-button-box {
 	font-weight: bold;
 	color: #555; }
 	
-.item .panel .endorsement { color: #666; }
-	
 .item .panel .endorsement {
+	color: #666;
+	font-family: 'RooneyLightItalic', Georgia;
 	border-top: 1px solid #E5E5E5;
 	padding: 8px 0; }
 	
@@ -783,8 +783,7 @@ footer .like-button-box {
 	margin-bottom: 12px;
 	padding-left: 36px; 
 	clear: both;
-	color: #575E62;
-	font-family: 'RooneyLightItalic', Georgia; }
+	color: #777; }
 	
 .item .panel .user-photo,
 .item .panel .self-photo {
