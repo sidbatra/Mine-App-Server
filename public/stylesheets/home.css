@@ -424,7 +424,7 @@ footer .like-button-box {
 /* Home Testimonials
 ==================================================================== */
 
-.home .testimonials { margin-top: 32px; }
+.home .testimonials { margin: 32px 0; }
 
 .home .testimonials p {
 	font-size: 16px;
@@ -460,6 +460,14 @@ footer .like-button-box {
 	top: 12px;
 	left: 12px;
 	background: url('/images/home/testimonial-users.jpg'); }
+	
+.home .lower-login-line {
+	font-size: 14px;
+	height: 32px;
+	line-height: 34px;
+	text-align: center;
+	color: white;
+	font-family: 'RooneyLightItalic', Georgia; }
 
 
 /* Home Logged-out item
@@ -722,6 +730,12 @@ footer .like-button-box {
 
 .btn.btn-facebook { background: #3B5998; }
 .btn.btn-facebook:hover { background: #1F4696; }
+
+.btn img.f-box {
+	height: 16px; 
+	vertical-align: -3px; 
+	padding-right: 5px; 
+	margin-left: -6px; }
 
 .btn.btn-large img.f-box {
 	height: 20px; 

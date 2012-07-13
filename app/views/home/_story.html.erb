@@ -6,11 +6,11 @@
 			
 			<%unless is_phone_device?%>
 				<div class="background-cover hide-on-mobile" 
-	      	style="background-image: url('<%=image_path "home/blur-bg.jpg"%>')">
+	      	style="background-image: url('<%=image_path "home/shorts2.jpg"%>')">
 	  		</div>
 			<%end%>
 			
-			<div class="dimmer twenty hide-on-mobile">
+			<div class="dimmer sixty hide-on-mobile">
 			</div>
 			
       <div class="item-header">
@@ -190,27 +190,27 @@
       
       </div> <!-- /item -->
       
-      <div class="testimonials">
+      <div class="testimonials clearfix">
       
       	<p>What <span class="mine">mine</span> users are saying:</p>
       
 	      <ul>
-	       <li class="testimonial border-box rounded-5 relative">
+	       <li class="testimonial border-box rounded-5 relative shaded">
 	       	 <div class="user-photo rounded-3 absolute" style="background-position: 28px 0;"></div>
 	       	 Great idea. Viewing what friends have actually bought means recommendations I trust more than Amazon.<br>
 	       	 <span class="cite">— Beth, London</span>
 	       </li>
-	       <li class="testimonial border-box rounded-5 relative">
+	       <li class="testimonial border-box rounded-5 relative shaded">
 	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 0;"></div>
 	       	 <span class="mine" style="line-height: 1">mine</span> works! I just saw a friend’s book, read the comments and ended up buying it!<br>
 	       	 <span class="cite">— Stephen, Los Angeles</span>
 	       </li>
-	       <li class="testimonial border-box rounded-5 relative">
+	       <li class="testimonial border-box rounded-5 relative shaded">
 	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 -28px;"></div>
 	       	 <span class="mine" style="line-height: 1">mine</span> is a really cute site. I love seeing what my friends are buying, mainly so I DON’T buy the same.<br>
 	       	 <span class="cite">— Pacha, Chicago</span>
 	       </li>
-	       <li class="testimonial border-box rounded-5 relative">
+	       <li class="testimonial border-box rounded-5 relative shaded">
 	         <div class="user-photo rounded-3 absolute" style="background-position: -28px -28px;"></div>
 	         Love <span class="mine" style="line-height: 1">mine</span>! Where's the iPhone and iPad app??<br>
 	         <span class="cite">— Dannii, Miami</span><br>
@@ -218,7 +218,26 @@
 	       </li>
 	      </ul>
 	      
-      </div>
+      </div> <!-- testimonials -->
+      
+      <p class="lower-login-line">
+      	<span class="hide-on-mobile">
+      		Start your <span class="mine">mine</span> now.
+      	</span>  
+    		<a href="<%=fb_auth_path(:src => @origin)%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-facebook shaded relative"
+            style="width: 188px; vertical-align: 0px; margin: 0 8px;">
+          <span class='hide-when-loading'>
+          	<%=image_tag "social/f-box.png",
+            :class => "f-box"%>
+            Log in with Facebook
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+        <span class="hide-on-mobile">No auto-sharing, ever.</span>
+     </p>
+
 
 		</div> <!-- /logged-out -->
 	
