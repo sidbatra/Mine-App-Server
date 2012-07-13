@@ -18,6 +18,7 @@ ACCOUNTS          = ORANGE_CONFIG[:accounts]
 
 require 'rubygems'
 require 'tweetstream'
+require 'eventmachine'
 
 
 $running = true
@@ -40,73 +41,61 @@ TweetStream.configure do |config|
 end
 
 
-@client = TweetStream::Client.new
+EM.run do
+  @client = TweetStream::Client.new
 
-@client.track("just bought") do |status|
-  next if status.source.match /getmine.com/
-  next if status.text.match /Stardoll|RT/
-  next unless status.text.match /http/
-  next if !status.in_reply_to_screen_name.nil? || 
-          !status.in_reply_to_status_id.nil? || 
-          !status.in_reply_to_user_id.nil?
+  @client.track("just bought") do |status|
+    next if status.source.match /getmine.com/
+    next if status.text.match /Stardoll|RT/
+    next unless status.text.match /http/
+    next if !status.in_reply_to_screen_name.nil? || 
+            !status.in_reply_to_status_id.nil? || 
+            !status.in_reply_to_user_id.nil?
 
-  break if !$running
-
-
-  @logger.info "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
-
-  name = ""
-  name = status.user.name.split(" ").first if status.user.name
-
-  next if name.nil? || name.length.zero? || Time.now < @reset_at
+    break if !$running
 
 
-  tweet = "@#{status.user.screen_name} "\
-          "#{ACCOUNTS[@count][:templates].choice[:tweet].gsub("@name",name)}"
+    @logger.info "#{status.user.screen_name}:#{status.user.name} - #{status.text}"
 
-  @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
+    name = ""
+    name = status.user.name.split(" ").first if status.user.name
 
-  
-  begin
-
-    Twitter.configure do |config|
-      config.consumer_key       = CONSUMER_KEY
-      config.consumer_secret    = CONSUMER_SECRET
-      config.oauth_token        = ACCOUNTS[@count][:token] 
-      config.oauth_token_secret = ACCOUNTS[@count][:secret] 
-    end
-
-    @count += 1
-    Twitter.update(tweet,:in_reply_to_status_id => status.id)
+    next if name.nil? || name.length.zero? || Time.now < @reset_at
 
 
-    if @count < 3
+    tweet = "@#{status.user.screen_name} "\
+            "#{ACCOUNTS[@count][:templates].choice[:tweet].gsub("@name",name)}"
+
+    @logger.info "#{Time.now.to_s} #{tweet.length} #{tweet}"
+
+    
+    begin
+
       Twitter.configure do |config|
         config.consumer_key       = CONSUMER_KEY
         config.consumer_secret    = CONSUMER_SECRET
-        config.oauth_token        = ACCOUNTS[2][:token] 
-        config.oauth_token_secret = ACCOUNTS[2][:secret] 
+        config.oauth_token        = ACCOUNTS[@count][:token] 
+        config.oauth_token_secret = ACCOUNTS[@count][:secret] 
+      end
+      
+      @count += 1
+      EM::Timer.new(40) do
+        Twitter.update(tweet,:in_reply_to_status_id => status.id)
       end
 
-      tweet = Twitter.home_timeline.find do |tweet| 
-                tweet.user.id != ACCOUNTS[2][:tw_user_id]
-              end
 
-      Twitter.update(tweet.text)
+      @reset_at = Time.now + rand(15) + 45 
+      @logger.info "Resetting"
+      
+      @count = 0 if @count >= 10 
+
+    rescue => ex
+      @logger.info "Exception - #{ex.message}"
     end
 
-
-    @reset_at = Time.now + rand(25) + 35 
-    @logger.info "Resetting"
     
-    @count = 0 if @count >= 10 
-
-  rescue => ex
-    @logger.info "Exception - #{ex.message}"
+    @logger.info "\n"
   end
-
-  
-  @logger.info "\n"
 end
 
 @client.stop
