@@ -4,8 +4,9 @@
 @media screen and (max-width: 540px) {
 
 	/* --- basics --- */
-	body { background: #ddd; }	
+	body { background: #333; }	
 	.hide-on-mobile { display: none !important; }
+	.hide-except-mobile { display: block !important; }
 	footer .inner { text-align: right; }
 	.background-cover { display: none; }
 	.dimmer { display: none; }
@@ -68,6 +69,9 @@
 		height: 24px; 
 		vertical-align: -6px; }
 		
+	.item .panel .endorsement { padding-top: 8px; }
+
+	
 	.item .panel .likes-box { padding-bottom: 12px; }
 	
 	.item .panel .likes-box .num { font-size: 30px; }

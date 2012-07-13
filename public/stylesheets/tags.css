@@ -6,7 +6,7 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333;
+	background: #eee;
 	overflow-x: hidden;
 	font-size: 14px;
 	text-rendering: optimizelegibility; }
@@ -57,6 +57,8 @@ a:focus { outline: none; }
 .dimmer.seventy-five { background: url('/images/colors/black-75.png'); }
 .dimmer.eighty { background: url('/images/colors/black-80.png'); }
 .dimmer.hundred { background: black; }
+
+.hide-except-mobile { display: none; }
 
 
 /* Header, Container and Footer
@@ -662,6 +664,41 @@ footer .like-button-box {
 
 .feed .item { margin-bottom: 28px; }
 
+/* hidden on mobile: */
+
+.feed .item .title-box.outside {
+	width: 520px;
+	font-size: 24px;
+	line-height: 32px;
+	color: #666;
+	padding-left: 78px;
+	margin-bottom: 16px; 
+	float: left; }
+
+.feed .item .title-box.outside .user-photo {
+	width: 64px;
+	height: 64px; 
+	top: 0;
+	left: 0;}
+
+.feed .item .item-name,
+.feed .item .store-name {
+	color: #555; }
+
+.feed .item .item-name,
+.feed .item .user-name,
+.feed .item .store-name {
+	font-weight: bold; }
+
+.feed .item .title-box.outside .time {
+	font-family: 'RooneyLightItalic', Georgia;
+	font-weight: normal;
+	color: #999;
+	font-size: 14px; 
+	white-space: nowrap; }
+	
+/* End of hidden on mobile */
+
 .item .photo {
 	width: 520px; 
 	height: 520px; 
@@ -723,7 +760,8 @@ footer .like-button-box {
 	line-height: 27px;
 	color: #777;
 	font-family: 'RooneyLightItalic', Georgia;
-	padding-bottom: 8px; }
+	padding-bottom: 8px; 
+	border-bottom: 1px solid #E5E5E5; }
 	
 .item .panel .title-box .user-photo { 
 	vertical-align: -7px;
@@ -737,15 +775,15 @@ footer .like-button-box {
 .item .panel .endorsement {
 	color: #666;
 	font-family: 'RooneyLightItalic', Georgia;
-	border-top: 1px solid #E5E5E5;
-	padding: 8px 0; }
+	padding: 0 0 8px;
+	border-bottom: 1px solid #E5E5E5; }
 	
 .item .panel .likes-box {
 	height: 28px;
 	line-height: 1;
 	color: #555;
-	border-top: 1px solid #E5E5E5;
 	padding: 8px 0 16px;
+	border-bottom: 1px solid #E5E5E5;
 	overflow-y: hidden;
 	white-space: nowrap; }
 
@@ -775,8 +813,7 @@ footer .like-button-box {
 	height: 28px; }
 	
 .item .panel .comments-box {
-	padding-top: 16px;
-	border-top: 1px solid #E5E5E5; }
+	padding-top: 16px; }
 
 .item .panel .comment-box {
 	min-height: 28px;
