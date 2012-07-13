@@ -1752,7 +1752,7 @@ textarea.highlight-on-focus:focus {
 /* Text Field Bootstrap Overrides
 ==================================================================== */
 
-input, textarea { font-family: 'RooneyLightItalic'; -webkit-appearance: none; }
+input, textarea { font-family: 'RooneyLightItalic'; }
 
 textarea:focus,
 input[type="text"]:focus,
