@@ -5,12 +5,12 @@
 		<div class="logged-out">
 			
 			<%unless is_phone_device?%>
-				<div class="background-cover" 
-	      	style="background-image: url('<%=image_path "home/blur-bg.jpg"%>')">
+				<div class="background-cover hide-on-mobile" 
+	      	style="background-image: url('<%=image_path "home/shorts2.jpg"%>')">
 	  		</div>
 			<%end%>
 			
-			<div class="dimmer twenty">
+			<div class="dimmer sixty hide-on-mobile">
 			</div>
 			
       <div class="item-header">
@@ -37,8 +37,11 @@
 		        </div>
 	        </a>
               
-      </div> <!-- /logged-out-item-header --> 
-
+      </div> <!-- /item-header --> 
+      
+      <div class="headline hide-on-mobile">
+      	The simple, fun way <br>to post things you buy.
+      </div>
       
       <div class="item clearfix shaded rounded-5">
       
@@ -71,7 +74,7 @@
                   :class => "stamp absolute"%>
               <div class="description absolute">
                 <span style="color: #555;">Drawstring Wide-Leg </span>
-                <span style="color: #ccc;">Jeans, bought from Citizens of Humanity</span>
+                 J<span style="color: #ccc;">eans, bought from Citizens of Humanity</span>
               </div>
             </div>
             
@@ -186,6 +189,55 @@
         </div> <!-- slides -->
       
       </div> <!-- /item -->
+      
+      <div class="testimonials clearfix">
+      
+      	<p>What <span class="mine">mine</span> users are saying:</p>
+      
+	      <ul>
+	       <li class="testimonial border-box rounded-5 relative shaded">
+	       	 <div class="user-photo rounded-3 absolute" style="background-position: 28px 0;"></div>
+	       	 Great idea. Viewing what friends have actually bought means recommendations I trust more than Amazon.<br>
+	       	 <span class="cite">— Beth, London</span>
+	       </li>
+	       <li class="testimonial border-box rounded-5 relative shaded">
+	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 0;"></div>
+	       	 <span class="mine" style="line-height: 1">mine</span> works! I just saw a friend’s book, read the comments and ended up buying it!<br>
+	       	 <span class="cite">— Stephen, Los Angeles</span>
+	       </li>
+	       <li class="testimonial border-box rounded-5 relative shaded">
+	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 -28px;"></div>
+	       	 <span class="mine" style="line-height: 1">mine</span> is a really cute site. I love seeing what my friends are buying, mainly so I DON’T buy the same.<br>
+	       	 <span class="cite">— Pacha, Chicago</span>
+	       </li>
+	       <li class="testimonial border-box rounded-5 relative shaded">
+	         <div class="user-photo rounded-3 absolute" style="background-position: -28px -28px;"></div>
+	         Love <span class="mine" style="line-height: 1">mine</span>! Where's the iPhone and iPad app??<br>
+	         <span class="cite">— Dannii, Miami</span><br>
+	         <span class="ed">(<span class="mine" style="line-height: 1">mine</span> works great in Safari on iPad, iPhone app coming soon)</span>
+	       </li>
+	      </ul>
+	      
+      </div> <!-- testimonials -->
+      
+      <p class="lower-login-line">
+      	<span class="hide-on-mobile">
+      		Start your <span class="mine">mine</span> now.
+      	</span>  
+    		<a href="<%=fb_auth_path(:src => @origin)%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-facebook shaded relative"
+            style="width: 188px; vertical-align: 0px; margin: 0 8px;">
+          <span class='hide-when-loading'>
+          	<%=image_tag "social/f-box.png",
+            :class => "f-box"%>
+            Log in with Facebook
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+        <span class="hide-on-mobile">No auto-sharing, ever.</span>
+     </p>
+
 
 		</div> <!-- /logged-out -->
 	
@@ -201,7 +253,7 @@
 	  </div>
 
 	  <div class="modal-body">
-	  	<p>Mine believes that ownership data — the ongoing log of what we all choose to buy — will transform commerce for the better in the years ahead.<p>
+	  	<p>We think that ownership data — the ongoing log of what we all choose to buy — will transform commerce for the better in the years ahead.<p>
 	  	<p>If you feel the same way, <a href="mailto:Mine &lt;<%=contact_email%>&gt;">get in touch</a>.<br />
 	  		We're always looking for amazing people to help us get there.</p>
 

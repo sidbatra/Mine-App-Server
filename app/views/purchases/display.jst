@@ -2,7 +2,7 @@
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item clearfix">
 
-  <div class="title-box relative border-box">
+	<div class="title-box outside relative border-box hide-on-mobile">
 
     <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
       <img class="user-photo absolute" src="<%=purchase.get('user').get('square_image_url')%>" />
@@ -38,8 +38,12 @@
 		-->
   </div>
 
+
+
+	<!-- Actions -->
+
   <%if(Denwen.H.isLoggedIn()){%>
-    <div class="actions border-box" id="feedback">
+    <div class="actions border-box hide-on-mobile" id="feedback">
 
       <%if(interaction){%> 
         <a href="javascript:void(0)"
@@ -56,14 +60,16 @@
           <i class="icon-pencil icon-white"></i>
         </a>
       <%}else{%>
-				<!--
+      
 				<a class="btn mine relative" href="javascript:void(0)">
           <i class="icon-mine icon-white"></i> mine
         </a>
-				-->
+
       <%}%>
     </div>
   <%}%> 
+
+  <!-- /actions -->
   
   <div class="photo rounded-5 relative border-box">
   	<img class="stamp absolute" src="<%=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" />
@@ -76,7 +82,54 @@
   	
   	<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box">
+      
+      	
+      	
+      	
+			<!-- title-box -->	
+			<div class="title-box relative border-box hide-except-mobile">
+					
+				<a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
+		      <img class="user-photo rounded-3" src="<%=purchase.get('user').get('square_image_url')%>" />
+		    </a>
+		
+		    <a class="em" 
+		        href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
+		        <%=purchase.get('user').escape('first_name')%>   
+		        <%=purchase.get('user').escape('last_name')%>   
+		    </a> 
+		
+		    bought 
+		
+		    <%if(purchase.get('store')){%>
+		      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
+		    <%}%>
+		
+		    <span class="em">
+		      <%=purchase.escape('title')%>
+		    </span> 
+		
+		    <%if(purchase.get('store')){%>
+		      from 
+		      <span class="em">
+		        <%=purchase.get('store').escape('name')%>
+		      </span> 
+		    <%}%>
+		    
+				<!--
+		    <span class="time">
+		      added <#=$.timeago(purchase.get('created_at'))%> ago
+		    </span>
+				-->
+				
+	    </div> <!-- /title-box -->
 
+
+
+
+
+
+			<!-- Endorsement -->
       <%if(purchase.get('endorsement')){%>
         <div class="endorsement">
           <%=purchase.escape('endorsement')%>
@@ -111,9 +164,9 @@
 	      
 	      <%if(Denwen.H.isLoggedIn() && interaction){%>
 	        <div class="add-comment-box relative">
-	          <img class="self-photo absolute" 
+	          <img class="self-photo absolute rounded-3-left hide-on-mobile" 
 	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
-	          <div class="fb-11 absolute"></div>
+	          <div class="fb-11 absolute hide-on-mobile"></div>
 	          <input type="text" 
 	            id="purchase_comment_data_<%=purchase.get('id')%>"
 	            class="border-box"

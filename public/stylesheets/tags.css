@@ -23,6 +23,9 @@ a:hover {
 	text-decoration: none; }
 
 a:focus { outline: none; }
+
+ul { margin: 0; list-style: none; }
+li { list-style: none; }
 	
 .wrapper {
 	min-height: 100%;
@@ -52,11 +55,16 @@ a:focus { outline: none; }
 	left: 0; }
 
 .dimmer.twenty { background: url('/images/colors/black-20.png'); }
+.dimmer.fourty { background: url('/images/colors/black-20.png'); }
+.dimmer.fifty { background: url('/images/colors/black-50.png'); }
 .dimmer.sixty { background: url('/images/colors/black-60.png'); }
 .dimmer.seventy { background: url('/images/colors/black-70.png'); }
 .dimmer.seventy-five { background: url('/images/colors/black-75.png'); }
 .dimmer.eighty { background: url('/images/colors/black-80.png'); }
 .dimmer.hundred { background: black; }
+
+.hide-except-mobile { display: none; }
+.hide-except-tablet { display: none; }
 
 
 /* Header, Container and Footer
@@ -660,10 +668,11 @@ footer .like-button-box {
 
 .feed { margin-top: 36px; }
 
-.feed .item { 
-	margin-bottom: 36px; }
-	
-.feed .item .title-box {
+.feed .item { margin-bottom: 28px; }
+
+/* hidden on mobile: */
+
+.feed .item .title-box.outside {
 	width: 520px;
 	font-size: 24px;
 	line-height: 32px;
@@ -671,28 +680,30 @@ footer .like-button-box {
 	padding-left: 78px;
 	margin-bottom: 16px; 
 	float: left; }
-	
-.feed .item .title-box .user-photo {
+
+.feed .item .title-box.outside .user-photo {
 	width: 64px;
 	height: 64px; 
 	top: 0;
 	left: 0;}
-	
-.feed .item .user-name, .feed.item .item-name,
-.feed.item .store-name {
-	font-weight: bold; }
 
 .feed .item .item-name,
 .feed .item .store-name {
-	font-weight: bold;
 	color: #555; }
-	
-.feed .item .title-box .time {
+
+.feed .item .item-name,
+.feed .item .user-name,
+.feed .item .store-name {
+	font-weight: bold; }
+
+.feed .item .title-box.outside .time {
 	font-family: 'RooneyLightItalic', Georgia;
 	font-weight: normal;
 	color: #999;
 	font-size: 14px; 
 	white-space: nowrap; }
+	
+/* End of hidden on mobile */
 
 .item .photo {
 	width: 520px; 
@@ -737,7 +748,7 @@ footer .like-button-box {
 .item .panel {
 	height: 520px;
 	padding: 24px 0;
-	background: #f8f8f8;
+	background: #f7f7f7;
 	-webkit-border-radius: 0 5px 5px 0; 
      -moz-border-radius: 0 5px 5px 0; 
           border-radius: 0 5px 5px 0; 
@@ -750,21 +761,35 @@ footer .like-button-box {
 	padding-right: 24px;
 	overflow-x: hidden;  }
 	
-.item .panel .endorsement { color: #666; }
+.item .panel .title-box { 
+	font-size: 18px;
+	line-height: 27px;
+	color: #777;
+	font-family: 'RooneyLightItalic', Georgia;
+	padding-bottom: 8px; 
+	border-bottom: 1px solid #E5E5E5; }
+	
+.item .panel .title-box .user-photo { 
+	vertical-align: -7px;
+	margin-right: 1px; }
+
+.item .panel .title-box .em {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: #555; }
 	
 .item .panel .endorsement {
-	border-bottom: 1px dotted #ccc;
-	padding-bottom: 12px;
-	margin-bottom: 18px; }
+	color: #666;
+	font-family: 'RooneyLightItalic', Georgia;
+	padding: 0 0 8px;
+	border-bottom: 1px solid #E5E5E5; }
 	
 .item .panel .likes-box {
 	height: 28px;
 	line-height: 1;
 	color: #555;
-	margin-top: -4px;
-	padding-bottom: 16px;
-	margin-bottom: 18px;
-	border-bottom: 1px dotted #ccc;
+	padding: 8px 0 16px;
+	border-bottom: 1px solid #E5E5E5;
 	overflow-y: hidden;
 	white-space: nowrap; }
 
@@ -792,14 +817,16 @@ footer .like-button-box {
 .item .panel .likes-box .user-photo-box .user-photo { 
 	width: 28px;
 	height: 28px; }
+	
+.item .panel .comments-box {
+	padding-top: 16px; }
 
 .item .panel .comment-box {
 	min-height: 28px;
 	margin-bottom: 12px;
 	padding-left: 36px; 
 	clear: both;
-	color: #575E62;
-	font-family: 'RooneyLightItalic', Georgia; }
+	color: #777; }
 	
 .item .panel .user-photo,
 .item .panel .self-photo {
@@ -818,7 +845,7 @@ footer .like-button-box {
 	margin-bottom: 3px; }
 	
 .feed .item .panel .add-comment-box input {
-	padding-left: 36px;
+	padding-left: 34px;
 	font-size: 15px;
 	width: 100%;
 	height: 28px;
@@ -900,22 +927,6 @@ footer .like-button-box {
 
 /* Logged-out item
 ==================================================================== */	
-	
-.logged-out .item .panel .title-box { 
-	font-size: 18px;
-	line-height: 27px;
-	color: #777;
-	font-family: 'RooneyLightItalic', Georgia;
-	padding-bottom: 12px; }
-	
-.logged-out .item .panel .title-box .user-photo { 
-	vertical-align: -7px;
-	margin-right: 2px; }
-
-.logged-out .item .panel .title-box .em {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: bold;
-	color: #333; }
 
 .logged-out .item .panel .thumbnail-box {
 	padding: 12px 0 8px;
@@ -1369,6 +1380,12 @@ footer .like-button-box {
 .btn.btn-facebook { background: #3B5998; }
 .btn.btn-facebook:hover { background: #1F4696; }
 
+.btn img.f-box {
+	height: 16px; 
+	vertical-align: -3px; 
+	padding-right: 5px; 
+	margin-left: -6px; }
+
 .btn.btn-large img.f-box {
 	height: 20px; 
 	vertical-align: -4px; 
@@ -1665,6 +1682,11 @@ textarea.highlight-on-focus:focus {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px; }
+
+.rounded-3-left {
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius:: 3px 0 0 3px;
+	border-radius:: 3px 0 0 3px; }
 	
 .rounded-5 {
 	-webkit-border-radius: 5px;
