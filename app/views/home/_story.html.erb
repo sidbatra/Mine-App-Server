@@ -5,12 +5,12 @@
 		<div class="logged-out">
 			
 			<%unless is_phone_device?%>
-				<div class="background-cover" 
+				<div class="background-cover hide-on-mobile" 
 	      	style="background-image: url('<%=image_path "home/blur-bg.jpg"%>')">
 	  		</div>
 			<%end%>
 			
-			<div class="dimmer twenty">
+			<div class="dimmer twenty hide-on-mobile">
 			</div>
 			
       <div class="item-header">
@@ -37,8 +37,11 @@
 		        </div>
 	        </a>
               
-      </div> <!-- /logged-out-item-header --> 
-
+      </div> <!-- /item-header --> 
+      
+      <div class="headline hide-on-mobile">
+      	The simple, fun way <br>to post things you buy.
+      </div>
       
       <div class="item clearfix shaded rounded-5">
       
@@ -186,6 +189,36 @@
         </div> <!-- slides -->
       
       </div> <!-- /item -->
+      
+      <div class="testimonials">
+      
+      	<p>What <span class="mine">mine</span> users are saying:</p>
+      
+	      <ul>
+	       <li class="testimonial border-box rounded-5 relative">
+	       	 <div class="user-photo rounded-3 absolute" style="background-position: 28px 0;"></div>
+	       	 Great idea. Viewing what friends have actually bought means recommendations I trust more than Amazon.<br>
+	       	 <span class="cite">— Beth, London</span>
+	       </li>
+	       <li class="testimonial border-box rounded-5 relative">
+	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 0;"></div>
+	       	 <span class="mine" style="line-height: 1">mine</span> works! I just saw a friend’s book, read the comments and ended up buying it!<br>
+	       	 <span class="cite">— Stephen, Los Angeles</span>
+	       </li>
+	       <li class="testimonial border-box rounded-5 relative">
+	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 -28px;"></div>
+	       	 <span class="mine" style="line-height: 1">mine</span> is a really cute site. I love seeing what my friends are buying, mainly so I DON’T buy the same.<br>
+	       	 <span class="cite">— Pacha, Chicago</span>
+	       </li>
+	       <li class="testimonial border-box rounded-5 relative">
+	         <div class="user-photo rounded-3 absolute" style="background-position: -28px -28px;"></div>
+	         Love <span class="mine" style="line-height: 1">mine</span>! Where's the iPhone and iPad app??<br>
+	         <span class="cite">— Dannii, Miami</span><br>
+	         <span class="ed">(<span class="mine" style="line-height: 1">mine</span> works great in Safari on iPad, iPhone app coming soon)</span>
+	       </li>
+	      </ul>
+	      
+      </div>
 
 		</div> <!-- /logged-out -->
 	

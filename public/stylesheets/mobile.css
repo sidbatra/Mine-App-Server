@@ -8,8 +8,6 @@
 	.hide-on-mobile { display: none !important; }
 	.hide-except-mobile { display: block !important; }
 	footer .inner { text-align: right; }
-	.background-cover { display: none; }
-	.dimmer { display: none; }
 
 	.container, .header .navigation, footer .inner { 
 		width: 100%;
@@ -202,5 +200,24 @@
 		transition: border-bottom-color 0.75s ease-out; }
 		
   .home .item .panel .panel-contents .title-box { padding: 0; }
+  
+  .home .testimonials { margin-top: 28px; }
+  
+  .home .testimonials p { 
+  	font-size: 14px; 
+  	margin-bottom: 6px; }
+  
+  .home .testimonials ul { margin: 0 0 0 0; }
+  
+  .home .testimonials ul li { 
+  	margin: 3px 0;
+  	width: 100%; 
+  	background: #444;
+  	font-size: 13px;
+  	padding-left: 44px; }
+  
+  .home .testimonials ul .user-photo { 
+		width: 24px;
+		height: 24px;
   
 }
