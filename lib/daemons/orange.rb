@@ -34,8 +34,8 @@ end
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
   config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = ACCOUNTS[@count][:token] 
-  config.oauth_token_secret = ACCOUNTS[@count][:secret] 
+  config.oauth_token        = ACCOUNTS[2][:token] 
+  config.oauth_token_secret = ACCOUNTS[2][:secret] 
   config.auth_method        = :oauth
 end
 
@@ -96,10 +96,10 @@ end
     end
 
 
-    @reset_at = Time.now + rand(60) + 40 
+    @reset_at = Time.now + rand(25) + 35 
     @logger.info "Resetting"
     
-    @count = 0 if @count >= 7 
+    @count = 0 if @count >= 10 
 
   rescue => ex
     @logger.info "Exception - #{ex.message}"

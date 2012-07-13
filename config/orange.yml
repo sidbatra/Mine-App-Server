@@ -157,5 +157,68 @@
     {
     :tweet: "Wow that's neat. @name you should try posting on http://getmine.com/try for tweeting what you just bought!",
     :media: nil}]
+  },
+  {
+  :token: 78746587-RskUsbw4oRvH4HbEPHYLbWvpeIxOW1EYlTNPfadSM, 
+  :secret: MY7TGBmCBD6FlIghGNUA6TEiEpYX9wjLLZ2YShkqz7s, 
+  :handle: philips_samf, 
+  :templates: [
+    {
+    :tweet: "@name that's cool! On Mine (http://getmine.com/try) you can tweet pics of what you bought. Check it out!",
+    :media: nil},
+    {
+    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :media: nil},
+    {
+    :tweet: "Hey @name saw your tweet. You can post stuff you buy better on Mine http://getmine.com/try You'll like it :)",
+    :media: nil},
+    {
+    :tweet: "You should try Mine, @name, a new website for telling friends when you buy something: http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "pretty cool! Have you tried Mine, @name? a site for telling friends what you bought http://getmine.com/try",
+    :media: nil}]
+  },
+  {
+  :token: 155011786-Myt8HR1yHVWFIHAdxjtoWA5cJEOsEDn8daLlRNln, 
+  :secret: JzlcI152JdhHHI1ucOhTXnyuSHgTncuWYhOqxTrhz0, 
+  :handle: MikeFentonSF, 
+  :templates: [
+    {
+    :tweet: "Hey I saw your last tweet. Why not post on Mine http://getmine.com/try? It's made for tweeting what you buy - Try it!",
+    :media: nil},
+    {
+    :tweet: "Hey @name you should start a Mine profile - add that and other stuff you bought, here: http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :media: nil},
+    {
+    :tweet: "Hey @name while you're tweeting stuff you bought check out Mine here http://getmine.com/try It's made for it",
+    :media: nil},
+    {
+    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - you'd love it!",
+    :media: nil}]
+  },
+  {
+  :token: 20282200-Z4KJgW13VK6D0hxOR4n0yvl42WAEnm0kbXqbBOTin, 
+  :secret: 6c5pbMfjSkta8gmoOdkF5HKx0GanKegbnAwOsIqEIT4,
+  :handle: mstantonSF,
+  :templates: [
+    {
+    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - I love it!",
+    :media: nil},
+    {
+    :tweet: "Hey @name while you're tweeting stuff you bought, check out Mine, here http://getmine.com/try!",
+    :media: nil},
+    {
+    :tweet: "Hey @name have you tried Mine for tweeting your purchases? http://getmine.com/try really nicely designed.",
+    :media: nil},
+    {
+    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :media: nil},
+    {
+    :tweet: "cool :) On Mine http://getmine.com/try you can tweet pics of what you bought to twitter or just close friends. Try it!",
+    :media: nil}]
   }
 ]

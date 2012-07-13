@@ -67,6 +67,17 @@
     </script>
 
     <%=yield :javascript%>
+
+    <script type="text/javascript">
+      <%if !is_onboarding?%>
+          var uvOptions = {};
+          (function() {
+            var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+            uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/TYBI4jm5X9Dg69VO7vLW5w.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+          })();
+      <%end%>
+    </script>
     
   </body>
 </html>
