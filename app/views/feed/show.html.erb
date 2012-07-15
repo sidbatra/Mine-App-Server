@@ -1,7 +1,7 @@
 <div class="container border-box">
 
 
-	<div class="thumbnail-box">
+	<div class="thumbnail-box hide-on-mobile">
     <%if self.current_user.followings_count.zero?%>
       <p>
         <%=link_to "Invite a few friends", new_invite_path(:src => "placeholder")%>

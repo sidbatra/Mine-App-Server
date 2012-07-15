@@ -10,13 +10,13 @@
 	
 		<form class="form-horizontal search-bar">
 			
-			<a id="cancel_button" class="close" href="javascript:void(0)">
+			<a id="cancel_button" class="close hide-on-mobile" href="javascript:void(0)">
 				&times;
 			</a>
 		
 			<div id="spinner_box" class="control-group" style="border: 0;">
 			
-				<label id="purchase_image_broken_msg" class="control-label">
+				<label id="purchase_image_broken_msg" class="control-label hide-on-mobile">
 					<span class="default">
 						Select your
 					</span>
@@ -28,12 +28,12 @@
 				<div class="controls" style="margin-left: 150px;">
 				
 					<input  id="purchase_repeat_query" 
-		              class="search-field highlight-on-focus" 
+		              class="search-field border-box highlight-on-focus" 
 		              name="products[query]" 
 		              type="text" 
 		              value="">
 					<input id="purchase_repeat_search" 
-		              class="btn" 
+		              class="btn hide-on-mobile" 
 		              value="Go" 
 		              title="Search" 
 		              type="button" 
@@ -49,7 +49,7 @@
     </div>
 
 	
-		<div class="scroll-instructions" id="scroll_for_more_results">
+		<div class="scroll-instructions hide-on-mobile" id="scroll_for_more_results">
 	      <span class="hide-when-loading">
 	      	Scroll down for more 
           <b class="caret" style="vertical-align: middle;"></b>

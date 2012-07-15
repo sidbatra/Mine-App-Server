@@ -536,7 +536,7 @@ footer .like-button-box {
 	padding-right: 15px;
 	padding-bottom: 15px;
 	overflow-y: scroll;
-	text-align:center;
+	text-align: center;
 	z-index: 1050; }
 	
 .results, .chooser { *zoom: 1; }
@@ -564,7 +564,7 @@ footer .like-button-box {
 	border-bottom: 1px solid #eee; }
 
 .chooser .search-bar input.search-field {
-	height: 22px;
+	height: 32px;
 	font-size: 15px;
 	line-height: 1;
 	line-height: 22px\0/ !important; }
@@ -655,10 +655,6 @@ footer .like-button-box {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 6000;
-	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.4);
-	-moz-box-shadow: 0 0 18px rgba(0,0,0,0.4);
-	box-shadow: 0 0 18px rgba(0,0,0,0.4);
 	background-color: white;
 	z-index: -1; }
 	
