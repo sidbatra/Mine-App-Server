@@ -1753,6 +1753,7 @@ textarea.highlight-on-focus:focus {
 ==================================================================== */
 
 input, textarea { font-family: 'RooneyLightItalic'; }
+input[type=text] { -webkit-appearance: none; }
 
 textarea:focus,
 input[type="text"]:focus,

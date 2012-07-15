@@ -4,7 +4,7 @@
 @media screen and (max-width: 540px) {
 
 	/* --- basics --- */
-	body { background: #333; }	
+	body { background: #444; }	
 	.hide-on-mobile { display: none !important; }
 	.hide-except-mobile { display: block !important; }
 	footer .inner { text-align: right; }
@@ -24,7 +24,7 @@
 	.item .panel .panel-contents,
 	.user-box .friends-box,
 	.box {
-		width: auto;
+		width: 100%;
 	 	height: auto !important; }
 	 
 	.item .photo { 
