@@ -44,10 +44,10 @@ end
 EM.run do
   @client = TweetStream::Client.new
 
-  @client.track("just bought") do |status|
+  @client.track("i just bought") do |status|
     next if status.source.match /getmine.com/
     next if status.text.match /Stardoll|RT/
-    next unless status.text.match /http/
+    next if status.text.match /http/
     next if !status.in_reply_to_screen_name.nil? || 
             !status.in_reply_to_status_id.nil? || 
             !status.in_reply_to_user_id.nil?
