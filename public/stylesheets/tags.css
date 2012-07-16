@@ -720,6 +720,8 @@ footer .like-button-box {
 	left: 24px;
 	line-height: 1; }
 	
+.item .photo .btn.delete { right: 24px; bottom: 24px; }
+	
 .item .photo img.item-photo {
 	max-width: 440px; 
 	max-height: 440px; }

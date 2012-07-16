@@ -50,15 +50,14 @@
         <a href="javascript:void(0)" 
             class="btn btn-black"
             id="purchase_change_photo">
-          <i class="icon-chevron-left icon-white"></i> Change photo
+          <i class="icon-chevron-left icon-white"></i> Change<span class='hide-on-mobile'> photo</span>
         </a>
       </div>
       
-	    <%=link_to "<i class='icon-trash icon-white'></i> Delete item",
+	    <%=link_to "<i class='icon-trash icon-white'></i><span class='hide-on-mobile'> Delete item</span>",
 	        {:action => 'destroy',:id => f.object.id},
 	        :method  => :delete,
-	        :class   => 'btn btn-black absolute',
-	        :style   => 'bottom: 24px; right: 24px;',
+	        :class   => 'btn btn-black delete absolute',
 	        :confirm => "Are you sure you want "\
 	                    "to delete this item?" if show_delete_button%>
 

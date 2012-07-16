@@ -40,7 +40,7 @@
 
 
 
-	<!-- Actions -->
+	<!-- Actions (outside) -->
 
   <%if(Denwen.H.isLoggedIn()){%>
     <div class="actions border-box hide-on-mobile" id="feedback">
@@ -60,12 +60,6 @@
           <i class="icon-pencil icon-white"></i>
         </a>
       <%}else{%>
-      
-<!--
-				<a class="btn mine relative" href="javascript:void(0)">
-          <i class="icon-mine icon-white"></i> mine
-        </a>
--->
 
       <%}%>
     </div>
@@ -74,6 +68,34 @@
   <!-- /actions -->
   
   <div class="photo rounded-5 relative border-box">
+  	
+  	<!-- Actions (inside - mobile) -->
+
+	  <%if(Denwen.H.isLoggedIn()){%>
+	    <div class="actions border-box hide-except-mobile" id="feedback" style="text-align: left;">
+	
+	      <%if(interaction){%> 
+	        <a href="javascript:void(0)"
+	            id="purchase_create_like_<%=purchase.get('id')%>"
+	            class="btn btn-black">
+	          <i class="icon-loading icon-white"></i>
+	          <i class="icon-like icon-white hide-when-loading"></i>
+	        </a> 		
+	      <%}%>
+	
+	      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
+	        <a href="<%=purchase.editPath('feed')%>" 
+	            class="btn btn-black">
+	          <i class="icon-pencil icon-white"></i>
+	        </a>
+	      <%}else{%>
+	
+	      <%}%>
+	    </div>
+	  <%}%> 
+	
+	  <!-- /actions -->
+  
   	<img class="stamp absolute" src="<%=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" />
     <img class="item-photo" src="<%=purchase.get('giant_url')%>" />
   </div>
@@ -84,9 +106,6 @@
   	
   	<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box">
-      
-      	
-      	
       	
 			<!-- title-box -->	
 			<div class="title-box relative border-box hide-except-mobile">
