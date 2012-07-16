@@ -9,7 +9,9 @@ class SuggestionsController < ApplicationController
                       map(&:suggestion_id).uniq.compact
 
     @suggestions = Suggestion.select(:id,:short_title,:thing).
-                    by_weight.limit(3)
+                    for_gender(self.current_user.gender).
+                    by_weight.
+                    limit(3)
 
     @suggestions.each do |suggestion| 
       suggestion[:done] = suggestion_ids.include? suggestion.id

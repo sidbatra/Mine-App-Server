@@ -51,7 +51,7 @@ module DW
       # Returns - Object. Value when key is found. nil otherwise.
       #
       def self.value_for(key)
-        class_eval key
+        class_eval key.capitalize
       rescue NameError
         nil
       end
