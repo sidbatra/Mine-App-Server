@@ -4,12 +4,12 @@
 @media screen and (max-width: 540px) {
 
 	/* --- basics --- */
-	body { background: #444; }	
+	body { background: #333; }	
 	.hide-on-mobile { display: none !important; }
 	.hide-except-mobile { display: block !important; }
 	footer .inner { text-align: right; }
-	input[type=text] { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
-	input[type=text]:focus {
+	input[type=text], textarea { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
+	input[type=text]:focus, textarea:focus {
 		background: #e6f7fd;
 		color: #177DBE; }
 
@@ -18,7 +18,7 @@
 		padding-left: 10px;
 		padding-right: 10px; }
 	
-	/* --- feed, itme --- */
+	/* --- feed, item --- */
 	
 	.feed { margin-top: 0; }
 	
@@ -44,7 +44,8 @@
 	
 	.item .photo img.item-photo {
 		max-width: 100%; 
-		max-height: 532px; }
+/* 		max-height: 532px; */
+		max-height: 264px; }
 		
 	.item .photo img.stamp {
 		width: 32px;
@@ -148,13 +149,42 @@
   
   /* creation */
 	.create-box { background: none; }
-	.create-box .btn-red { width: 100% !important; }
-	.create-box .search-box { padding: 10px 0; }
-	.create-box .enter-item-name { width: 100%; }
+	.create-box .item { margin-bottom: 10px; }
+	.create-box .btn.add { width: 100% !important; }
+	.create-box .search-box { padding: 0 0 10px; font-size: 0; }
+	.create-box .btn.go { 
+		width: 16% !important;
+		-webkit-border-radius: 0 5px 5px 0;
+		-moz-border-radius: 0 5px 5px 0;
+		border-radius: 0 5px 5px 0; }
+		
+	.create-box .enter-item-name { 
+		width: 84%;
+		-webkit-border-radius: 5px 0 0 5px;
+		-moz-border-radius: 5px 0 0 5px;
+		border-radius: 5px 0 0 5px; }
+	
+	.create-box .panel textarea.item-name { 
+		height: 38px;
+		/* margin-bottom: 8px; */ }
+		
+/*		
+	.create-box .panel .btn.add-review { margin: 16px 0; }
+	
+	.create-box .panel .post-to { 
+		width: 33%;
+		background: none;
+		height: auto;
+		padding: 0;
+		display: inline-block; }
+	
+	.create-box .panel a.toggle-switch { float: none; }
+*/
 	
 	/* chooser */
 	.chooser { 
-		position: relative; 
+		position: relative;
+		top: -58px; /* height of header since relative, not abs */
 		margin-left: -10px; 
 		margin-right: -10px; 
 		padding: 10px 4px 10px 10px; 
@@ -197,26 +227,6 @@
 		display: none; 
 		background: white;
 		z-index: 1049;}
-		
-		
-/*
-.results { 
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	width: 100%;
-	max-height: 100%;
- 	background: white;
-	margin-top:49px;
-	margin-bottom: 45px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 15px;
-	overflow-y: scroll;
-	text-align:center;
-	z-index: 1050; }
-*/
-  
   
   
   /* home page */

@@ -360,6 +360,8 @@ footer .like-button-box {
 .create-box .panel .btn.add-review:hover .icon-pencil {
 	opacity: 1;
   filter: alpha(opacity=100); }
+
+.create-box .panel .share-switches { font-size: 0; }
   
 .create-box .panel .post-to {
 	font-weight: bold;
@@ -1749,7 +1751,7 @@ textarea.highlight-on-focus:focus {
 ==================================================================== */
 
 input, textarea { font-family: 'RooneyLightItalic'; }
-input[type=text] { -webkit-appearance: none; }
+input[type=text], textarea { -webkit-appearance: none; }
 
 textarea:focus,
 input[type="text"]:focus,
