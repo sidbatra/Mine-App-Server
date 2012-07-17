@@ -15,6 +15,8 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     this.nextURL = this.options.nextURL;
     this.source = this.options.source;
     this.currentSuggestionID = this.options.currentSuggestionID;
+    this.extraSuggestion = new Denwen.Models.Suggestion(
+                                this.options.extraSuggestion);
     this.suggestions = new Denwen.Collections.Suggestions(
                             this.options.suggestions);
 
@@ -25,6 +27,8 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     this.step2HeadingEl = '#step_2';
     this.step3HeadingEl = '#step_3';
     this.exampleEl = '#example';
+    this.extraSuggestionEl = '#extra_suggestion';
+    this.extraSuggestionBoxEl = '#extra_suggestion_box';
 
     this.input = new Denwen.Partials.Purchases.Input({
                         el  : $('body'),
@@ -54,6 +58,10 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
       });
     });
 
+    $(this.extraSuggestionEl).click(function(){
+      self.suggestionClicked(self.extraSuggestion);
+    });
+
     if(this.currentSuggestionID) {
       suggestion = this.suggestions.get(this.currentSuggestionID);
 
@@ -80,6 +88,8 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
                       example:suggestion.get('example')}));
     $(this.step2HeadingEl).html(Denwen.JST['welcome/create/heading']({
                       thing:suggestion.get('thing')}));
+
+    $(this.extraSuggestionBoxEl).hide();
 
     $(this.step1HeadingEl).hide();
     $(this.step2HeadingEl).show();

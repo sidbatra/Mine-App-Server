@@ -26,15 +26,25 @@ module DW
         start = DateTime.new(yest.year,yest.month,yest.day,0,0,0)
         finish = DateTime.new(yest.year,yest.month,yest.day,23,59,59)
 
-        suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
-                        by_weight.limit(3)
+        suggestions = {}
+
+        [nil,"male","female"].each do |gender|
+          suggestions[gender] = Suggestion.select(:id,:title,:thing,:example,:image_path).
+                                  for_gender(gender).
+                                  by_weight.
+                                  limit(3)
+        end
+
 
         User.with_purchases.with_setting.made(start,finish).each do |user|
           begin
             suggestions_done_ids = user.purchases.map(&:suggestion_id).uniq.compact
 
             if user.setting.email_update && suggestions_done_ids.length < suggestions.length
-              UserMailer.deliver_after_join_suggestions(user,suggestions,suggestions_done_ids)
+              UserMailer.deliver_after_join_suggestions(
+                          user,
+                          suggestions[user.gender],
+                          suggestions_done_ids)
             end
 
             sleep 0.09

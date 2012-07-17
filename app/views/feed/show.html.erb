@@ -1,7 +1,25 @@
+<%=render 'purchases/chooser'%> 
+
+<!-- Mobile header (same as logged-out) -->
+
+<div class="logged-out hide-except-mobile" style="padding: 0 10px;">	
+	<div class="item-header">
+      
+    <%=link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
+        root_path(:src => "bar")%>
+	        
+	  <span class="text">
+			Tell friends when you buy good stuff.
+	  </span>
+	  	        
+	</div>
+</div> 
+
+<!-- /mobile header -->
+
 <div class="container border-box">
 
-
-	<div class="thumbnail-box">
+	<div class="thumbnail-box hide-on-mobile">
     <%if self.current_user.followings_count.zero?%>
       <p>
         <%=link_to "Invite a few friends", new_invite_path(:src => "placeholder")%>
@@ -52,10 +70,7 @@
     <%=link_to "Invite friends <i class='icon-chevron-right icon-white'></i>",
         new_invite_path(:src => "feed"),
         :class => "btn go-to-invite"%>
-	</div> <!-- /thumbnail-box -->
-
-  
-  <%=render 'purchases/chooser'%>   
+	</div> <!-- /thumbnail-box -->  
   	
   <div id="creation" class="create-box">
     <%form_for Purchase.new,
@@ -64,7 +79,7 @@
           :style => "margin-bottom: 0;"} do |f|%>   
        
 		  <div id="suggestions" 
-            class="suggestions-box relative" 
+            class="suggestions-box relative hide-on-mobile" 
             style="display:none">
 		  	
 		  	<div class="fader absolute left"></div>

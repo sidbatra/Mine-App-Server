@@ -4,6 +4,10 @@
     <%=render :partial => "misc/head"%> 
 
     <%=include_stylesheets :application-%>
+    <%=include_stylesheets :tablet if is_tablet_device? || 
+                                      Rails.env.starts_with?('d')-%>
+    <%=include_stylesheets :mobile if is_phone_device? ||
+                                      Rails.env.starts_with?('d')-%>
 
     <%=yield :head%>
 
@@ -15,9 +19,9 @@
     <%=version_meta_tag%>
   </head>
 
-  <body <%=yield :body_attribute%> id="body">
+  <body>
   	
-  	<!-- wrapper for sticky footer -->
+  	<!-- wrapper for sticky header -->
   	<div class="wrapper">
     
 	    <div id="fb-root"></div>    
@@ -40,10 +44,13 @@
     <%=render :partial => "misc/analytics"%>
 
     <%=include_javascripts :application-%>
-    <%=include_javascripts :ie if is_ie?-%>
 
     <script type="text/javascript">
       Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);
+      Denwen.Device = new Backbone.Model({
+                          "is_mobile" : <%=is_mobile_device? ? true : false%>,
+                          "is_phone"  : <%=is_phone_device? ? true : false%>,
+                          "is_tablet" : <%=is_tablet_device? ? true : false%>});
 
       <%if logged_in?%>
         Denwen.H.currentUser = new Denwen.Models.User(
@@ -69,16 +76,14 @@
     <%=yield :javascript%>
 
     <script type="text/javascript">
-/*
-      <#if !is_onboarding?%>
+      <%if logged_in? && !is_onboarding? && !is_phone_device?%>
           var uvOptions = {};
           (function() {
             var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
             uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/TYBI4jm5X9Dg69VO7vLW5w.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
           })();
-      <#end%>
-*/
+      <%end%>
     </script>
     
   </body>

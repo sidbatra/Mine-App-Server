@@ -12,22 +12,24 @@
     style="<%=show_query_box ? '' : 'display:none'%>">
 		
     <a id="initiate_purchase" 
-        class="btn btn-large btn-red border-box" 
+        class="btn btn-large btn-red border-box add" 
         style="width: 220px;<%=!show_query_sub_box ? '' : 'display:none;'%>">
-      <i class="icon-mine icon-white"></i> Add a new purchase
+      <span class="hide-on-mobile">
+      	<i class="icon-mine icon-white"></i>
+      </span> Add a new purchase
     </a>
 
     <div id="query_sub_box" style="<%=show_query_sub_box ? '' : 'display:none'%>">
       <%=f.text_field :query,
           :placeholder => local_assigns[:search_placeholder].nil? ? 
-                            "Enter item name, brand, color, store or URL" :
+                            "Name, brand, color, store or URL" :
                             search_placeholder,
           :class => "border-box enter-item-name"%>
       <a id="purchase_search" 
-          class="btn btn-large btn-red border-box" 
+          class="btn btn-large btn-red border-box go" 
           alt="Search">
           <%if local_assigns[:search_action].nil?%>
-            Pick a photo <i class="icon-chevron-right icon-white"></i>
+            <span class="hide-on-mobile">Pick a photo </span><i class="icon-chevron-right icon-white"></i>
           <%else%>
             <%=search_action%>
           <%end%>
@@ -48,15 +50,14 @@
         <a href="javascript:void(0)" 
             class="btn btn-black"
             id="purchase_change_photo">
-          <i class="icon-chevron-left icon-white"></i> Change photo
+          <i class="icon-chevron-left icon-white"></i> Change<span class='hide-on-mobile'> photo</span>
         </a>
       </div>
       
-	    <%=link_to "<i class='icon-trash icon-white'></i> Delete item",
+	    <%=link_to "<i class='icon-trash icon-white'></i><span class='hide-on-mobile'> Delete item</span>",
 	        {:action => 'destroy',:id => f.object.id},
 	        :method  => :delete,
-	        :class   => 'btn btn-black absolute',
-	        :style   => 'bottom: 24px; right: 24px;',
+	        :class   => 'btn btn-black delete absolute',
 	        :confirm => "Are you sure you want "\
 	                    "to delete this item?" if show_delete_button%>
 
@@ -125,7 +126,7 @@
 
 		    <%if show_tw_share%>
 		      <div class="post-to border-box rounded-8">
-		        Twitter 
+		        Twitter
 	          <a id="tw-share-toggle-switch" 
 	              class="toggle-switch unselectable rounded-5 <%='off' if !tw_share_on%>">
 		          <div class="on clearfix rounded-5">
@@ -151,7 +152,7 @@
 		
 		    <%if show_tumblr_share%>
 		      <div class="post-to border-box rounded-8">
-		        Tumblr
+		      	Tumblr
 	          <a id="tumblr-share-toggle-switch" 
 	              class="toggle-switch unselectable rounded-5 <%='off' if !tumblr_share_on%>">
 		          <div class="on clearfix rounded-5">

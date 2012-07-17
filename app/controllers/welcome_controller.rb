@@ -11,7 +11,12 @@ class WelcomeController < ApplicationController
       @view = "show"
     when WelcomeFilter::Create
       @suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
-                      by_weight.limit(3)
+                      for_gender(self.current_user.gender).
+                      by_weight.
+                      limit(3)
+      @extra_suggestion = Suggestion.select(:id,:title,:thing,
+                                              :example,:image_path).
+                                      for_thing("item").first
 
       @current_suggestion_id = params[:suggestion_id] ? 
                                 params[:suggestion_id] : 0

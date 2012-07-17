@@ -114,8 +114,15 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   stopSearch: function() {
     $("body").css("overflow","auto");
 
-    $(this.shadowEl).fadeOut(500);
-    $(this.productsBoxEl).fadeOut(250);
+    if(Denwen.Device.get("is_phone")) {
+      $(this.shadowEl).hide();
+      $(this.productsBoxEl).hide();
+    }
+    else {
+      $(this.shadowEl).fadeOut(500);
+      $(this.productsBoxEl).fadeOut(250);
+    }
+
     $(this.queryEl).val($(this.repeatQueryEl).val());
     $(this.repeatQueryEl).val('');
 
@@ -235,11 +242,24 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     this.startSpinner();
 
     $(this.shadowEl).css("height","100%");
-    $(this.shadowEl).fadeIn(500);
+
+    if(Denwen.Device.get("is_phone")) {
+      $(this.shadowEl).show();
+      $(this.productsBoxEl).show();
+    }
+    else {
+      $(this.shadowEl).fadeIn(500);
+      $(this.productsBoxEl).fadeIn(250);
+    }
+
     $(this.productsEl).html('');
-    $(this.productsBoxEl).fadeIn(250);
     $(this.moreEl).show();
-    $(this.repeatQueryEl).focus();
+
+    if(Denwen.Device.get("is_phone"))
+      $(this.queryEl).blur();
+    else
+      $(this.repeatQueryEl).focus();
+
     $(this.repeatQueryEl).val($(this.repeatQueryEl).val());
 
     this.products.search(query);

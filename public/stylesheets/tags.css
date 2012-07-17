@@ -109,9 +109,7 @@ footer, .push {
 
 footer, footer a, footer a:hover { color: #ccc; }
 
-footer.dark {
-	background: url('/images/colors/black-25.png');}
-
+footer.dark { background: url('/images/colors/black-25.png');}
 footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
 footer .like-button-box {
@@ -190,9 +188,10 @@ footer .like-button-box {
 .onboarding .box .heading {
 	font-family: 'RooneyLightItalic', Georgia;
 	text-align: center;
-	padding-bottom: 20px; }
+	padding-bottom: 12px; }
 	
 .onboarding .box p {
+	color: #575E62;
 	font-family: 'RooneyLightItalic', Georgia; }
 
 .onboarding h2,
@@ -208,11 +207,11 @@ footer .like-button-box {
 
 .onboarding .suggestions { 
 	font-size: 0;
-	padding: 0 27px; }
+	text-align: center; }
 
 .onboarding .suggestion { 
 	width: 116px;
-	height: 160px;
+/* 	height: 172px; */
 	margin: 0 9px; 
 	display: inline-block;
 	vertical-align: top; }
@@ -230,14 +229,20 @@ footer .like-button-box {
 
 .onboarding .suggestion .bottom {
 	padding-top: 12px;
-	height: 64px;
+	height: 76px;
 	font-size: 14px;
 	line-height: 19px;
 	color: #575E62;
 	font-family: 'RooneyLightItalic', Georgia;
 	text-align: center; }
 
-.onboarding .suggestion:hover .top { background: #eee; }
+.onboarding .suggestion:hover .top,
+.onboarding .suggestion:active .top { background: #eee; }
+
+.onboarding .wildcard { 
+	text-align: center; 
+	clear: both; 
+	font-family: 'RooneyLightItalic', Georgia; }
 
 
 /* Step 2: First search */
@@ -360,6 +365,8 @@ footer .like-button-box {
 .create-box .panel .btn.add-review:hover .icon-pencil {
 	opacity: 1;
   filter: alpha(opacity=100); }
+
+.create-box .panel .share-switches { font-size: 0; }
   
 .create-box .panel .post-to {
 	font-weight: bold;
@@ -530,13 +537,14 @@ footer .like-button-box {
 	width: 100%;
 	max-height: 100%;
  	background: white;
+ 	font-size: 0;
 	margin-top:49px;
 	margin-bottom: 45px;
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-bottom: 15px;
 	overflow-y: scroll;
-	text-align:center;
+	text-align: center;
 	z-index: 1050; }
 	
 .results, .chooser { *zoom: 1; }
@@ -558,24 +566,31 @@ footer .like-button-box {
 	left:0;
 	right:0;
 	background: white;
+	font-size: 0;
 	padding:8px 0;
 	text-align: left;
 	z-index:9999;
 	border-bottom: 1px solid #eee; }
 
 .chooser .search-bar input.search-field {
-	height: 22px;
+	height: 32px;
 	font-size: 15px;
 	line-height: 1;
-	line-height: 22px\0/ !important; }
+	line-height: 22px\0/ !important;
+	-webkit-border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px; }
+
+.chooser .search-bar .btn.go { 
+	width: 50px;
+	-webkit-border-radius: 0 5px 5px 0;
+	-moz-border-radius: 0 5px 5px 0;
+	border-radius: 0 5px 5px 0; }
 	  
 .chooser .search-bar .control-group {
 	width: 500px; 
 	border-right: 110px solid transparent;
 	margin: 0 auto; }
-
-.chooser .search-bar .control-group.load {
-  background: url('/images/loading_blocks_small_light_trans.gif') 428px center no-repeat; }
 
 .chooser .search-bar .close {
 	font-size: 36px; 
@@ -612,7 +627,8 @@ footer .like-button-box {
   width: 160px;
   height: 160px;
   line-height: 158px;
-  float: left;
+	display: inline-block;
+ 	font-size: 0;
   margin: 15px 15px 0px 0px;
   position: relative;
   cursor: pointer;
@@ -630,7 +646,7 @@ footer .like-button-box {
 	right: 30px; }
 
 .photo-choice .item-photo {
-  max-width: 160px;
+  max-width: 158px;
   max-height: 158px;
   vertical-align: middle; }
   
@@ -655,10 +671,6 @@ footer .like-button-box {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 6000;
-	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.4);
-	-moz-box-shadow: 0 0 18px rgba(0,0,0,0.4);
-	box-shadow: 0 0 18px rgba(0,0,0,0.4);
 	background-color: white;
 	z-index: -1; }
 	
@@ -721,6 +733,8 @@ footer .like-button-box {
 	top: 24px;
 	left: 24px;
 	line-height: 1; }
+	
+.item .photo .btn.delete { right: 24px; bottom: 24px; }
 	
 .item .photo img.item-photo {
 	max-width: 440px; 
@@ -1342,18 +1356,11 @@ footer .like-button-box {
 .btn.btn-red:hover { background: #E4156D; }
 
 .btn.btn-black { 
-	opacity: 0.8;
-  filter: alpha(opacity=80); 
 	background: url('/images/colors/black-40.png');
   -webkit-transition: opacity .15s ease-in;
 	-moz-transition: opacity .15s ease-in;
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
-	
-.btn.btn-black:hover,
-.btn.btn-black.active {
-	opacity: 1;
-  filter: alpha(opacity=100); }
   
 .btn.btn-gray {
 	text-align: left;
@@ -1753,6 +1760,7 @@ textarea.highlight-on-focus:focus {
 ==================================================================== */
 
 input, textarea { font-family: 'RooneyLightItalic'; }
+input[type=text], textarea { -webkit-appearance: none; }
 
 textarea:focus,
 input[type="text"]:focus,

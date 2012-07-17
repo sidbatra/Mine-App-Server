@@ -15,8 +15,8 @@
       
       <div class="item-header">
       
-        <%=image_tag "mine_54_horizontal_2x.png",
-            :class => "logo"%>
+        <%=link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
+	        	root_path(:src => "purchase")%>
               
         <span class="text">
 					Tell friends when you buy good stuff.
