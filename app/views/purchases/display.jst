@@ -42,7 +42,7 @@
 
 	<!-- Actions (outside) -->
 
-  <%if(Denwen.H.isLoggedIn()){%>
+  <%if(Denwen.H.isLoggedIn() && !Denwen.Device.get("is_phone")){%>
     <div class="actions border-box hide-on-mobile" id="feedback">
 
       <%if(interaction){%> 
@@ -71,7 +71,7 @@
   	
   	<!-- Actions (inside - mobile) -->
 
-	  <%if(Denwen.H.isLoggedIn()){%>
+	  <%if(Denwen.H.isLoggedIn() && Denwen.Device.get("is_phone")){%>
 	    <div class="actions border-box hide-except-mobile" id="feedback" style="text-align: left;">
 	
 	      <%if(interaction){%> 
