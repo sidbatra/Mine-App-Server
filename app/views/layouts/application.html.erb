@@ -74,7 +74,7 @@
     <%=yield :javascript%>
 
     <script type="text/javascript">
-      <%if logged_in? && !is_onboarding?%>
+      <%if logged_in? && !is_onboarding? && !is_phone_device?%>
           var uvOptions = {};
           (function() {
             var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
