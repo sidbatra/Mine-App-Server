@@ -1429,18 +1429,31 @@ footer .like-button-box {
 .icon-phone.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -96px 0; }
-  
-.icon-media-item.icon-white {
-	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
-  background-position: -168px 0; }
 
 .icon-bag.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -144px 0; }
+  
+.icon-media-item.icon-white,
+.icon-music.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -168px 0; }
 
 .icon-top.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -192px 0; }
+
+.icon-device.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -216px 0; }
+  
+.icon-book.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -240px 0; }
+
+.icon-accessory.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -264px 0; }
 
 
 /* ----- loading button states ----- */

@@ -125,9 +125,7 @@ footer, .push {
 
 footer, footer a, footer a:hover { color: #ccc; }
 
-footer.dark {
-	background: url('/images/colors/black-25.png');}
-
+footer.dark { background: url('/images/colors/black-25.png');}
 footer.dark, footer.dark a, footer.dark a:hover { color: #666; }
 
 footer .like-button-box {
@@ -141,8 +139,42 @@ footer .like-button-box {
 
 .feed { margin-top: 36px; }
 
-.feed .item { 
-	margin-bottom: 36px; }
+.feed .item { margin-bottom: 28px; }
+
+/* hidden on mobile: */
+
+.feed .item .title-box.outside {
+	width: 520px;
+	font-size: 24px;
+	line-height: 32px;
+	color: #666;
+	padding-left: 78px;
+	margin-bottom: 16px; 
+	float: left; }
+
+.feed .item .title-box.outside .user-photo {
+	width: 64px;
+	height: 64px; 
+	top: 0;
+	left: 0;}
+
+.feed .item .item-name,
+.feed .item .store-name {
+	color: #555; }
+
+.feed .item .item-name,
+.feed .item .user-name,
+.feed .item .store-name {
+	font-weight: bold; }
+
+.feed .item .title-box.outside .time {
+	font-family: 'RooneyLightItalic', Georgia;
+	font-weight: normal;
+	color: #999;
+	font-size: 14px; 
+	white-space: nowrap; }
+	
+/* End of hidden on mobile */
 
 .item .photo {
 	width: 520px; 
@@ -160,6 +192,8 @@ footer .like-button-box {
 	top: 24px;
 	left: 24px;
 	line-height: 1; }
+	
+.item .photo .btn.delete { right: 24px; bottom: 24px; }
 	
 .item .photo img.item-photo {
 	max-width: 440px; 
@@ -187,7 +221,7 @@ footer .like-button-box {
 .item .panel {
 	height: 520px;
 	padding: 24px 0;
-	background: #f8f8f8;
+	background: #f7f7f7;
 	-webkit-border-radius: 0 5px 5px 0; 
      -moz-border-radius: 0 5px 5px 0; 
           border-radius: 0 5px 5px 0; 
@@ -205,29 +239,30 @@ footer .like-button-box {
 	line-height: 27px;
 	color: #777;
 	font-family: 'RooneyLightItalic', Georgia;
-	padding-bottom: 8px; }
+	padding-bottom: 8px; 
+	border-bottom: 1px solid #E5E5E5; }
 	
 .item .panel .title-box .user-photo { 
 	vertical-align: -7px;
-	margin-right: 2px; }
+	margin-right: 1px; }
 
 .item .panel .title-box .em {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	color: #555; }
 	
-.item .panel .endorsement { color: #666; }
-	
 .item .panel .endorsement {
-	border-top: 1px solid #E5E5E5;
-	padding: 8px 0; }
+	color: #666;
+	font-family: 'RooneyLightItalic', Georgia;
+	padding: 0 0 8px;
+	border-bottom: 1px solid #E5E5E5; }
 	
 .item .panel .likes-box {
 	height: 28px;
 	line-height: 1;
 	color: #555;
-	border-top: 1px solid #E5E5E5;
 	padding: 8px 0 16px;
+	border-bottom: 1px solid #E5E5E5;
 	overflow-y: hidden;
 	white-space: nowrap; }
 
@@ -257,16 +292,14 @@ footer .like-button-box {
 	height: 28px; }
 	
 .item .panel .comments-box {
-	padding-top: 16px;
-	border-top: 1px solid #E5E5E5; }
+	padding-top: 16px; }
 
 .item .panel .comment-box {
 	min-height: 28px;
 	margin-bottom: 12px;
 	padding-left: 36px; 
 	clear: both;
-	color: #575E62;
-	font-family: 'RooneyLightItalic', Georgia; }
+	color: #777; }
 	
 .item .panel .user-photo,
 .item .panel .self-photo {
@@ -285,7 +318,7 @@ footer .like-button-box {
 	margin-bottom: 3px; }
 	
 .feed .item .panel .add-comment-box input {
-	padding-left: 36px;
+	padding-left: 34px;
 	font-size: 15px;
 	width: 100%;
 	height: 28px;
@@ -693,18 +726,11 @@ footer .like-button-box {
 .btn.btn-red:hover { background: #E4156D; }
 
 .btn.btn-black { 
-	opacity: 0.8;
-  filter: alpha(opacity=80); 
 	background: url('/images/colors/black-40.png');
   -webkit-transition: opacity .15s ease-in;
 	-moz-transition: opacity .15s ease-in;
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
-	
-.btn.btn-black:hover,
-.btn.btn-black.active {
-	opacity: 1;
-  filter: alpha(opacity=100); }
   
 .btn.btn-gray {
 	text-align: left;
@@ -741,7 +767,7 @@ footer .like-button-box {
 	height: 20px; 
 	vertical-align: -4px; 
 	padding-right: 6px; 
-	margin-left: -8px; }
+	margin-left: -12px; }
 
 .btn.checklist .icon-ok { display:none; }
 
@@ -773,18 +799,31 @@ footer .like-button-box {
 .icon-phone.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -96px 0; }
-  
-.icon-media-item.icon-white {
-	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
-  background-position: -168px 0; }
 
 .icon-bag.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -144px 0; }
+  
+.icon-media-item.icon-white,
+.icon-music.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -168px 0; }
 
 .icon-top.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -192px 0; }
+
+.icon-device.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -216px 0; }
+  
+.icon-book.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -240px 0; }
+
+.icon-accessory.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -264px 0; }
 
 
 /* ----- loading button states ----- */
@@ -1043,6 +1082,11 @@ textarea.highlight-on-focus:focus {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px; }
+
+.rounded-5 {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; }
 	
 .rounded-8 {
 	-webkit-border-radius: 8px;
@@ -1098,7 +1142,7 @@ textarea.highlight-on-focus:focus {
 /* Text Field Bootstrap Overrides
 ==================================================================== */
 
-input, textarea { font-family: 'RooneyLightItalic'; -webkit-appearance: none; }
+input, textarea { font-family: 'RooneyLightItalic'; }
 input[type=text], textarea { -webkit-appearance: none; }
 
 textarea:focus,
