@@ -240,7 +240,8 @@ footer .like-button-box {
 	font-family: 'RooneyLightItalic', Georgia;
 	text-align: center; }
 
-.onboarding .suggestion:hover .top { background: #eee; }
+.onboarding .suggestion:hover .top,
+.onboarding .suggestion:active .top { background: #eee; }
 
 
 /* Step 2: First search */
