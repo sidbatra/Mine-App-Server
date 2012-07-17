@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704013639) do
+ActiveRecord::Schema.define(:version => 20120717021709) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -259,6 +259,7 @@ ActiveRecord::Schema.define(:version => 20120704013639) do
   end
 
   add_index "suggestions", ["gender"], :name => "index_suggestions_on_gender"
+  add_index "suggestions", ["thing"], :name => "index_suggestions_on_thing"
   add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
 
   create_table "users", :force => true do |t|
