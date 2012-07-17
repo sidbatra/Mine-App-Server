@@ -243,6 +243,11 @@ footer .like-button-box {
 .onboarding .suggestion:hover .top,
 .onboarding .suggestion:active .top { background: #eee; }
 
+.onboarding .wildcard { 
+	text-align: center; 
+	clear: both; 
+	font-family: 'RooneyLightItalic', Georgia; }
+
 
 /* Step 2: First search */
 
