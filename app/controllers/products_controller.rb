@@ -120,7 +120,7 @@ class ProductsController < ApplicationController
                              product.thumbnail_url,
                              product.image_url,
                              product.source_url,
-                             "",
+                             "MI-#{product.id}",
                              product.title)
                          end
   end
@@ -152,7 +152,7 @@ class ProductsController < ApplicationController
                                 medium_url,
                                 large_url,
                                 product.get('DetailPageURL'),
-                                product.get('ASIN'),
+                                "AZ-#{product.get('ASIN')}",
                                 product.get('ItemAttributes/Title'))
 
                             rescue => ex
@@ -198,7 +198,7 @@ class ProductsController < ApplicationController
                                     product["images"][0]["thumbnails"][0]["link"],
                                     product["images"][0]["link"],
                                     product["link"],
-                                    product["googleId"],
+                                    "GO-#{product["googleId"]}",
                                     product["title"])
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
