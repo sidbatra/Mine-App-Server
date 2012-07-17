@@ -88,7 +88,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
-      $(this.purchaseEl).slideDown(750);
+
+      if(Denwen.Device.get("is_phone"))
+        $(this.purchaseEl).show();
+      else
+        $(this.purchaseEl).slideDown(750);
+
     }
     else
       this.el.append(html);
