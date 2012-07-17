@@ -1,0 +1,51 @@
+<div class="container" id="container">
+  <b>
+    Recent <%=h @invites.length%> Invites
+  </b> 
+  <br/><br/>
+
+  <table border="1">
+    <tr>
+      <td width="250">
+        <b>From</b>
+      </td>
+      <td width="100">
+        <b>Created</b>
+      </td>
+      <td width="100">
+        <b>To</b>
+      </td>
+      <td width="100">
+        <b>Converted?</b>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <%@invites.each do |invite|%>
+      <tr>
+        <td>
+          <%=link_to user_full_name(invite.user),
+              admin_user_path(invite.user.handle)%>
+        </td>
+        <td>
+          <%=time_ago_in_words(invite.created_at)%>
+        </td>
+        <td>
+          <%=link_to invite.recipient_name,
+              "https://www.facebook.com/profile.php?id=#{invite.recipient_id}"%>
+        </td>
+        <td>
+          <%if convert=@converts[invite.recipient_id]%>
+            <%=link_to user_full_name(convert),
+                admin_user_path(convert.handle)%>
+          <%else%>
+            No
+          <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+
+  <br/><br/><br/>
+</div>
+

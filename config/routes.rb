@@ -153,6 +153,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :emails, :only => [:index,:show]
     admin.resources :health, :only => [:index]
     admin.resources :suggestions
+    admin.resources :invites, :only => [:index]
 
     admin.full_purchase ':user_handle/p/:purchase_handle',
       :controller => :purchases,
