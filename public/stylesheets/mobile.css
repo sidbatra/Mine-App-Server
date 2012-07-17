@@ -151,7 +151,7 @@
 	.onboarding .suggestion .bottom {
 		padding-top: 0px;
 		height: 64px;
-		font-size: 12px;
+		font-size: 12px; }
    
   /* no overflow abs. positioned add-comment-box when narrow */
   .item .panel-contents.overflowing { overflow-y: visible; }
