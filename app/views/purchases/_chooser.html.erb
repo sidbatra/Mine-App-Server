@@ -32,13 +32,19 @@
 		              name="products[query]" 
 		              type="text" 
 		              value="">
-					<input id="purchase_repeat_search" 
-		              class="btn hide-on-mobile" 
-		              value="Go" 
+					<a id="purchase_repeat_search" 
+		              class="btn go" 
 		              title="Search" 
-		              type="button" 
 		              alt="Search">
-		              
+		      	<span class='hide-when-loading'>
+		      		<span class="hide-on-mobile">
+		      			Go
+		      		</span>
+		      		<i class="icon-chevron-right icon-white"></i>
+		      	</span>
+		      	<i class='icon-loading icon-white'></i>
+		      </a>
+      
         </div> <!-- controls -->     
       
       </div> <!-- /control-group -->

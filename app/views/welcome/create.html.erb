@@ -5,6 +5,8 @@
 <div class="dimmer sixty">
 </div>
 
+<%=render 'purchases/chooser'%>
+
 <div class="onboarding">
 
 	<div id="box" class="box border-box rounded-5">
@@ -19,7 +21,7 @@
 		</div>
 	
 		<div class="heading" id="step_3" style="display:none;">
-	    <h2>Add a few details and you're done:</h2>
+	    <h2>Where did you buy it?</h2>
 		</div>
 	
 		<div id="cards" class="suggestions clearfix">
@@ -40,11 +42,9 @@
 	    <%end%>
 	  </div>
 	  
-	  <div class="wildcard">
-			or… <a href="/" class="">something else</a>
+	  <div id="extra_suggestion_box" class="wildcard">
+			or… <a href="javascript:void(0)" id="extra_suggestion" class="">something else</a>
 		</div>
-		
-	  <%=render 'purchases/chooser'%>
 	  
 	  <div id="creation" class="create-box clearfix" style="display:none">
 	  
@@ -62,8 +62,8 @@
 			            :show_delete_button => false,
 			            :show_query_box => true,
 			            :show_query_sub_box => true,
-			            :search_placeholder => "Enter item name, brand, color, store or URL",
-			            :search_action => "Find it <i class='icon-chevron-right icon-white'></i>",
+			            :search_placeholder => "Item name, brand, color, store",
+			            :search_action => "<span class='hide-on-mobile'>Find it </span><i class='icon-chevron-right icon-white'></i>",
 			            :show_extra_steps => false,
 			            :show_fb_share => true,
 			            :show_tw_share => true,
