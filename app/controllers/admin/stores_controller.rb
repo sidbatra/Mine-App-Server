@@ -26,6 +26,12 @@ class Admin::StoresController < ApplicationController
     render @view
   end
 
+  # Display basic info and purchases at a store
+  #
+  def show
+    @store = Store.find_by_handle(params[:id])
+  end
+
   # Edit a store
   #
   def edit

@@ -148,7 +148,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users, :only => [:index,:show,:destroy]
     admin.resources :purchases, :only => [:index,:show]
     admin.resources :products, :only => [:index]
-    admin.resources :stores, :only => [:index,:edit,:update]
+    admin.resources :stores, :only => [:index,:show,:edit,:update]
     admin.resources :comments, :only => [:index]
     admin.resources :emails, :only => [:index,:show]
     admin.resources :health, :only => [:index]
