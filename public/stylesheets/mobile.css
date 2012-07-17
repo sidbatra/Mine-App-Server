@@ -1,7 +1,7 @@
 /* Media Queries - Mobile - Repeats all of Tablet in case Tablet is ditched
 ==================================================================== */
    
-/* @media screen and (max-width: 540px) { */
+ @media screen and (max-width: 540px) { 
 
 	/* --- basics --- */
 	body { background: #333; }	
@@ -339,4 +339,4 @@
 		width: 24px;
 		height: 24px;
   
-/* } */
+ } 

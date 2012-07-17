@@ -59,8 +59,6 @@
             class="btn">
           <i class="icon-pencil icon-white"></i>
         </a>
-      <%}else{%>
-
       <%}%>
     </div>
   <%}%> 
@@ -69,32 +67,30 @@
   
   <div class="photo rounded-5 relative border-box">
   	
-  	<!-- Actions (inside - mobile) 
+  	<!-- Actions (inside - mobile) -->
 
-	  <#if(Denwen.H.isLoggedIn() && Denwen.Device.get("is_phone")){%>
+	  <%if(Denwen.H.isLoggedIn() && Denwen.Device.get("is_phone")){%>
 	    <div class="actions border-box hide-except-mobile" id="feedback" style="text-align: left;">
 	
-	      <#if(interaction){%> 
+	      <%if(interaction){%> 
 	        <a href="javascript:void(0)"
-	            id="purchase_create_like_<#=purchase.get('id')%>"
+	            id="purchase_create_like_<%=purchase.get('id')%>"
 	            class="btn btn-black">
 	          <i class="icon-loading icon-white"></i>
 	          <i class="icon-like icon-white hide-when-loading"></i>
 	        </a> 		
-	      <#}%>
+	      <%}%>
 	
-	      <#if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-	        <a href="<#=purchase.editPath('feed')%>" 
+	      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
+	        <a href="<%=purchase.editPath('feed')%>" 
 	            class="btn btn-black">
 	          <i class="icon-pencil icon-white"></i>
 	        </a>
-	      <#}else{%>
-	
-	      <#}%>
+	      <%}%>
 	    </div>
-	  <#}%> 
+	  <%}%> 
 	
-    /actions -->
+    <!--/actions -->
   
   	<img class="stamp absolute" src="<%=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" />
     <img class="item-photo" src="<%=purchase.get('giant_url')%>" />
