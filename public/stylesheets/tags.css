@@ -188,15 +188,18 @@ footer .like-button-box {
 	padding-bottom: 4px; }
 	
 .onboarding .box .heading {
+	color: #575E62;
 	font-family: 'RooneyLightItalic', Georgia;
 	text-align: center;
-	padding-bottom: 20px; }
+	padding-bottom: 12px; }
 	
 .onboarding .box p {
+	color: #575E62;
 	font-family: 'RooneyLightItalic', Georgia; }
 
 .onboarding h2,
 .onboarding h3 {
+	color: #333;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 	font-weight: bold; }
 	
@@ -208,7 +211,7 @@ footer .like-button-box {
 
 .onboarding .suggestions { 
 	font-size: 0;
-	padding: 0 27px; }
+	text-align: center; }
 
 .onboarding .suggestion { 
 	width: 116px;

@@ -7,34 +7,29 @@
 
 <div class="onboarding">
 
-	<div class="box border-box rounded-8">
+	<div class="box border-box rounded-5">
 	
 		<div class="heading">
 			<%=image_tag "ob/mine-tags-48-2x.png", :class => "logo"%><br>
-			<h2>Welcome, <%=self.current_user.first_name%>!</h2>
-			Here's all you need to know.
+			<h2>Welcome <%=self.current_user.first_name%>!</h2>
+			<span class="hide-on-mobile">Here's all you need to know.</span>
 		</div>
 		
-		<h3>Mine is crazy simple.</h3>
+		<h3>Posting is crazy simple.</h3>
 		<p>
-			Just type in what you bought, pick the perfect picture, and add where you got it. That’s it.
+			Type in what you bought, pick a photo, and add where you got it.
 		</p>
 		
-		<h3>Mine gives you complete control.</h3>
+		<h3>Share how you want.</h3>
 		<p>
-			Flick a switch to publish to Facebook, Twitter, Tumblr, or keep things within Mine. Mine doesn’t auto-share. 
-		</p>
-		
-		<h3>Mine gets great when 5 or more friends use it.</h3>
-		<p>
-			You’ll be amazed at what you learn from each other through the products and services you’ve chosen.
+			Publish to Facebook, Twitter, Tumblr, or keep things among friends on Mine. 
 		</p>
 	
-	  <%=link_to "Pick something nice you bought recently 
+	  <%=link_to "Post a purchase 
 	              <i class='icon-chevron-right icon-white'></i>",
 	      welcome_path(WelcomeFilter::Create),
 	      :class => "btn btn-large btn-red",
-	      :style => "display: block; margin: 28px auto 8px;"%>
+	      :style => "display: block; margin: 20px auto 0px;"%>
       
   </div>
 

@@ -13,6 +13,7 @@
 		background: #e6f7fd;
 		color: #177DBE; }
 
+	.background-cover, .dimmer { display: none; }
 	.container, .header .navigation, footer .inner { 
 		width: 100%;
 		padding-left: 10px;
@@ -135,9 +136,22 @@
 	.logged-out .item-header .btn { 
 	 	width: 100% !important;
 	 	float: none !important; }
+	
+	.onboarding { margin: 0; padding: 10px; }
+	.onboarding .box { width: 100%; padding: 18px; }
 		
-	.onboarding .box.itemized {
-		width: auto; }
+	.onboarding .box.itemized { width: auto; }
+	
+	.onboarding .box img.logo { width: 40px; height: 40px; padding-bottom: 4px; }
+	
+	.onboarding h2 { font-size: 18px; line-height: 24px; }
+	
+	.onboarding .suggestion { width: 33.3%; margin: 0; }
+		
+	.onboarding .suggestion .bottom {
+		padding-top: 0px;
+		height: 64px;
+		font-size: 12px;
    
   /* no overflow abs. positioned add-comment-box when narrow */
   .item .panel-contents.overflowing { overflow-y: visible; }
