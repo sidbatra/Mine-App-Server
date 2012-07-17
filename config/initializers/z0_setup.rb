@@ -33,6 +33,7 @@ include Cron
 include CryptoManagement 
 include GoogleShoppingInterface
 include ImageProcessing
+include ItunesInterface
 include MailmanInterface
 include Storage
 include DistributionManagement
