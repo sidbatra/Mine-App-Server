@@ -215,7 +215,7 @@ footer .like-button-box {
 
 .onboarding .suggestion { 
 	width: 116px;
-	height: 160px;
+	height: 172px;
 	margin: 0 9px; 
 	display: inline-block;
 	vertical-align: top; }
@@ -233,7 +233,7 @@ footer .like-button-box {
 
 .onboarding .suggestion .bottom {
 	padding-top: 12px;
-	height: 64px;
+	height: 76px;
 	font-size: 14px;
 	line-height: 19px;
 	color: #575E62;

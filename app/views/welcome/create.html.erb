@@ -12,7 +12,7 @@
 		<div class="heading" id="step_1">
 			<%=image_tag "ob/mine-tags-48-2x.png", :class => "logo"%>
       <br>
-			<h2>Pick something to add first:</h2>
+			<h2>What have you bought recently?</h2>
 		</div>
 		
 		<div class="heading" id="step_2" style="display:none;">
@@ -39,7 +39,11 @@
 	      </a>
 	    <%end%>
 	  </div>
-
+	  
+	  <div style="text-align: center; clear: both; font-family: 'RooneyLightItalic', Georgia; ">
+			or… <a href="/" class="">something else</a>
+		</div>
+		
 	  <%=render 'purchases/chooser'%>
 	  
 	  <div id="creation" class="create-box clearfix" style="display:none">
