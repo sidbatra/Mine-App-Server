@@ -254,7 +254,12 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     $(this.productsEl).html('');
     $(this.moreEl).show();
-    $(this.repeatQueryEl).focus();
+
+    if(Denwen.Device.get("is_phone"))
+      $(this.queryEl).blur();
+    else
+      $(this.repeatQueryEl).focus();
+
     $(this.repeatQueryEl).val($(this.repeatQueryEl).val());
 
     this.products.search(query);
