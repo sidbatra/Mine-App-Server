@@ -591,7 +591,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     $(this.urlAlertBoxEl).hide();
 
     if(this.scrollOnSelection) 
-      window.scrollTo(0,$(this.formEl).offset().top - 20);
+      window.scrollTo(0,Denwen.Device.get("is_phone") ? 
+                        1 :
+                        $(this.formEl).offset().top - 20);
 
     Denwen.Track.action("Product Selected");
 
