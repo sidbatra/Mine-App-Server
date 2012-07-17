@@ -45,6 +45,10 @@
 
     <script type="text/javascript">
       Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);
+      Denwen.Device = new Backbone.Model({
+                          "is_mobile" : <%=is_mobile_device? ? true : false%>,
+                          "is_phone"  : <%=is_phone_device? ? true : false%>,
+                          "is_tablet" : <%=is_tablet_device? ? true : false%>});
 
       <%if logged_in?%>
         Denwen.H.currentUser = new Denwen.Models.User(
