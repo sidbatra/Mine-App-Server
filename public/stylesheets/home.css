@@ -582,7 +582,8 @@ footer .like-button-box {
 
 .home .logged-out .item .panel .title-box { 
 	padding: 28px 0;
-	padding-bottom: 0; }
+	padding-bottom: 0;
+	border: 0; }
 
 .home .logged-out .item .panel .title-box .em { color: #666; }
 

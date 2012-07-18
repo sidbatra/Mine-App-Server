@@ -70,12 +70,12 @@
   	<!-- Actions (inside - mobile) -->
 
 	  <%if(Denwen.H.isLoggedIn() && Denwen.Device.get("is_phone")){%>
-	    <div class="actions border-box hide-except-mobile" id="feedback" style="text-align: left;">
+	    <div class="navigation absolute hide-except-mobile" id="feedback" style="text-align: left;">
 	
 	      <%if(interaction){%> 
 	        <a href="javascript:void(0)"
 	            id="purchase_create_like_<%=purchase.get('id')%>"
-	            class="btn btn-black">
+	            class="btn">
 	          <i class="icon-loading icon-white"></i>
 	          <i class="icon-like icon-white hide-when-loading"></i>
 	        </a> 		
@@ -83,7 +83,7 @@
 	
 	      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
 	        <a href="<%=purchase.editPath('feed')%>" 
-	            class="btn btn-black">
+	            class="btn">
 	          <i class="icon-pencil icon-white"></i>
 	        </a>
 	      <%}%>
