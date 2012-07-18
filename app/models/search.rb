@@ -10,13 +10,18 @@ class Search < ActiveRecord::Base
   #----------------------------------------------------------------------
   validates_presence_of   :query
   validates_presence_of   :user_id
-  validates_presence_of   :source
   validates_inclusion_of  :source, :in => SearchSource.values
 
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
   attr_accessible :query,:user_id,:source
+
+  #----------------------------------------------------------------------
+  # Named scopes
+  #----------------------------------------------------------------------
+  named_scope :with_user,  :include => :user
+  named_scope :by_id,      :order => 'id DESC'
 
   #----------------------------------------------------------------------
   # Class methods

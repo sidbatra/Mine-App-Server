@@ -120,7 +120,7 @@ class ProductsController < ApplicationController
                              product.thumbnail_url,
                              product.image_url,
                              product.source_url,
-                             "",
+                             "MI-#{product.id}",
                              product.title)
                          end
   end
@@ -152,7 +152,7 @@ class ProductsController < ApplicationController
                                 medium_url,
                                 large_url,
                                 product.get('DetailPageURL'),
-                                product.get('ASIN'),
+                                "AZ-#{product.get('ASIN')}",
                                 product.get('ItemAttributes/Title'))
 
                             rescue => ex
@@ -198,13 +198,55 @@ class ProductsController < ApplicationController
                                     product["images"][0]["thumbnails"][0]["link"],
                                     product["images"][0]["link"],
                                     product["link"],
-                                    product["googleId"],
+                                    "GO-#{product["googleId"]}",
                                     product["title"])
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                   nil
                                 end
                               end.compact if google_shopping["items"]
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+    end
+
+    request
+  end
+
+  # Search apps via the itunes interface.
+  #
+  # query - The String query to search the api.
+  # per_page - The Integer total results on the page.
+  #
+  # returns - Typhoeus::Request. Typhoeus request object. Plus results are 
+  #           added to the @results  instance variable after they're 
+  #           asynchronously fetched.
+  #
+  def search_itunes_apps(query,per_page)
+    url = Itunes.search_apps(query,per_page,true)
+
+    request = Typhoeus::Request.new(url)
+
+    request.on_complete do |response| 
+      begin
+        apps = JSON.parse(response.body)
+        key = "itunes"
+
+        @results[key.to_sym] = apps["results"].map do |product|
+                                begin
+                                  next unless product 
+
+                                  product_search_hash(
+                                    product["artworkUrl512"],
+                                    product["artworkUrl512"],
+                                    product["trackViewUrl"],
+                                    "AP-#{product["trackId"]}",
+                                    product["trackName"])
+                                rescue => ex
+                                  LoggedException.add(__FILE__,__method__,ex)
+                                  nil
+                                end
+                              end.compact #if apps["results"]
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end

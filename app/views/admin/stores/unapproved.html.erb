@@ -18,7 +18,7 @@
       </td>
       <td width="200">
         <%=link_to  'Store', 
-                    'javascript:void(0)',
+                    admin_store_path(store.handle),
                     :id     => "store_link_#{store.id}",
                     :target => '_newtab'%>
       </td>

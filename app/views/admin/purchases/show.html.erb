@@ -12,7 +12,7 @@
   <h3>
     <%=link_to 'Link to Purchase Page',
           purchase_path(@purchase.user.handle,@purchase.handle)%>
-  <h3>
+  </h3>
 
   <br>
 
@@ -21,6 +21,17 @@
     <%=@purchase.endorsement%>
   </h4>
 
+  <br>
+
+  <%if @purchase.product%>
+    <b>Product Stats</b>
+    <br>
+
+    ExternalID: <%=@purchase.product.external_id%> <br>
+    URL: <%=link_to @purchase.product.source_url%>
+  <%end%>
+
+  <br>
   <br>
 
   <h3> Facebook - <%=@purchase.fb_action_id%></h3>

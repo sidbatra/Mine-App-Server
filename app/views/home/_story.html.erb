@@ -48,33 +48,21 @@
         <div id="slides">
 
           <div class="slides_container">
-          
-						<!--
-            <div class="photo rounded-5 relative border-box" style="background: url('<#=image_path "home/radio.jpg"%>');">
-              <#=image_tag "home/radio.jpg",
-                  :class => "story"%>
-              <#=image_tag "mine_stamp_white_54_35_2x.png",
-                  :class => "stamp absolute"%>
-              <div class="description absolute" style="color: #777;">
-                Sangean WR-11 Wooden Receiver, bought from Target 
-              </div>
-            </div>
-						-->
             
-            <div class="photo rounded-5 relative border-box" style="background: #333 url('<%=image_path "home/grey.jpg"%>');">
+            <div class="photo rounded-5 relative border-box" style="background: #333 url('<%=image_path "home/pajamas.jpg"%>');">
               <%=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description absolute" style="color: #999;">
-                Fifty Shades of Grey, bought and signed at Barnes & Noble 
+              	<span style="color: #555;">Drawstring Wide-Leg </span>
+                J<span style="color: #ccc;">eans, bought from Citizens of Humanity</span>
               </div>
             </div>
             
-            <div class="photo rounded-5 relative border-box" style="display: none; background: #333 url('<%=image_path "home/pajamas.jpg"%>');">
+            <div class="photo rounded-5 relative border-box" style="display: none; background: #333 url('<%=image_path "home/grey.jpg"%>');">
               <%=image_tag "mine_stamp_white_54_35_2x.png",
                   :class => "stamp absolute"%>
               <div class="description absolute">
-                <span style="color: #555;">Drawstring Wide-Leg </span>
-                 J<span style="color: #ccc;">eans, bought from Citizens of Humanity</span>
+              	Fifty Shades of Grey, bought and signed at Barnes & Noble
               </div>
             </div>
             
@@ -89,34 +77,42 @@
 
 
           <ul class="panel border-box relative paginator">
-              
-            <!-- 1A 
+            
+            <!-- 1 -->
             <li class="panel-contents border-box relative rounded-5 top-right one current">
               <a href="#">
                 <div class="caret absolute"></div>
                 
                 <div class="title-box relative border-box">
     
-                  <#=image_tag "home/mike.jpg",
+									<%=image_tag "home/natalia.jpg",
                       :class => "user-photo rounded-3"%>
     
-                  <span class="em">Mike</span> 
-                  is using <span class="em">mine</span> to show 
-                  <span class="em"> a few close friends</span> 
-                  some neat stuff he bought for his new apartment.
+                  <span class="em">Natalia</span> uses <span class="em">mine</span> 
+                  to post her latest weekend shopping haul
+                  to <span class="em">her followers</span> on 
+                    <%=image_tag "social/tb_fff_15_2x.png",
+                        :class => "shares tb active"%>
+                    <%=image_tag "social/tb_666_15_2x.png", 
+                        :class => "shares tb inactive"%> and <%=image_tag "social/tw_fff_15_2x.png",
+                        :class => "shares tw active"%>
+                    <%=image_tag "social/tw_666_15_2x.png", 
+                        :class => "shares tw inactive"%>
+
     
-                </div> 
+                </div> <!-- /title-box -->
               </a>
-            </li> /panel-contents -->
+            </li> <!-- /panel-contents -->
             
-            <!-- 1B -->
-            <li class="panel-contents border-box relative rounded-5 top-right one current">
+            
+            <!-- 2 -->
+            <li class="panel-contents border-box relative two">
               <a href="#">
                 <div class="caret absolute"></div>
                 
                 <div class="title-box relative border-box">
-    
-                  <%=image_tag "home/gabe.jpg",
+                	
+                	<%=image_tag "home/gabe.jpg",
                       :class => "user-photo rounded-3"%>
     
                   <span class="em">Gabrielle</span> 
@@ -133,32 +129,7 @@
                     <%=image_tag "home/friend6.jpg",
                       	:class => "friend-photo rounded-3"%>
     
-                </div> <!-- /title-box -->
-              </a>
-            </li> <!-- /panel-contents -->
-            
-            
-            <!-- 2 -->
-            <li class="panel-contents border-box relative two">
-              <a href="#">
-                <div class="caret absolute"></div>
-                
-                <div class="title-box relative border-box">
-    
-                  <%=image_tag "home/natalia.jpg",
-                      :class => "user-photo rounded-3"%>
-    
-                  <span class="em">Natalia</span> uses <span class="em">mine</span> 
-                  to post her latest weekend shopping haul
-                  to <span class="em">her followers</span> on 
-                    <%=image_tag "social/tb_fff_15_2x.png",
-                        :class => "shares tb active"%>
-                    <%=image_tag "social/tb_666_15_2x.png", 
-                        :class => "shares tb inactive"%> and <%=image_tag "social/tw_fff_15_2x.png",
-                        :class => "shares tw active"%>
-                    <%=image_tag "social/tw_666_15_2x.png", 
-                        :class => "shares tw inactive"%>
-                </div> <!-- /title-box -->
+              	</div> <!-- /title-box -->
               </a>
             </li> <!-- /panel-contents -->
             

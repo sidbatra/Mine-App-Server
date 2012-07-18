@@ -44,15 +44,6 @@ module DW
       #  third party search api
       #
       def self.fetch_response(url)
-        #http      = Net::HTTP.new(url.host,url.port)
-        #request   = Net::HTTP::Get.new(url.request_uri)
-        ##request.basic_auth "",CONFIG[:windows_azure_key]
-        #response  = http.request(request)
-
-        #body = ""
-        #body = response.body if response.code == "200"
-
-        #new(body)
         url.to_s
       end
 

@@ -19,6 +19,12 @@ class Invite < ActiveRecord::Base
   attr_accessible :user_id,:recipient_id,:platform,:recipient_name
 
   #----------------------------------------------------------------------
+  # Named scopes
+  #----------------------------------------------------------------------
+  named_scope :with_user,  :include => :user
+  named_scope :by_id,      :order => 'id DESC'
+
+  #----------------------------------------------------------------------
   # Class Methods 
   #----------------------------------------------------------------------
 

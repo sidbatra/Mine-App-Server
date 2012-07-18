@@ -1,0 +1,24 @@
+<div class="container well" id="container">
+  <h1><%=@store.name%></h1>
+
+  <table border="1">
+    <%@store.purchases.by_id.limit(50).each do |purchase|%>
+      <tr>
+        <td>
+          <%=link_to purchase.title,
+              admin_full_purchase_path(purchase.user.handle,purchase.handle)%>
+        </td>
+        <td>
+          <%=time_ago_in_words(purchase.created_at)%>
+        </td>
+        <td>
+          <%=image_tag purchase.square_url%>
+        </td>
+        <td>
+          <%=purchase.endorsement%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>
+

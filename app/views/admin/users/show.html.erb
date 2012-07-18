@@ -1,24 +1,36 @@
 
 <div class="container well" id="container">
-  <h1><%=user_full_name(@user)%><h1>
+  <h1><%=user_full_name(@user)%></h1>
+
   <%=image_tag @user.large_image_url%>
-  <h3><b>Byline: </b><%=@user.byline%></h3>
-  <h3><b>Age: </b><%=@user.age%></h3>
-  <h3><b>Source: </b><%=@user.source%></h3>
-  <h3><b>Email: </b><%=@user.email%></h3>
+
+  <br><br>
+
+  <b>Byline: </b><%=@user.byline%> <br>
+  <b>Age: </b><%=@user.age%> <br>
+  <b>Source: </b><%=@user.source%> <br>
+  <b>Email: </b><%=@user.email%> <br>
+  <b>Created: </b><%=time_ago_in_words @user.created_at%> <br>
+  <b>Visited: </b><%=time_ago_in_words @user.visited_at%> <br>
   
   <br>
 
-  <h3><%=link_to 'Link to Profile',user_path(@user.handle)%><h3>
-  <h3><%=link_to 'Link to FB',"https://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%><h3>
-  <h3><%=link_to "Think before you click",
+  <%=link_to 'Link to Profile',user_path(@user.handle)%> <br>
+  <%=link_to 'Link to FB',"https://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%> <br>
+  <%=link_to "Think before you click",
             {:controller => 'admin/users',:action => 'destroy',:id => @user.id},
             :method => :delete,
-            :confirm  => "There is no undo on this, sure?"%></h3>
+            :confirm  => "There is no undo on this, sure?"%> <br>
   <br>
 
-  <h3><%=@user.purchases_count%> Purchases</h3>
-  <h3><%=@user.inverse_followings_count%> Friends</h3>
+  <b><%=@user.purchases_count%> Purchases </b> <br>
+  <b><%=@user.inverse_followings_count%> Friends </b> <br>
+
+  <br>
+  <h3><b>Settings</b></h3>
+  <b>Email influencer</b>: <%=@user.setting.email_influencer%> <br>
+  <b>Email update</b>: <%=@user.setting.email_update%> <br>
+  <b>FB publish action</b>: <%=@user.setting.fb_publish_actions%> <br>
 
   <br>
   <br><br>
