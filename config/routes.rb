@@ -154,6 +154,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :health, :only => [:index]
     admin.resources :suggestions
     admin.resources :invites, :only => [:index]
+    admin.resources :searches, :only => [:index]
 
     admin.full_purchase ':user_handle/p/:purchase_handle',
       :controller => :purchases,
