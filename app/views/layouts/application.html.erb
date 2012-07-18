@@ -4,10 +4,6 @@
     <%=render :partial => "misc/head"%> 
 
     <%=include_stylesheets :application-%>
-    <%=include_stylesheets :tablet if is_tablet_device? || 
-                                      Rails.env.starts_with?('d')-%>
-    <%=include_stylesheets :mobile if is_phone_device? ||
-                                      Rails.env.starts_with?('d')-%>
 
     <%=yield :head%>
 
@@ -20,6 +16,7 @@
   </head>
 
   <body>
+    <%=yield :top%>
   	
   	<!-- wrapper for sticky header -->
   	<div class="wrapper">

@@ -39,10 +39,10 @@ stylesheets:
   application:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/tags.css
+    - public/stylesheets/tablet.css
+    - public/stylesheets/mobile.css
   home:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/home.css
-  mobile:
-    - public/stylesheets/mobile.css
-  tablet:
     - public/stylesheets/tablet.css
+    - public/stylesheets/mobile.css

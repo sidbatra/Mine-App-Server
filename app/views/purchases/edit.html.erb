@@ -1,6 +1,8 @@
-<div class="container border-box">
+<%content_for :top do%>
+  <%=render 'purchases/chooser'%> 
+<%end%>
 
-  <%=render 'purchases/chooser'%>	
+<div class="container border-box">
 
 	<div id="creation" class="create-box">
     <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
