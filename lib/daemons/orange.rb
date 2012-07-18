@@ -44,10 +44,10 @@ end
 EM.run do
   @client = TweetStream::Client.new
 
-  @client.track("i just bought") do |status|
+  @client.track("just bought") do |status|
     next if status.source.match /getmine.com/
     next if status.text.match /Stardoll|RT/
-    next if status.text.match /http/
+    next unless status.text.match /http/
     next if !status.in_reply_to_screen_name.nil? || 
             !status.in_reply_to_status_id.nil? || 
             !status.in_reply_to_user_id.nil?
@@ -79,8 +79,11 @@ EM.run do
       end
       
       @count += 1
+
+      if @count == 3 || @count == 5
       EM::Timer.new(40) do
         Twitter.update(tweet,:in_reply_to_status_id => status.id)
+      end
       end
 
 
