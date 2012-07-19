@@ -70,7 +70,7 @@
                                   and
                                 <%-end-%>
                               <%-end-%>
-                              just shared a few things they bought.
+                              just shared a few things <%=@friends.length > 1 ? 'they' : @friends.first.is_male? ? 'he' : 'she'%> bought.
                               <br>
                               
                               

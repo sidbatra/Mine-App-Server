@@ -11,7 +11,7 @@
   <b>Source: </b><%=@user.source%> <br>
   <b>Email: </b><%=@user.email%> <br>
   <b>Created: </b><%=time_ago_in_words @user.created_at%> <br>
-  <b>Visited: </b><%=time_ago_in_words @user.visited_at%> <br>
+  <b>Visited: </b><%=time_ago_in_words @user.visited_at if @user.visited_at%> <br>
   
   <br>
 
