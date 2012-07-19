@@ -28,7 +28,7 @@
     <br>
 
     ExternalID: <%=@purchase.product.external_id%> <br>
-    URL: <%=link_to @purchase.product.source_url%>
+    URL: <%=link_to @purchase.product.source_url,@purchase.product.source_url%>
   <%end%>
 
   <br>
