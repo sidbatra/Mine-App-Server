@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     respond_to do |format|
 
       format.html do
+        set_cookie
         url = ""
 
         if @error
@@ -112,7 +113,6 @@ class UsersController < ApplicationController
     @onboard = @user[:recreate]
 
     self.current_user = @user
-    set_cookie
   end
 
 end
