@@ -1,5 +1,14 @@
 class InvitesController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => :show
+
+  # Display invite by a user 
+  #
+  def show
+    @user = User.find(Cryptography.deobfuscate params[:id])
+
+  rescue => ex
+    handle_exception(ex)
+  end
 
   # Display page for creating invites.
   #

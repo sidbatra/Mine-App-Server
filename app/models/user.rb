@@ -280,6 +280,12 @@ class User < ActiveRecord::Base
     self.tumblr_access_token.present? & self.tumblr_access_token_secret.present?
   end
 
+  # Obfuscated id for the user
+  #
+  def obfuscated_id
+    Cryptography.obfuscate(self.id)
+  end
+
 
   protected
 

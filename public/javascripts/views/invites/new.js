@@ -13,6 +13,7 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     this.source = this.options.source;
     this.friends = new Denwen.Partials.Invites.Friends({
                         el:$('#friends_container'),
+                        invite_handle: this.options.invite_handle, 
                         friends: new Denwen.Collections.Users(this.options.friends)});
 
     // -----

@@ -13,6 +13,8 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   initialize: function() {
     var self        = this; 
 
+    this.handle     = this.options.handle; 
+
     this.recipient  = this.options.recipient;
     this.buttonEl   = '#post_invite_' + this.recipient.get('id');
 
@@ -45,9 +47,10 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   //
   showSendDialog: function() {
     var self  = this;
+    var url   = 'http://getmine.com/invites/' + this.handle;
 
     FB.ui({method: 'send',
-      link: 'http://getmine.com',
+      link: 'http://getmine.com', 
       to: this.recipient.get('third_party_id')}, 
       function(response) {self.sendCallback(response)});
   },
