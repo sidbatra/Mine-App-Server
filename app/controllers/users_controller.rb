@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:show,:update]
+  before_filter :login_required, :only => [:update]
 
   # Create a new user.
   #
@@ -48,10 +48,22 @@ class UsersController < ApplicationController
   # Display a user's profile.
   #
   def show
-    track_visit
+    if is_request_json?
+      @user = User.find(params[:id])
+    else
+      track_visit
 
-    @user = User.find_by_handle(params[:handle])
-    @origin = 'user'
+      @user = User.find_by_handle(params[:handle])
+      @origin = 'user'
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
   
   # Update a user. To ensure security only the currently logged

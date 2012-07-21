@@ -1,0 +1,3 @@
+<%=@user.to_json(
+          :only => [:id,:handle,:first_name,:last_name],
+          :methods => [:square_image_url,:large_image_url])%>
