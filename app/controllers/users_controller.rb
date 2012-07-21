@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   #
   def show
     if is_request_json?
-      @user = User.find(params[:id])
+      @user = User.find(Cryptography.deobfuscate params[:id])
     else
       track_visit
 
