@@ -17,10 +17,7 @@ module DW
     #
     def current_user
       @current_user ||= (session[:user] && User.find_by_id(session[:user])) || 
-                        #(@email && @password && 
-                        #    User.authenticate(
-                        #      @email,
-                        #      @password)) ||
+                        login_from_client ||
                         login_from_cookie || 
                         :false
     end
@@ -95,6 +92,26 @@ module DW
       base.send :helper_method, :current_user, :logged_in?, :is_current_user,
         :set_cookie, :delete_cookie, :login_required, 
         :admin_required, :access_denied
+    end
+
+    # Tests the predefined auth_* params to see if the request is signed and 
+    # coming from a valid client on behalf of a user.
+    #
+    def login_from_client
+      return :false unless params[:auth_client] && 
+                        params[:auth_client] == "iphone" &&
+                        params[:auth_id] &&
+                        params[:auth_secret] 
+
+      auth_secret_index = request.url =~ /&auth_secret/
+      signature = Digest::MD5.hexdigest "--#{CONFIG[:iphone_salt]}"\
+                    "--#{request.url.slice(0,auth_secret_index)}"
+
+      return :false unless signature == params[:auth_secret].downcase
+
+      User.find Cryptography.deobfuscate(params[:auth_id])
+    rescue
+      :false
     end
 
     # When called with before_filter :login_from_cookie will check 
