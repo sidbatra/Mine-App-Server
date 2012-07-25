@@ -2,9 +2,9 @@
 :consumer_secret: JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc 
 :accounts: [
   {
-  :token: 20894612-Wb7ffoyvFSXnlyAJt44bCVuOFwegcoVDqsSiX6K04,
-  :secret: cqbjSW2hVVx6bH7PRl5TJYyIiy0lxTQOuLe4W20gnU,
-  :handle: pierrelegrain,
+  :token: 19427356-gSaQMab2gUEhFj6XHEsPKrf7mDi9eJwpBd8WxKXWu, 
+  :secret: YzMpowflNsKalzmUdTQ5J431MQKUEjdiYuJHJ6TwJM, 
+  :handle: nataliesatmine,
   :templates: [
     {
     :tweet: "@name I just built a site for tweeting pics of what you bought called 'Mine', here: http://getmine.com/try",
