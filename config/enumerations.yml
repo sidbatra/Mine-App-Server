@@ -39,6 +39,7 @@
     FriendDigest: 18
     Suggestions: 20
     AddPurchase: 21
+    FeedbackOffer: 22
   FeedShowSource:
     Login: 'login'
   FollowingSource:

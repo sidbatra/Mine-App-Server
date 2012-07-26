@@ -2,7 +2,7 @@
 # emails to users
 #
 class UserMailer < ActionMailer::Base
-  layout 'email'
+  layout 'email', :except => :feedback_offer
   helper :application, :emails
 
   # Welcome email for the user on sign up
@@ -128,6 +128,21 @@ class UserMailer < ActionMailer::Base
     recipients    @user.email
     from          EMAILS[:contact]
     subject       "Bought anything new this week?"
+  end
+
+  # Offer to give feedback on the app customized
+  # based on the progress they've made.
+  #
+  def feedback_offer(user)
+    @user = user
+
+    @source = "email_feedback_offer"
+
+    generate_attributes(@user,0,@user,EmailPurpose::FeedbackOffer)
+
+    recipients    @user.email
+    from          EMAILS[:natalia]
+    subject       "Hello from Natalia at Mine! $5 Amazon Gift Card for your feedback."
   end
 
   # Safety check email whenever a user is deleted

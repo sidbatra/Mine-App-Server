@@ -48,6 +48,10 @@ common: &common
     :white_200x200: private/images/white_200x200.jpg
     :fb_unit_base: private/images/facebook-unit/base-520x520.jpg
     :fb_unit_overlay: private/images/facebook-unit/overlay-gray.png
+  :emails:
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
+    :natalia: Natalia Stanton <natalia@getmine.com>
 
 development: &development
   <<: *common
@@ -57,9 +61,6 @@ development: &development
   :dump_bucket: denwen-mine-dumps
   :edge_server: http://s3.amazonaws.com/denwen-mine-filesystem
   :asset_host: 
-  :emails:
-    :noreply: Mine <noreply@getmine.com>
-    :contact: Mine <contact@getmine.com>
 
 staging: &staging
   <<: *common
@@ -69,9 +70,6 @@ staging: &staging
   :asset_bucket: denwen-mine-staging
   :edge_server: http://d2lxhjuhtvdpxn.cloudfront.net
   :asset_host: http://d33e0ac60th09p.cloudfront.net
-  :emails:
-    :noreply: Mine <noreply@getmine.com>
-    :contact: Mine <contact@getmine.com>
 
 production: &production
   <<: *common
@@ -82,9 +80,6 @@ production: &production
   :asset_bucket: denwen-mine-production
   :edge_server: http://d2lxhjuhtvdpxn.cloudfront.net
   :asset_host: http://d3sqjd4akk98do.cloudfront.net
-  :emails:
-    :noreply: Mine <noreply@getmine.com>
-    :contact: Mine <contact@getmine.com>
 
 test: &test
   <<: *development
