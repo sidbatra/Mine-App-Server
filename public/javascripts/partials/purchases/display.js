@@ -49,11 +49,6 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                 this);
 
     Denwen.NM.bind(
-                Denwen.NotificationManager.Callback.FallbackToNativeComments,
-                this.fallbackToNativeComments,
-                this);
-
-    Denwen.NM.bind(
                 Denwen.NotificationManager.Callback.CommentsFetched,
                 this.commentsFetched,
                 this);
@@ -71,11 +66,6 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     Denwen.NM.bind(
                 Denwen.NotificationManager.Callback.LikesFetched,
                 this.likesFetched,
-                this);
-
-    Denwen.NM.bind(
-                Denwen.NotificationManager.Callback.FallbackToNativeLikes,
-                this.fallbackToNativeLikes,
                 this);
   },
 
@@ -174,14 +164,6 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     }
   },
 
-  // Fallback to native comments when shared item is deleted from 
-  // facebook
-  //
-  fallbackToNativeComments: function(comment) {
-    if(this.model.get('id') == comment.get('purchase_id'))
-      $(this.panelEl).removeClass('fb');
-  },
-
   // All comments have been fetched.
   //
   commentsFetched: function() {
@@ -222,14 +204,6 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     }
   },
 
-  // Fallback to native likes when shared item is deleted 
-  // from fb
-  //
-  fallbackToNativeLikes: function(like) {
-    if(this.model.get('id') == like.get('purchase_id'))
-      $(this.panelEl).removeClass('fb');
-  },
-  
   // Fired when all the likes associated with a purchase are fetched
   //
   likesFetched: function() {

@@ -1,4 +1,4 @@
-// Partial to load and display facebook likes 
+// Partial to load and display likes 
 // for a single purchase 
 //
 Denwen.Partials.Likes.Likes = Backbone.View.extend({
@@ -31,16 +31,9 @@ Denwen.Partials.Likes.Likes = Backbone.View.extend({
     var self = this;
 
     this.likes.each(function(like){
-      if(like.get('error')) {
-        Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.FallbackToNativeLikes,
-          like);
-      }
-      else {
-        Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.LikeFetched,
-          like);
-      }
+      Denwen.NM.trigger(
+        Denwen.NotificationManager.Callback.LikeFetched,
+        like);
     });
 
     Denwen.NM.trigger(Denwen.NotificationManager.Callback.LikesFetched);
