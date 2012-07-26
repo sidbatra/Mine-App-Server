@@ -1,0 +1,109 @@
+Hi <%=@user.first_name%>! <br> <br>
+
+
+<%if @user.purchases_count.zero? %>
+
+I wanted to reach out and say hello as the community manager at Mine. I see you got through the first few screens but didn't end up posting a single purchase! I want to know what's holding you back, so...
+
+<br><br>
+
+<span style="background-color: #ffffcc">
+If you visit http://getmine.com now and post a purchase, then reply with the 4 quick answers below, I'll immediately email you a $5 Amazon gift card!
+</span>
+
+<br><br>
+
+  1. How do you feel about sharing out your purchases to Facebook, Twitter, Tumblr or Mine? <br>
+  2. Will you use it again when you next buy something? <br>
+  3. What do you like most about Mine? <br>
+  4. What do you like least about it? <br>
+
+<br>
+
+We're working 24/7 to make Mine amazing - your feedback can help us get there, so please let me know any and everything we can do.
+
+<br><br>
+
+If you have any questions, don't hesitate to ask. I look forward to hearing back from you!
+
+<br><br>
+
+<%elsif @user.purchases_count == 1%>
+
+
+I wanted to reach out and say hello as the community manager at Mine. I see you got through the first few screens but only posted a single purchase! I want to know what's holding you back, so...
+
+<br><br>
+
+<span style="background-color: #ffffcc">
+If you reply with the 4 quick answers below, I'll immediately email you a $5 Amazon gift card!
+</span>
+
+<br><br>
+
+  1. How do you feel about sharing out your purchases to Facebook, Twitter, Tumblr or Mine? <br>
+  2. Will you use it again when you next buy something? <br>
+  3. What do you like most about Mine? <br>
+  4. What do you like least about it? <br>
+
+<br>
+
+We're working 24/7 to make Mine amazing - your feedback can help us get there, so please let me know any and everything we can do.
+
+<br><br>
+
+If you have any questions, don't hesitate to ask. I look forward to hearing back from you!
+
+<br><br>
+
+
+
+<%elsif @user.purchases_count > 1%>
+
+I wanted to reach out and say hello as the community manager at Mine. I'm really glad the site is working well for you and you're enjoying sharing the few items you've shared so far. Help us make Mine even better.
+
+<br><br>
+
+<span style="background-color: #ffffcc">
+If you reply with the 4 quick answers below, I'll immediately email you a $5 Amazon gift card!
+</span>
+
+<br><br>
+
+  1. How do you feel about sharing out your purchases to Facebook, Twitter, Tumblr or Mine? What did your friends think of it? <br>
+  2. Will you use it again when you next buy something? <br>
+  3. What do you like most about Mine? <br>
+  4. What do you like least about it? <br>
+
+<br>
+
+We're working 24/7 to make Mine amazing - your feedback can help us get there, so please let me know any and everything we can do.
+
+<br><br>
+
+If you have any questions, don't hesitate to ask. I look forward to hearing back from you!
+
+<br><br>
+
+
+<%end%>
+
+
+
+
+
+--  <br>
+Natalia Stanton <br>
+Community Manager <br>
+Twitter: @NataliaAtMine <br>
+
+<br>
+
+Mine - http://getmine.com <br>
+855 El Camino Real #309, Palo Alto, CA USA <br>
+<i>
+Mine enables you to share the purchases you love with <br>
+your friends & followers on Facebook, Twitter and Tumblr.
+</i>
+
+

@@ -18,12 +18,12 @@ module DW
 
       # Generic method to decrypt strings encrypted using the aes-128 cipher
       #
-      def self.decrypt(cipherBase64)
+      def self.decrypt(cipherBase64,phrase)
         cipher  = Base64.decode64(cipherBase64)
 
         aes     = OpenSSL::Cipher::Cipher.new("aes-128-cbc").decrypt
         aes.iv  = cipher.slice(0,16)
-        aes.key = (Digest::SHA256.digest(CONFIG[:encryption_phrase])).
+        aes.key = (Digest::SHA256.digest(phrase)).
                     slice(0,16)
         cipher  = cipher.slice(16..-1)
 

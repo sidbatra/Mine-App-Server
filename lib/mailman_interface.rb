@@ -159,6 +159,21 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Email given users with an offer for giving feedback.
+      #
+      def self.feedback_offer(users)
+        users.each do |user|
+          begin
+
+            UserMailer.deliver_feedback_offer(user)
+
+            sleep 0.09
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+      end
+
     end #mailman
 
   end #mailman interface

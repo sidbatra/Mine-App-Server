@@ -12,6 +12,8 @@ common: &common
   :aws_access_id: AKIAJWYCAWDPAAKLNKSQ
   :aws_secret_key: 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 
   :aws_associate_tag: oncl-20
+  :iphone_encryption_phrase: f0837530983794e3
+  :iphone_salt: 20988410f43fa368
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
   :fb_app_token: 245230762190915|FCdWaSQb3KYtAIuxfBtODKf_nww
@@ -46,6 +48,10 @@ common: &common
     :white_200x200: private/images/white_200x200.jpg
     :fb_unit_base: private/images/facebook-unit/base-520x520.jpg
     :fb_unit_overlay: private/images/facebook-unit/overlay-gray.png
+  :emails:
+    :noreply: Mine <noreply@getmine.com>
+    :contact: Mine <contact@getmine.com>
+    :natalia: Natalia Stanton <natalia@getmine.com>
 
 development: &development
   <<: *common
@@ -55,9 +61,6 @@ development: &development
   :dump_bucket: denwen-mine-dumps
   :edge_server: http://s3.amazonaws.com/denwen-mine-filesystem
   :asset_host: 
-  :emails:
-    :noreply: Mine <noreply@getmine.com>
-    :contact: Mine <contact@getmine.com>
 
 staging: &staging
   <<: *common
@@ -67,9 +70,6 @@ staging: &staging
   :asset_bucket: denwen-mine-staging
   :edge_server: http://d2lxhjuhtvdpxn.cloudfront.net
   :asset_host: http://d33e0ac60th09p.cloudfront.net
-  :emails:
-    :noreply: Mine <noreply@getmine.com>
-    :contact: Mine <contact@getmine.com>
 
 production: &production
   <<: *common
@@ -80,9 +80,6 @@ production: &production
   :asset_bucket: denwen-mine-production
   :edge_server: http://d2lxhjuhtvdpxn.cloudfront.net
   :asset_host: http://d3sqjd4akk98do.cloudfront.net
-  :emails:
-    :noreply: Mine <noreply@getmine.com>
-    :contact: Mine <contact@getmine.com>
 
 test: &test
   <<: *development

@@ -13,6 +13,7 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
   //
   initialize: function() {
     this.friends          = this.options.friends;
+    this.inviteHandle     = this.options.invite_handle;
 
     this.contactsEl       = '#contacts';
     this.queryEl          = '#search_box';
@@ -65,8 +66,12 @@ Denwen.Partials.Invites.Friends = Backbone.View.extend({
   // Hookup invite functionality for all friends 
   //
   hookup: function(contacts) {
+    var self = this;
+
     contacts.each(function(contact){
-      new Denwen.Partials.Invites.New({recipient:contact});
+      new Denwen.Partials.Invites.New({
+                            recipient : contact,
+                            handle    : self.inviteHandle});
     });
   },
 

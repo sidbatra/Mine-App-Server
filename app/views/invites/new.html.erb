@@ -83,6 +83,7 @@
           source  : '<%=@source%>',
          friends  : <%=self.current_user.ifollowers.to_json(
                             :only => [:fb_user_id])%>,
+   invite_handle  : '<%=self.current_user.obfuscated_id%>',
           el      : $('#container')});
   </script>
 <%end%>
