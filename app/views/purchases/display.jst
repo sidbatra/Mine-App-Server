@@ -2,68 +2,6 @@
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item clearfix">
 
-	<div class="title-box outside relative border-box hide-on-mobile">
-
-    <a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
-      <img class="user-photo absolute" src="<%=purchase.get('user').get('square_image_url')%>" />
-    </a>
-
-    <a class="user-name" 
-        href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
-        <%=purchase.get('user').escape('first_name')%>   
-        <%=purchase.get('user').escape('last_name')%>   
-    </a> 
-
-    bought 
-
-    <%if(purchase.get('store')){%>
-      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
-    <%}%>
-
-    <span class="item-name">
-      <%=purchase.escape('title')%>
-    </span> 
-
-    <%if(purchase.get('store')){%>
-      from 
-      <span class="store-name">
-        <%=purchase.get('store').escape('name')%>
-      </span> 
-    <%}%>
-
-		<!--
-    <span class="time">
-      added <#=$.timeago(purchase.get('created_at'))%> ago
-    </span>
-		-->
-  </div>
-
-
-
-	<!-- Actions (outside) -->
-
-  <%if(Denwen.H.isLoggedIn() && !Denwen.Device.get("is_phone")){%>
-    <div class="actions border-box hide-on-mobile" id="feedback">
-
-      <%if(interaction){%> 
-        <a href="javascript:void(0)"
-            id="purchase_create_like_<%=purchase.get('id')%>"
-            class="btn">
-          <i class="icon-loading icon-white"></i>
-          <i class="icon-like icon-white hide-when-loading"></i>
-        </a> 		
-      <%}%>
-
-      <%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-        <a href="<%=purchase.editPath('feed')%>" 
-            class="btn">
-          <i class="icon-pencil icon-white"></i>
-        </a>
-      <%}%>
-    </div>
-  <%}%> 
-
-  <!-- /actions -->
   
   <div class="photo rounded-5 relative border-box">
   	
@@ -92,7 +30,7 @@
 	
     <!--/actions -->
   
-  	<img class="stamp absolute" src="<%=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" />
+  	<!--<img class="stamp absolute" src="<#=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" />-->
     <img class="item-photo" src="<%=purchase.get('giant_url')%>" />
   </div>
 
@@ -104,7 +42,7 @@
       class="panel-contents border-box">
       	
 			<!-- title-box -->	
-			<div class="title-box relative border-box hide-except-mobile">
+			<div class="title-box relative border-box">
 					
 				<a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
 		      <img class="user-photo rounded-3" src="<%=purchase.get('user').get('square_image_url')%>" />

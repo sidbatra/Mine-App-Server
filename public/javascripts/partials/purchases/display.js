@@ -160,7 +160,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   commentCreated: function(comment) {
     if(this.model.get('id') == comment.get('purchase_id')) {
       this.renderComment(comment);
-      this.testOverflow();
+      //this.testOverflow();
     }
   },
 
@@ -168,7 +168,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   commentsFetched: function() {
     if(!this.commentsRendered) {
-      this.testOverflow();
+      //this.testOverflow();
       this.commentsRendered = true;
     }
   },

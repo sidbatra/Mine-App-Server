@@ -6,10 +6,11 @@
 html, body { height: 100%; }
 
 body { 
-	background: #eee;
+	background: #f9f9f9;
 	overflow-x: hidden;
 	font-size: 14px;
-	text-rendering: optimizelegibility; }
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased; }
 
 a { 
 	color: #099CDE;
@@ -78,9 +79,9 @@ li { list-style: none; }
 	margin-bottom: 36px; }
 	
 .header .navigation {
- height: 72px;
- background: white;
- line-height: 72px; }
+ 	height: 72px;
+ 	background: white;
+ 	line-height: 72px; }
 
 .header .navigation .action {
 	float:right;
@@ -678,12 +679,17 @@ footer .like-button-box {
 /* Feed Item
 ==================================================================== */
 
-.feed { margin-top: 36px; }
+.feed { 
+	margin-top: 36px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 520px; }
 
-.feed .item { margin-bottom: 28px; }
+.feed .item { margin-bottom: 36px; }
 
 /* hidden on mobile: */
 
+/*
 .feed .item .title-box.outside {
 	width: 520px;
 	font-size: 24px;
@@ -714,20 +720,20 @@ footer .like-button-box {
 	color: #999;
 	font-size: 14px; 
 	white-space: nowrap; }
+*/
 	
 /* End of hidden on mobile */
 
 .item .photo {
 	width: 520px; 
-	height: 520px; 
+	height: auto;
 	padding: 24px;
 	background: white url('/images/loading-blocks-dark-trans.gif') center no-repeat; 
 	text-align: center;
-	line-height: 472px;
-	float: left;
-	-webkit-border-radius: 5px 0 0 5px; 
-     -moz-border-radius: 5px 0 0 5px;  
-          border-radius: 5px 0 0 5px; }
+	line-height: 1;
+ 	-webkit-border-radius: 5px 5px 0 0; 
+  	 -moz-border-radius: 5px 5px 0 0;  
+          border-radius: 5px 5px 0 0; }
 	
 .item .photo .navigation {
 	top: 24px;
@@ -750,22 +756,20 @@ footer .like-button-box {
 /* Item Actions + Comments
 ==================================================================== */
 
-.item .actions, .item .panel {
-	width: 300px; 
-	float: left;
-	overflow-y: hidden; }
-
+/*
 .item .actions {
 	margin-bottom: 16px;
 	padding: 26px 24px 0; }
+*/
 	
 .item .panel {
-	height: 520px;
+	width: 100%;
+	height: auto;
 	padding: 24px 0;
-	background: #f7f7f7;
-	-webkit-border-radius: 0 5px 5px 0; 
-     -moz-border-radius: 0 5px 5px 0; 
-          border-radius: 0 5px 5px 0; 
+	background: white;
+	-webkit-border-radius: 0 0 5px 5px; 
+		 -moz-border-radius: 0 0 5px 5px;  
+		    	border-radius: 0 0 5px 5px;
 	text-align: left;
 	font-size: 15px;
 	line-height: 24px; }
@@ -776,34 +780,33 @@ footer .like-button-box {
 	overflow-x: hidden;  }
 	
 .item .panel .title-box { 
-	font-size: 18px;
-	line-height: 27px;
-	color: #777;
-	font-family: 'RooneyLightItalic', Georgia;
+	font-size: 16px;
+	line-height: 24px;
+	color: #999;
+/*
 	padding-bottom: 8px; 
-	border-bottom: 1px solid #E5E5E5; }
+	border-bottom: 1px solid #E5E5E5; 
+*/}
 	
 .item .panel .title-box .user-photo { 
 	vertical-align: -7px;
 	margin-right: 1px; }
 
 .item .panel .title-box .em {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: bold;
+/* 	font-weight: bold; */
 	color: #555; }
 	
 .item .panel .endorsement {
 	color: #666;
-	font-family: 'RooneyLightItalic', Georgia;
-	padding: 0 0 8px;
-	border-bottom: 1px solid #E5E5E5; }
+	padding-top: 8px;
+/* 	border-bottom: 1px solid #E5E5E5;  */}
 	
 .item .panel .likes-box {
 	height: 28px;
 	line-height: 1;
 	color: #555;
-	padding: 8px 0 16px;
-	border-bottom: 1px solid #E5E5E5;
+	padding: 8px 0 4px;
+/* 	border-bottom: 1px solid #E5E5E5; */
 	overflow-y: hidden;
 	white-space: nowrap; }
 
@@ -813,7 +816,7 @@ footer .like-button-box {
 	bottom: 0;
 	width: 28px;
 	z-index: 500;
-	background: url("/images/fade-right.png") 0 0; }
+	background: url("/images/fade-right.png") 0 -300px; }
 	
 .item .panel .likes-box .text {
 	padding-right: 6px; } 
@@ -864,6 +867,7 @@ footer .like-button-box {
 	width: 100%;
 	height: 28px;
 	line-height: 1;
+	border-color: #e5e5e5;
 	margin-bottom: 0; }	
 
 .item .blurb {
@@ -1243,7 +1247,6 @@ footer .like-button-box {
   *margin-left: .3em;
   font-size: 14px;
   line-height: 32px;
-  font-family: 'RooneyLightItalic', Georgia;
   font-weight: normal !important;
   color: white;
   text-align: center;
@@ -1772,7 +1775,6 @@ textarea.highlight-on-focus:focus {
 /* Text Field Bootstrap Overrides
 ==================================================================== */
 
-input, textarea { font-family: 'RooneyLightItalic'; }
 input[type=text], textarea { -webkit-appearance: none; }
 
 textarea:focus,
@@ -1791,7 +1793,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: rgba(82, 168, 236, 0.8);
+  border-color: rgba(82, 168, 236, 0.8) !important;
   outline: 0;
   outline: thin dotted \9;
   /* IE6-9 */
@@ -1804,6 +1806,7 @@ input[type="color"]:focus,
 /* Fonts
 ==================================================================== */
 
+/*
 @font-face {
     font-family: 'RooneyLightItalic';
     src: url('/type/rooney-lightitalic-webfont.eot');
@@ -1813,3 +1816,4 @@ input[type="color"]:focus,
          url('/type/rooney-lightitalic-webfont.svg#RooneyLightItalic') format('svg');
     font-style: normal;
     font-weight: normal; }
+*/

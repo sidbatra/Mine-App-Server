@@ -70,7 +70,7 @@ li { list-style: none; }
 /* Home Basics
 ==================================================================== */
 
-body { background: #444; }
+body { background: #333; }
 
 .modal-body p { 
 	font-family: 'RooneyLightItalic', Georgia;
@@ -447,7 +447,7 @@ footer .like-button-box {
 	padding: 4px 0 20px;
 	line-height: 150%;
 	font-size: 32px;
-	font-family: 'RooneyLightItalic', Georgia; 
+/* 	font-family: 'RooneyLightItalic', Georgia;  */
 /* 	font-weight: bold; */
 	text-align: center;
 	color: white; }
@@ -470,7 +470,7 @@ footer .like-button-box {
 .home .testimonials ul li {
 	width: 407px;
 	float: left;
-	background: #333;
+	background: #444;
 	font-family: 'RooneyLightItalic', Georgia; 
 	font-size: 14px;
 	line-height: 150%;
