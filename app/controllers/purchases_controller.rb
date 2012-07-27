@@ -27,7 +27,7 @@ class PurchasesController < ApplicationController
                           :fb_action_id).
                   with_user.
                   with_store.
-                  by_id.
+                  by_created_at.
                   after(@after).
                   before(@before).
                   limit(@per_page).

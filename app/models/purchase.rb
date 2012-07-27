@@ -30,6 +30,7 @@ class Purchase < ActiveRecord::Base
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
   named_scope :by_id,      :order => 'id DESC'
+  named_scope :by_created_at,      :order => 'created_at DESC'
 
   #----------------------------------------------------------------------
   # Attributes
