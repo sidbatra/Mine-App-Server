@@ -1,9 +1,9 @@
-:consumer_key: 5M8DIWAdEJRKlTW5d9vw
-:consumer_secret: JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc 
+:consumer_key: ZYFy5zrte9fKABpNqRE3IQ
+:consumer_secret: oxYih93ZJRMhyD538iyCMRrxU4MUAsXK7cmDNEwdIww
 :accounts: [
   {
-  :token: 19427356-gSaQMab2gUEhFj6XHEsPKrf7mDi9eJwpBd8WxKXWu, 
-  :secret: YzMpowflNsKalzmUdTQ5J431MQKUEjdiYuJHJ6TwJM, 
+  :token: 19427356-CRclpAaQmiyFw4ODzfVwNeQ50xBx8loG8ttfYQ3Xo,
+  :secret: meT0qzzOEjPehTgEfALJ72ahSFux7qMkSy98JeH0U,
   :handle: nataliesatmine,
   :templates: [
     {
@@ -44,8 +44,8 @@
     :media: nil}]
   },
   {
-  :token: 45032868-u6AmUUC3Lwb64TVQifzkEgey9r6zayISQXy0aJ2SF, 
-  :secret: 4TJIHLVPDrA29dohWvdn6lxcferKWPFCEelZpHIVo,
+  :token: 45032868-lshRI4HtdHwFZYu4fubj2CDsodEFRCWssHNeS8K5G, 
+  :secret: OvAdFrTryJDrVfkcbmKh7UNT441d0ZTGWx25vk52M, 
   :tw_user_id: 45032868,
   :handle: sarahatmine,
   :templates: [
@@ -87,8 +87,8 @@
     :media: nil}]
   },
   {
-  :token: 203171199-jobUkvNVdlmZStS3BxUQHbRGDggs76cml7A8tiAQ, 
-  :secret: bo9dvzPtKU7QB2Aa8VCbgCl9ij3GQTgqRk5N74Fjo, 
+  :token: 203171199-AiE830bCS64ncAYXbGd3EacfOkXEU4Ewsncfwt0e, 
+  :secret: sfz3YZ6ym61OhqLNSHnkw4DhdrfN5uzkU1GmiEDJJs4, 
   :handle: gabbysmine,
   :templates: [
     {
