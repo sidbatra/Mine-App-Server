@@ -6,4 +6,16 @@
         :only => [:id,:first_name,:last_name,:gender,:handle],
         :methods => [:square_image_url]},
       :store => {
-        :only => [:id,:name]}})%>
+        :only => [:id,:name]},
+      :likes => {
+        :only => [:id],
+        :include => {
+          :user => {
+            :only => [:id,:first_name,:last_name,:handle],
+            :methods => [:square_image_url]}}},
+      :comments => {
+        :only => [:id,:message],
+        :include => {
+          :user => {
+            :only => [:id,:first_name,:last_name,:handle],
+            :methods => [:square_image_url]}}}})%>
