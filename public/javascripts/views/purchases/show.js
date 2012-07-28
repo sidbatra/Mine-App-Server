@@ -11,17 +11,10 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
 
     if(Denwen.H.isLoggedIn()) {
       this.purchase = new Denwen.Models.Purchase(this.options.purchaseJSON);
-      this.friends = new Denwen.Collections.Users(this.options.friends);
-
       this.owner = this.purchase.get('user');
       
-      this.interaction = this.friends.any(function(friend) {
-                          return friend.get('id') == self.owner.get('id');
-                         }) | Denwen.H.isCurrentUser(self.owner.get('id')); 
-
       var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                                 el : $('#feed'),
-                                interaction : this.interaction,
                                 model : this.purchase});
 
       $('#purchase_thumb_' + this.purchase.get('id')).addClass('selected');
