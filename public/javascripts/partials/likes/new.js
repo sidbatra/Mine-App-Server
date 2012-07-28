@@ -26,15 +26,15 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
 
     var like = new Denwen.Models.Like({purchase_id : this.purchase.get('id')});
 
-    if(render)
-      this.render(like);
-
-    this.disable();
-
     like.save({},{
         success :  function(model) {self.created(model)},
         error   :  function(model,errors) {}
     });
+
+    if(render)
+      this.render(like);
+
+    this.disable();
   },
 
   // Render the like before sending the request to the server 

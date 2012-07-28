@@ -32,12 +32,12 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
                    purchase_id  : this.purchase.get('id'),
                    message      : $(this.inputEl).val()});
 
-    this.render(comment);
-
     comment.save({},{
         success :  function(model) {self.created(model)},
         error   :  function(model,errors) {}
     });
+
+    this.render(comment);
   },
 
   // Render the comment created before sending the request

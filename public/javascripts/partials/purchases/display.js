@@ -116,7 +116,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   commentCreated: function(comment) {
     comment.set({user: Denwen.H.currentUser});
     this.renderComment(comment);
-    //this.testOverflow();
+    this.testOverflow();
   },
 
   // Fired when a like is created for the purchase 
