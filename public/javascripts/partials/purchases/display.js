@@ -55,6 +55,26 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     }
     else
       this.el.append(html);
+
+    
+    var self = this;
+
+    // Render likes
+    if(!this.model.get('likes').isEmpty()) {
+
+      $(this.likesBoxEl).show();
+
+      this.model.get('likes').each(function(like){
+        self.renderLike(like,false);
+      });
+
+      self.renderLikeAggregation();
+    }
+
+    // Render comments
+    this.model.get('comments').each(function(comment){
+      self.renderComment(comment);
+    });
   },
 
   // Render an individual comment for the purchase
@@ -77,8 +97,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Render likes aggregation for the purchase
   //
   renderLikeAggregation: function() {
-    $(this.aggregateEl).html(this.likes.length);
-    $(this.aggregateTextEl).html(this.likes.length == 1 ? 'like' : 'likes');
+    $(this.aggregateEl).html(this.model.get('likes').length);
+    $(this.aggregateTextEl).html(this.model.get('likes').length == 1 ? 'like' : 'likes');
   },
 
   // Test if the comments have overflown the outer div and correct with
