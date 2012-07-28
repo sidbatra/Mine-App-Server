@@ -76,6 +76,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.model.get('comments').each(function(comment){
       self.renderComment(comment);
     });
+
+    this.testOverflow();
   },
 
   // Render an individual comment for the purchase
