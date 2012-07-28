@@ -24,12 +24,13 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     if(Denwen.H.isLoggedIn()) {
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
-    }
 
-    Denwen.NM.bind(
-                Denwen.NotificationManager.Callback.CommentCreated,
-                this.commentCreated,
-                this);
+      this.newComment.bind(
+        Denwen.Partials.Comments.New.Callback.CommentCreated,
+        this.commentCreated,
+        this);
+
+    }
 
     Denwen.NM.bind(
                 Denwen.NotificationManager.Callback.LikeCreated,
@@ -113,10 +114,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when a comment is created for the purchase 
   //
   commentCreated: function(comment) {
-    if(this.model.get('id') == comment.get('purchase_id')) {
-      this.renderComment(comment);
-      this.testOverflow();
-    }
+    comment.set({user: Denwen.H.currentUser});
+    this.renderComment(comment);
+    //this.testOverflow();
   },
 
   // Fired when a like is created for the purchase 
