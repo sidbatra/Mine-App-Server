@@ -7,7 +7,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   initialize: function() {
     var self          = this;
 
-    this.purchase      = this.options.purchase;
+    this.purchase     = this.options.purchase;
     this.posting      = false;
 
     this.buttonEl     = '#purchase_create_like_' + this.purchase.get('id');
@@ -24,10 +24,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     var self      = this;
     this.posting  = true;
 
-    var like = new Denwen.Models.Like({
-                purchase_id : this.purchase.get('id'),
-                fb_user_id  : Denwen.H.currentUser.get('fb_user_id'),
-                name        : Denwen.H.currentUser.get('full_name')});
+    var like = new Denwen.Models.Like({purchase_id : this.purchase.get('id')});
 
     if(render)
       this.render(like);
@@ -43,9 +40,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   // Render the like before sending the request to the server 
   //
   render: function(like) {
-    Denwen.NM.trigger(
-                Denwen.NotificationManager.Callback.LikeCreated,
-                like);
+    this.trigger(Denwen.Partials.Likes.New.Callback.LikeCreated,like);
   },
 
   // Called when the like is successfully created
@@ -79,3 +74,9 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   }
 
 });
+
+// Define callbacks.
+//
+Denwen.Partials.Likes.New.Callback = {
+  LikeCreated: "likeCreated"
+};

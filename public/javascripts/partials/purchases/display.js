@@ -25,17 +25,17 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
 
+      this.newLike.bind(
+        Denwen.Partials.Likes.New.Callback.LikeCreated,
+        this.likeCreated,
+        this);
+
       this.newComment.bind(
         Denwen.Partials.Comments.New.Callback.CommentCreated,
         this.commentCreated,
         this);
 
     }
-
-    Denwen.NM.bind(
-                Denwen.NotificationManager.Callback.LikeCreated,
-                this.likeCreated,
-                this);
   },
 
   // Render the contents of the model.
@@ -122,13 +122,14 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when a like is created for the purchase 
   //
   likeCreated: function(like) {
-    if(this.model.get('id') == like.get('purchase_id')) {
-      this.likes.add(like);
+    like.set({user: Denwen.H.currentUser});
 
-      this.renderLike(like,true);
-      this.renderLikeAggregation();
-      $(this.likesBoxEl).show(); 
-    }
+    this.model.get('likes').add(like);
+
+    this.renderLike(like,true);
+    this.renderLikeAggregation();
+
+    $(this.likesBoxEl).show(); 
   }
 
 });

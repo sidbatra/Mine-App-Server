@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_filter :login_required, :except => :index
+  before_filter :login_required
 
   # Create a new like 
   #
