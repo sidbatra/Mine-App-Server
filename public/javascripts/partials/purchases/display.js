@@ -22,6 +22,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.render();
 
     if(Denwen.H.isLoggedIn()) {
+      var self = this;
+
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
 
@@ -35,6 +37,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
         this.commentCreated,
         this);
 
+      this.model.get('likes').each(function(like){
+        if(Denwen.H.isCurrentUser(like.get('user').get('id')))
+          self.newLike.disable();
+      });
     }
   },
 
