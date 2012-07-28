@@ -42,7 +42,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   render: function() {
     var html = Denwen.JST['purchases/display']({
                 purchase    : this.model,
-                interaction : this.interaction});
+                interaction : Denwen.H.isLoggedIn()});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
