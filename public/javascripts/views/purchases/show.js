@@ -24,14 +24,6 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
                                 interaction : this.interaction,
                                 model : this.purchase});
 
-      if(this.interaction) {
-        this.likes = new Denwen.Partials.Likes.Likes();
-        this.likes.fetch(this.purchase.get('id'));
-
-        this.comments = new Denwen.Partials.Comments.Comments();
-        this.comments.fetch(this.purchase.get('id'));
-      }
-
       $('#purchase_thumb_' + this.purchase.get('id')).addClass('selected');
     }
     
