@@ -9,6 +9,7 @@ Denwen.Models.Comment = Backbone.Model.extend({
   // Constructor logic
   //
   initialize: function(){
+    this.associate('user',Denwen.Models.User);
   }
 
 });

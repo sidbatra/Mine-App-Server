@@ -66,7 +66,7 @@ ActionController::Routing::Routes.draw do |map|
     :action     => :edit
 
   map.resources :purchases,
-    :only => [:create,:update,:destroy]
+    :only => [:index,:create,:update,:destroy]
 
   #map.store 's/:handle',
   #  :controller => :stores,
@@ -76,10 +76,10 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:index]
 
   map.resources :comments,
-    :only => [:index,:create]
+    :only => [:create]
 
   map.resources :likes,
-    :only => [:index,:create]
+    :only => [:create]
 
   #map.resources :followings,
   #  :only => [:create,:show,:destroy]
