@@ -98,7 +98,7 @@ module DW
     # coming from a valid client on behalf of a user.
     #
     def login_from_client
-      return :false unless params[:auth_client] && 
+      return nil unless params[:auth_client] && 
                         params[:auth_client] == "iphone" &&
                         params[:auth_id] &&
                         params[:auth_secret] 
@@ -107,11 +107,11 @@ module DW
       signature = Digest::MD5.hexdigest "--#{CONFIG[:iphone_salt]}"\
                     "--#{request.url.slice(0,auth_secret_index)}"
 
-      return :false unless signature == params[:auth_secret].downcase
+      return nil unless signature == params[:auth_secret].downcase
 
       User.find Cryptography.deobfuscate(params[:auth_id])
     rescue
-      :false
+      nil
     end
 
     # When called with before_filter :login_from_cookie will check 
