@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
   # Invite email for non facebook invites 
   #
   def new_invite(invite)
-    @sender       = User.find(invite.user_id)
+    @sender       = invite.user
     @action       = "Checkout #{CONFIG[:name]}"
     @source       = "email_invite"
 
