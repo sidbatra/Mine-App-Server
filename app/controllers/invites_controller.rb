@@ -22,7 +22,7 @@ class InvitesController < ApplicationController
     invites = params[:invites]
 
     if invites
-      invites.each do |index,invite|
+      invites.each do |invite|
         Invite.add(invite,self.current_user.id)
       end
     else
