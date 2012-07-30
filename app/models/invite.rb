@@ -11,7 +11,6 @@ class Invite < ActiveRecord::Base
   validates_presence_of   :user_id
   validates_presence_of   :recipient_id
   validates_inclusion_of  :platform, :in => InvitePlatform.values
-  validates_presence_of   :recipient_name
 
   #----------------------------------------------------------------------
   # Attributes
