@@ -19,6 +19,22 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  # Invite email for non facebook invites 
+  #
+  def new_invite(invite)
+    @sender       = User.find(invite.user_id)
+    @action       = "Checkout #{CONFIG[:name]}"
+    @source       = "email_invite"
+
+    admin         = User.first
+
+    generate_attributes(admin,@sender.id,invite,EmailPurpose::Invite)
+
+    recipients    invite.recipient_id 
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Suggestions for a new user to add more purchases.
   #
   def after_join_suggestions(user,suggestions,suggestions_done_ids)
