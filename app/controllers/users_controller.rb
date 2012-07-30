@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     respond_to do |format|
 
       format.html do
-        set_cookie
+        set_cookie unless @error
         url = ""
 
         if @error
