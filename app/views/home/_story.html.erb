@@ -4,6 +4,15 @@
 
 		<div class="logged-out">
 			
+			<%unless is_phone_device?%>
+				<div class="background-cover hide-on-mobile" 
+	      	style="background-image: url('<%=image_path "home/shorts2.jpg"%>')">
+	  		</div>
+			<%end%>
+			
+			<div class="dimmer sixty hide-on-mobile">
+			</div>
+			
       <div class="item-header">
       
         <%=image_tag "mine_54_horizontal_2x.png",
