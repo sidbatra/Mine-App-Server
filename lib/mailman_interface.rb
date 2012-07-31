@@ -18,6 +18,15 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Send an invite 
+      #
+      def self.send_invite(invite)
+        UserMailer.deliver_new_invite(invite) 
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Public. Email users with a suggestion based on their
       # current suggestion filling progress.
       #

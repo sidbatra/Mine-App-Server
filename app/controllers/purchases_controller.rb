@@ -18,7 +18,7 @@ class PurchasesController < ApplicationController
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
 
-    @key = ["v1",@user,"purchases",@before ? @before.to_i : "",@per_page]
+    @key = ["v2",@user,"purchases",@before ? @before.to_i : "",@per_page]
 
     @purchases = Purchase.
                   select(:id,:created_at,:title,:handle,:source_url,
@@ -27,7 +27,9 @@ class PurchasesController < ApplicationController
                           :fb_action_id).
                   with_user.
                   with_store.
-                  by_id.
+                  with_comments.
+                  with_likes.
+                  by_created_at.
                   after(@after).
                   before(@before).
                   limit(@per_page).
@@ -114,13 +116,19 @@ class PurchasesController < ApplicationController
     track_visit
     
     if params[:purchase_id]
-      @purchase = Purchase.find(Cryptography.deobfuscate params[:purchase_id])
+      @purchase = Purchase.
+                    with_comments.
+                    with_likes.
+                    find(Cryptography.deobfuscate params[:purchase_id])
     else
       user = User.find_by_handle(params[:user_handle])
 
-      @purchase = Purchase.find_by_user_id_and_handle(
-                   user.id,
-                   params[:purchase_handle])
+      @purchase = Purchase.
+                    with_comments.
+                    with_likes.
+                    find_by_user_id_and_handle(
+                     user.id,
+                     params[:purchase_handle])
     end
 
     #@next_purchase = @purchase.next

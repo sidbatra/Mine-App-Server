@@ -15,12 +15,19 @@ class InvitesController < ApplicationController
   def new
   end
 
-  # Create an invite.
+  # Create single or multiple invites
   #
   def create
-    params[:user_id] = self.current_user.id
+    @invite = nil 
+    invites = params[:invites]
 
-    @invite = Invite.add(params)
+    if invites
+      invites.each do |invite|
+        Invite.add(invite,self.current_user.id)
+      end
+    else
+      Invite.add(params,self.current_user.id)
+    end
 
   rescue => ex
     handle_exception(ex)

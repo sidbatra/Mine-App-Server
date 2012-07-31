@@ -76,10 +76,10 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:index]
 
   map.resources :comments,
-    :only => [:index,:create]
+    :only => [:create]
 
   map.resources :likes,
-    :only => [:index,:create]
+    :only => [:create]
 
   #map.resources :followings,
   #  :only => [:create,:show,:destroy]

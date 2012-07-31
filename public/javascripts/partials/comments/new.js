@@ -30,27 +30,21 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     var self = this;
     var comment = new Denwen.Models.Comment({
                    purchase_id  : this.purchase.get('id'),
-                   message      : $(this.inputEl).val(),
-                   from         : {
-                                 'id'  : Denwen.H.currentUser.get('fb_user_id'),
-                                 'name': Denwen.H.currentUser.get('full_name')}
-                    });
-
-    this.render(comment);
+                   message      : $(this.inputEl).val()});
 
     comment.save({},{
         success :  function(model) {self.created(model)},
         error   :  function(model,errors) {}
     });
+
+    this.render(comment);
   },
 
   // Render the comment created before sending the request
   // to our server
   //
   render: function(comment) {
-    Denwen.NM.trigger(
-        Denwen.NotificationManager.Callback.CommentCreated,
-        comment);
+    this.trigger(Denwen.Partials.Comments.New.Callback.CommentCreated,comment);
 
     $(this.inputEl).val('');
     $(this.inputEl).focus();
@@ -68,3 +62,9 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
   }
 
 });
+
+// Define callbacks.
+//
+Denwen.Partials.Comments.New.Callback = {
+  CommentCreated: "commentCreated"
+};

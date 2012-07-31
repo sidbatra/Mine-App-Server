@@ -12,6 +12,8 @@ Denwen.Models.Purchase = Backbone.Model.extend({
   initialize: function(){
     this.associate('store',Denwen.Models.Store);
     this.associate('user',Denwen.Models.User);
+    this.associate('likes',Denwen.Collections.Likes);
+    this.associate('comments',Denwen.Collections.Comments);
 
     if(this.get('created_at'))
       this.creationTimestamp = this.get('created_at').toDate().getTime() * 0.001;
