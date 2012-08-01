@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   #               who've liked the given purchase.
   #   followers - requires params[:user_id]. All users
   #                 who follow the given user.
-  #   followings - requires params[:user_id]. All users
+  #   ifollowers - requires params[:user_id]. All users
   #                 which the given user follows.
   def index
     @aspect = params[:aspect].to_sym
@@ -64,8 +64,16 @@ class UsersController < ApplicationController
       purchase = Purchase.with_likes.find params[:purchase_id]
       @users = purchase.likes.map(&:user)
       @key = ["v1",purchase,@users.map(&:updated_at).max.to_i, "likers"]
+
     when :followers
+      user = User.find params[:user_id]
+      @users = user.followers
+      @key = ["v1",user,@users.map(&:updated_at).max.to_i, "followers"]
+
     when :ifollowers
+      user = User.find params[:user_id]
+      @users = user.ifollowers
+      @key = ["v1",user,@users.map(&:updated_at).max.to_i, "ifollowers"]
     end
 
   rescue => ex
