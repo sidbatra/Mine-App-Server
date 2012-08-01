@@ -1,6 +1,0 @@
-<%=@comment.to_json(
-        :only => [:id,:message],
-        :include => {
-          :user => {
-            :only => [:id,:first_name,:last_name,:handle],
-            :methods => [:square_image_url]}})%>
