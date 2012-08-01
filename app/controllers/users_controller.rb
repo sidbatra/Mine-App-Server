@@ -45,6 +45,40 @@ class UsersController < ApplicationController
     end
   end
 
+  # List of users with the following aspects.
+  #
+  # params[:aspect]:
+  #   likers  - requires params[:purchase_id]. All users
+  #               who've liked the given purchase.
+  #   followers - requires params[:user_id]. All users
+  #                 who follow the given user.
+  #   ifollowers - requires params[:user_id]. All users
+  #                 who followed by the given user.
+  def index
+    aspect = params[:aspect].to_sym
+    @users = []
+    @key = ""
+
+    case aspect
+    when :likers
+      purchase = Purchase.with_likes.find params[:purchase_id]
+      @users = purchase.likes.map(&:user)
+      @key = ["v1",purchase,@users.map(&:updated_at).max.to_i, "likers"]
+    when :followers
+    when :ifollowers
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.html do
+        track_visit
+      end
+      format.json
+    end
+  end
+
   # Display a user's profile.
   #
   def show

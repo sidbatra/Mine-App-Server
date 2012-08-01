@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   # Resoure based routes
   ##
   map.resources :users,
-    :only => [:create,:show,:update]
+    :only => [:create,:index,:show,:update]
 
   map.resource :feed,
     :controller => :feed,
