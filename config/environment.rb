@@ -55,6 +55,8 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('jammit',
               :version => '0.6.3')
+  config.gem('jbuilder',
+              :version => '0.4.0')
   config.gem('mechanize', 
               :version => '2.1.1',
               :lib => false)
