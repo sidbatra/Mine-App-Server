@@ -52,14 +52,14 @@ class UsersController < ApplicationController
   #               who've liked the given purchase.
   #   followers - requires params[:user_id]. All users
   #                 who follow the given user.
-  #   ifollowers - requires params[:user_id]. All users
-  #                 who followed by the given user.
+  #   followings - requires params[:user_id]. All users
+  #                 which the given user follows.
   def index
-    aspect = params[:aspect].to_sym
+    @aspect = params[:aspect].to_sym
     @users = []
     @key = ""
 
-    case aspect
+    case @aspect
     when :likers
       purchase = Purchase.with_likes.find params[:purchase_id]
       @users = purchase.likes.map(&:user)
