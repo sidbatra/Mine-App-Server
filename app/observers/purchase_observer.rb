@@ -25,6 +25,9 @@ class PurchaseObserver < ActiveRecord::Observer
   #
   def before_update(purchase)
 
+    purchase.block_delayed_update = purchase.changed.length == 1 && 
+                                      purchase.updated_at_changed?
+
     if purchase.orig_image_url_changed?
       purchase.rehost = true
       purchase.is_processed = false
@@ -61,7 +64,7 @@ class PurchaseObserver < ActiveRecord::Observer
       PurchaseDelayedObserver,
       :after_update,
       purchase.id,
-      {:rehost => purchase.rehost})
+      {:rehost => purchase.rehost}) unless purchase.block_delayed_update
   end
 
   # Update shoppings for the purchase creator.
