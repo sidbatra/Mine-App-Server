@@ -1,3 +1,4 @@
-<%-cache @key,:expires_in => 30.minutes do-%>
-  <%=@stores.to_json(:only => [:id,:name,:domain])-%>
+<%-cache @key do-%>
+<%=render :partial => "stores/stores",
+    :locals => {:stores => @stores}%>
 <%-end-%>
