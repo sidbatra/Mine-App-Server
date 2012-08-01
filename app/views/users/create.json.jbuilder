@@ -1,1 +1,1 @@
-json.partial! @user
+json.partial! 'userfull', :user => @user
