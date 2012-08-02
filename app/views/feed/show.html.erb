@@ -42,7 +42,7 @@
 		<%if self.current_user.followings_count.zero?%>
     	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
 		<%else%>
-			People you're following (48)
+			You're following (48)
 		<%end%>
 	</div>
 	
@@ -68,7 +68,7 @@
 	  <%else%>
 	
 	    <%cache ["v3",self.current_user,"ifollowers","feed"] do%>
-	      <%self.current_user.ifollowers.limit(9).each do |user|%>
+	      <%self.current_user.ifollowers.limit(6).each do |user|%>
 	      
 	        <%cache ["v6",user,"ifollower","feed"] do%>
 						<a href="<%=user_path(user.handle,:src => "feed")%>">
@@ -95,9 +95,9 @@
 
 
 
-<div class="container">
+<div class="container shaded">
 
-	<div class="box-title relative" style="padding-top: 28px; margin-top: 330px;">
+	<div class="box-title feed-title relative">
 		Your feed
 	</div>
   

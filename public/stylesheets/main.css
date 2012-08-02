@@ -120,8 +120,9 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .container {
 	width: 520px;
-	padding: 0 10px 64px;
-	margin: 0 auto; }
+	padding: 0 18px 64px;
+	margin: 0 auto;
+	background: url('/images/colors/white-5.png'); }
 
 footer { text-align: center; }
 
@@ -156,10 +157,11 @@ footer .like-button-box {
 /* 	background: #555; */ }
 
 .connections-box ul { 
-	height: 128px;
+	height: 92px;
 	overflow-y:hidden;
 	padding: 14px 14px 6px;
 	background: url('/images/colors/black-20.png');
+/* 	box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px inset; */
 /* 	background: #393939; */ }
 
 .connections-box ul li.txt.s { 
@@ -200,7 +202,8 @@ footer .like-button-box {
 	-moz-transition: width 0.2s ease-in-out;
 	-o-transition: width 0.2s ease-in-out;
 	-ms-transition: width 0.2s ease-in-out;
-	transition: width 0.2s ease-in-out; }
+	transition: width 0.2s ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px inset; }
 
 .create-box input.enter:focus { 
 	background: white;
@@ -214,6 +217,11 @@ footer .like-button-box {
 
 /* Feed
 ==================================================================== */
+	
+.feed-title { 
+	padding-top: 28px; 
+	margin-top: 294px;
+	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
 	
 .feed { 
 	background: white;
@@ -274,15 +282,18 @@ footer .like-button-box {
 
 .item .panel .title-box a { 
 	color: #555;
-	border-bottom: 1px dotted #999; }
+	color: #099CDE;
+	color: #177DBE;
+	border-bottom: 1px dotted #999; 
+	border-bottom: 1px dotted #177DBE; }
 	
-.item .panel .title-box a:hover { color: #333; }
+.item .panel .title-box a:hover { /* color: #333; */ }
 .item .panel .title-box a.link-out { 
 	padding-right: 13px;
-	background: url('/images/arrow-out.png') center right no-repeat; }
+	background: url('/images/arrow-out-177DBE.png') center right no-repeat; }
 
 .item .panel .title-box .user-photo { margin-left: -52px; top: 3px; }
-.item .panel .title-box .em { font-weight: bold; }
+.item .panel .title-box .em { /* font-weight: bold; */ }
 	
 /* -- endorsement -- */
 
