@@ -7,27 +7,25 @@
   <%=hidden_field_tag 'purchase_product_title','',
       :name => 'purchase[product][title]'%>
   
-	<div id="query_box" 
-    class="search-box" 
-    style="<%=show_query_box ? '' : 'display:none'%>">
+	<div id="query_box" style="<%=show_query_box ? '' : 'display:none'%>">
 		
     <a id="initiate_purchase" 
-        class="btn btn-large btn-red border-box add" 
-        style="width: 220px;<%=!show_query_sub_box ? '' : 'display:none;'%>">
-      	<span class="mine">+ add</span> to <span class="mine">mine</span>
+        class="" 
+        style="<%=!show_query_sub_box ? '' : 'display:none;'%>">
+      	Add a new purchase
     </a>
 
     <div id="query_sub_box" style="<%=show_query_sub_box ? '' : 'display:none'%>">
       <%=f.text_field :query,
           :placeholder => local_assigns[:search_placeholder].nil? ? 
-                            "Name, brand, color, store or URL" :
-                            search_placeholder,
-          :class => "border-box enter-item-name"%>
+              "Item name, brand, color and store or URL" :
+              search_placeholder,
+          :class => "enter txt l rounded-3-left border-box shaded"%>
       <a id="purchase_search" 
-          class="btn btn-large btn-red border-box go" 
+          class="btn btn-large btn-red border-box rounded-3-right go shaded" 
           alt="Search">
           <%if local_assigns[:search_action].nil?%>
-            <span class="hide-on-mobile">Pick a photo </span><i class="icon-chevron-right icon-white"></i>
+            <i class="icon-chevron-right icon-white"></i>
           <%else%>
             <%=search_action%>
           <%end%>

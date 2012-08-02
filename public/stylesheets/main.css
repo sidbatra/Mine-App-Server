@@ -78,8 +78,9 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	bottom: 0;
 	left: 0; }
 
+.dimmer.ten 				  { background: url('/images/colors/black-10.png'); }
 .dimmer.twenty 				{ background: url('/images/colors/black-20.png'); }
-.dimmer.fourty 				{ background: url('/images/colors/black-20.png'); }
+.dimmer.fourty 				{ background: url('/images/colors/black-40.png'); }
 .dimmer.fifty 				{ background: url('/images/colors/black-50.png'); }
 .dimmer.sixty				  { background: url('/images/colors/black-60.png'); }
 .dimmer.seventy 			{ background: url('/images/colors/black-70.png'); }
@@ -92,45 +93,17 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .header { 
-	width: 712px;
-	height: 109px;
-	padding: 17px 10px 0 /* 182px */;
+	width: 540px;
+	height: 76px;
+	padding: 24px 10px 0;
 	top: 0;
 	left: 50%;
-	margin-left: -356px; 
-	background: #444;
-	z-index: 10; }
-
-
-.header.fixed {
-	position: fixed;
-	top: -39px; }
+/* 	background: #545454; */
+	margin-left: -270px; }
 
 .header .logo { 
 	height: 48px;
-	margin-top: 31px;
-	top: auto; }
-
-.header .create-box { padding-left: 172px; }
-
-.header input.enter { 
-	width: 320px;
-	height: 40px;
-	padding: 0 10px;
-	border: 0;
-	background: #666;
-	box-shadow: none;
-	-webkit-transition: width 0.2s ease-in-out;
-	-moz-transition: width 0.2s ease-in-out;
-	-o-transition: width 0.2s ease-in-out;
-	-ms-transition: width 0.2s ease-in-out;
-	transition: width 0.2s ease-in-out; }
-
-.header input.enter:hover { background: #737373; }
-
-.header input.enter:focus { 
-	background: white;
-	width: 348px; }
+	top: 20px; }
 	
 .header a.btn-user { 
 	display: block; }
@@ -148,7 +121,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .container {
 	width: 520px;
 	padding: 0 10px 64px;
-	margin: 0 auto 0; }
+	margin: 0 auto; }
 
 footer { text-align: center; }
 
@@ -168,34 +141,84 @@ footer .like-button-box {
 	height: 26px; 
 	bottom: 0; 
 	overflow: hidden; }
-
-
-/* Side Column
+	
+	
+/* Users-box
 ==================================================================== */
 
-.col.side { 
-	width: 172px;
-	top: 109px;
-	bottom: 0; }
-	
 .connections-box {
-  top: 35px;
-  right: 0;
-  bottom: 0;
- 	left: 0; }
+	width: 540px; 
+	height: 135px;
+	padding: 0 10px;
+	top: 167px;
+	left: 50%;
+	margin-left: -270px;
+/* 	background: #555; */ }
 
-.connections-box a { color: ccc; }
+.connections-box ul { 
+	height: 128px;
+	overflow-y:hidden;
+	padding: 14px 14px 6px;
+	background: url('/images/colors/black-20.png');
+/* 	background: #393939; */ }
+
+.connections-box ul li.txt.s { 
+	display: inline-block; 
+	margin-bottom: 8px;
+	width: 33.3%;
+	white-space: nowrap; }
+	
+.connections-box ul li.txt.s .user-photo { margin-right: 4px; }
+
+.connections-box a { color: #ccc; }
 .connections-box a:hover { color: white; }
 .connections-box a img { opacity: 0.8; }
 .connections-box a:hover img { opacity: 1; }
 
+	
+/* Creation 
+==================================================================== */
 
-/* Main Column
+.create-box { 
+ 	width: 540px;
+	height: 91px;
+	padding: 0 10px;
+	top: 76px;
+	left: 50%;
+/* 	background: #333; */
+	margin-left: -270px; }
+
+.create-box input.enter { 
+/* 	width: 322px; */
+	width: 452px;
+	height: 40px;
+	padding: 0 10px;
+	border: 0;
+	background: #eee;
+	box-shadow: none;
+	-webkit-transition: width 0.2s ease-in-out;
+	-moz-transition: width 0.2s ease-in-out;
+	-o-transition: width 0.2s ease-in-out;
+	-ms-transition: width 0.2s ease-in-out;
+	transition: width 0.2s ease-in-out; }
+
+.create-box input.enter:focus { 
+	background: white;
+	width: 452px;
+	-webkit-border-radius: 3px 0 0 3px;
+     -moz-border-radius: 3px 0 0 3px;
+          border-radius: 3px 0 0 3px; }
+               
+.create-box .go { width: 68px; }
+
+
+/* Feed
 ==================================================================== */
 	
 .feed { 
 	background: white;
-	width: 520px; }
+	width: 520px;
+	z-index: 2; }
 	
 .item { background: white; }
 
@@ -258,7 +281,7 @@ footer .like-button-box {
 	padding-right: 13px;
 	background: url('/images/arrow-out.png') center right no-repeat; }
 
-.item .panel .title-box .user-photo { left: 0; top: 3px; }
+.item .panel .title-box .user-photo { margin-left: -52px; top: 3px; }
 .item .panel .title-box .em { font-weight: bold; }
 	
 /* -- endorsement -- */
@@ -309,7 +332,7 @@ footer .like-button-box {
 	clear: both;
 	color: #666; }
 	
-.item .panel .comment-box .user-photo { left: 0px; top: 0px; }
+.item .panel .comment-box .user-photo { left: 0; top: 0; }
 .item .panel .comment-box .user-name {
 	color: #333;
 	line-height: 1;
@@ -324,10 +347,4 @@ footer .like-button-box {
 	padding-left: 35px;
 	margin-bottom: 0;
 	box-shadow: none; }
-
-
-
-
-
-
-
+	

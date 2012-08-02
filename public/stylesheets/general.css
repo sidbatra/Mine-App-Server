@@ -29,9 +29,10 @@
 
 .pointer { cursor: pointer; }
 
-.fixed    { position: fixed; }
-.relative { position: relative; }
-.absolute { position: absolute; }
+.fixed    { position: fixed !important; }
+.static   { position: static !important; }
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
 
 .scroll-fixed { overflow-y: hidden; }
 .scroll-fixed:hover { 
@@ -56,6 +57,15 @@ textarea.highlight-on-focus:focus {
           
 .three-to-two { margin-right: 38px; }
 /* see media queries for 2-span variant */
+
+.gradient-up {
+	background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(68,68,68,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(68,68,68,1)));
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(68,68,68,1) 100%);
+	background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(68,68,68,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(68,68,68,1) 100%);
+	background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(68,68,68,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#444444',GradientType=0 ); }
 
 .square {
 	-webkit-border-radius: 0;
@@ -88,9 +98,14 @@ textarea.highlight-on-focus:focus {
 	border-radius: 3px; }
 
 .rounded-3-left {
-	-webkit-border-radius: 3px 0 0 3px;
-	-moz-border-radius::3px 0 0 3px;
-	border-radius: 3px 0 0 3px; }
+	-webkit-border-radius: 3px 0 0 3px !important;
+	-moz-border-radius::3px 0 0 3px !important;
+	border-radius: 3px 0 0 3px !important; }
+
+.rounded-3-right {
+	-webkit-border-radius: 0 3px 3px 0 !important;
+	-moz-border-radius: 0 3px 3px 0 !important;
+	border-radius: 0 3px 3px 0 !important; }
 
 .rounded-3-bottom {
 	-webkit-border-radius: 0 0 3px 3px;
@@ -230,13 +245,13 @@ textarea.highlight-on-focus:focus {
 
 .btn-large {
   padding: 0 16px;
-  height: 42px;
+  height: 40px;
   font-size: 15px;
-  line-height: 42px;
-  line-height: 40px\0/ !important;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px; }
+  line-height: 40px;
+  line-height: 38px\0/ !important;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
 .btn-large [class^="icon-"] { margin-top: 2px; }
@@ -267,6 +282,10 @@ textarea.highlight-on-focus:focus {
 	-moz-transition: opacity .15s ease-in;
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
+
+.btn.btn-gray { background: #666; }
+.btn.btn-gray:hover { background: #888; }
+
 
 .btn.btn-white { 
 	background: #eee;
@@ -403,10 +422,14 @@ textarea.highlight-on-focus:focus {
 .dropdown-menu {
 	border: 0;
 	min-width: 120px;
-	background: #333;
-  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+	background: #393939;
+	z-index: 2;
+/*-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
      -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);*/ 
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none; }
 
 .dropdown-menu a {
   display: block;
@@ -427,7 +450,7 @@ textarea.highlight-on-focus:focus {
 .dropdown-menu .active > a:hover {
   color: white;
   text-decoration: none;
-  background-color: #444;
+  background: none !important; 
   -webkit-transition: none;
 	-moz-transition: none;
 	-o-transition: none;

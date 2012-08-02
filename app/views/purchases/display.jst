@@ -25,7 +25,9 @@
 
 		<!-- <img class="stamp absolute" src="<#=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" /> -->
 		
-    <img class="item-photo" src="<%=purchase.get('giant_url')%>" />
+		<a href="<%=purchase.get('source_url')%>" target="_blank">
+    	<img class="item-photo" src="<%=purchase.get('giant_url')%>" />
+    </a>
     
   </div>
   
@@ -52,7 +54,7 @@
 		      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
 		    <%}%>
 		
-		    <a class="em link-out"><%=purchase.escape('title')%></a> 
+		    <a href="<%=purchase.get('source_url')%>" class="em link-out" target="_blank"><%=purchase.escape('title')%></a> 
 		
 		    <%if(purchase.get('store')){%>
 		      from <%=purchase.get('store').escape('name')%>

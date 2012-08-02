@@ -2,14 +2,106 @@
   <%=render 'purchases/chooser'%> 
 <%end%>
 
+<div id="creation" class="create-box border-box fixed">
+	<div class="box-title">
+		Add a new purchase
+	</div>
+  <%form_for Purchase.new,
+      :html => {
+        :class => "form-horizontal",
+        :style => "margin-bottom: 0;"} do |f|%>   
+     
+	  <!--<div id="suggestions" 
+          class="suggestions-box relative hide-on-mobile" 
+          style="display:none">
+		</div> <!-- /suggestions -->
+	  
+      <%=render :partial => 'purchases/input', 
+          :locals => {
+            :f => f,
+            :suggestion => nil,
+            :submit_text => "Add a new purchase",
+            :show_cancel_button => false,
+            :show_delete_button => false,
+            :show_query_box => true,
+            :show_query_sub_box => true,
+            :show_extra_steps => false,
+            :show_fb_share => true,
+            :show_tw_share => true,
+            :show_tumblr_share => true,
+            :fb_share_on => self.current_user.setting.post_to_timeline?,
+            :tw_share_on => self.current_user.setting.post_to_twitter?,
+            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+  <%end%> <!-- /form --> 
+
+</div> <!-- create-box -->
+
+
+<div class="connections-box border-box fixed">
+	<div class="box-title relative" style="z-index: 0;">
+		<%if self.current_user.followings_count.zero?%>
+    	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
+		<%else%>
+			People you're following (48)
+		<%end%>
+	</div>
+	
+	<ul class="scroll-fixed rounded-3 border-box relative" style="z-index: 0;">
+
+	  <%if self.current_user.followings_count.zero?%>
+	  
+	    <%cache ["v1",self.current_user,"contacts","feed"] do%>
+	      <%self.current_user.contacts.by_weight.limit(7).each do |contact|%>
+	        <%cache ["v5",contact,"invite","feed"] do%>
+	          <%=link_to "",
+	              new_invite_path(
+	              :src => "user-image",
+	              :anchor => "search/#{contact.name.gsub(' ','-')}"),
+	              :style => "background: url('#{contact.image_url}')",
+	              :class => "",
+	              :rel => "tooltip",
+	              :title => "Invite #{contact.name}"%>
+	        <%end%>
+	      <%end%>
+	    <%end%>
+	
+	  <%else%>
+	
+	    <%cache ["v3",self.current_user,"ifollowers","feed"] do%>
+	      <%self.current_user.ifollowers.limit(9).each do |user|%>
+	      
+	        <%cache ["v6",user,"ifollower","feed"] do%>
+						<a href="<%=user_path(user.handle,:src => "feed")%>">
+							<li class="txt s">
+								<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
+								<%=user.full_name%>
+							</li>
+						</a>
+	        <%end%>
+	        
+	      <%end%>
+	    <%end%>
+	
+	  <%end%> <!-- if followings_count.zero? -->
+	  
+  </ul>
+
+  <!--<#=link_to "Invite friends <i class='icon-chevron-right icon-white'></i>",
+      new_invite_path(:src => "feed"),
+      :class => "btn go-to-invite"%>-->
+      
+</div> <!-- /connections-box -->  
+
+
+
 
 <div class="container">
 
-	<div class="box-title">
+	<div class="box-title relative" style="padding-top: 28px; margin-top: 330px;">
 		Your feed
 	</div>
   
-  <div id="feed" class="feed rounded-3 shaded">
+  <div id="feed" class="feed rounded-3 shaded relative">
   </div> <!-- feed -->
   
   <div id="feed-spinner" 
