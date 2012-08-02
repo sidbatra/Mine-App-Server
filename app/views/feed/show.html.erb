@@ -2,7 +2,7 @@
   <%=render 'purchases/chooser'%> 
 <%end%>
 
-<div id="creation" class="create-box border-box fixed">
+<div id="creation" class="create-box unit-box border-box fixed">
 	<div class="box-title">
 		Add a new purchase
 	</div>
@@ -37,7 +37,7 @@
 </div> <!-- create-box -->
 
 
-<div class="connections-box border-box fixed">
+<div class="unit-box connections-box border-box fixed">
 	<div class="box-title relative" style="z-index: 0;">
 		<%if self.current_user.followings_count.zero?%>
     	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
@@ -46,7 +46,7 @@
 		<%end%>
 	</div>
 	
-	<ul class="scroll-fixed rounded-3 border-box relative" style="z-index: 0;">
+	<ul class="rounded-3 border-box relative">
 
 	  <%if self.current_user.followings_count.zero?%>
 	  
@@ -95,21 +95,20 @@
 
 
 
-<div class="container shaded">
 
-	<div class="box-title feed-title relative">
-		Your feed
-	</div>
-  
-  <div id="feed" class="feed rounded-3 shaded relative">
-  </div> <!-- feed -->
-  
-  <div id="feed-spinner" 
-        class="loading blocks body" 
-        style="height: 60px;">
-  </div> 
-   
-</div> <!-- container -->
+
+<div class="box-title feed-title relative">
+	Your feed
+</div>
+
+<div id="feed" class="feed rounded-3 shaded relative">
+</div> <!-- feed -->
+
+<div id="feed-spinner" 
+      class="loading blocks body" 
+      style="height: 60px;">
+</div> 
+
 
 <%content_for :javascript do%>
 

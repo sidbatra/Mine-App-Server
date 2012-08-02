@@ -21,16 +21,20 @@
   	<!-- wrapper for sticky header -->
   	<div class="wrapper">
     
-	    <div id="fb-root"></div>    
-	
-	    <%=render "headers/default"%>
+	    <div id="fb-root"></div> 
 	    
-	    <div id="message-drawer" 
-	          class="message-drawer border-box alert rounded-5"
-	          style="display: none;">
-			</div>
-	 
-	    <%=yield%>
+	    <div class="container shaded relative">   
+	
+		    <%=render "headers/default"%>
+		    
+		    <div id="message-drawer" 
+		          class="message-drawer border-box alert rounded-5"
+		          style="display: none;">
+				</div>
+		 
+		    <%=yield%>
+		   
+			</div> <!-- /container -->
 	  
 	  </div> <!-- /wrapper -->
 

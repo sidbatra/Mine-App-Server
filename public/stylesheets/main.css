@@ -89,17 +89,23 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .dimmer.hundred 			{ background: black; }
 
 
+/* Unit-box
+==================================================================== */
+
+.unit-box.border-box { width: 520px; }
+	
+.unit-box.border-box.fixed { 
+	left: 50%;
+	margin-left: -260px; }
+
+
 /* Header, Container and Footer
 ==================================================================== */
 
 .header { 
-	width: 540px;
 	height: 76px;
-	padding: 24px 10px 0;
-	top: 0;
-	left: 50%;
-/* 	background: #545454; */
-	margin-left: -270px; }
+	padding-top: 24px !important; }
+.header.fixed { top: 0; }
 
 .header .logo { 
 	height: 48px;
@@ -147,18 +153,11 @@ footer .like-button-box {
 /* Users-box
 ==================================================================== */
 
-.connections-box {
-	width: 540px; 
-	height: 135px;
-	padding: 0 10px;
-	top: 167px;
-	left: 50%;
-	margin-left: -270px;
-/* 	background: #555; */ }
+.connections-box { height: 135px; }
+.connections-box.fixed { top: 167px; }
 
 .connections-box ul { 
-	height: 92px;
-	overflow-y:hidden;
+	overflow-y:hidden;	
 	padding: 14px 14px 6px;
 	background: url('/images/colors/black-20.png');
 /* 	box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px inset; */
@@ -169,31 +168,37 @@ footer .like-button-box {
 	margin-bottom: 8px;
 	width: 33.3%;
 	white-space: nowrap; }
+
+.connections-box ul li.pic.s { 
+	display: inline-block; 
+	margin-bottom: 8px;
+	white-space: nowrap; }
 	
-.connections-box ul li.txt.s .user-photo { margin-right: 4px; }
+.connections-box ul li.s .user-photo { margin-right: 4px; }
 
 .connections-box a { color: #ccc; }
 .connections-box a:hover { color: white; }
 .connections-box a img { opacity: 0.8; }
 .connections-box a:hover img { opacity: 1; }
 
+
+/* Profile-box
+==================================================================== */
+
+.profile-box.fixed { top: 167px; }
+
 	
 /* Creation 
 ==================================================================== */
 
-.create-box { 
- 	width: 540px;
-	height: 91px;
-	padding: 0 10px;
-	top: 76px;
-	left: 50%;
-/* 	background: #333; */
-	margin-left: -270px; }
+.create-box { height: 91px; }
+.create-box.fixed { top: 76px; }
 
 .create-box input.enter { 
 /* 	width: 322px; */
-	width: 452px;
+	width: 446px;
 	height: 40px;
+	margin-right: 6px;
 	padding: 0 10px;
 	border: 0;
 	background: #eee;
@@ -207,12 +212,11 @@ footer .like-button-box {
 
 .create-box input.enter:focus { 
 	background: white;
-	width: 452px;
-	-webkit-border-radius: 3px 0 0 3px;
-     -moz-border-radius: 3px 0 0 3px;
-          border-radius: 3px 0 0 3px; }
+/* 	width: 452px; */ }
                
-.create-box .go { width: 68px; }
+.create-box .go { 
+	width: 68px;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; }
 
 
 /* Feed
