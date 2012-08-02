@@ -64,7 +64,8 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
                     :first_name,:last_name,:access_token,:byline,
-                    :tumblr_access_token, :tumblr_access_token_secret
+                    :tumblr_access_token, :tumblr_access_token_secret,
+                    :tw_access_token, :tw_access_token_secret
 
   #----------------------------------------------------------------------
   # Class methods
