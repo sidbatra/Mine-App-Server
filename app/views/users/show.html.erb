@@ -31,7 +31,7 @@
 
 	<!-- Following -->
   <%cache ["v7",@user,"ifollowers","profile"] do%>
-    <div class="connections-box border-box" style="display: inline-block; width: 48.65%;">
+    <div class="connections-box border-box split" style="margin-right: 2.7%;">
 
       <div class="box-title relative" style="z-index: 0;">
 				Following (12)
@@ -63,7 +63,7 @@
   
   <!-- Followers -->
   <%cache ["v7",@user,"ifollowers","profile"] do%>
-    <div class="connections-box border-box" style="display: inline-block; width: 48.65%; float: right;">
+    <div class="connections-box border-box split">
 
       <div class="box-title relative" style="z-index: 0;">
 				Followers (94)
@@ -96,11 +96,11 @@
 
 
 
-<div class="box-title feed-title relative">
-	Your feed
+<div class="box-title profile-feed-title relative">
+	Your items
 </div>
 
-<div class="feed rounded-3 shaded relative">
+<div class="profile-feed rounded-3 shaded relative">
   <%cache ["v4",@user,"purchases"] do%>
     <%=render :partial => "purchases/card",
         :collection => @user.purchases.with_store.with_user.by_id,

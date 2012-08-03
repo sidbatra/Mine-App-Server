@@ -1,35 +1,49 @@
 <%cache ["v12",purchase,purchase.store ? purchase.store : "","card"] do %>
 
-  <a href="<%=purchase_path(
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    
+    	 <a href="<%=purchase_path(
                 purchase.user.handle,
                 purchase.handle,
                 :src => "profile")%>" 
-      class="card relative rounded-5 three-to-two">
+     				 		class="">
 
-    <div class="photo rounded-5">
-      <%=image_tag purchase.square_url, :alt => ""%>
-    </div>
-    
-    <div class="title-box border-box relative">
-    
-    	<div class="fader absolute"></div>
+      	<%=image_tag purchase.square_url, :alt => "", :class => "item-photo"%>
+      	
+    	</a>
     	
-      <span class="item-name">
-        <%=h purchase.title%><br />
-      </span>
-
-      <%if purchase.store%>
-        from 
-        <span class="store-name">
-          <%=h purchase.store.name%><br />
-        </span> 
-      <%end%>
-
-      <span class="time">
-        Added <span class="timeago" title="<%=h purchase.created_at%>"></span> ago
-      </span>
     </div>
     
-  </a> <!-- /card -->
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+		    
+					<!-- <div class="fader absolute"></div> -->
+		      
+		      <a href="<%=purchase.source_url%>" class="em link-out" target="_blank">
+		      <%=h purchase.title%></a>
+		
+		      <%if purchase.store%>
+		        from 
+		        <span class="store-name">
+		          <%=h purchase.store.name%><br />
+		        </span> 
+		      <%end%>
+		
+					<!--<span class="time">
+		        Added <span class="timeago" title="<#=h purchase.created_at%>"></span> ago
+		      </span>-->
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
 
 <%end%>

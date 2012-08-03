@@ -92,7 +92,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 /* Unit-box
 ==================================================================== */
 
-.unit-box.border-box { width: 520px; }
+.unit-box.border-box { width: 520px; padding-bottom: 16px; }
 	
 .unit-box.border-box.fixed { 
 	left: 50%;
@@ -153,8 +153,11 @@ footer .like-button-box {
 /* Users-box
 ==================================================================== */
 
-.connections-box { height: 135px; }
+.connections-box {}
 .connections-box.fixed { top: 167px; }
+.connections-box.split { 
+	display: inline-block; 
+	width: 48.65%; }
 
 .connections-box ul { 
 	overflow-y:hidden;	
@@ -182,16 +185,77 @@ footer .like-button-box {
 .connections-box a:hover img { opacity: 1; }
 
 
-/* Profile-box
+/* Profile
 ==================================================================== */
 
 .profile-box.fixed { top: 167px; }
+
+.profile-feed-title { 
+	padding-top: 28px; 
+	margin-top: 294px;
+	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
+
+.profile-feed { 
+	background: white;
+/* 	width: 520px; */
+	z-index: 2;
+	padding-bottom: 16px; }
+	
+.card { 
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+	background: white; }
+	
+.card .photo-box {
+	width: auto;
+	height: 236px;
+	padding: 12px;
+	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
+	text-align: center;
+	line-height: 236px; }
+	
+.card .photo-box .item-photo {
+	max-width: 100%;
+	max-height: 236px; }
+	
+.card .panel { padding: 0 12px 12px 12px; }
+
+.card .panel .panel-contents { 
+	background: #eee;
+	padding: 10px; }
+	
+.card .panel .panel-contents .caret {
+	width: 0;
+	height: 0;
+	left: 18px;
+	top: -10px;
+	vertical-align: bottom;
+	border-bottom: 10px solid #eee;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 0 solid transparent;
+	content: ""; }
+
+.card .panel .title-box { color: #555; }
+.card .panel .title-box a { 
+	color: #555;
+	color: #099CDE;
+	color: #177DBE;
+	border-bottom: 1px dotted #999; 
+	border-bottom: 1px dotted #177DBE; }
+
+.card .panel .title-box a:hover { color: #105e90; }
+	
+.card .panel .title-box a.link-out { 
+	padding-right: 11px;
+	background: url('/images/arrow-out-177DBE-s.png') center right no-repeat; }
 
 	
 /* Creation 
 ==================================================================== */
 
-.create-box { height: 91px; }
+.create-box {}
 .create-box.fixed { top: 76px; }
 
 .create-box input.enter { 
@@ -210,9 +274,7 @@ footer .like-button-box {
 	transition: width 0.2s ease-in-out;
 	box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px inset; }
 
-.create-box input.enter:focus { 
-	background: white;
-/* 	width: 452px; */ }
+.create-box input.enter:focus { background: white; }
                
 .create-box .go { 
 	width: 68px;
@@ -229,7 +291,7 @@ footer .like-button-box {
 	
 .feed { 
 	background: white;
-	width: 520px;
+/* 	width: 520px; */
 	z-index: 2; }
 	
 .item { background: white; }
@@ -291,10 +353,10 @@ footer .like-button-box {
 	border-bottom: 1px dotted #999; 
 	border-bottom: 1px dotted #177DBE; }
 	
-.item .panel .title-box a:hover { /* color: #333; */ }
+.item .panel .title-box a:hover { color: #105e90; }
 .item .panel .title-box a.link-out { 
 	padding-right: 13px;
-	background: url('/images/arrow-out-177DBE.png') center right no-repeat; }
+	background: url('/images/arrow-out-177DBE-l.png') center right no-repeat; }
 
 .item .panel .title-box .user-photo { margin-left: -52px; top: 3px; }
 .item .panel .title-box .em { /* font-weight: bold; */ }
@@ -354,7 +416,7 @@ footer .like-button-box {
 	font-weight: bold;
 	margin-bottom: 5px; }
 	
-.feed .item .panel .add-comment-box input {
+.item .panel .add-comment-box input {
 	width: 100%;
 	height: 28px;
 	border: none;
