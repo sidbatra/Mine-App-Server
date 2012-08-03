@@ -18,12 +18,7 @@ class FollowingsController < ApplicationController
   #
   def show
     @following = Following.fetch(params[:id],self.current_user.id)
-
-    unless @following.present?
-      @following = Following.new
-      @following.id = 0
-      @following.is_active = false
-    end
+    @following = nil unless @following.present? && @following.is_active
                                                         
   rescue => ex
     handle_exception(ex)
@@ -37,7 +32,7 @@ class FollowingsController < ApplicationController
   #
   def destroy
     @following = Following.find(params[:id])
-    @following.remove if following.follower_id == self.current_user.id
+    @following.remove if @following.follower_id == self.current_user.id
   rescue => ex
     handle_exception(ex)
   ensure

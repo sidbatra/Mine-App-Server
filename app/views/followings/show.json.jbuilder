@@ -1,1 +1,1 @@
-json.partial! @following
+json.partial! @following if @following

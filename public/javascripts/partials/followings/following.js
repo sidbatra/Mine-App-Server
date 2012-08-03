@@ -19,6 +19,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     this.following    = new Denwen.Models.Following(this.options.followingJSON);
 
     this.preprocess(this.following);
+
     //this.following  = new Denwen.Models.Following({id:this.userID});
     //this.following.fetch({ 
     //    success : function(result) {self.preprocess(result);},
@@ -32,7 +33,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   //
   preprocess: function(result) {
 
-    if(!result.get('is_active')) {
+    if(!result.has('is_active') || !result.get('is_active')) {
       this.following = new Denwen.Models.Following();
       this.render(false);
     }
@@ -48,10 +49,13 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     if(this.disabled)
       return;
 
-    this.disabled = true;
-    this.render(true);
+    var self = this;
 
-    this.following.save({user_id : this.userID});
+    this.disabled = true;
+
+    this.following.save({user_id : this.userID},{
+      success: function(result) {self.preprocess(result);self.disabled=false;},
+      error: function(model,errors){}});
 
     //Denwen.Track.followingCreated(this.userID);
   },
@@ -63,19 +67,15 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     if(this.disabled)
       return;
 
-    this.disabled = true;
-    this.render(false);
+    var self = this;
 
-    this.following.destroy();
-    this.following = new Denwen.Models.Following();
+    this.disabled = true;
+
+    this.following.destroy({
+      success: function(result) { self.preprocess(new Backbone.Model());self.disabled=false;},
+      error: function(model,errors){}});
 
     //Denwen.Track.followingDestroyed(this.userID);
-  },
-
-  // Fired when the mouse leaves either create or destroy
-  //
-  mouseOut: function() {
-    this.disabled = false;
   },
 
   // Render an action button representing the current
@@ -87,8 +87,6 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     $(this.createEl).unbind('click');
     $(this.destroyEl).unbind('click');
-    $(this.createEl).unbind('mouseout');
-    $(this.destroyEl).unbind('mouseout');
 
     this.el.html(
       Denwen.JST['followings/following']({
@@ -97,8 +95,6 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     $(this.createEl).click(function() {self.create();});
     $(this.destroyEl).click(function() {self.destroy();});
-    $(this.createEl).mouseout(function() {self.mouseOut();});
-    $(this.destroyEl).mouseout(function() {self.mouseOut();});
   }
 
 });

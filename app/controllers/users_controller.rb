@@ -96,6 +96,7 @@ class UsersController < ApplicationController
       track_visit
 
       @user = User.find_by_handle(params[:handle])
+      @following = Following.fetch @user.id,self.current_user.id
       @origin = 'user'
     end
 
