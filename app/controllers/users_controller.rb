@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   #
   def create
     using = params[:using] ? params[:using].to_sym : :facebook
+    follow_user_id = params[:follow_user_id] 
 
     case using
     when :facebook
@@ -25,7 +26,11 @@ class UsersController < ApplicationController
     respond_to do |format|
 
       format.html do
-        set_cookie unless @error
+        if @user && !@error
+          set_cookie 
+          Following.add(follow_user_id,self.current_user.id) if follow_user_id
+        end
+
         url = ""
 
         if @error
@@ -144,7 +149,8 @@ class UsersController < ApplicationController
       client                    = fb_auth.client
       client.redirect_uri       = fb_reply_url(
                                     :src    => @source,
-                                    :target => @target)
+                                    :target => @target,
+                                    :follow_user_id => params[:follow_user_id])
       client.authorization_code = params[:code]
       access_token              = client.access_token!(:client_auth_body)
     end
