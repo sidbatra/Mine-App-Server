@@ -17,6 +17,13 @@ class ActiveRecord::Base
                                           :updated_at => time_ago..Time.now}}}
 end
 
+# Override the default datetime format in json.
+#
+class ActiveSupport::TimeWithZone
+   def as_json(options = {})
+     strftime('%Y-%m-%d %H:%M:%S %z')
+   end
+ end
 
 # Extension of ruby's Array class
 #

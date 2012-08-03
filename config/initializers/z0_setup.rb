@@ -47,3 +47,4 @@ ActionMailer::Base.custom_amazon_ses_mailer = AWS::SES::Base.new(
                                                     CONFIG[:aws_access_id],
                                                 :secret_access_key  => 
                                                     CONFIG[:aws_secret_key])
+
