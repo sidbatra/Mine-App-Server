@@ -118,6 +118,9 @@
                                           :handle,:byline,:followings_count,
                                           :purchases_count,
                                           :inverse_followings_count])%>,
+          followingJSON   : <%=@following.to_json(
+                                :only => [:id,:user_id, :is_active,
+                                            :follower_id])%>,
           source          : "<%=h @source%>"});
 
   </script>

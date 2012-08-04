@@ -11,23 +11,20 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     var self          = this;
     this.disabled     = false;
 
-    this.isSuggested  = this.options.is_suggested ? true : false; 
-    this.userID       = this.options.user_id;
+    this.userID       = this.options.userID;
 
     this.createEl     = "#create_following_" + this.userID;
     this.destroyEl    = "#destroy_following_" + this.userID;
 
-    if(!this.isSuggested) {
-      this.following  = new Denwen.Models.Following({id:this.userID});
-      this.following.fetch(
-        { 
-          success : function(result) {self.preprocess(result);},
-          error   : function(model,errors) {}
-        });
-    }
-    else {
-      this.render(true);
-    }
+    this.following    = new Denwen.Models.Following(this.options.followingJSON);
+
+    this.preprocess(this.following);
+
+    //this.following  = new Denwen.Models.Following({id:this.userID});
+    //this.following.fetch({ 
+    //    success : function(result) {self.preprocess(result);},
+    //    error   : function(model,errors) {}
+    //  });
   },
 
   // Based on the result of the show request
@@ -36,7 +33,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   //
   preprocess: function(result) {
 
-    if(!result.has('is_active')) {
+    if(!result.has('is_active') || !result.get('is_active')) {
       this.following = new Denwen.Models.Following();
       this.render(false);
     }
@@ -52,17 +49,15 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     if(this.disabled)
       return;
 
+    var self = this;
+
     this.disabled = true;
-    this.render(true);
 
-    if(!this.isSuggested) {
-      this.following.save({user_id : this.userID});
-    }
-    else {
-      this.trigger('addToUsersFollowed',this.userID);
-    }
+    this.following.save({user_id : this.userID},{
+      success: function(result) {self.preprocess(result);self.disabled=false;},
+      error: function(model,errors){}});
 
-    Denwen.Track.followingCreated(this.userID);
+    //Denwen.Track.followingCreated(this.userID);
   },
 
   // Destroy the current following
@@ -72,24 +67,15 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     if(this.disabled)
       return;
 
+    var self = this;
+
     this.disabled = true;
-    this.render(false);
 
-    if(!this.isSuggested) {
-      this.following.destroy();
-      this.following = new Denwen.Models.Following();
-    }
-    else {
-      this.trigger('removeFromUsersFollowed',this.userID);
-    }
+    this.following.destroy({
+      success: function(result) { self.preprocess(new Backbone.Model());self.disabled=false;},
+      error: function(model,errors){}});
 
-    Denwen.Track.followingDestroyed(this.userID);
-  },
-
-  // Fired when the mouse leaves either create or destroy
-  //
-  mouseOut: function() {
-    this.disabled = false;
+    //Denwen.Track.followingDestroyed(this.userID);
   },
 
   // Render an action button representing the current
@@ -101,19 +87,14 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     $(this.createEl).unbind('click');
     $(this.destroyEl).unbind('click');
-    $(this.createEl).unbind('mouseout');
-    $(this.destroyEl).unbind('mouseout');
 
     this.el.html(
       Denwen.JST['followings/following']({
         isFollowing  : isFollowing,
-        isSuggested  : this.isSuggested,
         userID       : this.userID}));
 
     $(this.createEl).click(function() {self.create();});
     $(this.destroyEl).click(function() {self.destroy();});
-    $(this.createEl).mouseout(function() {self.mouseOut();});
-    $(this.destroyEl).mouseout(function() {self.mouseOut();});
   }
 
 });
