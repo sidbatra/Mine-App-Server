@@ -187,7 +187,7 @@ textarea.highlight-on-focus:focus {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background: #099CDE;
+  background: #177DBE;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
@@ -207,7 +207,7 @@ textarea.highlight-on-focus:focus {
 .btn:hover {
 	color: white;
   text-decoration: none;
-  background: #177DBE;
+  background: #105e90;
   -webkit-transition: background .15s ease-in;
 	   -moz-transition: background .15s ease-in;
 	     -o-transition: background .15s ease-in;
@@ -366,13 +366,16 @@ textarea.highlight-on-focus:focus {
 
 /* ----- loading button states ----- */
 .btn.pushed, .btn-pushed:hover, 
-.btn.load, .btn.load:hover { background: #177DBE; cursor: default; }
+.btn.load, .btn.load:hover { background: #105E90; cursor: default; }
 
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #E4156D; }	
 
 .btn-white.pushed, .btn-white.pushed:hover,
 .btn-white.load, .btn-white.load:hover { background: #555; color: white; }	
+
+.btn-gray.pushed, .btn-gray.pushed:hover,
+.btn-gray.load, .btn-gray.load:hover { background: #888; color: white; }	
 
 .btn span.in { display: none; }
 .btn.pushed .in { display: inline; }
@@ -387,9 +390,15 @@ textarea.highlight-on-focus:focus {
   background-repeat: no-repeat !important;
   background-position: center center !important; }
 
-.icon-loading.icon-white { background: url("/images/loading-blocks-white-trans.gif"); }
+.icon-loading.icon-white { 
+	background: url("/images/loading-blocks-white-trans.gif");
+	background: url("/images/loading/loading-snake-FFF-177DBE.gif"); }
+	
+.btn-gray .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-888.gif"); }
+	
 .load .icon-loading { display: inline-block; }
 .load .hide-when-loading { display: none; }
+
 
 
 

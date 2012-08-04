@@ -53,6 +53,8 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     this.disabled = true;
 
+    $(this.createEl).addClass('load');
+
     this.following.save({user_id : this.userID},{
       success: function(result) {self.preprocess(result);self.disabled=false;},
       error: function(model,errors){}});
@@ -70,6 +72,8 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     var self = this;
 
     this.disabled = true;
+
+    $(this.destroyEl).addClass('load');
 
     this.following.destroy({
       success: function(result) { self.preprocess(new Backbone.Model());self.disabled=false;},
