@@ -127,7 +127,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .container {
 	width: 520px;
-	padding: 0 18px 80px;
+	padding: 0 20px 80px;
 	margin: 0 auto;
 	background: url('/images/colors/white-5.png'); }
 
@@ -345,7 +345,7 @@ footer .like-button-box {
 	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
 
 .feed-loading { 
-	background: url('/images/loading/loading-snake-FFF.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-FFF-fast.gif') center no-repeat;
 	height: 60px; }
 	
 .feed { 
