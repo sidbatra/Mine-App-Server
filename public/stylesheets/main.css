@@ -104,7 +104,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .header { 
-	height: 76px;
+	height: 72px;
 	padding-top: 24px !important; }
 .header.fixed { top: 0; }
 
@@ -154,7 +154,7 @@ footer .like-button-box {
 ==================================================================== */
 
 .connections-box {}
-.connections-box.fixed { top: 167px; }
+.connections-box.fixed { top: 159px; }
 .connections-box.split { 
 	display: inline-block; 
 	width: 48.65%; }
@@ -188,12 +188,12 @@ footer .like-button-box {
 /* Profile
 ==================================================================== */
 
-.profile-box.fixed { top: 90px; }
+.profile-box.fixed { top: 86px; }
 
 .profile-box .user-box {
 	padding: 14px;
 	background: url('/images/colors/black-15.png');
-	margin-bottom: 8px; }
+	margin-bottom: 4px; }
 	
 .profile-box .user-box .user-photo { margin-right: 9px; }
 
@@ -247,7 +247,7 @@ footer .like-button-box {
                
 .profile-feed-title { 
 	padding-top: 28px; 
-	margin-top: 265px;
+	margin-top: 253px;
 	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
 
 .profile-feed { 
@@ -311,7 +311,7 @@ footer .like-button-box {
 ==================================================================== */
 
 .create-box {}
-.create-box.fixed { top: 76px; }
+.create-box.fixed { top: 72px; }
 
 .create-box input.enter { 
 /* 	width: 322px; */
@@ -341,7 +341,7 @@ footer .like-button-box {
 	
 .feed-title { 
 	padding-top: 28px; 
-	margin-top: 294px;
+	margin-top: 282px;
 	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
 
 .feed-loading { 
