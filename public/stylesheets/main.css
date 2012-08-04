@@ -192,7 +192,7 @@ footer .like-button-box {
 .profile-box .user-box {
 	padding: 14px;
 	background: url('/images/colors/black-20.png');
-	margin-bottom: 16px; }
+	margin-bottom: 8px; }
 	
 .profile-box .user-box .user-photo { margin-right: 9px; }
 
@@ -235,7 +235,7 @@ footer .like-button-box {
                
 .profile-feed-title { 
 	padding-top: 28px; 
-	margin-top: 273px;
+	margin-top: 265px;
 	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
 
 .profile-feed { 

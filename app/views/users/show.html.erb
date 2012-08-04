@@ -30,11 +30,11 @@
 
 
 	<!-- Following -->
-  <%cache ["v7",@user,"ifollowers","profile"] do%>
+  <%cache ["v7",@user,"followers","profile"] do%>
     <div class="connections-box border-box split" style="margin-right: 2.7%;">
 
       <div class="box-title relative" style="z-index: 0;">
-				Following (12)
+				Following (<%=@user.followings_count%>)
 			</div>
 			
 			<ul class="rounded-3 border-box relative">
@@ -42,15 +42,14 @@
 	      <%@user.ifollowers.limit(7).each do |user|%>
 	        <%cache ["v4",user,"ifollower","profile"] do%>     
 	        
-	        	<a href="<%=user_path(user.handle,
-	        			:src => "profile",
-	        			:rel => "tooltip",
-	        			:title => user.full_name)%>">
+		        <li class="pic s">
+		        	<a style="display: block;" href="<%=user_path(user.handle,:src => "profile")%>"
+	        			rel="tooltip"
+	        			title="<%=user.full_name%>">
 	        			
-		        	<li class="pic s">
-			          <%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
-		          </li>
-	          </a>
+			      		<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
+			      	</a>
+		        </li>
 	              
 	        <%end%>
 	      <%end%>
@@ -58,7 +57,7 @@
       </ul>
       
     </div> <!-- /connections-box -->
-  <%end unless @user.inverse_followings_count.zero?%>
+  <%end unless @user.followings_count.zero?%>
   
   
   <!-- Followers -->
@@ -66,7 +65,7 @@
     <div class="connections-box border-box split">
 
       <div class="box-title relative" style="z-index: 0;">
-				Followers (94)
+				Followers (<%=@user.inverse_followings_count%>)
 			</div>
 			
 			<ul class="rounded-3 border-box relative">
@@ -74,16 +73,15 @@
 	      <%@user.ifollowers.limit(7).each do |user|%>
 	        <%cache ["v4",user,"ifollower","profile"] do%>     
 	        
-	        	<a href="<%=user_path(user.handle,
-	        			:src => "profile",
-	        			:rel => "tooltip",
-	        			:title => user.full_name)%>">
+		        <li class="pic s">
+		        	<a style="display: block;" href="<%=user_path(user.handle,:src => "profile")%>"
+	        			rel="tooltip"
+	        			title="<%=user.full_name%>">
 	        			
-		        	<li class="pic s">
-			          <%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
-		          </li>
-	          </a>
-	              
+			      		<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
+			      	</a>
+		        </li>
+ 
 	        <%end%>
 	      <%end%>
       
@@ -97,7 +95,7 @@
 
 
 <div class="box-title profile-feed-title relative">
-	Your items
+	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> items
 </div>
 
 <div class="profile-feed rounded-3 shaded relative">
