@@ -1,23 +1,25 @@
-<div id="user_byline_box">
+<div id="user_byline_box" class="bio-box absolute">
       <%if is_current_user(user)%>
 
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
-              :class  => 'user-bio border-box',
-              :rows   => '2',
-              :style  => "width: 100%; padding: 7px; margin-top: 3px;"\
+              :class  => 'txt m border-box alias-smooth',
+              :rows   => '1',
+              :style  => ""\
                          "#{self.current_user.byline.present? ? 
                               'display:none;' : ''}",
-              :placeholder => "What's your style?"%>
+              :placeholder => "About yourself in a sentence..."%>
+          
           
           <%=link_to  'Save', 
-                      'javascript:void(0)', 
-                      :id     => 'user_update',
-                      :class  => 'btn',
-                      :style  => self.current_user.byline.present? ?
-                                  'display:none' :
-                                  ''%>                        
+	            'javascript:void(0)', 
+	            :id     => 'user_update',
+	            :class  => 'btn btn-small btn-blue absolute',
+	            :style  => self.current_user.byline.present? ?
+	                        'display:none' :
+	                        ''%>   
+                     
           
           <!-- byline display -->
           <div id="user_edit_box" 
@@ -26,13 +28,13 @@
                         '' :
                         'display:none'%>">
           
-          	<div class="user-bio" id="user_byline_text">
+          	<div class="user-bio txt m border-box" id="user_byline_text">
           		<%=h self.current_user.byline%>
           	</div>
           	
-          	<%=link_to  '<i class="icon-pencil icon-white"></i> Edit', 
+          	<%=link_to  'Edit', 
 	                      'javascript:void(0)', 
-	                      :class  => 'btn btn-black',
+	                      :class  => 'btn btn-small btn-gray absolute',
 	                      :id     => 'user_edit',
 	                      :style  => self.current_user.byline.present? ?
 	                                  '' :

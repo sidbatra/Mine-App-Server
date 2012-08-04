@@ -126,7 +126,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .container {
 	width: 520px;
-	padding: 0 18px 64px;
+	padding: 0 18px 80px;
 	margin: 0 auto;
 	background: url('/images/colors/white-5.png'); }
 
@@ -139,8 +139,7 @@ footer, .push {
 /* 	background: #333;  */}
 	
 footer .inner {
-	width: 712px;
-	padding: 0 10px 0 182px;
+	width: 520px;
 	margin: 0 auto; }
 	
 footer, footer a, footer a:hover { color: #777; }
@@ -188,16 +187,59 @@ footer .like-button-box {
 /* Profile
 ==================================================================== */
 
-.profile-box.fixed { top: 167px; }
+.profile-box.fixed { top: 90px; }
 
+.profile-box .user-box {
+	padding: 14px;
+	background: url('/images/colors/black-20.png');
+	margin-bottom: 16px; }
+	
+.profile-box .user-box .user-photo { margin-right: 9px; }
+
+.profile-box .user-box .user-name {
+	top: 16px;
+	left: 74px;
+	font-size: 22px;
+	color: white; }
+
+/* -- byline -- */
+
+.profile-box .user-box .bio-box { 
+	top: 46px;
+	left: 74px;
+	width: 438px;
+	height: 24px; }
+
+.profile-box .user-box .bio-box textarea,
+.profile-box .user-box .bio-box .user-bio {
+	width: 388px;
+	line-height: 1;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: 0; 
+	box-shadow: none;
+	color: #ccc;
+	white-space: nowrap;
+	overflow: hidden; }
+
+.profile-box .user-box .bio-box textarea:focus { color: white; }
+
+.profile-box .user-box .bio-box .btn { 
+	right: 6px;
+	bottom: 8px;
+	width: 40px;
+	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; }
+
+/* -- profile cards -- */
+               
 .profile-feed-title { 
 	padding-top: 28px; 
-	margin-top: 294px;
+	margin-top: 273px;
 	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
 
 .profile-feed { 
 	background: white;
-/* 	width: 520px; */
 	z-index: 2;
 	padding-bottom: 16px; }
 	
@@ -212,6 +254,7 @@ footer .like-button-box {
 	height: 236px;
 	padding: 12px;
 	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
 	text-align: center;
 	line-height: 236px; }
 	
@@ -288,6 +331,10 @@ footer .like-button-box {
 	padding-top: 28px; 
 	margin-top: 294px;
 	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
+
+.feed-loading { 
+	background: url('/images/loading/loading-snake-FFF.gif') center no-repeat;
+	height: 60px; }
 	
 .feed { 
 	background: white;
@@ -298,9 +345,10 @@ footer .like-button-box {
 
 .item .photo-box {
 	width: auto;
-	height: auto;
+	min-height: 150px;
 	padding: 24px;
 	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
 	text-align: center;
 	line-height: 1; }
 

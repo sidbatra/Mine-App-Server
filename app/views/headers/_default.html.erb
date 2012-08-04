@@ -2,7 +2,7 @@
 
 	<div class="header unit-box border-box fixed">
 	    
-	    <%=link_to image_tag("mine-h-white.png", :class => "logo absolute"),
+	    <%=link_to image_tag("logos/mine-h-white.png", :class => "logo absolute"),
 	        root_path(:src => "bar")%>
 	      
      	<div class="btn-group" style="float: right;">
@@ -18,7 +18,7 @@
 		    </a>
 		
 		    <ul class="dropdown-menu pull-right rounded-3">
-		    	<li class="txt s"><%=link_to "Your items",root_path%></li>
+		    	<li class="txt s"><%=link_to "Your items",user_path(self.current_user.handle,:src => "bar")%></li>
 		      <li class="txt s"><%=link_to "Settings",settings_path(:src => "bar")%></li>
 		      <li class="txt s"><%=link_to "Log Out",logout_path%></li>
 		    </ul>

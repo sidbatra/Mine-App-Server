@@ -10,23 +10,23 @@
 
 <div class="profile-box unit-box border-box fixed">
 
-  <!--<div class="photo-box relative">
-    <div class="border absolute">
-    </div>
-
-    <#=image_tag @user.large_image_url,
-        :class => "user-photo"%>
-  </div>  /photo-box -->
+  <div class="user-box border-box rounded-3 alias-smooth relative">
   
-  <!--<div class="text-box">
-		<div class="user-name">
-      <#=h @user.full_name%>
-      <br/>
+    <%=image_tag @user.square_image_url,
+        :class => "user-photo xxl rounded-3"%>
+        
+    <div class="user-name absolute">
+    	<%=h @user.full_name%>
     </div>
 
-    <#=render :partial => "byline",
-        :locals => {:user => @user}%>
-	</div>  /text-box -->
+    <%=render :partial => "byline",
+       :locals => {:user => @user}%>
+       
+  </div> <!-- /user-box -->
+  
+
+
+
 
 
 	<!-- Following -->
