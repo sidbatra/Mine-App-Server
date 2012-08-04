@@ -4,7 +4,7 @@
           <!-- byline editing -->
           <%=text_area_tag 'user_byline',
               self.current_user.byline,
-              :class  => 'txt m border-box alias-smooth',
+              :class  => 'txt m border-box alias-smooth unresizable',
               :rows   => '1',
               :style  => ""\
                          "#{self.current_user.byline.present? ? 

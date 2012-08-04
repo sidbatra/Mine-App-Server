@@ -7,7 +7,8 @@ html, body { height: 100%; }
 
 body { 
 	background: #444;
-/* 	background: #344155; */
+	background: #344155;
+/* 	background: #122B4F; */
 	font-size: 0;
 	line-height: 1;
 	color: #333;
@@ -211,7 +212,7 @@ footer .like-button-box {
 	top: 14px;
 	right: 14px;
 	width: 80px;
-	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; }
+/* 	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; */ }
 
 /* -- byline -- */
 
@@ -246,14 +247,14 @@ footer .like-button-box {
 /* -- profile cards -- */
                
 .profile-feed-title { 
-	padding-top: 28px; 
-	margin-top: 253px;
-	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
+	padding-top: 24px; 
+	margin-top: 257px;
+	background: url('/images/colors/gradient-up-50px-3f495d.png') repeat-x; }	
 
 .profile-feed { 
 	background: white;
 	z-index: 2;
-	padding-bottom: 16px; }
+	padding: 0 6px 16px; }
 	
 .card { 
 	width: 50%;
@@ -264,7 +265,7 @@ footer .like-button-box {
 .card .photo-box {
 	width: auto;
 	height: 236px;
-	padding: 12px;
+	padding: 12px 6px;
 	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
 	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
 	text-align: center;
@@ -274,11 +275,11 @@ footer .like-button-box {
 	max-width: 100%;
 	max-height: 236px; }
 	
-.card .panel { padding: 0 12px 12px 12px; }
+.card .panel { padding: 0 6px 12px 6px; }
 
 .card .panel .panel-contents { 
 	background: #eee;
-	padding: 10px; }
+	padding: 10px;}
 	
 .card .panel .panel-contents .caret {
 	width: 0;
@@ -340,9 +341,9 @@ footer .like-button-box {
 ==================================================================== */
 	
 .feed-title { 
-	padding-top: 28px; 
-	margin-top: 282px;
-	background: url('/images/colors/gradient-up-50px-4D4D4D.png') repeat-x; }	
+	padding-top: 24px; 
+	margin-top: 286px;
+	background: url('/images/colors/gradient-up-50px-3f495d.png') repeat-x; }	
 
 .feed-loading { 
 	background: url('/images/loading/loading-snake-FFF-fast.gif') center no-repeat;

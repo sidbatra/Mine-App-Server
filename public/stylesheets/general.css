@@ -38,6 +38,9 @@
 .scroll-fixed:hover { 
 	overflow-y: scroll;
   overflow-x: hidden; }
+  
+textarea.unresizable,
+input.unresizable { resize: none;}
 
 .error { color: #d5432b !important; }
 input.error, textarea.error { 
