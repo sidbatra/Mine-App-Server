@@ -1,9 +1,9 @@
 <%if(isFollowing) {%>
-  <a href="javascript:void(0)" id="destroy_following_<%=userID%>">
-    <div class="checkmark_09_666666"></div> Following
+  <a class="btn btn-gray follow absolute"href="javascript:void(0)" id="destroy_following_<%=userID%>">
+    <i class="icon-ok icon-white"></i>
   </a>
 <%} else {%>
-  <a href="javascript:void(0)" id="create_following_<%=userID%>">
+  <a class="btn btn-blue follow absolute" href="javascript:void(0)" id="create_following_<%=userID%>">
     Follow
   </a>
 <%}%>

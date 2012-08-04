@@ -16,10 +16,10 @@ Denwen.Views.Users.Show = Backbone.View.extend({
             model: this.user});
 
     // -----
-    //new Denwen.Partials.Followings.Following({
-    //      el:$('#follow-box'),
-    //      followingJSON: this.options.followingJSON,
-    //      userID: this.user.get('id')});
+    new Denwen.Partials.Followings.Following({
+          el:$('#follow-box'),
+          followingJSON: this.options.followingJSON,
+          userID: this.user.get('id')});
 
     // -----
     $("span.timeago").timeago();
