@@ -11,7 +11,6 @@ class Invite < ActiveRecord::Base
   validates_presence_of   :user_id
   validates_presence_of   :recipient_id
   validates_inclusion_of  :platform, :in => InvitePlatform.values
-  validates_presence_of   :recipient_name
 
   #----------------------------------------------------------------------
   # Attributes
@@ -30,8 +29,12 @@ class Invite < ActiveRecord::Base
 
   # Facetory method for creating an invite.
   #
-  def self.add(attributes)
-    create!(attributes)
+  def self.add(attributes,user_id)
+    create!(
+        :user_id        => user_id,
+        :recipient_id   => attributes[:recipient_id],
+        :platform       => attributes[:platform],
+        :recipient_name => attributes[:recipient_name])
   end
 
 end

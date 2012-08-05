@@ -40,6 +40,7 @@
     Suggestions: 20
     AddPurchase: 21
     FeedbackOffer: 22
+    Invite: 23
   FeedShowSource:
     Login: 'login'
   FollowingSource:

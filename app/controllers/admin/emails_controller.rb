@@ -26,6 +26,9 @@ class Admin::EmailsController < ApplicationController
     when :new_like
       render :text => UserMailer.preview_new_like(Like.last)
 
+    when :new_invite
+      render :text => UserMailer.preview_new_invite(Invite.find_by_platform(InvitePlatform::Email))
+
     when :friend_activity_digest
       render :text => UserMailer.preview_friend_activity_digest(
                                   User.find(3),

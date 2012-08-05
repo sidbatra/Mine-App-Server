@@ -37,7 +37,7 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessor :is_store_unknown, :store_name, :rehost
+  attr_accessor :is_store_unknown, :store_name, :rehost, :block_delayed_update
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,

@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   # Resoure based routes
   ##
   map.resources :users,
-    :only => [:create,:show,:update]
+    :only => [:create,:index,:show,:update]
 
   map.resource :feed,
     :controller => :feed,
@@ -81,8 +81,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :likes,
     :only => [:create]
 
-  #map.resources :followings,
-  #  :only => [:create,:show,:destroy]
+  map.resources :followings,
+    :only => [:create,:show,:destroy]
 
   map.resources :searches,
     :only => [:create]
