@@ -2,42 +2,7 @@
   <%=render 'purchases/chooser'%> 
 <%end%>
 
-<div id="creation" class="create-box unit-box border-box fixed">
-	<div class="box-title">
-		Add a new purchase
-	</div>
-  <%form_for Purchase.new,
-      :html => {
-        :class => "form-horizontal",
-        :style => "margin-bottom: 0;"} do |f|%>   
-     
-	  <!--<div id="suggestions" 
-          class="suggestions-box relative hide-on-mobile" 
-          style="display:none">
-		</div> <!-- /suggestions -->
-	  
-      <%=render :partial => 'purchases/input', 
-          :locals => {
-            :f => f,
-            :suggestion => nil,
-            :submit_text => "Add a new purchase",
-            :show_cancel_button => false,
-            :show_delete_button => false,
-            :show_query_box => true,
-            :show_query_sub_box => true,
-            :show_extra_steps => false,
-            :show_fb_share => true,
-            :show_tw_share => true,
-            :show_tumblr_share => true,
-            :fb_share_on => self.current_user.setting.post_to_timeline?,
-            :tw_share_on => self.current_user.setting.post_to_twitter?,
-            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
-  <%end%> <!-- /form --> 
-
-</div> <!-- create-box -->
-
-
-<div class="unit-box connections-box border-box fixed">
+<div class="unit-box connections-box border-box">
 	<div class="box-title relative" style="z-index: 0;">
 		<%if self.current_user.followings_count.zero?%>
     	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
@@ -92,9 +57,39 @@
       
 </div> <!-- /connections-box -->  
 
+<div id="creation" class="create-box unit-box border-box">
+	<div class="box-title">
+		Add a new purchase
+	</div>
+  <%form_for Purchase.new,
+      :html => {
+        :class => "form-horizontal",
+        :style => "margin-bottom: 0;"} do |f|%>   
+     
+	  <!--<div id="suggestions" 
+          class="suggestions-box relative hide-on-mobile" 
+          style="display:none">
+		</div> <!-- /suggestions -->
+	  
+      <%=render :partial => 'purchases/input', 
+          :locals => {
+            :f => f,
+            :suggestion => nil,
+            :submit_text => "Add a new purchase",
+            :show_cancel_button => false,
+            :show_delete_button => false,
+            :show_query_box => true,
+            :show_query_sub_box => true,
+            :show_extra_steps => false,
+            :show_fb_share => true,
+            :show_tw_share => true,
+            :show_tumblr_share => true,
+            :fb_share_on => self.current_user.setting.post_to_timeline?,
+            :tw_share_on => self.current_user.setting.post_to_twitter?,
+            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+  <%end%> <!-- /form --> 
 
-
-
+</div> <!-- create-box -->
 
 
 <div class="box-title feed-title relative">
