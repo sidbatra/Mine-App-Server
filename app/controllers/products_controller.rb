@@ -326,6 +326,8 @@ class ProductsController < ApplicationController
     title = ""
 
     agent = Mechanize.new
+    agent.open_timeout = 6
+    agent.read_timeout = 6
     agent.user_agent_alias = 'Mac Safari'
     agent.get(URI.encode(query))
 
