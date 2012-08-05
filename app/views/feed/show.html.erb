@@ -11,7 +11,7 @@
 		<%end%>
 	</div>
 	
-	<ul class="rounded-3 border-box relative">
+	<ul class="rounded-5 border-box relative">
 
 	  <%if self.current_user.followings_count.zero?%>
 	  
@@ -37,7 +37,7 @@
 	      
 	        <%cache ["v6",user,"ifollower","feed"] do%>
 						<a href="<%=user_path(user.handle,:src => "feed")%>">
-							<li class="txt s">
+							<li class="txt m alias-smooth">
 								<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
 								<%=user.full_name%>
 							</li>
@@ -96,7 +96,7 @@
 	Your feed
 </div>
 
-<div id="feed" class="feed rounded-3 shaded relative">
+<div id="feed" class="feed rounded-5 shaded relative">
 </div> <!-- feed -->
 
 <div id="feed-spinner" class="feed-loading">

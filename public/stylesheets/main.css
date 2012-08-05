@@ -160,23 +160,23 @@ footer .like-button-box {
 
 .connections-box ul { 
 	overflow-y:hidden;	
-	padding: 14px 14px 6px;
+	padding: 12px 12px 4px;
 	background: url('/images/colors/black-15.png');
 /* 	box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px inset; */
 /* 	background: #393939; */ }
 
-.connections-box ul li.txt.s { 
+.connections-box ul li.txt { 
 	display: inline-block; 
 	margin-bottom: 8px;
 	width: 33.3%;
 	white-space: nowrap; }
 
-.connections-box ul li.pic.s { 
+.connections-box ul li.pic { 
 	display: inline-block; 
 	margin-bottom: 8px;
 	white-space: nowrap; }
 	
-.connections-box ul li.s .user-photo { margin-right: 4px; }
+.connections-box ul li .user-photo { margin-right: 4px; }
 
 .connections-box a { color: #ccc; }
 .connections-box a:hover { color: white; }
@@ -338,7 +338,7 @@ footer .like-button-box {
 
 .profile-box .user-box {
 	margin-top: 14px;
-	padding: 14px;
+	padding: 12px;
 	background: url('/images/colors/black-15.png');
 	margin-bottom: 4px; }
 	
@@ -347,8 +347,8 @@ footer .like-button-box {
 .profile-box .user-box .user-name {
 	width: 334px;
 	height: 24px;
-	top: 15px;
-	left: 74px;
+	top: 13px;
+	left: 72px;
 	font-size: 22px;
 	color: white;
 	font-weight: bold;
@@ -356,16 +356,16 @@ footer .like-button-box {
 	white-space: nowrap; }
 
 .profile-box .user-box .btn.follow {
-	top: 14px;
-	right: 14px;
+	top: 12px;
+	right: 12px;
 	width: 80px;
 /* 	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; */ }
 
 /* -- byline -- */
 
 .profile-box .user-box .bio-box { 
-	top: 46px;
-	left: 74px;
+	top: 44px;
+	left: 72px;
 	width: 438px;
 	height: 24px; }
 
@@ -386,7 +386,7 @@ footer .like-button-box {
 .profile-box .user-box .bio-box textarea:focus { color: white; }
 
 .profile-box .user-box .bio-box .btn { 
-	right: 6px;
+	right: 4px;
 	bottom: 8px;
 	width: 40px;
 	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; }
