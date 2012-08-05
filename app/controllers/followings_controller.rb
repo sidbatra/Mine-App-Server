@@ -33,6 +33,7 @@ class FollowingsController < ApplicationController
   def destroy
     @following = Following.find(params[:id])
     @following.remove if @following.follower_id == self.current_user.id
+    @following = nil
   rescue => ex
     handle_exception(ex)
   ensure

@@ -56,14 +56,14 @@ class ProductsController < ApplicationController
                 :inhouse    => [],
                 :google     => []}
 
-    sane_query = check_spelling(query)
+    sane_query = query #check_spelling(query)
     key = generate_cache_key(sane_query,page)
 
     unless fragment_exist? key
 
       hydra.queue search_google_shopping(sane_query,page,per_page)
-      hydra.queue search_web_images(sane_query,:medium,page,per_page)
-      hydra.queue search_web_images(sane_query,:large,page,per_page)
+      #hydra.queue search_web_images(sane_query,:medium,page,per_page)
+      #hydra.queue search_web_images(sane_query,:large,page,per_page)
       hydra.queue search_amazon_products(sane_query,page,per_page)
       hydra.run
 
