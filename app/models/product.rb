@@ -76,6 +76,9 @@ class Product < ActiveRecord::Base
              end
 
     [search.results,search.total]
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
+    [[],0]
   end
 
   # Public. Load crawled products from an S3 bucket and import tme
