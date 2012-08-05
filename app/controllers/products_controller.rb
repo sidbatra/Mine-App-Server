@@ -141,7 +141,9 @@ class ProductsController < ApplicationController
   #
   def search_amazon_products(query,page,per_page)
     amazon_url = AmazonProductSearch.fetch_products(query,page+1,true)
-    request = Typhoeus::Request.new(amazon_url)
+    request = Typhoeus::Request.new(amazon_url,
+                :connect_timeout => 1000,
+                :timeout => 3500)
 
     request.on_complete do |response| 
       begin
@@ -186,7 +188,9 @@ class ProductsController < ApplicationController
   def search_google_shopping(query,page,per_page)
     url = GoogleShopping.search_products(query,per_page,page+1,true)
 
-    request = Typhoeus::Request.new(url)
+    request = Typhoeus::Request.new(url,
+                :connect_timeout => 1000,
+                :timeout => 3000)
 
     request.on_complete do |response| 
       begin
@@ -230,7 +234,9 @@ class ProductsController < ApplicationController
   def search_itunes_apps(query,per_page)
     url = Itunes.search_apps(query,per_page,true)
 
-    request = Typhoeus::Request.new(url)
+    request = Typhoeus::Request.new(url,
+                :connect_timeout => 1000,
+                :timeout => 3000)
 
     request.on_complete do |response| 
       begin
