@@ -56,14 +56,14 @@ class ProductsController < ApplicationController
                 :inhouse    => [],
                 :google     => []}
 
-    sane_query = query #check_spelling(query)
+    sane_query = check_spelling(query)
     key = generate_cache_key(sane_query,page)
 
     unless fragment_exist? key
 
       hydra.queue search_google_shopping(sane_query,page,per_page)
-      #hydra.queue search_web_images(sane_query,:medium,page,per_page)
-      #hydra.queue search_web_images(sane_query,:large,page,per_page)
+      hydra.queue search_web_images(sane_query,:medium,page,per_page)
+      hydra.queue search_web_images(sane_query,:large,page,per_page)
       hydra.queue search_amazon_products(sane_query,page,per_page)
       hydra.run
 
@@ -90,10 +90,15 @@ class ProductsController < ApplicationController
     spellcheck_url = WebSearch.for_spelling(text,true)
 
     response = Typhoeus::Request.get(spellcheck_url,
+                :connect_timeout => 1000,
+                :timeout => 1500,
                 :username => "",
                 :password => CONFIG[:windows_azure_key]).body
-    response = JSON.parse(response)["d"]["results"]
-    text = response[0]["Value"] if response.present?
+
+    if response.present?
+      response = JSON.parse(response)["d"]["results"]
+      text = response[0]["Value"] if response.present?
+    end
   rescue => ex
       LoggedException.add(__FILE__,__method__,ex)
   ensure
@@ -136,7 +141,9 @@ class ProductsController < ApplicationController
   #
   def search_amazon_products(query,page,per_page)
     amazon_url = AmazonProductSearch.fetch_products(query,page+1,true)
-    request = Typhoeus::Request.new(amazon_url)
+    request = Typhoeus::Request.new(amazon_url,
+                :connect_timeout => 1000,
+                :timeout => 3500)
 
     request.on_complete do |response| 
       begin
@@ -181,7 +188,9 @@ class ProductsController < ApplicationController
   def search_google_shopping(query,page,per_page)
     url = GoogleShopping.search_products(query,per_page,page+1,true)
 
-    request = Typhoeus::Request.new(url)
+    request = Typhoeus::Request.new(url,
+                :connect_timeout => 1000,
+                :timeout => 3000)
 
     request.on_complete do |response| 
       begin
@@ -225,7 +234,9 @@ class ProductsController < ApplicationController
   def search_itunes_apps(query,per_page)
     url = Itunes.search_apps(query,per_page,true)
 
-    request = Typhoeus::Request.new(url)
+    request = Typhoeus::Request.new(url,
+                :connect_timeout => 1000,
+                :timeout => 3000)
 
     request.on_complete do |response| 
       begin
@@ -269,11 +280,15 @@ class ProductsController < ApplicationController
   def search_web_images(query,size,page,per_page)
     url = WebSearch.on_images(query,size,per_page,page*per_page,true)
     request = Typhoeus::Request.new(url,
+                :connect_timeout => 1000,
+                :timeout => 2500,
                 :username => "",
                 :password => CONFIG[:windows_azure_key])
 
     request.on_complete do |response| 
       begin
+        next unless response.body.present?
+
         web_search = JSON.parse(response.body)["d"]
         key = "web_" + size.to_s
 
@@ -311,6 +326,8 @@ class ProductsController < ApplicationController
     title = ""
 
     agent = Mechanize.new
+    agent.open_timeout = 6
+    agent.read_timeout = 6
     agent.user_agent_alias = 'Mac Safari'
     agent.get(URI.encode(query))
 
