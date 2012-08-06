@@ -46,6 +46,9 @@
 textarea.unresizable,
 input.unresizable { resize: none;}
 
+input[disabled='disabled'],
+textarea[disabled='disabled'] { background: #eee !important; }
+
 input.highlight-on-focus:focus,
 textarea.highlight-on-focus:focus {
 	background: #e6f7fd !important;
@@ -624,6 +627,10 @@ input.error:focus, textarea.error:focus {
 .typeahead.dropdown-menu {
 	width: 250px !important;
 	font-size: 14px; }
+
+.typeahead.dropdown-menu li { 
+	overflow: hidden;
+	white-space: nowrap; }
 
 
 /* Text Field Bootstrap Overrides
