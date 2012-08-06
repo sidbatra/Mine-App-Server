@@ -103,7 +103,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .header { 
-	height: 72px;
+	height: 84px;
 	padding-top: 24px !important; }
 .header.fixed { top: 0; }
 
@@ -126,7 +126,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .container {
 	width: 520px;
-	padding: 0 20px 80px;
+	padding: 0 20px 72px;
 	margin: 0 auto;
 	background: url('/images/colors/white-5.png'); }
 
@@ -198,6 +198,85 @@ footer .like-button-box {
 /* 	width: 520px; */
 	z-index: 2; }
 	
+	
+/* Creation 
+==================================================================== */
+
+.create-box {}
+.create-box.fixed { top: 72px; }
+
+.create-box input.enter { 
+	width: 446px;
+	margin-right: 6px; }
+               
+.create-box .btn.go { 
+	width: 68px;
+	vertical-align: top; }
+	
+.create-box .panel .store-name { 
+	width: 170px;
+	float: left; }
+
+.create-box .panel label {
+	line-height: 1; 
+	height: 13px;
+	float: left;
+	color: #666;
+	font-size: 13px; 
+	padding: 0 0 0 18px;
+	margin-left: 8px;
+	cursor: pointer;
+	opacity: 0.6;
+  filter: alpha(opacity=60); }
+
+.create-box .panel label:hover {
+	opacity: 1;
+  filter: alpha(opacity=100); }
+	
+.create-box .panel input.check {
+	top: 1px;
+	left: 0;
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0; }
+ 
+.create-box .panel .review-box { margin: 20px 0; }
+ 
+.create-box .panel .btn.add-review {
+	text-align: left;
+	padding-left: 12px;
+	background: #e2e2e2; 
+	font-weight: normal;
+	box-shadow: none;
+	color: #999;
+	display: block; }
+
+.create-box .panel .btn.add-review .icon-pencil {
+	opacity: 0.4;
+  filter: alpha(opacity=40); }
+  
+.create-box .panel .btn.add-review:hover { color: #666; }
+.create-box .panel .btn.add-review:hover .icon-pencil {
+	opacity: 0.8;
+  filter: alpha(opacity=80); }
+
+.create-box .panel .share-switches { font-size: 0; }
+  
+.create-box .panel .post-to {
+	font-weight: bold;
+	color: #666;
+	font-size: 15px;
+	height: 42px;
+	margin-bottom: 8px;
+	padding: 5px 5px 5px 12px;
+	line-height: 32px;
+	background: white; }
+
+	
+/* Item
+==================================================================== */
+	
 .item { background: white; }
 
 .item .photo-box {
@@ -209,9 +288,12 @@ footer .like-button-box {
 	text-align: center;
 	line-height: 1; }
 
-.item .photo-box .actions.top-right {
-	top: 24px;
-	right: 24px; }
+.item .photo-box .item-photo { max-height: 472px; }
+
+.item .photo-box .actions.top-left     { top: 24px; left: 24px;     }
+.item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
+.item .photo-box .actions.bottom-right { bottom: 24px; right: 24px; }
+.item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
 	
 .item .photo-box .like {
 	display: none;
@@ -321,14 +403,18 @@ footer .like-button-box {
 	font-weight: bold;
 	margin-bottom: 5px; }
 	
+.item .panel input,
+.item .panel textarea { 
+	background: white;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px inset; }
+	
 .item .panel .add-comment-box input {
 	width: 100%;
 	height: 28px;
 	border: none;
 	background: white;
 	padding-left: 35px;
-	margin-bottom: 0;
-	box-shadow: none; }
+	margin-bottom: 0; }
 
 
 /* Profile
@@ -358,8 +444,7 @@ footer .like-button-box {
 .profile-box .user-box .btn.follow {
 	top: 12px;
 	right: 12px;
-	width: 80px;
-/* 	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; */ }
+	width: 80px; }
 
 /* -- byline -- */
 
@@ -371,7 +456,7 @@ footer .like-button-box {
 
 .profile-box .user-box .bio-box textarea,
 .profile-box .user-box .bio-box .user-bio {
-	width: 388px;
+	width: 350px;
 	height: 24px;
 	line-height: 1;
 	background: none;
@@ -388,8 +473,7 @@ footer .like-button-box {
 .profile-box .user-box .bio-box .btn { 
 	right: 4px;
 	bottom: 8px;
-	width: 40px;
-	box-shadow: rgba(0, 0, 0, 0.15) 0px -2px 2px 0px inset; }
+	width: 40px; }
 
 /* -- profile cards -- */
                
@@ -451,36 +535,81 @@ footer .like-button-box {
 	padding-right: 11px;
 	background: url('/images/arrow-out-177DBE-s.png') center right no-repeat; }
 
-	
-/* Creation 
+
+/* Switch Toggle
 ==================================================================== */
 
-.create-box {}
-.create-box.fixed { top: 72px; }
+.create-box .panel a.toggle-switch {
+	position: relative;
+	float: right;
+	display: block;	
+	width: 75px;
+	height: 30px;
+	line-height: 30px;
+	background: white;
+  border: 1px solid #ccc;
+	border-bottom: 1px solid #bbb;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 11px;
+  color: #333 !important;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
 
-.create-box input.enter { 
-/* 	width: 322px; */
-	width: 446px;
-	height: 40px;
-	margin-right: 6px;
-	margin-bottom: 0;
-	padding: 0 10px;
-	border: 0;
-	background: #eee;
-	box-shadow: none;
-	-webkit-transition: width 0.2s ease-in-out;
-	-moz-transition: width 0.2s ease-in-out;
-	-o-transition: width 0.2s ease-in-out;
-	-ms-transition: width 0.2s ease-in-out;
-	transition: width 0.2s ease-in-out;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset; }
+.create-box .panel a.toggle-switch div.on,
+.create-box .panel a.toggle-switch div.off {
+	height: 30px; }
+  
+.create-box .panel a.toggle-switch div.on { 
+	display: block;
+	background: #177DBE;
+	color: white;
+	border: 1px solid transparent;
+	margin: -1px -1px 0 -1px;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15); }
 
-.create-box input.enter:focus { background: white; }
-               
-.create-box .btn.go { 
-	width: 68px;
-	vertical-align: top;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px -2px 2px 0px inset; }
+.create-box .panel a.toggle-switch div.off {
+	display: none;
+	background: #f5f5f5;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+
+.create-box .panel a.toggle-switch.off div.off { display: block; }
+.create-box .panel a.toggle-switch.off div.on { display: none; }   
+
+.create-box .panel a.toggle-switch .text { 
+	width: 42px;
+	text-align: center; }
+    
+.create-box .panel a.toggle-switch .knob { 
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #bbb;
+	margin-top: -1px;
+	box-sizing: border-box; 
+	width: 32px; }
+	
+.create-box .panel a.toggle-switch .knob .border {
+	width: 100%;
+	height: 100%;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+	
+.create-box .panel a.toggle-switch .on .text { float: left; }
+.create-box .panel a.toggle-switch .off .text { float: right; }
+
+.create-box .panel a.toggle-switch .on .knob {
+	float: right;
+	margin-right: -1px; }
+	
+.create-box .panel a.toggle-switch .off .knob { 
+	float: left;
+	margin-left: -1px; }
 	
 
 /* Chooser
@@ -496,7 +625,7 @@ footer .like-button-box {
 	text-align:left;
 	background: white;
 	padding-bottom:20px;
-	overflow: visible;
+	overflow: hidden;
 	z-index: 1050; }
 
 /*
@@ -526,10 +655,10 @@ footer .like-button-box {
  	background: #f2f2f2;
  	font-size: 0;
 	margin-top: 64px;
-	margin-bottom: 45px;
+	margin-bottom: 0px;
 	padding-top: 2px;
 	padding-left: 18px;
-	padding-bottom: 18px;
+	padding-bottom: 61px; /* 16 + 45 */
 	overflow-y: scroll;
 	text-align: center;
 	z-index: 1050; }
@@ -572,26 +701,13 @@ footer .like-button-box {
 
 .chooser .search-bar input.enter {
 	width: 446px;
-	height: 40px;
-	margin-right: 6px;
-	margin-bottom: 0;
-	padding: 0 10px;
-	border: 0;
-	background: #eee;
-	box-shadow: none;
-	-webkit-transition: width 0.2s ease-in-out;
-	-moz-transition: width 0.2s ease-in-out;
-	-o-transition: width 0.2s ease-in-out;
-	-ms-transition: width 0.2s ease-in-out;
-	transition: width 0.2s ease-in-out;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset; }
+	margin-right: 6px; }
 
 .chooser .search-bar input.enter:focus { background: white; }
 
 .chooser .search-bar .btn.go { 
 	width: 68px;
-	vertical-align: top;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px -2px 2px 0px inset; }
+	vertical-align: top; }
 		
 .chooser .search-bar .close {
 	color: white;

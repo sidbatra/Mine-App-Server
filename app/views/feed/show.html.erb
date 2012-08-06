@@ -3,7 +3,7 @@
 <%end%>
 
 <div class="unit-box connections-box border-box">
-	<div class="box-title relative" style="z-index: 0;">
+	<div class="box-title relative" style="margin-top: -6px;">
 		<%if self.current_user.followings_count.zero?%>
     	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
 		<%else%>
@@ -37,7 +37,7 @@
 	      
 	        <%cache ["v6",user,"ifollower","feed"] do%>
 						<a href="<%=user_path(user.handle,:src => "feed")%>">
-							<li class="txt m alias-smooth">
+							<li class="txt m">
 								<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
 								<%=user.full_name%>
 							</li>

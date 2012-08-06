@@ -2,33 +2,29 @@
   <%=render 'purchases/chooser'%> 
 <%end%>
 
-<div class="container border-box">
+<div id="creation" class="create-box">
+  <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
+        :html => {
+          :class  => 'form-horizontal',
+          :style  => 'margin-bottom: 0;',
+          :id     => 'edit_purchase'} do |f|%>
 
-	<div id="creation" class="create-box">
-    <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
-          :html => {
-            :class  => 'form-horizontal',
-            :style  => 'margin-bottom: 0;',
-            :id     => 'edit_purchase'} do |f|%>
-  
-      <%=render :partial  => 'input', 
-                :locals   => {
-                  :f                => f,
-                  :suggestion       => @suggestion,
-                  :submit_text      => "Save Changes",
-                  :show_cancel_button => true,
-                  :show_delete_button => true,
-                  :show_query_box   => false,
-                  :show_query_sub_box => false,
-                  :show_extra_steps => true,
-                  :show_fb_share => false,
-                  :show_tw_share => false,
-                  :show_tumblr_share => false}%>
-  
-		  <%end%> <!-- form -->
-	</div>  <!-- create-box -->
+    <%=render :partial  => 'input', 
+              :locals   => {
+                :f                => f,
+                :suggestion       => @suggestion,
+                :submit_text      => "Save",
+                :show_cancel_button => true,
+                :show_delete_button => true,
+                :show_query_box   => false,
+                :show_query_sub_box => false,
+                :show_extra_steps => true,
+                :show_fb_share => false,
+                :show_tw_share => false,
+                :show_tumblr_share => false}%>
 
-</div> <!-- container -->
+	  <%end%> <!-- form -->
+</div>  <!-- create-box -->
 
 <%content_for :javascript do%>
 
