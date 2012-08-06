@@ -16,7 +16,7 @@
 	  <%if self.current_user.followings_count.zero?%>
 	  
 	    <%cache ["v1",self.current_user,"contacts","feed"] do%>
-	      <%self.current_user.contacts.by_weight.limit(7).each do |contact|%>
+	      <%self.current_user.contacts.by_weight.limit(6).each do |contact|%>
 	        <%cache ["v5",contact,"invite","feed"] do%>
 	          <%=link_to "",
 	              new_invite_path(
@@ -33,7 +33,7 @@
 	  <%else%>
 	
 	    <%cache ["v3",self.current_user,"ifollowers","feed"] do%>
-	      <%self.current_user.ifollowers.limit(6).each do |user|%>
+	      <%self.current_user.ifollowers.limit(5).each do |user|%>
 	      
 	        <%cache ["v6",user,"ifollower","feed"] do%>
 						<a href="<%=user_path(user.handle,:src => "feed")%>">
@@ -49,11 +49,17 @@
 	
 	  <%end%> <!-- if followings_count.zero? -->
 	  
+	  <%=link_to "
+	  	<li class='txt m'>
+	  		<img src='/images/invite-icon-blue-2x.png' class='user-photo m shaded rounded-3'/>
+	  		Invite a friend
+	  	</li>",
+      new_invite_path(:src => "feed"),
+      :class => ""%>
+	  
   </ul>
 
-  <!--<#=link_to "Invite friends <i class='icon-chevron-right icon-white'></i>",
-      new_invite_path(:src => "feed"),
-      :class => "btn go-to-invite"%>-->
+
       
 </div> <!-- /connections-box -->  
 
