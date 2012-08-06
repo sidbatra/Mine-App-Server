@@ -295,6 +295,7 @@ footer .like-button-box {
 	padding-left: 12px;
 	background: #e2e2e2; 
 	font-weight: normal;
+	border: 0;
 	box-shadow: none;
 	color: #999;
 	display: block; }
