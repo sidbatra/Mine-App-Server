@@ -6,7 +6,7 @@
         :style => "float: right;"%>
   </div>
   
-  <div class="item-row-box border-box rounded-3 shaded" style="margin-bottom: 18px;">
+  <div class="item-row-box border-box rounded-5 shaded" style="margin-bottom: 18px;">
 
     <%cache ["v3",@purchase.user,"purchases","preview"] do%>
       <%@purchase.user.purchases.with_user.

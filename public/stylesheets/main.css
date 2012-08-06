@@ -474,7 +474,8 @@ footer .like-button-box {
 
 .item-row-box {
 	background: white;
-	padding: 14px; }
+	padding: 14px;
+	overflow: hidden; }
 	
 .item-row-box div.item { display: inline; }
 
