@@ -50,6 +50,9 @@ ul.txt.s li .user-photo { margin-right: 4px; }
   color: #999;
   font-weight: bold;
   text-transform: uppercase; }
+ 
+.box-title a { color: #ccc; }
+.box-title a:hover { color: white; }
 
 .wrapper {
 	min-height: 100%;
@@ -177,9 +180,6 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	padding: 0 20px 72px;
 	margin: 0 auto;
 	background: url('/images/colors/white-5.png'); }
-	
-.container a { color: #ccc; }
-.container a:hover { color: white; }
 
 footer { text-align: center; }
 
@@ -480,7 +480,7 @@ footer .like-button-box {
 .item-row-box div.item { display: inline; }
 
 .item-row-box div.item .item-photo {
-	width: 16.66%;
+	width: 12.5%;
 	height: auto; }
 
 
@@ -512,7 +512,8 @@ footer .like-button-box {
 .profile-box .user-box .btn.follow {
 	top: 12px;
 	right: 12px;
-	width: 80px; }
+	width: 80px;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2); }
 
 /* -- byline -- */
 
