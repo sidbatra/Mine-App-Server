@@ -124,6 +124,54 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	
 .header .btn-user .caret-box .caret { border-top: 4px solid #ccc; }
 
+/* -- dropdown -- */
+
+.header .btn-group.open .btn.dropdown-toggle { 
+	color: white;
+	-webkit-transition: none;
+	   -moz-transition: none;
+	     -o-transition: none;
+	        transition: none;
+	-webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none; }
+
+.header .dropdown-menu {
+	border: 0;
+	min-width: 120px;
+	background: #393939 !important;
+	z-index: 2;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none; }
+
+.header .dropdown-menu a {
+  display: block;
+  padding: 5px 10px;
+  clear: both;
+  font-weight: normal;
+  line-height: 18px;
+  color: #ccc;
+  white-space: nowrap;
+  -webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none; }
+
+.header .dropdown-menu li > a:hover,
+.header .dropdown-menu li > a:focus,
+.header .dropdown-menu .active > a,
+.header .dropdown-menu .active > a:hover {
+  color: white;
+  text-decoration: none;
+  background: none !important; 
+  -webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none; }
+	
+/* -- container -- */
+
 .container {
 	width: 520px;
 	padding: 0 20px 72px;
