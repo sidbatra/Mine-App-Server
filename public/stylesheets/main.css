@@ -177,6 +177,9 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	padding: 0 20px 72px;
 	margin: 0 auto;
 	background: url('/images/colors/white-5.png'); }
+	
+.container a { color: #ccc; }
+.container a:hover { color: white; }
 
 footer { text-align: center; }
 
@@ -209,6 +212,7 @@ footer .like-button-box {
 	overflow-y:hidden;	
 	padding: 12px 12px 4px;
 	background: url('/images/colors/black-15.png');
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px inset;
 /* 	box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px inset; */
 /* 	background: #393939; */ }
 
@@ -227,7 +231,7 @@ footer .like-button-box {
 
 .connections-box a { color: #ccc; }
 .connections-box a:hover { color: white; }
-.connections-box a img { opacity: 0.8; }
+.connections-box a img { opacity: 0.9; }
 .connections-box a:hover img { opacity: 1; }
 
 
@@ -237,7 +241,7 @@ footer .like-button-box {
 .feed-title {}	
 
 .feed-loading { 
-	background: url('/images/loading/loading-snake-FFF-fast.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-333-fast.gif') center no-repeat;
 	height: 80px; }
 	
 .feed { 
@@ -344,7 +348,7 @@ footer .like-button-box {
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
 	
 .item .photo-box .like {
-/* 	display: none; */
+	display: none;
 	padding: 10px 16px 13px;
 	background: #eee;
 	bottom: 32px;
@@ -465,6 +469,20 @@ footer .like-button-box {
 	margin-bottom: 0; }
 
 
+/* Logged-in item
+==================================================================== */
+
+.item-row-box {
+	background: white;
+	padding: 14px; }
+	
+.item-row-box div.item { display: inline; }
+
+.item-row-box div.item .item-photo {
+	width: 16.66%;
+	height: auto; }
+
+
 /* Profile
 ==================================================================== */
 
@@ -474,6 +492,7 @@ footer .like-button-box {
 	margin-top: 14px;
 	padding: 12px;
 	background: url('/images/colors/black-15.png');
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px inset;
 	margin-bottom: 4px; }
 	
 .profile-box .user-box .user-photo { margin-right: 9px; }

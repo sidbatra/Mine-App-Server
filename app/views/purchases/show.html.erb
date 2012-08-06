@@ -12,17 +12,12 @@
               :image        => @purchase_presenter.square_url,
               :store        => @purchase.store}%>
 <%end%>
-
-
-<div class="container border-box">
 	
-	<%if logged_in?%>
-    <%=render "purchases/show/logged_in"%>
-  <%else%>
-    <%=render "purchases/show/logged_out"%>
-  <%end%>
-
-</div> <!-- /container -->
+<%if logged_in?%>
+  <%=render "purchases/show/logged_in"%>
+<%else%>
+  <%=render "purchases/show/logged_out"%>
+<%end%>
 
 
 

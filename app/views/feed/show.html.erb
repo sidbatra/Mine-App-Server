@@ -7,7 +7,8 @@
 		<%if self.current_user.followings_count.zero?%>
     	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
 		<%else%>
-			You're following (48)
+			You're following (48) 
+			<a href="/" style="float: right;">View all</a>
 		<%end%>
 	</div>
 	
@@ -102,11 +103,13 @@
 	Your feed
 </div>
 
-<div id="feed" class="feed rounded-5 shaded relative">
-</div> <!-- feed -->
-
-<div id="feed-spinner" class="feed-loading">
-</div> 
+<div class="feed-container rounded-5" style="background: #eee;">
+	<div id="feed" class="feed rounded-5 shaded relative">
+	</div> <!-- feed -->
+	
+	<div id="feed-spinner" class="feed-loading">
+	</div> 
+</div>
 
 
 <%content_for :javascript do%>
