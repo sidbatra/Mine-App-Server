@@ -343,11 +343,11 @@ footer .like-button-box {
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
 	
 .item .photo-box .like {
-	display: none;
-	padding: 6px 26px 10px;
+/* 	display: none; */
+	padding: 10px 16px 13px;
 	background: #eee;
-	bottom: 24px;
-	left: 24px; 
+	bottom: 32px;
+	left: 32px; 
 	border-bottom: 1px solid #ccc;}
 
 .item .photo-box .like .thumb {
