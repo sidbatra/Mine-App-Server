@@ -256,8 +256,13 @@ footer .like-button-box {
 .create-box {}
 .create-box.fixed { top: 72px; }
 
+.create-box .well-box {
+	padding: 12px;
+	background: url('/images/colors/black-15.png');
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px inset; }
+
 .create-box input.enter { 
-	width: 446px;
+	width: 422px;
 	margin-right: 6px; }
                
 .create-box .btn.go { 

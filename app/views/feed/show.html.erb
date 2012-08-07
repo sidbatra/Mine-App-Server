@@ -68,33 +68,35 @@
 	<div class="box-title">
 		Add a new purchase
 	</div>
-  <%form_for Purchase.new,
-      :html => {
-        :class => "form-horizontal",
-        :style => "margin-bottom: 0;"} do |f|%>   
-     
-	  <!--<div id="suggestions" 
-          class="suggestions-box relative hide-on-mobile" 
-          style="display:none">
-		</div> <!-- /suggestions -->
-	  
-      <%=render :partial => 'purchases/input', 
-          :locals => {
-            :f => f,
-            :suggestion => nil,
-            :submit_text => "Add to mine",
-            :show_cancel_button => false,
-            :show_delete_button => false,
-            :show_query_box => true,
-            :show_query_sub_box => true,
-            :show_extra_steps => false,
-            :show_fb_share => true,
-            :show_tw_share => true,
-            :show_tumblr_share => true,
-            :fb_share_on => self.current_user.setting.post_to_timeline?,
-            :tw_share_on => self.current_user.setting.post_to_twitter?,
-            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
-  <%end%> <!-- /form --> 
+	<div class="well-box rounded-5">
+	  <%form_for Purchase.new,
+	      :html => {
+	        :class => "form-horizontal",
+	        :style => "margin-bottom: 0;"} do |f|%>   
+	     
+		  <!--<div id="suggestions" 
+	          class="suggestions-box relative hide-on-mobile" 
+	          style="display:none">
+			</div> <!-- /suggestions -->
+		  
+	      <%=render :partial => 'purchases/input', 
+	          :locals => {
+	            :f => f,
+	            :suggestion => nil,
+	            :submit_text => "Add to mine",
+	            :show_cancel_button => false,
+	            :show_delete_button => false,
+	            :show_query_box => true,
+	            :show_query_sub_box => true,
+	            :show_extra_steps => false,
+	            :show_fb_share => true,
+	            :show_tw_share => true,
+	            :show_tumblr_share => true,
+	            :fb_share_on => self.current_user.setting.post_to_timeline?,
+	            :tw_share_on => self.current_user.setting.post_to_twitter?,
+	            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+	  <%end%> <!-- /form --> 
+  </div>
 
 </div> <!-- create-box -->
 
