@@ -1,0 +1,3 @@
+<%-cache @key,:expires_in => 30.minutes do-%>
+  <%=@stores.to_json(:only => [:id,:name,:domain])-%>
+<%-end-%>

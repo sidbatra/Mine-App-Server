@@ -40,7 +40,7 @@ class StoresController < ApplicationController
   # Fetch all stores for the :all aspect on the index route
   #
   def all
-    @key = "v1/stores/all"
+    @key = "v2/stores/all"
     @stores = Store.select(:id,:name,:domain) unless fragment_exist? @key
   end
   

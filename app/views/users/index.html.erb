@@ -1,1 +1,15 @@
-All my lovely <%=@aspect%> show up here
+<div class="container profile border-box">
+
+  All my lovely <%=@aspect%> show up here
+
+  <br>
+  <br>
+
+
+  <%@users.each do |user|%>
+    <%=image_tag user.square_image_url%>
+    <%=link_to user.full_name,user_path(user.handle,:src => @aspect)%>
+    <br/>
+  <%end%>
+
+</div>

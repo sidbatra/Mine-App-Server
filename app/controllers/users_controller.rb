@@ -71,12 +71,16 @@ class UsersController < ApplicationController
       @key = ["v1",purchase,@users.map(&:updated_at).max.to_i, "likers"]
 
     when :followers
-      user = User.find params[:user_id]
+      user = params[:handle] ? 
+              User.find_by_handle(params[:handle]) :
+              User.find(params[:user_id])
       @users = user.followers
       @key = ["v1",user,@users.map(&:updated_at).max.to_i, "followers"]
 
     when :ifollowers
-      user = User.find params[:user_id]
+      user = params[:handle] ? 
+              User.find_by_handle(params[:handle]) :
+              User.find(params[:user_id])
       @users = user.ifollowers
       @key = ["v1",user,@users.map(&:updated_at).max.to_i, "ifollowers"]
     end
