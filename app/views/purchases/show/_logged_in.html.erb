@@ -3,6 +3,7 @@
   	Recently purchased by <%=@purchase.user.first_name%>
 	  <%=link_to "View all",
         user_path(@purchase.user.handle,:src => 'gallery'), 
+        :class => "dark",
         :style => "float: right;"%>
   </div>
   

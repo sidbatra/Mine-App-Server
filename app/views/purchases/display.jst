@@ -43,7 +43,7 @@
 		      <img class="user-photo xl rounded-3 absolute" src="<%=purchase.get('user').get('square_image_url')%>" />
 		    </a>
 		
-		    <a class="em" 
+		    <a class="em light underlined" 
 		        href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
 		        <%=purchase.get('user').escape('first_name')%>   
 		        <%=purchase.get('user').escape('last_name')%></a> 
@@ -54,7 +54,7 @@
 		      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
 		    <%}%>
 		
-		    <a href="<%=purchase.get('source_url')%>" class="em link-out" target="_blank"><%=purchase.escape('title')%></a> 
+		    <a href="<%=purchase.get('source_url')%>" class="em light underlined link-out" target="_blank"><%=purchase.escape('title')%></a> 
 		
 		    <%if(purchase.get('store')){%>
 		      from <%=purchase.get('store').escape('name')%>

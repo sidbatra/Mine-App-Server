@@ -7,6 +7,7 @@ html, body { height: 100%; }
 
 body { 
 	background: #444;
+	background: #2f2f2f;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
@@ -21,6 +22,15 @@ a {
 a:hover { text-decoration: none; }
 
 a:focus { outline: none; }
+
+a.dark       { color: #ccc;  }
+a.dark:hover { color: white; }
+
+a.light       { color: #177DBE; }
+a.light:hover { color: #105e90; }
+
+a.dark.underlined  { border-bottom: 1px dotted #ccc;    }
+a.light.underlined { border-bottom: 1px dotted #177DBE; }
 	
 ul, ol { 
 	margin: 0;
@@ -50,9 +60,6 @@ ul.txt.s li .user-photo { margin-right: 4px; }
   color: #999;
   font-weight: bold;
   text-transform: uppercase; }
- 
-.box-title a { color: #ccc; }
-.box-title a:hover { color: white; }
 
 .wrapper {
 	min-height: 100%;
@@ -177,7 +184,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .container {
 	width: 520px;
-	padding: 0 20px 72px;
+	padding: 0 20px 64px;
 	margin: 0 auto;
 	background: url('/images/colors/white-5.png'); }
 
@@ -390,6 +397,7 @@ footer .like-button-box {
 	padding-left: 50px;
 	margin-top: -3px; }
 
+/*
 .item .panel .title-box a { 
 	color: #555;
 	color: #099CDE;
@@ -398,6 +406,7 @@ footer .like-button-box {
 	border-bottom: 1px dotted #177DBE; }
 	
 .item .panel .title-box a:hover { color: #105e90; }
+*/
 .item .panel .title-box a.link-out { 
 	padding-right: 13px;
 	background: url('/images/arrow-out-177DBE-l.png') center right no-repeat; }
@@ -596,15 +605,7 @@ footer .like-button-box {
 	content: ""; }
 
 .card .panel .title-box { color: #555; }
-.card .panel .title-box a { 
-	color: #555;
-	color: #099CDE;
-	color: #177DBE;
-	border-bottom: 1px dotted #999; 
-	border-bottom: 1px dotted #177DBE; }
 
-.card .panel .title-box a:hover { color: #105e90; }
-	
 .card .panel .title-box a.link-out { 
 	padding-right: 11px;
 	background: url('/images/arrow-out-177DBE-s.png') center right no-repeat; }
@@ -735,7 +736,8 @@ footer .like-button-box {
 	padding-bottom: 61px; /* 16 + 45 */
 	overflow-y: scroll;
 	text-align: center;
-	z-index: 1050; }
+	z-index: 1050;
+	-webkit-overflow-scrolling: touch; }
 	
 .results, .chooser { *zoom: 1; }
 

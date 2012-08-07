@@ -1,10 +1,59 @@
-    <%content_for :footer_attribute do%>
-      class="dark"
-    <%end%>
+  <%content_for :footer_attribute do%>
+    class="dark"
+  <%end%>
+  
+		<!--
+    <div class="dimmer fourty">
+    </div>
+		-->
+      
+  <div class="header unit-box border-box">
+  
+  	<%=link_to image_tag("logos/mine-h-white-48-2x.png", :class => "logo absolute"),
+      	root_path(:src => "purchase")%>
+      	
+    <a href="<%=fb_auth_path(:src => @origin)%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook relative"
+        style="float: right; width: 122px;">
+      <span class='hide-when-loading'>
+        <%=image_tag "social/f-box.png",
+        		:class => "f-box"%>
+        Join now
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a> 	
+      	
+	</div> <!-- /header -->
+	
+	<div class="profile-box" style="margin-top: -12px; margin-bottom: 18px;">	
+		<div class="user-box border-box rounded-5 alias-smooth relative">
+		
+			<img alt="Picture?type=square" 
+				class="user-photo xxl rounded-3" 
+				src="<%=image_path @purchase.user.square_image_url%>"/>
+		  
+			<div class="user-name absolute">
+				Follow <%=h @purchase.user.full_name%>
+			</div>
+			
+			<div class="bio-box absolute">
+				<div class="user-bio txt m border-box">
+	      	<%="#{user_singular_pronoun(@purchase.user).capitalize}'s"-%> sharing things 
+	      	<%=user_singular_pronoun(@purchase.user)%> buys on mine. <a href="/" class="dark underlined">Learn more</a>
+	      </div>
+	    </div>
+		
+			<div id="follow-box">
+		  	<a class="btn follow shaded absolute rounded-3" href="javascript:void(0)" id="">
+		    	<span class="hide-when-loading">Follow</span>
+		    	<i class="icon-loading icon-white"></i>
+		  	</a>
+			</div>
+		       
+		</div> <!--/user-box-->
+	</div> <!--/profile-box-->	
 
-    <div class="logged-out">
-      <div class="dimmer fifty">
-      </div>
     
       <!--<#=unless is_phone_device?%>
         <div class="background-cover"
@@ -41,58 +90,12 @@
         </a>
               
       </div> </logged-out-item-header -->   
+      
+      
+			
 
-
-      <div id="feed" class="feed rounded-5 shaded relative">
+      <div id="feed" class="feed logged-out rounded-5 shaded relative">
       </div>
-
-      <div class="item rounded-5">
-      
-        <div class="panel">
-          <div class="panel-contents rounded-5 relative">
             
-            
-            
-            
-            <div class="thumbnail-box">
-            
-              <div class="sub">
-                Know <%=h @purchase.user.first_name%>?
-
-                <%=link_to "Log in",
-                    fb_auth_path(:src => @origin)%> 
-
-                to view <%=user_pronoun @purchase.user%> <span class="mine">mine</span>.
-              </div>
-            
-            </div> <!--/thumbnail-box -->
-            
-
-            <div class="marketing-box">
-              <div class="bubble rounded-5 shaded">
-                <p>
-                  <%=h @purchase.user.first_name%> uses 
-                  <span class="mine"><%=CONFIG[:name].downcase%></span> 
-                  to tell friends when <%=user_singular_pronoun @purchase.user%> buys
-                  something they might like.
-                </p>
-                <p>
-                  <%=user_singular_pronoun(@purchase.user).capitalize%> can share with 
-                  select <span class="mine"><%=CONFIG[:name].downcase%></span> friends 
-                  or to Facebook, Twitter or Tumblr.
-                </p>
-                <p>
-                  <span class="mine"><%=CONFIG[:name].downcase%></span> <em>never</em> auto-shares.
-                </p>
-              </div>
-            </div> <!-- /marketing-box -->
-
           
-          </div> <!-- /panel-contents -->
-      
-        </div> <!-- /panel -->
-      
-      </div> <!-- /item -->
     
-    </div> <!-- /logged-out -->
-

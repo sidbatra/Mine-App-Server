@@ -281,6 +281,8 @@ input.error:focus, textarea.error:focus {
   color: white;
   text-align: center;
   vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
   cursor: pointer;
   background: #177DBE url(/images/alert-overlay.png) repeat-x;
   -webkit-border-radius: 3px;
@@ -398,8 +400,8 @@ input.error:focus, textarea.error:focus {
 	opacity: 0.75;
   filter: alpha(opacity=75); }
 
-.btn.btn-facebook { background: #3B5998; }
-.btn.btn-facebook:hover { background: #1F4696; }
+.btn.btn-facebook { background-color: #3B5998; }
+.btn.btn-facebook:hover { background-color: #1F4696; }
 
 .btn img.f-box {
 	height: 16px; 
@@ -411,7 +413,7 @@ input.error:focus, textarea.error:focus {
 	height: 20px; 
 	vertical-align: -4px; 
 	padding-right: 6px; 
-	margin-left: -12px; }
+	margin-left: -6px; }
 
 .btn.checklist .icon-ok { display:none; }
 
@@ -478,6 +480,9 @@ input.error:focus, textarea.error:focus {
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #a6321d; }	
 
+.btn-facebook.pushed, .btn-facebook.pushed:hover,
+.btn-facebook.load, .btn-facebook.load:hover { background: #1F4696; }	
+
 .btn-green.pushed, .btn-green.pushed:hover,
 .btn-green.load, .btn-green.load:hover  { background-color: #248949; }
 
@@ -504,14 +509,13 @@ input.error:focus, textarea.error:focus {
 	background: url("/images/loading-blocks-white-trans.gif");
 	background: url("/images/loading/loading-snake-FFF-177DBE.gif"); }
 	
-.btn-gray .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-888.gif"); }
-.btn-red .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
-.btn-green .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-248949.gif"); }
+.btn-gray  .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-888.gif"); }
+.btn-red 	 .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
+.btn-green .icon-loading.icon-white 	 { background: url("/images/loading/loading-snake-FFF-248949.gif"); }
+.btn-facebook .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-1F4696.gif"); }
 	
 .load .icon-loading { display: inline-block; }
 .load .hide-when-loading { display: none; }
-
-
 
 
 /* ----- btn groups & dropdowns -----*/
