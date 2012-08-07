@@ -40,70 +40,22 @@
 	        </div>
         </a>
               
-      </div> /logged-out-item-header -->   
+      </div> </logged-out-item-header -->   
+
+
+      <div id="feed" class="feed rounded-5 shaded relative">
+      </div>
 
       <div class="item rounded-5">
       
-        <div class="photo-box relative">
-        
-          <%=image_tag @purchase.giant_url,
-              :class => "item-photo"%>
-              
-        </div>
-
         <div class="panel">
           <div class="panel-contents rounded-5 relative">
-            
-            
-            <b class="caret absolute opaque"></b>
-
-            
-            <!-- title-box -->
-            <div class="title-box relative border-box">
-
-              <%=image_tag @purchase.user.square_image_url,
-                  :class => "user-photo rounded-3"%>
-
-              <span class="em">
-                <%=truncate h(@purchase.user.full_name),:length => 28%>
-              </span> 
-
-              bought <%=user_pronoun @purchase.user%>
-
-              <span class="em">
-                <%=truncate h(@purchase.title),:length => 50%>
-              </span> 
-
-              <%if @purchase.store%>
-                from 
-                <span class="em">
-                  <%=truncate h(@purchase.store.name),:length => 28%>
-                </span> 
-              <%end%>
-            </div> <!-- /title-box -->
-            
-            
-            
             
             
             
             
             <div class="thumbnail-box">
             
-              <%if @purchase.user.purchases_count > 1%>
-                <h5><%=h @purchase.user.first_name%> also bought:</h5>
-
-                <%cache ["v2",@purchase.user,"purchases","preview","loggedout"] do%>
-                  <%@purchase.user.purchases.by_id.limit(14).each do |purchase|%>
-                    <%cache ["v2",purchase,"teaser","purchase","loggedout"] do%>
-                      <div class="thumb rounded-3">
-                        <%=image_tag purchase.square_url%>
-                      </div>
-                    <%end%>
-                  <%end%>
-                <%end%>
-              <%end%>
-              
               <div class="sub">
                 Know <%=h @purchase.user.first_name%>?
 
@@ -143,12 +95,4 @@
       </div> <!-- /item -->
     
     </div> <!-- /logged-out -->
-
-
-    <%content_for :javascript do%>
-      <script type="text/javascript">
-        new Denwen.Views.Purchases.Show({
-            source : '<%=@source%>'});
-      </script>
-    <%end%>
 

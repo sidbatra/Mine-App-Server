@@ -21,4 +21,11 @@
 
 
 
-
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Purchases.Show({
+        purchaseJSON : <%=render :partial => "purchases/display.json.erb",
+                            :locals => {:object => @purchase}%>,
+        source : '<%=@source%>'});
+  </script>
+<%end%>
