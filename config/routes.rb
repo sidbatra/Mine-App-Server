@@ -123,6 +123,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :settings,
     :only => [:index,:update,:show]
 
+  map.resource :status,
+    :controller => :status,
+    :only => [:show]
+
 
   ##
   # Routes for static pages
