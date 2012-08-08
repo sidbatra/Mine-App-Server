@@ -122,6 +122,7 @@ class ProductsController < ApplicationController
                             page+1,
                             per_page).first.map do |product|
 
+                           #TODO: Optimize for @mobile
                            product_search_hash(
                              product.thumbnail_url,
                              product.image_url,
