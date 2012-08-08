@@ -23,24 +23,30 @@
     :media: nil}]
   },
   {
-  :token: 158595960-hIOCkVpoyRAbQl6y2QgdDjYnkpGwEPOnWczk5HPA,
-  :secret: B9cTjc6HZ0Pso03d1LVzEhDBYOYqNzMxoernFcY9zg,
-  :handle: dpkrao,
+  :token: 47768007-7XQd75EMujlsSuQKuRJM3Z42WLrDMqokmBmTpxErM,
+  :secret: 4xRejd9aI19linUrN5RIUCutKnNpbxiniqjwQEmL6w,
+  :handle: rebeccasuperpet,
   :templates: [
     {
-    :tweet: "@name looks great! On Mine (http://getmine.com/try) you can tweet pics of what you bought. Try it out!",
+    :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "@name pretty cool :) Have you used 'Mine' (http://getmine.com/try) for tweeting pics of what you bought?",
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "Hey @name saw ur tweet. Looks cool! Have you ever posted what you buy on Mine? http://getmine.com/try",
+    :tweet: "That is so neat - @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought?",
     :media: nil},
     {
-    :tweet: "@name looks awesome! Try Mine (http://getmine.com/try) for tweeting pics of what you bought. You'd love it!",
+    :tweet: "Love it! @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought? Try it!",
     :media: nil},
     {
-    :tweet: "Hey @name saw ur tweet. I'm building a site for tweeting purchases. You'll love it! http://getmine.com/try",
+    :tweet: "Want! Where can I buy that? @name You should start a Mine account for stuff you buy! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "@name Did you get it on sale? Btw you might like http://getmine.com/try for tweeting stuff you've bought!",
+    :media: nil},
+    {
+    :tweet: "Wow that's neat. @name you should try posting on http://getmine.com/try for tweeting what you just bought!",
     :media: nil}]
   },
   {
