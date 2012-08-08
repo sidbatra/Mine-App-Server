@@ -5,16 +5,28 @@
 	    <%=link_to image_tag("logos/mine-h-white-48-2x.png", :class => "logo absolute"),
 	        root_path(:src => "bar")%>
 	      
-     	<div class="btn-group" style="float: right;">
+     	<div class="btn-group unselectable well-box border-box rounded-5" style="padding: 6px; float: right;">
 
-		    <a class="btn-user dropdown-toggle relative opacity-90-100 pointer" 
-		      style="padding: 0; border: 0;" 
-		      data-toggle="dropdown">
-		      <div class="caret-box border-box absolute rounded-3-bottom">
-		      	<b class="caret opaque"></b>
-		      </div>
+		    <a class="btn-user relative pointer txt m dark" 
+		      style="float: left; padding: 0; border: 0; margin-right: 6px;">
 		      <%=image_tag self.current_user.square_image_url,
-                :class => "user-photo xl rounded-3 shaded"%>		      	
+                :class => "user-photo m rounded-3 shaded",
+                :style => "margin-right: 2px;"%>
+         <%=h self.current_user.full_name%>		      	
+		    </a>
+		    
+		    <%=link_to "<img style='height: 14px;' src='/images/icons/icon-home-14-2x-white.png'/>", 
+                root_path(:src => "bar-icon"),
+                :class => "border-box opacity-80-100", 
+                :style => "height: 28px; padding: 6px 7px 8px; float: left;"%>
+        
+        
+        <a class="dropdown-toggle border-box pointer" 
+		      style="width: 28px; height: 28px; padding: 11px 8px; float: right;" 
+		      data-toggle="dropdown">
+		      
+					<b class="caret opaque"></b>  
+					   	
 		    </a>
 		
 		    <ul class="dropdown-menu pull-right rounded-3">
@@ -28,3 +40,9 @@
 	</div> <!-- /header -->
     
 <%end%>
+
+<!--
+<div class="caret-box border-box absolute rounded-3-bottom">
+	<b class="caret opaque"></b>
+</div>
+-->
