@@ -341,10 +341,7 @@ input.error:focus, textarea.error:focus {
   height: 40px;
   font-size: 15px;
   line-height: 40px;
-  line-height: 38px\0/ !important;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px; }
+  line-height: 38px\0/ !important; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
 .btn-large [class^="icon-"] { margin-top: 2px; }
@@ -484,8 +481,13 @@ input.error:focus, textarea.error:focus {
 	background: #105E90; 
 	cursor: default; 
 	box-shadow: none;
+	border-bottom: none;
 	-moz-box-shadow: none;
-	-webkit-box-shadow: none; }
+	-webkit-box-shadow: none;
+	-webkit-transition: none;
+	   -moz-transition: none;
+	     -o-transition: none;
+	        transition: none; }
 
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #a6321d; }	

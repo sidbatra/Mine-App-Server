@@ -106,7 +106,7 @@
 	      </div> <!-- /review-box -->
 			  
 		    <%if show_fb_share%>
-		      <div class="post-to border-box rounded-5">
+		      <div class="post-to border-box rounded-5" style="margin-bottom: 8px;">
 		        Facebook
 	          <a id="fb-photo-toggle-switch" 
 	              class="toggle-switch unselectable rounded-5 <%='off' if !fb_share_on%>">
@@ -132,7 +132,7 @@
 		    <%end%>
 
 		    <%if show_tw_share%>
-		      <div class="post-to border-box rounded-5">
+		      <div class="post-to border-box rounded-5" style="margin-bottom: 8px;">
 		        Twitter
 	          <a id="tw-share-toggle-switch" 
 	              class="toggle-switch unselectable rounded-5 <%='off' if !tw_share_on%>">
@@ -185,7 +185,7 @@
 		
 				<button id="submit-button" 
 	          type="submit" 
-	          class="btn btn-large btn-red border-box"
+	          class="btn btn-large btn-red border-box shaded"
 	          style="width: 100%; margin-top: 20px;">
 	          <span class="hide-when-loading">
 							<%=submit_text%>
@@ -194,7 +194,7 @@
 				</button> <!-- submit -->
 				
 		    <%=link_to "Cancel", :back, 
-		        :class => "btn btn-large btn-gray border-box",
+		        :class => "btn btn-large btn-gray rounded-5 border-box",
 		        :style => "width: 100%; margin-top: 12px;" if show_cancel_button%>
 		                          
 			</div> <!-- /panel-contents -->                          
