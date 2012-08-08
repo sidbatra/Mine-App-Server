@@ -380,15 +380,16 @@ footer .like-button-box {
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
 	
 .item .photo-box .like {
-/* 	display: none; */
 	padding-left: 16px;
 	padding-right: 16px;
-/* 	padding: 10px 16px 13px; */
-/* 	background: #eee; */
 	bottom: 32px;
 	left: 32px; }
 	
-.like.btn.pushed, .like.btn-pushed:hover { background: #ccc !important;} 
+.like.btn.pushed, .like.btn-pushed:hover { background: #ccc; } 
+
+.like.btn .icon-ok        { display: none;  } 
+.like.btn.pushed .icon-ok { display: block; margin-top: 9px; } 
+.like.btn.pushed .thumb   { display: none;  } 
 
 .item .photo-box .like .thumb {
 	margin-top: -3px;
