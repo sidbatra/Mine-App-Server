@@ -6,8 +6,7 @@
 html, body { height: 100%; }
 
 body { 
-	background: #444;
-	background: url('/images/backgrounds/flowers.jpeg') center fixed ;
+	background: #333 url('/images/backgrounds/flowers.jpeg') fixed ;
 /* 	background: url('/images/backgrounds/rainbow.jpeg') fixed; */
 	font-size: 0;
 	line-height: 1;
@@ -217,7 +216,7 @@ footer .like-button-box {
 .well-box {
 	padding: 12px;
 	background: #393939;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px 0px inset; }
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); }
 
 .connections-box {}
 .connections-box.fixed { top: 159px; }
@@ -256,11 +255,11 @@ footer .like-button-box {
 .feed-title {}	
 
 .feed-loading.light { 
-	background: url('/images/loading/loading-snake-333-fast.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-333-FFF.gif') center no-repeat;
 	height: 80px; }
 
 .feed-loading.dark { 
-	background: url('/images/loading/loading-snake-FFF-393939-fast.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-FFF-393939.gif') center no-repeat;
 	height: 80px; }
 	
 .feed { 
@@ -518,8 +517,7 @@ footer .like-button-box {
 .profile-box .user-box .btn.follow {
 	top: 12px;
 	right: 12px;
-	width: 80px;
-	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2); }
+	width: 80px; }
 
 /* -- byline -- */
 
