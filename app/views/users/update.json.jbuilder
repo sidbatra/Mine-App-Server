@@ -1,1 +1,1 @@
-json.partial! 'userfull', :user => @user, :setting => true
+json.partial! 'userfull', :user => @user, :setting => true, :sensitive => true
