@@ -1,65 +1,57 @@
-<div class="container">
-  <div class="col">
-    &nbsp;
-  </div>
-	<div class="col-triple settings">
-			<div class="item">
+<div class="box-title">
+	Notification settings
+</div>
 
-				 <%form_for @settings,:url => "/settings/#{@settings.id}",
-		      :html => {
-		        :class  => 'form-horizontal',
-		        :id     => 'edit_setting'} do |f|%>
-		      
-		      <fieldset>
-		
-						<!-- Notifications -->
-            <h4 style="font-size: 15px; margin-bottom: 18px;">
-              Notifications
-            </h4>
-						
-						<div class="control-group">
-							<label class="control-label" style="width: 80px;">
-                Friends
-              </label>
-							<div class="controls" style="margin-left: 100px;">
-						    <%=f.label :email_influencer,
-                    "#{f.check_box :email_influencer} Email me "\
-                    "when a friend joins mine, or likes or comments on my items, and a weekly digest of friend purchases",
+<div class="well-box border-box rounded-5" style="padding: 18px;">
 
-                    :class => "checkbox"%>
-					    </div>              
-						</div>
-						
-						<div class="control-group">
-							<label class="control-label" style="width: 80px;">
-                Updates
-              </label>
-							<div class="controls" style="margin-left: 100px;">
-						    <%=f.label :email_update,
-                    "#{f.check_box :email_update} Email me feature "\
-                    "updates and reminders",
-                    :class => "checkbox"%>
-					    </div>              
-				    </div>
-						<!-- /Notifications -->
-
-				    <div class="form-actions" 
-                  style="border-top:none; padding-left: 100px; 
-                          background: none;
-                          padding-bottom: 0px;">
-				    	<%=submit_tag "Save Changes",
-					                  :class  => 'btn btn-mid',
-					                  :name   => nil%>
-				    </div>
-			    
-			    </fieldset>
-			                          
-			  <%end%> <!-- /form -->
-			 			  
-		  </div> <!-- /item -->
-	 	</div> <!-- /col-triple -->
-</div> <!-- /container -->
-
+	 <%form_for @settings,:url => "/settings/#{@settings.id}",
+	  :html => {
+	    :class  => 'form-horizontal',
+	    :style  => 'margin-bottom: 0;',
+	    :id     => 'edit_setting'} do |f|%>
+	  
+	  <fieldset>
+	
+			<!-- Notifications -->
+			
+			<div class="control-group">
+				<label class="control-label txt m" style="width: 80px;">
+	        Activity
+	      </label>
+				<div class="controls" style="margin-left: 100px;">
+			    <%=f.label :email_influencer,
+	            "#{f.check_box :email_influencer} Email me "\
+	            "when someone likes or comments on my items, and a weekly digest from people I'm following",
+	
+	            :class => "checkbox txt m"%>
+		    </div>              
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label txt m" style="width: 80px;">
+	        Updates
+	      </label>
+				<div class="controls" style="margin-left: 100px;">
+			    <%=f.label :email_update,
+	            "#{f.check_box :email_update} Email me feature "\
+	            "updates and reminders",
+	            :class => "checkbox txt m"%>
+		    </div>              
+	    </div>
+			<!-- /Notifications -->
+	
+	    <div class="" 
+	          style="border-top:none; padding-left: 100px; 
+	                  background: none;
+	                  padding-bottom: 0px;">
+	    	<%=submit_tag "Save Changes",
+		                  :class  => 'btn btn-mid',
+		                  :name   => nil%>
+	    </div>
+	  
+	  </fieldset>
+	                        
+	<%end%> <!-- /form -->
 
 <%content_for :javascript do%>
 
