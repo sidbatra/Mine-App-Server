@@ -7,12 +7,11 @@
 		<%if self.current_user.followings_count.zero?%>
     	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
 		<%else%>
-			You're following (48) 
-			<a href="/" class="dark" style="float: right;">View all</a>
+			You're following <a href="/" class="dark">48 people</a>
 		<%end%>
 	</div>
 	
-	<ul class="rounded-5 border-box relative">
+	<ul class="well-box triple rounded-5 border-box relative">
 
 	  <%if self.current_user.followings_count.zero?%>
 	  
@@ -37,7 +36,7 @@
 	      <%self.current_user.ifollowers.limit(5).each do |user|%>
 	      
 	        <%cache ["v6",user,"ifollower","feed"] do%>
-						<a href="<%=user_path(user.handle,:src => "feed")%>">
+						<a class="dark" href="<%=user_path(user.handle,:src => "feed")%>">
 							<li class="txt m">
 								<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
 								<%=user.full_name%>
@@ -56,7 +55,7 @@
 	  		Invite a friend
 	  	</li>",
       new_invite_path(:src => "feed"),
-      :class => ""%>
+      :class => "dark"%>
 	  
   </ul>
 
@@ -105,11 +104,11 @@
 	Your feed
 </div>
 
-<div class="feed-container rounded-5" style="background: #eee;">
+<div class="feed-container rounded-5" style="background: white">
 	<div id="feed" class="feed rounded-5 shaded relative">
 	</div> <!-- feed -->
 	
-	<div id="feed-spinner" class="feed-loading">
+	<div id="feed-spinner" class="feed-loading light">
 	</div> 
 </div>
 

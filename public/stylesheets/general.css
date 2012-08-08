@@ -426,6 +426,11 @@ input.error:focus, textarea.error:focus {
 .btn.checklist.done [class^="icon-"] { display: none; }
 .btn.checklist.done .icon-ok { display: inline-block; }
 
+.btn.shaded { 
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+
 .icon-like.icon-white {
 	background-image: url("images/glyphicons-halflings-custom-white.png")!important;
 	background-position: 0 0; }
@@ -475,7 +480,12 @@ input.error:focus, textarea.error:focus {
 /* ----- loading button states ----- */
 .btn.pushed, .btn-pushed:hover, 
 .btn.load, .btn.load:hover,
-.load .btn, .load .btn:hover { background: #105E90; cursor: default; }
+.load .btn, .load .btn:hover { 
+	background: #105E90; 
+	cursor: default; 
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none; }
 
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #a6321d; }	

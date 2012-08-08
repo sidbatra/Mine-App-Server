@@ -8,9 +8,9 @@
               :image        => image_path('mine_100_2x.gif')}%>
 <%end%>
 
-<div class="profile-box unit-box border-box">
+<div class="profile-box unit-box border-box" style="margin-top: -6px;">
 
-  <div class="user-box border-box rounded-5 alias-smooth relative">
+  <div class="user-box well-box border-box rounded-5 alias-smooth relative">
   
     <%=image_tag @user.square_image_url,
         :class => "user-photo xxl rounded-3"%>
@@ -41,7 +41,7 @@
 				Following (<%=@user.followings_count%>)
 			</div>
 			
-			<ul class="rounded-5 border-box relative">
+			<ul class="well-box rounded-5 border-box relative">
 
 	      <%@user.ifollowers.limit(7).each do |user|%>
 	        <%cache ["v4",user,"ifollower","profile"] do%>     
@@ -72,7 +72,7 @@
 				Followers (<%=@user.inverse_followings_count%>)
 			</div>
 			
-			<ul class="rounded-5 border-box relative">
+			<ul class="well-box rounded-5 border-box relative">
 
 	      <%@user.ifollowers.limit(7).each do |user|%>
 	        <%cache ["v4",user,"ifollower","profile"] do%>     
