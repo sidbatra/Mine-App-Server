@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     @key        = generate_cache_key(@sane_query,@page)
     @title      = ""
     @per_page   = 10
+    @mobile     = params[:mobile]
 
     unless fragment_exist? @key
 
@@ -150,7 +151,9 @@ class ProductsController < ApplicationController
         @results[:amazon] = Amazon::Ecs::Response.new(
                             response.body).items.map do |product|
                             begin
-                              medium_url = product.get('MediumImage/URL')
+                              medium_url = @mobile ? 
+                                            product.get('SmallImage/URL') :
+                                            product.get('MediumImage/URL')
                               large_url = product.get('LargeImage/URL')
 
                               next unless medium_url and large_url
