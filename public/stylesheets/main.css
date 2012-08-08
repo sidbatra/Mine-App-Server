@@ -175,6 +175,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .header .btn-group.open .caret { border-top: 6px solid white; }
 
 .header .dropdown-menu {
+	left: 0;
 	border: 0;
 	min-width: 120px;
 	background: #393939 !important;
@@ -299,8 +300,7 @@ footer .like-button-box {
 	background: url('/images/loading/loading-snake-FFF-393939.gif') center no-repeat;
 	height: 80px; }
 	
-.feed { 
-	background: white; z-index: 2; }
+.feed { background: white; }
 	
 	
 /* Creation 

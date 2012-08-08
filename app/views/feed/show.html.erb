@@ -1,71 +1,8 @@
 <%content_for :top do%>
   <%=render 'purchases/chooser'%> 
-<%end%>
+<%end%>  
 
-<div class="unit-box connections-box border-box">
-	<div class="box-title relative" style="margin-top: -6px;">
-		<%if self.current_user.followings_count.zero?%>
-    	<%=link_to "Invite a few friends to follow", new_invite_path(:src => "placeholder")%>
-		<%else%>
-			You're following <a href="/" class="dark">48 people</a>
-		<%end%>
-	</div>
-	
-	<ul class="well-box triple rounded-5 border-box relative">
-
-	  <%if self.current_user.followings_count.zero?%>
-	  
-	    <%cache ["v1",self.current_user,"contacts","feed"] do%>
-	      <%self.current_user.contacts.by_weight.limit(6).each do |contact|%>
-	        <%cache ["v5",contact,"invite","feed"] do%>
-	          <%=link_to "",
-	              new_invite_path(
-	              :src => "user-image",
-	              :anchor => "search/#{contact.name.gsub(' ','-')}"),
-	              :style => "background: url('#{contact.image_url}')",
-	              :class => "",
-	              :rel => "tooltip",
-	              :title => "Invite #{contact.name}"%>
-	        <%end%>
-	      <%end%>
-	    <%end%>
-	
-	  <%else%>
-	
-	    <%cache ["v3",self.current_user,"ifollowers","feed"] do%>
-	      <%self.current_user.ifollowers.limit(5).each do |user|%>
-	      
-	        <%cache ["v6",user,"ifollower","feed"] do%>
-						<a class="dark" href="<%=user_path(user.handle,:src => "feed")%>">
-							<li class="txt m">
-								<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
-								<%=user.full_name%>
-							</li>
-						</a>
-	        <%end%>
-	        
-	      <%end%>
-	    <%end%>
-	
-	  <%end%> <!-- if followings_count.zero? -->
-	  
-	  <%=link_to "
-	  	<li class='txt m'>
-	  		<span class='btn shaded user-photo m' style='padding: 0;'>
-	  			<i class='icon-envelope icon-white' style='margin-top: -1px;'></i>
-	  		</span>
-	  		Invite a friend
-	  	</li>",
-      new_invite_path(:src => "feed"),
-      :class => "dark"%>
-	  
-  </ul>
-
-
-      
-</div> <!-- /connections-box -->  
-
-<div id="creation" class="create-box unit-box border-box">
+<div id="creation" style="margin-top: -6px;" class="create-box unit-box border-box">
 	<div class="box-title">
 		Add a new purchase
 	</div>
