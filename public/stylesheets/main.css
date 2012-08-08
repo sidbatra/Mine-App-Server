@@ -271,8 +271,16 @@ footer .like-button-box {
 	
 .feed-title {}	
 
-.feed-loading.light { 
+.feed-loading.white { 
 	background: url('/images/loading/loading-snake-333-FFF.gif') center no-repeat;
+	height: 80px; }
+
+.feed-loading.whitesmoke { 
+	background: url('/images/loading/loading-snake-333-F5F5F5.gif') center no-repeat;
+	height: 80px; }
+
+.feed-loading.ccc { 
+	background: url('/images/loading/loading-snake-333-CCC.gif') center no-repeat;
 	height: 80px; }
 
 .feed-loading.dark { 
