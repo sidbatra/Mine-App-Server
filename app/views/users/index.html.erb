@@ -1,15 +1,94 @@
-<div class="container profile border-box">
+<div class="profile-box unit-box border-box" style="margin-top: -6px;">
 
-  All my lovely <%=@aspect%> show up here
+  <div class="user-box well-box border-box rounded-5 alias-smooth relative">
+    <img class="user-photo xxl rounded-3" src="http://graph.facebook.com/503796193/picture?type=square">
+        
+    <div class="user-name absolute">
+    	Mike Hudack
+    </div>
 
-  <br>
-  <br>
+		<div id="follow-box">
+		  <a class="btn btn-green follow shaded absolute rounded-3" href="javascript:void(0)" id="destroy_following_5408">
+		    <span class="hide-when-loading"><i class="icon-ok icon-white"></i></span>
+		    <i class="icon-loading icon-white"></i>
+		  </a>
+		</div>
 
+	  <div id="user_byline_box" class="bio-box absolute">
+	      
+			<div class="user-bio txt m border-box">
+				Simple.
+			</div>
+	       
+		</div>
+       
+  </div> <!-- /user-box -->
+  
+  
+  
+  <div class="connections-box border-box split" style="margin-right: 2.7%;">
 
-  <%@users.each do |user|%>
-    <%=image_tag user.square_image_url%>
-    <%=link_to user.full_name,user_path(user.handle,:src => @aspect)%>
-    <br/>
-  <%end%>
+      <div class="box-title relative">
+				<a href="/Mike-Hudack/following?src=profile" class="dark">Following (15)</a>
+			</div>
+			
+			<ul class="well-box single rounded-5 border-box relative" >
+				<%@users.each do |user|%>
+					<li class="txt m relative">
+						<a href="<%=user_path(user.handle,:src => @aspect)%>" class="dark">
+					    <%=image_tag user.square_image_url, :class => "user-photo m shaded rounded-3"%>
+					    <%=user.full_name%>
+				    </a>
+				    
+				    <a class="btn btn-small shaded absolute" id="" style="width: 56px; right: 0; top: 0;">
+							<span class="hide-when-loading out">
+								Follow
+							</span>
+							<i class="icon-loading icon-white"></i>
+							<span class="in">
+								<i class="icon-ok icon-white"></i>
+							</span>
+						</a>
+						
+			    </li>
+			  <%end%>
+      </ul>
+      
+  </div> <!-- following -->
+  
+  
+  
+  <div class="connections-box border-box split">
 
-</div>
+      <div class="box-title relative">
+				<a href="/Mike-Hudack/following?src=profile" class="dark">Followers (96)</a>
+			</div>
+			
+			<ul class="well-box single rounded-5 border-box relative">
+				<%@users.each do |user|%>
+					<li class="txt m relative">
+						<a href="<%=user_path(user.handle,:src => @aspect)%>" class="dark">
+					    <%=image_tag user.square_image_url, :class => "user-photo m shaded rounded-3"%>
+					    <%=user.full_name%>
+				    </a>
+				    
+				    <a class="btn btn-small shaded absolute" id="" style="width: 56px; right: 0; top: 0;">
+							<span class="hide-when-loading out">
+								Follow
+							</span>
+							<i class="icon-loading icon-white"></i>
+							<span class="in">
+								<i class="icon-ok icon-white"></i>
+							</span>
+						</a>
+				    
+			    </li>
+			  <%end%>
+      </ul>
+      
+  </div> <!-- followers -->
+  
+  
+  
+  
+</div> <!-- /profile-box -->

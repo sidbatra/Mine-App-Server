@@ -38,7 +38,9 @@
     <div class="connections-box border-box split" style="margin-right: 2.7%;">
 
       <div class="box-title relative" style="z-index: 0;">
-				Following (<%=@user.followings_count%>)
+				<%=link_to "Following (#{@user.followings_count})", 
+								following_path(@user.handle,:src => "profile"),
+								:class => "dark"%>
 			</div>
 			
 			<ul class="well-box rounded-5 border-box relative">
@@ -69,7 +71,9 @@
     <div class="connections-box border-box split">
 
       <div class="box-title relative" style="z-index: 0;">
-				Followers (<%=@user.inverse_followings_count%>)
+				<%=link_to "Followers (#{@user.inverse_followings_count})", 
+								followers_path(@user.handle,:src => "profile"), 
+								:class => "dark"%>
 			</div>
 			
 			<ul class="well-box rounded-5 border-box relative">
