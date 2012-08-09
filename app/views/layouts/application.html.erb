@@ -29,7 +29,7 @@
 	    
 	    <div class="container relative">   
 	
-		    <%=render "headers/default"%>
+		    <%=render "headers/default" unless is_onboarding?%>
 		    
 		    <div id="message-drawer" 
 		          class="message-drawer border-box alert rounded-5"
@@ -42,9 +42,7 @@
 	  
 	  </div> <!-- /wrapper -->
 
-		<%if !is_onboarding?%>
-      <%=render "footers/default"%>
-    <%end%>
+    <%=render "footers/default" unless is_onboarding?%>
 
     <%=render :partial => "misc/analytics"%>
 
