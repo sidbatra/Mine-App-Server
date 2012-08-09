@@ -12,8 +12,10 @@ class StaticController < ApplicationController
     when :terms
       @view = "terms"
     when :about
+      @origin = "about"
       @view = "about"
     when :faq
+      @origin = "faq"
       @view = "faq"
     end
 
