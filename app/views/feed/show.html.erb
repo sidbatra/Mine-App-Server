@@ -21,22 +21,20 @@
 	          style="display:none">
 			</div> </suggestions -->
 		  
-	      <%=render :partial => 'purchases/input', 
-	          :locals => {
-	            :f => f,
-	            :suggestion => nil,
-	            :submit_text => "Add to mine",
-	            :show_cancel_button => false,
-	            :show_delete_button => false,
-	            :show_query_box => true,
-	            :show_query_sub_box => true,
-	            :show_extra_steps => false,
-	            :show_fb_share => true,
-	            :show_tw_share => true,
-	            :show_tumblr_share => true,
-	            :fb_share_on => self.current_user.setting.post_to_timeline?,
-	            :tw_share_on => self.current_user.setting.post_to_twitter?,
-	            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+      <%=render :partial => 'purchases/input', 
+          :locals => {
+            :f => f,
+            :suggestion => nil,
+            :submit_text => "Add to mine",
+            :show_cancel_button => false,
+            :show_delete_button => false,
+            :show_extra_steps => false,
+            :show_fb_share => true,
+            :show_tw_share => true,
+            :show_tumblr_share => true,
+            :fb_share_on => self.current_user.setting.post_to_timeline?,
+            :tw_share_on => self.current_user.setting.post_to_twitter?,
+            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
 	  <%end%> <!-- /form --> 
   </div>
 
