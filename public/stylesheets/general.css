@@ -284,7 +284,8 @@ input.error:focus, textarea.error:focus {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  background: #177DBE url(/images/alert-overlay.png) repeat-x;
+/*   background: #177DBE url(/images/alert-overlay.png) repeat-x; */
+  background: #1370ab url(/images/alert-overlay.png) repeat-x;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
@@ -355,7 +356,7 @@ input.error:focus, textarea.error:focus {
  
 .btn.btn-small [class^="icon-"],
 .btn.btn-small [class*=" icon-"] {
-	margin-top: -1px; }
+	margin-top: 0px; }
 
 .btn-mini {
   padding: 0 6px;
