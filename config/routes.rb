@@ -146,6 +146,16 @@ ActionController::Routing::Routes.draw do |map|
     :action     => :show,
     :aspect     => :copyright
 
+  map.about 'about',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :about
+
+  map.faq 'faq',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :faq
+
 
   ##
   # Admin namespace routes routes

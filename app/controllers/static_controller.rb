@@ -11,6 +11,10 @@ class StaticController < ApplicationController
       @view = "privacy"
     when :terms
       @view = "terms"
+    when :about
+      @view = "about"
+    when :faq
+      @view = "faq"
     end
 
     render @view
