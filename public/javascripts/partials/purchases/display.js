@@ -145,23 +145,16 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     $(this.likesBoxEl).show(); 
   },
 
-  // Track a visit when a user navigates to the
-  // source url.
-  //
-  trackSourceURLVisit: function(source) {
-    Denwen.Track.action("Purchase URL Clicked",{"Source" : source}); 
-  },
-
   // Purchase photo is clicked.
   //
   photoClicked: function() {
-    this.trackSourceURLVisit('photo');
+    Denwen.Track.purchaseURLVisit('photo');
   },
 
   // Purchase title is clicked.
   //
   titleClicked: function() {
-    this.trackSourceURLVisit('title');
+    Denwen.Track.purchaseURLVisit('title');
   }
 
 });
