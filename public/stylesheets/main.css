@@ -618,7 +618,9 @@ footer .like-button-box {
 	line-height: 165%;
 	color: white;
 	font-weight: bold; }
-	
+
+.info-box .unit { padding: 2px 0 12px; }
+.info-box h4 { color: white; line-height: 165%; margin-bottom: 5px; }	
 .info-box p { line-height: 165%; margin-bottom: 5px; }
 
 
