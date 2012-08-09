@@ -57,10 +57,8 @@
 
 
 <%content_for :javascript do%>
-
   <script type="text/javascript">
     new Denwen.Views.Feed.Show({
-      source          : "<%=h @source%>",
-      currentUserJSON : <%=self.current_user.to_json(:only => :fb_user_id)%>});
+      source  : "<%=h @source%>"});
   </script>
 <%end%>

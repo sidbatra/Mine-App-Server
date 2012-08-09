@@ -12,8 +12,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
-    this.source       = this.options.source;
-    this.currentUser  = new Denwen.Models.User(this.options.currentUserJSON);
+    this.source = this.options.source;
 
     this.feedEl = '#feed';
     this.suggestionsEl = '#suggestions';
