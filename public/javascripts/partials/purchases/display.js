@@ -11,7 +11,11 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    var self = this;
+
     this.purchaseEl = '#purchase-' + this.model.get('id');
+    this.photoEl = '#purchase_photo_'  + this.model.get('id');
+    this.titleEl = '#purchase_title_' + this.model.get('id');
     this.panelEl = '#purchase_panel_' + this.model.get('id');
     this.likesEl = '#purchase_likes_' + this.model.get('id');
     this.likesBoxEl  = '#purchase_likes_box_' + this.model.get('id');
@@ -22,8 +26,6 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.render();
 
     if(Denwen.H.isLoggedIn()) {
-      var self = this;
-
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
 
@@ -42,6 +44,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
           self.newLike.disable();
       });
     }
+
+    $(this.photoEl).click(function(){self.photoClicked();});
+    $(this.titleEl).click(function(){self.titleClicked();});
   },
 
   // Render the contents of the model.
@@ -138,6 +143,25 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.renderLikeAggregation();
 
     $(this.likesBoxEl).show(); 
+  },
+
+  // Track a visit when a user navigates to the
+  // source url.
+  //
+  trackSourceURLVisit: function(source) {
+    Denwen.Track.action("Purchase URL Clicked",{"Source" : source}); 
+  },
+
+  // Purchase photo is clicked.
+  //
+  photoClicked: function() {
+    this.trackSourceURLVisit('photo');
+  },
+
+  // Purchase title is clicked.
+  //
+  titleClicked: function() {
+    this.trackSourceURLVisit('title');
   }
 
 });

@@ -26,9 +26,13 @@
 			</a>		
 		<%}%>
 
-		<!-- <img class="stamp absolute" src="<#=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" /> -->
+		<!--img class="stamp absolute" 
+      src="<#=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" /-->
 		
-		<a href="<%=purchase.get('source_url')%>" target="_blank">
+        
+		<a id="purchase_photo_<%=purchase.get('id')%>" 
+        href="<%=purchase.get('source_url')%>" 
+        target="_blank">
     	<img class="item-photo rounded-3" src="<%=purchase.get('giant_url')%>" />
     </a>
     
@@ -59,7 +63,8 @@
 		      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
 		    <%}%>
 		
-		    <a href="<%=purchase.get('source_url')%>" 
+		    <a id="purchase_title_<%=purchase.get('id')%>"
+            href="<%=purchase.get('source_url')%>" 
             class="em light underlined link-out" 
             target="_blank"><%=purchase.escape('title')%></a> 
 		
