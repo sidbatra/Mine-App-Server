@@ -1,11 +1,12 @@
-<%if logged_in? && !is_onboarding?%>
+<%if !is_onboarding?%>
 
 	<div class="header unit-box border-box">
 	    
 	    <%=link_to image_tag("logos/mine-h-white-48-2x.png", :class => "logo absolute"),
 	        root_path(:src => "bar")%>
 	      
-     	<div class="btn-group unselectable well-box border-box rounded-5" style="padding: 6px; float: right;">
+     	<div class="btn-group unselectable well-box border-box rounded-5" 
+        style="padding: 6px; float: right;">
 
 		    <a class="btn-user relative pointer txt m dark" 
 		      style="float: left; padding: 0; border: 0; margin-right: 5px;">
