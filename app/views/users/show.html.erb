@@ -13,24 +13,7 @@
   style="margin-top: -6px;">
 
 
-  <div class="user-box well-box border-box rounded-5 alias-smooth relative">
-  
-    <%=image_tag @user.square_image_url,
-        :class => "user-photo xxl rounded-3"%>
-        
-    <div class="user-name absolute">
-    	<%=h @user.full_name%>
-    </div>
-
-    <div id="follow-box">
-    </div>
-
-    <%=render :partial => "byline",
-       :locals => {:user => @user}%>
-       
-  </div> <!-- /user-box -->
-  
-
+  <%=render :partial => "box", :locals => {:user => @user}%> 
 
 
 
