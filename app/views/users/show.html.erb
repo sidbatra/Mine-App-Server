@@ -8,7 +8,10 @@
               :image        => image_path('mine_100_2x.gif')}%>
 <%end%>
 
-<div class="profile-box unit-box border-box" style="margin-top: -6px;">
+
+<div class="profile-box unit-box border-box" 
+  style="margin-top: -6px;">
+
 
   <div class="user-box well-box border-box rounded-5 alias-smooth relative">
   
@@ -24,7 +27,6 @@
 
     <%=render :partial => "byline",
        :locals => {:user => @user}%>
-
        
   </div> <!-- /user-box -->
   
@@ -32,13 +34,12 @@
 
 
 
-
 	<!-- Following -->
-  <%cache ["v7",@user,"followers","profile"] do%>
+  <%cache ["v8",@user,"ifollowers","profile"] do%>
     <div class="connections-box border-box split" style="margin-right: 2.7%;">
 
       <div class="box-title relative" style="z-index: 0;">
-				<%=link_to "Following (#{@user.followings_count})", 
+				<%=link_to "Following (#{@user.inverse_followings_count})", 
 								following_path(@user.handle,:src => "profile"),
 								:class => "dark"%>
 			</div>
@@ -46,14 +47,16 @@
 			<ul class="well-box rounded-5 border-box relative">
 
 	      <%@user.ifollowers.limit(7).each do |user|%>
-	        <%cache ["v4",user,"ifollower","profile"] do%>     
+	        <%cache ["v5",user,"ifollower","profile"] do%>     
 	        
 		        <li class="pic s">
-		        	<a style="display: block;" href="<%=user_path(user.handle,:src => "profile")%>"
+		        	<a style="display: block;" 
+                href="<%=user_path(user.handle,:src => "profile")%>"
 	        			rel="tooltip"
 	        			title="<%=user.full_name%>">
 	        			
-			      		<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
+			      		<%=image_tag user.square_image_url,
+                    :class => "user-photo m shaded rounded-3"%>
 			      	</a>
 		        </li>
 	              
@@ -63,30 +66,33 @@
       </ul>
       
     </div> <!-- /connections-box -->
-  <%end unless @user.followings_count.zero?%>
+  <%end unless @user.inverse_followings_count.zero?%>
   
+
   
   <!-- Followers -->
-  <%cache ["v7",@user,"ifollowers","profile"] do%>
+  <%cache ["v8",@user,"followers","profile"] do%>
     <div class="connections-box border-box split">
 
       <div class="box-title relative" style="z-index: 0;">
-				<%=link_to "Followers (#{@user.inverse_followings_count})", 
+				<%=link_to "Followers (#{@user.followings_count})", 
 								followers_path(@user.handle,:src => "profile"), 
 								:class => "dark"%>
 			</div>
 			
 			<ul class="well-box rounded-5 border-box relative">
 
-	      <%@user.ifollowers.limit(7).each do |user|%>
-	        <%cache ["v4",user,"ifollower","profile"] do%>     
+	      <%@user.followers.limit(7).each do |user|%>
+	        <%cache ["v5",user,"follower","profile"] do%>     
 	        
 		        <li class="pic s">
-		        	<a style="display: block;" href="<%=user_path(user.handle,:src => "profile")%>"
+		        	<a style="display: block;" 
+                href="<%=user_path(user.handle,:src => "profile")%>"
 	        			rel="tooltip"
 	        			title="<%=user.full_name%>">
 	        			
-			      		<%=image_tag user.square_image_url,:class => "user-photo m shaded rounded-3"%>
+			      		<%=image_tag user.square_image_url,
+                    :class => "user-photo m shaded rounded-3"%>
 			      	</a>
 		        </li>
  
@@ -96,7 +102,7 @@
       </ul>
       
     </div> <!-- /connections-box -->
-  <%end unless @user.inverse_followings_count.zero?%>
+  <%end unless @user.followings_count.zero?%>
 	
 </div> <!-- /profile-box -->
 
@@ -105,6 +111,7 @@
 <div class="box-title profile-feed-title relative">
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> items
 </div>
+
 
 <div class="profile-feed rounded-3 shaded relative">
   <%cache ["v4",@user,"purchases"] do%>
