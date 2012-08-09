@@ -8,7 +8,8 @@
   	<!-- edit button -->
   	<%if(Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
 			<div class="actions top-right absolute">
-				<a href="<%=purchase.editPath('feed')%>" class="btn btn-small btn-white rounded-3-bottom-left">
+				<a href="<%=purchase.editPath('feed')%>" 
+          class="btn btn-small btn-white rounded-3-bottom-left">
 					<i class="icon-pencil"></i>
 				</a>
 			</div>
@@ -19,7 +20,8 @@
 			<a href="javascript:void(0)"
 		  		id="purchase_create_like_<%=purchase.get('id')%>"
 		  		class="like btn absolute shaded">
-				<img class="thumb" src="/images/like-16-2x-white.png"/>
+				<img class="thumb" 
+          src="<%=Denwen.H.imagePath('like-16-2x-white.png')%>"/>
 				<i class="icon-ok"></i>
 			</a>		
 		<%}%>
@@ -34,20 +36,22 @@
   
   
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
-		<div id="purchase_panel_content_<%=purchase.get('id')%>" class="panel-contents rounded-5 relative">
+		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
+      class="panel-contents rounded-5 relative">
       	
 			<b class="caret absolute opaque"></b>
 			
 			<div class="title-box txt l relative rounded-3">
 					
-				<a href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_photo') : 'javascript:void(0)'%>">
-		      <img class="user-photo xl rounded-3 absolute" src="<%=purchase.get('user').get('square_image_url')%>" />
+				<a href="<%=purchase.get('user').path('purchase_photo')%>">
+		      <img class="user-photo xl rounded-3 absolute" 
+            src="<%=purchase.get('user').get('square_image_url')%>" />
 		    </a>
 		
 		    <a class="em light underlined" 
-		        href="<%=Denwen.H.isLoggedIn() ? purchase.get('user').path('purchase_name') : 'javascript:void(0)'%>">
-		        <%=purchase.get('user').escape('first_name')%>   
-		        <%=purchase.get('user').escape('last_name')%></a> 
+          href="<%=purchase.get('user').path('purchase_name')%>">
+          <%=purchase.get('user').escape('first_name')%>   
+          <%=purchase.get('user').escape('last_name')%></a> 
 		
 		    bought 
 		
@@ -55,7 +59,9 @@
 		      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
 		    <%}%>
 		
-		    <a href="<%=purchase.get('source_url')%>" class="em light underlined link-out" target="_blank"><%=purchase.escape('title')%></a> 
+		    <a href="<%=purchase.get('source_url')%>" 
+            class="em light underlined link-out" 
+            target="_blank"><%=purchase.escape('title')%></a> 
 		
 		    <%if(purchase.get('store')){%>
 		      from <%=purchase.get('store').escape('name')%>
@@ -75,10 +81,8 @@
 	            id="purchase_likes_box_<%=purchase.get('id')%>"
 	         style="display:none;">
 	
-<!--
-	      <div class="fader absolute">
-	      </div>
--->
+	      <!--div class="fader absolute">
+	      </div-->
 	
 	      <span class="num"
 	        id="purchase_likes_<%=purchase.get('id')%>_aggregate">
@@ -98,7 +102,7 @@
 	      <div id="purchase_comments_<%=purchase.get('id')%>">
 	      </div>
 	      
-	      <%if(Denwen.H.isLoggedIn() && interaction){%>
+	      <%if(interaction) {%>
 	        <div class="add-comment-box relative">
 	          <img class="user-photo m absolute rounded-3-left" 
 	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
