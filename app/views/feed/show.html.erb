@@ -2,10 +2,14 @@
   <%=render 'purchases/chooser'%> 
 <%end%>  
 
-<div id="creation" style="margin-top: -6px;" class="create-box unit-box border-box">
+<div id="creation" 
+  style="margin-top: -6px;" 
+  class="create-box unit-box border-box">
+
 	<div class="box-title">
 		Add a new purchase
 	</div>
+
 	<div class="well-box rounded-8">
 	  <%form_for Purchase.new,
 	      :html => {
@@ -15,7 +19,7 @@
 		  <!--<div id="suggestions" 
 	          class="suggestions-box relative hide-on-mobile" 
 	          style="display:none">
-			</div> <!-- /suggestions -->
+			</div> </suggestions -->
 		  
 	      <%=render :partial => 'purchases/input', 
 	          :locals => {
@@ -45,11 +49,11 @@
 
 <div class="feed-container rounded-5" style="background: #f5f5f5">
 	<div id="feed" class="feed rounded-5 shaded relative">
-	</div> <!-- feed -->
+	</div> 
 	
 	<div id="feed-spinner" class="feed-loading whitesmoke">
 	</div> 
-</div>
+</div> <!-- feed container -->
 
 
 <%content_for :javascript do%>

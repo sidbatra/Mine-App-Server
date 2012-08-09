@@ -8,7 +8,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     "click #purchase_change_photo"     : "changePhotoClicked",
     "keypress #purchase_query"         : "queryKeystroke",
     "keypress #purchase_repeat_query"  : "queryKeystroke",
-    "click #cancel_button"             : "cancelButtonClicked"
+    "click #cancel_button"             : "cancelButtonClicked",
+    "click #cancel_logo_button"        : "cancelLogoButtonClicked"
   },
 
   // Constructor logic
@@ -107,6 +108,13 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   cancelButtonClicked: function() {
     this.stopSearch();
     this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled,'X Button');
+  },
+
+  // Fired when the user clicks the cancel logo butotn
+  //
+  cancelLogoButtonClicked: function() {
+    this.stopSearch();
+    this.trigger(Denwen.Partials.Products.Search.Callback.Cancelled,'Logo');
   },
 
   // Hide the search UI

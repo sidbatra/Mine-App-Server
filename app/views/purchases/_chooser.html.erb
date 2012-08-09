@@ -1,19 +1,15 @@
 	<div id="chooser" class="chooser border-box" style="display:none;">
 				
-		<!--
-		<div class="loader">
-			<#=image_tag "loading_tags_32_bw.gif",
-   			:style => ""%>
-   			Did you add a color and a brand?
- 		</div>
-		-->
-		
 		<form class="search-bar border-box gradient v-555-444">
 		
-			<%=link_to image_tag("logos/mine-h-white-40-2x.png", :class => "logo absolute"),
-	        root_path(:src => "chooser")%>
+			<a id="cancel_logo_button" href="javascript:void(0)">
+        <%=image_tag("logos/mine-h-white-40-2x.png", 
+            :class => "logo absolute")%>
+      </a>
 	        
-	    <a id="cancel_button" class="close opacity-60-80 alias-smooth transition-opacity" href="javascript:void(0)">
+	    <a id="cancel_button" 
+        class="close opacity-60-80 alias-smooth transition-opacity" 
+        href="javascript:void(0)">
 				&times;
 			</a>
 
@@ -54,12 +50,13 @@
       
 		</form> <!-- /search-bar -->
 
-		<div class="results border-box" id="results">
 
+		<div class="results border-box" id="results">
     </div>
 
 	
-		<div class="scroll-instructions txt s gradient v-FFF-DDD" id="scroll_for_more_results">
+		<div class="scroll-instructions txt s gradient v-FFF-DDD" 
+      id="scroll_for_more_results">
 	      <span class="hide-when-loading">
 	      	Scroll down for more 
           <b class="caret opaque"></b>
@@ -70,4 +67,5 @@
 	  
 	</div> <!-- chooser -->
 	
-	<div class="shadow" id="shadow"></div>
+	<div class="shadow" id="shadow">
+  </div>
