@@ -574,7 +574,7 @@ footer .like-button-box {
 	overflow: hidden;
 	white-space: nowrap; }
 
-.profile-box .user-box .btn.follow {
+.well-box .btn.follow {
 	top: 12px;
 	right: 12px;
 	width: 80px; }
@@ -607,6 +607,20 @@ footer .like-button-box {
 	right: 4px;
 	bottom: 8px;
 	width: 40px; }
+	
+/* -- about page -- */
+
+.info-box { margin-bottom: 12px; }
+.info-box.pictured { padding-left: 72px; }
+.info-box.pictured .user-photo { top: 12px; left: 12px; }
+.info-box .user-name { 
+	font-size: 22px;
+	line-height: 165%;
+	color: white;
+	font-weight: bold; }
+	
+.info-box p { line-height: 165%; margin-bottom: 5px; }
+
 
 /* -- profile cards -- */
                
