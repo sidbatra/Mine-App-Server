@@ -11,12 +11,15 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     var self          = this;
     this.disabled     = true;
     this.placeholder  = !Denwen.H.isLoggedIn();
-
+    this.tag          = this.options.tag;
     this.userID       = this.options.userID;
     this.fetch        = this.options.fetch;
 
-    this.createEl     = "#create_following_" + this.userID;
-    this.destroyEl    = "#destroy_following_" + this.userID;
+    if (typeof this.tag  === "undefined")
+      this.tag = '';
+
+    this.createEl     = "#create_following_" + this.userID + this.tag;
+    this.destroyEl    = "#destroy_following_" + this.userID + this.tag;
 
     this.render(false);
 
@@ -106,7 +109,8 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     this.el.html(
       Denwen.JST['followings/following']({
         isFollowing  : isFollowing,
-        userID       : this.userID}));
+        userID       : this.userID,
+        tag          : this.tag}));
 
     $(this.createEl).click(function() {self.create();});
     $(this.destroyEl).click(function() {self.destroy();});
