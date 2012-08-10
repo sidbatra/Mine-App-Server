@@ -10,6 +10,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   initialize: function() {
     var self          = this;
     this.disabled     = true;
+    this.placeholder  = !Denwen.H.isLoggedIn();
 
     this.userID       = this.options.userID;
     this.fetch        = this.options.fetch;
@@ -18,14 +19,17 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     this.destroyEl    = "#destroy_following_" + this.userID;
 
     this.render(false);
-    $(this.createEl).addClass('load');
 
-    if (typeof this.fetch  === "undefined" || this.fetch == true)  {
-      this.following  = new Denwen.Models.Following({id:this.userID});
-      this.following.fetch({ 
-        success : function(result) {self.evaluateUI(result);},
-        error   : function(model,errors) {}
-      });
+    if(!this.placeholder){
+      $(this.createEl).addClass('load');
+
+      if (typeof this.fetch  === "undefined" || this.fetch == true)  {
+        this.following  = new Denwen.Models.Following({id:this.userID});
+        this.following.fetch({ 
+          success : function(result) {self.evaluateUI(result);},
+          error   : function(model,errors) {}
+        });
+      }
     }
   },
 
@@ -47,6 +51,11 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   // Create a following between the current user and the following
   //
   create: function() {
+
+    if(this.placeholder) {
+      console.log("ACTIVATE PLACEHOLDER");
+      return;
+    }
 
     if(this.disabled)
       return;
