@@ -9,22 +9,24 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   //
   initialize: function() {
     var self          = this;
-    this.disabled     = false;
+    this.disabled     = true;
 
     this.userID       = this.options.userID;
+    this.fetch        = this.options.fetch;
 
     this.createEl     = "#create_following_" + this.userID;
     this.destroyEl    = "#destroy_following_" + this.userID;
 
-    this.following    = new Denwen.Models.Following(this.options.followingJSON);
+    this.render(false);
+    $(this.createEl).addClass('load');
 
-    this.preprocess(this.following);
-
-    //this.following  = new Denwen.Models.Following({id:this.userID});
-    //this.following.fetch({ 
-    //    success : function(result) {self.preprocess(result);},
-    //    error   : function(model,errors) {}
-    //  });
+    if (typeof this.fetch  === "undefined" || this.fetch == true)  {
+      this.following  = new Denwen.Models.Following({id:this.userID});
+      this.following.fetch({ 
+        success : function(result) {self.evaluateUI(result);},
+        error   : function(model,errors) {}
+      });
+    }
   },
 
   // Based on the result of the show request
@@ -56,7 +58,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     $(this.createEl).addClass('load');
 
     this.following.save({user_id : this.userID},{
-      success: function(result) {self.preprocess(result);self.disabled=false;},
+      success: function(result) {self.evaluateUI(result);},
       error: function(model,errors){}});
 
     //Denwen.Track.followingCreated(this.userID);
@@ -76,7 +78,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     $(this.destroyEl).addClass('load');
 
     this.following.destroy({
-      success: function(result) { self.preprocess(new Backbone.Model());self.disabled=false;},
+      success: function(result) {self.evaluateUI(new Backbone.Model());},
       error: function(model,errors){}});
 
     //Denwen.Track.followingDestroyed(this.userID);
@@ -99,6 +101,13 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     $(this.createEl).click(function() {self.create();});
     $(this.destroyEl).click(function() {self.destroy();});
+  },
+
+  // Update the UI status after a request has finished.
+  //
+  evaluateUI: function(result) {
+    this.preprocess(result);
+    this.disabled = false;
   }
 
 });
