@@ -83,6 +83,9 @@ class UsersController < ApplicationController
               User.find(params[:user_id])
       @users = user.ifollowers
       @key = ["v1",user,@users.map(&:updated_at).max.to_i, "ifollowers"]
+
+    when :connections
+      @user = User.find_by_handle params[:handle]
     end
 
   rescue => ex

@@ -49,15 +49,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users,
     :only => [:create,:index,:show,:update]
 
-  map.followers ':handle/followers',
+  map.connections ':handle/connections',
     :controller => :users,
     :action     => :index,
-    :aspect     => "followers"
-
-  map.following ':handle/following',
-    :controller => :users,
-    :action     => :index,
-    :aspect     => "ifollowers"
+    :aspect     => "connections"
 
   map.resource :feed,
     :controller => :feed,
