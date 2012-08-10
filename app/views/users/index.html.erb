@@ -11,30 +11,28 @@
         </a>
 			</div>
 			
-			<ul class="well-box single rounded-5 border-box relative" >
-				<%@user.ifollowers.each do |user|%>
-					<li class="txt m relative">
-						<a href="<%=user_path(user.handle,:src => @aspect)%>" class="dark">
-					    <%=image_tag user.square_image_url, 
-                  :class => "user-photo m shaded rounded-3"%>
-					    <%=user.full_name%>
-				    </a>
-				    
-				    <a class="btn btn-small shaded absolute" 
-                id="" 
-                style="width: 56px; right: 0; top: 0;">
-							<span class="hide-when-loading out">
-								Follow
-							</span>
-							<i class="icon-loading icon-white"></i>
-							<span class="in">
-								<i class="icon-ok icon-white"></i>
-							</span>
-						</a>
-						
-			    </li>
-			  <%end%>
-      </ul>
+
+      <%cache ["v1",@user,"ifollowers","connections"] do%>
+
+        <ul class="well-box single rounded-5 border-box relative">
+          <%@user.ifollowers.each do |user|%>
+            <%cache ["v1",user,"ifollower","connections"] do%>     
+              <li class="txt m relative">
+                <a href="<%=user_path(user.handle,:src => "connections")%>" 
+                  class="dark">
+                  <%=image_tag user.square_image_url, 
+                      :class => "user-photo m shaded rounded-3"%>
+                  <%=user.full_name%>
+                </a>
+                
+                <div id="follow_box_<%=user.id%>">
+                </div>
+              </li>
+            <%end%>
+          <%end%>
+        </ul>
+
+      <%end%>
       
   </div> <!-- following -->
   
@@ -47,28 +45,29 @@
           Followers (<%=@user.followings_count%>)
         </a>
 			</div>
+
 			
-			<ul class="well-box single rounded-5 border-box relative">
-				<%@user.followers.each do |user|%>
-					<li class="txt m relative">
-						<a href="<%=user_path(user.handle,:src => @aspect)%>" class="dark">
-					    <%=image_tag user.square_image_url, :class => "user-photo m shaded rounded-3"%>
-					    <%=user.full_name%>
-				    </a>
-				    
-				    <a class="btn btn-small shaded absolute" id="" style="width: 56px; right: 0; top: 0;">
-							<span class="hide-when-loading out">
-								Follow
-							</span>
-							<i class="icon-loading icon-white"></i>
-							<span class="in">
-								<i class="icon-ok icon-white"></i>
-							</span>
-						</a>
-				    
-			    </li>
-			  <%end%>
-      </ul>
+      <%cache ["v1",@user,"followers","connections"] do%>
+
+        <ul class="well-box single rounded-5 border-box relative">
+          <%@user.followers.each do |user|%>
+            <%cache ["v1",user,"follower","connections"] do%>     
+              <li class="txt m relative">
+                <a href="<%=user_path(user.handle,:src => "connections")%>" 
+                  class="dark">
+                  <%=image_tag user.square_image_url, 
+                      :class => "user-photo m shaded rounded-3"%>
+                  <%=user.full_name%>
+                </a>
+                
+                <div id="follow_box_<%=user.id%>">
+                </div>
+              </li>
+            <%end%>
+          <%end%>
+        </ul>
+
+      <%end%>
       
   </div> <!-- followers -->
   
