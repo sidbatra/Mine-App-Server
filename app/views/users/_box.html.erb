@@ -2,8 +2,9 @@
   <div id="user_box" 
     class="user-box well-box border-box rounded-5 alias-smooth relative">
   
-    <%=image_tag user.square_image_url,
-        :class => "user-photo xxl rounded-3"%>
+    <%=link_to image_tag(user.square_image_url,
+                :class => "user-photo xxl rounded-3"),
+        user_path(user.handle,:src => "box")%>
         
     <div class="user-name absolute">
     	<%=logged_in? ? '' : 'Follow'%> <%=h user.full_name%>
