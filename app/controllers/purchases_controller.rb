@@ -74,8 +74,8 @@ class PurchasesController < ApplicationController
 
     setting = self.current_user.setting
 
-    unless params[:purchase][:post_to_timeline].nil?
-      setting.post_to_timeline = params[:purchase][:post_to_timeline]
+    unless params[:purchase][:share_to_facebook].nil?
+      setting.share_to_facebook = params[:purchase][:share_to_facebook]
     end
 
     unless params[:purchase][:share_to_twitter].nil?
@@ -89,7 +89,7 @@ class PurchasesController < ApplicationController
     setting.save!
 
 
-    if setting.post_to_timeline?
+    if setting.post_to_facebook?
       params[:purchase][:fb_action_id] = FBSharing::Underway
     end
 

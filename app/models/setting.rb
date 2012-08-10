@@ -1,18 +1,18 @@
 class Setting < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :post_to_timeline, 
-                    :email_influencer, :email_update,
+  attr_accessible :email_influencer, :email_update,
                     :fb_publish_stream, :fb_publish_actions,
+                    :share_to_facebook,
                     :share_to_twitter, :share_to_tumblr
 
   #----------------------------------------------------------------------
   # Validations
   #----------------------------------------------------------------------
-  validates_inclusion_of  :post_to_timeline, :in => [true,false]
   validates_inclusion_of  :email_influencer, :in => [true,false]
   validates_inclusion_of  :email_update, :in => [true,false]
   validates_inclusion_of  :fb_publish_actions, :in => [true,false]
   validates_inclusion_of  :fb_publish_stream, :in => [true,false]
+  validates_inclusion_of  :share_to_facebook, :in => [true,false]
   validates_inclusion_of  :share_to_twitter, :in => [true,false]
   validates_inclusion_of  :share_to_tumblr, :in => [true,false]
 
@@ -65,8 +65,8 @@ class Setting < ActiveRecord::Base
   # Whether or not the user's current settings enable posting
   # to facebook timeline 
   #
-  def post_to_timeline?  
-    self.fb_publish_actions & self.post_to_timeline & self.fb_auth
+  def post_to_facebook?  
+    self.fb_publish_actions & self.share_to_facebook & self.fb_auth
   end
 
   # Whether or not the user's current settings enable posting 
