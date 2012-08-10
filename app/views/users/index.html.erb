@@ -25,7 +25,7 @@
                   <%=user.full_name%>
                 </a>
                 
-                <div id="follow_box_<%=user.id%>">
+                <div id="ifollow_box_<%=user.id%>">
                 </div>
               </li>
             <%end%>
@@ -76,6 +76,27 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">  
+
+    <%if logged_in?%>
+      var ifollowerIDs = [<%=@user.ifollower_ids.join(",")%>];
+      var followerIDs = [<%=@user.follower_ids.join(",")%>];
+
+      _.each(ifollowerIDs,function(userID){
+        new Denwen.Partials.Followings.Following({
+              el:$('#ifollow_box_' + userID),
+              userID: userID,
+              fetch: false,
+              tag: 'i'});
+      });
+
+      _.each(followerIDs,function(userID){
+        new Denwen.Partials.Followings.Following({
+              el:$('#follow_box_' + userID),
+              userID: userID,
+              fetch: false});
+      });
+    <%end%>
+
     new Denwen.Views.Users.Connections({
           userJSON : <%=@user.to_json(
                                 :only => [:id,:first_name,:last_name,
