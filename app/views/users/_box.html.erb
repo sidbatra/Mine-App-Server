@@ -1,5 +1,6 @@
 
-  <div class="user-box well-box border-box rounded-5 alias-smooth relative">
+  <div id="user_box" 
+    class="user-box well-box border-box rounded-5 alias-smooth relative">
   
     <%=image_tag user.square_image_url,
         :class => "user-photo xxl rounded-3"%>
@@ -8,7 +9,7 @@
     	<%=logged_in? ? '' : 'Follow'%> <%=h user.full_name%>
     </div>
 
-    <div id="follow-box">
+    <div id="follow_box">
     </div>
 
     <%if logged_in?%>
