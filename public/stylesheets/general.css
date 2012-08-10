@@ -300,6 +300,10 @@ input.error:focus, textarea.error:focus {
 	        transition: background .15s ease-in;
 	box-shadow: none;
 	border-bottom: 1px solid rgba(0,0,0,0.25);
+	-moz-user-select: none; 
+  -khtml-user-select: none; 
+  -webkit-user-select: none; 
+  -o-user-select: none;
 /*text-shadow: 0 -1px 1px rgba(0,0,0,0.25); */
 /*box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
@@ -341,11 +345,11 @@ input.error:focus, textarea.error:focus {
   padding: 0 16px;
   height: 40px;
   font-size: 15px;
-  line-height: 40px;
+  line-height: 38px;
   line-height: 38px\0/ !important; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
-.btn-large [class^="icon-"] { margin-top: 2px; }
+.btn-large [class^="icon-"] { margin-top: 3px; }
 .btn-mini [class^="icon-"] { margin-top: -1px; }
 
 .btn-small {
