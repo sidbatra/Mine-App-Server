@@ -17,6 +17,15 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
                               model : this.purchase});
 
     $('#purchase_thumb_' + this.purchase.get('id')).addClass('selected');
+
+
+    // -----
+    if(!Denwen.H.isLoggedIn()) {
+      new Denwen.Partials.Users.Box({
+        el: $('#user_box'),
+        user: this.owner
+      });
+    }
     
     this.loadFacebookPlugs();
 

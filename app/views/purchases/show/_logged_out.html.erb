@@ -1,43 +1,13 @@
+
 	<div class="profile-box" style="margin-top: -12px; margin-bottom: 18px;">	
-		<div class="user-box well-box border-box rounded-5 alias-smooth relative">
-		
-			<img alt="Picture?type=square" 
-				class="user-photo xxl rounded-3" 
-				src="<%=image_path @purchase.user.square_image_url%>"/>
-		  
-			<div class="user-name absolute">
-				Follow <%=h @purchase.user.full_name%>
-			</div>
-			
-			<div class="bio-box absolute">
-				<div class="user-bio txt m border-box">
-	      	<%="#{user_singular_pronoun(@purchase.user).capitalize}'s"-%> sharing things 
-	      	<%=user_singular_pronoun(@purchase.user)%> buys on mine. <a href="/" class="dark underlined">Learn more</a>
-	      </div>
-	    </div>
-		
-			<div id="follow-box">
-		  	<a class="btn follow shaded absolute rounded-3" href="javascript:void(0)" id="">
-		    	<span class="hide-when-loading">Follow</span>
-		    	<i class="icon-loading icon-white"></i>
-		  	</a>
-			</div>
-		       
-		</div> <!--/user-box-->
-	</div> <!--/profile-box-->	
+      <%=render :partial => "users/box", :locals => {:user => @purchase.user}%>
+	</div> 
+
 
     
-      <!--<#=unless is_phone_device?%>
-        <div class="background-cover"
-          style="background-image: url('<#=image_path @purchase.blur_url%>')">
-        </div>
-      <#end%>
-    
-
-      
       <!--<div class="item-header">
       
-        <#=link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
+        <%#link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
 	        	root_path(:src => "purchase")%>
               
 
@@ -46,14 +16,14 @@
         </span>
 
         
-        <a href="<#=fb_auth_path(:src => @origin)%>" 
+        <a href="<%#fb_auth_path(:src => @origin)%>" 
             onclick="this.className += ' load';"
             class="btn btn-large btn-facebook shaded relative">
           <span class='hide-when-loading'>
-            <#=image_tag "social/f-box.png",
+            <%#image_tag "social/f-box.png",
             		:class => "f-box"%>
-            Join <#=h @purchase.user.first_name%> on 
-            <span class='mine'><#=CONFIG[:name].downcase%></span> now
+            Join <%#h @purchase.user.first_name%> on 
+            <span class='mine'><%#CONFIG[:name].downcase%></span> now
           </span>
           <i class='icon-loading icon-white'></i>
         	<div class="reassurance absolute hide-on-mobile">
