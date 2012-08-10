@@ -92,7 +92,7 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:create]
 
   map.resources :followings,
-    :only => [:create,:show,:destroy]
+    :only => [:create,:index,:show,:destroy]
 
   map.resources :searches,
     :only => [:create]
