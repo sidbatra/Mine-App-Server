@@ -10,6 +10,12 @@ Denwen.Views.Welcome.Show = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    this.feedEl = '#feed';
+
+    this.content  = new Denwen.Partials.Feed.Content({
+                          aspect: 'special',
+                          el:$(this.feedEl)});
+
     this.setAnalytics();
   },
 
