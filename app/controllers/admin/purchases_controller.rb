@@ -29,4 +29,12 @@ class Admin::PurchasesController < ApplicationController
     end
   end
 
+  #
+  #
+  def update
+    purchase = Purchase.find(params[:id])
+    purchase.update_attributes(params[:purchase])
+    redirect_to admin_full_purchase_path(purchase.user.handle,purchase.handle)
+  end
+
 end

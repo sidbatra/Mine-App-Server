@@ -165,7 +165,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
     admin.resources :users, :only => [:index,:show,:destroy]
-    admin.resources :purchases, :only => [:index,:show]
+    admin.resources :purchases, :only => [:index,:show,:update]
     admin.resources :products, :only => [:index]
     admin.resources :stores, :only => [:index,:show,:edit,:update]
     admin.resources :comments, :only => [:index]

@@ -41,7 +41,7 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id
+                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id,:is_special
 
   #----------------------------------------------------------------------
   # Class methods
