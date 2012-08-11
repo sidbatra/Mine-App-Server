@@ -17,7 +17,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.feedEl = '#feed';
     this.suggestionsEl = '#suggestions';
 
-    this.content  = new Denwen.Partials.Feed.Content({el:$(this.feedEl)});
+    this.content  = new Denwen.Partials.Feed.Content({
+                          aspect: 'user',
+                          el:$(this.feedEl)});
     this.input    = new Denwen.Partials.Purchases.Input({
                           el  : $('body'),
                           mode: Denwen.PurchaseFormType.New});

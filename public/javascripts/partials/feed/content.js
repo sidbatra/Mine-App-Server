@@ -15,6 +15,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.loading = false;
     this.disabled = false;
     this.spinnerEl = '#feed-spinner';
+    this.aspect = this.options.aspect;
 
     this.feed = new Denwen.Collections.Feed();
     this.feed.bind('add',this.feedItemAdded,this);
@@ -42,7 +43,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.loading = true;
 
     var self = this;
-    var data = {per_page:this.perPage};
+    var data = {per_page:this.perPage,aspect:this.aspect};
 
     if(this.oldestItemTimestamp)
       data['before'] = this.oldestItemTimestamp;
