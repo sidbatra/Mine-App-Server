@@ -9,31 +9,57 @@ class FeedController < ApplicationController
   # params[:before] - Integer(Unix timestamp). Only fetch feed items 
   #                   created before the given timestamp.
   # params[:per_page] - Integer:10. The number of feed items per page.
+  #
+  # params[:aspect] - Aspect of feed - a user feed or a special feed.
   # 
   def show
     @after = params[:after] ? Time.at(params[:after].to_i) : nil
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
+    @aspect = params[:aspect] ? params[:aspect].to_sym : :user
 
-    @key = ["v5",self.current_user,
-            self.current_user.ifollowers.map(&:updated_at).max.to_i,
-            "feed",@before ? @before.to_i : "",@per_page]
+    
+    case @aspect
+    when :user
+    
+      @key = ["v5",self.current_user,
+              self.current_user.ifollowers.map(&:updated_at).max.to_i,
+              "user-feed",@before ? @before.to_i : "",@per_page]
 
-    @purchases = Purchase.
-                  select(:id,:created_at,:title,:handle,:source_url,
-                          :orig_thumb_url,:orig_image_url,:endorsement,
-                          :image_path,:is_processed,:user_id,:store_id,
-                          :fb_action_id).
-                  with_user.
-                  with_store.
-                  with_comments.
-                  with_likes.
-                  by_created_at.
-                  after(@after).
-                  before(@before).
-                  limit(@per_page).
-                  for_users(self.current_user.ifollowers + 
-                            [self.current_user]) unless fragment_exist? @key
+      @purchases = Purchase.
+                    select(:id,:created_at,:title,:handle,:source_url,
+                            :orig_thumb_url,:orig_image_url,:endorsement,
+                            :image_path,:is_processed,:user_id,:store_id,
+                            :fb_action_id).
+                    with_user.
+                    with_store.
+                    with_comments.
+                    with_likes.
+                    by_created_at.
+                    after(@after).
+                    before(@before).
+                    limit(@per_page).
+                    for_users(self.current_user.ifollowers + 
+                              [self.current_user]) unless fragment_exist? @key
+
+    when :special
+
+      @purchases = Purchase.
+                    select(:id,:created_at,:title,:handle,:source_url,
+                            :orig_thumb_url,:orig_image_url,:endorsement,
+                            :image_path,:is_processed,:user_id,:store_id,
+                            :fb_action_id).
+                    with_user.
+                    with_store.
+                    with_comments.
+                    with_likes.
+                    by_created_at.
+                    after(@after).
+                    before(@before).
+                    limit(@per_page).
+                    special
+    end
+
   rescue => ex
     handle_exception(ex)
   ensure
