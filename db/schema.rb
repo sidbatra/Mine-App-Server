@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810232627) do
+ActiveRecord::Schema.define(:version => 20120811011238) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -164,11 +164,13 @@ ActiveRecord::Schema.define(:version => 20120810232627) do
     t.integer  "product_id"
     t.string   "tweet_id"
     t.string   "tumblr_post_id"
+    t.boolean  "is_special",         :default => false
   end
 
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
   add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
   add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
+  add_index "purchases", ["is_special"], :name => "index_purchases_on_is_special"
   add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
   add_index "purchases", ["suggestion_id"], :name => "index_purchases_on_suggestion_id"
   add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
