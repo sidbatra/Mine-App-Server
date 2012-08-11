@@ -9,6 +9,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   //
   initialize: function() {
     var self          = this;
+    this.external     = false;
     this.disabled     = true;
     this.placeholder  = !Denwen.H.isLoggedIn();
     this.tag          = this.options.tag;
@@ -33,6 +34,16 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
           error   : function(model,errors) {}
         });
       }
+
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.FollowingLoaded,
+        this.externalFollowingLoaded,
+        this);
+
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.FollowingLoadingComplete,
+        this.externalFollowingLoadingComplete,
+        this);
     }
   },
 
@@ -121,6 +132,23 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   evaluateUI: function(result) {
     this.preprocess(result);
     this.disabled = false;
+  },
+
+  // External following is loaded via notification manager.
+  //
+  externalFollowingLoaded: function(following) {
+    if(this.userID == following.get('user_id')) {
+      this.following = following;
+      this.evaluateUI(following);
+      this.external = true;
+    }
+  },
+
+  // All external followings have been loade.
+  //
+  externalFollowingLoadingComplete: function() {
+    if(!this.external)
+      this.evaluateUI(new Backbone.Model());
   }
 
 });

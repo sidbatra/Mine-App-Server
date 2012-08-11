@@ -15,5 +15,7 @@ Denwen.NotificationManager = Backbone.Model.extend({
 Denwen.NotificationManager.Callback= {
   SuggestionClicked         : "suggestionClicked",
   SuggestionFinished        : "suggestionFinished",
-  FBTokenDead               : "fbTokenDead"
+  FBTokenDead               : "fbTokenDead",
+  FollowingLoaded           : "followingLoaded",
+  FollowingLoadingComplete  : "followingLoadingComplete"
 };

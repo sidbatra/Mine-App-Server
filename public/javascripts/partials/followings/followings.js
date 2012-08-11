@@ -14,7 +14,14 @@ Denwen.Partials.Followings.Followings = Backbone.View.extend({
   // Following for the user are loaded.
   //
   loaded: function() {
-    console.log(this.followings);
+    this.followings.each(function(following){
+      Denwen.NM.trigger(
+        Denwen.NotificationManager.Callback.FollowingLoaded,
+        following);
+    });
+
+    Denwen.NM.trigger(
+      Denwen.NotificationManager.Callback.FollowingLoadingComplete);
   }
 
 });
