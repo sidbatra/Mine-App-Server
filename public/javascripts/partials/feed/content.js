@@ -16,6 +16,10 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.disabled = false;
     this.spinnerEl = '#feed-spinner';
     this.aspect = this.options.aspect;
+    this.interactive = this.options.interactive;
+
+    if (typeof this.interactive  === "undefined")
+      this.interactive = true;
 
     this.feed = new Denwen.Collections.Feed();
     this.feed.bind('add',this.feedItemAdded,this);
@@ -79,7 +83,7 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el: this.el,
                               model: purchase,
-                              interaction: this.aspect == 'user'});
+                              interaction: this.interactive});
   },
 
   // Feed items successfully loaded. Fire events to subscribers 
@@ -104,6 +108,10 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     }
 
     this.infiniteScroller.emptySpaceTest();
+
+    
+    if(!this.interactive)
+      $('#' + this.el.attr('id') + ' a[href]').click(function(e){e.preventDefault();});
   },
 
   // Feed items loading failed. Fire events to subscribers.
