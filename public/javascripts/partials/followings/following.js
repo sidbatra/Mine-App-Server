@@ -84,7 +84,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
       success: function(result) {self.evaluateUI(result);},
       error: function(model,errors){}});
 
-    //Denwen.Track.followingCreated(this.userID);
+    Denwen.Track.action("Following Created");
   },
 
   // Destroy the current following
@@ -104,7 +104,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
       success: function(result) {self.evaluateUI(new Backbone.Model());},
       error: function(model,errors){}});
 
-    //Denwen.Track.followingDestroyed(this.userID);
+    Denwen.Track.action("Following Destroyed");
   },
 
   // Render an action button representing the current
