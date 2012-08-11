@@ -8,7 +8,7 @@ class Admin::PurchasesController < ApplicationController
 
     case params[:filter].to_sym
     when :recent
-      @purchases = Purchase.with_user.by_id.limit(300)
+      @purchases = Purchase.with_user.by_id.limit(500)
       @view = "recent"
     end
 
