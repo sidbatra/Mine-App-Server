@@ -43,14 +43,14 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
-    this.suggestions = new Denwen.Partials.Feed.Suggestions({
-                            el:$(this.suggestionsEl),
-                            suggestionDelegate:this});
+    //this.suggestions = new Denwen.Partials.Feed.Suggestions({
+    //                        el:$(this.suggestionsEl),
+    //                        suggestionDelegate:this});
 
 
-    $("a[rel='tooltip']").tooltip();
+    //$("a[rel='tooltip']").tooltip();
     
-    this.loadFacebookPlugs();
+    //this.loadFacebookPlugs();
 
     this.setAnalytics();
   },
