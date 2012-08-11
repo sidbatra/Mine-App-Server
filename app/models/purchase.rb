@@ -31,6 +31,7 @@ class Purchase < ActiveRecord::Base
   named_scope :with_store, :include => :store
   named_scope :with_likes, :include => {:likes => [:user]}
   named_scope :with_comments, :include => {:comments => [:user]}
+  named_scope :special, :conditions => {:is_special => true}
   named_scope :by_id,      :order => 'id DESC'
   named_scope :by_created_at,      :order => 'created_at DESC'
 

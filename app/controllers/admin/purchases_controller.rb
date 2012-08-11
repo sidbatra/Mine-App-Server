@@ -10,6 +10,9 @@ class Admin::PurchasesController < ApplicationController
     when :recent
       @purchases = Purchase.with_user.by_id.limit(500)
       @view = "recent"
+    when :special
+      @purchases = Purchase.with_user.by_id.special
+      @view = "special"
     end
 
     render @view
