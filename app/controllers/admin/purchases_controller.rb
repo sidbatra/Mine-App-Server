@@ -1,4 +1,5 @@
 class Admin::PurchasesController < ApplicationController
+  layout nil
   before_filter :admin_required
 
   #
