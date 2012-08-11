@@ -14,6 +14,10 @@ Denwen.Views.Users.Connections = Backbone.View.extend({
       user: this.user
     });
 
+    if(Denwen.H.isLoggedIn()){
+      new Denwen.Partials.Followings.Followings();
+    }
+
     // -----
     this.setAnalytics();
   },
