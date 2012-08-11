@@ -18,11 +18,7 @@
   
 	<img alt="Pierre Legrain" class="user-photo xxl rounded-3 absolute" src="http://graph.facebook.com/517379696/picture?type=square">
 
-	<div id="follow-box">
-	  <a class="btn btn-green follow shaded absolute rounded-3" href="javascript:void(0)" id="destroy_following_5408">
-	    <span class="hide-when-loading"><i class="icon-ok icon-white"></i></span>
-	    <i class="icon-loading icon-white"></i>
-	  </a>
+	<div id="follow_box_pierre">
 	</div>
 	
 	<p class="user-name">
@@ -44,11 +40,7 @@
   
 	<img alt="Pierre Legrain" class="user-photo xxl rounded-3 absolute" src="http://graph.facebook.com/502835064/picture?type=square">
 
-	<div id="follow-box">
-	  <a class="btn follow shaded absolute rounded-3" href="javascript:void(0)" id="create_following_5408">
-	    <span class="hide-when-loading">Follow</span>
-	    <i class="icon-loading icon-white"></i>
-	  </a>
+	<div id="follow_box_sid">
 	</div>
 	
 	<p class="user-name">
@@ -67,11 +59,7 @@
   
 	<img alt="Pierre Legrain" class="user-photo xxl rounded-3 absolute" src="http://graph.facebook.com/699760342/picture?type=square">
 
-	<div id="follow-box">
-	  <a class="btn follow shaded absolute rounded-3" href="javascript:void(0)" id="create_following_5408">
-	    <span class="hide-when-loading">Follow</span>
-	    <i class="icon-loading icon-white"></i>
-	  </a>
+	<div id="follow_box_deepak">
 	</div>
 	
 	<p class="user-name">
@@ -83,3 +71,20 @@
 	</p>    
        
 </div> <!--/about-box -->
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Partials.Followings.Following({
+          el:$('#follow_box_sid'),
+          userID: 1});
+
+    new Denwen.Partials.Followings.Following({
+          el:$('#follow_box_pierre'),
+          userID: 2});
+
+    new Denwen.Partials.Followings.Following({
+          el:$('#follow_box_deepak'),
+          userID: 3});
+  </script>
+<%end%>
