@@ -12,6 +12,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   initialize: function() {
     var self = this;
+    this.interaction = this.options.interaction;
+
+    if (typeof this.interaction  === "undefined")
+      this.interaction = Denwen.H.isLoggedIn();
 
     this.purchaseEl = '#purchase-' + this.model.get('id');
     this.photoEl = '#purchase_photo_'  + this.model.get('id');
@@ -54,7 +58,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   render: function() {
     var html = Denwen.JST['purchases/display']({
                 purchase    : this.model,
-                interaction : Denwen.H.isLoggedIn()});
+                interaction : this.interaction});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);

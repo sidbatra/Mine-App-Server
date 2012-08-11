@@ -78,7 +78,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   feedItemAdded: function(purchase) {
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el: this.el,
-                              model: purchase});
+                              model: purchase,
+                              interaction: this.aspect == 'user'});
   },
 
   // Feed items successfully loaded. Fire events to subscribers 
