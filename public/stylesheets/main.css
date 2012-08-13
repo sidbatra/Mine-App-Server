@@ -7,10 +7,6 @@ html, body { height: 100%; }
 
 body { 
 	background: #333 url('/images/backgrounds/flowers.jpeg') fixed ;
-/*
-	background: url('/images/backgrounds/rainbow.jpeg') fixed;
-	background: #333;
-*/
 	font-size: 0;
 	line-height: 1;
 	color: #333;
@@ -20,7 +16,8 @@ a {
 	-webkit-transition: color .15s ease-in;
 	-moz-transition: color .15s ease-in;
 	-o-transition: color .15s ease-in;
-	transition: color .15s ease-in; }
+	transition: color .15s ease-in;
+	color: #ccc; }
 	
 a:hover { text-decoration: none; }
 
