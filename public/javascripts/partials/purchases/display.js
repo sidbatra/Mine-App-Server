@@ -26,6 +26,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.aggregateEl = '#purchase_likes_' + this.model.get('id') + '_aggregate';
     this.aggregateTextEl = '#purchase_likes_' + this.model.get('id') + '_aggregate_text';
     this.commentsEl = '#purchase_comments_' + this.model.get('id');
+    this.commentsBoxEl = '#purchase_comments_box_' + this.model.get('id');
 
     this.render();
 
@@ -91,6 +92,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.model.get('comments').each(function(comment){
       self.renderComment(comment);
     });
+
+    if(!this.interaction && this.model.get('comments').isEmpty()) {
+      $(this.commentsBoxEl).hide();
+    }
 
     this.testOverflow();
   },
