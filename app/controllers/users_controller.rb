@@ -59,10 +59,14 @@ class UsersController < ApplicationController
   #                 who follow the given user.
   #   ifollowers - requires params[:user_id]. All users
   #                 which the given user follows.
+  #   search - requires params[:query]. params[:skip_followers]
+  #             can be used to customize results.
+  #
   def index
     @aspect = params[:aspect].to_sym
     @users = []
     @key = ""
+    @cache_options = {}
 
     case @aspect
     when :likers
@@ -83,6 +87,19 @@ class UsersController < ApplicationController
               User.find(params[:user_id])
       @users = user.ifollowers
       @key = ["v1",user,@users.map(&:updated_at).max.to_i, "ifollowers"]
+
+    when :search
+      query = params[:query]
+      @key = ["v1",self.current_user,query]
+      @cache_options = {:expires_in => 1.minute}
+      @users = User.search do 
+                fulltext query do 
+                  boost(10) do 
+                    with(:followers,self.current_user.id)
+                  end unless params[:skip_followers]
+                end  
+                without(:followers,self.current_user.id) if params[:skip_followers]
+               end.results
 
     when :connections
       @user = User.find_by_handle params[:handle]
