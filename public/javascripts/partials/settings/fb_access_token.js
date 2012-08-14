@@ -27,10 +27,7 @@ Denwen.Partials.Settings.FBAccessToken = Backbone.View.extend({
     if(!this.setting.get('status')) {
 
       var keys = {};
-
-      keys[Denwen.Settings.FbAuth]                = false;
-      keys[Denwen.Settings.FbPublishPermissions]  = false;
-      keys[Denwen.Settings.FbExtendedPermissions] = false;
+      keys[Denwen.Settings.FbAuth] = false;
 
       Denwen.H.currentUser.get('setting').set(keys);
       Denwen.NM.trigger(Denwen.NotificationManager.Callback.FBTokenDead);

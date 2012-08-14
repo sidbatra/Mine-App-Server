@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810232627) do
+ActiveRecord::Schema.define(:version => 20120814180702) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -196,15 +196,13 @@ ActiveRecord::Schema.define(:version => 20120810232627) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "share_to_facebook",  :default => false
+    t.boolean  "share_to_facebook", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "email_influencer",   :default => true
-    t.boolean  "email_update",       :default => true
-    t.boolean  "fb_publish_actions", :default => true
-    t.boolean  "fb_publish_stream",  :default => false
-    t.boolean  "share_to_twitter",   :default => false
-    t.boolean  "share_to_tumblr",    :default => false
+    t.boolean  "email_influencer",  :default => true
+    t.boolean  "email_update",      :default => true
+    t.boolean  "share_to_twitter",  :default => false
+    t.boolean  "share_to_tumblr",   :default => false
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true

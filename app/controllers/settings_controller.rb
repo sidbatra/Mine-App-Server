@@ -16,9 +16,6 @@ class SettingsController < ApplicationController
     @filter = params[:id].to_sym
 
     case @filter
-    when :fb_publish_permissions
-      @setting = {:status => self.current_user.fb_publish_permissions?}
-
     when :fb_auth
       @setting = {:status => self.current_user.fb_authorized?}
 
@@ -43,23 +40,7 @@ class SettingsController < ApplicationController
   #
   def update
     @settings = self.current_user.setting
-
-    if params[:id] && params[:value]
-      @filter = params[:id].to_sym
-
-      case @filter
-      when :fb_publish_permissions
-        attributes = {:fb_publish_actions => params[:value]}
-
-      else
-        attributes = {params[:id] => params[:value]}
-      end
-
-      @settings.update_attributes(attributes)
-
-    else
-      @settings.update_attributes(params[:setting])
-    end
+    @settings.update_attributes(params[:setting])
 
     flash[:updated] = true
   rescue => ex

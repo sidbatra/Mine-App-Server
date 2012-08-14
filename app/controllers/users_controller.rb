@@ -171,10 +171,6 @@ class UsersController < ApplicationController
 
     raise IOError, "Error creating user" unless @user
 
-    setting = @user.setting
-    setting.fb_publish_actions = true
-    setting.save!
-
     @onboard = @user[:recreate]
 
     self.current_user = @user
