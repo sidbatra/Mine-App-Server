@@ -25,7 +25,6 @@ class UserDelayedObserver < DelayedObserver
     return if(check && !user.fb_access_token_valid?)
 
     mine_fb_friends(user)
-    compute_friend_score(user)
   end
 
   protected
