@@ -84,10 +84,11 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Callbacks from Suggestion Clicks
   // --
   suggestionClicked: function(suggestion) {
-    $(this.exampleEl).html(Denwen.JST['welcome/create/example']({
-                      example:suggestion.get('example')}));
+    //$(this.exampleEl).html(Denwen.JST['welcome/create/example']({
+    //                  example:suggestion.get('example')}));
     $(this.step2HeadingEl).html(Denwen.JST['welcome/create/heading']({
-                      thing:suggestion.get('thing')}));
+                      thing:suggestion.get('thing'),
+                      example:suggestion.get('example')}));
 
     $(this.extraSuggestionBoxEl).hide();
 

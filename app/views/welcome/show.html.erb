@@ -1,28 +1,30 @@
-<div class="info-box well-box border-box rounded-5 alias-smooth relative" style="padding: 12px 18px; margin-bottom: 18px;">
-	<h2>Add a first item you've bought</h2>
+<div class="well-box padded border-box rounded-8 relative">
+	<h2>Share great stuff, as you buy it</h2>
 	<p class="txt m border-box">
-		You can choose how you want to share it, and edit it any time.
+		Help friends discover new things, and start a conversation.
 	</p>
+
+	<div class="feed-container rounded-5" 
+	  style="background: #f5f5f5; margin: 20px 0 32px;">
+	
+		<div id="feed" class="feed rounded-5 shaded relative">
+	  </div>
+	
+		<div id="feed-spinner" class="feed-loading whitesmoke">
+		</div> 
+	</div> <!-- feed container -->
+
 </div>
 
-<div class="feed-container rounded-5" 
-  style="background: #f5f5f5; margin-bottom: 32px;">
-
-	<div id="feed" class="feed rounded-5 shaded relative">
-  </div>
-
-	<div id="feed-spinner" class="feed-loading whitesmoke">
-	</div> 
-</div> <!-- feed container -->
-
-
-
 <div class="bar bottom border-box gradient v-555-444" style="text-align: center;">
-	<%=link_to "Start your mine 
-			<i class='icon-chevron-right icon-white'></i>",
-			      welcome_path(WelcomeFilter::Create),
-			      :class => "btn btn-large btn-red border-box rounded-3 shaded",
-			      :style => "width: 472px;"%>
+	<a href="<%=welcome_path(WelcomeFilter::Create)%>"
+			class="btn btn-large btn-red border-box rounded-3 shaded"
+			style="width: 484px;">
+		Start your mine 
+		<%=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
+                :style => "height: 14px; margin: 13px 0 0 6px; vertical-align: top;"%>
+	
+	</a>
 </div>
 
 

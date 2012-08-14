@@ -7,7 +7,7 @@ html, body { height: 100%; }
 
 body { 
 	background: #333 /* url('/images/backgrounds/flowers.jpeg') fixed */ ;
-	font-size: 15px;
+	font-size: 0;
 	line-height: 1;
 	color: #333;
 	text-rendering: optimizelegibility; }
@@ -265,10 +265,14 @@ footer .like-button-box {
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
 	vertical-align: top; }
 
+.well-box.padded { padding: 12px 18px 18px; }
+.well-box.padded input.enter { width: 408px; }
+
 .well-box h2 { 
 	font-size: 22px;
 	line-height: 165%;
-	color: white; }
+	color: white;
+	-webkit-font-smoothing: antialiased; }
 
 .split { 
 	vertical-align: top;
