@@ -81,7 +81,9 @@ input.error:focus, textarea.error:focus {
 	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
 
+.centered { text-align: center; }
 .inline { display: inline; }
+.inline-block { display: inline-block; }
 
 .gradient.v-4D4D4D-444 {
 	background: #4d4d4d;

@@ -6,8 +6,8 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333 url('/images/backgrounds/flowers.jpeg') fixed ;
-	font-size: 0;
+	background: #333 /* url('/images/backgrounds/flowers.jpeg') fixed */ ;
+	font-size: 15px;
 	line-height: 1;
 	color: #333;
 	text-rendering: optimizelegibility; }
@@ -19,7 +19,9 @@ a {
 	transition: color .15s ease-in;
 	color: #ccc; }
 	
-a:hover { text-decoration: none; }
+a:hover { 
+	text-decoration: none;
+	color: #ccc; }
 
 a:focus { outline: none; }
 
@@ -40,14 +42,14 @@ a.light.underlined { border-bottom: 1px dotted #177DBE; }
 ul, ol { 
 	margin: 0;
 	list-style: none; }
-
+	
 .txt.xl { font-size: 22px; }
 .txt.l  { font-size: 16px; }
 .txt.m  { font-size: 14px; }
 .txt.s  { font-size: 12px; }
 .txt.xs { font-size: 11px; }
 
-.txt { line-height: 150%; }
+.txt    { line-height: 150%; }
 
 ul.txt.s li { margin-bottom: 8px; }
 ul.txt.s li .user-photo { margin-right: 4px; }
@@ -133,8 +135,6 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .header { height: 84px; padding-top: 24px !important; }
-.header.fixed { top: 0; }
-
 .header .logo { height: 48px; top: 20px; }
 .header .logo.centered { left: 50%; margin-left: -59px; }
 
@@ -265,9 +265,13 @@ footer .like-button-box {
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
 	vertical-align: top; }
 
-.connections-box { vertical-align: top; }
-.connections-box.fixed { top: 159px; }
-.connections-box.split { 
+.well-box h2 { 
+	font-size: 22px;
+	line-height: 165%;
+	color: white; }
+
+.split { 
+	vertical-align: top;
 	display: inline-block; 
 	width: 48.65%; }
 
@@ -327,7 +331,6 @@ footer .like-button-box {
 ==================================================================== */
 
 .create-box {}
-.create-box.fixed { top: 72px; }
 
 .create-box input.enter { 
 	width: 420px;
@@ -564,8 +567,6 @@ footer .like-button-box {
 /* Profile
 ==================================================================== */
 
-.profile-box.fixed { top: 72px; }
-
 .profile-box .user-box {
 	margin-top: 14px;
 	margin-bottom: 12px; }
@@ -622,12 +623,6 @@ footer .like-button-box {
 .info-box { margin-bottom: 12px; }
 .info-box.pictured { padding-left: 72px; }
 .info-box.pictured .user-photo { top: 12px; left: 12px; }
-.info-box .user-name { 
-	font-size: 22px;
-	line-height: 165%;
-	color: white;
-	font-weight: bold; }
-
 .info-box .unit { padding: 2px 0 12px; }
 .info-box h4 { color: white; line-height: 165%; margin-bottom: 5px; }	
 .info-box p { line-height: 165%; margin-bottom: 5px; }
