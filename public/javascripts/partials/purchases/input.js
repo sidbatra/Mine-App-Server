@@ -79,19 +79,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this);
 
 
-    this.fbSettings = new Denwen.Partials.Settings.FBPublishPermissions();
-
-    this.fbSettings.bind(
-      Denwen.Partials.Settings.FBPublishPermissions.Callback.Accepted,
-      this.fbPermissionsAccepted,
-      this);
-
-    this.fbSettings.bind(
-      Denwen.Partials.Settings.FBPublishPermissions.Callback.Rejected,
-      this.fbPermissionsRejected,
-      this);
-
-
     this.fbAuth = new Denwen.Partials.Auth.Facebook();
 
     this.fbAuth.bind(
@@ -218,15 +205,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the fb photo switch is toggled
   //
   fbSwitchToggled: function() {
-    var setting = Denwen.H.currentUser.get('setting');
-
-    if(!setting.get(Denwen.Settings.FbAuth)) { 
+    if(!Denwen.H.currentUser.get('setting').get(Denwen.Settings.FbAuth)) { 
       $(this.fbSwitchEl).addClass(this.switchLoadingClass);
       this.fbAuth.showAuthDialog();
-    }
-    else if(!setting.get(Denwen.Settings.FbPublishPermissions)) { 
-      $(this.fbSwitchEl).addClass(this.switchLoadingClass);
-      this.fbSettings.showPermissionsDialog();
     }
 
     $(this.fbSwitchEl).toggleClass(this.switchOffClass);
@@ -409,24 +390,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       error: function(){self.purchaseCreationFailed();}});
     
     return false;
-  },
-
-
-  //
-  // Callbacks from fb permissions interface.
-  //
-
-  // Fired when fb permissions are accepted 
-  //
-  fbPermissionsAccepted: function() {
-    $(this.fbSwitchEl).removeClass(this.switchLoadingClass);
-  },
-
-  // Fired when fb permissions are rejected
-  //
-  fbPermissionsRejected: function() {
-    $(this.fbSwitchEl).toggleClass(this.switchOffClass);
-    Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
   },
 
 

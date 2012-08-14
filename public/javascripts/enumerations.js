@@ -27,9 +27,7 @@ Denwen.Settings = {
 TwAuth: "tw_auth",
 FbAuth: "fb_auth",
 FbAccessToken: "fb_access_token",
-FbExtendedPermissions: "fb_extended_permissions",
-TumblrAuth: "tumblr_auth",
-FbPublishPermissions: "fb_publish_permissions"
+TumblrAuth: "tumblr_auth"
 }
 
 Denwen.TWSharing = {
