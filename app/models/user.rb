@@ -42,6 +42,15 @@ class User < ActiveRecord::Base
   validates_presence_of   :fb_user_id
 
   #----------------------------------------------------------------------
+  # Indexing
+  #----------------------------------------------------------------------
+  searchable do
+    text :first_name, :as => :first_name_textp, :boost => 3
+    text :last_name, :as => :last_name_textp, :boost => 2
+    text :email
+  end
+
+  #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :purchases_count, lambda {|count| {
