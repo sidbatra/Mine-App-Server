@@ -632,6 +632,9 @@ textarea {
 input[type=text].m { 
 	height: 28px;
 	padding: 0 8px; }
+	
+input[type=text].m.load {
+	background: white url('/images/loading/loading-snake-555-right-loading.gif') center right no-repeat; }
 
 /*
 textarea:focus,

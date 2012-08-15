@@ -670,7 +670,6 @@ footer .like-button-box {
 	width: auto;
 	height: 236px;
 	padding: 12px 6px;
-	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
 	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
 	text-align: center;
 	line-height: 236px; }
