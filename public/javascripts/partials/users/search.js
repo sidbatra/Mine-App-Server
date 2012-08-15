@@ -11,6 +11,7 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
     this.usersHash = new Array();
 
     this.el.keyup(function(e){self.keyup(e)});
+    this.el.focus(function(){self.focus()});
 
     this.el.typeahead({
               items: 10,
@@ -84,6 +85,12 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
                           function(){self.search(self.query);},
                           300);
     return true;
+  },
+
+  // Focus on the input box.
+  //
+  focus: function() {
+    this.el.trigger('lookup');
   },
 
   //
