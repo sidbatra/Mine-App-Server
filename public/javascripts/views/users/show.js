@@ -21,8 +21,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     $("a[rel='tooltip']").tooltip();
 
     // -----
-    $(".source-url").click(function(){
-                            Denwen.Track.purchaseURLVisit('profile')});
+    //$(".source-url").click(function(){
+    //                        Denwen.Track.purchaseURLVisit('profile')});
 
     // -----
     this.loadFacebookPlugs();
