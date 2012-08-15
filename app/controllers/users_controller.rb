@@ -94,9 +94,14 @@ class UsersController < ApplicationController
       @cache_options = {:expires_in => 1.minute}
       @users = User.search do 
                 fulltext query do 
-                  boost(10) do 
-                    with(:followers,self.current_user.id)
-                  end unless params[:skip_followers]
+                  unless params[:skip_followers]
+                    boost(10) do 
+                      with(:followers,self.current_user.id)
+                    end 
+                    boost(5) do 
+                      with(:followers,self.current_user.follower_ids)
+                    end 
+                  end
                 end  
                 without(:followers,self.current_user.id) if params[:skip_followers]
                 paginate :per_page => 5
