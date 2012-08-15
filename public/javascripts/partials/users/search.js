@@ -33,19 +33,29 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
                 return items;
               },
               matcher: function(item){
-                return ~item.toLowerCase().replace(/[^\w]/g,'').
-                          indexOf(this.query.toLowerCase().
-                                        replace(/[^\w]/g,''));}});
+                return 1;
+                //return ~item.toLowerCase().replace(/[^\w]/g,'').
+                //          indexOf(this.query.toLowerCase().
+                //                        replace(/[^\w]/g,''));
+              }});
   },
 
   // Apply the given data source to the users collection
   // and typeahead. Also initiates a new search.
   //
-  applyDataSource: function(source) {
+  applyDataSource: function(source,clean) {
     var self = this;
 
     this.users = source;
     this.usersHash = new Array();
+
+    if(!clean)
+      this.users.add(new Denwen.Models.User({
+                          id: 0,
+                          first_name: "Invite friends.",
+                          last_name: "",
+                          square_image_url: "/images/arrow-out.png",
+                          handle: "invite"}));
     
     this.users.each(function(user){
       self.usersHash[user.fullName()] = user; 
@@ -64,7 +74,7 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
 
     this.query = this.el.val();
 
-    this.applyDataSource(new Denwen.Collections.Users());
+    this.applyDataSource(new Denwen.Collections.Users(),true);
 
     if(this.keyUpTimer != null)
       clearTimeout(this.keyUpTimer);
@@ -94,6 +104,6 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
   //
   //
   searched: function() {
-    this.applyDataSource(this.users);
+    this.applyDataSource(this.users,false);
   }
 });

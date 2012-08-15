@@ -67,9 +67,11 @@
                                                 :tw_auth,
                                                 :tumblr_auth]}})%>);
 
-       <%if session[:renewed] && self.current_user.setting.fb_auth%>
+        <%if session[:renewed] && self.current_user.setting.fb_auth%>
           new Denwen.Partials.Settings.FBAccessToken();
-       <%end%>
+        <%end%>
+
+        new Denwen.Partials.Users.Search({el:$("#users_search_query")});
       <%end%>
     </script>
 
