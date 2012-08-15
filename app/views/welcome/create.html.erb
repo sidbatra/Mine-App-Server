@@ -25,7 +25,8 @@
 	<ul id="cards" style="margin: 20px -20px -8px 0;">
 	  <%@suggestions.each do |suggestion|%>
 	  
-	  <li class="border-box centered rounded-5 opacity-90-100 transition-opacity" style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
+	  <li class="border-box centered rounded-5 opacity-90-100 transition-opacity" 
+        style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
 	
 	    <a id="suggestion_<%=suggestion.id%>" 
 	        href="javascript:void(0)" 
@@ -43,12 +44,16 @@
 	      </div>	
 	    </a>
 	   
-	   </li> <!--/well-box -->
+	  </li> <!--/well-box -->
 	   
 	  <%end%>
 	
-		<li id="extra_suggestion_box" class="border-box centered rounded-5 opacity-90-100 transition-opacity" style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
-			<a href="javascript:void(0)" id="extra_suggestion" class="border-box rounded-3 inline-block pointer" style="width: 100%; background: white; padding: 12px;">
+		<li id="extra_suggestion_box" 
+        class="border-box centered rounded-5 opacity-90-100 transition-opacity" 
+        style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
+			<a href="javascript:void(0)" id="extra_suggestion" 
+          class="border-box rounded-3 inline-block pointer" 
+          style="width: 100%; background: white; padding: 12px;">
 				  <div style="height: 128px; padding: 4px; font-size: 72px; font-weight: bold; color: #333; line-height: 120px;">…</div>
 				  <div class="txt l alias-smooth" style="color: #555; font-weight: bold;">Something else</div>
 			</a>    
@@ -86,11 +91,6 @@
 		  
 		<br>
 		<br>
-	  
-<!--
-	  <span id="example" class="example rounded-8">
-	  </span>
--->
 	  
 	</div> <!-- /search-box -->
 

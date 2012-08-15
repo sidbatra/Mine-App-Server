@@ -26,7 +26,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
     this.step1HeadingEl = '#step_1';
     this.step2HeadingEl = '#step_2';
     this.step3HeadingEl = '#step_3';
-    this.exampleEl = '#example';
     this.extraSuggestionEl = '#extra_suggestion';
     this.extraSuggestionBoxEl = '#extra_suggestion_box';
 
@@ -84,8 +83,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   // Callbacks from Suggestion Clicks
   // --
   suggestionClicked: function(suggestion) {
-    //$(this.exampleEl).html(Denwen.JST['welcome/create/example']({
-    //                  example:suggestion.get('example')}));
     $(this.step2HeadingEl).html(Denwen.JST['welcome/create/heading']({
                       thing:suggestion.get('thing'),
                       example:suggestion.get('example')}));
@@ -114,8 +111,6 @@ Denwen.Views.Welcome.Create = Backbone.View.extend({
   	$(this.boxEl).addClass('itemized');
     $(this.step2HeadingEl).hide();
     $(this.step3HeadingEl).show();
-
-    $(this.exampleEl).hide();
   },
 
   // Display the freshly created purchase in the feed.
