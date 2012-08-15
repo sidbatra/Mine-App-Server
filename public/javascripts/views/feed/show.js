@@ -15,7 +15,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.source = this.options.source;
 
     this.feedEl = '#feed';
-    this.suggestionsEl = '#suggestions';
+    //this.suggestionsEl = '#suggestions';
 
     this.content  = new Denwen.Partials.Feed.Content({
                           aspect: 'user',
@@ -96,7 +96,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   },
 
   productSelected: function() {
-    $(this.suggestionsEl).hide();
+    //$(this.suggestionsEl).hide();
   },
 
   // Display the freshly created purchase in the feed.
@@ -104,15 +104,15 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   purchaseCreated: function(purchase) {
     this.content.insert(purchase);
 
-    if(this.suggestions.areActive()) {
-      $(this.suggestionsEl).show();
+    //if(this.suggestions.areActive()) {
+    //  $(this.suggestionsEl).show();
 
-      if(purchase.get('suggestion_id')) {
-        Denwen.NM.trigger(
-          Denwen.NotificationManager.Callback.SuggestionFinished,
-          purchase.get('suggestion_id'));
-      }
-    }
+    //  if(purchase.get('suggestion_id')) {
+    //    Denwen.NM.trigger(
+    //      Denwen.NotificationManager.Callback.SuggestionFinished,
+    //      purchase.get('suggestion_id'));
+    //  }
+    //}
 
     Denwen.Track.action("Purchase Created");
   },
