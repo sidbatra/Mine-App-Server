@@ -20,6 +20,11 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.content  = new Denwen.Partials.Feed.Content({
                           aspect: 'user',
                           el:$(this.feedEl)});
+  
+
+    new Denwen.Partials.Users.Search({el:$("#users_search_query")});
+
+
     this.input    = new Denwen.Partials.Purchases.Input({
                           el  : $('body'),
                           mode: Denwen.PurchaseFormType.New});
