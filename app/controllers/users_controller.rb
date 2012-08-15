@@ -89,7 +89,7 @@ class UsersController < ApplicationController
       @key = ["v1",user,@users.map(&:updated_at).max.to_i, "ifollowers"]
 
     when :search
-      query = params[:query]
+      query = params[:q]
       @key = ["v1",self.current_user,query]
       @cache_options = {:expires_in => 1.minute}
       @users = User.search do 
@@ -99,6 +99,7 @@ class UsersController < ApplicationController
                   end unless params[:skip_followers]
                 end  
                 without(:followers,self.current_user.id) if params[:skip_followers]
+                paginate :per_page => 5
                end.results
 
     when :connections
