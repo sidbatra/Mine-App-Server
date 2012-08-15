@@ -94,6 +94,8 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
 
     var self = this;
 
+    this.el.addClass('load');
+
     this.users = new Denwen.Collections.Users();
     this.users.fetch({
           data      : {aspect: 'search',q: query},
@@ -105,5 +107,6 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
   //
   searched: function() {
     this.applyDataSource(this.users,false);
+    this.el.removeClass('load');
   }
 });
