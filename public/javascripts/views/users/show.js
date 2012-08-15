@@ -14,6 +14,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
       user: this.user
     });
 
+    new Denwen.Partials.Users.Search({el:$("#users_search_query")});
+
     // -----
     $("span.timeago").timeago();
 

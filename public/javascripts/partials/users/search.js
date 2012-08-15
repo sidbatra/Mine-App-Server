@@ -14,7 +14,8 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
 
     this.el.typeahead({
               items: 10,
-              item: '<li><a href="#"></a></li>',
+              menu: '<ul class="search typeahead dropdown-menu border-box"></ul>',
+              item: '<li class="txt s"><a href="#"></a></li>',
               updater: function(item) {
                 var user = self.usersHash[item];
                 window.location.href = "/" + user.get('handle') + "?src=search";
@@ -23,7 +24,7 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
               highlighter: function(item) {
                 var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
                 var user = self.usersHash[item];
-                return "<img src='" + user.get('square_image_url') + "'/>" + 
+                return "<img class='user-photo s rounded-3' src='" + user.get('square_image_url') + "'/>" + 
                         item.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
                           return '<strong>' + match + '</strong>';
                         });

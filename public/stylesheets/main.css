@@ -68,27 +68,11 @@ ul.txt.s li .user-photo { margin-right: 4px; }
   font-weight: bold;
   text-transform: uppercase; }
 
-/* .box-title a { color: #999; } */
-
 .wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -32px; }
-
-/*
-.background-cover {
-	background-image: url('/images/backgrounds/rainbow.jpeg');
-  background-size: cover;
-  background-position: 50% 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2; }
-*/
 
 .background-cover {  
 	background-image: url('/images/backgrounds/rainbow.jpeg');
@@ -138,7 +122,23 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .header .logo { height: 48px; top: 20px; }
 .header .logo.centered { left: 50%; margin-left: -59px; }
 
-/* -- dropdown -- */
+/* -- search dropdown --*/
+
+.search.typeahead.dropdown-menu {
+	margin-top: -1px;
+	margin-left: -1px;
+	width: 170px;
+	font-size: 12px;
+	border-width: 1px 1px 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.2); }
+
+.search.typeahead.dropdown-menu li a { padding: 4px 6px; color: #555; }
+	
+.search.typeahead.dropdown-menu li a .user-photo.s {
+	margin-right: 6px; }
+
+/* -- user dropdown -- */
 
 .header a.btn-user { 
 	display: block; }
@@ -164,17 +164,16 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .header .dropdown-toggle:hover .caret,        
 .header .btn-group.open .caret { border-top: 6px solid white; }
 
-.header .dropdown-menu {
-	left: 0;
+.header .nav.dropdown-menu {
 	border: 0;
-	min-width: 120px;
+	min-width: 130px;
 	background: #393939 !important;
 	z-index: 2;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
 
-.header .dropdown-menu a {
+.header .nav.dropdown-menu a {
   display: block;
   padding: 5px 10px;
   clear: both;
@@ -187,10 +186,10 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	-o-transition: none;
 	transition: none; }
 
-.header .dropdown-menu li > a:hover,
-.header .dropdown-menu li > a:focus,
-.header .dropdown-menu .active > a,
-.header .dropdown-menu .active > a:hover {
+.header .nav.dropdown-menu li > a:hover,
+.header .nav.dropdown-menu li > a:focus,
+.header .nav.dropdown-menu .active > a,
+.header .nav.dropdown-menu .active > a:hover {
   color: white;
   text-decoration: none;
   background: none !important; 
@@ -347,6 +346,10 @@ footer .like-button-box {
 .create-box .panel .store-name { 
 	width: 170px;
 	float: left; }
+	
+.typeahead.dropdown-menu {
+	width: 250px;
+	font-size: 14px; }
 
 .create-box .panel label {
 	line-height: 1; 
@@ -756,6 +759,8 @@ footer .like-button-box {
 	border: 1px solid #ccc;
 	border-bottom: 1px solid #bbb;
 	margin-top: -1px;
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
 	box-sizing: border-box; 
 	width: 32px; }
 	

@@ -601,10 +601,6 @@ input.error:focus, textarea.error:focus {
   color: #575E62;
   text-decoration: none;
   background-color: #eee; }
-    
-.typeahead.dropdown-menu {
-	width: 250px !important;
-	font-size: 14px; }
 
 .typeahead.dropdown-menu li { 
 	overflow: hidden;
@@ -632,6 +628,10 @@ input[type=text] { height: 40px; }
 textarea { 
 	padding-top: 7px;
 	padding-bottom: 7px; }
+
+input[type=text].m { 
+	height: 28px;
+	padding: 0 8px; }
 
 /*
 textarea:focus,

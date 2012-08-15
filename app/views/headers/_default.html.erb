@@ -16,13 +16,12 @@
             style="float: left; padding: 0; border: 0; margin-right: 5px;">
             <%=image_tag self.current_user.square_image_url,
                   :class => "user-photo m rounded-3 shaded",
-                  :style => "margin-right: 2px;"%>
+                  :style => "margin-right: 1px;"%>
             <%#h self.current_user.full_name%>      	
           </a>
 
-          <input type="text" 
-            id="users_search_query" 
-            style="height: 28px; float: left; width: 64px;">
+          <input type="text" placeholder="Search for people" class="m border-box relative" id="users_search_query" 
+            style="float: left; width: 168px; margin: 0 6px 0 0;">
           
          	<a class="border-box pointer opacity-80-100" 
             style="width: 28px; height: 28px; padding: 7px 7px 7px; float: left;">
@@ -34,18 +33,18 @@
                       :style => "height: 14px;"),
                   root_path(:src => "bar-icon"),
                   :class => "border-box opacity-80-100", 
-                  :style => "height: 28px; padding: 6px 7px 8px; float: left;"%>
+                  :style => "width: 28px; height: 28px; padding: 6px 7px 8px; float: left;"%>
           
           <a class="dropdown-toggle border-box pointer" 
-            style="width: 28px; height: 28px; padding: 11px 8px; float: right;" 
+            style="width: 28px; height: 28px; padding: 11px 8px; float: left;" 
             data-toggle="dropdown">
             <b class="caret opaque"></b>  
           </a>
       
 
-          <ul class="dropdown-menu pull-right rounded-3">
+          <ul class="dropdown-menu nav pull-right rounded-3">
             <li class="txt s">
-              <%=link_to "Your purchases",
+              <%=link_to "Your items",
                   user_path(self.current_user.handle,:src => "bar")%>
             </li>
             <li class="txt s">
