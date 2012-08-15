@@ -14,7 +14,7 @@
 
       <%cache ["v1",@user,"ifollowers","connections"] do%>
 
-        <ul class="well-box single rounded-5 border-box relative">
+        <ul class="well-box list-box single rounded-5 border-box relative">
           <%@user.ifollowers.each do |user|%>
             <%cache ["v1",user,"ifollower","connections"] do%>     
               <li class="txt m relative">
@@ -49,7 +49,7 @@
 			
       <%cache ["v1",@user,"followers","connections"] do%>
 
-        <ul class="well-box single rounded-5 border-box relative">
+        <ul class="well-box list-box single rounded-5 border-box relative">
           <%@user.followers.each do |user|%>
             <%cache ["v1",user,"follower","connections"] do%>     
               <li class="txt m relative">

@@ -588,10 +588,26 @@ footer .like-button-box {
 	overflow: hidden;
 	white-space: nowrap; }
 
-.well-box .btn.follow {
+/* -- follow button 2nd-degree styling -- */
+
+.well-box.user-box .btn.follow {
 	top: 12px;
 	right: 12px;
 	width: 80px; }
+
+.well-box.info-box .btn.follow {
+	top: 12px;
+	right: 12px;
+	width: 80px; }
+	
+.well-box.list-box .btn.follow {
+	top: 0;
+	right: 0;
+	width: 56px;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 6px; }
+
 
 /* -- byline -- */
 

@@ -5,11 +5,12 @@
           :class => "logo absolute"),
         root_path(:src => "bar")%>
       
-    <%if logged_in?%>
-      <div class="btn-group unselectable well-box border-box rounded-5" 
-        style="padding: 6px; float: right;">
+      <%if logged_in?%>
 
         <%if !is_onboarding?%>
+        	<div class="btn-group unselectable well-box border-box rounded-5" 
+       				 style="padding: 6px; float: right;">
+        
           <a href="<%=user_path(self.current_user.handle,:src => "bar")%>"
             class="btn-user relative pointer txt m dark" 
             style="float: left; padding: 0; border: 0; margin-right: 5px;">
@@ -53,17 +54,11 @@
               <%=link_to "Log Out",logout_path%>
             </li>
           </ul>
-
-        <%else%>
-          <div class="btn-user relative txt m dark" 
-            style="float: left; padding: 0; border: 0;">
-            <%=image_tag self.current_user.square_image_url,
-                  :class => "user-photo m rounded-3 shaded",
-                  :style => ""%>  	
-          </div>
-        <%end%>
+          
+        </div>  <!--/btn-group -->
+      <%end%>
     
-      </div>  <!--/btn-group -->
+
     <%else%>
       <a href="<%=fb_auth_path(:src => @origin)%>" 
           onclick="this.className += ' load';"
