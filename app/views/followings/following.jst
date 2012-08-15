@@ -1,9 +1,12 @@
 <%if(isFollowing) {%>
   <a class="btn btn-green follow shaded 
-              absolute rounded-3"
+              absolute rounded-3 no-transition"
       href="javascript:void(0)" 
       id="destroy_following_<%=userID%><%=tag%>">
-    <span class="hide-when-loading"><i class="icon-ok icon-white"></i></span>
+    <span class="hide-when-loading">
+    	<i class="icon-ok icon-white"></i>
+    	<span class="unfollow">Unfollow</span>
+    </span>
     <i class="icon-loading icon-white"></i>
   </a>
 <%} else {%>

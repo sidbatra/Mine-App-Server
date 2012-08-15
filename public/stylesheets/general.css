@@ -240,6 +240,12 @@ input.error:focus, textarea.error:focus {
 	-o-transition: border-color .15s ease-in;
 	transition: border-color .15s ease-in; }
 	
+.no-transition {
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none; }
+	
 .unselectable { 
   -moz-user-select: none; 
   -khtml-user-select: none; 

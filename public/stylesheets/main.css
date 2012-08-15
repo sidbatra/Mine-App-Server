@@ -620,6 +620,13 @@ footer .like-button-box {
 	height: 28px;
 	line-height: 28px;
 	padding: 0 6px; }
+	
+.btn.follow.btn-green:hover { background-color: #a6321d; }
+.btn.follow.btn-green .unfollow { display: none; }
+.btn.follow.btn-green:hover .icon-ok { display: none; }
+.btn.follow.btn-green:hover .unfollow { display: block; }
+
+
 
 
 /* -- byline -- */
