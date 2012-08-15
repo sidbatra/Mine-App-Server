@@ -101,6 +101,11 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
           data      : {aspect: 'search',q: query},
           success   : function(collection){self.searched();},
           error     : function(collection,errors){}});
+
+    var search = new Denwen.Models.Search({
+                                    query : query,
+                                    source : Denwen.SearchSource.User});
+    search.save();
   },
 
   //

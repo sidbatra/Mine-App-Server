@@ -276,7 +276,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
                       query   : query,
                       source  : this.mode == 'new' ? 0 : 1});
 
-    setTimeout(function(){search.save();},750);
+    search.save();
 
     this.trigger(
       Denwen.Partials.Products.Search.Callback.ProductSearched,
