@@ -17,7 +17,7 @@ module DW
 
         message = "Just bought this"
 
-        if purchase.store && purchase.store.is_approved
+        if purchase.store 
           message << " from #{purchase.store.name}"
         end
 
@@ -60,7 +60,7 @@ module DW
         
         message = "Just bought this "
 
-        if purchase.store && purchase.store.is_approved
+        if purchase.store 
           message << "from #{purchase.store.name} "
         end
 
@@ -93,7 +93,7 @@ module DW
 
         message = "Just bought this"
 
-        if purchase.store && purchase.store.is_approved
+        if purchase.store 
           message << " from #{purchase.store.name}"
         end
 
