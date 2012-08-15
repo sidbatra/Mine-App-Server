@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120811011238) do
-=======
 ActiveRecord::Schema.define(:version => 20120814180702) do
->>>>>>> removing all facebook permissions from settings. #abouttime
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
