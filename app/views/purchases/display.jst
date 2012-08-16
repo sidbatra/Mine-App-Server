@@ -19,7 +19,7 @@
 		<%if(interaction){%> 
 			<a href="javascript:void(0)"
 		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn absolute shaded">
+		  		class="like btn absolute shaded border-box">
 				<img class="thumb" 
           src="<%=Denwen.H.imagePath('like-16-2x-white.png')%>"/>
 				<i class="icon-ok"></i>
@@ -28,7 +28,6 @@
 
 		<!--img class="stamp absolute" 
       src="<#=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" /-->
-		
         
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
         href="<%=purchase.get('source_url')%>" 

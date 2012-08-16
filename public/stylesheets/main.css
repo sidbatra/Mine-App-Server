@@ -458,6 +458,8 @@ footer .like-button-box {
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
 	
 .item .photo-box .like {
+	width: 46px;
+	height: 32px;
 	padding-left: 16px;
 	padding-right: 16px;
 	top: 32px;
@@ -473,7 +475,6 @@ footer .like-button-box {
 	opacity: 0.75;
 	filter: alpha(opacity=75); } 
 	
-
 .item .photo-box .like .thumb {
 	margin-top: -3px;
 	width: 14px;
@@ -560,7 +561,9 @@ footer .like-button-box {
 	font-weight: bold; 
 	font-size: 32px; }
 
-.item .panel .likes-box .user-photo-box { 
+.item .panel .likes-box .user-photo-box {
+	width: 24px;
+	height: 24px; 
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 4px; }

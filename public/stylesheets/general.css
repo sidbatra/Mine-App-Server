@@ -60,16 +60,13 @@ input.error.highlight-on-focus:focus,
 textarea.error.highlight-on-focus:focus { 
 	color: #d5432b !important;
 	border-color: #d5432b !important;
-	background: #fdece9 !important; }
+	background: #fbe1dc !important; }
 
 input.error:focus, textarea.error:focus {
 	border-color: #b94a48 !important;
   -webkit-box-shadow: 0 0 6px #d5432b;
      -moz-box-shadow: 0 0 6px #d5432b;
           box-shadow: 0 0 6px #d5432b; }
-
-.three-to-two { margin-right: 38px; }
-/* see media queries for 2-span variant */
 
 .square {
 	-webkit-border-radius: 0;
@@ -266,25 +263,6 @@ input.error:focus, textarea.error:focus {
 /* Buttons
 ==================================================================== */
 
-/*
-.awesome {
-	background: #222 url(/images/alert-overlay.png) repeat-x;
-	display: inline-block;
-	padding: 5px 10px 6px;
-	color: #fff;
-	text-decoration: none;
-	font-weight: bold;
-	line-height: 1;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-box-shadow: 0 1px 3px #999;
-	-webkit-box-shadow: 0 1px 3px #999;
-	text-shadow: 0 -1px 1px #222;
-	border-bottom: 1px solid #222;
-	position: relative;
-	cursor: pointer; }
-*/
-
 .btn {
   display: inline-block;
   *display: inline;
@@ -302,8 +280,7 @@ input.error:focus, textarea.error:focus {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-/*   background: #177DBE url(/images/alert-overlay.png) repeat-x; */
-  background: #1370ab url(/images/alert-overlay.png) repeat-x;
+  background: #1370ab url("/images/alert-overlay.png") repeat-x;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
