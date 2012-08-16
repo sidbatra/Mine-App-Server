@@ -44,3 +44,7 @@ stylesheets:
 
   home:
     - public/stylesheets/bootstrap.css
+    - public/stylesheets-old/tags.css
+    - public/stylesheets-old/home.css
+    - public/stylesheets-old/tablet.css
+    - public/stylesheets-old/mobile.css
