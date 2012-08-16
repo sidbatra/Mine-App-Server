@@ -109,6 +109,7 @@ class UsersController < ApplicationController
 
     when :connections
       @user = User.find_by_handle params[:handle]
+      @origin = "connections"
     end
 
   rescue => ex
