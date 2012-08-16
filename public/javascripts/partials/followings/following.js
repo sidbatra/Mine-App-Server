@@ -69,6 +69,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     if(this.placeholder) {
       $(this.placeholderEl).modal('show');
+      Denwen.Track.action("User Modal View");
       return;
     }
 
