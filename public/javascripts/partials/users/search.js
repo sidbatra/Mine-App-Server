@@ -53,9 +53,9 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
     if(!clean)
       this.users.add(new Denwen.Models.User({
                           id: 0,
-                          first_name: "Invite friends.",
+                          first_name: "Invite a friend",
                           last_name: "",
-                          square_image_url: "/images/arrow-out.png",
+                          square_image_url: "",
                           handle: "invite"}));
     
     this.users.each(function(user){
