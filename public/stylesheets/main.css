@@ -639,16 +639,9 @@ footer .like-button-box {
 	line-height: 28px;
 	padding: 0 6px; }
 	
-/* .btn.follow.btn-green:hover { background-color: #a6321d; } */
 .btn.follow.btn-green .unfollow { display: none; }
 .btn.follow.btn-green:hover .icon-ok { display: none; }
 .btn.follow.btn-green:hover .unfollow { display: block; }
-/*
-.btn.follow.btn-green:hover.load .icon-loading.icon-white { 
-	background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
-*/
-
-
 
 
 /* -- byline -- */
@@ -679,6 +672,26 @@ footer .like-button-box {
 	right: 4px;
 	bottom: 8px;
 	width: 40px; }
+	
+/* -- Logged-out follow modal -- */
+
+.user-box .modal { 
+	width: 472px;
+	margin-left: -236px;
+	margin-top: 0;
+	top: 185px;
+	border: 0; }
+	
+.user-box .modal .modal-header { 
+	text-align: center;
+	border: 0; }
+	
+.user-box .modal .close { 
+	font-family: Arial, sans-serif;
+	font-size: 28px;
+	margin-top: 1px; }
+
+.user-box .modal h4 { color: #555; }
 	
 /* -- about page -- */
 

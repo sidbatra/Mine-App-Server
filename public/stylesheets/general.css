@@ -183,6 +183,11 @@ input.error:focus, textarea.error:focus {
 	-webkit-border-radius: 5px !important;
 	-moz-border-radius: 5px !important;
 	border-radius: 5px !important; }
+
+.rounded-5-top {
+	-webkit-border-radius: 5px 5px 0 0 !important;
+	-moz-border-radius: 5px 5px 0 0 !important;
+	border-radius: 5px 5px 0 0 !important; }
 	
 .rounded-8 {
 	-webkit-border-radius: 8px !important;
@@ -614,7 +619,7 @@ input.error:focus, textarea.error:focus {
 	
 .typeahead.dropdown-menu li a { width: 100%; }
 
-
+	
 /* Text Field Bootstrap Overrides
 ==================================================================== */
 
