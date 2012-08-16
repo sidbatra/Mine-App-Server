@@ -21,6 +21,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     this.createEl     = "#create_following_" + this.userID + this.tag;
     this.destroyEl    = "#destroy_following_" + this.userID + this.tag;
+    this.placeholderEl = "#follow_box_modal_" + this.userID + this.tag;
 
     this.render(false);
 
@@ -67,7 +68,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   create: function() {
 
     if(this.placeholder) {
-      console.log("ACTIVATE PLACEHOLDER");
+      $(this.placeholderEl).modal('show');
       return;
     }
 
