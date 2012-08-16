@@ -432,7 +432,8 @@ footer .like-button-box {
 	text-align: center;
 	line-height: 1; }
 
-.item .photo-box .item-photo { max-height: 472px; }
+/* .item .photo-box .item-photo { max-height: 472px; } */
+.item .photo-box .item-photo { max-height: 354px; }
 
 .item .photo-box .actions.top-left     { top: 24px; left: 24px;     }
 .item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
@@ -442,7 +443,7 @@ footer .like-button-box {
 .item .photo-box .like {
 	padding-left: 16px;
 	padding-right: 16px;
-	bottom: 32px;
+	top: 32px;
 	left: 32px; }
 	
 .like.btn.pushed, .like.btn-pushed:hover { background: #eee; } 
@@ -621,10 +622,14 @@ footer .like-button-box {
 	line-height: 28px;
 	padding: 0 6px; }
 	
-.btn.follow.btn-green:hover { background-color: #a6321d; }
+/* .btn.follow.btn-green:hover { background-color: #a6321d; } */
 .btn.follow.btn-green .unfollow { display: none; }
 .btn.follow.btn-green:hover .icon-ok { display: none; }
 .btn.follow.btn-green:hover .unfollow { display: block; }
+/*
+.btn.follow.btn-green:hover.load .icon-loading.icon-white { 
+	background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
+*/
 
 
 

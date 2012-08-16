@@ -185,9 +185,9 @@ input.error:focus, textarea.error:focus {
 	border-radius: 5px !important; }
 	
 .rounded-8 {
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px; }
+	-webkit-border-radius: 8px !important;
+	-moz-border-radius: 8px !important;
+	border-radius: 8px !important; }
 
 .rounded-16 {
 	-webkit-border-radius: 16px;
@@ -241,10 +241,10 @@ input.error:focus, textarea.error:focus {
 	transition: border-color .15s ease-in; }
 	
 .no-transition {
-	-webkit-transition: none;
-	-moz-transition: none;
-	-o-transition: none;
-	transition: none; }
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-o-transition: none !important;
+	transition: none !important; }
 	
 .unselectable { 
   -moz-user-select: none; 

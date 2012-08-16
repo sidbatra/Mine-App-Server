@@ -21,9 +21,11 @@
 		    
 					<!-- <div class="fader absolute"></div> -->
 		      
-		      <a href="<%=purchase.source_url%>" 
-            class="em light underlined link-out source-url" 
-            target="_blank">
+		      <a href="<%=purchase_path(
+                    purchase.user.handle,
+                    purchase.handle,
+                    :src => "profile")%>" 
+            class="em light underlined">
             <%=h purchase.title%></a>
 		
 		      <%if purchase.store%>
