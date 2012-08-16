@@ -16,7 +16,7 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
     this.el.typeahead({
               items: 10,
               menu: '<ul class="search typeahead dropdown-menu border-box"></ul>',
-              item: '<li class="txt s"><a href="#"></a></li>',
+              item: '<li class="txt s relative"><a class="border-box" href="#"></a></li>',
               updater: function(item) {
                 var user = self.usersHash[item];
                 window.location.href = "/" + user.get('handle') + "?src=search";

@@ -144,6 +144,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	border-color: rgba(0, 0, 0, 0.2); }
 
 .search.typeahead.dropdown-menu li a { 
+  width: 100%;
 	padding: 4px 6px; 
 	color: #555; }
 	
