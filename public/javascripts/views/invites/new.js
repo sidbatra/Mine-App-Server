@@ -24,6 +24,8 @@ Denwen.Views.Invites.New = Backbone.View.extend({
 
     // -----
     this.setAnalytics();
+
+   $("#search_box").placeholder();
   },
 
   // Load facebook code via partials

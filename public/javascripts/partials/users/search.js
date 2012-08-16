@@ -39,6 +39,8 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
                 //          indexOf(this.query.toLowerCase().
                 //                        replace(/[^\w]/g,''));
               }});
+
+    this.el.placeholder();
   },
 
   // Apply the given data source to the users collection
