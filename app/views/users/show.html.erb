@@ -97,10 +97,14 @@
 
 
 <div class="profile-feed rounded-3 shaded relative">
-  <%cache ["v4",@user,"purchases"] do%>
-    <%=render :partial => "purchases/card",
-        :collection => @user.purchases.with_store.with_user.by_id,
-        :as => :purchase%>
+  <%unless @user.purchases_count.zero?%>
+    <%cache ["v4",@user,"purchases"] do%>
+      <%=render :partial => "purchases/card",
+          :collection => @user.purchases.with_store.with_user.by_id,
+          :as => :purchase%>
+    <%end%>
+  <%else%>
+    I have no baggage.
   <%end%>
 </div> 
 
