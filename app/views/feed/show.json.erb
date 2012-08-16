@@ -5,5 +5,5 @@
   <%-end-%>
 <%-elsif @aspect == :special-%>
   <%=render :partial => "purchases/purchases",
-      :locals => {:purchases => @purchases}%>
+      :locals => {:purchases => @purchases,:extra => {:without_interactions => true}}%>
 <%-end-%>

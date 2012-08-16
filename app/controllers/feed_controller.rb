@@ -51,8 +51,6 @@ class FeedController < ApplicationController
                             :fb_action_id).
                     with_user.
                     with_store.
-                    with_comments.
-                    with_likes.
                     by_created_at.
                     after(@after).
                     before(@before).
