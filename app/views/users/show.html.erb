@@ -104,7 +104,9 @@
           :as => :purchase%>
     <%end%>
   <%else%>
-    I have no baggage.
+  	<div class="txt m" style="color: #999; padding: 16px 10px 0;">
+    	<%=@user.first_name%> hasn't added any purchases yet.
+    </div>
   <%end%>
 </div> 
 
