@@ -11,12 +11,11 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
     this.usersHash = new Array();
 
     this.el.keyup(function(e){self.keyup(e)});
-    this.el.focus(function(){self.focus()});
 
     this.el.typeahead({
               items: 10,
               menu: '<ul class="search typeahead dropdown-menu border-box"></ul>',
-              item: '<li class="txt s"><a href="#"></a></li>',
+              item: '<li class="txt s relative"><a class="border-box" href="#"></a></li>',
               updater: function(item) {
                 var user = self.usersHash[item];
                 window.location.href = "/" + user.get('handle') + "?src=search";
@@ -87,12 +86,6 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
     return true;
   },
 
-  // Focus on the input box.
-  //
-  focus: function() {
-    this.el.trigger('lookup');
-  },
-
   //
   //
   search: function(query) {
@@ -108,11 +101,6 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
           data      : {aspect: 'search',q: query},
           success   : function(collection){self.searched();},
           error     : function(collection,errors){}});
-
-    var search = new Denwen.Models.Search({
-                                    query : query,
-                                    source : Denwen.SearchSource.User});
-    search.save();
   },
 
   //

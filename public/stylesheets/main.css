@@ -124,16 +124,6 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 /* -- search dropdown --*/
 
-/*
-.header input.search-box:focus {
-	width: 168px !important;
-	-webkit-transition: width .2s ease-in-out;
-	-moz-transition: width .2s ease-in-out;
-	-o-transition: width .2s ease-in-out;
-	transition: width .2s ease-in-out;
-}
-*/
-
 .search.typeahead.dropdown-menu {
 	margin-top: -1px;
 	margin-left: -1px;
@@ -143,7 +133,11 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	border-style: solid;
 	border-color: rgba(0, 0, 0, 0.2); }
 
-.search.typeahead.dropdown-menu li a { padding: 4px 6px; color: #555; }
+.search.typeahead.dropdown-menu li a { 
+	width: 100%;
+	height: 32px;
+	padding: 4px 6px; 
+	color: #555; }
 	
 .search.typeahead.dropdown-menu li a .user-photo.s {
 	margin-right: 6px; }
