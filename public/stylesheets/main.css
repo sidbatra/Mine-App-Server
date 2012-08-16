@@ -516,7 +516,9 @@ footer .like-button-box {
 
 /* -- title link-disabled -- */
 
-.feed.link-disabled .item-photo { max-height: 264px; }
+.feed.link-disabled .item-photo { 
+	max-height: 264px;
+	cursor: default;  }
 
 .feed.link-disabled .title-box a {
 	cursor: default;

@@ -559,10 +559,6 @@ input.error:focus, textarea.error:focus {
      -moz-box-shadow: none;
           box-shadow: none; }
        
-
-
-
-
 .btn-group.open .btn.dropdown-toggle { 
 	color: white;
 	  -webkit-transition: none;
@@ -654,29 +650,14 @@ input[type=text].m {
 input[type=text].m.load {
 	background: white url('/images/loading/loading-snake-555-right-loading.gif') center right no-repeat; }
 
-/*
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.uneditable-input:focus {
-  border-color: rgba(82, 168, 236, 0.8) !important;
-  outline: 0;
-  outline: thin dotted \9;
 
+/* Internet Explorer fixes in conjunction with .ie8, .ie9 <html> tags
+==================================================================== */
+	
+.ie8 input[type=text] { line-height: 40px; }
+.ie8 input[type=text].m { line-height: 28px; }
 
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0); }
-*/
+.ie8 .gradient.v-4D4D4D-444 { background: #4d4d4d; }
+.ie8 .gradient.v-555-444 	  { background: #555555; }
+.ie8 .gradient.v-FFF-DDD    { background: #ffffff; }
+.ie8 .gradient.v-F5F5F5-DDD { background: #f5f5f5; }

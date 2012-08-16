@@ -14,7 +14,8 @@
           :placeholder => local_assigns[:search_placeholder].nil? ? 
                             "Enter your item's name, brand, color and store or URL" :
                             search_placeholder,
-          :class => "enter txt l rounded-3 border-box"%>
+          :class => "enter txt l rounded-3 border-box",
+          :style => ""%>
 
       <a id="purchase_search" 
           class="btn awesome btn-large btn-red border-box rounded-3 go shaded" 
@@ -66,7 +67,7 @@
   			<div class="box-title" style="padding-top: 4px;">
 					Item name
 				</div>
-	      <%=f.text_area :title,
+	      <%=f.text_field :title,
 	          :rows => 1,
 	          :cols => nil,
 	          :class => "item-name txt l rounded-3 unresizable "\

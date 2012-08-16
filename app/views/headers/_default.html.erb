@@ -13,10 +13,10 @@
         
           <a href="<%=user_path(self.current_user.handle,:src => "bar")%>"
             class="btn-user relative pointer txt m dark" 
-            style="float: left; padding: 0; border: 0; margin-right: 5px;">
+            style="float: left; width: 28px; padding: 0; border: 0; margin-right: 6px;">
             <%=image_tag self.current_user.square_image_url,
                   :class => "user-photo m rounded-3 shaded",
-                  :style => "margin-right: 1px;"%>
+                  :style => ""%>
             <%#h self.current_user.full_name%>      	
           </a>
 
