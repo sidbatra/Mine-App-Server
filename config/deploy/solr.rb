@@ -7,6 +7,12 @@ Capistrano::Configuration.instance(:must_exist).load do
       run "cp -r #{current_path}/solr #{shared_path}"
     end
     
+    desc "Update config for solr daemon"
+    task :update, :roles => :search do
+      run "cp -r #{current_path}/solr #{shared_path}"
+      restart
+    end
+    
     desc "Start the solr daemon"
     task :start, :roles => :search do
       rake "sunspot:solr:start"
