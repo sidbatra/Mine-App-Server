@@ -1,9 +1,8 @@
-<div class="header unit-box border-box fixed" style="height: 90px; background: url('/images/header-ob-bg-hack.png'); z-index: 10000; font-size: 15px; color: white; top: 0;">
+<div class="header unit-box border-box fixed" 
+  style="height: 90px; background: url('<%=image_path "header-ob-bg-hack.png"%>'); z-index: 10000; font-size: 15px; color: white; top: 0;">
     
-    <%=link_to_if !is_onboarding?,
-        image_tag("logos/mine-h-white-48-2x.png", 
-          :class => "logo absolute"),
-        root_path(:src => "bar")%>
+    <%=image_tag("logos/mine-h-white-48-2x.png", 
+          :class => "logo absolute")%>
         
     <a href="<%=welcome_path(WelcomeFilter::Create)%>"
 			class="btn btn-large btn-red border-box rounded-3 shaded"
@@ -44,17 +43,16 @@
 
 </div>
 
-<!--
-<div class="bar bottom border-box gradient v-555-444" style="text-align: center;">
-	<a href="<#=welcome_path(WelcomeFilter::Create)%>"
+
+<!--div class="bar bottom border-box gradient v-555-444" style="text-align: center;">
+	<a href="<%#welcome_path(WelcomeFilter::Create)%>"
 			class="btn btn-large btn-red border-box rounded-3 shaded"
 			style="width: 484px;">
 		Start your mine 
-		<#=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
+		<%#image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
                 :style => "height: 14px; margin: 13px 0 0 6px; vertical-align: top;"%>
-	
 	</a>
-</div>
+</div-->
 
 
 
