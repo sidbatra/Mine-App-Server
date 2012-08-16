@@ -12,6 +12,10 @@ class StaticController < ApplicationController
     when :terms
       @view = "terms"
     when :about
+      @pierre = User.find_by_handle("pierre-legrain")
+      @sid = User.find_by_handle("siddharth-batra")
+      @deepak = User.find_by_handle("deepak-rao")
+
       @origin = "about"
       @view = "about"
     when :faq

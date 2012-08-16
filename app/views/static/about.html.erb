@@ -16,13 +16,15 @@
 
 <div class="info-box pictured well-box border-box rounded-5 alias-smooth relative">
   
-	<img alt="Pierre Legrain" class="user-photo xxl rounded-3 absolute" src="http://graph.facebook.com/517379696/picture?type=square">
+	<img alt="<%=@pierre.full_name%>"
+    class="user-photo xxl rounded-3 absolute" 
+    src="<%=@pierre.square_image_url%>"/>
 
 	<div id="follow_box_pierre">
 	</div>
 	
 	<h2 style="margin-bottom: 5px;">
-		Pierre Legrain
+		<%=@pierre.first_name.capitalize%> <%=@pierre.last_name.capitalize%>
 	</h2>
 	
 	<p class="txt m border-box">
@@ -31,45 +33,61 @@
 		Post-Stanford, he was Twitter's first PMM, working on Promoted Tweets, Accounts and Trends.
 		He loves the challenge of building social products for web and mobile, so his luckiest break was teaming up Sid and Deepak to work on Mine.
 	</p>    
-       
+
+  <div class="user-box">
+    <%=render :partial => "users/modal",
+        :locals => {:user => @pierre} unless logged_in?%>
+  </div>
 </div> <!--/about-box -->
 
 
 
 <div class="info-box pictured well-box border-box rounded-5 alias-smooth relative" style="margin-top: 0;">
   
-	<img alt="Pierre Legrain" class="user-photo xxl rounded-3 absolute" src="http://graph.facebook.com/502835064/picture?type=square">
+	<img alt="<%=@sid.full_name%>"
+    class="user-photo xxl rounded-3 absolute" 
+    src="<%=@sid.square_image_url%>"/>
 
 	<div id="follow_box_sid">
 	</div>
 	
 	<h2 style="margin-bottom: 5px;">
-		Siddharth Batra
+		<%=@sid.first_name.capitalize%> <%=@sid.last_name.capitalize%>
 	</h2>
 	
 	<p class="txt m border-box">
 		Siddharth Batra: Stanford MSCS, JIIT BSCS Machine learning, Scaling, CS Architecture - 
 	</p>
 	   
+  <div class="user-box">
+    <%=render :partial => "users/modal",
+        :locals => {:user => @sid} unless logged_in?%>
+  </div>
 </div> <!--/about-box -->
 
 
 
 <div class="info-box pictured well-box border-box rounded-5 alias-smooth relative" style="margin-top: 0;">
   
-	<img alt="Pierre Legrain" class="user-photo xxl rounded-3 absolute" src="http://graph.facebook.com/699760342/picture?type=square">
+	<img alt="<%=@deepak.full_name%>" 
+    class="user-photo xxl rounded-3 absolute" 
+    src="<%=@deepak.square_image_url%>"/>
 
 	<div id="follow_box_deepak">
 	</div>
 	
 	<h2 style="margin-bottom: 5px;">
-		Deepak Rao
+		<%=@deepak.first_name.capitalize%> <%=@deepak.last_name.capitalize%>
 	</h2>
 	
 	<p class="txt m border-box">
 		Deepak Rao: Stanford MSCS, JIIT BSCS, iOS, Data mining
 	</p>    
        
+  <div class="user-box">
+    <%=render :partial => "users/modal",
+        :locals => {:user => @deepak} unless logged_in?%>
+  </div>
 </div> <!--/about-box -->
 
 
@@ -77,14 +95,14 @@
   <script type="text/javascript">
     new Denwen.Partials.Followings.Following({
           el:$('#follow_box_sid'),
-          userID: 1});
+          userID: <%=@sid.id%>});
 
     new Denwen.Partials.Followings.Following({
           el:$('#follow_box_pierre'),
-          userID: 2});
+          userID: <%=@pierre.id%>});
 
     new Denwen.Partials.Followings.Following({
           el:$('#follow_box_deepak'),
-          userID: 3});
+          userID: <%=@deepak.id%>});
   </script>
 <%end%>
