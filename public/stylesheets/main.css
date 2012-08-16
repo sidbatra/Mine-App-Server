@@ -360,9 +360,7 @@ footer .like-button-box {
 	width: 170px;
 	float: left; }
 	
-.typeahead.dropdown-menu {
-	width: 250px;
-	font-size: 14px; }
+.create-box .item .photo-box .item-photo { max-height: 264px !important; }
 
 .create-box .panel label {
 	line-height: 1; 
@@ -387,6 +385,10 @@ footer .like-button-box {
   height: 13px;
   padding: 0;
   margin: 0; }
+  
+.typeahead.dropdown-menu {
+	width: 250px;
+	font-size: 14px; }
  
 .create-box .panel .review-box { margin: 20px 0; }
  
@@ -499,6 +501,18 @@ footer .like-button-box {
 
 .item .panel .title-box .user-photo { left:0; top: 3px; }
 .item .panel .title-box .em { /* font-weight: bold; */ }
+
+/* -- title link-disabled -- */
+
+.feed.link-disabled .item-photo { max-height: 264px; }
+
+.feed.link-disabled .title-box a {
+	cursor: default;
+	color: #555;
+	font-weight: bold;
+	border-bottom: none;
+	padding: 0 !important;
+	background: none !important; }
 	
 /* -- endorsement -- */
 
