@@ -42,6 +42,18 @@ class User < ActiveRecord::Base
   validates_presence_of   :fb_user_id
 
   #----------------------------------------------------------------------
+  # Indexing
+  #----------------------------------------------------------------------
+  searchable do
+    text :first_name, :as => :first_name_textp, :boost => 3
+    text :last_name, :as => :last_name_textp, :boost => 2
+    text :email
+    integer :followers, :multiple => true do 
+      followings.select{|f| f.is_active}.map(&:follower_id)
+    end
+  end
+
+  #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :purchases_count, lambda {|count| {
@@ -58,6 +70,7 @@ class User < ActiveRecord::Base
   named_scope :with_setting, :include => :setting
   named_scope :with_purchases, :include => :purchases
   named_scope :with_ifollowers, :include => :ifollowers
+  named_scope :with_followings, :include => :followings
 
   #----------------------------------------------------------------------
   # Attributes

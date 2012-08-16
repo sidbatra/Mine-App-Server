@@ -14,6 +14,19 @@ class FollowingsController < ApplicationController
     end
   end
 
+  # Return all active followings of the current user.
+  #
+  def index
+    @followings = Following.active.all(
+                    :conditions => {:follower_id => self.current_user.id})
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json 
+    end
+  end
+
   # Fetch the status of a following.
   #
   def show

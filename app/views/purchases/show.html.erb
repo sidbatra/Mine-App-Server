@@ -12,18 +12,20 @@
               :image        => @purchase_presenter.square_url,
               :store        => @purchase.store}%>
 <%end%>
-
-
-<div class="container border-box">
 	
-	<%if logged_in?%>
-    <%=render "purchases/show/logged_in"%>
-  <%else%>
-    <%=render "purchases/show/logged_out"%>
-  <%end%>
-
-</div> <!-- /container -->
+<%if logged_in?%>
+  <%=render "purchases/show/logged_in"%>
+<%else%>
+  <%=render "purchases/show/logged_out"%>
+<%end%>
 
 
 
-
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Purchases.Show({
+        purchaseJSON : <%=render :partial => "purchases/display.json.erb",
+                            :locals => {:object => @purchase}%>,
+        source : '<%=@source%>'});
+  </script>
+<%end%>

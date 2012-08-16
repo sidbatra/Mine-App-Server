@@ -39,11 +39,12 @@ javascripts:
 stylesheets:
   application:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets/tags.css
-    - public/stylesheets/tablet.css
-    - public/stylesheets/mobile.css
+    - public/stylesheets/general.css
+    - public/stylesheets/main.css
+
   home:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets/home.css
-    - public/stylesheets/tablet.css
-    - public/stylesheets/mobile.css
+    - public/stylesheets-old/tags.css
+    - public/stylesheets-old/home.css
+    - public/stylesheets-old/tablet.css
+    - public/stylesheets-old/mobile.css

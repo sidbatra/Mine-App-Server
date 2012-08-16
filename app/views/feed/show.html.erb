@@ -1,115 +1,62 @@
 <%content_for :top do%>
   <%=render 'purchases/chooser'%> 
-<%end%>
+<%end%>  
 
+<div id="creation" 
+  style="margin-top: -6px;" 
+  class="create-box unit-box border-box">
 
-<div class="container border-box">
+	<div class="box-title">
+		Add a new purchase
+	</div>
 
-	<div class="thumbnail-box hide-on-mobile">
-    <%if self.current_user.followings_count.zero?%>
-      <p>
-        <%=link_to "Invite a few friends", new_invite_path(:src => "placeholder")%>
-        to start sharing purchases:
-      </p>
-
-      <%cache ["v1",self.current_user,"contacts","feed"] do%>
-        <%self.current_user.contacts.by_weight.limit(7).each do |contact|%>
-          <%cache ["v5",contact,"invite","feed"] do%>
-            <%=link_to "",
-                new_invite_path(
-                  :src => "user-image",
-                  :anchor => "search/#{contact.name.gsub(' ','-')}"),
-                :style => "background: url('#{contact.image_url}')",
-                :class => "thumb",
-                :rel => "tooltip",
-                :title => "Invite #{contact.name}"%>
-          <%end%>
-        <%end%>
-      <%end%>
-
-    <%else%>
-      <p>
-      	<a href="<%=user_path(self.current_user.handle,:src => "sharing-with")%>">
-            <%=image_tag self.current_user.square_image_url,
-            		:style => "width: 18px; height: 18px; vertical-align: -3px;"%>
-            <%=h self.current_user.first_name%>
-        </a>
-
-        you're sharing purchases with:
-      </p>
-
-      <%cache ["v2",self.current_user,"ifollowers","feed"] do%>
-        <%self.current_user.ifollowers.each do |user|%>
-          <%cache ["v5",user,"ifollower","feed"] do%>
-            <%=link_to "",
-                user_path(user.handle,:src => "feed"),
-                :style => "background: url('#{user.square_image_url}')",
-                :class => "thumb",
-                :rel => "tooltip",
-                :title => user.full_name%>
-          <%end%>
-        <%end%>
-      <%end%>
-
-    <%end%> <!-- if followings_count.zero? -->
-
-    <%=link_to "Invite friends <i class='icon-chevron-right icon-white'></i>",
-        new_invite_path(:src => "feed"),
-        :class => "btn go-to-invite"%>
-	</div> <!-- /thumbnail-box -->  
-  	
-  <div id="creation" class="create-box">
-    <%form_for Purchase.new,
-        :html => {
-          :class => "form-horizontal",
-          :style => "margin-bottom: 0;"} do |f|%>   
-       
-		  <div id="suggestions" 
-            class="suggestions-box relative hide-on-mobile" 
-            style="display:none">
-		  	
-		  	<div class="fader absolute left"></div>
-		  	<div class="fader absolute right"></div>
-			</div> <!-- /suggestions -->
-		       
+	<div class="well-box rounded-8">
+	  <%form_for Purchase.new,
+	      :html => {
+	        :class => "form-horizontal",
+	        :style => "margin-bottom: 0;"} do |f|%>   
+	     
+		  <!--<div id="suggestions" 
+	          class="suggestions-box relative hide-on-mobile" 
+	          style="display:none">
+			</div> </suggestions -->
 		  
-        <%=render :partial => 'purchases/input', 
-            :locals => {
-              :f => f,
-              :suggestion => nil,
-              :submit_text => "Add to <span class='mine'>mine</span>",
-              :show_cancel_button => false,
-              :show_delete_button => false,
-              :show_query_box => true,
-              :show_query_sub_box => false,
-              :show_extra_steps => false,
-              :show_fb_share => true,
-              :show_tw_share => true,
-              :show_tumblr_share => true,
-              :fb_share_on => self.current_user.setting.post_to_facebook?,
-              :tw_share_on => self.current_user.setting.post_to_twitter?,
-              :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
-    <%end%> <!-- /form --> 
-  
-  </div> <!-- create-box -->
-  
-  <div id="feed" class="feed">
-  </div> <!-- feed -->
-  
-  <div id="feed-spinner" 
-        class="loading blocks body" 
-        style="height: 60px;">
-  </div> 
-    
+      <%=render :partial => 'purchases/input', 
+          :locals => {
+            :f => f,
+            :suggestion => nil,
+            :submit_text => "<i class='icon-ok icon-white'></i> Add to mine",
+            :show_cancel_button => false,
+            :show_delete_button => false,
+            :show_extra_steps => false,
+            :show_fb_share => true,
+            :show_tw_share => true,
+            :show_tumblr_share => true,
+            :fb_share_on => self.current_user.setting.post_to_facebook?,
+            :tw_share_on => self.current_user.setting.post_to_twitter?,
+            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+	  <%end%> <!-- /form --> 
+  </div>
+
+</div> <!-- create-box -->
 
 
-</div> <!-- container -->
+<div class="box-title feed-title relative">
+	Your feed
+</div>
+
+<div class="feed-container rounded-5" style="background: #f5f5f5">
+	<div id="feed" class="feed rounded-5 shaded relative">
+	</div> 
+	
+	<div id="feed-spinner" class="feed-loading whitesmoke">
+	</div> 
+</div> <!-- feed container -->
+
 
 <%content_for :javascript do%>
-
   <script type="text/javascript">
     new Denwen.Views.Feed.Show({
-      source          : "<%=h @source%>",
-      currentUserJSON : <%=self.current_user.to_json(:only => :fb_user_id)%>});
+      source  : "<%=h @source%>"});
   </script>
 <%end%>

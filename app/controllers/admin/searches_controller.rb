@@ -1,4 +1,5 @@
 class Admin::SearchesController < ApplicationController
+  layout nil
   before_filter :admin_required
 
   #
@@ -6,8 +7,8 @@ class Admin::SearchesController < ApplicationController
   def index
 
     case params[:filter].to_sym
-    when :recent
-      searches = Search.with_user.by_id.limit(500)
+    when :creation
+      searches = Search.for(SearchSource::New).with_user.by_id.limit(500)
       purchases = Purchase.with_user.by_id.limit(500)
 
       @set  = (searches + purchases).sort do |x,y| 
@@ -17,7 +18,12 @@ class Admin::SearchesController < ApplicationController
       @set = @set.slice(first_search-1,@set.length-1)
 
 
-      @view = "recent"
+      @view = "creation"
+
+    when :user
+      @searches = Search.for(SearchSource::User).with_user.by_id.limit(500)
+
+      @view = "user"
     end
 
     render @view

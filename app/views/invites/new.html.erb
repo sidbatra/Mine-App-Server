@@ -1,81 +1,31 @@
-<div class="container invite" id="container">
-
-	<div class="preview-box">
-
-	<p>
-		<span class="fb-favicon"></span> Send a personal invite to their Facebook message inbox:
-	</p>
-
-	<!--
-<div class="fb-timeline border-box rounded-3">
-	 	<div style="padding: 11px">
-	 	
-	 		<div class="user-block">
-        <%#image_tag self.current_user.square_image_url,
-            :class => "user-photo"%>
-	 			<strong><%#user_full_name(self.current_user)%></strong><br />
-	 			<span style="color: gray;">
-          <%#Time.zone.now.strftime("%B %d")%> via Mine
-        </span>
-	 		</div> 
-	 		
-	 		<div class="above-content">
-	 			I’d like us to share purchases using <%=CONFIG[:name]%> — 
-        a simple service that will notify you when I buy something.
-	 		</div>
-	 		
-	 		<div class="display-content">
-	 			<div class="art-photo">
-	 				<img src="/images/mine_70_2x.png" />
-        </div>
-        <strong>
-          <div style="margin-bottom: 3px;">
-            <%#CONFIG[:name]%> - Click to start yours.
-          </div>
-        </strong>
-	 			<span style="color: gray;">
-	 				Your <%#CONFIG[:name]%> is a place to log and 
-          share purchases with friends. <br />
-	 				It’s fun, and totally free. 
-	 				<br />		
-	 				<br />	 				
-	 				<%#CONFIG[:host]%>
-	 			</span>
-	 		</div>
-	 		
-	 	</div>
-
-	</div> <!-- /fb-timeline -->
+<div class="box-title" style="margin-top: -6px;">
+	<span class="fb-favicon"></span> Send a personal note to their Facebook inbox
+</div>
 	
-	</div> <!-- /invite preview box -->
-			
+<div id="friends_container" class="well-box rounded-5" style="padding-bottom: 4px;">
 		
-	<div id="friends_container">
-			
-			<div class="search-box relative">
-	      <%=text_field_tag 'search_box', 
-	          nil, 
-	          :placeholder => "Type a friend's name", 
-	          :autocomplete => :off,
-	          :class => 'border-box enter-item-name'%>
-	
-	      <%=link_to  '&times;',
-	          'javascript:void(0)',
-	          :id    => 'x_button',
-	          :class => 'close absolute',
-	          :style => 'display: none;'%>
-			</div> <!-- /search-box -->
+		<div class="search-box relative">
+      <%=text_field_tag 'search_box', 
+          nil, 
+          :placeholder => "Type a friend's name", 
+          :autocomplete => :off,
+          :class => 'enter txt l rounded-3 border-box'%>
 
-			  
-	  <!-- friends list -->
-		<div id="contacts" class="relative">
-			  <div class="loading blocks body" style="height: 60px;">
-				</div>
-		</div>
-			 
-	</div> <!-- friends container -->
+      <%=link_to  '&times;',
+          'javascript:void(0)',
+          :id    => 'x_button',
+          :class => 'close absolute',
+          :style => 'display: none; font-size: 28px; top: 8px; right: 10px;'%>
+		</div> <!-- /search-box -->
 
-</div> <!-- /container -->
+		  
+  <!-- friends list -->
+	<div id="contacts" class="connections-box">
+		<div id="feed-spinner" class="feed-loading dark">
+		</div> 
+	</div>
+		 
+</div> <!-- friends container -->
 
 <%content_for :javascript do%>
   <script type="text/javascript">

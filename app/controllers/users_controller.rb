@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:index,:update]
+  before_filter :login_required, :only => [:update]
 
   # Create a new user.
   #
@@ -59,10 +59,14 @@ class UsersController < ApplicationController
   #                 who follow the given user.
   #   ifollowers - requires params[:user_id]. All users
   #                 which the given user follows.
+  #   search - requires params[:query]. params[:skip_followers]
+  #             can be used to customize results.
+  #
   def index
     @aspect = params[:aspect].to_sym
     @users = []
     @key = ""
+    @cache_options = {}
 
     case @aspect
     when :likers
@@ -83,6 +87,29 @@ class UsersController < ApplicationController
               User.find(params[:user_id])
       @users = user.ifollowers
       @key = ["v1",user,@users.map(&:updated_at).max.to_i, "ifollowers"]
+
+    when :search
+      query = params[:q]
+      @key = ["v1",self.current_user,query]
+      @cache_options = {:expires_in => 1.minute}
+      @users = User.search do 
+                fulltext query do 
+                  unless params[:skip_followers]
+                    boost(10) do 
+                      with(:followers,self.current_user.id)
+                    end 
+                    boost(5) do 
+                      with(:followers,self.current_user.follower_ids)
+                    end 
+                  end
+                end  
+                without(:followers,self.current_user.id) if params[:skip_followers]
+                paginate :per_page => 5
+               end.results
+
+    when :connections
+      @user = User.find_by_handle params[:handle]
+      @origin = "connections"
     end
 
   rescue => ex

@@ -84,6 +84,14 @@ Denwen.Analytics = Backbone.Model.extend({
   //
   origin: function(origin) {
     mixpanel.register_once({"Origin" : origin});
+  },
+
+  // Public. Track clicks to source urls of purchases.
+  //
+  // source - The String name of the source where the click originated.
+  //
+  purchaseURLVisit: function(source) {
+    mixpanel.track("Purchase URL Clicked", {"Source" : source});
   }
 
 });

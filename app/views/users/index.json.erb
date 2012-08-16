@@ -1,4 +1,4 @@
-<%-cache @key do-%>
+<%-cache @key,@cache_options do-%>
 <%=render :partial => "users/users",
     :locals => {:users => @users}%>
 <%-end-%>

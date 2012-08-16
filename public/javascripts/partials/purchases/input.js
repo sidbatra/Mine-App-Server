@@ -11,8 +11,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     "click #fb-photo-toggle-switch" : "fbSwitchToggled",
     "click #tw-share-toggle-switch" : "twSwitchToggled",
     "click #tumblr-share-toggle-switch" : "tumblrSwitchToggled",
-    "click #initiate_endorsement" : "endorsementInitiated",
-    "click #initiate_purchase" : "purchaseInitiated"
+    "click #initiate_endorsement" : "endorsementInitiated"
   },
 
   // Constructor logic
@@ -29,9 +28,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.urlToolTipDone       = false;
 
     this.formEl               = '#' + this.mode + '_purchase';
-    this.initPurchaseEl       = '#initiate_purchase';
     this.queryEl              = '#purchase_query';
-    this.querySubBoxEl        = '#query_sub_box';
     this.queryBoxEl           = '#query_box';
     this.queryTextEl          = '#query_text';
     this.extraEl              = '#extra_steps';
@@ -150,20 +147,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   //
   storesLoaded: function(stores) {
     this.stores = stores;
-  },
-
-  // User initiates a purchase.
-  //
-  purchaseInitiated: function() {
-    $(this.initPurchaseEl).hide();
-    $(this.querySubBoxEl).show();
-
-    $(this.queryEl).phocus();
-
-    Denwen.Track.action("Purchase Initiated");
-
-    this.trigger(
-      Denwen.Partials.Purchases.Input.Callback.PurchaseInitiated);
   },
 
   // Catch keystrokes on inputs to stop form submissions
@@ -494,8 +477,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.hideExtraSteps();
       this.resetForm();
       this.displayQueryBox();
-      $(this.querySubBoxEl).hide();
-      $(this.initPurchaseEl).show();
     }
 
     this.trigger(

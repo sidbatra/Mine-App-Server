@@ -31,6 +31,7 @@ class Purchase < ActiveRecord::Base
   named_scope :with_store, :include => :store
   named_scope :with_likes, :include => {:likes => [:user]}
   named_scope :with_comments, :include => {:comments => [:user]}
+  named_scope :special, :conditions => {:is_special => true}
   named_scope :by_id,      :order => 'id DESC'
   named_scope :by_created_at,      :order => 'created_at DESC'
 
@@ -41,7 +42,7 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id
+                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id,:is_special
 
   #----------------------------------------------------------------------
   # Class methods

@@ -3,7 +3,7 @@
     :methods => [:giant_url,:fb_object_id],
     :include => {
       :user => {
-        :only => [:id,:first_name,:last_name,:gender,:handle],
+        :only => [:id,:first_name,:last_name,:gender,:handle,:byline],
         :methods => [:square_image_url]},
       :store => {
         :only => [:id,:name]},

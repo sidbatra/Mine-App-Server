@@ -26,8 +26,18 @@
               admin_comments_path(:filter => 'recent')%> <br>
   <%=link_to 'Invites',
               admin_invites_path(:filter => 'recent')%> <br>
-  <%=link_to 'Searches',
-              admin_searches_path(:filter => 'recent')%> <br>
+
+  <br> <h3>Purchases</h3> 
+  <%=link_to 'Recent',
+              admin_purchases_path(:filter => 'recent')%> <br>
+  <%=link_to 'Special',
+              admin_purchases_path(:filter => 'special')%> <br>
+
+  <br> <h3>Searches</h3> 
+  <%=link_to 'Creation',
+              admin_searches_path(:filter => 'creation')%> <br>
+  <%=link_to 'User',
+              admin_searches_path(:filter => 'user')%> <br>
 
   <br> <h3>Stores</h3> 
   <%=link_to 'Unapproved',

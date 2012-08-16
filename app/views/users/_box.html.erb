@@ -1,0 +1,37 @@
+	<div id="user_box" 
+    class="user-box well-box border-box rounded-5 alias-smooth relative">
+  
+    <%=link_to image_tag(user.square_image_url,
+                :class => "user-photo xxl rounded-3"),
+        user_path(user.handle,:src => "box")%>
+        
+    <div class="user-name absolute">
+    	<%=logged_in? ? '' : 'Follow'%> <%=h user.full_name%>
+    </div>
+
+    <div id="follow_box">
+    </div>
+
+    <%if logged_in?%>
+      <%=render :partial => "byline",
+         :locals => {:user => user}%>
+    <%else%>
+			<div class="bio-box absolute">
+				<div class="user-bio txt m border-box">
+
+	      	<%="#{user_singular_pronoun(user).capitalize}'s"-%> sharing things 
+	      	<%=user_singular_pronoun(user)%> buys on mine. 
+
+          <%=link_to "Learn more",
+              root_path(:src => "learn"),
+              :class => "dark underlined"%>
+	      </div>
+	    </div>
+
+      <%=render :partial => "users/modal",:locals => {:user => user}%>
+    <%end%>
+       
+  </div> <!-- /user-box -->
+
+		
+		       

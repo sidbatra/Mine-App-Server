@@ -1,0 +1,71 @@
+<div class="container" style="width:1000px" id="container">
+  <b>
+    Special Purchases
+  </b> 
+  <br/><br/>
+
+  <table border="1">
+    <tr>
+      <td width="250">
+        <b>Title</b>
+      </td>
+      <td width="100">
+        <b>Created</b>
+      </td>
+      <td width="100">
+        <b>Photo</b>
+      </td>
+      <td width="200">
+        <b>User</b>
+      </td>
+      <td width="400">
+        <b>Endorsement</b>
+      </td>
+      <td width="30">
+        <b>Facebook</b>
+      </td>
+      <td width="200">
+        <b>Twitter</b>
+      </td>
+      <td width="200">
+        <b>Tumblr</b>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <%@purchases.each do |purchase|%>
+      <tr>
+        <td>
+          <%=link_to purchase.title,
+              admin_full_purchase_path(purchase.user.handle,purchase.handle)%>
+        </td>
+        <td>
+          <%=time_ago_in_words(purchase.created_at)%>
+        </td>
+        <td>
+          <%=image_tag purchase.square_url%>
+        </td>
+        <td>
+          <%=link_to user_full_name(purchase.user),
+              admin_user_path(purchase.user.handle)%>
+        </td>
+        <td>
+          <%=purchase.endorsement%>
+        </td>
+        <td>
+          <%=purchase.fb_action_id%>
+        </td>
+        <td>
+          <%=purchase.tweet_id%>
+        </td>
+        <td>
+          <%=purchase.tumblr_post_id%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+
+  <br/><br/><br/>
+</div>
+
+

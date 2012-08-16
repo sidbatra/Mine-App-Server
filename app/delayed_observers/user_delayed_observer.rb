@@ -41,8 +41,8 @@ class UserDelayedObserver < DelayedObserver
     followers         = User.find_all_by_fb_user_id(fb_friends_ids)
 
     followers.each do |follower|
-      Following.add(user.id,follower.id,FollowingSource::Auto,false)
-      Following.add(follower.id,user.id,FollowingSource::Auto)
+      Following.add(user.id,follower.id,FollowingSource::Auto,false,false)
+      Following.add(follower.id,user.id,FollowingSource::Auto,false,false)
     end
 
     Contact.batch_insert(user.id,fb_friends_ids,fb_friends_names)

@@ -1,35 +1,29 @@
-    <%content_for :footer_attribute do%>
-      class="dark"
-    <%end%>
 
-    <div class="logged-out">
+	<div class="profile-box" style="margin-top: -12px; margin-bottom: 18px;">	
+      <%=render :partial => "users/box", :locals => {:user => @purchase.user}%>
+	</div> 
+
+
     
-      <%unless is_phone_device?%>
-        <div class="background-cover"
-          style="background-image: url('<%=image_path @purchase.blur_url%>')">
-        </div>
-      <%end%>
-    
-      <div class="dimmer seventy-five">
-      </div>
+      <!--<div class="item-header">
       
-      <div class="item-header">
-      
-        <%=link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
+        <%#link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
 	        	root_path(:src => "purchase")%>
               
+
         <span class="text">
 					Tell friends when you buy good stuff.
         </span>
+
         
-        <a href="<%=fb_auth_path(:src => @origin)%>" 
+        <a href="<%#fb_auth_path(:src => @origin)%>" 
             onclick="this.className += ' load';"
             class="btn btn-large btn-facebook shaded relative">
           <span class='hide-when-loading'>
-            <%=image_tag "social/f-box.png",
+            <%#image_tag "social/f-box.png",
             		:class => "f-box"%>
-            Join <%=h @purchase.user.first_name%> on 
-            <span class='mine'><%=CONFIG[:name].downcase%></span> now
+            Join <%#h @purchase.user.first_name%> on 
+            <span class='mine'><%#CONFIG[:name].downcase%></span> now
           </span>
           <i class='icon-loading icon-white'></i>
         	<div class="reassurance absolute hide-on-mobile">
@@ -37,115 +31,13 @@
 	        </div>
         </a>
               
-      </div> <!-- /logged-out-item-header -->   
-
-      <div class="item clearfix shaded">
+      </div> </logged-out-item-header -->   
       
-        <div class="photo rounded-5 relative border-box">
-          <%=image_tag "mine_stamp_54_2x.png",
-              :class => "stamp absolute"%>
-          <%=image_tag @purchase.giant_url,
-              :class => "item-photo"%>
-        </div>
+      
+			
 
-        <div class="panel border-box relative">
+      <div id="feed" class="feed logged-out rounded-5 shaded relative">
+      </div>
+            
           
-          <div class="panel-contents border-box">
-            
-            
-            
-            
-            <!-- title-box -->
-            <div class="title-box relative border-box">
-
-              <%=image_tag @purchase.user.square_image_url,
-                  :class => "user-photo rounded-3"%>
-
-              <span class="em">
-                <%=truncate h(@purchase.user.full_name),:length => 28%>
-              </span> 
-
-              bought <%=user_pronoun @purchase.user%>
-
-              <span class="em">
-                <%=truncate h(@purchase.title),:length => 50%>
-              </span> 
-
-              <%if @purchase.store%>
-                from 
-                <span class="em">
-                  <%=truncate h(@purchase.store.name),:length => 28%>
-                </span> 
-              <%end%>
-            </div> <!-- /title-box -->
-            
-            
-            
-            
-            
-            
-            
-            <div class="thumbnail-box">
-            
-              <%if @purchase.user.purchases_count > 1%>
-                <h5><%=h @purchase.user.first_name%> also bought:</h5>
-
-                <%cache ["v2",@purchase.user,"purchases","preview","loggedout"] do%>
-                  <%@purchase.user.purchases.by_id.limit(14).each do |purchase|%>
-                    <%cache ["v2",purchase,"teaser","purchase","loggedout"] do%>
-                      <div class="thumb rounded-3">
-                        <%=image_tag purchase.square_url%>
-                      </div>
-                    <%end%>
-                  <%end%>
-                <%end%>
-              <%end%>
-              
-              <div class="sub">
-                Know <%=h @purchase.user.first_name%>?
-
-                <%=link_to "Log in",
-                    fb_auth_path(:src => @origin)%> 
-
-                to view <%=user_pronoun @purchase.user%> <span class="mine">mine</span>.
-              </div>
-            
-            </div> <!--/thumbnail-box -->
-            
-
-            <div class="marketing-box">
-              <div class="bubble rounded-5 shaded">
-                <p>
-                  <%=h @purchase.user.first_name%> uses 
-                  <span class="mine"><%=CONFIG[:name].downcase%></span> 
-                  to tell friends when <%=user_singular_pronoun @purchase.user%> buys
-                  something they might like.
-                </p>
-                <p>
-                  <%=user_singular_pronoun(@purchase.user).capitalize%> can share with 
-                  select <span class="mine"><%=CONFIG[:name].downcase%></span> friends 
-                  or to Facebook, Twitter or Tumblr.
-                </p>
-                <p>
-                  <span class="mine"><%=CONFIG[:name].downcase%></span> <em>never</em> auto-shares.
-                </p>
-              </div>
-            </div> <!-- /marketing-box -->
-
-          
-          </div> <!-- /panel-contents -->
-      
-        </div> <!-- /panel -->
-      
-      </div> <!-- /item -->
     
-    </div> <!-- /logged-out -->
-
-
-    <%content_for :javascript do%>
-      <script type="text/javascript">
-        new Denwen.Views.Purchases.Show({
-            source : '<%=@source%>'});
-      </script>
-    <%end%>
-

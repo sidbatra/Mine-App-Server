@@ -1,9 +1,12 @@
-<div class="comment-box relative">
-	<div class="fb-11 absolute"></div>
-  <img class="user-photo absolute rounded-3" 
-    src="<%=comment.get('user').get('square_image_url')%>" />
-  <div class="user-name">
-    <%=comment.get('user').get('first_name') + ' ' + comment.get('user').get('last_name') %>
+<div class="comment-box relative txt m">
+  <a href="<%=comment.get('user').path('comment_photo')%>">
+    <img class="user-photo m absolute rounded-3" 
+      src="<%=comment.get('user').get('square_image_url')%>" />
+  </a>
+  <div class="user-name arial txt xs">
+    <a href="<%=comment.get('user').path('comment_name')%>">
+      <%=comment.get('user').get('first_name') + ' ' + comment.get('user').get('last_name') %>
+    </a>
   </div>
   <%=comment.escape('message')%>
 </div>
