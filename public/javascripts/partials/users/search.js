@@ -16,7 +16,7 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
     this.el.typeahead({
               items: 10,
               menu: '<ul class="search typeahead dropdown-menu border-box"></ul>',
-              item: '<li class="txt s relative"><a class="border-box" href="#"></a></li>',
+              item: '<li class="txt s relative"><a class="border-box no-transition" href="#"></a></li>',
               updater: function(item) {
                 var user = self.usersHash[item];
                 window.location.href = "/" + user.get('handle') + "?src=search";
@@ -55,7 +55,7 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
                           id: 0,
                           first_name: "Invite a friend",
                           last_name: "",
-                          square_image_url: "",
+                          square_image_url: "/images/search-invite-add.png",
                           handle: "invite"}));
     
     this.users.each(function(user){

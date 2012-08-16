@@ -179,6 +179,11 @@ input.error:focus, textarea.error:focus {
 	-moz-border-radius: 0 0 3px 0 !important;
 	border-radius: 0 0 3px 0 !important; }
 	
+.rounded-4-bottom {
+	-webkit-border-radius: 0 0 4px 4px !important; 
+	-moz-border-radius: 0 0 4px 4px !important; 
+	border-radius: 0 0 4px 4px !important; }
+	
 .rounded-5 {
 	-webkit-border-radius: 5px !important;
 	-moz-border-radius: 5px !important;
