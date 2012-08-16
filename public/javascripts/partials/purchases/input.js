@@ -335,7 +335,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       valid = false;
 
       $(this.storeEl).addClass('error');
-      $(this.storeEl).phocus();
+      $(this.storeEl).focus();
       Denwen.Track.purchaseValidationError('No Store');
     }
     else {
