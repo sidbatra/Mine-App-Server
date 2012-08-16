@@ -611,6 +611,8 @@ input.error:focus, textarea.error:focus {
 .typeahead.dropdown-menu li { 
 	overflow: hidden;
 	white-space: nowrap; }
+	
+.typeahead.dropdown-menu li a { width: 100%; }
 
 
 /* Text Field Bootstrap Overrides
