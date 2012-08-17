@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717021709) do
+ActiveRecord::Schema.define(:version => 20120814180702) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -164,11 +164,13 @@ ActiveRecord::Schema.define(:version => 20120717021709) do
     t.integer  "product_id"
     t.string   "tweet_id"
     t.string   "tumblr_post_id"
+    t.boolean  "is_special",         :default => false
   end
 
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
   add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
   add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
+  add_index "purchases", ["is_special"], :name => "index_purchases_on_is_special"
   add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
   add_index "purchases", ["suggestion_id"], :name => "index_purchases_on_suggestion_id"
   add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
@@ -196,15 +198,13 @@ ActiveRecord::Schema.define(:version => 20120717021709) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "post_to_timeline",   :default => true
+    t.boolean  "share_to_facebook", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "email_influencer",   :default => true
-    t.boolean  "email_update",       :default => true
-    t.boolean  "fb_publish_actions", :default => true
-    t.boolean  "fb_publish_stream",  :default => false
-    t.boolean  "share_to_twitter",   :default => false
-    t.boolean  "share_to_tumblr",    :default => false
+    t.boolean  "email_influencer",  :default => true
+    t.boolean  "email_update",      :default => true
+    t.boolean  "share_to_twitter",  :default => false
+    t.boolean  "share_to_tumblr",   :default => false
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -290,6 +290,7 @@ ActiveRecord::Schema.define(:version => 20120717021709) do
     t.string   "tumblr_access_token"
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
+    t.string   "iphone_device_token"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

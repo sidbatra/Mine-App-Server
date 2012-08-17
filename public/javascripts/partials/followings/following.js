@@ -9,22 +9,43 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   //
   initialize: function() {
     var self          = this;
-    this.disabled     = false;
-
+    this.external     = false;
+    this.disabled     = true;
+    this.placeholder  = !Denwen.H.isLoggedIn();
+    this.tag          = this.options.tag;
     this.userID       = this.options.userID;
+    this.fetch        = this.options.fetch;
 
-    this.createEl     = "#create_following_" + this.userID;
-    this.destroyEl    = "#destroy_following_" + this.userID;
+    if (typeof this.tag  === "undefined")
+      this.tag = '';
 
-    this.following    = new Denwen.Models.Following(this.options.followingJSON);
+    this.createEl     = "#create_following_" + this.userID + this.tag;
+    this.destroyEl    = "#destroy_following_" + this.userID + this.tag;
+    this.placeholderEl = "#follow_box_modal_" + this.userID + this.tag;
 
-    this.preprocess(this.following);
+    this.render(false);
 
-    //this.following  = new Denwen.Models.Following({id:this.userID});
-    //this.following.fetch({ 
-    //    success : function(result) {self.preprocess(result);},
-    //    error   : function(model,errors) {}
-    //  });
+    if(!this.placeholder){
+      $(this.createEl).addClass('load');
+
+      if (typeof this.fetch  === "undefined" || this.fetch == true)  {
+        this.following  = new Denwen.Models.Following({id:this.userID});
+        this.following.fetch({ 
+          success : function(result) {self.evaluateUI(result);},
+          error   : function(model,errors) {}
+        });
+      }
+
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.FollowingLoaded,
+        this.externalFollowingLoaded,
+        this);
+
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.FollowingLoadingComplete,
+        this.externalFollowingLoadingComplete,
+        this);
+    }
   },
 
   // Based on the result of the show request
@@ -46,6 +67,12 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
   //
   create: function() {
 
+    if(this.placeholder) {
+      $(this.placeholderEl).modal('show');
+      Denwen.Track.action("User Modal View");
+      return;
+    }
+
     if(this.disabled)
       return;
 
@@ -53,11 +80,13 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     this.disabled = true;
 
+    $(this.createEl).addClass('load');
+
     this.following.save({user_id : this.userID},{
-      success: function(result) {self.preprocess(result);self.disabled=false;},
+      success: function(result) {self.evaluateUI(result);},
       error: function(model,errors){}});
 
-    //Denwen.Track.followingCreated(this.userID);
+    Denwen.Track.action("Following Created");
   },
 
   // Destroy the current following
@@ -71,11 +100,13 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     this.disabled = true;
 
+    $(this.destroyEl).addClass('load');
+
     this.following.destroy({
-      success: function(result) { self.preprocess(new Backbone.Model());self.disabled=false;},
+      success: function(result) {self.evaluateUI(new Backbone.Model());},
       error: function(model,errors){}});
 
-    //Denwen.Track.followingDestroyed(this.userID);
+    Denwen.Track.action("Following Destroyed");
   },
 
   // Render an action button representing the current
@@ -91,10 +122,35 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     this.el.html(
       Denwen.JST['followings/following']({
         isFollowing  : isFollowing,
-        userID       : this.userID}));
+        userID       : this.userID,
+        tag          : this.tag}));
 
     $(this.createEl).click(function() {self.create();});
     $(this.destroyEl).click(function() {self.destroy();});
+  },
+
+  // Update the UI status after a request has finished.
+  //
+  evaluateUI: function(result) {
+    this.preprocess(result);
+    this.disabled = false;
+  },
+
+  // External following is loaded via notification manager.
+  //
+  externalFollowingLoaded: function(following) {
+    if(this.userID == following.get('user_id')) {
+      this.following = following;
+      this.evaluateUI(following);
+      this.external = true;
+    }
+  },
+
+  // All external followings have been loade.
+  //
+  externalFollowingLoadingComplete: function() {
+    if(!this.external)
+      this.evaluateUI(new Backbone.Model());
   }
 
 });

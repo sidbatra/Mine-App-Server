@@ -21,7 +21,6 @@ class SessionController < ApplicationController
                   :scope => [:email,
                              :user_likes,
                              :user_birthday,
-                             :user_photos,
                              :publish_actions])
 
     target_url << '&display=touch' if is_phone_device?

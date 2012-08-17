@@ -22,6 +22,8 @@ class Search < ActiveRecord::Base
   #----------------------------------------------------------------------
   named_scope :with_user,  :include => :user
   named_scope :by_id,      :order => 'id DESC'
+  named_scope :for, lambda{|source| {:conditions => {
+                                      :source => source}}}
 
   #----------------------------------------------------------------------
   # Class methods

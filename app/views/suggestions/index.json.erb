@@ -1,1 +1,2 @@
-<%=@suggestions.to_json()%>
+<%=@suggestions.to_json(:only => [:id,:title,:thing,:example], 
+                        :methods => :image_url)%>

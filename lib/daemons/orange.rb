@@ -80,7 +80,7 @@ EM.run do
       
       @count += 1
 
-      if @count == 1 || @count == 3 || @count == 5
+      if @count > 1 && @count <= 5  
       EM::Timer.new(40) do
         Twitter.update(tweet,:in_reply_to_status_id => status.id)
       end

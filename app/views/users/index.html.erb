@@ -1,1 +1,106 @@
-All my lovely <%=@aspect%> show up here
+<div class="profile-box unit-box border-box" style="margin-top: -6px;">
+       
+  <%=render :partial => "box", :locals => {:user => @user}%>
+  
+  
+  <div class="connections-box border-box split" style="margin-right: 2.7%;">
+
+      <div class="box-title relative">
+				<a href="javascript:void(0)" class="dark">
+          Following (<%=@user.inverse_followings_count%>)
+        </a>
+			</div>
+			
+
+      <%cache ["v1",@user,"ifollowers","connections"] do%>
+
+        <ul class="well-box list-box single rounded-5 border-box relative">
+          <%@user.ifollowers.each do |user|%>
+            <%cache ["v1",user,"ifollower","connections"] do%>     
+              <li class="txt m relative">
+                <a href="<%=user_path(user.handle,:src => "connections")%>" 
+                  class="dark">
+                  <%=image_tag user.square_image_url, 
+                      :class => "user-photo m shaded rounded-3"%>
+                  <%=user.full_name%>
+                </a>
+                
+                <div id="ifollow_box_<%=user.id%>">
+                </div>
+              </li>
+            <%end%>
+          <%end%>
+        </ul>
+
+      <%end%>
+      
+  </div> <!-- following -->
+  
+  
+  
+  <div class="connections-box border-box split">
+
+      <div class="box-title relative">
+				<a href="javascript:void(0)" class="dark">
+          Followers (<%=@user.followings_count%>)
+        </a>
+			</div>
+
+			
+      <%cache ["v1",@user,"followers","connections"] do%>
+
+        <ul class="well-box list-box single rounded-5 border-box relative">
+          <%@user.followers.each do |user|%>
+            <%cache ["v1",user,"follower","connections"] do%>     
+              <li class="txt m relative">
+                <a href="<%=user_path(user.handle,:src => "connections")%>" 
+                  class="dark">
+                  <%=image_tag user.square_image_url, 
+                      :class => "user-photo m shaded rounded-3"%>
+                  <%=user.full_name%>
+                </a>
+                
+                <div id="follow_box_<%=user.id%>">
+                </div>
+              </li>
+            <%end%>
+          <%end%>
+        </ul>
+
+      <%end%>
+      
+  </div> <!-- followers -->
+  
+</div> <!-- /profile-box -->
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">  
+
+    <%if logged_in?%>
+      var ifollowerIDs = [<%=@user.ifollower_ids.join(",")%>];
+      var followerIDs = [<%=@user.follower_ids.join(",")%>];
+
+      _.each(ifollowerIDs,function(userID){
+        new Denwen.Partials.Followings.Following({
+              el:$('#ifollow_box_' + userID),
+              userID: userID,
+              fetch: false,
+              tag: 'i'});
+      });
+
+      _.each(followerIDs,function(userID){
+        new Denwen.Partials.Followings.Following({
+              el:$('#follow_box_' + userID),
+              userID: userID,
+              fetch: false});
+      });
+    <%end%>
+
+    new Denwen.Views.Users.Connections({
+          userJSON : <%=@user.to_json(
+                                :only => [:id,:first_name,:last_name,
+                                          :handle,:byline])%>,
+          source : "<%=h @source%>"});
+  </script>
+<%end%>

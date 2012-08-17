@@ -17,6 +17,10 @@
     Underway: '1'
   TumblrSharing:
     Underway: '1'
+  SearchSource:
+    New: 0
+    Edit: 1
+    User: 2
 
 # Enumerations for ruby. 
 #
@@ -60,9 +64,6 @@
     Logout: 'logout'
   PurchaseEditSource:
     Updated: 'updated'
-  SearchSource:
-    New: 0
-    Edit: 1
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:
@@ -104,5 +105,3 @@
     TwAuth: 'tw_auth'
     TumblrAuth: 'tumblr_auth'
     FbAccessToken: 'fb_access_token'
-    FbPublishPermissions: 'fb_publish_permissions'
-    FbExtendedPermissions: 'fb_extended_permissions'

@@ -1,6 +1,7 @@
 <div class="user-photo-box relative">
-	<div class="fb-11 absolute"></div>
-	<img class="user-photo rounded-3"
-	  src="<%=like.get('user').get('square_image_url')%>" 
-	  alt=''/>
+  <a href="<%=like.get('user').path('like')%>">
+    <img class="user-photo s rounded-3"
+      src="<%=like.get('user').get('square_image_url')%>" 
+      alt=''/>
+  </a>
 </div>

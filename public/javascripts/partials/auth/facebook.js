@@ -42,9 +42,7 @@ Denwen.Partials.Auth.Facebook = Backbone.View.extend({
   fetched: function() {
     if(this.setting.get('status')) {
       var keys = {};
-
       keys[this.auth] = true;
-      keys[Denwen.Settings.FbPublishPermissions] = true;
 
       Denwen.H.currentUser.get('setting').set(keys);
 

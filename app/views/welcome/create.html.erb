@@ -2,90 +2,99 @@
   <%=render 'purchases/chooser'%> 
 <%end%>
 
-<div class="background-cover" 
-	style="background-image: url('<%=image_path "home/shorts2.jpg"%>')">
-</div>
+<div class="well-box padded border-box rounded-8 relative">
 
-<div class="dimmer sixty">
-</div>
+	<div id="step_1">
+		<h2>Pick an item you bought recently —</h2>
+		<p class="txt m border-box">
+			You can choose how you share it, and edit it any time.
+		</p>
+	</div>
+	
+	<div id="step_2" style="display:none;">
+	</div>
+	
+	<div id="step_3" style="display:none;">
+	  <h2>A few details to finish up...</h2>
+	  <p class="txt m border-box" style="margin-bottom: 20px;">
+			Add the store you bought it from, and choose your sharing options.
+		</p>
+	</div>
+	
+	
+	<ul id="cards" style="margin: 20px -20px -8px 0;">
+	  <%@suggestions.each do |suggestion|%>
+	  
+	  <li class="border-box centered rounded-5 opacity-90-100 transition-opacity" 
+        style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
+	
+	    <a id="suggestion_<%=suggestion.id%>" 
+	        href="javascript:void(0)" 
+	        class="border-box rounded-3 inline-block pointer"
+	        style="width: 100%; background: white; padding: 12px;">
+	
+	      <div class="top rounded-5 transition-bg">
+	      	<%=image_tag suggestion.image_url,
+	            :class => "",
+	            :style => "padding: 4px;"%>
+	      </div>
+	    
+	      <div class="txt l alias-smooth" style="color: #555; font-weight: bold;">
+	        <%=suggestion.title%>
+	      </div>	
+	    </a>
+	   
+	  </li> <!--/well-box -->
+	   
+	  <%end%>
+	
+		<li id="extra_suggestion_box" 
+        class="border-box centered rounded-5 opacity-90-100 transition-opacity" 
+        style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
+			<a href="javascript:void(0)" id="extra_suggestion" 
+          class="border-box rounded-3 inline-block pointer" 
+          style="width: 100%; background: white; padding: 12px;">
+				  <div style="height: 128px; padding: 4px; font-size: 72px; font-weight: bold; color: #333; line-height: 120px;">…</div>
+				  <div class="txt l alias-smooth" style="color: #555; font-weight: bold;">Something else</div>
+			</a>    
+		</li>
+	
+	</ul> <!-- /#cards -->
 
-<div class="onboarding">
 
-	<div id="box" class="box border-box rounded-5">
 
-		<div class="heading" id="step_1">
-			<%=image_tag "ob/mine-tags-48-2x.png", :class => "logo"%>
-      <br>
-			<h2>What did you buy?</h2>
-		</div>
+	<div id="creation" class="create-box" style="display:none">
+	
+		  <%form_for Purchase.new,
+		      :html => {
+		        :class => "form-horizontal",
+		        :style => "margin-bottom: 0;"} do |f|%>
 		
-		<div class="heading" id="step_2" style="display:none;">
-		</div>
-	
-		<div class="heading" id="step_3" style="display:none;">
-	    <h2>Where did you buy it?</h2>
-		</div>
-	
-		<div id="cards" class="suggestions clearfix">
-	    <%@suggestions.each do |suggestion|%>
-	      <a id="suggestion_<%=suggestion.id%>" 
-	          href="javascript:void(0)" 
-	          class="suggestion relative">
+		      <%=render :partial => 'purchases/input', 
+		          :locals => {
+		            :f => f,
+		            :suggestion => nil,
+		            :submit_text => "Add to <span class='mine'>mine</span>",
+		            :show_cancel_button => false,
+		            :show_delete_button => false,
+		            :search_placeholder => "Item name, brand, color and store or URL",
+		            :search_action => image_tag("icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
+										                :style => "height: 14px; margin-top: 13px; vertical-align: top;"),
+		            :show_extra_steps => false,
+		            :show_fb_share => true,
+		            :show_tw_share => true,
+		            :show_tumblr_share => true,
+		            :fb_share_on => self.current_user.setting.post_to_facebook?,
+		            :tw_share_on => self.current_user.setting.post_to_twitter?,
+		            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
+		  <%end%> <!-- /form --> 
+		  
+		<br>
+		<br>
+	  
+	</div> <!-- /search-box -->
 
-	        <div class="top rounded-5 transition-bg">
-	        	<%=image_tag suggestion.image_url,
-	              :class => "shape"%>
-	        </div>
-	      
-	        <div class="bottom border-box relative">
-	          <%=suggestion.title%>
-	        </div>	
-	      </a>
-	    <%end%>
-	  </div>
-	  
-	  <div id="extra_suggestion_box" class="wildcard">
-			or… <a href="javascript:void(0)" id="extra_suggestion" class="">something else</a>
-		</div>
-	  
-	  <div id="creation" class="create-box clearfix" style="display:none">
-	  
-			  <%form_for Purchase.new,
-			      :html => {
-			        :class => "form-horizontal",
-			        :style => "margin-bottom: 0;"} do |f|%>
-			
-			      <%=render :partial => 'purchases/input', 
-			          :locals => {
-			            :f => f,
-			            :suggestion => nil,
-			            :submit_text => "Add to <span class='mine'>mine</span>",
-			            :show_cancel_button => false,
-			            :show_delete_button => false,
-			            :show_query_box => true,
-			            :show_query_sub_box => true,
-			            :search_placeholder => "Item name, brand, color, store",
-			            :search_action => "<span class='hide-on-mobile'>Find it </span><i class='icon-chevron-right icon-white'></i>",
-			            :show_extra_steps => false,
-			            :show_fb_share => true,
-			            :show_tw_share => true,
-			            :show_tumblr_share => true,
-			            :fb_share_on => self.current_user.setting.post_to_timeline?,
-			            :tw_share_on => self.current_user.setting.post_to_twitter?,
-			            :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
-			  <%end%> <!-- /form --> 
-			  
-			<br>
-			<br>
-		  
-		  <span id="example" class="example rounded-8">
-		  </span>
-		  
-		</div> <!-- /search-box -->
-	
-  </div> <!-- box -->
-	
-</div> <!-- onboarding -->
+</div> <!--/ enclosing well -->
 
 
 <%content_for :javascript do%>

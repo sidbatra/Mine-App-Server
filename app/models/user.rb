@@ -42,6 +42,18 @@ class User < ActiveRecord::Base
   validates_presence_of   :fb_user_id
 
   #----------------------------------------------------------------------
+  # Indexing
+  #----------------------------------------------------------------------
+  searchable do
+    text :first_name, :as => :first_name_textp, :boost => 3
+    text :last_name, :as => :last_name_textp, :boost => 2
+    text :email
+    integer :followers, :multiple => true do 
+      followings.select{|f| f.is_active}.map(&:follower_id)
+    end
+  end
+
+  #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :purchases_count, lambda {|count| {
@@ -58,6 +70,7 @@ class User < ActiveRecord::Base
   named_scope :with_setting, :include => :setting
   named_scope :with_purchases, :include => :purchases
   named_scope :with_ifollowers, :include => :ifollowers
+  named_scope :with_followings, :include => :followings
 
   #----------------------------------------------------------------------
   # Attributes
@@ -65,7 +78,8 @@ class User < ActiveRecord::Base
   attr_accessible :fb_user_id,:source,:email,:gender,:birthday,
                     :first_name,:last_name,:access_token,:byline,
                     :tumblr_access_token, :tumblr_access_token_secret,
-                    :tw_access_token, :tw_access_token_secret
+                    :tw_access_token, :tw_access_token_secret,
+                    :iphone_device_token
 
   #----------------------------------------------------------------------
   # Class methods
@@ -226,20 +240,12 @@ class User < ActiveRecord::Base
     fb_user.permissions
   end
 
-  # Whether or not the user has given fb extended permissions.
-  # The method uses FBGraph instead of the settings table
+  # Make the access token nil on expiry or when the publish
+  # permissions are removed
   #
-  def fb_extended_permissions?
-    self.fb_permissions.include?(:publish_stream)
-  end
-
-  # Whether or not the user has given fb publish permission to post on
-  # his/her behalf. 
-  #
-  # The method uses FBGraph instead of the settings table
-  #
-  def fb_publish_permissions?
-    self.fb_permissions.include?(:publish_actions)
+  def fb_access_token_expired
+    self.access_token = nil
+    save!
   end
 
   # Whether or not we have a valid and non expired access token 
@@ -248,13 +254,12 @@ class User < ActiveRecord::Base
   def fb_access_token_valid?
     if self.access_token.present? 
       begin
-        self.fb_permissions
-        true
-      rescue FbGraph::InvalidToken => ex
-        self.access_token = nil
-        save!
+        valid = self.fb_permissions.include?(:publish_actions)
+        self.fb_access_token_expired unless valid
 
-        self.setting.revoke_fb_permissions
+        valid
+      rescue FbGraph::InvalidToken => ex
+        self.fb_access_token_expired
         false
       end
     else 

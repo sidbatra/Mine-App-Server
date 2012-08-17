@@ -1,71 +1,72 @@
-	<div id="chooser" class="chooser" style="display:none;">
+	<div id="chooser" class="chooser border-box" style="display:none;">
 				
-		<!--
-		<div class="loader">
-			<#=image_tag "loading_tags_32_bw.gif",
-   			:style => ""%>
-   			Did you add a color and a brand?
- 		</div>
-		-->
-	
-		<form class="form-horizontal search-bar">
-			
-			<a id="cancel_button" class="close hide-on-mobile" href="javascript:void(0)">
+		<form class="search-bar border-box gradient v-555-444">
+		
+			<a id="cancel_logo_button" href="javascript:void(0)">
+        <%=image_tag("logos/mine-h-white-40-2x.png", 
+            :class => "logo absolute")%>
+      </a>
+	        
+	    <a id="cancel_button" 
+        class="close opacity-60-80 alias-smooth transition-opacity" 
+        href="javascript:void(0)">
 				&times;
 			</a>
+
 		
-			<div id="spinner_box" class="control-group" style="border: 0;">
-			
-				<label id="purchase_image_broken_msg" class="control-label hide-on-mobile">
+			<div class="search-container relative">
+		
+<!--
+				<div class="box-title" id="purchase_image_broken_msg">
 					<span class="default">
 						Select your
 					</span>
 					<span class="error">
 						Image unavailable.
 					</span>
-				</label>
-				
-				<div class="controls" style="margin-left: 150px;">
-				
+				</div>
+-->
+		
+				<div id="spinner_box">
+					
 					<input  id="purchase_repeat_query" 
-		              class="search-field border-box highlight-on-focus" 
+		              class="enter txt l rounded-3 border-box shaded" 
 		              name="products[query]" 
 		              type="text" 
 		              value="">
 					<a id="purchase_repeat_search" 
-		              class="btn go" 
-		              title="Search" 
+		              class="btn btn-large border-box rounded-3 go shaded" 
+		              title="Search"
 		              alt="Search">
 		      	<span class='hide-when-loading'>
-		      		<span class="hide-on-mobile">
-		      			Go
-							</span>
-							<span class="hide-except-mobile">
-		      			<i class="icon-chevron-right icon-white"></i>
-		      		</span>
+			      	<%=image_tag "icons/PNG-Icons/32px-white/Edition-25-white.png", 
+	                :style => "height: 14px; margin-top: 13px; vertical-align: top;"%>
 		      	</span>
 		      	<i class='icon-loading icon-white'></i>
 		      </a>
+	    
+	      </div> <!-- spinner-box -->  
       
-        </div> <!-- controls -->     
+      </div> <!-- search-container -->   
       
-      </div> <!-- /control-group -->
 		</form> <!-- /search-bar -->
 
-		<div class="results border-box" id="results">
 
+		<div class="results border-box" id="results">
     </div>
 
 	
-		<div class="scroll-instructions hide-on-mobile" id="scroll_for_more_results">
+		<div class="scroll-instructions txt s gradient v-FFF-DDD" 
+      id="scroll_for_more_results">
 	      <span class="hide-when-loading">
 	      	Scroll down for more 
-          <b class="caret" style="vertical-align: middle;"></b>
+          <b class="caret opaque"></b>
 	      </span>
-	      <div class="loading small inline" 
-          style="margin-bottom: 4px; vertical-align: middle;"></div>
+	      <div class="loading">
+        </div>
 	  </div>
 	  
 	</div> <!-- chooser -->
 	
-	<div class="shadow" id="shadow"></div>
+	<div class="shadow" id="shadow">
+  </div>

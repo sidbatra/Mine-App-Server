@@ -48,15 +48,7 @@ class FacebookController < ApplicationController
                       user.visited_at && user.visited_at > 30.days.ago 
                     end
       
-      if object == 'permissions'
-        users.each do |user|
-          ProcessingQueue.push(
-            UserDelayedObserver,
-            :after_fb_permissions_update,
-            user.id)
-        end 
-
-      elsif object == 'user'
+      if object == 'user'
         users.each do |user|
           ProcessingQueue.push(
             UserDelayedObserver,
@@ -64,7 +56,6 @@ class FacebookController < ApplicationController
             user,
             true) 
         end 
-        
       end
   
     else

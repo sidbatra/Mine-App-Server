@@ -13,8 +13,13 @@ module DW
       #
       # returns - The String URL for running a product search.
       #
-      def self.search_products(query,limit=10,page=1,url_only=true)
-        url = build_url(query,limit,page)
+      def self.search_products(query,
+                  thumbnail_width=180,
+                  limit=10,
+                  page=1,
+                  url_only=true)
+
+        url = build_url(query,thumbnail_width,limit,page)
         url_only ? url.to_s : fetch_response(url)
       end
 
@@ -23,12 +28,12 @@ module DW
 
       # Construct the url for performing a web search
       #
-      def self.build_url(query,limit,page,extras={})
+      def self.build_url(query,thumbnail_width,limit,page,extras={})
         params = {
           'country' => "US",
           'key' => CONFIG[:google_api_key],
           'q' => "#{CGI.escape(query)}",
-          'thumbnails' => "180:*",
+          'thumbnails' => "#{thumbnail_width}:*",
           'maxResults' => limit,
           'startIndex' => (page-1)*limit + 1}
 

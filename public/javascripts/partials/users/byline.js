@@ -20,7 +20,7 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
     this.cancelEl   = '#user_cancel';
     this.inputEl    = '#user_byline';
 
-    restrictFieldSize($(this.inputEl),130,'charsremain');
+    restrictFieldSize($(this.inputEl),45,'charsremain');
     $(this.inputEl).placeholder();
   },
 

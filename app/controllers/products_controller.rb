@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     @key        = generate_cache_key(@sane_query,@page)
     @title      = ""
     @per_page   = 10
+    @mobile     = params[:mobile]
 
     unless fragment_exist? @key
 
@@ -121,6 +122,7 @@ class ProductsController < ApplicationController
                             page+1,
                             per_page).first.map do |product|
 
+                           #TODO: Optimize for @mobile
                            product_search_hash(
                              product.thumbnail_url,
                              product.image_url,
@@ -150,7 +152,9 @@ class ProductsController < ApplicationController
         @results[:amazon] = Amazon::Ecs::Response.new(
                             response.body).items.map do |product|
                             begin
-                              medium_url = product.get('MediumImage/URL')
+                              medium_url = @mobile ? 
+                                            product.get('SmallImage/URL') :
+                                            product.get('MediumImage/URL')
                               large_url = product.get('LargeImage/URL')
 
                               next unless medium_url and large_url
@@ -186,7 +190,12 @@ class ProductsController < ApplicationController
   #           asynchronously fetched.
   #
   def search_google_shopping(query,page,per_page)
-    url = GoogleShopping.search_products(query,per_page,page+1,true)
+    url = GoogleShopping.search_products(
+                          query,
+                          @mobile ? 75 : 180,
+                          per_page,
+                          page+1,
+                          true)
 
     request = Typhoeus::Request.new(url,
                 :connect_timeout => 1000,

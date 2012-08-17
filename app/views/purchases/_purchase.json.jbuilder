@@ -8,10 +8,10 @@ json.store do |j|
   j.partial! purchase.store 
 end if purchase.store
 
-json.likes purchase.likes do |j,like|
+json.likes (defined?(without_interactions) ? [] : purchase.likes) do |j,like|
   j.partial! like
-end
+end 
 
-json.comments purchase.comments do |j,comment|
+json.comments (defined?(without_interactions) ? [] : purchase.comments) do |j,comment|
   j.partial! comment
-end
+end 

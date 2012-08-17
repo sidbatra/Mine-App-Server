@@ -11,19 +11,26 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    var self = this;
+    this.interaction = this.options.interaction;
+
+    if (typeof this.interaction  === "undefined")
+      this.interaction = Denwen.H.isLoggedIn();
+
     this.purchaseEl = '#purchase-' + this.model.get('id');
+    this.photoEl = '#purchase_photo_'  + this.model.get('id');
+    this.titleEl = '#purchase_title_' + this.model.get('id');
     this.panelEl = '#purchase_panel_' + this.model.get('id');
     this.likesEl = '#purchase_likes_' + this.model.get('id');
     this.likesBoxEl  = '#purchase_likes_box_' + this.model.get('id');
     this.aggregateEl = '#purchase_likes_' + this.model.get('id') + '_aggregate';
     this.aggregateTextEl = '#purchase_likes_' + this.model.get('id') + '_aggregate_text';
     this.commentsEl = '#purchase_comments_' + this.model.get('id');
+    this.commentsBoxEl = '#purchase_comments_box_' + this.model.get('id');
 
     this.render();
 
     if(Denwen.H.isLoggedIn()) {
-      var self = this;
-
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
 
@@ -42,6 +49,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
           self.newLike.disable();
       });
     }
+
+    $(this.photoEl).click(function(){self.photoClicked();});
+    $(this.titleEl).click(function(){self.titleClicked();});
   },
 
   // Render the contents of the model.
@@ -49,7 +59,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   render: function() {
     var html = Denwen.JST['purchases/display']({
                 purchase    : this.model,
-                interaction : Denwen.H.isLoggedIn()});
+                interaction : this.interaction});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
@@ -82,6 +92,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.model.get('comments').each(function(comment){
       self.renderComment(comment);
     });
+
+    if(!this.interaction && this.model.get('comments').isEmpty()) {
+      $(this.commentsBoxEl).hide();
+    }
 
     this.testOverflow();
   },
@@ -138,6 +152,18 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.renderLikeAggregation();
 
     $(this.likesBoxEl).show(); 
+  },
+
+  // Purchase photo is clicked.
+  //
+  photoClicked: function() {
+    Denwen.Track.purchaseURLVisit('photo');
+  },
+
+  // Purchase title is clicked.
+  //
+  titleClicked: function() {
+    Denwen.Track.purchaseURLVisit('title');
   }
 
 });

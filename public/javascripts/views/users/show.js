@@ -8,24 +8,21 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.user           = new Denwen.Models.User(this.options.userJSON);
     this.source         = this.options.source;
 
-
     // -----
-    if(Denwen.H.isCurrentUser(this.user.get('id')))
-      new Denwen.Partials.Users.Byline({
-            el: $('#user_byline_box'),
-            model: this.user});
-
-    // -----
-    //new Denwen.Partials.Followings.Following({
-    //      el:$('#follow-box'),
-    //      followingJSON: this.options.followingJSON,
-    //      userID: this.user.get('id')});
+    new Denwen.Partials.Users.Box({
+      el: $('#user_box'),
+      user: this.user
+    });
 
     // -----
     $("span.timeago").timeago();
 
     // -----
     $("a[rel='tooltip']").tooltip();
+
+    // -----
+    //$(".source-url").click(function(){
+    //                        Denwen.Track.purchaseURLVisit('profile')});
 
     // -----
     this.loadFacebookPlugs();

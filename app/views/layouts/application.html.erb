@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
     <%=render :partial => "misc/head"%> 
 
@@ -21,22 +23,25 @@
   	<!-- wrapper for sticky header -->
   	<div class="wrapper">
     
-	    <div id="fb-root"></div>    
-	
-	    <%=render "headers/default"%>
+	    <div id="fb-root">
+      </div> 
 	    
-	    <div id="message-drawer" 
-	          class="message-drawer border-box alert rounded-5"
-	          style="display: none;">
-			</div>
-	 
-	    <%=yield%>
+	    <div class="container relative">   
+	
+		    <%=render "headers/default"%>
+		    
+		    <div id="message-drawer" 
+		          class="message-drawer border-box alert rounded-5 txt m"
+		          style="display: none;">
+				</div>
+		 
+		    <%=yield%>
+		   
+			</div> <!-- /container -->
 	  
 	  </div> <!-- /wrapper -->
 
-		<%if !is_onboarding?%>
-      <%=render "footers/default"%>
-    <%end%>
+    <%=render "footers/default" unless is_onboarding?%>
 
     <%=render :partial => "misc/analytics"%>
 
@@ -60,21 +65,22 @@
                                  :include => {
                                   :setting => {
                                    :only    => [],
-                                   :methods => [:fb_publish_permissions,
-                                                :fb_auth,
+                                   :methods => [:fb_auth,
                                                 :tw_auth,
                                                 :tumblr_auth]}})%>);
 
-       <%if session[:renewed] && self.current_user.setting.fb_auth%>
+        <%if session[:renewed] && self.current_user.setting.fb_auth%>
           new Denwen.Partials.Settings.FBAccessToken();
-       <%end%>
+        <%end%>
+
+        new Denwen.Partials.Users.Search({el:$("#users_search_query")});
       <%end%>
     </script>
 
     <%=yield :javascript%>
 
     <script type="text/javascript">
-      <%if logged_in? && !is_onboarding? && !is_phone_device?%>
+      <%if logged_in? && !is_onboarding? && !is_phone_device? && !Rails.env.starts_with?('d')%>
           var uvOptions = {};
           (function() {
             var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;

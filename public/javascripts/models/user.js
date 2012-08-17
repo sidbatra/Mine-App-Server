@@ -17,6 +17,10 @@ Denwen.Models.User = Backbone.Model.extend({
   validate: function(attrs) {
   },
 
+  fullName: function() {
+    return this.get('first_name') + ' ' + this.get('last_name');
+  },
+
   // Generate a path to the user profile
   // with the given source
   //

@@ -1,4 +1,5 @@
 class Admin::PurchasesController < ApplicationController
+  layout nil
   before_filter :admin_required
 
   #
@@ -7,8 +8,11 @@ class Admin::PurchasesController < ApplicationController
 
     case params[:filter].to_sym
     when :recent
-      @purchases = Purchase.with_user.by_id.limit(300)
+      @purchases = Purchase.with_user.by_id.limit(500)
       @view = "recent"
+    when :special
+      @purchases = Purchase.with_user.by_id.special
+      @view = "special"
     end
 
     render @view
@@ -26,6 +30,14 @@ class Admin::PurchasesController < ApplicationController
                    user.id,
                    params[:purchase_handle])
     end
+  end
+
+  #
+  #
+  def update
+    purchase = Purchase.find(params[:id])
+    purchase.update_attributes(params[:purchase])
+    redirect_to admin_full_purchase_path(purchase.user.handle,purchase.handle)
   end
 
 end

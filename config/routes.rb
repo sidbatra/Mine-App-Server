@@ -49,6 +49,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users,
     :only => [:create,:index,:show,:update]
 
+  map.connections ':handle/connections',
+    :controller => :users,
+    :action     => :index,
+    :aspect     => "connections"
+
   map.resource :feed,
     :controller => :feed,
     :only => [:show]
@@ -82,7 +87,7 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:create]
 
   map.resources :followings,
-    :only => [:create,:show,:destroy]
+    :only => [:create,:index,:show,:destroy]
 
   map.resources :searches,
     :only => [:create]
@@ -113,6 +118,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :settings,
     :only => [:index,:update,:show]
 
+  map.resource :status,
+    :controller => :status,
+    :only => [:show]
+
 
   ##
   # Routes for static pages
@@ -132,6 +141,16 @@ ActionController::Routing::Routes.draw do |map|
     :action     => :show,
     :aspect     => :copyright
 
+  map.about 'about',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :about
+
+  map.faq 'faq',
+    :controller => :static,
+    :action     => :show,
+    :aspect     => :faq
+
 
   ##
   # Admin namespace routes routes
@@ -146,7 +165,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
     admin.resources :users, :only => [:index,:show,:destroy]
-    admin.resources :purchases, :only => [:index,:show]
+    admin.resources :purchases, :only => [:index,:show,:update]
     admin.resources :products, :only => [:index]
     admin.resources :stores, :only => [:index,:show,:edit,:update]
     admin.resources :comments, :only => [:index]

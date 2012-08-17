@@ -11,8 +11,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     "click #fb-photo-toggle-switch" : "fbSwitchToggled",
     "click #tw-share-toggle-switch" : "twSwitchToggled",
     "click #tumblr-share-toggle-switch" : "tumblrSwitchToggled",
-    "click #initiate_endorsement" : "endorsementInitiated",
-    "click #initiate_purchase" : "purchaseInitiated"
+    "click #initiate_endorsement" : "endorsementInitiated"
   },
 
   // Constructor logic
@@ -29,9 +28,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.urlToolTipDone       = false;
 
     this.formEl               = '#' + this.mode + '_purchase';
-    this.initPurchaseEl       = '#initiate_purchase';
     this.queryEl              = '#purchase_query';
-    this.querySubBoxEl        = '#query_sub_box';
     this.queryBoxEl           = '#query_box';
     this.queryTextEl          = '#query_text';
     this.extraEl              = '#extra_steps';
@@ -79,19 +76,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.productSearch.bind(
       Denwen.Partials.Products.Search.Callback.Cancelled,
       this.productSearchCancelled,
-      this);
-
-
-    this.fbSettings = new Denwen.Partials.Settings.FBPublishPermissions();
-
-    this.fbSettings.bind(
-      Denwen.Partials.Settings.FBPublishPermissions.Callback.Accepted,
-      this.fbPermissionsAccepted,
-      this);
-
-    this.fbSettings.bind(
-      Denwen.Partials.Settings.FBPublishPermissions.Callback.Rejected,
-      this.fbPermissionsRejected,
       this);
 
 
@@ -165,20 +149,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
     this.stores = stores;
   },
 
-  // User initiates a purchase.
-  //
-  purchaseInitiated: function() {
-    $(this.initPurchaseEl).hide();
-    $(this.querySubBoxEl).show();
-
-    $(this.queryEl).phocus();
-
-    Denwen.Track.action("Purchase Initiated");
-
-    this.trigger(
-      Denwen.Partials.Purchases.Input.Callback.PurchaseInitiated);
-  },
-
   // Catch keystrokes on inputs to stop form submissions
   //
   inputKeystroke: function(e) {
@@ -235,15 +205,9 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
   // Fired when the fb photo switch is toggled
   //
   fbSwitchToggled: function() {
-    var setting = Denwen.H.currentUser.get('setting');
-
-    if(!setting.get(Denwen.Settings.FbAuth)) { 
+    if(!Denwen.H.currentUser.get('setting').get(Denwen.Settings.FbAuth)) { 
       $(this.fbSwitchEl).addClass(this.switchLoadingClass);
       this.fbAuth.showAuthDialog();
-    }
-    else if(!setting.get(Denwen.Settings.FbPublishPermissions)) { 
-      $(this.fbSwitchEl).addClass(this.switchLoadingClass);
-      this.fbSettings.showPermissionsDialog();
     }
 
     $(this.fbSwitchEl).toggleClass(this.switchOffClass);
@@ -371,7 +335,7 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       valid = false;
 
       $(this.storeEl).addClass('error');
-      $(this.storeEl).phocus();
+      $(this.storeEl).focus();
       Denwen.Track.purchaseValidationError('No Store');
     }
     else {
@@ -416,34 +380,16 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
 
     var purchase = new Denwen.Models.Purchase();
 
-    fields['is_store_unknown'] = this.isStoreUnknown() ? '1' : '0';
-    fields['post_to_timeline'] = this.fbSwitchState(); 
-    fields['share_to_twitter'] = this.twSwitchState(); 
-    fields['share_to_tumblr']  = this.tumblrSwitchState(); 
+    fields['is_store_unknown']  = this.isStoreUnknown() ? '1' : '0';
+    fields['share_to_facebook'] = this.fbSwitchState(); 
+    fields['share_to_twitter']  = this.twSwitchState(); 
+    fields['share_to_tumblr']   = this.tumblrSwitchState(); 
 
     purchase.save({purchase:fields},{
       success: function(data){self.purchaseCreated(data);},
       error: function(){self.purchaseCreationFailed();}});
     
     return false;
-  },
-
-
-  //
-  // Callbacks from fb permissions interface.
-  //
-
-  // Fired when fb permissions are accepted 
-  //
-  fbPermissionsAccepted: function() {
-    $(this.fbSwitchEl).removeClass(this.switchLoadingClass);
-  },
-
-  // Fired when fb permissions are rejected
-  //
-  fbPermissionsRejected: function() {
-    $(this.fbSwitchEl).toggleClass(this.switchOffClass);
-    Denwen.Drawer.error("Please allow Facebook permissions for posting photos.");
   },
 
 
@@ -531,8 +477,6 @@ Denwen.Partials.Purchases.Input = Backbone.View.extend({
       this.hideExtraSteps();
       this.resetForm();
       this.displayQueryBox();
-      $(this.querySubBoxEl).hide();
-      $(this.initPurchaseEl).show();
     }
 
     this.trigger(

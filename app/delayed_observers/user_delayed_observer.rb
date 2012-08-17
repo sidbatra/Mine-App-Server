@@ -7,7 +7,6 @@ class UserDelayedObserver < DelayedObserver
 
     Mailman.welcome_new_user(user)
 
-    after_fb_permissions_update(user.id)
     mine_fb_data(user)
   end
 
@@ -19,20 +18,6 @@ class UserDelayedObserver < DelayedObserver
     mine_fb_data(user) if options[:mine]
   end
 
-  # Delayed facebook permissions update 
-  #
-  def self.after_fb_permissions_update(user_id)
-    user        = User.find(user_id)
-
-    permissions = user.fb_permissions
-    setting     = user.setting
-
-    setting.fb_publish_stream   = permissions.include?(:publish_stream)
-    setting.fb_publish_actions  = permissions.include?(:publish_actions)
-    
-    setting.save!
-  end
-
   # Mine user's fb data
   #
   def self.mine_fb_data(user,check=false)
@@ -40,7 +25,6 @@ class UserDelayedObserver < DelayedObserver
     return if(check && !user.fb_access_token_valid?)
 
     mine_fb_friends(user)
-    compute_friend_score(user)
   end
 
   protected
@@ -57,8 +41,8 @@ class UserDelayedObserver < DelayedObserver
     followers         = User.find_all_by_fb_user_id(fb_friends_ids)
 
     followers.each do |follower|
-      Following.add(user.id,follower.id,FollowingSource::Auto,false)
-      Following.add(follower.id,user.id,FollowingSource::Auto)
+      Following.add(user.id,follower.id,FollowingSource::Auto,false,false)
+      Following.add(follower.id,user.id,FollowingSource::Auto,false,false)
     end
 
     Contact.batch_insert(user.id,fb_friends_ids,fb_friends_names)
