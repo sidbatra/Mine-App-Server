@@ -1,4 +1,5 @@
 class Admin::SuggestionsController < ApplicationController
+  layout nil
   before_filter :admin_required 
   before_filter :generate_uploader, :only => [:new,:edit]
 
