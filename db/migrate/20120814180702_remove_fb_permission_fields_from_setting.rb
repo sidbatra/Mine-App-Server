@@ -5,5 +5,7 @@ class RemoveFbPermissionFieldsFromSetting < ActiveRecord::Migration
   end
 
   def self.down
+    add_column :settings, :fb_publish_actions, :boolean
+    add_column :settings, :fb_publish_stream, :boolean
   end
 end
