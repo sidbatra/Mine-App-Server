@@ -1,6 +1,7 @@
 # Handle store related request for admin view
 #
 class Admin::StoresController < ApplicationController
+  layout 'admin'
   before_filter :admin_required 
   before_filter :generate_uploader, :only => :edit
 
