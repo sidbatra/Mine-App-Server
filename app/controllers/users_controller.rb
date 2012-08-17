@@ -90,7 +90,7 @@ class UsersController < ApplicationController
 
     when :search
       query = params[:q]
-      @key = ["v1",self.current_user,query]
+      @key = ["v1",self.current_user,Base64.encode64(query).gsub("\n","")[0..99]]
       @cache_options = {:expires_in => 1.minute}
       @users = User.search do 
                 fulltext query do 
