@@ -90,7 +90,7 @@ class UsersController < ApplicationController
 
     when :search
       query = params[:q]
-      @key = ["v1",self.current_user,query]
+      @key = ["v1",self.current_user,Base64.encode64(query).gsub("\n","")[0..99]]
       @cache_options = {:expires_in => 1.minute}
       @users = User.search do 
                 fulltext query do 
@@ -105,7 +105,7 @@ class UsersController < ApplicationController
                 end  
                 without(:followers,self.current_user.id) if params[:skip_followers]
                 paginate :per_page => 5
-               end.results
+               end.results unless fragment_exist?(@key)
 
     when :connections
       @user = User.find_by_handle params[:handle]
