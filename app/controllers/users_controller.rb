@@ -105,7 +105,7 @@ class UsersController < ApplicationController
                 end  
                 without(:followers,self.current_user.id) if params[:skip_followers]
                 paginate :per_page => 5
-               end.results
+               end.results unless fragment_exist?(@key)
 
     when :connections
       @user = User.find_by_handle params[:handle]
