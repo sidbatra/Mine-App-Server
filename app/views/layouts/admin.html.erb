@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%=render :partial => "misc/head"%> 
+
+    <%=yield :head%>
+
+    <%=csrf_meta_tag%>
+    <%=asset_host_meta_tag%>
+    <%=current_user_id_meta_tag%>
+    <%=current_user_gender_meta_tag%>
+    <%=is_onboarding_meta_tag%>
+    <%=version_meta_tag%>
+  </head>
+
+  <body>
+  	<!-- wrapper for sticky header -->
+  	<div class="wrapper">
+	    
+	    <div class="container relative">   
+	
+		    <div id="message-drawer" 
+		          class="message-drawer border-box alert rounded-5 txt m"
+		          style="display: none;">
+				</div>
+		 
+		    <%=yield%>
+		   
+			</div> <!-- /container -->
+	  
+	  </div> <!-- /wrapper -->
+
+    <%=render :partial => "misc/analytics"%>
+
+    <%=include_javascripts :application-%>
+
+    <script type="text/javascript">
+      Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);
+      Denwen.Device = new Backbone.Model({
+                          "is_mobile" : <%=is_mobile_device? ? true : false%>,
+                          "is_phone"  : <%=is_phone_device? ? true : false%>,
+                          "is_tablet" : <%=is_tablet_device? ? true : false%>});
+
+      <%if logged_in?%>
+        Denwen.H.currentUser = new Denwen.Models.User(
+                               <%=self.current_user.to_json(
+                                 :only    => [:id,:fb_user_id,:email,:gender,
+                                              :first_name,:last_name,
+                                              :created_at],
+                                 :methods => [:square_image_url,:full_name,
+                                                :age],
+                                 :include => {
+                                  :setting => {
+                                   :only    => [],
+                                   :methods => [:fb_auth,
+                                                :tw_auth,
+                                                :tumblr_auth]}})%>);
+      <%end%>
+    </script>
+
+    <%=yield :javascript%>
+  </body>
+</html>
+

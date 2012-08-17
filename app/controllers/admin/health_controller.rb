@@ -1,4 +1,5 @@
 class Admin::HealthController < ApplicationController
+  layout 'admin'
 
   # List health of various services
   #

@@ -1,6 +1,7 @@
 # Handle user related requests for admin view
 #
 class Admin::UsersController < ApplicationController
+  layout 'admin'
   before_filter :admin_required
 
   # Fetch sets of users based on different filters

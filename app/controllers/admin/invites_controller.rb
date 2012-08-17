@@ -1,4 +1,5 @@
 class Admin::InvitesController < ApplicationController
+  layout 'admin'
   before_filter :admin_required
 
   #

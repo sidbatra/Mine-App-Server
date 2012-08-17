@@ -1,4 +1,5 @@
 class Admin::EmailsController < ApplicationController
+  layout 'admin'
   before_filter :admin_required
 
   # Display links to all emails
