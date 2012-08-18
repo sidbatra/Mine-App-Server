@@ -98,7 +98,7 @@
 
 <div class="profile-feed rounded-3 shaded relative">
   <%unless @user.purchases_count.zero?%>
-    <%cache ["v4",@user,"purchases"] do%>
+    <%cache ["v5",@user,"purchases"] do%>
       <%=render :partial => "purchases/card",
           :collection => @user.purchases.with_store.with_user.by_id,
           :as => :purchase%>
