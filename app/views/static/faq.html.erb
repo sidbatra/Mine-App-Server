@@ -60,3 +60,9 @@
 	
 </div>
 
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    Denwen.Track.action("FAQ View",{"Source" : "<%=@source%>"});
+  </script>
+<%end%>

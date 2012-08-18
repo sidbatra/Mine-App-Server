@@ -107,5 +107,7 @@
     new Denwen.Partials.Followings.Following({
           el:$('#follow_box_deepak'),
           userID: <%=@deepak.id%>});
+
+    Denwen.Track.action("About View",{"Source" : "<%=@source%>"});
   </script>
 <%end%>
