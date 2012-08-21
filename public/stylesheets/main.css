@@ -6,7 +6,7 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333 /* url('/images/backgrounds/flowers.jpeg') fixed */ ;
+	background: #333 /* url('/images/backgrounds/tracy2.jpeg') fixed */;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
@@ -653,8 +653,9 @@ footer .like-button-box {
 	right: 0;
 	width: 56px;
 	height: 28px;
+	font-size: 11px;
 	line-height: 28px;
-	padding: 0 6px; }
+	padding: 0px; }
 	
 .btn.follow.btn-green .unfollow { display: none; }
 .btn.follow.btn-green:hover .icon-ok { display: none; }
