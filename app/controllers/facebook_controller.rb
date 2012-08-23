@@ -48,12 +48,12 @@ class FacebookController < ApplicationController
 
     case @usage
     when :redirect
-        redirect_to create_user_path(
-                      :using => "facebook",
-                      :access_token => access_token,
-                      :target => target,
-                      :src => @source,
-                      :follow_user_id => follow_user_id)
+      redirect_to create_user_path(
+                    :using => "facebook",
+                    :access_token => access_token,
+                    :target => target,
+                    :src => @source,
+                    :follow_user_id => follow_user_id)
 
     when :popup
       fb_user = FbGraph::User.fetch("me?fields=id",
