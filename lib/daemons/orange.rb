@@ -14,7 +14,7 @@ ORANGE_CONFIG     = YAML.load_file(File.join(
 
 CONSUMER_KEY      = ORANGE_CONFIG[:consumer_key]
 CONSUMER_SECRET   = ORANGE_CONFIG[:consumer_secret]
-ACCOUNTS          = ORANGE_CONFIG[:accounts]
+ACCOUNTS          = ORANGE_CONFIG[:accounts].select{|account| account[:enabled] == true}
 
 require 'rubygems'
 require 'tweetstream'
@@ -32,11 +32,12 @@ end
 @reset_at = Time.now - 10
 
 
+
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
   config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = ACCOUNTS[2][:token] 
-  config.oauth_token_secret = ACCOUNTS[2][:secret] 
+  config.oauth_token        = ACCOUNTS[0][:token] 
+  config.oauth_token_secret = ACCOUNTS[0][:secret] 
   config.auth_method        = :oauth
 end
 
@@ -80,17 +81,15 @@ EM.run do
       
       @count += 1
 
-      if @count > 1 && @count <= 5  
       EM::Timer.new(40) do
         Twitter.update(tweet,:in_reply_to_status_id => status.id)
-      end
       end
 
 
       @reset_at = Time.now + rand(15) + 45 
       @logger.info "Resetting"
       
-      @count = 0 if @count >= 10 
+      @count = 0 if @count >= ACCOUNTS.length
 
     rescue => ex
       @logger.info "Exception - #{ex.message}"

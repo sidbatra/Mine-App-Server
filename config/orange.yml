@@ -5,6 +5,7 @@
   :token: 19427356-CRclpAaQmiyFw4ODzfVwNeQ50xBx8loG8ttfYQ3Xo,
   :secret: meT0qzzOEjPehTgEfALJ72ahSFux7qMkSy98JeH0U,
   :handle: nataliesatmine,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name I just built a site for tweeting pics of what you bought called 'Mine', here: http://getmine.com/try",
@@ -26,6 +27,7 @@
   :token: 47768007-lc0ICcWUnkQJS5Pb2pfYA1qIs6gqIS7Uqh3sEindt,
   :secret: fIr97UY1cLwb3dz8aVCDJLk30fYGIdrujHs661GI,
   :handle: rebeccasuperpet,
+  :enabled: false,
   :templates: [
     {
     :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
@@ -54,6 +56,7 @@
   :secret: OvAdFrTryJDrVfkcbmKh7UNT441d0ZTGWx25vk52M, 
   :tw_user_id: 45032868,
   :handle: sarahatmine,
+  :enabled: true,
   :templates: [
     {
     :tweet: "@name that's cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
@@ -75,6 +78,7 @@
   :token: 349191075-MdFJ3aP9ImNFgYQUWXMsUXYBaUorOsIpQrTSwRQ0, 
   :secret: bXAoGN3sLIrtO4P1LGwwsvLi0uVZs0JK9eTmSFPlLe0, 
   :handle: JRoth1979, 
+  :enabled: true,
   :templates: [
     {
     :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - I love it!",
@@ -99,9 +103,38 @@
     :media: nil}]
   },
   {
+  :token: 229722601-JXIcNu2bfdFjRye6fYPxLi3Tcm2G5VPa7lqbKM9O,
+  :secret: xzMyCZkWhnKM5T7qa3B7YgwNzkMAEGDGQb8QtXIVIo,
+  :handle: dafinasayers, 
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "Thats neat @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "That is awesome - @name have you tried using Mine http://getmine.com/try for tweeting what you bought?",
+    :media: nil},
+    {
+    :tweet: "Love it! @name have you tried using Mine http://getmine.com/try for tweeting what you bought? Try it!",
+    :media: nil},
+    {
+    :tweet: "Wow that's neat. @name you should try posting on http://getmine.com/try for tweeting what you just bought!",
+    :media: nil},
+    {
+    :tweet: "Thats neat @name! Why not catalog all your best stuff, like this: http://getmine.com/Caitlin-Hogan",
+    :media: nil},
+    {
+    :tweet: "Love it @name! You tried a Mine page for logging your stuff, like this? http://getmine.com/Caitlin-Hogan",
+    :media: nil}]
+  },
+  {
   :token: 203171199-AiE830bCS64ncAYXbGd3EacfOkXEU4Ewsncfwt0e, 
   :secret: sfz3YZ6ym61OhqLNSHnkw4DhdrfN5uzkU1GmiEDJJs4, 
   :handle: gabbysmine,
+  :enabled: false,
   :templates: [
     {
     :tweet: "Hey @name that looks really cool - you should show it off on your Mine page! http://getmine.com/try",
@@ -132,6 +165,7 @@
   :token: 28276812-JWecBVP3nnRVvmPCJKfUo7wyIcbaADVqGkKANu02x, 
   :secret: 5Fhm5xNVAntSA9KzjgRP0wtkcWt5vh0bwZjVFkoWKVg, 
   :handle: JulietsMine,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name That's cool! You should try Mine http://getmine.com/try for tweeting what you bought. You'd love it!",
@@ -153,6 +187,7 @@
   :token: 128315504-DtZvx6vmlDxHsyy9yQswG3gS2Lyez70QRMFBhbbs,
   :secret: IJdpua5PSADtHaZFuDyRHhdpxdikI9Lkm08Hp4, 
   :handle: jennyfstanton,
+  :enabled: false,
   :templates: [
     {
     :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
@@ -174,6 +209,7 @@
   :token: 78746587-RskUsbw4oRvH4HbEPHYLbWvpeIxOW1EYlTNPfadSM, 
   :secret: MY7TGBmCBD6FlIghGNUA6TEiEpYX9wjLLZ2YShkqz7s, 
   :handle: philips_samf, 
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool! On Mine (http://getmine.com/try) you can tweet pics of what you bought. Check it out!",
@@ -195,6 +231,7 @@
   :token: 155011786-Myt8HR1yHVWFIHAdxjtoWA5cJEOsEDn8daLlRNln, 
   :secret: JzlcI152JdhHHI1ucOhTXnyuSHgTncuWYhOqxTrhz0, 
   :handle: MikeFentonSF, 
+  :enabled: false,
   :templates: [
     {
     :tweet: "Hey I saw your last tweet. Why not post on Mine http://getmine.com/try? It's made for tweeting what you buy - Try it!",
@@ -216,6 +253,7 @@
   :token: 20282200-Z4KJgW13VK6D0hxOR4n0yvl42WAEnm0kbXqbBOTin, 
   :secret: 6c5pbMfjSkta8gmoOdkF5HKx0GanKegbnAwOsIqEIT4,
   :handle: mstantonSF,
+  :enabled: false,
   :templates: [
     {
     :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - I love it!",
