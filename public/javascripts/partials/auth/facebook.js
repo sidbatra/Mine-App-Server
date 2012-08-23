@@ -14,7 +14,7 @@ Denwen.Partials.Auth.Facebook = Backbone.View.extend({
   showAuthDialog: function() {
     var self = this;
     var authWindow = window.open(
-                              '/facebook/authenticate?target=popup', 
+                              '/facebook/authenticate', 
                               '', 
                               'width=1024, height=600');
 

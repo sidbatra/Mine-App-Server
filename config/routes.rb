@@ -7,20 +7,20 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :home, 
     :action => :show
 
-  map.login 'facebook/authenticate',
-    :controller => :session,
-    :action     => :create
+  #map.login 'facebook/authenticate',
+  #  :controller => :session,
+  #  :action     => :create
 
   map.logout 'logout',
     :controller => :session,
     :action     => :destroy
 
   map.fb_auth 'facebook/authenticate',
-    :controller => :session,
-    :action     => :create
+    :controller => :facebook,
+    :action     => :new
 
   map.fb_reply 'facebook/reply',
-    :controller => :users,
+    :controller => :facebook,
     :action     => :create
 
   map.tw_auth 'twitter/authenticate',

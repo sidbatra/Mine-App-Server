@@ -1,11 +1,5 @@
 class SessionController < ApplicationController
 
-  # Redirect to a facebook url displaying the fb login dialog
-  # along with a callback (/facebook/reply) where the user is
-  # redirected after interacting with the fb dialog box. If the
-  # user has already authorized the app it goes directly to the
-  # callback url without any user interaction.
-  #
   def create
     fb_auth = FbGraph::Auth.new(
                 CONFIG[:fb_app_id],
