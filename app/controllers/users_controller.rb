@@ -6,7 +6,13 @@ class UsersController < ApplicationController
   def create
     follow_user_id = params[:follow_user_id] 
 
-    @user = User.create params[:user]
+    if params[:user][:fb_user_id]
+      @user = User.find_by_fb_user_id params[:user][:fb_user_id]
+    elsif params[:user][:tw_user_id]
+      @user = User.find_by_tw_user_id params[:user][:tw_user_id]
+    end
+
+    @user = User.create params[:user] unless @user
     
   rescue => ex
     handle_exception(ex)
