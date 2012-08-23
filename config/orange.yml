@@ -103,6 +103,34 @@
     :media: nil}]
   },
   {
+  :token: 229722601-JXIcNu2bfdFjRye6fYPxLi3Tcm2G5VPa7lqbKM9O,
+  :secret: xzMyCZkWhnKM5T7qa3B7YgwNzkMAEGDGQb8QtXIVIo,
+  :handle: dafinasayers, 
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "Thats neat @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "That is awesome - @name have you tried using Mine http://getmine.com/try for tweeting what you bought?",
+    :media: nil},
+    {
+    :tweet: "Love it! @name have you tried using Mine http://getmine.com/try for tweeting what you bought? Try it!",
+    :media: nil},
+    {
+    :tweet: "Wow that's neat. @name you should try posting on http://getmine.com/try for tweeting what you just bought!",
+    :media: nil},
+    {
+    :tweet: "Thats neat @name! Why not catalog all your best stuff, like this: http://getmine.com/Caitlin-Hogan",
+    :media: nil},
+    {
+    :tweet: "Love it @name! You tried a Mine page for logging your stuff, like this? http://getmine.com/Caitlin-Hogan",
+    :media: nil}]
+  },
+  {
   :token: 203171199-AiE830bCS64ncAYXbGd3EacfOkXEU4Ewsncfwt0e, 
   :secret: sfz3YZ6ym61OhqLNSHnkw4DhdrfN5uzkU1GmiEDJJs4, 
   :handle: gabbysmine,
