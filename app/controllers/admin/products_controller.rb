@@ -1,4 +1,5 @@
 class Admin::ProductsController < ApplicationController
+  layout 'admin'
   before_filter :admin_required 
 
   # Fetch products based on different filters
