@@ -22,7 +22,7 @@ class FeedController < ApplicationController
     case @aspect
     when :user
     
-      @key = ["v5",self.current_user,
+      @key = ["v6",self.current_user,
               self.current_user.ifollowers.map(&:updated_at).max.to_i,
               "user-feed",@before ? @before.to_i : "",@per_page]
 
