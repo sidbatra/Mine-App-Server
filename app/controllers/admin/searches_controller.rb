@@ -1,5 +1,5 @@
 class Admin::SearchesController < ApplicationController
-  layout nil
+  layout 'admin'
   before_filter :admin_required
 
   #

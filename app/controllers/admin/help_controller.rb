@@ -1,5 +1,5 @@
 class Admin::HelpController < ApplicationController
-  layout nil
+  layout 'admin'
   before_filter :admin_required
 
   # List of routes and features of the admin UI

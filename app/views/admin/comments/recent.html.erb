@@ -31,7 +31,7 @@
         </td>
         <td>
           <%=link_to comment.purchase.title,
-              admin_purchase_path(comment.purchase.id)%>
+              admin_purchase_path(comment.purchase.id) if comment.purchase%>
         </td>
         <td>
           <%=link_to user_full_name(comment.user),

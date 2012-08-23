@@ -1,4 +1,5 @@
 class Admin::CommentsController < ApplicationController
+  layout 'admin'
   before_filter :admin_required
 
   def index
