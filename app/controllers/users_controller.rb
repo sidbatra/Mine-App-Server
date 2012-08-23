@@ -3,17 +3,23 @@ class UsersController < ApplicationController
 
   # Create a new user.
   #
+  # The users/create url or its alias facebook/reply is a callback
+  # url used by Facebook after a user has encountered a login with
+  # fb dialog. If a valid access_token has been provided a new user
+  # is created or an old one is fetched & it's fields updated.
+  #
+  # The flow is then redirected to onboarding or the user's feed
+  # based on their status.
+  #
   def create
+    using = params[:using] ? params[:using].to_sym : :facebook
     follow_user_id = params[:follow_user_id] 
 
-    if params[:user][:fb_user_id]
-      @user = User.find_by_fb_user_id params[:user][:fb_user_id]
-    elsif params[:user][:tw_user_id]
-      @user = User.find_by_tw_user_id params[:user][:tw_user_id]
+    case using
+    when :facebook
+      create_from_fb
     end
 
-    @user = User.create params[:user] unless @user
-    
   rescue => ex
     handle_exception(ex)
   ensure
@@ -22,16 +28,20 @@ class UsersController < ApplicationController
       format.html do
         if @user && !@error
           self.current_user = @user
-          Following.add(follow_user_id,self.current_user.id) if follow_user_id
           set_cookie 
+          Following.add(follow_user_id,self.current_user.id) if follow_user_id
         end
 
         url = ""
 
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
-        else
+        elsif @user.is_fresh 
           url = welcome_path(WelcomeFilter::Learn) 
+        elsif @target
+          url = @target
+        else
+          url = root_path(:src => FeedShowSource::Login)
         end
 
         redirect_to url 
@@ -151,6 +161,26 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json 
     end
+  end
+
+
+  protected
+
+  # Use the OAuth token sent by Facebook to create a new user
+  # or fetch and update an existing user.
+  #
+  def create_from_fb
+    @target                   = params[:target]          
+    access_token              = params[:access_token]
+
+    fb_user = FbGraph::User.fetch(
+                "me?fields=first_name,last_name,"\
+                "gender,email,birthday",
+                :access_token => access_token)
+
+    @user = User.add_from_fb(fb_user,@source)
+
+    raise IOError, "Error creating user" unless @user
   end
 
 end

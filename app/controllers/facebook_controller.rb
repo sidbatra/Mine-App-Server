@@ -27,14 +27,14 @@ class FacebookController < ApplicationController
   # Handle reply from facebook oaut.
   #
   def create
-    follow_user_id  = params[:follow_user_id] 
-    access_token    = params[:access_token]
-    target          = params[:target]          
-    @usage          = params[:usage] ? params[:usage].to_sym : :redirect
+    @usage = params[:usage] ? params[:usage].to_sym : :redirect
+    access_token = params[:access_token]
+    target = params[:target]
+    follow_user_id = params[:follow_user_id]
 
     unless access_token
       @client.redirect_uri = fb_reply_url(
-                              :src    => @source,
+                              :src => @source,
                               :target => target,
                               :follow_user_id => follow_user_id,
                               :usage => params[:usage])
@@ -48,34 +48,12 @@ class FacebookController < ApplicationController
 
     case @usage
     when :redirect
-      fb_user = FbGraph::User.fetch(
-                  "me?fields=first_name,last_name,"\
-                  "gender,email,birthday",
-                  :access_token => access_token)
-
-      user = User.find_by_fb_user_id fb_user.identifier
-
-      if user
-        user.access_token = access_token.to_s
-        user.save!
-
-        session[:user_id] = user.id
-
-        redirect_to enter_path(
-                      :target => target,
-                      :follow_user_id => follow_user_id)
-      else
         redirect_to create_user_path(
-                      'user[fb_user_id]' => fb_user.identifier,
-                      'user[email]' => fb_user.email,
-                      'user[gender]' => fb_user.gender,
-                      'user[birthday]' => fb_user.birthday,
-                      'user[first_name]' => fb_user.first_name,
-                      'user[last_name]' => fb_user.last_name,
-                      'user[access_token]' => access_token.to_s,
-                      'user[source]' => @source,
+                      :using => "facebook",
+                      :access_token => access_token,
+                      :target => target,
+                      :src => @source,
                       :follow_user_id => follow_user_id)
-      end
 
     when :popup
       self.current_user.access_token = access_token.to_s

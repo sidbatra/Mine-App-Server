@@ -84,6 +84,25 @@ class User < ActiveRecord::Base
   # Class methods
   #----------------------------------------------------------------------
 
+  # Factory method to create a new user or update important fields
+  # of an existing user.
+  #
+  def self.add_from_fb(attributes,source)
+    user = find_or_initialize_by_fb_user_id(
+            :fb_user_id   => attributes.identifier,
+            :source       => source)
+
+    user.email        = attributes.email
+    user.gender       = attributes.gender
+    user.birthday     = attributes.birthday
+    user.first_name   = attributes.first_name
+    user.last_name    = attributes.last_name
+    user.access_token = attributes.access_token.to_s
+
+    user.save!
+    user
+  end
+
   # Find user by the token stored in their cookie.
   #
   def self.find_by_cookie(token)

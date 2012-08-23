@@ -7,10 +7,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :home, 
     :action => :show
 
-  map.enter 'enter',
-    :controller => :session,
-    :action     => :create
-
   map.create_user 'create_user',
     :controller => :users,
     :action => :create
