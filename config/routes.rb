@@ -25,13 +25,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.tw_auth 'twitter/authenticate',
     :controller => :twitter,
-    :action     => :create,
-    :filter     => :authenticate
+    :action     => :new
 
   map.tw_reply 'twitter/reply',
     :controller => :twitter,
-    :action     => :create,
-    :filter     => :reply
+    :action     => :create
 
   map.tumblr_auth 'tumblr/authenticate',
     :controller => :tumblr,
