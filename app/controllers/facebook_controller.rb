@@ -65,7 +65,16 @@ class FacebookController < ApplicationController
                       :target => target,
                       :follow_user_id => follow_user_id)
       else
-        #redirect_to users_create :user => {:name => ""}
+        redirect_to create_user_path(
+                      'user[fb_user_id]' => fb_user.identifier,
+                      'user[email]' => fb_user.email,
+                      'user[gender]' => fb_user.gender,
+                      'user[birthday]' => fb_user.birthday,
+                      'user[first_name]' => fb_user.first_name,
+                      'user[last_name]' => fb_user.last_name,
+                      'user[access_token]' => access_token.to_s,
+                      'user[source]' => @source,
+                      :follow_user_id => follow_user_id)
       end
 
     when :popup

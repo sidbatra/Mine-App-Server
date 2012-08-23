@@ -11,6 +11,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :session,
     :action     => :create
 
+  map.create_user 'create_user',
+    :controller => :users,
+    :action => :create
+
   map.logout 'logout',
     :controller => :session,
     :action     => :destroy

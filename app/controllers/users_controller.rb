@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     follow_user_id = params[:follow_user_id] 
 
-    #@user = User.create
+    @user = User.create params[:user]
     
   rescue => ex
     handle_exception(ex)
