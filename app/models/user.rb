@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of   :first_name
-  validates_presence_of   :last_name
 
   #----------------------------------------------------------------------
   # Indexing
@@ -78,7 +77,7 @@ class User < ActiveRecord::Base
                     :first_name,:last_name,:access_token,:byline,
                     :tumblr_access_token, :tumblr_access_token_secret,
                     :tw_access_token, :tw_access_token_secret,
-                    :iphone_device_token
+                    :iphone_device_token, :tw_user_id
 
   #----------------------------------------------------------------------
   # Class methods
@@ -98,6 +97,26 @@ class User < ActiveRecord::Base
     user.first_name   = attributes.first_name
     user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
+
+    user.save!
+    user
+  end
+
+  # Factory method to create a new user or update
+  # important fields of an existing user using a twitter user object.
+  #
+  def self.add_from_tw(attributes,access_token,access_token_secret,source)
+    user = find_or_initialize_by_tw_user_id(
+            :tw_user_id => attributes.id,
+            :source => source)
+
+    name_parts = attributes.name.split(' ')
+
+    user.first_name = name_parts.first
+    user.last_name = name_parts[1..-1].join(' ')
+
+    user.tw_access_token = access_token
+    user.tw_access_token_secret = access_token_secret
 
     user.save!
     user

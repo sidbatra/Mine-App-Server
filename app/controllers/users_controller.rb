@@ -13,11 +13,14 @@ class UsersController < ApplicationController
   #
   def create
     using = params[:using] ? params[:using].to_sym : :facebook
+    target = params[:target]          
     follow_user_id = params[:follow_user_id] 
 
     case using
     when :facebook
       create_from_fb
+    when :twitter
+      create_from_tw
     end
 
   rescue => ex
@@ -38,8 +41,8 @@ class UsersController < ApplicationController
           url = root_path(:src => HomeShowSource::UserCreateError)
         elsif @user.is_fresh 
           url = welcome_path(WelcomeFilter::Learn) 
-        elsif @target
-          url = @target
+        elsif target
+          url = target
         else
           url = root_path(:src => FeedShowSource::Login)
         end
@@ -170,17 +173,29 @@ class UsersController < ApplicationController
   # or fetch and update an existing user.
   #
   def create_from_fb
-    @target                   = params[:target]          
-    access_token              = params[:access_token]
-
     fb_user = FbGraph::User.fetch(
                 "me?fields=first_name,last_name,"\
                 "gender,email,birthday",
-                :access_token => access_token)
+                :access_token => params[:access_token])
 
     @user = User.add_from_fb(fb_user,@source)
+  end
 
-    raise IOError, "Error creating user" unless @user
+  # Use the Oauth tokens from Twitter to create a new user
+  # or fetch and update an existing user.
+  #
+  def create_from_tw
+    client = Twitter::Client.new(
+                  :consumer_key => CONFIG[:tw_consumer_key],
+                  :consumer_secret => CONFIG[:tw_consumer_secret],
+                  :oauth_token => params[:tw_access_token],
+                  :oauth_token_secret => params[:tw_access_token_secret])
+
+    @user = User.add_from_tw(
+                  client.user,
+                  params[:tw_access_token],
+                  params[:tw_access_token_secret],
+                  @source)
   end
 
 end
