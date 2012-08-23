@@ -98,7 +98,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :suggestions,
     :only => [:index]
 
-  map.resources :facebook,
+  map.resources :facebook_subscriptions,
     :only => [:index,:create]
 
   map.new_invite 'invite',
