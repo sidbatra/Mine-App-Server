@@ -112,7 +112,7 @@
     :tweet: "Thats neat @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com",
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com/try",
     :media: nil},
     {
     :tweet: "That is awesome - @name have you tried using Mine http://getmine.com/try for tweeting what you bought?",
