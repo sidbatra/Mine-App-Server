@@ -56,7 +56,11 @@ class FacebookController < ApplicationController
                       :follow_user_id => follow_user_id)
 
     when :popup
+      fb_user = FbGraph::User.fetch("me?fields=id",
+                  :access_token => access_token)
+
       self.current_user.access_token = access_token.to_s
+      self.current_user.fb_user_id = fb_user.identifier
       self.current_user.save!
     end
 
