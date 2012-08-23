@@ -33,13 +33,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.tumblr_auth 'tumblr/authenticate',
     :controller => :tumblr,
-    :action     => :create,
-    :filter     => :authenticate
+    :action     => :new
 
   map.tumblr_reply 'tumblr/reply',
     :controller => :tumblr,
-    :action     => :create,
-    :filter     => :reply
+    :action     => :create
 
   ##
   # Resoure based routes
