@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   # Associations
   #----------------------------------------------------------------------
   belongs_to :user
-  belongs_to :purchase
+  belongs_to :purchase, :touch => true
 
   #----------------------------------------------------------------------
   # Validations
