@@ -7,7 +7,8 @@ class FacebookController < ApplicationController
     @client.redirect_uri = fb_reply_url(
                             :src    => @source,
                             :target => params[:target],
-                            :follow_user_id => params[:follow_user_id])
+                            :follow_user_id => params[:follow_user_id],
+                            :usage  => params[:usage])
 
     target_url = @client.authorization_uri(
                   :scope => [:email,
@@ -28,13 +29,15 @@ class FacebookController < ApplicationController
   def create
     follow_user_id  = params[:follow_user_id] 
     access_token    = params[:access_token]
-    @target         = params[:target]          
+    target          = params[:target]          
+    @usage          = params[:usage] ? params[:usage].to_sym : :redirect
 
     unless access_token
       @client.redirect_uri = fb_reply_url(
                               :src    => @source,
-                              :target => @target,
-                              :follow_user_id => params[:follow_user_id])
+                              :target => target,
+                              :follow_user_id => follow_user_id,
+                              :usage => params[:usage])
 
       @client.authorization_code = params[:code]
       access_token = @client.access_token!(:client_auth_body)
@@ -43,12 +46,32 @@ class FacebookController < ApplicationController
     raise IOError, "Error fetching access token" unless access_token
 
 
-    self.current_user.access_token = access_token.to_s
-    self.current_user.save!
-    #fb_user = FbGraph::User.fetch(
-    #            "me?fields=first_name,last_name,"\
-    #            "gender,email,birthday",
-    #            :access_token => access_token)
+    case @usage
+    when :redirect
+      fb_user = FbGraph::User.fetch(
+                  "me?fields=first_name,last_name,"\
+                  "gender,email,birthday",
+                  :access_token => access_token)
+
+      user = User.find_by_fb_user_id fb_user.identifier
+
+      if user
+        user.access_token = access_token.to_s
+        user.save!
+
+        session[:user_id] = user.id
+
+        redirect_to enter_path(
+                      :target => target,
+                      :follow_user_id => follow_user_id)
+      else
+        #redirect_to users_create :user => {:name => ""}
+      end
+
+    when :popup
+      self.current_user.access_token = access_token.to_s
+      self.current_user.save!
+    end
 
   rescue => ex
     handle_exception(ex)

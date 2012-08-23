@@ -1,29 +1,38 @@
 class SessionController < ApplicationController
 
+  # Create a new session. Route assumes that the curent user id
+  # is stored in session[:user_id]
+  #
+  # This construct enables logins which are blind to the connect
+  # mechanism used.
+  #
   def create
-    fb_auth = FbGraph::Auth.new(
-                CONFIG[:fb_app_id],
-                CONFIG[:fb_app_secret])
+    target = params[:target]
+    follow_user_id = params[:follow_user_id]
 
-    client = fb_auth.client
-    client.redirect_uri = fb_reply_url(
-                            :src    => @source,
-                            :target => params[:target],
-                            :follow_user_id => params[:follow_user_id])
+    user = User.find session[:user_id]
 
-    target_url = client.authorization_uri(
-                  :scope => [:email,
-                             :user_likes,
-                             :user_birthday,
-                             :publish_actions])
+    if user
+      self.current_user = user
+      set_cookie
 
-    target_url << '&display=touch' if is_phone_device?
+      Following.add(follow_user_id,self.current_user.id) if follow_user_id
+    end
 
   rescue => ex
     handle_exception(ex)
-    target_url = root_path(:src => HomeShowSource::LoginError)
   ensure
-    redirect_to target_url
+    url = ""
+
+    if @error
+      url = root_path(:src => HomeShowSource::LoginError)
+    elsif target
+      url = target
+    else
+      url = root_path(:src => FeedShowSource::Login)
+    end
+
+    redirect_to url
   end
 
   # Delete the current session and remove all existing cookie

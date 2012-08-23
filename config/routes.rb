@@ -7,9 +7,9 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :home, 
     :action => :show
 
-  #map.login 'facebook/authenticate',
-  #  :controller => :session,
-  #  :action     => :create
+  map.enter 'enter',
+    :controller => :session,
+    :action     => :create
 
   map.logout 'logout',
     :controller => :session,

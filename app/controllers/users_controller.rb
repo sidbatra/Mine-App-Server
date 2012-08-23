@@ -6,10 +6,8 @@ class UsersController < ApplicationController
   def create
     follow_user_id = params[:follow_user_id] 
 
-    #user = User.create
-    #self.current_user = user
-    #Following.add(follow_user_id,self.current_user.id) if follow_user_id
-
+    #@user = User.create
+    
   rescue => ex
     handle_exception(ex)
   ensure
@@ -17,6 +15,8 @@ class UsersController < ApplicationController
 
       format.html do
         if @user && !@error
+          self.current_user = @user
+          Following.add(follow_user_id,self.current_user.id) if follow_user_id
           set_cookie 
         end
 
@@ -24,12 +24,8 @@ class UsersController < ApplicationController
 
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
-        elsif @user.is_fresh 
-          url = welcome_path(WelcomeFilter::Learn) 
-        elsif @target
-          url = @target
         else
-          url = root_path(:src => FeedShowSource::Login)
+          url = welcome_path(WelcomeFilter::Learn) 
         end
 
         redirect_to url 
