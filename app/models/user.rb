@@ -165,16 +165,26 @@ class User < ActiveRecord::Base
     "http://graph.facebook.com/#{fb_user_id}/picture?type=#{type}" 
   end
 
-  # Convienience method to get the user's square fb image.
+  # URL for the user's image on twitter.
   #
-  def square_image_url
-    fb_image_url('square')
+  # type the String Type of tw image - normal | bigger | rasonable_small | original
+  #
+  # return the String url of the image.
+  #
+  def tw_image_url(type)
+    "http://api.twitter.com/1/users/profile_image?user_id=#{tw_user_id}&size=#{type}"
   end
 
-  # Convienience method to get the user's large fb image.
+  # Convienience method to get the user's square image. 
+  #
+  def square_image_url
+    fb_authorized? ? fb_image_url('square') : tw_image_url('bigger')
+  end
+
+  # Convienience method to get the user's large image.
   #
   def large_image_url
-    fb_image_url('large')
+    fb_authorized? ? fb_image_url('large') : tw_image_url('reasonably_small')
   end
 
   # Tests gender to see if user is male
