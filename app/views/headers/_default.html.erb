@@ -76,6 +76,17 @@
         </span>
         <i class='icon-loading icon-white'></i>
       </a> 	
+      <a href="<%=tw_auth_path(:src => @origin)%>" 
+          onclick="this.className += ' load';"
+          class="btn btn-large btn-facebook relative shaded"
+          style="float: right; width: 122px;">
+        <span class='hide-when-loading'>
+          <%=image_tag "social/f-box.png",
+              :class => "f-box"%>
+          Join now
+        </span>
+        <i class='icon-loading icon-white'></i>
+      </a> 	
     <%end%>
     
     <!--div class="well-box border-box rounded-5" 

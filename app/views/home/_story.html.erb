@@ -27,6 +27,20 @@
 		        	For quick sign-up. <span class="mine">mine</span> never auto-shares.
 		        </div>
 	        </a>
+	        <a href="<%=tw_auth_path(:src => @origin)%>" 
+	            onclick="this.className += ' load';"
+	            class="btn btn-large btn-facebook shaded relative">
+	          <span class='hide-when-loading'>
+	          	<%=image_tag "social/f-box.png",
+	            :class => "f-box"%>
+	            Log in to  
+	            <span class='mine'><%=CONFIG[:name].downcase%></span> with Facebook
+	          </span>
+	          <i class='icon-loading icon-white'></i>
+		        <div class="reassurance absolute hide-on-mobile">
+		        	For quick sign-up. <span class="mine">mine</span> never auto-shares.
+		        </div>
+	        </a>
               
       </div> <!-- /item-header --> 
       

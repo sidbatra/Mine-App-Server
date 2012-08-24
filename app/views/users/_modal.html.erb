@@ -18,6 +18,17 @@
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	
+		    <a href="<%=tw_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
+	          onclick="this.className += ' load';"
+	          class="btn btn-large btn-facebook relative shaded"
+	          style="width: 168px;">
+	        <span class='hide-when-loading'>
+	          <%=image_tag "social/f-box.png",
+	              :class => "f-box"%>
+	          Join now
+	        </span>
+	        <i class='icon-loading icon-white'></i>
+	      </a> 	
 	      
 	      <div class="txt xs" style="margin-top: 8px; color: #999;">
           Quick sign up. Mine never auto-shares.
