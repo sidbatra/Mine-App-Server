@@ -105,8 +105,8 @@ class UsersController < ApplicationController
                       with(:followers,self.current_user.id)
                     end 
                     boost(5) do 
-                      with(:followers,self.current_user.follower_ids)
-                    end 
+                      with(:followers,self.current_user.ifollower_ids)
+                    end unless self.current_user.inverse_followings_count.zero?
                   end
                 end  
                 without(:followers,self.current_user.id) if params[:skip_followers]

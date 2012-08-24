@@ -20,7 +20,7 @@
     :tweet: "saw ur tweet @name - I built this for tweeting stuff you've bought: http://getmine.com/try You'll love it!",
     :media: nil},
     {
-    :tweet: "@name really cool! On Mine (http://getmine.com/try) you can tweet pics of what you bought. You'll love it!",
+    :tweet: "@name really cool! On Mine http://getmine.com/try you can tweet pics of what you bought. You'll love it!",
     :media: nil}]
   },
   {
@@ -36,10 +36,10 @@
     :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "That is so neat - @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought?",
+    :tweet: "That is so neat - @name have you tried using Mine http://getmine.com/try for tweeting what you bought?",
     :media: nil},
     {
-    :tweet: "Love it! @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought? Try it!",
+    :tweet: "Love it! @name have you tried using Mine http://getmine.com/try for tweeting what you bought? Try it!",
     :media: nil},
     {
     :tweet: "Want! Where can I buy that? @name You should start a Mine account for stuff you buy! http://getmine.com/try",
@@ -81,16 +81,16 @@
   :enabled: true,
   :templates: [
     {
-    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - I love it!",
+    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try ? - I love it",
     :media: nil},
     {
-    :tweet: "Hey @name while you're tweeting stuff you bought, check out Mine, here http://getmine.com/try!",
+    :tweet: "Hey @name while you're tweeting stuff you bought, check out Mine, here http://getmine.com/try",
     :media: nil},
     {
     :tweet: "Hey @name have you tried Mine for tweeting your purchases? http://getmine.com/try really nicely designed.",
     :media: nil},
     {
-    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :tweet: "nice! On Mine http://getmine.com/try you can tweet pics of what you bought. I think you'd like it, @name!",
     :media: nil},
     {
     :tweet: "cool :) On Mine http://getmine.com/try you can tweet pics of what you bought to twitter or just close friends. Try it!",
@@ -112,7 +112,7 @@
     :tweet: "Thats neat @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com",
+    :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com/try",
     :media: nil},
     {
     :tweet: "That is awesome - @name have you tried using Mine http://getmine.com/try for tweeting what you bought?",
@@ -155,7 +155,7 @@
     :tweet: "@name you should show that off on a Mine page! I think you might like it: http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "@name where can I buy that? Please add it on Mine, here: http://getmine.com/try!",
+    :tweet: "@name where can I buy that? Please add it on Mine, here: http://getmine.com/try",
     :media: nil},
     {
     :tweet: "OMG @name I love it! Please please start a Mine page for all the cool stuff you have! http://getmine.com/try",
@@ -196,10 +196,10 @@
     :tweet: "Pretty cool @name! I think you'll like this site I'm working on for tweeting purchases: http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "That is so neat - @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought?",
+    :tweet: "That is so neat - @name have you tried using Mine http://getmine.com/try for tweeting what you bought?",
     :media: nil},
     {
-    :tweet: "Love it! @name have you tried using Mine (http://getmine.com/try) for tweeting what you bought? Try it!",
+    :tweet: "Love it! @name have you tried using Mine http://getmine.com/try for tweeting what you bought? Try it!",
     :media: nil},
     {
     :tweet: "Wow that's neat. @name you should try posting on http://getmine.com/try for tweeting what you just bought!",
@@ -212,10 +212,10 @@
   :enabled: false,
   :templates: [
     {
-    :tweet: "@name that's cool! On Mine (http://getmine.com/try) you can tweet pics of what you bought. Check it out!",
+    :tweet: "@name that's cool! On Mine http://getmine.com/try you can tweet pics of what you bought. Check it out!",
     :media: nil},
     {
-    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :tweet: "nice! On Mine http://getmine.com/try you can tweet pics of what you bought. I think you'd like it, @name!",
     :media: nil},
     {
     :tweet: "Hey @name saw your tweet. You can post stuff you buy better on Mine http://getmine.com/try You'll like it :)",
@@ -234,19 +234,19 @@
   :enabled: false,
   :templates: [
     {
-    :tweet: "Hey I saw your last tweet. Why not post on Mine http://getmine.com/try? It's made for tweeting what you buy - Try it!",
+    :tweet: "Hey I saw your last tweet. Why not post on Mine http://getmine.com/try ? It's made for tweeting what you buy - Try it",
     :media: nil},
     {
     :tweet: "Hey @name you should start a Mine profile - add that and other stuff you bought, here: http://getmine.com/try",
     :media: nil},
     {
-    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :tweet: "nice! On Mine http://getmine.com/try you can tweet pics of what you bought. I think you'd like it, @name!",
     :media: nil},
     {
     :tweet: "Hey @name while you're tweeting stuff you bought check out Mine here http://getmine.com/try It's made for it",
     :media: nil},
     {
-    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - you'd love it!",
+    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try - you'd love it!",
     :media: nil}]
   },
   {
@@ -256,16 +256,16 @@
   :enabled: false,
   :templates: [
     {
-    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try? - I love it!",
+    :tweet: "I sometimes tweet what I buy too, @name. Have you tried Mine http://getmine.com/try - I love it!",
     :media: nil},
     {
-    :tweet: "Hey @name while you're tweeting stuff you bought, check out Mine, here http://getmine.com/try!",
+    :tweet: "Hey @name while you're tweeting stuff you bought, check out Mine, here http://getmine.com/try",
     :media: nil},
     {
     :tweet: "Hey @name have you tried Mine for tweeting your purchases? http://getmine.com/try really nicely designed.",
     :media: nil},
     {
-    :tweet: "nice! On Mine (http://getmine.com/try) you can tweet pics of what you bought. I think you'd like it, @name!",
+    :tweet: "nice! On Mine http://getmine.com/try you can tweet pics of what you bought. I think you'd like it, @name!",
     :media: nil},
     {
     :tweet: "cool :) On Mine http://getmine.com/try you can tweet pics of what you bought to twitter or just close friends. Try it!",
