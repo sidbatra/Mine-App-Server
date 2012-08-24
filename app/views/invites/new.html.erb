@@ -2,7 +2,10 @@
 	<span class="fb-favicon"></span> Send a personal note to their Facebook inbox
 </div>
 	
-<div id="friends_container" class="well-box rounded-5" style="padding-bottom: 4px;">
+<div id="friends_container" 
+  class="well-box rounded-5" 
+  style="padding-bottom: 4px;
+        <%=self.current_user.fb_authorized? ? '' : 'display:none'%>">
 		
 		<div class="search-box relative">
       <%=text_field_tag 'search_box', 
@@ -26,6 +29,23 @@
 	</div>
 		 
 </div> <!-- friends container -->
+
+<%unless self.current_user.fb_authorized?%>
+  <div id="facebook_connect_box">
+    <a href="javascript:void(0)"
+        id="facebook_connect"
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook relative shaded"
+        style="width: 250px">
+      <span class='hide-when-loading'>
+        <%=image_tag "social/f-box.png",
+            :class => "f-box"%>
+        Find your Facebook friends
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a> 	
+  </div>
+<%end%>
 
 <%content_for :javascript do%>
   <script type="text/javascript">
