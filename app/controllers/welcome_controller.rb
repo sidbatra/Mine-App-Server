@@ -7,8 +7,12 @@ class WelcomeController < ApplicationController
     @filter = params[:id]
 
     case @filter
+    when WelcomeFilter::Info
+      @view = "info"
+
     when WelcomeFilter::Learn
       @view = "show"
+
     when WelcomeFilter::Create
       @suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
                       for_gender(self.current_user.gender).
@@ -35,14 +39,18 @@ class WelcomeController < ApplicationController
   # Handle onboarding related post requests.
   #
   def create
-    @filter = params[:id] 
+    @filter = params[:filter].to_sym
 
-    #case @filter
-    #  @success_target  = welcome_path(WelcomeFilter::Learn)
-    #  @error_target    = welcome_path(WelcomeFilter::Learn)
+    case @filter
+    when :info
+      @success_target = welcome_path(WelcomeFilter::Learn)
+      @error_target   = welcome_path(WelcomeFilter::Info)
 
-      raise IOError, "Incorrect welcome create ID"
-    #end
+      self.current_user.update_attributes(params)
+    else
+
+     raise IOError, "Incorrect welcome create ID"
+    end
 
   rescue => ex
     handle_exception(ex)

@@ -1,0 +1,42 @@
+<div class="well-box padded border-box rounded-8 relative">
+	<h2>You're almost there</h2>
+	<p class="txt m border-box" style="margin-bottom:20px">
+		Tell us a little bit more about yourself.
+	</p>
+
+	 <%form_tag "/welcome",:method => :post,
+	    :class  => 'form-horizontal',
+	    :style  => 'margin-bottom: 0;',
+	    :id     => 'edit_user' do%>
+
+    <%=hidden_field_tag :filter,WelcomeFilter::Info%>
+
+    <div class="box-title" style="padding-top: 4px;">
+      Your email
+    </div>
+    <%=text_field_tag :email,self.current_user.email,
+          :class => "enter txt l rounded-3 border-box"%>
+
+    <div class="box-title" style="padding-top: 15px;">
+      Your gender
+    </div>
+    <%=radio_button_tag :gender,"male",
+        self.current_user.is_male? || self.current_user.gender.nil?%>
+    <%=label :gender, :male%>
+
+    <%=radio_button_tag :gender,"female",
+        self.current_user.is_female?%>
+    <%=label :gender, :female%>
+
+    <button id="submit_button" 
+        type="submit" 
+        class="btn btn-large btn-red border-box shaded rounded-5"
+        style="width: 100px; margin-top: 20px;">
+        <span class="hide-when-loading">
+          Done
+        </span>
+        <i class="icon-loading icon-white"></i>
+    </button> <!-- submit -->
+  <%end%>
+</div>
+
