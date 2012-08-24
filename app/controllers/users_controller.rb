@@ -39,6 +39,8 @@ class UsersController < ApplicationController
 
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
+        elsif @user.email.nil? || @user.gender.nil?
+          url = welcome_path(WelcomeFilter::Info)
         elsif @user.is_fresh 
           url = welcome_path(WelcomeFilter::Learn) 
         elsif target
