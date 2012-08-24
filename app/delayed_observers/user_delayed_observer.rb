@@ -15,7 +15,7 @@ class UserDelayedObserver < DelayedObserver
   def self.after_update(user_id,options={})
     user = User.find(user_id)
 
-    mine_fb_data(user) if options[:mine]
+    mine_fb_data(user) if options[:mine_fb_data]
   end
 
   # Mine user's fb data

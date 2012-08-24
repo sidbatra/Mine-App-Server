@@ -42,7 +42,7 @@ class UserObserver < ActiveRecord::Observer
         UserDelayedObserver,
         :after_update,
         user.id,
-        {:mine => true}) 
+        {:mine_fb_data => true}) 
 
       user[:mine_fb_data] = false
     end
