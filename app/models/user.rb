@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of   :first_name
+  validate :third_party_connect
 
   #----------------------------------------------------------------------
   # Indexing
@@ -317,6 +318,14 @@ class User < ActiveRecord::Base
 
 
   protected
+
+  # Validate presence of either a twitter or facebook connect.
+  #
+  def third_party_connect
+    if tw_user_id.nil? && fb_user_id.nil?
+      errors.add("Either twitter or facebook connect required") 
+    end
+  end
 
   # Required by Handler mixin to create base handle
   #
