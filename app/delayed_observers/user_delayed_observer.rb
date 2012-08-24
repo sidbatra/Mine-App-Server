@@ -24,15 +24,28 @@ class UserDelayedObserver < DelayedObserver
 
     return if(check && !user.fb_access_token_valid?)
 
+    mine_fb_info(user)
     mine_fb_friends(user)
   end
 
+
   protected
+
+  # Mine user's facebook info.
+  #
+  def self.mine_fb_info(user)
+    fb_user = FbGraph::User.fetch("me?fields=birthday",
+                :access_token => user.access_token)
+
+    user.birthday = fb_user.birthday
+    user.save!
+  end
   
   # Mine user's facebook friends to populate contacts
   # and existing friends on the app.
   #
   def self.mine_fb_friends(user)
+
     fb_friends        = user.fb_friends
 
     fb_friends_ids    = fb_friends.map(&:identifier)
