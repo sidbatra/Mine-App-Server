@@ -6,7 +6,7 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333 /* url('/images/backgrounds/tracy2.jpeg') fixed */;
+	background: #333 url('/images/backgrounds/earth.jpeg') fixed;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
