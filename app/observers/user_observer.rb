@@ -13,7 +13,7 @@ class UserObserver < ActiveRecord::Observer
     ProcessingQueue.push(
       UserDelayedObserver,
       :after_create,
-      user.id) if user.is_registered?
+      user.id) 
   end
 
   # Test the user object for the following events:
@@ -22,6 +22,8 @@ class UserObserver < ActiveRecord::Observer
   def before_update(user)
     user[:mine_fb_data] = user.access_token_changed? && 
                           user.access_token.present?
+    user[:mine_tw_data] = user.tw_access_token_changed? && 
+                          user.tw_access_token.present?
   end
 
   # Hand over to the delayed observer after refering to the events setup in
@@ -37,14 +39,16 @@ class UserObserver < ActiveRecord::Observer
         user.id) 
     end
 
-    if user[:mine_fb_data]
+    if user[:mine_fb_data] || user[:mine_tw_data]
       ProcessingQueue.push(
         UserDelayedObserver,
         :after_update,
-        user.id,
-        {:mine_fb_data => true}) 
+        user.id, {
+          :mine_fb_data => user[:mine_fb_data],
+          :mine_tw_data => user[:mine_tw_data]}) 
 
       user[:mine_fb_data] = false
+      user[:mine_tw_data] = false
     end
   end
 

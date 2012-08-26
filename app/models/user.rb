@@ -140,15 +140,6 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  # Whether the user has actually registered or is a stub user from
-  # an invite.
-  #
-  # returns - Boolean. true if the user is registered false otherwise.
-  #
-  def is_registered?
-    access_token.present?
-  end
-
   # Test is the user was created very recently.
   #
   def is_fresh
