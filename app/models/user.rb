@@ -89,14 +89,14 @@ class User < ActiveRecord::Base
   #
   def self.add_from_fb(attributes,source)
     user = find_or_initialize_by_fb_user_id(
-            :fb_user_id   => attributes.identifier,
-            :source       => source)
+            :fb_user_id => attributes.identifier,
+            :source => source,
+            :email => attributes.email,
+            :gender => attributes.gender,
+            :first_name => attributes.first_name,
+            :last_name => attributes.last_name)
 
-    user.email        = attributes.email
-    user.gender       = attributes.gender
     user.birthday     = attributes.birthday
-    user.first_name   = attributes.first_name
-    user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
 
     user.save!
@@ -107,14 +107,13 @@ class User < ActiveRecord::Base
   # important fields of an existing user using a twitter user object.
   #
   def self.add_from_tw(attributes,access_token,access_token_secret,source)
-    user = find_or_initialize_by_tw_user_id(
-            :tw_user_id => attributes.id,
-            :source => source)
-
     name_parts = attributes.name.split(' ')
 
-    user.first_name = name_parts.first
-    user.last_name = name_parts[1..-1].join(' ')
+    user = find_or_initialize_by_tw_user_id(
+            :tw_user_id => attributes.id,
+            :source => source,
+            :first_name => name_parts.first,
+            :last_name => name_parts[1..-1].join(' '))
 
     user.tw_access_token = access_token
     user.tw_access_token_secret = access_token_secret
