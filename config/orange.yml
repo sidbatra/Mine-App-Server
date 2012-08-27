@@ -56,7 +56,7 @@
   :secret: OvAdFrTryJDrVfkcbmKh7UNT441d0ZTGWx25vk52M, 
   :tw_user_id: 45032868,
   :handle: sarahatmine,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
@@ -156,6 +156,34 @@
     :media: nil},
     {
     :tweet: "Love it @name! You tried a Mine page for logging your stuff, like this? http://getmine.com/Caitlin-Hogan",
+    :media: nil}]
+  },
+  {
+  :token: 511060675-slAyl8N4gPYkc5FUBkEiZAGEENySyJbrKG4DZ3rP,
+  :secret: q8RHWEGfEvBzb5gpzRhfKUZ9El0MGzEmzTOlig2vEY,
+  :handle: JenniferCurtina,
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "@name aww cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
+    :media: nil},
+    {
+    :tweet: "@name that is neat! On Mine you can tweet pics of what you bought http://getmine.com/try See if you like it!",
+    :media: nil},
+    {
+    :tweet: "@name Awesome! Try Mine to tweet pics of what you bought http://getmine.com/try You'd love it!",
+    :media: nil},
+    {
+    :tweet: "@name That is great! Have you tried Mine for tweeting pics of what you bought http://getmine.com/try Try it!",
+    :media: nil},
+    {
+    :tweet: "@name That's cool! Definitely try Mine http://getmine.com/try for tweeting what you bought. You'd love it!",
+    :media: nil},
+    {
+    :tweet: "Hey SiddharthaBatra, where did you get that? You can tell others about your recent purchases at http://getmine.com/try",
+    :media: nil},
+    {
+    :tweet: "Want! Where can I buy that? @name You should start a Mine account for stuff you buy! http://getmine.com/try",
     :media: nil}]
   },
   {
