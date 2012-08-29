@@ -27,7 +27,7 @@
   :token: 47768007-lc0ICcWUnkQJS5Pb2pfYA1qIs6gqIS7Uqh3sEindt,
   :secret: fIr97UY1cLwb3dz8aVCDJLk30fYGIdrujHs661GI,
   :handle: rebeccasuperpet,
-  :enabled: false,
+  :enabled: true,
   :templates: [
     {
     :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
