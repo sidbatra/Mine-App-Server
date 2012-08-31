@@ -106,7 +106,7 @@
   :token: 37719196-xIrZlyjH2iBGnB53RnXHiQjBQqkijd9gsn8ItUrQ,
   :secret: Oh2uBNIfAOswC32EY9J2vMiIdyYZAD6AqVr47qYvFg,
   :handle: AdrienneMalin, 
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool! On Mine http://getmine.com/try you can tweet pics of what you bought. You'll love it!",
@@ -134,7 +134,7 @@
   :token: 229722601-5X615mCUyKVeBCZhZcEaoNMrYB3OwV1ffUSShJ1D,
   :secret: Q8lIF6HGxbzogaicq4yOlULdllgZHBojmjqEvcpP60,
   :handle: dafinasayers, 
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "Thats neat @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
