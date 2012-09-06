@@ -195,6 +195,11 @@ input.error:focus, textarea.error:focus {
 	-webkit-border-radius: 8px !important;
 	-moz-border-radius: 8px !important;
 	border-radius: 8px !important; }
+	
+.rounded-12 {
+	-webkit-border-radius: 12px !important;
+	-moz-border-radius: 12px !important;
+	border-radius: 12px !important; }
 
 .rounded-16 {
 	-webkit-border-radius: 16px;
@@ -397,8 +402,17 @@ input.error:focus, textarea.error:focus {
 	opacity: 0.75;
   filter: alpha(opacity=75); }
 
+.btn.btn-twitter { background-color: #1286D6; }
+.btn.btn-facebook:hover { background-color: #1F4696; }
+
 .btn.btn-facebook { background-color: #3B5998; }
 .btn.btn-facebook:hover { background-color: #1F4696; }
+
+.btn.btn-large img.t-box {
+	height: 16px; 
+	vertical-align: -2px; 
+	padding-right: 4px; 
+	margin-left: -6px; }
 
 .btn img.f-box {
 	height: 16px; 

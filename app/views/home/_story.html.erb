@@ -1,267 +1,47 @@
 <div class="wrapper">
+
+	<div class="header">
+		<%=image_tag "home/mine-home-2x.png",
+  		  :class => "logo unselectable"%>	
+	</div>
+
+	<div class="container">
 	
-	<div class="container border-box home">
+		<div class="video-frame rounded-12">
+			<iframe src="http://player.vimeo.com/video/48923714?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+				width="880" height="391" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+		</div>
+		
+		<h2 class="alias-smooth">
+			Tell the world when you buy something great.
+		</h2>
+		
+		<a href="<%=fb_auth_path(:src => @origin)%>" 
+	      onclick="this.className += ' load';"
+	      class="btn btn-large btn-twitter shaded relative alias-smooth">
+	    <span class='hide-when-loading'>
+	    	<%=image_tag "social/t-box.png",
+	      :class => "t-box"%>
+	      Sign in with Twitter
+	    </span>
+	    <i class='icon-loading icon-white'></i>
+	  </a>
+	  
+    <a href="<%=tw_auth_path(:src => @origin)%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook shaded relative alias-smooth">
+      <span class='hide-when-loading'>
+      	<%=image_tag "social/f-box.png",
+        :class => "f-box"%>
+        Sign in with Facebook
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a>
 
-		<div class="logged-out">
-			
-      <div class="item-header">
-      
-        <%=image_tag "mine_54_horizontal_2x.png",
-            :class => "logo"%>
-              
-        <span class="text">
-					Tell friends when you buy good stuff.
-        </span>
-        
-	        <a href="<%=fb_auth_path(:src => @origin)%>" 
-	            onclick="this.className += ' load';"
-	            class="btn btn-large btn-facebook shaded relative">
-	          <span class='hide-when-loading'>
-	          	<%=image_tag "social/f-box.png",
-	            :class => "f-box"%>
-	            Log in to  
-	            <span class='mine'><%=CONFIG[:name].downcase%></span> with Facebook
-	          </span>
-	          <i class='icon-loading icon-white'></i>
-		        <div class="reassurance absolute hide-on-mobile">
-		        	For quick sign-up. <span class="mine">mine</span> never auto-shares.
-		        </div>
-	        </a>
-	        <a href="<%=tw_auth_path(:src => @origin)%>" 
-	            onclick="this.className += ' load';"
-	            class="btn btn-large btn-facebook shaded relative">
-	          <span class='hide-when-loading'>
-	          	<%=image_tag "social/f-box.png",
-	            :class => "f-box"%>
-	            Log in to  
-	            <span class='mine'><%=CONFIG[:name].downcase%></span> with Facebook
-	          </span>
-	          <i class='icon-loading icon-white'></i>
-		        <div class="reassurance absolute hide-on-mobile">
-		        	For quick sign-up. <span class="mine">mine</span> never auto-shares.
-		        </div>
-	        </a>
-              
-      </div> <!-- /item-header --> 
-      
-      <div class="headline hide-on-mobile">
-      	The simple, fun way <br>to post things you buy.
-      </div>
-      
-      <div class="item clearfix shaded rounded-5">
-      
-        <div id="slides">
-
-          <div class="slides_container">
-            
-            <div class="photo rounded-5 relative border-box" style="background: #333 url('<%=image_path "home/pajamas.jpg"%>');">
-              <%=image_tag "mine_stamp_white_54_35_2x.png",
-                  :class => "stamp absolute"%>
-              <div class="description absolute" style="color: #999;">
-              	<span style="color: #555;">Drawstring Wide-Leg J</span><span style="color: #ccc;">eans, bought from Citizens of Humanity</span>
-              </div>
-            </div>
-            
-            <div class="photo rounded-5 relative border-box" style="display: none; background: #333 url('<%=image_path "home/grey.jpg"%>');">
-              <%=image_tag "mine_stamp_white_54_35_2x.png",
-                  :class => "stamp absolute"%>
-              <div class="description absolute" style="color: #ccc">
-              	Fifty Shades of Grey, bought and signed at Barnes & Noble
-              </div>
-            </div>
-            
-            <div class="photo rounded-5 relative border-box" style="display: none; background: #333 url('<%=image_path "home/fuelband.jpg"%>');">
-              <%=image_tag "mine_stamp_white_54_35_2x.png",
-                  :class => "stamp absolute"%>
-              <div class="description light absolute" style="color: #999;">
-                Nike Fuel Band, bought from Niketown 
-              </div>
-            </div>
-          </div> <!--slides_container-->
-
-
-          <ul class="panel border-box relative paginator">
-            
-            <!-- 1 -->
-            <li class="panel-contents border-box relative rounded-5 top-right one current">
-              <a href="#">
-                <div class="caret absolute"></div>
-                
-                <div class="title-box relative border-box">
-    
-									<%=image_tag "home/natalia.jpg",
-                      :class => "user-photo rounded-3"%>
-    
-                  <span class="em">Natalia</span> uses <span class="em">mine</span> 
-                  to post her latest weekend shopping haul
-                  to <span class="em">her followers</span> on 
-                    <%=image_tag "social/tb_fff_15_2x.png",
-                        :class => "shares tb active"%>
-                    <%=image_tag "social/tb_666_15_2x.png", 
-                        :class => "shares tb inactive"%> and <%=image_tag "social/tw_fff_15_2x.png",
-                        :class => "shares tw active"%>
-                    <%=image_tag "social/tw_666_15_2x.png", 
-                        :class => "shares tw inactive"%>
-
-    
-                </div> <!-- /title-box -->
-              </a>
-            </li> <!-- /panel-contents -->
-            
-            
-            <!-- 2 -->
-            <li class="panel-contents border-box relative two">
-              <a href="#">
-                <div class="caret absolute"></div>
-                
-                <div class="title-box relative border-box">
-                	
-                	<%=image_tag "home/gabe.jpg",
-                      :class => "user-photo rounded-3"%>
-    
-                  <span class="em">Gabrielle</span> 
-                  uses <span class="em">mine</span> to share her recent book, movie and app choices with
-                  <span class="em"> a few close friends</span>
-                  	<%=image_tag "home/friend2.jpg",
-                      	:class => "friend-photo rounded-3"%>
-                    <%=image_tag "home/friend5.jpg",
-                      	:class => "friend-photo rounded-3"%>
-                    <%=image_tag "home/friend7.jpg",
-                      	:class => "friend-photo rounded-3"%>
-                    <%=image_tag "home/friend4.jpg",
-                      	:class => "friend-photo rounded-3"%>
-                    <%=image_tag "home/friend6.jpg",
-                      	:class => "friend-photo rounded-3"%>
-    
-              	</div> <!-- /title-box -->
-              </a>
-            </li> <!-- /panel-contents -->
-            
-            
-            <!-- 3 -->
-            <li class="panel-contents border-box relative rounded-5 bottom-right three">
-              <a href="#">
-                <div class="caret absolute"></div>
-                
-                <div class="title-box relative border-box">
-    
-                  <%=image_tag "home/craig.jpg",
-                      :class => "user-photo rounded-3"%>
-    
-                  <span class="em">Craig</span> 
-                  uses <span class="em">mine</span> to catalog what he buys. 
-                  He shares reviews of his faves with 
-                  <span class="em">friends</span> on 
-                    <%=image_tag "social/fb_fff_15_2x.png",
-                        :class => "shares fb active"%>
-                     <%=image_tag "social/fb_666_15_2x.png", 
-                        :class => "shares fb inactive"%>
-                </div> <!-- /title-box -->
-              </a>
-            </li> <!-- /panel-contents -->
-        
-          </ul> <!-- /panel -->
-        </div> <!-- slides -->
-      
-      </div> <!-- /item -->
-      
-      <div class="testimonials clearfix">
-      
-      	<p>What <span class="mine">mine</span> users are saying:</p>
-      
-	      <ul>
-	       <li class="testimonial border-box rounded-5 relative shaded">
-	       	 <div class="user-photo rounded-3 absolute" style="background-position: 28px 0;"></div>
-	       	 Great idea. Viewing what friends have actually bought means recommendations I trust more than Amazon.<br>
-	       	 <span class="cite">— Beth, London</span>
-	       </li>
-	       <li class="testimonial border-box rounded-5 relative shaded">
-	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 0;"></div>
-	       	 <span class="mine" style="line-height: 1">mine</span> works! I just saw a friend’s book, read the comments and ended up buying it!<br>
-	       	 <span class="cite">— Stephen, Los Angeles</span>
-	       </li>
-	       <li class="testimonial border-box rounded-5 relative shaded">
-	       	 <div class="user-photo rounded-3 absolute" style="background-position: 0 -28px;"></div>
-	       	 <span class="mine" style="line-height: 1">mine</span> is a really cute site. I love seeing what my friends are buying, mainly so I DON’T buy the same.<br>
-	       	 <span class="cite">— Pacha, Chicago</span>
-	       </li>
-	       <li class="testimonial border-box rounded-5 relative shaded">
-	         <div class="user-photo rounded-3 absolute" style="background-position: -28px -28px;"></div>
-	         Love <span class="mine" style="line-height: 1">mine</span>! Where's the iPhone and iPad app??<br>
-	         <span class="cite">— Dannii, Miami</span><br>
-	         <span class="ed">(<span class="mine" style="line-height: 1">mine</span> works great in Safari on iPad, iPhone app coming soon)</span>
-	       </li>
-	      </ul>
-	      
-      </div> <!-- testimonials -->
-      
-      <p class="lower-login-line">
-      	<span class="hide-on-mobile">
-      		Start your <span class="mine">mine</span> now.
-      	</span>  
-    		<a href="<%=fb_auth_path(:src => @origin)%>" 
-            onclick="this.className += ' load';"
-            class="btn btn-facebook shaded relative"
-            style="width: 188px; vertical-align: 0px; margin: 0 8px;">
-          <span class='hide-when-loading'>
-          	<%=image_tag "social/f-box.png",
-            :class => "f-box"%>
-            Log in with Facebook
-          </span>
-          <i class='icon-loading icon-white'></i>
-        </a>
-        <span class="hide-on-mobile">No auto-sharing, ever.</span>
-     </p>
-
-
-		</div> <!-- /logged-out -->
-	
+		<div class="spacer"></div>
+		
+		
 	</div> <!-- /container -->
-	
-	
-	
-	<!-- About Us Modal -->
-	<div class="modal fade hide" id="aboutUs">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>About Us</h3>
-	  </div>
-
-	  <div class="modal-body">
-	  	<p>We think that ownership data — the ongoing log of what we all choose to buy — will transform commerce for the better in the years ahead.<p>
-	  	<p>If you feel the same way, <a href="mailto:Mine &lt;<%=contact_email%>&gt;">get in touch</a>.<br />
-	  		We're always looking for amazing people to help us get there.</p>
-
-			<div style="padding: 8px 0 16px;">
-
-			 	<%=image_tag "about/deepak.jpg",
-			 		:class => "rounded-3",
-     			:style => "margin-right: 6px;"%>
-     			
-     		<%=image_tag "about/sid.jpg",
-     			:class => "rounded-3",
-     			:style => "margin-right: 6px;"%>
-     		
-     		<%=image_tag "about/pierre.jpg",
-     			:class => "rounded-3",
-     			:style => "margin-right: 6px;"%>
-     	
-     	</div>
-     	
-     	<p>Deepak, Sid and Pierre</p>
-     	
-     	<p>
-     		Mine is funded by the wonderful people at Harrison Metal Capital.
-     	</p>
-	  </div>
-
-    <div class="modal-footer" style="text-align: left;">		
-    	Stop by and see us: Mine - 855 El Camino Real, Bdg 5 #309, Palo Alto CA 94301 USA
-   	</div>
-   	
-	</div> <!-- /modal -->
-	
-	
 
 </div> <!-- /wrapper -->
 
@@ -273,18 +53,3 @@
       Mine © 2012 · Palo Alto CA<span class="hide-on-mobile"> · <a data-toggle="modal" href="#aboutUs">About Us</a> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Contact Us</a></span>
   </div>
 </footer>
-
-<%content_for :javascript do%>
-<script type="text/javascript">
-  $('#slides').slides({
-    effect: 'fade',
-    crossfade: true,
-    fadeSpeed: 750,
-    generatePagination: false,
-    play: 5500,
-    pause: 2000,
-    bigTarget: true,
-    paginationClass: 'paginator',
-    currentClass: 'current'});
-</script>
-<%end%>
