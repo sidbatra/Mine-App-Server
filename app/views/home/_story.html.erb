@@ -16,28 +16,29 @@
 			Tell the world when you buy something great.
 		</h2>
 		
+		
+		<a href="<%=tw_auth_path(:src => @origin)%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-twitter shaded-strong relative alias-smooth">
+      <span class='hide-when-loading'>
+      	<%=image_tag "social/t-box.png",
+        :class => "t-box"%>
+        Sign in with Twitter
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a>
+		
 		<a href="<%=fb_auth_path(:src => @origin)%>" 
 	      onclick="this.className += ' load';"
-	      class="btn btn-large btn-twitter shaded relative alias-smooth">
+	      class="btn btn-large btn-facebook shaded-strong relative alias-smooth">
 	    <span class='hide-when-loading'>
-	    	<%=image_tag "social/t-box.png",
-	      :class => "t-box"%>
-	      Sign in with Twitter
+	    	<%=image_tag "social/f-box.png",
+	      :class => "f-box"%>
+	      Sign in with Facebook
 	    </span>
 	    <i class='icon-loading icon-white'></i>
 	  </a>
 	  
-    <a href="<%=tw_auth_path(:src => @origin)%>" 
-        onclick="this.className += ' load';"
-        class="btn btn-large btn-facebook shaded relative alias-smooth">
-      <span class='hide-when-loading'>
-      	<%=image_tag "social/f-box.png",
-        :class => "f-box"%>
-        Sign in with Facebook
-      </span>
-      <i class='icon-loading icon-white'></i>
-    </a>
-
 		<div class="spacer"></div>
 		
 		

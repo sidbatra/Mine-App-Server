@@ -74,10 +74,15 @@ input.error:focus, textarea.error:focus {
 	border-radius: 0; }
 	
 .shaded {
-	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05); }
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important;
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important; }
 
+.shaded-strong {
+	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1) !important;
+	-moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1) !important;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1) !important; }
+	
 .centered { text-align: center; }
 .inline { display: inline; }
 .inline-block { display: inline-block; }
@@ -403,7 +408,7 @@ input.error:focus, textarea.error:focus {
   filter: alpha(opacity=75); }
 
 .btn.btn-twitter { background-color: #1286D6; }
-.btn.btn-facebook:hover { background-color: #1F4696; }
+.btn.btn-twitter:hover { background-color: #0078ca; }
 
 .btn.btn-facebook { background-color: #3B5998; }
 .btn.btn-facebook:hover { background-color: #1F4696; }
@@ -506,8 +511,13 @@ input.error:focus, textarea.error:focus {
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #a6321d; }	
 
+.btn-twitter.pushed, .btn-twitter.pushed:hover,
+.btn-twitter.load, .btn-twitter.load:hover { background: #0078ca; }
+
 .btn-facebook.pushed, .btn-facebook.pushed:hover,
-.btn-facebook.load, .btn-facebook.load:hover { background: #1F4696; }	
+.btn-facebook.load, .btn-facebook.load:hover { background: #1F4696; }
+
+
 
 .btn-green.pushed, .btn-green.pushed:hover,
 .btn-green.load, .btn-green.load:hover  { background-color: #248949; }
@@ -539,6 +549,8 @@ input.error:focus, textarea.error:focus {
 .btn-red 	 .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
 .btn-green .icon-loading.icon-white 	 { background: url("/images/loading/loading-snake-FFF-248949.gif"); }
 .btn-facebook .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-1F4696.gif"); }
+.btn-twitter .icon-loading.icon-white  { background: url("/images/loading/loading-snake-FFF-0078CA.gif"); }
+
 	
 .load .icon-loading { display: inline-block; }
 .load .hide-when-loading { display: none; }
