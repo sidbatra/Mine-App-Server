@@ -79,9 +79,9 @@ input.error:focus, textarea.error:focus {
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important; }
 
 .shaded-strong {
-	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1) !important;
-	-moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1) !important;
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1) !important; }
+	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1) !important;
+	-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1) !important;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1) !important; }
 	
 .centered { text-align: center; }
 .inline { display: inline; }

@@ -3,29 +3,30 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333;
+	background: #2b2b2b;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
 	text-rendering: optimizelegibility; }
 	
 .wrapper {
+	min-width: 904px;
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -32px;
-	background-image: -ms-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #333333 50%);
-	background-image: -moz-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #333333 50%);
-	background-image: -o-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #333333 50%);
-	background-image: -webkit-gradient(radial, center top, 0, center top, 541, color-stop(0, #404040), color-stop(0.5, #333333));
-	background-image: -webkit-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #333333 50%);
-	background-image: radial-gradient(ellipse farthest-corner at center top, #404040 0%, #333333 50%); }
+	background-image: -ms-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 50%);
+	background-image: -moz-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 50%);
+	background-image: -o-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 50%);
+	background-image: -webkit-gradient(radial, center top, 0, center top, 541, color-stop(0, #404040), color-stop(0.5, #2b2b2b));
+	background-image: -webkit-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 50%);
+	background-image: radial-gradient(ellipse farthest-corner at center top, #404040 0%, #2b2b2b 50%); }
 
-.header { text-align: center; }
+.header { text-align: center; width: 904px; margin: 0 auto; }
 .header .logo { padding: 24px 0 6px; height: 73px; }
 
 .container {
-	width: 940px;
+	width: 904px;
 	text-align: center; }
 	
 .video-frame iframe { 
@@ -46,7 +47,7 @@ h2 {
 .btn-twitter, .btn-facebook { 
 	width: 244px;
 	height: 52px;
-	margin: 0 6px;
+	margin: 0 5px;
 	font-size: 16px;
 	text-shadow: 0 1px rgba(0,0,0,0.32);
 	line-height: 51px; }
