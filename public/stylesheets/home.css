@@ -22,7 +22,7 @@ body {
 	background-image: radial-gradient(ellipse farthest-corner at center top, #404040 0%, #333333 50%); }
 
 .header { text-align: center; }
-.header .logo { padding: 24px 0 14px; height: 73px; }
+.header .logo { padding: 24px 0 6px; height: 73px; }
 
 .container {
 	width: 940px;

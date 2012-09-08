@@ -6,7 +6,8 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333 url('/images/backgrounds/50s.jpeg') top left fixed;
+	background: #333 url('/images/backgrounds/room.jpeg') top center no-repeat;
+	background-size: auto 100%;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
