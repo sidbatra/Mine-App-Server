@@ -242,15 +242,26 @@ footer { text-align: center; }
 footer, .push {
 	height: 32px;
 	line-height: 32px;
-	font-size: 12px; }
+	font-size: 12px;
+/* 	background-color: rgba(0,0,0,0.16); */ }
 	
 footer .inner {
-	width: 520px;
+	width: 880px;
 	margin: 0 auto; }
+
+footer .inner ul li { 
+	display: inline;
+	margin: 0 4px; }
 	
 footer, footer a, footer a:hover { color: #777; }
 footer .like-button-box {
 	height: 26px; 
+	bottom: 0; 
+	overflow: hidden; }
+	
+footer .twitter-button-box {
+	height: 26px; 
+	left: 96px;
 	bottom: 0; 
 	overflow: hidden; }
 	

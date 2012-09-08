@@ -7,7 +7,7 @@
 
 	<div class="container">
 	
-		<div class="video-frame rounded-12">
+		<div class="video-frame">
 			<iframe src="http://player.vimeo.com/video/48923714?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
 				width="880" height="391" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 		</div>
@@ -46,11 +46,40 @@
 
 </div> <!-- /wrapper -->
 
-<footer class="dark">
-	<div class="inner relative border-box">
-  	<div class="like-button-box absolute border-box">
-    	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowtransparency="true"></iframe>
-    </div>
-      Mine © 2012 · Palo Alto CA<span class="hide-on-mobile"> · <a data-toggle="modal" href="#aboutUs">About Us</a> · <a href="mailto:Mine &lt;<%=contact_email%>&gt;">Contact Us</a></span>
+<footer>
+  <div class="inner relative border-box">
+  
+	  <div class="like-button-box absolute border-box">
+	    <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMine%2F428223863873172&amp;send=false&amp;layout=button_count&amp;width=86&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=21&amp;appId=245230762190915" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
+	  </div> <!-- /like-button-box -->
+	  
+	  <div class="twitter-button-box absolute border-box">
+	    <a href="https://twitter.com/getmine" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">
+	    	Follow @getmine
+	    </a>
+			<script>
+				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+			</script> 
+	  </div> <!-- /twitter-button-box -->
+  
+  	<ul>
+  		<li>
+  			© <%=CONFIG[:name]%> 2012
+  		</li>
+  		<li>
+  			Palo Alto, CA
+  		</li>
+  		<li>
+  			<a href="<%=about_path(:src => "footer")%>">About Us</a>
+  		</li>
+  		<li>
+  			<a href="<%=faq_path(:src => "footer")%>">FAQ</a>
+  		</li>
+  		<li>
+  			<%=email_link%>
+  		</li>
+  	</ul>
+  	
   </div>
 </footer>
+
