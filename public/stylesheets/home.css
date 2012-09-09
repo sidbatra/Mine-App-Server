@@ -12,7 +12,7 @@ body {
 a:hover { text-decoration: none; }
 	
 .wrapper {
-	min-width: 904px;
+/* 	min-width: 904px; */
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
@@ -25,7 +25,7 @@ a:hover { text-decoration: none; }
 	background-image: radial-gradient(ellipse farthest-corner at center top, #404040 0%, #2b2b2b 70%); }
 
 .header { text-align: center; width: 904px; margin: 0 auto; }
-.header .logo { padding: 24px 0 6px; height: 73px; }
+.header .logo { padding: 18px 0 6px; height: 73px; }
 
 .container {
 	width: 904px;
@@ -45,6 +45,9 @@ h2 {
 	color: #eee;
 	letter-spacing: -1px;
 	text-shadow: 0 1px rgba(0,0,0,0.32); }
+
+ul { margin: 0 !important; }
+.rwd-show { display: none; }
 
 .btn-twitter, .btn-facebook { 
 	width: 244px;
@@ -83,3 +86,29 @@ footer .twitter-button-box {
 	left: 96px;
 	bottom: 0; 
 	overflow: hidden; }
+
+
+	
+@media screen and (max-width: 600px) { 
+ 
+ .header, .container, footer .inner { width: 100%; }
+ footer { padding: 0 11px; text-align: right; }
+ .header .logo { height: 44px; padding-top: 12px; }
+ .video-frame iframe { 
+	 	padding: 0; 
+	 	width: 100% !important; 
+		height: 142px;
+	 	-webkit-border-radius: 0 !important;
+		-moz-border-radius: 0 !important;
+		border-radius: 0 !important; }
+	h2 { font-size: 18px; line-height: 140%; padding: 14px 0 19px; /* letter-spacing: -0.5px; */ }
+	.btn-twitter, .btn-facebook { height: 44px; font-size: 14px; line-height: 42px; }
+	.btn-facebook { margin-top: 9px; }
+	
+	.btn.btn-large img.t-box { height: 14px; }
+	.btn.btn-large img.f-box { height: 18px; }
+	
+	.rwd-show { display: block !important; }
+	.rwd-hide { display: none !important; }
+
+}
