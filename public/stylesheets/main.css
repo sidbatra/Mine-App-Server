@@ -6,8 +6,9 @@
 html, body { height: 100%; }
 
 body { 
-	background: #333 url('/images/backgrounds/bubbles.png') top center fixed;
-/* 	background-size: auto 100%; */
+/* 	background: #333 url('/images/backgrounds/bubbles.png') top center fixed; */
+	background: #333 url('/images/backgrounds/roomy2.jpeg') top center fixed;
+	background-size: auto 100%;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
