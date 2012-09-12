@@ -937,17 +937,32 @@ footer .twitter-button-box {
 	box-shadow:         0px 3px 6px rgba(0, 0, 0, 0.3); }
 
 .chooser .search-bar .logo {
-	height: 40px;
-	top: 12px;
-	left: 18px; }
+	height: 47px;
+	top: 10px;
+	left: 15px; }
 
 .chooser .search-bar .search-container {
-	width: 520px;
-	padding: 0 18px;
-	margin: 0 auto; }
+	width: 597px;
+	padding: 0 37px 0 18px;
+	margin: 0 auto;
+	white-space: nowrap; }
+	
+.chooser .search-bar .search-container .prompt {
+	display: inline-block;
+	vertical-align: top;
+	height: 40px;
+	padding: 0 13px;
+	font-size: 14px;
+	line-height: 38px;
+	color: #CCC;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+	border-top: 1px solid #393939 !important;
+	border-right: none !important;
+	border-bottom: 1px solid #353535 !important;
+	border-left: 1px solid #393939 !important; }
 
 .chooser .search-bar input.enter {
-	width: 444px;
+	width: 418px;
 	margin-right: 8px; }
 
 .chooser .search-bar input.enter:focus { background: white; }
