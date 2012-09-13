@@ -122,6 +122,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .header { height: 84px; padding-top: 24px !important; }
 .header .logo { height: 58px; top: 17px; margin-left: -5px; }
+.header .logo:active { margin-top: 1px; }
 .header .logo.centered { left: 50%; margin-left: -59px; }
 
 /* -- search dropdown --*/

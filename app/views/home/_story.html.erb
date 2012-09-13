@@ -1,3 +1,6 @@
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
 <div class="wrapper">
 
 	<div class="header">
@@ -41,12 +44,67 @@
 	    <i class='icon-loading icon-white'></i>
 	  </a>
 	  
-		<div class="spacer"></div>
 		
+		<br>
+		
+		<a class="learn-more rounded-6" id="learn-more" href="#">
+			Learn more
+		</a>
+		
+		<div id="more" style="display: none;">
+			
+			<h2 class="alias-smooth">
+				With <b>mine</b>, you can&hellip;
+			</h2>
+			
+			<div class="col-3">
+				<h3>
+					Post purchases, perfectly.
+				</h3>
+				<p>
+					Combining a pristine catalog photo, where you bought it, 
+					and the web's best link to more information, mine is the perfect way share a purchase.
+				</p>
+			</div>
+			
+			<div class="col-3">
+				<h3>
+					Share the best stuff in your life.
+				</h3>
+				<p>
+					Thousands of people use mine to post the items that speak to who they are, 
+					what they like, and what they know about.
+				</p>
+			</div>
+			
+			<div class="col-3">
+				<h3>
+					Learn from friends and followers.
+				</h3>
+				<p>
+					As the only place on the web where you can look up and follow anyone's best purchases, 
+					mine is a constant source of inspiration.
+				</p>
+			</div>
+		
+		</div> <!--/#more-->
+		
+		
+		<div class="spacer"></div>
 		
 	</div> <!-- /container -->
 
 </div> <!-- /wrapper -->
+
+<script type="text/javascript">
+	$("#learn-more").click(function () {
+		$("#more").slideToggle();
+		$('html,body').animate({
+    	scrollTop: '+=' + $('#learn-more').offset().top + 'px'
+		}, '4000');
+	});    
+</script>
+
 
 <%=render "footers/default" unless is_onboarding?%>
 
