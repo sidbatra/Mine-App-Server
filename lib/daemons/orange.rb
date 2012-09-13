@@ -81,12 +81,12 @@ EM.run do
       
       @count += 1
 
-      EM::Timer.new(40) do
+      EM::Timer.new(25) do
         Twitter.update(tweet,:in_reply_to_status_id => status.id)
       end
 
 
-      @reset_at = Time.now + rand(15) + 45 
+      @reset_at = Time.now + rand(15) + 30 
       @logger.info "Resetting"
       
       @count = 0 if @count >= ACCOUNTS.length
