@@ -5,7 +5,7 @@
   :token: 618505555-inOZQ7XHBpS32bTvkMMzPJZUdnjpHS6kBoIaf9te,  
   :secret: aj2mliFAfFAWl9GiehTSwVMvpLqnpYqaTrqAYImc12o,
   :handle: MeltinSummer,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name I just built a site for tweeting pics of what you bought called 'Mine', here: http://getmine.com/try",
