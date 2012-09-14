@@ -478,17 +478,16 @@ footer .twitter-button-box {
 	padding-right: 16px;
 	top: 32px;
 	left: 32px; }
+
+.like.btn.pushed .icon-heart.icon-white,
+.like.btn .icon-heart.icon-black { display: none; }
 	
-.like.btn.pushed, .like.btn-pushed:hover { background: #eee; } 
-
-.like.btn .icon-ok,
-.like.btn.pushed .icon-heart  { display: none; } 
-
-.like.btn.pushed .icon-ok { 
-	display: block; 
-	margin-top: 9px; 
+.like.btn.pushed .icon-heart.icon-black { 
+	display: inline-block;
 	opacity: 0.75;
 	filter: alpha(opacity=75); } 
+	
+.like.btn.pushed, .like.btn-pushed:hover { background: #eee; } 
 	
 .item .panel { padding: 0 24px 24px 24px; }
 
