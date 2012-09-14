@@ -3,7 +3,7 @@
 
 .mine { 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-	font-weight: bold !important;
+	font-weight: bold !imbutportant;
 	font-style: normal !important;
 	-webkit-font-smoothing: antialiased; }
 	
@@ -145,11 +145,16 @@ input.error:focus, textarea.error:focus {
 	-moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box; }
+	
+.rounded-2 {
+	-webkit-border-radius: 2px !important;
+	-moz-border-radius: 2px !important;
+	border-radius: 2px !important; }
 
 .rounded-3 {
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px; }
+	-webkit-border-radius: 3px !important;
+	-moz-border-radius: 3px 3px !important;
+	border-radius: 3px !important; }
 
 .rounded-3-left {
 	-webkit-border-radius: 3px 0 0 3px !important;
@@ -309,7 +314,7 @@ input.error:focus, textarea.error:focus {
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+/*   text-shadow: 0 1px 1px rgba(0,0,0,0.2); */
   -moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box;
@@ -318,16 +323,13 @@ input.error:focus, textarea.error:focus {
 	     -o-transition: background .15s ease-in;
 	        transition: background .15s ease-in;
 	border: none;
-/* 	box-shadow: none; */
+	text-shadow: none;
+	box-shadow: none;
 	border-bottom: 1px solid rgba(0,0,0,0.25);
 	-moz-user-select: none; 
   -khtml-user-select: none; 
   -webkit-user-select: none; 
-  -o-user-select: none;
-/*text-shadow: 0 -1px 1px rgba(0,0,0,0.25); */
-/*box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.15);*/ }
+  -o-user-select: none; }
 
 .btn:first-child { *margin-left: 0; }
 
@@ -410,6 +412,7 @@ input.error:focus, textarea.error:focus {
 	color: #666;
 	border: 0;
 	opacity: 0.8;
+	text-shadow: none;
   filter: alpha(opacity=80);
   box-shadow: none; }
 	
@@ -512,11 +515,11 @@ input.error:focus, textarea.error:focus {
 	box-shadow: none;
 	border-bottom: none;
 	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	-webkit-transition: none;
-	   -moz-transition: none;
-	     -o-transition: none;
-	        transition: none; }
+	-webkit-box-shadow: none !important;
+	-webkit-transition: none !important;
+	   -moz-transition: none !important;
+	     -o-transition: none !important;
+	        transition: none !important; }
 
 .btn-red.pushed, .btn-red.pushed:hover,
 .btn-red.load, .btn-red.load:hover { background: #a6321d; }	

@@ -6,9 +6,11 @@
 html, body { height: 100%; }
 
 body { 
-/* 	background: #333 url('/images/backgrounds/bubbles.png') top center fixed; */
+	background: #333 url('/images/backgrounds/pajama-dark.png') top center fixed;
+/*
 	background: #333 url('/images/backgrounds/roomy2.jpeg') top center fixed;
 	background-size: auto 100%;
+*/
 	font-size: 0;
 	line-height: 1;
 	color: #333;
@@ -38,8 +40,9 @@ a.dark.stealth:hover { color: white; }
 a.light       { color: #177DBE; }
 a.light:hover { color: #105e90; }
 
-a.dark.underlined  { border-bottom: 1px dotted #ccc;    }
-a.light.underlined { border-bottom: 1px dotted #177DBE; }
+a.dark.underlined  { border-bottom: 1px solid #ccc;    }
+a.light.underlined { border-bottom: 1px solid #8bbede; }
+a.light.underlined:hover { border-color: #87aec7; }
 	
 ul, ol { 
 	margin: 0;
@@ -74,7 +77,8 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -32px; }
+	margin: 0 auto -32px;
+	background: url('/images/backgrounds/grain-576.png') fixed top center repeat-y; }
 
 .background-cover {  
 	background-image: url('/images/backgrounds/rainbow.jpeg');
@@ -230,12 +234,11 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .container {
 	width: 520px;
-	padding: 0 26px 64px;
+	padding: 0 28px 64px;
 	margin: 0 auto;
-	background: #444 url('/images/backgrounds/grain.png');
-	-webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
-	-moz-box-shadow:    0px 0px 1px rgba(0, 0, 0, 0.4);
-	box-shadow:         0px 0px 1px rgba(0, 0, 0, 0.4); }
+	background: url('/images/backgrounds/grain.png'); }
+
+/* 	background: #444 url('/images/backgrounds/grain.png'); */ }
 
 /* -- footer -- */
 
@@ -248,8 +251,10 @@ footer, .push {
 /* 	background-color: rgba(0,0,0,0.16); */ }
 	
 footer .inner {
-	width: 880px;
-	margin: 0 auto; }
+	width: 576px;
+	padding: 0 28px;
+	margin: 0 auto;
+	text-align: right; }
 
 footer .inner ul li { 
 	display: inline;
@@ -263,7 +268,7 @@ footer .like-button-box {
 	
 footer .twitter-button-box {
 	height: 26px; 
-	left: 96px;
+	left: 124px;
 	bottom: 0; 
 	overflow: hidden; }
 	
