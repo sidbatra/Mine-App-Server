@@ -74,9 +74,9 @@ input.error:focus, textarea.error:focus {
 	border-radius: 0 !important; }
 	
 .shaded {
-	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important;
-	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important;
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05) !important; }
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important; }
 
 .shaded-strong {
 	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) !important;
@@ -309,8 +309,7 @@ input.error:focus, textarea.error:focus {
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
-  border: none;
-  text-shadow: none;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
   -moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box;
@@ -318,7 +317,8 @@ input.error:focus, textarea.error:focus {
 	   -moz-transition: background .15s ease-in;
 	     -o-transition: background .15s ease-in;
 	        transition: background .15s ease-in;
-	box-shadow: none;
+	border: none;
+/* 	box-shadow: none; */
 	border-bottom: 1px solid rgba(0,0,0,0.25);
 	-moz-user-select: none; 
   -khtml-user-select: none; 
@@ -365,7 +365,7 @@ input.error:focus, textarea.error:focus {
   padding: 0 16px;
   height: 40px;
   font-size: 15px;
-  line-height: 38px;
+  line-height: 40px;
   line-height: 38px\0/ !important; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
@@ -457,11 +457,6 @@ input.error:focus, textarea.error:focus {
 .btn.checklist.done [class^="icon-"] { display: none; }
 .btn.checklist.done .icon-ok { display: inline-block; }
 
-.btn.shaded { 
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
-
 .icon-like.icon-white {
 	background-image: url("images/glyphicons-halflings-custom-white.png")!important;
 	background-position: 0 0; }
@@ -531,8 +526,6 @@ input.error:focus, textarea.error:focus {
 
 .btn-facebook.pushed, .btn-facebook.pushed:hover,
 .btn-facebook.load, .btn-facebook.load:hover { background: #1F4696; }
-
-
 
 .btn-green.pushed, .btn-green.pushed:hover,
 .btn-green.load, .btn-green.load:hover  { background-color: #248949; }
