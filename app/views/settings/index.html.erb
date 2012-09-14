@@ -1,57 +1,90 @@
-<div class="box-title" style="margin-top: -6px;">
-	Notification settings
-</div>
-
-<div class="well-box border-box rounded-5" style="padding: 20px;">
-
-	 <%form_for @settings,:url => "/settings/#{@settings.id}",
+<%form_for @settings,:url => "/settings/#{@settings.id}",
 	  :html => {
 	    :class  => 'form-horizontal',
 	    :style  => 'margin-bottom: 0;',
 	    :id     => 'edit_setting'} do |f|%>
-	  
-	  <fieldset>
+
+
+	<div class="box-title" style="margin-top: -6px;">
+		Notifications
+	</div>
 	
-			<!-- Notifications -->
-			
-			<div class="control-group">
-				<label class="control-label txt m" style="width: 80px;">
-	        Activity
-	      </label>
-				<div class="controls" style="margin-left: 100px;">
-			    <%=f.label :email_influencer,
-	            "#{f.check_box :email_influencer} Email me "\
-	            "when someone likes or comments on my items, and a weekly digest from people I'm following",
+	<div class="well-box border-box rounded-8" style="padding: 20px; margin-bottom: 18px;">
+		  
+		  <fieldset>
+		
+				<!-- Notifications -->
+				
+				<div class="control-group" style="margin-bottom: 10px;">
+					<label class="control-label txt m" style="width: 80px;">
+		        Activity
+		      </label>
+					<div class="controls" style="margin-left: 100px;">
+				    <%=f.label :email_influencer,
+		            "#{f.check_box :email_influencer} Email me "\
+		            "when someone likes or comments on my items, and a weekly digest from people I'm following",
+		
+		            :class => "checkbox txt m pointer unselectable"%>
+			    </div>              
+				</div>
+				
+				<div class="control-group" style="margin-bottom: 0;">
+					<label class="control-label txt m" style="width: 80px;">
+		        Updates
+		      </label>
+					<div class="controls" style="margin-left: 100px;">
+				    <%=f.label :email_update,
+		            "#{f.check_box :email_update} Email me feature "\
+		            "updates and reminders",
+		            :class => "checkbox txt m pointer unselectable"%>
+			    </div>              
+		    </div>
+				<!-- /Notifications -->
+		  
+		  </fieldset>
+
+	</div> 
 	
-	            :class => "checkbox txt m"%>
-		    </div>              
-			</div>
-			
-			<div class="control-group">
-				<label class="control-label txt m" style="width: 80px;">
-	        Updates
-	      </label>
-				<div class="controls" style="margin-left: 100px;">
-			    <%=f.label :email_update,
-	            "#{f.check_box :email_update} Email me feature "\
-	            "updates and reminders",
-	            :class => "checkbox txt m"%>
-		    </div>              
-	    </div>
-			<!-- /Notifications -->
+	<div class="box-title" style="margin-top: -6px;">
+		Background
+	</div>
 	
-	    <div class="" 
-	          style="border-top:none; padding-left: 100px; 
-	                  background: none;
-	                  padding-bottom: 0px;">
-	    	<%=submit_tag "Save Changes",
-		                  :class  => 'btn btn-mid',
-		                  :name   => nil%>
-	    </div>
-	  
-	  </fieldset>
-	                        
-	<%end%> <!-- /form -->
+	<div class="well-box border-box rounded-8 backgrounds" style="padding: 14px; margin-bottom: 18px;">
+
+		<div class="tile inline-block rounded-3 pointer border-box" 
+			style="background: url('/images/backgrounds/tiles/tile-shapes-dark.jpg');">
+		</div>
+		
+		<div class="tile inline-block rounded-3 pointer border-box" 
+			style="background: url('/images/backgrounds/tiles/tile-shapes-light.jpg');">
+		</div>
+
+		<div class="tile inline-block rounded-3 pointer border-box" 
+			style="background: url('/images/backgrounds/tiles/tile-triangles.jpg');">
+		</div>
+        
+		<div class="tile selected inline-block rounded-3 pointer border-box" 
+			style="background: url('/images/backgrounds/tiles/tile-room.jpg');">
+		</div>
+		
+		<div class="tile inline-block rounded-3 pointer border-box" 
+			style="background: url('/images/backgrounds/tiles/tile-lava.jpg');">
+		</div>
+		
+		<div class="tile inline-block rounded-3 pointer border-box" 
+			style="background: url('/images/backgrounds/tiles/tile-bubbles.jpg');">
+		</div>
+
+	</div>
+	
+  <div style="border-top:none; padding-left: 20px; background: none; padding-bottom: 0px;">
+  	<%=submit_tag "Save Changes",
+                  :class  => 'btn btn-mid shaded',
+                  :name   => nil%>
+  </div>
+	
+<%end%> <!-- /form -->
+
 
 <%content_for :javascript do%>
 
