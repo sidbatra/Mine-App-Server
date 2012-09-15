@@ -18,9 +18,12 @@ body {
 
 body.bg-cover { 
 	background-size: cover;
+	background-repeat: no-repeat;
 	background-position: 50% 50%; }
 	
-body.bg-grow-horizontal { background-size: auto 100%; }
+body.bg-grow-horizontal { 
+	background-size: auto 100%;
+	background-repeat: no-repeat; }
 	
 a { 
 	-webkit-transition: color .15s ease-in;
