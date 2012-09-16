@@ -116,6 +116,7 @@ class UsersController < ApplicationController
     when :connections
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
+      populate_theme @user
     end
 
   rescue => ex
@@ -140,6 +141,8 @@ class UsersController < ApplicationController
       @user = User.find_by_handle(params[:handle])
       @following = Following.fetch @user.id,self.current_user.id
       @origin = 'user'
+
+      populate_theme @user
     end
 
   rescue => ex

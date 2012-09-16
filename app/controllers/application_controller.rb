@@ -60,5 +60,11 @@ class ApplicationController < ActionController::Base
     @upload_config = u
   end
 
+  # Populate theme variable.
+  #
+  def populate_theme(user)
+    @theme = user.setting.theme
+  end
+
 end
 

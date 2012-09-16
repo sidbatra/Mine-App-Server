@@ -132,6 +132,8 @@ class PurchasesController < ApplicationController
                      params[:purchase_handle])
     end
 
+    populate_theme @purchase.user
+
     #@next_purchase = @purchase.next
     #@next_purchase ||= @purchase.user.purchases.first
 
