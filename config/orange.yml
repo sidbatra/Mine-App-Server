@@ -27,7 +27,7 @@
   :token: 618648144-S1EtTXYSM5bacJuccgyvSh0ZWuIgkUKczPJ8xEaM, 
   :secret: tGQ723Pz1cpzd1W6KJ8FTNsVMoxbI242dGrqIDU7uE, 
   :handle: LuciStephens1, 
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
