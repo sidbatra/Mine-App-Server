@@ -132,8 +132,10 @@ input.error:focus, textarea.error:focus {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dddddd',GradientType=0 ); }
 	
 .fb-favicon {
+	display: inline-block;
 	width: 14px;
-	height: 14px; 
+	height: 14px;
+	margin-right: 3px; 
 	background: url("/images/fb-icons.gif") -1px -289px; }
 	
 .fb-11 {
@@ -215,6 +217,11 @@ input.error:focus, textarea.error:focus {
 	-webkit-border-radius: 8px !important;
 	-moz-border-radius: 8px !important;
 	border-radius: 8px !important; }
+	
+.rounded-8-top {
+	-webkit-border-radius: 8px 8px 0 0 !important;
+	-moz-border-radius: 8px 8px 0 0 !important;
+	border-radius: 8px 8px 0 0 !important; }
 	
 .rounded-10 {
 	-webkit-border-radius: 10px !important;

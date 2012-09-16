@@ -307,6 +307,20 @@ footer .twitter-button-box {
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
 	vertical-align: top; }
 
+.well-box.tab {
+	font-weight: bold;
+	padding: 16px 12px; 
+	font-size: 22px; 
+	height: 56px; 
+	margin-top: 2px; 
+	margin-bottom: -8px; }
+	
+.well-box.tab.on { color: white; }
+
+.well-box.tab.off {
+	background: none;
+	box-shadow: none; }
+
 .well-box.padded { padding: 12px 18px 18px; }
 .well-box.padded input.enter { width: 408px; }
 
