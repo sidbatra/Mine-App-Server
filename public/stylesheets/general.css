@@ -561,9 +561,7 @@ input.error:focus, textarea.error:focus {
   background-repeat: no-repeat !important;
   background-position: center center !important; }
 
-.icon-loading.icon-white { 
-	background: url("/images/loading-blocks-white-trans.gif");
-	background: url("/images/loading/loading-snake-FFF-177DBE.gif"); }
+.icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-004A72.gif"); }
 	
 .btn-gray  .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-888.gif"); }
 .btn-red 	 .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
