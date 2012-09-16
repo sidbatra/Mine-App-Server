@@ -672,6 +672,11 @@ footer .twitter-button-box {
 .bio-box .user-bio { line-height: 20px; }
 .bio-box input[type=text] { width: 86.8%}
 .bio-box .btn { width: 12%; margin-left: 1.2%; padding: 0; }
+.bio-box a.mini {
+	padding-left: 3px; 
+	font-size: 11px; 
+	font-weight: bold; 
+	text-transform: uppercase; }
 
 /* -- follow count boxes -- */
 
