@@ -12,6 +12,7 @@
 	<div class="well-box border-box rounded-8" style="padding: 20px; margin-bottom: 18px;">
 		  
 		  <fieldset>
+        <%=f.hidden_field :theme_id%>
 		
 				<!-- Notifications -->
 				
@@ -49,32 +50,17 @@
 		Background
 	</div>
 	
-	<div class="well-box border-box rounded-8 backgrounds" style="padding: 14px; margin-bottom: 18px;">
+	<div class="well-box border-box rounded-8 backgrounds" 
+    style="padding: 14px; margin-bottom: 18px;">
 
-		<div class="tile inline-block rounded-3 pointer border-box" 
-			style="background: url('/images/backgrounds/tiles/tile-shapes-dark.jpg');">
-		</div>
-		
-		<div class="tile inline-block rounded-3 pointer border-box" 
-			style="background: url('/images/backgrounds/tiles/tile-shapes-light.jpg');">
-		</div>
-
-		<div class="tile inline-block rounded-3 pointer border-box" 
-			style="background: url('/images/backgrounds/tiles/tile-triangles.jpg');">
-		</div>
-        
-		<div class="tile selected inline-block rounded-3 pointer border-box" 
-			style="background: url('/images/backgrounds/tiles/tile-room.jpg');">
-		</div>
-		
-		<div class="tile inline-block rounded-3 pointer border-box" 
-			style="background: url('/images/backgrounds/tiles/tile-lava.jpg');">
-		</div>
-		
-		<div class="tile inline-block rounded-3 pointer border-box" 
-			style="background: url('/images/backgrounds/tiles/tile-bubbles.jpg');">
-		</div>
-
+    <%@themes.each do |theme|%>
+      <div id="theme_<%=theme.id%>" 
+        class="tile inline-block rounded-3 
+                pointer border-box 
+                <%=theme.id == @settings.theme_id ? 'selected' : '' %>" 
+        style="background: url('<%=theme.background_tile_url%>');">
+      </div>
+    <%end%>
 	</div>
 	
   <div style="border-top:none; padding-left: 20px; background: none; padding-bottom: 0px;">
@@ -90,7 +76,10 @@
 
   <script type="text/javascript">
     new Denwen.Views.Settings.Index({
-          el            : $('#edit_setting'),
+          el            : $('#body'),
+          themes        : <%=@themes.to_json(
+                                :only => [:id,:background_body_class],
+                                :methods => [:background_url])%>,
           source        : '<%=h @source%>'});
   </script>
 

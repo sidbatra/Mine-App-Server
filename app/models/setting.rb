@@ -3,7 +3,7 @@ class Setting < ActiveRecord::Base
   belongs_to :theme
   attr_accessible :email_influencer, :email_update,
                     :share_to_facebook,
-                    :share_to_twitter, :share_to_tumblr
+                    :share_to_twitter, :share_to_tumblr,:theme_id
 
   #----------------------------------------------------------------------
   # Validations

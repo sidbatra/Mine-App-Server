@@ -12,7 +12,16 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
+    this.themeSettingEl = '#setting_theme_id';
+
     this.source = this.options.source;
+    this.themes = new Denwen.Collections.Themes(this.options.themes);
+
+    // Attach listeners on theme elements
+    //
+    this.themes.each(function(theme){
+      $('#theme_' + theme.get('id')).click(function(){self.themeClicked(theme);});
+    });
 
     // Attach listeners on to setting checkboex
     //
@@ -37,6 +46,21 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
       Denwen.Track.action('Setting Turned On',{'Name' : name});
     else
       Denwen.Track.action('Setting Turned Off',{'Name' : name});
+  },
+
+  // A theme is selected.
+  //
+  themeClicked: function(theme) {
+    this.themes.each(function(theme){
+      $('#theme_' + theme.get('id')).removeClass('selected');
+      $('body').removeClass(theme.get('background_body_class'));
+    });
+
+    $('#theme_' + theme.get('id')).addClass('selected');
+    $('body').css('background-image',"url('" + theme.get('background_url') + "')");
+    $('body').addClass(theme.get('background_body_class'));
+
+    $(this.themeSettingEl).val(theme.get('id'));
   },
 
   // Public. Display a success or failure message if an update
