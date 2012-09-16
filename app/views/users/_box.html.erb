@@ -7,7 +7,14 @@
     <div class="basics border-box">
     	<%=logged_in? ? '' : 'Follow'%> <%=h user.full_name%> 
     	<br>
-    	<span class="item-count"><b>57</b> items</span>
+    	<span class="item-count">
+        <%unless user.purchases_count.zero?%>
+          <b><%=user.purchases_count%></b> 
+          <%=user.purchases_count == 1 ? 'item' : 'items'%>
+        <%else%>
+          No items
+        <%end%>
+      </span>
     </div>
     
   	<div id="follow_box">

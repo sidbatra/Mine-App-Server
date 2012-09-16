@@ -56,7 +56,7 @@
 			
 			<a class="dark" href="<%=connections_path(@user.handle,:src => "followers")%>">
 				<span class="num"><%=@user.followings_count%></span>
-				<span class="txt xs"> Followers</span>
+				<span class="txt xs"> <%=@user.followings_count == 1 ? 'Follower' : 'Followers'%></span>
 			</a>
 			
 			<ul class="border-box inline-block relative">
