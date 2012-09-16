@@ -161,7 +161,7 @@
   :token: 511060675-slAyl8N4gPYkc5FUBkEiZAGEENySyJbrKG4DZ3rP,
   :secret: q8RHWEGfEvBzb5gpzRhfKUZ9El0MGzEmzTOlig2vEY,
   :handle: JenniferCurtina,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name aww cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
