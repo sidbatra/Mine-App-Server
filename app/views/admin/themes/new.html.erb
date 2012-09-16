@@ -1,0 +1,18 @@
+
+<div class="container well" id="container" class="container well">
+  <legend>Create a new theme</legend>
+
+  <%form_for @theme, :url => "/admin/themes" do |f|%>
+    <%=render :partial  => "input",
+              :locals   => {:f => f,:submit_text => "Create"}%>
+  <%end%>
+
+</div>
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Admin.Themes.New({
+          el            : $('#container'),
+          uploadConfig  : <%=@upload_config.to_json%>});
+  </script>
+<%end%>

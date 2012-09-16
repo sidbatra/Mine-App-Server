@@ -1,0 +1,19 @@
+
+<div class="container well" id="container" class="container well">
+  <legend>Edit theme</legend>
+
+  <%form_for @theme, 
+      :url => "/admin/themes/#{@theme.id}" do |f|%>
+    <%=render :partial  => "input",
+              :locals   => {:f => f,:submit_text => "Update"}%>
+  <%end%>
+
+</div>
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Admin.Themes.Edit({
+          el            : $('#container'),
+          uploadConfig  : <%=@upload_config.to_json%>});
+  </script>
+<%end%>

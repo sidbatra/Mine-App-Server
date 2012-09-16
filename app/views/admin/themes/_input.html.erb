@@ -1,0 +1,28 @@
+
+    <%=f.hidden_field :background_path%>
+    <%=f.hidden_field :background_tile_path%>
+
+    Body class <%=f.text_field :background_body_class%> <br>
+    Weight - <%=f.text_field :weight%> <br>
+
+    <div id='background_image'>
+      <%if @theme.background_path.present?%>
+        <img src="<%=h @theme.background_url%>" />
+      <%end%>
+    </div>
+
+    <div id='background_tile_image'>
+      <%if @theme.background_tile_path.present?%>
+        <img src="<%=h @theme.background_tile_url%>" />
+      <%end%>
+    </div>
+
+    Click below to add/change background<br>
+    <a href='javasvript:void(0)' id='background_uploader'>
+    </a> <br><br>
+
+    Click below to add/change background tile<br>
+    <a href='javasvript:void(0)' id='background_tile_uploader'>
+    </a> <br><br>
+
+    <%=submit_tag submit_text, :name => nil%>

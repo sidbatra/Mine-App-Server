@@ -16,4 +16,21 @@ class Theme < ActiveRecord::Base
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :by_weight, :order => 'weight DESC'
+
+
+  #----------------------------------------------------------------------
+  # Instance methods
+  #----------------------------------------------------------------------
+
+  # Full url of the background image.
+  #
+  def background_url
+    FileSystem.url(background_path)
+  end
+
+  # Full url of the background tile image.
+  #
+  def background_tile_url
+    FileSystem.url(background_tile_path)
+  end
 end

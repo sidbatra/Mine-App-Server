@@ -1,0 +1,43 @@
+
+<div class="container well" id="container" class="container well">
+  <legend>
+    Themes - 
+    <%=link_to "Add",new_admin_theme_path%>
+  </legend>
+
+  <table width="900">
+    <tr height="20">
+    </tr>
+    <%@themes.each do |theme|%>
+      <tr>
+        <td width="50">
+          <%=theme.weight%>
+        </td>
+        <td width="100">
+          <%=theme.background_body_class%>
+        </td>
+        <td width="150">
+          <%if theme.background_path.present?%>
+            <%=image_tag theme.background_url,:width => 200%>
+          <%end%>
+        </td>
+        <td width="150">
+          <%if theme.background_tile_path.present?%>
+            <%=image_tag theme.background_tile_url,:width => 50%>
+          <%end%>
+        </td>
+        <td>
+          <%=link_to "Edit",edit_admin_theme_path(theme)%>
+        </td>
+        <!--td>
+          <%#link_to "Delete", {
+                :controller => 'admin/themes',
+                :action => 'destroy',
+                :id => theme.id},
+              :method => :delete,
+              :confirm  => "There is no undo on this, sure?"%></h3>
+        </td-->
+      </tr>
+    <%end%>
+  </table>
+</div>
