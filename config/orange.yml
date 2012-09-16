@@ -2,9 +2,9 @@
 :consumer_secret: oxYih93ZJRMhyD538iyCMRrxU4MUAsXK7cmDNEwdIww
 :accounts: [
   {
-  :token: 19427356-CRclpAaQmiyFw4ODzfVwNeQ50xBx8loG8ttfYQ3Xo,
-  :secret: meT0qzzOEjPehTgEfALJ72ahSFux7qMkSy98JeH0U,
-  :handle: nataliesatmine,
+  :token: 618505555-inOZQ7XHBpS32bTvkMMzPJZUdnjpHS6kBoIaf9te,  
+  :secret: aj2mliFAfFAWl9GiehTSwVMvpLqnpYqaTrqAYImc12o,
+  :handle: MeltinSummer,
   :enabled: false,
   :templates: [
     {
@@ -24,10 +24,10 @@
     :media: nil}]
   },
   {
-  :token: 47768007-lc0ICcWUnkQJS5Pb2pfYA1qIs6gqIS7Uqh3sEindt,
-  :secret: fIr97UY1cLwb3dz8aVCDJLk30fYGIdrujHs661GI,
-  :handle: rebeccasuperpet,
-  :enabled: false,
+  :token: 618648144-S1EtTXYSM5bacJuccgyvSh0ZWuIgkUKczPJ8xEaM, 
+  :secret: tGQ723Pz1cpzd1W6KJ8FTNsVMoxbI242dGrqIDU7uE, 
+  :handle: LuciStephens1, 
+  :enabled: true,
   :templates: [
     {
     :tweet: "Thats cool @name! I'm working on Mine, a site for tweeting purchases - check it out! http://getmine.com/try",
@@ -52,11 +52,10 @@
     :media: nil}]
   },
   {
-  :token: 45032868-lshRI4HtdHwFZYu4fubj2CDsodEFRCWssHNeS8K5G, 
-  :secret: OvAdFrTryJDrVfkcbmKh7UNT441d0ZTGWx25vk52M, 
-  :tw_user_id: 45032868,
-  :handle: sarahatmine,
-  :enabled: false,
+  :token: 618458441-3ju4de4SqrKsoEVStc6yPCCQKHpn0i30sYWmHJw6,  
+  :secret: xe5V4paTjVZd4KKbflSJFCdSK2nE3XLOsgWUKc0BGs, 
+  :handle: GwynethHungry, 
+  :enabled: true,
   :templates: [
     {
     :tweet: "@name that's cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
