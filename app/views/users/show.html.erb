@@ -16,7 +16,7 @@
 
 
 	<!-- Following -->
-  <%cache ["v8",@user,"ifollowers","profile"] do%>
+  <%cache ["v9",@user,"ifollowers","profile"] do%>
     <div class="follow-count-box inline-block border-box">
     
 	    <a class="dark" href="<%=connections_path(@user.handle,:src => "followers")%>">
@@ -27,7 +27,7 @@
 			<ul class="border-box inline-block relative">
 
 	      <%@user.ifollowers.limit(4).each do |user|%>
-	        <%cache ["v5",user,"ifollower","profile"] do%>     
+	        <%cache ["v6",user,"ifollower","profile"] do%>     
 	        
 		        <li class="pic s inline-block">
 		        	<a style="display: block;" 
@@ -51,7 +51,7 @@
 
   
   <!-- Followers -->
-  <%cache ["v8",@user,"followers","profile"] do%>
+  <%cache ["v9",@user,"followers","profile"] do%>
     <div class="follow-count-box right inline-block border-box">
 			
 			<a class="dark" href="<%=connections_path(@user.handle,:src => "followers")%>">
@@ -62,7 +62,7 @@
 			<ul class="border-box inline-block relative">
 
 	      <%@user.followers.limit(4).each do |user|%>
-	        <%cache ["v5",user,"follower","profile"] do%>     
+	        <%cache ["v6",user,"follower","profile"] do%>     
 	        
 		        <li class="pic s inline-block">
 		        	<a style="display: block;" 
