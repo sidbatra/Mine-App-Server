@@ -55,7 +55,7 @@
   :token: 618458441-3ju4de4SqrKsoEVStc6yPCCQKHpn0i30sYWmHJw6,  
   :secret: xe5V4paTjVZd4KKbflSJFCdSK2nE3XLOsgWUKc0BGs, 
   :handle: GwynethHungry, 
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool - if you go to http://getmine.com/try you can tweet pics of what you bought. Try it :)",
