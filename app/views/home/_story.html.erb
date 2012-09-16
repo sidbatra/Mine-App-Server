@@ -8,8 +8,13 @@
 	<div class="container">
 	
 		<div id="video" class="video-frame">
-			<iframe src="http://player.vimeo.com/video/48923714?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-				width="880" height="391" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+				width="880" 
+        height="391" 
+        frameborder="0" 
+        webkitAllowFullScreen 
+        mozallowfullscreen 
+        allowFullScreen></iframe>
 		</div>
 		
 		<h2 class="alias-smooth">
@@ -97,10 +102,50 @@
   <script type="text/javascript">
     $("#learn-more").click(function () {
       $("#more").slideToggle();
+
       $('html,body').animate({
         scrollTop: '+=' + $('#learn-more').offset().top + 'px'
       }, '4000');
+
+      mixpanel.track("Learn More Clicked");
     });    
+
+
+    // Listen for messages from the player
+    if (window.addEventListener){
+        window.addEventListener('message', onMessageReceived, false);
+    }
+    else {
+        window.attachEvent('onmessage', onMessageReceived, false);
+    }
+
+    // Helper function for sending a message to the player
+    function post(action, value) {
+        var f = $('iframe');
+        var url = f.attr('src').split('?')[0];
+        var data = { method: action };
+        
+        if (value) {
+            data.value = value;
+        }
+        
+        f[0].contentWindow.postMessage(JSON.stringify(data), url);
+    }
+
+    // Handle messages received from the player
+    function onMessageReceived(e) {
+        var data = JSON.parse(e.data);
+        
+        switch (data.event) {
+            case 'ready':
+                post('addEventListener', 'play');
+                break;
+                
+            case 'play':
+                mixpanel.track("Intro Video Played",{"Source":"Home","Thumbnail":"Girl"});
+                break;
+        }
+    }
   </script>
 <%end%>
 
