@@ -20,7 +20,7 @@
 		</h2>
 		
 		
-		<a href="<%=tw_auth_path(:src => @origin)%>" 
+		<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
         onclick="this.className += ' load';"
         class="btn btn-large btn-twitter shaded-strong relative alias-smooth">
       <span class='hide-when-loading'>
@@ -33,7 +33,7 @@
     
     <br class="rwd-show">
 		
-		<a href="<%=fb_auth_path(:src => @origin)%>" 
+		<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
 	      onclick="this.className += ' load';"
 	      class="btn btn-large btn-facebook shaded-strong relative alias-smooth">
 	    <span class='hide-when-loading'>
