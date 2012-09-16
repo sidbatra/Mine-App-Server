@@ -659,7 +659,8 @@ textarea {
 
 input[type=text].m { 
 	height: 28px;
-	padding: 0 8px; }
+	padding: 0 8px;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 1px 0px inset; }
 	
 input[type=text].m.load {
 	background: white url('/images/loading/loading-snake-555-right-loading.gif') center right no-repeat; }

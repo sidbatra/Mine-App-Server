@@ -1,10 +1,10 @@
-<div id="user_byline_box" class="bio-box absolute">
+<div id="user_byline_box" class="bio-box">
       <%if is_current_user(user)%>
 
           <!-- byline editing -->
-          <%=text_area_tag 'user_byline',
+          <%=text_field_tag 'user_byline',
               self.current_user.byline,
-              :class  => 'txt m border-box alias-smooth unresizable',
+              :class  => 'txt m border-box rounded-2 alias-smooth unresizable',
               :rows   => '1',
               :style  => ""\
                          "#{self.current_user.byline.present? ? 
@@ -15,7 +15,7 @@
           <%=link_to  'Save', 
 	            'javascript:void(0)', 
 	            :id     => 'user_update',
-	            :class  => 'btn btn-small btn-blue absolute',
+	            :class  => 'btn btn-small btn-blue',
 	            :style  => self.current_user.byline.present? ?
 	                        'display:none' :
 	                        ''%>   
@@ -28,17 +28,20 @@
                         '' :
                         'display:none'%>">
           
-          	<div class="user-bio txt m border-box" id="user_byline_text">
-          		<%=h self.current_user.byline%>
-          	</div>
-          	
-          	<%=link_to  'Edit', 
-	                      'javascript:void(0)', 
-	                      :class  => 'btn btn-small btn-gray absolute',
-	                      :id     => 'user_edit',
-	                      :style  => self.current_user.byline.present? ?
-	                                  '' :
-	                                  'display:none'%>
+          	<div class="user-bio txt m border-box">	
+          		<span id="user_byline_text">
+          			<%=h self.current_user.byline%>
+          		</span>
+        	
+	          	<%=link_to  'Edit', 
+		                      'javascript:void(0)', 
+		                      :class  => 'dark',
+		                      :id     => 'user_edit',
+		                      :style  => self.current_user.byline.present? ?
+		                                  'padding-left: 3px; font-size: 11px; font-weight: bold; text-transform: uppercase;' :
+		                                  'display:none'%>                
+	          </div>
+	          
           </div>
           
       <%elsif user.byline.present?%>
