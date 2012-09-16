@@ -16,6 +16,14 @@ body {
 	text-rendering: optimizelegibility; 
 	overflow-x: hidden; }
 
+body.bg-left-down {
+	background-position: top left;
+	background-repeat: repeat-y; }
+
+body.bg-right-down {
+	background-position: top right;
+	background-repeat: repeat-y; }
+
 body.bg-cover { 
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -44,7 +52,7 @@ a.dark:hover { color: white; }
 a.light       { color: #177DBE; }
 a.light:hover { color: #105e90; }
 
-a.dark.underlined  { border-bottom: 1px solid #ccc;    }
+a.dark.underlined  { border-bottom: 1px solid #838383; }
 a.light.underlined { border-bottom: 1px solid #8bbede; }
 a.light.underlined:hover { border-color: #87aec7; }
 	
@@ -82,18 +90,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -32px;
-	background: url('/images/backgrounds/grain-576.png') fixed top center repeat-y; }
-
-.background-cover {  
-	background-image: url('/images/backgrounds/rainbow.jpeg');
-  background-size: cover;
-	background-position: 50% 50%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -2; }
+	background: url('/images/backgrounds/grain-576-shaded.png') fixed top center repeat-y; }
 	
 .dimmer {
 	position: fixed;
@@ -240,9 +237,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	width: 520px;
 	padding: 0 28px 64px;
 	margin: 0 auto;
-	background: url('/images/backgrounds/grain.png'); }
-
-/* 	background: #444 url('/images/backgrounds/grain.png'); */ }
+	background: #444 url('/images/backgrounds/grain.png'); }
 
 /* -- footer -- */
 
@@ -731,23 +726,23 @@ footer .twitter-button-box {
 	
 /* -- Logged-out follow modal -- */
 
-.user-box .modal { 
+.profile-box .modal { 
 	width: 472px;
 	margin-left: -236px;
 	margin-top: 0;
 	top: 185px;
 	border: 0; }
 	
-.user-box .modal .modal-header { 
+.profile-box .modal .modal-header { 
 	text-align: center;
 	border: 0; }
 	
-.user-box .modal .close { 
+.profile-box .modal .close { 
 	font-family: Arial, sans-serif;
 	font-size: 28px;
 	margin-top: 1px; }
 
-.user-box .modal h4 { color: #555; }
+.profile-box .modal h4 { color: #555; }
 	
 	
 /* -- about page -- */

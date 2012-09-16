@@ -310,7 +310,7 @@ input.error:focus, textarea.error:focus {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
-  background: #1370ab url("/images/alert-overlay.png") repeat-x;
+  background: #006FB1 url("/images/alert-overlay.png") repeat-x;
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
           border-radius: 2px;
@@ -336,7 +336,7 @@ input.error:focus, textarea.error:focus {
 .btn:hover {
 	color: white;
   text-decoration: none;
-  background-color: #105e90;
+  background-color: #004a72;
   -webkit-transition: background .15s ease-in;
 	   -moz-transition: background .15s ease-in;
 	     -o-transition: background .15s ease-in;
@@ -368,7 +368,10 @@ input.error:focus, textarea.error:focus {
   height: 40px;
   font-size: 15px;
   line-height: 40px;
-  line-height: 38px\0/ !important; }
+  line-height: 38px\0/ !important;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
 .btn-large [class^="icon-"] { margin-top: 3px; }
@@ -431,16 +434,22 @@ input.error:focus, textarea.error:focus {
 .btn.btn-facebook { background-color: #3B5998; }
 .btn.btn-facebook:hover { background-color: #1F4696; }
 
-.btn.btn-large img.t-box {
-	height: 16px; 
-	vertical-align: -2px; 
-	padding-right: 4px; 
-	margin-left: -6px; }
-
 .btn img.f-box {
 	height: 16px; 
 	vertical-align: -3px; 
 	padding-right: 5px; 
+	margin-left: -3px; }
+
+.btn img.t-box {
+	height: 12px; 
+	vertical-align: -2px; 
+	padding-right: 3px; 
+	margin-left: -3px; }
+	
+.btn.btn-large img.t-box {
+	height: 16px; 
+	vertical-align: -2px; 
+	padding-right: 4px; 
 	margin-left: -6px; }
 
 .btn.btn-large img.f-box {
@@ -510,7 +519,7 @@ input.error:focus, textarea.error:focus {
 .btn.pushed, .btn-pushed:hover, 
 .btn.load, .btn.load:hover,
 .load .btn, .load .btn:hover { 
-	background: #105E90; 
+	background: #004a72; 
 	cursor: default; 
 	box-shadow: none;
 	border-bottom: none;
