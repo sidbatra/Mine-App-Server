@@ -1,6 +1,6 @@
 <div id="purchase-<%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
-  class="item rounded-5">
+  class="item rounded-8">
   
   
   <div class="photo-box relative">
@@ -19,10 +19,9 @@
 		<%if(interaction){%> 
 			<a href="javascript:void(0)"
 		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn absolute shaded border-box">
-				<img class="thumb" 
-          src="<%=Denwen.H.imagePath('like-16-2x-white.png')%>"/>
-				<i class="icon-ok"></i>
+		  		class="like btn absolute shaded border-box rounded-3">
+		  	<i class="icon-heart icon-white"></i>
+				<i class="icon-heart icon-black"></i>
 			</a>		
 		<%}%>
 

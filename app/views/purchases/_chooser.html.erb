@@ -3,7 +3,7 @@
 		<form class="search-bar border-box gradient v-555-444">
 		
 			<a id="cancel_logo_button" href="javascript:void(0)">
-        <%=image_tag("logos/mine-h-white-40-2x.png", 
+        <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
             :class => "logo absolute")%>
       </a>
 	        
@@ -15,7 +15,7 @@
 
 		
 			<div class="search-container relative">
-		
+
 <!--
 				<div class="box-title" id="purchase_image_broken_msg">
 					<span class="default">
@@ -28,9 +28,13 @@
 -->
 		
 				<div id="spinner_box">
+				
+					<div class="prompt border-box rounded-4-left gradient v-555-444 unselectable">	
+						Select your
+		      </div>
 					
 					<input  id="purchase_repeat_query" 
-		              class="enter txt l rounded-3 border-box shaded" 
+		              class="enter txt l rounded-3-right border-box" 
 		              name="products[query]" 
 		              type="text" 
 		              value="">

@@ -1,8 +1,19 @@
-<div class="box-title" style="margin-top: -6px;">
-	<span class="fb-favicon"></span> Send a personal note to their Facebook inbox
+<div class="well-box tab on dark rounded-8-top border-box relative alias-smooth inline-block" style="width: 50%;">
+	 Facebook Invite
 </div>
+
+<a href="/" class="well-box tab off dark rounded-8-top border-box relative alias-smooth inline-block" style="width: 50%;">
+	 Invite by Email
+</a>
 	
-<div id="friends_container" class="well-box rounded-8" style="padding-bottom: 4px;">
+<div class="well-box rounded-8">
+
+	<div class="dark" style="font-size: 14px; padding: 6px 0 18px;">
+			Send a personal invite to their Facebook inbox:
+	</div>
+        
+	<span id="friends_container" 
+		style="<%=self.current_user.fb_authorized? ? '' : 'display:none'%>">
 		
 		<div class="search-box relative">
       <%=text_field_tag 'search_box', 
@@ -19,13 +30,35 @@
 		</div> <!-- /search-box -->
 
 		  
-  <!-- friends list -->
-	<div id="contacts" class="connections-box">
-		<div id="feed-spinner" class="feed-loading dark">
-		</div> 
-	</div>
-		 
-</div> <!-- friends container -->
+	  <!-- friends list -->
+		<div id="contacts" class="connections-box">
+			<div id="feed-spinner" class="feed-loading dark">
+			</div> 
+		</div>
+	
+	</span> <!--/friends_container-->
+	
+	<%unless self.current_user.fb_authorized?%>
+	
+	  <div id="facebook_connect_box">
+	    <a href="javascript:void(0)"
+	        id="facebook_connect"
+	        onclick="this.className += ' load';"
+	        class="btn btn-large btn-facebook relative shaded"
+	        style="width: 256px;">
+	      <span class='hide-when-loading'>
+	        <%=image_tag "social/f-box.png",
+	            :class => "f-box"%>
+	        View Facebook friend list
+	      </span>
+	      <i class='icon-loading icon-white'></i>
+	    </a> 	
+	  </div>
+	<%end%>
+
+			 
+</div> <!-- /well -->
+
 
 <%content_for :javascript do%>
   <script type="text/javascript">

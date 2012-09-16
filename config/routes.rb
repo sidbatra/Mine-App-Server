@@ -7,41 +7,37 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :home, 
     :action => :show
 
-  map.login 'facebook/authenticate',
-    :controller => :session,
-    :action     => :create
+  map.create_user 'create_user',
+    :controller => :users,
+    :action => :create
 
   map.logout 'logout',
     :controller => :session,
     :action     => :destroy
 
   map.fb_auth 'facebook/authenticate',
-    :controller => :session,
-    :action     => :create
+    :controller => :facebook,
+    :action     => :new
 
   map.fb_reply 'facebook/reply',
-    :controller => :users,
+    :controller => :facebook,
     :action     => :create
 
   map.tw_auth 'twitter/authenticate',
     :controller => :twitter,
-    :action     => :create,
-    :filter     => :authenticate
+    :action     => :new
 
   map.tw_reply 'twitter/reply',
     :controller => :twitter,
-    :action     => :create,
-    :filter     => :reply
+    :action     => :create
 
   map.tumblr_auth 'tumblr/authenticate',
     :controller => :tumblr,
-    :action     => :create,
-    :filter     => :authenticate
+    :action     => :new
 
   map.tumblr_reply 'tumblr/reply',
     :controller => :tumblr,
-    :action     => :create,
-    :filter     => :reply
+    :action     => :create
 
   ##
   # Resoure based routes
@@ -98,7 +94,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :suggestions,
     :only => [:index]
 
-  map.resources :facebook,
+  map.resources :facebook_subscriptions,
     :only => [:index,:create]
 
   map.new_invite 'invite',

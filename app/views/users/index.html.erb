@@ -1,14 +1,13 @@
-<div class="profile-box unit-box border-box" style="margin-top: -6px;">
+<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative">
        
   <%=render :partial => "box", :locals => {:user => @user}%>
-  
+
+</div> <!-- /profile-box -->
   
   <div class="connections-box border-box split" style="margin-right: 2.7%;">
 
       <div class="box-title relative">
-				<a href="javascript:void(0)" class="dark">
-          Following (<%=@user.inverse_followings_count%>)
-        </a>
+      	<%=@user.inverse_followings_count%> Following
 			</div>
 			
 
@@ -41,9 +40,7 @@
   <div class="connections-box border-box split">
 
       <div class="box-title relative">
-				<a href="javascript:void(0)" class="dark">
-          Followers (<%=@user.followings_count%>)
-        </a>
+      	<%=@user.followings_count%> Followers 
 			</div>
 
 			
@@ -70,8 +67,6 @@
       <%end%>
       
   </div> <!-- followers -->
-  
-</div> <!-- /profile-box -->
 
 
 <%content_for :javascript do%>

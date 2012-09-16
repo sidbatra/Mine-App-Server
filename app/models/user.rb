@@ -38,8 +38,7 @@ class User < ActiveRecord::Base
   # Validations
   #----------------------------------------------------------------------
   validates_presence_of   :first_name
-  validates_presence_of   :last_name
-  validates_presence_of   :fb_user_id
+  validate :third_party_connect
 
   #----------------------------------------------------------------------
   # Indexing
@@ -79,7 +78,7 @@ class User < ActiveRecord::Base
                     :first_name,:last_name,:access_token,:byline,
                     :tumblr_access_token, :tumblr_access_token_secret,
                     :tw_access_token, :tw_access_token_secret,
-                    :iphone_device_token
+                    :iphone_device_token, :tw_user_id
 
   #----------------------------------------------------------------------
   # Class methods
@@ -90,24 +89,37 @@ class User < ActiveRecord::Base
   #
   def self.add_from_fb(attributes,source)
     user = find_or_initialize_by_fb_user_id(
-            :fb_user_id   => attributes.identifier,
-            :source       => source)
+            :fb_user_id => attributes.identifier,
+            :source => source,
+            :email => attributes.email,
+            :gender => attributes.gender,
+            :first_name => attributes.first_name,
+            :last_name => attributes.last_name)
 
-    user.email        = attributes.email
-    user.gender       = attributes.gender
     user.birthday     = attributes.birthday
-    user.first_name   = attributes.first_name
-    user.last_name    = attributes.last_name
     user.access_token = attributes.access_token.to_s
 
     user.save!
     user
   end
 
-  # Factory method to create a user via an invite.
+  # Factory method to create a new user or update
+  # important fields of an existing user using a twitter user object.
   #
-  def self.add_from_invite(attributes)
-    find_or_create_by_fb_user_id(attributes)
+  def self.add_from_tw(attributes,access_token,access_token_secret,source)
+    name_parts = attributes.name.split(' ')
+
+    user = find_or_initialize_by_tw_user_id(
+            :tw_user_id => attributes.id,
+            :source => source,
+            :first_name => name_parts.first,
+            :last_name => name_parts[1..-1].join(' '))
+
+    user.tw_access_token = access_token
+    user.tw_access_token_secret = access_token_secret
+
+    user.save!
+    user
   end
 
   # Find user by the token stored in their cookie.
@@ -128,15 +140,6 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  # Whether the user has actually registered or is a stub user from
-  # an invite.
-  #
-  # returns - Boolean. true if the user is registered false otherwise.
-  #
-  def is_registered?
-    access_token.present?
-  end
-
   # Test is the user was created very recently.
   #
   def is_fresh
@@ -153,16 +156,26 @@ class User < ActiveRecord::Base
     "http://graph.facebook.com/#{fb_user_id}/picture?type=#{type}" 
   end
 
-  # Convienience method to get the user's square fb image.
+  # URL for the user's image on twitter.
   #
-  def square_image_url
-    fb_image_url('square')
+  # type the String Type of tw image - normal | bigger | rasonable_small | original
+  #
+  # return the String url of the image.
+  #
+  def tw_image_url(type)
+    "http://api.twitter.com/1/users/profile_image?user_id=#{tw_user_id}&size=#{type}"
   end
 
-  # Convienience method to get the user's large fb image.
+  # Convienience method to get the user's square image. 
+  #
+  def square_image_url
+    fb_authorized? ? fb_image_url('square') : tw_image_url('bigger')
+  end
+
+  # Convienience method to get the user's large image.
   #
   def large_image_url
-    fb_image_url('large')
+    fb_authorized? ? fb_image_url('large') : tw_image_url('reasonably_small')
   end
 
   # Tests gender to see if user is male
@@ -295,6 +308,14 @@ class User < ActiveRecord::Base
 
 
   protected
+
+  # Validate presence of either a twitter or facebook connect.
+  #
+  def third_party_connect
+    if tw_user_id.nil? && fb_user_id.nil?
+      errors.add("Either twitter or facebook connect required") 
+    end
+  end
 
   # Required by Handler mixin to create base handle
   #

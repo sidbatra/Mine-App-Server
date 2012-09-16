@@ -1,7 +1,7 @@
 <div class="header unit-box border-box">
     
     <%=link_to_if !is_onboarding?,
-        image_tag("logos/mine-h-white-48-shaded-2x.png", 
+        image_tag("logos/mine-h-white-58-brighter-2x.png", 
           :class => "logo absolute"),
         root_path(:src => "bar")%>
       
@@ -15,12 +15,12 @@
             class="btn-user relative pointer txt m dark" 
             style="float: left; width: 28px; padding: 0; border: 0; margin-right: 6px;">
             <%=image_tag self.current_user.square_image_url,
-                  :class => "user-photo m rounded-3 shaded",
+                  :class => "user-photo m rounded-2 shaded",
                   :style => ""%>
             <%#h self.current_user.full_name%>      	
           </a>
 
-          <input type="text" placeholder="Search for people" class="m border-box" id="users_search_query" 
+          <input type="text" placeholder="Search for people" class="m border-box rounded-2" id="users_search_query" 
             style="float: left; width: 168px; margin: 0 6px 0 0;">
           
 <!--
@@ -65,27 +65,31 @@
     
 
     <%else%>
-      <a href="<%=fb_auth_path(:src => @origin)%>" 
-          onclick="this.className += ' load';"
-          class="btn btn-large btn-facebook relative shaded"
-          style="float: right; width: 122px;">
-        <span class='hide-when-loading'>
-          <%=image_tag "social/f-box.png",
-              :class => "f-box"%>
-          Join now
-        </span>
-        <i class='icon-loading icon-white'></i>
-      </a> 	
+    	<div class="well-box border-box rounded-5" style="float: right; padding: 7px; margin-top: -3px;">
+	      <a href="<%=fb_auth_path(:src => @origin)%>" 
+	          onclick="this.className += ' load';"
+	          class="btn btn-facebook rounded-3-right relative shaded"
+	          style="float: right; width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
+	        <span class='hide-when-loading'>
+	          <%=image_tag "social/f-box.png",
+	              :class => "f-box"%>
+	          Sign in with Facebook
+	        </span>
+	        <i class='icon-loading icon-white'></i>
+	      </a> 	
+	      <a href="<%=tw_auth_path(:src => @origin)%>" 
+	          onclick="this.className += ' load';"
+	          class="btn btn-twitter rounded-3-left relative shaded"
+	          style="float: right; width: 160px;">
+	        <span class='hide-when-loading'>
+	          <%=image_tag "social/t-box.png",
+	              :class => "t-box"%>
+	          Sign in with Twitter
+	        </span>
+	        <i class='icon-loading icon-white'></i>
+	      </a> 	
+      </div> <!--/well-box-->
     <%end%>
     
-    <!--div class="well-box border-box rounded-5" 
-          style="padding: 6px; margin-right: 6px; float: right;">
-      <input type="text" style="height: 28px; width: 160px;"/>
-    </div-->
-    
 </div> <!-- /header -->
-    
 
-<!--div class="caret-box border-box absolute rounded-3-bottom">
-	<b class="caret opaque"></b>
-</div-->

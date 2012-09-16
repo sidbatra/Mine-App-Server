@@ -34,7 +34,7 @@ Denwen.Analytics = Backbone.Model.extend({
     //mixpanel.identify(id);
     mixpanel.name_tag(email);
 
-    mixpanel.register_once({"Age" : age});
+    mixpanel.register({"Age" : age});
     mixpanel.register_once({"Gender" : gender});
 
     //mixpanel.people.set({

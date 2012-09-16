@@ -76,6 +76,7 @@
   UserShowSource:
     PurchaseDeleted: 'purchase_deleted'
   WelcomeFilter:
+    Info: 'info'
     Learn: 'intro'
     Create: 'create'
   OGObject:

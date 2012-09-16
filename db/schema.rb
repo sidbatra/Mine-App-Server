@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814180702) do
+ActiveRecord::Schema.define(:version => 20120823104400) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -304,6 +304,7 @@ ActiveRecord::Schema.define(:version => 20120814180702) do
   add_index "users", ["purchases_count"], :name => "index_users_on_purchases_count"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
+  add_index "users", ["tw_user_id"], :name => "index_users_on_tw_user_id", :unique => true
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
   add_index "users", ["visited_at"], :name => "index_users_on_visited_at"
 

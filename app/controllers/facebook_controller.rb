@@ -1,73 +1,83 @@
 class FacebookController < ApplicationController
-  layout nil
-  
-  # Handle facebook related get requests for real time updates 
+  before_filter :create_client
+
+  # Start the facebook authentication process.
   #
-  def index
-    @filter = params[:filter].to_sym
-  
-    case @filter
-    when :subscriptions
-      mode          = params['hub.mode']
-      challenge     = params['hub.challenge']
-      verify_token  = params['hub.verify_token']
+  def new
+    @client.redirect_uri = fb_reply_url(
+                            :src    => @source,
+                            :target => params[:target],
+                            :follow_user_id => params[:follow_user_id],
+                            :usage  => params[:usage])
 
-      unless mode && challenge && verify_token == CONFIG[:fb_verify_token] 
-        raise IOError, "Incorrect params for fb subscription verification" 
-      end
+    target_url = @client.authorization_uri(
+                  :scope => [:email,
+                             :user_likes,
+                             :user_birthday,
+                             :publish_actions])
 
-    else
-      raise IOError, "Incorrect facebook index filter"
-    end
+    target_url << '&display=touch' if is_phone_device?
+
+    redirect_to target_url
 
   rescue => ex
     handle_exception(ex)
-  ensure
-    respond_to do |format|
-      format.json
-    end
-  end 
-
-  # Handle facebook related post requests for real time updates 
-  #
-  def create
-    @filter = params[:filter].to_sym
-  
-    case @filter
-    when :subscriptions
-      object  = params[:object]
-      entry   = params[:entry]
-
-      unless object && entry 
-        raise IOError, "Incorrect params for fb subscription updates"
-      end
-
-      user_fb_ids = entry.map{|permission| permission['uid']} 
-      users       = User.find_all_by_fb_user_id(user_fb_ids)
-      users       = users.select do |user| 
-                      user.visited_at && user.visited_at > 30.days.ago 
-                    end
-      
-      if object == 'user'
-        users.each do |user|
-          ProcessingQueue.push(
-            UserDelayedObserver,
-            :mine_fb_data,
-            user,
-            true) 
-        end 
-      end
-  
-    else
-      raise IOError, "Incorrect facebook create filter"
-    end
-
-  rescue => ex
-    handle_exception(ex)
-  ensure
-    respond_to do |format|
-      format.json
-    end
   end
 
+  # Handle reply from facebook oaut.
+  #
+  def create
+    @usage = params[:usage] ? params[:usage].to_sym : :redirect
+    access_token = params[:access_token]
+    target = params[:target]
+    follow_user_id = params[:follow_user_id]
+
+    unless access_token
+      @client.redirect_uri = fb_reply_url(
+                              :src => @source,
+                              :target => target,
+                              :follow_user_id => follow_user_id,
+                              :usage => params[:usage])
+
+      @client.authorization_code = params[:code]
+      access_token = @client.access_token!(:client_auth_body)
+    end
+
+    raise IOError, "Error fetching access token" unless access_token
+
+
+    case @usage
+    when :redirect
+      redirect_to create_user_path(
+                    :using => "facebook",
+                    :access_token => access_token,
+                    :target => target,
+                    :src => @source,
+                    :follow_user_id => follow_user_id)
+
+    when :popup
+      fb_user = FbGraph::User.fetch("me?fields=id",
+                  :access_token => access_token)
+
+      self.current_user.access_token = access_token.to_s
+      self.current_user.fb_user_id = fb_user.identifier
+      self.current_user.save!
+    end
+
+  rescue => ex
+    handle_exception(ex)
+  end
+
+
+  private
+
+  # Create facebook client variable.
+  #
+  def create_client
+    fb_auth = FbGraph::Auth.new(
+                            CONFIG[:fb_app_id],
+                            CONFIG[:fb_app_secret])
+
+    @client = fb_auth.client
+  end
 end

@@ -54,7 +54,7 @@ module DW
     #
     def access_denied
       store_location
-      redirect_to login_path(:target => request.request_uri)
+      redirect_to root_path(:target => request.request_uri)
       #respond_to do |format|
       #  format.json do
       #    render :partial => "json/response",
@@ -64,7 +64,7 @@ module DW
       #              :body     => nil}
       #  end
       #  format.html do 
-      #    redirect_to login_path#(:after_login => request.request_uri)
+      #    redirect_to root_path#(:after_login => request.request_uri)
       #  end
       #end
     end  

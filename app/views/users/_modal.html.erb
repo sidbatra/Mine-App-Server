@@ -6,15 +6,27 @@
 		    <h4>Follow <%=h user.full_name%>'s latest purchases</h4>
 		  </div>
 		  <div class="modal-body" style="text-align: center;">
-		  
-		    <a href="<%=fb_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
+		  	
+		  	<a href="<%=tw_auth_path(:src => @origin)%>" 
 	          onclick="this.className += ' load';"
-	          class="btn btn-large btn-facebook relative shaded"
-	          style="width: 168px;">
+	          class="btn btn-twitter rounded-3-left relative shaded"
+	          style="width: 172px;">
+	        <span class='hide-when-loading'>
+	          <%=image_tag "social/t-box.png",
+	              :class => "t-box"%>
+	          Sign in with Twitter
+	        </span>
+	        <i class='icon-loading icon-white'></i>
+	      </a> 	
+		  
+		    <a href="<%=fb_auth_path(:src => @origin)%>" 
+	          onclick="this.className += ' load';"
+	          class="btn btn-facebook rounded-3-right relative shaded"
+	          style="width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/f-box.png",
 	              :class => "f-box"%>
-	          Join now
+	          Sign in with Facebook
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	
