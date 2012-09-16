@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823104400) do
+ActiveRecord::Schema.define(:version => 20120916190305) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -261,6 +261,17 @@ ActiveRecord::Schema.define(:version => 20120823104400) do
   add_index "suggestions", ["gender"], :name => "index_suggestions_on_gender"
   add_index "suggestions", ["thing"], :name => "index_suggestions_on_thing"
   add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
+
+  create_table "themes", :force => true do |t|
+    t.string   "background_path"
+    t.string   "background_tile_path"
+    t.string   "background_body_class"
+    t.integer  "weight",                :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "themes", ["weight"], :name => "index_themes_on_weight"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
