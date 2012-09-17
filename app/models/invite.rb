@@ -15,7 +15,7 @@ class Invite < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Attributes
   #----------------------------------------------------------------------
-  attr_accessible :user_id,:recipient_id,:platform,:recipient_name
+  attr_accessible :user_id,:recipient_id,:platform,:recipient_name,:message
 
   #----------------------------------------------------------------------
   # Named scopes
@@ -34,7 +34,8 @@ class Invite < ActiveRecord::Base
         :user_id        => user_id,
         :recipient_id   => attributes[:recipient_id],
         :platform       => attributes[:platform],
-        :recipient_name => attributes[:recipient_name])
+        :recipient_name => attributes[:recipient_name],
+        :message        => attributes[:message])
   end
 
 end

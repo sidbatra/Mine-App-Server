@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916194246) do
+ActiveRecord::Schema.define(:version => 20120917014011) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120916194246) do
     t.datetime "updated_at"
     t.integer  "platform",       :default => 0
     t.string   "recipient_name"
+    t.string   "message"
   end
 
   add_index "invites", ["platform"], :name => "index_invites_on_platform"
