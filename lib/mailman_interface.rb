@@ -112,6 +112,18 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+        
+      # Email user being followed
+      #
+      def self.email_leader_about_follower(following)
+       if following.user.setting.email_follower
+         UserMailer.deliver_new_follower(following) 
+       end
+
+      rescue => ex
+       LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Public. Email users whose friends have added purchases.
       #
       # users - The Array of User objects whose friends have added purchases.

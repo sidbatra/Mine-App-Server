@@ -105,6 +105,24 @@ class UserMailer < ActionMailer::Base
     subject       "#{@comment.user.first_name} #{@action}"
   end
 
+  # Alert user when someone starts following him/her
+  #
+      
+  def new_follower(following) 
+    @follower     = following.follower 
+    @user         = following.user
+    @source       = "email_follower"
+       
+    @action       = "View #{@follower.first_name}'s Mine"
+       
+    generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
+       
+       
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end 
+
   # Friend activity digest for the user 
   #
   def friend_activity_digest(user,friends,new_friends,purchases)
