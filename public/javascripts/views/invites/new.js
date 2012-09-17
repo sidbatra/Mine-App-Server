@@ -11,6 +11,10 @@ Denwen.Views.Invites.New = Backbone.View.extend({
   //
   initialize: function() {
     this.source = this.options.source;
+    this.facebookBoxEl = "#facebook_box";
+    this.emailBoxEl = "#email_box";
+    this.facebookTabEl = "#facebook_tab";
+    this.emailTabEl = "#email_tab";
     this.friendsBoxEl = "#friends_container";
 
     if(Denwen.H.currentUser.get('setting').get('fb_auth')) {
@@ -79,13 +83,33 @@ Denwen.Views.Invites.New = Backbone.View.extend({
       // Listen to routes
       //
       routes: {
-        "search/:query" : "search"
+        "search/:query" : "search",
+        "facebook" : "facebookTab",
+        "email" : "emailTab"
       },
 
       // Launch search. 
       //
       search: function(query) {
         self.friends.search(query.replace('-',' '));
+      },
+
+      facebookTab: function() {
+        $(self.emailTabEl).removeClass('on');
+        $(self.emailTabEl).addClass('off');
+        $(self.emailBoxEl).hide();
+        $(self.facebookTabEl).removeClass('off');
+        $(self.facebookTabEl).addClass('on');
+        $(self.facebookBoxEl).show();
+      },
+
+      emailTab: function() {
+        $(self.facebookTabEl).removeClass('on');
+        $(self.facebookTabEl).addClass('off');
+        $(self.facebookBoxEl).hide();
+        $(self.emailTabEl).removeClass('off');
+        $(self.emailTabEl).addClass('on');
+        $(self.emailBoxEl).show();
       }
     });
 

@@ -1,41 +1,24 @@
-<a href="/" class="well-box tab off dark rounded-8-top border-box relative alias-smooth inline-block" style="width: 50%;">
+<a id="facebook_tab"
+  href="#facebook" 
+  class="well-box tab dark rounded-8-top border-box relative 
+          alias-smooth inline-block 
+          <%=self.current_user.fb_authorized? ? 'on' : 'off'%>"
+  style="width: 50%;">
 	 Facebook Invite
 </a> <!-- /facebook tab -->
 
-<a href="/" class="well-box tab on dark rounded-8-top border-box relative alias-smooth inline-block" style="width: 50%;">
+<a id="email_tab"
+  href="#email" 
+  class="well-box tab dark rounded-8-top border-box relative 
+          alias-smooth inline-block
+          <%=self.current_user.fb_authorized? ? 'off' : 'on'%>"
+  style="width: 50%;">
 	 Invite by Email
 </a> <!-- /email tab -->
 
-<div class="well-box rounded-8 email">
-	
-	<div class="dark" style="font-size: 14px; padding: 6px 0 18px;">
-		Invite up to 3 friends with a custom email:
-	</div>
-	
-	<input autocomplete="off" class="txt l rounded-3 border-box" 
-		style="width: 32.5%;" placeholder="Email address 1" type="text">
-		
-	<input autocomplete="off" class="txt l rounded-3 border-box" 
-		style="width: 32.5%; margin: 0 1.25%;" placeholder="Email address 2" type="text">
-		
-	<input autocomplete="off" class="txt l rounded-3 border-box" 
-		style="width: 32.5%;" placeholder="Email address 3" type="text">
-	
-	<textarea class="txt l rounded-3 unresizable border-box" style="margin: 8px 0 12px;" 
-		placeholder="Add a personal note (optional)" rows="4" ></textarea>
-	
-	<button class="btn btn-large shaded" style="width: 120px;" type="submit">
-		<span class="hide-when-loading">
-			Send Invites
-		</span>
-		<i class="icon-loading icon-white"></i>
-	</button>
-	
-	
-</div> <!-- /well-box email-->
-	
-	
-<div class="well-box rounded-8 facebook" style="display: none">
+<div id="facebook_box"
+  class="well-box rounded-8 facebook" 
+  style="<%=self.current_user.fb_authorized? ? '' : 'display:none'%>">
 
 	<div class="dark" style="font-size: 14px; padding: 6px 0 18px;">
 			Send a personal invite to their Facebook inbox:
@@ -87,6 +70,36 @@
 
 			 
 </div> <!-- /well-box facebook-->
+
+
+<div id="email_box"
+  class="well-box rounded-8 email" 
+  style="<%=self.current_user.fb_authorized? ? 'display:none' : ''%>">
+	<div class="dark" style="font-size: 14px; padding: 6px 0 18px;">
+		Invite up to 3 friends with a custom email:
+	</div>
+	
+	<input autocomplete="off" class="txt l rounded-3 border-box" 
+		style="width: 32.5%;" placeholder="Email address 1" type="text">
+		
+	<input autocomplete="off" class="txt l rounded-3 border-box" 
+		style="width: 32.5%; margin: 0 1.25%;" placeholder="Email address 2" type="text">
+		
+	<input autocomplete="off" class="txt l rounded-3 border-box" 
+		style="width: 32.5%;" placeholder="Email address 3" type="text">
+	
+	<textarea class="txt l rounded-3 unresizable border-box" style="margin: 8px 0 12px;" 
+		placeholder="Add a personal note (optional)" rows="4" ></textarea>
+	
+	<button class="btn btn-large shaded" style="width: 120px;" type="submit">
+		<span class="hide-when-loading">
+			Send Invites
+		</span>
+		<i class="icon-loading icon-white"></i>
+	</button>
+</div> <!-- /well-box email-->
+	
+	
 
 
 <%content_for :javascript do%>
