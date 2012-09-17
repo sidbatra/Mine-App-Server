@@ -7,11 +7,14 @@
 
 	<div class="container">
 	
-		<h2 class="invite-welcome alias-smooth" style="padding: 0 0 20px;">
-			<img class="user-photo xxl rounded-3"
-				src="http://graph.facebook.com/6558/picture?type=square" />
-				Allison wants you <br class="rwd-show">to add your best purchases on <b>mine</b>!
-		</h2>
+    <%if @invited_by_user%>
+      <h2 class="invite-welcome alias-smooth" style="padding: 0 0 20px;">
+        <img class="user-photo xxl rounded-3"
+          src="<%=@invited_by_user.square_image_url%>" />
+          <%=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
+          add your best purchases on <b>mine</b>!
+      </h2>
+    <%end%>
 	
 		<div id="video" class="video-frame">
 			<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
@@ -24,8 +27,11 @@
 		</div>
 		
 		<h2 class="alias-smooth">
-			Sign in now:
-			<!--Tell the world <br class="rwd-show">when you buy something great.-->
+      <%if @invited_by_user%>
+        Sign in now:
+      <%else%>
+			  Tell the world <br class="rwd-show">when you buy something great
+      <%end%>
 		</h2>
 		
 		
