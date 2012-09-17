@@ -65,7 +65,7 @@ module ApplicationHelper
   # Link to the contact email
   #
   def email_link
-    "<a href='mailto:#{contact_email}'>Contact Us</a>"
+    "<a href='mailto:#{contact_email}'>Contact</a>"
   end
 
   # Public. Extract actual contact email from EMAILS to field.
