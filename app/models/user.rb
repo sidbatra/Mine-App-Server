@@ -169,13 +169,13 @@ class User < ActiveRecord::Base
   # Convienience method to get the user's square image. 
   #
   def square_image_url
-    fb_authorized? ? fb_image_url('square') : tw_image_url('bigger')
+    fb_connected? ? fb_image_url('square') : tw_image_url('bigger')
   end
 
   # Convienience method to get the user's large image.
   #
   def large_image_url
-    fb_authorized? ? fb_image_url('large') : tw_image_url('reasonably_small')
+    fb_connected? ? fb_image_url('large') : tw_image_url('reasonably_small')
   end
 
   # Tests gender to see if user is male
@@ -278,6 +278,13 @@ class User < ActiveRecord::Base
     else 
       false
     end
+  end
+
+  # Whether or not the user connected with FB. This is different from having
+  # the account still beign authorized.
+  #
+  def fb_connected?
+    fb_user_id.present?
   end
 
   # Whether or not the user has authorized our facebook application
