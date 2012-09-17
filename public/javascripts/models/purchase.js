@@ -19,6 +19,21 @@ Denwen.Models.Purchase = Backbone.Model.extend({
       this.creationTimestamp = this.get('created_at').toDate().getTime() * 0.001;
   },
 
+  displayTimestamp: function() {
+    var createdAt = this.get('created_at').toDate();
+    var msElapsed = new Date() - createdAt;
+    var timestamp = "";
+
+    if(msElapsed < 86400000)
+      timestamp = "Today";
+    else if(msElapsed < 172800000)
+      timestamp = "Yesterday";
+    else
+      timestamp = createdAt.getDate() + " " + Denwen.H.monthForDate(createdAt);
+
+    return timestamp;
+  },
+
   // Base path to the purchase with any additional args
   //
   basePath: function() {
