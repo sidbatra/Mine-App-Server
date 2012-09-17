@@ -91,7 +91,7 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     $(this.buttonEl).addClass('pushed');
     $(this.buttonEl).unbind('click');
 
-    Denwen.Track.action("Invite Created");
+    Denwen.Track.action("Invite Created",{"Source":"facebook"});
   },
 
   // Invite fails to create
