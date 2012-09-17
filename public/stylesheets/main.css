@@ -538,6 +538,11 @@ footer .twitter-button-box {
 
 .item .panel .title-box .user-photo { left:0; top: 3px; }
 .item .panel .title-box .em { /* font-weight: bold; */ }
+.item .panel .title-box .time { 
+	font-size: 12px; 
+	font-weight: normal;
+	color: #bbb;
+	white-space: nowrap; }
 
 /* -- title link-disabled -- */
 

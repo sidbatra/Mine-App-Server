@@ -24,9 +24,6 @@
 				<i class="icon-heart icon-black"></i>
 			</a>		
 		<%}%>
-
-		<!--img class="stamp absolute" 
-      src="<#=Denwen.H.imagePath('mine_stamp_54_2x.png')%>" /-->
         
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
         href="<%=purchase.get('source_url')%>" 
@@ -49,26 +46,34 @@
 		      <img class="user-photo xl rounded-3 absolute" 
             src="<%=purchase.get('user').get('square_image_url')%>" />
 		    </a>
+		    
+		    <span style="padding-right: 3px;">
 		
-		    <a class="em light underlined" 
-          href="<%=purchase.get('user').path('purchase_name')%>">
-          <%=purchase.get('user').escape('first_name')%>   
-          <%=purchase.get('user').escape('last_name')%></a> 
-		
-		    bought 
-		
-		    <%if(purchase.get('store')){%>
-		      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
-		    <%}%>
-		
-		    <a id="purchase_title_<%=purchase.get('id')%>"
-            href="<%=purchase.get('source_url')%>" 
-            class="em light underlined link-out" 
-            target="_blank"><%=purchase.escape('title')%></a> 
-		
-		    <%if(purchase.get('store')){%>
-		      from <%=purchase.get('store').escape('name')%>
-		    <%}%>
+			    <a class="em light underlined" 
+	          href="<%=purchase.get('user').path('purchase_name')%>">
+	          <%=purchase.get('user').escape('first_name')%>   
+	          <%=purchase.get('user').escape('last_name')%></a> 
+			
+			    bought 
+			
+			    <%if(purchase.get('store')){%>
+			      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
+			    <%}%>
+			
+			    <a id="purchase_title_<%=purchase.get('id')%>"
+	            href="<%=purchase.get('source_url')%>" 
+	            class="em light underlined link-out" 
+	            target="_blank"><%=purchase.escape('title')%></a> 
+			
+			    <%if(purchase.get('store')){%>
+			      from <%=purchase.get('store').escape('name')%>
+			    <%}%>
+		    
+		    </span>
+		    
+        <span class="time">
+  				<%=$.timeago(purchase.get('created_at'))%>
+				</span>
 		   
 	    </div> <!-- /title-box -->
 
