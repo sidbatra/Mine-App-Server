@@ -314,7 +314,7 @@ footer .twitter-button-box {
 	margin-top: 2px; 
 	margin-bottom: -8px; }
 	
-.well-box.tab.on { color: white; }
+.well-box.tab.on { color: white; cursor: default; }
 
 .well-box.tab.off {
 	background: none;
@@ -1023,7 +1023,7 @@ footer .twitter-button-box {
 	color: white;
 	font-size: 36px; 
 	padding: 5px 18px 5px 6px;
-/* 	font-weight: normal; */
+	font-weight: normal;
 	box-shadow: none; }
 
 .chooser span.default { display: block; }
