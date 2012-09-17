@@ -1018,7 +1018,7 @@ footer .twitter-button-box {
 	border-left: 1px solid #393939 !important; 
 	border-right: 1px solid #393939 !important; }
 		
-@media screen and (min-width: 946px) { 
+@media screen and (max-width: 946px) { 
 	.chooser .search-bar .btn-help { display: none; }
 }
 
