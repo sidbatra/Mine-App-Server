@@ -50,7 +50,7 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
     var url   = 'http://getmine.com/invites/' + this.handle;
 
     FB.ui({method: 'send',
-      link: 'http://getmine.com', 
+      link: url,
       to: this.recipient.get('third_party_id')}, 
       function(response) {self.sendCallback(response)});
   },
