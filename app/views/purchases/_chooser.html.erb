@@ -43,34 +43,19 @@
 
       </div> <!-- search-container -->  
       
-	   	<a href="#help-search" role="button" data-toggle="modal"
+      
+     	<a href="#help-search" role="button" data-toggle="modal"
 	    	class="btn-help dark rounded-4 border-box gradient v-555-444 absolute" 
 	    	style="width: 88px; right: 72px; top: 12px;">
 	    	Searching<br>
 	    	Tips
 	    </a>
-      
+
 		</form> <!-- /search-bar -->
-		
-		
-		<div class="modal hide rounded-5" style="display: block; z-index: 1000;" id="help-search">
-		  <div class="modal-header gradient v-FFF-DDD rounded-5-top">
-		    <button type="button" class="close" data-dismiss="modal">
-          &times;
-        </button>
-		    <
-		  </div>
-		  <div class="modal-body" style="text-align: center;">
-	      <div class="txt xs" style="margin-top: 8px; color: #999;">
-          Quick sign up. Mine never auto-shares.
-        </div>
-		  </div>
-		</div> <!-- /modal -->
 
 
 		<div class="results border-box" id="results">
     </div>
-	
 	
 		<div class="scroll-instructions txt s gradient v-FFF-DDD" 
       id="scroll_for_more_results">
@@ -83,6 +68,28 @@
 	  </div>
 	  
 	</div> <!-- chooser -->
-	
+		
 	<div class="shadow" id="shadow">
   </div>
+  
+  <div class="modal dark help-search hide border-box rounded-5 alias-smooth" id="help-search">
+    <button type="button" class="close" data-dismiss="modal">
+      &times;
+    </button>
+	  <h3>
+	  	Tip 1: Be Specific!
+	  </h3>
+	  <p>
+	  	Try adding your item’s <b>color</b> and <b>brand</b>.<br>
+	  	Include the <b>store name</b> if the item is uniquely sold there.
+	  </p>
+	  <h3>
+	  	Tip 2:  Try pasting in a URL
+	  </h3>
+	  <p style="margin-bottom: 4px;">
+	  	If you’ve found your item elsewhere on the web, 
+	  	paste in the page’s address for the perfect photo every time.
+	  </p>
+	</div> <!-- /modal -->
+  
+
