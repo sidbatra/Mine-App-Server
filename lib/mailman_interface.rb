@@ -122,7 +122,7 @@ module DW
                 
         users.each do |user|
           begin
-            if user.setting.email_influencer
+            if user.setting.email_digest
               friends = user.ifollowers
               active_friends = friends.select{|f| purchases.key?(f.id)}
               new_friends = friends.select{|f| f.created_at > from}
