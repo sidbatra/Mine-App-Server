@@ -23,6 +23,7 @@ class InvitesController < ApplicationController
 
     if invites
       invites.each do |invite|
+        invite[:message] = params[:message] 
         Invite.add(invite,self.current_user.id)
       end
     else

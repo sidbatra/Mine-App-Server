@@ -17,6 +17,9 @@ Denwen.Views.Invites.New = Backbone.View.extend({
     this.emailTabEl = "#email_tab";
     this.friendsBoxEl = "#friends_container";
 
+    new Denwen.Partials.Invites.Email({el:this.el});
+
+
     if(Denwen.H.currentUser.get('setting').get('fb_auth')) {
       this.loadFacebookContacts();
     }
