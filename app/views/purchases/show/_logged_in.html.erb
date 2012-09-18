@@ -11,10 +11,10 @@
   </div>
   
 
-  <div class="item-row-box border-box rounded-8 shaded" style="margin-bottom: 18px;">
-    <%cache ["v4",@purchase.user,"purchases","preview"] do%>
+  <div class="item-row-box border-box rounded-5 shaded" style="margin-bottom: 18px;">
+    <%cache ["v5",@purchase.user,"purchases","preview"] do%>
       <%@purchase.user.purchases.with_user.
-                  by_id.limit(8).each do |purchase|%>
+                  by_created_at.limit(8).each do |purchase|%>
         <%cache ["v4",purchase,"teaser","purchase"] do%>
           <div id="purchase_thumb_<%=purchase.id%>" class="item">
             <%=link_to image_tag(purchase.square_url, :class => 'item-photo opacity-90-100'),

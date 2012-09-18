@@ -105,6 +105,15 @@ Denwen.Helpers = Backbone.Model.extend({
   //
   fbImageUrl: function(id) {
     return 'https://graph.facebook.com/' + id + '/picture?type=square';
+  },
+
+  // Returns an abbreviated month name for the month of the date object given.
+  //
+  monthForDate: function(dateObject) {
+    this.monthNames = this.monthNames || ["Jan", "Feb", "Mar", "Apr", "May", 
+                                          "Jun", "Jul", "Aug", "Sep", "Oct", 
+                                          "Nov", "Dec"];
+    return this.monthNames[dateObject.getMonth()];
   }
 
 });

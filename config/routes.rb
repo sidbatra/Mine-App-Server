@@ -101,8 +101,12 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :invites,
     :action     => :new
 
+  map.invite 'invites/:invited_by',
+    :controller => :home,
+    :action => :show
+
   map.resources :invites,
-    :only => [:create,:show]
+    :only => [:create]
 
   map.resources :contacts,
     :only => [:index]

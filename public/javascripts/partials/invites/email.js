@@ -77,6 +77,8 @@ Denwen.Partials.Invites.Email = Backbone.View.extend({
     this.posting = false;
     this.stopLoading();
 
+    Denwen.Track.action("Invite Created",{"Source":"email"});
+
     Denwen.Drawer.success("Invite successfully sent.");
 
     _.each(this.emailEls,function(email){
