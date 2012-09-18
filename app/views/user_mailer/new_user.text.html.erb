@@ -1,107 +1,56 @@
-                    <%content_for :header do%>
-                      <%=render :partial => "header_image",
-                          :locals => {
-                            :url => root_url(:src => @source),
-                            :image => "header-image-welcome.jpg",
-                            :alt => "Welcome to Mine. The easiest way to tell friends you've bought something."}%>
-                    <%end%>
+<td align="center" style="font-size: 0; padding: 24px 12px;">
+  <font face="Arial" color="#777"> 
+  
+  	<p style="font-size:18px; color: #333; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
+			<%=@user.first_name%>, a big welcome to mine!<br>
+			We're glad you're here.
+			
+		</p>
 
-                    <%=render :partial => "action_button",
-                        :locals => {
-                          :url => root_url(:src => @source),
-                          :text => "Tell friends about a recent purchase"}%>
-									
-									<!-- email body -->
-                  <table width="100%" 
-                    border="0" 
-                    cellpadding="0" 
-                    cellspacing="0" 
-                    style="display:table;
-                            border-collapse:collapse;
-                            text-align:left">
-                    <tbody>
-                      <tr>
-                        <td align="left" 
-                            valign="top" 
-                            width="50%">
+    <%=render :partial => "action_button",
+        :locals => {
+        :url => root_url(:src => @source),
+        :text => "Add a recent purchase"}%>	
+		
+		<p style="font-size:18px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
-                          <h3 style="color:#333333;
-                                      font-size:18px;
-                                      margin-top:0;
-                                      margin-left:33px;
-                                      margin-right:33px;
-                                      margin-bottom:10px;
-                                      padding:0;
-                                      border-width:0;
-                                      font-weight:normal">
-                            <font face="Arial">
-                              What is Mine?
-                            </font>
-                          </h3>
-
-                          <p style="color:#333333;
-                                    line-height:18px;
-                                    font-size:12px;
-                                    margin-top:0;
-                                    margin-right:33px;
-                                    margin-bottom:15px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-                            <font face="Arial">
-                              <strong style="color:#333333">
-                                <b>
-                                  The best and fastest way to tell friends you've bought something.
-                                </b>
-                              </strong> 
-                              Just type in what you bought, pick the perfect image, add where you bought it, and you're done.
-                            </font>
-                          </p>
-                          <p style="color:#333333;
-                                    line-height:18px;
-                                    font-size:12px;
-                                    margin-top:0;
-                                    margin-right:33px;
-                                    margin-bottom:15px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-                            <font face="Arial">
-                              <strong style="color:#333333">
-                                <b>
-                                  Share however you want.
-                                </b>
-                              </strong> 
-                              Flick a switch to publish your item to Facebook, Twitter, Tumblr, or 
-                              keep things within your select network on Mine itself.
-                            </font>
-                          </p>
-                          <p style="color:#333333;
-                                    line-height:18px;
-                                    font-size:12px;
-                                    margin-top:0;
-                                    margin-right:33px;
-                                    margin-bottom:15px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-                            <font face="Arial">
-                              <strong style="color:#333333">
-                                <b>
-                                  Discover great stuff you would have missed.
-                                </b>
-                              </strong> 
-                              Friends who use Mine find out about endless new products and services through each other. 
-                              It's that simple.
-                            </font>
-                          </p>
-
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <p style="min-height:20px;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding:0">&nbsp;</p>
-                  <!-- /email body -->
-
+			<b>On mine, you can…</b>
+			
+		</p>
+		
+		<p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	<b>Post your purchases, perfectly.</b><br>
+    	Combine a pristine catalog photo, where you bought your item, 
+    	and the web's best link to more info, for an item you can treasure and others can explore.
+    </p> 
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	<b>Share the best stuff in your life.</b><br> 
+    	Thousands of people use mine to post the items that speak to who they are, 
+    	what they like, and what they know about.
+    </p> 
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	<b>Learn from friends and followers.</b><br>
+    	As the only place on the web where you can look up and follow anyone's best purchases, 
+    	mine is a constant source of inspiration.
+    </p> 
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	We're working hard to make mine better 24/7. If you have any thoughts or ideas about it, always feel free to 
+    	<a style="color: #006FB1; text-decoration: none;" 
+    		href="mailto:contact@getmine.com">get in touch!</a>
+    </p>
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	Thanks,<br>
+    	The team at Mine
+    </p>

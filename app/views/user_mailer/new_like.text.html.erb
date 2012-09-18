@@ -1,76 +1,28 @@
-                  <%content_for :headline do%>
-                    <%=render :partial => "headline",
-                        :locals => {
-                          :text => "You have a new like"}%>
-                  <%end%>
 
-                  <td height="32" valign="bottom" align="center">
-                    <font face="Arial" color="#777">
-                      <p style="font-size:14px; font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
-                        All sorts of html imgs and bullets go here!
+                  <td align="center" style="font-size: 0; padding: 24px 12px;">
+                    <font face="Arial" color="#777">                      
+	                    
+	                    <a href="<%=user_url(@actor.handle,:src => @source)%>">
+	                    <%=image_tag @actor.square_image_url, 
+	                    	:style => "-webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"%></a>
+	                    
+	                    <br>
+                        
+                     	<p style="font-size:14px; line-height: 140%; 
+                     		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+                        
+                        <a href="<%=user_url(@actor.handle,:src => @source)%>" 
+                          style="color: #006FB1; font-weight: bold; text-decoration: none;">
+                          <%=@actor.first_name%>
+                        </a>
+                        
+                        <%=@action%>.
+                    
                       </p>
-                    </font>
+                        
+		                    <%=render :partial => "action_button",
+		                        :locals => {
+		                          :url => purchase_url(@purchase.user.handle,@purchase.handle,:src => @source),
+		                          :text => "View your item"}%>
+                 		</font>
                   </td>
-
-									<!-- email body -->
-                  <table width="100%" 
-                    border="0" 
-                    cellpadding="0" 
-                    cellspacing="0" 
-                    style="display:table;
-                            border-collapse:collapse;
-                            text-align:left">
-                    <tbody>
-                      <tr>
-                        <td align="left" valign="top" width="50%">
-
-                          <p style="text-align:center;
-                                    line-height:18px;
-                                    font-size:15px;
-                                    margin-top:10px;
-                                    margin-right:33px;
-                                    margin-bottom:10px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-                            <a href="<%=user_url(@actor.handle,:src => @source)%>">
-                              <%=image_tag @actor.square_image_url,:alt => ""%>
-                            </a>
-                          </p>
-                          
-                          <p style="text-align:center;
-                                    color:#333333;
-                                    line-height:18px;
-                                    font-size:12px;
-                                    margin-top:0;
-                                    margin-right:33px;
-                                    margin-bottom:10px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-                            <font face="Arial">
-                              <strong style="color:#333333">
-                                <b>
-                                  <a href="<%=user_url(@actor.handle,:src => @source)%>" 
-                                      style="color: #177DBE; font-weight: bold; text-decoration: none;">
-                                      <%=@actor.first_name%>
-                                  </a>
-                                </b>
-                              </strong> 
-                              <%=@action%>.
-                            </font>
-                          </p>
-
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <p style="min-height:20px;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding:0">&nbsp;</p>
-                  <!-- /email body -->
-                  
-
-                    <%=render :partial => "action_button",
-                        :locals => {
-                          :url => purchase_url(@purchase.user.handle,@purchase.handle,:src => @source),
-                          :text => "View your item"}%>
