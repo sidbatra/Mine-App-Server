@@ -1,10 +1,16 @@
-                    <%content_for :header do%>
-                      <%=render :partial => "header_image",
-                          :locals => {
-                            :url => purchase_url(@purchase.user.handle,@purchase.handle,:src => @source),
-                            :image => "header-image-like.jpg",
-                            :alt => "Mine: You have a new like."}%>
-                    <%end%>
+                  <%content_for :headline do%>
+                    <%=render :partial => "headline",
+                        :locals => {
+                          :text => "You have a new like"}%>
+                  <%end%>
+
+                  <td height="32" valign="bottom" align="center">
+                    <font face="Arial" color="#777">
+                      <p style="font-size:14px; font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+                        All sorts of html imgs and bullets go here!
+                      </p>
+                    </font>
+                  </td>
 
 									<!-- email body -->
                   <table width="100%" 
