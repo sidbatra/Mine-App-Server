@@ -114,7 +114,7 @@ class UserMailer < ActionMailer::Base
     @user         = following.user
     @source       = "email_follower"
        
-    @action       = "View #{@follower.first_name}'s Mine"
+    @action       = "#{@user.first_name}, you have a new follower!"
        
     generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
        
