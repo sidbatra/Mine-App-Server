@@ -10,14 +10,12 @@
               :type         => 'website',
               :description  => "Tell the world when you buy something great. Post purchases, perfectly.", 
               :url          => root_url,
-              :image        => image_path('mine_100_2x.gif'),
-              :image        => image_path('http://pleg.getmine.com/images/og/og1.png'),
-              :image        => image_path('http://pleg.getmine.com/images/og/og2.png'),
-              :image        => image_path('http://pleg.getmine.com/images/og/og3.png'),
-              :image        => image_path('http://pleg.getmine.com/images/og/og4.png'),
-              :image        => image_path('http://pleg.getmine.com/images/og/og5.png')
-              
-              }%>
+              :images        => [
+                                image_path('og/og1.png'),
+                                image_path('og/og2.png'),
+                                image_path('og/og3.png'),
+                                image_path('og/og4.png'),
+                                image_path('og/og5.png')]}%>
 <%end%>
 
 
