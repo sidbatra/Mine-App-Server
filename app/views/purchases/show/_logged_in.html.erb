@@ -11,7 +11,7 @@
   </div>
   
 
-  <div class="item-row-box border-box rounded-5 shaded" style="margin-bottom: 18px;">
+  <div class="item-row-box border-box rounded-8 shaded" style="margin-bottom: 18px;">
     <%cache ["v4",@purchase.user,"purchases","preview"] do%>
       <%@purchase.user.purchases.with_user.
                   by_id.limit(8).each do |purchase|%>
@@ -30,6 +30,6 @@
   </div> <!-- /item-row-box -->
 
   
-  <div id="feed" class="feed rounded-5 shaded relative">
+  <div id="feed" class="feed rounded-8 relative">
 	</div>
 

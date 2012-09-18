@@ -14,7 +14,6 @@
 
   <%=render :partial => "box", :locals => {:user => @user}%> 
 
-
 	<!-- Following -->
   <%cache ["v9",@user,"ifollowers","profile"] do%>
     <div class="follow-count-box inline-block border-box">
