@@ -91,6 +91,9 @@
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> items
 </div>
 
+<div href="/" class="feed-intro well-box rounded-8">
+	Share your mine with this link: getmine.com/Pierre-Legrain
+</div>
 
 <div class="profile-feed rounded-8 relative">
   <%unless @user.purchases_count.zero?%>

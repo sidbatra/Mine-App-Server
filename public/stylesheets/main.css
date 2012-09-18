@@ -367,6 +367,20 @@ footer .twitter-button-box {
 	
 .feed-title {}	
 
+.feed-intro {
+	display: block;
+	padding: 13px 12px 20px;
+	margin-bottom: -7px;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden; }
+
+a.feed-intro:hover { color: #ccc; }
+
+a.feed-intro .highlight { font-weight: bold; }
+
 .feed-loading.white { 
 	background: url('/images/loading/loading-snake-333-FFF.gif') center no-repeat;
 	height: 80px; }
