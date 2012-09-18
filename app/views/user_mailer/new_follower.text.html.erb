@@ -9,7 +9,7 @@
 		</p>
 			
 		<a href="<%=user_url(@follower.handle,:src => @source)%>">
-		  <img src="http://graph.facebook.com/517379696/picture?type=square"
+		  <img src="<%=@follower.square_image_url%>"
 		  	style="height: 48px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"/></a>
 			
   	<p style="font-size:14px; line-height: 140%; 
@@ -17,13 +17,13 @@
 			
 			<a href="<%=user_url(@follower.handle,:src => @source)%>"
 				style="color: #006FB1; font-weight: bold; text-decoration: none;">
-				<%=@follower.full_name%> [Needs proper pic, action button and subj. change]</a>
-		  
+				<%=@follower.full_name%></a>
 		</p>
 		
-		<a href="<%=user_url(@follower.handle,:src => @source)%>">
-		  View <%=@follower.first_name%>'s Mine
-		</a>
+    <%=render :partial => "action_button",
+        :locals => {
+          :url => user_url(@follower.handle,:src => @source),
+          :text => "View #{@follower.first_name}'s Mine"}%>
 
 	</font>
 </td>
