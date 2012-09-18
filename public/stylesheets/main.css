@@ -642,6 +642,7 @@ footer .twitter-button-box {
 
 .item-row-box div.item .item-photo {
 	width: 12.5%;
+	max-height: 12.5%;
 	height: auto; }
 
 
