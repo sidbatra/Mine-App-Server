@@ -1,5 +1,9 @@
-	<!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
+  <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "#{CONFIG[:name]} - Tell the world when you buy something great.",
+        :description => "Post purchases, perfectly. Share the best stuff in your life. Learn from friends and followers."}%>
+
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => "#{CONFIG[:name]} - Share purchases with friends.",
