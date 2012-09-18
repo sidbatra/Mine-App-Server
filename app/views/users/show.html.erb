@@ -1,11 +1,15 @@
 <%content_for :head do%>
+	 <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "#{@user.full_name}'s Mine"}%>
+
   <%=render :partial  => "facebook/og",
             :locals   => {
               :title        => "#{@user.full_name}'s Mine",
               :type         => "link",
-              :description  => CONFIG[:description],
+              :description  => "Tell the world when you buy something great. Post purchases, perfectly.",
               :url          => user_url(@user.handle,:src => 'fb'),
-              :image        => image_path('mine_100_2x.gif')}%>
+              :image        => image_path('og/mine-white-200.png')}%>
 <%end%>
 
 
