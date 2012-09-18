@@ -652,12 +652,16 @@ a.feed-intro .highlight { font-weight: bold; }
 	padding: 14px;
 	overflow: hidden; }
 	
-.item-row-box div.item { display: inline; }
+.item-row-box div.item { 
+	display: inline;
+	width: 10%;
+	padding: 1.25% }
 
 .item-row-box div.item .item-photo {
-	width: 12.5%;
-	max-height: 12.5%;
-	height: auto; }
+	width: 10%;
+	padding: 1.25%
+	height: auto;
+	max-height: 10%; }
 
 
 /* Profile
