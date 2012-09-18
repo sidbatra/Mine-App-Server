@@ -1,5 +1,37 @@
-Invite from <%=@sender.first_name%>
-
-<%if @invite.message.present?%>
-  with message <%=@invite.message%>
-<%end%>
+ <td align="center" style="font-size: 0; padding: 24px 12px;">
+    <font face="Arial" color="#777">   
+            
+	    <p style="font-size:14px; line-height: 140%; 
+	   		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+				
+				Hi!
+				
+			</p>
+			
+			<a href="">
+	      <%=image_tag "http://media-cache-ec4.pinterest.com/avatars/pierrelegrain_1337062125_444.jpg", 
+	      :style => "height: 48px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"%></a>
+			
+			<p style="font-size:14px; line-height: 140%; 
+	   		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+			
+				<%=@sender.first_name%> has invited you to join Mine, 
+				a site for telling friends when you buy something great!
+				
+			</p>
+			
+			<%if @invite.message.present?%>
+	     	<p style="font-size:14px; color: #333; line-height: 140%; 
+	     		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+					<em><%=@invite.message%></em>
+				</p>
+			<%end%>
+		
+			<%=render :partial => "action_button",
+			    :locals => {
+			      :url => "",
+			      :text => "Accept Invite"}%>
+                    
+	</font>
+</td>
+                   
