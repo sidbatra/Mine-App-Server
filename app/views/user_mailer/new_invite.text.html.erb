@@ -1,1 +1,5 @@
 Invite from <%=@sender.first_name%>
+
+<%if @invite.message.present?%>
+  with message <%=@invite.message%>
+<%end%>
