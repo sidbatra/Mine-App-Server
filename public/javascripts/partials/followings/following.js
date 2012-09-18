@@ -16,6 +16,9 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     this.userID       = this.options.userID;
     this.fetch        = this.options.fetch;
 
+    if(Denwen.H.isLoggedIn() && this.userID == Denwen.H.currentUser.get('id'))
+      return;
+
     if (typeof this.tag  === "undefined")
       this.tag = '';
 
