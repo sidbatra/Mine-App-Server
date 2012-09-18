@@ -447,7 +447,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: 250px;
 	font-size: 14px; }
  
-.create-box .panel .review-box { margin: 20px 0; }
+.create-box .panel .review-box { margin: 20px 0 8px; }
  
 .create-box .panel .btn.add-review {
 	text-align: left;
