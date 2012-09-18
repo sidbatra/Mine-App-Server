@@ -45,10 +45,13 @@
 	Your feed
 </div>
 
-<a href="/" class="feed-intro well-box rounded-8">
+<%if self.current_user.inverse_followings_count.zero?%>
+<a href="<%=new_invite_path(:src => "feed")%>" 
+  class="feed-intro well-box rounded-8">
 	Your feed needs some love!
 	<span class="highlight">Invite friends</span> to discover what they're buying.
 </a>
+<%end%>
 
 <div class="feed-container rounded-8" style="background: #f5f5f5">
 	<div id="feed" class="feed rounded-8 relative">
