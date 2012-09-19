@@ -1,6 +1,123 @@
 :consumer_key: ZYFy5zrte9fKABpNqRE3IQ
 :consumer_secret: oxYih93ZJRMhyD538iyCMRrxU4MUAsXK7cmDNEwdIww
+:access_token: 104572226-1t2HdAO1FiV5oeEbKTLq2olpkjNSxKzpaOHkRtvI
+:access_token_secret: KBLsCLlpp5ZjYHyGKDT0UUxeYoJJbptSVyD1zoeZ1k8
 :accounts: [
+  {
+  :token: 618491461-XupWeqqde9Fdd0A44p0aLttWVkbISXgjCfruM5RJ
+  :secret: ehH3AnW5aA1gKrQBbccK5NfCG1WAne3Woc0r5dteeIQ
+  :handle: SarahDArcy6,
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "@name that's cool! On Mine http://getmine.com you can tweet pics of what you bought. You'll love it!",
+    :media: nil},
+    {
+    :tweet: "@name have you tried Mine http://getmine.com for tweeting purchases? It looks great, you'd love it!",
+    :media: nil},
+    {
+    :tweet: "@name on Mine http://getmine.com you can tweet your item with a link, and the store - You'd like it!",
+    :media: nil},
+    {
+    :tweet: "Hey @name! I'm testing http://getmine.com with people sharing purchases on here. I Think you'd love it!",
+    :media: nil},
+    {
+    :tweet: "@name Btw you might like http://getmine.com for tweeting stuff you've bought!",
+    :media: nil},
+    {
+    :tweet: "@name aww cool - if you go to http://getmine.com you can tweet pics of what you bought. Try it :)",
+    :media: nil},
+    {
+    :tweet: "@name that is neat! On Mine you can tweet pics of what you bought http://getmine.com See if you like it!",
+    :media: nil},
+    {
+    :tweet: "Wow that's neat. @name you should try posting on http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "@name that's cool! you should start a Mine page for all your purchases! http://getmine.com",
+    :media: nil}]
+  },
+  {
+  :token: 618602486-gIdrjMA4jy3Yla5alOUuvFmlTkxTQOwWrHhGGHWB
+  :secret: 3OjyHIc9PrAaK0wh90OWyPQ01EntIZTFx610tDiYCDk
+  :handle: BethanyMore1,
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "@name weird how people are all tweeting what they're buying! Have you tried 'Mine' http://getmine.com ?",
+    :media: nil},
+    {
+    :tweet: "@name That is awesome - have you tried Mine http://getmine.com instead for tweeting your purchases?",
+    :media: nil},
+    {
+    :tweet: "Neat! @name you should try posting on http://getmine.com - it's great for logging your purchases, too.",
+    :media: nil},
+    {
+    :tweet: "@name you should start using Mine http://getmine.com for your purchases! I'll follow you on it!",
+    :media: nil},
+    {
+    :tweet: "@name that's neat - you should start using Mine http://getmine.com ! Search for me if you log in!",
+    :media: nil},
+    {
+    :tweet: "Thats neat @name! Why not catalog all your best stuff, like this: http://getmine.com/Caitlin-Hogan",
+    :media: nil},
+    {
+    :tweet: "Love it! Have you tried a Mine page for logging your stuff, like this? http://getmine.com/Caitlin-Hogan",
+    :media: nil}]
+  },
+  {
+  :token: 618587158-plqpuwDYGIx5wZExB6sXDo2pPspKadhvF89niy8q
+  :secret: 5scMJdMom2Z0MNGqb3demri6jrFlF3znR5hPMVp1x8
+  :handle: NicoleNorfolk1,
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "Hey SiddharthaBatra that looks really cool - you should show it off on your Mine page! http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "Hey SiddharthaBatra, where did you get that? You can tell others about your recent purchases at http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "Want! Where can I buy that? @name You should start a Mine account for stuff you buy! http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "@name Did you get it on sale? Btw you might like http://getmine.com for tweeting stuff you've bought !",
+    :media: nil},
+    {
+    :tweet: "OMG @name I love it! Please please start a Mine page for all the cool stuff you have! http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "I want that too! @name had you heard of http://getmine.com for tweeting about stuff you've bought?",
+    :media: nil},
+    {
+    :tweet: "@name you should show that off on a Mine page! I think you might like it: http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "@name where can I buy that? Please add it on Mine, here: http://getmine.com !",
+    :media: nil}]
+  },
+  {
+  :token: 619625766-0ENSHN9jXS9zAhnrNqvX9l8Dboa2NkieePnUDG87
+  :secret: irWxfRviX3MzsWVseg71HlErzq461OFpgo7yVR0tts
+  :handle: NataliaAtMine,
+  :enabled: true,
+  :templates: [
+    {
+    :tweet: "@name that's cool! On Mine http://getmine.com you can tweet pics of what you bought. You'll love it!",
+    :media: nil},
+    {
+    :tweet: "@name that's awesome! I'm working on http://getmine.com for sharing cool stuff you buy. You'll love it!",
+    :media: nil},
+    {
+    :tweet: "@name I just built a site for tweeting pics of what you bought called 'Mine', here: http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "Hey @name saw ur tweet. I'm building a site for tweeting purchases. Try it here: http://getmine.com",
+    :media: nil},
+    {
+    :tweet: "@name that's really cool! on Mine http://getmine.com you can tweet pics of what you bought. Try it!",
+    :media: nil}]
+  },
   {
   :token: 618505555-inOZQ7XHBpS32bTvkMMzPJZUdnjpHS6kBoIaf9te,  
   :secret: aj2mliFAfFAWl9GiehTSwVMvpLqnpYqaTrqAYImc12o,

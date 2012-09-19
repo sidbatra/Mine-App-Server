@@ -14,7 +14,10 @@ ORANGE_CONFIG     = YAML.load_file(File.join(
 
 CONSUMER_KEY      = ORANGE_CONFIG[:consumer_key]
 CONSUMER_SECRET   = ORANGE_CONFIG[:consumer_secret]
+ACCESS_TOKEN      = ORANGE_CONFIG[:access_token]
+ACCESS_TOKEN_SECRET = ORANGE_CONFIG[:access_token_secret]
 ACCOUNTS          = ORANGE_CONFIG[:accounts].select{|account| account[:enabled] == true}
+KEYWORDS          = %w{obama instagr.am coffee food iphone bored pinterest}
 
 require 'rubygems'
 require 'tweetstream'
@@ -36,8 +39,8 @@ end
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
   config.consumer_secret    = CONSUMER_SECRET
-  config.oauth_token        = ACCOUNTS[0][:token] 
-  config.oauth_token_secret = ACCOUNTS[0][:secret] 
+  config.oauth_token        = ACCESS_TOKEN
+  config.oauth_token_secret = ACCESS_TOKEN_SECRET
   config.auth_method        = :oauth
 end
 
@@ -72,21 +75,32 @@ EM.run do
     
     begin
 
-      Twitter.configure do |config|
-        config.consumer_key       = CONSUMER_KEY
-        config.consumer_secret    = CONSUMER_SECRET
-        config.oauth_token        = ACCOUNTS[@count][:token] 
-        config.oauth_token_secret = ACCOUNTS[@count][:secret] 
-      end
       
+      EM::Timer.new(30) do
+        tweets = Twitter.search(KEYWORDS.rand, 
+                          :rpp => ACCOUNTS.length, 
+                          :result_type => "recent")
+
+        ACCOUNTS.each_with_index do |account,i|
+          Twitter.configure do |config|
+            config.consumer_key       = CONSUMER_KEY
+            config.consumer_secret    = CONSUMER_SECRET
+            config.oauth_token        = account[:token] 
+            config.oauth_token_secret = account[:secret] 
+          end
+
+          if @count == i
+            Twitter.update(tweet,:in_reply_to_status_id => status.id)
+          else
+            Twitter.update(tweets[i].text)
+          end
+
+        end #accounts
+      end #em
+
       @count += 1
 
-      EM::Timer.new(30) do
-        Twitter.update(tweet,:in_reply_to_status_id => status.id)
-      end
-
-
-      @reset_at = Time.now + rand(15) + 45 
+      @reset_at = Time.now + rand(15) + 90
       @logger.info "Resetting"
       
       @count = 0 if @count >= ACCOUNTS.length

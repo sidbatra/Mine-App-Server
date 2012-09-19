@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
   def new_invite(invite)
     @invite       = invite
     @sender       = invite.user
-    @action       = "Checkout #{CONFIG[:name]}"
+    @action       = "Join me on #{CONFIG[:name]}"
     @source       = "email_invite"
 
     admin         = User.first
