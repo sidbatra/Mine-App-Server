@@ -42,8 +42,7 @@ class FacebookSubscriptionsController < ApplicationController
         ProcessingQueue.push(
           UserDelayedObserver,
           :mine_fb_data,
-          user,
-          true) 
+          user) 
       end 
     end
 
