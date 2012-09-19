@@ -13,11 +13,14 @@ class UsersController < ApplicationController
   #
   def create
     using = params[:using] ? params[:using].to_sym : :facebook
+    target = params[:target]          
     follow_user_id = params[:follow_user_id] 
 
     case using
     when :facebook
       create_from_fb
+    when :twitter
+      create_from_tw
     end
 
   rescue => ex
@@ -27,6 +30,7 @@ class UsersController < ApplicationController
 
       format.html do
         if @user && !@error
+          self.current_user = @user
           set_cookie 
           Following.add(follow_user_id,self.current_user.id) if follow_user_id
         end
@@ -35,15 +39,17 @@ class UsersController < ApplicationController
 
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
-        elsif @user.is_fresh || @onboard
+        elsif @user.email.nil? || @user.gender.nil?
+          url = welcome_path(WelcomeFilter::Info)
+        elsif @user.is_fresh 
           url = welcome_path(WelcomeFilter::Learn) 
-        elsif @target
-          url = @target
+        elsif target
+          url = target
         else
           url = root_path(:src => FeedShowSource::Login)
         end
 
-        redirect_to url unless url == 'popup'
+        redirect_to url 
       end
 
       format.json
@@ -110,6 +116,7 @@ class UsersController < ApplicationController
     when :connections
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
+      populate_theme @user
     end
 
   rescue => ex
@@ -134,6 +141,8 @@ class UsersController < ApplicationController
       @user = User.find_by_handle(params[:handle])
       @following = Following.fetch @user.id,self.current_user.id
       @origin = 'user'
+
+      populate_theme @user
     end
 
   rescue => ex
@@ -169,38 +178,29 @@ class UsersController < ApplicationController
   # or fetch and update an existing user.
   #
   def create_from_fb
-    @target                   = params[:target]          
-    access_token              = params[:access_token]
-
-    unless access_token
-      fb_auth                   = FbGraph::Auth.new(
-                                    CONFIG[:fb_app_id],
-                                    CONFIG[:fb_app_secret])
-
-      client                    = fb_auth.client
-      client.redirect_uri       = fb_reply_url(
-                                    :src    => @source,
-                                    :target => @target,
-                                    :follow_user_id => params[:follow_user_id])
-      client.authorization_code = params[:code]
-      access_token              = client.access_token!(:client_auth_body)
-    end
-
-    raise IOError, "Error fetching access token" unless access_token
-
-
     fb_user = FbGraph::User.fetch(
                 "me?fields=first_name,last_name,"\
                 "gender,email,birthday",
-                :access_token => access_token)
+                :access_token => params[:access_token])
 
-    @user   = User.add_from_fb(fb_user,@source)
+    @user = User.add_from_fb(fb_user,@source)
+  end
 
-    raise IOError, "Error creating user" unless @user
+  # Use the Oauth tokens from Twitter to create a new user
+  # or fetch and update an existing user.
+  #
+  def create_from_tw
+    client = Twitter::Client.new(
+                  :consumer_key => CONFIG[:tw_consumer_key],
+                  :consumer_secret => CONFIG[:tw_consumer_secret],
+                  :oauth_token => params[:tw_access_token],
+                  :oauth_token_secret => params[:tw_access_token_secret])
 
-    @onboard = @user[:recreate]
-
-    self.current_user = @user
+    @user = User.add_from_tw(
+                  client.user,
+                  params[:tw_access_token],
+                  params[:tw_access_token_secret],
+                  @source)
   end
 
 end

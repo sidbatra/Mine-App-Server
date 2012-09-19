@@ -1,45 +1,45 @@
 <%content_for :head do%>
+	 <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "#{@user.full_name}'s Mine"}%>
+
   <%=render :partial  => "facebook/og",
             :locals   => {
               :title        => "#{@user.full_name}'s Mine",
               :type         => "link",
-              :description  => CONFIG[:description],
+              :description  => "Tell the world when you buy something great. Post purchases, perfectly.",
               :url          => user_url(@user.handle,:src => 'fb'),
-              :image        => image_path('mine_100_2x.gif')}%>
+              :image        => image_path('og/mine-white-200.png')}%>
 <%end%>
 
 
-<div class="profile-box unit-box border-box" 
-  style="margin-top: -12px;">
+<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative">
 
 
   <%=render :partial => "box", :locals => {:user => @user}%> 
 
-
-
 	<!-- Following -->
-  <%cache ["v8",@user,"ifollowers","profile"] do%>
-    <div class="connections-box border-box split" style="margin-right: 2.7%;">
-
-      <div class="box-title relative" style="z-index: 0;">
-				<%=link_to "Following (#{@user.inverse_followings_count})", 
-								connections_path(@user.handle,:src => "following"),
-								:class => "dark"%>
-			</div>
+  <%cache ["v9",@user,"ifollowers","profile"] do%>
+    <div class="follow-count-box inline-block border-box">
+    
+	    <a class="dark" href="<%=connections_path(@user.handle,:src => "followers")%>">
+				<span class="num"><%=@user.inverse_followings_count%></span>
+				<span class="txt xs"> Following</span>
+			</a>
 			
-			<ul class="well-box rounded-5 border-box relative">
+			<ul class="border-box inline-block relative">
 
-	      <%@user.ifollowers.limit(7).each do |user|%>
-	        <%cache ["v5",user,"ifollower","profile"] do%>     
+	      <%@user.ifollowers.limit(4).each do |user|%>
+	        <%cache ["v6",user,"ifollower","profile"] do%>     
 	        
-		        <li class="pic s">
+		        <li class="pic s inline-block">
 		        	<a style="display: block;" 
                 href="<%=user_path(user.handle,:src => "profile")%>"
 	        			rel="tooltip"
 	        			title="<%=user.full_name%>">
 	        			
 			      		<%=image_tag user.square_image_url,
-                    :class => "user-photo m shaded rounded-3"%>
+                    :class => "user-photo s shaded rounded-2"%>
 			      	</a>
 		        </li>
 	              
@@ -48,34 +48,33 @@
       
       </ul>
       
-    </div> <!-- /connections-box -->
+    </div> <!-- /follow-count-box -->
   <%end unless @user.inverse_followings_count.zero?%>
   
 
   
   <!-- Followers -->
-  <%cache ["v8",@user,"followers","profile"] do%>
-    <div class="connections-box border-box split">
-
-      <div class="box-title relative" style="z-index: 0;">
-				<%=link_to "Followers (#{@user.followings_count})", 
-								connections_path(@user.handle,:src => "followers"), 
-								:class => "dark"%>
-			</div>
+  <%cache ["v9",@user,"followers","profile"] do%>
+    <div class="follow-count-box right inline-block border-box">
 			
-			<ul class="well-box rounded-5 border-box relative">
+			<a class="dark" href="<%=connections_path(@user.handle,:src => "followers")%>">
+				<span class="num"><%=@user.followings_count%></span>
+				<span class="txt xs"> <%=@user.followings_count == 1 ? 'Follower' : 'Followers'%></span>
+			</a>
+			
+			<ul class="border-box inline-block relative">
 
-	      <%@user.followers.limit(7).each do |user|%>
-	        <%cache ["v5",user,"follower","profile"] do%>     
+	      <%@user.followers.limit(4).each do |user|%>
+	        <%cache ["v6",user,"follower","profile"] do%>     
 	        
-		        <li class="pic s">
+		        <li class="pic s inline-block">
 		        	<a style="display: block;" 
                 href="<%=user_path(user.handle,:src => "profile")%>"
 	        			rel="tooltip"
 	        			title="<%=user.full_name%>">
 	        			
 			      		<%=image_tag user.square_image_url,
-                    :class => "user-photo m shaded rounded-3"%>
+                    :class => "user-photo s shaded rounded-2"%>
 			      	</a>
 		        </li>
  
@@ -84,9 +83,10 @@
       
       </ul>
       
-    </div> <!-- /connections-box -->
+    </div> <!-- /follow-count-box-->
   <%end unless @user.followings_count.zero?%>
 	
+
 </div> <!-- /profile-box -->
 
 
@@ -95,12 +95,17 @@
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> items
 </div>
 
+<%if is_current_user(@user) && @user.inverse_followings_count.zero?%>
+  <div class="feed-intro well-box rounded-8">
+    Share your mine with this link: http://<%=CONFIG[:host]%>/<%=@user.handle%>
+  </div>
+<%end%>
 
-<div class="profile-feed rounded-3 shaded relative">
+<div class="profile-feed rounded-8 relative">
   <%unless @user.purchases_count.zero?%>
-    <%cache ["v5",@user,"purchases"] do%>
+    <%cache ["v6",@user,"purchases"] do%>
       <%=render :partial => "purchases/card",
-          :collection => @user.purchases.with_store.with_user.by_id,
+          :collection => @user.purchases.with_store.with_user.by_created_at,
           :as => :purchase%>
     <%end%>
   <%else%>

@@ -1,0 +1,170 @@
+* { margin: 0; }
+
+html, body { height: 100%; }
+
+body { 
+	background: #2b2b2b;
+	font-size: 0;
+	line-height: 1;
+	color: white;
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	background: #393939 url('/images/backgrounds/bg-strip.png') repeat-x top left; }
+	
+a:hover { text-decoration: none; }
+	
+.wrapper {
+/* 	min-width: 904px; */
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -32px;
+/*
+	background-image: -ms-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 70%);
+	background-image: -moz-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 70%);
+	background-image: -o-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 70%);
+	background-image: -webkit-gradient(radial, center top, 0, center top, 541, color-stop(0, #404040), color-stop(0.7, #2b2b2b));
+	background-image: -webkit-radial-gradient(center top, ellipse farthest-corner, #404040 0%, #2b2b2b 70%);
+	background-image: radial-gradient(ellipse farthest-corner at center top, #404040 0%, #2b2b2b 70%); 
+*/}
+
+.header { text-align: center; width: 904px; margin: 0 auto; }
+.header .logo { padding: 18px 0 6px; height: 73px; }
+
+.container {
+	width: 904px;
+	text-align: center; }
+	
+.video-frame iframe { 
+	padding: 12px;
+	background-color: rgba(0,0,0,0.16); 
+	-webkit-border-radius: 10px !important;
+	-moz-border-radius: 10px !important;
+	border-radius: 10px !important;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); }
+	
+h2 {
+	webkit-font-smoothing: anti-alias;
+	padding: 22px 0 32px;
+	font-size: 28px;
+	font-weight: normal;
+	color: #eee;
+	letter-spacing: -1px;
+	text-shadow: 0 1px rgba(0,0,0,0.32); }
+	
+h2 .user-photo.xxl {
+	margin-right: 12px; 
+	vertical-align: -16px; }
+
+h3 {
+	padding: 0 0 10px;
+	font-size: 20px;
+	font-weight: normal;
+	color: #ddd;
+	letter-spacing: -1px;
+	text-shadow: 0 1px rgba(0,0,0,0.32); }
+	
+p { 
+	font-size: 15px;
+	line-height: 145%;
+	color: #aaa; }
+
+ul { margin: 0 !important; }
+
+.rwd-show { display: none; }
+
+.btn-twitter, .btn-facebook { 
+	width: 244px;
+	height: 52px;
+	margin: 0 5px;
+	font-size: 16px;
+	text-shadow: 0 1px rgba(0,0,0,0.32);
+	line-height: 51px; }
+
+.learn-more {
+	display: inline-block;
+	width: 112px;
+	height: 36px;
+	line-height: 35px;
+	margin: 36px 0 8px;
+	font-size: 13px;
+	color: #ccc;
+	background: #262626;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); }
+
+.learn-more:hover { color: #eee; }
+
+.col-3 { 
+	width: 30%;
+	margin: 0 1.5%;
+	display: inline-block;
+	text-align: left; 
+	vertical-align: top; }
+
+.spacer { height: 88px; } 
+
+footer { text-align: center; }
+
+footer, .push {
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	background-color: rgba(0,0,0,0.12); }
+	
+footer .inner {
+	width: 880px;
+	margin: 0 auto; }
+
+footer .inner ul li { 
+	display: inline;
+	margin: 0 4px; }
+	
+footer, footer a, footer a:hover { color: #777; }
+footer .like-button-box {
+	height: 26px; 
+	bottom: 0; 
+	overflow: hidden; }
+	
+footer .twitter-button-box {
+	height: 26px; 
+	left: 96px;
+	bottom: 0; 
+	overflow: hidden; }
+
+	
+@media screen and (max-width: 600px) { 
+ 
+ .header, .container, footer .inner { width: 100%; }
+ footer { padding: 0 11px; text-align: right; }
+ .header .logo { height: 44px; padding-top: 12px; }
+ 
+ h2 .user-photo.xxl { 
+ 	height: 24px;
+ 	margin-right: 6px;
+ 	vertical-align: -4px; }
+ 
+ .video-frame iframe { 
+	 	padding: 0; 
+	 	width: 100% !important; 
+		height: 142px;
+	 	-webkit-border-radius: 0 !important;
+		-moz-border-radius: 0 !important;
+		border-radius: 0 !important; }
+	h2 { font-size: 18px; line-height: 140%; padding: 14px 0 19px; }
+	h3 { font-size: 15px; line-height: 140%; padding: 0 0 7px; letter-spacing: normal; }
+	p { font-size: 13px; line-height: 140%; padding-bottom: 5px; }
+	.btn-twitter, .btn-facebook { height: 44px; font-size: 14px; line-height: 42px; }
+	.btn-facebook { margin-top: 9px; }
+	
+	.btn.btn-large img.t-box { height: 14px; }
+	.btn.btn-large img.f-box { height: 18px; }
+	
+	.learn-more { margin: 24px 0 5px; }
+	
+	.col-3 { width: 90%; margin: 0 5%; }
+	
+	.rwd-show { display: block !important; }
+	.rwd-hide { display: none !important; }
+
+}

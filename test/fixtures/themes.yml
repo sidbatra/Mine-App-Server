@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  background_path: MyString
+  background_tile_path: MyString
+  background_body_class: MyString
+  weight: 1
+
+two:
+  background_path: MyString
+  background_tile_path: MyString
+  background_body_class: MyString
+  weight: 1

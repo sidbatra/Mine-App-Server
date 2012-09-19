@@ -1,15 +1,17 @@
-                    <%content_for :header do%>
-                      <%=render :partial => "header_image",
-                          :locals => {
-                            :url => root_url(:src => @source),
-                            :image => "header-image-reminder.jpg",
-                            :alt => "Mine: Bought anything new this week?."}%>
-                    <%end%>
+<td align="center" style="font-size: 0; padding: 24px 12px;">
+  <font face="Arial" color="#777"> 
+  
+   <p style="font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
-                    <%=render :partial => "action_button",
-                        :locals => {
-                          :url => root_url(:src => @source),
-                          :text => "Add your latest purchase on "\
-                                    "<font face='Arial' "\
-                                    "style='font-style: normal;'> "\
-                                    "<b>#{CONFIG[:name].downcase}</b>"}%>
+			<%=@user.first_name%>, bought anything new this week?
+			
+		</p>
+
+	<%=render :partial => "action_button",
+	  :locals => {
+	  :url => root_url(:src => @source),
+	  :text => "Add a purchase to your mine"}%>
+	            
+	</font>
+</td>

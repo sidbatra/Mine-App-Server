@@ -22,6 +22,7 @@ class UserMailer < ActionMailer::Base
   # Invite email for non facebook invites 
   #
   def new_invite(invite)
+    @invite       = invite
     @sender       = invite.user
     @action       = "Checkout #{CONFIG[:name]}"
     @source       = "email_invite"
@@ -104,6 +105,24 @@ class UserMailer < ActionMailer::Base
     from          EMAILS[:contact]
     subject       "#{@comment.user.first_name} #{@action}"
   end
+
+  # Alert user when someone starts following him/her
+  #
+      
+  def new_follower(following) 
+    @follower     = following.follower 
+    @user         = following.user
+    @source       = "email_follower"
+       
+    @action       = "#{@user.first_name}, you have a new follower!"
+       
+    generate_attributes(@user,@follower.id,following,EmailPurpose::NewFollower)
+       
+       
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end 
 
   # Friend activity digest for the user 
   #

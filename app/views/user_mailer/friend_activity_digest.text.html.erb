@@ -1,106 +1,73 @@
-                    <%content_for :header do%>
-                      <%=render :partial => "header_image",
-                          :locals => {
-                            :url => root_url(:src => @source),
-                            :image => "header-image-digest.jpg",
-                            :alt => "Mine: Your friends have been busy buying stuff."}%>
-                    <%end%>
+<td align="center" style="font-size: 0; padding: 24px 12px;">
+  <font face="Arial" color="#777"> 
 
-                    <%=render :partial => "action_button",
-                        :locals => {
-                          :url => root_url(:src => @source),
-                          :text => "View your friends' latest purchases"}%>
+	<%@all_friends.each do |friend|%>
+	  <%=link_to image_tag(friend.square_image_url,
+	  	:style => "height: 48px; margin:3px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"),
+	      user_url(friend.handle,:src => @source)%>
+	<%end%>
 
-
-									<!-- email body -->
-                  <table width="100%" 
-                    border="0" 
-                    cellpadding="0" 
-                    cellspacing="0" 
-                    style="display:table;
-                            border-collapse:collapse;
-                            text-align:left">
-                    <tbody>
-                      <tr>
-                        <td align="left" 
-                            valign="top" 
-                            width="50%">
-
-                          <p style="line-height:18px;
-                                    font-size:15px;
-                                    margin-top:10px;
-                                    margin-right:33px;
-                                    margin-bottom:10px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-
-                            <%@all_friends.each do |friend|%>
-                              <%=link_to image_tag(friend.square_image_url,:alt => ""),
-                                  user_url(friend.handle,:src => @source)%>
-                            <%end%>
-                          
-                          </p>
-                          
-                          <p style="color:#333333;
-                                    line-height:18px;
-                                    font-size:12px;
-                                    margin-top:0;
-                                    margin-right:33px;
-                                    margin-bottom:10px;
-                                    margin-left:33px;
-                                    padding:0;
-                                    border-width:0">
-                            <font face="Arial">
-                              <strong style="color:#333333">
-                                <b>
-                                  New items:
-                                </b>
-                              </strong> 
-
-                              <%@friends.each_with_index do |friend,i|%>
-                      
-                                <%=link_to friend.first_name,
-                                    user_url(friend.handle,:src => @source),
-                                    :style => "color:#177DBE;
-                                                font-weight:bold;
-                                                text-decoration:none;"%><%=@friends.length > 1 && i < @friends.length - 2 ? ',' :''%>
-
-                                <%-if @friends.length > 1 && i == @friends.length-2-%>
-                                  and
-                                <%-end-%>
-                              <%-end-%>
-                              just shared a few things <%=@friends.length > 1 ? 'they' : @friends.first.is_male? ? 'he' : 'she'%> bought.
-                              <br>
-                              
-                              
-                              <%if @new_friends.present?%>
-                                <strong style="color:#333333">
-                                  <b>
-                                    New people:
-                                  </b>
-                                </strong> 
-
-                                <%@new_friends.each_with_index do |friend,i|%>
-                                  <%=link_to friend.first_name,
-                                      user_url(friend.handle,:src => @source),
-                                      :style => "color:#177DBE;
-                                                  font-weight:bold;
-                                                  text-decoration:none;"%><%=@new_friends.length > 1 && i < @new_friends.length - 2 ? ',' :''%>
-
-                                  <%-if @new_friends.length > 1 && i == @new_friends.length-2-%>
-                                    and
-                                  <%-end-%>
-                                <%-end-%>
-
-                                joined Mine. They're now sharing purchases with you.
-                              <%end%>
-                            </font>
-                          </p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <p style="min-height:20px;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding:0">&nbsp;</p>
-                  <!-- /email body -->
+	<p style="font-size:14px; line-height: 140%; 
+		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+	                          
+		<!-- new items --> 
+		
+	  <strong style="color:#333333">
+	    <b>
+	      New items:
+	    </b>
+	  </strong> 
+		
+		<%@friends.each_with_index do |friend,i|%>
+		
+		  <%=link_to friend.first_name,
+		      user_url(friend.handle,:src => @source),
+		      :style => "color:#006FB1;
+		                  font-weight:bold;
+		                  text-decoration:none;"%><%=@friends.length > 1 && i < @friends.length - 2 ? ',' :''%>
+		
+		  <%-if @friends.length > 1 && i == @friends.length-2-%>
+		    and
+		  <%-end-%>
+		<%-end-%>
+		just shared a few things <%=@friends.length > 1 ? 'they' : @friends.first.is_male? ? 'he' : 'she'%> bought.
+		
+	</p>
+	
+	<p style="font-size:14px; line-height: 140%; 
+		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+		                            
+		<!-- new connections -->                              
+		<%if @new_friends.present?%>
+		  <strong style="color:#333333">
+		    <b>
+		      New people:
+		    </b>
+		  </strong> 
+		
+		  <%@new_friends.each_with_index do |friend,i|%>
+		    <%=link_to friend.first_name,
+		        user_url(friend.handle,:src => @source),
+		        :style => "color:#006FB1;
+		                    font-weight:bold;
+		                    text-decoration:none;"%><%=@new_friends.length > 1 && i < @new_friends.length - 2 ? ',' :''%>
+		
+		    <%-if @new_friends.length > 1 && i == @new_friends.length-2-%>
+		      and
+		    <%-end-%>
+		  <%-end-%>
+		
+		  joined Mine. They're now sharing purchases with you.
+		<%end%>
+	
+	</p>
+	
+	
+	<%=render :partial => "action_button",
+	    :locals => {
+	      :url => root_url(:src => @source),
+	      :text => "View your friends' latest purchases"}%>
+	      
+	</font>
+</td>
+                            

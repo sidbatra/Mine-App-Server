@@ -60,13 +60,15 @@ module ExceptionLoggable
     log_exception(exception) if status != :not_found
   end
 
-  def log_exception(exception)
+  def log_exception(exception,info=nil)
     deliverer = self.class.exception_data
     data = case deliverer
       when nil    then {}
       when Symbol then send(deliverer)
       when Proc   then deliverer.call(self)
     end
+
+    data = info if info && data.blank?
 
     LoggedException.create_from_exception(self, exception, data)
   end

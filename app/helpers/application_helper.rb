@@ -65,7 +65,7 @@ module ApplicationHelper
   # Link to the contact email
   #
   def email_link
-    "<a href='mailto:#{contact_email}'>Contact Us</a>"
+    "<a href='mailto:#{contact_email}'>Contact</a>"
   end
 
   # Public. Extract actual contact email from EMAILS to field.
@@ -80,6 +80,14 @@ module ApplicationHelper
   #
   def is_onboarding?
     request.request_uri.scan(/^\/welcome\//).present?
+  end
+
+  # Generate body attributes to display the current theme.
+  #
+  def theme_body_attributes
+    @theme ||= logged_in? ? self.current_user.setting.theme : Theme.default
+    "style=\"background-image:url('#{@theme.background_url}')\" "\
+    "class='#{@theme.background_body_class}'"
   end
 
 end

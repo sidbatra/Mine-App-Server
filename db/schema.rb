@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814180702) do
+ActiveRecord::Schema.define(:version => 20120917213318) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120814180702) do
     t.datetime "updated_at"
     t.integer  "platform",       :default => 0
     t.string   "recipient_name"
+    t.string   "message"
   end
 
   add_index "invites", ["platform"], :name => "index_invites_on_platform"
@@ -205,6 +206,9 @@ ActiveRecord::Schema.define(:version => 20120814180702) do
     t.boolean  "email_update",      :default => true
     t.boolean  "share_to_twitter",  :default => false
     t.boolean  "share_to_tumblr",   :default => false
+    t.integer  "theme_id",          :default => 1
+    t.boolean  "email_digest",      :default => true
+    t.boolean  "email_follower",    :default => true
   end
 
   add_index "settings", ["user_id"], :name => "index_settings_on_user_id", :unique => true
@@ -262,6 +266,17 @@ ActiveRecord::Schema.define(:version => 20120814180702) do
   add_index "suggestions", ["thing"], :name => "index_suggestions_on_thing"
   add_index "suggestions", ["weight"], :name => "index_suggestions_on_weight"
 
+  create_table "themes", :force => true do |t|
+    t.string   "background_path"
+    t.string   "background_tile_path"
+    t.string   "background_body_class"
+    t.integer  "weight",                :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "themes", ["weight"], :name => "index_themes_on_weight"
+
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -304,6 +319,7 @@ ActiveRecord::Schema.define(:version => 20120814180702) do
   add_index "users", ["purchases_count"], :name => "index_users_on_purchases_count"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token", :unique => true
   add_index "users", ["shoppings_count"], :name => "index_users_on_shoppings_count"
+  add_index "users", ["tw_user_id"], :name => "index_users_on_tw_user_id", :unique => true
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
   add_index "users", ["visited_at"], :name => "index_users_on_visited_at"
 

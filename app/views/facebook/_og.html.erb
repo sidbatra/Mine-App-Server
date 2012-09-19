@@ -5,7 +5,14 @@
 <meta property="og:site_name" content="<%=CONFIG[:name]%>"/>
 <meta property="og:description" content ="<%=h(description)%>"/>
 <meta property="fb:app_id" content="<%=CONFIG[:fb_app_id]%>"/>
+<%-if defined? image-%>
 <meta property="og:image" content="<%=image%>"/>
+<%-end-%>
+<%-if defined? images-%>
+<%-images.each do |image|-%>
+<meta property="og:image" content="<%=image%>"/>
+<%-end-%>
+<%-end-%>
 <%-if defined?(store) && store.present? && store.is_approved-%>
 <meta property="<%=OGObject::StoreName%>" content="<%=store.name%>"/>
 <%-end-%>

@@ -81,7 +81,7 @@ EM.run do
       
       @count += 1
 
-      EM::Timer.new(40) do
+      EM::Timer.new(30) do
         Twitter.update(tweet,:in_reply_to_status_id => status.id)
       end
 

@@ -5,6 +5,7 @@ class SettingsController < ApplicationController
   #
   def index
     @settings = self.current_user.setting
+    @themes = Theme.by_weight
   rescue => ex
     handle_exception(ex)
   ensure

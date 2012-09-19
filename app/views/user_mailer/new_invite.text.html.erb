@@ -1,1 +1,35 @@
-Invite from <%=@sender.first_name%>
+ <td align="center" style="font-size: 0; padding: 24px 12px;">
+    <font face="Arial" color="#777">   
+            
+	    <p style="font-size:14px; line-height: 140%; 
+	   		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+				Hi!
+			</p>
+			
+			<a href="<%=user_url(@sender.handle,:src => @source)%>">
+	      <%=image_tag @sender.square_image_url,
+	      :style => "height: 48px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"%></a>
+			
+			<p style="font-size:14px; line-height: 140%; 
+	   		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+			
+				<%=@sender.first_name%> has invited you to join Mine, 
+				a site for telling friends when you buy something great!
+				
+			</p>
+			
+			<%if @invite.message.present?%>
+	     	<p style="font-size:14px; color: #333; line-height: 140%; 
+	     		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+					<em><%=@invite.message%></em>
+				</p>
+			<%end%>
+		
+			<%=render :partial => "action_button",
+			    :locals => {
+			      :url => invite_url(Cryptography.obfuscate @sender.id),
+			      :text => "Accept Invite"}%>
+                    
+	</font>
+</td>
+                   

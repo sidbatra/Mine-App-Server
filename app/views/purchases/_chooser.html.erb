@@ -3,34 +3,30 @@
 		<form class="search-bar border-box gradient v-555-444">
 		
 			<a id="cancel_logo_button" href="javascript:void(0)">
-        <%=image_tag("logos/mine-h-white-40-2x.png", 
+        <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
             :class => "logo absolute")%>
       </a>
 	        
 	    <a id="cancel_button" 
-        class="close opacity-60-80 alias-smooth transition-opacity" 
+        class="close opacity-60-80 absolute alias-smooth transition-opacity" 
         href="javascript:void(0)">
 				&times;
 			</a>
 
 		
-			<div class="search-container relative">
-		
-<!--
-				<div class="box-title" id="purchase_image_broken_msg">
-					<span class="default">
-						Select your
-					</span>
-					<span class="error">
-						Image unavailable.
-					</span>
-				</div>
--->
-		
-				<div id="spinner_box">
+			<div class="search-container relative well-box rounded-8" id="spinner_box" style="padding: 6px; background: #474747;">
+				
+					<div class="prompt border-box rounded-5-left unselectable">	
+						<span class="default">
+							Select your
+						</span>
+						<span class="error">
+							Unavailable
+						</span>
+		      </div>
 					
 					<input  id="purchase_repeat_query" 
-		              class="enter txt l rounded-3 border-box shaded" 
+		              class="enter txt l rounded-3 border-box" 
 		              name="products[query]" 
 		              type="text" 
 		              value="">
@@ -44,17 +40,22 @@
 		      	</span>
 		      	<i class='icon-loading icon-white'></i>
 		      </a>
-	    
-	      </div> <!-- spinner-box -->  
+
+      </div> <!-- search-container -->  
       
-      </div> <!-- search-container -->   
       
+     	<a href="#help-search" role="button" data-toggle="modal"
+	    	class="btn-help dark rounded-4 border-box gradient v-555-444 absolute" 
+	    	style="width: 88px; right: 72px; top: 12px;">
+	    	Searching<br>
+	    	Tips
+	    </a>
+
 		</form> <!-- /search-bar -->
 
 
 		<div class="results border-box" id="results">
     </div>
-
 	
 		<div class="scroll-instructions txt s gradient v-FFF-DDD" 
       id="scroll_for_more_results">
@@ -67,6 +68,28 @@
 	  </div>
 	  
 	</div> <!-- chooser -->
-	
+		
 	<div class="shadow" id="shadow">
   </div>
+  
+  <div class="modal dark help-search hide border-box rounded-5 alias-smooth" id="help-search">
+    <button type="button" class="close" data-dismiss="modal">
+      &times;
+    </button>
+	  <h3>
+	  	Tip 1: Be specific!
+	  </h3>
+	  <p>
+	  	Try adding your item’s <b>color</b> and <b>brand</b>.<br>
+	  	Include the <b>store name</b> if your item is uniquely sold there.
+	  </p>
+	  <h3>
+	  	Tip 2:  Paste in a URL
+	  </h3>
+	  <p style="margin-bottom: 4px;">
+	  	If you’ve found your item elsewhere on the web, 
+	  	paste in the page’s address for the perfect photo every time.
+	  </p>
+	</div> <!-- /modal -->
+  
+

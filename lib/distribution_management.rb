@@ -180,9 +180,8 @@ module DW
         params = {
           'object'        => object,
           'fields'        => fields, 
-          'callback_url'  => facebook_index_url(
-                              :host   => CONFIG[:host],
-                              :filter => 'subscriptions'),
+          'callback_url'  => facebook_subscriptions_url(
+                              :host => CONFIG[:host]),
           'verify_token'  => CONFIG[:fb_verify_token],
           'access_token'  => CONFIG[:fb_app_token]}
 

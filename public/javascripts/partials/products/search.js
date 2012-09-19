@@ -26,6 +26,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     this.shadowEl       = "#shadow";
     this.moreEl         = "#scroll_for_more_results";
     this.spinnerBoxEl   = "#spinner_box";
+    this.searchTipsEl   = "#help-search";
 
     this.products = new Denwen.Collections.Products();
     this.products.bind(
@@ -133,6 +134,8 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     $(this.queryEl).val($(this.repeatQueryEl).val());
     $(this.repeatQueryEl).val('');
+
+    $(this.searchTipsEl).modal('hide');
 
     this.router.navigate("");
   },

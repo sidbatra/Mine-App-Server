@@ -34,8 +34,6 @@ javascripts:
     - app/views/welcome/create/*.jst
   home:
     - public/javascripts/libs/jquery-1.7.1.js
-    - public/javascripts/libs/jquery-slides.js
-    - public/javascripts/libs/bootstrap-home.js
 stylesheets:
   application:
     - public/stylesheets/bootstrap.css
@@ -44,7 +42,5 @@ stylesheets:
 
   home:
     - public/stylesheets/bootstrap.css
-    - public/stylesheets-old/tags.css
-    - public/stylesheets-old/home.css
-    - public/stylesheets-old/tablet.css
-    - public/stylesheets-old/mobile.css
+    - public/stylesheets/general.css
+    - public/stylesheets/home.css

@@ -1,8 +1,9 @@
 class Setting < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :email_influencer, :email_update,
-                    :share_to_facebook,
-                    :share_to_twitter, :share_to_tumblr
+  belongs_to :theme
+  attr_accessible :email_influencer, :email_update, :email_follower,
+                    :email_digest, :share_to_facebook,
+                    :share_to_twitter, :share_to_tumblr,:theme_id
 
   #----------------------------------------------------------------------
   # Validations

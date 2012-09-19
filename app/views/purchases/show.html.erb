@@ -3,6 +3,11 @@
 
 <!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
+
+	 <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "#{@purchase.user.full_name}'s #{@purchase_presenter.title}"}%>
+
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => @purchase_presenter.title, 

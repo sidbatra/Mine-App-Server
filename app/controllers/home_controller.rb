@@ -8,9 +8,18 @@ class HomeController < ApplicationController
     if logged_in? && !params[:id]
       track_visit
       render "feed/show", :layout => "application"
-    elsif 
+    elsif params[:invited_by]
+      session[:invited_by_user_id] = Cryptography.deobfuscate params[:invited_by]
+      session[:origin] = "invite"
+
+      redirect_to root_path
+    else
       detect_origin
       redirect_to root_path if params[:id]
+
+      if session[:invited_by_user_id]
+        @invited_by_user = User.find session[:invited_by_user_id]
+      end
     end
   end
 

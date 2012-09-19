@@ -5,7 +5,7 @@
 <div class="well-box padded border-box rounded-8 relative">
 
 	<div id="step_1">
-		<h2>Pick an item you bought recently —</h2>
+		<h2>Pick an item you bought recently:</h2>
 		<p class="txt m border-box">
 			You can choose how you share it, and edit it any time.
 		</p>
@@ -27,38 +27,38 @@
 	  
 	  <li class="border-box centered rounded-5 opacity-90-100 transition-opacity" 
         style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
-	
-	    <a id="suggestion_<%=suggestion.id%>" 
-	        href="javascript:void(0)" 
-	        class="border-box rounded-3 inline-block pointer"
-	        style="width: 100%; background: white; padding: 12px;">
-	
-	      <div class="top rounded-5 transition-bg">
-	      	<%=image_tag suggestion.image_url,
-	            :class => "",
-	            :style => "padding: 4px;"%>
-	      </div>
+        
+		 <a id="suggestion_<%=suggestion.id%>" 
+		        href="javascript:void(0)" 
+		        class="border-box rounded-3 inline-block pointer"
+		        style="background: url('<%=suggestion.image_url%>') center; 
+		        	background-size: 100% auto; border: 8px solid white; height: 240px; width: 100%; padding: 180px 12px 12px;">
 	    
-	      <div class="txt l alias-smooth" style="color: #555; font-weight: bold;">
+	      <span class="txt l alias-smooth" style="color: #FFF; font-weight: bold;">
 	        <%=suggestion.title%>
-	      </div>	
+	      </span>	
 	    </a>
 	   
-	  </li> <!--/well-box -->
+	  </li>
 	   
 	  <%end%>
-	
-		<li id="extra_suggestion_box" 
+	  
+	  <li id="extra_suggestion_box"
         class="border-box centered rounded-5 opacity-90-100 transition-opacity" 
         style="display: inline-block; width: 46.8%; margin:0 2.6% 14px 0;">
-			<a href="javascript:void(0)" id="extra_suggestion" 
-          class="border-box rounded-3 inline-block pointer" 
-          style="width: 100%; background: white; padding: 12px;">
-				  <div style="height: 128px; padding: 4px; font-size: 72px; font-weight: bold; color: #333; line-height: 120px;">…</div>
-				  <div class="txt l alias-smooth" style="color: #555; font-weight: bold;">Something else</div>
-			</a>    
-		</li>
 	
+		 <a id="extra_suggestion" 
+		        href="javascript:void(0)" 
+		        class="border-box rounded-3 inline-block pointer"
+		        style="background: url('<%=@extra_suggestion.image_url%>') center; 
+		        	background-size: 100% auto; border: 8px solid white; height: 240px; width: 100%; padding: 180px 12px 12px;">
+	    
+	      <span class="txt l alias-smooth" style="color: #FFF; font-weight: bold;">
+	        <%=@extra_suggestion.title%>
+	      </span>	
+	    </a>
+    </li>
+	   
 	</ul> <!-- /#cards -->
 
 

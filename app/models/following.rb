@@ -45,13 +45,18 @@ class Following < ActiveRecord::Base
         send_email = true,
         reset = true)
 
-    following = find_or_initialize_by_user_id_and_follower_id(
-                  :user_id      => user_id,
-                  :follower_id  => follower_id,
-                  :source       => source,
-                  :send_email   => send_email)
-    following.is_active = true if following.new_record? || reset
-    following.save! if following.changed?
+    following = nil
+
+    if follower_id != user_id
+      following = find_or_initialize_by_user_id_and_follower_id(
+                    :user_id      => user_id,
+                    :follower_id  => follower_id,
+                    :source       => source,
+                    :send_email   => send_email)
+      following.is_active = true if following.new_record? || reset
+      following.save! if following.changed?
+    end
+
     following
   end
 

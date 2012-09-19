@@ -17,15 +17,20 @@ class ContactsController < ApplicationController
     else
       @contacts  = []
       fb_friends = self.current_user.fb_friends
+      fb_friend_ids = fb_friends.map(&:identifier)
+
+      existing_users = Set.new User.find_all_by_fb_user_id(fb_friend_ids).map(&:fb_user_id)
 
       @contacts = fb_friends.map do |fb_friend| 
                     Contact.new({
                       :user_id => self.current_user.id,
                       :third_party_id => fb_friend.identifier,
-                      :name => fb_friend.name})
-                  end
+                      :name => fb_friend.name
+                      }) unless existing_users.include? fb_friend.identifier
+                  end.compact
       @contacts.sort!{|x,y| x.name <=> y.name}
     end
+
   rescue => ex
     handle_exception(ex)
   ensure

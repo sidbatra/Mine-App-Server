@@ -37,7 +37,7 @@ module DW
     # variables that contain error information
     #
     def handle_exception(ex)
-      log_exception(ex)
+      log_exception(ex,logged_in? ? "user: #{self.current_user.handle}" : '')
       @error    = true
       @message  = ex.message
     end

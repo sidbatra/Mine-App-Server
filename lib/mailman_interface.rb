@@ -112,6 +112,18 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+        
+      # Email user being followed
+      #
+      def self.email_leader_about_follower(following)
+       if following.user.setting.email_follower
+         UserMailer.deliver_new_follower(following) 
+       end
+
+      rescue => ex
+       LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Public. Email users whose friends have added purchases.
       #
       # users - The Array of User objects whose friends have added purchases.
@@ -122,7 +134,7 @@ module DW
                 
         users.each do |user|
           begin
-            if user.setting.email_influencer
+            if user.setting.email_digest
               friends = user.ifollowers
               active_friends = friends.select{|f| purchases.key?(f.id)}
               new_friends = friends.select{|f| f.created_at > from}

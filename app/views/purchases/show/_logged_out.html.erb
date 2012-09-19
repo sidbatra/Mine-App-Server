@@ -1,43 +1,10 @@
 
-	<div class="profile-box" style="margin-top: -12px; margin-bottom: 18px;">	
+	<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative">
       <%=render :partial => "users/box", :locals => {:user => @purchase.user}%>
 	</div> 
 
-
-    
-      <!--<div class="item-header">
-      
-        <%#link_to image_tag("mine_54_horizontal_2x.png", :class => "logo"),
-	        	root_path(:src => "purchase")%>
-              
-
-        <span class="text">
-					Tell friends when you buy good stuff.
-        </span>
-
-        
-        <a href="<%#fb_auth_path(:src => @origin)%>" 
-            onclick="this.className += ' load';"
-            class="btn btn-large btn-facebook shaded relative">
-          <span class='hide-when-loading'>
-            <%#image_tag "social/f-box.png",
-            		:class => "f-box"%>
-            Join <%#h @purchase.user.first_name%> on 
-            <span class='mine'><%#CONFIG[:name].downcase%></span> now
-          </span>
-          <i class='icon-loading icon-white'></i>
-        	<div class="reassurance absolute hide-on-mobile">
-	        	2-second sign-up. <span class="mine">mine</span> never auto-shares.
-	        </div>
-        </a>
-              
-      </div> </logged-out-item-header -->   
-      
-      
-			
-
-      <div id="feed" class="feed logged-out rounded-5 shaded relative">
-      </div>
+  <div id="feed" class="feed logged-out rounded-8 relative">
+  </div>
             
           
     

@@ -1,0 +1,30 @@
+<td align="center" style="font-size: 0; padding: 24px 12px;">
+  <font face="Arial" color="#777"> 
+  
+  	<p style="font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+
+			<%=@action%>
+			
+		</p>
+			
+		<a href="<%=user_url(@follower.handle,:src => @source)%>">
+		  <img src="<%=@follower.square_image_url%>"
+		  	style="height: 48px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"/></a>
+			
+  	<p style="font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+			
+			<a href="<%=user_url(@follower.handle,:src => @source)%>"
+				style="color: #006FB1; font-weight: bold; text-decoration: none;">
+				<%=@follower.full_name%></a>
+		</p>
+		
+    <%=render :partial => "action_button",
+        :locals => {
+          :url => user_url(@follower.handle,:src => @source),
+          :text => "View #{@follower.first_name}'s Mine"}%>
+
+	</font>
+</td>
+                                          

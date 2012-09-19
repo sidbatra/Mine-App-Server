@@ -5,6 +5,11 @@ class FollowingObserver < ActiveRecord::Observer
   #
   def after_create(following)
     increment_counter(following)
+
+     ProcessingQueue.push(
+       FollowingDelayedObserver,
+       :after_create,
+       following.id) if following.send_email
   end
 
   # Decrement counter cache value for user's followings_count

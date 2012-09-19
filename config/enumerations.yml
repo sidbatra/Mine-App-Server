@@ -34,7 +34,7 @@
     Admin: 99
     NewComment: 0
     NewLike: 2
-    TopShopper: 4
+    NewFollower: 1
     Welcome: 10
     AnotherPurchase: 13
     AddItem: 14
@@ -76,6 +76,7 @@
   UserShowSource:
     PurchaseDeleted: 'purchase_deleted'
   WelcomeFilter:
+    Info: 'info'
     Learn: 'intro'
     Create: 'create'
   OGObject:

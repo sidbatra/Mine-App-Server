@@ -27,8 +27,11 @@ class Admin::EmailsController < ApplicationController
     when :new_like
       render :text => UserMailer.preview_new_like(Like.last)
 
+    when :new_follower
+      render :text => UserMailer.preview_new_follower(Following.last)
+
     when :new_invite
-      render :text => UserMailer.preview_new_invite(Invite.find_by_platform(InvitePlatform::Email))
+      render :text => UserMailer.preview_new_invite(Invite.last(:conditions => {:platform => InvitePlatform::Email}))
 
     when :friend_activity_digest
       render :text => UserMailer.preview_friend_activity_digest(

@@ -1,12 +1,22 @@
-	<!-- Inject facebook og tags into the head -->
 <%content_for :head do%>
+  <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "#{CONFIG[:name]} - Tell the world when you buy something great.",
+        :description => "Post purchases, perfectly. Share the best stuff in your life. Learn from friends and followers."}%>
+
   <%=render :partial  => 'facebook/og',
             :locals   => {
-              :title        => "#{CONFIG[:name]} - Share purchases with friends.",
+              :title        => "#{CONFIG[:name]}",
               :type         => 'website',
-              :description  => "#{CONFIG[:description]}", 
+              :description  => "Tell the world when you buy something great. Post purchases, perfectly.", 
               :url          => root_url,
-              :image        => image_path('mine_100_2x.gif')}%>
+              :images        => [
+                                image_path('og/mine-white-200.png'),
+                                image_path('og/og1.png'),
+                                image_path('og/og2.png'),
+                                image_path('og/og3.png'),
+                                image_path('og/og4.png'),
+                                image_path('og/og5.png')]}%>
 <%end%>
 
 

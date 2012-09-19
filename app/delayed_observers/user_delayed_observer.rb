@@ -8,6 +8,7 @@ class UserDelayedObserver < DelayedObserver
     Mailman.welcome_new_user(user)
 
     mine_fb_data(user)
+    mine_tw_data(user)
   end
 
   # Delayed after_update
@@ -15,24 +16,83 @@ class UserDelayedObserver < DelayedObserver
   def self.after_update(user_id,options={})
     user = User.find(user_id)
 
-    mine_fb_data(user) if options[:mine]
+    mine_fb_data(user) if options[:mine_fb_data]
+    mine_tw_data(user) if options[:mine_tw_data]
   end
 
   # Mine user's fb data
   #
-  def self.mine_fb_data(user,check=false)
+  def self.mine_fb_data(user)
+    return unless user.fb_access_token_valid?
 
-    return if(check && !user.fb_access_token_valid?)
-
+    mine_fb_info(user)
     mine_fb_friends(user)
   end
 
+  # Mine additional data about the user from the twitter api.
+  #
+  def self.mine_tw_data(user)
+    return unless user.tw_authorized?
+
+    mine_tw_connections(user)
+  end
+
+
   protected
+
+  # Auto follow Mine users that the user is already following on
+  # twiter. Also make all users on Mine following the user auto 
+  # follow him/her.
+  #
+  def self.mine_tw_connections(user)
+    client = Twitter::Client.new(
+                  :consumer_key => CONFIG[:tw_consumer_key],
+                  :consumer_secret => CONFIG[:tw_consumer_secret],
+                  :oauth_token => user.tw_access_token,
+                  :oauth_token_secret => user.tw_access_token_secret)
+
+    existing_friends = User.find_all_by_tw_user_id(client.friend_ids.ids)
+
+    existing_friends.each do |existing_friend|
+      Following.add(
+        existing_friend.id,
+        user.id,
+        FollowingSource::Auto,
+        false,
+        false)
+    end
+
+
+    existing_followers = User.find_all_by_tw_user_id(client.follower_ids.ids)
+
+    existing_followers.each do |existing_follower|
+      Following.add(
+        user.id,
+        existing_follower.id,
+        FollowingSource::Auto,
+        false,
+        false)
+    end
+
+  rescue => ex
+    LoggedException.add(__FILE__,__method__,ex)
+  end
+
+  # Mine user's facebook info.
+  #
+  def self.mine_fb_info(user)
+    fb_user = FbGraph::User.fetch("me?fields=birthday",
+                :access_token => user.access_token)
+
+    user.birthday = fb_user.birthday
+    user.save!
+  end
   
   # Mine user's facebook friends to populate contacts
   # and existing friends on the app.
   #
   def self.mine_fb_friends(user)
+
     fb_friends        = user.fb_friends
 
     fb_friends_ids    = fb_friends.map(&:identifier)

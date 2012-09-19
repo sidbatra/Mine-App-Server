@@ -14,7 +14,7 @@ Denwen.Partials.Auth.Twitter = Backbone.View.extend({
   showAuthDialog: function() {
     var self = this;
     var oauthWindow = window.open(
-                              '/twitter/authenticate', 
+                              '/twitter/authenticate?usage=popup', 
                               '', 
                               'width=800, height=600');
 
