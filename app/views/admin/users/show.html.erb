@@ -16,7 +16,12 @@
   <br>
 
   <%=link_to 'Link to Profile',user_path(@user.handle)%> <br>
-  <%=link_to 'Link to FB',"https://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%> <br>
+  <%if @user.fb_user_id%>
+    <%=link_to 'Link to FB',"http://www.facebook.com/profile.php?id=#{@user.fb_user_id}"%> <br>
+  <%end%>
+  <%if @user.tw_user_id%>
+    <%=link_to 'Link to TW',"http://twitter.com/intent/user?user_id=#{@user.tw_user_id}"%> <br>
+  <%end%>
   <%=link_to "Think before you click",
             {:controller => 'admin/users',:action => 'destroy',:id => @user.id},
             :method => :delete,
