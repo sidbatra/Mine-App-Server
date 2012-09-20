@@ -28,7 +28,7 @@
 	    
 	    <div class="container relative">   
 	
-		    <%=render "headers/default"%>
+		    <%=render "headers/default" unless @web_view_mode%>
 		    
 		    <div id="message-drawer" 
 		          class="message-drawer border-box alert rounded-3 txt m"
@@ -41,54 +41,59 @@
 	  
 	  </div> <!-- /wrapper -->
 
-    <%=render "footers/default" unless is_onboarding?%>
 
-    <%=render :partial => "misc/analytics"%>
+    <%unless @web_view_mode%>
 
-    <%=include_javascripts :application-%>
+      <%=render "footers/default" unless is_onboarding?%>
 
-    <script type="text/javascript">
-      Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);
-      Denwen.Device = new Backbone.Model({
-                          "is_mobile" : <%=is_mobile_device? ? true : false%>,
-                          "is_phone"  : <%=is_phone_device? ? true : false%>,
-                          "is_tablet" : <%=is_tablet_device? ? true : false%>});
+      <%=render :partial => "misc/analytics"%>
 
-      <%if logged_in?%>
-        Denwen.H.currentUser = new Denwen.Models.User(
-                               <%=self.current_user.to_json(
-                                 :only    => [:id,:fb_user_id,:email,:gender,
-                                              :first_name,:last_name,
-                                              :created_at],
-                                 :methods => [:square_image_url,:full_name,
-                                                :age],
-                                 :include => {
-                                  :setting => {
-                                   :only    => [],
-                                   :methods => [:fb_auth,
-                                                :tw_auth,
-                                                :tumblr_auth]}})%>);
+      <%=include_javascripts :application-%>
 
-        <%if session[:renewed] && self.current_user.setting.fb_auth%>
-          new Denwen.Partials.Settings.FBAccessToken();
+      <script type="text/javascript">
+        Denwen.Flash = new Backbone.Model(<%=flash.to_json%>);
+        Denwen.Device = new Backbone.Model({
+                            "is_mobile" : <%=is_mobile_device? ? true : false%>,
+                            "is_phone"  : <%=is_phone_device? ? true : false%>,
+                            "is_tablet" : <%=is_tablet_device? ? true : false%>});
+
+        <%if logged_in?%>
+          Denwen.H.currentUser = new Denwen.Models.User(
+                                 <%=self.current_user.to_json(
+                                   :only    => [:id,:fb_user_id,:email,:gender,
+                                                :first_name,:last_name,
+                                                :created_at],
+                                   :methods => [:square_image_url,:full_name,
+                                                  :age],
+                                   :include => {
+                                    :setting => {
+                                     :only    => [],
+                                     :methods => [:fb_auth,
+                                                  :tw_auth,
+                                                  :tumblr_auth]}})%>);
+
+          <%if session[:renewed] && self.current_user.setting.fb_auth%>
+            new Denwen.Partials.Settings.FBAccessToken();
+          <%end%>
+
+          new Denwen.Partials.Users.Search({el:$("#users_search_query")});
         <%end%>
+      </script>
 
-        new Denwen.Partials.Users.Search({el:$("#users_search_query")});
-      <%end%>
-    </script>
+      <%=yield :javascript%>
 
-    <%=yield :javascript%>
+      <script type="text/javascript">
+        <%if logged_in? && !is_onboarding? && !is_phone_device? && !Rails.env.starts_with?('d')%>
+            var uvOptions = {};
+            (function() {
+              var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+              uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/TYBI4jm5X9Dg69VO7vLW5w.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+            })();
+        <%end%>
+      </script>
 
-    <script type="text/javascript">
-      <%if logged_in? && !is_onboarding? && !is_phone_device? && !Rails.env.starts_with?('d')%>
-          var uvOptions = {};
-          (function() {
-            var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-            uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/TYBI4jm5X9Dg69VO7vLW5w.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-          })();
-      <%end%>
-    </script>
+    <%end%>
     
   </body>
 </html>

@@ -2,17 +2,17 @@ class ApplicationController < ActionController::Base
   helper :all 
   protect_from_forgery 
   filter_parameter_logging :password, :secret 
-  before_filter :track_source
+  before_filter :track_global_params
 
   include ExceptionLoggable, DW::AuthenticationSystem, DW::RequestManagement
 
   protected
 
-  # Populate the @source variable before every request using the :src param.
-  # if :src isn't present set @source to 'direct'.
+  # Track params to of possible interest to all routes.
   #
-  def track_source
+  def track_global_params
     @source = params[:src] ? params[:src].to_s : 'direct'
+    @web_view_mode = params[:web_view_mode]
   end
 
   # Mark current user as visited once every so often.
