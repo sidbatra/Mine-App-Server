@@ -53,13 +53,12 @@ Denwen.Partials.Invites.Email = Backbone.View.extend({
     this.posting = true;
     this.startLoading();
 
-    var invites = [];
+    var invites = {};
+    var count = 0;
 
     _.each(this.emailEls,function(email){
       if(email.value.length && email.value != $('#' + email.id).attr('placeholder')) {
-        invites.push({
-          recipient_id: email.value,
-          platform: Denwen.InvitePlatform.Email});
+        invites[count++] = {recipient_id: email.value,platform: Denwen.InvitePlatform.Email};
       }
     });
 

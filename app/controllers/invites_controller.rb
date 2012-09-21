@@ -13,7 +13,7 @@ class InvitesController < ApplicationController
     invites = params[:invites]
 
     if invites
-      invites.each do |invite|
+      invites.each do |index,invite|
         invite[:message] = params[:message] 
         Invite.add(invite,self.current_user.id)
       end
