@@ -3,7 +3,7 @@
 
 	<%@all_friends.each do |friend|%>
 	  <%=link_to image_tag(friend.square_image_url,
-	  	:style => "height: 48px; margin:3px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"),
+	  	:alt => "", :style => "height: 48px; margin:3px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;"),
 	      user_url(friend.handle,:src => @source)%>
 	<%end%>
 
