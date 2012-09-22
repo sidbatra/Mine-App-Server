@@ -15,7 +15,12 @@
 	<div class="unit">
 		<h4>What do I need to use the service?</h4>
 		<p class="txt m border-box" style="margin-bottom: 0;">
-			Not much. To <a href="/" class="dark underlined">log in</a>, you need either a Twitter or Facebook account.
+			Not much. To 
+      <%=link_to_unless @web_view_mode,
+          "log in",
+          root_path(:src => "faq"),
+          :class => "dark underlined"%>
+      you need either a Twitter or Facebook account.
 			If you want to share your purchases out to Facebook, Twitter and Tumblr, you'll need accounts for these services.
 		</p>
 	</div>
@@ -47,7 +52,10 @@
 	<div class="unit">
 		<h4>Who makes mine?</h4>
 		<p class="txt m border-box" style="margin-bottom: 0;">
-			We're a small team based in Palo Alto, California. Find out more about us <a href="/about" class="dark underlined">here</a>.
+			We're a small team based in Palo Alto, California. Find out more about us 
+      <%=link_to "here",
+          about_path(:src => "faq",:web_view_mode => @web_view_mode),
+          :class => "dark underlined"%>.
 		</p>
 	</div>
 	
@@ -65,4 +73,4 @@
   <script type="text/javascript">
     Denwen.Track.action("FAQ View",{"Source" : "<%=@source%>"});
   </script>
-<%end%>
+<%end unless @web_view_mode%>

@@ -100,7 +100,7 @@ EM.run do
 
       @count += 1
 
-      @reset_at = Time.now + rand(15) + 90
+      @reset_at = Time.now + rand(15) + 300
       @logger.info "Resetting"
       
       @count = 0 if @count >= ACCOUNTS.length

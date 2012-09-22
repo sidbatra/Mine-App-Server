@@ -1,0 +1,13 @@
+/* Media Queries - Mobile
+==================================================================== */
+   
+@media screen and (max-width: 540px) { 
+
+	body {
+		background: none; 
+		}
+		
+	.container {
+		width: 100%;
+
+} 

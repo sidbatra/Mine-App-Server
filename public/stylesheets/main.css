@@ -236,7 +236,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	width: 520px;
 	padding: 0 28px 64px;
 	margin: 0 auto;
-	background: #444 url('/images/backgrounds/grain.png'); }
+	background: #444 url('/images/backgrounds/grain.png') fixed top center repeat-y; }
 
 /* -- footer -- */
 
