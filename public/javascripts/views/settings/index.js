@@ -61,6 +61,8 @@ Denwen.Views.Settings.Index = Backbone.View.extend({
     $('body').addClass(theme.get('background_body_class'));
 
     $(this.themeSettingEl).val(theme.get('id'));
+
+    Denwen.Track.action("Theme Changed");
   },
 
   // Public. Display a success or failure message if an update
