@@ -62,11 +62,13 @@
 		
 		<br>
 		
+<!--
 		<a class="learn-more rounded-6" id="learn-more" href="#">
 			Learn more
 		</a>
+-->
 		
-		<div id="more" style="display: none;">
+		<div id="more" style="margin-top: 10px;">
 			
 			<h2 class="alias-smooth">
 				With <b>mine</b>, you can&hellip;
@@ -113,16 +115,6 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    $("#learn-more").click(function () {
-      $("#more").slideToggle();
-
-      $('html,body').animate({
-        scrollTop: '+=' + $('#learn-more').offset().top + 'px'
-      }, '4000');
-
-      mixpanel.track("Learn More Clicked");
-    });    
-
 
     // Listen for messages from the player
     if (window.addEventListener){
