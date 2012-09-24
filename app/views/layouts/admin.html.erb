@@ -3,6 +3,8 @@
   <head>
     <%=render :partial => "misc/head"%> 
 
+    <%=include_stylesheets :admin-%>
+
     <%=yield :head%>
 
     <%=csrf_meta_tag%>
