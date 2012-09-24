@@ -7,7 +7,7 @@
 		  </div>
 		  <div class="modal-body" style="text-align: center;">
 		  	
-		  	<a href="<%=tw_auth_path(:src => @origin)%>" 
+		  	<a href="<%=tw_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
 	          onclick="this.className += ' load';"
 	          class="btn btn-twitter rounded-3-left relative shaded"
 	          style="width: 172px;">
@@ -19,7 +19,7 @@
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	
 		  
-		    <a href="<%=fb_auth_path(:src => @origin)%>" 
+		    <a href="<%=fb_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
 	          onclick="this.className += ' load';"
 	          class="btn btn-facebook rounded-3-right relative shaded"
 	          style="width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
