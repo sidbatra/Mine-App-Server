@@ -7,8 +7,10 @@
 	font-style: normal !important;
 	-webkit-font-smoothing: antialiased; }
 	
+.rwd-show { display: none !important; }
+.rwd-hide { display: inline-block !important; }
+	
 .arial { font-family: Arial, sans-serif !important; }
-.georgia { font-family: Georgia, serif !important; }
 
 .alias-subpixel { -webkit-font-smoothing: subpixel-antialiased; }
 .alias-smooth   { -webkit-font-smoothing: antialiased; }

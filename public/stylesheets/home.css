@@ -164,7 +164,7 @@ footer .twitter-button-box {
 	
 	.col-3 { width: 90%; margin: 0 5%; }
 	
-	.rwd-show { display: block !important; }
+	.rwd-show { display: inline-block !important; }
 	.rwd-hide { display: none !important; }
 
 }

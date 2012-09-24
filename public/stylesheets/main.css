@@ -115,17 +115,13 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .unit-box.border-box { width: 520px; padding-bottom: 12px; }
-	
-.unit-box.border-box.fixed { 
-	left: 50%;
-	margin-left: -260px; }
 
 
 /* Header, Container, Footer and Fixed Bars
 ==================================================================== */
 
 .header { height: 84px; padding-top: 24px !important; }
-.header .logo { height: 58px; top: 17px; margin-left: -5px; }
+.header .logo { width: 128px; top: 17px; margin-left: -5px; }
 .header .logo:active { margin-top: 1px; }
 .header .logo.centered { left: 50%; margin-left: -59px; }
 
@@ -134,7 +130,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .search.typeahead.dropdown-menu {
 	margin-top: -1px;
 	margin-left: -1px;
-	width: 170px;
+	width: 162px;
 	font-size: 12px;
 	border-width: 1px 1px 1px;
 	border-style: solid;
@@ -178,6 +174,10 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .header a.btn-user .user-photo { opacity: 0.9; filter: alpha(opacity=90); }
 .header a.btn-user:hover .user-photo { opacity: 1; filter: alpha(opacity=100); }
 
+.header .btn-group { padding: 6px; }
+
+.header .btn-group input[type=text] { width: 160px; }
+	
 .header .btn-group .caret { 
 	border-top: 6px solid #ccc;
 	border-right: 5px solid transparent;
@@ -233,26 +233,24 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 /* -- container -- */
 
 .container {
-	width: 520px;
+	width: 576px;
 	padding: 0 28px 64px;
 	margin: 0 auto;
 	background: #444 url('/images/backgrounds/grain.png') fixed top center repeat-y; }
 
 /* -- footer -- */
 
-footer { text-align: center; }
+footer { text-align: right; }
 
 footer, .push {
 	height: 32px;
 	line-height: 32px;
-	font-size: 12px;
-/* 	background-color: rgba(0,0,0,0.16); */ }
+	font-size: 12px; }
 	
 footer .inner {
 	width: 576px;
 	padding: 0 28px;
-	margin: 0 auto;
-	text-align: right; }
+	margin: 0 auto; }
 
 footer .inner ul li { 
 	display: inline;
@@ -300,7 +298,8 @@ footer .twitter-button-box {
 ==================================================================== */
 
 .well-box {
-	padding: 12px;
+	padding: 2.307692307%;
+/* 	padding: 12px; */
 	background: #393939;
 	color: #ccc;
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
@@ -325,7 +324,7 @@ footer .twitter-button-box {
 
 .well-box h2 { 
 	font-size: 22px;
-	line-height: 165%;
+	line-height: 150%;
 	color: white;
 	-webkit-font-smoothing: antialiased; }
 
@@ -406,11 +405,12 @@ a.feed-intro .highlight { font-weight: bold; }
 .create-box {}
 
 .create-box input.enter { 
-	width: 420px;
-	margin-right: 8px; }
+	width: 83.39%;
+	margin-right: 1.61%; }
                
 .create-box .btn.go { 
-	width: 68px;
+	padding: 0;
+	width: 15%;
 	vertical-align: top; }
 	
 .create-box .panel .store-name { 
@@ -488,7 +488,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .item .photo-box {
 	width: auto;
 	min-height: 150px;
-	padding: 24px;
+	padding: 4.615384615%;
 	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
 	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
 	text-align: center;
@@ -520,7 +520,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .like.btn.pushed, .like.btn-pushed:hover { background: #eee; } 
 	
-.item .panel { padding: 0 24px 24px 24px; }
+.item .panel { padding: 0 4.615384615% 4.615384615%; }
 
 .item .panel .panel-contents {
 	background: #eee;
