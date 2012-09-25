@@ -1,6 +1,6 @@
-<li class="txt m relative" style="color: #ccc" id="contact_picker_<%=contact.get('id')%>">
+<li class="txt m relative ellipsis" style="color: #ccc" id="contact_picker_<%=contact.get('id')%>">
 	<img class="user-photo l shaded rounded-3" src="<%=contact.imageURL()%>" />  
-	<%=Denwen.H.truncate(contact.get('name'), 17, '…')%>
+	<%=contact.get('name')%>
 	
 	<a class="btn shaded absolute<%=contact.get('invited') ? 'pushed' : ''%>" 
         id="post_invite_<%=contact.get('id')%>" 

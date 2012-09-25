@@ -14,7 +14,11 @@
 .alias-subpixel { -webkit-font-smoothing: subpixel-antialiased; }
 .alias-smooth   { -webkit-font-smoothing: antialiased; }
 
-.overflow-no
+.overflow-hidden { overflow: hidden; }
+.ellipsis { 
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis; }
 
 .f:after {
 	content: "f";
