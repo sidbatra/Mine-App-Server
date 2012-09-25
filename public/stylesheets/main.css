@@ -131,6 +131,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	margin-top: -1px;
 	margin-left: -1px;
 	width: 162px;
+	min-width: 162px; /* required */
 	font-size: 12px;
 	border-width: 1px 1px 1px;
 	border-style: solid;
@@ -141,9 +142,12 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	border-radius: 4px 4px 6px 6px !important;  }
 
 .search.typeahead.dropdown-menu li a { 
-  width: 100%;
+  width: auto;
 	padding: 4px 8px; 
-	color: #555; }
+	color: #555;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis; }
 	
 .search.typeahead.dropdown-menu li a .user-photo.s {
 	margin-right: 6px; }
@@ -175,7 +179,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 
 .header .btn-group { padding: 6px; }
 
-.header .btn-group input[type=text] { width: 160px; }
+.header .btn-group input.search { width: 160px; }
 	
 .header .btn-group .caret { 
 	border-top: 6px solid #ccc;
@@ -523,7 +527,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .item .panel .panel-contents {
 	background: #eee;
-	padding: 14px; }
+	padding: 2.966101694915%; }
 	
 .item .panel .panel-contents .caret {
 	width: 0;
@@ -627,7 +631,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	color: #333;
 	line-height: 1;
 	font-weight: bold;
-	margin-bottom: 5px; }
+	margin-bottom: 3px; }
 	
 .item .panel input,
 .item .panel textarea { 
@@ -819,11 +823,13 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .card .photo-box {
 	width: auto;
-	height: 236px;
+/* 	height: 236px; */
+/* 	line-height: 236px; */
+	max-height: 236px;
 	padding: 12px 6px;
 	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
 	text-align: center;
-	line-height: 236px; }
+ }
 	
 .card .photo-box .item-photo {
 	max-width: 100%;

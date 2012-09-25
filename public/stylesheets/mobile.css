@@ -10,6 +10,8 @@
 		background-color: #444 !important; 
 		background-image: none !important; }
 		
+	.txt.l  { font-size: 14px; }
+		
 	.wrapper { background: none; }
 						
 	.container, footer .inner {
@@ -21,6 +23,9 @@
 		
 	.header .logo { width: 108px; } 
 	
+	.header .btn-group input.search { width: 144px; }
+	.search.typeahead.dropdown-menu { width: 146px !important; min-width: 146px; }
+	
 	.btn-facebook,
 	.btn-twitter {
 		width: 88px !important; }
@@ -30,19 +35,16 @@
 		
 	.unit-box { width: 100% !important; }
 	.well-box { padding: 8px; }
-		
+
+  .chooser .search-bar .search-container { width: 100%; }
+  .chooser .search-bar input.enter {
+		width: 80%; margin-right: 2%; }
+
+	.chooser .search-bar .btn.go { width: 18%; }
 	.chooser .results { padding-left: 9px; }
-	
 	.chooser .photo-choice {
   	width: 94px;
   	height: 94px;
   	line-height: 92px;
   	margin: 8px 9px 0px 0px; }
-  
-  .chooser .search-bar .search-container { width: 100%; }
-  	
-  .chooser .search-bar input.enter {
-		width: 80%; margin-right: 2%; }
-
-	.chooser .search-bar .btn.go { width: 18%; }
 }
