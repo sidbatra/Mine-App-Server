@@ -17,13 +17,23 @@
     <%end%>
 	
 		<div id="video" class="video-frame">
-			<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-				width="880" 
-        height="391" 
-        frameborder="0" 
-        webkitAllowFullScreen 
-        mozallowfullscreen 
-        allowFullScreen></iframe>
+		
+			<%unless is_phone_device?%>
+				<!-- desktop video -->
+				<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+					width="880" 
+	        height="391" 
+	        frameborder="0">
+	       </iframe>
+	    <%else%>
+	    	<!-- mobile video -->
+	      <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+	      	width="320" 
+	      	height="142" 
+	      	frameborder="0">
+	      </iframe>
+      <%end%>
+      
 		</div>
 		
 		<h2 class="alias-smooth">

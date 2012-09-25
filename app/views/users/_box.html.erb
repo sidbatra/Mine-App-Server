@@ -32,12 +32,11 @@
 		<div class="bio-box">
 			<div class="user-bio txt m border-box">
 
-      	<%="#{user_singular_pronoun(user).capitalize}'s"-%> sharing things 
-      	<%=user_singular_pronoun(user)%> buys on mine. 
+      	Discover the best items that <%=h user.first_name%> buys.
 
         <%=link_to "Learn more",
             root_path(:src => "learn"),
-            :class => "dark underlined"%>
+            :class => "dark underlined nowrap"%>
       </div>
     </div>
 
