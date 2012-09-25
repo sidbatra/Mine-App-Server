@@ -302,6 +302,7 @@ footer .twitter-button-box {
 /* 	padding: 12px; */
 	background: #393939;
 	color: #ccc;
+	overflow: hidden;
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
 	vertical-align: top; }
 
@@ -676,9 +677,10 @@ a.feed-intro .highlight { font-weight: bold; }
 .profile-box .user-box .basics {
 	width: 100%;
 	height: 48px;
-	padding: 3px 102px 0 60px;
+	padding: 3px 0 0 60px;
 	overflow: hidden;
 	white-space: nowrap;
+	text-overflow: ellipsis;
 	font-size: 26px;
 	line-height: 22px;
 	color: white;
@@ -1109,8 +1111,8 @@ a.feed-intro .highlight { font-weight: bold; }
 .photo-choice:hover .btn { display: none; }
 
 .photo-choice .item-photo {
-  max-width: 174px;
-  max-height: 174px;
+  max-width: 87.87878788%;
+  max-height: 87.87878788%;
   vertical-align: middle; }
   
 .scroll-instructions {

@@ -30,5 +30,19 @@
 		
 	.unit-box { width: 100% !important; }
 	.well-box { padding: 8px; }
+		
+	.chooser .results { padding-left: 9px; }
 	
+	.chooser .photo-choice {
+  	width: 94px;
+  	height: 94px;
+  	line-height: 92px;
+  	margin: 8px 9px 0px 0px; }
+  
+  .chooser .search-bar .search-container { width: 100%; }
+  	
+  .chooser .search-bar input.enter {
+		width: 80%; margin-right: 2%; }
+
+	.chooser .search-bar .btn.go { width: 18%; }
 }
