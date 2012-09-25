@@ -17,7 +17,16 @@
 		padding-top: 0;
 		padding-left: 10px;
 		padding-right: 10px;
-		background: none; } 
+		background: none; }
+		
+	.header .logo { width: 108px; } 
+	
+	.btn-facebook,
+	.btn-twitter {
+		width: 88px !important; }
+		
+	.profile-box .btn.follow { position: static; width: 100%; margin: 13px 0 -5px; }
+	.profile-box .modal { width: 320px; margin-left: -160px; }
 		
 	.unit-box { width: 100% !important; }
 	.well-box { padding: 8px; }

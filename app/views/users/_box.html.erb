@@ -5,7 +5,7 @@
         user_path(user.handle,:src => "box")%>
         
     <div class="basics border-box">
-    	<%=logged_in? ? '' : 'Follow'%> <%=h user.full_name%> 
+    	<span class="rwd-hide"><%=logged_in? ? '' : 'Follow'%>&nbsp;</span><%=h user.full_name%> 
     	<br>
     	<span class="item-count">
         <%unless user.purchases_count.zero?%>

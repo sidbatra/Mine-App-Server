@@ -121,7 +121,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .header { height: 84px; padding-top: 24px !important; }
-.header .logo { width: 128px; top: 17px; margin-left: -5px; }
+.header .logo-box { width: 128px; top: 13px; margin-left: -5px; }
 .header .logo:active { margin-top: 1px; }
 .header .logo.centered { left: 50%; margin-left: -59px; }
 
@@ -736,6 +736,8 @@ a.feed-intro .highlight { font-weight: bold; }
 
 
 /* -- follow button 2nd-degree styling -- */
+
+.btn.follow { position: absolute; }
 
 .profile-box .btn.follow {
 	top: 16px;

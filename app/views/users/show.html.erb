@@ -28,7 +28,7 @@
 			</a>
 			
 			<%unless is_phone_device?%>
-				<ul class="border-box inline-block relative">
+				<ul class="rwd-hide border-box inline-block relative">
 					
 		      <%@user.ifollowers.limit(4).each do |user|%>
 		        <%cache ["v6",user,"ifollower","profile"] do%>     
@@ -65,7 +65,7 @@
 			</a>
 			
 			<%unless is_phone_device?%>
-				<ul class="border-box inline-block relative">
+				<ul class="rwd-hide border-box inline-block relative">
 	
 		      <%@user.followers.limit(4).each do |user|%>
 		        <%cache ["v6",user,"follower","profile"] do%>     
