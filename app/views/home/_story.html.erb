@@ -17,13 +17,23 @@
     <%end%>
 	
 		<div id="video" class="video-frame">
-			<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-				width="880" 
-        height="391" 
-        frameborder="0" 
-        webkitAllowFullScreen 
-        mozallowfullscreen 
-        allowFullScreen></iframe>
+		
+			<%unless is_phone_device?%>
+				<!-- desktop video -->
+				<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+					width="880" 
+	        height="391" 
+	        frameborder="0">
+	       </iframe>
+	    <%else%>
+	    	<!-- mobile video -->
+	      <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+	      	width="320" 
+	      	height="142" 
+	      	frameborder="0">
+	      </iframe>
+      <%end%>
+      
 		</div>
 		
 		<h2 class="alias-smooth">
@@ -62,11 +72,13 @@
 		
 		<br>
 		
+<!--
 		<a class="learn-more rounded-6" id="learn-more" href="#">
 			Learn more
 		</a>
+-->
 		
-		<div id="more" style="display: none;">
+		<div id="more" style="margin-top: 10px;">
 			
 			<h2 class="alias-smooth">
 				With <b>mine</b>, you can&hellip;
@@ -113,16 +125,6 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    $("#learn-more").click(function () {
-      $("#more").slideToggle();
-
-      $('html,body').animate({
-        scrollTop: '+=' + $('#learn-more').offset().top + 'px'
-      }, '4000');
-
-      mixpanel.track("Learn More Clicked");
-    });    
-
 
     // Listen for messages from the player
     if (window.addEventListener){

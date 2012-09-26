@@ -27,26 +27,28 @@
 				<span class="txt xs"> Following</span>
 			</a>
 			
-			<ul class="border-box inline-block relative">
-
-	      <%@user.ifollowers.limit(4).each do |user|%>
-	        <%cache ["v6",user,"ifollower","profile"] do%>     
-	        
-		        <li class="pic s inline-block">
-		        	<a style="display: block;" 
-                href="<%=user_path(user.handle,:src => "profile")%>"
-	        			rel="tooltip"
-	        			title="<%=user.full_name%>">
-	        			
-			      		<%=image_tag user.square_image_url,
-                    :class => "user-photo s shaded rounded-2"%>
-			      	</a>
-		        </li>
-	              
-	        <%end%>
-	      <%end%>
-      
-      </ul>
+			<%unless is_phone_device?%>
+				<ul class="rwd-hide border-box inline-block relative">
+					
+		      <%@user.ifollowers.limit(4).each do |user|%>
+		        <%cache ["v6",user,"ifollower","profile"] do%>     
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" 
+	                href="<%=user_path(user.handle,:src => "profile")%>"
+		        			rel="tooltip"
+		        			title="<%=user.full_name%>">
+		        			
+				      		<%=image_tag user.square_image_url,
+	                    :class => "user-photo s shaded rounded-2"%>
+				      	</a>
+			        </li>
+		              
+		        <%end%>
+		      <%end%>
+	      
+	      </ul>
+	    <%end%>
       
     </div> <!-- /follow-count-box -->
   <%end unless @user.inverse_followings_count.zero?%>
@@ -62,26 +64,28 @@
 				<span class="txt xs"> <%=@user.followings_count == 1 ? 'Follower' : 'Followers'%></span>
 			</a>
 			
-			<ul class="border-box inline-block relative">
-
-	      <%@user.followers.limit(4).each do |user|%>
-	        <%cache ["v6",user,"follower","profile"] do%>     
-	        
-		        <li class="pic s inline-block">
-		        	<a style="display: block;" 
-                href="<%=user_path(user.handle,:src => "profile")%>"
-	        			rel="tooltip"
-	        			title="<%=user.full_name%>">
-	        			
-			      		<%=image_tag user.square_image_url,
-                    :class => "user-photo s shaded rounded-2"%>
-			      	</a>
-		        </li>
- 
-	        <%end%>
-	      <%end%>
-      
-      </ul>
+			<%unless is_phone_device?%>
+				<ul class="rwd-hide border-box inline-block relative">
+	
+		      <%@user.followers.limit(4).each do |user|%>
+		        <%cache ["v6",user,"follower","profile"] do%>     
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" 
+	                href="<%=user_path(user.handle,:src => "profile")%>"
+		        			rel="tooltip"
+		        			title="<%=user.full_name%>">
+		        			
+				      		<%=image_tag user.square_image_url,
+	                    :class => "user-photo s shaded rounded-2"%>
+				      	</a>
+			        </li>
+	 
+		        <%end%>
+		      <%end%>
+	      
+	      </ul>
+      <%end%>
       
     </div> <!-- /follow-count-box-->
   <%end unless @user.followings_count.zero?%>

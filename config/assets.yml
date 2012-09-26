@@ -40,8 +40,9 @@ stylesheets:
     - public/stylesheets/general.css
     - public/stylesheets/main.css
     - public/stylesheets/mobile.css
-
   home:
     - public/stylesheets/bootstrap.css
     - public/stylesheets/general.css
     - public/stylesheets/home.css
+  admin:
+    - public/stylesheets/bootstrap.css

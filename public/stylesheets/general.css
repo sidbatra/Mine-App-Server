@@ -7,11 +7,19 @@
 	font-style: normal !important;
 	-webkit-font-smoothing: antialiased; }
 	
+.rwd-show { display: none !important; }
+	
 .arial { font-family: Arial, sans-serif !important; }
-.georgia { font-family: Georgia, serif !important; }
 
 .alias-subpixel { -webkit-font-smoothing: subpixel-antialiased; }
 .alias-smooth   { -webkit-font-smoothing: antialiased; }
+
+.nowrap { white-space: nowrap; }
+.overflow-hidden { overflow: hidden; }
+.ellipsis { 
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis; }
 
 .f:after {
 	content: "f";
@@ -617,7 +625,6 @@ input.error:focus, textarea.error:focus {
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 160px;
   padding: 4px 0;
   margin: 1px 0 0;
   list-style: none;

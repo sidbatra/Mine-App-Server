@@ -2,21 +2,24 @@
 				
 		<form class="search-bar border-box gradient v-555-444">
 		
-			<a id="cancel_logo_button" href="javascript:void(0)">
-        <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
-            :class => "logo absolute")%>
-      </a>
+			<%unless is_phone_device?%>
+				<a id="cancel_logo_button" href="javascript:void(0)">
+	        <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
+	            :class => "logo absolute")%>
+	      </a>
 	        
-	    <a id="cancel_button" 
-        class="close opacity-60-80 absolute alias-smooth transition-opacity" 
-        href="javascript:void(0)">
-				&times;
-			</a>
+		    <a id="cancel_button" 
+	        class="close opacity-60-80 absolute alias-smooth transition-opacity" 
+	        href="javascript:void(0)">
+					&times;
+				</a>
+			
+			<%end%>
 
 		
-			<div class="search-container relative well-box rounded-8" id="spinner_box" style="padding: 6px; background: #474747;">
+			<div class="search-container relative well-box border-box rounded-8" id="spinner_box" style="padding: 6px; background: #474747;">
 				
-					<div class="prompt border-box rounded-5-left unselectable">	
+					<div class="rwd-hide prompt border-box rounded-5-left unselectable">	
 						<span class="default">
 							Select your
 						</span>

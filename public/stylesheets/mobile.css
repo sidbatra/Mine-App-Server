@@ -1,13 +1,50 @@
 /* Media Queries - Mobile
 ==================================================================== */
    
-@media screen and (max-width: 540px) { 
+@media screen and (max-width: 600px) { 
+	
+	.rwd-show { display: inline-block !important; }
+	.rwd-hide { display: none !important; }
 
 	body {
-		background: none; 
-		}
+		background-color: #444 !important; 
+		background-image: none !important; }
 		
-	.container {
+	.txt.l  { font-size: 14px; }
+		
+	.wrapper { background: none; }
+						
+	.container, footer .inner {
 		width: 100%;
+		padding-top: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		background: none; }
+		
+	.header .logo { width: 108px; } 
+	
+	.header .btn-group input.search { width: 144px; }
+	.search.typeahead.dropdown-menu { width: 146px !important; min-width: 146px; }
+	
+	.btn-facebook,
+	.btn-twitter {
+		width: 88px !important; }
+		
+	.profile-box .btn.follow { position: static; width: 100%; margin: 13px 0 -5px; }
+	.profile-box .modal { width: 320px; margin-left: -160px; }
+		
+	.unit-box { width: 100% !important; }
+	.well-box { padding: 8px; }
 
-} 
+  .chooser .search-bar .search-container { width: 100%; }
+  .chooser .search-bar input.enter {
+		width: 80%; margin-right: 2%; }
+
+	.chooser .search-bar .btn.go { width: 18%; }
+	.chooser .results { padding-left: 9px; }
+	.chooser .photo-choice {
+  	width: 94px;
+  	height: 94px;
+  	line-height: 92px;
+  	margin: 8px 9px 0px 0px; }
+}
