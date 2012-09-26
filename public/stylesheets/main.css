@@ -823,13 +823,11 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .card .photo-box {
 	width: auto;
-/* 	height: 236px; */
-/* 	line-height: 236px; */
-	max-height: 236px;
+	height: 236px;
+	line-height: 236px;
 	padding: 12px 6px;
 	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
-	text-align: center;
- }
+	text-align: center; }
 	
 .card .photo-box .item-photo {
 	max-width: 100%;
