@@ -86,8 +86,13 @@ module ApplicationHelper
   #
   def theme_body_attributes
     @theme ||= logged_in? ? self.current_user.setting.theme : Theme.default
-    "style=\"background-image:url('#{@theme.background_url}')\" "\
-    "class='#{@theme.background_body_class}'"
+
+    unless is_phone_device?
+      "style=\"background-image:url('#{@theme.background_url}')\" "\
+      "class='#{@theme.background_body_class}'"
+    else
+      ""
+    end
   end
 
 end
