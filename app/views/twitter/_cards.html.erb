@@ -1,0 +1,11 @@
+<meta name="twitter:card" content="<%=type%>" />
+<meta name="twitter:title" content="<%=h(title)%>" />
+<meta name="twitter:description" content ="<%=h(description)%>"/>
+<meta name="twitter:image" content="<%=image%>" />
+<meta name="twitter:image:width" content="520">
+<meta name="twitter:image:height" content="520">
+<meta name="twitter:url" content="<%=url%>" />
+<meta name="twitter:site:id" content="<%=CONFIG[:tw_account_id]%>" />
+<%-if tw_user_id.present?-%>
+<meta name="twitter:creator:id" content="<%=tw_user_id%>" />
+<%-end-%>

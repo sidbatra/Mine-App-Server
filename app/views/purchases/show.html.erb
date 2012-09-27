@@ -16,6 +16,15 @@
               :url          => @purchase_presenter.url('fb'),
               :image        => @purchase_presenter.square_url,
               :store        => @purchase.store}%>
+
+  <%=render :partial  => 'twitter/cards',
+            :locals   => {
+              :type         => TWCard::Photo, 
+              :title        => @purchase_presenter.title, 
+              :description  => @purchase_presenter.description, 
+              :image        => @purchase.unit_url,
+              :url          => @purchase_presenter.url('tw'),
+              :tw_user_id   => @purchase.user.tw_user_id}%>
 <%end%>
 	
 <%if logged_in?%>
