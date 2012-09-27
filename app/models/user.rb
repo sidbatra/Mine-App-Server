@@ -108,12 +108,14 @@ class User < ActiveRecord::Base
   #
   def self.add_from_tw(attributes,access_token,access_token_secret,source)
     name_parts = attributes.name.split(' ')
+    first_name = name_parts.first.capitalize
+    last_name = name_parts[1..-1].join(' ').titleize
 
     user = find_or_initialize_by_tw_user_id(
             :tw_user_id => attributes.id,
             :source => source,
-            :first_name => name_parts.first,
-            :last_name => name_parts[1..-1].join(' '))
+            :first_name => first_name,
+            :last_name => last_name)
 
     user.tw_access_token = access_token
     user.tw_access_token_secret = access_token_secret
