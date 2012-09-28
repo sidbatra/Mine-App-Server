@@ -115,6 +115,8 @@ Denwen.Partials.Users.Search = Backbone.View.extend({
                                     query : query,
                                     source : Denwen.SearchSource.User});
     search.save();
+
+    Denwen.Track.action("Users Searched");
   },
 
   //
