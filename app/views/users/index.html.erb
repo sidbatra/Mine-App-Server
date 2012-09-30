@@ -16,7 +16,7 @@
         <ul class="well-box list-box single rounded-5 border-box relative">
           <%@user.ifollowers.each do |user|%>
             <%cache ["v1",user,"ifollower","connections"] do%>     
-              <li class="txt m relative">
+              <li class="txt m relative ellipsis">
                 <a href="<%=user_path(user.handle,:src => "connections")%>" 
                   class="dark">
                   <%=image_tag user.square_image_url, 
@@ -49,7 +49,7 @@
         <ul class="well-box list-box single rounded-5 border-box relative">
           <%@user.followers.each do |user|%>
             <%cache ["v1",user,"follower","connections"] do%>     
-              <li class="txt m relative">
+              <li class="txt m relative ellipsis">
                 <a href="<%=user_path(user.handle,:src => "connections")%>" 
                   class="dark">
                   <%=image_tag user.square_image_url, 

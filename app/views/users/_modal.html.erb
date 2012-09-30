@@ -3,7 +3,7 @@
 		    <button type="button" class="close" data-dismiss="modal">
           &times;
         </button>
-		    <h4>Follow <%=h user.full_name%>'s latest purchases</h4>
+		    <h4>Follow <%=h user.full_name%>'s<span class="rwd-hide"> latest</span> purchases</h4>
 		  </div>
 		  <div class="modal-body" style="text-align: center;">
 		  	
@@ -14,7 +14,7 @@
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/t-box.png",
 	              :class => "t-box"%>
-	          Sign in with Twitter
+	          Sign in<span class="rwd-hide"> with Twitter</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	
@@ -26,7 +26,7 @@
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/f-box.png",
 	              :class => "f-box"%>
-	          Sign in with Facebook
+	          Sign in<span class="rwd-hide"> with Facebook</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	

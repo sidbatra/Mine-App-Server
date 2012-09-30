@@ -12,7 +12,7 @@
 		
       <%=f.text_field :query,
           :placeholder => local_assigns[:search_placeholder].nil? ? 
-                            "Enter your item's name, brand, color and store or URL" :
+                            "Type your item's name, brand, color and store or URL" :
                             search_placeholder,
           :class => "enter txt l rounded-3 border-box",
           :style => ""%>
@@ -85,10 +85,10 @@
 	          :placeholder => ""%>
 		          
 				<div class="border-box" 
-          style="height: 40px; padding: 13px 0 0 10px" 
+          style="height: 40px; padding: 13px 0 0 10px; white-space: nowrap;" 
           id="store_box">
 	        <%=f.label :is_store_unknown, 
-	            "#{f.check_box(:is_store_unknown,:class => "check absolute")} Not sure",
+	            "#{f.check_box(:is_store_unknown,:class => "check absolute")} Unsure",
 	            :class => "relative border-box"%>
 			  </div> 
 			  

@@ -84,6 +84,9 @@
     StoreName: "getmineapp:store_name" 
   OGAction:
     Share: "getmineapp:share" 
+  TWCard:
+    Summary: "summary" 
+    Photo: "photo"
 
 # Enumerations for javascript
 #

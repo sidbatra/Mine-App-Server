@@ -4,7 +4,7 @@
           alias-smooth inline-block 
           <%=self.current_user.fb_authorized? ? 'on' : 'off'%>"
   style="width: 50%;">
-	 Facebook Invite
+	 Facebook<span class="rwd-hide"> Invite</span>
 </a> <!-- /facebook tab -->
 
 <a id="email_tab"
@@ -13,7 +13,7 @@
           alias-smooth inline-block
           <%=self.current_user.fb_authorized? ? 'off' : 'on'%>"
   style="width: 50%;">
-	 Invite by Email
+	 <span class="rwd-hide">Invite by </span>Email
 </a> <!-- /email tab -->
 
 <div id="facebook_box"
@@ -73,7 +73,7 @@
 
 
 <div id="email_box"
-  class="well-box rounded-8 email" 
+  class="well-box border-box rounded-8 email" 
   style="<%=self.current_user.fb_authorized? ? 'display:none' : ''%>">
 	<div class="dark" style="font-size: 14px; padding: 6px 0 18px;">
 		Invite up to 3 friends with a custom email:
@@ -82,26 +82,26 @@
 	<input id="email_1" 
     autocomplete="off" 
     class="txt m rounded-3 border-box email" 
-		style="width: 32.5%;" placeholder="1st friend's email" type="text">
+		style="width: 50%; margin-bottom: 10px;" placeholder="1st friend's email" type="text"><br>
 		
 	<input id="email_2"
     autocomplete="off" 
     class="txt m rounded-3 border-box email" 
-		style="width: 32.5%; margin: 0 1.25%;" placeholder="2nd friend's email" type="text">
+		style="width: 50%; margin-bottom: 10px;" placeholder="2nd friend's email" type="text"><br>
 		
 	<input id="email_3" 
     autocomplete="off" 
     class="txt m rounded-3 border-box email" 
-		style="width: 32.5%;" placeholder="3rd friend's email" type="text">
+		style="width: 50%; margin-bottom: 10px;" placeholder="3rd friend's email" type="text"><br>
 	
 	<textarea id="email_message"
-    class="txt l rounded-3 unresizable border-box" style="margin: 8px 0 12px;" 
+    class="txt l rounded-3 unresizable border-box" style="margin: 0 0 12px;" 
 		placeholder="Add a personal note (optional)" 
     rows="4" ></textarea>
 	
 	<button id="create_email_invite" 
-    class="btn btn-large shaded" 
-    style="width: 120px;" 
+    class="btn shaded" 
+    style="width: 100px;" 
     type="submit">
 		<span class="hide-when-loading">
 			Send Invites

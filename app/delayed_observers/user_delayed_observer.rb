@@ -34,22 +34,33 @@ class UserDelayedObserver < DelayedObserver
   def self.mine_tw_data(user)
     return unless user.tw_authorized?
 
-    mine_tw_connections(user)
-  end
-
-
-  protected
-
-  # Auto follow Mine users that the user is already following on
-  # twiter. Also make all users on Mine following the user auto 
-  # follow him/her.
-  #
-  def self.mine_tw_connections(user)
     client = Twitter::Client.new(
                   :consumer_key => CONFIG[:tw_consumer_key],
                   :consumer_secret => CONFIG[:tw_consumer_secret],
                   :oauth_token => user.tw_access_token,
                   :oauth_token_secret => user.tw_access_token_secret)
+
+    mine_tw_connections(user,client)
+    mine_tw_info(user,client)
+  end
+
+
+  protected
+
+  def self.mine_tw_info(user,client)
+    byline = client.user.attrs["description"]
+
+    if byline.present? && !user.byline.present?
+      user.byline = byline
+      user.save!
+    end
+  end
+
+  # Auto follow Mine users that the user is already following on
+  # twiter. Also make all users on Mine following the user auto 
+  # follow him/her.
+  #
+  def self.mine_tw_connections(user,client)
 
     existing_friends = User.find_all_by_tw_user_id(client.friend_ids.ids)
 

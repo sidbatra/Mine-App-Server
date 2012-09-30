@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :users,
     :action => :create
 
-  map.logout 'logout',
+  map.logout 'logout.:format',
     :controller => :session,
     :action     => :destroy
 

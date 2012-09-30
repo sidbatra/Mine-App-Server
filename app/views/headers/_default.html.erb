@@ -1,15 +1,17 @@
 <div class="header unit-box border-box">
     
-    <%=link_to_if !is_onboarding?,
-        image_tag("logos/mine-h-white-58-brighter-2x.png", 
-          :class => "logo absolute"),
-        root_path(:src => "bar")%>
+    <div class="logo-box absolute" style="height: 62px; line-height: 62px;">
+	    <%=link_to_if !is_onboarding?,
+	        image_tag("logos/mine-h-white-58-brighter-2x.png", 
+	          :class => "logo"),
+	        root_path(:src => "bar")%>
+    </div>
       
       <%if logged_in?%>
 
         <%if !is_onboarding?%>
         	<div class="btn-group unselectable well-box border-box rounded-5" 
-       				 style="padding: 6px; float: right;">
+       				 style="float: right;">
         
           <a href="<%=user_path(self.current_user.handle,:src => "bar")%>"
             class="btn-user relative pointer txt m dark" 
@@ -20,13 +22,13 @@
             <%#h self.current_user.full_name%>      	
           </a>
 
-          <input type="text" placeholder="Search for people" class="m border-box rounded-2" id="users_search_query" 
-            style="float: left; width: 168px; margin: 0 6px 0 0;">
+          <input type="text" placeholder="Search for people" class="m search border-box rounded-2" id="users_search_query" 
+            style="float: left;">
           
 <!--
-         	<a class="border-box pointer opacity-80-100" 
-            style="width: 28px; height: 28px; padding: 7px 7px 7px; float: left;">
-            <%#image_tag "icons/PNG-Icons/32px-white/Edition-25-white.png", 
+         	<a class="rwd-show border-box pointer opacity-80-100" 
+            style="width: 28px; height: 28px; margin: 0 6px; padding: 7px 7px 7px; float: left;">
+            <#=image_tag "icons/PNG-Icons/32px-white/Edition-25-white.png", 
                 :style => "height: 14px;"%>
           </a>
 -->
@@ -34,10 +36,10 @@
           <%=link_to image_tag("icons/PNG-Icons/32px-white/Places-2-white.png",
                       :style => "height: 14px;"),
                   root_path(:src => "bar-icon"),
-                  :class => "border-box opacity-80-100", 
-                  :style => "width: 28px; height: 28px; padding: 6px 7px 8px; float: left;"%>
+                  :class => "rwd-hide border-box opacity-80-100", 
+                  :style => "width: 28px; height: 28px; margin-left: 6px; padding: 6px 7px 8px; float: left;"%>
           
-          <a class="dropdown-toggle border-box pointer" 
+          <a class="rwd-hide dropdown-toggle border-box pointer" 
             style="width: 28px; height: 28px; padding: 11px 8px; float: left;" 
             data-toggle="dropdown">
             <b class="caret opaque"></b>  
@@ -73,7 +75,7 @@
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/f-box.png",
 	              :class => "f-box"%>
-	          Sign in with Facebook
+	          Sign in<span class="rwd-hide"> with Facebook</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	
@@ -84,7 +86,7 @@
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/t-box.png",
 	              :class => "t-box"%>
-	          Sign in with Twitter
+	          Sign in<span class="rwd-hide"> with Twitter</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	

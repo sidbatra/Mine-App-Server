@@ -17,13 +17,23 @@
     <%end%>
 	
 		<div id="video" class="video-frame">
-			<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-				width="880" 
-        height="391" 
-        frameborder="0" 
-        webkitAllowFullScreen 
-        mozallowfullscreen 
-        allowFullScreen></iframe>
+		
+			<%unless is_phone_device?%>
+				<!-- desktop video -->
+				<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+					width="880" 
+	        height="391" 
+	        frameborder="0">
+	       </iframe>
+	    <%else%>
+	    	<!-- mobile video -->
+	      <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+	      	width="320" 
+	      	height="142" 
+	      	frameborder="0">
+	      </iframe>
+      <%end%>
+      
 		</div>
 		
 		<h2 class="alias-smooth">
@@ -80,7 +90,7 @@
 				</h3>
 				<p>
 					Combine a pristine catalog photo, where you bought your item, 
-					and the web's best link to more info, for the perfect way share a purchase.
+					and the web's best link to more info, for the perfect way to share a purchase.
 				</p>
 			</div>
 			
@@ -147,7 +157,7 @@
                 break;
                 
             case 'play':
-                mixpanel.track("Intro Video Played",{"Source":"Home","Thumbnail":"Girl"});
+                mixpanel.track("Intro Video Played",{"Source":"Home","Thumbnail":"Lantern"});
                 break;
         }
     }

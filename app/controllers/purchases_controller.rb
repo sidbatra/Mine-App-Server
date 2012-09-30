@@ -224,9 +224,14 @@ class PurchasesController < ApplicationController
     handle_exception(ex)
     flash[:destroyed] = false
   ensure
-    redirect_to user_path(
-                  self.current_user.handle,
-                  :src => UserShowSource::PurchaseDeleted)
+    respond_to do |format|
+      format.html do 
+        redirect_to user_path(
+                      self.current_user.handle,
+                      :src => UserShowSource::PurchaseDeleted)
+      end
+      format.json
+    end
   end
 
 
