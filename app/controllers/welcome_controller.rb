@@ -46,7 +46,14 @@ class WelcomeController < ApplicationController
       @success_target = welcome_path(WelcomeFilter::Learn)
       @error_target   = welcome_path(WelcomeFilter::Info)
 
-      self.current_user.update_attributes(params)
+      other_user = User.find_by_email params[:email]
+
+      if other_user && other_user.id != self.current_user.id
+        @error = true
+        @error_target = welcome_path(WelcomeFilter::Info,:exists => true)
+      else
+        self.current_user.update_attributes(params)
+      end
     else
 
      raise IOError, "Incorrect welcome create ID"
