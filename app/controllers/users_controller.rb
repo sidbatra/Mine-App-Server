@@ -164,6 +164,7 @@ class UsersController < ApplicationController
     @user.update_attributes(params)
   
   rescue => ex
+    @user.reload
     handle_exception(ex)
   ensure
     respond_to do |format|
