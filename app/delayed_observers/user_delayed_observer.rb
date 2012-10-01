@@ -5,7 +5,7 @@ class UserDelayedObserver < DelayedObserver
   def self.after_create(user_id)
     user = User.find(user_id)
 
-    Mailman.welcome_new_user(user)
+    dispatch_welcome_email(user) if user.email.present?
 
     mine_fb_data(user)
     mine_tw_data(user)
@@ -16,6 +16,7 @@ class UserDelayedObserver < DelayedObserver
   def self.after_update(user_id,options={})
     user = User.find(user_id)
 
+    dispatch_welcome_email(user) if options[:dispatch_welcome_email]
     mine_fb_data(user) if options[:mine_fb_data]
     mine_tw_data(user) if options[:mine_tw_data]
   end
@@ -46,6 +47,10 @@ class UserDelayedObserver < DelayedObserver
 
 
   protected
+
+  def self.dispatch_welcome_email(user)
+    Mailman.welcome_new_user(user)
+  end
 
   def self.mine_tw_info(user,client)
     byline = client.user.attrs["description"]
