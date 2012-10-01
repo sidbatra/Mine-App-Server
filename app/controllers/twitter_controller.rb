@@ -4,6 +4,8 @@ class TwitterController < ApplicationController
   # Start the twitter authentication process.
   #
   def new
+    @target_url = root_path
+
     callback_url = tw_reply_url(
                     :src    => @source,
                     :target => params[:target],
@@ -13,10 +15,12 @@ class TwitterController < ApplicationController
     request_token = @client.request_token(:oauth_callback => callback_url)
     session[:tw_request_token] = request_token
 
-    redirect_to request_token.authorize_url
+    @target_url = request_token.authorize_url
 
   rescue => ex
     handle_exception(ex)
+  ensure
+    redirect_to @target_url
   end
 
   # Handle replies from twitter oauth.

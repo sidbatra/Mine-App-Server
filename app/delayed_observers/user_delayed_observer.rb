@@ -52,8 +52,11 @@ class UserDelayedObserver < DelayedObserver
 
     if byline.present? && !user.byline.present?
       user.byline = byline
-      user.save!
     end
+
+    user.tw_user_id = client.user.attrs["id_str"]
+
+    user.save!
   end
 
   # Auto follow Mine users that the user is already following on
@@ -95,6 +98,7 @@ class UserDelayedObserver < DelayedObserver
     fb_user = FbGraph::User.fetch("me?fields=birthday",
                 :access_token => user.access_token)
 
+    user.fb_user_id = fb_user.identifier
     user.birthday = fb_user.birthday
     user.save!
   end
