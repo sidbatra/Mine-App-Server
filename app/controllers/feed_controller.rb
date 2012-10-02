@@ -17,6 +17,7 @@ class FeedController < ApplicationController
     @before = params[:before] ? Time.at(params[:before].to_i) : nil
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
     @aspect = params[:aspect] ? params[:aspect].to_sym : :user
+    @cache_options = {}
 
     
     case @aspect
@@ -44,6 +45,8 @@ class FeedController < ApplicationController
 
     when :special
 
+      @key = ["v1","special-feed"]
+      @cache_options = {:expires_in => 30.minutes}
       @purchases = Purchase.
                     select(:id,:created_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
