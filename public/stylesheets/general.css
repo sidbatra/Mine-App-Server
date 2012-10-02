@@ -240,6 +240,11 @@ input.error:focus, textarea.error:focus {
 	-webkit-border-radius: 8px 8px 0 0 !important;
 	-moz-border-radius: 8px 8px 0 0 !important;
 	border-radius: 8px 8px 0 0 !important; }
+
+.rounded-8-bottom {
+	-webkit-border-radius: 0 0 8px 8px !important;
+	-moz-border-radius: 0 0 8px 8px !important;
+	border-radius: 0 0 8px 8px !important; }
 	
 .rounded-10 {
 	-webkit-border-radius: 10px !important;
