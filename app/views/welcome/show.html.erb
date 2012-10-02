@@ -1,67 +1,32 @@
-<div class="rwd-hide header unit-box border-box fixed" 
-  style="height: 90px; background: url('<%=image_path "header-ob-bg-hack.png"%>'); z-index: 10000; font-size: 15px; color: white; top: 0;">
-    
-    <div class="logo-box absolute" style="height: 62px; line-height: 62px;">
-	    <%=link_to_if !is_onboarding?,
-	        image_tag("logos/mine-h-white-58-brighter-2x.png", 
-	          :class => "logo"),
-	        root_path(:src => "bar")%>
-    </div>
-        
-    <a href="<%=welcome_path(WelcomeFilter::Create)%>"
-			class="btn btn-large border-box rounded-3 shaded"
-			style="width: 176px; top: -60px; right: 0; float: right;">
-			Start your mine 
-			<%=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
-	                :style => "height: 14px; margin: 13px 0 0 4px; vertical-align: top;"%>
-		</a>
-    
-</div> <!-- /header (fixed) -->
-
-
-<div class="well-box padded border-box rounded-8 relative">
+<div class="bar top border-box gradient v-555-444" style="text-align: center;">
+	
+  <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
+      :class => "logo absolute")%>
+      
+      <span class="rwd-hide" style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
+      	People share their best buys on Mine.
+      </span>
 
 	<a href="<%=welcome_path(WelcomeFilter::Create)%>"
-			class="btn btn-large border-box rounded-3 absolute shaded"
-			style="width: 176px; top: -60px; right: 0;">
-		Start your mine 
-		<%=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
-                :style => "height: 14px; margin: 13px 0 0 4px; vertical-align: top;"%>
-	
+			class="btn btn-large border-box rounded-3 absolute shaded-strong"
+			style="width: 140px; top: 12px; right: 12px;">
+		Start Yours
 	</a>
-
-	<h2>People share their best buys on mine</h2>
-	<p class="txt m border-box">
-		It's the ultimate way to discover great stuff.
-	</p>
-
-	<div class="feed-container rounded-5" 
-	  style="background: #f5f5f5; margin: 20px 0 32px;">
-	
-		<div id="feed" class="feed link-disabled rounded-8 relative">
-	  </div>
-	
-		<div id="feed-spinner" class="feed-loading whitesmoke">
-		</div> 
-	</div> <!-- feed container -->
-
 </div>
 
+<div class="feed-grid-container border-box rounded-8-bottom">
 
-<!--div class="bar bottom border-box gradient v-555-444" style="text-align: center;">
-	<a href="<%#welcome_path(WelcomeFilter::Create)%>"
-			class="btn btn-large btn-red border-box rounded-3 shaded"
-			style="width: 484px;">
-		Start your mine 
-		<%#image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
-                :style => "height: 14px; margin: 13px 0 0 6px; vertical-align: top;"%>
-	</a>
-</div-->
+	<div id="feed" class="feed grid link-disabled rounded-8-bottom">
+  </div>
 
+	<div id="feed-spinner" class="feed-loading white">
+	</div> 
+</div> <!-- feed container -->
 
 
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Welcome.Show();
+    $('#container').addClass('fullscreen');
   </script>
 <%end%>

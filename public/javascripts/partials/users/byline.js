@@ -13,6 +13,8 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
   // Constructor logic
   //
   initialize: function() {
+    var self = this;
+
     this.textEl     = '#user_byline_text';
     this.editEl     = '#user_edit';
     this.editBoxEl  = '#user_edit_box';
@@ -22,6 +24,17 @@ Denwen.Partials.Users.Byline = Backbone.View.extend({
 
     restrictFieldSize($(this.inputEl),160,'charsremain');
     $(this.inputEl).placeholder();
+
+    $(this.inputEl).keypress(function(e){return self.inputKeystroke(e);});
+  },
+
+  // Catch keystrokes on the text input
+  //
+  inputKeystroke: function(e) {
+    if(e.keyCode == 13) {
+      this.update(); 
+    }
+    return true;
   },
 
   // Called when the byline has been saved on the server

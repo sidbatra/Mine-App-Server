@@ -240,6 +240,11 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	padding: 0 28px 64px;
 	margin: 0 auto;
 	background: #444 url('/images/backgrounds/grain.png') fixed top center repeat-y; }
+	
+.container.fullscreen {
+	width: 100%;
+	background: #444;
+	padding: 0 10px; }
 
 /* -- footer -- */
 
@@ -278,6 +283,7 @@ footer .twitter-button-box {
 	position: fixed;
 	left:0;
 	right:0;
+	height: 64px;
 	margin-bottom: 0;
 	font-size: 0;
 	text-align: left;
@@ -289,6 +295,11 @@ footer .twitter-button-box {
 	-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.3);
 	box-shadow:         0px 3px 6px rgba(0, 0, 0, 0.3); }
+	
+.bar .logo {
+	height: 47px;
+	top: 10px;
+	left: 15px; }
 
 .bar.bottom { 
 	bottom: 0;
@@ -400,6 +411,55 @@ a.feed-intro .highlight { font-weight: bold; }
 	height: 80px; }
 	
 .feed { background: white; }
+
+.feed-grid-container { 
+	width: 692px; 
+	padding-left: 16px;
+	margin: 64px auto 24px;
+	background: white; }
+	
+.feed-grid-container .feed-loading { margin-left: -16px; }
+
+.feed.grid { text-align: center; }
+
+.feed.grid .item {
+	width: 200px;
+	display: inline-block;
+	font-size: 0;
+	margin: 16px 18px 0px 0px;
+	vertical-align: top; }
+	
+.feed.grid .item .photo-box {
+	height: 200px;
+	line-height: 200px;
+	background-image: none; }
+
+.feed.grid .item .panel .caret {
+	left: 10px;
+	top: -8px;
+	vertical-align: bottom;
+	border-bottom: 8px solid #EEE;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent; }
+	
+.feed.grid .item .photo-box .item-photo {
+	max-height: 200px; }
+
+.feed.grid .item .panel .title-box { 
+	text-align: left;
+	font-size: 12px;
+	max-height: 52px;
+	min-height: 0;
+	padding-left: 34px;
+	overflow: hidden;
+	text-overflow: ellipsis; }
+	
+.feed.grid .item .panel .title-box .user-photo.xl {
+	width: 28px;
+	height: auto; }
+
+.feed.grid .item .panel .endorsement-box, 
+ span.time { display: none; }
 	
 	
 /* Creation 

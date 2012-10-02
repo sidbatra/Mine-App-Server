@@ -26,9 +26,9 @@
 	    <div id="fb-root">
       </div> 
 	    
-	    <div class="container border-box relative">   
+	    <div id="container" class="container border-box relative">   
 	
-		    <%=render "headers/default" unless @web_view_mode%>
+		    <%=render "headers/default" unless hide_header?%>
 		    
 		    <div id="message-drawer" 
 		          class="message-drawer border-box alert rounded-3 txt m"

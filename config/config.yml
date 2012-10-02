@@ -20,8 +20,8 @@ common: &common
   :fb_app_namespace: getmineapp 
   :fb_verify_token: eea0e1c440ae3d754be314a60c33ea2b
   :tw_app_id: 2550915 
-  :tw_consumer_key: 5M8DIWAdEJRKlTW5d9vw
-  :tw_consumer_secret: JSSRkH53nsTbvppypEmsmWJHini1CE0PJuwWV8ck4sc
+  :tw_consumer_key: Y8wcijb0orzZSbkd3fQ4g
+  :tw_consumer_secret: i7Oqqpy1I1ZycqRpJOSsBMylURsFlC2Qo7pQc0YbUzk
   :tw_account_id: 607852423
   :tumblr_consumer_key: 89jCI6WNG1Ym9wYLkJ1FfDVTZCsMbdtJoSwPbBzSb6ueJMbo0G
   :tumblr_consumer_secret: L7BbVCPlAYq0ewzxEEEiJyIzgY8Ihj9YxALq9Ol0ueLnStNBwM 

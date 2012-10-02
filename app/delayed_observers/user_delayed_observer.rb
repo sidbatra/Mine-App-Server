@@ -5,7 +5,7 @@ class UserDelayedObserver < DelayedObserver
   def self.after_create(user_id)
     user = User.find(user_id)
 
-    Mailman.welcome_new_user(user)
+    dispatch_welcome_email(user) if user.email.present?
 
     mine_fb_data(user)
     mine_tw_data(user)
@@ -16,6 +16,7 @@ class UserDelayedObserver < DelayedObserver
   def self.after_update(user_id,options={})
     user = User.find(user_id)
 
+    dispatch_welcome_email(user) if options[:dispatch_welcome_email]
     mine_fb_data(user) if options[:mine_fb_data]
     mine_tw_data(user) if options[:mine_tw_data]
   end
@@ -47,13 +48,20 @@ class UserDelayedObserver < DelayedObserver
 
   protected
 
+  def self.dispatch_welcome_email(user)
+    Mailman.welcome_new_user(user)
+  end
+
   def self.mine_tw_info(user,client)
     byline = client.user.attrs["description"]
 
     if byline.present? && !user.byline.present?
       user.byline = byline
-      user.save!
     end
+
+    user.tw_user_id = client.user.attrs["id_str"]
+
+    user.save!
   end
 
   # Auto follow Mine users that the user is already following on
@@ -95,6 +103,7 @@ class UserDelayedObserver < DelayedObserver
     fb_user = FbGraph::User.fetch("me?fields=birthday",
                 :access_token => user.access_token)
 
+    user.fb_user_id = fb_user.identifier
     user.birthday = fb_user.birthday
     user.save!
   end

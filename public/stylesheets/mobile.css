@@ -35,7 +35,8 @@
 		
 	.unit-box { width: 100% !important; }
 	.well-box { padding: 8px; }
-
+	
+	/* -- chooser -- */
   .chooser .search-bar .search-container { width: 100%; }
   .chooser .search-bar input.enter {
 		width: 80%; margin-right: 2%; }
@@ -52,4 +53,31 @@
   	height: auto;
 		line-height: 1;
   	max-height: 236px; }
+  
+  /* -- onboarding -- */
+  
+  .feed-grid-container { 
+  	width: 100%;
+  	padding-left: 4%; }
+  
+  .feed.grid .item {
+  	width: 44%;
+  	margin: 6px 4% 0px 0px; }
+	
+	.feed.grid .item .photo-box {
+		height: 140px;
+		line-height: 140px; }
+	
+	.feed.grid .item .photo-box img { max-height: 140px !important; }
+	
+	.feed.grid .item .panel { padding: 0; }
+	.feed.grid .item .panel .panel-contents { padding: 6px; }
+	
+	.feed.grid .item .panel .title-box { 
+		line-height: 130%;
+		max-height: 45px;
+		min-height: 0; }
+	
+	.feed.grid .item .panel .title-box .user-name,
+	.feed.grid .item .panel .title-box .store-name { display: none; }
 }

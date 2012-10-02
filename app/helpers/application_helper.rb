@@ -95,4 +95,10 @@ module ApplicationHelper
     end
   end
 
+  # Test if the header is to be hidden
+  #
+  def hide_header?
+    @web_view_mode || request.request_uri.scan(/^\/welcome\/intro/).present?
+  end
+
 end
