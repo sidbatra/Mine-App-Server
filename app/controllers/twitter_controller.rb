@@ -12,7 +12,7 @@ class TwitterController < ApplicationController
                     :follow_user_id => params[:follow_user_id],
                     :usage  => params[:usage])
 
-    request_token = @client.request_token(:oauth_callback => callback_url)
+    request_token = @client.authentication_request_token(:oauth_callback => callback_url)
     session[:tw_request_token] = request_token
 
     @target_url = request_token.authorize_url
