@@ -46,11 +46,16 @@ Denwen.Partials.Invites.New = Backbone.View.extend({
   // Show facebook send message dialog 
   //
   showSendDialog: function() {
-    var self  = this;
-    var url   = 'http://getmine.com/invites/' + this.handle;
+    var self    = this;
+    var url     = 'http://getmine.com/invites/' + this.handle;
+    var method  = Denwen.Device.get("is_phone") ? 'apprequests' : 'send'; 
+    var display = Denwen.Device.get("is_phone") ? 'touch' : 'popup';
+    var message = 'Join me on Mine';
 
-    FB.ui({method: 'send',
+    FB.ui({method: method, 
+      display: display,
       link: url,
+      message: message,
       to: this.recipient.get('third_party_id')}, 
       function(response) {self.sendCallback(response)});
   },
