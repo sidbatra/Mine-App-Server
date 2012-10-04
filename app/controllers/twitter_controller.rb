@@ -4,7 +4,7 @@ class TwitterController < ApplicationController
   # Start the twitter authentication process.
   #
   def new
-    @target_url = root_path
+    @target_url = root_path(:src => HomeShowSource::LoginError)
 
     callback_url = tw_reply_url(
                     :src    => @source,

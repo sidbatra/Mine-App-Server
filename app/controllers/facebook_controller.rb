@@ -4,24 +4,26 @@ class FacebookController < ApplicationController
   # Start the facebook authentication process.
   #
   def new
+    @target_url = root_path(:src => HomeShowSource::LoginError)
+
     @client.redirect_uri = fb_reply_url(
                             :src    => @source,
                             :target => params[:target],
                             :follow_user_id => params[:follow_user_id],
                             :usage  => params[:usage])
 
-    target_url = @client.authorization_uri(
+    @target_url = @client.authorization_uri(
                   :scope => [:email,
                              :user_likes,
                              :user_birthday,
                              :publish_actions])
 
-    target_url << '&display=touch' if is_phone_device?
-
-    redirect_to target_url
+    @target_url << '&display=touch' if is_phone_device?
 
   rescue => ex
     handle_exception(ex)
+  ensure
+    redirect_to @target_url
   end
 
   # Handle reply from facebook oaut.
