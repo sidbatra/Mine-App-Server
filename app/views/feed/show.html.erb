@@ -1,6 +1,14 @@
+<%content_for :head do%>
+  <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "#{CONFIG[:name]} - Tell the world when you buy something great.",
+        :description => "Post purchases, perfectly. Share the best stuff in your life. Learn from friends and followers."}%>
+<%end%>
+
 <%content_for :top do%>
   <%=render 'purchases/chooser'%> 
 <%end%>  
+
 
 <div id="creation" 
   style="margin-top: -6px;" 
