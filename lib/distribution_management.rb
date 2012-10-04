@@ -33,8 +33,6 @@ module DW
 
         action  = fb_user.og_action!(
                     OGAction::Share,
-                    "image[0][url]"             => purchase.unit_url,
-                    "image[0][user_generated]"  => true,
                     "message"   => message,
                     "purchase"  => purchase_url(
                                     purchase.user.handle,
