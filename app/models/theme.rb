@@ -23,7 +23,7 @@ class Theme < ActiveRecord::Base
   #----------------------------------------------------------------------
 
   def self.default
-    first
+    find(7)
   end
 
 
