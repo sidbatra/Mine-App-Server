@@ -29,33 +29,40 @@ class TwitterController < ApplicationController
     @usage = params[:usage] ? params[:usage].to_sym : :redirect
     oauth_verifier = params[:oauth_verifier]
 
-    raise IOError, "OAuth verifier not found" unless oauth_verifier
+    if oauth_verifier
+      access_token = @client.authorize(
+                              session[:tw_request_token].token,
+                              session[:tw_request_token].secret,
+                              :oauth_verifier => oauth_verifier)  
 
-    access_token = @client.authorize(
-                            session[:tw_request_token].token,
-                            session[:tw_request_token].secret,
-                            :oauth_verifier => oauth_verifier)  
+      case @usage
+      when :redirect
+        @target_url = create_user_path(
+                        :using => "twitter",
+                        :tw_access_token => access_token.token,
+                        :tw_access_token_secret => access_token.secret,
+                        :target => params[:target],
+                        :src => @source,
+                        :follow_user_id => params[:follow_user_id])
 
-    case @usage
-    when :redirect
-      redirect_to create_user_path(
-                    :using => "twitter",
-                    :tw_access_token => access_token.token,
-                    :tw_access_token_secret => access_token.secret,
-                    :target => params[:target],
-                    :src => @source,
-                    :follow_user_id => params[:follow_user_id])
+      when :popup
+        self.current_user.tw_access_token = access_token.token
+        self.current_user.tw_access_token_secret = access_token.secret
+        self.current_user.tw_user_id = access_token.params['user_id']
 
-    when :popup
-      self.current_user.tw_access_token = access_token.token
-      self.current_user.tw_access_token_secret = access_token.secret
-      self.current_user.tw_user_id = access_token.params['user_id']
-
-      self.current_user.save!
+        self.current_user.save!
+      end
+    else
+      @error = true
     end
 
   rescue => ex
     handle_exception(ex)
+  ensure
+    case @usage
+    when :redirect
+      redirect_to @error ? root_path(:src => HomeShowSource::TWDenied) : @target_url
+    end
   end
 
 

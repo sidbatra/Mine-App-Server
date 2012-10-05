@@ -62,6 +62,8 @@
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
     Logout: 'logout'
+    FBDenied: 'fb_denied'
+    TWDenied: 'tw_denied'
   PurchaseEditSource:
     Updated: 'updated'
   SettingsIndexSource:
