@@ -61,7 +61,9 @@ class TwitterController < ApplicationController
   ensure
     case @usage
     when :redirect
-      redirect_to @error ? root_path(:src => HomeShowSource::TWDenied) : @target_url
+      redirect_to @error ? 
+        root_path(:src => HomeShowSource::TWDenied) : 
+        @target_url
     end
   end
 
