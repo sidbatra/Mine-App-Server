@@ -142,6 +142,41 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Delete a tweet. 
+      #
+      def self.delete_tweet(tweet_id,user)
+        Twitter.configure do |config|
+          config.consumer_key       = CONFIG[:tw_consumer_key]
+          config.consumer_secret    = CONFIG[:tw_consumer_secret]
+          config.oauth_token        = user.tw_access_token
+          config.oauth_token_secret = user.tw_access_token_secret 
+        end
+
+        Twitter.status_destroy(tweet_id)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Delete a tumblr blog post
+      #
+      def self.delete_tumblr_post(tumblr_post_id,user)
+        Tumblife.configure do |config|
+          config.consumer_key       = CONFIG[:tumblr_consumer_key]
+          config.consumer_secret    = CONFIG[:tumblr_consumer_secret]
+          config.oauth_token        = user.tumblr_access_token 
+          config.oauth_token_secret = user.tumblr_access_token_secret
+        end
+
+        client = Tumblife.client
+        name   = client.info.user.blogs.select{|blog| blog.primary}.first.name
+
+        client.delete(name,tumblr_post_id)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Post an invite on a friends facebook wall 
       #
       def self.post_invite_on_friends_wall(user,friend_fb_id)
