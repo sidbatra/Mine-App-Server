@@ -4,27 +4,29 @@ class FacebookController < ApplicationController
   # Start the facebook authentication process.
   #
   def new
+    @target_url = root_path(:src => HomeShowSource::LoginError)
+
     @client.redirect_uri = fb_reply_url(
                             :src    => @source,
                             :target => params[:target],
                             :follow_user_id => params[:follow_user_id],
                             :usage  => params[:usage])
 
-    target_url = @client.authorization_uri(
+    @target_url = @client.authorization_uri(
                   :scope => [:email,
                              :user_likes,
                              :user_birthday,
                              :publish_actions])
 
-    target_url << '&display=touch' if is_phone_device?
-
-    redirect_to target_url
+    @target_url << '&display=touch' if is_phone_device?
 
   rescue => ex
     handle_exception(ex)
+  ensure
+    redirect_to @target_url
   end
 
-  # Handle reply from facebook oaut.
+  # Handle reply from facebook oauth.
   #
   def create
     @usage = params[:usage] ? params[:usage].to_sym : :redirect
@@ -32,7 +34,7 @@ class FacebookController < ApplicationController
     target = params[:target]
     follow_user_id = params[:follow_user_id]
 
-    unless access_token
+    if !access_token && params[:code]
       @client.redirect_uri = fb_reply_url(
                               :src => @source,
                               :target => target,
@@ -43,29 +45,37 @@ class FacebookController < ApplicationController
       access_token = @client.access_token!(:client_auth_body)
     end
 
-    raise IOError, "Error fetching access token" unless access_token
+    if access_token
+      case @usage
+      when :redirect
+        @target_url = create_user_path(
+                        :using => "facebook",
+                        :access_token => access_token,
+                        :target => target,
+                        :src => @source,
+                        :follow_user_id => follow_user_id)
 
+      when :popup
+        fb_user = FbGraph::User.fetch("me?fields=id",
+                    :access_token => access_token)
 
-    case @usage
-    when :redirect
-      redirect_to create_user_path(
-                    :using => "facebook",
-                    :access_token => access_token,
-                    :target => target,
-                    :src => @source,
-                    :follow_user_id => follow_user_id)
-
-    when :popup
-      fb_user = FbGraph::User.fetch("me?fields=id",
-                  :access_token => access_token)
-
-      self.current_user.access_token = access_token.to_s
-      self.current_user.fb_user_id = fb_user.identifier
-      self.current_user.save!
+        self.current_user.access_token = access_token.to_s
+        self.current_user.fb_user_id = fb_user.identifier
+        self.current_user.save!
+      end
+    else
+      @error = true
     end
 
   rescue => ex
     handle_exception(ex)
+  ensure
+    case @usage
+    when :redirect
+      redirect_to @error ? 
+        root_path(:src => HomeShowSource::FBDenied) : 
+        @target_url
+    end
   end
 
 
