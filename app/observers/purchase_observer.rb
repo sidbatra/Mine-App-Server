@@ -87,6 +87,26 @@ class PurchaseObserver < ActiveRecord::Observer
         purchase.fb_action_id,
         purchase.user.access_token)
     end
+
+    if purchase.tweet_id && 
+        purchase.tweet_id != TWSharing::Underway
+
+      ProcessingQueue.push(
+        DistributionManager,
+        :delete_tweet,
+        purchase.tweet_id,
+        purchase.user)
+    end
+
+    if purchase.tumblr_post_id && 
+        purchase.tumblr_post_id != TumblrSharing::Underway
+
+      ProcessingQueue.push(
+        DistributionManager,
+        :delete_tumblr_post,
+        purchase.tumblr_post_id,
+        purchase.user)
+    end
   end
 
 end
