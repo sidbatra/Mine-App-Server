@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917213318) do
+ActiveRecord::Schema.define(:version => 20121005211057) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(:version => 20120917213318) do
     t.integer  "weight",                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_default",            :default => false
   end
 
   add_index "themes", ["weight"], :name => "index_themes_on_weight"

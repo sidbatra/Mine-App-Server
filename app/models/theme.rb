@@ -10,7 +10,7 @@ class Theme < ActiveRecord::Base
   # Attributes
   #----------------------------------------------------------------------
   attr_accessible :background_path,:background_tile_path,:background_body_class,
-                  :weight
+                  :weight, :is_default
 
   #----------------------------------------------------------------------
   # Named scopes
@@ -23,7 +23,7 @@ class Theme < ActiveRecord::Base
   #----------------------------------------------------------------------
 
   def self.default
-    find(7)
+    find_by_is_default(true) || last
   end
 
 

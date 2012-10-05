@@ -16,6 +16,9 @@
         <td width="100">
           <%=theme.background_body_class%>
         </td>
+        <td width="50">
+          <%=theme.is_default%>
+        </td>
         <td width="150">
           <%if theme.background_path.present?%>
             <%=image_tag theme.background_url,:width => 200%>

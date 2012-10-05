@@ -5,6 +5,9 @@
     Body class <%=f.text_field :background_body_class%> <br>
     Weight - <%=f.text_field :weight%> <br>
 
+    <%=f.label :is_default,"Is default?"%>
+    <%=f.check_box :is_default%>
+
     <div id='background_image'>
       <%if @theme.background_path.present?%>
         <img src="<%=h @theme.background_url%>" />
