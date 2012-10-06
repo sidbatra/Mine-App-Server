@@ -38,6 +38,7 @@ common: &common
     :proc: mine_processing
     :secondary_proc: mine_secondary_processing
     :crawl: crawl
+    :email_feedback: production_mine_email_feedback
   :max_processing_attempts: 3
   :asset_hosts_count: 4
   :edge_servers_count: 7

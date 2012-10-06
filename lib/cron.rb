@@ -95,6 +95,38 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      # Public. Fetch list of failed emails and modify
+      # receiving users subscription settings.
+      #
+      def self.maintain_email_list
+        email_feedback_queue = FIFO::Queue.new Q[:email_feedback]
+
+        while(true)
+          payload = email_feedback_queue.pop true
+          break unless payload
+
+          message = JSON.parse(payload)["Message"]
+          next unless message
+
+          message = JSON.parse message
+          next unless (message["notificationType"] == "Bounce" && 
+                        message["bounce"]["bounceType"] == "Permanent") ||
+                      message["notificationType"] == "Complaint"
+
+          messageID = message["mail"]["messageId"]
+          email = Email.find_by_message_id messageID
+          next unless email
+
+          user = User.find email.recipient_id
+          user.setting.unsubscribe if user
+        end
+
+        HealthReport.add(HealthReportService::MaintainEmailList)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #cron worker
 
   end # Cron

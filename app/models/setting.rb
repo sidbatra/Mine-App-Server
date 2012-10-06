@@ -10,6 +10,8 @@ class Setting < ActiveRecord::Base
   #----------------------------------------------------------------------
   validates_inclusion_of  :email_influencer, :in => [true,false]
   validates_inclusion_of  :email_update, :in => [true,false]
+  validates_inclusion_of  :email_digest, :in => [true,false]
+  validates_inclusion_of  :email_follower, :in => [true,false]
   validates_inclusion_of  :share_to_facebook, :in => [true,false]
   validates_inclusion_of  :share_to_twitter, :in => [true,false]
   validates_inclusion_of  :share_to_tumblr, :in => [true,false]
@@ -57,6 +59,16 @@ class Setting < ActiveRecord::Base
   #
   def post_to_tumblr?  
     self.share_to_tumblr & self.tumblr_auth
+  end
+
+  # Unsubscribe from all email types.
+  #
+  def unsubscribe
+    self.email_influencer = false
+    self.email_update = false
+    self.email_digest = false
+    self.email_follower = false
+    save!
   end
 
 end
