@@ -223,6 +223,10 @@ class UserMailer < ActionMailer::Base
     else
       super
     end
+
+  rescue AWS::SES::ResponseError => ex
+    user = User.find @@attributes[:recipient_id]
+    user.setting.unsubscribe if user && ex.message.match("blacklisted")
   end
 
 
