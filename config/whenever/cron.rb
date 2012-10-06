@@ -18,6 +18,11 @@ every 1.day, :at => '4:00pm' do
   runner "ProcessingQueue.push(CronWorker,:maintain_search_index)"
 end
 
+every 1.day, :at => '10:00pm' do
+  runner "ProcessingQueue.push(CronWorker,:maintain_email_list)"
+end
+
+
 #every 1.day, :at => '9:00am' do
 #  runner "ProcessingQueue.push(CronWorker,:email_users_after_joining)"
 #end

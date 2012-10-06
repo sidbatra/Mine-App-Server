@@ -7,12 +7,12 @@ class Admin::HealthController < ApplicationController
     @services = [
       {
         :id => HealthReportService::FriendsDigest,
-        :time => 1.week.ago},
+        :time => 4.days.ago},
       {
         :id => HealthReportService::MaintainSearchIndex,
         :time => 1.day.ago},
       {
-        :id => HealthReportService::AfterJoinEmails,
+        :id => HealthReportService::MaintainEmailList,
         :time => 1.day.ago},
       {
         :id => HealthReportService::AddPurchaseEmails,
