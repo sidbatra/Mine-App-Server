@@ -99,6 +99,8 @@ module DW
       # receiving users subscription settings.
       #
       def self.maintain_email_list
+        return unless Rails.env.starts_with? 'p'
+
         email_feedback_queue = FIFO::Queue.new Q[:email_feedback]
 
         while(true)
