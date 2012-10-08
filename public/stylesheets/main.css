@@ -751,7 +751,11 @@ a.feed-intro .highlight { font-weight: bold; }
 .profile-box .user-box .basics .item-count {
 	font-size: 14px; 
 	font-weight: normal;
-	color: #ccc; }
+	color: #ccc;
+	padding-right: 8px; }
+	
+.profile-box .user-box .basics .t-box { height: 10px; vertical-align: baseline; }
+.profile-box .user-box .basics .f-box { height: 14px; vertical-align: -1px; }
 	
 /* -- byline -- */
 
