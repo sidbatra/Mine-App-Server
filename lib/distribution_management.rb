@@ -15,15 +15,16 @@ module DW
         fb_app  = FbGraph::Application.new(CONFIG[:fb_app_id])
         fb_user = FbGraph::User.me(purchase.user.access_token)  
 
-        message = "Just bought this"
-
-        if purchase.store 
-          message << " from #{purchase.store.name}"
-        end
+        message = ""
 
         if purchase.endorsement.present?
-          message << ". "
-          message << purchase.endorsement 
+          message = purchase.endorsement 
+        else
+          message = "Bought my #{purchase.title}" 
+
+          if purchase.store
+            message << " from #{purchase.store.name}"
+          end
         end
 
         message << " "
