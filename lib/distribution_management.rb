@@ -90,7 +90,8 @@ module DW
         name    = client.info.user.blogs.select{|blog| blog.primary}.first.name
         url     = name + '.tumblr.com'
 
-        message = "Just bought this"
+
+        message = "Bought my #{purchase.title}"
 
         if purchase.store 
           message << " from #{purchase.store.name}"
