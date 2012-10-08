@@ -890,7 +890,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	height: 236px;
 	line-height: 236px;
 	padding: 12px 6px;
-	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
+/* 	background: url('/images/loading/loading-snake-555.gif') center no-repeat; */
 	text-align: center; }
 	
 .card .photo-box .item-photo {
