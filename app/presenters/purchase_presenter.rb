@@ -22,8 +22,7 @@ class PurchasePresenter < BasePresenter
   # og description tag
   #
   def description
-    purchase.store && purchase.store.is_approved ? 
-      "Bought from #{purchase.store.name}" : ''
+    purchase.store.present? ? "Bought from #{purchase.store.name}" : ''
   end
 
 
