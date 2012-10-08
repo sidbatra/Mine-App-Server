@@ -13,6 +13,6 @@
 <meta property="og:image" content="<%=image%>"/>
 <%-end-%>
 <%-end-%>
-<%-if defined?(store) && store.present? && store.is_approved-%>
+<%-if defined?(store) && store.present?-%>
 <meta property="<%=OGObject::StoreName%>" content="<%=store.name%>"/>
 <%-end-%>
