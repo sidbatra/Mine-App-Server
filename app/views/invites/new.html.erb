@@ -1,3 +1,10 @@
+<%content_for :head do%>
+  <%=render :partial => 'misc/meta',
+      :locals => {
+        :title => "Invite Friends to #{CONFIG[:name]}"}%>
+<%end%>
+
+
 <a id="facebook_tab"
   href="#facebook" 
   class="well-box tab dark rounded-8-top border-box relative 

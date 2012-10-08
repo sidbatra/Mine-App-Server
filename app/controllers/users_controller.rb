@@ -32,7 +32,12 @@ class UsersController < ApplicationController
         if @user && !@error
           self.current_user = @user
           set_cookie 
-          Following.add(follow_user_id,self.current_user.id) if follow_user_id
+          Following.add(follow_user_id,self.current_user.id,FollowingSource::Auto,false) if follow_user_id
+
+          if session[:invited_by_user_id]
+            Following.add(session[:invited_by_user_id],self.current_user.id,FollowingSource::Auto,false) 
+            Following.add(self.current_user.id,session[:invited_by_user_id],FollowingSource::Auto,false) 
+          end
         end
 
         url = ""

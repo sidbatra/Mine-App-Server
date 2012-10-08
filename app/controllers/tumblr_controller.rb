@@ -3,6 +3,8 @@ class TumblrController < ApplicationController
   # Start the tumblr authentication process.
   #
   def new
+    @target_url = tumblr_reply_path
+
     @consumer = OAuth::Consumer.new(
                                 CONFIG[:tumblr_consumer_key], 
                                 CONFIG[:tumblr_consumer_secret], 
@@ -11,10 +13,12 @@ class TumblrController < ApplicationController
     request_token = @consumer.get_request_token
     session[:tumblr_request_token] = request_token
 
-    redirect_to request_token.authorize_url
+    @target_url = request_token.authorize_url
 
   rescue => ex
     handle_exception(ex)
+  ensure
+    redirect_to @target_url
   end
 
   # Handle reply from tumblr oauth.

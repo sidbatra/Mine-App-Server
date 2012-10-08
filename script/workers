@@ -23,15 +23,14 @@ elif [ $task = "stop" ] ; then
 
 
 elif [ $task = "restart" ] ; then
-  sudo RAILS_ENV=$env /usr/local/bin/ruby lib/daemons/processor_ctl restart
-  #sudo RAILS_ENV=$env /usr/local/bin/ruby lib/daemons/processor_ctl stop
+  sudo RAILS_ENV=$env /usr/local/bin/ruby lib/daemons/processor_ctl stop
 
-  #for (( i=0; i<$workers; i++ ))
-  #  do
-  #    sudo RAILS_ENV=$env /usr/local/bin/ruby lib/daemons/processor_ctl start
-  #  done
+  for (( i=0; i<$workers; i++ ))
+    do
+      sudo RAILS_ENV=$env /usr/local/bin/ruby lib/daemons/processor_ctl start
+    done
 
-  #  sleep $workers
+    #sleep $workers
 
 
 else
