@@ -21,6 +21,11 @@
 				<%=@follower.full_name%></a>
 		</p>
 		
+	  <p style="font-size:14px; line-height: 140%; 
+	 		font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
+			<em><%=@follower.byline%></em>
+		</p>
+		
     <%=render :partial => "action_button",
         :locals => {
           :url => user_url(@follower.handle,:src => @source),
