@@ -49,27 +49,34 @@ module DW
 
       # Tweet about the purchase 
       #
-      def self.tweet(purchase,image_path)
+      def self.tweet(purchase)
         Twitter.configure do |config|
           config.consumer_key       = CONFIG[:tw_consumer_key]
           config.consumer_secret    = CONFIG[:tw_consumer_secret]
           config.oauth_token        = purchase.user.tw_access_token
           config.oauth_token_secret = purchase.user.tw_access_token_secret 
         end
-        
-        message = "Just bought this "
 
-        if purchase.store 
-          message << "from #{purchase.store.name} "
+        message = ""
+
+        if purchase.endorsement.present?
+          message = purchase.endorsement 
+        else
+          message = "Bought my #{purchase.title}" 
+
+          if purchase.store
+            message << " from #{purchase.store.name}"
+          end
         end
+        
+       message = truncate(message,:length => 119)
 
+        message << " "
         message << short_purchase_url(
                     Cryptography.obfuscate(purchase.id),
                     :host => CONFIG[:host])
 
-        message << " #mine"
-
-        tweet = Twitter.update_with_media(message,File.new(image_path))
+        tweet = Twitter.update(message)
         purchase.update_attributes({:tweet_id => tweet.id})
 
       rescue => ex
