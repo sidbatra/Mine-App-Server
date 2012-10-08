@@ -148,6 +148,18 @@ class User < ActiveRecord::Base
     (Time.now - self.created_at) < 60
   end
 
+  # URL for the user's facebook profile 
+  #
+  def fb_profile_url
+    "http://www.facebook.com/profile.php?id=#{fb_user_id}"
+  end
+
+  # URL for the user's twitter profile
+  #
+  def tw_profile_url
+    "http://twitter.com/intent/user?user_id=#{tw_user_id}"
+  end
+
   # URL for the user's image on fb.
   #
   # type - String:'square'. Type of fb image - square | small | normal | large
