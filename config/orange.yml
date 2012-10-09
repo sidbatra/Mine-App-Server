@@ -94,7 +94,7 @@
   :token: 619625766-0ENSHN9jXS9zAhnrNqvX9l8Dboa2NkieePnUDG87,
   :secret: irWxfRviX3MzsWVseg71HlErzq461OFpgo7yVR0tts,
   :handle: NataliaAtMine,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool! On Mine http://getmine.com you can tweet pics of what you bought. You'll love it!",

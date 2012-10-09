@@ -77,7 +77,7 @@ EM.run do
 
       
       EM::Timer.new(30) do
-        tweets = Twitter.search(KEYWORDS.rand, 
+        tweets = Twitter.search(KEYWORDS.sample, 
                           :lang => "en",
                           :rpp => ACCOUNTS.length, 
                           :result_type => "recent")
