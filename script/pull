@@ -19,3 +19,6 @@ sudo RAILS_ENV=development lib/daemons/processor_ctl start > /dev/null &
 
 sudo RAILS_ENV=development lib/daemons/clerk_ctl stop > /dev/null &
 sudo RAILS_ENV=development lib/daemons/clerk_ctl start > /dev/null &
+
+sudo cp config/monit/development /etc/monit.d/
+sudo /etc/init.d/monit restart > /dev/null &
