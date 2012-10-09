@@ -1,0 +1,25 @@
+<div class="container well" id="container" class="container well">
+  <legend>Edit user</legend>
+
+  <%form_for @user, 
+      :url => "/admin/users/#{@user.id}" do |f|%>
+
+    First name - <%=f.text_field :first_name%> <br>
+    Last name - <%=f.text_field :last_name%> <br>
+    Email - <%=f.text_field :email%> <br>
+    Gender - <%=f.text_field :gender%> <br>
+    Handle - <%=f.text_field :handle,:disabled => true%> <br>
+    FB user id - <%=f.text_field :fb_user_id%> <br>
+    TW user id - <%=f.text_field :tw_user_id%> <br>
+
+    <br>
+    <%=submit_tag "Save", :name => nil%>
+  <%end%>
+
+  <br><br>
+  <%=link_to "Admin view",admin_user_path(@user.handle)%>
+  <br><br>
+  Twitter username to id: <a target="_blank" href="http://id.twidder.info/">http://id.twidder.info</a> <br>
+  Facebook username to id: http://graph.facebook.com/username Eg: <a target="_blank" href="http://graph.facebook.com/sidbatra">http://graph.facebook.com/sidbatra</a>
+
+</div>

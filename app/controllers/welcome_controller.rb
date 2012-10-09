@@ -53,6 +53,8 @@ class WelcomeController < ApplicationController
         @error_target = welcome_path(WelcomeFilter::Info,:exists => true)
       else
         self.current_user.update_attributes(params)
+
+        @success_target = root_path unless self.current_user.purchases_count.zero?
       end
     else
 

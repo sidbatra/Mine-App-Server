@@ -41,6 +41,18 @@ class Admin::UsersController < ApplicationController
             end
   end
 
+  def edit
+    @user = User.find_by_handle params[:id]
+  end
+
+  def update
+    @user = User.find params[:id]
+    @user.generate_handle = true
+    @user.update_attributes params[:user]
+
+    redirect_to edit_admin_user_path(@user.handle)
+  end
+
   # Destroy the user
   #
   def destroy
