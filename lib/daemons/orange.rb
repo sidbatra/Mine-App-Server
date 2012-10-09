@@ -17,7 +17,7 @@ CONSUMER_SECRET   = ORANGE_CONFIG[:consumer_secret]
 ACCESS_TOKEN      = ORANGE_CONFIG[:access_token]
 ACCESS_TOKEN_SECRET = ORANGE_CONFIG[:access_token_secret]
 ACCOUNTS          = ORANGE_CONFIG[:accounts].select{|account| account[:enabled] == true}
-KEYWORDS          = %w{obama instagr.am coffee food iphone bored pinterest}
+KEYWORDS          = %w{instagr.am pinterest obama 4sq facebook america}
 
 require 'rubygems'
 require 'tweetstream'
@@ -78,6 +78,7 @@ EM.run do
       
       EM::Timer.new(30) do
         tweets = Twitter.search(KEYWORDS.rand, 
+                          :lang => "en",
                           :rpp => ACCOUNTS.length, 
                           :result_type => "recent")
 
@@ -92,7 +93,7 @@ EM.run do
           if @count == i
             Twitter.update(tweet,:in_reply_to_status_id => status.id)
           else
-            Twitter.update(tweets[i].text)
+            Twitter.update(tweets[i].text.gsub(/@[^ ]+/,""))
           end
 
         end #accounts
@@ -100,7 +101,7 @@ EM.run do
 
       @count += 1
 
-      @reset_at = Time.now + rand(15) + 300
+      @reset_at = Time.now + rand(30) + 600
       @logger.info "Resetting"
       
       @count = 0 if @count >= ACCOUNTS.length

@@ -4,10 +4,10 @@
 :access_token_secret: KBLsCLlpp5ZjYHyGKDT0UUxeYoJJbptSVyD1zoeZ1k8
 :accounts: [
   {
-  :token: 618491461-XupWeqqde9Fdd0A44p0aLttWVkbISXgjCfruM5RJ,
-  :secret: ehH3AnW5aA1gKrQBbccK5NfCG1WAne3Woc0r5dteeIQ,
-  :handle: SarahDArcy6,
-  :enabled: false,
+  :token: 408943631-K12MnaJGt4J0pJRMOTo0sMc9XfNLLdQOAn1amZmD,
+  :secret: UbrFX8N2WiqUOlBG89FvE7ioL2ZsHOaWMrztdJapl5w,
+  :handle: thebigwheelhums,
+  :enabled: true,
   :templates: [
     {
     :tweet: "@name that's cool! On Mine http://getmine.com you can tweet pics of what you bought. You'll love it!",
@@ -38,10 +38,10 @@
     :media: nil}]
   },
   {
-  :token: 618602486-gIdrjMA4jy3Yla5alOUuvFmlTkxTQOwWrHhGGHWB,
-  :secret: 3OjyHIc9PrAaK0wh90OWyPQ01EntIZTFx610tDiYCDk,
-  :handle: BethanyMore1,
-  :enabled: false,
+  :token: 121943593-oRSqiheb1m4kw4ty1Nh4fYbHMPsKqp7kaVtYPNcq,
+  :secret: MecX81LEvkbGLcxSv2qQz1BKPlYkleqPwm44MNMTAE,
+  :handle: sarahjatmine,
+  :enabled: true,
   :templates: [
     {
     :tweet: "@name weird how people are all tweeting what they're buying! Have you tried 'Mine' http://getmine.com ?",
@@ -57,12 +57,6 @@
     :media: nil},
     {
     :tweet: "@name that's neat - you should start using Mine http://getmine.com ! Search for me if you log in!",
-    :media: nil},
-    {
-    :tweet: "Thats neat @name! Why not catalog all your best stuff, like this: http://getmine.com/Caitlin-Hogan",
-    :media: nil},
-    {
-    :tweet: "Love it! Have you tried a Mine page for logging your stuff, like this? http://getmine.com/Caitlin-Hogan",
     :media: nil}]
   },
   {
