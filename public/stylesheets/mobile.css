@@ -1,7 +1,7 @@
 /* Media Queries - Mobile
 ==================================================================== */
    
-@media screen and (max-width: 600px) { 
+@media screen and (max-width: 575px) { 
 	
 	.rwd-show { display: inline-block !important; }
 	.rwd-hide { display: none !important; }

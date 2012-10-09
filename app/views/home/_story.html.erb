@@ -4,11 +4,13 @@
 		<%=image_tag "logos/mine-h-white-48-brighter-2x.png",
   		  :class => "logo unselectable"%>	
 	</div>
+	
+	<div class="dark-top"></div>
 
 	<div class="container">
 	
     <%if @invited_by_user%>
-      <h2 class="invite-welcome alias-smooth" style="padding: 0 0 20px;">
+      <h2 class="invite-welcome" style="padding: 0 0 20px;">
         <img class="user-photo xxl rounded-3"
           src="<%=@invited_by_user.square_image_url%>" />
           <%=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
@@ -24,7 +26,7 @@
 					width="880" 
 	        height="391" 
 	        frameborder="0">
-	       </iframe>
+	      </iframe>
 	    <%else%>
 	    	<!-- mobile video -->
 	      <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
@@ -36,7 +38,7 @@
       
 		</div>
 		
-		<h2 class="alias-smooth">
+		<h2>
       <%if @invited_by_user%>
         Sign in now:
       <%else%>
@@ -47,7 +49,7 @@
 		
 		<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
         onclick="this.className += ' load';"
-        class="btn btn-large btn-twitter shaded-strong relative alias-smooth">
+        class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
       <span class='hide-when-loading'>
       	<%=image_tag "social/t-box.png",
         :class => "t-box"%>
@@ -60,7 +62,7 @@
 		
 		<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
 	      onclick="this.className += ' load';"
-	      class="btn btn-large btn-facebook shaded-strong relative alias-smooth">
+	      class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
 	    <span class='hide-when-loading'>
 	    	<%=image_tag "social/f-box.png",
 	      :class => "f-box"%>
@@ -69,20 +71,9 @@
 	    <i class='icon-loading icon-white'></i>
 	  </a>
 	  
-		
 		<br>
 		
-<!--
-		<a class="learn-more rounded-6" id="learn-more" href="#">
-			Learn more
-		</a>
--->
-		
-		<div id="more" style="margin-top: 10px;">
-			
-			<h2 class="alias-smooth">
-				With <b>mine</b>, you can&hellip;
-			</h2>
+		<div id="more" style="width: 880px; margin: 36px auto 0;">
 			
 			<div class="col-3">
 				<h3>
@@ -99,7 +90,7 @@
 					Share the best stuff in your life.
 				</h3>
 				<p>
-					Thousands of people use mine to post the items that speak to who they are, 
+					Thousands of people use Mine to post the items that speak to who they are, 
 					what they like, and what they know about.
 				</p>
 			</div>
@@ -110,9 +101,42 @@
 				</h3>
 				<p>
 					As the only place on the web where you can look up and follow anyone's best purchases, 
-					mine is a constant source of inspiration.
+					Mine is a never-ending thread of discoveries.
 				</p>
 			</div>
+			
+			<br>
+			
+			<div class="examples" style="margin-top: 20px;">
+			
+				<a href="#modal1" data-toggle="modal" class="col-3 cell rounded-8 border-box transition-color relative">
+					<%=image_tag "home/mike.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					Mike bought a new Kindle Paperwhite. Three friends decided to get one too.
+				</a>
+				
+				<a href="/" class="col-3 cell rounded-8 border-box transition-color relative">
+					<%=image_tag "home/arar.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					Arar bought a new Kindle Paperwhite. 3 friends decided to get one too.
+				</a>
+				
+				<a href="/" class="col-3 cell rounded-8 border-box transition-color relative">
+					<%=image_tag "home/shayne.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					Shayne bought a new Kindle Paperwhite. 3 friends decided to get one too.
+				</a>
+				
+			</div>
+			
+			
+			<! -- modal 1 -->
+			<div class="modal eyeglass hide rounded-5" id="modal1">
+			  <div class="modal-body" style="text-align: center;">
+			  	<iframe seamless class="rounded-3" frameborder="0" width="100%" height="100%" src="http://pleg.getmine.com/Mike-Hudack/"></iframe>
+			  </div>
+			</div>
+
 		
 		</div> <!--/#more-->
 		
@@ -162,6 +186,10 @@
         }
     }
   </script>
+  
+  <script src="/javascripts/libs/bootstrap-home.js"></script>
+  
+  
 <%end%>
 
 
