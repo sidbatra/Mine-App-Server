@@ -112,6 +112,9 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     
     if(!this.interactive)
       $('#' + this.el.attr('id') + ' a[href]').click(function(e){e.preventDefault();});
+
+
+    new Denwen.Partials.Pinterest.Base();
   },
 
   // Feed items loading failed. Fire events to subscribers.

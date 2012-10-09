@@ -9,6 +9,7 @@ var Denwen = {
                   Facebook : {}, Stores : {}, Invites : {}, Auth : {}, 
                   Common : {}, Followings : {}, Settings : {}, 
                   Comments : {}, Likes :{}, Feed:{}, Suggestions : {},
+                  Pinterest : {},
                   Admin : {Suggestions : {},Stores : {},Themes : {}}},
   Collections : {}
 };

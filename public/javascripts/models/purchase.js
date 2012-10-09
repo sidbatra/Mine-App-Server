@@ -47,6 +47,12 @@ Denwen.Models.Purchase = Backbone.Model.extend({
     return this.basePath() + '?src=' + src;
   },
 
+  // Absolute URL to the purchase with originating src
+  //
+  url: function(src) {
+    return "http://" + window.location.hostname + this.path(src);
+  },
+
   // Path to the edit view of the purchase with an originating source
   //
   editPath: function(src) {
@@ -71,6 +77,26 @@ Denwen.Models.Purchase = Backbone.Model.extend({
   //
   isNative: function() {
     return this.get('fb_object_id') == null;
+  },
+
+  sharingMessage: function() {
+    var message = "";
+
+    if(Denwen.H.isCurrentUser(this.get('user').get('id')))
+      message = "Bought my ";
+    else
+      message = this.get('user').get('first_name') + " bought " + 
+                  this.get('user').pronoun() + " ";
+    
+    message = message + this.get('title');
+
+    if(this.get('store'))
+      message = message + " from " + this.get('store').get('name');
+
+    if(this.get('endorsement'))
+      message = message + ". " + this.get('endorsement');
+
+    return message;
   }
 
 });
