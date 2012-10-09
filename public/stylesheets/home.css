@@ -113,6 +113,7 @@ ul { margin: 0 !important; }
 	height: 50px; }
 	
 .modal.eyeglass { 
+	text-align: left;
 	width: 576px;
 	padding: 12px;
 	background-color: rgba(255,255,255,0.5);
@@ -124,7 +125,8 @@ ul { margin: 0 !important; }
 
 .modal.eyeglass .modal-body {
 	max-height: none;
-	padding: 0;
+	padding: 26px;
+	background: #444;
 	overflow-y: auto; }
 
 .spacer { height: 88px; } 
@@ -134,8 +136,7 @@ footer { text-align: center; }
 footer, .push {
 	height: 32px;
 	line-height: 32px;
-	font-size: 12px;
-/* 	background-color: rgba(0,0,0,0.12); */ }
+	font-size: 12px; }
 	
 footer .inner {
 	width: 880px;
@@ -158,6 +159,8 @@ footer .twitter-button-box {
 	overflow: hidden; }
 
 	
+
+
 /*
 @media screen and (max-width: 600px) { 
  
