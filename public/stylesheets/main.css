@@ -839,25 +839,28 @@ a.feed-intro .highlight { font-weight: bold; }
 .btn.follow.btn-green:hover .unfollow { display: block; }
 
 	
-/* -- Logged-out follow modal -- */
+/* -- Logged-out follow modal (Classic) -- */
 
-.profile-box .modal { 
+.modal.classic { 
 	width: 472px;
 	margin-left: -236px;
 	margin-top: 0;
 	top: 185px;
 	border: 0; }
 	
-.profile-box .modal .modal-header { 
+.modal.classic .modal-header { 
 	text-align: center;
 	border: 0; }
 	
-.profile-box .modal .close { 
+.modal.classic .close { 
 	font-family: Arial, sans-serif;
 	font-size: 28px;
 	margin-top: 1px; }
 
-.profile-box .modal h4 { color: #555; }
+.modal.classic h4 { 
+	color: #555;
+	line-height: 18px;
+	margin-bottom: 0; }
 	
 	
 /* -- about page -- */
