@@ -49,7 +49,7 @@ Denwen.Models.Purchase = Backbone.Model.extend({
 
   // Absolute URL to the purchase with originating src
   //
-  url: function(src) {
+  absoluteURL: function(src) {
     return "http://" + window.location.hostname + this.path(src);
   },
 
