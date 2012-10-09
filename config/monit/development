@@ -10,7 +10,7 @@
     stop program  = "/etc/init.d/memcached stop"
   
   # Processor
-  check process processor with pidfile /vol/mine/log/processor.rb_monitor.pid
+  check process processor with pidfile /vol/mine/log/processor.rb0.pid
     start program = "/bin/bash -c 'cd /vol/mine && /bin/bash script/workers start 1 development'" with timeout 30 seconds
     stop program  = "/bin/bash -c 'cd /vol/mine && /bin/bash script/workers stop 1 development'" 
 
