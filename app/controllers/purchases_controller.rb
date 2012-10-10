@@ -114,37 +114,45 @@ class PurchasesController < ApplicationController
   # Display a specific purchase.
   #
   def show
-    track_visit
     
     if params[:purchase_id]
       @purchase = Purchase.
                     with_comments.
                     with_likes.
-                    find(Cryptography.deobfuscate params[:purchase_id])
+                    find_by_id Cryptography.deobfuscate(params[:purchase_id])
     else
-      user = User.find_by_handle(params[:user_handle])
+      user = User.find_by_handle params[:user_handle]
 
       @purchase = Purchase.
                     with_comments.
                     with_likes.
                     find_by_user_id_and_handle(
                      user.id,
-                     params[:purchase_handle])
+                     params[:purchase_handle]) if user
     end
 
-    populate_theme @purchase.user
+    if is_request_html? && @purchase
+      track_visit
+      populate_theme @purchase.user
 
-    #@next_purchase = @purchase.next
-    #@next_purchase ||= @purchase.user.purchases.first
+      #@next_purchase = @purchase.next
+      #@next_purchase ||= @purchase.user.purchases.first
 
-    #@prev_purchase = @purchase.previous
-    #@prev_purchase ||= @purchase.user.purchases.last
+      #@prev_purchase = @purchase.previous
+      #@prev_purchase ||= @purchase.user.purchases.last
 
-    @origin = 'purchase'
+      @origin = 'purchase'
+    end
 
   rescue => ex
     handle_exception(ex)
   ensure
+    raise_not_found unless @purchase
+
+    respond_to do |format|
+      format.html
+      format.json 
+    end
   end
 
   # Display page for editing a purchase.
