@@ -7,7 +7,7 @@
   :token: 408943631-K12MnaJGt4J0pJRMOTo0sMc9XfNLLdQOAn1amZmD,
   :secret: UbrFX8N2WiqUOlBG89FvE7ioL2ZsHOaWMrztdJapl5w,
   :handle: thebigwheelhums,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool! On Mine http://getmine.com you can tweet pics of what you bought. You'll love it!",
