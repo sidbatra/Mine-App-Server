@@ -136,6 +136,11 @@ class UsersController < ApplicationController
                                     GROUP_CONCAT(users.first_name) AS FOLLOWED_BY',
                     :order      => 'RAND()',
                     :limit      => 3)
+          
+      @users = followings.each do |f|
+                 f.user['message'] = follow_message(f['FOLLOWED_BY'])
+               end.map(&:user)
+      
     end
 
   rescue => ex
@@ -153,26 +158,23 @@ class UsersController < ApplicationController
   #
   def show
     if is_request_json?
-      @user = User.find_by_id Cryptography.deobfuscate(params[:id])
+      @user = User.find(Cryptography.deobfuscate params[:id])
     else
       track_visit
 
-      if @user = User.find_by_handle(params[:handle])
-        @following = Following.fetch @user.id,self.current_user.id
-        @origin = 'user'
+      @user = User.find_by_handle(params[:handle])
+      @following = Following.fetch @user.id,self.current_user.id
+      @origin = 'user'
 
-        populate_theme @user 
-      end
+      populate_theme @user
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
-    raise_not_found unless @user
-
     respond_to do |format|
       format.html
-      format.json 
+      format.json
     end
   end
   
@@ -224,6 +226,22 @@ class UsersController < ApplicationController
                   params[:tw_access_token],
                   params[:tw_access_token_secret],
                   @source)
+  end
+
+  # Generate a message for the user that we recommend to follow
+  #
+  def follow_message(users)
+    users = users.split(',')
+
+    message = "Followed by "
+
+    if users.length <= 2
+      message << users[0..1].join(" and ")
+    elsif users.length == 3
+      message << users[0..1].join(", ") + " and 1 other"   
+    else
+      message << users[0..1].join(", ") + " and #{users.length - 2} others"   
+    end
   end
 
 end
