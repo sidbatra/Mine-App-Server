@@ -1,5 +1,10 @@
 class HomeController < ApplicationController
 
+	def index
+		#TODO: convert to case statement
+		render "home/samples/#{params[:id]}"
+	end
+
   # Display the root path which is the feed is
   # the user is logged in or the home page is
   # the user isn't logged in.

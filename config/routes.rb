@@ -6,6 +6,10 @@ ActionController::Routing::Routes.draw do |map|
   map.home 'home/:id', 
     :controller => :home, 
     :action => :show
+    
+  map.home_sample 'home/samples/:id',
+  	:controller => :home,
+  	:acton => :index
 
   map.create_user 'create_user',
     :controller => :users,
