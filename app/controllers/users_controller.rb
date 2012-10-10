@@ -122,6 +122,20 @@ class UsersController < ApplicationController
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
       populate_theme @user
+
+    when :to_follow
+      ifollower_ids = self.current_user.ifollower_ids 
+
+      followings = Following.find_all_by_follower_id(
+                    ifollower_ids,
+                    :conditions => ["user_id not in (?)", ifollower_ids + [self.current_user.id]],
+                    :joins      => 'INNER JOIN users ON users.id = followings.follower_id',
+                    :group      => :user_id,
+                    :include    => :user, 
+                    :select     => 'followings.*,
+                                    GROUP_CONCAT(users.first_name) AS FOLLOWED_BY',
+                    :order      => 'RAND()',
+                    :limit      => 3)
     end
 
   rescue => ex
