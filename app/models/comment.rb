@@ -46,6 +46,7 @@ class Comment < ActiveRecord::Base
   def self.user_ids_in_thread_with(comment)
     user_ids = select(:user_id).for(comment.purchase_id).map(&:user_id)
     user_ids << comment.purchase.user_id
+    user_ids.delete comment.user_id
     user_ids.uniq
   end
 

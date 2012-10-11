@@ -7,15 +7,17 @@ module DW
       def self.new_like(like)
         target_user   = like.purchase.user
         entity        = like.user.full_name
-        event         = "your #{like.purchase.title}"
+        event         = ""
         total_likes   = like.purchase.likes.count
 
         if total_likes > 1
           event = "and #{total_likes-1} "\
-                  "#{total_likes-1 == 1 ? "other" : "others"} like #{event}"
+                  "#{total_likes-1 == 1 ? "other" : "others"} like"
         else
-          event = "likes #{event}"
+          event = "likes"
         end
+
+        event << " your #{like.purchase.title}"
 
         Notification.add(
                       target_user.id,
@@ -24,7 +26,41 @@ module DW
                       like.purchase,
                       like.user.square_image_url,
                       NotificationIdentifier::Like)
-      end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end #new like
+
+
+      def self.new_comment(comment,users)
+        owner = comment.purchase.user
+        entity = comment.user.full_name
+
+        users.each do |user|
+          event = ""
+
+          if owner.id == user.id
+            event = "commented on your"
+          elsif owner.id == comment.user_id
+            event = "also commented on #{owner.is_male? ? 'his' : 'her'}"
+          else
+            event = "also commented on #{owner.first_name}'s"
+          end
+
+          event << " #{comment.purchase.title}"
+
+          Notification.add(
+                        user.id,
+                        entity,
+                        event,
+                        comment.purchase,
+                        comment.user.square_image_url,
+                        NotificationIdentifier::Comment)
+        end #users
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end #new comment
 
     end #notification manager
 
