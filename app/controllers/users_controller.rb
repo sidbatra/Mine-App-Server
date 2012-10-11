@@ -141,7 +141,7 @@ class UsersController < ApplicationController
                  f.user['message'] = follow_message(f['FOLLOWED_BY'])
                end.map(&:user)
       
-      @users << User.find_all_by_is_special(
+      @users += User.find_all_by_is_special(
                       true,
                       :conditions => ["id not in (?)", followings.map(&:user_id) + [self.current_user.id]],
                       :order => 'RAND()',
