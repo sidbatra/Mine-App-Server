@@ -41,7 +41,7 @@
   :token: 121943593-oRSqiheb1m4kw4ty1Nh4fYbHMPsKqp7kaVtYPNcq,
   :secret: MecX81LEvkbGLcxSv2qQz1BKPlYkleqPwm44MNMTAE,
   :handle: sarahjatmine,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name weird how people are all tweeting what they're buying! Have you tried 'Mine' http://getmine.com ?",
