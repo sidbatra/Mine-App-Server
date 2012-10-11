@@ -67,6 +67,10 @@
     TWDenied: 'tw_denied'
   PurchaseEditSource:
     Updated: 'updated'
+  NotificationIdentifier:
+    Like: 0
+    Comment: 1
+    Follower: 2
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:

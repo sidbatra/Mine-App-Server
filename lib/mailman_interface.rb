@@ -80,9 +80,7 @@ module DW
       #
       def self.email_owner_about_a_like(like)
         
-        if like.purchase.user.setting.email_influencer &&
-                like.user_id != like.purchase.user_id
-
+        if like.purchase.user.setting.email_influencer
           UserMailer.deliver_new_like(like) 
         end
       rescue => ex

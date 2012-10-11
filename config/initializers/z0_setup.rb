@@ -36,6 +36,7 @@ include GoogleShoppingInterface
 include ImageProcessing
 include ItunesInterface
 include MailmanInterface
+include NotificationManagement
 include Storage
 include DistributionManagement
 include WebSearchInterface
