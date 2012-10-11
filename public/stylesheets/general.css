@@ -397,7 +397,7 @@ input.error:focus, textarea.error:focus {
   padding: 0 16px;
   height: 40px;
   font-size: 15px;
-  line-height: 40px;
+  line-height: 40px !important;
   line-height: 38px\0/ !important;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -411,7 +411,7 @@ input.error:focus, textarea.error:focus {
   padding: 0 7px;
   height: 28px;
   font-size: 11px;
-  line-height: 28px; }
+  line-height: 28px !important; }
  
 .btn.btn-small [class^="icon-"],
 .btn.btn-small [class*=" icon-"] {
