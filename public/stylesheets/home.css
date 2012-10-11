@@ -189,8 +189,8 @@ footer .twitter-button-box {
 	bottom: 0; 
 	overflow: hidden; }
 	
-
-@media screen and (max-width: 575px) { 
+	
+@media screen and (max-width: 575px) { /* smaller than modal to avoid ie bug on modal-show */
  
  .header-home, .container, footer .inner { width: 100%; }
  footer { padding: 0 11px; text-align: right; }
