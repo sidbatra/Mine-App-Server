@@ -7,32 +7,7 @@
   <body>
   	<div id="container" class="container border-box relative" style="padding-bottom: 26px">   
 		  
-		  <!-- only customization is rwd-show and negative margin -->
-		<div class="rwd-show header unit-box border-box" style="margin-bottom: -24px;">
-		    
-		    <div class="logo-box absolute" style="height: 62px; line-height: 62px;">
-			    <a href="/?src=bar"><img alt="Mine-h-white-58-brighter-2x" class="logo" src="/images/logos/mine-h-white-58-brighter-2x.png?1348549152"></a>
-		    </div>
-		      
-		      
-		    	<div class="well-box border-box rounded-5" style="float: right; padding: 7px; margin-top: -3px;">
-			      <a href="/facebook/authenticate?src=user" onclick="this.className += ' load';" class="btn btn-facebook rounded-3-right relative shaded" style="float: right; width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
-			        <span class="hide-when-loading">
-			          <img alt="F-box" class="f-box" src="/images/social/f-box.png?1342576335">
-			          Sign in<span class="rwd-hide"> with Facebook</span>
-			        </span>
-			        <i class="icon-loading icon-white"></i>
-			      </a> 	
-			      <a href="/twitter/authenticate?src=user" onclick="this.className += ' load';" class="btn btn-twitter rounded-3-left relative shaded" style="float: right; width: 160px;">
-			        <span class="hide-when-loading">
-			          <img alt="T-box" class="t-box" src="/images/social/t-box.png?1347817924">
-			          Sign in<span class="rwd-hide"> with Twitter</span>
-			        </span>
-			        <i class="icon-loading icon-white"></i>
-			      </a> 	
-		      </div> <!--/well-box-->
-		</div>
-
+    <%=render "headers/sample" unless @web_view_mode%>
 
 		<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative" style="margin-top: 26px">
 
