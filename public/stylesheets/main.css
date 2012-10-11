@@ -59,6 +59,8 @@ ul, ol {
 	margin: 0;
 	list-style: none; }
 
+li { line-height: 1; }
+
 .box-title {
 	padding: 12px 0;
 	font-size: 11px;
@@ -304,6 +306,28 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .user-photo.m   { width: 28px; height: 28px; }
 .user-photo.s   { width: 24px; height: 24px; }
 .user-photo.xs  { width: 16px; height: 16px; }
+
+
+/* Who to Follow
+==================================================================== */
+
+li.user-suggestion-box {
+	padding: 0 17% 0px 42px;
+	margin-bottom: 7px; }
+
+li.user-suggestion-box:last-child { margin-bottom: -4px; }
+
+li.user-suggestion-box .user-photo {
+	top: 0;
+	left: 0; }
+
+li.user-suggestion-box .user-name {
+	color: white;
+	line-height: 120%;
+	font-weight: bold; }
+
+li.user-suggestion-box .user-info {
+	line-height: 170%; }
 
 
 /* Feed
@@ -658,13 +682,23 @@ a.feed-intro .highlight { font-weight: bold; }
 .btn.follow { position: absolute; }
 
 .profile-box .btn.follow {
-	top: 16px;
-	right: 16px;
 	width: 90px;
 	font-size: 11px;
-	text-transform: uppercase; }
+	text-transform: uppercase;
+	top: 16px;
+	right: 16px; }
 
 .profile-box .btn.follow [class^="icon-"] { margin-top: 0px; }
+
+.user-suggestion-box .btn.follow {
+	width: 15%;
+	right: 0;
+	top: 0;
+	font-size: 10px;
+	text-transform: uppercase;
+	padding: 0; }
+	
+.user-suggestion-box .btn.follow [class^="icon-"] { margin-top: -1px; }
 
 .well-box.info-box .btn.follow {
 	top: 12px;
@@ -683,10 +717,6 @@ a.feed-intro .highlight { font-weight: bold; }
 	border-radius: 2px !important;  }
 	
 .well-box.list-box .btn.follow [class^="icon-"] { margin-top: 1px; }
-	
-.btn.follow.btn-green .unfollow { display: none; }
-.btn.follow.btn-green:hover .icon-ok { display: none; }
-.btn.follow.btn-green:hover .unfollow { display: block; }
 
 	
 /* -- Logged-out follow modal (Classic) -- */
