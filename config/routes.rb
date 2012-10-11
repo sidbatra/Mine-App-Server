@@ -115,6 +115,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contacts,
     :only => [:index]
 
+  map.resources :notifications,
+    :only => [:index]
+
   map.resources :welcome,
     :only       => [:show,:create],
     :controller => :welcome

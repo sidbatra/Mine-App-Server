@@ -20,6 +20,7 @@ class Notification < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   # Named scopes
   #-----------------------------------------------------------------------------
+  named_scope :with_resource, :include => :resource
   named_scope :of, lambda{|resource| {:conditions => {
                                       :resource_id => resource.id,
                                       :resource_type => resource.class.name}}}

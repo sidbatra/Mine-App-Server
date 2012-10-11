@@ -6,7 +6,7 @@ end
 
 json.store do |j|
   j.partial! purchase.store 
-end if purchase.store
+end if !defined?(without_store) && purchase.store
 
 json.likes (defined?(without_interactions) ? [] : purchase.likes) do |j,like|
   j.partial! like
