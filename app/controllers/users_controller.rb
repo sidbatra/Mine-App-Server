@@ -140,7 +140,11 @@ class UsersController < ApplicationController
       @users = followings.each do |f|
                  f.user['message'] = follow_message(f['FOLLOWED_BY'])
                end.map(&:user)
-
+      
+      @users << User.find_all_by_is_special(
+                      true,
+                      :order => 'RAND()',
+                      :limit => 5 - @users.size)
     end
 
   rescue => ex
