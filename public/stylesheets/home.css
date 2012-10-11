@@ -104,8 +104,6 @@ ul { margin: 0 !important; }
 	transition: background .15s ease-in;
 /* 	border: 1px solid #ddd; */ }
 
-.cell:active { border-top: 2px solid #eee; }
-
 .cell i {
 	bottom: 14px;
 	right: 10px;
