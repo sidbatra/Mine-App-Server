@@ -1,5 +1,21 @@
 class HomeController < ApplicationController
 
+	def index
+    @sample = params[:id].to_sym
+    page = ""
+
+    case @sample
+    when :item
+      page = "item"
+    when :profile
+      page = "profile"
+    when :profile2
+      page = "profile2"
+    end
+
+		render "home/samples/#{page}"
+	end
+
   # Display the root path which is the feed is
   # the user is logged in or the home page is
   # the user isn't logged in.

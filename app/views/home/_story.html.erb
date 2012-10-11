@@ -1,88 +1,79 @@
+
 <div class="wrapper">
 
-	<div class="header">
-		<%=image_tag "logos/mine-h-white-48-brighter-2x.png",
-  		  :class => "logo unselectable"%>	
-	</div>
+  <%unless @web_view_mode%>
 
-	<div class="container">
-	
-    <%if @invited_by_user%>
-      <h2 class="invite-welcome alias-smooth" style="padding: 0 0 20px;">
-        <img class="user-photo xxl rounded-3"
-          src="<%=@invited_by_user.square_image_url%>" />
-          <%=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
-          add your best purchases on <b>mine</b>!
-      </h2>
-    <%end%>
-	
-		<div id="video" class="video-frame">
-		
-			<%unless is_phone_device?%>
-				<!-- desktop video -->
-				<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-					width="880" 
-	        height="391" 
-	        frameborder="0">
-	       </iframe>
-	    <%else%>
-	    	<!-- mobile video -->
-	      <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-	      	width="320" 
-	      	height="142" 
-	      	frameborder="0">
-	      </iframe>
-      <%end%>
-      
-		</div>
-		
-		<h2 class="alias-smooth">
-      <%if @invited_by_user%>
-        Sign in now:
-      <%else%>
-			  Tell the world <br class="rwd-show">when you buy something great.
-      <%end%>
-		</h2>
-		
-		
-		<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-        onclick="this.className += ' load';"
-        class="btn btn-large btn-twitter shaded-strong relative alias-smooth">
-      <span class='hide-when-loading'>
-      	<%=image_tag "social/t-box.png",
-        :class => "t-box"%>
-        Sign in with Twitter
-      </span>
-      <i class='icon-loading icon-white'></i>
-    </a>
+    <div class="header-home">
+      <%=image_tag "logos/mine-h-white-48-brighter-2x.png",
+          :class => "logo-home unselectable"%>	
+    </div>
     
-    <br class="rwd-show">
-		
-		<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-	      onclick="this.className += ' load';"
-	      class="btn btn-large btn-facebook shaded-strong relative alias-smooth">
-	    <span class='hide-when-loading'>
-	    	<%=image_tag "social/f-box.png",
-	      :class => "f-box"%>
-	      Sign in with Facebook
-	    </span>
-	    <i class='icon-loading icon-white'></i>
-	  </a>
-	  
-		
+    <div class="dark-top"></div>
+
+    <div class="container-home">
+    
+      <%if @invited_by_user%>
+        <h2 class="invite-welcome" style="padding: 0 0 20px;">
+          <img class="user-photo xxl rounded-3"
+            src="<%=@invited_by_user.square_image_url%>" />
+            <%=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
+            add your best purchases on <b>mine</b>!
+        </h2>
+      <%end%>
+    
+      <div id="video" class="video-frame">
+        <%unless is_phone_device?%>
+          <!-- desktop video -->
+          <iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+            width="880" 
+            height="391" 
+            frameborder="0">
+          </iframe>
+        <%else%>
+          <!-- mobile video -->
+          <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+            width="320" 
+            height="142" 
+            frameborder="0">
+          </iframe>
+        <%end%>
+      </div>
+      
+      <h2>
+        Tell the world <br class="rwd-show">when you buy something great.
+      </h2>
+      
+      <div style="text-align: center;">
+      
+        <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+          <span class='hide-when-loading'>
+            <%=image_tag "social/t-box.png",
+            :class => "t-box"%>
+            Sign in<span class="rwd-hide"> with Twitter</span>
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+        
+        <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+          <span class='hide-when-loading' style="display: block;">
+            <%=image_tag "social/f-box.png",
+            :class => "f-box"%>
+            Sign in<span class="rwd-hide"> with Facebook</span>
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+      
+      </div> <!-- centered buttons -->
+
+    <%end%>
+      
 		<br>
 		
-<!--
-		<a class="learn-more rounded-6" id="learn-more" href="#">
-			Learn more
-		</a>
--->
-		
-		<div id="more" style="margin-top: 10px;">
-			
-			<h2 class="alias-smooth">
-				With <b>mine</b>, you can&hellip;
-			</h2>
+		<div class="more">
 			
 			<div class="col-3">
 				<h3>
@@ -92,6 +83,21 @@
 					Combine a pristine catalog photo, where you bought your item, 
 					and the web's best link to more info, for the perfect way to share a purchase.
 				</p>
+				
+			<a 	
+				<%unless is_phone_device?%>
+					href="#modal1" data-toggle="modal"
+				<%else%>
+					href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
+				<%end%>
+          class="cell rounded-8 border-box transition-bg 
+                  transition-color transition-border-color relative">
+				<%=image_tag "home/mike.jpg",
+					:class => "user-photo absolute rounded-3"%>
+				Mike bought a new Kindle Paperwhite. His friends asked him about it.
+				<i class="icon-chevron-right absolute transition-opacity"></i>
+			</a>
+				
 			</div>
 			
 			<div class="col-3">
@@ -99,9 +105,24 @@
 					Share the best stuff in your life.
 				</h3>
 				<p>
-					Thousands of people use mine to post the items that speak to who they are, 
+					Thousands of people use Mine to post the items that speak to who they are, 
 					what they like, and what they know about.
 				</p>
+				
+				<a 
+					<%unless is_phone_device?%>
+						href="#modal2" data-toggle="modal"
+					<%else%>
+            href="<%=home_sample_url("profile",:web_view_mode => @web_view_mode)%>"
+					<%end%>
+            class="cell rounded-8 border-box transition-bg 
+                    transition-color transition-border-color relative">
+					<%=image_tag "home/arar2.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					From Nordstrom to Incheon Airport, Arar always buys items at the classic edge.
+					<i class="icon-chevron-right absolute transition-opacity"></i>
+				</a>
+
 			</div>
 			
 			<div class="col-3">
@@ -110,12 +131,70 @@
 				</h3>
 				<p>
 					As the only place on the web where you can look up and follow anyone's best purchases, 
-					mine is a constant source of inspiration.
+					Mine is a never-ending thread of discoveries.
 				</p>
+						
+				<a
+					<%unless is_phone_device?%>
+						href="#modal3" data-toggle="modal"
+					<%else%>
+            href="<%=home_sample_url("profile2",:web_view_mode => @web_view_mode)%>"
+					<%end%> 
+            class="cell rounded-8 border-box transition-bg 
+                    transition-color transition-border-color relative">
+					<%=image_tag "home/richard.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					Richard designed the Mine and Google Chrome logos. He buys what inspires him.
+					<i class="icon-chevron-right absolute transition-opacity"></i>
+				</a>
+				
 			</div>
-		
-		</div> <!--/#more-->
-		
+			
+			<br>
+			
+			
+      <%unless is_phone_device?%>
+        <! -- modal 1 -->
+        <div class="modal eyeglass hide rounded-5" id="modal1">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body rounded-3 relative">
+            <iframe seamless id="iframe_1" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("item")%>"></iframe>
+          </div> <!-- /modal-body -->
+        </div> <!-- /modal -->
+        
+        <! -- modal 2 -->
+        <div class="modal eyeglass hide rounded-5" id="modal2">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body">
+            <iframe seamless id="iframe_2" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("profile")%>"></iframe>
+          </div>
+        </div>
+        
+        <! -- modal 3 -->
+        <div class="modal eyeglass hide rounded-5" id="modal3">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body">
+            <iframe seamless id="iframe_3" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("profile2")%>"></iframe>
+          </div>
+        </div>
+      <%end%>
+			
+		</div> <!--/more -->
 		
 		<div class="spacer"></div>
 		
@@ -123,8 +202,21 @@
 
 </div> <!-- /wrapper -->
 
+<%=render "footers/default" unless @web_view_mode%>
+
+
 <%content_for :javascript do%>
   <script type="text/javascript">
+
+    function resizeIFrames() {
+      $('#iframe_1').height($('#modal1').height());
+      $('#iframe_2').height($('#modal2').height());
+      $('#iframe_3').height($('#modal3').height());
+    }
+
+    resizeIFrames();
+    $(window).resize(function(){resizeIFrames();});
+
 
     // Listen for messages from the player
     if (window.addEventListener){
@@ -163,8 +255,4 @@
     }
   </script>
 <%end%>
-
-
-<%=render "footers/default" unless is_onboarding?%>
-
 

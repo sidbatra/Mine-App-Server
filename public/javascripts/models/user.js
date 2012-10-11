@@ -33,6 +33,10 @@ Denwen.Models.User = Backbone.Model.extend({
   //
   uniqueKey: function() {
     return 'user_' + this.get('id');
+  },
+
+  pronoun: function() {
+    return this.get('gender') == "male" ? "his" : "her";
   }
 
 });

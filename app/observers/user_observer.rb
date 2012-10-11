@@ -20,6 +20,10 @@ class UserObserver < ActiveRecord::Observer
   #   mine_fb_data - Mine facebook data.
   #
   def before_update(user)
+    if user.handle_changed?
+      user.purchases.map(&:touch)
+    end
+
     user[:mine_fb_data] = user.access_token_changed? && 
                           user.access_token.present?
     user[:mine_tw_data] = user.tw_access_token_changed? && 

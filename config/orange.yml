@@ -4,9 +4,9 @@
 :access_token_secret: KBLsCLlpp5ZjYHyGKDT0UUxeYoJJbptSVyD1zoeZ1k8
 :accounts: [
   {
-  :token: 618491461-XupWeqqde9Fdd0A44p0aLttWVkbISXgjCfruM5RJ,
-  :secret: ehH3AnW5aA1gKrQBbccK5NfCG1WAne3Woc0r5dteeIQ,
-  :handle: SarahDArcy6,
+  :token: 408943631-K12MnaJGt4J0pJRMOTo0sMc9XfNLLdQOAn1amZmD,
+  :secret: UbrFX8N2WiqUOlBG89FvE7ioL2ZsHOaWMrztdJapl5w,
+  :handle: thebigwheelhums,
   :enabled: false,
   :templates: [
     {
@@ -38,9 +38,9 @@
     :media: nil}]
   },
   {
-  :token: 618602486-gIdrjMA4jy3Yla5alOUuvFmlTkxTQOwWrHhGGHWB,
-  :secret: 3OjyHIc9PrAaK0wh90OWyPQ01EntIZTFx610tDiYCDk,
-  :handle: BethanyMore1,
+  :token: 121943593-oRSqiheb1m4kw4ty1Nh4fYbHMPsKqp7kaVtYPNcq,
+  :secret: MecX81LEvkbGLcxSv2qQz1BKPlYkleqPwm44MNMTAE,
+  :handle: sarahjatmine,
   :enabled: false,
   :templates: [
     {
@@ -57,12 +57,6 @@
     :media: nil},
     {
     :tweet: "@name that's neat - you should start using Mine http://getmine.com ! Search for me if you log in!",
-    :media: nil},
-    {
-    :tweet: "Thats neat @name! Why not catalog all your best stuff, like this: http://getmine.com/Caitlin-Hogan",
-    :media: nil},
-    {
-    :tweet: "Love it! Have you tried a Mine page for logging your stuff, like this? http://getmine.com/Caitlin-Hogan",
     :media: nil}]
   },
   {
@@ -100,7 +94,7 @@
   :token: 619625766-0ENSHN9jXS9zAhnrNqvX9l8Dboa2NkieePnUDG87,
   :secret: irWxfRviX3MzsWVseg71HlErzq461OFpgo7yVR0tts,
   :handle: NataliaAtMine,
-  :enabled: true,
+  :enabled: false,
   :templates: [
     {
     :tweet: "@name that's cool! On Mine http://getmine.com you can tweet pics of what you bought. You'll love it!",

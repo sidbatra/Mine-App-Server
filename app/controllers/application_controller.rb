@@ -66,5 +66,12 @@ class ApplicationController < ActionController::Base
     @theme = user.setting.theme
   end
 
+  # Raise a routing exception when a non-existant resource
+  # is accessed.
+  #
+  def raise_not_found
+    raise ActionController::RoutingError.new('Not Found') 
+  end
+
 end
 

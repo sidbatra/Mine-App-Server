@@ -2,7 +2,6 @@
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item rounded-8">
   
-  
   <div class="photo-box relative">
   
   	<!-- edit button -->
@@ -127,6 +126,11 @@
 	    </div> <!-- /comments-box -->
 	    
 	  </div> <!-- /panel-contents -->
+
+    <!--a href="http://pinterest.com/pin/create/button/?url=<%=encodeURIComponent(purchase.absoluteURL('pinterest'))%>&media=<%=encodeURIComponent(purchase.get('giant_url'))%>&description=<%=encodeURIComponent(purchase.sharingMessage())%>" 
+      class="pin-it-button" 
+      count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a-->
+
 
   </div> <!-- /panel -->
 

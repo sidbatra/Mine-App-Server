@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
         if @error
           url = root_path(:src => HomeShowSource::UserCreateError)
-        elsif @user.email.nil? || @user.gender.nil?
+        elsif !@user.email.present? || !@user.gender.present?
           url = welcome_path(WelcomeFilter::Info)
         elsif @user.is_fresh 
           url = welcome_path(WelcomeFilter::Learn) 
@@ -122,6 +122,29 @@ class UsersController < ApplicationController
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
       populate_theme @user
+
+    when :to_follow
+      ifollower_ids = self.current_user.ifollower_ids 
+
+      followings = Following.find_all_by_follower_id(
+                    ifollower_ids,
+                    :conditions => ["user_id not in (?)", ifollower_ids + [self.current_user.id]],
+                    :joins      => 'INNER JOIN users ON users.id = followings.follower_id',
+                    :group      => :user_id,
+                    :include    => :user, 
+                    :select     => 'followings.*,
+                                    GROUP_CONCAT(users.first_name) AS FOLLOWED_BY',
+                    :order      => 'RAND()',
+                    :limit      => 3)
+          
+      @users = followings.each do |f|
+                 f.user['message'] = follow_message(f['FOLLOWED_BY'])
+               end.map(&:user)
+      
+      @users << User.find_all_by_is_special(
+                      true,
+                      :order => 'RAND()',
+                      :limit => 5 - @users.size)
     end
 
   rescue => ex
@@ -207,6 +230,22 @@ class UsersController < ApplicationController
                   params[:tw_access_token],
                   params[:tw_access_token_secret],
                   @source)
+  end
+
+  # Generate a message for the user that we recommend to follow
+  #
+  def follow_message(users)
+    users = users.split(',')
+
+    message = "Followed by "
+
+    if users.length <= 2
+      message << users[0..1].join(" and ")
+    elsif users.length == 3
+      message << users[0..1].join(", ") + " and 1 other"   
+    else
+      message << users[0..1].join(", ") + " and #{users.length - 2} others"   
+    end
   end
 
 end

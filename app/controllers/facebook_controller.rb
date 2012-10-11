@@ -6,11 +6,13 @@ class FacebookController < ApplicationController
   def new
     @target_url = root_path(:src => HomeShowSource::LoginError)
 
-    @client.redirect_uri = fb_reply_url(
-                            :src    => @source,
-                            :target => params[:target],
-                            :follow_user_id => params[:follow_user_id],
-                            :usage  => params[:usage])
+    session[:fb_redirect_uri] = fb_reply_url(
+                                  :src    => @source,
+                                  :target => params[:target],
+                                  :follow_user_id => params[:follow_user_id],
+                                  :usage  => params[:usage])
+
+    @client.redirect_uri = session[:fb_redirect_uri]
 
     @target_url = @client.authorization_uri(
                   :scope => [:email,
@@ -35,13 +37,9 @@ class FacebookController < ApplicationController
     follow_user_id = params[:follow_user_id]
 
     if !access_token && params[:code]
-      @client.redirect_uri = fb_reply_url(
-                              :src => @source,
-                              :target => target,
-                              :follow_user_id => follow_user_id,
-                              :usage => params[:usage])
-
+      @client.redirect_uri = session[:fb_redirect_uri]
       @client.authorization_code = params[:code]
+
       access_token = @client.access_token!(:client_auth_body)
     end
 

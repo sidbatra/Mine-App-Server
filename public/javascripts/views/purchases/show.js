@@ -30,6 +30,8 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
     this.loadFacebookPlugs();
 
     this.setAnalytics();
+
+    new Denwen.Partials.Pinterest.Base();
   },
 
   // Load facebook code via partials
