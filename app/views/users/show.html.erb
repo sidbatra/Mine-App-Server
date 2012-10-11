@@ -20,7 +20,7 @@
 
 	<!-- Following -->
   <%cache ["v9",@user,"ifollowers","profile"] do%>
-    <div class="follow-count-box inline-block border-box">
+    <div class="follow-count-box inline-block border-box nowrap">
     
 	    <a class="dark" 
           href="<%=@user.inverse_followings_count.zero? ? "#" : connections_path(@user.handle,:src => "followers")%>">
@@ -58,7 +58,7 @@
   
   <!-- Followers -->
   <%cache ["v9",@user,"followers","profile"] do%>
-    <div class="follow-count-box right inline-block border-box">
+    <div class="follow-count-box right inline-block border-box nowrap">
 			
 			<a class="dark" 
         href="<%=@user.followings_count.zero? ? "#" : connections_path(@user.handle,:src => "followers")%>">

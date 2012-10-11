@@ -3,7 +3,6 @@
 html, body { height: 100%; }
 
 body { 
-	background: #2b2b2b;
 	font-size: 0;
 	line-height: 1;
 	color: white;
@@ -27,10 +26,10 @@ a:hover { text-decoration: none; }
 	height: 622px;
 	background: url('/images/backgrounds/bg-strip.png') repeat-x top left; }
 
-.header { text-align: center; width: 904px; margin: 0 auto; }
-.header .logo { padding: 21px 0 12px; height: 73px; }
+.header-home { text-align: center; width: 904px; margin: 0 auto; }
+.header-home .logo-home { padding: 21px 0 12px; height: 73px; }
 
-.container {
+.container-home {
 	width: 100%; }
 	
 .video-frame { 
@@ -44,8 +43,7 @@ h2 {
 	text-align: center;
 	font-weight: normal;
 	color: #eee;
-	letter-spacing: -1px;
-	text-shadow: 0 1px rgba(0,0,0,0.32); }
+	letter-spacing: -1px; }
 	
 h2 .user-photo.xxl {
 	margin-right: 12px; 
@@ -72,22 +70,11 @@ ul { margin: 0 !important; }
 	height: 52px;
 	font-size: 16px;
 	text-shadow: 0 1px rgba(0,0,0,0.32);
-	line-height: 51px; }
+	line-height: 51px !important; }
 
 .btn-facebook { border-left: 1px solid rgba(0,0,0,0.1); }
 
-.learn-more {
-	display: inline-block;
-	width: 112px;
-	height: 36px;
-	line-height: 35px;
-	margin: 36px 0 8px;
-	font-size: 13px;
-	color: #ccc;
-	background: #262626;
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); }
-
-.learn-more:hover { color: #eee; }
+.more { width: 880px; margin: 0 auto; padding-top: 32px; }
 
 .col-3 { 
 	width: 30%;
@@ -97,8 +84,10 @@ ul { margin: 0 !important; }
 	vertical-align: top; }
 	
 .cell { 
+	height: 78px;
 	display: inline-block;
 	background: white;
+	margin-top: 12px;
 	padding: 13px 26px 11px 76px;
 	font-size: 13px;
 	line-height: 18px;
@@ -114,8 +103,6 @@ ul { margin: 0 !important; }
 	-o-transition: background .15s ease-in;
 	transition: background .15s ease-in;
 /* 	border: 1px solid #ddd; */ }
-
-.cell:active { margin-top: 2px; }
 
 .cell i {
 	bottom: 14px;
@@ -171,7 +158,7 @@ ul { margin: 0 !important; }
 	opacity: 0.8;
 	filter: alpha(opacity=80); }
 
-.spacer { height: 64px; } 
+.spacer { height: 48px; } 
 
 footer { text-align: center; }
 
@@ -199,16 +186,15 @@ footer .twitter-button-box {
 	left: 96px;
 	bottom: 0; 
 	overflow: hidden; }
-
 	
-
-
-/*
-@media screen and (max-width: 600px) { 
+	
+@media screen and (max-width: 575px) { /* smaller than modal to avoid ie bug on modal-show */
  
- .header, .container, footer .inner { width: 100%; }
+ .header-home, .container, footer .inner { width: 100%; }
  footer { padding: 0 11px; text-align: right; }
- .header .logo { height: 44px; padding-top: 12px; }
+ .header-home .logo-home { height: 44px; padding-top: 16px; }
+ 
+ .dark-top { height: 315px; }
  
  h2 .user-photo.xxl { 
  	height: 24px;
@@ -225,18 +211,18 @@ footer .twitter-button-box {
 	h2 { font-size: 18px; line-height: 140%; padding: 14px 0 19px; }
 	h3 { font-size: 15px; line-height: 140%; padding: 0 0 7px; letter-spacing: normal; }
 	p { font-size: 13px; line-height: 140%; padding-bottom: 5px; }
-	.btn-twitter, .btn-facebook { height: 44px; font-size: 14px; line-height: 42px; }
-	.btn-facebook { margin-top: 9px; }
+	.btn-twitter, .btn-facebook { width: 120px; height: 44px; font-size: 14px; line-height: 42px !important; }
 	
 	.btn.btn-large img.t-box { height: 14px; }
 	.btn.btn-large img.f-box { height: 18px; }
 	
-	.learn-more { margin: 24px 0 5px; }
+	.more { width: 100%; padding-top: 19px; }
 	
 	.col-3 { width: 90%; margin: 0 5%; }
+	
+	.cell { margin: 0 0 18px; width: 95%;}
 	
 	.rwd-show { display: inline-block !important; }
 	.rwd-hide { display: none !important; }
 
 }
-*/

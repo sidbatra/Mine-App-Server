@@ -730,14 +730,14 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .card .photo-box {
 	width: auto;
-	height: 236px;
-	line-height: 236px;
+	height: 212px;
+	line-height: 212px;
 	padding: 12px 6px;
 	text-align: center; }
 	
 .card .photo-box .item-photo {
 	max-width: 100%;
-	max-height: 236px; }
+	max-height: 200px; }
 	
 .card .panel { padding: 0 6px 12px 6px; }
 

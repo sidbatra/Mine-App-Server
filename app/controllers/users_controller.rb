@@ -122,6 +122,29 @@ class UsersController < ApplicationController
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
       populate_theme @user
+
+    when :to_follow
+      ifollower_ids = self.current_user.ifollower_ids 
+
+      followings = Following.find_all_by_follower_id(
+                    ifollower_ids,
+                    :conditions => ["user_id not in (?)", ifollower_ids + [self.current_user.id]],
+                    :joins      => 'INNER JOIN users ON users.id = followings.follower_id',
+                    :group      => :user_id,
+                    :include    => :user, 
+                    :select     => 'followings.*,
+                                    GROUP_CONCAT(users.first_name) AS FOLLOWED_BY',
+                    :order      => 'RAND()',
+                    :limit      => 3)
+          
+      @users = followings.each do |f|
+                 f.user['message'] = follow_message(f['FOLLOWED_BY'])
+               end.map(&:user)
+      
+      @users << User.find_all_by_is_special(
+                      true,
+                      :order => 'RAND()',
+                      :limit => 5 - @users.size)
     end
 
   rescue => ex
@@ -139,26 +162,23 @@ class UsersController < ApplicationController
   #
   def show
     if is_request_json?
-      @user = User.find_by_id Cryptography.deobfuscate(params[:id])
+      @user = User.find(Cryptography.deobfuscate params[:id])
     else
       track_visit
 
-      if @user = User.find_by_handle(params[:handle])
-        @following = Following.fetch @user.id,self.current_user.id
-        @origin = 'user'
+      @user = User.find_by_handle(params[:handle])
+      @following = Following.fetch @user.id,self.current_user.id
+      @origin = 'user'
 
-        populate_theme @user 
-      end
+      populate_theme @user
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
-    raise_not_found unless @user
-
     respond_to do |format|
       format.html
-      format.json 
+      format.json
     end
   end
   
@@ -210,6 +230,22 @@ class UsersController < ApplicationController
                   params[:tw_access_token],
                   params[:tw_access_token_secret],
                   @source)
+  end
+
+  # Generate a message for the user that we recommend to follow
+  #
+  def follow_message(users)
+    users = users.split(',')
+
+    message = "Followed by "
+
+    if users.length <= 2
+      message << users[0..1].join(" and ")
+    elsif users.length == 3
+      message << users[0..1].join(", ") + " and 1 other"   
+    else
+      message << users[0..1].join(", ") + " and #{users.length - 2} others"   
+    end
   end
 
 end
