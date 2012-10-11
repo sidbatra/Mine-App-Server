@@ -133,9 +133,9 @@ class UsersController < ApplicationController
                     :group      => :user_id,
                     :include    => :user, 
                     :select     => 'followings.*,
-                                    GROUP_CONCAT(users.first_name) AS FOLLOWED_BY',
+                                    GROUP_CONCAT(CONCAT_WS(\' \', users.first_name, users.last_name)) AS FOLLOWED_BY',
                     :order      => 'RAND()',
-                    :limit      => 3)
+                    :limit      => 2)
           
       @users = followings.each do |f|
                  f.user['message'] = follow_message(f['FOLLOWED_BY'])
@@ -143,8 +143,9 @@ class UsersController < ApplicationController
       
       @users << User.find_all_by_is_special(
                       true,
+                      :conditions => ["id not in (?)", followings.map(&:user_id) + [self.current_user.id]],
                       :order => 'RAND()',
-                      :limit => 5 - @users.size)
+                      :limit => 3 - @users.size)
     end
 
   rescue => ex
