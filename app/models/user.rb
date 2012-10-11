@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
                     :first_name,:last_name,:access_token,:byline,
                     :tumblr_access_token, :tumblr_access_token_secret,
                     :tw_access_token, :tw_access_token_secret,
-                    :iphone_device_token, :tw_user_id
+                    :iphone_device_token, :tw_user_id, :is_special
 
   #----------------------------------------------------------------------
   # Class methods

@@ -133,18 +133,19 @@ class UsersController < ApplicationController
                     :group      => :user_id,
                     :include    => :user, 
                     :select     => 'followings.*,
-                                    GROUP_CONCAT(users.first_name) AS FOLLOWED_BY',
+                                    GROUP_CONCAT(CONCAT_WS(\' \', users.first_name, users.last_name)) AS FOLLOWED_BY',
                     :order      => 'RAND()',
-                    :limit      => 3)
+                    :limit      => 2)
           
       @users = followings.each do |f|
                  f.user['message'] = follow_message(f['FOLLOWED_BY'])
                end.map(&:user)
       
-      @users << User.find_all_by_is_special(
+      @users += User.find_all_by_is_special(
                       true,
+                      :conditions => ["id not in (?)", followings.map(&:user_id) + [self.current_user.id]],
                       :order => 'RAND()',
-                      :limit => 5 - @users.size)
+                      :limit => 3 - @users.size)
     end
 
   rescue => ex
@@ -162,23 +163,26 @@ class UsersController < ApplicationController
   #
   def show
     if is_request_json?
-      @user = User.find(Cryptography.deobfuscate params[:id])
+      @user = User.find_by_id Cryptography.deobfuscate(params[:id])
     else
       track_visit
 
-      @user = User.find_by_handle(params[:handle])
-      @following = Following.fetch @user.id,self.current_user.id
-      @origin = 'user'
+      if @user = User.find_by_handle(params[:handle])
+        @following = Following.fetch @user.id,self.current_user.id
+        @origin = 'user'
 
-      populate_theme @user
+        populate_theme @user 
+      end
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
+    raise_not_found unless @user
+
     respond_to do |format|
       format.html
-      format.json
+      format.json 
     end
   end
   
