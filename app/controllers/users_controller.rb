@@ -162,23 +162,26 @@ class UsersController < ApplicationController
   #
   def show
     if is_request_json?
-      @user = User.find(Cryptography.deobfuscate params[:id])
+      @user = User.find_by_id Cryptography.deobfuscate(params[:id])
     else
       track_visit
 
-      @user = User.find_by_handle(params[:handle])
-      @following = Following.fetch @user.id,self.current_user.id
-      @origin = 'user'
+      if @user = User.find_by_handle(params[:handle])
+        @following = Following.fetch @user.id,self.current_user.id
+        @origin = 'user'
 
-      populate_theme @user
+        populate_theme @user 
+      end
     end
 
   rescue => ex
     handle_exception(ex)
   ensure
+    raise_not_found unless @user
+
     respond_to do |format|
       format.html
-      format.json
+      format.json 
     end
   end
   
