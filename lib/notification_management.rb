@@ -62,6 +62,24 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end #new comment
 
+
+      def self.new_following(following)
+        target_user   = following.user
+        entity        = following.follower.full_name
+        event         = "is following you on Mine!"
+
+        Notification.add(
+                      target_user.id,
+                      entity,
+                      event,
+                      following.follower,
+                      following.follower.square_image_url,
+                      NotificationIdentifier::Following)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end #new following
+
     end #notification manager
 
   end #notification management

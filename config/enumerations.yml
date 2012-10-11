@@ -70,7 +70,7 @@
   NotificationIdentifier:
     Like: 0
     Comment: 1
-    Follower: 2
+    Following: 2
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:
