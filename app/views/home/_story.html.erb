@@ -1,72 +1,76 @@
 
 <div class="wrapper">
 
-	<div class="header-home">
-		<%=image_tag "logos/mine-h-white-48-brighter-2x.png",
-  		  :class => "logo-home unselectable"%>	
-	</div>
-	
-	<div class="dark-top"></div>
+  <%unless @web_view_mode%>
 
-	<div class="container-home">
-	
-    <%if @invited_by_user%>
-      <h2 class="invite-welcome" style="padding: 0 0 20px;">
-        <img class="user-photo xxl rounded-3"
-          src="<%=@invited_by_user.square_image_url%>" />
-          <%=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
-          add your best purchases on <b>mine</b>!
-      </h2>
-    <%end%>
-	
-		<div id="video" class="video-frame">
-			<%unless is_phone_device?%>
-				<!-- desktop video -->
-				<iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-					width="880" 
-	        height="391" 
-	        frameborder="0">
-	      </iframe>
-	    <%else%>
-	    	<!-- mobile video -->
-	      <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-	      	width="320" 
-	      	height="142" 
-	      	frameborder="0">
-	      </iframe>
+    <div class="header-home">
+      <%=image_tag "logos/mine-h-white-48-brighter-2x.png",
+          :class => "logo-home unselectable"%>	
+    </div>
+    
+    <div class="dark-top"></div>
+
+    <div class="container-home">
+    
+      <%if @invited_by_user%>
+        <h2 class="invite-welcome" style="padding: 0 0 20px;">
+          <img class="user-photo xxl rounded-3"
+            src="<%=@invited_by_user.square_image_url%>" />
+            <%=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
+            add your best purchases on <b>mine</b>!
+        </h2>
       <%end%>
-		</div>
-		
-		<h2>
-      Tell the world <br class="rwd-show">when you buy something great.
-		</h2>
-		
-		<div style="text-align: center;">
-		
-			<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-	        onclick="this.className += ' load';"
-	        class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
-	      <span class='hide-when-loading'>
-	      	<%=image_tag "social/t-box.png",
-	        :class => "t-box"%>
-	        Sign in<span class="rwd-hide"> with Twitter</span>
-	      </span>
-	      <i class='icon-loading icon-white'></i>
-	    </a>
-			
-			<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-		      onclick="this.className += ' load';"
-		      class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-		    <span class='hide-when-loading' style="display: block;">
-		    	<%=image_tag "social/f-box.png",
-		      :class => "f-box"%>
-		      Sign in<span class="rwd-hide"> with Facebook</span>
-		    </span>
-		    <i class='icon-loading icon-white'></i>
-		  </a>
-	  
-	  </div> <!-- centered buttons -->
-	  
+    
+      <div id="video" class="video-frame">
+        <%unless is_phone_device?%>
+          <!-- desktop video -->
+          <iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+            width="880" 
+            height="391" 
+            frameborder="0">
+          </iframe>
+        <%else%>
+          <!-- mobile video -->
+          <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+            width="320" 
+            height="142" 
+            frameborder="0">
+          </iframe>
+        <%end%>
+      </div>
+      
+      <h2>
+        Tell the world <br class="rwd-show">when you buy something great.
+      </h2>
+      
+      <div style="text-align: center;">
+      
+        <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+          <span class='hide-when-loading'>
+            <%=image_tag "social/t-box.png",
+            :class => "t-box"%>
+            Sign in<span class="rwd-hide"> with Twitter</span>
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+        
+        <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+            onclick="this.className += ' load';"
+            class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+          <span class='hide-when-loading' style="display: block;">
+            <%=image_tag "social/f-box.png",
+            :class => "f-box"%>
+            Sign in<span class="rwd-hide"> with Facebook</span>
+          </span>
+          <i class='icon-loading icon-white'></i>
+        </a>
+      
+      </div> <!-- centered buttons -->
+
+    <%end%>
+      
 		<br>
 		
 		<div class="more">
@@ -84,7 +88,7 @@
 				<%unless is_phone_device?%>
 					href="#modal1" data-toggle="modal"
 				<%else%>
-					href="<%=home_sample_url("item")%>"
+					href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
 				<%end%>
           class="cell rounded-8 border-box transition-bg 
                   transition-color transition-border-color relative">
@@ -109,7 +113,7 @@
 					<%unless is_phone_device?%>
 						href="#modal2" data-toggle="modal"
 					<%else%>
-						href="<%=home_sample_url("profile")%>"
+            href="<%=home_sample_url("profile",:web_view_mode => @web_view_mode)%>"
 					<%end%>
             class="cell rounded-8 border-box transition-bg 
                     transition-color transition-border-color relative">
@@ -134,7 +138,7 @@
 					<%unless is_phone_device?%>
 						href="#modal3" data-toggle="modal"
 					<%else%>
-						href="<%=home_sample_url("profile2")%>"
+            href="<%=home_sample_url("profile2",:web_view_mode => @web_view_mode)%>"
 					<%end%> 
             class="cell rounded-8 border-box transition-bg 
                     transition-color transition-border-color relative">
@@ -196,7 +200,7 @@
 
 </div> <!-- /wrapper -->
 
-<%=render "footers/default"%>
+<%=render "footers/default" unless @web_view_mode%>
 
 
 <%content_for :javascript do%>
