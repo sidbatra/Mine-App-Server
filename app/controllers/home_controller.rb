@@ -1,8 +1,19 @@
 class HomeController < ApplicationController
 
 	def index
-		#TODO: convert to case statement
-		render "home/samples/#{params[:id]}"
+    @sample = params[:id].to_sym
+    page = ""
+
+    case @sample
+    when :item
+      page = "item"
+    when :profile
+      page = "profile"
+    when :profile2
+      page = "profile2"
+    end
+
+		render "home/samples/#{page}"
 	end
 
   # Display the root path which is the feed is
