@@ -153,44 +153,46 @@
 			<br>
 			
 			
-			<! -- modal 1 -->
-			<div class="modal eyeglass hide rounded-5" id="modal1">
-		    <button type="button" class="close absolute transition-opacity" 
-            data-dismiss="modal">
-          ×
-        </button>
-			  <div class="modal-body rounded-3 relative">
-			  	<iframe seamless id="iframe_1" class="rounded-3" 
-            frameborder="0" width="100%" 
-            height="100%" src="<%=home_sample_url("item")%>"></iframe>
-			  </div> <!-- /modal-body -->
-			</div> <!-- /modal -->
-			
-			<! -- modal 2 -->
-			<div class="modal eyeglass hide rounded-5" id="modal2">
-				<button type="button" class="close absolute transition-opacity" 
-            data-dismiss="modal">
-          ×
-        </button>
-			  <div class="modal-body">
-			  	<iframe seamless id="iframe_2" class="rounded-3" 
-            frameborder="0" width="100%" 
-            height="100%" src="<%=home_sample_url("profile")%>"></iframe>
-			  </div>
-			</div>
-			
-			<! -- modal 3 -->
-			<div class="modal eyeglass hide rounded-5" id="modal3">
-				<button type="button" class="close absolute transition-opacity" 
-            data-dismiss="modal">
-          ×
-        </button>
-			  <div class="modal-body">
-			  	<iframe seamless id="iframe_3" class="rounded-3" 
-            frameborder="0" width="100%" 
-            height="100%" src="<%=home_sample_url("profile2")%>"></iframe>
-			  </div>
-			</div>
+      <%unless is_phone_device?%>
+        <! -- modal 1 -->
+        <div class="modal eyeglass hide rounded-5" id="modal1">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body rounded-3 relative">
+            <iframe seamless id="iframe_1" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("item")%>"></iframe>
+          </div> <!-- /modal-body -->
+        </div> <!-- /modal -->
+        
+        <! -- modal 2 -->
+        <div class="modal eyeglass hide rounded-5" id="modal2">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body">
+            <iframe seamless id="iframe_2" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("profile")%>"></iframe>
+          </div>
+        </div>
+        
+        <! -- modal 3 -->
+        <div class="modal eyeglass hide rounded-5" id="modal3">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body">
+            <iframe seamless id="iframe_3" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("profile2")%>"></iframe>
+          </div>
+        </div>
+      <%end%>
 			
 		</div> <!--/more -->
 		
