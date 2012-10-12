@@ -125,7 +125,7 @@ class UsersController < ApplicationController
 
     when :suggestions
       @key = ["v2","suggestions"]
-      @cache_options = {:expires_in => 0}
+      @cache_options = {:expires_in => 5.seconds}
 
       ifollower_ids = self.current_user.ifollower_ids 
 
