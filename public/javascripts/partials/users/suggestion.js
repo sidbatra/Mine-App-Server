@@ -7,7 +7,8 @@ Denwen.Partials.Users.Suggestion = Backbone.View.extend({
 
    new Denwen.Partials.Followings.Following({
         el: $('#follow_box_' + this.model.get('id')),
-        userID: this.model.get('id')});
+        userID: this.model.get('id'),
+        off: true});
   },
 
   // Override render method for displaying view

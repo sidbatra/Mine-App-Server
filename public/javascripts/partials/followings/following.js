@@ -15,6 +15,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
     this.tag          = this.options.tag;
     this.userID       = this.options.userID;
     this.fetch        = this.options.fetch;
+    this.off          = this.options.off;
 
     if(Denwen.H.isLoggedIn() && this.userID == Denwen.H.currentUser.get('id'))
       return;
@@ -28,7 +29,7 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
 
     this.render(false);
 
-    if(!this.placeholder){
+    if(!this.placeholder && !this.off){
       $(this.createEl).addClass('load');
 
       if (typeof this.fetch  === "undefined" || this.fetch == true)  {
@@ -48,6 +49,11 @@ Denwen.Partials.Followings.Following = Backbone.View.extend({
         Denwen.NotificationManager.Callback.FollowingLoadingComplete,
         this.externalFollowingLoadingComplete,
         this);
+    }
+
+    if(this.off) {
+      this.disabled = false;
+      this.evaluateUI(new Backbone.Model());
     }
   },
 
