@@ -123,7 +123,7 @@ class UsersController < ApplicationController
       @origin = "connections"
       populate_theme @user
 
-    when :to_follow
+    when :suggestions
       ifollower_ids = self.current_user.ifollower_ids 
 
       followings = Following.find_all_by_follower_id(
@@ -145,7 +145,7 @@ class UsersController < ApplicationController
                       true,
                       :conditions => ["id not in (?)", followings.map(&:user_id) + [self.current_user.id]],
                       :order => 'RAND()',
-                      :limit => 3 - @users.size)
+                      :limit => 3 - @users.size).each{|u| u['message'] = u.byline}
     end
 
   rescue => ex
