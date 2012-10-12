@@ -58,6 +58,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     
     //this.loadFacebookPlugs();
 
+    this.notifications = new Denwen.Partials.Notifications.List({
+                              el:$('#body')});
+
     this.setAnalytics();
   },
 

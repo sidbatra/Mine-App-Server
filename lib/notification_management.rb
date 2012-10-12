@@ -66,7 +66,7 @@ module DW
       def self.new_following(following)
         target_user   = following.user
         entity        = following.follower.full_name
-        event         = "is following you on Mine!"
+        event         = "is following you"
 
         Notification.add(
                       target_user.id,
