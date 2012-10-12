@@ -21,6 +21,7 @@ class Notification < ActiveRecord::Base
   # Named scopes
   #-----------------------------------------------------------------------------
   named_scope :with_resource, :include => :resource
+  named_scope :by_created_at, :order => 'created_at DESC'
   named_scope :of, lambda{|resource| {:conditions => {
                                       :resource_id => resource.id,
                                       :resource_type => resource.class.name}}}
@@ -52,8 +53,10 @@ class Notification < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   
   def read
-    self.unread = false
-    save!
+    if unread
+      self.unread = false
+      save!
+    end
   end
 
 end

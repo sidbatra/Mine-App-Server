@@ -9,7 +9,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011000558) do
+ActiveRecord::Schema.define(:version => 20121011164552) do
+
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "purchase_id"
@@ -325,6 +326,7 @@ ActiveRecord::Schema.define(:version => 20121011000558) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
+    t.integer  "unread_notifications_count", :default => 0
     t.boolean  "is_special",                 :default => false
   end
 

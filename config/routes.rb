@@ -116,7 +116,7 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:index]
 
   map.resources :notifications,
-    :only => [:index]
+    :only => [:index,:update]
 
   map.resources :welcome,
     :only       => [:show,:create],
