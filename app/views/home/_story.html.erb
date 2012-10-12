@@ -86,7 +86,7 @@
 				
 			<a 	
 				<%unless is_phone_device?%>
-					href="#modal1" data-toggle="modal"
+					href="#modal1" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Item'})"
 				<%else%>
 					href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
 				<%end%>
@@ -111,7 +111,7 @@
 				
 				<a 
 					<%unless is_phone_device?%>
-						href="#modal2" data-toggle="modal"
+						href="#modal2" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
 					<%else%>
             href="<%=home_sample_url("profile",:web_view_mode => @web_view_mode)%>"
 					<%end%>
@@ -136,7 +136,7 @@
 						
 				<a
 					<%unless is_phone_device?%>
-						href="#modal3" data-toggle="modal"
+						href="#modal3" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile 2'})"
 					<%else%>
             href="<%=home_sample_url("profile2",:web_view_mode => @web_view_mode)%>"
 					<%end%> 
@@ -206,6 +206,7 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
+
 
     function resizeIFrames() {
       $('#iframe_1').height($('#modal1').height());
