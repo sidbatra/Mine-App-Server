@@ -15,8 +15,8 @@ staging:
     hostname: ec2-23-21-154-238.compute-1.amazonaws.com
     port: 8983
     log_level: WARNING
-    min_memory: 50M
-    max_memory: 150M
+    min_memory: 10M
+    max_memory: 50M
     solr_home: /vol/mine/shared/solr
     data_path: /vol/mine/shared/solr/data
     pid_dir: /vol/mine/shared/solr/pids
