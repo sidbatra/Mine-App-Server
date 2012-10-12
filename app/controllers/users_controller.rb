@@ -124,9 +124,6 @@ class UsersController < ApplicationController
       populate_theme @user
 
     when :suggestions
-      @key = ["v2","suggestions"]
-      @cache_options = {:expires_in => 5.seconds}
-
       ifollower_ids = self.current_user.ifollower_ids 
 
       followings = Following.find_all_by_follower_id(
