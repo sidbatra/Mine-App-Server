@@ -59,7 +59,7 @@
         <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
             onclick="this.className += ' load';"
             class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-          <span class='hide-when-loading' style="display: block;">
+          <span class='hide-when-loading'>
             <%=image_tag "social/f-box.png",
             :class => "f-box"%>
             Sign in<span class="rwd-hide"> with Facebook</span>
@@ -144,15 +144,14 @@
                     transition-color transition-border-color relative">
 					<%=image_tag "home/richard.jpg",
 						:class => "user-photo absolute rounded-3"%>
-					Richard worked on the Mine and Google Chrome logos. He buys what inspires him.
+					Richard is the designer behind the Mine logo. Here's his setup.
 					<i class="icon-chevron-right absolute transition-opacity"></i>
 				</a>
 				
 			</div>
 			
 			<br>
-			
-			
+
       <%unless is_phone_device?%>
         <! -- modal 1 -->
         <div class="modal eyeglass hide rounded-5" id="modal1">
