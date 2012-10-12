@@ -1,0 +1,10 @@
+<li class="user-suggestion-box relative">
+  <div id="follow_box_<%=user.get('id')%>">
+  </div>
+  <a href="">
+    <img class="user-photo l absolute rounded-3" src="<%=user.get('square_image_url')%>" />
+    <span class="txt m user-name"><%=user.fullName()%></span>
+  </a> 
+  <br>
+  <span class="txt s user-info"><%=user.get('message')%></span>
+</li> 
