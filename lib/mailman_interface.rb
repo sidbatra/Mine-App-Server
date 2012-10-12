@@ -79,10 +79,7 @@ module DW
       # Email the owner about a like on his/her purchase 
       #
       def self.email_owner_about_a_like(like)
-        
-        if like.purchase.user.setting.email_influencer &&
-                like.user_id != like.purchase.user_id
-
+        if like.purchase.user.setting.email_influencer
           UserMailer.deliver_new_like(like) 
         end
       rescue => ex
@@ -91,16 +88,10 @@ module DW
 
       # Email all the users on the comment thread
       #
-      def self.email_users_in_comment_thread(comment)
-        user_ids  = Comment.user_ids_in_thread_with(comment)
-        users     = User.with_setting.find_all_by_id(user_ids)
-
+      def self.email_users_in_comment_thread(comment,users)
         users.each do |user|
           begin
-            
-            if user.setting.email_influencer && 
-                user.id != comment.user.id
-
+            if user.setting.email_influencer
               UserMailer.deliver_new_comment(comment,user) 
             end
           rescue => ex
