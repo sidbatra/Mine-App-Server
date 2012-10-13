@@ -275,11 +275,11 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
 
     this.products.search(query);
 
-    var search = new Denwen.Models.Search({
-                      query   : query,
-                      source  : this.mode == 'new' ? 0 : 1});
+    //var search = new Denwen.Models.Search({
+    //                  query   : query,
+    //                  source  : this.mode == 'new' ? 0 : 1});
 
-    search.save();
+    //search.save();
 
     this.trigger(
       Denwen.Partials.Products.Search.Callback.ProductSearched,

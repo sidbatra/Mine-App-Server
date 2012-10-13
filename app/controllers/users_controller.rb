@@ -118,6 +118,10 @@ class UsersController < ApplicationController
                 paginate :per_page => 5
                end.results unless fragment_exist?(@key)
 
+      Search.add(
+        {:query => query,:source => SearchSource::User},
+        self.current_user.id)
+
     when :connections
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
