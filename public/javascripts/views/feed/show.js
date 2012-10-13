@@ -48,7 +48,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
-    new Denwen.Partials.Notifications.List({el:$('#notifications_box')});
+    //new Denwen.Partials.Notifications.List({el:$('#notifications_box')});
 
 
     new Denwen.Partials.Users.Suggestions({el:$(this.userSuggestionsEl)});
