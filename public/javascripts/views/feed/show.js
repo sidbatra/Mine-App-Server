@@ -14,8 +14,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     this.source = this.options.source;
 
-    this.feedEl = '#feed';
-    //this.suggestionsEl = '#suggestions';
+    this.feedEl             = '#feed';
+    this.userSuggestionsEl  = '#user_suggestions_box';
+    //this.suggestionsEl    = '#suggestions';
 
     this.content  = new Denwen.Partials.Feed.Content({
                           aspect: 'user',
@@ -47,6 +48,11 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
+    //new Denwen.Partials.Notifications.List({el:$('#notifications_box')});
+
+
+    new Denwen.Partials.Users.Suggestions({el:$(this.userSuggestionsEl)});
+
     //this.suggestions = new Denwen.Partials.Feed.Suggestions({
     //                        el:$(this.suggestionsEl),
     //                        suggestionDelegate:this});
@@ -55,6 +61,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     //$("a[rel='tooltip']").tooltip();
     
     //this.loadFacebookPlugs();
+
 
     this.setAnalytics();
   },

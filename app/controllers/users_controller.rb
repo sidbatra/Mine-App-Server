@@ -118,12 +118,16 @@ class UsersController < ApplicationController
                 paginate :per_page => 5
                end.results unless fragment_exist?(@key)
 
+      Search.add(
+        {:query => query,:source => SearchSource::User},
+        self.current_user.id)
+
     when :connections
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
       populate_theme @user
 
-    when :to_follow
+    when :suggestions
       ifollower_ids = self.current_user.ifollower_ids 
 
       followings = Following.find_all_by_follower_id(
@@ -143,9 +147,9 @@ class UsersController < ApplicationController
       
       @users += User.find_all_by_is_special(
                       true,
-                      :conditions => ["id not in (?)", followings.map(&:user_id) + [self.current_user.id]],
+                      :conditions => ["id not in (?)", followings.map(&:user_id) + ifollower_ids + [self.current_user.id]],
                       :order => 'RAND()',
-                      :limit => 3 - @users.size)
+                      :limit => 3 - @users.size).each{|u| u['message'] = u.byline}
     end
 
   rescue => ex

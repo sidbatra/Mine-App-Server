@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :contacts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
+  has_many :notifications, :dependent => :destroy
+  has_many :resource_notifications, :as => :resource, :dependent => :destroy
   has_many :shoppings, :dependent => :destroy
   has_many :stores, :through   => :shoppings
   has_one  :setting, :dependent => :destroy 
@@ -128,6 +130,14 @@ class User < ActiveRecord::Base
   #
   def self.find_by_cookie(token)
     find_by_remember_token(token)
+  end
+
+  def self.increment_unread_notifications_count(user_id)
+    increment_counter :unread_notifications_count,user_id
+  end
+
+  def self.decrement_unread_notifications_count(user_id)
+    decrement_counter :unread_notifications_count,user_id
   end
 
 

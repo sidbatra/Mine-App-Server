@@ -25,6 +25,10 @@ class ProductsController < ApplicationController
 
     end 
 
+    Search.add(
+      {:query => @query,:source => SearchSource::New},
+      self.current_user.id) if @page.zero?
+
   rescue => ex
     handle_exception(ex)
   ensure

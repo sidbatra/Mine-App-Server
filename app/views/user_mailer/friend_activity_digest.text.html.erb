@@ -58,7 +58,7 @@
 		    <%-end-%>
 		  <%-end-%>
 		
-		  joined Mine. You're now following them.
+		  joined Mine. You're now following <%=@new_friends.length > 1 ? 'them' : @new_friends.first.is_male? ? 'him' : 'her'%>.
 		<%end%>
 	
 	</p>

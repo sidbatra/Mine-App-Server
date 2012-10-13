@@ -10,6 +10,7 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
+  has_many :notifications, :as => :resource, :dependent => :destroy
   belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
   belongs_to :product
