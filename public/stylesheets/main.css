@@ -518,8 +518,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: auto;
 	min-height: 150px;
 	padding: 4.615384615%;
-	background: url('/images/loading-blocks-dark-trans.gif') center no-repeat;
-	background: url('/images/loading/loading-snake-555.gif') center no-repeat;
+/* 	background: url('/images/loading/loading-snake-555.gif') center no-repeat; */
 	text-align: center;
 	line-height: 1; }
 
