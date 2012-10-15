@@ -132,10 +132,10 @@ class UsersController < ApplicationController
 
       followings = Following.find_all_by_follower_id(
                     ifollower_ids,
-                    :conditions => ["user_id not in (?)", ifollower_ids + [self.current_user.id]],
-                    :joins      => 'INNER JOIN users ON users.id = followings.follower_id',
+                    :conditions => ["user_id not in (?) AND U.purchases_count > 0", ifollower_ids + [self.current_user.id]],
+                    :joins      => 'INNER JOIN users ON users.id = followings.follower_id INNER JOIN users as U ON U.id = followings.user_id',
                     :group      => :user_id,
-                    :include    => :user, 
+                    :include    => :user,
                     :select     => 'followings.*,
                                     GROUP_CONCAT(CONCAT_WS(\' \', users.first_name, users.last_name)) AS FOLLOWED_BY',
                     :order      => 'RAND()',
