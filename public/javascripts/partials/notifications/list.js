@@ -51,6 +51,8 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
 
     if(this.notifications.length)
       this.el.show();
+    else
+      this.el.hide();
 
     if(Denwen.Device.get("is_phone"))
       this.markAsRead();
