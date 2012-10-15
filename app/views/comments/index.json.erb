@@ -1,0 +1,5 @@
+<%-cache @key,@cache_options do-%>
+<%=render :partial => "comments/comments",
+    :locals => {:comments => @comments}%>
+<%-end-%>
+
