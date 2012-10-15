@@ -18,9 +18,9 @@ module DW
         message = ""
 
         if purchase.endorsement.present?
-          message = purchase.endorsement 
+          message << purchase.endorsement 
         else
-          message = "Bought my #{purchase.title}" 
+          message << "Bought my #{purchase.title}" 
 
           if purchase.store
             message << " from #{purchase.store.name}"
@@ -60,9 +60,9 @@ module DW
         message = ""
 
         if purchase.endorsement.present?
-          message = purchase.endorsement 
+          message << purchase.endorsement 
         else
-          message = "Bought my #{purchase.title}" 
+          message << "Bought my #{purchase.title}" 
 
           if purchase.store
             message << " from #{purchase.store.name}"
