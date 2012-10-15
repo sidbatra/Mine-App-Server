@@ -4,6 +4,7 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
     var self = this;
 
     this.notificationsEl = "#notifications";
+    this.markedAsRead = false;
 
     this.notifications = new Denwen.Collections.Notifications();
     this.notifications.fetch({
@@ -15,8 +16,10 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
   },
 
   markAsRead: function() {
-    if(!this.notifications.length)
+    if(!this.notifications.length || this.markedAsRead)
       return;
+
+    this.markedAsRead = true;
 
     var unreadIDs = [];
 
