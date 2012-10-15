@@ -40,7 +40,9 @@
                   
 
           <%unless is_phone_device?%>
-	          <div class="btn-group rwd-hide">
+	          <div id="notifications_box" 
+              style="display:none" 
+              class="btn-group rwd-hide">
 		          <a class="btn btn-red rounded-3 dropdown-toggle 
                         border-box pointer 
                         <%=self.current_user.unread_notifications_count.zero? ? 
