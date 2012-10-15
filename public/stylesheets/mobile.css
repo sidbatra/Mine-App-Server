@@ -23,7 +23,7 @@
 		
 	.header .logo { width: 108px; } 
 	
-	.header .btn-group input.search { width: 144px; }
+	.header input.search { width: 144px; }
 	.search.typeahead.dropdown-menu { width: 146px !important; min-width: 146px; }
 	
 	.btn-facebook,

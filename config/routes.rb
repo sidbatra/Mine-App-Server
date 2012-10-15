@@ -81,7 +81,7 @@ ActionController::Routing::Routes.draw do |map|
     :only => [:index]
 
   map.resources :comments,
-    :only => [:create]
+    :only => [:create,:index]
 
   map.resources :likes,
     :only => [:create]

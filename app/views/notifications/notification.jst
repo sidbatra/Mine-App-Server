@@ -1,6 +1,6 @@
-<li class="user-suggestion-box relative" 
-  style="<%=notification.get('unread') ? "background-color: red" : ""%>">
-  <a href="<%=notification.path('notification')%>">
+<li class="user-action-box relative <%=notification.get('unread') ? "unread" : "read"%>">
+	<div class="btn dot rounded-16 absolute"></div>
+  <a class="notification-state" href="<%=notification.path('notification')%>">
     <img class="user-photo l absolute rounded-3" 
       src="<%=notification.get('image_url')%>" />
     <span class="txt m user-name"><%=notification.get('entity')%></span>

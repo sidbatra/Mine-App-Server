@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
                       for(self.current_user.id).
                       limit([self.current_user.unread_notifications_count,10].max).
                       with_resource.
-                      by_created_at.
+                      by_updated_at.
                       all
 
   rescue => ex

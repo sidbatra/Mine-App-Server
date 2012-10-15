@@ -1,4 +1,4 @@
-json.extract! notification,:id,:created_at,:entity,:event,:resource_type,:image_url,:unread
+json.extract! notification,:id,:created_at,:entity,:event,:resource_type,:identifier,:image_url,:unread
 
 json.user do |j|
   j.partial! "users/user", {:user => notification.resource}
