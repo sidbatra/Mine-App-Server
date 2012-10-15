@@ -257,9 +257,9 @@ input.error:focus, textarea.error:focus {
 	border-radius: 12px !important; }
 
 .rounded-16 {
-	-webkit-border-radius: 16px;
-	-moz-border-radius: 16px;
-	border-radius: 16px; }
+	-webkit-border-radius: 16px !important;
+	-moz-border-radius: 16px !important;
+	border-radius: 16px !important; }
 
 .top-right {
 	-webkit-border-top-left-radius: 0;

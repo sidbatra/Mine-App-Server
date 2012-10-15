@@ -391,23 +391,35 @@ li.user-action-box a.notification-state:hover {
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
 
-li.user-action-box.unread a.notification-state {
-	opacity: 1; filter: alpha(opacity=1); }
-	
-li.user-action-box.unread .user-info { color: white; }
+ul.notifications li.user-action-box { 
+	margin-left: 16px; 
+	padding-right: 0; }
+
+li.user-action-box.unread .dot { 
+	top: 11px;
+	left: -17px;
+	display: block;
+	padding: 0;
+	width: 10px;
+	height: 10px; }
 
 
 /* -- header notifications dropdown -- */
 
-.header .notifications li.user-action-box {
+li.user-action-box .dot { display: none; }
+
+.header ul.notifications li.user-action-box.unread .dot { 
+	top: 9px; left: -18px; }
+
+.header ul.notifications li.user-action-box {
 	padding: 0 2px 5px 35px !important;
-	min-height: 28px;
+	min-height: 30px;
 	margin-bottom: 7px; }
 	
-.header .notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
-.header .notifications li.user-action-box .user-name  { font-size: 12px; }
-.header .notifications li.user-action-box .user-info  { line-height: 16px; }
-.header .notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
+.header ul.notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
+.header ul.notifications li.user-action-box .user-name  { font-size: 12px; }
+.header ul.notifications li.user-action-box .user-info  { line-height: 16px; }
+.header ul.notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
 
 
 /* Feed

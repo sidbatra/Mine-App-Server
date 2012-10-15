@@ -1,4 +1,5 @@
-<li class="user-action-box relative <%=notification.get('unread') ? "unread" : ""%>">
+<li class="user-action-box relative <%=notification.get('unread') ? "unread" : "read"%>">
+	<div class="btn dot rounded-16 absolute"></div>
   <a class="notification-state" href="<%=notification.path('notification')%>">
     <img class="user-photo l absolute rounded-3" 
       src="<%=notification.get('image_url')%>" />
