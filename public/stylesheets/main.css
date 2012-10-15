@@ -380,6 +380,7 @@ li.user-action-box .user-info {
 	line-height: 170%;
 	color: #ccc; }
 	
+/*
 li.user-action-box a {
 	opacity: 0.8; 
 	filter: alpha(opacity=80); }
@@ -391,6 +392,7 @@ li.user-action-box a:hover {
 	-moz-transition: opacity .15s ease-in;
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
+*/
 
 ul.notifications li.user-action-box { 
 	padding-right: 0;
