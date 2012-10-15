@@ -14,8 +14,28 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
     this.el.click(function(){self.notificationBoxClicked();return true;});
   },
 
+  markAsRead: function() {
+    if(!this.notifications.length)
+      return;
+
+    var unreadIDs = [];
+
+    this.notifications.each(function(notification){
+      if(notification.get('unread'))
+        unreadIDs.push(notification.get('id'));
+    });
+
+    var notification = new Denwen.Models.Notification({
+                            id:0,
+                            unread_ids:unreadIDs.join()});
+
+    //if(unreadIDs.length)
+    //  notification.save();
+  },
+
   notificationBoxClicked: function() {
     this.el.find(".dropdown-toggle").addClass('zero').html('0');
+    this.markAsRead();
   },
 
   notificationsLoaded: function() {
@@ -26,23 +46,11 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
         notification:notification}));
     });
 
-    if(this.notifications.length) {
+    if(this.notifications.length)
       this.el.show();
 
-      var unreadIDs = [];
-
-      this.notifications.each(function(notification){
-        if(notification.get('unread'))
-          unreadIDs.push(notification.get('id'));
-      });
-
-      var notification = new Denwen.Models.Notification({
-                              id:0,
-                              unread_ids:unreadIDs.join()});
-
-      //if(unreadIDs.length)
-      //  notification.save();
-    }
+    if(Denwen.Device.get("is_phone"))
+      this.markAsRead();
   }
 });
 
