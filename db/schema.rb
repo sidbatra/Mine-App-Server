@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011164552) do
+ActiveRecord::Schema.define(:version => 20121015170314) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -141,9 +141,9 @@ ActiveRecord::Schema.define(:version => 20121011164552) do
     t.datetime "updated_at"
   end
 
-  add_index "notifications", ["created_at"], :name => "index_notifications_on_created_at"
   add_index "notifications", ["identifier"], :name => "index_notifications_on_identifier"
   add_index "notifications", ["resource_id", "resource_type"], :name => "index_notifications_on_resource_id_and_resource_type"
+  add_index "notifications", ["updated_at"], :name => "index_notifications_on_updated_at"
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "products", :force => true do |t|
@@ -326,8 +326,8 @@ ActiveRecord::Schema.define(:version => 20121011164552) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
-    t.boolean  "is_special",                 :default => false
     t.integer  "unread_notifications_count", :default => 0
+    t.boolean  "is_special",                 :default => false
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"
