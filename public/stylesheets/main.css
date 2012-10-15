@@ -220,6 +220,7 @@ li { line-height: 1; }
 	
 .header .dropdown-menu.nav { margin-right: -6px; }
 .header .dropdown-menu.notifications { 
+	max-width: 520px;
 	margin-right: -39px; 
 	padding: 10px; }
 	
@@ -379,11 +380,11 @@ li.user-action-box .user-info {
 	line-height: 170%;
 	color: #ccc; }
 	
-li.user-action-box a.notification-state {
+li.user-action-box a {
 	opacity: 0.8; 
 	filter: alpha(opacity=80); }
 
-li.user-action-box a.notification-state:hover {
+li.user-action-box a:hover {
 	opacity: 1; 
 	filter: alpha(opacity=100);
 	-webkit-transition: opacity .15s ease-in;
@@ -392,8 +393,10 @@ li.user-action-box a.notification-state:hover {
 	transition: opacity .15s ease-in; }
 
 ul.notifications li.user-action-box { 
-	margin-left: 16px; 
-	padding-right: 0; }
+	padding-right: 0;
+	margin-left: 16px; }
+	
+/* .btn-red.zero ~ ul.notifications li.user-action-box { margin-left: 0; } */
 
 li.user-action-box.unread .dot { 
 	top: 11px;
@@ -414,10 +417,12 @@ li.user-action-box .dot { display: none; }
 .header ul.notifications li.user-action-box {
 	padding: 0 2px 5px 35px !important;
 	min-height: 30px;
-	margin-bottom: 7px; }
+	margin-bottom: 7px;
+	overflow: hidden; }
 	
 .header ul.notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
-.header ul.notifications li.user-action-box .user-name  { font-size: 12px; }
+.header ul.notifications li.user-action-box .user-name  { font-size: 12px;}
+
 .header ul.notifications li.user-action-box .user-info  { line-height: 16px; }
 .header ul.notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
 
@@ -1185,7 +1190,12 @@ a.feed-intro .highlight { font-weight: bold; }
 	white-space: nowrap;
 	-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.3);
-	box-shadow:         0px 3px 6px rgba(0, 0, 0, 0.3); }
+	box-shadow:         0px 3px 6px rgba(0, 0, 0, 0.3);
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -ms-sticky;
+	position: -o-sticky;
+	position: sticky; }
 
 .chooser .search-bar .logo {
 	height: 47px;

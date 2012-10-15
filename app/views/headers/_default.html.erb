@@ -47,15 +47,14 @@
 		          <a class="btn btn-red rounded-3 dropdown-toggle 
                         border-box pointer 
                         <%=self.current_user.unread_notifications_count.zero? ? 
-                            "zero" : 
-                            ""%>"
+                            "zero" : ""%>"
 		          	style=""
 		          	data-toggle="dropdown">
 		          		<%=self.current_user.unread_notifications_count%>
 		          </a>
 	          
               <ul id="notifications" 
-                  class="dropdown-menu notifications rounded-5 pull-right">
+                  class="dropdown-menu notifications rounded-5 border-box pull-right">
               </ul>
 	          
 	          </div> <! --/notifications btn-group -->
