@@ -22,7 +22,8 @@
           alt="Search">
           <%if local_assigns[:search_action].nil?%>
           	<%=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
-                :style => "height: 14px; margin-top: 13px; vertical-align: top;"%>
+                :style => "height: 14px; margin-top: 13px; vertical-align: top;",
+                :alt => ""%>
           <%else%>
             <%=search_action%>
           <%end%>

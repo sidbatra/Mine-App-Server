@@ -45,16 +45,14 @@
                         border-box pointer 
                         <%=self.current_user.unread_notifications_count.zero? ? 
                             "zero" : 
-                            "nonzero"%>"
-		          	style="height: 28px; min-width: 28px; padding: 0 8px ; 
-                        margin: 0 0 0 6px; line-height: 28px !important; 
-                        font-weight: bold; font-size: 13px; color: white;"
+                            ""%>"
+		          	style=""
 		          	data-toggle="dropdown">
 		          		<%=self.current_user.unread_notifications_count%>
 		          </a>
 	          
               <ul id="notifications" 
-                  class="dropdown-menu notifications rounded-6 pull-right rounded-3">
+                  class="dropdown-menu notifications rounded-3 pull-right">
               </ul>
 	          
 	          </div> <! --/notifications btn-group -->

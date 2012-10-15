@@ -182,13 +182,32 @@ li { line-height: 1; }
 .header .dropdown-toggle:hover .caret,        
 .header .btn-group.open .caret { border-top: 6px solid white; }
 
-.btn-group.open .btn.btn-red.dropdown-toggle {
+/* -- notifications count -- */
+
+.header .btn-group .btn.btn-red.dropdown-toggle {
+	height: 28px; 
+	min-width: 28px; 
+	padding: 0 8px; 
+  margin: 0 0 0 6px; 
+  line-height: 28px !important; 
+  font-weight: bold; 
+  font-size: 13px; 
+  color: white; }
+
+/* ie min-width btn bug fix */  
+.ie8 .header .btn-group .btn.btn-red.dropdown-toggle,
+.ie9 .header .btn-group .btn.btn-red.dropdown-toggle { min-width: 0; }
+
+.header .btn-group .btn.btn-red.dropdown-toggle .btn.btn-red.dropdown-toggle {
 	background-color: #A6321D; }
 
-.btn-group .btn.btn-red.dropdown-toggle.zero { 
+.header .btn-group .btn.btn-red.dropdown-toggle.zero { 
 	background-color: #444;
 	color: #ddd !important; }
 
+.header .btn-group.open .btn.btn-red.dropdown-toggle.zero {
+	background: #555; }
+	
 .header .dropdown-menu {
 	top: 34px;
 	border: 0;
@@ -202,7 +221,7 @@ li { line-height: 1; }
 .header .dropdown-menu.nav { margin-right: -6px; }
 .header .dropdown-menu.notifications { 
 	margin-right: -39px; 
-	padding: 12px; }
+	padding: 8px; }
 	
 .header .dropdown-menu.notifications li { padding-right: 0 !important; }
 	
@@ -334,37 +353,37 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .user-photo.xs  { width: 16px; height: 16px; }
 
 
-/* Who to Follow
+/* Who to Follow + Notifications
 ==================================================================== */
 
-li.user-suggestion-box {
+li.user-action-box {
 	padding: 0 17% 5px 42px;
 	min-height: 36px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #494949; }
 
-li.user-suggestion-box:last-child { 
-	margin-bottom: -9px;
-	border-bottom: none; }
+li.user-action-box:last-child { 
+	margin-bottom: -9px !important;
+	border-bottom: none !important; }
 
-li.user-suggestion-box .user-photo {
+li.user-action-box .user-photo {
 	top: 0;
 	left: 0; }
 
-li.user-suggestion-box .user-name {
+li.user-action-box .user-name {
 	color: white;
 	line-height: 120%;
 	font-weight: bold; }
 
-li.user-suggestion-box .user-info {
+li.user-action-box .user-info {
 	line-height: 170%;
 	color: #ccc; }
 	
-li.user-suggestion-box a.notification-state {
+li.user-action-box a.notification-state {
 	opacity: 0.8; 
 	filter: alpha(opacity=80); }
 
-li.user-suggestion-box a.notification-state:hover {
+li.user-action-box a.notification-state:hover {
 	opacity: 1; 
 	filter: alpha(opacity=100);
 	-webkit-transition: opacity .15s ease-in;
@@ -372,11 +391,24 @@ li.user-suggestion-box a.notification-state:hover {
 	-o-transition: opacity .15s ease-in;
 	transition: opacity .15s ease-in; }
 
-li.user-suggestion-box.unread a.notification-state {
+li.user-action-box.unread a.notification-state {
 	opacity: 1; filter: alpha(opacity=1); }
 	
-li.user-suggestion-box.unread .user-info { color: white; }
+li.user-action-box.unread .user-info { color: white; }
 
+
+/* -- header notifications dropdown -- */
+
+.header .notifications li.user-action-box {
+	padding: 0 17% 0px 35px;
+	min-height: 36px;
+	margin-bottom: 8px; }
+	
+.header .notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
+	
+.header .notifications li.user-action-box .user-name { font-size: 12px; }
+
+.header .notifications li.user-action-box .user-info { line-height: 16px; }
 
 
 /* Feed
@@ -739,7 +771,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .profile-box .btn.follow [class^="icon-"] { margin-top: 0px; }
 
-.user-suggestion-box .btn.follow {
+.user-action-box .btn.follow {
 	width: 15%;
 	right: 0;
 	top: 0;
@@ -747,7 +779,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	text-transform: uppercase;
 	padding: 0; }
 	
-.user-suggestion-box .btn.follow [class^="icon-"] { margin-top: -1px; }
+.user-action-box .btn.follow [class^="icon-"] { margin-top: -1px; }
 
 .well-box.info-box .btn.follow {
 	top: 12px;
