@@ -207,7 +207,7 @@ class ProductsController < ApplicationController
 
     request.on_complete do |response| 
       begin
-        google_shopping = JSON.parse(response.body)
+        google_shopping = JSON.parse(response.body) if response.body.present?
         key = "google"
 
         @results[key.to_sym] = google_shopping["items"].map do |item|
@@ -226,7 +226,7 @@ class ProductsController < ApplicationController
                                   LoggedException.add(__FILE__,__method__,ex)
                                   nil
                                 end
-                              end.compact if google_shopping["items"]
+                              end.compact if google_shopping && google_shopping["items"]
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
       end
