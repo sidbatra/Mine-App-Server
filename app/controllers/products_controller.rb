@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     unless fragment_exist? @key
 
       if @sane_query.match(/http/)
-        @title,@products = product_url_search(@sane_query)
+        @title,@products = product_url_search(@sane_query) if @page.zero?
       else
         @key,@sane_query,@products = product_text_search(
                                       @sane_query,
@@ -373,7 +373,7 @@ class ProductsController < ApplicationController
     end
 
     products = images.map do |image|
-                product_search_hash(image,"","","","")
+                product_search_hash(image,image,"","","")
                end
   rescue => ex
     LoggedException.add(__FILE__,__method__,ex)
