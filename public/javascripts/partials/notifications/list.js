@@ -37,6 +37,9 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
       if(unreadIDs.length)
         notification.save();
     }
+    else {
+      $(this.notificationsEl).hide();
+    }
   }
 });
 

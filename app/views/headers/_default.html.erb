@@ -38,20 +38,28 @@
                   :class => "rwd-hide border-box opacity-80-100", 
                   :style => "vertical-align: top; display: inline-block; width: 28px; height: 28px; margin-left: 6px; padding: 6px 7px 8px;"%>
                   
+
           <%unless is_phone_device?%>
-          	<!-- notifications -->
 	          <div class="btn-group rwd-hide">
-		          <a class="btn btn-red rounded-3 dropdown-toggle border-box pointer <%=self.current_user.unread_notifications_count.zero? ? "zero" : "nonzero"%>"
-		          	style="height: 28px; min-width: 28px; padding: 0 8px ; margin: 0 0 0 6px; line-height: 28px !important; font-weight: bold; font-size: 13px; color: white;"
+		          <a class="btn btn-red rounded-3 dropdown-toggle 
+                        border-box pointer 
+                        <%=self.current_user.unread_notifications_count.zero? ? 
+                            "zero" : 
+                            "nonzero"%>"
+		          	style="height: 28px; min-width: 28px; padding: 0 8px ; 
+                        margin: 0 0 0 6px; line-height: 28px !important; 
+                        font-weight: bold; font-size: 13px; color: white;"
 		          	data-toggle="dropdown">
 		          		<%=self.current_user.unread_notifications_count%>
 		          </a>
 	          
-		          <ul id="notifications" class="dropdown-menu notifications rounded-6 pull-right rounded-3">
-		          </ul>
+              <ul id="notifications" 
+                  class="dropdown-menu notifications rounded-6 pull-right rounded-3">
+              </ul>
 	          
 	          </div> <! --/notifications btn-group -->
 	        <%end%>
+
           
           <!-- nav -->
           <div class="btn-group">
