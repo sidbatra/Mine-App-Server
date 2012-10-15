@@ -10,6 +10,12 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
           data      : {},
           success   : function(collection){self.notificationsLoaded();},
           error     : function(collection,errors){}});
+
+    this.el.click(function(){self.notificationBoxClicked();return true;});
+  },
+
+  notificationBoxClicked: function() {
+    this.el.find(".dropdown-toggle").addClass('zero').html('0');
   },
 
   notificationsLoaded: function() {
@@ -34,8 +40,8 @@ Denwen.Partials.Notifications.List = Backbone.View.extend({
                               id:0,
                               unread_ids:unreadIDs.join()});
 
-      if(unreadIDs.length)
-        notification.save();
+      //if(unreadIDs.length)
+      //  notification.save();
     }
   }
 });
