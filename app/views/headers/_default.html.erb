@@ -11,7 +11,7 @@
 
         <%if !is_onboarding?%>
         	<div class="unselectable well-box border-box rounded-5" 
-       				 style="float: right; padding: 6px;">
+       				 style="float: right; padding: 6px; z-index: 10000;">
         
           <a href="<%=user_path(self.current_user.handle,:src => "bar")%>"
             class="btn-user relative pointer txt m dark" 
@@ -36,13 +36,12 @@
                       :style => "height: 14px;"),
                   root_path(:src => "bar-icon"),
                   :class => "rwd-hide border-box opacity-80-100", 
-                  :style => "vertical-align: top; display: inline-block; width: 28px; height: 28px; margin-left: 6px; padding: 6px 7px 8px;"%>
-                  
+                  :style => "vertical-align: top; display: inline-block; width: 28px; height: 28px; margin-left: 6px; padding: 6px 7px 8px;"%>   
 
           <%unless is_phone_device?%>
 	          <div id="notifications_box" 
-              style="display:none" 
-              class="btn-group rwd-hide">
+              style="display:none; z-index: 3;" 
+              class="btn-group rwd-hide relative">
 		          <a class="btn btn-red rounded-3 dropdown-toggle 
                         border-box pointer 
                         <%=self.current_user.unread_notifications_count.zero? ? 
@@ -54,7 +53,7 @@
 		          </a>
 	          
               <ul id="notifications" 
-                  class="dropdown-menu notifications rounded-3 pull-right">
+                  class="dropdown-menu notifications rounded-5 pull-right">
               </ul>
 	          
 	          </div> <! --/notifications btn-group -->

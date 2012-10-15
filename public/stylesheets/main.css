@@ -221,7 +221,7 @@ li { line-height: 1; }
 .header .dropdown-menu.nav { margin-right: -6px; }
 .header .dropdown-menu.notifications { 
 	margin-right: -39px; 
-	padding: 8px; }
+	padding: 10px; }
 	
 .header .dropdown-menu.notifications li { padding-right: 0 !important; }
 	
@@ -400,15 +400,14 @@ li.user-action-box.unread .user-info { color: white; }
 /* -- header notifications dropdown -- */
 
 .header .notifications li.user-action-box {
-	padding: 0 17% 0px 35px;
-	min-height: 36px;
-	margin-bottom: 8px; }
+	padding: 0 2px 5px 35px !important;
+	min-height: 28px;
+	margin-bottom: 7px; }
 	
 .header .notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
-	
-.header .notifications li.user-action-box .user-name { font-size: 12px; }
-
-.header .notifications li.user-action-box .user-info { line-height: 16px; }
+.header .notifications li.user-action-box .user-name  { font-size: 12px; }
+.header .notifications li.user-action-box .user-info  { line-height: 16px; }
+.header .notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
 
 
 /* Feed
