@@ -1,5 +1,7 @@
 <div class="user-photo-box relative">
-  <a href="<%=like.get('user').path('like')%>">
+  <a href="<%=like.get('user').path('like')%>"
+      rel="tooltip"
+      title="<%=like.get('user').fullName()%>">
     <img class="user-photo s rounded-3"
       src="<%=like.get('user').get('square_image_url')%>" 
       alt=''/>
