@@ -97,6 +97,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       $(this.commentsBoxEl).hide();
     }
 
+    $(this.likesBoxEl).find("a[rel='tooltip']").tooltip();
+
     this.testOverflow();
   },
 

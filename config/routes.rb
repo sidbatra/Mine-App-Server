@@ -58,7 +58,7 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :feed,
     :only => [:show]
 
-  map.short_purchase '/p/:purchase_id',
+  map.short_purchase '/p/:purchase_id.:format',
     :controller => :purchases,
     :action => :show
 

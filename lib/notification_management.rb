@@ -17,7 +17,7 @@ module DW
           event = "likes"
         end
 
-        event << " your #{like.purchase.title}"
+        event << " your #{like.purchase.title}."
 
         Notification.add(
                       target_user.id,
@@ -47,7 +47,7 @@ module DW
             event = "also commented on #{owner.first_name}'s"
           end
 
-          event << " #{comment.purchase.title}"
+          event << " #{comment.purchase.title}."
 
           Notification.add(
                         user.id,
@@ -66,7 +66,7 @@ module DW
       def self.new_following(following)
         target_user   = following.user
         entity        = following.follower.full_name
-        event         = "is following you"
+        event         = "is following you."
 
         Notification.add(
                       target_user.id,
