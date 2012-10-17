@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :notifications, :dependent => :destroy
-  has_many :resource_notifications, :as => :resource, :dependent => :destroy
+  has_many :resource_notifications, :class_name => "Notification",
+                                    :as => :resource, 
+                                    :dependent => :destroy
   has_many :shoppings, :dependent => :destroy
   has_many :stores, :through   => :shoppings
   has_one  :setting, :dependent => :destroy 
