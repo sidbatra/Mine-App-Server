@@ -30,11 +30,9 @@ while($running) do
       logger.info "Finished #{payload.to_s} #{end_time - start_time}"
 
     rescue => ex
-      payload.failed
-
       if payload.attempts < CONFIG[:max_processing_attempts]
         logger.info "Recovering #{payload.to_s}"
-        payload.queue.push(payload)
+        payload.retry
       else
         LoggedException.add(__FILE__,__method__,ex)
       end

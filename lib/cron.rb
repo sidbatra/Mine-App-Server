@@ -104,7 +104,7 @@ module DW
         email_feedback_queue = FIFO::Queue.new Q[:email_feedback]
 
         while(true)
-          payload = email_feedback_queue.pop true
+          payload = email_feedback_queue.pop :raw => true
           break unless payload
 
           message = JSON.parse(payload)["Message"]
