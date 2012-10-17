@@ -142,7 +142,7 @@ class UsersController < ApplicationController
                     :limit      => 2)
           
       @users = followings.each do |f|
-                 f.user['message'] = follow_message(f['FOLLOWED_BY'])
+                 f.user['message'] = follow_message(f['FOLLOWED_BY'],params[:mobile])
                end.map(&:user)
       
       @users += User.find_all_by_is_special(
@@ -242,18 +242,23 @@ class UsersController < ApplicationController
 
   # Generate a message for the user that we recommend to follow
   #
-  def follow_message(users)
+  def follow_message(users,mobile)
     users = users.split(',')
 
     message = "Followed by "
 
-    if users.length <= 2
-      message << users[0..1].join(" and ")
-    elsif users.length == 3
-      message << users[0..1].join(", ") + " and 1 other"   
+    if mobile
+      message << users.first
     else
-      message << users[0..1].join(", ") + " and #{users.length - 2} others"   
+      if users.length <= 2
+        message << users[0..1].join(" and ")
+      elsif users.length == 3
+        message << users[0..1].join(", ") + " and 1 other"   
+      else
+        message << users[0..1].join(", ") + " and #{users.length - 2} others"   
+      end
     end
+    
   end
 
 end
