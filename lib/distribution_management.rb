@@ -179,8 +179,9 @@ module DW
 
         client = Tumblife.client
         name   = client.info.user.blogs.select{|blog| blog.primary}.first.name
+        url    = name + '.tumblr.com'
 
-        client.delete(name,tumblr_post_id)
+        client.delete(url,tumblr_post_id)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
