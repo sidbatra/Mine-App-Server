@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015170314) do
+ActiveRecord::Schema.define(:version => 20121018212621) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -218,12 +218,12 @@ ActiveRecord::Schema.define(:version => 20121015170314) do
 
   create_table "settings", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "share_to_facebook", :default => false
+    t.boolean  "share_to_facebook", :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "email_influencer",  :default => true
     t.boolean  "email_update",      :default => true
-    t.boolean  "share_to_twitter",  :default => false
+    t.boolean  "share_to_twitter",  :default => true
     t.boolean  "share_to_tumblr",   :default => false
     t.integer  "theme_id",          :default => 1
     t.boolean  "email_digest",      :default => true

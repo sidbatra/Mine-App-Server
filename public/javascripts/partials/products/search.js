@@ -19,6 +19,7 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     this.mode           = this.options.mode;
 
     this.loadClass      = "load";
+    this.wrapperEl      = "#wrapper";
     this.queryEl        = "#purchase_query";
     this.repeatQueryEl  = "#purchase_repeat_query";
     this.productsBoxEl  = "#chooser";
@@ -122,6 +123,9 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
   //
   stopSearch: function() {
     $("body").css("overflow","auto");
+
+    if(Denwen.Device.get("is_phone"))
+      $(this.wrapperEl).removeClass("fixed");
 
     if(Denwen.Device.get("is_phone")) {
       $(this.shadowEl).hide();
@@ -249,6 +253,9 @@ Denwen.Partials.Products.Search = Backbone.View.extend({
     }
 
     $("body").css("overflow","hidden");
+
+    if(Denwen.Device.get("is_phone"))
+      $(this.wrapperEl).addClass("fixed");
 
     this.startSpinner();
 
