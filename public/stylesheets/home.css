@@ -29,6 +29,13 @@ a:hover { text-decoration: none; }
 .header-home { text-align: center; width: 904px; margin: 0 auto; }
 .header-home .logo-home { padding: 21px 0 12px; height: 73px; }
 
+.header-home .app-store-badge { 
+	right: 24px; 
+	top: 50%;
+	margin-top: -20px; }
+
+.header-home .app-store-badge img { height: 40px; }
+
 .container-home {
 	width: 100%; }
 	

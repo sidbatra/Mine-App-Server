@@ -3,9 +3,17 @@
 
   <%unless @web_view_mode%>
 
-    <div class="header-home">
+    <div class="header-home relative">
       <%=image_tag "logos/mine-h-white-48-brighter-2x.png",
           :class => "logo-home unselectable"%>	
+      
+      <%unless is_phone_device?%>  
+	      <a href="itms://itunes.apple.com/us/app/mine./id567558757?mt=8" class="app-store-badge absolute">
+	      	<%=image_tag "home/app-store-badge-2x.png",
+	          :class => ""%>
+	      </a>
+      <%end%>
+      
     </div>
     
     <div class="dark-top"></div>
