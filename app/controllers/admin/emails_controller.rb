@@ -46,6 +46,9 @@ class Admin::EmailsController < ApplicationController
     when :feedback_offer
       render :text => UserMailer.preview_feedback_offer(User.find_by_purchases_count(2))
 
+    when :news
+      render :text => UserMailer.preview_news(User.first)
+
     when :user_deleted
       render :text => UserMailer.preview_user_deleted(User.first,User.last)
 
