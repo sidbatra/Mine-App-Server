@@ -593,12 +593,12 @@ input.error:focus, textarea.error:focus {
 
 .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-004A72.gif"); }
 	
-.btn-gray  .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-888.gif"); }
-.btn-red 	 .icon-loading.icon-white    { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
-.btn-green .icon-loading.icon-white 	 { background: url("/images/loading/loading-snake-FFF-248949.gif"); }
-.btn-facebook .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-1F4696.gif"); }
-.btn-twitter .icon-loading.icon-white  { background: url("/images/loading/loading-snake-FFF-0078CA.gif"); }
-
+.btn-gray  .icon-loading.icon-white     { background: url("/images/loading/loading-snake-FFF-888.gif"); }
+.btn-red 	 .icon-loading.icon-white     { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
+.btn-green .icon-loading.icon-white 	  { background: url("/images/loading/loading-snake-FFF-248949.gif"); }
+.btn-facebook .icon-loading.icon-white  { background: url("/images/loading/loading-snake-FFF-1F4696.gif"); }
+.btn-twitter .icon-loading.icon-white   { background: url("/images/loading/loading-snake-FFF-0078CA.gif"); }
+.toggle-switch .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-177DBE.gif"); }
 	
 .load .icon-loading { display: inline-block; }
 .load .hide-when-loading { display: none; }

@@ -1,0 +1,50 @@
+<td align="center" style="font-size: 0; padding: 24px 12px;">
+  <font face="Arial" color="#777"> 
+  
+    <a href="https://itunes.apple.com/us/app/mine./id567558757">
+    	<img alt="" width="64" height="64" alt="" src="<%=image_path "#{(is_dev? ? "http://#{CONFIG[:host]}/images/" : '')}email/mine-app-icon-128.png"%>"/>
+    </a>
+  
+  	<p style="font-size:18px; color: #333; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+
+			<b><%=@user.first_name%></b>, big news!<br>Mine is now available in the<br>iPhone App Store.
+			
+		</p>
+
+    <%=render :partial => "action_button",
+        :locals => {
+        :url => "https://itunes.apple.com/us/app/mine./id567558757",
+        :text => "Free Download"}%>	
+		
+		<p style="font-size:18px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+		</p>
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	<b>Purchases in your pocket</b><br>
+      All the features of the Mine website now on your iPhone.  
+      <a style="color: #006FB1; text-decoration: none;"  href="https://itunes.apple.com/us/app/mine./id567558757">Download it now</a>
+      and don't forget to give us 5 stars on the app store.
+    </p> 
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	<b>Don't have an iPhone?</b><br>
+      No problem. Mine works perfectly on your 
+      <a style="color: #006FB1; text-decoration: none;"  href="<%=root_url(:src => @source)%>">smartphone or laptop</a>.
+    </p> 
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	We're working hard to make Mine great, 24/7. If you have any thoughts or ideas about it, always feel free to 
+    	<a style="color: #006FB1; text-decoration: none;" 
+    		href="mailto:contact@getmine.com">get in touch</a>.
+    </p>
+    
+    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
+    	Thanks,<br>
+    	The team at Mine
+    </p>

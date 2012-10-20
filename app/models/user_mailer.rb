@@ -180,6 +180,20 @@ class UserMailer < ActionMailer::Base
     subject       "Hello from Natalia at Mine! $5 Amazon Gift Card for your feedback."
   end
 
+  # Send newsletter to all users.
+  #
+  def news(user)
+    @user         = user
+    @action       = "Announcing the #{CONFIG[:name]} iPhone app. It's free!"
+    @source       = "email_iphone_app"
+
+    generate_attributes(@user,0,@user,EmailPurpose::News)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Safety check email whenever a user is deleted
   #
   def user_deleted(admin,user)
