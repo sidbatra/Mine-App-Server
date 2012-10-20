@@ -15,16 +15,19 @@
 </div>
 
 <div class="info-box pictured well-box border-box rounded-5 alias-smooth relative">
-  
-	<img alt="<%=@pierre.full_name%>"
-    class="user-photo xxl rounded-3 absolute" 
-    src="<%=@pierre.square_image_url%>"/>
 
+	 <%=link_to image_tag(@pierre.square_image_url,
+	 			:alt => @pierre.full_name,
+        :class => "user-photo xxl rounded-3 absolute"),
+        user_path(@pierre.handle,:src => "about")%>
+	
 	<div id="follow_box_pierre">
 	</div>
 	
 	<h2 style="margin-bottom: 5px;">
-		<%=@pierre.first_name.capitalize%> <%=@pierre.last_name.capitalize%>
+		<a class="dark" href="<%=user_path(@pierre.handle,:src => "about")%>">
+			<%=@pierre.first_name.capitalize%> <%=@pierre.last_name.capitalize%>
+		</a>
 	</h2>
 	
 	<p class="txt m border-box">
@@ -44,15 +47,18 @@
 
 <div class="info-box pictured well-box border-box rounded-5 alias-smooth relative" style="margin-top: 0;">
   
-	<img alt="<%=@sid.full_name%>"
-    class="user-photo xxl rounded-3 absolute" 
-    src="<%=@sid.square_image_url%>"/>
+	 <%=link_to image_tag(@sid.square_image_url,
+	 			:alt => @sid.full_name,
+        :class => "user-photo xxl rounded-3 absolute"),
+        user_path(@sid.handle,:src => "about")%>
 
 	<div id="follow_box_sid">
 	</div>
 	
 	<h2 style="margin-bottom: 5px;">
-		<%=@sid.first_name.capitalize%> <%=@sid.last_name.capitalize%>
+		<a class="dark" href="<%=user_path(@sid.handle,:src => "about")%>">
+			<%=@sid.first_name.capitalize%> <%=@sid.last_name.capitalize%>
+		</a>
 	</h2>
 	
 	<p class="txt m border-box">
@@ -73,15 +79,18 @@
 
 <div class="info-box pictured well-box border-box rounded-5 alias-smooth relative" style="margin-top: 0;">
   
-	<img alt="<%=@deepak.full_name%>" 
-    class="user-photo xxl rounded-3 absolute" 
-    src="<%=@deepak.square_image_url%>"/>
+	 <%=link_to image_tag(@deepak.square_image_url,
+	 			:alt => @deepak.full_name,
+        :class => "user-photo xxl rounded-3 absolute"),
+        user_path(@deepak.handle,:src => "about")%>
 
 	<div id="follow_box_deepak">
 	</div>
 	
 	<h2 style="margin-bottom: 5px;">
-		<%=@deepak.first_name.capitalize%> <%=@deepak.last_name.capitalize%>
+		<a class="dark" href="<%=user_path(@deepak.handle,:src => "about")%>">
+			<%=@deepak.first_name.capitalize%> <%=@deepak.last_name.capitalize%>
+		</a>
 	</h2>
 	
 	<p class="txt m border-box">
