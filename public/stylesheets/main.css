@@ -423,7 +423,6 @@ li.user-action-box .dot { display: none; }
 .feed-intro {
 	display: block;
 	padding: 13px 12px 20px;
-	margin-bottom: -7px;
 	text-align: center;
 	color: #999;
 	font-size: 14px;
