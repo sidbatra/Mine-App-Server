@@ -9,11 +9,12 @@ class GoogleController < ApplicationController
       when :popup
         credentials = request.env['omniauth.auth']['credentials']
         info = request.env['omniauth.auth']['info']
-        logger.info "#{credentials['token']} #{credentials['secret']} #{info['email']}"
-        render :text => request.env['omniauth.auth'].to_yaml.gsub("\n","<br>")
+
+        self.current_user.go_token = credentials['token']
+        self.current_user.go_secret = credentials['secret'] 
+        self.current_user.go_email = info['email']
+        self.current_user.save!
       end
-    else
-      render :text => "FAILURE"
     end
 
   rescue => ex

@@ -333,6 +333,10 @@ class User < ActiveRecord::Base
     self.tumblr_access_token.present? & self.tumblr_access_token_secret.present?
   end
 
+  def google_authorized?
+    self.go_email.present? && self.go_token.present? && self.go_secret.present?
+  end
+
   # Obfuscated id for the user
   #
   def obfuscated_id

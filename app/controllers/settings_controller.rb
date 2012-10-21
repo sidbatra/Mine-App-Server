@@ -25,6 +25,9 @@ class SettingsController < ApplicationController
 
     when :tumblr_auth
       @setting = {:status => self.current_user.tumblr_authorized?}
+    
+    when :google_auth
+      @setting = {:status => self.current_user.google_authorized?}
 
     when :fb_access_token
       @setting = {:status => self.current_user.fb_access_token_valid?}
