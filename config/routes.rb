@@ -19,6 +19,14 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :session,
     :action     => :destroy
 
+  map.connect '/auth/google/callback',
+    :controller => :google,
+    :action => :create
+
+  map.connect '/auth/google/failure',
+    :controller => :google,
+    :action => :create
+
   map.fb_auth 'facebook/authenticate',
     :controller => :facebook,
     :action     => :new
