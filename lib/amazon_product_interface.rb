@@ -35,6 +35,18 @@ module DW
                     :url_only => url_only})
       end
 
+      # Retrieve multiple amazon products based on ids.
+      #
+      # ids. The String ids of Array of ids.
+      #
+      # returns - Amazon::Ecs result object.
+      #
+      def self.lookup_products(ids)
+        ids = ids.join(",") if ids.is_a? Array
+        result = Amazon::Ecs.item_lookup(ids,{
+                    :response_group => 'Images,Small'})
+      end
+
     end #amazon product search
 
   end #amazon product interface
