@@ -40,6 +40,7 @@ include MailmanInterface
 include NotificationManagement
 include Storage
 include DistributionManagement
+include PurchaseEmailParsing
 include PurchaseExtraction
 include WebSearchInterface
 

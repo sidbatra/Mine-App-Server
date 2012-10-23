@@ -10,7 +10,11 @@ module DW
       #
       def self.extract_from_emails_for_user(user)
         email_connection = nil
-        stores = ["ship-confirm@amazon.com"]
+
+        #For testing only
+        store = Store.find_by_name "Amazon"
+        store[:email] = "ship-confirm@amazon.com"
+        stores = [store]
 
         if user.google_authorized?
           email_connection = EmailConnection.new(
@@ -24,11 +28,15 @@ module DW
 
 
         stores.each do |store|
-          email_connection.search(store,DateTime.new(2012,1,1,0,0,0)) do |emails|
-            emails.each{|email| puts email.subject}
+          parser = PurchaseEmailParser.new store
+
+          email_connection.search(store[:email],DateTime.new(2012,1,1,0,0,0)) do |emails|
+            parser.parse emails
           end
         end #stores
-      end #extra from emails
+
+      end #extract from emails
+
 
     end #purchase extractor
 
