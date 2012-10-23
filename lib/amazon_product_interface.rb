@@ -45,9 +45,46 @@ module DW
         ids = ids.join(",") if ids.is_a? Array
         result = Amazon::Ecs.item_lookup(ids,{
                     :response_group => 'Images,Small'})
+        result.items.map{|item| AmazonProduct.new item}
       end
 
     end #amazon product search
+
+
+    class AmazonProduct
+
+      def initialize(item)
+        @item = item
+      end
+
+      def small_image_url
+        @item.get('SmallImage/URL')
+      end
+
+      def medium_image_url
+        @item.get('MediumImage/URL')
+      end
+
+      def large_image_url
+        @item.get('LargeImage/URL')
+      end
+
+      def page_url
+        @item.get('DetailPageURL')
+      end
+
+      def product_id
+        @item.get('ASIN')
+      end
+
+      def custom_product_id
+        "AZ-#{product_id}"
+      end
+
+      def title
+        @item.get('ItemAttributes/Title')
+      end
+    end
 
   end #amazon product interface
 
