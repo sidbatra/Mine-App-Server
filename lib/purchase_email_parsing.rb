@@ -4,7 +4,12 @@ module DW
     
     class PurchaseEmailParser
       def initialize(store)
+        @store = store
         @parser = Object.const_get("#{store.name.capitalize}EmailParser").send :new 
+      end
+
+      def parse(emails)
+        @parser.parse emails
       end
 
       # Extend the method_missing method to enable purchase email parser
@@ -54,14 +59,17 @@ module DW
 
         amazon_products = find_products_on_amazon purchases.map{|p| p[:product_id]}
 
-        purchases.each do |purchase|
+        purchases.map do |purchase|
           next unless product = amazon_products[purchase[:product_id]]
 
-          puts purchase[:product_id] + "," + 
-                purchase[:bought_at].to_s + "," + 
-                product.title + "," +
-                purchase[:uid].to_s
-        end
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.medium_image_url,
+            :external_id => product.custom_product_id,
+            :query => product.title})
+        end.compact
       end
     end
 

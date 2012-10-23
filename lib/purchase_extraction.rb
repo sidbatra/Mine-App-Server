@@ -31,7 +31,8 @@ module DW
           parser = PurchaseEmailParser.new store
 
           email_connection.search(store[:email],DateTime.new(2012,1,1,0,0,0)) do |emails|
-            parser.parse emails
+            purchases = parser.parse emails
+            p purchases
           end
         end #stores
 
