@@ -49,9 +49,12 @@ module DW
         emails = @mailbox.find(:from => from,:after => after)
 
         emails.reverse.in_groups_of(3,false).each do |group| 
-          yield @gmail.conn.uid_fetch(group.map(&:uid),"RFC822").
-                        map{|d| d.attr["RFC822"]}.
-                        map{|message| Mail.new(message)} if block_given?
+          mails = @gmail.conn.uid_fetch(group.map(&:uid),"RFC822").map do |fetch_data| 
+                    mail = Mail.new fetch_data.attr["RFC822"]
+                    mail[:uid] = fetch_data.attr['UID'].to_s
+                    mail 
+                  end 
+          yield mails if block_given?
         end
       end
 

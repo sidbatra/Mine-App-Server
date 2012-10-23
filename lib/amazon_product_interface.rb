@@ -41,11 +41,17 @@ module DW
       #
       # returns - Amazon::Ecs result object.
       #
-      def self.lookup_products(ids)
+      def self.lookup_products(ids,url_only=false)
         ids = ids.join(",") if ids.is_a? Array
         result = Amazon::Ecs.item_lookup(ids,{
-                    :response_group => 'Images,Small'})
-        result.items.map{|item| AmazonProduct.new item}
+                    :response_group => 'Images,Small',
+                    :url_only => url_only})
+
+        unless url_only
+          result = result.items.map{|item| AmazonProduct.new item}
+        end
+
+        result
       end
 
     end #amazon product search

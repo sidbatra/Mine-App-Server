@@ -23,6 +23,19 @@ module DW
 
 
     class AmazonEmailParser
+      
+      def find_products_on_amazon(product_ids)
+        products = {}
+
+        product_ids.in_groups_of(10,false).each do |group|
+          AmazonProductSearch.lookup_products(group).each do |product|
+            products[product.product_id] = product
+          end
+        end
+
+        products
+      end
+
       def parse(emails)
         purchases = []
 
@@ -32,16 +45,22 @@ module DW
                           flatten.
                           uniq
           product_ids.each do |product_id|
-            purchase = {}
-            purchase[:product_id] = product_id
-            purchase[:bought_at] = email.date
-
-            purchases << purchase
+            purchases << {:product_id => product_id,
+                          :bought_at => email.date,
+                          :text => email.html_part.to_s,
+                          :uid => email[:uid]}
           end
         end
 
+        amazon_products = find_products_on_amazon purchases.map{|p| p[:product_id]}
+
         purchases.each do |purchase|
-          puts purchase[:product_id] + "," + purchase[:bought_at].to_s
+          next unless product = amazon_products[purchase[:product_id]]
+
+          puts purchase[:product_id] + "," + 
+                purchase[:bought_at].to_s + "," + 
+                product.title + "," +
+                purchase[:uid].to_s
         end
       end
     end
