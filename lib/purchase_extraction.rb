@@ -10,6 +10,7 @@ module DW
         @stores = nil
         @existing_purchases = nil
         @email_connection = nil
+        @provider = nil
         @start_date = DateTime.new 2012,1,1,0,0,0
       end
 
@@ -27,9 +28,10 @@ module DW
 
       def open_email_connection
         if @user.google_authorized?
+          @provider = EmailProvider::Gmail
           @email_connection = EmailConnection.new(
                                 @user.go_email,
-                                EmailProvider::Gmail, {
+                                @provider, {
                                   :token => @user.go_token,
                                   :secret => @user.go_secret,
                                   :consumer_key => CONFIG[:google_client_id],
@@ -65,7 +67,8 @@ module DW
             :external_id => purchase[:external_id]},
           :email => {
             :message_id => purchase[:message_id],
-            :text => purchase[:text]}
+            :text => purchase[:text],
+            :provider => @provider}
         })
       end
 

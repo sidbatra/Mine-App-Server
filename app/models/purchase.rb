@@ -8,6 +8,7 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
+  has_one  :purchase_email, :dependent => :destroy 
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :notifications, :as => :resource, :dependent => :destroy
@@ -79,6 +80,10 @@ class Purchase < ActiveRecord::Base
         :source_url => attributes[:source_url],
         :orig_image_url => attributes[:orig_image_url],
         :external_id => attributes[:product][:external_id]})
+    end
+
+    if attributes[:email]
+      purchase.build_purchase_email(attributes[:email])
     end
 
     purchase.save!
