@@ -34,7 +34,6 @@ module DW
       
       def initialize(email,options={})
         @imap_key_body = "RFC822"
-        @imap_key_uid = "UID"
 
         @gmail = Gmail.connect! :xoauth, email,
                       :token           => options[:token],
@@ -54,9 +53,7 @@ module DW
           fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
           
           mails = fetch_data.map do |fetch_datum| 
-                    mail = Mail.new fetch_datum.attr[@imap_key_body]
-                    mail[:uid] = fetch_datum.attr[@imap_key_uid].to_s
-                    mail 
+                    Mail.new fetch_datum.attr[@imap_key_body]
                   end 
 
           yield mails.reverse if block_given?

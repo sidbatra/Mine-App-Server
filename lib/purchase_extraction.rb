@@ -64,7 +64,7 @@ module DW
             :title => purchase[:title],
             :external_id => purchase[:external_id]},
           :email => {
-            :uid => purchase[:uid].to_s,
+            :message_id => purchase[:message_id],
             :text => purchase[:text]}
         })
       end
