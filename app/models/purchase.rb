@@ -62,6 +62,10 @@ class Purchase < ActiveRecord::Base
     attributes[:user_id] = user_id
     attributes[:bought_at] ||= Time.now
 
+    product = Product.find_by_orig_image_url attributes[:orig_image_url]
+    attributes[:product_id] = product.id if product
+
+
     purchase = new(attributes)
 
     unless attributes[:product_id]

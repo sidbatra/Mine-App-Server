@@ -56,12 +56,6 @@ class PurchasesController < ApplicationController
   #
   def create
 
-    if params[:purchase][:product]
-      product = Product.find_by_orig_image_url(
-                  params[:purchase][:orig_image_url])
-      params[:purchase][:product_id] = product.id if product
-    end
-
     #if params[:purchase][:source_purchase_id] && params[:purchase][:clone]
     #  populate_params_from_purchase
     #end
