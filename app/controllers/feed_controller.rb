@@ -32,11 +32,12 @@ class FeedController < ApplicationController
                             :orig_thumb_url,:orig_image_url,:endorsement,
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).
+                    approved.
                     with_user.
                     with_store.
                     with_comments.
                     with_likes.
-                    by_created_at.
+                    by_bought_at.
                     after(@after).
                     before(@before).
                     limit(@per_page).
@@ -52,9 +53,10 @@ class FeedController < ApplicationController
                             :orig_thumb_url,:orig_image_url,:endorsement,
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).
+                    approved.
                     with_user.
                     with_store.
-                    by_created_at.
+                    by_bought_at.
                     after(@after).
                     before(@before).
                     limit(@per_page).

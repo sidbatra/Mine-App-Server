@@ -25,11 +25,12 @@ class PurchasesController < ApplicationController
                           :orig_thumb_url,:orig_image_url,:endorsement,
                           :image_path,:is_processed,:user_id,:store_id,
                           :fb_action_id).
+                  approved.
                   with_user.
                   with_store.
                   with_comments.
                   with_likes.
-                  by_created_at.
+                  by_bought_at.
                   after(@after).
                   before(@before).
                   limit(@per_page).
@@ -117,6 +118,7 @@ class PurchasesController < ApplicationController
     
     if params[:purchase_id]
       @purchase = Purchase.
+                    approved.
                     with_comments.
                     with_likes.
                     find_by_id Cryptography.deobfuscate(params[:purchase_id])
@@ -124,6 +126,7 @@ class PurchasesController < ApplicationController
       user = User.find_by_handle params[:user_handle]
 
       @purchase = Purchase.
+                    approved.
                     with_comments.
                     with_likes.
                     find_by_user_id_and_handle(

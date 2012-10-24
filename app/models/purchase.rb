@@ -22,6 +22,7 @@ class Purchase < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :orig_image_url
   validates_presence_of :user_id
+  validates_inclusion_of :source, :in => PurchaseSource.values
 
   #----------------------------------------------------------------------
   # Named scopes
@@ -30,11 +31,13 @@ class Purchase < ActiveRecord::Base
                             :user_id => users.map(&:id)}}}
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
+  named_scope :with_product,  :include => :product
   named_scope :with_likes, :include => {:likes => [:user]}
   named_scope :with_comments, :include => {:comments => [:user]}
   named_scope :special, :conditions => {:is_special => true}
-  named_scope :by_id,      :order => 'id DESC'
-  named_scope :by_created_at,      :order => 'created_at DESC'
+  named_scope :approved, :conditions => {:is_approved => true}
+  named_scope :by_id, :order => 'id DESC'
+  named_scope :by_bought_at, :order => 'bought_at DESC'
 
   #----------------------------------------------------------------------
   # Attributes
@@ -43,7 +46,8 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id,:is_special
+                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id,:is_special,
+                  :is_approved,:source,:bought_at
 
   #----------------------------------------------------------------------
   # Class methods
@@ -56,6 +60,7 @@ class Purchase < ActiveRecord::Base
   def self.add(attributes,user_id)
     attributes[:title] = attributes[:title].strip
     attributes[:user_id] = user_id
+    attributes[:bought_at] ||= Time.now
 
     purchase = new(attributes)
 

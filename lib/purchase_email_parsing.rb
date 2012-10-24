@@ -67,8 +67,7 @@ module DW
             :source_url => product.page_url,
             :orig_image_url => product.large_image_url,
             :orig_thumb_url => product.medium_image_url,
-            :external_id => product.custom_product_id,
-            :query => product.title})
+            :external_id => product.custom_product_id})
         end.compact
       end
     end
