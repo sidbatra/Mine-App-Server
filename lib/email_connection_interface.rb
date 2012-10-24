@@ -59,7 +59,7 @@ module DW
                     mail 
                   end 
 
-          yield mails if block_given?
+          yield mails.reverse if block_given?
         end
       end
 
