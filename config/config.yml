@@ -28,6 +28,8 @@ common: &common
   :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :windows_azure_key: ruuxSwIt0kdjqOGCubB75QxxbqQn9s5yKqF/NqkAb5Y=
   :google_api_key: AIzaSyDPodc01pJa78yHcY2eIcrDO3glut1z7Iw
+  :google_client_id: getmine.com
+  :google_client_secret: 9cj_MUP4QEnrGrRqHu5DGSAT
   :admin_salt: 97f8336b05921eeb11ddb1300f454d380f315a43918fb61c046897394f04e0b2
   :admin_password: 43d9b895a65ceaead13a6bc7cb47fe0cd395382a
   :age_bucket_size: 5

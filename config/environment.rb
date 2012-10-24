@@ -46,8 +46,9 @@ Rails::Initializer.run do |config|
               :lib => false)
   config.gem('fb_graph',
               :version => '2.5.2')
-  config.gem('oauth',
-              :version => '0.4.6')
+  config.gem('gmail',
+              :version => '0.4.0',
+              :lib => false)
   config.gem('tumblife',
               :version => '1.2.0')
   config.gem('grit',
@@ -63,6 +64,12 @@ Rails::Initializer.run do |config|
   config.gem('mini_magick', 
               :version => '3.4',
               :lib => false)
+  config.gem('oauth',
+              :version => '0.4.6')
+  config.gem('omniauth',
+              :version => '1.1.1')
+  config.gem('omniauth-google',
+              :version => '1.0.2')
   config.gem('pismo',
               :version => '0.7.2',
               :lib => false)
@@ -125,3 +132,4 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+

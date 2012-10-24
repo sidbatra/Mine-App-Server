@@ -48,7 +48,11 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     @user.generate_handle = true
+
     params[:user][:email] = nil if params[:user][:email].empty?
+    params[:user][:fb_user_id] = nil if params[:user][:fb_user_id].empty?
+    params[:user][:tw_user_id] = nil if params[:user][:tw_user_id].empty?
+
     @user.update_attributes params[:user]
 
     redirect_to edit_admin_user_path(@user.handle)

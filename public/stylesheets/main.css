@@ -952,6 +952,7 @@ a.feed-intro .highlight { font-weight: bold; }
 ==================================================================== */
 
 .info-box { margin-bottom: 12px; }
+.info-box h2 a { color: white; }
 .info-box.pictured { padding-left: 72px; }
 .info-box.pictured .user-photo { top: 12px; left: 12px; }
 .info-box .unit { padding: 2px 0 12px; }
