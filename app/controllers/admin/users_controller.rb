@@ -51,6 +51,7 @@ class Admin::UsersController < ApplicationController
 
     params[:user][:email] = nil if params[:user][:email].empty?
     params[:user][:fb_user_id] = nil if params[:user][:fb_user_id].empty?
+    params[:user][:tw_user_id] = nil if params[:user][:tw_user_id].empty?
 
     @user.update_attributes params[:user]
 
