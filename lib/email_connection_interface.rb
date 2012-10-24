@@ -10,12 +10,10 @@ module DW
       # include required authentication params.
       #
       def initialize(email,provider,options={})
-        @connection = nil
+        conn_class_name = "#{EmailProvider.key_for provider}Connection"
+        conn_class = Object.const_get conn_class_name
 
-        case provider
-        when EmailProvider::Gmail
-          @connection = GmailConnection.new email,options
-        end
+        @connection = conn_class.send :new,email,options
       end
 
       # Extend the method_missing method to enable email connection
@@ -35,6 +33,9 @@ module DW
     class GmailConnection
       
       def initialize(email,options={})
+        @imap_key_body = "RFC822"
+        @imap_key_uid = "UID"
+
         @gmail = Gmail.connect! :xoauth, email,
                       :token           => options[:token],
                       :secret          => options[:secret],
@@ -46,14 +47,18 @@ module DW
       # Return Mail objects from all emails matching the given criterea.
       #
       def search(from,after)
-        emails = @mailbox.find(:from => from,:after => after)
+        emails = @mailbox.find :from => from,:after => after
 
         emails.reverse.in_groups_of(3,false).each do |group| 
-          mails = @gmail.conn.uid_fetch(group.map(&:uid),"RFC822").map do |fetch_data| 
-                    mail = Mail.new fetch_data.attr["RFC822"]
-                    mail[:uid] = fetch_data.attr['UID'].to_s
+          uids = group.map(&:uid)
+          fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
+          
+          mails = fetch_data.map do |fetch_datum| 
+                    mail = Mail.new fetch_datum.attr[@imap_key_body]
+                    mail[:uid] = fetch_datum.attr[@imap_key_uid].to_s
                     mail 
                   end 
+
           yield mails if block_given?
         end
       end

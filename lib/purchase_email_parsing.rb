@@ -5,7 +5,14 @@ module DW
     class PurchaseEmailParser
       def initialize(store)
         @store = store
-        @parser = Object.const_get("#{store.name.capitalize}EmailParser").send :new 
+        @parser = create_parser store
+      end
+
+      def create_parser(store)
+        parser_class_name = "#{store.name.capitalize}EmailParser"
+        parser_class = Object.const_get parser_class_name
+
+        parser_class.send :new 
       end
 
       def parse(emails)
