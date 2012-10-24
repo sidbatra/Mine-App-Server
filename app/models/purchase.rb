@@ -29,6 +29,10 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   named_scope :for_users, lambda {|users| {:conditions => {
                             :user_id => users.map(&:id)}}}
+  named_scope :after, lambda{|time| {:conditions => {
+                                          :bought_at_gt => time}} if time}
+  named_scope :before, lambda{|time| {:conditions => {
+                                          :bought_at_lt => time}} if time}
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
   named_scope :with_product,  :include => :product
@@ -36,6 +40,7 @@ class Purchase < ActiveRecord::Base
   named_scope :with_comments, :include => {:comments => [:user]}
   named_scope :special, :conditions => {:is_special => true}
   named_scope :approved, :conditions => {:is_approved => true}
+  named_scope :unapproved, :conditions => {:is_approved => false}
   named_scope :by_id, :order => 'id DESC'
   named_scope :by_bought_at, :order => 'bought_at DESC'
 

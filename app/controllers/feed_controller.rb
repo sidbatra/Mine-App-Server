@@ -28,7 +28,7 @@ class FeedController < ApplicationController
               "user-feed",@before ? @before.to_i : "",@per_page]
 
       @purchases = Purchase.
-                    select(:id,:created_at,:title,:handle,:source_url,
+                    select(:id,:bought_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).
@@ -49,7 +49,7 @@ class FeedController < ApplicationController
       @key = ["v1","special-feed"]
       @cache_options = {:expires_in => 30.minutes}
       @purchases = Purchase.
-                    select(:id,:created_at,:title,:handle,:source_url,
+                    select(:id,:bought_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).

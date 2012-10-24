@@ -50,17 +50,17 @@ module DW
                           flatten.
                           uniq
           product_ids.each do |product_id|
-            purchases << {:product_id => product_id,
+            purchases << {:asn_id => product_id,
                           :bought_at => email.date,
                           :text => email.html_part.to_s,
                           :uid => email[:uid]}
           end
         end
 
-        amazon_products = find_products_on_amazon purchases.map{|p| p[:product_id]}
+        amazon_products = find_products_on_amazon purchases.map{|p| p[:asn_id]}
 
         purchases.map do |purchase|
-          next unless product = amazon_products[purchase[:product_id]]
+          next unless product = amazon_products[purchase[:asn_id]]
 
           purchase.merge!({
             :title => product.title,

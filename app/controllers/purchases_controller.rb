@@ -21,7 +21,7 @@ class PurchasesController < ApplicationController
     @key = ["v2",@user,"purchases",@before ? @before.to_i : "",@per_page]
 
     @purchases = Purchase.
-                  select(:id,:created_at,:title,:handle,:source_url,
+                  select(:id,:bought_at,:title,:handle,:source_url,
                           :orig_thumb_url,:orig_image_url,:endorsement,
                           :image_path,:is_processed,:user_id,:store_id,
                           :fb_action_id).
