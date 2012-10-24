@@ -1,9 +1,9 @@
-class CrawlDatum < ActiveRecord::Base
+class EmailParseDatum < ActiveRecord::Base
   belongs_to :store
-  attr_accessible :active, :launch_url, :use_og_image
+  attr_accessible :is_active, :emails
 
   #----------------------------------------------------------------------
   # Validations
   #----------------------------------------------------------------------
-  validates_inclusion_of :active, :in => [true,false]
+  validates_inclusion_of :is_active, :in => [true,false]
 end
