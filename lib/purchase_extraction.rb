@@ -62,7 +62,10 @@ module DW
           :query => URI.unescape(purchase[:source_url]),
           :product => {
             :title => purchase[:title],
-            :external_id => purchase[:external_id]}
+            :external_id => purchase[:external_id]},
+          :email => {
+            :uid => purchase[:uid].to_s,
+            :text => purchase[:text]}
         })
       end
 

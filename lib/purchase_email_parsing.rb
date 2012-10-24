@@ -53,9 +53,10 @@ module DW
 
         emails.each do |email|
           product_ids = email.html_part.to_s.
-                          scan(/www.amazon.com\/dp\/([^r]+)\/ref/).
+                          scan(/www.amazon.com\/dp\/([^r]+)\/ref|www.amazon.com\/gp\/product\/([^"]+)/).
                           flatten.
-                          uniq
+                          uniq.
+                          compact
           product_ids.each do |product_id|
             purchases << {:asn_id => product_id,
                           :bought_at => email.date,
