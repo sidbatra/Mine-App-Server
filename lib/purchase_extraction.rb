@@ -15,9 +15,16 @@ module DW
       end
 
       def populate_email_parseable_stores
-        store = Store.find_by_name "Amazon"
-        store[:email] = "ship-confirm@amazon.com"
-        @stores = [store]
+        @stores = []
+
+        Store.with_email_parse_datum.parseable.each do |store|
+          store.email_parse_datum.emails.split(",").each do |email|
+            store_clone = store.clone
+            store_clone[:email] = email
+
+            @stores << store_clone
+          end
+        end
       end
 
       def populate_existing_purchases
