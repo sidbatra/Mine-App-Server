@@ -90,8 +90,15 @@ module DW
 
         open_email_connection
 
-        @stores.each do |store|
-          mine_emails_from_store store
+
+        @stores.in_groups_of(3,false) do |group|
+          threads = []
+
+          group.each do |store|
+            threads << Thread.new{mine_emails_from_store store}
+          end
+
+          threads.each {|thread| thread.join}
         end 
       end
 
