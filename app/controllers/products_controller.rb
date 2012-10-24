@@ -256,16 +256,18 @@ class ProductsController < ApplicationController
         apps = JSON.parse(response.body)
         key = "itunes"
 
-        @results[key.to_sym] = apps["results"].map do |product|
+        @results[key.to_sym] = apps["results"].map do |result|
                                 begin
-                                  next unless product 
+                                  next unless result 
+
+                                  product = ItunesProduct.new result
 
                                   product_search_hash(
-                                    product["artworkUrl512"],
-                                    product["artworkUrl512"],
-                                    product["trackViewUrl"],
-                                    "AP-#{product["trackId"]}",
-                                    product["trackName"])
+                                    product.large_image_url,
+                                    product.large_image_url,
+                                    product.page_url,
+                                    product.custom_product_id,
+                                    product.title)
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                   nil
