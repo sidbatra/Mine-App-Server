@@ -68,6 +68,8 @@ Rails::Initializer.run do |config|
               :version => '0.4.6')
   config.gem('omniauth',
               :version => '1.1.1')
+  config.gem('omniauth-oauth',
+              :version => '1.0.1')
   config.gem('omniauth-google',
               :version => '1.0.2')
   config.gem('pismo',
