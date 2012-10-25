@@ -43,6 +43,7 @@ class Purchase < ActiveRecord::Base
   named_scope :approved, :conditions => {:is_approved => true}
   named_scope :unapproved, :conditions => {:is_approved => false}
   named_scope :by_id, :order => 'id DESC'
+  named_scope :by_created_at, :order => 'created_at ASC'
   named_scope :by_bought_at, :order => 'bought_at DESC'
 
   #----------------------------------------------------------------------
@@ -88,6 +89,17 @@ class Purchase < ActiveRecord::Base
 
     purchase.save!
     purchase
+  end
+
+  # Toggle between two modes of pagination. Based on bought_at
+  # in desc order and based on created_at in asc order.
+  #
+  def self.page(after,before,on_bought=true)
+    if on_bought 
+      by_bought_at.bought_after(after).bought_before(before)
+    else
+      by_created_at.after(after).before(before)
+    end
   end
 
   #----------------------------------------------------------------------

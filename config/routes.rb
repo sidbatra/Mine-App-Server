@@ -81,6 +81,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :purchases,
     :only => [:index,:create,:update,:destroy]
 
+  map.unapproved_purchases 'purchases/unapproved',
+    :controller => :purchases,
+    :action     => :index,
+    :aspect     => "unapproved_ui"
+
   #map.store 's/:handle',
   #  :controller => :stores,
   #  :action     => :show

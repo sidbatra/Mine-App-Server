@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024205515) do
+ActiveRecord::Schema.define(:version => 20121025013145) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20121024205515) do
   end
 
   add_index "purchases", ["bought_at"], :name => "index_purchases_on_bought_at"
+  add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
   add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
   add_index "purchases", ["is_approved"], :name => "index_purchases_on_is_approved"
   add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
