@@ -56,7 +56,10 @@ module DW
           purchases.each do |purchase| 
           begin
             #puts purchase[:title]
-            next if @existing_purchases.include? purchase[:orig_image_url]
+
+            next if @existing_purchases.include?(purchase[:orig_image_url]) ||
+                    !purchase[:title].present? ||
+                    !purchase[:orig_image_url].present?
 
             augment_purchase_hash purchase,store
             Purchase.add purchase,@user.id 

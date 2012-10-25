@@ -74,20 +74,32 @@ module DW
         @item = item
       end
 
+      def wrapper
+        @item["wrapperType"].to_sym
+      end
+
+      def is_software?
+        wrapper == :software
+      end
+
+      def is_collection?
+        wrapper == :collection
+      end
+
       def small_image_url
         @item["artworkUrl60"]
       end
 
       def large_image_url
-        @item["artworkUrl512"]
+        is_collection? ? @item["artworkUrl100"] : @item["artworkUrl512"]
       end
 
       def page_url
-        @item["trackViewUrl"]
+        is_collection? ? @item["collectionViewUrl"] : @item["trackViewUrl"]
       end
 
       def product_id
-        @item["trackId"].to_s
+        is_collection? ? @item["collectionId"].to_s : @item["trackId"].to_s
       end
 
       def custom_product_id
@@ -95,7 +107,7 @@ module DW
       end
 
       def title
-        @item["trackName"]
+        is_collection? ? @item["collectionName"] : @item["trackName"]
       end
     end
     

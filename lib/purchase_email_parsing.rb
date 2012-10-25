@@ -69,10 +69,7 @@ module DW
         amazon_products = find_products_on_amazon purchases.map{|p| p[:asn_id]}
 
         purchases.map do |purchase|
-          product = amazon_products[purchase[:asn_id]]
-
-          next unless product && product.title.present? && 
-                      product.large_image_url.present?
+          next unless product = amazon_products[purchase[:asn_id]]
 
           purchase.merge!({
             :title => product.title,
