@@ -38,8 +38,8 @@ class FeedController < ApplicationController
                     with_comments.
                     with_likes.
                     by_bought_at.
-                    after(@after).
-                    before(@before).
+                    bought_after(@after).
+                    bought_before(@before).
                     limit(@per_page).
                     for_users(self.current_user.ifollowers + 
                               [self.current_user]) unless fragment_exist? @key
@@ -57,8 +57,8 @@ class FeedController < ApplicationController
                     with_user.
                     with_store.
                     by_bought_at.
-                    after(@after).
-                    before(@before).
+                    bought_after(@after).
+                    bought_before(@before).
                     limit(@per_page).
                     special
     end

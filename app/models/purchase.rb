@@ -30,10 +30,10 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   named_scope :for_users, lambda {|users| {:conditions => {
                             :user_id => users.map(&:id)}}}
-  named_scope :after, lambda{|time| {:conditions => {
-                                          :bought_at_gt => time}} if time}
-  named_scope :before, lambda{|time| {:conditions => {
-                                          :bought_at_lt => time}} if time}
+  named_scope :bought_after, lambda{|time| {:conditions => {
+                                              :bought_at_gt => time}} if time}
+  named_scope :bought_before, lambda{|time| {:conditions => {
+                                              :bought_at_lt => time}} if time}
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
   named_scope :with_product,  :include => :product

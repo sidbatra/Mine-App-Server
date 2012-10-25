@@ -31,8 +31,8 @@ class PurchasesController < ApplicationController
                   with_comments.
                   with_likes.
                   by_bought_at.
-                  after(@after).
-                  before(@before).
+                  bought_after(@after).
+                  bought_before(@before).
                   limit(@per_page).
                   for_users([@user]) unless fragment_exist? @key
   rescue => ex
