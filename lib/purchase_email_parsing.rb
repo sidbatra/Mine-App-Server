@@ -54,7 +54,7 @@ module DW
         emails.each do |email|
           text = email.html_part.to_s
           product_ids = text.
-                          scan(/www.amazon.com\/dp\/([^r]+)\/ref|www.amazon.com\/gp\/product\/([^"]+)/).
+                          scan(/www.amazon.com\/dp\/([^r]+)\/ref|www.amazon.com\/gp\/product\/([\w]+)/).
                           flatten.
                           uniq.
                           compact
@@ -69,7 +69,10 @@ module DW
         amazon_products = find_products_on_amazon purchases.map{|p| p[:asn_id]}
 
         purchases.map do |purchase|
-          next unless product = amazon_products[purchase[:asn_id]]
+          product = amazon_products[purchase[:asn_id]]
+
+          next unless product && product.title.present? && 
+                      product.large_image_url.present?
 
           purchase.merge!({
             :title => product.title,

@@ -54,6 +54,7 @@ module DW
           purchases = parser.parse emails
 
           purchases.each do |purchase| 
+          begin
             #puts purchase[:title]
             next if @existing_purchases.include? purchase[:orig_image_url]
 
@@ -61,6 +62,9 @@ module DW
             Purchase.add purchase,@user.id 
 
             @existing_purchases.add purchase[:orig_image_url]
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
           end
         end
 
