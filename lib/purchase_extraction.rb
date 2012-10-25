@@ -20,6 +20,7 @@ module DW
         Store.with_email_parse_datum.parseable.each do |store|
           store.email_parse_datum.emails.split(",").each do |email|
             store_clone = store.clone
+            store_clone.id = store.id
             store_clone[:email] = email
 
             @stores << store_clone
@@ -53,6 +54,7 @@ module DW
           purchases = parser.parse emails
 
           purchases.each do |purchase| 
+            #puts purchase[:title]
             next if @existing_purchases.include? purchase[:orig_image_url]
 
             augment_purchase_hash purchase,store
@@ -95,7 +97,8 @@ module DW
           threads = []
 
           group.each do |store|
-            threads << Thread.new{mine_emails_from_store store}
+            #threads << Thread.new{mine_emails_from_store store}
+            mine_emails_from_store store
           end
 
           threads.each {|thread| thread.join}

@@ -87,7 +87,7 @@ module DW
       end
 
       def product_id
-        @item["trackId"]
+        @item["trackId"].to_s
       end
 
       def custom_product_id

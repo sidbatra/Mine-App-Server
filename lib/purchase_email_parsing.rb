@@ -81,6 +81,54 @@ module DW
       end
     end
 
+
+    class ItunesEmailParser
+      
+      def find_products_on_itunes(product_ids)
+        products = {}
+
+        product_ids.in_groups_of(10,false).each do |group|
+          Itunes.lookup(group).each do |product|
+            products[product.product_id] = product
+          end
+        end
+
+        products
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          text = email.html_part.to_s
+          product_ids = text.
+                          scan(/addUserReview?[^(]+&id=3D([\d]+)/).
+                          flatten.
+                          uniq.
+                          map(&:to_s)
+          product_ids.each do |product_id|
+            purchases << {:itunes_id => product_id,
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end
+
+        itunes_products = find_products_on_itunes purchases.map{|p| p[:itunes_id]}
+
+        purchases.map do |purchase|
+          next unless product = itunes_products[purchase[:itunes_id]]
+
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.large_image_url,
+            :external_id => product.custom_product_id})
+        end.compact
+      end
+    end
+
   end #purchase email parsing
 
 end #dw
