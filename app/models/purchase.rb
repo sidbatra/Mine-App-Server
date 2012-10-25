@@ -94,11 +94,11 @@ class Purchase < ActiveRecord::Base
   # Toggle between two modes of pagination. Based on bought_at
   # in desc order and based on created_at in asc order.
   #
-  def self.page(after,before,on_bought=true)
+  def self.page(opts,on_bought=true)
     if on_bought 
-      by_bought_at.bought_after(after).bought_before(before)
+      by_bought_at.bought_after(opts[:after]).bought_before(opts[:before])
     else
-      by_created_at.after(after).before(before)
+      by_created_at.limit(opts[:per_page]).offset(opts[:page]*opts[:per_page])
     end
   end
 

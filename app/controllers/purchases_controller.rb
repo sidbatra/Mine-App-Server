@@ -59,6 +59,7 @@ class PurchasesController < ApplicationController
       @after = params[:after] ? Time.at(params[:after].to_i) : nil
       @before = params[:before] ? Time.at(params[:before].to_i) : nil
       @per_page = params[:per_page] ? params[:per_page].to_i : 10
+      @page = params[:page] ? params[:page].to_i : 0
       @on_bought = params[:by_created_at] ? false : true
 
       @purchases = Purchase.
@@ -71,9 +72,11 @@ class PurchasesController < ApplicationController
                     with_store.
                     with_comments.
                     with_likes.
-                    page(@after,@before,@on_bought).
+                    page({:after => @after,:before => @before,:page => @page,
+                            :per_page => @per_page},@on_bought).
                     limit(@per_page).
-                    for_users([self.current_user]) 
+                    for_users([self.current_user]).
+                    all 
     end
   rescue => ex
     handle_exception(ex)
