@@ -1,12 +1,5 @@
 Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
 
-  // Event listeners
-  //
-  events: {
-  },
-
-  // Constructor logic
-  //
   initialize: function() {
     this.offset = 0;
     this.perPage = 10;

@@ -10,7 +10,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.feedEl  = '#feed';
     this.feedSpinnerEl  = '#feed-spinner';
 
-    if(!Denwen.H.isOnboarding) {
+    //if(!Denwen.H.isOnboarding) {
+    if(this.source == "live") {
       new Denwen.Partials.Purchases.Unapproved.Live({
             el:$(this.feedEl),
             spinnerEl:this.feedSpinnerEl});

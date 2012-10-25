@@ -54,9 +54,9 @@ class PurchasesController < ApplicationController
                     for_users([@user]) unless fragment_exist? @key
 
     when :unapproved_ui 
-      ProcessingQueue.push PurchaseExtractor.new,
+      ProcessingQueue.push(PurchaseExtractor.new,
                             :mine_emails_for_user,
-                            self.current_user
+                            self.current_user) if @source == "live"
 
     when :unapproved
       @after = params[:after] ? Time.at(params[:after].to_i) : nil
