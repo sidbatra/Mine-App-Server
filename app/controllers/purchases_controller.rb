@@ -54,12 +54,15 @@ class PurchasesController < ApplicationController
                     for_users([@user]) unless fragment_exist? @key
 
     when :unapproved_ui 
+      ProcessingQueue.push PurchaseExtractor.new,
+                            :mine_emails_for_user,
+                            self.current_user
 
     when :unapproved
       @after = params[:after] ? Time.at(params[:after].to_i) : nil
       @before = params[:before] ? Time.at(params[:before].to_i) : nil
       @per_page = params[:per_page] ? params[:per_page].to_i : 10
-      @page = params[:page] ? params[:page].to_i : 0
+      @offset = params[:offset] ? params[:offset].to_i : 0
       @on_bought = params[:by_created_at] ? false : true
 
       @purchases = Purchase.
@@ -72,8 +75,9 @@ class PurchasesController < ApplicationController
                     with_store.
                     with_comments.
                     with_likes.
-                    page({:after => @after,:before => @before,:page => @page,
-                            :per_page => @per_page},@on_bought).
+                    page({:after => @after,:before => @before,
+                          :offset => @offset,:per_page => @per_page},
+                          @on_bought).
                     limit(@per_page).
                     for_users([self.current_user]).
                     all 

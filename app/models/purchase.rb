@@ -98,7 +98,7 @@ class Purchase < ActiveRecord::Base
     if on_bought 
       by_bought_at.bought_after(opts[:after]).bought_before(opts[:before])
     else
-      by_created_at.limit(opts[:per_page]).offset(opts[:page]*opts[:per_page])
+      by_created_at.limit(opts[:per_page]).offset(opts[:offset])
     end
   end
 
