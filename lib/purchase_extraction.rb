@@ -11,7 +11,7 @@ module DW
         @existing_purchases = nil
         @email_connection = nil
         @provider = nil
-        @start_date = DateTime.new 2012,1,1,0,0,0
+        @start_date = DateTime.new 2011,10,1,0,0,0
       end
 
       def populate_email_parseable_stores

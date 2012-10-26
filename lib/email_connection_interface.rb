@@ -48,7 +48,7 @@ module DW
       def search(from,after)
         emails = @mailbox.find :from => from,:after => after
 
-        emails.reverse.in_groups_of(3,false).each do |group| 
+        emails.reverse.in_groups_of(10,false).each do |group| 
           uids = group.map(&:uid)
           fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
           

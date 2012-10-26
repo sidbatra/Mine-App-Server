@@ -12,7 +12,7 @@ module DW
         parser_class_name = "#{store.name.capitalize}EmailParser"
         parser_class = Object.const_get parser_class_name
 
-        parser_class.send :new 
+        parser_class.send :new,store
       end
 
       def parse(emails)
@@ -36,6 +36,10 @@ module DW
 
     class AmazonEmailParser
       
+      def initialize(store)
+        @is_digital = store[:email].scan("digital").present?
+      end
+      
       def find_products_on_amazon(product_ids)
         products = {}
 
@@ -48,28 +52,92 @@ module DW
         products
       end
 
+      def search_products_on_amazon(product_names)
+        products = {}
+
+        product_names.in_groups_of(10,false).each do |group|
+          hydra = Typhoeus::Hydra.new
+
+          group.each do |product_name|
+            request = Typhoeus::Request.new(
+                        AmazonProductSearch.fetch_products(product_name,1,true),
+                        :connect_timeout => 1000,
+                        :timeout => 3500)
+
+            request.on_complete do |response| 
+              begin
+                item = Amazon::Ecs::Response.new(response.body).items.first
+
+                if item
+                  product = AmazonProduct.new(item)
+                  products[product_name] = product
+                end
+              rescue => ex
+              end
+            end 
+
+            hydra.queue request
+          end #group
+
+          hydra.run
+        end #groups
+
+        products
+      end
+
+      def initial_purchase_hash(key,text,email)
+        {:asn_key => key,
+          :bought_at => email.date,
+          :text => text,
+          :message_id => email.message_id}
+      end
+
+      def parse_digital_email(email)
+        purchases = []
+        text = email.html_part.to_s
+        product_ids = text.
+                        scan(/www.amazon.com\/gp\/product\/([\w]+)/).
+                        flatten.
+                        uniq
+        product_ids.each do |product_id|
+          purchases << initial_purchase_hash(product_id,text,email)
+        end
+
+        purchases
+      end
+
+      def parse_offline_email(email)
+        purchases = []
+        text = email.html_part.to_s
+        product_names = text.
+                          scan(/<b>"([^"]+)"<\/b>/).
+                          flatten.
+                          uniq
+
+        product_names.each do |product_name|
+          purchases << initial_purchase_hash(product_name,text,email)
+        end
+
+        purchases
+      end
+
       def parse(emails)
         purchases = []
 
         emails.each do |email|
-          text = email.html_part.to_s
-          product_ids = text.
-                          scan(/www.amazon.com\/dp\/([^r]+)\/ref|www.amazon.com\/gp\/product\/([\w]+)/).
-                          flatten.
-                          uniq.
-                          compact
-          product_ids.each do |product_id|
-            purchases << {:asn_id => product_id,
-                          :bought_at => email.date,
-                          :text => text,
-                          :message_id => email.message_id}
-          end
+          purchases += @is_digital ? 
+                        parse_digital_email(email) : 
+                        parse_offline_email(email)
         end
 
-        amazon_products = find_products_on_amazon purchases.map{|p| p[:asn_id]}
+        purchase_keys = purchases.map{|p| p[:asn_key]}
+
+        amazon_products = @is_digital ? 
+                            find_products_on_amazon(purchase_keys) :
+                            search_products_on_amazon(purchase_keys)
 
         purchases.map do |purchase|
-          next unless product = amazon_products[purchase[:asn_id]]
+          next unless product = amazon_products[purchase[:asn_key]]
 
           purchase.merge!({
             :title => product.title,
@@ -83,6 +151,9 @@ module DW
 
 
     class ItunesEmailParser
+      
+      def initialize(store)
+      end
       
       def find_products_on_itunes(product_ids)
         products = {}
