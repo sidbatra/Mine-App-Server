@@ -4,6 +4,7 @@ ActionController::Dispatcher.middleware.use OmniAuth::Builder do
     CONFIG[:google_client_id], 
     CONFIG[:google_client_secret],
     {:scope => "https://mail.google.com/"}
+  provider :yahoo, CONFIG[:yahoo_consumer_key], CONFIG[:yahoo_consumer_secret]
 end
 
 OmniAuth.config.on_failure = Proc.new do |env|

@@ -27,6 +27,22 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :google,
     :action => :create
 
+  map.connect '/auth/yahoo/callback',
+    :controller => :yahoo,
+    :action => :create
+
+  map.connect '/auth/yahoo/failure',
+    :controller => :yahoo,
+    :action => :create
+
+  map.yh_auth 'yahoo/authenticate',
+    :controller => :yahoo,
+    :action => :new
+
+  map.yh_reply '/yahoo/reply',
+    :controller => :yahoo,
+    :action => :create
+
   map.fb_auth 'facebook/authenticate',
     :controller => :facebook,
     :action     => :new
