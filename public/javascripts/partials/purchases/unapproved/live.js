@@ -8,7 +8,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     this.emptyTries = 0;
     this.maxEmptyTries = 3;
 
-    this.defaultRetryInterval = 3;
+    this.defaultRetryInterval = 2;
     this.retryInterval = this.defaultRetryInterval;
     this.retryDelta = 3;
 
@@ -19,7 +19,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     this.purchases.bind('add',this.purchaseAdded,this);
 
     var self = this;
-    setTimeout(function(){self.fetch();},9000);
+    setTimeout(function(){self.fetch();},10000);
   },
 
   fetch: function() {
