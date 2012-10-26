@@ -19,7 +19,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     this.purchases.bind('add',this.purchaseAdded,this);
 
     var self = this;
-    setTimeout(function(){self.fetch();},7000);
+    setTimeout(function(){self.fetch();},9000);
   },
 
   fetch: function() {

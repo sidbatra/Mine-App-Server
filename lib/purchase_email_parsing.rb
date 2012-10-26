@@ -60,7 +60,7 @@ module DW
 
           group.each do |product_name|
             request = Typhoeus::Request.new(
-                        AmazonProductSearch.fetch_products(product_name,1,true),
+                        AmazonProductSearch.fetch_products("\"#{product_name}\"",1,true),
                         :connect_timeout => 1000,
                         :timeout => 3500)
 
