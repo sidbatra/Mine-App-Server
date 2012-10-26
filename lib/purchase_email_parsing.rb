@@ -56,7 +56,7 @@ module DW
         products = {}
 
         product_names.in_groups_of(10,false).each do |group|
-          hydra = Typhoeus::Hydra.new
+          hydra = Typhoeus::Hydra.new :max_concurrency => 3
 
           group.each do |product_name|
             request = Typhoeus::Request.new(
@@ -80,6 +80,7 @@ module DW
           end #group
 
           hydra.run
+          sleep 3
         end #groups
 
         products
