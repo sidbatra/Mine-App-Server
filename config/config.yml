@@ -67,6 +67,8 @@ development: &development
   :asset_bucket: /
   :dump_bucket: denwen-mine-dumps
   :edge_server: http://s3.amazonaws.com/denwen-mine-filesystem
+  :yahoo_consumer_key: dj0yJmk9ZWlrRlRHQ2VHR1pPJmQ9WVdrOVRGTmxSamgyTlRRbWNHbzlNVFV6TkRrNU9UTTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD0zOA--
+  :yahoo_consumer_secret: 10ec99d2cced6727676c87814fb38748afbe51f9
   :asset_host: 
 
 staging: &staging
