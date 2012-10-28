@@ -337,6 +337,31 @@ class User < ActiveRecord::Base
     self.go_email.present? && self.go_token.present? && self.go_secret.present?
   end
 
+  def yahoo_authorized?
+    yh_token.present? && yh_secret.present? && yh_session_handle.present?
+  end
+
+  def refresh_yahoo_token
+    consumer = OAuth::Consumer.new( 
+                CONFIG[:yahoo_consumer_key],
+                CONFIG[:yahoo_consumer_secret],
+                :access_token_path  => '/oauth/v2/get_token',
+                :authorize_path     => '/oauth/v2/request_auth',
+                :request_token_path => '/oauth/v2/get_request_token',
+                :site               => 'https://api.login.yahoo.com')
+    request_token = OAuth::RequestToken.new consumer,yh_token,yh_secret
+    token = OAuth::Token.new yh_token,yh_secret
+
+    access_token = request_token.get_access_token(
+                    :oauth_session_handle => yh_session_handle,
+                    :token => token)
+    
+    self.yh_token = access_token.token
+    self.yh_secret = access_token.secret
+    self.yh_session_handle = access_token.params['oauth_session_handle']
+    self.save!
+  end
+
   # Obfuscated id for the user
   #
   def obfuscated_id
