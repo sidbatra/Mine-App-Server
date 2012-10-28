@@ -19,7 +19,7 @@ module DW
 
         purchases = {}
 
-        Purchase.with_store.made(from).each do |p|
+        Purchase.approved.with_store.made(from).each do |p|
           purchases[p.user_id] = [] unless purchases.key?(p.user_id)
           purchases[p.user_id] << p
         end

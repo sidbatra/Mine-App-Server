@@ -1,0 +1,19 @@
+
+<div class="box-title feed-title relative">
+  Purchases from email receipts
+</div>
+
+<div class="feed-container rounded-8" style="background: #f5f5f5">
+  <div id="feed" class="feed rounded-8 relative">
+  </div> 
+  
+  <div id="feed-spinner" class="feed-loading whitesmoke">
+  </div> 
+</div> <!-- feed container -->
+
+<%content_for :javascript do%>
+  <script type="text/javascript">
+    new Denwen.Views.Purchases.Unapproved({
+      source  : "<%=h @source%>"});
+  </script>
+<%end%>

@@ -30,6 +30,8 @@ common: &common
   :google_api_key: AIzaSyDPodc01pJa78yHcY2eIcrDO3glut1z7Iw
   :google_client_id: getmine.com
   :google_client_secret: 9cj_MUP4QEnrGrRqHu5DGSAT
+  :yahoo_consumer_key: dj0yJmk9MEE3RGNJZ3dUbUpkJmQ9WVdrOU1raE5OR1pVTkcwbWNHbzlNVFF6TlRneU9EazJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD00MA--
+  :yahoo_consumer_secret: 8450b7008949553bfadbc17bc166e788e4753be4
   :admin_salt: 97f8336b05921eeb11ddb1300f454d380f315a43918fb61c046897394f04e0b2
   :admin_password: 43d9b895a65ceaead13a6bc7cb47fe0cd395382a
   :age_bucket_size: 5
@@ -65,6 +67,8 @@ development: &development
   :asset_bucket: /
   :dump_bucket: denwen-mine-dumps
   :edge_server: http://s3.amazonaws.com/denwen-mine-filesystem
+  :yahoo_consumer_key: dj0yJmk9ZWlrRlRHQ2VHR1pPJmQ9WVdrOVRGTmxSamgyTlRRbWNHbzlNVFV6TkRrNU9UTTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD0zOA--
+  :yahoo_consumer_secret: 10ec99d2cced6727676c87814fb38748afbe51f9
   :asset_host: 
 
 staging: &staging

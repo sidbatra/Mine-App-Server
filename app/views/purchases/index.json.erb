@@ -1,4 +1,9 @@
+<%-if @aspect == :unapproved-%>
+<%=render :partial => "purchases/purchases",
+    :locals => {:purchases => @purchases}%>
+<%-else-%>
 <%-cache @key,@cache_options do-%>
 <%=render :partial => "purchases/purchases",
     :locals => {:purchases => @purchases}%>
+<%-end-%>
 <%-end-%>

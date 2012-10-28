@@ -153,22 +153,22 @@ class ProductsController < ApplicationController
 
     request.on_complete do |response| 
       begin
-        @results[:amazon] = Amazon::Ecs::Response.new(
-                            response.body).items.map do |product|
+        @results[:amazon] = Amazon::Ecs::Response.new(response.body).items.map do |item|
                             begin
+                              product = AmazonProduct.new(item)
                               medium_url = @mobile ? 
-                                            product.get('SmallImage/URL') :
-                                            product.get('MediumImage/URL')
-                              large_url = product.get('LargeImage/URL')
+                                            product.small_image_url :
+                                            product.medium_image_url
+                              large_url = product.large_image_url
 
                               next unless medium_url and large_url
                               
                               product_search_hash(
                                 medium_url,
                                 large_url,
-                                product.get('DetailPageURL'),
-                                "AZ-#{product.get('ASIN')}",
-                                product.get('ItemAttributes/Title'))
+                                product.page_url,
+                                product.custom_product_id,
+                                product.title)
 
                             rescue => ex
                               LoggedException.add(__FILE__,__method__,ex)
@@ -256,16 +256,18 @@ class ProductsController < ApplicationController
         apps = JSON.parse(response.body)
         key = "itunes"
 
-        @results[key.to_sym] = apps["results"].map do |product|
+        @results[key.to_sym] = apps["results"].map do |result|
                                 begin
-                                  next unless product 
+                                  next unless result 
+
+                                  product = ItunesProduct.new result
 
                                   product_search_hash(
-                                    product["artworkUrl512"],
-                                    product["artworkUrl512"],
-                                    product["trackViewUrl"],
-                                    "AP-#{product["trackId"]}",
-                                    product["trackName"])
+                                    product.large_image_url,
+                                    product.large_image_url,
+                                    product.page_url,
+                                    product.custom_product_id,
+                                    product.title)
                                 rescue => ex
                                   LoggedException.add(__FILE__,__method__,ex)
                                   nil

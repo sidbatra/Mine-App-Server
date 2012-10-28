@@ -14,15 +14,7 @@
     <%=f.label :is_approved,"Is Approved"%>
     <%=f.check_box :is_approved%>
 
-    <%f.fields_for @store.crawl_datum do |j|%>
-      <%=f.label :crawlable,"Crawlable"%>
-      <%=j.check_box :active%>
-      <br>
-      <%=f.label :use_og_image,"Use OG Image"%>
-      <%=j.check_box :use_og_image%>
-      <br>
-      Launch URL - <%=j.text_field :launch_url%>
-    <%end%>
+    <br>
 
     <div id='store_image'>
       <%if @store.image_path.present?%>
@@ -48,8 +40,36 @@
     Click below to Add/Change store favicon<br>
     <a href='javasvript:void(0)' id='favicon_uploader'>
     </a> 
-    
+
+    <br><br>
+    <h4>Crawl Datum</h4>
     <br>
+
+    <%f.fields_for @store.crawl_datum do |j|%>
+      <%=j.label :active,"Crawlable"%>
+      <%=j.check_box :active%>
+      <br>
+      <%=f.label :use_og_image,"Use OG Image"%>
+      <%=j.check_box :use_og_image%>
+      <br>
+      Launch URL - <%=j.text_field :launch_url%>
+    <%end%>
+
+    <br><br>
+
+
+    <br><br>
+    <h4>Email Parse Datum</h4>
+    <br>
+
+    <%f.fields_for @store.email_parse_datum do |j|%>
+      <%=j.label :is_active,"Parseable"%>
+      <%=j.check_box :is_active%>
+      <br>
+      Emails -  <%=j.text_field :emails%>
+    <%end%>
+
+    <br><br>
 
     <%=submit_tag "Update", :name => nil%>
   <%end%>

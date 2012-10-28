@@ -11,33 +11,82 @@ class PurchasesController < ApplicationController
   #                   created before the given timestamp.
   # params[:per_page] - Integer:10. The number of feed items per page.
   # 
+  # List of purchases with the following aspects.
+  #
+  # params[:aspect]:
+  #   user  - requires params[:user_id]. Purchases  by the given 
+  #           users with pagination options. Default.
+  #   unapproved - Unapproved purchases for the current user with
+  #                pagination options.
+  #   unapproved_ui - UI for displaying unapproved purchases.
+  #
   def index
-    @user = User.find params[:user_id]
+    @aspect = params[:aspect] ? params[:aspect].to_sym : :user
+    @purchases = []
+    @key = ""
+    @cache_options = {}
 
-    @after = params[:after] ? Time.at(params[:after].to_i) : nil
-    @before = params[:before] ? Time.at(params[:before].to_i) : nil
-    @per_page = params[:per_page] ? params[:per_page].to_i : 10
 
-    @key = ["v2",@user,"purchases",@before ? @before.to_i : "",@per_page]
+    case @aspect
+    when :user
+      @user = User.find params[:user_id]
 
-    @purchases = Purchase.
-                  select(:id,:created_at,:title,:handle,:source_url,
-                          :orig_thumb_url,:orig_image_url,:endorsement,
-                          :image_path,:is_processed,:user_id,:store_id,
-                          :fb_action_id).
-                  with_user.
-                  with_store.
-                  with_comments.
-                  with_likes.
-                  by_created_at.
-                  after(@after).
-                  before(@before).
-                  limit(@per_page).
-                  for_users([@user]) unless fragment_exist? @key
+      @after = params[:after] ? Time.at(params[:after].to_i) : nil
+      @before = params[:before] ? Time.at(params[:before].to_i) : nil
+      @per_page = params[:per_page] ? params[:per_page].to_i : 10
+
+      @key = ["v2",@user,"purchases",@before ? @before.to_i : "",@per_page]
+
+      @purchases = Purchase.
+                    select(:id,:bought_at,:title,:handle,:source_url,
+                            :orig_thumb_url,:orig_image_url,:endorsement,
+                            :image_path,:is_processed,:user_id,:store_id,
+                            :fb_action_id).
+                    approved.
+                    with_user.
+                    with_store.
+                    with_comments.
+                    with_likes.
+                    by_bought_at.
+                    bought_after(@after).
+                    bought_before(@before).
+                    limit(@per_page).
+                    for_users([@user]) unless fragment_exist? @key
+
+    when :unapproved_ui 
+      ProcessingQueue.push(PurchaseExtractor.new,
+                            :mine_emails_for_user,
+                            self.current_user) if @source == "live"
+
+    when :unapproved
+      @after = params[:after] ? Time.at(params[:after].to_i) : nil
+      @before = params[:before] ? Time.at(params[:before].to_i) : nil
+      @per_page = params[:per_page] ? params[:per_page].to_i : 10
+      @offset = params[:offset] ? params[:offset].to_i : 0
+      @on_bought = params[:by_created_at] ? false : true
+
+      @purchases = Purchase.
+                    select(:id,:bought_at,:title,:handle,:source_url,
+                            :orig_thumb_url,:orig_image_url,:endorsement,
+                            :image_path,:is_processed,:user_id,:store_id,
+                            :fb_action_id).
+                    unapproved.
+                    with_user.
+                    with_store.
+                    with_comments.
+                    with_likes.
+                    page({:after => @after,:before => @before,
+                          :offset => @offset,:per_page => @per_page},
+                          @on_bought).
+                    limit(@per_page).
+                    for_users([self.current_user]).
+                    all 
+    end
   rescue => ex
     handle_exception(ex)
   ensure
     respond_to do |format|
+      format.html
       format.json 
     end
   end
@@ -54,12 +103,6 @@ class PurchasesController < ApplicationController
   # param with the id of the original purchase and an optional store_name.
   #
   def create
-
-    if params[:purchase][:product]
-      product = Product.find_by_orig_image_url(
-                  params[:purchase][:orig_image_url])
-      params[:purchase][:product_id] = product.id if product
-    end
 
     #if params[:purchase][:source_purchase_id] && params[:purchase][:clone]
     #  populate_params_from_purchase
@@ -117,6 +160,7 @@ class PurchasesController < ApplicationController
     
     if params[:purchase_id]
       @purchase = Purchase.
+                    approved.
                     with_comments.
                     with_likes.
                     find_by_id Cryptography.deobfuscate(params[:purchase_id])
@@ -124,6 +168,7 @@ class PurchasesController < ApplicationController
       user = User.find_by_handle params[:user_handle]
 
       @purchase = Purchase.
+                    approved.
                     with_comments.
                     with_likes.
                     find_by_user_id_and_handle(
