@@ -1,19 +1,41 @@
+<div class="bar top border-box gradient v-555-444" style="text-align: center;">
+	
+  <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
+      :class => "logo absolute")%>
+      
+      <span class="rwd-hide" style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
+      	Finding your latest purchases...
+      </span>
+      
+  <a id="cancel_button" class="close opacity-60-80 absolute alias-smooth transition-opacity" href="javascript:void(0)">
+		×
+	</a>
 
-<div class="box-title feed-title relative">
-  Purchases from email receipts
+<!--
+	<a href="/"
+			class="btn btn-large border-box rounded-3 absolute shaded-strong"
+			style="width: 140px; top: 12px; right: 12px;">
+		Add to Mine
+	</a>
+-->
+	
 </div>
 
-<div class="feed-container rounded-8" style="background: #f5f5f5">
-  <div id="feed" class="feed rounded-8 relative">
-  </div> 
-  
-  <div id="feed-spinner" class="feed-loading whitesmoke">
-  </div> 
+<div class="feed-grid-container border-box rounded-8-bottom">
+
+	<div id="feed" class="feed grid no-user-photo actions link-disabled rounded-8-bottom">
+  </div>
+
+	<div id="feed-spinner" class="feed-loading white">
+	</div> 
 </div> <!-- feed container -->
+
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Purchases.Unapproved({
-      source  : "<%=h @source%>"});
+  	new Denwen.Views.Welcome.Show();
+    $('#container').addClass('fullscreen');
+    //new Denwen.Views.Purchases.Unapproved({
+    //  source  : "<%=h @source%>"});
   </script>
 <%end%>

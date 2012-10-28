@@ -444,14 +444,18 @@ input.error:focus, textarea.error:focus {
 	background: #eee;
 	color: #666;
 	border: 0;
+/*
 	opacity: 0.8;
+	filter: alpha(opacity=80);
+*/
 	text-shadow: none;
-  filter: alpha(opacity=80);
   box-shadow: none; }
 	
+/*
 .btn.btn-white:hover { 
 	opacity: 1;
   filter: alpha(opacity=100); }
+*/
 	
 .btn.btn-white [class^="icon-"],
 .btn.btn-white [class*=" icon-"] {

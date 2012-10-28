@@ -93,6 +93,7 @@
   WelcomeFilter:
     Info: 'info'
     Learn: 'intro'
+    History: 'history'
     Create: 'create'
   OGObject:
     Purchase: "getmineapp:purchase" 

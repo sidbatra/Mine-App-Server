@@ -267,7 +267,8 @@ li { line-height: 1; }
 	
 .container.fullscreen {
 	width: 100%;
-	background: #444;
+	background: #393939;
+/* 	background: #F2F2F2; */
 	padding: 0 10px; }
 
 /* -- footer -- */
@@ -313,6 +314,14 @@ footer .twitter-button-box {
 	text-align: left;
 	z-index:9999;
 	padding: 12px 0; }
+	
+.bar .close {
+	color: white;
+	font-size: 36px; 
+	font-weight: bold;
+	top: 18px;
+	right: 25px;
+	box-shadow: none; }
 	
 .bar.top {
 	top:0;
@@ -451,11 +460,19 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .feed { background: white; }
 
+
+/* --- Feed Grid --- */
+
 .feed-grid-container { 
 	width: 692px; 
 	padding-left: 16px;
 	margin: 64px auto 24px;
-	background: white; }
+	background: white;
+/*
+	border-right: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	border-left: 1px solid #DDD; 
+*/}
 	
 .feed-grid-container .feed-loading { margin-left: -16px; }
 
@@ -500,6 +517,12 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed.grid .item .panel .endorsement-box, 
 .feed.grid span.time { display: none; }
 
+
+/* --- Feed Grid No-User-Photo --- */
+
+.feed.grid.no-user-photo .item .panel .title-box { padding-left: 0; }
+.feed.grid.no-user-photo .item .panel .title-box .user-photo { display: none; }
+
 	
 /* Item
 ==================================================================== */
@@ -516,6 +539,10 @@ a.feed-intro .highlight { font-weight: bold; }
 
 /* .item .photo-box .item-photo { max-height: 472px; } */
 .item .photo-box .item-photo { max-height: 354px; }
+
+.item .photo-box .actions { line-height: 0; }
+.item .photo-box .actions.hover { display: none; }
+.item:hover .photo-box .actions.hover { display: block; }
 
 .item .photo-box .actions.top-left     { top: 24px; left: 24px;     }
 .item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
