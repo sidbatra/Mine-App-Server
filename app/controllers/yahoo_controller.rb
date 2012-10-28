@@ -9,10 +9,12 @@ class YahooController < ApplicationController
       when :popup
         credentials = request.env['omniauth.auth']['credentials']
         info = request.env['omniauth.auth']['info']
+        extra = request.env['omniauth.auth']['extra']
 
         self.current_user.yh_token = credentials['token']
         self.current_user.yh_secret = credentials['secret'] 
         self.current_user.yh_email = info['email']
+        self.current_user.yh_session_handle = extra['access_token'].params['oauth_session_handle']
         self.current_user.save!
       end
     end
