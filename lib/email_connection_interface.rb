@@ -40,23 +40,28 @@ module DW
                       :secret          => options[:secret],
                       :consumer_key    => options[:consumer_key],
                       :consumer_secret => options[:consumer_secret]
-        @mailbox = Gmail::Mailbox.new @gmail,"[Gmail]/All Mail"
+
+        @mailboxes = ["[Gmail]/All Mail","[Gmail]/Trash"].map do |name| 
+                       Gmail::Mailbox.new @gmail,name
+                      end
       end
       
       # Return Mail objects from all emails matching the given criterea.
       #
       def search(from,after)
-        emails = @mailbox.find :from => from,:after => after
+        @mailboxes.each do |mailbox|
+          emails = mailbox.find :from => from,:after => after
 
-        emails.reverse.in_groups_of(10,false).each do |group| 
-          uids = group.map(&:uid)
-          fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
-          
-          mails = fetch_data.map do |fetch_datum| 
-                    Mail.new fetch_datum.attr[@imap_key_body]
-                  end 
+          emails.reverse.in_groups_of(10,false).each do |group| 
+            uids = group.map(&:uid)
+            fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
+            
+            mails = fetch_data.map do |fetch_datum| 
+                      Mail.new fetch_datum.attr[@imap_key_body]
+                    end 
 
-          yield mails.reverse if block_given?
+            yield mails.reverse if block_given?
+          end
         end
       end
 
