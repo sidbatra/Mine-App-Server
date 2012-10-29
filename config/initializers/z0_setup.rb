@@ -43,6 +43,7 @@ include DistributionManagement
 include PurchaseEmailParsing
 include PurchaseExtraction
 include WebSearchInterface
+include YahooAPIInterface
 
 
 
