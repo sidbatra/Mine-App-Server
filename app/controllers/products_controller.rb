@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   def index
     @products   = []
     @query      = params[:q]
-    @sane_query = @query
+    @sane_query = @query.strip
     @page       = params[:page] ? params[:page].to_i : 0
     @key        = generate_cache_key(@sane_query,@page)
     @title      = ""
