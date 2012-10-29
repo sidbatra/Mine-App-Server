@@ -56,7 +56,7 @@ module DW
         products = {}
 
         product_names.in_groups_of(10,false).each do |group|
-          hydra = Typhoeus::Hydra.new :max_concurrency => 3
+          hydra = Typhoeus::Hydra.new :max_concurrency => 2
 
           group.each do |product_name|
             request = Typhoeus::Request.new(
@@ -80,7 +80,7 @@ module DW
           end #group
 
           hydra.run
-          sleep 3
+          sleep 1.5
         end #groups
 
         products
@@ -174,10 +174,10 @@ module DW
         emails.each do |email|
           text = email.html_part.to_s
           product_ids = text.
-                          scan(/addUserReview?[^(]+&id=3D([\d]+)/).
+                          scan(/addUserReview?[^(]+&id=([D\d]+)/).
                           flatten.
                           uniq.
-                          map(&:to_s)
+                          map{|id| id.to_s.gsub("3D","")}
           product_ids.each do |product_id|
             purchases << {:itunes_id => product_id,
                           :bought_at => email.date,

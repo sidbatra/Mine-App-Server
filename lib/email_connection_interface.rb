@@ -83,7 +83,8 @@ module DW
                             :message_id => email_content[:mid],
                             :date => email_content[:date],
                             :subject => email_content[:subject])
-                    mail.html_part = email_content[:text]
+                    mail.html_part = CGI.unescapeHTML(CGI.unescapeHTML(
+                                      email_content[:text]))
                     mail
                   end 
 

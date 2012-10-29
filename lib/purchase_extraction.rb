@@ -44,6 +44,15 @@ module DW
                                   :secret => @user.go_secret,
                                   :consumer_key => CONFIG[:google_client_id],
                                   :consumer_secret => CONFIG[:google_client_secret]})
+
+        elsif @user.yahoo_authorized?
+          @user.refresh_yahoo_token
+          @provider = EmailProvider::Yahoo
+          @email_connection = EmailConnection.new(
+                                @user.yh_email,
+                                @provider, {
+                                  :token => @user.yh_token,
+                                  :secret => @user.yh_secret})
         end
       end
 
