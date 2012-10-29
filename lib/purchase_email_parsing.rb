@@ -47,6 +47,8 @@ module DW
           AmazonProductSearch.lookup_products(group).each do |product|
             products[product.product_id] = product
           end
+
+          sleep 0.5
         end
 
         products
