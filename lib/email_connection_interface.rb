@@ -62,6 +62,36 @@ module DW
 
     end #gmail connection
 
+
+    class YahooConnection
+      
+      def initialize(email,options={})
+        @yahoo_api = YahooAPI.new options[:token],options[:secret]
+      end
+      
+      # Return Mail objects from all emails matching the given criterea.
+      #
+      def search(from,after)
+        emails = @yahoo_api.find_emails from,after
+
+        emails.in_groups_of(10,false).each do |group| 
+          mids = group.map{|email| email[:mid]}
+          email_contents = @yahoo_api.fetch_email_contents mids
+          
+          mails = email_contents.map do |email_content| 
+                    mail = Mail.new(
+                            :message_id => email_content[:mid],
+                            :date => email_content[:date],
+                            :subject => email_content[:subject])
+                    mail.html_part = email_content[:text]
+                    mail
+                  end 
+
+          yield mails if block_given?
+        end
+      end
+    end #yahoo connection
+
   end #email connection interface
 
 end #dw
