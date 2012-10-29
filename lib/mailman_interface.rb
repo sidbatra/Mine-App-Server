@@ -174,9 +174,9 @@ module DW
 
       # Public. Email users with a reminder to add new purchases.
       #
-      def self.dispatch_news
+      def self.dispatch_news(users)
 
-        User.with_setting.each do |user|
+        users.each do |user|
           begin
 
             if user.setting.email_update 
