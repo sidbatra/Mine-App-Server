@@ -3,28 +3,30 @@ module DW
   module YahooAPIInterface
     
     class YahooAPI
+      
+      def initialize(user_token,user_secret,user_session_handle="")
+        @user_token = user_token
+        @user_secret = user_secret
+        @user_session_handle = user_session_handle
+      end
 
       # Fetch a new access_token. Returns the new access_token's
-      # token, secret and session_handle.
+      # token, secret and session_handle in a hash.
       #
-      def refresh_access_token(token,secret,session_handle)
-        create_consumer
-        create_request_token @consumer,token,secret
-        create_token token,secret
+      def refresh_access_token
+        access_token = request_token.get_access_token(
+                        :oauth_session_handle => @user_session_handle,
+                        :token => token)
 
-        access_token = @request_token.get_access_token(
-                        :oauth_session_handle => session_handle,
-                        :token => @token)
-
-        [access_token.token,
-          access_token.secret,
-          access_token.params['oauth_session_handle']]
+        {:token => access_token.token,
+          :secret => access_token.secret,
+          :handle => access_token.params['oauth_session_handle']}
       end
 
 
       private
 
-      def create_consumer
+      def consumer
         @consumer ||= OAuth::Consumer.new( 
                         CONFIG[:yahoo_consumer_key],
                         CONFIG[:yahoo_consumer_secret],
@@ -34,12 +36,12 @@ module DW
                         :site               => 'https://api.login.yahoo.com')
       end
 
-      def create_request_token(consumer,token,secret)
-        @request_token ||= OAuth::RequestToken.new consumer,token,secret
+      def request_token
+        @request_token ||= OAuth::RequestToken.new consumer,@user_token,@user_secret
       end
 
-      def create_token(token,secret)
-        @token ||= OAuth::Token.new token,secret
+      def token
+        @token ||= OAuth::Token.new @user_token,@user_secret
       end
 
     end #yahoo api
