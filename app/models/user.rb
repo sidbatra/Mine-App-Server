@@ -342,7 +342,8 @@ class User < ActiveRecord::Base
   end
 
   def refresh_yahoo_token
-    token,secret,handle = YahooAPI.refresh_access_token(
+    yahoo_api = YahooAPI.new
+    token,secret,handle = yahoo_api.refresh_access_token(
                             yh_token,
                             yh_secret,
                             yh_session_handle)
