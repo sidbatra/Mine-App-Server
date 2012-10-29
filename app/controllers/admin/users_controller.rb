@@ -55,6 +55,10 @@ class Admin::UsersController < ApplicationController
 
     @user.update_attributes params[:user]
 
+    if params[:become]
+      self.current_user = @user
+    end
+
     redirect_to edit_admin_user_path(@user.handle)
   end
 
