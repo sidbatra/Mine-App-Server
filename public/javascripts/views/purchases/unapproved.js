@@ -116,9 +116,11 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   // --
 
   livePurchasesStarted: function() {
+    this.enableSubmitButton();
   },
 
   livePurchasesFinished: function() {
+    this.enableSubmitButton();
     $(this.progressMessageEl).html(this.doneLoadingMessage);
   },
 
