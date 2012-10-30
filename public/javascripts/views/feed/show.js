@@ -13,6 +13,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     var self = this;
 
     this.source = this.options.source;
+    this.successEmailConnectURL = this.options.successEmailConnectURL;
 
     this.feedEl             = '#feed';
     this.userSuggestionsEl  = '#user_suggestions_box';
@@ -49,6 +50,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
 
     new Denwen.Partials.Users.Suggestions({el:$(this.userSuggestionsEl)});
+
+
+    new Denwen.Partials.Auth.Email({
+        googleEl: '#google_connect_button',
+        yahooEl: '#yahoo_connect_button',
+        successURL: this.successEmailConnectURL});
 
     //this.suggestions = new Denwen.Partials.Feed.Suggestions({
     //                        el:$(this.suggestionsEl),

@@ -74,7 +74,8 @@
 
 <%unless self.current_user.email_authorized?%>
   <!-- email importer box -->
-  <div class="well-box border-box rounded-8-bottom rwd-hide" style="padding-top: 2px; margin: -17px 0 12px; box-shadow: none;">
+  <div class="well-box border-box rounded-8-bottom rwd-hide" 
+    style="padding-top: 2px; margin: -17px 0 12px; box-shadow: none;">
     <div class="email-action-box relative">		
       <span class="txt m top-line opacity-80">
         Import purchases automagically via your inbox.
@@ -83,11 +84,17 @@
       <a class="txt s bottom-line opacity-80-100 transition-opacity" href="/">
         Learn more
       </a>
-      <a class="btn btn-small btn-silver shaded rounded-3 absolute" href="" style="width: 15%; top: 12px; right: 16.61%;">
+      <a id="google_connect_button"
+          class="btn btn-small btn-silver shaded rounded-3 absolute" 
+          href="javascript:void(0)" 
+          style="width: 15%; top: 12px; right: 16.61%;">
         <%=image_tag "logos/email-google-logo-18.png",
             :class => ""%>
       </a>
-      <a class="btn btn-small btn-silver shaded rounded-3 absolute" href="" style="width: 15%; top: 12px; right: 0;">
+      <a id="yahoo_connect_button"
+          class="btn btn-small btn-silver shaded rounded-3 absolute" 
+          href="javascript:void(0)" 
+          style="width: 15%; top: 12px; right: 0;">
         <%=image_tag "logos/email-yahoo-logo-18.png",
             :class => ""%>
       </a>
@@ -120,6 +127,7 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Feed.Show({
-      source  : "<%=h @source%>"});
+      successEmailConnectURL: "<%=unapproved_purchases_path(:mode => 'live')%>",
+      source: "<%=h @source%>"});
   </script>
 <%end%>
