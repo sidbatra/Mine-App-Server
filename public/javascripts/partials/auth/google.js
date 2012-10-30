@@ -7,11 +7,8 @@ Denwen.Partials.Auth.Google = Backbone.View.extend({
 
   showAuthDialog: function() {
     var self = this;
-    var authWindow = window.open(
-                              '/auth/google?usage=popup', 
-                              '', 
-                              'width=800, height=600');
 
+    var authWindow = Denwen.H.popup('/auth/google?usage=popup',800,600);
     var authInterval = window.setInterval(function(){
                                   if(authWindow.closed) {
                                     window.clearInterval(authInterval);
