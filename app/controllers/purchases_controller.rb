@@ -266,6 +266,22 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def update_multiple
+    @aspect = params[:aspect].to_sym
+
+    case @aspect
+    when :approval
+      selected_purchases = Purchase.find_all_by_id params[:selected_ids]
+      rejected_purchases = Purchase.find_all_by_id params[:rejected_ids]
+    end
+  rescue => ex
+    handle_exception(ex)
+  ensure
+    respond_to do |format|
+      format.json
+    end
+  end
+
   # Destroy a purchase.
   #
   def destroy

@@ -95,7 +95,8 @@ ActionController::Routing::Routes.draw do |map|
     :action     => :edit
 
   map.resources :purchases,
-    :only => [:index,:create,:update,:destroy]
+    :only => [:index,:create,:update,:destroy],
+    :collection => {:update_multiple => :put}
 
   map.unapproved_purchases 'purchases/unapproved',
     :controller => :purchases,

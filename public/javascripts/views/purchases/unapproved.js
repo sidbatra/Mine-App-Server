@@ -70,7 +70,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     
     var self = this;
 
-    selectedPurchaseIDs = (this.liveMode ? 
+    var selectedPurchaseIDs = (this.liveMode ? 
                                 this.livePurchases.purchases : 
                                 this.stalePurchases.purchases).pluck('id');
 
@@ -81,9 +81,25 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     console.log(selectedPurchaseIDs);
     console.log(this.rejectedPurchaseIDs);
 
+    $.ajax({
+      type: 'put',
+      url: "/purchases/update_multiple.json",
+      data: {aspect: 'approval', selected_ids: selectedPurchaseIDs.join(), rejected_ids: this.rejectedPurchaseIDs.join()},
+      success: function(data) {self.purchasesApproved();},
+      error: function() {self.purchasesApprovalFailed();}});
+
     this.submitEnabled = false;
   },
 
+  // --
+  // Callbacks from purchases approval
+  // --
+  purchasesApproved: function() {
+    window.location.href = "/" + Denwen.H.currentUser.get('handle') + "?src=history";
+  },
+
+  purchasesApprovalFailed: function() {
+  },
 
   // --
   // Callbacks from live purchases

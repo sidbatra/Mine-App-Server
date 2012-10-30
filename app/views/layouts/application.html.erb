@@ -61,7 +61,7 @@
           Denwen.H.currentUser = new Denwen.Models.User(
                                  <%=self.current_user.to_json(
                                    :only    => [:id,:fb_user_id,:email,:gender,
-                                                :first_name,:last_name,
+                                                :first_name,:last_name,:handle,
                                                 :created_at],
                                    :methods => [:square_image_url,:full_name,
                                                   :age],
