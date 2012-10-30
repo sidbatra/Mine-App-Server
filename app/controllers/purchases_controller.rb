@@ -283,11 +283,11 @@ class PurchasesController < ApplicationController
 
       Purchase.update_all(
         {:is_approved => true},
-        {:id => selected_purchases.map(&:id)[0..0]})
+        {:id => selected_purchases.map(&:id)})
 
       Purchase.update_all(
         {:is_hidden => true},
-        {:id => rejected_purchases.map(&:id)[0..0]})
+        {:id => rejected_purchases.map(&:id)})
     end
   rescue => ex
     handle_exception(ex)
