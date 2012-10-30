@@ -44,7 +44,7 @@
 
     <%unless @web_view_mode%>
 
-      <%=render "footers/default" unless is_onboarding?%>
+      <%=render "footers/default" unless hide_footer?%>
 
       <%=render :partial => "misc/analytics"%>
 
