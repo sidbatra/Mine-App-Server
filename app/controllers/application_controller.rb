@@ -67,9 +67,9 @@ class ApplicationController < ActionController::Base
   end
 
   def mine_purchase_emails
-    ProcessingQueue.push(PurchaseExtractor.new,
-                          :mine_emails_for_user,
-                          self.current_user) if params[:mode] == "live"
+    PrimaryProcessingQueue.push(PurchaseExtractor.new,
+                            :mine_emails_for_user,
+                            self.current_user) if params[:mode] == "live"
   end
 
   # Raise a routing exception when a non-existant resource

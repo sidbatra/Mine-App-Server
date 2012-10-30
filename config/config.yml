@@ -39,6 +39,7 @@ common: &common
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
   :tablet_user_agents: ipad|tablet
   :queue:
+    :primary_proc: mine_primary_processing
     :proc: mine_processing
     :secondary_proc: mine_secondary_processing
     :crawl: crawl
