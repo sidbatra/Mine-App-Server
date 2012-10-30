@@ -268,7 +268,6 @@ li { line-height: 1; }
 .container.fullscreen {
 	width: 100%;
 	background: #393939;
-/* 	background: #F2F2F2; */
 	padding: 0 10px; }
 
 /* -- footer -- */
@@ -363,29 +362,37 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 .user-photo.xs  { width: 16px; height: 16px; }
 
 
-/* Who to Follow + Notifications
+/* Who to Follow, Notifications, Email Importer Box
 ==================================================================== */
 
-li.user-action-box {
+.user-action-box {
 	padding: 0 17% 5px 42px;
 	min-height: 36px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #494949; }
 
-li.user-action-box:last-child { 
+.email-action-box {
+	padding: 10px 0 0 0;
+	margin-bottom: -4px;
+	border-top: 1px solid #494949;  }
+
+.user-action-box:last-child { 
 	margin-bottom: -9px !important;
 	border-bottom: none !important; }
 
-li.user-action-box .user-photo {
+.user-action-box .user-photo {
 	top: 0;
 	left: 0; }
 
-li.user-action-box .user-name {
-	color: white;
-	line-height: 120%;
-	font-weight: bold; }
+.user-action-box .top-line { font-weight: bold; }
 
-li.user-action-box .user-info {
+.user-action-box .top-line,
+.email-action-box .top-line {
+	color: white;
+	line-height: 120%; }
+
+.user-action-box .bottom-line,
+.email-action-box .bottom-line {
 	line-height: 170%;
 	color: #ccc; }
 
@@ -395,7 +402,7 @@ ul.notifications li.user-action-box {
 	
 /* .btn-red.zero ~ ul.notifications li.user-action-box { margin-left: 0; } */
 
-li.user-action-box.unread .dot { 
+.user-action-box.unread .dot { 
 	top: 11px;
 	left: -17px;
 	display: block;
@@ -406,7 +413,7 @@ li.user-action-box.unread .dot {
 
 /* -- header notifications dropdown -- */
 
-li.user-action-box .dot { display: none; }
+.user-action-box .dot { display: none; }
 
 .header ul.notifications li.user-action-box.unread .dot { 
 	top: 9px; left: -18px; }
@@ -418,9 +425,9 @@ li.user-action-box .dot { display: none; }
 	overflow: hidden; }
 	
 .header ul.notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
-.header ul.notifications li.user-action-box .user-name  { font-size: 12px;}
+.header ul.notifications li.user-action-box .top-line  { font-size: 12px;}
 
-.header ul.notifications li.user-action-box .user-info  { line-height: 16px; }
+.header ul.notifications li.user-action-box .bottom-line  { line-height: 16px; }
 .header ul.notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
 
 
