@@ -3,9 +3,10 @@
   <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
       :class => "logo absolute")%>
       
-      <span class="rwd-hide" style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
-      	Finding your latest purchases...
-      </span>
+  <span class="rwd-hide" 
+    id="progress_message"
+    style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
+  </span>
       
 <!--
   <a id="cancel_button" class="close opacity-60-80 absolute alias-smooth transition-opacity" href="javascript:void(0)">
@@ -13,7 +14,8 @@
 	</a>
 -->
 
-	<a href="/"
+	<a href="javascript:void(0)"
+      id="submit_button"
 			class="btn btn-red btn-large border-box rounded-3 absolute shaded"
 			style="width: 160px; top: 12px; right: 12px;">
 		<span class="hide-when-loading">
@@ -39,6 +41,7 @@
     $('#container').addClass('fullscreen');
 
     new Denwen.Views.Purchases.Unapproved({
-      source  : "<%=h @source%>"});
+      source  : "<%=h @source%>",
+      mode : "<%=h params[:mode]%>"});
   </script>
 <%end%>

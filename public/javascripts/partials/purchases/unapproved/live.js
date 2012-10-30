@@ -44,10 +44,8 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
   purchasesFinished: function() {
     $(this.spinnerEl).hide();
 
-    if(this.purchases.isEmpty())
-      Denwen.Drawer.error("Sorry, we couldn't find any purchases in your email.");
-    else
-      Denwen.Drawer.success("Done searching your email for purchases.");
+    this.trigger(
+      Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesFinished)
   },
 
   retry: function(success) {
@@ -94,7 +92,13 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     else {
       this.oldestPurchaseID = this.purchases.last().get('id');
 
+      if(!this.offset) {
+        this.trigger(
+          Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesStarted)
+      }
+
       this.retry(true);
+
     }
   },
 
@@ -104,3 +108,9 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
   }
 
 });
+
+Denwen.Partials.Purchases.Unapproved.Live.Callback = {
+  PurchasesStarted: "purchasesStarted",
+  PurchasesFinished: "purchasesFinished"
+};
+
