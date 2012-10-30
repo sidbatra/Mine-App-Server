@@ -79,7 +79,7 @@ module ApplicationHelper
   # Whether the user is undergoing onboarding 
   #
   def is_onboarding?
-    request.request_uri.scan(/^\/welcome\//).present?
+    @is_onboarding ||= request.request_uri.scan(/^\/welcome\//).present?
   end
 
   # Generate body attributes to display the current theme.

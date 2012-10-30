@@ -83,11 +83,11 @@
       <%=yield :javascript%>
 
       <script type="text/javascript">
-        <%if logged_in?%>
+        <%if logged_in? && !is_onboarding?%>
 
           new Denwen.Partials.Notifications.List({el:$('#notifications_box')});
 
-          <%if !is_onboarding? && !is_phone_device? && !Rails.env.starts_with?('d')%>
+          <%if !is_phone_device? && !Rails.env.starts_with?('d')%>
             var uvOptions = {};
             (function() {
               var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
