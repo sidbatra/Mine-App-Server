@@ -54,9 +54,7 @@ class PurchasesController < ApplicationController
                     for_users([@user]) unless fragment_exist? @key
 
     when :unapproved_ui 
-      ProcessingQueue.push(PurchaseExtractor.new,
-                            :mine_emails_for_user,
-                            self.current_user) if params[:mode] == "live"
+      mine_purchase_emails
 
     when :unapproved
       @after = params[:after] ? Time.at(params[:after].to_i) : nil
@@ -274,11 +272,11 @@ class PurchasesController < ApplicationController
     when :approval
 
       selected_purchases = Purchase.find_all_by_id_and_user_id(
-                            params[:selected_ids],
+                            params[:selected_ids].split(','),
                             self.current_user.id)
 
       rejected_purchases = Purchase.find_all_by_id_and_user_id(
-                            params[:rejected_ids],
+                            params[:rejected_ids].split(','),
                             self.current_user.id)
 
       Purchase.update_all(

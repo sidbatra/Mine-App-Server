@@ -17,6 +17,7 @@ class WelcomeController < ApplicationController
       @view = "connect"
 
     when WelcomeFilter::History
+      mine_purchase_emails
       @view = "purchases/index"
 
     when WelcomeFilter::Create
