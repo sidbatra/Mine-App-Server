@@ -10,17 +10,23 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.feedEl  = '#feed';
     this.feedSpinnerEl  = '#feed-spinner';
 
-    //if(!Denwen.H.isOnboarding) {
-    if(this.source == "live") {
-      new Denwen.Partials.Purchases.Unapproved.Live({
-            el:$(this.feedEl),
-            spinnerEl:this.feedSpinnerEl});
+    this.liveMode = this.source == "live";
+
+    if(this.liveMode) {
+      this.livePurchases = new Denwen.Partials.Purchases.Unapproved.Live({
+                                el:$(this.feedEl),
+                                spinnerEl:this.feedSpinnerEl});
     }
     else {
-      new Denwen.Partials.Purchases.Unapproved.Stale({
-            el:$(this.feedEl),
-            spinnerEl:this.feedSpinnerEl});
+      this.stalePurchases = new Denwen.Partials.Purchases.Unapproved.Stale({
+                                  el:$(this.feedEl),
+                                  spinnerEl:this.feedSpinnerEl});
     }
+
+    Denwen.NM.bind(
+      Denwen.NotificationManager.Callback.PurchaseCrossClicked,
+      this.purchaseCrossClicked,
+      this);
 
     this.setAnalytics();
   },
@@ -32,6 +38,14 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
 
     if(Denwen.H.isOnboarding)
       Denwen.Track.action("Welcome Purchase Email View");
+  },
+
+  // Listener for the NM callback when the cross button of a purchase
+  // is clicked.
+  //
+  purchaseCrossClicked: function(purchase) {
+    if(!this.liveMode)
+      this.stalePurchases.emptySpaceTest();
   }
 
 });

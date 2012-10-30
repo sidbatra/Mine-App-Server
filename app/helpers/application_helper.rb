@@ -98,7 +98,9 @@ module ApplicationHelper
   # Test if the header is to be hidden
   #
   def hide_header?
-    @web_view_mode || request.request_uri.scan(/^\/welcome\/(intro|history)/).present?
+    @web_view_mode || 
+      request.request_uri.scan(/^\/welcome\/(intro|history)/).present? ||
+      request.request_uri.scan(/^\/purchases\/unapproved/).present?
   end
 
 end

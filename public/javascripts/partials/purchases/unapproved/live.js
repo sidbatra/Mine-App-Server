@@ -79,7 +79,8 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el: this.el,
                               model: purchase,
-                              interaction: false});
+                              interaction: false,
+                              crossButton: true});
   },
 
   purchasesLoaded: function() {

@@ -36,9 +36,9 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-  	new Denwen.Views.Welcome.Show();
     $('#container').addClass('fullscreen');
-    //new Denwen.Views.Purchases.Unapproved({
-    //  source  : "<%=h @source%>"});
+
+    new Denwen.Views.Purchases.Unapproved({
+      source  : "<%=h @source%>"});
   </script>
 <%end%>

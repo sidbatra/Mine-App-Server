@@ -6,7 +6,7 @@
   
   	<!-- edit button -->
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-			<div class="actions bottom-right absolute">
+			<div class="actions top-right absolute">
 				<a href="<%=purchase.editPath('feed')%>" 
           class="btn btn-small btn-white rounded-3 opacity-80-100">
 					<i class="icon-pencil"></i>
@@ -15,12 +15,15 @@
 		<%}%>
 		
 		<!-- x-out button -->
-		<div class="actions top-right absolute">
-			<a href="<%=purchase.editPath('feed')%>" 
-        class="btn btn-small btn-white rounded-3 opacity-80-100">
-				<i class="icon-remove"></i>
-			</a>
-		</div>
+  	<%if(crossButton && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
+      <div class="actions top-right absolute">
+        <a id="purchase_cross_<%=purchase.get('id')%>" 
+            href="javascript:void(0)"
+            class="btn btn-small btn-white rounded-3 opacity-80-100">
+          <i class="icon-remove"></i>
+        </a>
+      </div>
+    <%}%>
 
 		
 		<!-- like button -->

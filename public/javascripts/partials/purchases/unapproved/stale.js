@@ -63,7 +63,8 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el: this.el,
                               model: purchase,
-                              interaction: false});
+                              interaction: false,
+                              crossButton: true});
   },
 
   purchasesLoaded: function() {
@@ -84,11 +85,15 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
       this.oldestItemTimestamp = newOldestItemTimestamp;
     }
 
-    this.infiniteScroller.emptySpaceTest();
+    this.emptySpaceTest();
   },
 
   purchasesLoadingFailed: function() {
     this.loading = false;
+  },
+
+  emptySpaceTest: function() {
+    this.infiniteScroller.emptySpaceTest();
   },
 
 
