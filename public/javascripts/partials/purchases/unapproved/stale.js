@@ -4,7 +4,7 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
 
   initialize: function() {
     this.oldestItemTimestamp = 0;
-    this.perPage = 10;
+    this.perPage = 50;
     this.loading = false;
     this.disabled = false;
     this.spinnerEl = this.options.spinnerEl;
@@ -83,9 +83,12 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
       }
 
       this.oldestItemTimestamp = newOldestItemTimestamp;
+
+      this.fetch();
     }
 
-    this.emptySpaceTest();
+    $('#' + this.el.attr('id') + ' a[href]').click(function(e){e.preventDefault();});
+    //this.emptySpaceTest();
   },
 
   purchasesLoadingFailed: function() {
@@ -104,13 +107,13 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
   // Document has reached end of scroll area. Load more purchases.
   //
   endReached: function() {
-    this.fetch();
+    //this.fetch();
   },
 
   // Document hasn't fully filled out the window.
   //
   emptySpaceFound: function() {
-    this.fetch();
+    //this.fetch();
   }
 
 });

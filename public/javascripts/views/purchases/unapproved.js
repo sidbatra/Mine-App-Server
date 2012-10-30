@@ -7,13 +7,16 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
 
     this.source = this.options.source;
     this.mode = this.options.mode;
+    this.liveMode = this.mode == "live";
+    this.rejectedPurchaseIDs = [];
 
     this.feedEl  = '#feed';
     this.feedSpinnerEl  = '#feed-spinner';
     this.progressMessageEl = '#progress_message';
+    this.submitEl = '#submit_button';
+    this.submitEnabled = false;
     this.doneLoadingMessage = "Here's what we found in your email."
 
-    this.liveMode = this.mode == "live";
 
     if(this.liveMode) {
       this.livePurchases = new Denwen.Partials.Purchases.Unapproved.Live({
@@ -33,6 +36,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       $(this.progressMessageEl).html("Finding your latest purchases...");
     }
     else {
+      this.submitEnabled = true;
+
       this.stalePurchases = new Denwen.Partials.Purchases.Unapproved.Stale({
                                   el:$(this.feedEl),
                                   spinnerEl:this.feedSpinnerEl});
@@ -44,6 +49,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       Denwen.NotificationManager.Callback.PurchaseCrossClicked,
       this.purchaseCrossClicked,
       this);
+
+    $(this.submitEl).click(function(){self.submitClicked();return false;});
 
     this.setAnalytics();
   },
@@ -57,8 +64,32 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       Denwen.Track.action("Welcome History View");
   },
 
+  submitClicked: function() {
+    if(!this.submitEnabled)
+      return false;
+    
+    var self = this;
+
+    selectedPurchaseIDs = (this.liveMode ? 
+                                this.livePurchases.purchases : 
+                                this.stalePurchases.purchases).pluck('id');
+
+    _.each(this.rejectedPurchaseIDs,function(id){
+      selectedPurchaseIDs.splice(selectedPurchaseIDs.indexOf(id),1);
+    });
+
+    console.log(selectedPurchaseIDs);
+    console.log(this.rejectedPurchaseIDs);
+
+    this.submitEnabled = false;
+  },
+
+
+  // --
+  // Callbacks from live purchases
+  // --
+
   livePurchasesStarted: function() {
-    console.log("STARTED");
   },
 
   livePurchasesFinished: function() {
@@ -69,6 +100,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   // is clicked.
   //
   purchaseCrossClicked: function(purchase) {
+    this.rejectedPurchaseIDs.push(purchase.get('id'));
+
     if(!this.liveMode)
       this.stalePurchases.emptySpaceTest();
   }
