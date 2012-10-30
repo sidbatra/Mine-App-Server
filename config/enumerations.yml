@@ -93,6 +93,7 @@
   WelcomeFilter:
     Info: 'info'
     Learn: 'intro'
+    Connect: 'connect'
     History: 'history'
     Create: 'create'
   OGObject:
@@ -124,4 +125,6 @@
     FbAuth: 'fb_auth'
     TwAuth: 'tw_auth'
     TumblrAuth: 'tumblr_auth'
+    GoogleAuth: 'google_auth'
+    YahooAuth: 'yahoo_auth'
     FbAccessToken: 'fb_access_token'

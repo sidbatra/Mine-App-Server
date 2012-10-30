@@ -341,6 +341,10 @@ class User < ActiveRecord::Base
     yh_token.present? && yh_secret.present? && yh_session_handle.present?
   end
 
+  def email_authorized?
+    google_authorized? || yahoo_authorized?
+  end
+
   def refresh_yahoo_token
     yahoo_api = YahooAPI.new yh_token,yh_secret,yh_session_handle
 

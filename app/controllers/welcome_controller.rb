@@ -13,6 +13,9 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Learn
       @view = "show"
 
+    when WelcomeFilter::Connect
+      @view = "connect"
+
     when WelcomeFilter::History
       @view = "purchases/index"
 
