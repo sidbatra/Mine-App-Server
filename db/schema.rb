@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028015724) do
+ActiveRecord::Schema.define(:version => 20121030033409) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -210,12 +210,14 @@ ActiveRecord::Schema.define(:version => 20121028015724) do
     t.integer  "source",             :default => 0
     t.boolean  "is_approved",        :default => true
     t.datetime "bought_at"
+    t.boolean  "is_hidden",          :default => false
   end
 
   add_index "purchases", ["bought_at"], :name => "index_purchases_on_bought_at"
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
   add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
   add_index "purchases", ["is_approved"], :name => "index_purchases_on_is_approved"
+  add_index "purchases", ["is_hidden"], :name => "index_purchases_on_is_hidden"
   add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
   add_index "purchases", ["is_special"], :name => "index_purchases_on_is_special"
   add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
@@ -353,8 +355,8 @@ ActiveRecord::Schema.define(:version => 20121028015724) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
-    t.boolean  "is_special",                 :default => false
     t.integer  "unread_notifications_count", :default => 0
+    t.boolean  "is_special",                 :default => false
     t.string   "go_email"
     t.string   "go_token"
     t.string   "go_secret"

@@ -71,6 +71,7 @@ class PurchasesController < ApplicationController
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).
                     unapproved.
+                    visible.
                     with_user.
                     with_store.
                     with_comments.
@@ -271,8 +272,22 @@ class PurchasesController < ApplicationController
 
     case @aspect
     when :approval
-      selected_purchases = Purchase.find_all_by_id params[:selected_ids]
-      rejected_purchases = Purchase.find_all_by_id params[:rejected_ids]
+
+      selected_purchases = Purchase.find_all_by_id_and_user_id(
+                            params[:selected_ids],
+                            self.current_user.id)
+
+      rejected_purchases = Purchase.find_all_by_id_and_user_id(
+                            params[:rejected_ids],
+                            self.current_user.id)
+
+      Purchase.update_all(
+        {:is_approved => true},
+        {:id => selected_purchases.map(&:id)[0..0]})
+
+      Purchase.update_all(
+        {:is_hidden => true},
+        {:id => rejected_purchases.map(&:id)[0..0]})
     end
   rescue => ex
     handle_exception(ex)

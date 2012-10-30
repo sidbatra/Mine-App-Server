@@ -90,9 +90,6 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       selectedPurchaseIDs.splice(selectedPurchaseIDs.indexOf(id),1);
     });
 
-    console.log(selectedPurchaseIDs);
-    console.log(this.rejectedPurchaseIDs);
-
     $.ajax({
       type: 'put',
       url: "/purchases/update_multiple.json",

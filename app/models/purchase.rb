@@ -42,6 +42,7 @@ class Purchase < ActiveRecord::Base
   named_scope :special, :conditions => {:is_special => true}
   named_scope :approved, :conditions => {:is_approved => true}
   named_scope :unapproved, :conditions => {:is_approved => false}
+  named_scope :visible, :conditions => {:is_hidden => false}
   named_scope :by_id, :order => 'id DESC'
   named_scope :by_created_at, :order => 'created_at ASC'
   named_scope :by_bought_at, :order => 'bought_at DESC'
