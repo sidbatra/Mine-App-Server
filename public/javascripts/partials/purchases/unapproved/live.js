@@ -10,7 +10,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
 
     this.defaultRetryInterval = 2;
     this.retryInterval = this.defaultRetryInterval;
-    this.retryDelta = 3;
+    this.retryDelta = 1.5;
 
     this.loading = false;
     this.spinnerEl = this.options.spinnerEl;
@@ -55,7 +55,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
         return;
       }
       else {
-        this.retryInterval += this.retryDelta;
+        this.retryInterval *= this.retryDelta;
       }
     }
     else {
