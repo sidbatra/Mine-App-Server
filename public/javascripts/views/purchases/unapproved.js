@@ -36,7 +36,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       $(this.progressMessageEl).html("Finding your latest purchases...");
     }
     else {
-      this.submitEnabled = true;
+      this.enableSubmitButton();
 
       this.stalePurchases = new Denwen.Partials.Purchases.Unapproved.Stale({
                                   el:$(this.feedEl),
@@ -64,6 +64,18 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       Denwen.Track.action("Welcome History View");
   },
 
+  enableSubmitButton: function() {
+    $(this.submitEl).removeClass('load');
+    this.submitEnabled = true;
+  },
+
+  disableSubmitButton: function(withSpinner) {
+    if(withSpinner)
+      $(this.submitEl).addClass('load');
+
+    this.submitEnabled = false;
+  },
+
   submitClicked: function() {
     if(!this.submitEnabled)
       return false;
@@ -88,7 +100,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       success: function(data) {self.purchasesApproved();},
       error: function() {self.purchasesApprovalFailed();}});
 
-    this.submitEnabled = false;
+    this.disableSubmitButton(true);
   },
 
   // --
@@ -99,6 +111,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   purchasesApprovalFailed: function() {
+    this.enableSubmitButton();
   },
 
   // --
