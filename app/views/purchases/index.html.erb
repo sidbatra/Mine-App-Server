@@ -1,7 +1,9 @@
 <div class="bar top border-box gradient v-555-444" style="text-align: center;">
 	
-  <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
-      :class => "logo absolute")%>
+  <%=link_to_if !is_onboarding?,
+      image_tag("logos/mine-h-white-40-brighter-2x.png", 
+        :class => "logo absolute"),
+      root_path(:src => "unapproved_purchases")%>
       
   <span class="rwd-hide" 
     id="progress_message"
