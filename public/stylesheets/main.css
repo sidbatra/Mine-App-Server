@@ -467,12 +467,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: 692px; 
 	padding-left: 16px;
 	margin: 64px auto 24px;
-	background: white;
-/*
-	border-right: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
-	border-left: 1px solid #DDD; 
-*/}
+	background: white; }
 	
 .feed-grid-container .feed-loading { margin-left: -16px; }
 
@@ -820,7 +815,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	right: 0;
 	width: 58px;
 	height: 28px;
-	line-height: 28px;
+	line-height: 28px !important;
 	padding: 0px;
 	-webkit-border-radius: 2px !important;
 	-moz-border-radius: 2px !important;
