@@ -33,7 +33,7 @@ ssh_options[:forward_agent] = true
 ssh_options[:paranoid] = false
 
 
-after "deploy:restart", "deploy:cleanup"
+after "deploy:release", "deploy:cleanup"
 
 
 
