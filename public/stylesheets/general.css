@@ -430,6 +430,17 @@ input.error:focus, textarea.error:focus {
 .btn.btn-silver:hover { 
 	background-color: #555 !important;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.8); }
+.btn.btn-silver.disabled {
+	color: #ccc;
+	background: #555 !important; 
+	background-image: none !important;
+	box-shadow: none !important;
+	border: none !important; 
+	text-shadow: none; }
+	
+.btn .disabled-on { display: none; }
+.btn.disabled:hover .disabled-on { display: inline; }
+.btn.disabled:hover .disabled-off { display: none; }
 
 /*
 .btn.btn-silver.btn-large { background-color: #a0a0a0; }

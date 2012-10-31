@@ -1220,11 +1220,13 @@ a.feed-intro .highlight { font-weight: bold; }
 	top: 10px;
 	left: 15px; }
 
-.chooser .search-bar .search-container {
+.inset-container {
 	display: inline-block;
+	padding: 6px; 
+	background: #474747;
 	white-space: nowrap; }
 	
-.chooser .search-bar .search-container .prompt {
+.chooser .search-bar .inset-container .prompt {
 	display: inline-block;
 	vertical-align: top;
 	height: 40px;
@@ -1380,6 +1382,28 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: 436px;
 	top: 72px;
 	margin: 0 0 0 -218px; }
+
+
+/* Email Import Picker
+==================================================================== */	
+	
+.inset-container .inset-message {
+	text-align: left; 
+	width: 388px; 
+	font-weight: bold; 
+	line-height: 40px; 
+	font-size: 20px; 
+	color: white; 
+	text-shadow: 0 1px 1px rgba(0,0,0,0.4); }
+	
+.inset-message span { display: none; }
+
+.inset-message span img { padding: 0 8px 0 14px; margin-top: -2px; }
+.inset-message span .icon-white { margin: 6px 9px 0 15px; }
+
+.inset-message.working  .message-working,
+.inset-message.complete .message-complete,
+.inset-message.update   .message-update   { display: block; }
 	
 	
 /* Settings

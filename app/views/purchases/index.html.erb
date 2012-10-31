@@ -1,22 +1,41 @@
-<div class="bar top border-box gradient v-555-444" style="text-align: center;">
+<div class="bar top border-box gradient v-555-444" style="text-align: center; padding: 6px 0;">
 	
   <%=link_to_if !is_onboarding?,
       image_tag("logos/mine-h-white-40-brighter-2x.png", 
         :class => "logo absolute"),
       root_path(:src => "unapproved_purchases")%>
       
-  <span class="rwd-hide" 
-    id="progress_message"
-    style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
-  </span>
-  
-  <a href="javascript:void(0)"
-      id="submit_button"
-			class="btn btn-silver btn-large border-box rounded-3 shaded"
-			style="width: 176px;">
-			Import into Mine
-		<i class="icon-loading icon-white"></i>
-	</a>
+	<div class="inset-container relative well-box border-box rounded-8">
+				
+		<div id="" class="inset-message inline-block working">
+			<span class="message-working">
+    	<%=image_tag "loading/loading-sync-FFF-474747.gif",
+     			:class => "sync"%>
+     	Finding your recent purchases...
+			</span>
+			<span class="message-complete">
+				<i class="icon-ok icon-white"></i> 
+				Done.
+			</span>
+			<span class="message-update">
+				<i class="icon-ok icon-white"></i> 
+				Review your recent purchases.
+			</span>
+ 	 	</div>
+
+	  <a href="javascript:void(0)"
+	      id="submit_button"
+				class="btn btn-silver btn-large border-box rounded-3 shaded disabled"
+				style="width: 176px; vertical-align: top;">
+				<span class="disabled-off">
+					Import these items
+				</span>
+				<span class="disabled-on">
+					Almost ready!
+				</span>
+		</a>
+	
+  </div>
       
   <a id="cancel_button" class="close opacity-60-80 absolute alias-smooth transition-opacity" href="javascript:void(0)">
 		×
@@ -32,8 +51,7 @@
 	<div id="feed-spinner" class="feed-loading white">
 	</div> 
 </div> <!-- feed container -->
-
-
+  
 <%content_for :javascript do%>
   <script type="text/javascript">
     $('#container').addClass('fullscreen');
