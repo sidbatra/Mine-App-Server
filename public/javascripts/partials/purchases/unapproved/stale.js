@@ -49,6 +49,12 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
       error: function(){self.purchasesLoadingFailed();}});
   },
 
+  purchasesFinished: function() {
+    this.disabled = true;
+    $(this.spinnerEl).hide();
+    this.trigger(Denwen.Partials.Purchases.Unapproved.Stale.Callback.PurchasesFinished);
+  },
+
 
   // -
   // Callbacks from fetching and populating the feed.
@@ -71,15 +77,13 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
     this.loading = false;
 
     if(this.purchases.isEmpty()) {
-      this.disabled = true;
-      $(this.spinnerEl).hide();
+      this.purchasesFinished();
     }
     else {
       var newOldestItemTimestamp = this.purchases.last().creationTimestamp;
 
       if(this.oldestItemTimestamp == newOldestItemTimestamp) {
-        this.disabled = true;
-        $(this.spinnerEl).hide();
+        this.purchasesFinished();
       }
 
       this.oldestItemTimestamp = newOldestItemTimestamp;
@@ -117,3 +121,7 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
   }
 
 });
+
+Denwen.Partials.Purchases.Unapproved.Stale.Callback = {
+  PurchasesFinished: "purchasesFinished"
+};

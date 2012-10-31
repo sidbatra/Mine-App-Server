@@ -36,13 +36,14 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       $(this.progressMessageEl).addClass('working');
     }
     else {
-      this.enableSubmitButton();
-
       this.stalePurchases = new Denwen.Partials.Purchases.Unapproved.Stale({
                                   el:$(this.feedEl),
                                   spinnerEl:this.feedSpinnerEl});
 
-      $(this.progressMessageEl).addClass('update');
+      this.stalePurchases.bind(
+        Denwen.Partials.Purchases.Unapproved.Stale.Callback.PurchasesFinished,
+        this.stalePurchasesFinished,
+        this);
     }
 
     Denwen.NM.bind(
@@ -125,6 +126,15 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   livePurchasesFinished: function() {
     this.enableSubmitButton();
     $(this.progressMessageEl).addClass('complete');
+  },
+
+  // --
+  // Callbacks from stale purchases
+  // --
+
+  stalePurchasesFinished: function() {
+    this.enableSubmitButton();
+    $(this.progressMessageEl).addClass('update');
   },
 
   // Listener for the NM callback when the cross button of a purchase
