@@ -16,7 +16,6 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.progressMessageEl = '#progress_message';
     this.submitEl = '#submit_button';
     this.submitEnabled = false;
-    this.doneLoadingMessage = "Here's what we found in your email."
 
 
     if(this.liveMode) {
@@ -27,14 +26,14 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       this.livePurchases.bind(
         Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesFinished,
         this.livePurchasesFinished,
-        this)
+        this);
 
       this.livePurchases.bind(
         Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesStarted,
         this.livePurchasesStarted,
-        this)
+        this);
 
-      $(this.progressMessageEl).html("Finding your latest purchases...");
+      $(this.progressMessageEl).addClass('working');
     }
     else {
       this.enableSubmitButton();
@@ -43,7 +42,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
                                   el:$(this.feedEl),
                                   spinnerEl:this.feedSpinnerEl});
 
-      $(this.progressMessageEl).html(this.doneLoadingMessage);
+      $(this.progressMessageEl).addClass('update');
     }
 
     Denwen.NM.bind(
@@ -66,6 +65,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   enableSubmitButton: function() {
+    $(this.submitEl).removeClass('disabled');
     $(this.submitEl).removeClass('load');
     this.submitEnabled = true;
   },
@@ -73,6 +73,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   disableSubmitButton: function(withSpinner) {
     if(withSpinner)
       $(this.submitEl).addClass('load');
+    else
+      $(this.submitEl).addClass('disabled');
 
     this.submitEnabled = false;
   },
@@ -117,12 +119,12 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   // --
 
   livePurchasesStarted: function() {
-    this.enableSubmitButton();
+    //this.enableSubmitButton();
   },
 
   livePurchasesFinished: function() {
     this.enableSubmitButton();
-    $(this.progressMessageEl).html(this.doneLoadingMessage);
+    $(this.progressMessageEl).addClass('complete');
   },
 
   // Listener for the NM callback when the cross button of a purchase
