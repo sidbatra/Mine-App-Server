@@ -55,8 +55,6 @@
   
 <%content_for :javascript do%>
   <script type="text/javascript">
-    $('#container').addClass('fullscreen');
-
     new Denwen.Views.Purchases.Unapproved({
       source  : "<%=h @source%>",
       mode : "<%=h params[:mode]%>",

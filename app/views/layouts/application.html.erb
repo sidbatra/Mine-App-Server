@@ -21,12 +21,16 @@
     <%=yield :top%>
   	
   	<!-- wrapper for sticky header -->
-  	<div id="wrapper" class="wrapper">
+  	<div id="wrapper" 
+         class="wrapper"
+         style="<%=is_fullscreen_page? ? 'background: none': ''%>">
     
 	    <div id="fb-root">
       </div> 
 	    
-	    <div id="container" class="container border-box relative">   
+	    <div id="container" 
+        class="container border-box 
+                relative <%=is_fullscreen_page? ? 'fullscreen' : ''%>">   
 	
 		    <%=render "headers/default" unless hide_header?%>
 		    
