@@ -551,6 +551,18 @@ a.feed-intro .highlight { font-weight: bold; }
 .item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
 .item .photo-box .actions.bottom-right { bottom: 24px; right: 24px; }
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
+
+.hover-appear { 
+	opacity: 0;
+	filter: alpha(opacity=0); }
+
+.item .photo-box:hover .actions .hover-appear { 	
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+	-webkit-transition: opacity .25s ease-in;
+	-moz-transition: opacity .25s ease-in;
+	-o-transition: opacity .25s ease-in;
+	transition: opacity .25s ease-in; }
 	
 .item .photo-box .like {
 	width: 46px;

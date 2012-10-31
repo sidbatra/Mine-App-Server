@@ -556,7 +556,15 @@ input.error:focus, textarea.error:focus {
 .icon-accessory.icon-white {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -264px 0; }
-
+  
+.icon-discover {
+	background-image: url("/images/glyphicons-halflings-custom.png")!important;
+  background-position: -288px 0; }
+  
+.icon-discover.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -288px 0; }
+  
 
 /* ----- loading button states ----- */
 .btn.pushed, .btn-pushed:hover, 
