@@ -1418,15 +1418,15 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .inset-message.working  .message-working, 
 .inset-message.complete .message-complete, 
-.inset-message.update  .message-update {display: block;}
+.inset-message.update  .message-update { display: block; }
 
 .inset-message.working  .message-complete,
 .inset-message.working  .message-update,
-.inset-message.complete .message-working {display: none;}
+.inset-message.complete .message-working { display: none; }
 
 .inset-message.complete .message-update,
 .inset-message.update  .message-working,
-.inset-message.update  .message-complete {display: none;}
+.inset-message.update  .message-complete { display: none; }
 
 .progress-message.working .message-working,
 .progress-message.nothing .message-nothing { display: block; }
