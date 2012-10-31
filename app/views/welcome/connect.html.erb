@@ -13,14 +13,16 @@
 		    href="javascript:void(0)" 
 		    style="width: 33.3333%;">
 		  <%=image_tag "logos/email-google-logo-30.png",
-		      :class => ""%>
+		      :class => "hide-when-loading"%>
+		  <i class="icon-loading icon-white"></i>
 		</a>
 		<a id="yahoo_connect_button"
 		    class="btn btn-large btn-silver shaded rounded-3" 
 		    href="javascript:void(0)" 
 		    style="margin-left: 1.61%; width: 33.3333%;">
 		  <%=image_tag "logos/email-yahoo-logo-30.png",
-		      :class => ""%>
+		      :class => "hide-when-loading"%>
+		  <i class="icon-loading icon-white"></i>
 		</a>
 		
 	</div>
@@ -46,3 +48,9 @@
           successURL: "<%=welcome_path(WelcomeFilter::History,:mode => 'live')%>"});
   </script>
 <%end%>
+
+
+<span class="hide-when-loading">
+    	<span class="rwd-hide">Follow</span>
+    	<i class="icon-plus rwd-show"></i>
+    </span>
