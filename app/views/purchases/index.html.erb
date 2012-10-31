@@ -11,7 +11,7 @@
 			<span class="message-working">
     	<%=image_tag "loading/loading-sync-FFF-474747.gif",
      			:class => "sync"%>
-     	Finding your recent purchases...
+     	Loading your recent purchases...
 			</span>
 			<span class="message-complete">
 				<i class="icon-ok icon-white"></i> 
@@ -44,13 +44,25 @@
 	
 </div>
 
-<div class="feed-grid-container border-box rounded-8-bottom">
+<div class="feed-grid-container border-box rounded-8-bottom" style="padding-bottom: 32px;">
 
-	<div id="feed" class="feed grid no-user-photo no-user-name no-user-bought-pronoun actions link-disabled rounded-8-bottom">
+	<div id="feed-balls" class="feed grid no-user-photo no-user-name no-user-bought-pronoun actions link-disabled rounded-8-bottom">
+  </div>
+  
+  <div class="progress-message working" style="padding-top: 32px; line-height: 24px; color: #999; font-size: 16px; text-align: center;">
+		<span class="message-working">
+				<%=image_tag "cat-wait.gif",
+	     			:class => "rounded-5",
+	     			:style => "padding-bottom: 20px;"%>
+	    <br>
+	    We'll have something for you in a few seconds.
+    </span>
+    <span class="message-nothing">
+	    Sorry, Mine couldn't find any of your e-receipts at this time. 
+	    <a class="light underlined" href="/">Close</a>
+    </span>
   </div>
 
-	<div id="feed-spinner" class="feed-loading white">
-	</div> 
 </div> <!-- feed container -->
   
 <%content_for :javascript do%>
