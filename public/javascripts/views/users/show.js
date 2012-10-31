@@ -30,6 +30,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     // -----
     this.displayFlashMessage();
 
+    if(this.source == "mined")
+      Denwen.Drawer.success("Import successful. Mine will notify you when you have new items.",0);
+
     // -----
     this.setAnalytics();
   },
