@@ -5,13 +5,13 @@ module DW
 
     class PurchaseExtractor
       
-      def initialize
+      def initialize(start_date=DateTime.new(2011,10,1,0,0,0))
         @user = nil
         @stores = nil
         @existing_purchases = nil
         @email_connection = nil
         @provider = nil
-        @start_date = DateTime.new 2011,10,1,0,0,0
+        @start_date = start_date
       end
 
       def populate_email_parseable_stores
@@ -102,6 +102,7 @@ module DW
 
       def mine_emails_for_user(user)
         @user = user
+        start_time = Time.now
 
         populate_email_parseable_stores
         populate_existing_purchases
@@ -119,6 +120,9 @@ module DW
 
           threads.each {|thread| thread.join}
         end 
+
+        @user.email_mined_till = start_time
+        @user.save!
       end
 
     end #purchase extractor
