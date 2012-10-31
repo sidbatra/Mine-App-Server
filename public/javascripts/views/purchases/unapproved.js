@@ -14,6 +14,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.feedEl  = '#feed';
     this.feedSpinnerEl  = '#feed-spinner';
     this.progressMessageEl = '#progress_message';
+    this.centralMessageEl = '#central_message';
     this.submitEl = '#submit_button';
     this.submitEnabled = false;
 
@@ -43,6 +44,11 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       this.stalePurchases.bind(
         Denwen.Partials.Purchases.Unapproved.Stale.Callback.PurchasesFinished,
         this.stalePurchasesFinished,
+        this);
+
+      this.stalePurchases.bind(
+        Denwen.Partials.Purchases.Unapproved.Stale.Callback.PurchasesStarted,
+        this.stalePurchasesStarted,
         this);
     }
 
@@ -120,21 +126,37 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   // --
 
   livePurchasesStarted: function() {
-    //this.enableSubmitButton();
+    $(this.centralMessageEl).hide();
   },
 
   livePurchasesFinished: function() {
-    this.enableSubmitButton();
     $(this.progressMessageEl).addClass('complete');
+
+    if(this.livePurchases.purchases.isEmpty()) {
+      $(this.centralMessageEl).addClass('nothing');
+    }
+    else {
+      this.enableSubmitButton();
+    }
   },
 
   // --
   // Callbacks from stale purchases
   // --
 
+  stalePurchasesStarted: function() {
+    $(this.centralMessageEl).hide();
+  },
+
   stalePurchasesFinished: function() {
-    this.enableSubmitButton();
     $(this.progressMessageEl).addClass('update');
+
+    if(this.stalePurchases.purchases.isEmpty()) {
+      $(this.centralMessageEl).addClass('nothing');
+    }
+    else {
+      this.enableSubmitButton();
+    }
   },
 
   // Listener for the NM callback when the cross button of a purchase
@@ -142,9 +164,6 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   //
   purchaseCrossClicked: function(purchase) {
     this.rejectedPurchaseIDs.push(purchase.get('id'));
-
-    if(!this.liveMode)
-      this.stalePurchases.emptySpaceTest();
   }
 
 });

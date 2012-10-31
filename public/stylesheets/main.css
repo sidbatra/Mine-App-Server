@@ -1416,24 +1416,21 @@ a.feed-intro .highlight { font-weight: bold; }
 .inset-message span img { padding: 0 8px 0 14px; margin-top: -2px; }
 .inset-message span .icon-white { margin: 6px 9px 0 15px; }
 
-.inset-message.working  .message-working, 
-.inset-message.complete .message-complete, 
-.inset-message.update  .message-update { display: block; }
+.inset-message.working  .message-working  {display: block;}
+.inset-message.working  .message-complete {display: none;}
+.inset-message.working  .message-update   {display: none;}
+.inset-message.complete .message-working  {display: none;}
+.inset-message.complete .message-complete {display: block;}
+.inset-message.complete .message-update   {display: none;}
+.inset-message.update  .message-working  {display: none;}
+.inset-message.update  .message-complete {display: none;}
+.inset-message.update  .message-update   {display: block;}
 
-.inset-message.working  .message-complete,
-.inset-message.working  .message-update,
-.inset-message.complete .message-working { display: none; }
-
-.inset-message.complete .message-update,
-.inset-message.update  .message-working,
-.inset-message.update  .message-complete { display: none; }
-
-.progress-message.working .message-working,
+.progress-message.working .message-working {display:block;}
+.progress-message.working .message-nothing {display:none;}
 .progress-message.nothing .message-nothing { display: block; }
+.progress-message.nothing .message-working { display: none; }
 
-.progress-message.nothing .message-working,
-.progress-message.working .message-nothing { display: none; }
-	
 	
 /* Settings
 ==================================================================== */

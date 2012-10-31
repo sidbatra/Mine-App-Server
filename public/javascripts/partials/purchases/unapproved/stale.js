@@ -85,6 +85,10 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
       if(this.oldestItemTimestamp == newOldestItemTimestamp) {
         this.purchasesFinished();
       }
+      else if(!this.oldestItemTimestamp) {
+        this.trigger(
+          Denwen.Partials.Purchases.Unapproved.Stale.Callback.PurchasesStarted);
+      }
 
       this.oldestItemTimestamp = newOldestItemTimestamp;
 
@@ -123,5 +127,6 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
 });
 
 Denwen.Partials.Purchases.Unapproved.Stale.Callback = {
+  PurchasesStarted: "purchasesStarted",
   PurchasesFinished: "purchasesFinished"
 };
