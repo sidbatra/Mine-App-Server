@@ -75,11 +75,13 @@
 	          <%=purchase.get('user').escape('first_name')%>   
 	          <%=purchase.get('user').escape('last_name')%></a> 
 			
-			    bought 
-			
-			    <%if(purchase.get('store')){%>
-			      <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
-			    <%}%>
+          <span class="user-bought-pronoun">
+            bought 
+        
+            <%if(purchase.get('store')){%>
+              <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
+            <%}%>
+          </span>
 			
 			    <a id="purchase_title_<%=purchase.get('id')%>"
 	            href="<%=purchase.get('source_url')%>" 

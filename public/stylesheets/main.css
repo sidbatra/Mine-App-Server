@@ -526,6 +526,9 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed.grid.no-user-photo .item .panel .title-box { padding-left: 0; }
 .feed.grid.no-user-photo .item .panel .title-box .user-photo { display: none; }
 
+.feed.grid.no-user-name .item .panel .title-box .user-name { display: none; }
+.feed.grid.no-user-bought-pronoun .item .panel .title-box .user-bought-pronoun { display: none; }
+
 	
 /* Item
 ==================================================================== */
