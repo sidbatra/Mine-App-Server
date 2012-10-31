@@ -10,20 +10,8 @@
     style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
   </span>
       
-<!--
   <a id="cancel_button" class="close opacity-60-80 absolute alias-smooth transition-opacity" href="javascript:void(0)">
 		×
-	</a>
--->
-
-	<a href="javascript:void(0)"
-      id="submit_button"
-			class="btn btn-red btn-large border-box rounded-3 absolute shaded"
-			style="width: 160px; top: 12px; right: 12px;">
-		<span class="hide-when-loading">
-			<i class="icon-ok icon-white" style="padding-right: 4px;"></i> Add to Mine
-		</span>
-		<i class="icon-loading icon-white"></i>
 	</a>
 	
 </div>
@@ -36,6 +24,22 @@
 	<div id="feed-spinner" class="feed-loading white">
 	</div> 
 </div> <!-- feed container -->
+
+
+<div class="bar bottom border-box gradient v-555-444" style="text-align: center;">
+
+	<a href="javascript:void(0)"
+      id="submit_button"
+			class="btn btn-red btn-large border-box rounded-3 shaded"
+			style="width: 444px;">
+		<span class="hide-when-loading">
+			<i class="icon-ok icon-white" style="padding-right: 4px;"></i> Import into Mine
+		</span>
+		<i class="icon-loading icon-white"></i>
+	</a>
+
+</div>
+
 
 
 <%content_for :javascript do%>

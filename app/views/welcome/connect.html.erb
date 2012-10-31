@@ -1,29 +1,42 @@
-
 <div class="well-box padded border-box rounded-8 relative">
-  <div class="email-action-box relative">		
-    <span class="txt m top-line opacity-80">
-      Import purchases automagically via your inbox.
-    </span>
-    <br>
-    <a class="txt s bottom-line opacity-80-100 transition-opacity" href="/">
-      Learn more
-    </a>
-    <a id="google_connect_button"
-       class="btn btn-small btn-silver shaded rounded-3 absolute" 
-        href="javascript:void(0)" 
-        style="width: 15%; top: 12px; right: 16.61%;">
-      <%=image_tag "logos/email-google-logo-18.png",
-          :class => ""%>
-    </a>
-    <a id="yahoo_connect_button"
-        class="btn btn-small btn-silver shaded rounded-3 absolute" 
-        href="javascript:void(0)" 
-        style="width: 15%; top: 12px; right: 0;">
-      <%=image_tag "logos/email-yahoo-logo-18.png",
-          :class => ""%>
-    </a>
-  </div>
-</div>
+
+	<h2>Import your purchases, automagically</h2>
+	
+	<p class="txt m border-box">
+		Connect you email and sit back while Mine revives your e-receipts.
+	</p>
+	
+	<div style="padding: 12px 0 22px;">
+	
+		<a id="google_connect_button"
+		   class="btn btn-large btn-silver shaded rounded-3" 
+		    href="javascript:void(0)" 
+		    style="width: 33.3333%;">
+		  <%=image_tag "logos/email-google-logo-30.png",
+		      :class => ""%>
+		</a>
+		<a id="yahoo_connect_button"
+		    class="btn btn-large btn-silver shaded rounded-3" 
+		    href="javascript:void(0)" 
+		    style="margin-left: 1.61%; width: 33.3333%;">
+		  <%=image_tag "logos/email-yahoo-logo-30.png",
+		      :class => ""%>
+		</a>
+		
+	</div>
+
+
+	<span class="txt s">
+		<a class="opacity-80-100 transition-opacity" href="/">
+			Learn more
+		</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a class="opacity-80-100 transition-opacity" href="/" >
+			Skip
+		</a>
+	</span>
+
+</div> <!-- /well-box -->
 
 
 <%content_for :javascript do%>
