@@ -42,11 +42,15 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
   googleClicked: function() {
     $(this.googleEl).addClass(this.loadClass);
     this.googleAuth.showAuthDialog();
+
+    Denwen.Track.action("Google Connect Initiated");
   },
 
   yahooClicked: function() {
     $(this.yahooEl).addClass(this.loadClass);
     this.yahooAuth.showAuthDialog();
+
+    Denwen.Track.action("Yahoo Connect Initiated");
   },
 
   authAccepted: function() {

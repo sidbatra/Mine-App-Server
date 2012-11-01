@@ -89,6 +89,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   submitClicked: function() {
     if(!this.submitEnabled)
       return false;
+
+    Denwen.Track.action("Import Purchases Clicked");
     
     var self = this;
 
