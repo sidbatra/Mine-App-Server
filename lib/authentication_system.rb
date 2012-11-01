@@ -107,7 +107,7 @@ module DW
       signature = Digest::MD5.hexdigest "--#{CONFIG[:iphone_salt]}"\
                     "--#{request.url.slice(0,auth_secret_index)}"
 
-      return nil unless signature == params[:auth_secret].downcase
+      return nil unless signature == params[:auth_secret].downcase || /\/auth/ === request.url
 
       User.find Cryptography.deobfuscate(params[:auth_id])
     rescue

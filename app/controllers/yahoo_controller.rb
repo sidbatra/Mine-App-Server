@@ -1,4 +1,5 @@
 class YahooController < ApplicationController
+  before_filter :login_required
 
   def create
     @usage = params[:usage] ? params[:usage].to_sym : :popup
