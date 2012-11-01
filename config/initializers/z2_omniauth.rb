@@ -1,9 +1,6 @@
 
 ActionController::Dispatcher.middleware.use OmniAuth::Builder do
-  provider :google, 
-    CONFIG[:google_client_id], 
-    CONFIG[:google_client_secret],
-    {:scope => "https://mail.google.com/"}
+  provider :google, CONFIG[:google_client_id], CONFIG[:google_client_secret]
   provider :yahoo, CONFIG[:yahoo_consumer_key], CONFIG[:yahoo_consumer_secret]
 end
 
