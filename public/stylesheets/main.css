@@ -539,11 +539,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: auto;
 	min-height: 150px;
 	padding: 4.615384615%;
-/* 	background: url('/images/loading/loading-snake-555.gif') center no-repeat; */
 	text-align: center;
 	line-height: 1; }
 
-/* .item .photo-box .item-photo { max-height: 472px; } */
 .item .photo-box .item-photo { max-height: 354px; }
 
 .item .photo-box .actions { line-height: 0; }
@@ -727,6 +725,19 @@ a.feed-intro .highlight { font-weight: bold; }
 	padding: 1.25%
 	height: auto;
 	max-height: 10%; }
+
+	
+/* Custom items
+==================================================================== */
+
+.item-photo.app-ios {
+	max-width: 200px;
+	-webkit-border-radius: 37px !important;
+	-moz-border-radius: 37px !important;
+	border-radius: 37px !important;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important; }
 
 
 /* Profile
