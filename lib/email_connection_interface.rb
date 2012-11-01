@@ -100,4 +100,30 @@ module DW
 
   end #email connection interface
 
+  # Extend the Mail::Message class implemented by the Mail gem.
+  #
+  class Mail::Message
+    attr_reader :is_text_html
+
+    # Returns the text with the following priority order:
+    # html_part, text_part, body
+    #
+    def text
+      text = html_part.to_s
+      @is_text_html = true
+
+      unless text.present?
+        text = text_part.to_s 
+        @is_text_html = false
+      end
+
+      unless text.present?
+        text = body.to_s 
+        @is_text_html = false
+      end
+
+      text
+    end
+  end
+
 end #dw

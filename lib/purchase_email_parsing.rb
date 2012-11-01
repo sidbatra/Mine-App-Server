@@ -97,7 +97,8 @@ module DW
 
       def parse_digital_email(email)
         purchases = []
-        text = email.html_part.to_s
+        text = email.text
+
         product_ids = text.
                         scan(/www.amazon.com\/gp\/product\/([\w]+)/).
                         flatten.
@@ -111,11 +112,13 @@ module DW
 
       def parse_offline_email(email)
         purchases = []
-        text = email.html_part.to_s
+        text = email.text
+
         product_names = text.
-                          scan(/<b>"([^"]+)"<\/b>/).
+                          scan(/<b>"(.+)"<\/b>|[\d]+ "(.+)"/).
                           flatten.
-                          uniq
+                          uniq.
+                          compact
 
         product_names.each do |product_name|
           purchases << initial_purchase_hash(product_name,text,email)
@@ -174,7 +177,7 @@ module DW
         purchases = []
 
         emails.each do |email|
-          text = email.html_part.to_s
+          text = email.text
           product_ids = text.
                           scan(/addUserReview?[^(]+&id=([D\d]+)/).
                           flatten.
