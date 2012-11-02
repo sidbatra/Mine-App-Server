@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Mixins
   #----------------------------------------------------------------------
+  extend ActiveSupport::Memoizable
   include DW::Handler
 
   #----------------------------------------------------------------------
@@ -146,6 +147,11 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
+
+  def purchases_count
+    purchases.approved.count
+  end
+  memoize :purchases_count
 
   # Updated the visited_at datetime to the current time.
   #
