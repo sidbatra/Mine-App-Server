@@ -72,7 +72,8 @@
     new Denwen.Views.Purchases.Unapproved({
       source  : "<%=h @source%>",
       mode : "<%=h params[:mode]%>",
-      successURL: "<%=user_path(self.current_user.handle,:src =>'mined')%>"
+      successURL: "<%=user_path(self.current_user.handle,:src =>'mined')%>",
+      successZeroURL: "<%=root_path(:src => 'not_mined')%>"
       });
   </script>
 <%end%>

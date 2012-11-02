@@ -66,6 +66,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     
     //this.loadFacebookPlugs();
 
+    if(this.source == "not_mined")
+      Denwen.Drawer.info("Nothing imported. Mine will notify you when you have new items.",0);
+
 
     this.setAnalytics();
   },

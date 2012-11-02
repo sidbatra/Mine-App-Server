@@ -8,6 +8,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.source = this.options.source;
     this.mode = this.options.mode;
     this.successURL = this.options.successURL;
+    this.successZeroURL = this.options.successZeroURL;
     this.liveMode = this.mode == "live";
     this.rejectedPurchaseIDs = [];
 
@@ -109,6 +110,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       success: function(data) {self.purchasesApproved();},
       error: function() {self.purchasesApprovalFailed();}});
 
+    this.selectedPurchasesCount = selectedPurchaseIDs.length;
     this.disableSubmitButton(true);
   },
 
@@ -116,7 +118,9 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   // Callbacks from purchases approval
   // --
   purchasesApproved: function() {
-    window.location.href = this.successURL;
+    window.location.href = this.selectedPurchasesCount ? 
+                            this.successURL :
+                            this.successZeroURL;
   },
 
   purchasesApprovalFailed: function() {
