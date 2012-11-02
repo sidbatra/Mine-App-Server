@@ -88,23 +88,26 @@ module DW
         products
       end
 
-      def initial_purchase_hash(key,text,email)
+      def initial_purchase_hash(key,text,email,search_by_name=true)
         {:asn_key => key,
           :bought_at => email.date,
           :text => text,
-          :message_id => email.message_id}
+          :message_id => email.message_id,
+          :search_by_name => search_by_name}
       end
 
       def parse_digital_email(email)
         purchases = []
         text = email.text
+        regex = email.is_text_html? ?
+                  /www.amazon.com\/gp\/product\/([\w]+)/ :
+                  /^([[:print:]]+\n{0,1}[[:print:]]+) \[/
 
-        product_ids = text.
-                        scan(/www.amazon.com\/gp\/product\/([\w]+)/).
-                        flatten.
-                        uniq
+        product_ids = text.scan(regex).flatten.uniq
+
         product_ids.each do |product_id|
-          purchases << initial_purchase_hash(product_id,text,email)
+          product_id = product_id.gsub("\n", " ")
+          purchases << initial_purchase_hash(product_id,text,email,!email.is_text_html?)
         end
 
         purchases
@@ -113,9 +116,12 @@ module DW
       def parse_offline_email(email)
         purchases = []
         text = email.text
+        regex = email.is_text_html? ?
+                  /<b>"(.+)"<\/b>/ :
+                  /[\d]+ "(.+)"/
 
         product_names = text.
-                          scan(/<b>"(.+)"<\/b>|[\d]+ "(.+)"/).
+                          scan(regex).
                           flatten.
                           uniq.
                           compact
@@ -136,11 +142,15 @@ module DW
                         parse_offline_email(email)
         end
 
-        purchase_keys = purchases.map{|p| p[:asn_key]}
+        amazon_products = {}
 
-        amazon_products = @is_digital ? 
-                            find_products_on_amazon(purchase_keys) :
-                            search_products_on_amazon(purchase_keys)
+        ids,names = purchases.group_by{|p| p[:search_by_name]}.
+                      values_at(false,true).
+                      map{|group| group.map{|p| p[:asn_key]} if group}
+
+        amazon_products.merge!(find_products_on_amazon(ids)) if ids.present?
+        amazon_products.merge!(search_products_on_amazon(names)) if names.present?
+
 
         purchases.map do |purchase|
           next unless product = amazon_products[purchase[:asn_key]]
