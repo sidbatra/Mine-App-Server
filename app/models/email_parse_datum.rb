@@ -1,6 +1,6 @@
 class EmailParseDatum < ActiveRecord::Base
   belongs_to :store
-  attr_accessible :is_active, :emails
+  attr_accessible :is_active, :emails, :weight
 
   #----------------------------------------------------------------------
   # Validations

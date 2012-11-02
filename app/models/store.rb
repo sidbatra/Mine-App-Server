@@ -34,7 +34,8 @@ class Store < ActiveRecord::Base
                             :conditions => {:crawl_data => {:active => true}}
   named_scope :parseable,   :joins => :email_parse_datum, 
                             :conditions => {:email_parse_data => 
-                                              {:is_active => true}}
+                                              {:is_active => true}},
+                            :order => 'email_parse_data.weight DESC'
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'purchases_count DESC'
   named_scope :purchases_count_gt, lambda {|count| {
