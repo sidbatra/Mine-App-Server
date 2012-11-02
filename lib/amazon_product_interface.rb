@@ -33,6 +33,12 @@ module DW
                     :item_page => page,
                     :search_index => "All",
                     :url_only => url_only})
+
+        unless url_only
+          result = result.items.map{|item| AmazonProduct.new item}
+        end
+
+        result
       end
 
       # Retrieve multiple amazon products based on ids.

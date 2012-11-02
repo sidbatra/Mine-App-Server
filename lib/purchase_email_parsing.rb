@@ -44,11 +44,16 @@ module DW
         products = {}
 
         product_ids.in_groups_of(10,false).each do |group|
+        begin
           AmazonProductSearch.lookup_products(group).each do |product|
             products[product.product_id] = product
           end
-
-          sleep 0.5
+    
+        rescue => ex
+          puts ex.message
+        ensure
+          sleep 1.0
+        end
         end
 
         products
@@ -57,33 +62,45 @@ module DW
       def search_products_on_amazon(product_names)
         products = {}
 
-        product_names.in_groups_of(10,false).each do |group|
-          hydra = Typhoeus::Hydra.new :max_concurrency => 2
+        product_names.each do |product_name|
+        begin
+          product = AmazonProductSearch.fetch_products("\"#{product_name}\"",1,false).first
+          products[product_name] = product if product
 
-          group.each do |product_name|
-            request = Typhoeus::Request.new(
-                        AmazonProductSearch.fetch_products("\"#{product_name}\"",1,true),
-                        :connect_timeout => 1000,
-                        :timeout => 3500)
+        rescue => ex
+          puts ex.message
+        ensure
+          sleep 1.0
+        end
+        end
 
-            request.on_complete do |response| 
-              begin
-                item = Amazon::Ecs::Response.new(response.body).items.first
+        #product_names.in_groups_of(10,false).each do |group|
+        #  hydra = Typhoeus::Hydra.new :max_concurrency => 1
 
-                if item
-                  product = AmazonProduct.new(item)
-                  products[product_name] = product
-                end
-              rescue => ex
-              end
-            end 
+        #  group.each do |product_name|
+        #    request = Typhoeus::Request.new(
+        #                AmazonProductSearch.fetch_products("\"#{product_name}\"",1,true),
+        #                :connect_timeout => 2000,
+        #                :timeout => 3500)
 
-            hydra.queue request
-          end #group
+        #    request.on_complete do |response| 
+        #      begin
+        #        item = Amazon::Ecs::Response.new(response.body).items.first
 
-          hydra.run
-          sleep 1.5
-        end #groups
+        #        if item
+        #          product = AmazonProduct.new(item)
+        #          products[product_name] = product
+        #        end
+        #      rescue => ex
+        #      end
+        #    end 
+
+        #    hydra.queue request
+        #  end #group
+
+        #  hydra.run
+        #  #sleep 1.5
+        #end #groups
 
         products
       end
