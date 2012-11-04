@@ -286,6 +286,8 @@ class PurchasesController < ApplicationController
       Purchase.update_all(
         {:is_hidden => true},
         {:id => rejected_purchases.map(&:id)})
+
+      self.current_user.touch
     end
   rescue => ex
     handle_exception(ex)
