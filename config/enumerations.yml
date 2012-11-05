@@ -79,6 +79,7 @@
     Like: 0
     Comment: 1
     Following: 2
+    UnapprovedPurchases: 3
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:
