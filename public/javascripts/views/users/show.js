@@ -1,6 +1,12 @@
 // View js for the Users/Show route
 //
 Denwen.Views.Users.Show = Backbone.View.extend({
+
+  // Setup event handlers
+  //
+  events: {
+    "click #fb_share_button" : "showFacebookFeedDialog"
+  },
   
   // Constructor logic
   //
@@ -30,8 +36,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     // -----
     this.displayFlashMessage();
 
-    if(this.source == "mined")
-      Denwen.Drawer.success("Import successful. Mine will notify you when you have new items.",0);
+    if(this.source == 'mined') 
+      this.loadTwitterPlugs();
 
     // -----
     this.setAnalytics();
@@ -41,6 +47,29 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   //
   loadFacebookPlugs: function() {
     new Denwen.Partials.Facebook.Base();
+  },
+
+  // Load twitter plugings 
+  //
+  loadTwitterPlugs: function() {
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  },
+
+  // Show facebook feed dialog 
+  //
+  showFacebookFeedDialog: function() {
+    var url     = 'http://getmine.com' + this.user.path('fb');
+    var display = Denwen.Device.get("is_phone") ? 'touch' : 'popup';
+
+    FB.ui({method: 'feed', 
+      link: url,
+      name:'Title goes here',
+      caption: 'Caption goes here',
+      description: 'Description goes here',
+      display: display},
+      function(response) {});
+
+    Denwen.Track.action("Profile shared on Facebook");
   },
 
   // Public. Display a success or failure message if a flash related

@@ -96,41 +96,39 @@
 </div> <!-- /profile-box -->
 
 
-<!-- Post-email-import share -->
+<%if @source == 'mined'%>
+  <!-- Post-email-import share -->
+  <div class="well-box border-box txt m rounded-8">
 
-<div class="well-box border-box txt m rounded-8">
-	<i class="icon-ok icon-white" style="padding-right: 4px;"></i>
-	Import successful. Tell friends about the update!
-	
-	<!-- Tweet Button 
-	<a href="<%#tw_auth_path(:src => @origin)%>" 
-	    onclick="this.className += ' load';"
-	    class="btn btn-small btn-twitter rounded-3 relative shaded"
-	    style="float: right; width: 80px; margin-top: -3px;">
-	  <span class='hide-when-loading'>
-	    <%#image_tag "social/t-box.png",
-	        :class => "t-box"%>
-	    <span class="rwd-hide"> Tweet</span>
-	  </span>
-	  <i class='icon-loading icon-white'></i>
-	</a> 	
--->
-	
-	<!-- Facebook Share Button -->
-	<a href="<%=fb_auth_path(:src => @origin)%>" 
-	    onclick="this.className += ' load';"
-	    class="btn btn-small btn-facebook rounded-3 relative shaded"
-	    style="float: right; width: 80px; margin-top: -3px;">
-	  <span class='hide-when-loading'>
-	    <%=image_tag "social/f-box.png",
-	        :class => "f-box"%>
-	    <span class="rwd-hide"> Share</span>
-	  </span>
-	  <i class='icon-loading icon-white'></i>
-	</a> 	
+    <i class="icon-ok icon-white" style="padding-right: 4px;"></i>
+    Import successful. Tell friends about the update!
+    
+    <!-- Tweet Button--> 
+    <a href='https://twitter.com/share'
+        class='twitter-share-button'
+        data-lang='en'
+        data-count='none'
+        data-related='getmine'
+        data-dnt='true'
+        data-text='Just started my Mine'
+        data-url=<%=user_url(@user.handle)%>>
+    </a> 	
+    
+    <!-- Facebook Share Button -->
+    <a href='javascript:void(0)'
+        id='fb_share_button'
+        class='btn btn-small btn-facebook rounded-3 relative shaded'
+        style='float: right; width: 80px; margin-top: -3px;'>
+      <span class='hide-when-loading'>
+        <%=image_tag "social/f-box.png",
+            :class => "f-box"%>
+        <span class="rwd-hide"> Share</span>
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a> 	
 
-</div> <!-- Post-email-import share -->
-
+  </div> <!-- Post-email-import share -->
+<%end%>
 
 
 <div class="box-title profile-feed-title relative">
@@ -157,8 +155,6 @@
   <%end%>
 </div> 
 
-
-
 <%content_for :javascript do%>
 
   <script type="text/javascript">  
@@ -167,8 +163,10 @@
           userJSON : <%=@user.to_json(
                                 :only => [:id,:first_name,:last_name,
                                           :handle,:byline])%>,
+          el : $('#container'), 
           source : "<%=h @source%>"});
 
   </script>
+  
 <%end%>
 
