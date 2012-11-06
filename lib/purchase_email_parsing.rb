@@ -118,12 +118,12 @@ module DW
         text = email.text
         regex = email.is_text_html? ?
                   /www.amazon.com\/gp\/product\/([\w]+)/ :
-                  /^([[:print:]]+\n{0,1}[[:print:]]+) \[/
+                  /^([[:print:]]+\r{0,1}\n{0,1}[[:print:]]+) \[/
 
         product_ids = text.scan(regex).flatten.uniq
 
         product_ids.each do |product_id|
-          product_id = product_id.gsub("\n", " ")
+          product_id = product_id.gsub(/\n|\r/," ")
           purchases << initial_purchase_hash(product_id,text,email,!email.is_text_html?)
         end
 
@@ -134,7 +134,7 @@ module DW
         purchases = []
         text = email.text
         regex = email.is_text_html? ?
-                  /<b>"(.+)"<\/b>/ :
+                  /<b>"([[:print:]]+\r{0,1}\n{0,1}[[:print:]]+)"<\/b>/ :
                   /[\d]+ "(.+)"/
 
         product_names = text.
@@ -144,6 +144,7 @@ module DW
                           compact
 
         product_names.each do |product_name|
+          product_name = product_name.gsub(/\n|\r/," ")
           purchases << initial_purchase_hash(product_name,text,email)
         end
 
