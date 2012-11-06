@@ -72,7 +72,7 @@
 </div> <!-- /create-box -->
 
 
-<%if self.current_user.email_authorized?%>
+<%unless self.current_user.email_authorized?%>
   <!-- email importer box -->
   <div class="well-box border-box rounded-8-bottom rwd-hide" 
     style="padding-top: 2px; margin: -17px 0 12px; box-shadow: none;">
