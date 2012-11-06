@@ -63,9 +63,9 @@ Denwen.Views.Users.Show = Backbone.View.extend({
 
     FB.ui({method: 'feed', 
       link: url,
-      name:'Title goes here',
-      caption: 'Caption goes here',
-      description: 'Description goes here',
+      name:'Just added some new items on Mine',
+      caption: 'getmine.com',
+      description: 'You buy great things. Help others discover them too.',
       display: display},
       function(response) {});
 
