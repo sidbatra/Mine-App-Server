@@ -13,6 +13,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     var self = this;
 
     this.source = this.options.source;
+    this.successEmailConnectURL = this.options.successEmailConnectURL;
 
     this.feedEl             = '#feed';
     this.userSuggestionsEl  = '#user_suggestions_box';
@@ -50,6 +51,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     new Denwen.Partials.Users.Suggestions({el:$(this.userSuggestionsEl)});
 
+
+    new Denwen.Partials.Auth.Email({
+        googleEl: '#google_connect_button',
+        yahooEl: '#yahoo_connect_button',
+        successURL: this.successEmailConnectURL});
+
     //this.suggestions = new Denwen.Partials.Feed.Suggestions({
     //                        el:$(this.suggestionsEl),
     //                        suggestionDelegate:this});
@@ -58,6 +65,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     //$("a[rel='tooltip']").tooltip();
     
     //this.loadFacebookPlugs();
+
+    if(this.source == "not_mined")
+      Denwen.Drawer.info("Nothing imported. Mine will notify you when you have new items.",0);
 
 
     this.setAnalytics();

@@ -72,6 +72,8 @@ Rails::Initializer.run do |config|
               :version => '1.0.1')
   config.gem('omniauth-google',
               :version => '1.0.2')
+  config.gem('omniauth-yahoo',
+              :version => '0.0.4')
   config.gem('pismo',
               :version => '0.7.2',
               :lib => false)

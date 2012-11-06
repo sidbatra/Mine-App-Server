@@ -10,6 +10,7 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   belongs_to  :user
   has_one     :crawl_datum, :dependent => :destroy
+  has_one     :email_parse_datum, :dependent => :destroy
   has_many    :purchases
   has_many    :products
   has_many    :shoppings, :dependent => :destroy
@@ -25,11 +26,16 @@ class Store < ActiveRecord::Base
   #----------------------------------------------------------------------
   named_scope :with_purchases, :include => :purchases
   named_scope :with_crawl_datum, :include => :crawl_datum
+  named_scope :with_email_parse_datum, :include => :email_parse_datum
   named_scope :approved,    :conditions => {:is_approved => true}
   named_scope :unapproved,  :conditions => {:is_approved => false}
   named_scope :processed,   :conditions => {:is_processed => true}
   named_scope :crawlable,   :joins => :crawl_datum, 
                             :conditions => {:crawl_data => {:active => true}}
+  named_scope :parseable,   :joins => :email_parse_datum, 
+                            :conditions => {:email_parse_data => 
+                                              {:is_active => true}},
+                            :order => 'email_parse_data.weight DESC'
   named_scope :sorted,      :order      => 'name ASC'
   named_scope :popular,     :order      => 'purchases_count DESC'
   named_scope :purchases_count_gt, lambda {|count| {

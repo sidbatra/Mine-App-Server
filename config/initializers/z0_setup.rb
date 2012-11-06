@@ -32,6 +32,7 @@ include AmazonProductInterface
 include CacheManagement
 include Cron
 include CryptoManagement 
+include EmailConnectionInterface
 include GoogleShoppingInterface
 include ImageProcessing
 include ItunesInterface
@@ -39,7 +40,10 @@ include MailmanInterface
 include NotificationManagement
 include Storage
 include DistributionManagement
+include PurchaseEmailParsing
+include PurchaseExtraction
 include WebSearchInterface
+include YahooAPIInterface
 
 
 

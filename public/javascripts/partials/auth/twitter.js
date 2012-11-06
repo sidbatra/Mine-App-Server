@@ -13,11 +13,7 @@ Denwen.Partials.Auth.Twitter = Backbone.View.extend({
   //
   showAuthDialog: function() {
     var self = this;
-    var oauthWindow = window.open(
-                              '/twitter/authenticate?usage=popup', 
-                              '', 
-                              'width=800, height=600');
-
+    var oauthWindow = Denwen.H.popup('/twitter/authenticate?usage=popup',800,600);
     var oauthInterval = window.setInterval(function(){
                                   if(oauthWindow.closed) {
                                     window.clearInterval(oauthInterval);

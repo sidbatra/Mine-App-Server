@@ -77,6 +77,7 @@ class Admin::StoresController < ApplicationController
 
     when :generic
       store.crawl_datum.update_attributes(params[:store][:crawl_datum])
+      store.email_parse_datum.update_attributes(params[:store][:email_parse_datum])
       store.update_attributes(params[:store])
 
     end # filter

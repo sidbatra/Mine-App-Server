@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  purchase_id: 1
+  message_id: MyString
+  provider: 1
+  text: MyText
+
+two:
+  purchase_id: 1
+  message_id: MyString
+  provider: 1
+  text: MyText

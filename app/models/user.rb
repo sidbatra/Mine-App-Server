@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Mixins
   #----------------------------------------------------------------------
+  extend ActiveSupport::Memoizable
   include DW::Handler
 
   #----------------------------------------------------------------------
@@ -146,6 +147,11 @@ class User < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
+
+  def purchases_count
+    purchases.approved.count
+  end
+  memoize :purchases_count
 
   # Updated the visited_at datetime to the current time.
   #
@@ -335,6 +341,25 @@ class User < ActiveRecord::Base
 
   def google_authorized?
     self.go_email.present? && self.go_token.present? && self.go_secret.present?
+  end
+
+  def yahoo_authorized?
+    yh_token.present? && yh_secret.present? && yh_session_handle.present?
+  end
+
+  def email_authorized?
+    google_authorized? || yahoo_authorized?
+  end
+
+  def refresh_yahoo_token
+    yahoo_api = YahooAPI.new yh_token,yh_secret,yh_session_handle
+
+    access_token = yahoo_api.refresh_access_token
+
+    self.yh_token = access_token[:token]
+    self.yh_secret = access_token[:secret]
+    self.yh_session_handle = access_token[:handle]
+    self.save!
   end
 
   # Obfuscated id for the user

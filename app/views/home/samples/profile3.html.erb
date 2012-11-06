@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%=include_stylesheets :application-%>
+  </head>
+
+  <body>
+  	<div id="container" class="container border-box relative" style="padding-bottom: 26px">   
+		  
+    <%=render "headers/sample" unless @web_view_mode%>
+
+		<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative" style="margin-top: 26px">
+
+  	<div id="user_box" class="user-box">
+  
+			<%=image_tag "home/ag.jpg",
+					:class => "user-photo xxl rounded-3 absolute"%>		
+					        
+    <div class="basics border-box">
+    	<span class="rwd-hide"></span>Alex Grant 
+    	<br>
+    	<span class="item-count">
+        <b>23</b> 
+        items
+      </span>
+     	<img alt="T-box" class="t-box opacity-80-100" src="http://d3sqjd4akk98do.cloudfront.net/4083694da87bcc220eeabb270012c24ec40b2864/images/social/t-box.png?1349836608">
+      <img alt="F-box" class="f-box opacity-80-100" src="http://d3sqjd4akk98do.cloudfront.net/4083694da87bcc220eeabb270012c24ec40b2864/images/social/f-box.png?1349740388">
+    </div>
+         
+  </div> <!-- /user-box-->
+ 
+ 
+ 	<!-- bio: -->
+          
+  <div id="user_byline_box" class="bio-box">
+		<div class="user-bio txt m border-box">
+      Prince wanna-be, amateur cyclist. Hip-hop since '81.
+   </div>
+  </div>
+       
+  <!--/bio-->
+
+
+	<!-- Following -->
+  
+    <div class="follow-count-box inline-block border-box nowrap">
+    
+	    <a class="dark">
+				<span class="num">12</span>
+				<span class="txt xs"> Following</span>
+			</a>
+			
+			
+				<ul class="rwd-hide border-box inline-block relative">
+					
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Lee Linden">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://api.twitter.com/1/users/profile_image?user_id=18889950&size=bigger">
+				      	</a>
+			        </li>
+		              
+		        
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Andrew Tam">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://api.twitter.com/1/users/profile_image?user_id=36092629&size=bigger">
+				      	</a>
+			        </li>
+		              
+		        
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Krassimir Piperkov">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://graph.facebook.com/584430077/picture?type=square">
+				      	</a>
+			        </li>
+		              
+		        
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Josh Cincinnati">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://graph.facebook.com/15402933/picture?type=square">
+				      	</a>
+			        </li>
+		              
+		        
+		      
+	      
+	      </ul>
+	    
+      
+    </div> <!-- /follow-count-box -->
+  
+  
+
+  
+  <!-- Followers -->
+  
+    <div class="follow-count-box right inline-block border-box nowrap">
+			
+			<a class="dark">
+				<span class="num">40</span>
+				<span class="txt xs"> Followers</span>
+			</a>
+			
+			
+				<ul class="rwd-hide border-box inline-block relative">
+	
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Lee Linden">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://graph.facebook.com/698076875/picture?type=square">
+				      	</a>
+			        </li>
+	 
+		        
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Siddharth Batra">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://api.twitter.com/1/users/profile_image?user_id=54653517&size=bigger">
+				      	</a>
+			        </li>
+	 
+		        
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Andrew Tam">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://graph.facebook.com/212207/picture?type=square">
+				      	</a>
+			        </li>
+	 
+		        
+		      
+		             
+		        
+			        <li class="pic s inline-block">
+			        	<a style="display: block;" rel="tooltip" data-original-title="Krassimir Piperkov">
+		        			
+				      		<img alt="Picture?type=square" class="user-photo s shaded rounded-2" src="http://graph.facebook.com/799510289/picture?type=square">
+				      	</a>
+			        </li>
+	 
+		        
+		      
+	      
+	      </ul>
+      
+      
+    </div> <!-- /follow-count-box-->
+  
+	
+
+</div> <!-- /profile-box -->
+
+
+
+<div class="box-title profile-feed-title relative">
+	Alex's items
+</div>
+
+
+
+<div class="profile-feed rounded-8 relative">
+  
+    <div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MWI5NWI3MDExMTA5ZjFjY2M4YzAxMzUxNTU5MTA1.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+       		2013 Cannondale SuperX from Cannondale 
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+     
+    
+  <div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZTY5YzU3MTJiZmJhOGNiNjZlMmExMzUxNTU4OTEw.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+       		Pdx 3:4 Cyclocross Tire from Clement Cycling 
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MWRiN2JiZmVhMTQ1ZWFkOGQ5ZTYxMzUxNTU5NzAz.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+       		Quarq Power Meter from Quarq
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_OGQ2NjBkYzY0OTQxY2MyOGY2YmMxMzUxNTU4NTM1.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+        	Pre And Post-ride Stage Transfer Down Jacket from Rapha		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_Y2E1Njg2ZmU4NDA5YjZiMjk3ZWMxMzUxNTU4MjU0.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      
+            Whalemouth Bag from BaileyWorks
+		     
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+  
+  
+  
+  <div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ODMwMWEyYzUwM2M3Yzg0MTY5YTYxMzUxNTU4MTM5.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+            Mad Alchemy Embrocation from Mad Alchemy
+		     
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YmM0MmMxNzQ1YmMwNTE0NzcyMDMxMzUxNTU4Mzcx.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      
+            Velo Tee from Velo City
+
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_NWI5Y2I3MDRhMGI0NTY4NTljMTExMzUxNTU4Njkz.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      
+            CarboRocket 25-Serving Package from CarboRocket
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+  
+  
+  
+  <div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    
+    	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_OTU2ODBkN2UzNTQwMThjOGM2YTkxMzUxNTU4ODIz.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+		      
+            303 Firecrest® Tubular from Zipp
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZWUyMWVmYmQ2NDQ2NDY5ZTRjYzIxMzUxNTU4NzYz.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      
+            Garmin Edge 500 GPS from Amazon		      
+
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YTI2MGM5NGJmNGU5ODViZmRhNjAxMzUxNTU4NTE0.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+            iPhone 5 from Apple Store		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MDRkNDU4Y2JmZDU2OWMzYmMyMjgxMzUxNTU5MTc5.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+		      Radarlock Path Sunglasses from Oakley      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MDc1NDhjMGNjMDYzN2Y3YzMzYmIxMzUxNTU5NDI3.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      
+            2013 Fi'zi:k Tundra 2 Braided Carbon Saddle from Competitive Cyclist
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+  
+  
+  
+  <div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YTk4NTZmMDM5NDNlNjkzNjM0NTAxMzUxNTU4NjA3.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+            Lemond Revolution Indoor Bike Trainer from LeMond
+		     
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ODdhNzMwYmVkYWU3ZGJjNTVmMzExMzUxNTU5Mzg5.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		     The Alarm: Greatest Hits (Live) from iTunes
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ODU2NTk2ZTRhOWJiNThiZjYwNDcxMzUxNTU5MzQ2.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+        	Natural Paleo Beef Jerky from Evolve Foods
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZDczZDhjYTY1YjUyNjc2ZjA5ZGQxMzUxNTU5MzA1.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+		      
+           Big Ass Brick of Soap from Duke Cannon Supply Co.
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YjE1MWMzOTQ3ZTRmOWY1NjM0MzIxMzUxNTU5MjQy.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      Team 7-eleven: How An Unsung Band Of American Cyclists Took On The World-and Won from Amazon	      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YTFkYWY2MDE5MDIwYjY3ODE0ODIxMzUxNTU5NDky.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      Merino Base Layer from Rapha	      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_MWI0ZDM0OTQ0OWFmZTRjNzQwYmMxMzUxNTU5NTk3.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      
+           Nike Free Trainer 5.0 from Dick's Sporting Goods
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZDY3NDdiZmRmZDdlOTYzODU0NzAxMzUxNTU5NjY1.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      Oster T-finisher Trimmer from Sally Beauty
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_YmI5OWU0ZWYwMTZlZGVjZmE1ZWQxMzUxNTU5ODM1.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      Beats Studio Over-the-ear Headphones from Best Buy		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+
+
+
+	<div class="card relative rounded-3 border-box">
+	
+    <div class="photo-box rounded-3">
+    	 
+      	<img alt="" class="item-photo" src="http://d2lxhjuhtvdpxn.cloudfront.net/s_ZDA4Y2U0MjY0ZGIwNzFlM2ZiNjcxMzUxNTU5MTQ2.jpg">
+    	
+    </div>
+    
+    <div class="panel">
+    	<div class="panel-contents rounded-3 relative">
+    	
+    		<b class="caret absolute opaque"></b>
+    
+		    <div class="title-box txt s relative rounded-3">
+
+		      DZ Nuts High Viscosity Chamois Cream from Amazon
+		      
+		    </div> <!--/title-box -->
+    
+    	</div> <!--/panel-contents -->
+    </div> <!--/panel -->
+    
+  </div> <!-- /card -->
+
+  
+</div> 
+
+
+
+
+
+
+		   
+			</div>
+  </body>
+</html>

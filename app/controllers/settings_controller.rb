@@ -28,6 +28,9 @@ class SettingsController < ApplicationController
     
     when :google_auth
       @setting = {:status => self.current_user.google_authorized?}
+    
+    when :yahoo_auth
+      @setting = {:status => self.current_user.yahoo_authorized?}
 
     when :fb_access_token
       @setting = {:status => self.current_user.fb_access_token_valid?}

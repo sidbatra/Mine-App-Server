@@ -28,17 +28,18 @@ class FeedController < ApplicationController
               "user-feed",@before ? @before.to_i : "",@per_page]
 
       @purchases = Purchase.
-                    select(:id,:created_at,:title,:handle,:source_url,
+                    select(:id,:bought_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).
+                    approved.
                     with_user.
                     with_store.
                     with_comments.
                     with_likes.
-                    by_created_at.
-                    after(@after).
-                    before(@before).
+                    by_bought_at.
+                    bought_after(@after).
+                    bought_before(@before).
                     limit(@per_page).
                     for_users(self.current_user.ifollowers + 
                               [self.current_user]) unless fragment_exist? @key
@@ -48,15 +49,16 @@ class FeedController < ApplicationController
       @key = ["v1","special-feed"]
       @cache_options = {:expires_in => 30.minutes}
       @purchases = Purchase.
-                    select(:id,:created_at,:title,:handle,:source_url,
+                    select(:id,:bought_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
                             :image_path,:is_processed,:user_id,:store_id,
                             :fb_action_id).
+                    approved.
                     with_user.
                     with_store.
-                    by_created_at.
-                    after(@after).
-                    before(@before).
+                    by_bought_at.
+                    bought_after(@after).
+                    bought_before(@before).
                     limit(@per_page).
                     special
     end

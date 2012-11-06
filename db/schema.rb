@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021222633) do
+ActiveRecord::Schema.define(:version => 20121102024615) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(:version => 20121021222633) do
   add_index "crawl_data", ["active"], :name => "index_crawl_data_on_active"
   add_index "crawl_data", ["crawled_at"], :name => "index_crawl_data_on_crawled_at"
   add_index "crawl_data", ["store_id"], :name => "index_crawl_data_on_store_id", :unique => true
+
+  create_table "email_parse_data", :force => true do |t|
+    t.integer  "store_id"
+    t.boolean  "is_active",  :default => false
+    t.string   "emails"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "weight",     :default => 0
+  end
+
+  add_index "email_parse_data", ["is_active"], :name => "index_email_parse_data_on_is_active"
+  add_index "email_parse_data", ["store_id"], :name => "index_email_parse_data_on_store_id", :unique => true
 
   create_table "emails", :force => true do |t|
     t.integer  "recipient_id"
@@ -164,6 +176,17 @@ ActiveRecord::Schema.define(:version => 20121021222633) do
   add_index "products", ["orig_image_url_hash"], :name => "index_products_on_orig_image_url_hash", :unique => true
   add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
+  create_table "purchase_emails", :force => true do |t|
+    t.integer  "purchase_id"
+    t.string   "message_id"
+    t.integer  "provider"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "purchase_emails", ["purchase_id"], :name => "index_purchase_emails_on_purchase_id", :unique => true
+
   create_table "purchases", :force => true do |t|
     t.string   "title"
     t.string   "handle"
@@ -185,10 +208,17 @@ ActiveRecord::Schema.define(:version => 20121021222633) do
     t.string   "tweet_id"
     t.string   "tumblr_post_id"
     t.boolean  "is_special",         :default => false
+    t.integer  "source",             :default => 0
+    t.boolean  "is_approved",        :default => true
+    t.datetime "bought_at"
+    t.boolean  "is_hidden",          :default => false
   end
 
+  add_index "purchases", ["bought_at"], :name => "index_purchases_on_bought_at"
   add_index "purchases", ["created_at"], :name => "index_purchases_on_created_at"
   add_index "purchases", ["handle"], :name => "index_purchases_on_handle"
+  add_index "purchases", ["is_approved"], :name => "index_purchases_on_is_approved"
+  add_index "purchases", ["is_hidden"], :name => "index_purchases_on_is_hidden"
   add_index "purchases", ["is_processed"], :name => "index_purchases_on_is_processed"
   add_index "purchases", ["is_special"], :name => "index_purchases_on_is_special"
   add_index "purchases", ["store_id"], :name => "index_purchases_on_store_id"
@@ -326,11 +356,16 @@ ActiveRecord::Schema.define(:version => 20121021222633) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
-    t.integer  "unread_notifications_count", :default => 0
     t.boolean  "is_special",                 :default => false
+    t.integer  "unread_notifications_count", :default => 0
     t.string   "go_email"
     t.string   "go_token"
     t.string   "go_secret"
+    t.text     "yh_token"
+    t.string   "yh_secret"
+    t.string   "yh_email"
+    t.string   "yh_session_handle"
+    t.datetime "email_mined_till"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

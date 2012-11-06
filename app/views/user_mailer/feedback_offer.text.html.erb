@@ -1,7 +1,7 @@
 Hi <%=@user.first_name%>! <br> <br>
 
 
-<%if @user.purchases_count.zero? %>
+<%if @user.purchases.size.zero? %>
 
 I wanted to reach out and say hello as the community manager at Mine. I see you got through the first few screens but didn't end up posting a single purchase! I want to know what's holding you back, so...
 
@@ -28,7 +28,7 @@ If you have any questions, don't hesitate to ask. I look forward to hearing back
 
 <br><br>
 
-<%elsif @user.purchases_count == 1%>
+<%elsif @user.purchases.size == 1%>
 
 
 I wanted to reach out and say hello as the community manager at Mine. I see you got through the first few screens but only posted a single purchase! I want to know what's holding you back, so...
@@ -58,7 +58,7 @@ If you have any questions, don't hesitate to ask. I look forward to hearing back
 
 
 
-<%elsif @user.purchases_count > 1%>
+<%elsif @user.purchases.size > 1%>
 
 I wanted to reach out and say hello as the community manager at Mine. I'm really glad the site is working well for you and you're enjoying sharing the few items you've shared so far. Help us make Mine even better.
 
