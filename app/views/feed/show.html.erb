@@ -56,7 +56,7 @@
           :locals => {
             :f => f,
             :suggestion => nil,
-            :submit_text => "<i class='icon-ok icon-white'></i> Add to mine",
+            :submit_text => "<i class='icon-ok icon-white'></i> Add to Mine",
             :show_cancel_button => false,
             :show_delete_button => false,
             :show_extra_steps => false,
@@ -72,9 +72,44 @@
 </div> <!-- /create-box -->
 
 
+<%unless self.current_user.email_authorized?%>
+  <!-- email importer box -->
+  <div class="well-box border-box rounded-8-bottom rwd-hide" 
+    style="padding-top: 2px; margin: -17px 0 12px; box-shadow: none;">
+    <div class="email-action-box relative">		
+      <span class="txt m top-line opacity-80">
+        <b>Import purchases automagically via your inbox</b>
+      </span>
+      <br>
+      <span class="txt s bottom-line opacity-80" href="javascript:void(0)">
+        Connect to preview your items.
+      </span>
+      <a id="google_connect_button"
+          class="btn btn-small btn-silver shaded rounded-3-left absolute" 
+          href="javascript:void(0)" 
+          style="width: 16.61%; top: 12px; right: 16.61%;">
+        <%=image_tag "logos/email-gmail-logo-18.png",
+            :class => "hide-when-loading"%>
+        <i class="icon-loading icon-white"></i>
+      </a>
+      <a id="yahoo_connect_button"
+          class="btn btn-small btn-silver shaded rounded-3-right absolute" 
+          href="javascript:void(0)" 
+          style="width: 16.61%; top: 12px; right: 0;
+          border-left: 1px solid #ababab; 
+          border-left: 1px solid rgba(0,0,0,0.16);">
+        <%=image_tag "logos/email-yahoo-logo-18.png",
+            :class => "hide-when-loading"%>
+        <i class="icon-loading icon-white"></i>
+      </a>
+    </div>
+  </div>
+  <!-- /email importer box -->
+<%end%>
+
+
 <div class="box-title feed-title relative">
 	Your feed
-  <!--a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fgetmine.com&media=http%3A%2F%2Fd3sqjd4akk98do.cloudfront.net%2F0f061b4077e8f78d2d0259b1ec6b6e6c9caa9c36%2Fimages%2Flogos%2Fmine-h-white-58-brighter-2x.png%3F1349489317&description=I%20likess%20it" class="pin-it-button" count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a-->
 </div>
 
 <%if self.current_user.inverse_followings_count.zero?%>
@@ -96,6 +131,7 @@
 <%content_for :javascript do%>
   <script type="text/javascript">
     new Denwen.Views.Feed.Show({
-      source  : "<%=h @source%>"});
+      successEmailConnectURL: "<%=unapproved_purchases_path(:mode => 'live')%>",
+      source: "<%=h @source%>"});
   </script>
 <%end%>

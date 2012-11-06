@@ -79,7 +79,14 @@ module ApplicationHelper
   # Whether the user is undergoing onboarding 
   #
   def is_onboarding?
-    request.request_uri.scan(/^\/welcome\//).present?
+    @is_onboarding ||= request.request_uri.scan(/^\/welcome\//).present?
+  end
+
+  def is_fullscreen_page?
+    uri = request.request_uri
+
+    @is_fullscreen_page ||= uri.scan(/^\/welcome\/(intro|history)/).present? || 
+                            uri.scan(/^\/purchases\/unapproved/).present?
   end
 
   # Generate body attributes to display the current theme.
@@ -87,7 +94,7 @@ module ApplicationHelper
   def theme_body_attributes
     @theme ||= logged_in? ? self.current_user.setting.theme : Theme.default
 
-    unless is_phone_device?
+    unless is_phone_device? || is_fullscreen_page?
       "style=\"background-image:url('#{@theme.background_url}')\" "\
       "class='#{@theme.background_body_class}'"
     else
@@ -95,10 +102,16 @@ module ApplicationHelper
     end
   end
 
-  # Test if the header is to be hidden
+  # Test if the header is to be hidden.
   #
   def hide_header?
-    @web_view_mode || request.request_uri.scan(/^\/welcome\/intro/).present?
+    @web_view_mode || is_fullscreen_page?
+  end
+
+  # test if the footer is to be hidden.
+  #
+  def hide_footer?
+    is_onboarding? || is_fullscreen_page?
   end
 
 end

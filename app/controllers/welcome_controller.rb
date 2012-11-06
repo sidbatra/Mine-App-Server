@@ -13,6 +13,13 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Learn
       @view = "show"
 
+    when WelcomeFilter::Connect
+      @view = "connect"
+
+    when WelcomeFilter::History
+      mine_purchase_emails
+      @view = "purchases/index"
+
     when WelcomeFilter::Create
       @suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
                       for_gender(self.current_user.gender).

@@ -4,6 +4,7 @@ class StoreObserver < ActiveRecord::Observer
   #
   def before_create(store)
     store.build_crawl_datum
+    store.build_email_parse_datum
   end
 
   # Test the store object for the following events:

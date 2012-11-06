@@ -8,6 +8,7 @@ class Purchase < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Associations
   #----------------------------------------------------------------------
+  has_one  :purchase_email, :dependent => :destroy 
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :notifications, :as => :resource, :dependent => :destroy
@@ -22,19 +23,29 @@ class Purchase < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :orig_image_url
   validates_presence_of :user_id
+  validates_inclusion_of :source, :in => PurchaseSource.values
 
   #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :for_users, lambda {|users| {:conditions => {
                             :user_id => users.map(&:id)}}}
+  named_scope :bought_after, lambda{|time| {:conditions => {
+                                              :bought_at_gt => time}} if time}
+  named_scope :bought_before, lambda{|time| {:conditions => {
+                                              :bought_at_lt => time}} if time}
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
+  named_scope :with_product,  :include => :product
   named_scope :with_likes, :include => {:likes => [:user]}
   named_scope :with_comments, :include => {:comments => [:user]}
   named_scope :special, :conditions => {:is_special => true}
-  named_scope :by_id,      :order => 'id DESC'
-  named_scope :by_created_at,      :order => 'created_at DESC'
+  named_scope :approved, :conditions => {:is_approved => true}
+  named_scope :unapproved, :conditions => {:is_approved => false}
+  named_scope :visible, :conditions => {:is_hidden => false}
+  named_scope :by_id, :order => 'id DESC'
+  named_scope :by_created_at, :order => 'created_at ASC'
+  named_scope :by_bought_at, :order => 'bought_at DESC'
 
   #----------------------------------------------------------------------
   # Attributes
@@ -43,7 +54,8 @@ class Purchase < ActiveRecord::Base
   attr_accessible :title,:source_url,:orig_image_url,:orig_thumb_url,
                   :query,:store_id,:user_id,:product_id,
                   :source_purchase_id,:suggestion_id,
-                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id,:is_special
+                  :fb_action_id,:endorsement,:tweet_id,:tumblr_post_id,:is_special,
+                  :is_approved,:source,:bought_at
 
   #----------------------------------------------------------------------
   # Class methods
@@ -56,6 +68,11 @@ class Purchase < ActiveRecord::Base
   def self.add(attributes,user_id)
     attributes[:title] = attributes[:title].strip
     attributes[:user_id] = user_id
+    attributes[:bought_at] ||= Time.now
+
+    product = Product.find_by_orig_image_url attributes[:orig_image_url]
+    attributes[:product_id] = product.id if product
+
 
     purchase = new(attributes)
 
@@ -67,8 +84,23 @@ class Purchase < ActiveRecord::Base
         :external_id => attributes[:product][:external_id]})
     end
 
+    if attributes[:email]
+      purchase.build_purchase_email(attributes[:email])
+    end
+
     purchase.save!
     purchase
+  end
+
+  # Toggle between two modes of pagination. Based on bought_at
+  # in desc order and based on created_at in asc order.
+  #
+  def self.page(opts,on_bought=true)
+    if on_bought 
+      by_bought_at.bought_after(opts[:after]).bought_before(opts[:before])
+    else
+      by_created_at.limit(opts[:per_page]).offset(opts[:offset])
+    end
   end
 
   #----------------------------------------------------------------------

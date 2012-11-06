@@ -114,6 +114,16 @@ Denwen.Helpers = Backbone.Model.extend({
                                           "Jun", "Jul", "Aug", "Sep", "Oct", 
                                           "Nov", "Dec"];
     return this.monthNames[dateObject.getMonth()];
+  },
+
+  // Display a popup to the given URL in the center
+  // of the screen.
+  //
+  popup: function(url,width,height) {
+    var x = (screen.width-width) / 2;
+    var y = (screen.height-height) / 2;
+
+    return window.open(url,'','left='+x+', top='+y+ ', width=' +width+ ', height=' +height);
   }
 
 });

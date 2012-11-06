@@ -17,9 +17,15 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     if (typeof this.interaction  === "undefined")
       this.interaction = Denwen.H.isLoggedIn();
 
+    this.crossButton = this.options.crossButton;
+
+    if (typeof this.crossButton  === "undefined")
+      this.crossButton = false;
+
     this.purchaseEl = '#purchase-' + this.model.get('id');
     this.photoEl = '#purchase_photo_'  + this.model.get('id');
     this.titleEl = '#purchase_title_' + this.model.get('id');
+    this.crossEl = '#purchase_cross_' + this.model.get('id');
     this.panelEl = '#purchase_panel_' + this.model.get('id');
     this.likesEl = '#purchase_likes_' + this.model.get('id');
     this.likesBoxEl  = '#purchase_likes_box_' + this.model.get('id');
@@ -31,6 +37,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.render();
 
     if(Denwen.H.isLoggedIn()) {
+      $(this.crossEl).click(function(){self.crossButtonClicked();});
+
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
 
@@ -59,7 +67,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   render: function() {
     var html = Denwen.JST['purchases/display']({
                 purchase    : this.model,
-                interaction : this.interaction});
+                interaction : this.interaction,
+                crossButton : this.crossButton});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
@@ -154,6 +163,14 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.renderLikeAggregation();
 
     $(this.likesBoxEl).show(); 
+  },
+
+  crossButtonClicked: function() {
+    $(this.purchaseEl).fadeOut(50);
+
+    Denwen.NM.trigger(
+      Denwen.NotificationManager.Callback.PurchaseCrossClicked,
+      this.model);
   },
 
   // Purchase photo is clicked.

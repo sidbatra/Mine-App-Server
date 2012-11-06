@@ -1,0 +1,13 @@
+<%if @web_view_mode%>
+  <script type="text/javascript">
+    window.location.href = "mine-internal://yahoo/<%=self.current_user.yahoo_authorized? ? 'approved' : 'rejected'%>";
+  </script>
+<%else%>
+  <%content_for :javascript do%>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          window.close();
+      });
+    </script>
+  <%end%>
+<%end%>

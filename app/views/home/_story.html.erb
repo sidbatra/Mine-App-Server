@@ -105,6 +105,22 @@
 				Mike bought a new Kindle Paperwhite. His friends asked him about it.
 				<i class="icon-chevron-right absolute transition-opacity"></i>
 			</a>
+			
+<!--
+			<a 
+				<#unless is_phone_device?%>
+					href="#modal4" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
+				<#else%>
+          href="<#=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
+				<#end%>
+          class="cell rounded-8 border-box transition-bg 
+                  transition-color transition-border-color relative">
+				<#=image_tag "home/ag.jpg",
+					:class => "user-photo absolute rounded-3"%>
+				Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
+				<i class="icon-chevron-right absolute transition-opacity"></i>
+			</a>
+-->
 				
 			</div>
 			
@@ -130,7 +146,23 @@
 					From Nordstrom to Incheon Airport, Arar always buys items at the classic edge.
 					<i class="icon-chevron-right absolute transition-opacity"></i>
 				</a>
-
+				
+<!--
+				<a 
+					<#unless is_phone_device?%>
+						href="#modal5" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
+					<#else%>
+	          href="<#=home_sample_url("profile4",:web_view_mode => @web_view_mode)%>"
+					<#end%>
+	          class="cell rounded-8 border-box transition-bg 
+	                  transition-color transition-border-color relative">
+					<#=image_tag "home/sam.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					One item here convinced Sam he wanted to make movies for life. 
+					<i class="icon-chevron-right absolute transition-opacity"></i>
+				</a>
+-->
+				
 			</div>
 			
 			<div class="col-3">
@@ -199,6 +231,33 @@
               height="100%" src="<%=home_sample_url("profile2")%>"></iframe>
           </div>
         </div>
+        
+       	<! -- modal 4 -->
+        <div class="modal eyeglass hide rounded-5" id="modal4">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body">
+            <iframe seamless id="iframe_4" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("profile3")%>"></iframe>
+          </div>
+        </div>
+        
+        <! -- modal 5 -->
+        <div class="modal eyeglass hide rounded-5" id="modal5">
+          <button type="button" class="close absolute transition-opacity" 
+              data-dismiss="modal">
+            ×
+          </button>
+          <div class="modal-body">
+            <iframe seamless id="iframe_5" class="rounded-3" 
+              frameborder="0" width="100%" 
+              height="100%" src="<%=home_sample_url("profile4")%>"></iframe>
+          </div>
+        </div>
+        
       <%end%>
 			
 		</div> <!--/more -->
@@ -220,6 +279,7 @@
       $('#iframe_1').height($('#modal1').height());
       $('#iframe_2').height($('#modal2').height());
       $('#iframe_3').height($('#modal3').height());
+      $('#iframe_4').height($('#modal3').height());
     }
 
     resizeIFrames();

@@ -66,6 +66,12 @@ class ApplicationController < ActionController::Base
     @theme = user.setting.theme
   end
 
+  def mine_purchase_emails
+    PrimaryProcessingQueue.push(PurchaseExtractor.new,
+                            :mine_emails_for_user,
+                            self.current_user) if params[:mode] == "live"
+  end
+
   # Raise a routing exception when a non-existant resource
   # is accessed.
   #

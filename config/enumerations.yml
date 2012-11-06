@@ -46,6 +46,10 @@
     FeedbackOffer: 22
     Invite: 23
     News: 24
+  EmailProvider:
+    Gmail: 0
+    Yahoo: 1
+    Hotmail: 2
   FeedShowSource:
     Login: 'login'
   FollowingSource:
@@ -66,12 +70,16 @@
     Logout: 'logout'
     FBDenied: 'fb_denied'
     TWDenied: 'tw_denied'
+  PurchaseSource:
+    Client: 0
+    Email: 1
   PurchaseEditSource:
     Updated: 'updated'
   NotificationIdentifier:
     Like: 0
     Comment: 1
     Following: 2
+    UnapprovedPurchases: 3
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:
@@ -86,6 +94,8 @@
   WelcomeFilter:
     Info: 'info'
     Learn: 'intro'
+    Connect: 'connect'
+    History: 'history'
     Create: 'create'
   OGObject:
     Purchase: "getmineapp:purchase" 
@@ -116,4 +126,6 @@
     FbAuth: 'fb_auth'
     TwAuth: 'tw_auth'
     TumblrAuth: 'tumblr_auth'
+    GoogleAuth: 'google_auth'
+    YahooAuth: 'yahoo_auth'
     FbAccessToken: 'fb_access_token'

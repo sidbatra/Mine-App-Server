@@ -17,5 +17,6 @@ Denwen.NotificationManager.Callback= {
   SuggestionFinished        : "suggestionFinished",
   FBTokenDead               : "fbTokenDead",
   FollowingLoaded           : "followingLoaded",
-  FollowingLoadingComplete  : "followingLoadingComplete"
+  FollowingLoadingComplete  : "followingLoadingComplete",
+  PurchaseCrossClicked      : "purchaseCrossClicked"
 };

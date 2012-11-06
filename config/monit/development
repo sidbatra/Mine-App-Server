@@ -15,7 +15,7 @@
     stop program  = "/bin/bash -c 'cd /vol/mine && /bin/bash script/workers stop 1 development'" 
 
   # Clerk
-  check process clerk with pidfile /vol/mine/log/clerk.rb_monitor.pid
+  check process clerk with pidfile /vol/mine/log/clerk.rb0.pid
     start program = "/bin/bash -c 'cd /vol/mine && RAILS_ENV=development RAILS_PATH=/vol/mine /usr/local/bin/ruby lib/daemons/clerk_ctl start'" with timeout 30 seconds
     stop program  = "/bin/bash -c 'cd /vol/mine && RAILS_ENV=development RAILS_PATH=/vol/mine /usr/local/bin/ruby lib/daemons/clerk_ctl stop'" 
 

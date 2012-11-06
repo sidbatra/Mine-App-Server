@@ -5,6 +5,5 @@ class CrawlDatum < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Validations
   #----------------------------------------------------------------------
-  validates_presence_of :store_id
   validates_inclusion_of :active, :in => [true,false]
 end

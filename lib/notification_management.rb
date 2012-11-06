@@ -82,6 +82,14 @@ module DW
 
     end #notification manager
 
+
+    # Stub resource for notification objects that don't map
+    # to an existing active record objet.
+    #
+    class StubResource < ActiveRecord::Base
+      set_table_name 'settings'
+    end
+
   end #notification management
 
 end #dw

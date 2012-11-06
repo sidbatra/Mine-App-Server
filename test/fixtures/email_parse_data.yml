@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  store_id: 1
+  is_active: false
+  emails: MyString
+
+two:
+  store_id: 1
+  is_active: false
+  emails: MyString
