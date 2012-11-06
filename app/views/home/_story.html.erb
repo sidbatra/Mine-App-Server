@@ -106,19 +106,21 @@
 				<i class="icon-chevron-right absolute transition-opacity"></i>
 			</a>
 			
+<!--
 			<a 
-				<%unless is_phone_device?%>
+				<#unless is_phone_device?%>
 					href="#modal4" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
-				<%else%>
-          href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
-				<%end%>
+				<#else%>
+          href="<#=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
+				<#end%>
           class="cell rounded-8 border-box transition-bg 
                   transition-color transition-border-color relative">
-				<%=image_tag "home/ag.jpg",
+				<#=image_tag "home/ag.jpg",
 					:class => "user-photo absolute rounded-3"%>
 				Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
 				<i class="icon-chevron-right absolute transition-opacity"></i>
 			</a>
+-->
 				
 			</div>
 			
@@ -145,19 +147,21 @@
 					<i class="icon-chevron-right absolute transition-opacity"></i>
 				</a>
 				
+<!--
 				<a 
-					<%unless is_phone_device?%>
+					<#unless is_phone_device?%>
 						href="#modal5" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
-					<%else%>
-	          href="<%=home_sample_url("profile4",:web_view_mode => @web_view_mode)%>"
-					<%end%>
+					<#else%>
+	          href="<#=home_sample_url("profile4",:web_view_mode => @web_view_mode)%>"
+					<#end%>
 	          class="cell rounded-8 border-box transition-bg 
 	                  transition-color transition-border-color relative">
-					<%=image_tag "home/sam.jpg",
+					<#=image_tag "home/sam.jpg",
 						:class => "user-photo absolute rounded-3"%>
 					One item here convinced Sam he wanted to make movies for life. 
 					<i class="icon-chevron-right absolute transition-opacity"></i>
 				</a>
+-->
 				
 			</div>
 			
