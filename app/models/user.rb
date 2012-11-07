@@ -349,7 +349,9 @@ class User < ActiveRecord::Base
 
   def email_authorized?
     google_authorized? || yahoo_authorized?
-  end
+  end 
+
+  alias_method :is_email_authorized, :email_authorized?
 
   def refresh_yahoo_token
     yahoo_api = YahooAPI.new yh_token,yh_secret,yh_session_handle
