@@ -11,7 +11,15 @@ common: &common
   <<: *shared
   :aws_access_id: AKIAJWYCAWDPAAKLNKSQ
   :aws_secret_key: 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 
-  :aws_associate_tag: oncl-20
+  :aws_associate_tags: 
+    - oncl-20
+    - mine0e-20
+  :aws_associate_access_ids:
+    - AKIAJWYCAWDPAAKLNKSQ
+    - AKIAJVUGQ6XHCMYWB3YA
+  :aws_associate_secret_keys:
+    - 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
+    - IZCUQr6UZOcNTgbjJBSQMldjFa7CRPHQgRV44ksM
   :iphone_encryption_phrase: f0837530983794e3
   :iphone_salt: 20988410f43fa368
   :fb_app_id: 245230762190915
