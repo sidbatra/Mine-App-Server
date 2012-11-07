@@ -14,12 +14,24 @@ common: &common
   :aws_associate_tags: 
     - oncl-20
     - mine0e-20
+    - legrain-20
+    - cyclopedie-20
+    - hodoigemofo-20
+    - phililegra-20
   :aws_associate_access_ids:
     - AKIAJWYCAWDPAAKLNKSQ
     - AKIAJVUGQ6XHCMYWB3YA
+    - AKIAJ3OYXJPSQRRBB4JQ
+    - AKIAIEA3QJ2ETUHWMEUA
+    - AKIAJ6JZ4VOD34PPB43A
+    - AKIAI6MTUBRUW33JSROQ
   :aws_associate_secret_keys:
     - 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
     - IZCUQr6UZOcNTgbjJBSQMldjFa7CRPHQgRV44ksM
+    - OcTqTRecfiRCBe/0rKi6KHBJz806jHfZl5ZEKhLm
+    - NussHk8Ay138xX7TWyw0tb0D45jGjGT0eGkZqEMm
+    - td6y1UOlPWzIk4v7ZPPQ56zDiNbW5iKbIcbY00EH
+    - YjuiMQsxTFlCC1yg4zUk7Z8rZfaO7MgIfuW2Qrhc
   :iphone_encryption_phrase: f0837530983794e3
   :iphone_salt: 20988410f43fa368
   :fb_app_id: 245230762190915
