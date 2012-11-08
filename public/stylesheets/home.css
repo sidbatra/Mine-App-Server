@@ -32,9 +32,9 @@ a:hover { text-decoration: none; }
 .header-home .app-store-badge { 
 	right: 24px; 
 	top: 50%;
-	margin-top: -20px; }
+	margin-top: -24px; }
 
-.header-home .app-store-badge img { height: 40px; }
+.header-home .app-store-badge img { height: 48px; }
 
 .container-home {
 	width: 100%; }

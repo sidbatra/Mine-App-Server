@@ -3,8 +3,7 @@
   </div>
   <a class="opacity-80-100 transition-opacity" href="<%=user.path('suggestion')%>">
     <img class="user-photo l absolute rounded-3" src="<%=user.get('square_image_url')%>" />
-    <span class="txt m top-line"><%=user.fullName()%></span>
-  <br>
-  <span class="txt s bottom-line"><%=user.get('message')%></span>
+    <div class="txt m top-line"><%=user.fullName()%></div>
+  	<div class="txt s bottom-line ellipsis"><%=user.get('message')%></div>
   </a> 
 </li> 
