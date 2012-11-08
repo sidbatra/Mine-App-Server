@@ -15,6 +15,8 @@ class HomeController < ApplicationController
       page = "profile3"
     when :profile4
       page = "profile4"
+    when :profile5
+      page = "profile5"
     end
 
 		render "home/samples/#{page}"
