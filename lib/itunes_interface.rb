@@ -91,7 +91,7 @@ module DW
       end
 
       def large_image_url
-        is_collection? ? @item["artworkUrl100"] : @item["artworkUrl512"]
+        is_collection? ? @item["artworkUrl100"].gsub("100x100","600x600") : @item["artworkUrl512"]
       end
 
       def page_url
