@@ -437,10 +437,6 @@ input.error:focus, textarea.error:focus {
 	box-shadow: none !important;
 	border: none !important; 
 	text-shadow: none; }
-	
-.btn .disabled-on { display: none; }
-.btn.disabled:hover .disabled-on { display: inline; }
-.btn.disabled:hover .disabled-off { display: none; }
 
 /*
 .btn.btn-silver.btn-large { background-color: #a0a0a0; }

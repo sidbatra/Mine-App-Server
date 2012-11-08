@@ -36,6 +36,10 @@
 	.unit-box { width: 100% !important; }
 	.well-box { padding: 8px; }
 	
+	/* -- email importer -- */
+	
+	.inset-container { width: 100% !important; }
+	
 	/* -- chooser -- */
   .chooser .search-bar .search-container { width: 100%; }
   .chooser .search-bar input.enter {

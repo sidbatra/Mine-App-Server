@@ -1287,6 +1287,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .chooser .search-bar input.enter:focus { background: white; }
 
 .chooser .search-bar .btn.go { 
+	padding: 0;
 	width: 87px;
 	vertical-align: top; }
 		
@@ -1357,7 +1358,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	right:0;
 	left:0;
 	bottom:0;
-	display:none;
+	display: none;
 	z-index: 1051; }
 
 .scroll-instructions .caret {
@@ -1415,14 +1416,15 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .inset-container .inset-message {
 	text-align: left; 
-	width: 504px; 
 	font-weight: bold; 
 	line-height: 40px; 
 	font-size: 20px; 
 	color: white; 
 	text-shadow: 0 1px 1px rgba(0,0,0,0.4); }
 	
-.inset-message span { display: none; }
+.inset-message .message-working,
+.inset-message .message-complete
+.inset-message .message-update { display: none; }
 
 .inset-message span img { padding: 0 8px 0 14px; margin-top: -2px; }
 .inset-message span .icon-white { margin: 6px 9px 0 15px; }
@@ -1433,9 +1435,9 @@ a.feed-intro .highlight { font-weight: bold; }
 .inset-message.complete .message-working  {display: none;}
 .inset-message.complete .message-complete {display: block;}
 .inset-message.complete .message-update   {display: none;}
-.inset-message.update  .message-working  {display: none;}
-.inset-message.update  .message-complete {display: none;}
-.inset-message.update  .message-update   {display: block;}
+.inset-message.update   .message-working  {display: none;}
+.inset-message.update   .message-complete {display: none;}
+.inset-message.update   .message-update   {display: block;}
 
 .progress-message.working .message-working {display:block;}
 .progress-message.working .message-nothing {display:none;}
