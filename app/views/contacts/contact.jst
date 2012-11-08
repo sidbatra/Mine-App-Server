@@ -2,7 +2,7 @@
 	<img class="user-photo l shaded rounded-3" src="<%=contact.imageURL()%>" />  
 	<%=contact.get('name')%>
 	
-	<a class="btn shaded absolute<%=contact.get('invited') ? 'pushed' : ''%>" 
+	<a class="btn btn-silver shaded absolute<%=contact.get('invited') ? 'pushed' : ''%>" 
         id="post_invite_<%=contact.get('id')%>" 
      style="width: 56px; right: 0; top: 0;">
      
