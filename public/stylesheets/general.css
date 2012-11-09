@@ -291,10 +291,10 @@ input.error:focus, textarea.error:focus {
 	transition: background .15s ease-in; }
 
 .transition-opacity {
-	-webkit-transition: opacity .15s ease-in;
-	-moz-transition: opacity .15s ease-in;
-	-o-transition: opacity .15s ease-in;
-	transition: opacity .15s ease-in; }
+	-webkit-transition: opacity .15s ease-in !important;
+	-moz-transition: opacity .15s ease-in !important;
+	-o-transition: opacity .15s ease-in !important;
+	transition: opacity .15s ease-in !important; }
 	
 .transition-color {
 	-webkit-transition: color .15s ease-in;
