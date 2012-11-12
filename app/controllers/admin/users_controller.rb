@@ -26,6 +26,10 @@ class Admin::UsersController < ApplicationController
 
       @users,@active_count = active_users_in_time_period(@time)
       @view = "active"
+
+    when :email_parsed
+      @users = User.all(:conditions => ["email_mined_till IS NOT NULL"])
+      @view = "active"
     end
 
     render @view
@@ -36,7 +40,7 @@ class Admin::UsersController < ApplicationController
   #
   def show
     @user = User.find_by_handle(params[:id])
-    @set  = (@user.searches.for(SearchSource::New) + @user.purchases).sort do |x,y| 
+    @set  = (@user.searches.for(SearchSource::New) + @user.purchases.approved).sort do |x,y| 
               x.created_at <=> y.created_at
             end
   end

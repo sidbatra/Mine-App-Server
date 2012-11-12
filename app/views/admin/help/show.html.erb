@@ -14,6 +14,8 @@
               admin_users_path(:filter => 'active',:period => 'biweekly')%> <br>
   <%=link_to 'Monthly',
               admin_users_path(:filter => 'active',:period => 'monthly')%> <br>
+  <%=link_to 'Email Mined',
+              admin_users_path(:filter => 'email_parsed')%> <br>
 
   Admin View of User. /admin/users/{handle} 
   Example - <%=link_to 'Anna Smith',admin_user_path('anna-smith')%>
