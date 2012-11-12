@@ -34,8 +34,8 @@
         <%unless is_phone_device?%>
           <!-- desktop video -->
           <iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-            width="880" 
-            height="391" 
+            width="630" 
+            height="280" 
             frameborder="0">
           </iframe>
         <%else%>
@@ -85,6 +85,35 @@
 		<div class="more">
 			
 			<div class="col-3">
+				
+				<a 	
+					<%unless is_phone_device?%>
+						href="#modal1" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Item'})"
+					<%else%>
+						href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
+					<%end%>
+	          class="cell rounded-8 border-box transition-bg 
+	                  transition-color transition-border-color relative">
+					<%=image_tag "home/mike.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					Mike bought a new Kindle Paperwhite. His friends asked him about it.
+					<i class="icon-chevron-right absolute transition-opacity"></i>
+				</a>
+				
+				<a 
+					<%unless is_phone_device?%>
+						href="#modal4" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
+					<%else%>
+	          href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
+					<%end%>
+	          class="cell rounded-8 border-box transition-bg 
+	                  transition-color transition-border-color relative">
+					<%=image_tag "home/ag.jpg",
+						:class => "user-photo absolute rounded-3"%>
+					Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
+					<i class="icon-chevron-right absolute transition-opacity"></i>
+				</a>
+				
 				<h3>
 					Post purchases, perfectly.
 				</h3>
@@ -93,44 +122,9 @@
 					and the web's best link to more info, for the perfect way to share a purchase.
 				</p>
 				
-			<a 	
-				<%unless is_phone_device?%>
-					href="#modal1" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Item'})"
-				<%else%>
-					href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
-				<%end%>
-          class="cell rounded-8 border-box transition-bg 
-                  transition-color transition-border-color relative">
-				<%=image_tag "home/mike.jpg",
-					:class => "user-photo absolute rounded-3"%>
-				Mike bought a new Kindle Paperwhite. His friends asked him about it.
-				<i class="icon-chevron-right absolute transition-opacity"></i>
-			</a>
-			
-			<a 
-				<%unless is_phone_device?%>
-					href="#modal4" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
-				<%else%>
-          href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
-				<%end%>
-          class="cell rounded-8 border-box transition-bg 
-                  transition-color transition-border-color relative">
-				<%=image_tag "home/ag.jpg",
-					:class => "user-photo absolute rounded-3"%>
-				Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
-				<i class="icon-chevron-right absolute transition-opacity"></i>
-			</a>
-				
 			</div>
 			
 			<div class="col-3">
-				<h3>
-					Share the best items in your life.
-				</h3>
-				<p>
-					Thousands of people use Mine to post the items that speak to who they are, 
-					what they like, and what they know about.
-				</p>
 				
 				<a 
 					<%unless is_phone_device?%>
@@ -160,17 +154,18 @@
 					<i class="icon-chevron-right absolute transition-opacity"></i>
 				</a>
 				
+				<h3>
+					Share the best items in your life.
+				</h3>
+				<p>
+					Thousands of people use Mine to post the items that speak to who they are, 
+					what they like, and what they know about.
+				</p>
+				
 			</div>
 			
 			<div class="col-3">
-				<h3>
-					Discover thru friends & followers.
-				</h3>
-				<p>
-					As the only place on the web where you can look up and follow anyone's best purchases, 
-					Mine is a never-ending thread of discovery.
-				</p>
-						
+										
 				<a
 					<%unless is_phone_device?%>
 						href="#modal3" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile 2'})"
@@ -198,6 +193,14 @@
 					Alex is a designer at Google. It's fair to say he's into comics. 
 					<i class="icon-chevron-right absolute transition-opacity"></i>
 				</a>
+				
+				<h3>
+					Discover thru friends & followers.
+				</h3>
+				<p>
+					As the only place on the web where you can look up and follow anyone's best purchases, 
+					Mine is a never-ending thread of discovery.
+				</p>
 				
 			</div>
 			

@@ -24,6 +24,7 @@ a:hover { text-decoration: none; }
 	top: 0;
 	width: 100%;
 	height: 622px;
+	height: 510px;
 	background: url('/images/backgrounds/bg-strip.png') repeat-x top left; }
 
 .header-home { text-align: center; width: 904px; margin: 0 auto; }
@@ -56,7 +57,7 @@ h2 .user-photo.xxl {
 	vertical-align: -16px; }
 
 h3 {
-	padding: 0 0 10px;
+	padding: 10px 0 10px;
 	font-size: 20px;
 	font-weight: normal;
 	color: #555;
@@ -93,7 +94,7 @@ ul { margin: 0 !important; }
 	height: 78px;
 	display: inline-block;
 	background: white;
-	margin-top: 18px;
+	margin-bottom: 18px;
 	padding: 13px 26px 11px 76px;
 	font-size: 13px;
 	line-height: 18px;
