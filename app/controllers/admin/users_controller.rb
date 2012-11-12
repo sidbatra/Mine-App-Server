@@ -36,7 +36,7 @@ class Admin::UsersController < ApplicationController
   #
   def show
     @user = User.find_by_handle(params[:id])
-    @set  = (@user.searches.for(SearchSource::New) + @user.purchases).sort do |x,y| 
+    @set  = (@user.searches.for(SearchSource::New) + @user.purchases.approved).sort do |x,y| 
               x.created_at <=> y.created_at
             end
   end
