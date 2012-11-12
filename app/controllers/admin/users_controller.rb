@@ -26,6 +26,10 @@ class Admin::UsersController < ApplicationController
 
       @users,@active_count = active_users_in_time_period(@time)
       @view = "active"
+
+    when :email_parsed
+      @users = User.all(:conditions => ["email_mined_till IS NOT NULL"])
+      @view = "active"
     end
 
     render @view
