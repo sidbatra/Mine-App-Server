@@ -86,42 +86,6 @@
 			
 			<div class="col-3">
 				
-				<a 	
-					<%unless is_phone_device?%>
-						href="#modal1" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Item'})"
-					<%else%>
-						href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
-					<%end%>
-	          class="cell rounded-8 border-box transition-bg 
-	                  transition-color transition-border-color relative">
-					<%=image_tag "home/mike.jpg",
-						:class => "user-photo absolute rounded-3"%>
-					Mike bought a new Kindle Paperwhite. His friends asked him about it.
-					<i class="icon-chevron-right absolute transition-opacity"></i>
-				</a>
-				
-				<a 
-					<%unless is_phone_device?%>
-						href="#modal4" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
-					<%else%>
-	          href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
-					<%end%>
-	          class="cell rounded-8 border-box transition-bg 
-	                  transition-color transition-border-color relative">
-					<%=image_tag "home/ag.jpg",
-						:class => "user-photo absolute rounded-3"%>
-					Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
-					<i class="icon-chevron-right absolute transition-opacity"></i>
-				</a>
-				
-				<h3>
-					Post purchases, perfectly.
-				</h3>
-				<p>
-					Combine a pristine catalog photo, where you bought your item, 
-					and the web's best link to more info, for the perfect way to share a purchase.
-				</p>
-				
         <a 	
           <%unless is_phone_device?%>
             href="#modal1" 
@@ -153,6 +117,14 @@
           Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
           <i class="icon-chevron-right absolute transition-opacity"></i>
         </a>
+				
+				<h3>
+					Post purchases, perfectly.
+				</h3>
+				<p>
+					Combine a pristine catalog photo, where you bought your item, 
+					and the web's best link to more info, for the perfect way to share a purchase.
+				</p>
 				
 			</div>
 			
