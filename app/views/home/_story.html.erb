@@ -122,13 +122,47 @@
 					and the web's best link to more info, for the perfect way to share a purchase.
 				</p>
 				
+        <a 	
+          <%unless is_phone_device?%>
+            href="#modal1" 
+            data-toggle="modal" 
+            onclick="$('#iframe_1').attr('src','<%=home_sample_url("item")%>');mixpanel.track('Home Modal Clicked',{'Type':'Mike'})"
+          <%else%>
+            href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
+          <%end%>
+            class="cell rounded-8 border-box transition-bg 
+                    transition-color transition-border-color relative">
+          <%=image_tag "home/mike.jpg",
+            :class => "user-photo absolute rounded-3"%>
+          Mike bought a new Kindle Paperwhite. His friends asked him about it.
+          <i class="icon-chevron-right absolute transition-opacity"></i>
+        </a>
+        
+        <a 
+          <%unless is_phone_device?%>
+            href="#modal4" 
+            data-toggle="modal" 
+            onclick="$('#iframe_4').attr('src','<%=home_sample_url("profile3")%>');mixpanel.track('Home Modal Clicked',{'Type':'Alex G'})"
+          <%else%>
+            href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
+          <%end%>
+            class="cell rounded-8 border-box transition-bg 
+                    transition-color transition-border-color relative">
+          <%=image_tag "home/ag.jpg",
+            :class => "user-photo absolute rounded-3"%>
+          Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
+          <i class="icon-chevron-right absolute transition-opacity"></i>
+        </a>
+				
 			</div>
 			
 			<div class="col-3">
 				
 				<a 
 					<%unless is_phone_device?%>
-						href="#modal2" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
+						href="#modal2" 
+            data-toggle="modal" 
+            onclick="$('#iframe_2').attr('src','<%=home_sample_url("profile")%>');mixpanel.track('Home Modal Clicked',{'Type':'Arar'})"
 					<%else%>
             href="<%=home_sample_url("profile",:web_view_mode => @web_view_mode)%>"
 					<%end%>
@@ -142,7 +176,9 @@
 				
 				<a 
 					<%unless is_phone_device?%>
-						href="#modal5" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
+						href="#modal5" 
+            data-toggle="modal" 
+            onclick="$('#iframe_5').attr('src','<%=home_sample_url("profile4")%>');mixpanel.track('Home Modal Clicked',{'Type':'Sam'})"
 					<%else%>
 	          href="<%=home_sample_url("profile4",:web_view_mode => @web_view_mode)%>"
 					<%end%>
@@ -168,7 +204,9 @@
 										
 				<a
 					<%unless is_phone_device?%>
-						href="#modal3" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile 2'})"
+						href="#modal3" 
+            data-toggle="modal" 
+            onclick="$('#iframe_3').attr('src','<%=home_sample_url("profile2")%>');mixpanel.track('Home Modal Clicked',{'Type':'Richard'})"
 					<%else%>
             href="<%=home_sample_url("profile2",:web_view_mode => @web_view_mode)%>"
 					<%end%> 
@@ -182,7 +220,9 @@
 				
 				<a 
 					<%unless is_phone_device?%>
-						href="#modal6" data-toggle="modal" onclick="mixpanel.track('Home Modal Clicked',{'Type':'Profile'})"
+						href="#modal6" 
+            data-toggle="modal" 
+            onclick="$('#iframe_6').attr('src','<%=home_sample_url("profile5")%>');mixpanel.track('Home Modal Clicked',{'Type':'Alex Gr'})"
 					<%else%>
 	          href="<%=home_sample_url("profile5",:web_view_mode => @web_view_mode)%>"
 					<%end%>
@@ -216,7 +256,7 @@
           <div class="modal-body rounded-3 relative">
             <iframe seamless id="iframe_1" class="rounded-3" 
               frameborder="0" width="100%" 
-              height="100%" src="<%=home_sample_url("item")%>"></iframe>
+              height="100%"></iframe>
           </div> <!-- /modal-body -->
         </div> <!-- /modal -->
         
@@ -229,7 +269,7 @@
           <div class="modal-body">
             <iframe seamless id="iframe_2" class="rounded-3" 
               frameborder="0" width="100%" 
-              height="100%" src="<%=home_sample_url("profile")%>"></iframe>
+              height="100%"></iframe>
           </div>
         </div>
         
@@ -242,7 +282,7 @@
           <div class="modal-body">
             <iframe seamless id="iframe_3" class="rounded-3" 
               frameborder="0" width="100%" 
-              height="100%" src="<%=home_sample_url("profile2")%>"></iframe>
+              height="100%"></iframe>
           </div>
         </div>
         
@@ -255,7 +295,7 @@
           <div class="modal-body">
             <iframe seamless id="iframe_4" class="rounded-3" 
               frameborder="0" width="100%" 
-              height="100%" src="<%=home_sample_url("profile3")%>"></iframe>
+              height="100%"></iframe>
           </div>
         </div>
         
@@ -268,7 +308,7 @@
           <div class="modal-body">
             <iframe seamless id="iframe_5" class="rounded-3" 
               frameborder="0" width="100%" 
-              height="100%" src="<%=home_sample_url("profile4")%>"></iframe>
+              height="100%"></iframe>
           </div>
         </div>
         
@@ -281,7 +321,7 @@
           <div class="modal-body">
             <iframe seamless id="iframe_6" class="rounded-3" 
               frameborder="0" width="100%" 
-              height="100%" src="<%=home_sample_url("profile5")%>"></iframe>
+              height="100%"></iframe>
           </div>
         </div>
         
