@@ -85,7 +85,7 @@ Denwen.Collections.Products = Backbone.Collection.extend({
 
       _.each(data['products'],function(product){
         //product['large_url'] = product['medium_url'];
-        product['source_url'] = self.query;
+        //product['source_url'] = self.query;
         product['title'] = self.title;
       });
     }
