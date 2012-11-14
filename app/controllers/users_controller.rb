@@ -125,7 +125,7 @@ class UsersController < ApplicationController
     when :connections
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
-      populate_theme @user
+      populate_theme @user if @user
 
     when :suggestions
       ifollower_ids = self.current_user.ifollower_ids 
@@ -155,6 +155,8 @@ class UsersController < ApplicationController
   rescue => ex
     handle_exception(ex)
   ensure
+    raise_not_found if @aspect == :connections && !@user
+
     respond_to do |format|
       format.html do
         track_visit
