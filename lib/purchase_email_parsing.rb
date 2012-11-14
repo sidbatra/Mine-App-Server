@@ -117,7 +117,7 @@ module DW
         purchases = []
         text = email.text
         regex = email.is_text_html? ?
-                  /www.amazon.com\/gp\/product\/([\w]+)/ :
+                  /www.amazon.com\/gp\/product\/(\w+)[[:print:]]+strong>/ :
                   /^([[:print:]]+\r{0,1}\n{0,1}[[:print:]]+) \[/
 
         product_ids = text.scan(regex).flatten.uniq
