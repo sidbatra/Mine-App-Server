@@ -50,6 +50,7 @@ module DW
       #
       def search(from,after)
         @mailboxes.each do |mailbox|
+        begin
           emails = mailbox.find :from => from,:after => after
 
           emails.reverse.in_groups_of(3,false).each do |group| 
@@ -62,7 +63,9 @@ module DW
 
             yield mails.reverse if block_given?
           end
+        rescue Net::IMAP::NoResponseError 
         end
+        end #mailboxes
       end
 
     end #gmail connection
