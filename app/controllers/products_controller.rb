@@ -375,7 +375,7 @@ class ProductsController < ApplicationController
     end
 
     products = images.map do |image|
-                product_search_hash(image,image,"","","")
+                product_search_hash(image,image,query,"","")
                end
   rescue => ex
     LoggedException.add(__FILE__,__method__,ex)
