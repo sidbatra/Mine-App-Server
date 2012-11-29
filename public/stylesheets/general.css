@@ -564,6 +564,14 @@ input.error:focus, textarea.error:focus {
 	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
   background-position: -288px 0; }
   
+.icon-cart {
+	background-image: url("/images/glyphicons-halflings-custom.png")!important;
+  background-position: -312px 0; }
+  
+.icon-cart.icon-white {
+	background-image: url("/images/glyphicons-halflings-custom-white.png")!important;
+  background-position: -312px 0; }
+  
 
 /* ----- loading button states ----- */
 .btn.pushed, .btn-pushed:hover, 
