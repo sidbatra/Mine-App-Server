@@ -147,7 +147,7 @@ class UsersController < ApplicationController
       
       @users += User.find_all_by_is_special(
                       true,
-                      :conditions => ["id not in (?)", followings.map(&:user_id) + ifollower_ids + [self.current_user.id]],
+                      :conditions => ["id not in (?) AND email IS NOT NULL", followings.map(&:user_id) + ifollower_ids + [self.current_user.id]],
                       :order => 'RAND()',
                       :limit => 3 - @users.size).each{|u| u['message'] = u.byline}
     end
