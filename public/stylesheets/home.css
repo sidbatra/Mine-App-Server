@@ -131,6 +131,7 @@ ul { margin: 0 !important; }
 	text-align: left;
 	width: 576px;
 	padding: 12px;
+	background-image: url('/images/loading/loading-snake-333-F5F5F5.gif') center no-repeat;
 	background-color: rgba(255,255,255,0.5);
 	margin-left: -298px;
 	margin-top: 0;
