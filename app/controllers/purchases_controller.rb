@@ -37,6 +37,7 @@ class PurchasesController < ApplicationController
 
       @key = ["v2",@user,"purchases",@before ? @before.to_i : "",@per_page]
 
+      unless @user.email.nil? && @user.is_special
       @purchases = Purchase.
                     select(:id,:bought_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
@@ -52,6 +53,7 @@ class PurchasesController < ApplicationController
                     bought_before(@before).
                     limit(@per_page).
                     for_users([@user]) unless fragment_exist? @key
+      end
 
     when :unapproved_ui 
       mine_purchase_emails
