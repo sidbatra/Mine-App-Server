@@ -30,11 +30,17 @@ a:hover { text-decoration: none; }
 .header-home .logo-home { padding: 18px 0 12px; height: 68px; }
 
 .header-home .app-store-badge { 
+	left: 24px; 
+	top: 50%;
+	margin-top: -20px; }
+
+.header-home .app-store-badge img { height: 40px; }
+
+.header-home .btn-login { 
 	right: 24px; 
 	top: 50%;
-	margin-top: -24px; }
-
-.header-home .app-store-badge img { height: 48px; }
+	margin-top: -20px;
+	width: 80px; }
 
 .container-home {
 	width: 100%; }
@@ -81,6 +87,8 @@ ul { margin: 0 !important; }
 .btn-facebook { border-left: 1px solid rgba(0,0,0,0.1); }
 
 .more { width: 880px; margin: 0 auto; padding-top: 32px; }
+.more.samples { margin-top: -24px; padding-top: 50px; }
+
 
 .col-3 { 
 	width: 30%;
@@ -199,6 +207,8 @@ footer .twitter-button-box {
  .header-home, .container, footer .inner { width: 100%; }
  footer { padding: 0 11px; text-align: right; }
  .header-home .logo-home { height: 44px; padding-top: 16px; }
+ .header-home .btn-login { right: 14px; height: 32px; line-height: 32px !important; margin-top: -16px; font-size: 13px; }
+
  
  .dark-top { height: 320px; }
  
@@ -222,17 +232,20 @@ footer .twitter-button-box {
 	.btn.btn-large img.t-box { height: 14px; }
 	.btn.btn-large img.f-box { height: 18px; }
 	
-	.btn-join { width: 200px; }
-	
-	.modal.eyeglass.join {
+	.btn-join { width: 200px; }	
+	.modal.eyeglass.join,
+	.modal.eyeglass.login {
 		width: 290px !important;
 		height: 160px !important;
 		margin-left: -157px; }
 	
-	.modal.eyeglass.join .modal-body {
-		height: 160px !important; }
+	.modal.eyeglass.login  { height: 128px !important; }
+	
+	.modal.eyeglass.join .modal-body { height: 160px !important; }
+	.modal.eyeglass.login .modal-body { height: 128px !important; }
 	
 	.more { width: 100%; padding-top: 19px; }
+	.more.samples { padding-top: 44px;}
 	
 	.col-3 { width: 90%; margin: 0 5%; }
 	

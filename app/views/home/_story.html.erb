@@ -7,13 +7,53 @@
       <%=image_tag "logos/mine-h-white-48-brighter-2x.png",
           :class => "logo-home unselectable"%>	
       
-      <%unless is_phone_device?%>  
+<!--
+      <#unless is_phone_device?%>  
 	      <a href="http://itunes.apple.com/us/app/mine./id567558757?mt=8" 
 	      class="app-store-badge absolute opacity-80-100 transition-opacity">
-	      	<%=image_tag "home/app-store-badge-2x.png",
+	      	<#=image_tag "home/app-store-badge-2x.png",
 	          :class => ""%>
 	      </a>
-      <%end%>
+      <#end%>
+-->
+      
+      <a class="btn btn-large btn-black btn-login absolute shaded"
+      	href="#login" role="button" data-toggle="modal">
+      	Log In
+      </a>
+      
+      <! -- modal log in -->
+      <div class="modal eyeglass login hide rounded-5" id="login" style="height: 168px; top: 50%; margin-top:-112px;">
+        <div class="modal-body rounded-3 relative" 
+        	style="text-align: center; background: #444; height: 168px;">
+        	
+        	<h2 style="padding-bottom: 14px;">Log In</h2>
+        
+	   			<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	            onclick="this.className += ' load';"
+	            class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+	          <span class='hide-when-loading'>
+	            <%=image_tag "social/t-box.png",
+	            :class => "t-box"%>
+	            Log in<span class="rwd-hide"> with Twitter</span>
+	          </span>
+	          <i class='icon-loading icon-white'></i>
+	        </a>
+	        
+	        <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+	            onclick="this.className += ' load';"
+	            class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+	          <span class='hide-when-loading'>
+	            <%=image_tag "social/f-box.png",
+	            :class => "f-box"%>
+	            Log in<span class="rwd-hide"> with Facebook</span>
+	          </span>
+	          <i class='icon-loading icon-white'></i>
+	        </a>
+	        
+        </div> <!-- /modal-body -->
+      </div> <!-- /modal log in -->
+      
       
     </div>
     
@@ -95,7 +135,7 @@
 	        <p style="padding-top: 16px;">Mine never auto-shares, period. </p>
 
         </div> <!-- /modal-body -->
-      </div> <!-- /modal -->
+      </div> <!-- /modal join -->
 
     <%end%>
       
@@ -104,7 +144,7 @@
 		<div style="background: #eee; padding-bottom: 18px;">
 
 		
-			<div class="more" style="margin-top: -24px; padding-top: 56px;">
+			<div class="more samples">
 				
 				<div class="col-3">
 					
