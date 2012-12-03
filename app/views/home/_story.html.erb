@@ -54,29 +54,48 @@
       
       <div style="text-align: center;">
       
-        <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-            onclick="this.className += ' load';"
-            class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+        <a class="btn btn-large btn-join rounded-3 shaded-strong relative"
+        	style="background-color: #FF6600;" href="#join" role="button" data-toggle="modal">
           <span class='hide-when-loading'>
-            <%=image_tag "social/t-box.png",
-            :class => "t-box"%>
-            Sign in<span class="rwd-hide"> with Twitter</span>
+            Join Now for Free
           </span>
-          <i class='icon-loading icon-white'></i>
         </a>
         
-        <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-            onclick="this.className += ' load';"
-            class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-          <span class='hide-when-loading'>
-            <%=image_tag "social/f-box.png",
-            :class => "f-box"%>
-            Sign in<span class="rwd-hide"> with Facebook</span>
-          </span>
-          <i class='icon-loading icon-white'></i>
-        </a>
+      </div> <!-- Join Now Button -->
       
-      </div> <!-- centered buttons -->
+     	<! -- modal join -->
+      <div class="modal eyeglass join hide rounded-5" id="join" style="height: 200px; top: 50%; margin-top:-112px;">
+        <div class="modal-body rounded-3 relative" 
+        	style="text-align: center; background: #444; height: 200px;">
+        	
+        	<h2 style="padding-bottom: 14px;">Sign Up</h2>
+        
+	   			<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	            onclick="this.className += ' load';"
+	            class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+	          <span class='hide-when-loading'>
+	            <%=image_tag "social/t-box.png",
+	            :class => "t-box"%>
+	            Sign up<span class="rwd-hide"> with Twitter</span>
+	          </span>
+	          <i class='icon-loading icon-white'></i>
+	        </a>
+	        
+	        <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+	            onclick="this.className += ' load';"
+	            class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+	          <span class='hide-when-loading'>
+	            <%=image_tag "social/f-box.png",
+	            :class => "f-box"%>
+	            Sign up<span class="rwd-hide"> with Facebook</span>
+	          </span>
+	          <i class='icon-loading icon-white'></i>
+	        </a>
+	        
+	        <p style="padding-top: 16px;">Mine never auto-shares, period. </p>
+
+        </div> <!-- /modal-body -->
+      </div> <!-- /modal -->
 
     <%end%>
       
@@ -121,16 +140,6 @@
 	          <i class="icon-chevron-right absolute transition-opacity"></i>
 	        </a>
 					
-	<!--
-					<h3>
-						Post purchases, perfectly.
-					</h3>
-					<p>
-						Combine a pristine catalog photo, where you bought your item, 
-						and the web's best link to more info, for the perfect way to share a purchase.
-					</p>
-	-->
-					
 				</div>
 				
 				<div class="col-3">
@@ -167,16 +176,6 @@
 						<i class="icon-chevron-right absolute transition-opacity"></i>
 					</a>
 					
-	<!--
-					<h3>
-						Share the best items in your life.
-					</h3>
-					<p>
-						Thousands of people use Mine to post the items that speak to who they are, 
-						what they like, and what they know about.
-					</p>
-	-->
-					
 				</div>
 				
 				<div class="col-3">
@@ -212,16 +211,6 @@
 						Alex is a designer at Google. It's fair to say he's into comics. 
 						<i class="icon-chevron-right absolute transition-opacity"></i>
 					</a>
-					
-	<!--
-					<h3>
-						Discover thru friends & followers.
-					</h3>
-					<p>
-						As the only place on the web where you can look up and follow anyone's best purchases, 
-						Mine is a never-ending thread of discovery.
-					</p>
-	-->
 					
 				</div>
 				

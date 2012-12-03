@@ -71,7 +71,7 @@ ul { margin: 0 !important; }
 
 .rwd-show { display: none; }
 
-.btn-twitter, .btn-facebook { 
+.btn-twitter, .btn-facebook, .btn-join { 
 	width: 236px;
 	height: 52px;
 	font-size: 16px;
@@ -131,7 +131,7 @@ ul { margin: 0 !important; }
 	width: 576px;
 	padding: 12px;
 	background-image: url('/images/loading/loading-snake-333-F5F5F5.gif') center no-repeat;
-	background-color: rgba(255,255,255,0.5);
+	background-color: #999;
 	margin-left: -298px;
 	margin-top: 0;
 /* 	top: 48px; */
@@ -218,10 +218,20 @@ footer .twitter-button-box {
 	h2 { font-size: 18px; line-height: 140%; padding: 14px 0 19px; }
 	h3 { font-size: 15px; line-height: 140%; padding: 0 0 7px; letter-spacing: normal; }
 	p { font-size: 13px; line-height: 140%; padding-bottom: 5px; }
-	.btn-twitter, .btn-facebook { width: 120px; height: 44px; font-size: 14px; line-height: 42px !important; }
+	.btn-twitter, .btn-facebook, .btn-join { width: 120px; height: 44px; font-size: 14px; line-height: 42px !important; }
 	
 	.btn.btn-large img.t-box { height: 14px; }
 	.btn.btn-large img.f-box { height: 18px; }
+	
+	.btn-join { width: 200px; }
+	
+	.modal.eyeglass.join {
+		width: 290px !important;
+		height: 160px !important;
+		margin-left: -157px; }
+	
+	.modal.eyeglass.join .modal-body {
+		height: 160px !important; }
 	
 	.more { width: 100%; padding-top: 19px; }
 	
