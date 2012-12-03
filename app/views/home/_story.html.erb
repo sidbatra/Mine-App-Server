@@ -35,7 +35,7 @@
           <!-- desktop video -->
           <iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
             width="630" 
-            height="280" 
+            height="240" 
             frameborder="0">
           </iframe>
         <%else%>
@@ -49,7 +49,7 @@
       </div>
       
       <h2>
-        Mine is a directory <br class="rwd-show">of people and the items they buy.
+        Mine is a directory <br class="rwd-show">of people and purchases.
       </h2>
       
       <div style="text-align: center;">
@@ -82,224 +82,280 @@
       
 		<br>
 		
-		<div class="more">
-			
-			<div class="col-3">
-				
-        <a 	
-          <%unless is_phone_device?%>
-            href="#modal1" 
-            data-toggle="modal" 
-            onclick="$('#iframe_1').attr('src','<%=home_sample_url("item")%>');mixpanel.track('Home Modal Clicked',{'Type':'Mike'})"
-          <%else%>
-            href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
-          <%end%>
-            class="cell rounded-8 border-box transition-bg 
-                    transition-color transition-border-color relative">
-          <%=image_tag "home/mike.jpg",
-            :class => "user-photo absolute rounded-3"%>
-          Mike bought a new Kindle Paperwhite. His friends asked him about it.
-          <i class="icon-chevron-right absolute transition-opacity"></i>
-        </a>
-        
-        <a 
-          <%unless is_phone_device?%>
-            href="#modal4" 
-            data-toggle="modal" 
-            onclick="$('#iframe_4').attr('src','<%=home_sample_url("profile3")%>');mixpanel.track('Home Modal Clicked',{'Type':'Alex G'})"
-          <%else%>
-            href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
-          <%end%>
-            class="cell rounded-8 border-box transition-bg 
-                    transition-color transition-border-color relative">
-          <%=image_tag "home/ag.jpg",
-            :class => "user-photo absolute rounded-3"%>
-          Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
-          <i class="icon-chevron-right absolute transition-opacity"></i>
-        </a>
-				
-				<h3>
-					Post purchases, perfectly.
-				</h3>
-				<p>
-					Combine a pristine catalog photo, where you bought your item, 
-					and the web's best link to more info, for the perfect way to share a purchase.
-				</p>
-				
-			</div>
-			
-			<div class="col-3">
-				
-				<a 
-					<%unless is_phone_device?%>
-						href="#modal2" 
-            data-toggle="modal" 
-            onclick="$('#iframe_2').attr('src','<%=home_sample_url("profile")%>');mixpanel.track('Home Modal Clicked',{'Type':'Arar'})"
-					<%else%>
-            href="<%=home_sample_url("profile",:web_view_mode => @web_view_mode)%>"
-					<%end%>
-            class="cell rounded-8 border-box transition-bg 
-                    transition-color transition-border-color relative">
-					<%=image_tag "home/arar2.jpg",
-						:class => "user-photo absolute rounded-3"%>
-					From Nordstrom to Incheon Airport, Arar always buys items at the classic edge.
-					<i class="icon-chevron-right absolute transition-opacity"></i>
-				</a>
-				
-				<a 
-					<%unless is_phone_device?%>
-						href="#modal5" 
-            data-toggle="modal" 
-            onclick="$('#iframe_5').attr('src','<%=home_sample_url("profile4")%>');mixpanel.track('Home Modal Clicked',{'Type':'Sam'})"
-					<%else%>
-	          href="<%=home_sample_url("profile4",:web_view_mode => @web_view_mode)%>"
-					<%end%>
-	          class="cell rounded-8 border-box transition-bg 
-	                  transition-color transition-border-color relative">
-					<%=image_tag "home/sam.jpg",
-						:class => "user-photo absolute rounded-3"%>
-					One item here convinced Sam he wanted to make movies for life. 
-					<i class="icon-chevron-right absolute transition-opacity"></i>
-				</a>
-				
-				<h3>
-					Share the best items in your life.
-				</h3>
-				<p>
-					Thousands of people use Mine to post the items that speak to who they are, 
-					what they like, and what they know about.
-				</p>
-				
-			</div>
-			
-			<div class="col-3">
-										
-				<a
-					<%unless is_phone_device?%>
-						href="#modal3" 
-            data-toggle="modal" 
-            onclick="$('#iframe_3').attr('src','<%=home_sample_url("profile2")%>');mixpanel.track('Home Modal Clicked',{'Type':'Richard'})"
-					<%else%>
-            href="<%=home_sample_url("profile2",:web_view_mode => @web_view_mode)%>"
-					<%end%> 
-            class="cell rounded-8 border-box transition-bg 
-                    transition-color transition-border-color relative">
-					<%=image_tag "home/richard.jpg",
-						:class => "user-photo absolute rounded-3"%>
-					Richard is the designer behind the Mine logo. Here's his setup.
-					<i class="icon-chevron-right absolute transition-opacity"></i>
-				</a>
-				
-				<a 
-					<%unless is_phone_device?%>
-						href="#modal6" 
-            data-toggle="modal" 
-            onclick="$('#iframe_6').attr('src','<%=home_sample_url("profile5")%>');mixpanel.track('Home Modal Clicked',{'Type':'Alex Gr'})"
-					<%else%>
-	          href="<%=home_sample_url("profile5",:web_view_mode => @web_view_mode)%>"
-					<%end%>
-	          class="cell rounded-8 border-box transition-bg 
-	                  transition-color transition-border-color relative">
-					<%=image_tag "home/ag2.jpg",
-						:class => "user-photo absolute rounded-3"%>
-					Alex is a designer at Google. It's fair to say he's into comics. 
-					<i class="icon-chevron-right absolute transition-opacity"></i>
-				</a>
-				
-				<h3>
-					Discover thru friends & followers.
-				</h3>
-				<p>
-					As the only place on the web where you can look up and follow anyone's best purchases, 
-					Mine is a never-ending thread of discovery.
-				</p>
-				
-			</div>
-			
-			<br>
+		<div style="background: #eee; padding-bottom: 18px;">
 
-      <%unless is_phone_device?%>
-        <! -- modal 1 -->
-        <div class="modal eyeglass hide rounded-5" id="modal1">
-          <button type="button" class="close absolute transition-opacity" 
-              data-dismiss="modal">
-            ×
-          </button>
-          <div class="modal-body rounded-3 relative">
-            <iframe seamless id="iframe_1" class="rounded-3" 
-              frameborder="0" width="100%" 
-              height="100%"></iframe>
-          </div> <!-- /modal-body -->
-        </div> <!-- /modal -->
-        
-        <! -- modal 2 -->
-        <div class="modal eyeglass hide rounded-5" id="modal2">
-          <button type="button" class="close absolute transition-opacity" 
-              data-dismiss="modal">
-            ×
-          </button>
-          <div class="modal-body">
-            <iframe seamless id="iframe_2" class="rounded-3" 
-              frameborder="0" width="100%" 
-              height="100%"></iframe>
-          </div>
-        </div>
-        
-        <! -- modal 3 -->
-        <div class="modal eyeglass hide rounded-5" id="modal3">
-          <button type="button" class="close absolute transition-opacity" 
-              data-dismiss="modal">
-            ×
-          </button>
-          <div class="modal-body">
-            <iframe seamless id="iframe_3" class="rounded-3" 
-              frameborder="0" width="100%" 
-              height="100%"></iframe>
-          </div>
-        </div>
-        
-       	<! -- modal 4 -->
-        <div class="modal eyeglass hide rounded-5" id="modal4">
-          <button type="button" class="close absolute transition-opacity" 
-              data-dismiss="modal">
-            ×
-          </button>
-          <div class="modal-body">
-            <iframe seamless id="iframe_4" class="rounded-3" 
-              frameborder="0" width="100%" 
-              height="100%"></iframe>
-          </div>
-        </div>
-        
-        <! -- modal 5 -->
-        <div class="modal eyeglass hide rounded-5" id="modal5">
-          <button type="button" class="close absolute transition-opacity" 
-              data-dismiss="modal">
-            ×
-          </button>
-          <div class="modal-body">
-            <iframe seamless id="iframe_5" class="rounded-3" 
-              frameborder="0" width="100%" 
-              height="100%"></iframe>
-          </div>
-        </div>
-        
-        <! -- modal 6 -->
-        <div class="modal eyeglass hide rounded-5" id="modal6">
-          <button type="button" class="close absolute transition-opacity" 
-              data-dismiss="modal">
-            ×
-          </button>
-          <div class="modal-body">
-            <iframe seamless id="iframe_6" class="rounded-3" 
-              frameborder="0" width="100%" 
-              height="100%"></iframe>
-          </div>
-        </div>
-        
-      <%end%>
+		
+			<div class="more" style="margin-top: -24px; padding-top: 56px;">
+				
+				<div class="col-3">
+					
+	        <a 	
+	          <%unless is_phone_device?%>
+	            href="#modal1" 
+	            data-toggle="modal" 
+	            onclick="$('#iframe_1').attr('src','<%=home_sample_url("item")%>');mixpanel.track('Home Modal Clicked',{'Type':'Mike'})"
+	          <%else%>
+	            href="<%=home_sample_url("item",:web_view_mode => @web_view_mode)%>"
+	          <%end%>
+	            class="cell rounded-8 border-box transition-bg 
+	                    transition-color transition-border-color relative">
+	          <%=image_tag "home/mike.jpg",
+	            :class => "user-photo absolute rounded-3"%>
+	          Mike bought a new Kindle Paperwhite. His friends asked him about it.
+	          <i class="icon-chevron-right absolute transition-opacity"></i>
+	        </a>
+	        
+	        <a 
+	          <%unless is_phone_device?%>
+	            href="#modal4" 
+	            data-toggle="modal" 
+	            onclick="$('#iframe_4').attr('src','<%=home_sample_url("profile3")%>');mixpanel.track('Home Modal Clicked',{'Type':'Alex G'})"
+	          <%else%>
+	            href="<%=home_sample_url("profile3",:web_view_mode => @web_view_mode)%>"
+	          <%end%>
+	            class="cell rounded-8 border-box transition-bg 
+	                    transition-color transition-border-color relative">
+	          <%=image_tag "home/ag.jpg",
+	            :class => "user-photo absolute rounded-3"%>
+	          Alex is an amateur cyclist from Chicago with a passion for Cyclo-Cross. 
+	          <i class="icon-chevron-right absolute transition-opacity"></i>
+	        </a>
+					
+	<!--
+					<h3>
+						Post purchases, perfectly.
+					</h3>
+					<p>
+						Combine a pristine catalog photo, where you bought your item, 
+						and the web's best link to more info, for the perfect way to share a purchase.
+					</p>
+	-->
+					
+				</div>
+				
+				<div class="col-3">
+					
+					<a 
+						<%unless is_phone_device?%>
+							href="#modal2" 
+	            data-toggle="modal" 
+	            onclick="$('#iframe_2').attr('src','<%=home_sample_url("profile")%>');mixpanel.track('Home Modal Clicked',{'Type':'Arar'})"
+						<%else%>
+	            href="<%=home_sample_url("profile",:web_view_mode => @web_view_mode)%>"
+						<%end%>
+	            class="cell rounded-8 border-box transition-bg 
+	                    transition-color transition-border-color relative">
+						<%=image_tag "home/arar2.jpg",
+							:class => "user-photo absolute rounded-3"%>
+						From Nordstrom to Incheon Airport, Arar always buys items at the classic edge.
+						<i class="icon-chevron-right absolute transition-opacity"></i>
+					</a>
+					
+					<a 
+						<%unless is_phone_device?%>
+							href="#modal5" 
+	            data-toggle="modal" 
+	            onclick="$('#iframe_5').attr('src','<%=home_sample_url("profile4")%>');mixpanel.track('Home Modal Clicked',{'Type':'Sam'})"
+						<%else%>
+		          href="<%=home_sample_url("profile4",:web_view_mode => @web_view_mode)%>"
+						<%end%>
+		          class="cell rounded-8 border-box transition-bg 
+		                  transition-color transition-border-color relative">
+						<%=image_tag "home/sam.jpg",
+							:class => "user-photo absolute rounded-3"%>
+						One item here convinced Sam he wanted to make movies for life. 
+						<i class="icon-chevron-right absolute transition-opacity"></i>
+					</a>
+					
+	<!--
+					<h3>
+						Share the best items in your life.
+					</h3>
+					<p>
+						Thousands of people use Mine to post the items that speak to who they are, 
+						what they like, and what they know about.
+					</p>
+	-->
+					
+				</div>
+				
+				<div class="col-3">
+											
+					<a
+						<%unless is_phone_device?%>
+							href="#modal3" 
+	            data-toggle="modal" 
+	            onclick="$('#iframe_3').attr('src','<%=home_sample_url("profile2")%>');mixpanel.track('Home Modal Clicked',{'Type':'Richard'})"
+						<%else%>
+	            href="<%=home_sample_url("profile2",:web_view_mode => @web_view_mode)%>"
+						<%end%> 
+	            class="cell rounded-8 border-box transition-bg 
+	                    transition-color transition-border-color relative">
+						<%=image_tag "home/richard.jpg",
+							:class => "user-photo absolute rounded-3"%>
+						Richard is the designer behind the Mine logo. Here's his setup.
+						<i class="icon-chevron-right absolute transition-opacity"></i>
+					</a>
+					
+					<a 
+						<%unless is_phone_device?%>
+							href="#modal6" 
+	            data-toggle="modal" 
+	            onclick="$('#iframe_6').attr('src','<%=home_sample_url("profile5")%>');mixpanel.track('Home Modal Clicked',{'Type':'Alex Gr'})"
+						<%else%>
+		          href="<%=home_sample_url("profile5",:web_view_mode => @web_view_mode)%>"
+						<%end%>
+		          class="cell rounded-8 border-box transition-bg 
+		                  transition-color transition-border-color relative">
+						<%=image_tag "home/ag2.jpg",
+							:class => "user-photo absolute rounded-3"%>
+						Alex is a designer at Google. It's fair to say he's into comics. 
+						<i class="icon-chevron-right absolute transition-opacity"></i>
+					</a>
+					
+	<!--
+					<h3>
+						Discover thru friends & followers.
+					</h3>
+					<p>
+						As the only place on the web where you can look up and follow anyone's best purchases, 
+						Mine is a never-ending thread of discovery.
+					</p>
+	-->
+					
+				</div>
+				
+			</div> <!--/more -->
 			
-		</div> <!--/more -->
+		</div> <!-- #eee colorstrip -->
+		
+		<div style="background: #f8f8f8;">
+			
+			<div class="more">
+			
+				<div class="col-3" style="text-align: center; padding-bottom: 18px;">
+					<div style="height: 80px; line-height: 80px;">
+						<%=image_tag "home/icon-import-2x.png",
+							:style => "height: 72px;"%>
+					</div>
+					<h3>Import.</h3>
+					<p style="padding: 0 14px; text-align: left;">
+						Connect your Gmail or Yahoo! 
+						account to create your Mine profile 
+						in seconds.
+					</p>
+				</div>
+				
+				<div class="col-3" style="text-align: center; padding-bottom: 18px;">
+					<div style="height: 80px; line-height: 80px;">
+						<%=image_tag "home/icon-discover-2x.png",
+							:style => "height: 44px;"%>
+					</div>
+					<h3>Discover.</h3>
+					<p style="padding: 0 14px; text-align: left;">
+						Look up, browse and follow people 
+						on the world’s only directory of 
+						ownership.
+					</p>
+				</div>
+				
+				<div class="col-3" style="text-align: center; padding-bottom: 18px;">
+					<div style="height: 80px; line-height: 80px;">
+					<%=image_tag "home/icon-shop-2x.png",
+						:style => "height: 48px;"%>
+					</div>
+					<h3>Shop.</h3>
+					<p style="padding: 0 14px; text-align: left;">
+						Just tap to buy or download any
+						item you see that looks 
+						interesting.
+					</p>
+				</div>
+
+			</div>
+		
+		</div>
+
+    <%unless is_phone_device?%>
+      <! -- modal 1 -->
+      <div class="modal eyeglass hide rounded-5" id="modal1">
+        <button type="button" class="close absolute transition-opacity" 
+            data-dismiss="modal">
+          ×
+        </button>
+        <div class="modal-body rounded-3 relative">
+          <iframe seamless id="iframe_1" class="rounded-3" 
+            frameborder="0" width="100%" 
+            height="100%"></iframe>
+        </div> <!-- /modal-body -->
+      </div> <!-- /modal -->
+      
+      <! -- modal 2 -->
+      <div class="modal eyeglass hide rounded-5" id="modal2">
+        <button type="button" class="close absolute transition-opacity" 
+            data-dismiss="modal">
+          ×
+        </button>
+        <div class="modal-body">
+          <iframe seamless id="iframe_2" class="rounded-3" 
+            frameborder="0" width="100%" 
+            height="100%"></iframe>
+        </div>
+      </div>
+      
+      <! -- modal 3 -->
+      <div class="modal eyeglass hide rounded-5" id="modal3">
+        <button type="button" class="close absolute transition-opacity" 
+            data-dismiss="modal">
+          ×
+        </button>
+        <div class="modal-body">
+          <iframe seamless id="iframe_3" class="rounded-3" 
+            frameborder="0" width="100%" 
+            height="100%"></iframe>
+        </div>
+      </div>
+      
+     	<! -- modal 4 -->
+      <div class="modal eyeglass hide rounded-5" id="modal4">
+        <button type="button" class="close absolute transition-opacity" 
+            data-dismiss="modal">
+          ×
+        </button>
+        <div class="modal-body">
+          <iframe seamless id="iframe_4" class="rounded-3" 
+            frameborder="0" width="100%" 
+            height="100%"></iframe>
+        </div>
+      </div>
+      
+      <! -- modal 5 -->
+      <div class="modal eyeglass hide rounded-5" id="modal5">
+        <button type="button" class="close absolute transition-opacity" 
+            data-dismiss="modal">
+          ×
+        </button>
+        <div class="modal-body">
+          <iframe seamless id="iframe_5" class="rounded-3" 
+            frameborder="0" width="100%" 
+            height="100%"></iframe>
+        </div>
+      </div>
+      
+      <! -- modal 6 -->
+      <div class="modal eyeglass hide rounded-5" id="modal6">
+        <button type="button" class="close absolute transition-opacity" 
+            data-dismiss="modal">
+          ×
+        </button>
+        <div class="modal-body">
+          <iframe seamless id="iframe_6" class="rounded-3" 
+            frameborder="0" width="100%" 
+            height="100%"></iframe>
+        </div>
+      </div>
+      
+    <%end%>
 		
 		<div class="spacer"></div>
 		

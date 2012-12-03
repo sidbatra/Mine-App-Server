@@ -8,7 +8,7 @@ body {
 	color: white;
 	text-rendering: optimizelegibility;
 	overflow-x: hidden;
-	background: #eee; }
+	background: #f8f8f8; }
 	
 a:hover { text-decoration: none; }
 	
@@ -23,12 +23,11 @@ a:hover { text-decoration: none; }
 	z-index: -1;
 	top: 0;
 	width: 100%;
-	height: 622px;
-	height: 510px;
+	height: 456px;
 	background: url('/images/backgrounds/bg-strip.png') repeat-x top left; }
 
 .header-home { text-align: center; width: 904px; margin: 0 auto; }
-.header-home .logo-home { padding: 21px 0 12px; height: 73px; }
+.header-home .logo-home { padding: 18px 0 12px; height: 68px; }
 
 .header-home .app-store-badge { 
 	right: 24px; 
@@ -45,8 +44,8 @@ a:hover { text-decoration: none; }
 	text-align: center; }
 	
 h2 {
-	padding: 30px 0 32px;
-	font-size: 28px;
+	padding: 26px 0 28px;
+	font-size: 26px;
 	text-align: center;
 	font-weight: normal;
 	color: #eee;
@@ -60,11 +59,11 @@ h3 {
 	padding: 10px 0 10px;
 	font-size: 20px;
 	font-weight: normal;
-	color: #555;
+	color: #888;
 	letter-spacing: -1px; }
 	
 p { 
-	font-size: 15px;
+	font-size: 13px;
 	line-height: 145%;
 	color: #777; }
 
@@ -73,7 +72,7 @@ ul { margin: 0 !important; }
 .rwd-show { display: none; }
 
 .btn-twitter, .btn-facebook { 
-	width: 244px;
+	width: 236px;
 	height: 52px;
 	font-size: 16px;
 	text-shadow: 0 1px rgba(0,0,0,0.32);
@@ -94,7 +93,7 @@ ul { margin: 0 !important; }
 	height: 78px;
 	display: inline-block;
 	background: white;
-	margin-bottom: 18px;
+	margin-bottom: 14px;
 	padding: 13px 26px 11px 76px;
 	font-size: 13px;
 	line-height: 18px;
