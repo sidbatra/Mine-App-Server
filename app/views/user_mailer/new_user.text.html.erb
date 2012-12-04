@@ -1,11 +1,16 @@
 <td align="center" style="font-size: 0; padding: 24px 12px;">
-  <font face="Arial" color="#777"> 
+  <font face="Arial" color="#333"> 
   
-  	<p style="font-size:18px; color: #333; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+  	<p style="font-size:32px; color: #333; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased; margin-bottom: -6px;">
+    	Hi <%=@user.first_name%>,
+    </p>
+  		
+  	<p style="font-size:18px; color: #555; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
-			<b><%=@user.first_name%></b>, a big welcome to mine!<br>
-			We're glad you're here.
+			Congrats, you've just joined<br>the world's directory of people<br>
+			and the things they buy!
 			
 		</p>
 
@@ -14,43 +19,41 @@
         :url => root_url(:src => @source),
         :text => "Add a recent purchase"}%>	
 		
-		<p style="font-size:18px; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+		<p style="color: #555; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
-			<b>On mine, you can…</b>
+			<b>On Mine, you can…</b>
 			
 		</p>
 		
-		<p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
-    	<b>Post your purchases, perfectly.</b><br>
-    	Combine a pristine catalog photo, where you bought your item, 
-    	and the web's best link to more info, for an item you can treasure and others can explore.
+		<%=image_tag "home/icon-import-2x.png",
+							:style => "height: 72px; padding-top: 8px;"%>
+		
+		<p style="color: #888; max-width: 300px; margin-left: auto; margin-right: auto; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	<b>Import your purchase history</b><br>
+    	Connect your Gmail or Yahoo! account to create your Mine profile in seconds.
     </p> 
     
-    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;">
-    	<b>Share the best stuff in your life.</b><br> 
-    	Thousands of people use mine to post the items that speak to who they are, 
-    	what they like, and what they know about.
+		<%=image_tag "home/icon-discover-2x.png",
+							:style => "height: 44px; padding-top: 8px;"%>
+		
+		<p style="color: #888; max-width: 300px; margin-left: auto; margin-right: auto; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	<b>Discover products through people</b><br>
+    	Look up, browse and follow people on the world’s only directory of ownership.
     </p> 
     
-    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
-    	<b>Learn from friends and followers.</b><br>
-    	As the only place on the web where you can look up and follow anyone's best purchases, 
-    	mine is a constant source of inspiration.
-    </p> 
-    
-    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
-    	We're working hard to make mine great, 24/7. If you have any thoughts or ideas about it, always feel free to 
-    	<a style="color: #006FB1; text-decoration: none;" 
-    		href="mailto:contact@getmine.com">get in touch.</a>
+		<%=image_tag "home/icon-shop-2x.png",
+						:style => "height: 48px; padding-top: 8px;"%>
+		
+		<p style="color: #888; max-width: 300px; margin-left: auto; margin-right: auto; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	<b>Shop in a single click (or tap)</b><br>
+    	Just tap to buy or download any item you see that looks interesting.
     </p>
     
-    <p style="max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; font-size:14px; line-height: 140%; 
-    	font-family: 'Helvetica'; -webkit-font-smoothing: antialiased;"> 
-    	Thanks,<br>
-    	Mine
-    </p>
+    <p style="color: #888; max-width: 300px; margin-left: auto; padding: 16px 0 8px; margin-right: auto; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	Questions? Comments?<br>Email us at <a href="mailto:contact@getmine.com">contact@getmine.com</a>
+    </p> 
