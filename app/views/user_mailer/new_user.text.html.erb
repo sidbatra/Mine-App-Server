@@ -1,7 +1,7 @@
 <td align="center" style="font-size: 0; padding: 24px 12px;">
   <font face="Arial" color="#333"> 
   
-  	<p style="font-size:32px; color: #333; 
+  	<p style="font-size:28px; color: #333; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased; margin-bottom: -6px;">
     	Hi <%=@user.first_name%>,
     </p>
@@ -10,24 +10,26 @@
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
 			Congrats, you've just joined<br>the world's directory of people<br>
-			and the things they buy!
+			and the things they buy.
 			
 		</p>
 
-    <%=render :partial => "action_button",
+    <%#render :partial => "action_button",
         :locals => {
         :url => root_url(:src => @source),
         :text => "Add a recent purchase"}%>	
 		
-		<p style="color: #555; font-size:14px; line-height: 140%; 
+		<p style="color: #888; font-size:14px; line-height: 140%; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
 			<b>On Mine, you can…</b>
 			
 		</p>
 		
-		<%=image_tag "home/icon-import-2x.png",
-							:style => "height: 72px; padding-top: 8px;"%>
+		<a href="<%=root_url(:src => @source)%>">
+			<%=image_tag "home/icon-import-2x.png",
+								:style => "height: 72px; padding-top: 8px;"%>
+		</a>
 		
 		<p style="color: #888; max-width: 300px; margin-left: auto; margin-right: auto; font-size:14px; line-height: 140%; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
@@ -35,8 +37,10 @@
     	Connect your Gmail or Yahoo! account to create your Mine profile in seconds.
     </p> 
     
-		<%=image_tag "home/icon-discover-2x.png",
-							:style => "height: 44px; padding-top: 8px;"%>
+    <a href="<%=root_url(:src => @source)%>">
+			<%=image_tag "home/icon-discover-2x.png",
+								:style => "height: 44px; padding-top: 8px;"%>
+		</a>
 		
 		<p style="color: #888; max-width: 300px; margin-left: auto; margin-right: auto; font-size:14px; line-height: 140%; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
@@ -44,8 +48,10 @@
     	Look up, browse and follow people on the world’s only directory of ownership.
     </p> 
     
-		<%=image_tag "home/icon-shop-2x.png",
-						:style => "height: 48px; padding-top: 8px;"%>
+    <a href="<%=root_url(:src => @source)%>">
+			<%=image_tag "home/icon-shop-2x.png",
+							:style => "height: 48px; padding-top: 8px;"%>
+		</a>
 		
 		<p style="color: #888; max-width: 300px; margin-left: auto; margin-right: auto; font-size:14px; line-height: 140%; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">

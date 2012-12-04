@@ -12,7 +12,9 @@
   bgcolor="#444">
 	<tr>
 	  <td height="52" align="center">
-	  	<img alt="" width="91" height="40" src="<%=image_path "#{(is_dev? ? "http://#{CONFIG[:host]}/images/" : '')}logos/mine-email-2x.png"%>"/>
+	  	<a href="<%=root_url(:src => @source)%>">
+	  		<img alt="" width="91" height="40" src="<%=image_path "#{(is_dev? ? "http://#{CONFIG[:host]}/images/" : '')}logos/mine-email-2x.png"%>"/>
+	  	</a>
 	  </td>
 	</tr>
 </table>
