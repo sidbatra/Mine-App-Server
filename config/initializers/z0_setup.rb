@@ -36,6 +36,7 @@ include EmailConnectionInterface
 include GoogleShoppingInterface
 include ImageProcessing
 include ItunesInterface
+include EtsyInterface
 include MailmanInterface
 include NotificationManagement
 include Storage

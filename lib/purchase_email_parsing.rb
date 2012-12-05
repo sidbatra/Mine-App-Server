@@ -234,6 +234,66 @@ module DW
       end
     end
 
+
+    class EtsyEmailParser
+      
+      def initialize(store)
+      end
+      
+      def make_etsy_products_from_items(items)
+        etsy_products = {}
+
+        items.each do |id,item|
+          etsy_products[id] = EtsyProduct.new item
+        end
+
+        etsy_products
+      end
+
+      def parse(emails)
+        items = {}
+        purchases = []
+
+        emails.each do |email|
+          text = email.body.to_s
+
+          item_specs = text.scan(/www.etsy.com\/transaction\/(\d+).*\s+(.*)\s+\<\/a\>/)
+          item_imgs  = text.scan(/www.etsy.com\/transaction\/(\d+).*\s+.*src=\"(.*)\"\s+/)
+
+          item_specs.each do |item_spec| 
+            item_id     = item_spec[0]
+            item_title  = CGI.unescapeHTML(item_spec[1])
+
+            items[item_id] = {:transaction_id => item_id,
+                              :title => item_title}
+
+            purchases << {:etsy_id => item_id,
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+
+          item_imgs.each do |item_img|
+            items[item_img[0]][:image_url] = item_img[1] if items.key?(item_img[0])
+          end
+        end
+
+        etsy_products = make_etsy_products_from_items(items)
+
+        purchases.map do |purchase|
+          product = etsy_products[purchase[:etsy_id]]
+
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.medium_image_url,
+            :external_id => product.custom_product_id})
+        end.compact
+      end
+    end
+
+
   end #purchase email parsing
 
 end #dw
