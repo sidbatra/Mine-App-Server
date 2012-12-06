@@ -10,11 +10,12 @@ module DW
       # url_only - Return url or full set of results.
       #
       def self.lookup(ids,url_only=false)
-        ids = "[%22" + ids.join(CGI.escape("\",\"")) + "%22]"
+        ids = "[\"" + ids.join("\",\"") + "\"]"
 
         params = {
-          'id' => ids,
-          'key'=> '2d0d97889624d073f8acb868f09381c8adabf454'}
+          'id'        => URI.escape(ids),
+          'includes'  => URI.escape("[\"styles\"]"),
+          'key'       => '2d0d97889624d073f8acb868f09381c8adabf454'}
 
         url = build_url("/Product",params)
         url_only ? url.to_s : fetch_response(url)
