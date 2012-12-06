@@ -294,6 +294,57 @@ module DW
     end
 
 
+    class ZapposEmailParser
+      
+      def initialize(store)
+      end
+      
+      def find_products_on_zappos(product_ids,product_colors)
+        products = {}
+
+        product_ids.in_groups_of(10,false).each do |group|
+          Zappos.lookup(group).each do |product|
+            products[product.product_id] = product
+          end
+        end
+
+        products
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          text = email.body.to_s
+
+          product_specs = text.scan(/SKU#\s*(\d+)\sColor:\s*(.*)$/)
+
+          product_specs.each do |product_spec|
+            purchases << {:zappos_id => product_spec[0],
+                          :color     => CGI.unescapeHTML(product_spec[1]),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end
+
+        zappos_products = find_products_on_zappos(
+                            purchases.map{|p| p[:zappos_id]},
+                            purchases.map{|p| p[:color]})
+
+        purchases.map do |purchase|
+          next unless product = zappos_products[purchase[:zappos_id]]
+
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.medium_image_url,
+            :external_id => product.custom_product_id})
+        end.compact
+      end
+    end
+
   end #purchase email parsing
 
 end #dw
