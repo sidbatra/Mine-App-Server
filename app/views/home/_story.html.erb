@@ -18,7 +18,10 @@
 -->
       
       <a class="btn btn-large btn-black btn-login absolute shaded"
-      	href="#login" role="button" data-toggle="modal">
+      	href="#login" 
+        onclick="mixpanel.track('Log In Clicked');"
+        role="button" 
+        data-toggle="modal">
       	Log In
       </a>
       
@@ -95,7 +98,11 @@
       <div style="text-align: center;">
       
         <a class="btn btn-large btn-join rounded-3 shaded-strong relative"
-        	style="background-color: #ff6600;" href="#join" role="button" data-toggle="modal">
+        	style="background-color: #ff6600;" 
+          href="#join" 
+          onclick="mixpanel.track('Sign Up Clicked');"
+          role="button" 
+          data-toggle="modal">
           <span class='hide-when-loading'>
             Join Now for Free
           </span>
