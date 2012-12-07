@@ -71,7 +71,7 @@ common: &common
   :success: success
   :error: error
   :name: Mine
-  :description: "Mine is a simple service for sharing purchases with friends. It’s fun, and totally free."
+  :description: "Mine is a directory of people and purchases." 
   :version: 6.8.0
   :images:
     :white_200x200: private/images/white_200x200.jpg
