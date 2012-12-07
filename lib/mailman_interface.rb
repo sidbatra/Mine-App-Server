@@ -116,11 +116,13 @@ module DW
       end
 
       def self.email_followers_about_purchases_imported(user)
-        user.followers.each do |follower|
+        user.followers.with_setting.each do |follower|
           begin
-            UserMailer.deliver_friend_imported(user,follower)
+            if follower.setting.email_influencer
+              UserMailer.deliver_friend_imported(user,follower)
+              sleep 0.09
+            end
 
-            sleep 0.09
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
           end
