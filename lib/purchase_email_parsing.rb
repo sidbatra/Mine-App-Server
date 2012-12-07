@@ -319,7 +319,7 @@ module DW
         emails.each do |email|
           text = email.body.to_s
 
-          product_specs = text.scan(/SKU#\s*(\d+)\sColor:\s*(.*)$/)
+          product_specs = text.scan(/SKU#\s*(\d+).*Color:\s*(.*)\</)
 
           product_specs.each do |product_spec|
             purchases << {:zappos_id => product_spec[0],
