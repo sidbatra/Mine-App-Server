@@ -5,6 +5,7 @@ class StatusController < ApplicationController
   #
   def show
     self.current_user.fb_access_token_valid?
+    self.current_user.visited
 
   rescue => ex
     handle_exception(ex)

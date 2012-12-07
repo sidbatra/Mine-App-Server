@@ -1,14 +1,14 @@
 <%content_for :head do%>
   <%=render :partial => 'misc/meta',
       :locals => {
-        :title => "#{CONFIG[:name]} - Tell the world when you buy something great.",
-        :description => "Post purchases, perfectly. Share the best stuff in your life. Learn from friends and followers."}%>
+        :title => "#{CONFIG[:name]} - A directory of people and purchases.", 
+        :description => "Discover new products through people you know who've bought them."}%>
 
   <%=render :partial  => 'facebook/og',
             :locals   => {
               :title        => "#{CONFIG[:name]}",
               :type         => 'website',
-              :description  => "Tell the world when you buy something great. Post purchases, perfectly.", 
+              :description  => "A directory of people and purchases.",
               :url          => root_url,
               :images        => [
                                 image_path('og/mine-white-200.png'),

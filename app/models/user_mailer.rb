@@ -126,10 +126,47 @@ class UserMailer < ActionMailer::Base
   
   def run_importer(user)
     @user         = user
-    @action       = "Welcome to #{CONFIG[:name]}"
+    @action       = "Import purchases from your email"
     @source       = "email_run_importer"
 		
     generate_attributes(@user,0,@user,EmailPurpose::Importer)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  def download_app(user)
+    @user         = user
+    @action       = "Download Mine for iPhone"
+    @source       = "email_download_app"
+		
+    generate_attributes(@user,0,@user,EmailPurpose::DownloadApp)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  def friend_imported(friend,user)
+    @user = user
+    @friend = friend
+    @action = "Your friend #{@friend.first_name} imported purchases"
+    @source = "email_friend_imported"
+		
+    generate_attributes(@user,0,@user,EmailPurpose::FriendImported)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
+  def purchases_imported(user)
+    @user = user
+    @action = "We found new purchases in your email"
+    @source = "email_purchases_imported"
+		
+    generate_attributes(@user,0,@user,EmailPurpose::PurchasesImported)
 
     recipients    @user.email
     from          EMAILS[:contact]

@@ -36,6 +36,15 @@ class Admin::EmailsController < ApplicationController
    when :run_importer
       render :text => UserMailer.preview_run_importer(User.last)
 
+   when :download_app
+      render :text => UserMailer.preview_download_app(User.last)
+
+   when :friend_imported
+      render :text => UserMailer.preview_friend_imported(User.first,User.last)
+
+   when :purchases_imported
+      render :text => UserMailer.preview_purchases_imported(User.last)
+
     when :friend_activity_digest
       render :text => UserMailer.preview_friend_activity_digest(
                                   User.find(3),

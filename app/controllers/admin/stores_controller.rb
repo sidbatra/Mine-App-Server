@@ -22,6 +22,10 @@ class Admin::StoresController < ApplicationController
     when :crawlable
       @stores = Store.crawlable
       @view = "crawlable"
+
+    when :parseable
+      @stores = Store.with_email_parse_datum.parseable
+      @view = "parseable"
     end
 
     render @view

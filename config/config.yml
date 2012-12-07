@@ -34,6 +34,7 @@ common: &common
     - YjuiMQsxTFlCC1yg4zUk7Z8rZfaO7MgIfuW2Qrhc
   :iphone_encryption_phrase: f0837530983794e3
   :iphone_salt: 20988410f43fa368
+  :ios_app_link: https://itunes.apple.com/us/app/mine./id567558757
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
   :fb_app_token: 245230762190915|FCdWaSQb3KYtAIuxfBtODKf_nww
@@ -70,7 +71,7 @@ common: &common
   :success: success
   :error: error
   :name: Mine
-  :description: "Mine is a simple service for sharing purchases with friends. It’s fun, and totally free."
+  :description: "Mine is a directory of people and purchases." 
   :version: 6.8.0
   :images:
     :white_200x200: private/images/white_200x200.jpg
