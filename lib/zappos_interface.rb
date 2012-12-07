@@ -51,14 +51,19 @@ module DW
 
 
     class ZapposProduct
+
+      attr_accessor :color
       
       def initialize(item)
         @item = item
-        @medium_url = nil
+      end
+
+      def style 
+        @item["styles"].find{|style| style["color"] == @color}
       end
 
       def medium_image_url
-        @medium_url ||= @item["defaultImageUrl"]
+        style["imageUrl"]
       end
 
       def large_image_url
@@ -66,7 +71,7 @@ module DW
       end
 
       def page_url
-        @item["defaultProductUrl"] 
+        style["productUrl"] 
       end
 
       def product_id

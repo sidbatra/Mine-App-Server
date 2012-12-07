@@ -299,11 +299,12 @@ module DW
       def initialize(store)
       end
       
-      def find_products_on_zappos(product_ids,product_colors)
+      def find_products_on_zappos(product_ids,colors)
         products = {}
 
         product_ids.in_groups_of(10,false).each do |group|
           Zappos.lookup(group).each do |product|
+            product.color = colors[product.product_id] 
             products[product.product_id] = product
           end
         end
@@ -313,6 +314,7 @@ module DW
 
       def parse(emails)
         purchases = []
+        colors = {}
 
         emails.each do |email|
           text = email.body.to_s
@@ -321,16 +323,17 @@ module DW
 
           product_specs.each do |product_spec|
             purchases << {:zappos_id => product_spec[0],
-                          :color     => CGI.unescapeHTML(product_spec[1]),
                           :bought_at => email.date,
                           :text => text,
                           :message_id => email.message_id}
+
+            colors[product_spec[0]] = CGI.unescapeHTML(product_spec[1])
           end
         end
 
         zappos_products = find_products_on_zappos(
                             purchases.map{|p| p[:zappos_id]},
-                            purchases.map{|p| p[:color]})
+                            colors)
 
         purchases.map do |purchase|
           next unless product = zappos_products[purchase[:zappos_id]]
