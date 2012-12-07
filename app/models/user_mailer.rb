@@ -123,6 +123,18 @@ class UserMailer < ActionMailer::Base
     from          EMAILS[:contact]
     subject       @action
   end 
+  
+  def run_importer(user)
+    @user         = user
+    @action       = "Welcome to #{CONFIG[:name]}"
+    @source       = "email_run_importer"
+		
+    generate_attributes(@user,0,@user,EmailPurpose::Importer)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
 
   # Friend activity digest for the user 
   #

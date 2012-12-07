@@ -1,0 +1,29 @@
+<td align="center" style="font-size: 0; padding: 24px 12px;">
+  <font face="Arial" color="#333"> 
+  
+  	<p style="font-size:24px; color: #333; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased; margin-bottom: -6px;">
+    	Hi <%=@user.first_name%>,
+    </p>
+  		
+  	<p style="font-size:18px; color: #555; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">  
+
+			Connect your Gmail or Yahoo! account, and Mine can build your profile, automagically.
+			
+		</p>
+		
+		<a href="<%=root_url(:src => @source)%>">
+			<%=image_tag "email/import-bw.png",
+							:style => "width: 160px; padding-bottom: 20px;"%>
+		</a>
+
+    <%=render :partial => "action_button",
+        :locals => {
+        :url => root_url(:src => @source),
+        :text => "Show me my purchases"}%>	
+    
+    <p style="color: #888; max-width: 300px; margin-left: auto; padding: 16px 0 8px; margin-right: auto; font-size:14px; line-height: 140%; 
+    	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
+    	Questions? Comments?<br>Email us at <a href="mailto:contact@getmine.com">contact@getmine.com</a>
+    </p> 
