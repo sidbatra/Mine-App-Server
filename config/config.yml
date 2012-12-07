@@ -34,6 +34,7 @@ common: &common
     - YjuiMQsxTFlCC1yg4zUk7Z8rZfaO7MgIfuW2Qrhc
   :iphone_encryption_phrase: f0837530983794e3
   :iphone_salt: 20988410f43fa368
+  :ios_app_link: https://itunes.apple.com/us/app/mine./id567558757
   :fb_app_id: 245230762190915
   :fb_app_secret: 57066dc5c99bfed96f6e24496cc49815
   :fb_app_token: 245230762190915|FCdWaSQb3KYtAIuxfBtODKf_nww

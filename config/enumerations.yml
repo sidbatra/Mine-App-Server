@@ -47,6 +47,7 @@
     Invite: 23
     News: 24
     Importer: 25
+    DownloadApp: 26
   EmailProvider:
     Gmail: 0
     Yahoo: 1
