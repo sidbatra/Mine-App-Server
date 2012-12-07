@@ -115,6 +115,20 @@ module DW
        LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.email_followers_about_purchases_imported(user)
+        user.followers.each do |follower|
+          begin
+            UserMailer.deliver_friend_imported(user,follower)
+
+            sleep 0.09
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)    
+          end
+        end
+      rescue => ex
+       LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Public. Email users whose friends have added purchases.
       #
       # users - The Array of User objects whose friends have added purchases.
