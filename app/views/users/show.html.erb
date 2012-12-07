@@ -140,11 +140,11 @@
 <%end%>
 
 <div class="profile-feed rounded-8 relative">
-  <%unless @user.purchases_count.zero?%>
+  <%unless @user.purchases_count.zero? || (@user.email.nil? && @user.is_special)%>
     <%cache ["v7",@user,"purchases"] do%>
       <%=render :partial => "purchases/card",
           :collection => @user.purchases.approved.with_store.with_user.by_bought_at,
-          :as => :purchase%>
+          :as => :purchase%> 
     <%end%>
   <%else%>
   	<div class="txt m" style="color: #777; padding: 16px 10px 0;">
