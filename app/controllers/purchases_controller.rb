@@ -289,7 +289,17 @@ class PurchasesController < ApplicationController
         {:is_hidden => true},
         {:id => rejected_purchases.map(&:id)})
 
-      self.current_user.touch
+      if self.current_user.has_purchases_mined
+        self.current_user.touch
+      else
+        self.current_user.has_purchases_mined = true
+        self.current_user.save!
+
+        #ProcessingQueue.push Mailman,
+        #  :email_followers_about_purchases_imported,
+        #  self.current_user
+      end
+
     end
   rescue => ex
     handle_exception(ex)
