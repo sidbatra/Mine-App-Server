@@ -161,6 +161,18 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
+  def purchases_imported(user)
+    @user = user
+    @action = "We found new purchases in your email"
+    @source = "email_purchases_imported"
+		
+    generate_attributes(@user,0,@user,EmailPurpose::PurchasesImported)
+
+    recipients    @user.email
+    from          EMAILS[:contact]
+    subject       @action
+  end
+
   # Friend activity digest for the user 
   #
   def friend_activity_digest(user,friends,new_friends,purchases)
