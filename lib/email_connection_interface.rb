@@ -87,12 +87,14 @@ module DW
           email_contents = @yahoo_api.fetch_email_contents mids
           
           mails = email_contents.map do |email_content| 
+                    text = CGI.unescapeHTML(CGI.unescapeHTML(
+                                      email_content[:text]))
                     mail = Mail.new(
                             :message_id => email_content[:mid],
                             :date => email_content[:date],
-                            :subject => email_content[:subject])
-                    mail.html_part = CGI.unescapeHTML(CGI.unescapeHTML(
-                                      email_content[:text]))
+                            :subject => email_content[:subject],
+                            :body => text)
+                    mail.html_part = text
                     mail
                   end 
 
