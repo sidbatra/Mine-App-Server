@@ -46,6 +46,7 @@
     FeedbackOffer: 22
     Invite: 23
     News: 24
+    Importer: 25
   EmailProvider:
     Gmail: 0
     Yahoo: 1

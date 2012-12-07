@@ -69,7 +69,7 @@ module DW
           end
         end
         
-       message = truncate(message,:length => 119)
+       message = truncate(message,:length => 115)
 
         message << " "
         message << short_purchase_url(
