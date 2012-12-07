@@ -48,6 +48,8 @@
     News: 24
     Importer: 25
     DownloadApp: 26
+    FriendImported: 27
+    PurchasesImported: 28
   EmailProvider:
     Gmail: 0
     Yahoo: 1
