@@ -133,13 +133,7 @@ module DW
 
       # Dispatch reminder emails for users who've unapproved visible purchases.
       #
-      def self.purchases_imported_reminder
-        purchases = Purchase.unapproved.visible.
-                      all({
-                        :include => {:user => :setting},
-                        :select =>  "purchases.*,count(id) as unapproved_count", 
-                        :group => :user_id})
-
+      def self.purchases_imported_reminder(purchases)
         purchases.each do |purchase|
           begin
             if purchase.user.setting.email_update

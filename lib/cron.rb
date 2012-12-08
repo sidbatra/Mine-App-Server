@@ -98,7 +98,19 @@ module DW
       end
 
       def self.purchases_imported_reminder
-        Mailman.purchases_imported_reminder
+        purchases = Purchase.unapproved.visible.
+                      all({
+                        :include => {:user => :setting},
+                        :select => "purchases.*,count(id) as unapproved_count", 
+                        :group => :user_id})
+
+        purchases.each do |purchase|
+          NotificationManager.purchases_imported_reminder(
+                                purchase.user,
+                                purchase.unapproved_count)
+        end
+
+        Mailman.purchases_imported_reminder purchases
 
         HealthReport.add(HealthReportService::PurchasesImportedReminder)
 
