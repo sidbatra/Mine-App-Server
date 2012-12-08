@@ -91,6 +91,33 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.after_join_download_app
+        threedaysago = Time.now - 72.hours
+        start = DateTime.new(threedaysago.year,threedaysago.month,threedaysago.day,0,0,0)
+        finish = DateTime.new(threedaysago.year,threedaysago.month,threedaysago.day,23,59,59)
+
+        users = User.made(start,finish).
+                  all(:conditions => {
+                        :source_ne => "iphone",
+                        :iphone_device_token => nil})
+
+        users.each do |user|
+          begin
+
+            if user.setting.email_update
+              UserMailer.deliver_download_app user
+              sleep 0.09
+            end
+          
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Email admins when a user is deleted
       #
       def self.email_admin_about_deleted_user(user)
