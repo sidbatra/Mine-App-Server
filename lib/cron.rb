@@ -97,6 +97,15 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.purchases_imported_reminder
+        Mailman.purchases_imported_reminder
+
+        HealthReport.add(HealthReportService::PurchasesImportedReminder)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Public. Find crawlable stores and launch a crawl job
       # via the crawl queue.
       #

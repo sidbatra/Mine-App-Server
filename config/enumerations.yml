@@ -69,6 +69,7 @@
     LaunchCrawl: 11
     MaintainEmailList : 12
     MinePurchaseEmails: 13
+    PurchasesImportedReminder: 14
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
