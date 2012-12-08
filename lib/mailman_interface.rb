@@ -66,6 +66,31 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.after_join_run_importer
+        yest = Time.now - 24.hours
+        start = DateTime.new(yest.year,yest.month,yest.day,0,0,0)
+        finish = DateTime.new(yest.year,yest.month,yest.day,23,59,59)
+
+        users = User.made(start,finish).
+                  all(:conditions => {:email_mined_till => nil})
+
+        users.each do |user|
+          begin
+
+            if user.setting.email_update
+              UserMailer.deliver_run_importer user
+              sleep 0.09
+            end
+          
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Email admins when a user is deleted
       #
       def self.email_admin_about_deleted_user(user)
