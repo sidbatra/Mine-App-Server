@@ -75,6 +75,8 @@
     MaintainEmailList : 12
     MinePurchaseEmails: 13
     PurchasesImportedReminder: 14
+    AfterJoinRunImporter: 15
+    AfterJoinDownloadApp: 16
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
