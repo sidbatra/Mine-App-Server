@@ -14,6 +14,11 @@ every :friday, :at => '12:15pm' do
 end
 
 
+every :monday, :at => '9:00am' do
+  runner "ProcessingQueue.push(CronWorker,:mine_purchase_emails)"
+end
+
+
 every 1.day, :at => '4:00pm' do
   runner "ProcessingQueue.push(CronWorker,:maintain_search_index)"
 end

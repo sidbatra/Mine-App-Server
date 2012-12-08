@@ -68,6 +68,7 @@
     AddPurchaseEmails: 10
     LaunchCrawl: 11
     MaintainEmailList : 12
+    MinePurchaseEmails: 13
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'

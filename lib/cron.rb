@@ -76,6 +76,27 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.mine_purchase_emails
+        users = User.all(:conditions => {:email_mined_till_ne => "NULL"})
+
+        users.each do |user|
+        begin
+          extractor = PurchaseExtractor.new user.email_mined_till
+          extractor.mine_emails_for_user user
+          #SecondaryProcessingQueue.push extractor,
+          #                          :mine_emails_for_user,
+          #                          user
+        rescue => ex
+          LoggedException.add(__FILE__,__method__,ex)
+        end
+        end
+
+        HealthReport.add(HealthReportService::MinePurchaseEmails)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Public. Find crawlable stores and launch a crawl job
       # via the crawl queue.
       #
