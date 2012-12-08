@@ -13,6 +13,11 @@
     Email: 1
   FBSharing:
     Underway: '1'
+  NotificationIdentifier:
+    Like: 0
+    Comment: 1
+    Following: 2
+    UnapprovedPurchases: 3
   TWSharing:
     Underway: '1'
   TumblrSharing:
@@ -81,11 +86,6 @@
     Email: 1
   PurchaseEditSource:
     Updated: 'updated'
-  NotificationIdentifier:
-    Like: 0
-    Comment: 1
-    Following: 2
-    UnapprovedPurchases: 3
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:
