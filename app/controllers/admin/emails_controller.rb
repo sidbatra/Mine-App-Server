@@ -40,7 +40,7 @@ class Admin::EmailsController < ApplicationController
       render :text => UserMailer.preview_download_app(User.last)
 
    when :friend_imported
-      render :text => UserMailer.preview_friend_imported(User.first,User.last)
+      render :text => UserMailer.preview_friend_imported(User.find(2),User.last)
 
    when :purchases_imported
       render :text => UserMailer.preview_purchases_imported(User.last,10)
