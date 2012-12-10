@@ -126,7 +126,7 @@ class UserMailer < ActionMailer::Base
   
   def run_importer(user)
     @user         = user
-    @action       = "Import purchases from your email"
+    @action       = "Build your Mine profile in one click"
     @source       = "email_run_importer"
 		
     generate_attributes(@user,0,@user,EmailPurpose::Importer)
@@ -138,7 +138,7 @@ class UserMailer < ActionMailer::Base
 
   def download_app(user)
     @user         = user
-    @action       = "Download Mine for iPhone"
+    @action       = "It's time to go mobile"
     @source       = "email_download_app"
 		
     generate_attributes(@user,0,@user,EmailPurpose::DownloadApp)
@@ -151,7 +151,7 @@ class UserMailer < ActionMailer::Base
   def friend_imported(friend,user)
     @user = user
     @friend = friend
-    @action = "Your friend #{@friend.first_name} imported purchases"
+    @action = "#{@friend.first_name} just updated his Mine using the e-receipt importer"
     @source = "email_friend_imported"
 		
     generate_attributes(@user,0,@user,EmailPurpose::FriendImported)
