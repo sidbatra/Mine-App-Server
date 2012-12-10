@@ -16,7 +16,19 @@ class Admin::HealthController < ApplicationController
         :time => 1.day.ago},
       {
         :id => HealthReportService::AddPurchaseEmails,
-        :time => 1.week.ago}]
+        :time => 1.week.ago},
+      {
+        :id => HealthReportService::MinePurchaseEmails,
+        :time => 1.week.ago},
+      {
+        :id => HealthReportService::PurchasesImportedReminder,
+        :time => 1.week.ago},
+      {
+        :id => HealthReportService::AfterJoinRunImporter,
+        :time => 1.day.ago},
+      {
+        :id => HealthReportService::AfterJoinDownloadApp,
+        :time => 1.day.ago}]
 
     @services.each{|s| s[:report] = HealthReport.for_service(s[:id]).last}
   end

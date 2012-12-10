@@ -161,9 +161,10 @@ class UserMailer < ActionMailer::Base
     subject       @action
   end
 
-  def purchases_imported(user)
+  def purchases_imported(user,count)
     @user = user
-    @action = "We found new purchases in your email"
+    @count = count
+    @action = "We found #{count} new purchases in your email"
     @source = "email_purchases_imported"
 		
     generate_attributes(@user,0,@user,EmailPurpose::PurchasesImported)

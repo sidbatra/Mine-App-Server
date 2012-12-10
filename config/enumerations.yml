@@ -13,6 +13,11 @@
     Email: 1
   FBSharing:
     Underway: '1'
+  NotificationIdentifier:
+    Like: 0
+    Comment: 1
+    Following: 2
+    UnapprovedPurchases: 3
   TWSharing:
     Underway: '1'
   TumblrSharing:
@@ -68,6 +73,10 @@
     AddPurchaseEmails: 10
     LaunchCrawl: 11
     MaintainEmailList : 12
+    MinePurchaseEmails: 13
+    PurchasesImportedReminder: 14
+    AfterJoinRunImporter: 15
+    AfterJoinDownloadApp: 16
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
@@ -79,11 +88,6 @@
     Email: 1
   PurchaseEditSource:
     Updated: 'updated'
-  NotificationIdentifier:
-    Like: 0
-    Comment: 1
-    Following: 2
-    UnapprovedPurchases: 3
   SettingsIndexSource:
     Updated: 'updated'
   ShoppingSource:

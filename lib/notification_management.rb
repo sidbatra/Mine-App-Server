@@ -80,6 +80,23 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end #new following
 
+      def self.purchases_imported_reminder(user,count)
+        target_user = user
+        entity = user.first_name
+        event = "you have #{count} new unapproved purchases"
+
+        Notification.add(
+                      target_user.id,
+                      entity,
+                      event,
+                      StubResource.new,
+                      user.square_image_url,
+                      NotificationIdentifier::UnapprovedPurchases)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #notification manager
 
 
@@ -88,6 +105,11 @@ module DW
     #
     class StubResource < ActiveRecord::Base
       set_table_name 'settings'
+
+      def initialize
+        super
+        self.id = 0
+      end
     end
 
   end #notification management

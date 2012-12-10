@@ -7,15 +7,13 @@
       <%=image_tag "logos/mine-h-white-48-brighter-2x.png",
           :class => "logo-home unselectable"%>	
       
-<!--
-      <#unless is_phone_device?%>  
+      <%unless is_phone_device?%>  
 	      <a href="http://itunes.apple.com/us/app/mine./id567558757?mt=8" 
 	      class="app-store-badge absolute opacity-80-100 transition-opacity">
-	      	<#=image_tag "home/app-store-badge-2x.png",
+	      	<%=image_tag "home/app-store-badge-2x.png",
 	          :class => ""%>
 	      </a>
-      <#end%>
--->
+      <%end%>
       
       <a class="btn btn-large btn-black btn-login absolute shaded"
       	href="#login" 

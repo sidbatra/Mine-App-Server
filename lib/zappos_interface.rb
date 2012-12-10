@@ -59,11 +59,11 @@ module DW
       end
 
       def style 
-        @item["styles"].find{|style| style["color"] == @color}
+        @style ||= @item["styles"].find{|style| style["color"] == @color}
       end
 
       def medium_image_url
-        style["imageUrl"]
+        style.present? ? style["imageUrl"] : @item["defaultImageUrl"]
       end
 
       def large_image_url
@@ -71,7 +71,7 @@ module DW
       end
 
       def page_url
-        style["productUrl"] 
+        style.present? ? style["productUrl"] : @item["defaultProductUrl"] 
       end
 
       def product_id

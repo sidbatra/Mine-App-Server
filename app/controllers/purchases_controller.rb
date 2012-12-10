@@ -37,7 +37,6 @@ class PurchasesController < ApplicationController
 
       @key = ["v2",@user,"purchases",@before ? @before.to_i : "",@per_page]
 
-      unless @user.email.nil? && @user.is_special
       @purchases = Purchase.
                     select(:id,:bought_at,:title,:handle,:source_url,
                             :orig_thumb_url,:orig_image_url,:endorsement,
@@ -53,7 +52,6 @@ class PurchasesController < ApplicationController
                     bought_before(@before).
                     limit(@per_page).
                     for_users([@user]) unless fragment_exist? @key
-      end
 
     when :unapproved_ui 
       mine_purchase_emails
@@ -289,7 +287,17 @@ class PurchasesController < ApplicationController
         {:is_hidden => true},
         {:id => rejected_purchases.map(&:id)})
 
-      self.current_user.touch
+      if self.current_user.has_purchases_mined
+        self.current_user.touch
+      else
+        self.current_user.has_purchases_mined = true
+        self.current_user.save!
+
+        #ProcessingQueue.push Mailman,
+        #  :email_followers_about_purchases_imported,
+        #  self.current_user
+      end
+
     end
   rescue => ex
     handle_exception(ex)

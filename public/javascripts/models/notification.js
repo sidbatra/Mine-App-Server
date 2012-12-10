@@ -10,10 +10,20 @@ Denwen.Models.Notification = Backbone.Model.extend({
   path: function(src) {
     var path = "";
 
-    if(this.get('resource_type') == 'User')
+    switch(this.get('identifier')) {
+    case Denwen.NotificationIdentifier.Following:
       path = this.get('user').path(src);
-    else if(this.get('resource_type') == 'Purchase')
+      break;
+    case Denwen.NotificationIdentifier.Like:
+    case Denwen.NotificationIdentifier.Comment:
       path = this.get('purchase').path(src);
+      break;
+    case Denwen.NotificationIdentifier.UnapprovedPurchases:
+      path = '/purchases/unapproved?src=' + src;
+      break;
+    default:
+      break;
+    }
 
     return path;
   }

@@ -66,6 +66,58 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.after_join_run_importer
+        yest = Time.now - 24.hours
+        start = DateTime.new(yest.year,yest.month,yest.day,0,0,0)
+        finish = DateTime.new(yest.year,yest.month,yest.day,23,59,59)
+
+        users = User.made(start,finish).
+                  all(:conditions => {:email_mined_till => nil})
+
+        users.each do |user|
+          begin
+
+            if user.setting.email_update
+              UserMailer.deliver_run_importer user
+              sleep 0.09
+            end
+          
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      def self.after_join_download_app
+        threedaysago = Time.now - 72.hours
+        start = DateTime.new(threedaysago.year,threedaysago.month,threedaysago.day,0,0,0)
+        finish = DateTime.new(threedaysago.year,threedaysago.month,threedaysago.day,23,59,59)
+
+        users = User.made(start,finish).
+                  all(:conditions => {
+                        :source_ne => "iphone",
+                        :iphone_device_token => nil})
+
+        users.each do |user|
+          begin
+
+            if user.setting.email_update
+              UserMailer.deliver_download_app user
+              sleep 0.09
+            end
+          
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
+        end
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
       # Email admins when a user is deleted
       #
       def self.email_admin_about_deleted_user(user)
@@ -116,15 +168,36 @@ module DW
       end
 
       def self.email_followers_about_purchases_imported(user)
-        user.followers.each do |follower|
+        user.followers.with_setting.each do |follower|
           begin
-            UserMailer.deliver_friend_imported(user,follower)
+            if follower.setting.email_influencer
+              UserMailer.deliver_friend_imported(user,follower)
+              sleep 0.09
+            end
 
-            sleep 0.09
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
           end
         end
+      rescue => ex
+       LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      # Dispatch reminder emails for users who've unapproved visible purchases.
+      #
+      def self.purchases_imported_reminder(purchases)
+        purchases.each do |purchase|
+          begin
+            if purchase.user.setting.email_update
+              UserMailer.deliver_purchases_imported(
+                          purchase.user,
+                          purchase.unapproved_count)
+            end
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)    
+          end
+        end
+
       rescue => ex
        LoggedException.add(__FILE__,__method__,ex)
       end

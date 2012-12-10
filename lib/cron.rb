@@ -39,12 +39,19 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
-      # Public. Email users after a certain time period of joining.
-      #
-      def self.email_users_after_joining
-        Mailman.after_join_suggestions
+      def self.email_users_after_joining_to_run_importer
+        Mailman.after_join_run_importer
 
-        HealthReport.add(HealthReportService::AfterJoinEmails)
+        HealthReport.add(HealthReportService::AfterJoinRunImporter)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      def self.email_users_after_joining_to_download_app
+        Mailman.after_join_download_app
+
+        HealthReport.add(HealthReportService::AfterJoinDownloadApp)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
@@ -71,6 +78,48 @@ module DW
         Index.optimize
 
         HealthReport.add(HealthReportService::MaintainSearchIndex)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      def self.mine_purchase_emails
+        users = User.all(:conditions => {:email_mined_till_ne => "NULL"})
+
+        users.each do |user|
+        begin
+          extractor = PurchaseExtractor.new user.email_mined_till
+          extractor.mine_emails_for_user user
+          #SecondaryProcessingQueue.push extractor,
+          #                          :mine_emails_for_user,
+          #                          user
+        rescue => ex
+          LoggedException.add(__FILE__,__method__,ex)
+        end
+        end
+
+        HealthReport.add(HealthReportService::MinePurchaseEmails)
+
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
+      def self.purchases_imported_reminder
+        purchases = Purchase.unapproved.visible.
+                      all({
+                        :include => {:user => :setting},
+                        :select => "purchases.*,count(id) as unapproved_count", 
+                        :group => :user_id})
+
+        purchases.each do |purchase|
+          NotificationManager.purchases_imported_reminder(
+                                purchase.user,
+                                purchase.unapproved_count)
+        end
+
+        Mailman.purchases_imported_reminder purchases
+
+        HealthReport.add(HealthReportService::PurchasesImportedReminder)
 
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)

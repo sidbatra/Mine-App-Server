@@ -14,6 +14,15 @@ every :friday, :at => '12:15pm' do
 end
 
 
+#every :monday, :at => '9:00am' do
+#  runner "ProcessingQueue.push(CronWorker,:mine_purchase_emails)"
+#end
+#
+#every :wednesday, :at => '9:00am' do
+#  runner "ProcessingQueue.push(CronWorker,:purchases_imported_reminder)"
+#end
+
+
 every 1.day, :at => '4:00pm' do
   runner "ProcessingQueue.push(CronWorker,:maintain_search_index)"
 end
@@ -23,8 +32,12 @@ every 1.day, :at => '10:00pm' do
 end
 
 
-#every 1.day, :at => '9:00am' do
-#  runner "ProcessingQueue.push(CronWorker,:email_users_after_joining)"
+#every 1.day, :at => '8:00am' do
+#  runner "ProcessingQueue.push(CronWorker,:email_users_after_joining_to_run_importer)"
+#end
+#
+#every 1.day, :at => '8:30am' do
+#  runner "ProcessingQueue.push(CronWorker,:email_users_after_joining_to_download_app)"
 #end
 
 

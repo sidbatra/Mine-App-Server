@@ -13,6 +13,13 @@ Facebook: 0,
 Email: 1
 }
 
+Denwen.NotificationIdentifier = {
+Comment: 1,
+Like: 0,
+UnapprovedPurchases: 3,
+Following: 2
+}
+
 Denwen.ProductQueryType = {
 URL: "url",
 Text: "text"
