@@ -75,7 +75,6 @@ class User < ActiveRecord::Base
   named_scope :with_purchases, :include => :purchases
   named_scope :with_ifollowers, :include => :ifollowers
   named_scope :with_followings, :include => :followings
-  named_scope :unlocked, :conditions => ['is_special = false OR email IS NOT NULL']
 
   #----------------------------------------------------------------------
   # Attributes
