@@ -35,7 +35,10 @@ module DW
         count = response["query"]["count"]
 
         if count && !count.zero?
-          response["query"]["results"]["result"].each do |result|
+          results = response["query"]["results"]["result"] 
+          results = [results] if results.is_a? Hash
+
+          results.each do |result|
             messageInfo = result["messageInfo"]
             emails << {:mid => messageInfo["mid"]}
           end
