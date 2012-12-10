@@ -293,9 +293,9 @@ class PurchasesController < ApplicationController
         self.current_user.has_purchases_mined = true
         self.current_user.save!
 
-        #ProcessingQueue.push Mailman,
-        #  :email_followers_about_purchases_imported,
-        #  self.current_user
+        ProcessingQueue.push Mailman,
+          :email_followers_about_purchases_imported,
+          self.current_user
       end
 
     end
