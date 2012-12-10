@@ -364,6 +364,19 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def google_disconnect
+    self.go_token = nil
+    self.go_secret = nil
+    self.save!
+  end
+
+  def yahoo_disconnect
+    self.yh_token = nil
+    self.yh_secret = nil
+    self.yh_session_handle = nil
+    self.save!
+  end
+
   # Obfuscated id for the user
   #
   def obfuscated_id

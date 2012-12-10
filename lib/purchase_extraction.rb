@@ -35,25 +35,44 @@ module DW
       end
 
       def open_email_connection
+        status = false
+
         if @user.google_authorized?
+          status = true
           @provider = EmailProvider::Gmail
-          @email_connection = EmailConnection.new(
-                                @user.go_email,
-                                @provider, {
-                                  :token => @user.go_token,
-                                  :secret => @user.go_secret,
-                                  :consumer_key => CONFIG[:google_client_id],
-                                  :consumer_secret => CONFIG[:google_client_secret]})
+
+          begin
+            @email_connection = EmailConnection.new(
+                                  @user.go_email,
+                                  @provider, {
+                                    :token => @user.go_token,
+                                    :secret => @user.go_secret,
+                                    :consumer_key => CONFIG[:google_client_id],
+                                    :consumer_secret => CONFIG[:google_client_secret]})
+          rescue Gmail::Client::AuthorizationError
+            status = false
+            @user.google_disconnect
+          end
 
         elsif @user.yahoo_authorized?
-          @user.refresh_yahoo_token
-          @provider = EmailProvider::Yahoo
-          @email_connection = EmailConnection.new(
-                                @user.yh_email,
-                                @provider, {
-                                  :token => @user.yh_token,
-                                  :secret => @user.yh_secret})
+          status = true
+
+          begin
+            @user.refresh_yahoo_token
+            @provider = EmailProvider::Yahoo
+            @email_connection = EmailConnection.new(
+                                  @user.yh_email,
+                                  @provider, {
+                                    :token => @user.yh_token,
+                                    :secret => @user.yh_secret})
+          rescue OAuth::Problem
+            status = false
+            @user.yahoo_disconnect
+          end
+
         end
+
+        status
       end
 
       def mine_emails_from_store(store)
@@ -107,7 +126,7 @@ module DW
         populate_email_parseable_stores
         populate_existing_purchases
 
-        open_email_connection
+        return unless open_email_connection
 
 
         @stores.in_groups_of(3,false) do |group|
