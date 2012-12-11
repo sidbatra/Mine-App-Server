@@ -2,7 +2,7 @@ class Setting < ActiveRecord::Base
   belongs_to :user
   belongs_to :theme
   attr_accessible :email_influencer, :email_update, :email_follower,
-                    :email_digest, :share_to_facebook,
+                    :email_digest, :email_importer, :share_to_facebook,
                     :share_to_twitter, :share_to_tumblr,:theme_id
 
   #----------------------------------------------------------------------
@@ -68,6 +68,7 @@ class Setting < ActiveRecord::Base
     self.email_update = false
     self.email_digest = false
     self.email_follower = false
+    self.email_importer = false
     save!
   end
 

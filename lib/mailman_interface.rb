@@ -170,7 +170,7 @@ module DW
       def self.email_followers_about_purchases_imported(user)
         user.followers.with_setting.each do |follower|
           begin
-            if follower.setting.email_influencer
+            if follower.setting.email_importer
               UserMailer.deliver_friend_imported(user,follower)
               sleep 0.09
             end
@@ -188,7 +188,7 @@ module DW
       def self.purchases_imported_reminder(purchases)
         purchases.each do |purchase|
           begin
-            if purchase.user.setting.email_update
+            if purchase.user.setting.email_importer
               UserMailer.deliver_purchases_imported(
                           purchase.user,
                           purchase.unapproved_count)
