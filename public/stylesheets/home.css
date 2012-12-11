@@ -106,8 +106,14 @@ ul { margin: 0 !important; }
 	font-size: 13px;
 	line-height: 18px;
 	color: #888; 
-	background: #f8f8f8;
-/* 	border: 1px solid transparent; */ }
+	background: #f8f8f8; }
+
+.cell.empty { 
+	text-align: center;
+	width: 100%;
+	line-height: 52px;
+	background: white;
+	padding: 13px 13px 11px; }
 
 .cell:hover { 
 	color: #777;
@@ -115,8 +121,7 @@ ul { margin: 0 !important; }
 	-webkit-transition: background .15s ease-in;
 	-moz-transition: background .15s ease-in;
 	-o-transition: background .15s ease-in;
-	transition: background .15s ease-in;
-/* 	border: 1px solid #ddd; */ }
+	transition: background .15s ease-in; }
 
 .cell i {
 	bottom: 14px;
@@ -249,7 +254,7 @@ footer .twitter-button-box {
 	
 	.col-3 { width: 90%; margin: 0 5%; }
 	
-	.cell { margin: 0 0 18px; width: 95%;}
+	.cell { margin: 0 0 18px; width: 95%; }
 	
 	.rwd-show { display: inline-block !important; }
 	.rwd-hide { display: none !important; }
