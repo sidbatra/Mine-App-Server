@@ -14,13 +14,13 @@ every :friday, :at => '12:15pm' do
 end
 
 
-#every :monday, :at => '9:00am' do
-#  runner "ProcessingQueue.push(CronWorker,:mine_purchase_emails)"
-#end
-#
-#every :wednesday, :at => '9:00am' do
-#  runner "ProcessingQueue.push(CronWorker,:purchases_imported_reminder)"
-#end
+every :monday, :at => '9:00am' do
+  runner "ProcessingQueue.push(CronWorker,:mine_purchase_emails)"
+end
+
+every :wednesday, :at => '9:00am' do
+  runner "ProcessingQueue.push(CronWorker,:purchases_imported_reminder)"
+end
 
 
 every 1.day, :at => '4:00pm' do
