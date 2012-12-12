@@ -114,4 +114,10 @@ module ApplicationHelper
     is_onboarding? || is_fullscreen_page?
   end
 
+  def image_url(path)
+    Rails.env.starts_with?("d") ? 
+      "/images/#{path}" :
+      "#{CONFIG[:asset_host]}/images/#{path}"
+  end
+
 end
