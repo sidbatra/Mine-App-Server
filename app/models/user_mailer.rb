@@ -164,7 +164,8 @@ class UserMailer < ActionMailer::Base
   def purchases_imported(user,count)
     @user = user
     @count = count
-    @action = "We found #{count} new purchases in your email"
+    @noun = count > 1 ? "purchases" : "purchase"
+    @action = "You have #{count} recent #{@noun} to review on Mine"
     @source = "email_purchases_imported"
 		
     generate_attributes(@user,0,@user,EmailPurpose::PurchasesImported)

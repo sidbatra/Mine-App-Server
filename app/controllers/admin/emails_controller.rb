@@ -43,7 +43,7 @@ class Admin::EmailsController < ApplicationController
       render :text => UserMailer.preview_friend_imported(User.find(2),User.last)
 
    when :purchases_imported
-      render :text => UserMailer.preview_purchases_imported(User.last,10)
+      render :text => UserMailer.preview_purchases_imported(User.last,9)
 
     when :friend_activity_digest
       render :text => UserMailer.preview_friend_activity_digest(
