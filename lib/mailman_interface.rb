@@ -191,7 +191,7 @@ module DW
             if purchase.user.setting.email_importer
               UserMailer.deliver_purchases_imported(
                           purchase.user,
-                          purchase.unapproved_count)
+                          purchase.unapproved_count.to_i)
             end
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)    
