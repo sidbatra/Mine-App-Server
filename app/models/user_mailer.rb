@@ -151,7 +151,8 @@ class UserMailer < ActionMailer::Base
   def friend_imported(friend,user)
     @user = user
     @friend = friend
-    @action = "#{@friend.first_name} just updated his Mine using the e-receipt importer"
+    @pronoun = @friend.is_male? ? 'his' : 'her'
+    @action = "#{@friend.first_name} just updated #{@pronoun} Mine using the e-receipt importer"
     @source = "email_friend_imported"
 		
     generate_attributes(@user,0,@user,EmailPurpose::FriendImported)
