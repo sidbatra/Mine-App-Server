@@ -114,4 +114,10 @@ module ApplicationHelper
     is_onboarding? || is_fullscreen_page?
   end
 
+  def image_url(path)
+    Rails.env.starts_with?("d") ? 
+      "http://pleg.getmine.com/images/#{path}" :
+      "#{ActionController::Base.asset_host.gsub("%d","")}/images/#{path}"
+  end
+
 end
