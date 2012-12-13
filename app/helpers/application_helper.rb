@@ -116,7 +116,7 @@ module ApplicationHelper
 
   def image_url(path)
     Rails.env.starts_with?("d") ? 
-      "/images/#{path}" :
+      "http://pleg.getmine.com/images/#{path}" :
       "#{ActionController::Base.asset_host.gsub("%d","")}/images/#{path}"
   end
 
