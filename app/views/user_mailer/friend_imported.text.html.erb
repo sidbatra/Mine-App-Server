@@ -12,7 +12,7 @@
   	<p style="font-size:18px; color: #555; line-height: 140%; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">  
 
-			<%=@friend.first_name%> just updated his Mine using the e-receipt importer.
+			<%=@friend.first_name%> just updated <%=@pronoun%> Mine using the e-receipt importer.
 			
 		</p>
 		
@@ -24,7 +24,7 @@
     <%=render :partial => "action_button",
         :locals => {
         :url => user_url(@friend.handle,:src => @source),
-        :text => "View his latest purchases"}%>	
+        :text => "View #{@pronoun} latest purchases"}%>	
     
     <p style="color: #888; max-width: 300px; margin-left: auto; padding: 16px 0 8px; margin-right: auto; font-size:14px; line-height: 140%; 
     	font-family: 'Helvetica Neue', 'Helvetica'; -webkit-font-smoothing: antialiased;">
