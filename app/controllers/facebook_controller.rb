@@ -84,7 +84,8 @@ class FacebookController < ApplicationController
   def create_client
     fb_auth = FbGraph::Auth.new(
                             CONFIG[:fb_app_id],
-                            CONFIG[:fb_app_secret])
+                            CONFIG[:fb_app_secret],
+                            :redirect_uri => session[:fb_redirect_uri])
 
     @client = fb_auth.client
   end
