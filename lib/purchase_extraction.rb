@@ -29,9 +29,18 @@ module DW
       end
 
       def populate_existing_purchases
-        @existing_purchases = Set.new Purchase.select(:orig_image_url).
-                                        for_users([@user]).
-                                        map(&:orig_image_url)
+        @existing_purchases = Set.new 
+
+        Purchase.select(:id,:orig_image_url,:product_id).
+                  with_product.
+                  for_users([@user]).
+                  each do |purchase|
+                    @existing_purchases.add purchase.orig_image_url
+
+                    if purchase.product && purchase.product.external_id.present?
+                      @existing_purchases.add purchase.product.external_id 
+                    end
+                  end
       end
 
       def open_email_connection
@@ -86,6 +95,7 @@ module DW
             #puts purchase[:title]
 
             next if @existing_purchases.include?(purchase[:orig_image_url]) ||
+                    @existing_purchases.include?(purchase[:external_id]) ||
                     !purchase[:title].present? ||
                     !purchase[:orig_image_url].present?
 
@@ -93,6 +103,7 @@ module DW
             Purchase.add purchase,@user.id 
 
             @existing_purchases.add purchase[:orig_image_url]
+            @existing_purchases.add purchase[:external_id]
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
           end
@@ -120,13 +131,17 @@ module DW
       end
 
       def mine_emails_for_user(user)
+        return if user.is_mining_purchases
+
         @user = user
+        @user.is_mining_purchases = true
+        @user.save!
+
         start_time = Time.now
+
 
         populate_email_parseable_stores
         populate_existing_purchases
-
-        return unless open_email_connection
 
 
         @stores.in_groups_of(3,false) do |group|
@@ -138,10 +153,15 @@ module DW
           end
 
           threads.each {|thread| thread.join}
-        end 
+        end if open_email_connection
 
         @user.email_mined_till = start_time
-        @user.save!
+
+      ensure
+        if @user
+          @user.is_mining_purchases = false
+          @user.save!
+        end
       end
 
     end #purchase extractor

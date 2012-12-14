@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211000846) do
+ActiveRecord::Schema.define(:version => 20121214010659) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -357,8 +357,8 @@ ActiveRecord::Schema.define(:version => 20121211000846) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
-    t.boolean  "is_special",                 :default => false
     t.integer  "unread_notifications_count", :default => 0
+    t.boolean  "is_special",                 :default => false
     t.string   "go_email"
     t.string   "go_token"
     t.string   "go_secret"
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20121211000846) do
     t.string   "yh_session_handle"
     t.datetime "email_mined_till"
     t.boolean  "has_purchases_mined",        :default => false
+    t.boolean  "is_mining_purchases",        :default => false
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

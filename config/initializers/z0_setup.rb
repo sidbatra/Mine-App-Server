@@ -38,6 +38,7 @@ include ImageProcessing
 include ItunesInterface
 include EtsyInterface
 include ZapposInterface
+include EbayInterface
 include MailmanInterface
 include NotificationManagement
 include Storage
