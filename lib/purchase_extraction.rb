@@ -131,13 +131,17 @@ module DW
       end
 
       def mine_emails_for_user(user)
+        return if user.is_mining_purchases
+
         @user = user
+        @user.is_mining_purchases = true
+        @user.save!
+
         start_time = Time.now
+
 
         populate_email_parseable_stores
         populate_existing_purchases
-
-        return unless open_email_connection
 
 
         @stores.in_groups_of(3,false) do |group|
@@ -149,10 +153,15 @@ module DW
           end
 
           threads.each {|thread| thread.join}
-        end 
+        end if open_email_connection
 
         @user.email_mined_till = start_time
-        @user.save!
+
+      ensure
+        if @user
+          @user.is_mining_purchases = false
+          @user.save!
+        end
       end
 
     end #purchase extractor
