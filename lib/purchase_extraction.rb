@@ -29,9 +29,18 @@ module DW
       end
 
       def populate_existing_purchases
-        @existing_purchases = Set.new Purchase.select(:orig_image_url).
-                                        for_users([@user]).
-                                        map(&:orig_image_url)
+        @existing_purchases = Set.new 
+
+        Purchase.select(:id,:orig_image_url,:product_id).
+                  with_product.
+                  for_users([@user]).
+                  each do |purchase|
+                    @existing_purchases.add purchase.orig_image_url
+
+                    if purchase.product && purchase.product.external_id.present?
+                      @existing_purchases.add purchase.product.external_id 
+                    end
+                  end
       end
 
       def open_email_connection
@@ -86,6 +95,7 @@ module DW
             #puts purchase[:title]
 
             next if @existing_purchases.include?(purchase[:orig_image_url]) ||
+                    @existing_purchases.include?(purchase[:external_id]) ||
                     !purchase[:title].present? ||
                     !purchase[:orig_image_url].present?
 
@@ -93,6 +103,7 @@ module DW
             Purchase.add purchase,@user.id 
 
             @existing_purchases.add purchase[:orig_image_url]
+            @existing_purchases.add purchase[:external_id]
           rescue => ex
             LoggedException.add(__FILE__,__method__,ex)
           end
