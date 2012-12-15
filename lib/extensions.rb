@@ -39,3 +39,14 @@ class ActiveSupport::TimeWithZone
 #  #end
 #
 #end
+
+class String
+  
+  # Convert only the first character to upcase
+  #
+  def firstupcase
+    result = ""
+    result = self[0..0].upcase + self[1..-1] unless self.length.zero?
+    result
+  end
+end
