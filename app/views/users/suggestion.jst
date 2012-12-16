@@ -1,9 +1,9 @@
 <li class="user-action-box relative">
   <div id="follow_box_<%=user.get('id')%>">
   </div>
-  <a class="opacity-80-100 transition-opacity" href="<%=user.path('suggestion')%>">
+  <a class="opacity-80-100 transition-opacity" style="display: block;" href="<%=user.path('suggestion')%>">
     <img class="user-photo l absolute rounded-3" src="<%=user.get('square_image_url')%>" />
-    <span class="txt m top-line"><%=user.fullName()%></span><br>
+    <div class="txt m top-line"><%=user.fullName()%></div><br>
   	<div class="txt s bottom-line ellipsis"><%=user.get('message')%></div>
   </a> 
 </li> 
