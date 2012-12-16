@@ -438,9 +438,6 @@ input.error:focus, textarea.error:focus {
 	border: none !important; 
 	text-shadow: none; }
 
-.btn.btn-small.btn-silver { 
-	background: #888 url("/images/alert-overlay-strong-condensed.png") repeat-x !important; }
-
 /*
 .btn.btn-silver.btn-large { background-color: #a0a0a0; }
 .btn.btn-silver.btn-large:hover { background-color: #777; }
