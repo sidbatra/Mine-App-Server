@@ -348,6 +348,57 @@ module DW
       end
     end
 
+
+    class EbayEmailParser
+      
+      def initialize(store)
+      end
+      
+      def find_products_on_ebay(product_ids)
+        products = {}
+
+        product_ids.in_groups_of(20,false).each do |group|
+          Ebay.lookup(group).each do |product|
+            products[product.product_id] = product
+          end
+        end
+
+        products
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          next if email.date < 90.days.ago
+
+          text        = email.text
+          product_ids = text.scan(/item%3D(\d+)%26/).flatten.uniq
+
+          product_ids.each do |product_id|
+            purchases << {:ebay_id => product_id,
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end
+
+        ebay_products = find_products_on_ebay purchases.map{|p| p[:ebay_id]}
+
+        purchases.map do |purchase|
+          next unless product = ebay_products[purchase[:ebay_id]]
+
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.medium_image_url,
+            :external_id => product.custom_product_id})
+        end.compact
+      end
+    end
+
+
   end #purchase email parsing
 
 end #dw
