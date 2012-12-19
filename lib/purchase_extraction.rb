@@ -164,6 +164,23 @@ module DW
         end
       end
 
+      def audit_for_user(user)
+        @user = user
+
+        return unless open_email_connection
+
+        file = File.open "data.txt","a"
+
+        @email_connection.fulltext_search("order shipped",@start_date) do |emails|
+
+          emails.each do |email|
+            file.puts "#{@user.id.to_s}\t#{email.from.to_s}\t#{email.subject}"
+          end
+        end
+
+        file.close
+      end
+
     end #purchase extractor
 
   end #purchase extraction
