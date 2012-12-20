@@ -68,6 +68,26 @@ module DW
         end #mailboxes
       end
 
+      def fulltext_search(text,after)
+        @mailboxes.each do |mailbox|
+        begin
+          emails = mailbox.find :body => text,:after => after
+
+          emails.reverse.in_groups_of(3,false).each do |group| 
+            uids = group.map(&:uid)
+            fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
+            
+            mails = fetch_data.map do |fetch_datum| 
+                      Mail.new fetch_datum.attr[@imap_key_body]
+                    end 
+
+            yield mails.reverse if block_given?
+          end
+        rescue Net::IMAP::NoResponseError 
+        end
+        end #mailboxes
+      end
+
     end #gmail connection
 
 
@@ -101,6 +121,11 @@ module DW
           yield mails if block_given?
         end
       end
+
+      def fulltext_search(text,date)
+        #stub
+      end
+
     end #yahoo connection
 
   end #email connection interface
