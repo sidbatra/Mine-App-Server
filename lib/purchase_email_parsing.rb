@@ -370,7 +370,7 @@ module DW
         purchases = []
 
         emails.each do |email|
-          next if email.date < 90.days.ago
+          next if email.date < 90.days.ago || !email.text.include?("purchase")
 
           text        = email.text
           product_ids = text.scan(/item%3D(\d+)%26/).flatten.uniq
