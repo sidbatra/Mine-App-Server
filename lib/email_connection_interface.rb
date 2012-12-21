@@ -128,7 +128,46 @@ module DW
 
     end #yahoo connection
 
+
+    class HotmailConnection
+
+      def initialize(email,options={})
+        require 'net/pop'
+        Net::POP3.enable_ssl OpenSSL::SSL::VERIFY_NONE
+
+        @emails = {}
+
+        pop = Net::POP3.new 'pop3.live.com',995
+        pop.start email,options[:password]
+
+        pop.mails.reverse.each do |mail|
+          header = Mail.new mail.header
+          from = header.from.to_s
+
+          break if header.date < options[:start_date]
+
+          if from =~ options[:email_regex]
+            @emails[from] = [] unless @emails.key? from
+            @emails[from] << Mail.new(mail.pop)
+          end
+        end #mails
+      end
+
+      def search(from,after)
+        key = @emails.keys.select{|key| key.include? from}.first
+        mails = @emails[key]
+
+        yield mails if block_given?
+      end
+
+      def fulltext_search(text,date)
+        #stub
+      end
+
+    end #hotmail connection
+
   end #email connection interface
+
 
   # Extend the Mail::Message class implemented by the Mail gem.
   #
