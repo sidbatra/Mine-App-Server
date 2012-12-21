@@ -40,6 +40,7 @@ Denwen.Settings = {
 TwAuth: "tw_auth",
 FbAuth: "fb_auth",
 FbAccessToken: "fb_access_token",
+HotmailAuth: "hotmail_auth",
 GoogleAuth: "google_auth",
 TumblrAuth: "tumblr_auth",
 YahooAuth: "yahoo_auth"

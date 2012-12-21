@@ -6,8 +6,10 @@ Denwen.Views.Welcome.Connect = Backbone.View.extend({
     this.successURL = this.options.successURL;
 
     new Denwen.Partials.Auth.Email({
+        el: '#body',
         googleEl: '#google_connect_button',
         yahooEl: '#yahoo_connect_button',
+        hotmailEl: '#hotmail_connect_button',
         successURL: this.successURL});
 
     this.setAnalytics();

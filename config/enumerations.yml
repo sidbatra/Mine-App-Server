@@ -136,4 +136,5 @@
     TumblrAuth: 'tumblr_auth'
     GoogleAuth: 'google_auth'
     YahooAuth: 'yahoo_auth'
+    HotmailAuth: 'hotmail_auth'
     FbAccessToken: 'fb_access_token'
