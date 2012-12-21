@@ -347,8 +347,12 @@ class User < ActiveRecord::Base
     yh_token.present? && yh_secret.present? && yh_session_handle.present?
   end
 
+  def hotmail_authorized?
+    hm_email.present? && hm_password.present?
+  end
+
   def email_authorized?
-    google_authorized? || yahoo_authorized?
+    google_authorized? || yahoo_authorized? || hotmail_authorized?
   end 
 
   alias_method :is_email_authorized, :email_authorized?
@@ -374,6 +378,11 @@ class User < ActiveRecord::Base
     self.yh_token = nil
     self.yh_secret = nil
     self.yh_session_handle = nil
+    self.save!
+  end
+
+  def hotmail_disconnect
+    self.hm_password = nil
     self.save!
   end
 
