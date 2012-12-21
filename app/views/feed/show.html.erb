@@ -101,6 +101,18 @@
             :class => "hide-when-loading"%>
         <i class="icon-loading icon-white"></i>
       </a>
+      <a id="hotmail_connect_button"
+          class="btn btn-small btn-silver shaded rounded-3-right absolute" 
+          href="#hotmail_connect"
+          role="button"
+          data-toggle="modal"
+          style="width: 16.61%; top: 12px; right: -10px;
+          border-left: 1px solid #ababab; 
+          border-left: 1px solid rgba(0,0,0,0.16);">
+        <%=image_tag "logos/email-yahoo-logo-18.png",
+            :class => "hide-when-loading"%>
+        <i class="icon-loading icon-white"></i>
+      </a>
     </div>
   </div>
   <!-- /email importer box -->
@@ -126,6 +138,8 @@
 	<div id="feed-spinner" class="feed-loading whitesmoke">
 	</div> 
 </div> <!-- feed container -->
+
+<%=render :partial => "hotmail/auth_dialog"%>
 
 <%content_for :javascript do%>
   <script type="text/javascript">
