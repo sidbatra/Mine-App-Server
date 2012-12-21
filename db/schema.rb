@@ -371,6 +371,7 @@ ActiveRecord::Schema.define(:version => 20121221004550) do
     t.boolean  "is_mining_purchases",        :default => false
     t.string   "hm_email"
     t.string   "hm_password"
+    t.string   "hm_salt"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

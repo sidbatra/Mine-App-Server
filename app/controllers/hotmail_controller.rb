@@ -14,7 +14,7 @@ class HotmailController < ApplicationController
 
       if @status
         self.current_user.hm_email = email
-        self.current_user.hm_password = Cryptography.aes_encrypt password
+        self.current_user.hm_password = password
         self.current_user.save!
       end
     end

@@ -348,7 +348,7 @@ class User < ActiveRecord::Base
   end
 
   def hotmail_authorized?
-    hm_email.present? && hm_password.present?
+    hm_email.present? && hm_password.present? && hm_salt.present?
   end
 
   def email_authorized?
@@ -383,7 +383,21 @@ class User < ActiveRecord::Base
 
   def hotmail_disconnect
     self.hm_password = nil
+    self.hm_salt = nil
     self.save!
+  end
+
+  def hm_password
+    Cryptography.aes_decrypt(self[:hm_password],hm_salt) if self[:hm_password].present?
+  end
+
+  def hm_password=(password)
+    if password.present?
+      self.hm_salt = SecureRandom.hex(10)
+      self[:hm_password] = Cryptography.aes_encrypt(password,self.hm_salt)
+    else 
+      self[:hm_password] = nil
+    end
   end
 
   # Obfuscated id for the user
