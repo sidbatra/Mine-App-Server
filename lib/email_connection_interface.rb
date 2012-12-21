@@ -164,7 +164,7 @@ module DW
 
           if from =~ options[:email_regex]
             @emails[from] = [] unless @emails.key? from
-            @emails[from] << Mail.new(mail.pop)
+            @emails[from] << Mail.new(CGI.unescapeHTML(mail.pop))
           end
         end #mails
       end
