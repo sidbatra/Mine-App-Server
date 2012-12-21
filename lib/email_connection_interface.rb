@@ -130,6 +130,22 @@ module DW
 
 
     class HotmailConnection
+      
+      def self.validate(email,password)
+        status = true
+
+        require 'net/pop'
+        Net::POP3.enable_ssl OpenSSL::SSL::VERIFY_NONE
+
+        pop = Net::POP3.new 'pop3.live.com',995
+        pop.start email,password
+        pop.finish
+        
+      rescue Net::POPAuthenticationError
+        status = nil
+      ensure
+        return status
+      end
 
       def initialize(email,options={})
         require 'net/pop'
