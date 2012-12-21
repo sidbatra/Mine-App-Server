@@ -172,6 +172,7 @@ module DW
       def search(from,after)
         key = @emails.keys.select{|key| key.include? from}.first
         mails = @emails[key]
+        mails ||= []
 
         yield mails if block_given?
       end

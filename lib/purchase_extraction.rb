@@ -79,6 +79,21 @@ module DW
             @user.yahoo_disconnect
           end
 
+        elsif @user.hotmail_authorized?
+          status = true
+
+          begin
+            @provider = EmailProvider::Hotmail
+            @email_connection = EmailConnection.new(
+                                  @user.hm_email,
+                                  @provider, {
+                                    :password => @user.hm_password,
+                                    :start_date => @start_date,
+                                    :email_regex => Regexp.new(@stores.map(&:email).join("|"))})
+          rescue Net::POPAuthenticationError
+            status = false
+            @user.hotmail_disconnect
+          end
         end
 
         status
