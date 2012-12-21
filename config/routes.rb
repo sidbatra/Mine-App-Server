@@ -159,6 +159,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :status,
     :only => [:show]
 
+  map.resource :hotmail,
+    :controller => :hotmail,
+    :only => [:create]
+
 
   ##
   # Routes for static pages
