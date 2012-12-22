@@ -357,8 +357,8 @@ ActiveRecord::Schema.define(:version => 20121221004550) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
-    t.integer  "unread_notifications_count", :default => 0
     t.boolean  "is_special",                 :default => false
+    t.integer  "unread_notifications_count", :default => 0
     t.string   "go_email"
     t.string   "go_token"
     t.string   "go_secret"

@@ -463,8 +463,10 @@ a.feed-intro .highlight { font-weight: bold; }
 	height: 80px; }
 
 .feed-loading.dark { 
-	background: url('/images/loading/loading-snake-FFF-393939.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-777-444.gif') center no-repeat;
 	height: 80px; }
+	
+.feed-container { margin: 0 -28px; }
 	
 .feed { background: white; }
 
@@ -946,7 +948,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	padding: 2.307692307%;
 	background: #393939;
 	color: #ccc;
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+/* 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); */
 	vertical-align: top; }
 
 .well-box.tab {
