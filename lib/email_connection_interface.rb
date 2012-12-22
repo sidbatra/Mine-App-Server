@@ -142,7 +142,7 @@ module DW
         pop.finish
         
       rescue Net::POPAuthenticationError
-        status = nil
+        status = false
       ensure
         return status
       end

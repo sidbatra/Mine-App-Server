@@ -43,7 +43,7 @@ Denwen.Partials.Auth.Hotmail = Backbone.View.extend({
   fetched: function(data) {
     $(this.submitEl).removeClass(this.loadClass);
 
-    if(data) {
+    if(data['status']) {
       $(this.modalEl).modal('hide');
  
       Denwen.Track.action("Hotmail Authorization Accepted");

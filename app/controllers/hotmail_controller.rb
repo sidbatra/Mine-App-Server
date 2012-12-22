@@ -3,7 +3,7 @@ class HotmailController < ApplicationController
 
   def create
     @usage = params[:usage] ? params[:usage].to_sym : :popup
-    @status = nil
+    @status = false
 
     case @usage
     when :popup
