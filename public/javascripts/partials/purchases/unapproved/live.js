@@ -2,7 +2,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
 
   initialize: function() {
     this.offset = 0;
-    this.perPage = 10;
+    this.perPage = 50;
     this.oldestPurchaseID = 0;
 
     this.finished = false;
