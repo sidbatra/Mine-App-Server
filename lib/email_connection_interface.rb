@@ -58,7 +58,7 @@ module DW
             fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
             
             mails = fetch_data.map do |fetch_datum| 
-                      Mail.new fetch_datum.attr[@imap_key_body]
+                      Mail.new CGI.unescapeHTML(fetch_datum.attr[@imap_key_body])
                     end 
 
             yield mails.reverse if block_given?
