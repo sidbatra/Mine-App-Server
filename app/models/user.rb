@@ -355,6 +355,16 @@ class User < ActiveRecord::Base
     google_authorized? || yahoo_authorized? || hotmail_authorized?
   end 
 
+  def authorized_emails
+    emails = []
+
+    emails << EmailProvider::Gmail if google_authorized?
+    emails << EmailProvider::Yahoo if yahoo_authorized?
+    emails << EmailProvider::Hotmail if hotmail_authorized?
+
+    emails
+  end
+
   alias_method :is_email_authorized, :email_authorized?
 
   def refresh_yahoo_token

@@ -43,12 +43,17 @@ module DW
                   end
       end
 
-      def open_email_connection
-        status = false
+      def populate_authorized_emails
+        @emails = @user.authorized_emails
+      end
 
-        if @user.google_authorized?
+      def open_email_connection(email)
+        status = false
+        @provider = email
+
+        case @provider
+        when EmailProvider::Gmail
           status = true
-          @provider = EmailProvider::Gmail
 
           begin
             @email_connection = EmailConnection.new(
@@ -63,12 +68,11 @@ module DW
             @user.google_disconnect
           end
 
-        elsif @user.yahoo_authorized?
+        when EmailProvider::Yahoo
           status = true
 
           begin
             @user.refresh_yahoo_token
-            @provider = EmailProvider::Yahoo
             @email_connection = EmailConnection.new(
                                   @user.yh_email,
                                   @provider, {
@@ -79,17 +83,19 @@ module DW
             @user.yahoo_disconnect
           end
 
-        elsif @user.hotmail_authorized?
+        when EmailProvider::Hotmail
           status = true
 
           begin
-            @provider = EmailProvider::Hotmail
             @email_connection = EmailConnection.new(
                                   @user.hm_email,
                                   @provider, {
                                     :password => @user.hm_password,
                                     :start_date => @start_date,
                                     :email_regex => Regexp.new(@stores.map(&:email).join("|"))})
+          
+          rescue Net::POPError => ex
+            puts ex.message
           rescue Net::POPAuthenticationError
             status = false
             @user.hotmail_disconnect
@@ -157,18 +163,24 @@ module DW
 
         populate_email_parseable_stores
         populate_existing_purchases
+        populate_authorized_emails
 
 
-        @stores.in_groups_of(3,false) do |group|
-          threads = []
+        @emails.each do |email|
+          next unless open_email_connection(email)
 
-          group.each do |store|
-            #threads << Thread.new{mine_emails_from_store store}
-            mine_emails_from_store store
-          end
+          @stores.in_groups_of(3,false) do |group|
+            #threads = []
 
-          threads.each {|thread| thread.join}
-        end if open_email_connection
+            group.each do |store|
+              #threads << Thread.new{mine_emails_from_store store}
+              mine_emails_from_store store
+            end
+
+            #threads.each {|thread| thread.join}
+          end #stores
+
+        end #emails
 
         @user.email_mined_till = start_time
 
