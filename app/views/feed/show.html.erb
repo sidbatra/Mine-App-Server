@@ -24,41 +24,63 @@
       <span class="txt s bottom-line opacity-80" href="javascript:void(0)">
         Connect an email, review your purchases.
       </span>
-      <a id="google_connect_button"
-          class="btn btn-small btn-silver shaded rounded-3-left absolute" 
-          href="javascript:void(0)" 
-          style="top: 2px; right: 0; margin-right: 148px;
-          width: 74px;">
-        <%=image_tag "logos/email-btn-gmail-2x.png",
-        		:style => "width: 40px; padding-bottom: 1px;",
-            :class => "hide-when-loading"%>
-        <i class="icon-loading icon-white"></i>
-      </a>
-      <a id="hotmail_connect_button"
-          class="btn btn-small btn-silver shaded square absolute" 
-          href="#hotmail_connect"
-          role="button"
-          data-toggle="modal"
-          style="top: 2px; right: 0; margin-right: 74px;
-          width: 74px;
-          border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);">
-        <%=image_tag "logos/email-btn-hotmail-2x.png",
-        		:style => "width: 62px; padding-bottom: 1px;",
-            :class => "hide-when-loading"%>
-        <i class="icon-loading icon-white"></i>
-      </a>
-      <a id="yahoo_connect_button"
-          class="btn btn-small btn-silver shaded rounded-3-right absolute" 
-          href="javascript:void(0)" 
-          style="top: 2px; right: 0; width: 74px;
-          border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);">
-        <%=image_tag "logos/email-btn-yahoo-2x.png",
-        		:style => "width: 53px;",
-            :class => "hide-when-loading"%>
-        <i class="icon-loading icon-white"></i>
-      </a>
+      
+      <div class="import-email-buttons absolute" style="top: 2px; right: 0;">
+     
+	      <a id="google_connect_button"
+	          class="btn btn-small btn-silver shaded rounded-3-left" 
+	          href="javascript:void(0)" 
+	          style="width: 74px;">
+	      	<span class="unconnected">
+		        <%=image_tag "logos/email-btn-gmail-2x.png",
+		        		:style => "width: 40px; padding-bottom: 1px;",
+		            :class => "hide-when-loading"%>
+		        <i class="icon-loading icon-white"></i>
+		      </span>
+		      <%=image_tag "logos/import-gmail-connected-2x.png",
+	        		:style => "width: 50px; margin-top: -4px;",
+	            :class => "connected inline"%>
+	      </a>
+	      
+	      <a id="hotmail_connect_button"
+	          class="btn btn-small btn-silver shaded square" 
+	          href="#hotmail_connect"
+	          role="button"
+	          data-toggle="modal"
+	          style="width: 74px;
+	          border-left: 1px solid #ababab; 
+	          border-left: 1px solid rgba(0,0,0,0.16);">
+	      	<span class="unconnected">
+		        <%=image_tag "logos/email-btn-hotmail-2x.png",
+		        		:style => "width: 62px; padding-bottom: 1px;",
+		            :class => "hide-when-loading"%>
+		        <i class="icon-loading icon-white"></i>
+	       	</span>
+	       	<%=image_tag "logos/import-hotmail-connected-2x.png",
+	        		:style => "width: 55px; margin-top: -2px;",
+	            :class => "connected"%>
+	      </a>
+	      
+	      <a id="yahoo_connect_button"
+	          class="btn btn-small btn-silver shaded rounded-3-right" 
+	          href="javascript:void(0)" 
+	          style="width: 74px;
+	          border-left: 1px solid #ababab; 
+	          border-left: 1px solid rgba(0,0,0,0.16);">
+	        <span class="unconnected">
+		        <%=image_tag "logos/email-btn-yahoo-2x.png",
+		        		:style => "width: 53px;",
+		            :class => "hide-when-loading"%>
+		        <i class="icon-loading icon-white"></i>
+		      </span>
+	        <%=image_tag "logos/import-yahoo-connected-2x.png",
+	        		:style => "width: 55px; margin-top: -2px;",
+	            :class => "connected"%>
+	      </a>
+      
+      </div> <!-- /import email buttons -->
+      
+      
     </div>
   </div>
   <!-- /email importer box -->

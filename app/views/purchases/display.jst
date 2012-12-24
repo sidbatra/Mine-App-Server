@@ -4,12 +4,12 @@
   
   <div class="photo-box relative">
   
-  	<!-- click-out button -->
+  	<!-- buy button -->
     <%if(interaction || !Denwen.H.isLoggedIn()){%>
 			<div class="actions top-right absolute">
-				<a href="<%=purchase.get('source_url')%>" target="_blank" 
-          class="btn btn-small btn-white rounded-3 hover-appear">
-					<i class="icon-cart"></i>
+				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy">
+					<img class="absolute bottom rounded-3" style="top: 0; left: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
+					<img class="absolute top rounded-3 transition-opacity" style="top: 0; left: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
 				</a>
 			</div>
     <%}%>
@@ -18,7 +18,7 @@
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
 			<div class="actions bottom-right absolute">
 				<a href="<%=purchase.editPath('feed')%>" 
-          class="btn btn-small btn-white rounded-3 opacity-80-100">
+          class="btn btn-small btn-white rounded-3 hover-appear">
 					<i class="icon-pencil"></i>
 				</a>
 			</div>
@@ -40,9 +40,8 @@
 		<%if(interaction){%> 
 			<a href="javascript:void(0)"
 		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn absolute shaded border-box rounded-3">
-		  	<i class="icon-heart icon-white"></i>
-				<i class="icon-heart icon-black"></i>
+		  		class="like btn btn-silver absolute shaded border-box rounded-3">
+				<i class="icon-heart"></i>
 			</a>		
 		<%}%>
         
@@ -151,7 +150,7 @@
 	    
 	  </div> <!-- /panel-contents -->
 
-    <!--a href="http://pinterest.com/pin/create/button/?url=<%=encodeURIComponent(purchase.absoluteURL('pinterest'))%>&media=<%=encodeURIComponent(purchase.get('giant_url'))%>&description=<%=encodeURIComponent(purchase.sharingMessage())%>" 
+    <!--a href="http://pinterest.com/pin/create/button/?url=<#=encodeURIComponent(purchase.absoluteURL('pinterest'))%>&media=<#=encodeURIComponent(purchase.get('giant_url'))%>&description=<#=encodeURIComponent(purchase.sharingMessage())%>" 
       class="pin-it-button" 
       count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a-->
 
