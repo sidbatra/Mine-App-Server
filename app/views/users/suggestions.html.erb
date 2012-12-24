@@ -1,0 +1,20 @@
+<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative">
+       
+  <%=render :partial => "box", :locals => {:user => @user}%>
+
+  <div id="user_suggestions_box">
+    <div class="well-box border-box rounded-8" style="margin: 2px 0 12px;">
+      <ul id="user_suggestions">
+      </ul>
+    </div> 
+  </div>
+
+</div> <!-- /profile-box -->
+
+
+<%content_for :javascript do%>
+  <script type="text/javascript">  
+    new Denwen.Views.Users.Suggestions({
+          source : "<%=h @source%>"});
+  </script>
+<%end%>

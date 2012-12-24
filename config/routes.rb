@@ -66,6 +66,11 @@ ActionController::Routing::Routes.draw do |map|
   map.tumblr_reply 'tumblr/reply',
     :controller => :tumblr,
     :action     => :create
+  
+  map.user_suggestions '/users/suggestions',
+    :controller => :users,
+    :action => :index,
+    :aspect => "suggestions"
 
   ##
   # Resoure based routes

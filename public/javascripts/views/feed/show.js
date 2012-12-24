@@ -49,7 +49,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       this);
 
 
-    new Denwen.Partials.Users.Suggestions({el:$(this.userSuggestionsEl)});
+    new Denwen.Partials.Users.Suggestions({
+      el:$(this.userSuggestionsEl),
+      perPage: 3});
 
 
     new Denwen.Partials.Auth.Email({

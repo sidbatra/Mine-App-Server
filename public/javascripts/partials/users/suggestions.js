@@ -5,10 +5,11 @@ Denwen.Partials.Users.Suggestions = Backbone.View.extend({
   initialize: function() {
     var self = this;
     this.suggestionsEl = '#user_suggestions';
+    this.perPage = this.options.perPage;
 
     this.users = new Denwen.Collections.Users();
     this.users.fetch({
-      data    : {aspect: 'suggestions'},
+      data    : {aspect: 'suggestions',per_page:this.perPage},
       success : function(){self.fetched()},
       error   : function(){}});
   },
