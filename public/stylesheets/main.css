@@ -627,6 +627,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .item .panel .title-box {
 	color: #555;
+	font-weight: bold;
 	min-height: 48px;
 	padding-left: 50px;
 	margin-top: -3px; }
@@ -948,7 +949,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	border-top: 0 solid transparent;
 	content: ""; }
 
-.card .panel .title-box { color: #555; }
+.card .panel .title-box { font-weight: bold; color: #555; }
 
 .card .panel .title-box a.link-out { 
 	padding-right: 11px;
