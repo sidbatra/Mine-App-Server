@@ -559,21 +559,24 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .item .photo-box .item-photo { max-height: 354px; }
 
-.item .photo-box .actions { line-height: 0; }
-.item .photo-box .actions.hover { display: none; }
-.item:hover .photo-box .actions.hover { display: block; }
+.item .actions { line-height: 0; }
+.item .actions.hover { display: none; }
+.item:hover .actions.hover { display: block; }
 
 .item .photo-box .actions.top-left     { top: 24px; left: 24px;     }
 .item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
-.item .photo-box .actions.bottom-right { bottom: 24px; right: 24px; }
+.item .photo-box .actions.bottom-right { bottom: 28px; right: 28px; }
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
 
-.item .photo-box a.corner-buy {
+.item a.corner-buy {
+	z-index: 10;
+	top: 0;
+	right: 0;
 	display: block;
 	width: 56px;
 	height: 58px; }
 	
-.item .photo-box a.corner-buy img.top:hover {
+.item a.corner-buy img.top:hover {
 	opacity: 0;
 	filter: alpha(opacity=0); }
 
@@ -589,23 +592,21 @@ a.feed-intro .highlight { font-weight: bold; }
 	-o-transition: opacity .25s ease-in;
 	transition: opacity .25s ease-in; }
 	
-.item .photo-box .like {
-	width: 46px;
+.item .photo-box .like.btn {
+	width: 40px;
 	height: 32px;
-	padding-left: 16px;
-	padding-right: 16px;
-	top: 32px;
-	left: 32px; }
+	top: 40px;
+	left: 40px; }
 	
 .like.btn.pushed .icon-heart { 
 	display: inline-block;
 	opacity: 0.6;
 	filter: alpha(opacity=60); } 
 	
-.like.btn.pushed, .like.btn-pushed:hover { background: #eee !important; } 
+.like.btn.btn-silver.light.pushed, .like.btn.btn-silver.light.pushed:hover { background: #eee !important; } 
 
 	
-.item .panel { padding: 0 4.615384615% 4.615384615%; }
+.item .panel { padding: 0 28px 4.615384615%; border-bottom: 2px solid #eee; }
 
 .item .panel .panel-contents {
 	background: #eee;
@@ -629,7 +630,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	color: #555;
 	font-weight: bold;
 	min-height: 48px;
-	padding-left: 50px;
+	padding: 0 25px 0 50px;
 	margin-top: -3px; }
 
 .item .panel .title-box a.link-out { 

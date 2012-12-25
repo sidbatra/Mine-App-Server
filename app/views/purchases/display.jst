@@ -4,21 +4,11 @@
   
   <div class="photo-box relative">
   
-  	<!-- buy button -->
-    <%if(interaction || !Denwen.H.isLoggedIn()){%>
-			<div class="actions top-right absolute">
-				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy">
-					<img class="absolute bottom rounded-3" style="top: 0; left: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
-					<img class="absolute top rounded-3 transition-opacity" style="top: 0; left: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
-				</a>
-			</div>
-    <%}%>
-  
   	<!-- edit button -->
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
 			<div class="actions bottom-right absolute">
 				<a href="<%=purchase.editPath('feed')%>" 
-          class="btn btn-small btn-white rounded-3 hover-appear">
+          class="btn btn-small btn-white rounded-3 transition-opacity opacity-60-100">
 					<i class="icon-pencil"></i>
 				</a>
 			</div>
@@ -40,7 +30,7 @@
 		<%if(interaction){%> 
 			<a href="javascript:void(0)"
 		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn btn-silver absolute shaded border-box rounded-3">
+		  		class="like btn btn-silver light absolute shaded border-box rounded-3">
 				<i class="icon-heart"></i>
 			</a>		
 		<%}%>
@@ -57,6 +47,14 @@
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box rounded-5 relative">
+      
+	    <!-- buy button -->
+	    <%if(interaction || !Denwen.H.isLoggedIn()){%>
+				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
+					<img class="absolute bottom rounded-5-top-right" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
+					<img class="absolute top rounded-5-top-right transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
+				</a>
+	    <%}%>
       	
 			<b class="caret absolute opaque"></b>
 			
@@ -69,7 +67,7 @@
 		    
 		    <span style="padding-right: 3px;">
 		
-			    <a class="em light user-name" 
+			    <a class="em light underlined user-name" 
 	          href="<%=purchase.get('user').path('purchase_name')%>">
 	          <%=purchase.get('user').escape('first_name')%>   
 	          <%=purchase.get('user').escape('last_name')%></a> 
@@ -84,7 +82,7 @@
 			
 			    <a id="purchase_title_<%=purchase.get('id')%>"
 	            href="<%=purchase.get('source_url')%>" 
-	            class="em light link-out" 
+	            class="em light underlined link-out" 
 	            target="_blank"><%=purchase.escape('title')%></a> 
 			
 			    <%if(purchase.get('store')){%>
