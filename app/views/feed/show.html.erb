@@ -14,7 +14,7 @@
   <!-- email importer box -->
   <div class="well-box border-box rounded-8 rwd-hide" 
     style="margin: 2px 0 18px;">
-    <div class="user-action-box relative">
+    <div class="user-action-box relative" style="border: none !important; margin-bottom: -9px;">
     	<%=image_tag "import-star-ccc-32-2x.png",
         		:style => "width: 32px; top: 0; left: 0;",
             :class => "absolute opacity-80"%>		
@@ -25,7 +25,7 @@
         Connect an email, review your purchases.
       </span>
       
-      <div class="import-email-buttons absolute" style="top: 2px; right: 0;">
+      <div class="import-email-buttons absolute">
      
 	      <a id="google_connect_button"
 	          class="btn btn-small btn-silver shaded rounded-3-left" 
@@ -79,10 +79,56 @@
 	      </a>
       
       </div> <!-- /import email buttons -->
-      
-      
-    </div>
-  </div>
+    </div> <!-- /user-action-box -->
+    
+    <div class="hotmail-connect">
+    
+	    <div class="form-row">
+		    <div class="label-box txt s border-box inline-block">
+		    	<b>Email</b>
+		    </div>
+		    <div class="action border-box inline-block">
+			    <input type="text" placeholder="Hotmail, outlook.com, live or msn" 
+			    class="enter m border-box rounded-2 inline" id="">
+			  </div>
+	    </div>
+	    
+	    <div class="form-row">
+	    	<div class="label-box txt s border-box inline-block">
+		    	<b>Password</b>
+		    </div>
+		    <div class="action border-box inline-block">
+					<input type="text" placeholder="Mine doesn't store your password" 
+			    class="enter m border-box rounded-2 inline" id="">
+			  </div>
+		    <div class="extras txt s border-box inline-block">
+		    	<i class="icon-lock icon-white opacity-50"></i>
+		    </div>
+	    </div>
+	    
+	    <div class="form-row">
+	    	<div class="label-box txt s border-box inline-block">
+		    </div>
+		    <div class="action border-box inline-block">
+		    	<button id="hotmail_submit_button" 
+	          type="submit" class="btn btn-silver btn-small border-box shaded rounded-2"
+	          style="width: 90px;">
+	          <span class="hide-when-loading">
+	            Connect
+	          </span>
+	          <i class="icon-loading icon-white"></i>
+      		</button> <!-- submit -->
+		    </div>
+				<div class="extras txt s border-box inline-block">
+		    </div>
+	    </div>
+	    
+  	  <%=image_tag "logos/hotmail-brands-2x.png",
+          :class => "hotmail-brands"%>
+    
+    </div> <!--/hotmail-connect -->
+    
+  </div> <!-- /well-box -->
   <!-- /email importer box -->
 <%end%>
 

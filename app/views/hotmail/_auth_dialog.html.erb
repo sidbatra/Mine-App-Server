@@ -1,29 +1,21 @@
 
   <! -- modal log in -->
-  <div class="modal eyeglass hide rounded-5" 
+  <div class="modal hide rounded-5" 
     id="hotmail_connect" 
-    style="height: 368px; top: 50%; margin-top:-12px;">
+    style="">
 
     <div class="modal-body rounded-3 relative" 
-      style="text-align: center; background: #444; height: 368px;">
+      style="">
       
-      <h2 style="padding-bottom: 14px;">Hotmail Connect</h2>
-
-      <div class="box-title" style="padding-top: 4px;">
-        Email - (Hotmail, MSN, Live or Outlook)
-      </div>
+      <h2 style=""></h2>
 
       <%=text_field_tag :hotmail_email,"",
-            :class => "enter txt l rounded-3 border-box",
-            :style => "width: 75%"%>
-
-      <div class="box-title" style="padding-top: 4px;">
-        Password 
-      </div>
+            :class => "txt l rounded-3 border-box",
+            :style => ""%>
 
       <%=password_field_tag :hotmail_password,"",
-            :class => "enter txt l rounded-3 border-box",
-            :style => "width: 75%"%>
+            :class => "txt l rounded-3 border-box",
+            :style => ""%>
 
       <br>
 
@@ -33,13 +25,9 @@
           style="width: 100px; margin-top: 24px;">
           <span class="hide-when-loading">
             Connect
-            <%=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
-                  :style => "height: 14px; margin: 13px 0 0 4px; vertical-align: top;"%>
           </span>
           <i class="icon-loading icon-white"></i>
       </button> <!-- submit -->
-
-      <p style="padding-top: 16px;">100% secure</p>
       
     </div> <!-- /modal-body -->
   </div> <!-- /modal log in -->
