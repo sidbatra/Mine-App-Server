@@ -47,8 +47,10 @@ a:focus { outline: none; }
 
 a.dark       { color: #ccc;  }
 a.dark:hover { color: white; }
+/*
 a.dark i { opacity: 0.8; filter: alpha(opacity=80); }
 a.dark:hover i { opacity: 1; filter: alpha(opacity=100); }
+*/
 
 a.light       { color: #177DBE; }
 a.light:hover { color: #105e90; }
@@ -69,6 +71,10 @@ li { line-height: 1; }
   color: #999;
   font-weight: bold;
   text-transform: uppercase; }
+  
+.box-footnote {
+	color: #999;
+	text-align: center; }
 
 .wrapper {
 	min-height: 100%;
