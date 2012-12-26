@@ -10,127 +10,90 @@
 <%end%> 
 
 
-<%unless self.current_user.email_authorized?%>
-  <!-- email importer box -->
-  <div class="well-box border-box rounded-8 rwd-hide" 
-    style="margin: 2px 0 18px;">
-    <div class="user-action-box relative" style="border: none !important; margin-bottom: -9px;">
-    	<%=image_tag "import-star-ccc-32-2x.png",
-        		:style => "width: 32px; top: 0; left: 0;",
-            :class => "absolute opacity-80"%>		
-      <div class="txt m top-line opacity-80">
+<!-- email importer box -->
+<div class="well-box border-box rounded-8 rwd-hide" 
+  style="margin: 2px 0 18px;">
+  <div class="user-action-box relative" style="border: none !important; margin-bottom: -9px;">
+    <%=image_tag "import-star-ccc-32-2x.png",
+          :style => "width: 32px; top: 0; left: 0;",
+          :class => "absolute opacity-80"%>		
+
+    <div class="txt m top-line opacity-80">
+      <%if self.current_user.email_authorized?%>
+        Great, you're connected
+      <%else%>
         Start your Mine
-      </div>
-      <span class="txt s bottom-line opacity-80" href="javascript:void(0)">
+      <%end%>
+    </div>
+    <span class="txt s bottom-line opacity-80" href="javascript:void(0)">
+      <%if self.current_user.email_authorized?%>
+        Checking for new purchases in <%=pluralize days_to_email_import,"day"%>
+      <%else%>
         Connect an email, review your purchases.
-      </span>
+      <%end%>
+    </span>
+    
+    <div class="import-email-buttons absolute">
+   
+      <a id="google_connect_button"
+          class="btn btn-small btn-silver shaded 
+                  rounded-3-left <%=self.current_user.google_authorized? ? "connected" : ''%>"
+          href="javascript:void(0)" 
+          style="width: 74px;">
+        <span class="unconnected">
+          <%=image_tag "logos/email-btn-gmail-2x.png",
+              :style => "width: 40px; padding-bottom: 1px;",
+              :class => "hide-when-loading"%>
+          <i class="icon-loading icon-white"></i>
+        </span>
+        <%=image_tag "logos/import-gmail-connected-2x.png",
+            :style => "width: 50px; margin-top: -4px;",
+            :class => "connected inline"%>
+      </a>
       
-      <div class="import-email-buttons absolute">
-     
-	      <a id="google_connect_button"
-	          class="btn btn-small btn-silver shaded rounded-3-left" 
-	          href="javascript:void(0)" 
-	          style="width: 74px;">
-	      	<span class="unconnected">
-		        <%=image_tag "logos/email-btn-gmail-2x.png",
-		        		:style => "width: 40px; padding-bottom: 1px;",
-		            :class => "hide-when-loading"%>
-		        <i class="icon-loading icon-white"></i>
-		      </span>
-		      <%=image_tag "logos/import-gmail-connected-2x.png",
-	        		:style => "width: 50px; margin-top: -4px;",
-	            :class => "connected inline"%>
-	      </a>
-	      
-	      <a id="hotmail_connect_button"
-	          class="btn btn-small btn-silver shaded square" 
-	          href="#hotmail_connect"
-	          role="button"
-	          data-toggle="modal"
-	          style="width: 74px;
-	          border-left: 1px solid #ababab; 
-	          border-left: 1px solid rgba(0,0,0,0.16);">
-	      	<span class="unconnected">
-		        <%=image_tag "logos/email-btn-hotmail-2x.png",
-		        		:style => "width: 62px; padding-bottom: 1px;",
-		            :class => "hide-when-loading"%>
-		        <i class="icon-loading icon-white"></i>
-	       	</span>
-	       	<%=image_tag "logos/import-hotmail-connected-2x.png",
-	        		:style => "width: 55px; margin-top: -2px;",
-	            :class => "connected"%>
-	      </a>
-	      
-	      <a id="yahoo_connect_button"
-	          class="btn btn-small btn-silver shaded rounded-3-right" 
-	          href="javascript:void(0)" 
-	          style="width: 74px;
-	          border-left: 1px solid #ababab; 
-	          border-left: 1px solid rgba(0,0,0,0.16);">
-	        <span class="unconnected">
-		        <%=image_tag "logos/email-btn-yahoo-2x.png",
-		        		:style => "width: 53px;",
-		            :class => "hide-when-loading"%>
-		        <i class="icon-loading icon-white"></i>
-		      </span>
-	        <%=image_tag "logos/import-yahoo-connected-2x.png",
-	        		:style => "width: 55px; margin-top: -2px;",
-	            :class => "connected"%>
-	      </a>
+      <a id="hotmail_connect_button"
+          onclick="$('#hotmail_connect').slideToggle('fast');$('#hotmail_email').phocus()"
+          class="btn btn-small btn-silver shaded 
+                  square  <%=self.current_user.hotmail_authorized? ? "connected" : ''%>" 
+          style="width: 74px;
+          border-left: 1px solid #ababab; 
+          border-left: 1px solid rgba(0,0,0,0.16);">
+        <span class="unconnected">
+          <%=image_tag "logos/email-btn-hotmail-2x.png",
+              :style => "width: 62px; padding-bottom: 1px;",
+              :class => "hide-when-loading"%>
+          <i class="icon-loading icon-white"></i>
+        </span>
+        <%=image_tag "logos/import-hotmail-connected-2x.png",
+            :style => "width: 55px; margin-top: -2px;",
+            :class => "connected"%>
+      </a>
       
-      </div> <!-- /import email buttons -->
-    </div> <!-- /user-action-box -->
+      <a id="yahoo_connect_button"
+          class="btn btn-small btn-silver shaded 
+                  rounded-3-right  <%=self.current_user.yahoo_authorized? ? "connected" : ''%>" 
+          href="javascript:void(0)" 
+          style="width: 74px;
+          border-left: 1px solid #ababab; 
+          border-left: 1px solid rgba(0,0,0,0.16);">
+        <span class="unconnected">
+          <%=image_tag "logos/email-btn-yahoo-2x.png",
+              :style => "width: 53px;",
+              :class => "hide-when-loading"%>
+          <i class="icon-loading icon-white"></i>
+        </span>
+        <%=image_tag "logos/import-yahoo-connected-2x.png",
+            :style => "width: 55px; margin-top: -2px;",
+            :class => "connected"%>
+      </a>
     
-    <div class="hotmail-connect">
-    
-	    <div class="form-row">
-		    <div class="label-box txt s border-box inline-block">
-		    	<b>Email</b>
-		    </div>
-		    <div class="action border-box inline-block">
-			    <input type="text" placeholder="Hotmail, outlook.com, live or msn" 
-			    class="enter m border-box rounded-2 inline" id="">
-			  </div>
-	    </div>
-	    
-	    <div class="form-row">
-	    	<div class="label-box txt s border-box inline-block">
-		    	<b>Password</b>
-		    </div>
-		    <div class="action border-box inline-block">
-					<input type="text" placeholder="Mine doesn't store your password" 
-			    class="enter m border-box rounded-2 inline" id="">
-			  </div>
-		    <div class="extras txt s border-box inline-block">
-		    	<i class="icon-lock icon-white opacity-50"></i>
-		    </div>
-	    </div>
-	    
-	    <div class="form-row">
-	    	<div class="label-box txt s border-box inline-block">
-		    </div>
-		    <div class="action border-box inline-block">
-		    	<button id="hotmail_submit_button" 
-	          type="submit" class="btn btn-silver btn-small border-box shaded rounded-2"
-	          style="width: 90px;">
-	          <span class="hide-when-loading">
-	            Connect
-	          </span>
-	          <i class="icon-loading icon-white"></i>
-      		</button> <!-- submit -->
-		    </div>
-				<div class="extras txt s border-box inline-block">
-		    </div>
-	    </div>
-	    
-  	  <%=image_tag "logos/hotmail-brands-2x.png",
-          :class => "hotmail-brands"%>
-    
-    </div> <!--/hotmail-connect -->
-    
-  </div> <!-- /well-box -->
-  <!-- /email importer box -->
-<%end%>
+    </div> <!-- /import email buttons -->
+  </div> <!-- /user-action-box -->
+  
+  <%=render :partial => "hotmail/auth_dialog"%>
+  
+</div> <!-- /well-box -->
+<!-- /email importer box -->
 
 
 <%if is_phone_device?%>
@@ -238,5 +201,10 @@
     new Denwen.Views.Feed.Show({
       successEmailConnectURL: "<%=unapproved_purchases_path(:mode => 'live')%>",
       source: "<%=h @source%>"});
+
+    <%if self.current_user.hotmail_authorized?%>
+      $('#hotmail_connect_button').removeAttr('onclick');
+    <%end%>
+
   </script>
 <%end%>

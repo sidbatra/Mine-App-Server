@@ -54,6 +54,9 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
   },
 
   googleClicked: function() {
+    if(Denwen.H.currentUser.get('google_authorized?'))
+      return;
+
     $(this.googleEl).addClass(this.loadClass);
     this.googleAuth.showAuthDialog();
 
@@ -61,6 +64,9 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
   },
 
   yahooClicked: function() {
+    if(Denwen.H.currentUser.get('yahoo_authorized?'))
+      return;
+
     $(this.yahooEl).addClass(this.loadClass);
     this.yahooAuth.showAuthDialog();
 
@@ -68,6 +74,9 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
   },
 
   hotmailClicked: function() {
+    if(Denwen.H.currentUser.get('hotmail_authorized?'))
+      return;
+
     this.hotmailAuth.showAuthDialog();
 
     Denwen.Track.action("Hotmail Connect Initiated");
