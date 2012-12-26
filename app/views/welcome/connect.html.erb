@@ -25,15 +25,15 @@
 		  <i class="icon-loading icon-white"></i>
 		</a>
 		<a id="hotmail_connect_button"
+        onclick="$('#hotmail_connect').slideToggle('fast');$('#hotmail_email').phocus()"
 		    class="btn btn-large btn-silver shaded rounded-3" 
-		    href="#hotmail_connect"
-        role="button"
-        data-toggle="modal"
 		    style="margin-left: 1.61%; width: 48%;">
 		  <%=image_tag "logos/email-yahoomail-logo-30.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
 		</a>
+
+    <%=render :partial => "hotmail/auth_dialog"%>
 		
 	</div>
 
@@ -46,7 +46,6 @@
 		</a>
 	</div>
       
-  <%=render :partial => "hotmail/auth_dialog"%>
 
 </div> <!-- /well-box -->
 
