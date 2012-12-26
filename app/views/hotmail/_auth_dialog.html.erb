@@ -1,33 +1,54 @@
 
-  <! -- modal log in -->
-  <div class="modal hide rounded-5" 
-    id="hotmail_connect" 
-    style="">
-
-    <div class="modal-body rounded-3 relative" 
-      style="">
-      
-      <h2 style=""></h2>
-
-      <%=text_field_tag :hotmail_email,"",
-            :class => "txt l rounded-3 border-box",
-            :style => ""%>
-
-      <%=password_field_tag :hotmail_password,"",
-            :class => "txt l rounded-3 border-box",
-            :style => ""%>
-
-      <br>
-
-      <button id="hotmail_submit_button" 
-          type="submit" 
-          class="btn btn-large border-box shaded rounded-5"
-          style="width: 100px; margin-top: 24px;">
-          <span class="hide-when-loading">
-            Connect
-          </span>
-          <i class="icon-loading icon-white"></i>
-      </button> <!-- submit -->
-      
-    </div> <!-- /modal-body -->
-  </div> <!-- /modal log in -->
+    <div id="hotmail_connect" 
+      class="hotmail-connect"
+      style="display:none">
+    
+	    <div class="form-row">
+		    <div class="label-box txt s border-box inline-block">
+		    	<b>Email</b>
+		    </div>
+		    <div class="action border-box inline-block">
+          <%=text_field_tag :hotmail_email,"",
+                :class => "txt l rounded-3 border-box",
+                :placeholder => "Hotmail, outlook.com, live or msn",
+                :class => "enter m border-box rounded-2 inline",
+                :style => ""%>
+			  </div>
+	    </div>
+	    
+	    <div class="form-row">
+	    	<div class="label-box txt s border-box inline-block">
+		    	<b>Password</b>
+		    </div>
+		    <div class="action border-box inline-block">
+          <%=password_field_tag :hotmail_password,"",
+                :class => "enter m border-box rounded-2 inline",
+                :style => "height:28px;width:100%"%>
+			  </div>
+		    <div class="extras txt s border-box inline-block">
+		    	<i class="icon-lock icon-white opacity-50"></i>
+		    </div>
+	    </div>
+	    
+	    <div class="form-row">
+	    	<div class="label-box txt s border-box inline-block">
+		    </div>
+		    <div class="action border-box inline-block">
+		    	<button id="hotmail_submit_button" 
+	          type="submit" 
+            class="btn btn-silver btn-small border-box shaded rounded-2"
+	          style="width: 90px;">
+	          <span class="hide-when-loading">
+	            Connect
+	          </span>
+	          <i class="icon-loading icon-white"></i>
+      		</button> <!-- submit -->
+		    </div>
+				<div class="extras txt s border-box inline-block">
+		    </div>
+	    </div>
+	    
+  	  <%=image_tag "logos/hotmail-brands-2x.png",
+          :class => "hotmail-brands"%>
+    
+    </div> <!--/hotmail-connect -->

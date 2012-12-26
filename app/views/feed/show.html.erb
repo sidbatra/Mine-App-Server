@@ -43,10 +43,8 @@
 	      </a>
 	      
 	      <a id="hotmail_connect_button"
+            onclick="$('#hotmail_connect').toggle();$('#hotmail_email').phocus()"
 	          class="btn btn-small btn-silver shaded square" 
-	          href="#hotmail_connect"
-	          role="button"
-	          data-toggle="modal"
 	          style="width: 74px;
 	          border-left: 1px solid #ababab; 
 	          border-left: 1px solid rgba(0,0,0,0.16);">
@@ -81,52 +79,7 @@
       </div> <!-- /import email buttons -->
     </div> <!-- /user-action-box -->
     
-    <div class="hotmail-connect">
-    
-	    <div class="form-row">
-		    <div class="label-box txt s border-box inline-block">
-		    	<b>Email</b>
-		    </div>
-		    <div class="action border-box inline-block">
-			    <input type="text" placeholder="Hotmail, outlook.com, live or msn" 
-			    class="enter m border-box rounded-2 inline" id="">
-			  </div>
-	    </div>
-	    
-	    <div class="form-row">
-	    	<div class="label-box txt s border-box inline-block">
-		    	<b>Password</b>
-		    </div>
-		    <div class="action border-box inline-block">
-					<input type="text" placeholder="Mine doesn't store your password" 
-			    class="enter m border-box rounded-2 inline" id="">
-			  </div>
-		    <div class="extras txt s border-box inline-block">
-		    	<i class="icon-lock icon-white opacity-50"></i>
-		    </div>
-	    </div>
-	    
-	    <div class="form-row">
-	    	<div class="label-box txt s border-box inline-block">
-		    </div>
-		    <div class="action border-box inline-block">
-		    	<button id="hotmail_submit_button" 
-	          type="submit" class="btn btn-silver btn-small border-box shaded rounded-2"
-	          style="width: 90px;">
-	          <span class="hide-when-loading">
-	            Connect
-	          </span>
-	          <i class="icon-loading icon-white"></i>
-      		</button> <!-- submit -->
-		    </div>
-				<div class="extras txt s border-box inline-block">
-		    </div>
-	    </div>
-	    
-  	  <%=image_tag "logos/hotmail-brands-2x.png",
-          :class => "hotmail-brands"%>
-    
-    </div> <!--/hotmail-connect -->
+    <%=render :partial => "hotmail/auth_dialog"%>
     
   </div> <!-- /well-box -->
   <!-- /email importer box -->
@@ -226,7 +179,6 @@
 	</div> 
 </div> <!-- feed container -->
 
-<%=render :partial => "hotmail/auth_dialog"%>
 
 <%content_for :javascript do%>
   <script type="text/javascript">

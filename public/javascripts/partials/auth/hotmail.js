@@ -9,6 +9,8 @@ Denwen.Partials.Auth.Hotmail = Backbone.View.extend({
     this.submitEl = "#hotmail_submit_button";
     this.modalEl = "#hotmail_connect";
 
+    $(this.emailEl).placeholder();
+
     $(this.submitEl).click(function(){self.submitClicked();});
     $(this.passwordEl).keypress(function(e){return self.passwordKeystroke(e);});
   },
@@ -44,7 +46,7 @@ Denwen.Partials.Auth.Hotmail = Backbone.View.extend({
     $(this.submitEl).removeClass(this.loadClass);
 
     if(data['status']) {
-      $(this.modalEl).modal('hide');
+      $(this.modalEl).hide();
  
       Denwen.Track.action("Hotmail Authorization Accepted");
       this.trigger(Denwen.Partials.Auth.Hotmail.Callback.AuthAccepted);
