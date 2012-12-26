@@ -204,13 +204,13 @@
 
 <div class="box-title feed-title relative">
 	Your feed
-	<span style="padding: 0 4px;">
-		&bull;
-	</span> 
 	<a id="add_new_purchase"
     class="dark" 
     href="javascript:void(0)"
     onclick="$('#creation').show();$('#purchase_query').focus();$('#' + this.id).hide();">
+  	<span style="padding: 0 4px; color: #999 !important;">
+			&bull;
+		</span> 
     Add a purchase
 	</a>
 </div>
@@ -223,7 +223,7 @@
 </a>
 <%end%>
 
-<div class="feed-container">
+<div class="feed-container" style="margin-top: 2px;">
 	<div id="feed" class="feed relative">
 	</div> 
 	

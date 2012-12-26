@@ -416,7 +416,7 @@ ul.notifications li.user-action-box {
 .import-email-buttons .btn.connected img.connected { display: inline-block; }
 .import-email-buttons .btn.connected span.unconnected { display: none; }
 
-.hotmail-connect { padding-top: 26px; }
+.hotmail-connect { padding-top: 26px; display: none; }
 .hotmail-connect .form-row { padding-bottom: 9px; }
 .hotmail-connect .form-row .action { width: 50%; height: 28px; vertical-align: top; }
 .hotmail-connect .form-row .extras { vertical-align: top; padding-left: 8px; width: 25%; height: 28px; line-height: 28px; }
