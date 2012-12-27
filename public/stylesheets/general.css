@@ -731,7 +731,7 @@ input.error:focus, textarea.error:focus {
 /* Text Field Bootstrap Overrides
 ==================================================================== */
 
-input[type=text], textarea {
+input[type=text], input[type=password], textarea {
 	width: 100%; 
 	-webkit-appearance: none; 
 	margin-bottom: 0;
@@ -740,21 +740,21 @@ input[type=text], textarea {
 	background: #eee;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset; }
 
-input[type=text]:focus, textarea:focus { 
+input[type=text]:focus, input[type=password]:focus, textarea:focus { 
 	background: white; 
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset; }
 
-input[type=text] { height: 40px; }
+input[type=text], input[type=password] { height: 40px; }
 textarea { 
 	padding-top: 7px;
 	padding-bottom: 7px; }
 
-input[type=text].m { 
+input[type=text].m, input[type=password].m { 
 	height: 28px;
 	padding: 0 8px;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 1px 0px inset; }
 	
-input[type=text].m.load {
+input[type=text].m.load, input[type=password].m.load {
 	background: white url('/images/loading/loading-snake-555-right-loading.gif') center right no-repeat; }
 
 
