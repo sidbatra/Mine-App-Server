@@ -48,15 +48,26 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
       this.hotmailAuthRejected,
       this);
 
-    $(this.googleEl).click(function(){self.googleClicked();});
-    $(this.yahooEl).click(function(){self.yahooClicked();});
-    $(this.hotmailEl).click(function(){self.hotmailClicked();});
+    if(!Denwen.H.currentUser.get('google_authorized?')) {
+      $(this.googleEl).click(function(){self.googleClicked();});
+      $(this.googleEl).tooltip();
+    }
+
+    if(!Denwen.H.currentUser.get('yahoo_authorized?')) {
+      $(this.yahooEl).click(function(){self.yahooClicked();});
+      $(this.yahooEl).tooltip();
+    }
+
+    if(!Denwen.H.currentUser.get('hotmail_authorized?')) {
+      $(this.hotmailEl).click(function(){self.hotmailClicked();});
+      $(this.hotmailEl).tooltip();
+    }
+    else {
+      $(this.hotmailEl).removeAttr('onclick');
+    }
   },
 
   googleClicked: function() {
-    if(Denwen.H.currentUser.get('google_authorized?'))
-      return;
-
     $(this.googleEl).addClass(this.loadClass);
     this.googleAuth.showAuthDialog();
 
@@ -64,9 +75,6 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
   },
 
   yahooClicked: function() {
-    if(Denwen.H.currentUser.get('yahoo_authorized?'))
-      return;
-
     $(this.yahooEl).addClass(this.loadClass);
     this.yahooAuth.showAuthDialog();
 
@@ -74,9 +82,6 @@ Denwen.Partials.Auth.Email = Backbone.View.extend({
   },
 
   hotmailClicked: function() {
-    if(Denwen.H.currentUser.get('hotmail_authorized?'))
-      return;
-
     this.hotmailAuth.showAuthDialog();
 
     Denwen.Track.action("Hotmail Connect Initiated");
