@@ -85,7 +85,7 @@ li { line-height: 1; }
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -32px;
-	background: url('/images/backgrounds/gray-444-576-unshaded.png') fixed top center repeat-y; }
+	background: url('/images/backgrounds/gray-444-576-shaded-light.png') fixed top center repeat-y; }
 	
 .dimmer {
 	position: fixed;
