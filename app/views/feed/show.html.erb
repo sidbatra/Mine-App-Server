@@ -36,8 +36,8 @@
     <div class="import-email-buttons absolute">
    
       <a id="google_connect_button"
-          class="btn btn-small btn-silver shaded 
-                  rounded-3-left <%=self.current_user.google_authorized? ? "connected" : ''%>"
+          class="btn btn-small btn-silver shaded rounded-3-left 
+          <%=self.current_user.google_authorized? ? "connected" : ''%>"         	
           href="javascript:void(0)" 
           style="width: 74px;"
           rel="tooltip"
@@ -75,7 +75,7 @@
             :class => "connected"%>
       </a>
       
-      <a id="yahoo_connect_button"
+      <a id="yahoo_connect_button" 
           class="btn btn-small btn-silver shaded 
                   rounded-3-right  <%=self.current_user.yahoo_authorized? ? "connected" : ''%>" 
           href="javascript:void(0)" 
