@@ -18,7 +18,7 @@ module DW
       def self.build_url(route,params)
         params["format"] = "json"
         params["apiKey"] = CONFIG[:best_buy_api_key]
-        params["show"] = "name,sku,url,largeImage,mediumImage"
+        params["show"] = "name,sku,url,largeImage,mediumImage,subclass,categoryPath"
 
         URI::HTTP.build([
           nil,"api.remix.bestbuy.com",
