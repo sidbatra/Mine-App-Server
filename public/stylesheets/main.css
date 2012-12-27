@@ -15,6 +15,10 @@ body {
 	text-rendering: optimizelegibility; 
 	overflow-x: hidden; }
 
+body.bg-no-repeat { /* default */
+	background-repeat: no-repeat;
+	background-color: #111; }
+
 body.bg-left-down {
 	background-position: top left;
 	background-repeat: repeat-y; }
