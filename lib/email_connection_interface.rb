@@ -58,7 +58,7 @@ module DW
             fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
             
             mails = fetch_data.map do |fetch_datum| 
-                      Mail.new fetch_datum.attr[@imap_key_body]
+                      Mail.new CGI.unescapeHTML(fetch_datum.attr[@imap_key_body])
                     end 
 
             yield mails.reverse if block_given?
@@ -128,7 +128,63 @@ module DW
 
     end #yahoo connection
 
+
+    class HotmailConnection
+      
+      def self.validate(email,password)
+        status = true
+
+        require 'net/pop'
+        Net::POP3.enable_ssl OpenSSL::SSL::VERIFY_NONE
+
+        pop = Net::POP3.new 'pop3.live.com',995
+        pop.start email,password
+        pop.finish
+        
+      rescue Net::POPAuthenticationError
+        status = false
+      ensure
+        return status
+      end
+
+      def initialize(email,options={})
+        require 'net/pop'
+        Net::POP3.enable_ssl OpenSSL::SSL::VERIFY_NONE
+
+        @emails = {}
+
+        pop = Net::POP3.new 'pop3.live.com',995
+        pop.start email,options[:password]
+
+        pop.mails.reverse.each do |mail|
+          header = Mail.new mail.header
+          from = header.from.to_s
+
+          break if header.date < options[:start_date]
+
+          if from =~ options[:email_regex]
+            @emails[from] = [] unless @emails.key? from
+            @emails[from] << Mail.new(CGI.unescapeHTML(mail.pop))
+          end
+        end #mails
+      end
+
+      def search(from,after)
+        key = @emails.keys.select{|key| key.include? from}.first
+        mails = @emails[key]
+        mails ||= []
+
+        yield mails if block_given?
+      end
+
+      def fulltext_search(text,date)
+        #stub
+      end
+
+    end #hotmail connection
+
   end #email connection interface
+
 
   # Extend the Mail::Message class implemented by the Mail gem.
   #
@@ -139,16 +195,20 @@ module DW
     # html_part, text_part, body
     #
     def text
-      text = html_part.to_s
-      @is_text_html = true
+      text = ""
 
-      unless text.present?
-        text = text_part.to_s 
+      if html_part
+        text = html_part.decode_body.to_s
+        @is_text_html = true
+      end
+
+      if !text.present? && text_part
+        text = text_part.decode_body.to_s 
         @is_text_html = false
       end
 
-      unless text.present?
-        text = body.to_s 
+      if !text.present?
+        text = body.decoded.to_s 
         @is_text_html = false
       end
 

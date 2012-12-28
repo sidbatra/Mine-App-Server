@@ -125,10 +125,14 @@ class UsersController < ApplicationController
     when :connections
       @user = User.find_by_handle params[:handle]
       @origin = "connections"
+      @view = "connections"
       populate_theme @user if @user
 
     when :suggestions
+      @view = "suggestions"
+      @user = self.current_user
       ifollower_ids = self.current_user.ifollower_ids 
+      per_page = params[:per_page] ? params[:per_page].to_i : 10
 
       followings = Following.find_all_by_follower_id(
                     ifollower_ids,
@@ -139,7 +143,7 @@ class UsersController < ApplicationController
                     :select     => 'followings.*,
                                     GROUP_CONCAT(CONCAT_WS(\' \', users.first_name, users.last_name)) AS FOLLOWED_BY',
                     :order      => 'RAND()',
-                    :limit      => 2)
+                    :limit      => per_page * 0.667)
           
       @users = followings.each do |f|
                  f.user['message'] = follow_message(f['FOLLOWED_BY'],params[:mobile])
@@ -149,7 +153,7 @@ class UsersController < ApplicationController
                       true,
                       :conditions => ["id not in (?)", followings.map(&:user_id) + ifollower_ids + [self.current_user.id]],
                       :order => 'RAND()',
-                      :limit => 3 - @users.size).each{|u| u['message'] = u.byline}
+                      :limit => per_page - @users.size).each{|u| u['message'] = u.byline}
     end
 
   rescue => ex
@@ -160,6 +164,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         track_visit
+        render @view
       end
       format.json
     end

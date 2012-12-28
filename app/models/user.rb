@@ -347,9 +347,23 @@ class User < ActiveRecord::Base
     yh_token.present? && yh_secret.present? && yh_session_handle.present?
   end
 
+  def hotmail_authorized?
+    hm_email.present? && hm_password.present? && hm_salt.present?
+  end
+
   def email_authorized?
-    google_authorized? || yahoo_authorized?
+    google_authorized? || yahoo_authorized? || hotmail_authorized?
   end 
+
+  def authorized_emails
+    emails = []
+
+    emails << EmailProvider::Gmail if google_authorized?
+    emails << EmailProvider::Yahoo if yahoo_authorized?
+    emails << EmailProvider::Hotmail if hotmail_authorized?
+
+    emails
+  end
 
   alias_method :is_email_authorized, :email_authorized?
 
@@ -375,6 +389,25 @@ class User < ActiveRecord::Base
     self.yh_secret = nil
     self.yh_session_handle = nil
     self.save!
+  end
+
+  def hotmail_disconnect
+    self.hm_password = nil
+    self.hm_salt = nil
+    self.save!
+  end
+
+  def hm_password
+    Cryptography.aes_decrypt(self[:hm_password],hm_salt) if self[:hm_password].present?
+  end
+
+  def hm_password=(password)
+    if password.present?
+      self.hm_salt = SecureRandom.hex(10)
+      self[:hm_password] = Cryptography.aes_encrypt(password,self.hm_salt)
+    else 
+      self[:hm_password] = nil
+    end
   end
 
   # Obfuscated id for the user

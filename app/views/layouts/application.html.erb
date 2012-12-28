@@ -68,7 +68,9 @@
                                                 :first_name,:last_name,:handle,
                                                 :created_at],
                                    :methods => [:square_image_url,:full_name,
-                                                  :age],
+                                                  :age,:obfuscated_id,
+                                                  :google_authorized?,:hotmail_authorized?,
+                                                  :yahoo_authorized?],
                                    :include => {
                                     :setting => {
                                      :only    => [],

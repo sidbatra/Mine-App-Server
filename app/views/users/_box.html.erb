@@ -5,7 +5,22 @@
         user_path(user.handle,:src => "box")%>
         
     <div class="basics border-box">
-    	<%=h user.full_name%> 
+    	<span class="relative">
+    		<%=h user.full_name%> 
+
+        <%if user.email_authorized?%>
+          <a href="#" 
+            rel="tooltip" 
+            title="Connected to Mine e-receipt importer"
+            data-placement="right"
+            class="absolute opacity-80-100">
+
+            <%=image_tag image_path('import-star-check-ccc-32-2x.png'),
+                :class => "",
+                :style => "height: 24px;"%>
+          </a>
+        <%end%>
+    	</span>
     	<br>
     	<span class="item-count">
         <%unless user.purchases_count.zero?%>

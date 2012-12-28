@@ -10,6 +10,101 @@
 <%end%> 
 
 
+<!-- email importer box -->
+<div class="well-box border-box rounded-8 rwd-hide" 
+  style="margin: 2px 0 18px;">
+  <div class="user-action-box relative" style="border: none !important; margin-bottom: -9px;">
+    <%=image_tag "import-star-ccc-32-2x.png",
+          :style => "width: 32px; top: 0; left: 0;",
+          :class => "absolute opacity-80"%>		
+
+    <div class="txt m top-line opacity-80">
+      <%if self.current_user.email_authorized?%>
+        Great, you're connected
+      <%else%>
+        Start your Mine
+      <%end%>
+    </div>
+    <span class="txt s bottom-line opacity-80" href="javascript:void(0)">
+      <%if self.current_user.email_authorized?%>
+        Checking for new purchases in: <%=pluralize days_to_email_import,"day"%>
+      <%else%>
+        Connect an email, review your purchases.
+      <%end%>
+    </span>
+    
+    <div class="import-email-buttons absolute">
+   
+      <a id="google_connect_button"
+          class="btn btn-small btn-silver shaded rounded-3-left 
+          <%=self.current_user.google_authorized? ? "connected" : ''%>"         	
+          href="javascript:void(0)" 
+          style="width: 74px;"
+          rel="tooltip"
+          title="Gmail or Google Apps account"
+          data-placement="bottom">
+        <span class="unconnected">
+          <%=image_tag "logos/email-btn-gmail-2x.png",
+              :style => "width: 40px; padding-bottom: 1px;",
+              :class => "hide-when-loading"%>
+          <i class="icon-loading icon-white"></i>
+        </span>
+        <%=image_tag "logos/import-gmail-connected-2x.png",
+            :style => "width: 50px; padding-right: 2px; margin-top: -4px;",
+            :class => "connected inline"%>
+      </a>
+      
+      <a id="hotmail_connect_button"
+          onclick="$('#hotmail_connect').slideToggle('fast');$('#hotmail_email').phocus()"
+          class="btn btn-small btn-silver shaded 
+                  square  <%=self.current_user.hotmail_authorized? ? "connected" : ''%>" 
+          style="width: 74px;
+          border-left: 1px solid #ababab; 
+          border-left: 1px solid rgba(0,0,0,0.16);"
+          rel="tooltip"
+          title="Hotmail, Outlook.com, Live or MSN account"
+          data-placement="bottom">
+        <span class="unconnected">
+          <%=image_tag "logos/email-btn-hotmail-2x.png",
+              :style => "width: 62px; padding-bottom: 1px;",
+              :class => "hide-when-loading"%>
+          <i class="icon-loading icon-white"></i>
+        </span>
+        <%=image_tag "logos/import-hotmail-connected-2x.png",
+            :style => "width: 55px; padding-right: 4px; margin-top: -2px;",
+            :class => "connected"%>
+      </a>
+      
+      <a id="yahoo_connect_button" 
+          class="btn btn-small btn-silver shaded 
+                  rounded-3-right  <%=self.current_user.yahoo_authorized? ? "connected" : ''%>" 
+          href="javascript:void(0)" 
+          style="width: 74px;
+          border-left: 1px solid #ababab; 
+          border-left: 1px solid rgba(0,0,0,0.16);"
+          rel="tooltip"
+          title="Yahoo, sbcglobal.net, att.net, verizon.net, bellsouth.net, swbell.net or ameritech.net account"
+          data-placement="bottom">
+        <span class="unconnected">
+          <%=image_tag "logos/email-btn-yahoo-2x.png",
+              :style => "width: 53px;",
+              :class => "hide-when-loading"%>
+          <i class="icon-loading icon-white"></i>
+        </span>
+        <%=image_tag "logos/import-yahoo-connected-2x.png",
+            :style => "width: 55px; padding-right: 4px; margin-top: -2px;",
+            :class => "connected"%>
+      </a>
+    
+    </div> <!-- /import email buttons -->
+  </div> <!-- /user-action-box -->
+  
+  <%=render :partial => "hotmail/auth_dialog"%>
+  
+</div> <!-- /well-box -->
+<!-- /email importer box -->
+
+
 <%if is_phone_device?%>
 	<div id="notifications_box" style="display:none">
 	  <div class="box-title" style="margin-top: -6px;">
@@ -26,23 +121,30 @@
 
 <div id="user_suggestions_box" style="display:none">
   <div class="box-title" style="margin-top: -6px;">
-    Who to follow
+    People to follow
+    <span style="padding: 0 4px;">
+			&bull;
+		</span> 
+    <a class="dark" 
+      style="" 
+      href="<%=user_suggestions_path(:src => 'feed')%>">
+    	More
+    </a>
   </div>
 
-  <div class="well-box border-box rounded-8" style="margin: 2px 0 18px;">
+  <div class="well-box border-box rounded-8" style="margin: 2px 0 12px;">
     <ul id="user_suggestions">
     </ul>
   </div> 
 </div> <!-- user suggestions box-->
 
 
-
 <div id="creation" 
-  style="margin-top: -6px;" 
+  style="display:none" 
   class="create-box unit-box border-box">
 
 	<div class="box-title">
-		Add a new purchase
+		Add a purchase
 	</div>
 
 	<div class="well-box border-box rounded-8">
@@ -66,49 +168,23 @@
             :fb_share_on => self.current_user.setting.post_to_facebook?,
             :tw_share_on => self.current_user.setting.post_to_twitter?,
             :tumblr_share_on => self.current_user.setting.post_to_tumblr?}%>
-	  <%end%> <!-- /form --> 
+	  <%end%> <!-- /form -->
   </div>
 
 </div> <!-- /create-box -->
 
 
-<%unless self.current_user.email_authorized?%>
-  <!-- email importer box -->
-  <div class="well-box border-box rounded-8-bottom rwd-hide" 
-    style="padding-top: 2px; margin: -17px 0 12px; box-shadow: none;">
-    <div class="email-action-box relative">		
-      <div class="txt m top-line opacity-80">
-        Import purchases automagically via your inbox
-      </div>
-      <span class="txt s bottom-line opacity-80" href="javascript:void(0)">
-        Connect to preview your items.
-      </span>
-      <a id="google_connect_button"
-          class="btn btn-small btn-silver shaded rounded-3-left absolute" 
-          href="javascript:void(0)" 
-          style="width: 16.61%; top: 12px; right: 16.61%;">
-        <%=image_tag "logos/email-gmail-logo-18.png",
-            :class => "hide-when-loading"%>
-        <i class="icon-loading icon-white"></i>
-      </a>
-      <a id="yahoo_connect_button"
-          class="btn btn-small btn-silver shaded rounded-3-right absolute" 
-          href="javascript:void(0)" 
-          style="width: 16.61%; top: 12px; right: 0;
-          border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);">
-        <%=image_tag "logos/email-yahoo-logo-18.png",
-            :class => "hide-when-loading"%>
-        <i class="icon-loading icon-white"></i>
-      </a>
-    </div>
-  </div>
-  <!-- /email importer box -->
-<%end%>
-
-
-<div class="box-title feed-title relative">
+<div class="box-title feed-title relative" style="padding-bottom: 14px;">
 	Your feed
+	<a id="add_new_purchase"
+    class="dark" 
+    href="javascript:void(0)"
+    onclick="$('#creation').show();$('#purchase_query').focus();$('#' + this.id).hide();">
+  	<span style="padding: 0 4px; color: #999 !important;">
+			&bull;
+		</span> 
+    Add a purchase
+	</a>
 </div>
 
 <%if self.current_user.inverse_followings_count.zero?%>
@@ -119,13 +195,15 @@
 </a>
 <%end%>
 
-<div class="feed-container rounded-8" style="background: #f5f5f5">
-	<div id="feed" class="feed rounded-8 relative">
+<div class="feed-container">
+	<div id="feed" class="feed relative">
 	</div> 
 	
-	<div id="feed-spinner" class="feed-loading whitesmoke">
+	<div id="feed-spinner" class="feed-loading dark">
 	</div> 
 </div> <!-- feed container -->
+
+<%=render :partial => "hotmail/auth_dialog"%>
 
 <%content_for :javascript do%>
   <script type="text/javascript">

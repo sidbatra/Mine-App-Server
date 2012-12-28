@@ -15,6 +15,10 @@ body {
 	text-rendering: optimizelegibility; 
 	overflow-x: hidden; }
 
+body.bg-no-repeat { /* default */
+	background-repeat: no-repeat;
+	background-color: #111; }
+
 body.bg-left-down {
 	background-position: top left;
 	background-repeat: repeat-y; }
@@ -47,6 +51,10 @@ a:focus { outline: none; }
 
 a.dark       { color: #ccc;  }
 a.dark:hover { color: white; }
+/*
+a.dark i { opacity: 0.8; filter: alpha(opacity=80); }
+a.dark:hover i { opacity: 1; filter: alpha(opacity=100); }
+*/
 
 a.light       { color: #177DBE; }
 a.light:hover { color: #105e90; }
@@ -67,13 +75,17 @@ li { line-height: 1; }
   color: #999;
   font-weight: bold;
   text-transform: uppercase; }
+  
+.box-footnote {
+	color: #999;
+	text-align: center; }
 
 .wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -32px;
-	background: url('/images/backgrounds/grain-576-shaded.png') fixed top center repeat-y; }
+	background: url('/images/backgrounds/gray-444-576-shaded-light.png') fixed top center repeat-y; }
 	
 .dimmer {
 	position: fixed;
@@ -372,11 +384,6 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	margin-bottom: 10px;
 	border-bottom: 1px solid #494949; }
 
-.email-action-box {
-	padding: 10px 0 0 0;
-	margin-bottom: -4px;
-	border-top: 1px solid #494949;  }
-
 .user-action-box:last-child { 
 	margin-bottom: -9px !important;
 	border-bottom: none !important; }
@@ -385,23 +392,19 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	top: 0;
 	left: 0; }
 
-.user-action-box .top-line,
-.email-action-box .top-line {
+.user-action-box .top-line {
 	font-weight: bold;
 	color: white;
 	line-height: 120%;
 	margin-bottom: 2px; }
 
-.user-action-box .bottom-line,
-.email-action-box .bottom-line {
+.user-action-box .bottom-line {
 	line-height: 170%;
 	color: #ccc; }
 
 ul.notifications li.user-action-box { 
 	padding-right: 0;
 	margin-left: 16px; }
-	
-/* .btn-red.zero ~ ul.notifications li.user-action-box { margin-left: 0; } */
 
 .user-action-box.unread .dot { 
 	top: 11px;
@@ -410,6 +413,28 @@ ul.notifications li.user-action-box {
 	padding: 0;
 	width: 10px;
 	height: 10px; }
+	
+.import-email-buttons { top: 2px; right: 0; }
+.import-email-buttons .btn img.connected { display: none; }
+.import-email-buttons .btn.connected { background: #555 !important; box-shadow: none !important;}
+.import-email-buttons .btn.connected img.connected { display: inline-block; }
+.import-email-buttons .btn.connected span.unconnected { display: none; }
+
+.hotmail-connect { padding-top: 26px; }
+.hotmail-connect .form-row { padding-bottom: 9px; }
+.hotmail-connect .form-row .action { width: 50%; height: 28px; vertical-align: top; }
+.hotmail-connect .form-row .extras { vertical-align: top; padding-left: 8px; width: 25%; height: 28px; line-height: 28px; }
+.hotmail-connect .form-row .label-box { 
+	width: 25%; 
+	height: 28px; 
+	line-height: 28px;
+	text-align: right;
+	padding-right: 8px; }
+
+.hotmail-connect img.hotmail-brands { 
+	margin: 5px auto 8px; 
+	display: block; 
+	width: 77.41935483871%; }
 
 
 /* -- header notifications dropdown -- */
@@ -426,7 +451,7 @@ ul.notifications li.user-action-box {
 	overflow: hidden; }
 	
 .header ul.notifications li.user-action-box .user-photo { width: 28px; height: 28px; }
-.header ul.notifications li.user-action-box .top-line  { font-size: 12px;}
+.header ul.notifications li.user-action-box .top-line  { font-size: 12px; }
 
 .header ul.notifications li.user-action-box .bottom-line  { line-height: 16px; }
 .header ul.notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
@@ -463,8 +488,10 @@ a.feed-intro .highlight { font-weight: bold; }
 	height: 80px; }
 
 .feed-loading.dark { 
-	background: url('/images/loading/loading-snake-FFF-393939.gif') center no-repeat;
+	background: url('/images/loading/loading-snake-777-444.gif') center no-repeat;
 	height: 80px; }
+	
+.feed-container { margin: 0 -28px; }
 	
 .feed { background: white; }
 
@@ -544,14 +571,26 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .item .photo-box .item-photo { max-height: 354px; }
 
-.item .photo-box .actions { line-height: 0; }
-.item .photo-box .actions.hover { display: none; }
-.item:hover .photo-box .actions.hover { display: block; }
+.item .actions { line-height: 0; }
+.item .actions.hover { display: none; }
+.item:hover .actions.hover { display: block; }
 
 .item .photo-box .actions.top-left     { top: 24px; left: 24px;     }
 .item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
-.item .photo-box .actions.bottom-right { bottom: 24px; right: 24px; }
+.item .photo-box .actions.bottom-right { bottom: 28px; right: 28px; }
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
+
+.item a.corner-buy {
+	z-index: 10;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 56px;
+	height: 58px; }
+	
+.item a.corner-buy img.top:hover {
+	opacity: 0;
+	filter: alpha(opacity=0); }
 
 .hover-appear { 
 	opacity: 0;
@@ -565,25 +604,21 @@ a.feed-intro .highlight { font-weight: bold; }
 	-o-transition: opacity .25s ease-in;
 	transition: opacity .25s ease-in; }
 	
-.item .photo-box .like {
-	width: 46px;
+.item .photo-box .like.btn {
+	width: 64px;
 	height: 32px;
-	padding-left: 16px;
-	padding-right: 16px;
-	top: 32px;
-	left: 32px; }
-
-.like.btn.pushed .icon-heart.icon-white,
-.like.btn .icon-heart.icon-black { display: none; }
+	top: 40px;
+	left: 40px; }
 	
-.like.btn.pushed .icon-heart.icon-black { 
+.like.btn.pushed .icon-heart { 
 	display: inline-block;
 	opacity: 0.6;
 	filter: alpha(opacity=60); } 
 	
-.like.btn.pushed, .like.btn-pushed:hover { background: #eee; } 
+.like.btn.btn-silver.light.pushed, .like.btn.btn-silver.light.pushed:hover { background: #eee !important; } 
+
 	
-.item .panel { padding: 0 4.615384615% 4.615384615%; }
+.item .panel { padding: 0 28px 4.615384615%; border-bottom: 2px solid #eee; }
 
 .item .panel .panel-contents {
 	background: #eee;
@@ -592,12 +627,12 @@ a.feed-intro .highlight { font-weight: bold; }
 .item .panel .panel-contents .caret {
 	width: 0;
 	height: 0;
-	left: 21px;
-	top: -12px;
+	left: 19px;
+	top: -16px;
 	vertical-align: bottom;
-	border-bottom: 12px solid #eee;
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
+	border-bottom: 16px solid #eee;
+	border-left: 16px solid transparent;
+	border-right: 16px solid transparent;
 	border-top: 0 solid transparent;
 	content: ""; }
 
@@ -605,8 +640,9 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .item .panel .title-box {
 	color: #555;
+	font-weight: bold;
 	min-height: 48px;
-	padding-left: 50px;
+	padding: 0 25px 0 50px;
 	margin-top: -3px; }
 
 .item .panel .title-box a.link-out { 
@@ -637,8 +673,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 /* -- endorsement -- */
 
-.item .panel .endorsement-box{
-	padding-top: 8px;
+.item .panel .endorsement-box {
+	line-height: 140%;
+	padding-top: 4px;
 	color: #555; }
 
 /* -- likes -- */
@@ -647,7 +684,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	height: 32px;
 	line-height: 1;
 	color: #555;
-	padding: 8px 0 0;
+	padding: 4px 0 0;
 	overflow-y: hidden;
 	white-space: nowrap; }
 
@@ -676,12 +713,13 @@ a.feed-intro .highlight { font-weight: bold; }
 
 /* -- comments -- */
 
-.item .panel .comments-box { padding-top: 14px; }
+.item .panel .comments-box { padding-top: 10px; }
 
 .item .panel .comment-box {
 	min-height: 28px; 
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 	padding-left: 36px; 
+	line-height: 140%;
 	clear: both;
 	color: #666; }
 	
@@ -889,7 +927,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .profile-feed { 
 	background: white;
 	z-index: 2;
-	padding: 0 6px 16px; }
+	padding: 0 3.819444444444% 16px; }
 	
 .card { 
 	width: 50%;
@@ -912,7 +950,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .card .panel .panel-contents { 
 	background: #eee;
-	padding: 10px;}
+	padding: 10px; }
 	
 .card .panel .panel-contents .caret {
 	width: 0;
@@ -926,7 +964,10 @@ a.feed-intro .highlight { font-weight: bold; }
 	border-top: 0 solid transparent;
 	content: ""; }
 
-.card .panel .title-box { color: #555; }
+.card .panel .title-box { 
+	font-weight: bold; 
+	color: #555;
+	line-height: 140%; }
 
 .card .panel .title-box a.link-out { 
 	padding-right: 11px;
@@ -946,7 +987,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	padding: 2.307692307%;
 	background: #393939;
 	color: #ccc;
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+/* 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); */
 	vertical-align: top; }
 
 .well-box.tab {

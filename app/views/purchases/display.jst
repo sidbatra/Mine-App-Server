@@ -4,21 +4,11 @@
   
   <div class="photo-box relative">
   
-  	<!-- click-out button -->
-    <%if(interaction || !Denwen.H.isLoggedIn()){%>
-			<div class="actions top-right absolute">
-				<a href="<%=purchase.get('source_url')%>" target="_blank" 
-          class="btn btn-small btn-white rounded-3 hover-appear">
-					<i class="icon-cart"></i>
-				</a>
-			</div>
-    <%}%>
-  
   	<!-- edit button -->
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
 			<div class="actions bottom-right absolute">
 				<a href="<%=purchase.editPath('feed')%>" 
-          class="btn btn-small btn-white rounded-3 opacity-80-100">
+          class="btn btn-small btn-white rounded-3 transition-opacity opacity-60-100">
 					<i class="icon-pencil"></i>
 				</a>
 			</div>
@@ -40,9 +30,8 @@
 		<%if(interaction){%> 
 			<a href="javascript:void(0)"
 		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn absolute shaded border-box rounded-3">
-		  	<i class="icon-heart icon-white"></i>
-				<i class="icon-heart icon-black"></i>
+		  		class="like btn btn-silver light absolute shaded border-box rounded-3">
+				<i class="icon-heart"></i>
 			</a>		
 		<%}%>
         
@@ -58,6 +47,14 @@
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box rounded-5 relative">
+      
+	    <!-- buy button -->
+	    <%if(interaction || !Denwen.H.isLoggedIn()){%>
+				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
+					<img class="absolute bottom rounded-5-top-right" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
+					<img class="absolute top rounded-5-top-right transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
+				</a>
+	    <%}%>
       	
 			<b class="caret absolute opaque"></b>
 			
@@ -151,7 +148,7 @@
 	    
 	  </div> <!-- /panel-contents -->
 
-    <!--a href="http://pinterest.com/pin/create/button/?url=<%=encodeURIComponent(purchase.absoluteURL('pinterest'))%>&media=<%=encodeURIComponent(purchase.get('giant_url'))%>&description=<%=encodeURIComponent(purchase.sharingMessage())%>" 
+    <!--a href="http://pinterest.com/pin/create/button/?url=<#=encodeURIComponent(purchase.absoluteURL('pinterest'))%>&media=<#=encodeURIComponent(purchase.get('giant_url'))%>&description=<#=encodeURIComponent(purchase.sharingMessage())%>" 
       class="pin-it-button" 
       count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a-->
 

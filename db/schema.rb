@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214010659) do
+ActiveRecord::Schema.define(:version => 20121221004550) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -369,6 +369,9 @@ ActiveRecord::Schema.define(:version => 20121214010659) do
     t.datetime "email_mined_till"
     t.boolean  "has_purchases_mined",        :default => false
     t.boolean  "is_mining_purchases",        :default => false
+    t.string   "hm_email"
+    t.string   "hm_password"
+    t.string   "hm_salt"
   end
 
   add_index "users", ["birthday"], :name => "index_users_on_birthday"

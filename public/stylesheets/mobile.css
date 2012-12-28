@@ -57,6 +57,10 @@
   	height: auto;
 		line-height: 1;
   	max-height: 236px; }
+  	
+  /* -- feed -- */
+  
+  .feed-container { margin: 0 -10px; }
   
   /* -- onboarding -- */
   

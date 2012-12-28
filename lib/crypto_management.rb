@@ -57,6 +57,19 @@ module DW
         obfuscated_integer.to_i(@@BASE) * @@IPRIME & @@MAXID
       end
 
+      def self.aes_encrypt(message, password)
+        aes = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+        aes.encrypt
+        aes.key = OpenSSL::Digest::SHA256.new(password).digest
+        Base64.encode64 aes.update(message.to_s.strip) + aes.final
+      end
+
+      def self.aes_decrypt(message, password)
+        aes = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+        aes.decrypt
+        aes.key = OpenSSL::Digest::SHA256.new(password).digest
+        aes.update(Base64.decode64(message.to_s.strip)) + aes.final
+      end
 
     end #cryptography
   end #crypto

@@ -46,6 +46,7 @@ common: &common
   :tw_account_id: 607852423
   :tumblr_consumer_key: 89jCI6WNG1Ym9wYLkJ1FfDVTZCsMbdtJoSwPbBzSb6ueJMbo0G
   :tumblr_consumer_secret: L7BbVCPlAYq0ewzxEEEiJyIzgY8Ihj9YxALq9Ol0ueLnStNBwM 
+  :best_buy_api_key: 3m5j3vgxbqyv34gvdj2acmda
   :bing_app_id: 31862565CFBD51810ABE4AB2CEDCB80D52D33969
   :windows_azure_key: ruuxSwIt0kdjqOGCubB75QxxbqQn9s5yKqF/NqkAb5Y=
   :google_api_key: AIzaSyDPodc01pJa78yHcY2eIcrDO3glut1z7Iw

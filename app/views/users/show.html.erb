@@ -129,7 +129,7 @@
 <%end%>
 
 
-<div class="box-title profile-feed-title relative">
+<div class="box-title profile-feed-title relative" style="padding-bottom: 14px;">
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> items
 </div>
 
@@ -139,19 +139,21 @@
   </div>
 <%end%>
 
-<div class="profile-feed rounded-8 relative">
-  <%unless @user.purchases_count.zero?%>
-    <%cache ["v7",@user,"purchases"] do%>
-      <%=render :partial => "purchases/card",
-          :collection => @user.purchases.approved.with_store.with_user.by_bought_at,
-          :as => :purchase%>
-    <%end%>
-  <%else%>
-  	<div class="txt m" style="color: #777; padding: 16px 10px 0;">
-    	<%=@user.first_name%> hasn't added any purchases yet.
-    </div>
-  <%end%>
-</div> 
+<div class="feed-container">
+	<div class="profile-feed relative">
+	  <%unless @user.purchases_count.zero?%>
+	    <%cache ["v7",@user,"purchases"] do%>
+	      <%=render :partial => "purchases/card",
+	          :collection => @user.purchases.approved.with_store.with_user.by_bought_at,
+	          :as => :purchase%>
+	    <%end%>
+	  <%else%>
+	  	<div class="txt m" style="color: #777; padding: 16px 10px 0;">
+	    	<%=@user.first_name%> hasn't added any purchases yet.
+	    </div>
+	  <%end%>
+	</div> 
+</div> <!-- /feed-container -->
 
 <%content_for :javascript do%>
 

@@ -29,6 +29,7 @@ include ActionController::UrlWriter
 include ActionView::Helpers::TextHelper
 
 include AmazonProductInterface
+include BestBuyInterface
 include CacheManagement
 include Cron
 include CryptoManagement 
