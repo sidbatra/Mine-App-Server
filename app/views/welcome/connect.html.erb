@@ -11,7 +11,10 @@
 		<a id="google_connect_button"
 		   class="btn btn-large btn-silver shaded rounded-3-left inline-block" 
 		    href="javascript:void(0)" 
-		    style="width: 30%;">
+		    style="width: 30%;"
+        rel="tooltip"
+        title="Gmail or Google Apps account"
+        data-placement="bottom">
 		  <%=image_tag "logos/email-gmail-logo-30.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
@@ -21,7 +24,10 @@
         onclick="$('#hotmail_connect').slideToggle('fast');$('#hotmail_email').phocus()"
 		    class="btn btn-large btn-silver shaded square inline-block" 
 		    style="width: 30%; border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);">
+          border-left: 1px solid rgba(0,0,0,0.16);"
+        rel="tooltip"
+        title="Hotmail, Outlook.com, Live or MSN account"
+        data-placement="bottom">
 		  <%=image_tag "logos/email-hotmail-logo-30.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
@@ -31,7 +37,10 @@
 		    class="btn btn-large btn-silver shaded rounded-3-right inline-block" 
 		    href="javascript:void(0)" 
 		    style="width: 30%; border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);">
+          border-left: 1px solid rgba(0,0,0,0.16);"
+        rel="tooltip"
+        title="Yahoo, sbcglobal.net, att.net, verizon.net, bellsouth.net, swbell.net or ameritech.net account"
+        data-placement="bottom">
 		  <%=image_tag "logos/email-yahoo-logo-30.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
