@@ -9,7 +9,7 @@ module DW
       end
 
       def create_parser(store)
-        parser_class_name = "#{store.name.capitalize.delete(' ')}EmailParser"
+        parser_class_name = "#{store.name.titleize.delete(' ')}EmailParser"
         parser_class = Object.const_get parser_class_name
 
         parser_class.send :new,store
@@ -184,7 +184,7 @@ module DW
     end
 
 
-    class ItunesEmailParser
+    class ITunesEmailParser
       
       def initialize(store)
       end
@@ -235,7 +235,7 @@ module DW
     end
 
 
-    class BestbuyEmailParser
+    class BestBuyEmailParser
       
       def initialize(store)
       end
@@ -403,7 +403,7 @@ module DW
     end
 
 
-    class EbayEmailParser
+    class EBayEmailParser
       
       def initialize(store)
       end
