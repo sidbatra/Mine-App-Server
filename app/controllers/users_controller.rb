@@ -132,7 +132,7 @@ class UsersController < ApplicationController
       @view = "suggestions"
       @user = self.current_user
       ifollower_ids = self.current_user.ifollower_ids 
-      per_page = params[:per_page] ? params[:per_page].to_i : 10
+      per_page = params[:per_page] ? params[:per_page].to_i : 3
 
       followings = Following.find_all_by_follower_id(
                     ifollower_ids,
