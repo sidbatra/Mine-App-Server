@@ -21,6 +21,9 @@
 	white-space: nowrap;
 	text-overflow: ellipsis; }
 
+span.separator { padding: 0 3px; }
+span.separator:before { content: "•"; }
+
 .f:after {
 	content: "f";
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important; 

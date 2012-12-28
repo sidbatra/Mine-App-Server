@@ -3,9 +3,7 @@
   <%=link_to @purchase.user.first_name,
         user_path(@purchase.user.handle,:src => 'gallery'), 
         :class => "dark"%>
-    <span style="padding: 0 4px;">
-			&bull;
-		</span>     
+		<span class="separator"></span>    
   	Recently purchased
 
   </div>

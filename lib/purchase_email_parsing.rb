@@ -288,6 +288,40 @@ module DW
       end
     end
 
+    class NikeEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("order") && subject.include?("received")
+
+          text = email.text.gsub(/\t/,"")
+          products = text.
+                      scan(/<img .*src="([^\s]+)".*\n{0,1}.*\nStyle:[&nbsp; ]+([\d-]+).*\n{0,1}.*\n.*>(.*)<\//)
+
+          products.each do |product|
+            next unless product.length == 3
+
+            purchases << {:external_id => "NK-#{product[1]}",
+                          :title => product[2],
+                          :source_url => "http://store.nike.com/us/en_us/?l=shop,pwp,f-50191/sl-#{URI.escape product[2]}",
+                          :orig_image_url => product[0].gsub(/wid([-=])\d+/,'wid\1600').gsub(/hei([-=])\d+/,'hei\1600'),
+                          :orig_thumb_url => product[0].gsub(/wid([-=])\d+/,'wid\1300').gsub(/hei([-=])\d+/,'hei\1300'),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end
+
+        purchases
+      end
+    end
+
 
     class EtsyEmailParser
       
