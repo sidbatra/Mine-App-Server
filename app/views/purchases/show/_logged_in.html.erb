@@ -1,36 +1,37 @@
 
   <div class="box-title" style="margin-top: -6px;">
-  <%=link_to "&larr; Back",
+  <%=link_to @purchase.user.first_name,
         user_path(@purchase.user.handle,:src => 'gallery'), 
-        :class => "dark",
-        :style => "padding-right: 6px;"%>
-        
-  	Recently purchased by <%=is_current_user(@purchase.user) ? 
-                              "you" : 
-                              @purchase.user.first_name%>
+        :class => "dark"%>
+    <span style="padding: 0 4px;">
+			&bull;
+		</span>     
+  	Recently purchased
 
   </div>
   
+	<div class="feed-container" style="border-bottom: 2px solid #EEE;">
+	  <div class="item-row-box border-box" style="">
+	    <%cache ["v6",@purchase.user,"purchases","preview"] do%>
+	      <%@purchase.user.purchases.approved.with_user.
+	                  by_bought_at.limit(8).each do |purchase|%>
+	        <%cache ["v4",purchase,"teaser","purchase"] do%>
+	          <div id="purchase_thumb_<%=purchase.id%>" class="item">
+	            <%=link_to image_tag(purchase.square_url, :class => 'item-photo opacity-90-100'),
+	                	purchase_url(
+	                    purchase.user.handle,
+	                    purchase.handle,
+	                    :src => 'gallery')%>
+	          </div>
+	        <%end%>
+	      <%end%>
+	    <%end%>
+	
+	  </div> <!-- /item-row-box -->
+	 </div> <!- /feed-container -->
 
-  <div class="item-row-box border-box rounded-8 shaded" style="margin-bottom: 18px;">
-    <%cache ["v6",@purchase.user,"purchases","preview"] do%>
-      <%@purchase.user.purchases.approved.with_user.
-                  by_bought_at.limit(8).each do |purchase|%>
-        <%cache ["v4",purchase,"teaser","purchase"] do%>
-          <div id="purchase_thumb_<%=purchase.id%>" class="item">
-            <%=link_to image_tag(purchase.square_url, :class => 'item-photo opacity-90-100'),
-                	purchase_url(
-                    purchase.user.handle,
-                    purchase.handle,
-                    :src => 'gallery')%>
-          </div>
-        <%end%>
-      <%end%>
-    <%end%>
-
-  </div> <!-- /item-row-box -->
-
-  
-  <div id="feed" class="feed rounded-8 relative">
+  <div class="feed-container">
+	  <div id="feed" class="feed relative">
+		</div>
 	</div>
-
+	

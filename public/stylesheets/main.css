@@ -950,7 +950,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .card .panel .panel-contents { 
 	background: #eee;
-	padding: 10px;}
+	padding: 10px; }
 	
 .card .panel .panel-contents .caret {
 	width: 0;
@@ -964,7 +964,10 @@ a.feed-intro .highlight { font-weight: bold; }
 	border-top: 0 solid transparent;
 	content: ""; }
 
-.card .panel .title-box { font-weight: bold; color: #555; }
+.card .panel .title-box { 
+	font-weight: bold; 
+	color: #555;
+	line-height: 140%; }
 
 .card .panel .title-box a.link-out { 
 	padding-right: 11px;
