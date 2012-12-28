@@ -379,7 +379,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 ==================================================================== */
 
 .user-action-box {
-	padding: 0 17% 3px 42px;
+	padding: 0 17% 4px 42px;
 	min-height: 36px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #494949; }
@@ -396,7 +396,7 @@ ul.txt.s li .user-photo { margin-right: 4px; }
 	font-weight: bold;
 	color: white;
 	line-height: 120%;
-	margin-bottom: 2px; }
+	margin-bottom: 1px; }
 
 .user-action-box .bottom-line {
 	line-height: 170%;
@@ -848,7 +848,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .follow-count-box ul li { 
 	vertical-align: top;
 	padding-top: 3px;
-	padding-right: 4px; }
+	padding-right: 3px; }
 	
 .follow-count-box	ul li .user-photo { opacity: 0.9; filter: alpha(opacity=90); }
 .follow-count-box:hover	ul li .user-photo { opacity: 1; filter: alpha(opacity=100); }

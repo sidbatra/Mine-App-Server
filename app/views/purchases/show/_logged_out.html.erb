@@ -1,9 +1,11 @@
-
-	<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative">
+	<div class="profile-box unit-box well-box border-box rounded-8 alias-smooth relative"
+	style="margin-bottom: 20px;">
       <%=render :partial => "users/box", :locals => {:user => @purchase.user}%>
 	</div> 
 
-  <div id="feed" class="feed logged-out rounded-8 relative">
+	<div class="feed-container" style="">
+	  <div id="feed" class="feed logged-out relative">
+	  </div>
   </div>
             
           
