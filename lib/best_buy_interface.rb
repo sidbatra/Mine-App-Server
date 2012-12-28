@@ -4,7 +4,7 @@ module DW
 
     class BestBuy
 
-      def self.lookup_products(skus,url_only=false)
+      def self.lookup(skus,url_only=false)
         skus = skus.join(",") if skus.is_a? Array
 
         params = {}
@@ -51,11 +51,11 @@ module DW
       end
 
       def medium_image_url
-        @item["mediumImage"]
+        @item["largeImage"]
       end
 
       def large_image_url
-        @item["largeImage"]
+        @item["largeImage"].gsub("_rb.jpg","_ra.jpg")
       end
 
       def page_url
@@ -63,7 +63,7 @@ module DW
       end
 
       def product_id
-        @item["sku"]
+        @item["sku"].to_s
       end
 
       def custom_product_id

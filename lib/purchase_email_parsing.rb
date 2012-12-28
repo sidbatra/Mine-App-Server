@@ -9,7 +9,7 @@ module DW
       end
 
       def create_parser(store)
-        parser_class_name = "#{store.name.capitalize}EmailParser"
+        parser_class_name = "#{store.name.capitalize.delete(' ')}EmailParser"
         parser_class = Object.const_get parser_class_name
 
         parser_class.send :new,store
@@ -229,6 +229,60 @@ module DW
             :source_url => product.page_url,
             :orig_image_url => product.large_image_url,
             :orig_thumb_url => product.large_image_url,
+            :external_id => product.custom_product_id})
+        end.compact
+      end
+    end
+
+
+    class BestbuyEmailParser
+      
+      def initialize(store)
+      end
+      
+      def find_products_on_bestbuy(product_ids)
+        products = {}
+
+        product_ids.in_groups_of(10,false).each do |group|
+          BestBuy.lookup(group).each do |product|
+            products[product.product_id] = product
+          end
+
+          sleep 0.25
+        end
+
+        products
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          next unless email.subject.include? "your order"
+
+          text = email.text
+          product_ids = text.
+                          scan(/<strong>SKU:<\/strong> (\d+)/).
+                          flatten.
+                          uniq
+          product_ids.each do |product_id|
+            purchases << {:sku => product_id,
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end
+
+        bestbuy_products = find_products_on_bestbuy purchases.map{|p| p[:sku]}
+
+        purchases.map do |purchase|
+          next unless product = bestbuy_products[purchase[:sku]]
+
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.medium_image_url,
             :external_id => product.custom_product_id})
         end.compact
       end

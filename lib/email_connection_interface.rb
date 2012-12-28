@@ -195,16 +195,20 @@ module DW
     # html_part, text_part, body
     #
     def text
-      text = html_part.to_s
-      @is_text_html = true
+      text = ""
 
-      unless text.present?
-        text = text_part.to_s 
+      if html_part
+        text = html_part.decode_body.to_s
+        @is_text_html = true
+      end
+
+      if !text.present? && text_part
+        text = text_part.decode_body.to_s 
         @is_text_html = false
       end
 
-      unless text.present?
-        text = body.to_s 
+      if !text.present?
+        text = body.decoded.to_s 
         @is_text_html = false
       end
 
