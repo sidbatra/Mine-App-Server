@@ -366,6 +366,52 @@ module DW
       end
     end
 
+    class UrbanOutfittersEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("your order") && subject.include?("processed")
+
+          text = email.text
+          start = text.index("<!-- begin order summary -->")
+          finish = text.index("<!-- end order summary -->")
+
+          next unless start && finish
+
+          doc = Nokogiri::HTML(text.slice(start..finish))
+          table = doc.xpath("//table").first
+
+          next unless table.present?
+
+          table.children.each_with_index do |child,i|
+            next unless i.even?
+
+            image_url = child.xpath("td/img").first["src"]
+            product_id = image_url.split("/").last.split("?").first.split("_").first
+            url = "http://www.urbanoutfitters.com/urban/catalog/productdetail.jsp?id=#{product_id}"
+            title = child.xpath("td")[1].children.first.text
+
+            purchases << {:external_id => "URBOUT-#{product_id}",
+                          :title => title,
+                          :source_url => url,
+                          :orig_image_url => image_url.gsub("detailthumb","detailmain"),
+                          :orig_thumb_url => image_url.gsub("detailthumb","cat"),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end #emails
+
+        purchases
+      end
+    end
+
 
     class EtsyEmailParser
       
