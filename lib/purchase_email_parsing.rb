@@ -322,6 +322,50 @@ module DW
       end
     end
 
+    class SephoraEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("your order") || subject.include?("ready to review")
+
+          text = email.text
+          line = text.split("\n").select{|l| l.include? "productimages"}.first
+
+          next unless line
+
+          doc = Nokogiri::HTML line
+          table = doc.xpath("//table").first
+
+          next unless table.present?
+
+          table.children[0..-2].each do |child|
+            image_url = child.children[0].xpath("img")[0]["src"]
+            a_tag = child.children[1].xpath("table/tr/td/a")[0]
+            url =  a_tag["href"]
+            title = a_tag.text
+            product_id = Digest::SHA1.hexdigest url
+
+            purchases << {:external_id => "SEP-#{product_id}",
+                          :title => title,
+                          :source_url => url,
+                          :orig_image_url => image_url.gsub("-grid","-Lhero"),
+                          :orig_thumb_url => image_url.gsub("-grid","-hero"),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end 
+        end #emails
+
+        purchases
+      end
+    end
+
 
     class EtsyEmailParser
       
