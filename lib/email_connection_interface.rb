@@ -114,7 +114,10 @@ module DW
                             :date => email_content[:date],
                             :subject => email_content[:subject],
                             :body => text)
-                    mail.html_part = text
+                    mail.html_part = Mail::Part.new do
+                                      content_type 'text/html; charset=UTF-8'
+                                      body text
+                                     end
                     mail
                   end 
 
