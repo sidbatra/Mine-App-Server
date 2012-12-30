@@ -412,6 +412,50 @@ module DW
       end
     end
 
+    class TargetEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("your way") && subject.include?("shipment")
+
+          text = email.text
+          doc = Nokogiri::HTML text
+          table = doc.xpath("//table").select{|table| table.to_s.include?("TargetSAS")}.first
+
+          next unless table.present?
+        
+          children = table.xpath("tbody/tr").select{|tr| tr.to_s.include? "TargetSAS"}
+          
+          next unless children.present?
+
+          children.each do |child|
+            a_tag = child.xpath("td/a").last
+            title = a_tag.text
+            url = a_tag["href"]
+            image_url = child.xpath("td/a/img").first["src"]
+            product_id = Digest::SHA1.hexdigest url
+
+            purchases << {:external_id => "TARG-#{product_id}",
+                          :title => title,
+                          :source_url => url,
+                          :orig_image_url => image_url.gsub(/_\d+x\d+_[^\.]+/,""),
+                          :orig_thumb_url => image_url.gsub(/_\d+x\d+_[^\.]+/,""),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end #emails
+
+        purchases
+      end
+    end
+
 
     class EtsyEmailParser
       
