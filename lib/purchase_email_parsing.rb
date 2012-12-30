@@ -9,7 +9,7 @@ module DW
       end
 
       def create_parser(store)
-        parser_class_name = "#{store.name.titleize.delete(' ')}EmailParser"
+        parser_class_name = "#{store.name.titleize.gsub(/[^a-zA-Z0-9]/,'')}EmailParser"
         parser_class = Object.const_get parser_class_name
 
         parser_class.send :new,store
@@ -446,6 +446,46 @@ module DW
                           :source_url => url,
                           :orig_image_url => image_url.gsub(/_\d+x\d+_[^\.]+/,""),
                           :orig_thumb_url => image_url.gsub(/_\d+x\d+_[^\.]+/,""),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end #emails
+
+        purchases
+      end
+    end
+
+    class MacysEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("order") && subject.include?("confirm")
+
+          text = email.text
+          doc = Nokogiri::HTML text
+          children = doc.xpath("//tr").select{|tr| tr.to_s.include?("catalog/product") && tr.xpath("td/table/tr/td/a").length == 1}
+
+          next unless children.present?
+          
+          children.each do |child|
+            a_tag = child.xpath(".//a[contains(@href,'product')]").last
+            title = a_tag.text
+            url = a_tag["href"].split("|||").last
+            image_url = child.xpath(".//img[contains(@src,'product')]").first["src"]
+            product_id = Digest::SHA1.hexdigest url
+
+            purchases << {:external_id => "MACYS-#{product_id}",
+                          :title => title,
+                          :source_url => url,
+                          :orig_image_url => image_url.gsub(/wid=\d+/,"wid=500"),
+                          :orig_thumb_url => image_url.gsub(/wid=\d+/,"wid=300"),
                           :bought_at => email.date,
                           :text => text,
                           :message_id => email.message_id}
