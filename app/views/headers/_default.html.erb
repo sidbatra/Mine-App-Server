@@ -1,6 +1,6 @@
 <div class="header unit-box border-box">
     
-    <div class="logo-box absolute" style="height: 62px; line-height: 62px;">
+    <div class="logo-box absolute unselectable" style="height: 62px; line-height: 62px;">
 	    <%=link_to_if !is_onboarding?,
 	        image_tag("logos/mine-h-white-58-brighter-2x.png", 
 	          :class => "logo"),
@@ -17,7 +17,7 @@
             class="btn-user relative pointer txt m dark" 
             style="float: left; width: 28px; padding: 0; border: 0; margin-right: 6px;">
             <%=image_tag self.current_user.square_image_url,
-                  :class => "user-photo m rounded-2 shaded",
+                  :class => "user-photo m rounded-2",
                   :style => ""%>
           </a>
 
