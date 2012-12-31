@@ -496,6 +496,49 @@ module DW
       end
     end
 
+    class NeimanMarcusEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("order summary")
+
+          text = email.text
+          doc = Nokogiri::HTML text
+          children = doc.xpath("//tr").select{|tr| tr.to_s.include?("products") && tr.children.count > 3}
+
+          next unless children.present?
+          
+          children.each do |child|
+            td_tag = child.css("tbody/tr/td").select{|td| td.to_s.match /catalog|product/}.first
+            
+            next unless td_tag
+
+            title = td_tag.text
+            url = td_tag.at_css("a")["href"]
+            image_url =  child.css("a/img").first["src"]
+            product_id = Digest::SHA1.hexdigest url
+
+            purchases << {:external_id => "NEIMAR-#{product_id}",
+                          :title => title,
+                          :source_url => url,
+                          :orig_image_url => image_url.gsub("mg","mx"),
+                          :orig_thumb_url => image_url.gsub("mg","mb"),
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end #emails
+
+        purchases
+      end
+    end
+
 
     class EtsyEmailParser
       
