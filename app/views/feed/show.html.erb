@@ -14,20 +14,16 @@
 <div class="well-box border-box rounded-8 rwd-hide unselectable" 
   style="margin: 2px 0 12px;">
   <div class="user-action-box relative unselectable" style="border: none !important; margin-bottom: -9px;">
-  	<%if self.current_user.email_authorized?%>
-	    <%=image_tag "import-star-check-ccc-32-2x.png",
-	          :style => "width: 32px; top: 0; left: 0;",
-	          :class => "absolute opacity-80"%>
-	  <%else%>
-	  	<%=image_tag "import-star-ccc-32-2x.png",
-	          :style => "width: 32px; top: 0; left: 0;",
-	          :class => "absolute opacity-80"%>
-	  <%end%>  
+    <%=image_tag self.current_user.email_authorized? ? 
+                  "import-star-check-ccc-32-2x.png" :
+                  "import-star-ccc-32-2x.png",
+          :style => "width: 32px; top: 0; left: 0;",
+          :class => "absolute opacity-80"%>
     <div class="txt m top-line opacity-80 unselectable">
       <%if self.current_user.email_authorized?%>
         Great, you're connected
       <%else%>
-        <%=h user.first_name%>, start your Mine
+        <%=h self.current_user.first_name%>, start your Mine
       <%end%>
     </div>
     <span class="txt s bottom-line opacity-80 unselectable" href="javascript:void(0)">
