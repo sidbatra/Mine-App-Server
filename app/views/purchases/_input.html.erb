@@ -18,7 +18,7 @@
           :style => ""%>
 
       <a id="purchase_search" 
-          class="btn awesome btn-large btn-silver border-box rounded-3 go shaded" 
+          class="btn btn-large btn-silver border-box rounded-3 go shaded" 
           alt="Search">
           <%if local_assigns[:search_action].nil?%>
           	<%=image_tag "icons/PNG-Arrows/32px/rounded-big-2-01-shaded.png", 
@@ -31,8 +31,7 @@
 	</div> <!-- /query_box -->
 
 
-  <div id="extra_steps" 
-    class="item rounded-5"
+  <div id="extra_steps" class="item"
     style="<%=show_extra_steps ? '' : 'display: none'%>">
 	
     <div class="photo-box relative">
@@ -191,7 +190,7 @@
 		
 				<button id="submit-button" 
 	          type="submit" 
-	          class="btn btn-large btn-red border-box shaded rounded-5"
+	          class="btn btn-large btn-silver border-box shaded rounded-5"
 	          style="width: 100%; margin-top: 20px;">
 	          <span class="hide-when-loading">
 							<%=submit_text%>
