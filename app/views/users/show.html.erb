@@ -130,7 +130,7 @@
 
 
 <div class="box-title profile-feed-title relative" style="padding-bottom: 14px;">
-	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> items
+	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> Mine
 </div>
 
 <%if is_current_user(@user) && @user.inverse_followings_count.zero?%>

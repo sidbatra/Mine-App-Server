@@ -13,7 +13,8 @@
             rel="tooltip" 
             title="Connected to Mine e-receipt importer"
             data-placement="right"
-            class="absolute opacity-80-100">
+            class="absolute opacity-80-100"
+            style="padding-left: 2px;">
 
             <%=image_tag image_path('import-star-check-ccc-32-2x.png'),
                 :class => "",
@@ -30,14 +31,14 @@
           No items
         <%end%>
       </span>
-      
+   
       <%if user.tw_user_id.present?%>
         <%=link_to image_tag("social/t-box.png", 
                              :class => "t-box opacity-80-100"),
                    user.tw_profile_url,
                    :target => '_blank'%>
       <%end%>
-
+      
       <%if user.fb_user_id.present?%>
         <%=link_to image_tag("social/f-box.png", 
                              :class => "f-box opacity-80-100"),
