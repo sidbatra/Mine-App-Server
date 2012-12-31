@@ -589,8 +589,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	top: 0;
 	right: 0;
 	display: block;
-	width: 56px;
-	height: 58px; }
+	width: 60px;
+	height: 60px; }
 	
 .item a.corner-buy img.top:hover {
 	opacity: 0;
@@ -646,7 +646,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	color: #555;
 	font-weight: bold;
 	min-height: 48px;
-	padding: 0 25px 0 50px;
+	padding: 0 34px 0 50px;
 	margin-top: -3px; }
 
 .item .panel .title-box a.link-out { 

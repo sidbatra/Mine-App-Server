@@ -250,6 +250,16 @@ input.error:focus, textarea.error:focus {
 	-moz-border-radius: 6px !important;
 	border-radius: 6px !important; }
 	
+.rounded-6-top-right {
+	-webkit-border-radius: 0 6px 0 0 !important;
+	-moz-border-radius: 0 6px 0 0 !important;
+	border-radius: 0 6px 0 0 !important; }
+
+.rounded-7-top-right {
+	-webkit-border-radius: 0 7px 0 0 !important;
+	-moz-border-radius: 0 7px 0 0 !important;
+	border-radius: 0 7px 0 0 !important; }
+	
 .rounded-8 {
 	-webkit-border-radius: 8px !important;
 	-moz-border-radius: 8px !important;
