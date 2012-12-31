@@ -539,6 +539,50 @@ module DW
       end
     end
 
+    class OverstockComEmailParser
+      
+      def initialize(store)
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          subject = email.subject.downcase
+          next unless subject.include?("order") && subject.include?("confirmation")
+
+          text = email.text
+          start = text.index /Start of Dynamic Products/
+          finish = text.index /End of Dynamic Products/
+
+          next unless start && finish
+
+          doc = Nokogiri::HTML(text.slice(start..finish))
+          children = doc.css("a").select{|a| a.to_s.include? "img"}
+
+          next unless children.present?
+
+          children.each do |child|
+            image_tag = child.at_css("img")
+            image_url = image_tag["src"]
+            title = image_tag["alt"]
+            url = child["href"]
+            product_id = Digest::SHA1.hexdigest url
+
+            purchases << {:external_id => "OVERSTCK-#{product_id}",
+                          :title => title,
+                          :source_url => url,
+                          :orig_image_url => image_url.gsub("/T","/L"),
+                          :orig_thumb_url => image_url,
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end #emails
+
+        purchases
+      end
+    end
 
     class EtsyEmailParser
       
