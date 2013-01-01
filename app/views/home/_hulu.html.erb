@@ -5,12 +5,10 @@
 		Already set up on Mine?
 		
 			<a class="dark"
-					href="#" 
+					href="javascript:void(0)" 
 					style="padding-left: 6px; display: inline-block;"
 	 	 			onclick="mixpanel.track('Log In Clicked');"
-	  			role="button" 
 	  			id="login"
-	  			rel="popover"
 					data-content="Yo Sushi!">
 					<b>Log In</b>
 			</a>
@@ -28,22 +26,12 @@
 			and purchases
 		</h1>
 		
-		<div class="popover">
-			<div class="arrow">
-			</div>
-			<div class="popover-inner">
-				<h3 class="popover-title">
-				</h3>
-				<div class="popover-content">
-					<p>
-					</p>
-				</div>
-			</div>
-		</div>
-		
 		<span class="join">
-			<a style="background-color: #FF6600;" class="btn btn-large btn-join rounded-3 shaded-strong relative unselectable" 
-				href="#" id="join" onclick="mixpanel.track('Sign Up Clicked');" rel="popover"
+			<a style="background-color: #FF6600;" 
+        class="btn btn-large btn-join rounded-3 shaded-strong relative unselectable" 
+				href="javascript:void(0)" 
+        id="join" 
+        onclick="mixpanel.track('Sign Up Clicked');" 
 				data-content="Yo Sushi!">
 				<span class='hide-when-loading'>
 			    Join Now for Free
@@ -62,11 +50,6 @@
 </div> <!-- /wrapper -->
 
 <%=render "footers/home" unless @web_view_mode%>
-
-
-
-
-
 
 
 <!--
@@ -170,32 +153,21 @@
 
 <%content_for :javascript do%>
 
-	<script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
-
 	<script type="text/javascript">  
-		$(function ()  
-			{ $("#join").popover({ html: true, trigger: "click", placement:"right"}); 
-		});  
-		$(function ()  
-			{ $("#login").popover({ html: true, trigger: "click", placement:"bottom"}); 
-		});  
+    $(document).ready(function(){
+      $("#join").popover({ 
+                  html: true, 
+                  trigger: "click", 
+                  placement:"right"}); 
+
+			$("#login").popover({
+                    html: true, 
+                    trigger: "click", 
+                    placement:"bottom"}); 
+    });  
 	</script> 
 
-
-  <script type="text/javascript">
-
-
-    function resizeIFrames() {
-      $('#iframe_1').height($('#modal1').height());
-      $('#iframe_2').height($('#modal2').height());
-      $('#iframe_3').height($('#modal3').height());
-      $('#iframe_4').height($('#modal4').height());
-      $('#iframe_5').height($('#modal5').height());
-    }
-
-    resizeIFrames();
-    $(window).resize(function(){resizeIFrames();});
-
+  <!--script type="text/javascript">
 
     // Listen for messages from the player
     if (window.addEventListener){
@@ -232,6 +204,6 @@
                 break;
         }
     }
-  </script>
+  </script-->
 <%end%>
 
