@@ -1,0 +1,237 @@
+<div class="wrapper unselectable">
+
+	<div class="nav login absolute border-box relative unselectable">
+	
+		Already set up on Mine?
+		
+			<a class="dark"
+					href="#" 
+					style="padding-left: 6px; display: inline-block;"
+	 	 			onclick="mixpanel.track('Log In Clicked');"
+	  			role="button" 
+	  			id="login"
+	  			rel="popover"
+					data-content="Yo Sushi!">
+					<b>Log In</b>
+			</a>
+		
+	</div>
+	
+	<div class="home-container absolute">
+	
+		<%=image_tag "home/home-mine-logo-2x.png",
+    :class => "mine-logo unselectable"%>	
+    		
+		<h1 class="unselectable">
+			A directory <br>
+			of people <br>
+			and purchases
+		</h1>
+		
+		<div class="popover">
+			<div class="arrow">
+			</div>
+			<div class="popover-inner">
+				<h3 class="popover-title">
+				</h3>
+				<div class="popover-content">
+					<p>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<span class="join">
+			<a style="background-color: #FF6600;" class="btn btn-large btn-join rounded-3 shaded-strong relative unselectable" 
+				href="#" id="join" onclick="mixpanel.track('Sign Up Clicked');" rel="popover"
+				data-content="Yo Sushi!">
+				<span class='hide-when-loading'>
+			    Join Now for Free
+			  </span>
+			</a>
+		</span> <!-- /join -->
+				
+		<h2 class="unselectable">
+			View your purchase history <br>
+			Discover new products <br>
+			Shop
+		</h2>
+	
+	</div> <!-- home-container -->
+
+</div> <!-- /wrapper -->
+
+<%=render "footers/home" unless @web_view_mode%>
+
+
+
+
+
+
+
+<!--
+
+<#if @invited_by_user%>
+  <h2 class="invite-welcome" style="padding: 0 0 20px;">
+    <img class="user-photo xxl rounded-3"
+      src="<#=@invited_by_user.square_image_url%>" />
+      <#=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
+      add your best purchases on <b>mine</b>!
+  </h2>
+<#end%>
+
+<#unless is_phone_device?%>
+  <!-- desktop video 
+  <iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+    width="630" 
+    height="240" 
+    frameborder="0">
+  </iframe>
+<#else%>
+  <!-- mobile video
+  <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
+    width="320" 
+    height="142" 
+    frameborder="0">
+  </iframe>
+<#end%>
+
+
+-->
+
+
+<! -- modal log in -->
+<div class="modal eyeglass login hide rounded-5" id="login" style="height: 168px; top: 50%; margin-top:-112px;">
+  <div class="modal-body rounded-3 relative" 
+  	style="text-align: center; background: #444; height: 168px;">
+  	
+  	<h2 style="padding-bottom: 14px;">Log In</h2>
+  
+		<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+      <span class='hide-when-loading'>
+        <%=image_tag "social/t-box.png",
+        :class => "t-box"%>
+        Log in<span class="rwd-hide"> with Twitter</span>
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a>
+    
+    <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+      <span class='hide-when-loading'>
+        <%=image_tag "social/f-box.png",
+        :class => "f-box"%>
+        Log in<span class="rwd-hide"> with Facebook</span>
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a>
+    
+  </div> <!-- /modal-body -->
+</div> <!-- /modal log in -->
+
+
+<! -- modal join -->
+<div class="modal eyeglass join hide rounded-5" id="join" style="height: 200px; top: 50%; margin-top:-112px;">
+  <div class="modal-body rounded-3 relative" 
+  	style="text-align: center; background: #444; height: 200px;">
+  	
+  	<h2 style="padding-bottom: 14px;">Sign Up</h2>
+  
+			<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+      <span class='hide-when-loading'>
+        <%=image_tag "social/t-box.png",
+        :class => "t-box"%>
+        Sign up<span class="rwd-hide"> with Twitter</span>
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a>
+    
+    <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+        onclick="this.className += ' load';"
+        class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+      <span class='hide-when-loading'>
+        <%=image_tag "social/f-box.png",
+        :class => "f-box"%>
+        Sign up<span class="rwd-hide"> with Facebook</span>
+      </span>
+      <i class='icon-loading icon-white'></i>
+    </a>
+    
+    <p style="padding-top: 16px;">Mine never auto-shares, period. </p>
+
+  </div> <!-- /modal-body -->
+</div> <!-- /modal join -->
+
+
+<%content_for :javascript do%>
+
+	<script type="text/javascript" src="/javascripts/libs/bootstrap.js"></script>
+
+	<script type="text/javascript">  
+		$(function ()  
+			{ $("#join").popover({ html: true, trigger: "click", placement:"right"}); 
+		});  
+		$(function ()  
+			{ $("#login").popover({ html: true, trigger: "click", placement:"bottom"}); 
+		});  
+	</script> 
+
+
+  <script type="text/javascript">
+
+
+    function resizeIFrames() {
+      $('#iframe_1').height($('#modal1').height());
+      $('#iframe_2').height($('#modal2').height());
+      $('#iframe_3').height($('#modal3').height());
+      $('#iframe_4').height($('#modal4').height());
+      $('#iframe_5').height($('#modal5').height());
+    }
+
+    resizeIFrames();
+    $(window).resize(function(){resizeIFrames();});
+
+
+    // Listen for messages from the player
+    if (window.addEventListener){
+        window.addEventListener('message', onMessageReceived, false);
+    }
+    else {
+        window.attachEvent('onmessage', onMessageReceived, false);
+    }
+
+    // Helper function for sending a message to the player
+    function post(action, value) {
+        var f = $('iframe');
+        var url = f.attr('src').split('?')[0];
+        var data = { method: action };
+        
+        if (value) {
+            data.value = value;
+        }
+        
+        f[0].contentWindow.postMessage(JSON.stringify(data), url);
+    }
+
+    // Handle messages received from the player
+    function onMessageReceived(e) {
+        var data = JSON.parse(e.data);
+        
+        switch (data.event) {
+            case 'ready':
+                post('addEventListener', 'play');
+                break;
+                
+            case 'play':
+                mixpanel.track("Intro Video Played",{"Source":"Home","Thumbnail":"Lantern"});
+                break;
+        }
+    }
+  </script>
+<%end%>
+
