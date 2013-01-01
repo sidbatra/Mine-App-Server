@@ -8,3 +8,4 @@ tmp/
 js
 solr/data
 solr/pids
+public/stores
