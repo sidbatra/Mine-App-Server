@@ -8,8 +8,7 @@
 					href="javascript:void(0)" 
 					style="padding-left: 6px; display: inline-block;"
 	 	 			onclick="mixpanel.track('Log In Clicked');"
-	  			id="login"
-					data-content="Yo Sushi!">
+	  			id="login">
 					<b>Log In</b>
 			</a>
 		
@@ -31,8 +30,7 @@
         class="btn btn-large btn-join rounded-3 shaded-strong relative unselectable" 
 				href="javascript:void(0)" 
         id="join" 
-        onclick="mixpanel.track('Sign Up Clicked');" 
-				data-content="Yo Sushi!">
+        onclick="mixpanel.track('Sign Up Clicked');">
 				<span class='hide-when-loading'>
 			    Join Now for Free
 			  </span>
@@ -82,73 +80,74 @@
 
 -->
 
+<div id="join_content" class="popover">
+  <div class="arrow">
+  </div>
+  <div class="popover-inner" style="width:500px;height:500px">
+    <h3 class="popover-title">
+      hello
+    </h3>
+    <div class="popover-content" style="width:500px;height:500px;">
+      <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+          onclick="this.className += ' load';"
+          class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+        <span class='hide-when-loading'>
+          <%=image_tag "social/t-box.png",
+          :class => "t-box"%>
+          Log in<span class="rwd-hide"> with Twitter</span>
+        </span>
+        <i class='icon-loading icon-white'></i>
+      </a>
+      
+      <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+          onclick="this.className += ' load';"
+          class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+        <span class='hide-when-loading'>
+          <%=image_tag "social/f-box.png",
+          :class => "f-box"%>
+          Log in<span class="rwd-hide"> with Facebook</span>
+        </span>
+        <i class='icon-loading icon-white'></i>
+      </a>
+      <p></p>
+    </div>
+  </div>
+</div>
 
-<! -- modal log in -->
-<div class="modal eyeglass login hide rounded-5" id="login" style="height: 168px; top: 50%; margin-top:-112px;">
-  <div class="modal-body rounded-3 relative" 
-  	style="text-align: center; background: #444; height: 168px;">
-  	
-  	<h2 style="padding-bottom: 14px;">Log In</h2>
-  
-		<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-        onclick="this.className += ' load';"
-        class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
-      <span class='hide-when-loading'>
-        <%=image_tag "social/t-box.png",
-        :class => "t-box"%>
-        Log in<span class="rwd-hide"> with Twitter</span>
-      </span>
-      <i class='icon-loading icon-white'></i>
-    </a>
-    
-    <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-        onclick="this.className += ' load';"
-        class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-      <span class='hide-when-loading'>
-        <%=image_tag "social/f-box.png",
-        :class => "f-box"%>
-        Log in<span class="rwd-hide"> with Facebook</span>
-      </span>
-      <i class='icon-loading icon-white'></i>
-    </a>
-    
-  </div> <!-- /modal-body -->
-</div> <!-- /modal log in -->
+<div id="login_content" class="popover">
+  <div class="arrow">
+  </div>
+  <div class="popover-inner" style="width:500px;height:500px">
+    <h3 class="popover-title">
+      hello
+    </h3>
+    <div class="popover-content" style="width:500px;height:500px;">
+      <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+          onclick="this.className += ' load';"
+          class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
+        <span class='hide-when-loading'>
+          <%=image_tag "social/t-box.png",
+          :class => "t-box"%>
+          Log in<span class="rwd-hide"> with Twitter</span>
+        </span>
+        <i class='icon-loading icon-white'></i>
+      </a>
+      
+      <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+          onclick="this.className += ' load';"
+          class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
+        <span class='hide-when-loading'>
+          <%=image_tag "social/f-box.png",
+          :class => "f-box"%>
+          Log in<span class="rwd-hide"> with Facebook</span>
+        </span>
+        <i class='icon-loading icon-white'></i>
+      </a>
+      <p></p>
+    </div>
+  </div>
+</div>
 
-
-<! -- modal join -->
-<div class="modal eyeglass join hide rounded-5" id="join" style="height: 200px; top: 50%; margin-top:-112px;">
-  <div class="modal-body rounded-3 relative" 
-  	style="text-align: center; background: #444; height: 200px;">
-  	
-  	<h2 style="padding-bottom: 14px;">Sign Up</h2>
-  
-			<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-        onclick="this.className += ' load';"
-        class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
-      <span class='hide-when-loading'>
-        <%=image_tag "social/t-box.png",
-        :class => "t-box"%>
-        Sign up<span class="rwd-hide"> with Twitter</span>
-      </span>
-      <i class='icon-loading icon-white'></i>
-    </a>
-    
-    <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-        onclick="this.className += ' load';"
-        class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-      <span class='hide-when-loading'>
-        <%=image_tag "social/f-box.png",
-        :class => "f-box"%>
-        Sign up<span class="rwd-hide"> with Facebook</span>
-      </span>
-      <i class='icon-loading icon-white'></i>
-    </a>
-    
-    <p style="padding-top: 16px;">Mine never auto-shares, period. </p>
-
-  </div> <!-- /modal-body -->
-</div> <!-- /modal join -->
 
 
 <%content_for :javascript do%>
@@ -158,12 +157,14 @@
       $("#join").popover({ 
                   html: true, 
                   trigger: "click", 
-                  placement:"right"}); 
+                  placement:"right",
+                  content: function() {return $('#join_content').html();}}); 
 
 			$("#login").popover({
                     html: true, 
                     trigger: "click", 
-                    placement:"bottom"}); 
+                    placement:"bottom",
+                    content: function() {return $('#login_content').html();}}); 
     });  
 	</script> 
 
