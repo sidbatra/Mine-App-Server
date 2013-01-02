@@ -249,11 +249,17 @@ footer a:hover { color: white; opacity: 1.0; filter: alpha(opacity=100); }
 @media screen and (max-width: 850px) { .coverage { display: none; } }
 @media screen and (max-width: 600px) {
 
+	body { 
+		background-size: 230% auto !important;
+		background-repeat: no-repeat;
+		background-position: -210px 0; }
+
 	.wrapper { background: url('/images/colors/black-30.png'); }
 
-	.home-container { 
-		height: 320px;
-		top: 66px;
+	.home-container {
+		position: relative !important; 
+		height: 420px;
+		padding-top: 66px;
 		margin: 0 /* 5.46875% */ 10.9375%; }
  
  .mine-logo { height: 45px; padding: 0 0 5px; }
