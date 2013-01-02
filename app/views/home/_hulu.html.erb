@@ -9,7 +9,7 @@
 					style="padding-left: 6px; display: inline-block;"
 	 	 			onclick="mixpanel.track('Log In Clicked');"
 	  			id="login">
-					<b>Log In</b>
+					<b class="opacity-80-100 transition-opacity">Log In</b>
 			</a>
 		
 	</div>
@@ -50,102 +50,61 @@
 <%=render "footers/home" unless @web_view_mode%>
 
 
-<!--
 
-<#if @invited_by_user%>
-  <h2 class="invite-welcome" style="padding: 0 0 20px;">
-    <img class="user-photo xxl rounded-3"
-      src="<#=@invited_by_user.square_image_url%>" />
-      <#=@invited_by_user.first_name%> wants you <br class="rwd-show">to 
-      add your best purchases on <b>mine</b>!
-  </h2>
-<#end%>
+<div id="join_content">
 
-<#unless is_phone_device?%>
-  <!-- desktop video 
-  <iframe src="http://player.vimeo.com/video/48923714?api=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-    width="630" 
-    height="240" 
-    frameborder="0">
-  </iframe>
-<#else%>
-  <!-- mobile video
-  <iframe src="http://player.vimeo.com/video/50164291?title=0&amp;byline=0&amp;portrait=0&amp;color=333333" 
-    width="320" 
-    height="142" 
-    frameborder="0">
-  </iframe>
-<#end%>
-
-
--->
-
-<div id="join_content" class="popover">
-  <div class="arrow">
-  </div>
-  <div class="popover-inner" style="width:500px;height:500px">
-    <h3 class="popover-title">
-      hello
-    </h3>
-    <div class="popover-content" style="width:500px;height:500px;">
-      <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-          onclick="this.className += ' load';"
-          class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
-        <span class='hide-when-loading'>
-          <%=image_tag "social/t-box.png",
-          :class => "t-box"%>
-          Log in<span class="rwd-hide"> with Twitter</span>
-        </span>
-        <i class='icon-loading icon-white'></i>
-      </a>
-      
-      <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-          onclick="this.className += ' load';"
-          class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-        <span class='hide-when-loading'>
-          <%=image_tag "social/f-box.png",
-          :class => "f-box"%>
-          Log in<span class="rwd-hide"> with Facebook</span>
-        </span>
-        <i class='icon-loading icon-white'></i>
-      </a>
-      <p></p>
-    </div>
-  </div>
+	<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-facebook rounded-3-left shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/f-box.png",
+	    :class => "f-box"%>
+	    Facebook
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a>
+	
+	<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-twitter rounded-3-right shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/t-box.png",
+	    :class => "t-box"%>
+	    Twitter
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a>
+	
+	<div class="reassurance">
+		Mine doesn't auto-share, ever.
+	</div>
+	
 </div>
 
-<div id="login_content" class="popover">
-  <div class="arrow">
-  </div>
-  <div class="popover-inner" style="width:500px;height:500px">
-    <h3 class="popover-title">
-      hello
-    </h3>
-    <div class="popover-content" style="width:500px;height:500px;">
-      <a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
-          onclick="this.className += ' load';"
-          class="btn btn-large btn-twitter rounded-3-left shaded-strong relative">
-        <span class='hide-when-loading'>
-          <%=image_tag "social/t-box.png",
-          :class => "t-box"%>
-          Log in<span class="rwd-hide"> with Twitter</span>
-        </span>
-        <i class='icon-loading icon-white'></i>
-      </a>
-      
-      <a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
-          onclick="this.className += ' load';"
-          class="btn btn-large btn-facebook rounded-3-right shaded-strong relative">
-        <span class='hide-when-loading'>
-          <%=image_tag "social/f-box.png",
-          :class => "f-box"%>
-          Log in<span class="rwd-hide"> with Facebook</span>
-        </span>
-        <i class='icon-loading icon-white'></i>
-      </a>
-      <p></p>
-    </div>
-  </div>
+
+
+<div id="login_content">
+
+	<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-facebook rounded-3-left shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/f-box.png",
+	    :class => "f-box"%>
+	    Facebook
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a><a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-twitter rounded-3-right shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/t-box.png",
+	    :class => "t-box"%>
+	    Twitter
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a>
+	
 </div>
 
 
@@ -161,10 +120,10 @@
                   content: function() {return $('#join_content').html();}}); 
 
 			$("#login").popover({
-                    html: true, 
-                    trigger: "click", 
-                    placement:"bottom",
-                    content: function() {return $('#login_content').html();}}); 
+                  html: true, 
+                  trigger: "click", 
+                  placement:"bottom",
+                  content: function() {return $('#login_content').html();}}); 
     });  
 	</script> 
 
