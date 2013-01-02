@@ -190,7 +190,7 @@ module DW
             #threads = []
 
             @stores.each_with_index do |store,index|
-              update_mining_progress store,(index + 1.0)/ @stores.length
+              update_mining_progress store,(index.to_f)/ @stores.length
               #threads << Thread.new{mine_emails_from_store store}
               mine_emails_from_store store
             end
