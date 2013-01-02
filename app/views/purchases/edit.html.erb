@@ -2,27 +2,41 @@
   <%=render 'purchases/chooser'%> 
 <%end%>
 
-<div id="creation" class="create-box">
-  <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
-        :html => {
-          :class  => 'form-horizontal',
-          :style  => 'margin-bottom: 0;',
-          :id     => 'edit_purchase'} do |f|%>
+<div class="box-title feed-title relative" style="margin-top: -6px; padding-bottom: 14px;">
 
-    <%=render :partial  => 'input', 
-              :locals   => {
-                :f => f,
-                :suggestion => @suggestion,
-                :submit_text => "Save",
-                :show_cancel_button => true,
-                :show_delete_button => true,
-                :show_extra_steps => true,
-                :show_fb_share => false,
-                :show_tw_share => false,
-                :show_tumblr_share => false}%>
+	<%=link_to "Your Mine",
+	   user_path(self.current_user.handle,:src => "edit"), 
+	   :class => "dark"%>
+	<span class="separator" style="color: #999 !important;">
+  </span>
+		Edit
+</div>
 
-	  <%end%> <!-- form -->
-</div>  <!-- create-box -->
+<div class="feed-container">
+
+	<div id="creation" class="create-box">
+	  <%form_for @purchase,:url => "/purchases/#{@purchase.id}",
+	        :html => {
+	          :class  => 'form-horizontal',
+	          :style  => 'margin-bottom: 0;',
+	          :id     => 'edit_purchase'} do |f|%>
+	
+	    <%=render :partial  => 'input', 
+	              :locals   => {
+	                :f => f,
+	                :suggestion => @suggestion,
+	                :submit_text => "Save",
+	                :show_cancel_button => true,
+	                :show_delete_button => true,
+	                :show_extra_steps => true,
+	                :show_fb_share => false,
+	                :show_tw_share => false,
+	                :show_tumblr_share => false}%>
+	
+		  <%end%> <!-- form -->
+	</div>  <!-- create-box -->
+
+</div>
 
 <%content_for :javascript do%>
 

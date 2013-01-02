@@ -55,7 +55,7 @@ module DW
       end
 
       def large_image_url
-        @item["largeImage"].gsub("b.jpg","a.jpg")
+        @item["largeImage"].gsub("b.jpg","a.jpg") if @item["largeImage"]
       end
 
       def page_url

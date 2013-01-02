@@ -538,7 +538,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed.grid .item .panel .title-box { 
 	text-align: left;
 	font-size: 12px;
-	max-height: 52px;
+	/*max-height: 52px;*/
 	min-height: 0;
 	padding-left: 34px;
 	overflow: hidden;
@@ -589,8 +589,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	top: 0;
 	right: 0;
 	display: block;
-	width: 56px;
-	height: 58px; }
+	width: 60px;
+	height: 60px; }
 	
 .item a.corner-buy img.top:hover {
 	opacity: 0;
@@ -646,7 +646,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	color: #555;
 	font-weight: bold;
 	min-height: 48px;
-	padding: 0 25px 0 50px;
+	line-height: 140%;
+	padding: 0 34px 0 50px;
 	margin-top: -3px; }
 
 .item .panel .title-box a.link-out { 
@@ -991,7 +992,6 @@ a.feed-intro .highlight { font-weight: bold; }
 	padding: 2.307692307%;
 	background: #393939;
 	color: #ccc;
-/* 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1); */
 	vertical-align: top; }
 
 .well-box.tab {
@@ -1058,7 +1058,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .info-box.pictured .user-photo { top: 12px; left: 12px; }
 .info-box .unit { padding: 2px 0 12px; }
 .info-box h4 { color: white; line-height: 165%; margin-bottom: 5px; }	
-.info-box p { line-height: 150%; margin-bottom: 5px; }
+.info-box p { line-height: 140%; margin-bottom: 5px; }
 
 
 /* Switch Toggle

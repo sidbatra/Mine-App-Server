@@ -163,6 +163,8 @@ module DW
           header = Mail.new mail.header
           from = header.from.to_s
 
+          next unless header.date
+
           break if header.date < options[:start_date]
 
           if from =~ options[:email_regex]

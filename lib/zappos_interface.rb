@@ -39,9 +39,10 @@ module DW
         response = Typhoeus::Request.get(url.to_s).body
 
         if response.present?
-          products = JSON.parse(response)["product"].map do |product|
+          json = JSON.parse(response)
+          products = json["product"].map do |product|
                       ZapposProduct.new product
-                     end
+                     end if json && json["product"]
         end
         
         products

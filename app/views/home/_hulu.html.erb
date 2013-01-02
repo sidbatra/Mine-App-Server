@@ -1,0 +1,169 @@
+<div class="wrapper unselectable">
+
+	<div class="nav login absolute border-box relative unselectable">
+	
+		Already set up on Mine?
+		
+			<a class="dark"
+					href="javascript:void(0)" 
+					style="padding-left: 6px; display: inline-block;"
+	 	 			onclick="mixpanel.track('Log In Clicked');"
+	  			id="login">
+					<b class="opacity-80-100 transition-opacity">Log In</b>
+			</a>
+		
+	</div>
+	
+	<div class="home-container absolute">
+	
+		<%=image_tag "home/home-mine-logo-2x.png",
+    :class => "mine-logo unselectable"%>	
+    		
+		<h1 class="unselectable">
+			A directory <br>
+			of people <br>
+			and purchases
+		</h1>
+		
+		<span class="join">
+			<a style="background-color: #FF6600;" 
+        class="btn btn-large btn-join rounded-3 shaded-strong relative unselectable" 
+				href="javascript:void(0)" 
+        id="join" 
+        onclick="mixpanel.track('Sign Up Clicked');">
+				<span class='hide-when-loading'>
+			    Join Now for Free
+			  </span>
+			</a>
+		</span> <!-- /join -->
+				
+		<h2 class="unselectable">
+			View your purchase history <br>
+			Discover new products <br>
+			Shop
+		</h2>
+	
+	</div> <!-- home-container -->
+
+</div> <!-- /wrapper -->
+
+<%=render "footers/home" unless @web_view_mode%>
+
+
+
+<div id="join_content" style="display: none;">
+
+	<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-facebook rounded-3-left shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/f-box.png",
+	    :class => "f-box"%>
+	    Facebook
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a>
+	
+	<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-twitter rounded-3-right shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/t-box.png",
+	    :class => "t-box"%>
+	    Twitter
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a>
+	
+	<div class="reassurance">
+		Mine doesn't auto-share, ever.
+	</div>
+	
+</div>
+
+
+
+<div id="login_content" style="display: none;">
+
+	<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-facebook rounded-3-left shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/f-box.png",
+	    :class => "f-box"%>
+	    Facebook
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a><a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-large btn-twitter rounded-3-right shaded-strong relative">
+	  <span class='hide-when-loading'>
+	    <%=image_tag "social/t-box.png",
+	    :class => "t-box"%>
+	    Twitter
+	  </span>
+	  <i class='icon-loading icon-white'></i>
+	</a>
+	
+</div>
+
+
+
+<%content_for :javascript do%>
+
+	<script type="text/javascript">  
+    $(document).ready(function(){
+      $("#join").popover({ 
+                  html: true, 
+                  trigger: "click", 
+                  placement:"right",
+                  content: function() {return $('#join_content').html();}}); 
+
+			$("#login").popover({
+                  html: true, 
+                  trigger: "click", 
+                  placement:"bottom",
+                  content: function() {return $('#login_content').html();}}); 
+    });  
+	</script> 
+
+  <!--script type="text/javascript">
+
+    // Listen for messages from the player
+    if (window.addEventListener){
+        window.addEventListener('message', onMessageReceived, false);
+    }
+    else {
+        window.attachEvent('onmessage', onMessageReceived, false);
+    }
+
+    // Helper function for sending a message to the player
+    function post(action, value) {
+        var f = $('iframe');
+        var url = f.attr('src').split('?')[0];
+        var data = { method: action };
+        
+        if (value) {
+            data.value = value;
+        }
+        
+        f[0].contentWindow.postMessage(JSON.stringify(data), url);
+    }
+
+    // Handle messages received from the player
+    function onMessageReceived(e) {
+        var data = JSON.parse(e.data);
+        
+        switch (data.event) {
+            case 'ready':
+                post('addEventListener', 'play');
+                break;
+                
+            case 'play':
+                mixpanel.track("Intro Video Played",{"Source":"Home","Thumbnail":"Lantern"});
+                break;
+        }
+    }
+  </script-->
+<%end%>
+
