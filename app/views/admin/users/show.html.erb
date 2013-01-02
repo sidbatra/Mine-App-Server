@@ -27,8 +27,16 @@
             :method => :delete,
             :confirm  => "There is no undo on this, sure?"%> <br>
   <br>
+    <b>Gmail authorized</b>: <%=@user.google_authorized?%> <br>
+    <b>Yahoo authorized</b>: <%=@user.yahoo_authorized?%> <br>
+    <b>Hotmail authorized</b>: <%=@user.hotmail_authorized?%> <br>
+    <b>Is mining</b>: <%=@user.is_mining_purchases%>
+  <br>
 
-  <b><%=@user.purchases_count%> Approved purchases </b> <br>
+  <br>
+
+  <b><%=@user.purchases.unapproved.visible.count%> Pending purchases </b> <br>
+  <b><%=@user.purchases.unapproved.hidden.count%> Hidden purchases </b> <br>
   <b><%=@user.purchases.size%> Total purchases </b> <br>
   <b><%=@user.inverse_followings_count%> Friends </b> <br>
 
