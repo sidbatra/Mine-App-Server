@@ -104,6 +104,16 @@ module DW
 
         status
       end
+      
+      def update_mining_progress(store,progress)
+        json = {
+                :progres => "%0.3f" % progress,
+                :store => {
+                  :id => store.id,
+                  :name => store.name,
+                  :medium_url => store.medium_url}}
+        puts json.to_json.to_s
+      end
 
       def mine_emails_from_store(store)
         parser = PurchaseEmailParser.new store
@@ -169,16 +179,17 @@ module DW
         @emails.each do |email|
           next unless open_email_connection(email)
 
-          @stores.in_groups_of(3,false) do |group|
+          #@stores.in_groups_of(3,false) do |group|
             #threads = []
 
-            group.each do |store|
+            @stores.each_with_index do |store,index|
+              update_mining_progress store,(index + 1.0)/ @stores.length
               #threads << Thread.new{mine_emails_from_store store}
               mine_emails_from_store store
             end
 
             #threads.each {|thread| thread.join}
-          end #stores
+          #end #stores
 
         end #emails
 
