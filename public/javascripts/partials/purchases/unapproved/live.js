@@ -8,7 +8,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     this.finished = false;
 
     this.purchasesRetryInterval = 5 * 1000;
-    this.userRetryInterval = 7 * 1000;
+    this.userRetryInterval = 3 * 1000;
 
     this.spinnerEl = this.options.spinnerEl;
 
@@ -16,8 +16,8 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     this.purchases.bind('add',this.purchaseAdded,this);
 
     var self = this;
-    setTimeout(function(){self.fetch();},10000);
-    setTimeout(function(){self.fetchUser();},15000);
+    setTimeout(function(){self.fetch();},3000);
+    setTimeout(function(){self.fetchUser();},5000);
   },
 
   fetchUser: function() {
@@ -104,6 +104,15 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
   userLoaded: function() {
     if(this.user.get('is_mining_purchases')) {
       var self = this;
+      var metadata = this.user.get('email_mining_metadata');
+
+      if(metadata && metadata != null) {
+        metadata = JSON.parse(metadata)
+        var progress = metadata["progress"]
+        var store = new Denwen.Models.Store(metadata["store"]);
+        //console.log(progress,store);
+      }
+
       setTimeout(function(){self.fetchUser();},this.userRetryInterval);
     }
     else {
