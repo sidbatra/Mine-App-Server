@@ -116,7 +116,7 @@
       $("#join").popover({ 
                   html: true, 
                   trigger: "click", 
-                  placement:"right",
+                  placement:"<%=is_phone_device? ? "bottom" : "right"%>",
                   content: function() {return $('#join_content').html();}}); 
 
 			$("#login").popover({
