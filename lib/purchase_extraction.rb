@@ -106,13 +106,20 @@ module DW
       end
       
       def update_mining_progress(store,progress)
-        json = {
-                :progres => "%0.3f" % progress,
-                :store => {
-                  :id => store.id,
-                  :name => store.name,
-                  :medium_url => store.medium_url}}
-        puts json.to_json.to_s
+        if store
+          metadata = {
+                      :progress => "%0.3f" % progress,
+                      :store => {
+                        :id => store.id,
+                        :name => store.name,
+                        :medium_url => store.medium_url}}
+
+          @user.email_mining_metadata = metadata.to_json
+        else
+          @user.email_mining_metadata = nil
+        end
+
+        @user.save!
       end
 
       def mine_emails_from_store(store)
@@ -197,6 +204,7 @@ module DW
 
       ensure
         if @user
+          update_mining_progress nil,0
           @user.is_mining_purchases = false
           @user.save!
         end
