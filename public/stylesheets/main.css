@@ -51,10 +51,6 @@ a:focus { outline: none; }
 
 a.dark       { color: #ccc;  }
 a.dark:hover { color: white; }
-/*
-a.dark i { opacity: 0.8; filter: alpha(opacity=80); }
-a.dark:hover i { opacity: 1; filter: alpha(opacity=100); }
-*/
 
 a.light       { color: #177DBE; }
 a.light:hover { color: #105e90; }
@@ -425,6 +421,10 @@ ul.notifications li.user-action-box {
 .import-email-buttons .btn.connected span.unconnected { display: none; }
 
 .hotmail-connect { padding-top: 26px; }
+
+.onboarding .hotmail-connect input:focus { background: #f5f5f5; }
+.onboarding .hotmail-connect input:focus { background: #f8f8f8; }
+
 .hotmail-connect .form-row { padding-bottom: 9px; }
 .hotmail-connect .form-row .action { width: 50%; height: 28px; vertical-align: top; }
 .hotmail-connect .form-row .extras { vertical-align: top; padding-left: 8px; width: 25%; height: 28px; line-height: 28px; }
@@ -459,6 +459,58 @@ ul.notifications li.user-action-box {
 
 .header ul.notifications li.user-action-box .bottom-line  { line-height: 16px; }
 .header ul.notifications li.user-action-box:last-child  { margin-bottom: -8px !important; }
+
+
+/* Onboarding
+==================================================================== */
+
+.onboarding .steps {
+	top: -86px; 
+	right: 5.384615384615%; 
+	color: #777; 
+	height: 86px; 
+	line-height: 86px; 
+	font-size: 16px; }
+
+.onboarding h1, h2 {
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light",
+	"Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+	font-weight: 300;
+	line-height: 120%; }
+
+.onboarding h1 {
+	font-size: 50px;
+	line-height: 120%;
+	letter-spacing: -1px; }
+
+.onboarding .hero { border: 2px solid #999; margin: 20px 0 3px; }
+
+.onboarding .hero .btn-hero {
+	height: 56px;
+	padding: 0 10px;
+	line-height: 56px;
+	text-align: center;
+	background: #ccc url('/images/backgrounds/hero-overlay.png') top left repeat-x !important; 
+	border-top: 2px solid white; }
+	
+.onboarding .hero .btn-hero:hover {
+	background: #bfbfbf url('/images/backgrounds/hero-overlay.png') top left repeat-x !important; }
+	
+.onboarding .hero .btn-hero:active,
+.onboarding .hero .btn-hero.load,
+.onboarding .hero .btn-hero.load:hover {
+	background-color: #999 !important;
+	border-top: 2px solid transparent;
+	background-image: none !important; }
+
+.onboarding .hero .btn-hero:active {  }
+.onboarding .hero .btn-hero img { width: 130px; }
+
+.onboarding .hero .btn-hero .icon-loading.icon-white { 
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	background: url("/images/loading/loading-snake-FFF-999-20.gif"); }
 
 
 /* Feed

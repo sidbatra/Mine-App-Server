@@ -64,6 +64,11 @@
   
   /* -- onboarding -- */
   
+  .onboarding h1 { font-size: 38px; }
+	.onboarding h2 { font-size: 20px; }
+	
+	.onboarding .steps { font-size: 12px; }
+  
   .feed-grid-container { 
   	width: 100%;
   	padding-left: 4%; }
