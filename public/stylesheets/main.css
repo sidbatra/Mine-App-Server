@@ -6,9 +6,11 @@
 html, body { height: 100%; }
 
 body { 
-	background-color: #333;
+	background-color: #111;
+	background: #111 url('/images/backgrounds/slanted.jpg');
 	background-attachment: fixed;
 	background-position: top center;
+	background-repeat: no-repeat;
 	font-size: 0;
 	line-height: 1;
 	color: #333;
@@ -280,8 +282,8 @@ li { line-height: 1; }
 .container.fullscreen {
 	width: 100%;
 	height: 100%;
-	background: #333;
-	padding: 0 10px; }
+	background: none !important;
+	padding: 0; }
 
 /* -- footer -- */
 
@@ -421,10 +423,6 @@ ul.notifications li.user-action-box {
 .import-email-buttons .btn.connected span.unconnected { display: none; }
 
 .hotmail-connect { padding-top: 26px; }
-
-.onboarding .hotmail-connect input:focus { background: #f5f5f5; }
-.onboarding .hotmail-connect input:focus { background: #f8f8f8; }
-
 .hotmail-connect .form-row { padding-bottom: 9px; }
 .hotmail-connect .form-row .action { width: 50%; height: 28px; vertical-align: top; }
 .hotmail-connect .form-row .extras { vertical-align: top; padding-left: 8px; width: 25%; height: 28px; line-height: 28px; }
@@ -482,8 +480,19 @@ ul.notifications li.user-action-box {
 	font-size: 50px;
 	line-height: 120%;
 	letter-spacing: -1px; }
+	
+.onboarding img.star {
+	width: 25%; 
+	padding: 14px 18px 0 0;
+	right: 4.615384615%; 
+	top: auto; 
+	opacity: 0.10; 
+	filter: alpha(opacity=10); }
 
-.onboarding .hero { border: 2px solid #999; margin: 20px 0 3px; }
+.onboarding .hero { 
+	background: #999; 
+	border: 2px solid #999; 
+	margin: 20px 0 3px; }
 
 .onboarding .hero .btn-hero {
 	height: 56px;
@@ -511,6 +520,9 @@ ul.notifications li.user-action-box {
 	width: 20px;
 	height: 20px;
 	background: url("/images/loading/loading-snake-FFF-999-20.gif"); }
+	
+.onboarding .hotmail-connect input:focus { background: #f5f5f5; }
+.onboarding .hotmail-connect input:focus { background: #f8f8f8; }
 
 
 /* Feed
@@ -552,47 +564,180 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed { background: white; }
 
 
+/* --- Importer --- */
+
+.importer-top-bar {
+	width: 100%;
+	height: 72px; 
+	background: #333; 
+	text-align: center;
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	z-index: 100; }
+	
+.importer-top-bar .progress-bar {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 55%;
+	z-index: 1; 
+	border-top: 2px solid #666;
+	border-bottom: 2px solid #000; }
+
+.importer-top-bar .logo {
+	height: 48px;
+	top: 50%;
+	left: 2.734375%;
+	margin-top: -24px;
+	z-index: 2; }
+	
+.importer-top-bar span.indicator {
+	font-size: 32px;
+	color: white;
+	z-index: 2; }
+
+.importer-top-bar span.indicator img.sync,
+.importer-top-bar span.indicator img.store-logo,
+.importer-top-bar span.indicator img.ellipsis { 
+	height: 48px;
+	padding: 12px 0; }
+
+.importer-top-bar .close {
+	top: 50%;
+	right: 2.734375%;
+	margin-top: -6px;
+	color: white;
+	font-size: 34px;
+	vertical-align: top;
+	line-height: 0;
+	font-weight: bold;
+	box-shadow: none;
+	z-index: 2; }
+	
+.importer-top-bar .inset-message {
+	font-weight: bold; 
+	line-height: 72px; 
+	font-size: 20px; 
+	color: white; }
+	
+.inset-message .message-working,
+.inset-message .message-complete
+.inset-message .message-update { display: none; }
+
+.inset-message.working  .message-working  {display: block;}
+.inset-message.working  .message-complete {display: none;}
+.inset-message.working  .message-update   {display: none;}
+.inset-message.complete .message-working  {display: none;}
+.inset-message.complete .message-complete {display: block;}
+.inset-message.complete .message-update   {display: none;}
+.inset-message.update   .message-working  {display: none;}
+.inset-message.update   .message-complete {display: none;}
+.inset-message.update   .message-update   {display: block;}
+
+.progress-message.working .message-working {display:block;}
+.progress-message.working .message-nothing {display:none;}
+.progress-message.nothing .message-nothing { display: block; }
+.progress-message.nothing .message-working { display: none; }
+	
+.float-loader {
+	width: 200px;
+	height: 72px;
+	bottom: 49px;
+	bottom: 21px;
+	left: 50%;
+	line-height: 72px;
+	font-size: 20px;
+	color: #ccc;
+	font-weight: bold;
+	background: black;
+	background: url('/images/colors/black-80.png');
+	margin-left: -100px;
+	z-index: 10; }
+
+
 /* --- Feed Grid --- */
 
 .feed-grid-container { 
 	width: 692px; 
-	padding-left: 16px;
-	margin: 64px auto 24px;
+	padding-left: 28px;
+	margin: 72px auto 114px;
 	background: white; }
 	
 .feed-grid-container .feed-loading { margin-left: -16px; }
 
-.feed.grid { text-align: center; }
+.feed.grid { padding-top: 8px; }
 
 .feed.grid .item {
 	width: 200px;
 	display: inline-block;
 	font-size: 0;
-	margin: 16px 18px 0px 0px;
+	margin: 18px 18px 0px 0px;
 	vertical-align: top; }
 	
 .feed.grid .item .photo-box {
 	height: 200px;
 	line-height: 200px;
+	padding: 0;
 	background-image: none; }
 
+.feed.grid .item .panel { 
+	padding: 12px 0 0; 
+	border: none; }
+
 .feed.grid .item .panel .caret {
-	left: 10px;
-	top: -8px;
+	width: 0;
+	height: 0;
+	left: 18px;
+	top: -10px;
 	vertical-align: bottom;
-	border-bottom: 8px solid #EEE;
-	border-left: 8px solid transparent;
-	border-right: 8px solid transparent; }
+	border-bottom: 10px solid #f5f5f5;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 0 solid transparent;
+	content: ""; }
+	
+.feed.grid .item .panel .panel-contents {
+	padding: 10px;
+	background: #f5f5f5;
+	-webkit-border-radius: 3px !important;
+	-moz-border-radius: 3px !important;
+	border-radius: 3px !important; }
+
+.feed.grid .item .photo-box .actions.top-right {
+	top: 4px;
+	right: 4px; }
+
+.feed.grid .item .photo-box .actions.top-right .btn-small {
+	background: none;
+	height: 16px;
+	padding: 0 1px;
+	line-height: 16px !important;
+	-webkit-transition: none;
+   -moz-transition: none;
+     -o-transition: none;
+        transition: none; }
+
+.feed.grid .item .photo-box .actions.top-right .btn-small:hover { background: #666; }
+
+.feed.grid .item .photo-box .actions.top-right .icon-white { 
+	display: none;
+	opacity: 1;
+	filter: alpha(opacity=100); }
+	
+.feed.grid .item .photo-box .actions.top-right .btn-small:hover .icon-white { display: inline-block; }
+.feed.grid .item .photo-box .actions.top-right .btn-small:hover .icon-black { display: none; }
 	
 .feed.grid .item .photo-box .item-photo {
 	max-height: 200px; }
 
-.feed.grid .item .panel .title-box { 
+.feed.grid .item .title-box { 
+	margin-top: 0;
 	text-align: left;
-	font-size: 12px;
-	/*max-height: 52px;*/
+	font-size: 12px !important;
 	min-height: 0;
-	padding-left: 34px;
+	height: 32px !important;
+	line-height: 140% !important;
 	overflow: hidden;
 	text-overflow: ellipsis; }
 	
@@ -1506,40 +1651,6 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: 436px;
 	top: 72px;
 	margin: 0 0 0 -218px; }
-
-
-/* Email Import Picker
-==================================================================== */	
-	
-.inset-container .inset-message {
-	text-align: left; 
-	font-weight: bold; 
-	line-height: 40px; 
-	font-size: 20px; 
-	color: white; 
-	text-shadow: 0 1px 1px rgba(0,0,0,0.4); }
-	
-.inset-message .message-working,
-.inset-message .message-complete
-.inset-message .message-update { display: none; }
-
-.inset-message span img { padding: 0 8px 0 14px; margin-top: -2px; }
-.inset-message span .icon-white { margin: 6px 9px 0 15px; }
-
-.inset-message.working  .message-working  {display: block;}
-.inset-message.working  .message-complete {display: none;}
-.inset-message.working  .message-update   {display: none;}
-.inset-message.complete .message-working  {display: none;}
-.inset-message.complete .message-complete {display: block;}
-.inset-message.complete .message-update   {display: none;}
-.inset-message.update   .message-working  {display: none;}
-.inset-message.update   .message-complete {display: none;}
-.inset-message.update   .message-update   {display: block;}
-
-.progress-message.working .message-working {display:block;}
-.progress-message.working .message-nothing {display:none;}
-.progress-message.nothing .message-nothing { display: block; }
-.progress-message.nothing .message-working { display: none; }
 
 	
 /* Settings

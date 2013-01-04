@@ -1,6 +1,6 @@
 <div id="purchase-<%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
-  class="item rounded-8">
+  class="item">
   
   <div class="photo-box relative">
   
@@ -19,8 +19,9 @@
       <div class="actions top-right absolute">
         <a id="purchase_cross_<%=purchase.get('id')%>" 
             href="javascript:void(0)"
-            class="btn btn-small btn-white rounded-3 opacity-80-100">
-          <i class="icon-remove"></i>
+            class="btn btn-small btn-white opacity-60-80">
+          <i class="icon-remove icon-black"></i>
+          <i class="icon-remove icon-white"></i>
         </a>
       </div>
     <%}%>
@@ -38,11 +39,10 @@
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
         href="<%=purchase.get('source_url')%>" 
         target="_blank" style="display: block;" rel="nofollow">
-    	<img class="item-photo rounded-3" src="<%=purchase.get('giant_url')%>" />
+    	<img class="item-photo" src="<%=purchase.get('giant_url')%>" />
     </a>
     
   </div>
-  
   
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 

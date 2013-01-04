@@ -1,48 +1,92 @@
-<div class="bar top border-box gradient v-555-444" style="text-align: center; padding: 6px 0;">
+<div class="importer-top-bar fixed">
 	
   <%=link_to_if !is_onboarding?,
-      image_tag("logos/mine-h-white-40-brighter-2x.png", 
-        :class => "logo absolute"),
+      image_tag("home/home-mine-logo-2x.png", 
+        :class => "logo absolute rwd-hide"),
       root_path(:src => "unapproved_purchases")%>
       
-	<div class="inset-container relative well-box border-box rounded-8" style="text-align: left; width: 692px;">
-				
-		<div id="progress_message" class="inset-message inline-block working">
-			<span class="message-working">
-    	<%=image_tag "loading/loading-sync-FFF-474747.gif",
+  <span class="indicator relative">
+  	
+  	<%=image_tag "importer/sync.gif",
      			:class => "sync"%>
-     	<span class="rwd-hide">Loading your recent purchases...</span>
+     			
+  	<%=image_tag "importer/zappos.png",
+	     			:class => "store-logo"%>
+	     			
+	  <%=image_tag "importer/ellipsis.png",
+	     			:class => "ellipsis"%>
+	     							
+		<!--
+		<div id="progress_message" class="inset-message inline-block complete">
+		
+			<span class="message-working">
+     		Loading purchases...
 			</span>
+			
 			<span class="message-complete">
-				<i class="icon-ok icon-white"></i> 
-				Done.
+				All done.
+				<a href="javascript:voidLoadin(0)"
+	    		id="submit_button"
+					class="btn btn-silver btn-large border-box rounded-3 shaded"
+					style="width: 168px; vertical-align: top; margin: 16px 0 16px 8px;">
+					<span class="hide-when-loading">
+						Import these items
+					</span>
+					<i class="icon-loading icon-white"></i>
+				</a>
 			</span>
+			
 			<span class="message-update">
-				<i class="icon-ok icon-white"></i> 
-				<span class="rwd-hide">Review your recent purchases:</span>
+				Your latest.
+				<a href="javascript:voidLoadin(0)"
+	    		id="submit_button"
+					class="btn btn-silver btn-large border-box rounded-3 shaded"
+					style="width: 120px; vertical-align: top; margin: 16px 0 16px 8px;">
+					<span class="hide-when-loading">
+						Add to Mine
+					</span>
+					<i class="icon-loading icon-white"></i>
+				</a>
 			</span>
- 	 	</div>
+			
+ 	 	</div> <!-- /inset-message -->
 
-	  <a href="javascript:void(0)"
-	      id="submit_button"
-				class="btn btn-silver btn-large border-box rounded-3 shaded disabled"
-				style="width: 176px; vertical-align: top; float: right;">
-				<span class="hide-when-loading">
-					Import these items
-				</span>
-				<i class="icon-loading icon-white"></i>
-		</a>
-	
-  </div>
+	</span> <!-- /indicator -->
       
   <a class="close opacity-60-80 absolute alias-smooth transition-opacity rwd-hide" 
     href="<%=is_onboarding? ? welcome_path(WelcomeFilter::Connect) : root_path%>">
 		×
 	</a>
 	
+	<div class="progress-bar absolute gradient v-58595b-262223">
+	</div>
+	
 </div>
 
-<div class="feed-grid-container border-box rounded-8-bottom" style="padding-bottom: 32px;">
+<div class="float-loader fixed border-box rounded-8 rwd-hide">
+
+	<%=image_tag "importer/spinner-32.gif",
+	 			 :class => "absolute",
+	 			 :style => "top: 20px; left: 20px;"%>
+	<span style="padding-left: 72px;">
+		Loading…
+	</span>
+
+	<!--
+	<a href="javascript:voidLoadin(0)"
+    id="submit_button"
+		class="btn btn-silver btn-large border-box rounded-3 shaded"
+		style="width: 168px; vertical-align: top; margin: 16px;">
+		<span class="hide-when-loading">
+			Import these items
+		</span>
+		<i class="icon-loading icon-white"></i>
+	</a>
+	-->
+		
+</div>
+
+<div class="feed-grid-container border-box rounded-8-bottom" style="padding-bottom: 28px;">
 
 	<div id="feed" class="feed grid no-user-photo no-user-name no-user-bought-pronoun actions link-disabled rounded-8-bottom">
   </div>
@@ -52,7 +96,7 @@
     style="padding-top: 32px; line-height: 24px; color: #999; font-size: 16px; text-align: center;">
 		<span class="message-working">
 				<%=image_tag "cat-wait.gif",
-	     			:class => "rounded-5",
+	     			:class => "cat rounded-5",
 	     			:style => "padding-bottom: 20px;"%>
 	    <br>
 	    We'll only be a moment...
