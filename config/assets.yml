@@ -27,7 +27,7 @@ javascripts:
     - app/views/comments/*.jst
     - app/views/likes/*.jst
     - app/views/products/*.jst
-    - app/views/purchases/*.jst
+    - app/views/purchases/**/*.jst
     - app/views/contacts/*.jst
     - app/views/suggestions/*.jst
     - app/views/followings/*.jst

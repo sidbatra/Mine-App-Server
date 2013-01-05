@@ -112,7 +112,7 @@ module DW
                       :store => {
                         :id => store.id,
                         :name => store.name,
-                        :medium_url => store.medium_url}}
+                        :medium_url => store.image_url}}
 
           @user.email_mining_metadata = metadata.to_json
         else

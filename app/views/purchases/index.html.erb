@@ -6,28 +6,21 @@
       root_path(:src => "unapproved_purchases")%>
       
   <span class="indicator relative">
-  	
-  	<%=image_tag "importer/sync.gif",
-     			:class => "sync"%>
-     			
-  	<%=image_tag "importer/zappos.png",
-	     			:class => "store-logo"%>
-	     			
-	  <%=image_tag "importer/ellipsis.png",
-	     			:class => "ellipsis"%>
 	     							
-		<!--
-		<div id="progress_message" class="inset-message inline-block complete">
+		<div id="progress_message" class="inset-message inline-block working">
 		
 			<span class="message-working">
-     		Loading purchases...
+        <%=image_tag "importer/sync.gif",
+              :class => "sync"%>
+
+        <span id="progress_store"></span>
 			</span>
 			
 			<span class="message-complete">
 				All done.
-				<a href="javascript:voidLoadin(0)"
-	    		id="submit_button"
-					class="btn btn-silver btn-large border-box rounded-3 shaded"
+				<a href="javascript:void(0)"
+          id="create_submit_button"
+					class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
 					style="width: 168px; vertical-align: top; margin: 16px 0 16px 8px;">
 					<span class="hide-when-loading">
 						Import these items
@@ -38,9 +31,9 @@
 			
 			<span class="message-update">
 				Your latest.
-				<a href="javascript:voidLoadin(0)"
-	    		id="submit_button"
-					class="btn btn-silver btn-large border-box rounded-3 shaded"
+				<a href="javascript:void(0)"
+          id="update_submit_button"
+					class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
 					style="width: 120px; vertical-align: top; margin: 16px 0 16px 8px;">
 					<span class="hide-when-loading">
 						Add to Mine
@@ -58,31 +51,31 @@
 		×
 	</a>
 	
-	<div class="progress-bar absolute gradient v-58595b-262223">
+	<div id="progress_bar" class="progress-bar absolute gradient v-58595b-262223">
 	</div>
 	
 </div>
 
 <div class="float-loader fixed border-box rounded-8 rwd-hide">
 
-	<%=image_tag "importer/spinner-32.gif",
-	 			 :class => "absolute",
-	 			 :style => "top: 20px; left: 20px;"%>
-	<span style="padding-left: 72px;">
-		Loading…
-	</span>
+  <span id="feed_spinner">
+    <%=image_tag "importer/spinner-32.gif",
+           :class => "absolute",
+           :style => "top: 20px; left: 20px;"%>
+    <span style="padding-left: 72px;">
+      Loading…
+    </span>
+  </span>
 
-	<!--
-	<a href="javascript:voidLoadin(0)"
-    id="submit_button"
-		class="btn btn-silver btn-large border-box rounded-3 shaded"
-		style="width: 168px; vertical-align: top; margin: 16px;">
+	<a href="javascript:void(0)"
+    id="lower_submit_button"
+		class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
+		style="width: 168px; vertical-align: top; margin: 16px; display: none;">
 		<span class="hide-when-loading">
 			Import these items
 		</span>
 		<i class="icon-loading icon-white"></i>
 	</a>
-	-->
 		
 </div>
 

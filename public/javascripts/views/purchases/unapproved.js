@@ -13,10 +13,14 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.rejectedPurchaseIDs = [];
 
     this.feedEl  = '#feed';
-    this.feedSpinnerEl  = '#feed-spinner';
+    this.feedSpinnerEl  = '#feed_spinner';
+    this.progressBarEl = '#progress_bar';
+    this.progressStoreEl = '#progress_store';
     this.progressMessageEl = '#progress_message';
     this.centralMessageEl = '#central_message';
-    this.submitEl = '#submit_button';
+    this.submitEl = '';
+    this.submitEls = $('a.purchases-submit');
+    this.lowerSubmitEl = '#lower_submit_button';
     this.submitEnabled = false;
 
 
@@ -28,6 +32,11 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       this.livePurchases.bind(
         Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesFinished,
         this.livePurchasesFinished,
+        this);
+
+      this.livePurchases.bind(
+        Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesProgress,
+        this.livePurchasesProgress,
         this);
 
       this.livePurchases.bind(
@@ -58,9 +67,27 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       this.purchaseCrossClicked,
       this);
 
-    $(this.submitEl).click(function(){self.submitClicked();return false;});
+    //$(this.submitEl).click(function(){self.submitClicked();return false;});
+    $(this.submitEls).click(function(){self.submitEl = '#' + this.id;self.submitClicked();return false;});
 
     this.setAnalytics();
+  },
+
+  //
+  //
+  updateProgressUI: function(progress,store) {
+    var percent = 100 - progress * 100 + '%';
+    $(this.progressBarEl).css('right',percent);
+
+    if(progress == 1) {
+      $(this.lowerSubmitEl).show();
+    }
+
+    if(store) {
+      $(this.progressStoreEl).html(Denwen.JST['purchases/importer/store']({
+        storeImageURL: store.get('medium_url')
+        }));
+    }
   },
 
   // Fire various tracking events
@@ -73,7 +100,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   enableSubmitButton: function() {
-    $(this.submitEl).removeClass('disabled');
+    //$(this.submitEl).removeClass('disabled');
     $(this.submitEl).removeClass('load');
     this.submitEnabled = true;
   },
@@ -81,8 +108,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   disableSubmitButton: function(withSpinner) {
     if(withSpinner)
       $(this.submitEl).addClass('load');
-    else
-      $(this.submitEl).addClass('disabled');
+    //else
+    //  $(this.submitEl).addClass('disabled');
 
     this.submitEnabled = false;
   },
@@ -135,7 +162,13 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     $(this.centralMessageEl).hide();
   },
 
+  livePurchasesProgress: function(progress,store) {
+    this.updateProgressUI(progress,store);
+  },
+
   livePurchasesFinished: function() {
+    this.updateProgressUI(1,null);
+
     $(this.progressMessageEl).addClass('complete');
 
     if(this.livePurchases.purchases.isEmpty()) {
@@ -155,6 +188,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   stalePurchasesFinished: function() {
+    this.updateProgressUI(1,null);
+
     $(this.progressMessageEl).addClass('update');
 
     if(this.stalePurchases.purchases.isEmpty()) {
