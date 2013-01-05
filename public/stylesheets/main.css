@@ -503,7 +503,7 @@ ul.notifications li.user-action-box {
 	border-top: 2px solid white; }
 	
 .onboarding .hero .btn-hero:hover {
-	background: #bfbfbf url('/images/backgrounds/hero-overlay.png') top left repeat-x !important; }
+	background-color: #bfbfbf !important; }
 	
 .onboarding .hero .btn-hero:active,
 .onboarding .hero .btn-hero.load,
@@ -514,6 +514,22 @@ ul.notifications li.user-action-box {
 
 .onboarding .hero .btn-hero:active {  }
 .onboarding .hero .btn-hero img { width: 130px; }
+
+.onboarding .hero.fb { border-color: #4b5b79; }
+.onboarding .hero.fb .btn-hero {
+	border-top: 2px solid #87a1d4;
+	border-top: 2px solid rgba(186,209,253,0.6); 
+	background: #3C5A96 url('/images/backgrounds/hero-overlay-light.png') top left repeat-x !important; }
+	
+.onboarding .hero.fb .btn-hero:hover {
+	background-color: #2f4c86 !important; }	
+	
+.onboarding .hero.fb .btn-hero:active,
+.onboarding .hero.fb .btn-hero.load,
+.onboarding .hero.fb .btn-hero.load:hover {
+	background-color: #2f4c86 !important;
+	border-top: 2px solid transparent;
+	background-image: none !important; }
 
 .onboarding .hero .btn-hero .icon-loading.icon-white { 
 	vertical-align: middle;

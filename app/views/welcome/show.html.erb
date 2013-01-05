@@ -1,31 +1,71 @@
-<div class="bar top border-box gradient v-555-444" style="text-align: center;">
+<div class="feed-container onboarding relative rounded-8-top" style="background: white; margin-top: 2px; padding: 5.384615384615%;">
+
+	<div class="steps absolute unselectable">
+		<span>
+			1. Connect
+		</span> 
+		<span style="padding: 0 6px;">
+			2. Review   
+		</span>
+		<span style="color: #ccc;">
+			3. <span class="rwd-hide">Your </span>Mine
+		</span>
+	</div>
+
+	<%=image_tag "import-star-black-check-144-2x.png",
+		      :class => "star absolute"%>
+
+	<h1 style="color: #333; padding: 12px 0 6px;">
+		3. Success
+	</h1>
 	
-  <%=image_tag("logos/mine-h-white-40-brighter-2x.png", 
-      :class => "logo absolute")%>
+	<h2 style="color: #999;">
+		Your Mine is ready for primetime.
+	</h2>
+	
+	<div class="txt s" style="color: #999; padding-top: 10px;">
+		Tell friends and followers about it:
+	</div>
+	
+	<div class="hero fb rounded-8 border-box inline-block" style="width: 32%; margin-right: 6px;">
+		
+		<a id="" class="btn-hero rounded-6 inline-block border-box transition-bg" 
+		    href="" style="width: 100%;">
+		  <%=image_tag "logos/hero-fshare-2x.png",
+		      :class => "hide-when-loading"%>
+		  <i class="icon-loading icon-white"></i>
+		</a>
+		
+	</div>
+	
+	<div class="hero rounded-8 border-box inline-block" style="width: 32%">
+		
+		<a id="" class="btn-hero rounded-6 inline-block border-box transition-bg" 
+		    href="" style="width: 100%;">
+		  <%=image_tag "logos/hero-tweet-2x.png",
+		      :class => "hide-when-loading"%>
+		  <i class="icon-loading icon-white"></i>
+		</a>
+	
+	</div>
       
-      <span class="rwd-hide" style="font-weight: bold; line-height: 36px; font-size: 24px; color: white; text-shadow: 0 1px 1px rgba(0,0,0,0.4);">
-      	People share their best buys on Mine.
-      </span>
+</div> <!-- /feed-container -->
 
-	<a href="<%=welcome_path(WelcomeFilter::Connect)%>"
-			class="btn btn-large btn-red border-box rounded-3 absolute shaded"
-			style="width: 140px; top: 12px; right: 12px;">
-		Start
-	</a>
+<div class="feed-container border-box rounded-8-bottom" style="background: #f8f8f8; padding: 5.384615384615%;">
+			      
+	<div class="txt s">
+		<a class="light opacity-80-100 transition-opacity" 
+        href="<%=root_path(:src => 'skip')%>">
+			<b>View your Mine &raquo;</b>
+		</a>
+	</div>
+
 </div>
-
-<div class="feed-grid-container border-box rounded-8-bottom">
-
-	<div id="feed" class="feed grid link-disabled rounded-8-bottom">
-  </div>
-
-	<div id="feed-spinner" class="feed-loading white">
-	</div> 
-</div> <!-- feed container -->
 
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Show();
+    new Denwen.Views.Welcome.Connect({
+          successURL: "<%=welcome_path(WelcomeFilter::History,:mode => 'live')%>"});
   </script>
 <%end%>
