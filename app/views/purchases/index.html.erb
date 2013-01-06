@@ -4,47 +4,39 @@
       image_tag("home/home-mine-logo-2x.png", 
         :class => "logo absolute rwd-hide"),
       root_path(:src => "unapproved_purchases")%>
-      
-  <span class="indicator relative">
 	     							
-		<div id="progress_message" class="inset-message inline-block working">
+	<div id="progress_message" class="indicator working">
+	
+    <span id="progress_store" class="message-working">
+    </span>
 		
-			<span class="message-working">
-        <%=image_tag "importer/sync.gif",
-              :class => "sync"%>
-
-        <span id="progress_store"></span>
-			</span>
-			
-			<span class="message-complete">
-				All done.
-				<a href="javascript:void(0)"
-          id="create_submit_button"
-					class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
-					style="width: 168px; vertical-align: top; margin: 16px 0 16px 8px;">
-					<span class="hide-when-loading">
-						Import these items
-					</span>
-					<i class="icon-loading icon-white"></i>
-				</a>
-			</span>
-			
-			<span class="message-update">
-				Your latest.
-				<a href="javascript:void(0)"
-          id="update_submit_button"
-					class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
-					style="width: 120px; vertical-align: top; margin: 16px 0 16px 8px;">
-					<span class="hide-when-loading">
-						Add to Mine
-					</span>
-					<i class="icon-loading icon-white"></i>
-				</a>
-			</span>
-			
- 	 	</div> <!-- /inset-message -->
-
-	</span> <!-- /indicator -->
+		<span class="message-complete">
+			All done.
+			<a href="javascript:void(0)"
+        id="create_submit_button"
+				class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
+				style="width: 168px; vertical-align: top; margin: 16px 0 16px 8px;">
+				<span class="hide-when-loading">
+					Create your Mine
+				</span>
+				<i class="icon-loading icon-white"></i>
+			</a>
+		</span>
+		
+		<span class="message-update">
+			Your latest.
+			<a href="javascript:void(0)"
+        id="update_submit_button"
+				class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
+				style="width: 120px; vertical-align: top; margin: 16px 0 16px 8px;">
+				<span class="hide-when-loading">
+					Add to Mine
+				</span>
+				<i class="icon-loading icon-white"></i>
+			</a>
+		</span>
+		
+	 	</div> <!-- /indicator -->
       
   <a class="close opacity-60-80 absolute alias-smooth transition-opacity rwd-hide" 
     href="<%=is_onboarding? ? welcome_path(WelcomeFilter::Connect) : root_path%>">
@@ -56,26 +48,14 @@
 	
 </div>
 
-<div class="float-loader fixed border-box rounded-8 rwd-hide">
+<div id="feed_spinner" class="float-loader fixed border-box rounded-8 rwd-hide">
 
-  <span id="feed_spinner">
     <%=image_tag "importer/spinner-32.gif",
            :class => "absolute",
-           :style => "top: 20px; left: 20px;"%>
-    <span style="padding-left: 72px;">
-      Loading…
+           :style => "top: 18px; left: 18px;"%>
+    <span style="padding-left: 52px;">
+      Loading your purchases…
     </span>
-  </span>
-
-	<a href="javascript:void(0)"
-    id="lower_submit_button"
-		class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
-		style="width: 168px; vertical-align: top; margin: 16px; display: none;">
-		<span class="hide-when-loading">
-			Import these items
-		</span>
-		<i class="icon-loading icon-white"></i>
-	</a>
 		
 </div>
 
@@ -91,8 +71,6 @@
 				<%=image_tag "cat-wait.gif",
 	     			:class => "cat rounded-5",
 	     			:style => "padding-bottom: 20px;"%>
-	    <br>
-	    We'll only be a moment...
     </span>
     <span class="message-nothing">
 	    Sorry, Mine couldn't find any<br class="rwd-show"> of your e-receipts at this time.<br class="rwd-show"> 

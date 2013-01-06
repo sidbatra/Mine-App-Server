@@ -609,14 +609,17 @@ a.feed-intro .highlight { font-weight: bold; }
 	z-index: 2; }
 	
 .importer-top-bar span.indicator {
-	font-size: 32px;
+	font-size: 0;
+	line-height: 32px;
 	color: white;
-	z-index: 2; }
+	z-index: 2;
+	background: pink; }
 
-.importer-top-bar span.indicator img.sync,
-.importer-top-bar span.indicator img.store-logo,
-.importer-top-bar span.indicator img.ellipsis { 
-	height: 48px;
+.importer-top-bar .indicator img.sync,
+.importer-top-bar .indicator img.store-logo,
+.importer-top-bar .indicator img.ellipsis { 
+	height: 48px; 
+	vertical-align: top;
 	padding: 12px 0; }
 
 .importer-top-bar .close {
@@ -631,45 +634,46 @@ a.feed-intro .highlight { font-weight: bold; }
 	box-shadow: none;
 	z-index: 2; }
 	
-.importer-top-bar .inset-message {
-	font-weight: bold; 
-	line-height: 72px; 
-	font-size: 20px; 
-	color: white; }
+.importer-top-bar .indicator { 
+	line-height: 72px;
+	font-size: 20px !important; 
+	color: white;
+	font-weight: bold; }
 	
-.inset-message .message-working,
-.inset-message .message-complete
-.inset-message .message-update { display: none; }
+.indicator .message-working,
+.indicator .message-complete
+.indicator .message-update { }
 
-.inset-message.working  .message-working  {display: block;}
-.inset-message.working  .message-complete {display: none;}
-.inset-message.working  .message-update   {display: none;}
-.inset-message.complete .message-working  {display: none;}
-.inset-message.complete .message-complete {display: block;}
-.inset-message.complete .message-update   {display: none;}
-.inset-message.update   .message-working  {display: none;}
-.inset-message.update   .message-complete {display: none;}
-.inset-message.update   .message-update   {display: block;}
+.indicator.working  .message-working  { display: block; }
+.indicator.working  .message-complete { display: none; }
+.indicator.working  .message-update   { display: none; }
+.indicator.complete .message-working  { display: none; }
+.indicator.complete .message-complete { display: block; }
+.indicator.complete .message-update   { display: none; }
+.indicator.update   .message-working  { display: none; }
+.indicator.update   .message-complete { display: none; }
+.indicator.update   .message-update   { display: block; }
 
-.progress-message.working .message-working {display:block;}
-.progress-message.working .message-nothing {display:none;}
+.progress-message.working .message-working { display:block; }
+.progress-message.working .message-nothing { display:none; }
 .progress-message.nothing .message-nothing { display: block; }
 .progress-message.nothing .message-working { display: none; }
 	
 .float-loader {
-	width: 200px;
-	height: 72px;
-	bottom: 49px;
+	width: 266px;
+	height: 56px;
 	bottom: 21px;
 	left: 50%;
-	line-height: 72px;
-	font-size: 20px;
-	color: #ccc;
+	line-height: 56px;
+	font-size: 16px;
+	color: #ddd;
 	font-weight: bold;
 	background: black;
 	background: url('/images/colors/black-80.png');
-	margin-left: -100px;
+	margin-left: -133px;
 	z-index: 10; }
+
+.float-loader img { width: 20px; }
 
 
 /* --- Feed Grid --- */
@@ -677,7 +681,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed-grid-container { 
 	width: 692px; 
 	padding-left: 28px;
-	margin: 72px auto 114px;
+	margin: 72px auto 98px;
 	background: white; }
 	
 .feed-grid-container .feed-loading { margin-left: -16px; }
