@@ -266,13 +266,6 @@ footer a:hover { color: white; opacity: 1.0; filter: alpha(opacity=100); }
 	
 	h1 { font-size: 38px; }
 	h2 { font-size: 20px; }
- 
- 
- 
-/*
-	.header-home, .container, footer .inner { width: 100%; }
-	footer { padding: 0 11px; text-align: right; }
-*/
 		
 	.rwd-show { display: inline-block !important; }
 	.rwd-hide { display: none !important; }
