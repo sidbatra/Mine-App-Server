@@ -1,6 +1,6 @@
     <div class="modal classic hide rounded-5" id="follow_box_modal_<%=user.id%>">
 		  <div class="modal-header gradient v-FFF-DDD rounded-5-top">
-		    <button type="button" class="close" data-dismiss="modal">
+		    <button type="button" class="close" data-dismiss="modal" alt="" title="">
           &times;
         </button>
 		    <h4>Follow <%=h user.full_name%>'s<span class="rwd-hide"> latest</span> purchases</h4>
@@ -13,7 +13,8 @@
 	          style="width: 172px;">
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/t-box.png",
-	              :class => "t-box"%>
+	              :class => "t-box",
+	              :alt => ""%>
 	          Sign in<span class="rwd-hide"> with Twitter</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
@@ -25,7 +26,8 @@
 	          style="width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/f-box.png",
-	              :class => "f-box"%>
+	              :class => "f-box",
+	              :alt => ""%>
 	          Sign in<span class="rwd-hide"> with Facebook</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
