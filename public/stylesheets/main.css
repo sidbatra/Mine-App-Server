@@ -515,7 +515,7 @@ ul.notifications li.user-action-box {
 .onboarding .hero .btn-hero:active {  }
 .onboarding .hero .btn-hero img { width: 130px; }
 
-.onboarding .hero.fb { border-color: #4b5b79; }
+.onboarding .hero.fb { border-color: #2F4C86; }
 .onboarding .hero.fb .btn-hero {
 	border-top: 2px solid #87a1d4;
 	border-top: 2px solid rgba(186,209,253,0.6); 
@@ -1494,9 +1494,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	z-index:9999;
 	padding: 6px 0;
 	white-space: nowrap;
-	-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.3);
-	box-shadow:         0px 3px 6px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:    0 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow:         0 2px 2px rgba(0, 0, 0, 0.3);
 	position: -webkit-sticky;
 	position: -moz-sticky;
 	position: -ms-sticky;
