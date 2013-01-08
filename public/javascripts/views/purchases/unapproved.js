@@ -23,10 +23,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.lowerSubmitEl = '#lower_submit_button';
     this.submitEnabled = false;
 
-		 $(this.progressStoreEl).html(Denwen.JST['purchases/importer/store']({
-        storeImageURL: ''
-        }));
-        
+
     if(this.liveMode) {
       this.livePurchases = new Denwen.Partials.Purchases.Unapproved.Live({
                                 el:$(this.feedEl),
@@ -191,9 +188,9 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   stalePurchasesFinished: function() {
-   // this.updateProgressUI(1,null);
+    this.updateProgressUI(1,null);
 
-    //$(this.progressMessageEl).addClass('update');
+    $(this.progressMessageEl).addClass('update');
 
     if(this.stalePurchases.purchases.isEmpty()) {
       $(this.centralMessageEl).addClass('nothing');
