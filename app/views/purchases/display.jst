@@ -39,7 +39,7 @@
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
         href="<%=purchase.get('source_url')%>" 
         target="_blank" style="display: block;" rel="nofollow">
-    	<img class="item-photo" src="<%=purchase.get('giant_url')%>" />
+    	<img class="item-photo" src="<%=purchase.get('giant_url')%>" alt="<%=purchase.escape('title')%>" />
     </a>
     
   </div>
@@ -51,8 +51,8 @@
 	    <!-- buy button -->
 	    <%if(interaction || !Denwen.H.isLoggedIn()){%>
 				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
-					<img class="absolute bottom rounded-7-top-right" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
-					<img class="absolute top rounded-5-top-right transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
+					<img alt="Buy" class="absolute bottom rounded-7-top-right" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
+					<img alt="Buy" class="absolute top rounded-5-top-right transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
 				</a>
 	    <%}%>
       	
@@ -61,7 +61,7 @@
 			<div class="title-box txt l relative rounded-3 overflow-hidden">
 					
 				<a href="<%=purchase.get('user').path('purchase_photo')%>">
-		      <img class="user-photo xl rounded-3 absolute" 
+		      <img class="user-photo xl rounded-3 absolute" alt="<%=purchase.get('user').fullName()%>"
             src="<%=purchase.get('user').get('square_image_url')%>" />
 		    </a>
 		    
@@ -137,7 +137,7 @@
 	      
 	      <%if(interaction) {%>
 	        <div class="add-comment-box relative">
-	          <img class="user-photo m absolute rounded-3-left" 
+	          <img class="user-photo m absolute rounded-3-left" alt=""
 	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
 	          <input type="text" 
 	            id="purchase_comment_data_<%=purchase.get('id')%>"

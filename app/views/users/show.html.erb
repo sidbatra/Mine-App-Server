@@ -41,7 +41,8 @@
 		        			title="<%=user.full_name%>">
 		        			
 				      		<%=image_tag user.square_image_url,
-	                    :class => "user-photo s rounded-2"%>
+	                    :class => "user-photo s rounded-2",
+	                    :alt => user.full_name%>
 				      	</a>
 			        </li>
 		              
@@ -79,7 +80,8 @@
 		        			title="<%=user.full_name%>">
 		        			
 				      		<%=image_tag user.square_image_url,
-	                    :class => "user-photo s rounded-2"%>
+	                    :class => "user-photo s rounded-2",
+	                    :alt => user.full_name%>
 				      	</a>
 			        </li>
 	 

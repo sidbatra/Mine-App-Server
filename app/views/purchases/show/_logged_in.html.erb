@@ -15,7 +15,9 @@
 	                  by_bought_at.limit(8).each do |purchase|%>
 	        <%cache ["v4",purchase,"teaser","purchase"] do%>
 	          <div id="purchase_thumb_<%=purchase.id%>" class="item">
-	            <%=link_to image_tag(purchase.square_url, :class => 'item-photo opacity-90-100'),
+	            <%=link_to image_tag(purchase.square_url, 
+	            		:class => 'item-photo opacity-90-100',
+	            		:alt => purchase.title),
 	                	purchase_url(
 	                    purchase.user.handle,
 	                    purchase.handle,
