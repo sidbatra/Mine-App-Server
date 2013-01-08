@@ -10,9 +10,6 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Info
       @view = "info"
 
-    when WelcomeFilter::Learn
-      @view = "show"
-
     when WelcomeFilter::Connect
       @view = "connect"
 
@@ -23,19 +20,19 @@ class WelcomeController < ApplicationController
       mine_purchase_emails
       @view = "purchases/index"
 
-    when WelcomeFilter::Create
-      @suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
-                      for_gender(self.current_user.gender).
-                      by_weight.
-                      limit(3)
-      @suggestions << Suggestion.select(:id,:title,:thing,
-                                              :example,:image_path).
-                                      for_thing("item").first
+    #when WelcomeFilter::Create
+    #  @suggestions = Suggestion.select(:id,:title,:thing,:example,:image_path).
+    #                  for_gender(self.current_user.gender).
+    #                  by_weight.
+    #                  limit(3)
+    #  @suggestions << Suggestion.select(:id,:title,:thing,
+    #                                          :example,:image_path).
+    #                                  for_thing("item").first
 
-      @current_suggestion_id = params[:suggestion_id] ? 
-                                params[:suggestion_id] : 0
+    #  @current_suggestion_id = params[:suggestion_id] ? 
+    #                            params[:suggestion_id] : 0
 
-      @view = "create"
+    #  @view = "create"
     else
       raise IOError, "Incorrect welcome show ID"
     end
