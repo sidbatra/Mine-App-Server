@@ -16,6 +16,9 @@ class WelcomeController < ApplicationController
     when WelcomeFilter::Connect
       @view = "connect"
 
+    when WelcomeFilter::Share
+      @view = "share"
+
     when WelcomeFilter::History
       mine_purchase_emails
       @view = "purchases/index"
@@ -50,7 +53,7 @@ class WelcomeController < ApplicationController
 
     case @filter
     when :info
-      @success_target = welcome_path(WelcomeFilter::Learn)
+      @success_target = welcome_path(WelcomeFilter::Connect)
       @error_target   = welcome_path(WelcomeFilter::Info)
 
       other_user = User.find_by_email params[:email]

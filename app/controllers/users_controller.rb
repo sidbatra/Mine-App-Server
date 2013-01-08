@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         elsif !@user.email.present? || !@user.gender.present?
           url = welcome_path(WelcomeFilter::Info)
         elsif @user.is_fresh 
-          url = welcome_path(WelcomeFilter::Learn) 
+          url = welcome_path(WelcomeFilter::Connect) 
         elsif target
           url = target
         else

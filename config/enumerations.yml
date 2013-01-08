@@ -105,6 +105,7 @@
     Connect: 'connect'
     History: 'history'
     Create: 'create'
+    Share: 'share'
   OGObject:
     Purchase: "getmineapp:purchase" 
     StoreName: "getmineapp:store_name" 
