@@ -656,8 +656,13 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .progress-message.working .message-working { display:block; }
 .progress-message.working .message-nothing { display:none; }
-.progress-message.nothing .message-nothing { display: block; }
+.progress-message.working .message-wiped { display:none; }
 .progress-message.nothing .message-working { display: none; }
+.progress-message.nothing .message-wiped { display: none; }
+.progress-message.nothing .message-nothing { display: block; }
+.progress-message.wiped .message-working { display: none; }
+.progress-message.wiped .message-nothing { display: none; }
+.progress-message.wiped .message-wiped { display: block; }
 	
 .float-loader {
 	width: 266px;

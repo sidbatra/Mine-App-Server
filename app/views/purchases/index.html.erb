@@ -72,9 +72,18 @@
 	     			:class => "cat rounded-5",
 	     			:style => "padding-bottom: 20px;"%>
     </span>
+
     <span class="message-nothing">
-	    Sorry, Mine couldn't find any<br class="rwd-show"> of your e-receipts at this time.<br class="rwd-show"> 
-	    <a class="light underlined" href="<%=root_path(:src => 'no_purchases')%>">Close</a>
+	    Sorry, Mine couldn't find any
+      <br class="rwd-show"> of your e-receipts at this time.<br class="rwd-show"> 
+	    <a class="light underlined" href="<%=root_path%>">Close</a>
+    </span>
+
+    <span class="message-wiped">
+	    All clear.
+	    <a class="light underlined purchases-submit" 
+          id="" 
+          href="javascript:void(0)">Done</a>
     </span>
   </div>
 
@@ -85,7 +94,7 @@
     new Denwen.Views.Purchases.Unapproved({
       source  : "<%=h @source%>",
       mode : "<%=h params[:mode]%>",
-      successURL: "<%=user_path(self.current_user.handle,:src =>'mined')%>",
+      successURL: "<%=is_onboarding? ? welcome_path(WelcomeFilter::Share) : share_profile_path%>",
       successZeroURL: "<%=root_path(:src => 'not_mined')%>"
       });
   </script>
