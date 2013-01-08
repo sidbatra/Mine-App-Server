@@ -759,7 +759,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	min-height: 0;
 	height: 32px !important;
 	line-height: 140% !important;
-	overflow: hidden;
+	padding: 0 !important;
 	text-overflow: ellipsis; }
 	
 .feed.grid .item .panel .title-box .user-photo.xl {
@@ -768,6 +768,9 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .feed.grid .item .panel .endorsement-box, 
 .feed.grid span.time { display: none; }
+
+.feed.grid .grid-only { display: block !important; }
+.feed.grid .grid-nowrap { white-space: nowrap; }
 
 
 /* --- Feed Grid No-User-Photo --- */

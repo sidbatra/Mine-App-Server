@@ -82,11 +82,14 @@
 			
 			    <a id="purchase_title_<%=purchase.get('id')%>"
 	            href="<%=purchase.get('source_url')%>" 
-	            class="em light link-out" 
+	            class="em light link-out grid-nowrap" 
 	            target="_blank"><%=purchase.escape('title')%></a> 
+	        
+	        
+	        <br class="grid-only" style="display: none;">
 			
 			    <%if(purchase.get('store')){%>
-			      <span class="store-name">
+			      <span class="store-name grid-nowrap">
 			      	from <%=purchase.get('store').escape('name')%>
 			      </span>
 			    <%}%>
