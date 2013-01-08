@@ -609,12 +609,11 @@ a.feed-intro .highlight { font-weight: bold; }
 	margin-top: -24px;
 	z-index: 2; }
 	
-.importer-top-bar span.indicator {
+.importer-top-bar .indicator {
 	font-size: 0;
 	line-height: 32px;
 	color: white;
-	z-index: 2;
-	background: pink; }
+	z-index: 2; }
 
 .importer-top-bar .indicator img.sync,
 .importer-top-bar .indicator img.store-logo,
@@ -771,6 +770,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .feed.grid .grid-only { display: block !important; }
 .feed.grid .grid-nowrap { white-space: nowrap; }
+.feed.grid .grid-normal-weight { font-weight: normal; }
 
 
 /* --- Feed Grid No-User-Photo --- */
