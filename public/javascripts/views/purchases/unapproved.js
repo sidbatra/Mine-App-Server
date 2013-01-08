@@ -20,7 +20,6 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.centralMessageEl = '#central_message';
     this.submitEl = '';
     this.submitEls = $('a.purchases-submit');
-    this.lowerSubmitEl = '#lower_submit_button';
     this.submitEnabled = false;
 
 
@@ -78,10 +77,6 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   updateProgressUI: function(progress,store) {
     var percent = 100 - progress * 100 + '%';
     $(this.progressBarEl).css('right',percent);
-
-    if(progress == 1) {
-      $(this.lowerSubmitEl).show();
-    }
 
     if(store) {
       $(this.progressStoreEl).html(Denwen.JST['purchases/importer/store']({
