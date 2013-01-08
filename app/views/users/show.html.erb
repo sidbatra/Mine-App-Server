@@ -102,12 +102,6 @@
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> Mine
 </div>
 
-<%if is_current_user(@user) && @user.inverse_followings_count.zero?%>
-  <div class="feed-intro well-box rounded-8">
-    Share your mine with this link: http://<%=CONFIG[:host]%>/<%=@user.handle%>
-  </div>
-<%end%>
-
 <div class="feed-container">
 	<div class="profile-feed relative">
 	  <%unless @user.purchases_count.zero?%>
