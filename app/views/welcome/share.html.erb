@@ -1,36 +1,50 @@
-<div class="feed-container onboarding relative rounded-8-top" style="background: white; margin-top: 2px; padding: 5.384615384615%;">
+<div class="feed-container onboarding relative rounded-8-top" 
+    style="background: white; margin-top: 2px; padding: 5.384615384615%;">
 
-	<div class="steps absolute unselectable">
-		<span>
-			1. Connect
-		</span> 
-		<span style="padding: 0 6px;">
-			2. Review   
-		</span>
-		<span style="color: #ccc;">
-			3. <span class="rwd-hide">Your </span>Mine
-		</span>
-	</div>
+  <%if is_onboarding?%>
+    <div class="steps absolute unselectable">
+      <span>
+        1. Connect
+      </span> 
+      <span style="padding: 0 6px;">
+        2. Review   
+      </span>
+      <span style="color: #ccc;">
+        3. <span class="rwd-hide">Your </span>Mine
+      </span>
+    </div>
+  <%end%>
 
 	<%=image_tag "import-star-black-check-144-2x.png",
 		      :class => "star absolute"%>
 
 	<h1 style="color: #333; padding: 12px 0 6px;">
-		3. Success
+    <%if is_onboarding?%>
+      3. Success
+    <%else%>
+      You're all set
+    <%end%>
 	</h1>
 	
 	<h2 style="color: #999;">
-		Your Mine is ready for primetime.
+    <%if is_onboarding?%>
+      Your Mine is ready for primetime.
+    <%else%>
+      Your Mine is up to date.
+    <%end%>
 	</h2>
 	
 	<div class="txt s" style="color: #999; padding-top: 10px;">
 		Tell friends and followers about it:
 	</div>
 	
-	<div class="hero fb rounded-8 border-box inline-block" style="width: 32%; margin-right: 6px;">
+	<div class="hero fb rounded-8 border-box inline-block" 
+    style="width: 32%; margin-right: 6px;">
 		
-		<a id="" class="btn-hero rounded-6 inline-block border-box transition-bg" 
-		    href="" style="width: 100%;">
+		<a id="fb_share_button" 
+        class="btn-hero rounded-6 inline-block border-box transition-bg" 
+		    href="javascript:void(0)" 
+        style="width: 100%;">
 		  <%=image_tag "logos/hero-fshare-2x.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
@@ -40,8 +54,11 @@
 	
 	<div class="hero rounded-8 border-box inline-block" style="width: 32%">
 		
-		<a id="" class="btn-hero rounded-6 inline-block border-box transition-bg" 
-		    href="" style="width: 100%;">
+		<a id="tw_share_button" 
+      class="btn-hero rounded-6 inline-block border-box transition-bg" 
+	    href='javascript:void(0)'
+      style="width: 100%;">
+
 		  <%=image_tag "logos/hero-tweet-2x.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
@@ -51,11 +68,12 @@
       
 </div> <!-- /feed-container -->
 
-<div class="feed-container border-box rounded-8-bottom" style="background: #f8f8f8; padding: 5.384615384615%;">
+<div class="feed-container border-box rounded-8-bottom" 
+  style="background: #f8f8f8; padding: 5.384615384615%;">
 			      
 	<div class="txt s">
 		<a class="light opacity-80-100 transition-opacity" 
-        href="<%=root_path(:src => 'skip')%>">
+        href="<%=user_path(self.current_user.handle,:src => 'share')%>">
 			<b>View your Mine &raquo;</b>
 		</a>
 	</div>
@@ -65,7 +83,8 @@
 
 <%content_for :javascript do%>
   <script type="text/javascript">
-    new Denwen.Views.Welcome.Connect({
-          successURL: "<%=welcome_path(WelcomeFilter::History,:mode => 'live')%>"});
+    new Denwen.Views.Welcome.Share({
+          el: $('#container'),
+          source: "<%=h @source%>"});
   </script>
 <%end%>

@@ -71,6 +71,12 @@ ActionController::Routing::Routes.draw do |map|
     :controller => :users,
     :action => :index,
     :aspect => "suggestions"
+  
+  map.share_profile '/share',
+    :controller => :welcome,
+    :action => :show,
+    :id => 'share'
+
 
   ##
   # Resoure based routes
