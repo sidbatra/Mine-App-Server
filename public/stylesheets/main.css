@@ -622,6 +622,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	vertical-align: top;
 	padding: 12px 0; }
 
+.importer-top-bar .indicator img.sync { padding-right: 6px; }
+
 .importer-top-bar .close {
 	top: 50%;
 	right: 2.734375%;
