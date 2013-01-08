@@ -168,6 +168,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
 
     if(this.livePurchases.purchases.isEmpty()) {
       $(this.centralMessageEl).addClass('nothing');
+      $(this.progressMessageEl).hide();
     }
     else {
       this.enableSubmitButton();
@@ -189,6 +190,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
 
     if(this.stalePurchases.purchases.isEmpty()) {
       $(this.centralMessageEl).addClass('nothing');
+      $(this.progressMessageEl).hide();
     }
     else {
       this.enableSubmitButton();
