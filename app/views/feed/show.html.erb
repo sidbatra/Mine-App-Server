@@ -189,8 +189,9 @@
 <%if self.current_user.inverse_followings_count.zero?%>
 <a href="<%=new_invite_path(:src => "feed")%>" 
   class="feed-intro well-box rounded-8">
-	Your feed needs some love!
-	<span class="highlight">Invite friends</span> to discover what they're buying.
+	<span class="rwd-hide">Get curious.</span> 
+	<span style="font-weight: bold; color: white;" 
+	class="transition-opacity opacity-80-100">Invite friends</span> to discover what they're buying.
 </a>
 <%end%>
 
