@@ -1,48 +1,65 @@
-<div class="bar top border-box gradient v-555-444" style="text-align: center; padding: 6px 0;">
+<div class="importer-top-bar fixed">
 	
   <%=link_to_if !is_onboarding?,
-      image_tag("logos/mine-h-white-40-brighter-2x.png", 
-        :class => "logo absolute"),
+      image_tag("home/home-mine-logo-2x.png", 
+        :class => "logo absolute rwd-hide"),
       root_path(:src => "unapproved_purchases")%>
-      
-	<div class="inset-container relative well-box border-box rounded-8" style="text-align: left; width: 692px;">
-				
-		<div id="progress_message" class="inset-message inline-block working">
-			<span class="message-working">
-    	<%=image_tag "loading/loading-sync-FFF-474747.gif",
-     			:class => "sync"%>
-     	<span class="rwd-hide">Loading your recent purchases...</span>
-			</span>
-			<span class="message-complete">
-				<i class="icon-ok icon-white"></i> 
-				Done.
-			</span>
-			<span class="message-update">
-				<i class="icon-ok icon-white"></i> 
-				<span class="rwd-hide">Review your recent purchases:</span>
-			</span>
- 	 	</div>
-
-	  <a href="javascript:void(0)"
-	      id="submit_button"
-				class="btn btn-silver btn-large border-box rounded-3 shaded disabled"
-				style="width: 176px; vertical-align: top; float: right;">
+	     							
+	<div id="progress_message" class="indicator working relative">
+	
+    <span id="progress_store" class="message-working">
+    </span>
+		
+		<span class="message-complete">
+			All done.
+			<a href="javascript:void(0)"
+        id="create_submit_button"
+				class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
+				style="width: 168px; vertical-align: top; margin: 16px 0 16px 8px;">
 				<span class="hide-when-loading">
-					Import these items
+					Create your Mine
 				</span>
 				<i class="icon-loading icon-white"></i>
-		</a>
-	
-  </div>
+			</a>
+		</span>
+		
+		<span class="message-update">
+			Your latest.
+			<a href="javascript:void(0)"
+        id="update_submit_button"
+				class="btn btn-silver btn-large border-box rounded-3 shaded purchases-submit"
+				style="width: 120px; vertical-align: top; margin: 16px 0 16px 8px;">
+				<span class="hide-when-loading">
+					Add to Mine
+				</span>
+				<i class="icon-loading icon-white"></i>
+			</a>
+		</span>
+		
+	 	</div> <!-- /indicator -->
       
   <a class="close opacity-60-80 absolute alias-smooth transition-opacity rwd-hide" 
     href="<%=is_onboarding? ? welcome_path(WelcomeFilter::Connect) : root_path%>">
 		×
 	</a>
 	
+	<div id="progress_bar" class="progress-bar absolute gradient v-58595b-262223">
+	</div>
+	
 </div>
 
-<div class="feed-grid-container border-box rounded-8-bottom" style="padding-bottom: 32px;">
+<div id="feed_spinner" class="float-loader fixed border-box rounded-8 rwd-hide">
+
+    <%=image_tag "importer/spinner-32.gif",
+           :class => "absolute",
+           :style => "top: 18px; left: 18px;"%>
+    <span style="padding-left: 52px;">
+      Loading your purchases…
+    </span>
+		
+</div>
+
+<div class="feed-grid-container border-box rounded-8-bottom" style="padding-bottom: 28px;">
 
 	<div id="feed" class="feed grid no-user-photo no-user-name no-user-bought-pronoun actions link-disabled rounded-8-bottom">
   </div>
@@ -52,14 +69,20 @@
     style="padding-top: 32px; line-height: 24px; color: #999; font-size: 16px; text-align: center;">
 		<span class="message-working">
 				<%=image_tag "cat-wait.gif",
-	     			:class => "rounded-5",
+	     			:class => "cat rounded-5",
 	     			:style => "padding-bottom: 20px;"%>
-	    <br>
-	    We'll only be a moment...
     </span>
+
     <span class="message-nothing">
-	    Sorry, Mine couldn't find any<br class="rwd-show"> of your e-receipts at this time.<br class="rwd-show"> 
-	    <a class="light underlined" href="<%=root_path(:src => 'no_purchases')%>">Close</a>
+	    Couldn't find any e-receipts at this time.<br class="rwd-show"> 
+	    <a class="light" href="<%=root_path%>" style="padding-left: 3px;">Close</a>
+    </span>
+
+    <span class="message-wiped">
+	    All clear.
+	    <a class="light underlined purchases-submit" 
+          id="" 
+          href="javascript:void(0)">Done</a>
     </span>
   </div>
 
@@ -70,7 +93,7 @@
     new Denwen.Views.Purchases.Unapproved({
       source  : "<%=h @source%>",
       mode : "<%=h params[:mode]%>",
-      successURL: "<%=user_path(self.current_user.handle,:src =>'mined')%>",
+      successURL: "<%=is_onboarding? ? welcome_path(WelcomeFilter::Share) : share_profile_path%>",
       successZeroURL: "<%=root_path(:src => 'not_mined')%>"
       });
   </script>

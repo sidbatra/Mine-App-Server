@@ -161,7 +161,7 @@ h2 { font-size: 26px; }
 	height: 9px;
 	vertical-align: 0px;
 	padding-right: 1px;
-	margin-left: -2px; }
+	margin-left: -5px; }
 	
 .btn.btn-large img.f-box {
 	height: 13px;
@@ -266,13 +266,6 @@ footer a:hover { color: white; opacity: 1.0; filter: alpha(opacity=100); }
 	
 	h1 { font-size: 38px; }
 	h2 { font-size: 20px; }
- 
- 
- 
-/*
-	.header-home, .container, footer .inner { width: 100%; }
-	footer { padding: 0 11px; text-align: right; }
-*/
 		
 	.rwd-show { display: inline-block !important; }
 	.rwd-hide { display: none !important; }

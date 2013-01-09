@@ -11,12 +11,16 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     this.successZeroURL = this.options.successZeroURL;
     this.liveMode = this.mode == "live";
     this.rejectedPurchaseIDs = [];
+    this.isFinished = false;
 
     this.feedEl  = '#feed';
-    this.feedSpinnerEl  = '#feed-spinner';
+    this.feedSpinnerEl  = '#feed_spinner';
+    this.progressBarEl = '#progress_bar';
+    this.progressStoreEl = '#progress_store';
     this.progressMessageEl = '#progress_message';
     this.centralMessageEl = '#central_message';
-    this.submitEl = '#submit_button';
+    this.submitEl = '';
+    this.submitEls = $('a.purchases-submit');
     this.submitEnabled = false;
 
 
@@ -28,6 +32,11 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       this.livePurchases.bind(
         Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesFinished,
         this.livePurchasesFinished,
+        this);
+
+      this.livePurchases.bind(
+        Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesProgress,
+        this.livePurchasesProgress,
         this);
 
       this.livePurchases.bind(
@@ -58,9 +67,44 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
       this.purchaseCrossClicked,
       this);
 
-    $(this.submitEl).click(function(){self.submitClicked();return false;});
+    //$(this.submitEl).click(function(){self.submitClicked();return false;});
+    $(this.submitEls).click(function(){self.submitEl = '#' + this.id;self.submitClicked();return false;});
 
     this.setAnalytics();
+  },
+
+  //
+  //
+  updateProgressUI: function(progress,store) {
+    var percent = 100 - progress * 100 + '%';
+    $(this.progressBarEl).css('right',percent);
+
+    if(store) {
+      $(this.progressStoreEl).html(Denwen.JST['purchases/importer/store']({
+        storeImageURL: store.get('medium_url')
+        }));
+    }
+  },
+
+  //
+  //
+  testForPurchasesWiped: function() {
+    var result = false;
+    var totalPurchasesCount = this.liveMode ? 
+                                this.livePurchases.purchases.length : 
+                                this.stalePurchases.purchases.length;
+
+    if(this.isFinished && 
+        totalPurchasesCount != 0 &&
+        this.rejectedPurchaseIDs.length == totalPurchasesCount) {
+
+      $(this.centralMessageEl).show();
+      $(this.centralMessageEl).addClass('wiped');
+      $(this.progressMessageEl).hide();
+      result = true;
+    }
+
+    return result;
   },
 
   // Fire various tracking events
@@ -73,7 +117,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   enableSubmitButton: function() {
-    $(this.submitEl).removeClass('disabled');
+    //$(this.submitEl).removeClass('disabled');
     $(this.submitEl).removeClass('load');
     this.submitEnabled = true;
   },
@@ -81,8 +125,8 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   disableSubmitButton: function(withSpinner) {
     if(withSpinner)
       $(this.submitEl).addClass('load');
-    else
-      $(this.submitEl).addClass('disabled');
+    //else
+    //  $(this.submitEl).addClass('disabled');
 
     this.submitEnabled = false;
   },
@@ -135,13 +179,23 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
     $(this.centralMessageEl).hide();
   },
 
+  livePurchasesProgress: function(progress,store) {
+    this.updateProgressUI(progress,store);
+  },
+
   livePurchasesFinished: function() {
+    this.updateProgressUI(1,null);
+    this.isFinished = true;
+
     $(this.progressMessageEl).addClass('complete');
 
     if(this.livePurchases.purchases.isEmpty()) {
+      $(this.centralMessageEl).show();
       $(this.centralMessageEl).addClass('nothing');
+      $(this.progressMessageEl).hide();
     }
     else {
+      this.testForPurchasesWiped();
       this.enableSubmitButton();
     }
   },
@@ -155,12 +209,18 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   },
 
   stalePurchasesFinished: function() {
+    this.updateProgressUI(1,null);
+    this.isFinished = true;
+
     $(this.progressMessageEl).addClass('update');
 
     if(this.stalePurchases.purchases.isEmpty()) {
+      $(this.centralMessageEl).show();
       $(this.centralMessageEl).addClass('nothing');
+      $(this.progressMessageEl).hide();
     }
     else {
+      this.testForPurchasesWiped();
       this.enableSubmitButton();
     }
   },
@@ -170,6 +230,7 @@ Denwen.Views.Purchases.Unapproved = Backbone.View.extend({
   //
   purchaseCrossClicked: function(purchase) {
     this.rejectedPurchaseIDs.push(purchase.get('id'));
+    this.testForPurchasesWiped();
   }
 
 });

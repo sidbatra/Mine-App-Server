@@ -342,18 +342,22 @@ class User < ActiveRecord::Base
   def google_authorized?
     self.go_email.present? && self.go_token.present? && self.go_secret.present?
   end
+  alias_method :is_google_authorized, :google_authorized?
 
   def yahoo_authorized?
     yh_token.present? && yh_secret.present? && yh_session_handle.present?
   end
+  alias_method :is_yahoo_authorized, :yahoo_authorized?
 
   def hotmail_authorized?
     hm_email.present? && hm_password.present? && hm_salt.present?
   end
+  alias_method :is_hotmail_authorized, :hotmail_authorized?
 
   def email_authorized?
     google_authorized? || yahoo_authorized? || hotmail_authorized?
   end 
+  alias_method :is_email_authorized, :email_authorized?
 
   def authorized_emails
     emails = []
@@ -365,7 +369,6 @@ class User < ActiveRecord::Base
     emails
   end
 
-  alias_method :is_email_authorized, :email_authorized?
 
   def refresh_yahoo_token
     yahoo_api = YahooAPI.new yh_token,yh_secret,yh_session_handle

@@ -41,7 +41,8 @@
 		        			title="<%=user.full_name%>">
 		        			
 				      		<%=image_tag user.square_image_url,
-	                    :class => "user-photo s rounded-2"%>
+	                    :class => "user-photo s rounded-2",
+	                    :alt => user.full_name%>
 				      	</a>
 			        </li>
 		              
@@ -79,7 +80,8 @@
 		        			title="<%=user.full_name%>">
 		        			
 				      		<%=image_tag user.square_image_url,
-	                    :class => "user-photo s rounded-2"%>
+	                    :class => "user-photo s rounded-2",
+	                    :alt => user.full_name%>
 				      	</a>
 			        </li>
 	 
@@ -96,51 +98,12 @@
 </div> <!-- /profile-box -->
 
 
-<%if @source == 'mined'%>
-  <!-- Post-email-import share -->
-  <div class="well-box border-box txt m rounded-8">
-
-    <i class="icon-ok icon-white" style="padding-right: 4px;"></i>
-    Import successful.<span class="rwd-hide"> Share the update?</span>
-    
-    <!-- Tweet Button--> 
-    <span style="float:right;">
-	    <a href='https://twitter.com/share'
-	        class='twitter-share-button'
-	        data-lang='en'
-	        data-count='none'
-	        data-related='getmine'
-	        data-dnt='true'
-	        data-text='I just added some new items to my @getmine profile:'
-	        data-url=<%=user_url(@user.handle)%>>
-	    </a> 	
-    </span>
-    
-    
-    <!-- Facebook Share Button -->
-    <a href='javascript:void(0)'
-        id='fb_share_button'
-        style='float: right; vertical-align: top; margin-right: 6px;'>
-        <%=image_tag "f-share-20.png",
-     			:style => "vertical-align: top;"%>
-    </a> 	
-
-  </div> <!-- Post-email-import share -->
-<%end%>
-
-
 <div class="box-title profile-feed-title relative" style="padding-bottom: 14px;">
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> Mine
 </div>
 
-<%if is_current_user(@user) && @user.inverse_followings_count.zero?%>
-  <div class="feed-intro well-box rounded-8">
-    Share your mine with this link: http://<%=CONFIG[:host]%>/<%=@user.handle%>
-  </div>
-<%end%>
-
-<div class="feed-container">
-	<div class="profile-feed relative">
+<div class="feed-container" style>
+	<div class="profile-feed relative" style="padding-top: 12px;">
 	  <%unless @user.purchases_count.zero?%>
 	    <%cache ["v7",@user,"purchases"] do%>
 	      <%=render :partial => "purchases/card",

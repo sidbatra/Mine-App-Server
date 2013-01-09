@@ -1,6 +1,7 @@
 <div class="comment-box relative txt m">
   <a href="<%=comment.get('user').path('comment_photo')%>">
     <img class="user-photo m absolute rounded-3" 
+    	alt="<%=comment.get('user').get('first_name') + ' ' + comment.get('user').get('last_name') %>"
       src="<%=comment.get('user').get('square_image_url')%>" />
   </a>
   <div class="user-name arial txt xs">

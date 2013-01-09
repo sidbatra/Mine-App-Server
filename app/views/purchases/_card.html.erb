@@ -8,7 +8,9 @@
                     purchase.handle,
                     :src => "profile")%>" 
           class="">
-      	<%=image_tag purchase.square_url, :alt => "", :class => "item-photo"%>
+      	<%=image_tag purchase.square_url, 
+      			:alt => purchase.title, 
+      			:class => "item-photo"%>
     	</a>
     </div>
     

@@ -1,66 +1,91 @@
-<div class="well-box padded border-box rounded-8 relative">
+<div class="feed-container onboarding relative rounded-8-top" style="background: white; margin-top: 2px; padding: 5.384615384615%;">
 
-	<h2>View your recent purchases, automagically</h2>
+	<div class="steps absolute unselectable">
+		<span style="color: #ccc;">
+			1. Connect
+		</span> 
+		<span style="padding: 0 6px;">
+			2. Review   
+		</span>
+		<span>
+			3. <span class="rwd-hide">Your </span>Mine
+		</span>
+	</div>
+
+	<%=image_tag "import-star-black-144-2x.png",
+		      :class => "star absolute"%>
+
+	<h1 style="color: #333; padding: 12px 0 6px;">
+		1. Connect
+	</h1>
 	
-	<p class="txt m border-box">
-		Pick the email you use for Amazon, iTunes, etc…
-	</p>
+	<h2 style="color: #999;">
+		Connect the email you use <br>
+		for online shopping:
+	</h2>
 	
-	<div style="padding: 12px 0 22px;">
+	<div class="txt s" style="color: #999; padding-top: 10px;">
+		Amazon, eBay, iTunes etc...
+	</div>
 	
+	<div class="hero rounded-8 border-box">
+		
 		<a id="google_connect_button"
-		   class="btn btn-large btn-silver shaded rounded-3-left inline-block" 
+		   class="btn-hero rounded-6-left inline-block border-box transition-bg" 
 		    href="javascript:void(0)" 
-		    style="width: 30%;"
+		    style="width: 33%;"
         rel="tooltip"
         title="Gmail or Google Apps"
         data-placement="bottom">
-		  <%=image_tag "logos/email-gmail-logo-30.png",
+		  <%=image_tag "logos/hero-gmail-2x.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
 		</a>
 		
 		<a id="hotmail_connect_button"
         onclick="$('#hotmail_connect').slideToggle('fast');$('#hotmail_email').phocus()"
-		    class="btn btn-large btn-silver shaded square inline-block" 
-		    style="width: 30%; border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);"
-        rel="tooltip"
+		    class="btn-hero square inline-block border-box transition-bg pointer" 
+		    style="width: 34%; border-left: 2px solid #ccc;"        
+		    rel="tooltip"
         title="Hotmail, Outlook.com, Live or MSN"
         data-placement="bottom">
-		  <%=image_tag "logos/email-hotmail-logo-30.png",
+		  <%=image_tag "logos/hero-hotmail-2x.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
 		</a>
 		
 		<a id="yahoo_connect_button"
-		    class="btn btn-large btn-silver shaded rounded-3-right inline-block" 
+		    class="btn-hero rounded-6-right inline-block border-box transition-bg" 
 		    href="javascript:void(0)" 
-		    style="width: 30%; border-left: 1px solid #ababab; 
-          border-left: 1px solid rgba(0,0,0,0.16);"
+		    style="width: 33%; border-left: 2px solid #ccc;"
         rel="tooltip"
         title="Yahoo, sbcglobal.net, att.net, verizon.net, bellsouth.net, swbell.net or ameritech.net"
         data-placement="bottom">
-		  <%=image_tag "logos/email-yahoo-logo-30.png",
+		  <%=image_tag "logos/hero-yahoo-2x.png",
 		      :class => "hide-when-loading"%>
 		  <i class="icon-loading icon-white"></i>
 		</a>
-
-    <%=render :partial => "hotmail/auth_dialog"%>
 		
 	</div>
+	
+	    <%=render :partial => "hotmail/auth_dialog"%>
+      
+</div> <!-- /feed-container -->
 
+<div class="feed-container border-box rounded-8-bottom" style="background: #f8f8f8; padding: 5.384615384615%;">
 
-	<div class="txt s">
-		Mine revives e-receipts in your inbox. No emails are stored.
-		<a style="float: right;" class="opacity-80-100 transition-opacity" 
+	<%=image_tag "logos/store-grid-5x3-2x.png",
+			      :class => ""%>
+			      
+	<div class="txt s" style="padding-top: 4%; text-align: center; color: #999;">
+		<span class="rwd-hide">Mine revives e-receipts in your inbox. </span>No emails are stored.
+		<a style="float: right; color: #777;" class="opacity-80-100 transition-opacity" 
         href="<%=root_path(:src => 'skip')%>">
 			Skip
 		</a>
 	</div>
-      
 
-</div> <!-- /well-box -->
+</div>
 
 
 <%content_for :javascript do%>

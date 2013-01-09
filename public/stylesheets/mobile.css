@@ -36,9 +36,9 @@
 	.unit-box { width: 100% !important; }
 	.well-box { padding: 8px; }
 	
-	/* -- email importer -- */
+	/* -- importer -- */
 	
-	.inset-container { width: 100% !important; }
+	.importer-top-bar .inset-message { font-size: 16px; }
 	
 	/* -- chooser -- */
   .chooser .search-bar .search-container { width: 100%; }
@@ -64,9 +64,17 @@
   
   /* -- onboarding -- */
   
+  .onboarding h1 { font-size: 38px; }
+	.onboarding h2 { font-size: 20px; }
+	
+	.onboarding .steps { font-size: 12px; }
+  
   .feed-grid-container { 
+  	text-align: center;
   	width: 100%;
   	padding-left: 4%; }
+  	
+  .feed-grid-container .cat { width: 96%; margin-right: 4%; }
   
   .feed.grid .item {
   	width: 44%;

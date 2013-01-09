@@ -110,7 +110,10 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
         metadata = JSON.parse(metadata)
         var progress = metadata["progress"]
         var store = new Denwen.Models.Store(metadata["store"]);
-        //console.log(progress,store);
+        this.trigger(
+          Denwen.Partials.Purchases.Unapproved.Live.Callback.PurchasesProgress,
+          progress,
+          store)
       }
 
       setTimeout(function(){self.fetchUser();},this.userRetryInterval);
@@ -128,6 +131,7 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
 
 Denwen.Partials.Purchases.Unapproved.Live.Callback = {
   PurchasesStarted: "purchasesStarted",
+  PurchasesProgress: "purchasesProgress",
   PurchasesFinished: "purchasesFinished"
 };
 

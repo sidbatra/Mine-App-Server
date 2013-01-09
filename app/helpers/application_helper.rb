@@ -85,7 +85,7 @@ module ApplicationHelper
   def is_fullscreen_page?
     uri = request.request_uri
 
-    @is_fullscreen_page ||= uri.scan(/^\/welcome\/(intro|history)/).present? || 
+    @is_fullscreen_page ||= uri.scan(/^\/welcome\/(history)/).present? || 
                             uri.scan(/^\/purchases\/unapproved/).present?
   end
 

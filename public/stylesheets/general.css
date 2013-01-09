@@ -37,6 +37,7 @@ span.separator:before { content: "•"; }
 	
 .opaque { opacity: 1; filter: alpha(opacity=100); }
 
+.opacity-40 { opacity: 0.4; filter: alpha(opacity=40); }
 .opacity-50 { opacity: 0.5; filter: alpha(opacity=50); }
 .opacity-80,
 .opacity-80-100 { opacity: 0.8; filter: alpha(opacity=80); }
@@ -153,6 +154,16 @@ input.error:focus, textarea.error:focus {
 	background: linear-gradient(to bottom,  #f5f5f5 0%,#dddddd 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dddddd',GradientType=0 ); }
 	
+.gradient.v-58595b-262223 {
+	background: #58595b;
+	background: -moz-linear-gradient(top,  #58595b 0%, #262223 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#58595b), color-stop(100%,#262223));
+	background: -webkit-linear-gradient(top,  #58595b 0%,#262223 100%);
+	background: -o-linear-gradient(top,  #58595b 0%,#262223 100%);
+	background: -ms-linear-gradient(top,  #58595b 0%,#262223 100%);
+	background: linear-gradient(to bottom,  #58595b 0%,#262223 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#58595b', endColorstr='#262223',GradientType=0 ); }
+	
 .fb-favicon {
 	display: inline-block;
 	width: 14px;
@@ -177,7 +188,7 @@ input.error:focus, textarea.error:focus {
 
 .rounded-3 {
 	-webkit-border-radius: 3px !important;
-	-moz-border-radius: 3px 3px !important;
+	-moz-border-radius: 3px !important;
 	border-radius: 3px !important; }
 
 .rounded-3-left {
@@ -249,6 +260,16 @@ input.error:focus, textarea.error:focus {
 	-webkit-border-radius: 6px !important;
 	-moz-border-radius: 6px !important;
 	border-radius: 6px !important; }
+	
+.rounded-6-left {
+	-webkit-border-radius: 6px 0 0 6px !important;
+	-moz-border-radius::6px 0 0 6px !important;
+	border-radius: 6px 0 0 6px !important; }
+
+.rounded-6-right {
+	-webkit-border-radius: 0 6px 6px 0 !important;
+	-moz-border-radius: 0 6px 6px 0 !important;
+	border-radius: 0 6px 6px 0 !important; }
 	
 .rounded-6-top-right {
 	-webkit-border-radius: 0 6px 0 0 !important;
