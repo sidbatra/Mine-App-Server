@@ -17,6 +17,9 @@ body {
 	text-rendering: optimizelegibility; 
 	overflow-x: hidden; }
 
+body.bg-center-top-repeat { /* default */
+	background-repeat: repeat; }
+
 body.bg-no-repeat { /* default */
 	background-repeat: no-repeat;
 	background-color: #111; }
@@ -736,7 +739,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	right: 4px; }
 
 .feed.grid .item .photo-box .actions.top-right .btn-small {
-	background: none;
+	background: white;
 	height: 16px;
 	padding: 0 1px;
 	line-height: 16px !important;
