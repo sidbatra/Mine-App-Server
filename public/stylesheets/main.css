@@ -436,6 +436,13 @@ ul.notifications li.user-action-box {
 	text-align: right;
 	padding-right: 8px; }
 
+.hotmail-connect .form-row .invalid { 
+	display: none; 
+	padding-left: 9px; 
+	color: #d5432b;  }
+
+.hotmail-connect .invalid.error { display: inline-block; }
+	
 .hotmail-connect img.hotmail-brands { 
 	margin: 5px auto 8px; 
 	display: block; 
