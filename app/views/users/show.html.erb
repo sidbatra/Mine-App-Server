@@ -102,8 +102,8 @@
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> Mine
 </div>
 
-<div class="feed-container">
-	<div class="profile-feed relative">
+<div class="feed-container" style>
+	<div class="profile-feed relative" style="padding-top: 12px;">
 	  <%unless @user.purchases_count.zero?%>
 	    <%cache ["v7",@user,"purchases"] do%>
 	      <%=render :partial => "purchases/card",
