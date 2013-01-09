@@ -31,12 +31,20 @@ Denwen.Views.Welcome.Share = Backbone.View.extend({
   showFacebookFeedDialog: function() {
     var url     = 'http://getmine.com' + this.user.path('fb');
     var display = Denwen.Device.get("is_phone") ? 'touch' : 'popup';
+    var text = null;
+
+    if(Denwen.H.isOnboarding) {
+      text = "Some things I've bought recently";
+    }
+    else {
+      text = "My Mine has a few new items";
+    }
 
     FB.ui({method: 'feed', 
       link: url,
-      name:'Just added some new items on Mine',
+      name:text,
       caption: 'getmine.com',
-      description: 'You buy great things. Help others discover them too.',
+      description: 'View your purchase history · Browse · Shop',
       display: display},
       function(response) {});
   },
@@ -44,7 +52,14 @@ Denwen.Views.Welcome.Share = Backbone.View.extend({
   showTweetDialog: function() {
     var url = 'http://getmine.com/' + this.user.get('handle');
     var ref = 'http://getmine.com';
-    var text = 'I just added some new items to my @getmine profile:';
+    var text = null;
+    
+    if(Denwen.H.isOnboarding) {
+      text = "Some things I've bought recently: ";
+    }
+    else {
+      text = "Added a few new items to my Mine: ";
+    }
     
     var twitterURL = 'https://twitter.com/intent/tweet?' +
                      'original_referer=' + encodeURIComponent(ref) + '&' + 
