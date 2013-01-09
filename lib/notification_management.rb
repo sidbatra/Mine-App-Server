@@ -83,7 +83,7 @@ module DW
       def self.purchases_imported_reminder(user,count)
         target_user = user
         entity = user.first_name
-        event = "you have #{count} new unapproved purchases"
+        event = "you have #{count} new unapproved #{count == 1 ? "purchase" : "purchases"}"
 
         Notification.add(
                       target_user.id,
