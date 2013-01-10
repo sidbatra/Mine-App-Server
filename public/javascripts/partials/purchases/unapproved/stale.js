@@ -4,7 +4,7 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
 
   initialize: function() {
     this.oldestItemTimestamp = 0;
-    this.perPage = 50;
+    this.perPage = 100;
     this.loading = false;
     this.disabled = false;
     this.spinnerEl = this.options.spinnerEl;
