@@ -436,6 +436,13 @@ ul.notifications li.user-action-box {
 	text-align: right;
 	padding-right: 8px; }
 
+.hotmail-connect .form-row .invalid { 
+	display: none; 
+	padding-left: 9px; 
+	color: #d5432b;  }
+
+.hotmail-connect .invalid.error { display: inline-block; }
+	
 .hotmail-connect img.hotmail-brands { 
 	margin: 5px auto 8px; 
 	display: block; 
@@ -541,8 +548,7 @@ ul.notifications li.user-action-box {
 	height: 20px;
 	background: url("/images/loading/loading-snake-FFF-999-20.gif"); }
 	
-.onboarding .hotmail-connect input:focus { background: #f5f5f5; }
-.onboarding .hotmail-connect input:focus { background: #f8f8f8; }
+.onboarding input:focus { background: #f8f8f8; }
 
 
 /* Feed

@@ -4,10 +4,12 @@ Denwen.Partials.Auth.Hotmail = Backbone.View.extend({
     var self = this;
 
     this.loadClass = "load";
+    this.errorClass = "error";
     this.emailEl = "#hotmail_email";
     this.passwordEl = "#hotmail_password";
     this.submitEl = "#hotmail_submit_button";
     this.modalEl = "#hotmail_connect";
+    this.invalidEl = "#hotmail_invalid";
 
     $(this.emailEl).placeholder();
 
@@ -32,6 +34,7 @@ Denwen.Partials.Auth.Hotmail = Backbone.View.extend({
 
     var self = this;
 
+    $(this.invalidEl).removeClass(this.errorClass);
     $(this.submitEl).addClass(this.loadClass);
 
     $.ajax({
@@ -52,6 +55,7 @@ Denwen.Partials.Auth.Hotmail = Backbone.View.extend({
       this.trigger(Denwen.Partials.Auth.Hotmail.Callback.AuthAccepted);
     }
     else {
+      $(this.invalidEl).addClass(this.errorClass);
       Denwen.Track.action("Hotmail Authorization Rejected");
       this.trigger(Denwen.Partials.Auth.Hotmail.Callback.AuthRejected);
     }

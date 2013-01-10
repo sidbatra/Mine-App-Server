@@ -1,8 +1,12 @@
-<div class="well-box padded border-box rounded-8 relative">
-	<h2>Hi <%=h(self.current_user.first_name)%>!</h2>
-	<p class="txt m border-box" style="margin-bottom:20px">
-		Add a few details and you're set.
-	</p>
+<div class="feed-container onboarding relative rounded-8" style="background: white; margin-top: 2px; padding: 5.384615384615%;">
+
+	<h1 style="color: #333; padding: 12px 0 6px;">
+		Hi there
+	</h1>
+	
+	<h2 style="color: #999;">
+		Mine needs a few details to get started:
+	</h2>
 
 	 <%form_tag "/welcome",:method => :post,
 	    :class  => 'form-horizontal',
@@ -11,8 +15,8 @@
 
     <%=hidden_field_tag :filter,WelcomeFilter::Info%>
 
-    <div class="box-title" style="padding-top: 4px;">
-      Your Email - No spam, we promise.
+    <div class="box-title" style="padding-top: 24px;">
+      Email
     </div>
 
     <%if params[:exists]%>
@@ -30,11 +34,11 @@
           :class => "enter txt l rounded-3 border-box",
           :style => "width: 75%"%>
 
-    <div class="box-title" style="padding-top: 15px;">
-      Your Sex
+    <div class="box-title" style="padding-top: 24px;">
+      Sex
     </div>
     
-    <label class="txt l relative border-box pointer rounded-3-left gradient v-FFF-DDD unselectable" style="color: #555; text-shadow: 0 1px 0px white; display: inline-block; height: 32px; line-height: 32px; padding: 0 20px 0 38px; border-right: 2px solid #ddd;">
+    <label class="txt l relative border-box pointer unselectable" style="color: #555; text-shadow: 0 1px 0px white; display: inline-block; height: 32px; line-height: 32px; padding: 0 20px 0 38px; border-right: 2px solid #ddd;">
 	    <%=radio_button_tag :gender,"male",
 	        self.current_user.is_male?,
 	        :class => "absolute",
@@ -43,7 +47,7 @@
 	     Male
     </label>
 
-		<label class="txt l relative border-box pointer rounded-3-right gradient v-FFF-DDD unselectable" style="color: #555; text-shadow: 0 1px 0px white; display: inline-block; height: 32px; line-height: 32px; padding: 0 20px 0 38px;">
+		<label class="txt l relative border-box pointer unselectable" style="color: #555; text-shadow: 0 1px 0px white; display: inline-block; height: 32px; line-height: 32px; padding: 0 20px 0 38px;">
 	    <%=radio_button_tag :gender,"female",
 	        self.current_user.is_female? || self.current_user.gender.nil?,
 	        :class => "absolute",
@@ -56,17 +60,15 @@
 
     <button id="submit_button" 
         type="submit" 
-        class="btn btn-large border-box shaded rounded-5"
-        style="width: 100px; margin-top: 24px;">
+        class="btn btn-large btn-silver light border-box shaded rounded-5"
+        style="width: 120px; margin-top: 24px;">
         <span class="hide-when-loading">
           Next
-          <%=image_tag "icons/PNG-Arrows/32px-white/rounded-big-2-01-white.png", 
-                :style => "height: 14px; margin: 13px 0 0 4px; vertical-align: top;"%>
         </span>
         <i class="icon-loading icon-white"></i>
     </button> <!-- submit -->
   <%end%>
-</div>
+</div> <!-- /feed-container -->
 
 
 <%content_for :javascript do%>

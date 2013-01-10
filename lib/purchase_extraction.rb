@@ -183,14 +183,14 @@ module DW
         populate_authorized_emails
 
 
-        @emails.each do |email|
+        @emails.each_with_index do |email,email_index|
           next unless open_email_connection(email)
 
           #@stores.in_groups_of(3,false) do |group|
             #threads = []
 
-            @stores.each_with_index do |store,index|
-              update_mining_progress store,(index.to_f)/ @stores.length
+            @stores.each_with_index do |store,store_index|
+              update_mining_progress store,(store_index.to_f + (email_index.to_f * @stores.length)) / (@stores.length * @emails.length)
               #threads << Thread.new{mine_emails_from_store store}
               mine_emails_from_store store
             end
