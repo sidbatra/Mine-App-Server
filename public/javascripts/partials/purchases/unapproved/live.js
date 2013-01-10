@@ -7,8 +7,8 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
 
     this.finished = false;
 
-    this.purchasesRetryInterval = 5 * 1000;
-    this.userRetryInterval = 3 * 1000;
+    this.purchasesRetryInterval = 3 * 1000;
+    this.userRetryInterval = 1.5 * 1000;
 
     this.spinnerEl = this.options.spinnerEl;
 
