@@ -211,7 +211,7 @@ class Product < ActiveRecord::Base
       self.save!
     end
 
-  rescue => ex
+  rescue MiniMagick::Invalid => ex
     LoggedException.add(__FILE__,__method__,ex)
   end
 
