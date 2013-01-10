@@ -136,7 +136,7 @@ class UsersController < ApplicationController
 
       followings = Following.find_all_by_follower_id(
                     ifollower_ids,
-                    :conditions => ["user_id not in (?) AND U.purchases_count > 0 AND is_active = true", ifollower_ids + [self.current_user.id]],
+                    :conditions => ["user_id not in (?) AND U.has_purchases_mined = 1 AND U.purchases_count > 2 AND is_active = true", ifollower_ids + [self.current_user.id]],
                     :joins      => 'INNER JOIN users ON users.id = followings.follower_id INNER JOIN users as U ON U.id = followings.user_id',
                     :group      => :user_id,
                     :include    => :user,
