@@ -52,7 +52,7 @@ module DW
         rescue => ex
           puts ex.message
         ensure
-          sleep 1.0
+          sleep 0.2
         end
         end
 
@@ -70,7 +70,7 @@ module DW
         rescue => ex
           puts ex.message
         ensure
-          sleep 1.0
+          sleep 0.2
         end
         end
 

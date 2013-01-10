@@ -53,7 +53,7 @@ module DW
         begin
           emails = mailbox.find :from => from,:after => after
 
-          emails.reverse.in_groups_of(3,false).each do |group| 
+          emails.reverse.in_groups_of(10,false).each do |group| 
             uids = group.map(&:uid)
             fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
             
@@ -73,7 +73,7 @@ module DW
         begin
           emails = mailbox.find :body => text,:after => after
 
-          emails.reverse.in_groups_of(3,false).each do |group| 
+          emails.reverse.in_groups_of(10,false).each do |group| 
             uids = group.map(&:uid)
             fetch_data = @gmail.conn.uid_fetch uids,@imap_key_body
             
@@ -102,7 +102,7 @@ module DW
       def search(from,after)
         emails = @yahoo_api.find_emails from,after
 
-        emails.in_groups_of(3,false).each do |group| 
+        emails.in_groups_of(10,false).each do |group| 
           mids = group.map{|email| email[:mid]}
           email_contents = @yahoo_api.fetch_email_contents mids
           
