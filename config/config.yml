@@ -18,6 +18,9 @@ common: &common
     - cyclopedie-20
     - hodoigemofo-20
     - phililegra-20
+    - felvy-20
+    - flicker09-20
+    - flicker02-20
   :aws_associate_access_ids:
     - AKIAJWYCAWDPAAKLNKSQ
     - AKIAJVUGQ6XHCMYWB3YA
@@ -25,6 +28,9 @@ common: &common
     - AKIAIEA3QJ2ETUHWMEUA
     - AKIAJ6JZ4VOD34PPB43A
     - AKIAI6MTUBRUW33JSROQ
+    - AKIAJMD35QK2XXPMIN5A
+    - AKIAJSNSFJKZJ22P4A7Q
+    - AKIAIXOEH6FDJUGGZMLA
   :aws_associate_secret_keys:
     - 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
     - IZCUQr6UZOcNTgbjJBSQMldjFa7CRPHQgRV44ksM
@@ -32,6 +38,9 @@ common: &common
     - NussHk8Ay138xX7TWyw0tb0D45jGjGT0eGkZqEMm
     - td6y1UOlPWzIk4v7ZPPQ56zDiNbW5iKbIcbY00EH
     - YjuiMQsxTFlCC1yg4zUk7Z8rZfaO7MgIfuW2Qrhc
+    - UGvsHLTyHBM4eS6E8sxAusX00APV42lw9wNtuffq
+    - E7FLuS1o5UiUHN5CANBQhykdlcZT+e9EkiNPAKPi
+    - R7vHWBzVZRXmiDEs59Vs8L9EMr532waNEnLKZFsM
   :iphone_encryption_phrase: f0837530983794e3
   :iphone_salt: 20988410f43fa368
   :ios_app_link: https://itunes.apple.com/us/app/mine./id567558757
