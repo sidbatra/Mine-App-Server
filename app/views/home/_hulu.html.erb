@@ -42,14 +42,19 @@
 			
 			<span class="or">OR</span>
 			
-			<a class="btn-text white inline-block pointer opacity-80-100 transition-opacity">
-				<span class="">
-					<%=image_tag "icons/icon-phone-receive-2x.png",
-			    		:class => "phone-receive",
-			       	:alt => ""%>
-					TXT me the app
-				</span>
-			</a>
+			<span class="sms">
+				<a class="btn-sms white inline-block pointer opacity-80-100 transition-opacity"
+					href="javascript:void(0)" 
+	        id="sms" 
+	        onclick="mixpanel.track('Text Me Clicked');">
+					<span class="">
+						<%=image_tag "icons/icon-phone-receive-2x.png",
+				    		:class => "phone-receive",
+				       	:alt => ""%>
+						TXT me the app
+					</span>
+				</a>
+			</span> <!-- /sms -->
 		
 		</div>
 				
@@ -71,7 +76,7 @@
 
 	<a href="<%=fb_auth_path(:src => @origin,:target => params[:target])%>" 
 	    onclick="this.className += ' load';"
-	    class="btn btn-large btn-facebook rounded-3-left shaded-strong relative">
+	    class="btn btn-facebook rounded-3-left shaded-strong relative">
 	  <span class='hide-when-loading'>
 	    <%=image_tag "social/f-box.png",
 	    :class => "f-box",
@@ -83,7 +88,7 @@
 	
 	<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
 	    onclick="this.className += ' load';"
-	    class="btn btn-large btn-twitter rounded-3-right shaded-strong relative">
+	    class="btn btn-twitter rounded-3-right shaded-strong relative">
 	  <span class='hide-when-loading'>
 	    <%=image_tag "social/t-box.png",
 	    :class => "t-box",
@@ -97,6 +102,65 @@
 		Mine doesn't auto-share, ever.
 	</div>
 	
+</div>
+
+
+
+<div id="sms_content" class="" style="display: none;">
+	
+	<div class="frame-border absolute"></div>
+
+	<div class="heading">
+		Number
+		<span class="reassurance">
+			Not stored
+		</span>
+	</div>
+	
+	<input type="tel" class="number border-box transition-bg" style="width: 100%; height: 28px;">
+	
+	<label class="carrier inline-block">
+		<%=image_tag "logos/carrier-att-48-2x.png",
+	     :class => "logo",
+	     :alt => ""%>
+		<input type="radio" name="carriers" value="" checked>
+	</label>
+	
+	<label class="carrier inline-block">
+		<%=image_tag "logos/carrier-verizon-48-2x.png",
+	     :class => "logo",
+	     :alt => ""%>
+		<input type="radio" name="carriers" value="">
+	</label>
+	
+	<label class="carrier inline-block">
+		<%=image_tag "logos/carrier-sprint-48-2x.png",
+	     :class => "logo",
+	     :alt => ""%>
+		<input type="radio" name="carriers" value="">
+	</label>
+	
+	<label class="carrier inline-block">
+		<%=image_tag "logos/carrier-tmobile-48-2x.png",
+	     :class => "logo",
+	     :alt => ""%>
+		<input type="radio" name="carriers" value="">
+	</label>
+	
+	<a href="<%=tw_auth_path(:src => @origin,:target => params[:target])%>" 
+	    onclick="this.className += ' load';"
+	    class="btn btn-send-sms rounded-3 shaded-strong relative nowrap">
+	  <span class="out">
+		  <span class='hide-when-loading'>
+		    Send
+		  </span>
+		  <i class='icon-loading icon-white'></i>
+	  </span>
+	  <span class="in">
+			<i class="icon-ok icon-white"></i>
+		</span>
+	</a>
+
 </div>
 
 
@@ -136,6 +200,12 @@
                   trigger: "click", 
                   placement:"<%=is_phone_device? ? "bottom" : "right"%>",
                   content: function() {return $('#join_content').html();}}); 
+      
+      $("#sms").popover({ 
+                  html: true, 
+                  trigger: "click", 
+                  placement: "right",
+                  content: function() {return $('#sms_content').html();}});
 
 			$("#login").popover({
                   html: true, 
