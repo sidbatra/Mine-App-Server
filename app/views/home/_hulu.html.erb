@@ -26,17 +26,32 @@
 			and purchases
 		</h1>
 		
-		<span class="join">
-			<a style="background-color: #FF6600;" 
-        class="btn btn-large btn-join rounded-3 shaded-strong relative unselectable" 
-				href="javascript:void(0)" 
-        id="join" 
-        onclick="mixpanel.track('Sign Up Clicked');">
-				<span class='hide-when-loading'>
-			    Join Now for Free
-			  </span>
+		<div class="start">
+		
+			<span class="join">
+				<a style="background-color: #FF6600;" 
+	        class="btn btn-large btn-join rounded-5 shaded-strong relative unselectable" 
+					href="javascript:void(0)" 
+	        id="join" 
+	        onclick="mixpanel.track('Sign Up Clicked');">
+					<span class='hide-when-loading'>
+				    Join Now for Free
+				  </span>
+				</a>
+			</span> <!-- /join -->
+			
+			<span class="or">OR</span>
+			
+			<a class="btn-text white inline-block pointer opacity-80-100 transition-opacity">
+				<span class="">
+					<%=image_tag "icons/icon-phone-receive-2x.png",
+			    		:class => "phone-receive",
+			       	:alt => ""%>
+					TXT me the app
+				</span>
 			</a>
-		</span> <!-- /join -->
+		
+		</div>
 				
 		<h2 class="unselectable">
 			View your purchase history <br>

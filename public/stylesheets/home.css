@@ -57,12 +57,35 @@ h1, h2 {
 	"Helvetica Neue Light", 
 	"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
-  line-height: 120%; }
+  line-height: 120%;
+  text-shadow: 0 1px 1px rgba(0,0,0, 0.25); }
 
 h1 { font-size: 50px; line-height: 120%; letter-spacing:-1px; }
 h2 { font-size: 26px; }
 
-.btn-join { margin: 16px 0; }
+.start { /* background: gray;  */padding: 16px 0 11px; line-height: 52px; }
+.start .or { 
+	font-size: 14px;
+	padding: 0 14px; 
+	font-weight: bold; 
+	color: white;
+	text-shadow: 0 1px 1px rgba(0,0,0, 0.25); }
+
+.btn-text { 
+	font-size: 14px;
+	color: white;
+	font-weight: bold;
+	padding: 0 16px 0 14px;
+	background: url("/images/colors/black-30.png");
+	height: 32px;
+	line-height: 32px;
+	-webkit-border-radius: 16px !important;
+	-moz-border-radius: 16px !important;
+	border-radius: 16px !important;
+	text-shadow: 0 1px 1px rgba(0,0,0, 0.25); }
+	
+.btn-text:hover { color: white;}
+.btn-text img.phone-receive { width: 14px; vertical-align: -2px; padding-right: 2px; }
 
 
 /* ----- popovers ----- */
@@ -144,15 +167,16 @@ h2 { font-size: 26px; }
 	width: 236px;
 	height: 52px;
 	font-size: 16px;
-	text-shadow: 0 1px rgba(0,0,0,0.32);
-	line-height: 51px !important; }
+	text-shadow: 0 -1px rgba(0,0,0,0.24);
+	line-height: 51px !important;
+	vertical-align: top; }
 
 .btn-twitter, .btn-facebook { 
 	width: 108px;
 	height: 28px;
 	padding: 0;
 	font-size: 12px;
-	text-shadow: 0 1px rgba(0,0,0,0.32);
+	text-shadow: 0 -1px rgba(0,0,0,0.24);
 	line-height: 28px !important; }
 
 .btn-twitter { border-left: 1px solid rgba(0,0,0,0.1); }
