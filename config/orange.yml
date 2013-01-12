@@ -63,7 +63,7 @@
   :token: 618587158-plqpuwDYGIx5wZExB6sXDo2pPspKadhvF89niy8q,
   :secret: 5scMJdMom2Z0MNGqb3demri6jrFlF3znR5hPMVp1x8,
   :handle: NicoleNorfolk1,
-  :enabled: false,
+  :enabled: true,
   :templates: [
     {
     :tweet: "Hey @name that looks really cool - you should show it off on your Mine page! http://getmine.com",
