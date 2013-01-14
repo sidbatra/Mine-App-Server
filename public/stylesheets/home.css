@@ -15,6 +15,8 @@ body {
 	background-image: url("/images/home/home-iphone-covering-cropped.jpg"); }
 	
 a:hover { text-decoration: none; }
+
+a.wiggle:active { margin-top: 2px; margin-bottom: -2px; }
 	
 .wrapper {
 	width: 100%;
@@ -223,6 +225,7 @@ h2 { font-size: 26px; }
 	vertical-align: top; }
 	
 .btn-sms:hover { color: white;}
+.btn-sms:active { margin-top: 12px; margin-bottom: -2px; }
 .btn-sms img.phone-receive { width: 14px; vertical-align: -2px; padding-right: 2px; }
 
 .btn-twitter, .btn-facebook, .btn-send-sms { 
