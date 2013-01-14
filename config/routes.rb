@@ -142,6 +142,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :facebook_subscriptions,
     :only => [:index,:create]
 
+  map.resources :sms,
+    :only => [:create]
+
   map.new_invite 'invite',
     :controller => :invites,
     :action     => :new

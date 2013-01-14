@@ -63,6 +63,9 @@ common: &common
   :google_client_secret: 9cj_MUP4QEnrGrRqHu5DGSAT
   :yahoo_consumer_key: dj0yJmk9MEE3RGNJZ3dUbUpkJmQ9WVdrOU1raE5OR1pVTkcwbWNHbzlNVFF6TlRneU9EazJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD00MA--
   :yahoo_consumer_secret: 8450b7008949553bfadbc17bc166e788e4753be4
+  :twilio_account_sid: ACfa68ffd7d4ab933e4ac388a854482047
+  :twilio_auth_token: 0729e544d79a7c8cdf071c196b5b80c2
+  :twilio_phone_number: 6506469613
   :admin_salt: 97f8336b05921eeb11ddb1300f454d380f315a43918fb61c046897394f04e0b2
   :admin_password: 43d9b895a65ceaead13a6bc7cb47fe0cd395382a
   :age_bucket_size: 5

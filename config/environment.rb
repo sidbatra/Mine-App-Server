@@ -92,6 +92,8 @@ Rails::Initializer.run do |config|
               :version => '1.3.1')
   config.gem('typhoeus',
               :version => '0.3.3')
+  config.gem('twilio-ruby',
+              :version => '3.9.0')
   config.gem('twitter',
               :version => '2.5.0',
               :lib => false)
