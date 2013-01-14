@@ -94,25 +94,25 @@
 
     <%else%>
     	<div class="well-box border-box rounded-5" style="float: right; padding: 7px; margin-top: -3px;">
-	      <a href="<%=fb_auth_path(:src => @origin)%>" 
+    		<a href="<%=tw_auth_path(:src => @origin)%>" 
 	          onclick="this.className += ' load';"
-	          class="btn btn-facebook rounded-3-right relative shaded"
-	          style="float: right; width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
-	        <span class='hide-when-loading'>
-	          <%=image_tag "social/f-box.png",
-	              :class => "f-box"%>
-	          Sign in<span class="rwd-hide"> with Facebook</span>
-	        </span>
-	        <i class='icon-loading icon-white'></i>
-	      </a> 	
-	      <a href="<%=tw_auth_path(:src => @origin)%>" 
-	          onclick="this.className += ' load';"
-	          class="btn btn-twitter rounded-3-left relative shaded"
-	          style="float: right; width: 160px;">
+	          class="btn btn-twitter rounded-3-right relative shaded"
+	          style="float: right; width: 160px; border-left: 1px solid rgba(0,0,0,0.1);">
 	        <span class='hide-when-loading'>
 	          <%=image_tag "social/t-box.png",
 	              :class => "t-box"%>
 	          Sign in<span class="rwd-hide"> with Twitter</span>
+	        </span>
+	        <i class='icon-loading icon-white'></i>
+	      </a> 	
+	      <a href="<%=fb_auth_path(:src => @origin)%>" 
+	          onclick="this.className += ' load';"
+	          class="btn btn-facebook rounded-3-left relative shaded"
+	          style="float: right; width: 172px;">
+	        <span class='hide-when-loading'>
+	          <%=image_tag "social/f-box.png",
+	              :class => "f-box"%>
+	          Sign in<span class="rwd-hide"> with Facebook</span>
 	        </span>
 	        <i class='icon-loading icon-white'></i>
 	      </a> 	
