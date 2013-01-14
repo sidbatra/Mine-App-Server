@@ -1069,7 +1069,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	line-height: 1; 
 	margin-top: 13px;
 	padding-top: 11px;
-	width: 50%; }
+	width: 50%;
+	vertical-align: top; }
 	
 .follow-count-box.right {
 	border-left: 1px solid #494949;
