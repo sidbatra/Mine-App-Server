@@ -62,6 +62,11 @@
   
   .feed-container { margin: 0 -10px; }
   
+  
+  /* -- item -- */
+  
+  .item .panel { padding: 0 4.615384615% 4.615384615%; }
+  
   /* -- onboarding -- */
   
   .onboarding h1 { font-size: 38px; }
