@@ -18,7 +18,7 @@ class SmsController < ApplicationController
     @message = @account.sms.messages.create({
                   :from   => CONFIG[:twilio_phone_number],
                   :to     => to,
-                  :body   => "Link to Mine App"})
+                  :body   => "Happy Mining! #{CONFIG[:ios_app_link]}"}) 
 
   rescue => ex
     handle_exception(ex)
