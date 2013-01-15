@@ -100,7 +100,7 @@ h2 { font-size: 26px; }
 .join .popover-inner .popover-content { height: 52px; }
 .login .popover-inner .popover-content { height: 36px; }
 .sms .popover-inner .popover-content { 
-	height: 148px;
+	height: 102px;
 	padding: 8px;
 	position: relative; }
 
@@ -122,7 +122,7 @@ h2 { font-size: 26px; }
 	float: right;
 	font-weight: normal; 
 	text-transform: none;
-	color: #bbb; }
+	color: #aaa; }
 	
 .sms input.number {
 	height: 32px !important;
@@ -134,12 +134,10 @@ h2 { font-size: 26px; }
 	padding: 0 7px;
 	line-height: auto;
   box-shadow: rgba(0,0,0,0.3) 0 1px 1px 0 inset !important;
-  margin-bottom: 1px; 
-/*
-  color: #2d8cbc;
-  border: 1px solid #3399CC;
-	background: #EBFBFF;
-*/}
+  margin-bottom: 7px; }
+  
+.ie8 .sms input.number,
+.ie9 .sms input.number { line-height: 31px; }
 
 .sms input.number:focus {  
 	color: #2d8cbc;
@@ -227,6 +225,14 @@ h2 { font-size: 26px; }
 .btn-sms:hover { color: white;}
 .btn-sms:active { margin-top: 12px; margin-bottom: -2px; }
 .btn-sms img.phone-receive { width: 14px; vertical-align: -2px; padding-right: 2px; }
+
+.ie8 .btn-sms,
+.ie9 .btn-sms { 
+	width: 157px;
+	filter: alpha(opacity=36); }
+
+.ie8 .btn-sms:hover,
+.ie9 .btn-sms:hover { filter: alpha(opacity=44); }
 
 .btn-twitter, .btn-facebook, .btn-send-sms { 
 	width: 108px;
