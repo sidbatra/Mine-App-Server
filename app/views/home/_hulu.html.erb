@@ -118,6 +118,7 @@
     type="tel" 
     autocomplete="off" 
     onfocus="$('#phone').mask('(999) 999-9999');" 
+    onkeyup="var key = event.keyCode ?  event.keyCode : event.charCode;if(key==13)dispatchSMS();"
     class="number border-box transition-bg" 
     style="width: 100%; height: 28px;">
 		
