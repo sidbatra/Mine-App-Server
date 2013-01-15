@@ -19,10 +19,10 @@
   <%=render :partial => "box", :locals => {:user => @user}%> 
 
 	<!-- Following -->
-  <%cache ["v9",@user,"ifollowers","profile"] do%>
+  <%cache ["v10",@user,"ifollowers","profile"] do%>
     <div class="follow-count-box inline-block border-box nowrap">
     
-    	<%if (is_current_user(@user) && @user.inverse_followings_count.zero?) %>
+    	<%if is_current_user(@user) && @user.inverse_followings_count.zero?%>
     	
     		<%=link_to "+ Find people to follow",user_suggestions_path(:src => "profile"),
 					:class => "btn btn-black shaded-light"%>
@@ -67,10 +67,10 @@
 
   
   <!-- Followers -->
-  <%cache ["v9",@user,"followers","profile"] do%>
+  <%cache ["v10",@user,"followers","profile"] do%>
     <div class="follow-count-box right inline-block border-box nowrap">
 			
-			<%if (is_current_user(@user) && @user.followings_count.zero?) %>
+			<%if is_current_user(@user) && @user.followings_count.zero?%>
 			
 				<%=link_to "+ Invite friends",new_invite_path(:src => "profile"),
 					:class => "btn btn-black shaded-light"%>
