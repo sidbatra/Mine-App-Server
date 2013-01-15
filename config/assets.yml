@@ -37,6 +37,7 @@ javascripts:
   home:
     - public/javascripts/libs/jquery-1.7.1.js
     - public/javascripts/libs/bootstrap-home.js
+    - public/javascripts/libs/jquery.maskedinput.js
 stylesheets:
   application:
     - public/stylesheets/bootstrap.css
