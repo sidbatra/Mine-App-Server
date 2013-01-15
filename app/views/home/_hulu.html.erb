@@ -189,7 +189,19 @@
                   content: function() {return $('#login_content').html();}}); 
 
 
+      var isSMSSent = false;
+
       function dispatchSMS() {
+        if(isSMSSent) 
+          return;
+        
+        if($('#phone').val().replace(/_/g,"").length != 14) {
+          //$('#phone').addClass('invalid');
+          return;
+        }
+
+        isSMSSent = true;
+
         $('#sms_send_button').addClass('load');
         $.post('sms.json',{to: $('#phone').val()},
           function(data) {
