@@ -96,6 +96,8 @@ h2 { font-size: 26px; }
 	-moz-box-sizing: border-box; 
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box;  }
+	
+.popover-content { font-size: 0; }
 
 .join .popover-inner .popover-content { height: 52px; }
 .login .popover-inner .popover-content { height: 36px; }
