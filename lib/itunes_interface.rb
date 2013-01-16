@@ -86,12 +86,16 @@ module DW
         wrapper == :collection
       end
 
+      def is_track?
+        wrapper == :track
+      end
+
       def small_image_url
         @item["artworkUrl60"]
       end
 
       def large_image_url
-        is_collection? ? @item["artworkUrl100"].gsub("100x100","600x600") : @item["artworkUrl512"]
+        is_collection? || is_track? ? @item["artworkUrl100"].gsub("100x100","600x600") : @item["artworkUrl512"]
       end
 
       def page_url
