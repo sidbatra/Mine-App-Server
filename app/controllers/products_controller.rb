@@ -59,7 +59,8 @@ class ProductsController < ApplicationController
                 :web_large  => [],
                 :amazon     => [],
                 :inhouse    => [],
-                :google     => []}
+                :google     => [],
+                :itunes     => []}
 
     sane_query = check_spelling(query)
     key = generate_cache_key(sane_query,page)
@@ -70,11 +71,25 @@ class ProductsController < ApplicationController
       hydra.queue search_web_images(sane_query,:medium,page,per_page)
       hydra.queue search_web_images(sane_query,:large,page,per_page)
       hydra.queue search_amazon_products(sane_query,page,per_page)
+      hydra.queue search_itunes_apps(sane_query,5) if page.zero?
       hydra.run
 
       search_inhouse_products(sane_query,page,per_page)
 
-      products = @results[:google] + 
+      if sane_query.match(/app(\s|\z)/) || sane_query.match(/for (iphone|ipad)/)
+        products += @results[:itunes]
+      else
+        clean_query = sanitize_itunes_query sane_query.downcase
+
+        @results[:itunes].each do |app|
+          title = app[:title].downcase
+          #logger.info title
+          products << app if clean_query == title || 
+                             clean_query == title.gsub(/[:–-].*$/,"").strip
+        end
+      end
+
+      products += @results[:google] + 
                   @results[:inhouse] + 
                   @results[:amazon] 
 
@@ -245,7 +260,8 @@ class ProductsController < ApplicationController
   #           asynchronously fetched.
   #
   def search_itunes_apps(query,per_page)
-    url = Itunes.search_apps(query,per_page,true)
+    clean_query = sanitize_itunes_query query
+    url = Itunes.search_apps(clean_query,per_page,true)
 
     request = Typhoeus::Request.new(url,
                 :connect_timeout => 1000,
@@ -415,6 +431,15 @@ class ProductsController < ApplicationController
       :uniq_id    => unique_id,
       :title => title}
   end
+
+  def sanitize_itunes_query(query)
+    query.
+      gsub(/app(\s|\z)/,"").
+      gsub(/iphone(\s|\z)/,"").
+      gsub(/ipad(\s|\z)/,"").
+      gsub(/ipod(\s|\z)/,"").
+      gsub(/for(\s|\z)/,"")
+end
 
 end
 
