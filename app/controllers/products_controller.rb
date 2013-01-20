@@ -59,9 +59,10 @@ class ProductsController < ApplicationController
                 :web_large  => [],
                 :amazon     => [],
                 :inhouse    => [],
-                :google     => []}
+                :google     => [],
+                :itunes     => []}
 
-    sane_query = check_spelling(query)
+    sane_query = check_spelling(query,page)
     key = generate_cache_key(sane_query,page)
 
     unless fragment_exist? key
@@ -70,11 +71,24 @@ class ProductsController < ApplicationController
       hydra.queue search_web_images(sane_query,:medium,page,per_page)
       hydra.queue search_web_images(sane_query,:large,page,per_page)
       hydra.queue search_amazon_products(sane_query,page,per_page)
+      hydra.queue search_itunes_apps(sane_query,5) if page.zero?
       hydra.run
 
       search_inhouse_products(sane_query,page,per_page)
 
-      products = @results[:google] + 
+      if is_searching_for_apps(sane_query)
+        products += @results[:itunes]
+      else
+        clean_query = sanitize_itunes_query sane_query.downcase
+
+        @results[:itunes].each do |app|
+          title = app[:title].downcase
+          #logger.info title
+          products << app if title =~ Regexp.new("^#{clean_query}")
+        end
+      end
+
+      products += @results[:google] + 
                   @results[:inhouse] + 
                   @results[:amazon] 
 
@@ -91,7 +105,19 @@ class ProductsController < ApplicationController
   #
   # returns - String. The spell checked & corrected version of the text
   #
-  def check_spelling(text)
+  def check_spelling(text,page)
+    corrected_texts_hash = (session[:corrected_texts] ||= Hash.new(false))
+
+    if corrected_texts_hash[text] == true
+      return text 
+    end
+
+    if page.zero? && corrected_texts_hash.include?(text)
+      corrected_texts_hash[text] = true
+      return text
+    end
+
+
     spellcheck_url = WebSearch.for_spelling(text,true)
 
     response = Typhoeus::Request.get(spellcheck_url,
@@ -102,8 +128,16 @@ class ProductsController < ApplicationController
 
     if response.present?
       response = JSON.parse(response)["d"]["results"]
-      text = response[0]["Value"] if response.present?
+
+      corrected_text = nil
+      corrected_text = response[0]["Value"] if response.present?
+
+      if corrected_text.present? 
+        corrected_texts_hash[text] = false
+        text = corrected_text 
+      end
     end
+
   rescue => ex
       LoggedException.add(__FILE__,__method__,ex)
   ensure
@@ -245,7 +279,8 @@ class ProductsController < ApplicationController
   #           asynchronously fetched.
   #
   def search_itunes_apps(query,per_page)
-    url = Itunes.search_apps(query,per_page,true)
+    clean_query = sanitize_itunes_query query
+    url = Itunes.search_apps(clean_query,per_page,true)
 
     request = Typhoeus::Request.new(url,
                 :connect_timeout => 1000,
@@ -414,6 +449,14 @@ class ProductsController < ApplicationController
       :source_url => source_url,
       :uniq_id    => unique_id,
       :title => title}
+  end
+
+  def sanitize_itunes_query(query)
+    query.gsub(/(app|iphone|ipad|ipod|ios|for)(\s|\z)/,"")
+  end
+
+  def is_searching_for_apps(query)
+    query.match(/app(\s|\z)/) || query.match(/for (iphone|ipad|ios|ipod)/)
   end
 
 end

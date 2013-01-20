@@ -287,18 +287,14 @@ class PurchasesController < ApplicationController
         {:is_hidden => true},
         {:id => rejected_purchases.map(&:id)})
 
-      if self.current_user.has_purchases_mined
-        self.current_user.touch
-      else
-        self.current_user.has_purchases_mined = true
-        self.current_user.save!
+      self.current_user.has_purchases_mined = true
+      self.current_user.save!
 
-        ProcessingQueue.push Mailman,
-          :email_followers_about_purchases_imported,
-          self.current_user
-      end
-
+      ProcessingQueue.push(Mailman,
+        :email_followers_about_purchases_imported,
+        self.current_user) if selected_purchases.present?
     end
+
   rescue => ex
     handle_exception(ex)
   ensure
