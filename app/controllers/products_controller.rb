@@ -76,7 +76,7 @@ class ProductsController < ApplicationController
 
       search_inhouse_products(sane_query,page,per_page)
 
-      if sane_query.match(/app(\s|\z)/) || sane_query.match(/for (iphone|ipad)/)
+      if is_searching_for_apps(sane_query)
         products += @results[:itunes]
       else
         clean_query = sanitize_itunes_query sane_query.downcase
@@ -84,8 +84,7 @@ class ProductsController < ApplicationController
         @results[:itunes].each do |app|
           title = app[:title].downcase
           #logger.info title
-          products << app if clean_query == title || 
-                             clean_query == title.gsub(/[:–-].*$/,"").strip
+          products << app if title =~ Regexp.new("^#{clean_query}")
         end
       end
 
@@ -453,13 +452,12 @@ class ProductsController < ApplicationController
   end
 
   def sanitize_itunes_query(query)
-    query.
-      gsub(/app(\s|\z)/,"").
-      gsub(/iphone(\s|\z)/,"").
-      gsub(/ipad(\s|\z)/,"").
-      gsub(/ipod(\s|\z)/,"").
-      gsub(/for(\s|\z)/,"")
-end
+    query.gsub(/(app|iphone|ipad|ipod|ios|for)(\s|\z)/,"")
+  end
+
+  def is_searching_for_apps(query)
+    query.match(/app(\s|\z)/) || query.match(/for (iphone|ipad|ios|ipod)/)
+  end
 
 end
 
