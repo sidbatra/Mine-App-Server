@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
                 :google     => [],
                 :itunes     => []}
 
-    sane_query = check_spelling(query)
+    sane_query = check_spelling(query,page)
     key = generate_cache_key(sane_query,page)
 
     unless fragment_exist? key
@@ -106,7 +106,19 @@ class ProductsController < ApplicationController
   #
   # returns - String. The spell checked & corrected version of the text
   #
-  def check_spelling(text)
+  def check_spelling(text,page)
+    corrected_texts_hash = (session[:corrected_texts] ||= Hash.new(false))
+
+    if corrected_texts_hash[text] == true
+      return text 
+    end
+
+    if page.zero? && corrected_texts_hash.include?(text)
+      corrected_texts_hash[text] = true
+      return text
+    end
+
+
     spellcheck_url = WebSearch.for_spelling(text,true)
 
     response = Typhoeus::Request.get(spellcheck_url,
@@ -117,8 +129,16 @@ class ProductsController < ApplicationController
 
     if response.present?
       response = JSON.parse(response)["d"]["results"]
-      text = response[0]["Value"] if response.present?
+
+      corrected_text = nil
+      corrected_text = response[0]["Value"] if response.present?
+
+      if corrected_text.present? 
+        corrected_texts_hash[text] = false
+        text = corrected_text 
+      end
     end
+
   rescue => ex
       LoggedException.add(__FILE__,__method__,ex)
   ensure
