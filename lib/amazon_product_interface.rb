@@ -34,7 +34,7 @@ module DW
 
         result = Amazon::Ecs.item_search(
                   query, {
-                    :response_group => 'Images,Small',
+                    :response_group => 'Images,Small,BrowseNodes',
                     :item_page => page,
                     :search_index => "All",
                     :url_only => url_only})
@@ -57,7 +57,7 @@ module DW
 
         ids = ids.join(",") if ids.is_a? Array
         result = Amazon::Ecs.item_lookup(ids,{
-                    :response_group => 'Images,Small',
+                    :response_group => 'Images,Small,BrowseNodes',
                     :url_only => url_only})
 
         unless url_only
@@ -102,6 +102,12 @@ module DW
 
       def title
         @item.get('ItemAttributes/Title')
+      end
+
+      def tags
+        @item.get_element('BrowseNodes').
+          get_array('Name').
+          map{|name| CGI.unescapeHTML name.downcase}
       end
     end
 
