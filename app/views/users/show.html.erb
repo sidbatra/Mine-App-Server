@@ -19,7 +19,7 @@
   <%=render :partial => "box", :locals => {:user => @user}%> 
 
 	<!-- Following -->
-  <%cache ["v10",@user,"ifollowers","profile"] do%>
+  <%cache ["v10",@user,is_current_user(@user),"ifollowers","profile"] do%>
     <div class="follow-count-box inline-block border-box nowrap">
     
     	<%if is_current_user(@user) && @user.inverse_followings_count.zero?%>
@@ -67,7 +67,7 @@
 
   
   <!-- Followers -->
-  <%cache ["v10",@user,"followers","profile"] do%>
+  <%cache ["v10",@user,is_current_user(@user),"followers","profile"] do%>
     <div class="follow-count-box right inline-block border-box nowrap">
 			
 			<%if is_current_user(@user) && @user.followings_count.zero?%>
