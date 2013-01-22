@@ -2,6 +2,49 @@ module DW
 
   module Tagging
 
+    class BulkProductTagger
+
+      def initialize(products)
+        @products = products
+        @mapper = {}
+      end
+
+      def tag
+        @products.each do |product|
+          next if product.tags.present?
+
+          tagger = ProductTagger.new product.source_url,product.external_id
+          next unless tagger.available?
+          
+          external_id = tagger.external_id
+          next unless external_id
+
+          symbol = tagger.symbol
+          @mapper[symbol] = {} unless @mapper.include?(symbol)
+
+          @mapper[symbol][external_id] = [] unless @mapper[symbol].include?(external_id)
+          @mapper[symbol][external_id] << product
+        end
+
+        tag_amazon_products if @mapper[:amazon].present?
+      end
+
+      def tag_amazon_products
+        @mapper[:amazon].keys.in_groups_of(10,false).each do |group|
+          AmazonProductSearch.lookup_products(group).each do |item|
+
+            @mapper[:amazon][item.product_id].each do |product|
+              product.tags = item.tags
+              product.save!
+            end #products
+
+          end #groups
+        end #keys
+      end
+
+    end #bulk product tagger
+
+
 
     class ProductTagger
 
