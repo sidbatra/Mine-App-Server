@@ -85,7 +85,7 @@ class Purchase < ActiveRecord::Base
         :external_id => attributes[:product][:external_id]})
 
       if attributes[:product][:tags]
-        purchase.product.tags = attributes[:product][:tags].join CONFIG[:tag_boundary]
+        purchase.product.tags = attributes[:product][:tags]
       end
     end
 

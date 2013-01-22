@@ -34,7 +34,7 @@ class Product < ActiveRecord::Base
       store ? store.name : ""
     end
     text :tags, :boost => 3 do
-      tags ? tags.split(CONFIG[:tag_boundary]) : ""
+      tags 
     end
     integer :purchasers, :multiple => true do
       purchases.map(&:user_id)
@@ -140,6 +140,15 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
+
+  def tags
+    self[:tags].present? ? self[:tags].split(CONFIG[:tag_boundary]) : ""
+  end
+
+  def tags=(new_tags)
+    self[:tags] = new_tags.join(CONFIG[:tag_boundary]) if new_tags
+  end
+
 
   # Public. Relative path of the thumbnail image on the filesystem.
   #
