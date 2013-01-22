@@ -46,6 +46,7 @@ include Storage
 include DistributionManagement
 include PurchaseEmailParsing
 include PurchaseExtraction
+include Tagging
 include WebSearchInterface
 include YahooAPIInterface
 

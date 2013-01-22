@@ -107,7 +107,8 @@ module DW
       def tags
         @item.get_element('BrowseNodes').
           get_array('Name').
-          map{|name| CGI.unescapeHTML name.downcase}
+          map{|name| CGI.unescapeHTML name.downcase}.
+          uniq
       end
     end
 
