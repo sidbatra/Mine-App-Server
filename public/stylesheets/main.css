@@ -57,7 +57,7 @@ a:focus { outline: none; }
 a.dark       { color: #ccc;  }
 a.dark:hover { color: white; }
 
-a.light       { color: #177DBE; }
+a.light       { color: #176FA0; }
 a.light:hover { color: #105e90; }
 
 a.dark.underlined  { border-bottom: 1px solid #838383; }
@@ -368,6 +368,16 @@ footer .twitter-button-box {
 .txt.xs { font-size: 11px; }
 
 .txt    { line-height: 150%; }
+
+.h-light { 
+	font-family: HelveticaNeue-Light, 
+							'Helvetica Neue Light', 
+							'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
+
+.h-medium { 
+	font-family: HelveticaNeue-Medium, 
+							'Helvetica Neue Medium', 
+							'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
 
 ul.txt.s li { margin-bottom: 8px; }
 ul.txt.s li .user-photo { margin-right: 4px; }
@@ -798,6 +808,62 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed.grid.no-user-bought-pronoun .item .panel .title-box .user-bought-pronoun { display: none; }
 
 	
+/* Feed Item
+==================================================================== */
+
+.feed.col-2 { padding: 0 18px; }
+
+.feed .item {
+	width: 43.4027777777777%;
+	width: 46.296296296296%;
+	margin: 0 10px;
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 18px; }
+
+.feed .item .user-box { 
+	height: 44px; 
+	padding: 8px 0 6px 39px; 
+	font-size: 14px;
+	line-height: 110%; }
+
+.feed .item .user-box .user-photo { width: 32px; height: 32px; top: 6px; left: 0; }
+.feed .item .user-box .user-name  { font-size: 14px; font-weight: bold; }
+.feed .item .user-box .time  { font-size: 11px; color: #999; }
+
+.feed .item .photo-box { 
+	font-size: 11px; color: #999;
+	width: 100%;
+	height: 250px;
+	padding: 0;
+	text-align: center;
+	line-height: 250px; }
+
+.feed .item .photo-box .item-photo { max-height: 250px; }
+
+.feed .item .panel { padding: 0; background: none; min-height: 48px; max-height: 48px; }
+.feed .item .panel .panel-contents { background: none; padding: 0; }
+.feed .item .panel .title-box {
+	font-weight: normal;
+/* 	text-align: center; */
+	min-height: 0;
+	font-size: 12px;
+	color: #555;
+	color: #999;
+	line-height: 140%;
+	padding: 8px 4.8%;
+	padding: 8px 0;
+	margin: 0; }
+	
+.feed .item .panel .title-box .item-name { color: #555; }
+
+.feed .item .actions,
+.feed .item .like,
+.feed .item .corner-buy,
+.feed .item .likes-box,
+.feed .item .endorsement-box,
+.feed .item .comments-box { display: none !important; }
+
 /* Item
 ==================================================================== */
 	
@@ -859,7 +925,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .like.btn.btn-silver.light.pushed, .like.btn.btn-silver.light.pushed:hover { background: #eee !important; } 
 
 	
-.item .panel { padding: 0 28px 4.615384615%; border-bottom: 2px solid #eee; }
+.item .panel { padding: 0 28px 4.615384615%; }
 
 .item .panel .panel-contents {
 	background: #eee;

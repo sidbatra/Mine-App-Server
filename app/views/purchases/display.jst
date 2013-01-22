@@ -2,7 +2,35 @@
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item">
   
+	<div class="user-box border-box relative">
+	
+		<a href="<%=purchase.get('user').path('purchase_photo')%>">
+	    <img class="user-photo rounded-3 absolute" alt="<%=purchase.get('user').fullName()%>"
+	      src="<%=purchase.get('user').get('square_image_url')%>" />
+	  </a>
+			    		
+	  <a class="em light user-name" 
+	    href="<%=purchase.get('user').path('purchase_name')%>">
+	    <%=purchase.get('user').escape('first_name')%>   
+	    <%=purchase.get('user').escape('last_name')%>
+	  </a> 
+	  
+    <span class="time h-light">
+    	<br>
+			<%=purchase.displayTimestamp()%>
+		</span>
+	  
+  </div>
+  
   <div class="photo-box relative">
+  
+		<!-- buy button -->
+    <%if(interaction || !Denwen.H.isLoggedIn()){%>
+			<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
+				<img alt="Buy" class="absolute bottom " style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
+				<img alt="Buy" class="absolute top transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
+			</a>
+    <%}%>
   
   	<!-- edit button -->
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
@@ -39,65 +67,29 @@
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
         href="<%=purchase.get('source_url')%>" 
         target="_blank" style="display: block;" rel="nofollow">
-    	<img class="item-photo" src="<%=purchase.get('giant_url')%>" alt="<%=purchase.escape('title')%>" />
+    	<img class="item-photo rounded-3" src="<%=purchase.get('giant_url')%>" alt="<%=purchase.escape('title')%>" />
     </a>
     
   </div>
   
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
-      class="panel-contents border-box rounded-5 relative">
-      
-	    <!-- buy button -->
-	    <%if(interaction || !Denwen.H.isLoggedIn()){%>
-				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
-					<img alt="Buy" class="absolute bottom rounded-7-top-right" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
-					<img alt="Buy" class="absolute top rounded-5-top-right transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
-				</a>
-	    <%}%>
-      	
-			<b class="caret absolute opaque"></b>
-			
+      class="panel-contents border-box relative">
+      				
 			<div class="title-box txt l relative rounded-3 overflow-hidden">
-					
-				<a href="<%=purchase.get('user').path('purchase_photo')%>">
-		      <img class="user-photo xl rounded-3 absolute" alt="<%=purchase.get('user').fullName()%>"
-            src="<%=purchase.get('user').get('square_image_url')%>" />
-		    </a>
-		    
-		    <span style="padding-right: 3px;">
-		
-			    <a class="em light user-name" 
-	          href="<%=purchase.get('user').path('purchase_name')%>">
-	          <%=purchase.get('user').escape('first_name')%>   
-	          <%=purchase.get('user').escape('last_name')%></a> 
-			
-          <span class="user-bought-pronoun">
-            bought 
-        
-            <%if(purchase.get('store')){%>
-              <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
-            <%}%>
-          </span>
 			
 			    <a id="purchase_title_<%=purchase.get('id')%>"
 	            href="<%=purchase.get('source_url')%>" 
-	            class="em light link-out grid-nowrap" 
-	            target="_blank"><%=purchase.escape('title')%></a> 
-	        
-	        <br class="grid-only" style="display: none;">
-			
+	            class="item-name h-medium grid-nowrap" 
+	            target="_blank"><%=purchase.escape('title')%>
+	        </a> 
+
 			    <%if(purchase.get('store')){%>
-			      <span class="store-name grid-nowrap grid-normal-weight">
-			      	from <%=purchase.get('store').escape('name')%>
+			    	<br>
+			      <span class="store-name h-light grid-nowrap grid-normal-weight">
+			      	<%=purchase.get('store').escape('name')%>
 			      </span>
 			    <%}%>
-		    
-		    </span>
-		    
-        <span class="time">
-  				<%=purchase.displayTimestamp()%>
-				</span>
 		   
 	    </div> <!-- /title-box -->
 
