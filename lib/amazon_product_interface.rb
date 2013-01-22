@@ -105,8 +105,9 @@ module DW
       end
 
       def tags
+        @item.elem.search('.//Children').remove
         @item.get_element('BrowseNodes').
-          get_array('Name').
+          get_array('BrowseNode/Name').
           map{|name| CGI.unescapeHTML name.downcase}.
           uniq
       end
