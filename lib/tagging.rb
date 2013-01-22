@@ -51,6 +51,7 @@ module DW
       def initialize(url,unique_id)
         @tagger = nil
         @tagger ||= AmazonProductTagger.matches? url,unique_id
+        @tagger ||= ITunesProductTagger.matches? url,unique_id
       end
 
       def available?
@@ -112,6 +113,45 @@ module DW
 
       def symbol
         :amazon
+      end
+    end
+
+
+
+    class ITunesProductTagger
+
+      def self.matches?(url,unique_id)
+        matches = unique_id =~ /^AP-/ || url =~ /itunes\.com/ 
+        matches ? self.new(url,unique_id) : nil
+      end
+
+
+      def initialize(url,unique_id)
+        @url = url || ""
+        @unique_id = unique_id || ""
+      end
+      
+      def tags
+        tags = nil
+        id = external_id
+
+        product = Itunes.lookup(id).first if id
+        tags = product.tags if product
+
+        tags
+      end
+
+      def external_id
+        id = nil
+
+        id = @unique_id[3..-1] if @unique_id.present?
+        id ||= @url.scan(/id(\w+)/).flatten.first 
+
+        id
+      end
+
+      def symbol
+        :itunes
       end
     end
 

@@ -230,7 +230,8 @@ module DW
             :source_url => product.page_url,
             :orig_image_url => product.large_image_url,
             :orig_thumb_url => product.large_image_url,
-            :external_id => product.custom_product_id})
+            :external_id => product.custom_product_id,
+            :tags => product.tags})
         end.compact
       end
     end
