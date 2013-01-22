@@ -78,16 +78,36 @@ module DW
         @item["wrapperType"].to_sym
       end
 
-      def is_software?
-        wrapper == :software
+      def collection_type
+        @item["collectionType"]
+      end
+
+      def track_type
+        @item["kind"]
       end
 
       def is_collection?
         wrapper == :collection
       end
 
+      def is_software?
+        wrapper == :software
+      end
+
       def is_track?
         wrapper == :track
+      end
+
+      def is_album?
+        is_collection? && collection_type =~ /album/i
+      end
+
+      def is_movie?
+        is_track? && track_type =~ /movie/i
+      end
+
+      def is_tv?
+        is_collection? && collection_type =~ /tv/i
       end
 
       def small_image_url
@@ -112,6 +132,29 @@ module DW
 
       def title
         is_collection? ? @item["collectionName"] : @item["trackName"]
+      end
+
+      def genre
+        genre = @item["primaryGenreName"]
+        genre ? genre.downcase : nil
+      end
+
+      def tags
+        tags = []
+
+        if is_software?
+          tags += %w"apps"
+        elsif is_album?
+          tags += %w"music album song track"
+        elsif is_movie?
+          tags += %w"film movie picture cinema flick"
+        elsif is_tv?
+          tags += %w"tv season episode television show"
+        end
+
+        tags << genre 
+
+        tags.compact
       end
     end
     
