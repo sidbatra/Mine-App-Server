@@ -75,21 +75,29 @@
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box relative">
+      
+      <img class="user-photo absolute rounded-2" alt="<%=purchase.get('user').fullName()%>"
+	      src="<%=purchase.get('user').get('square_image_url')%>" />
       				
 			<div class="title-box txt l relative rounded-3 overflow-hidden">
 			
-			    <a id="purchase_title_<%=purchase.get('id')%>"
-	            href="<%=purchase.get('source_url')%>" 
-	            class="item-name h-medium grid-nowrap" 
-	            target="_blank"><%=purchase.escape('title')%>
-	        </a> 
+				<a class="user-name light ellipsis" 
+			    href="<%=purchase.get('user').path('purchase_name')%>">
+			    <%=purchase.get('user').escape('first_name')%>   
+			    <%=purchase.get('user').escape('last_name')%>
+			  </a> 
+			
+		    <a id="purchase_title_<%=purchase.get('id')%>"
+            href="<%=purchase.get('source_url')%>" 
+            class="item-name grid-nowrap ellipsis" 
+            target="_blank"><%=purchase.escape('title')%>
+        </a> 
 
-			    <%if(purchase.get('store')){%>
-			    	<br>
-			      <span class="store-name h-light grid-nowrap grid-normal-weight">
-			      	<%=purchase.get('store').escape('name')%>
-			      </span>
-			    <%}%>
+		    <%if(purchase.get('store')){%>
+		      <div class="store-name grid-nowrap grid-normal-weight ellipsis">
+		      	<%=purchase.get('store').escape('name')%>
+		      </div>
+		    <%}%>
 		   
 	    </div> <!-- /title-box -->
 

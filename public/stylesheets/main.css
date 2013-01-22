@@ -819,9 +819,12 @@ a.feed-intro .highlight { font-weight: bold; }
 	margin: 0 10px;
 	display: inline-block;
 	vertical-align: top;
-	padding-top: 18px; }
+	padding-top: 28px;
+	padding-bottom: 4px;
+	border-bottom: 2px solid #eee; }
 
-.feed .item .user-box { 
+.feed .item .user-box {
+	display: none; 
 	height: 44px; 
 	padding: 8px 0 6px 39px; 
 	font-size: 14px;
@@ -841,8 +844,15 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .feed .item .photo-box .item-photo { max-height: 250px; }
 
-.feed .item .panel { padding: 0; background: none; min-height: 48px; max-height: 48px; }
+.feed .item .panel { background: none; padding: 0; min-height: 68px; /* max-height: 48px; */ }
 .feed .item .panel .panel-contents { background: none; padding: 0; }
+
+.feed .item .panel .user-photo {
+	top: 15px;
+	left: 0;
+	width: 28px; 
+	height: 28px; }
+
 .feed .item .panel .title-box {
 	font-weight: normal;
 /* 	text-align: center; */
@@ -852,10 +862,12 @@ a.feed-intro .highlight { font-weight: bold; }
 	color: #999;
 	line-height: 140%;
 	padding: 8px 4.8%;
-	padding: 8px 0;
+	padding: 14px 0 8px 34px;
 	margin: 0; }
 	
-.feed .item .panel .title-box .item-name { color: #555; }
+.feed .item .panel .title-box .user-name { font-weight: bold; }
+	
+.feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #555; }
 
 .feed .item .actions,
 .feed .item .like,
