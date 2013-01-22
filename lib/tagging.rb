@@ -66,6 +66,7 @@ module DW
         @tagger = nil
         @tagger ||= AmazonProductTagger.matches? url,unique_id
         @tagger ||= ITunesProductTagger.matches? url,unique_id
+        @tagger ||= BestBuyProductTagger.matches? url,unique_id
       end
 
       def available?
@@ -169,6 +170,44 @@ module DW
       end
     end
 
+
+    class BestBuyProductTagger
+
+      def self.matches?(url,unique_id)
+        matches = unique_id =~ /^BB-/ || url =~ /bestbuy\.com/ 
+        matches ? self.new(url,unique_id) : nil
+      end
+
+
+      def initialize(url,unique_id)
+        @url = url || ""
+        @unique_id = unique_id || ""
+      end
+      
+      def tags
+        tags = nil
+        sku = external_id
+
+        product = BestBuy.lookup(sku).first if sku
+        tags = product.tags if product
+
+        tags
+      end
+
+      def external_id
+        sku = nil
+
+        sku = @unique_id[3..-1] if @unique_id.present?
+        sku ||= @url.scan(/\/(\w+)\.p/).flatten.first 
+        sku ||= @url.scan(/skuId=(\w+)/).flatten.first
+
+        sku
+      end
+
+      def symbol
+        :bestbuy
+      end
+    end
 
   end #tagging
 end #dw
