@@ -33,6 +33,9 @@ class Product < ActiveRecord::Base
     text :store, :boost => 2 do
       store ? store.name : ""
     end
+    text :tags, :boost => 3 do
+      tags ? tags.split(CONFIG[:tag_boundary]) : ""
+    end
   end
 
   #----------------------------------------------------------------------

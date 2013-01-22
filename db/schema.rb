@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102022611) do
+ActiveRecord::Schema.define(:version => 20130121231117) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20130102022611) do
     t.string   "external_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "tags"
   end
 
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"
@@ -357,8 +358,8 @@ ActiveRecord::Schema.define(:version => 20130102022611) do
     t.string   "tumblr_access_token_secret"
     t.string   "tumblr_user_id"
     t.string   "iphone_device_token"
-    t.boolean  "is_special",                 :default => false
     t.integer  "unread_notifications_count", :default => 0
+    t.boolean  "is_special",                 :default => false
     t.string   "go_email"
     t.string   "go_token"
     t.string   "go_secret"

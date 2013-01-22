@@ -83,6 +83,10 @@ class Purchase < ActiveRecord::Base
         :source_url => attributes[:source_url],
         :orig_image_url => attributes[:orig_image_url],
         :external_id => attributes[:product][:external_id]})
+
+      if attributes[:product][:tags]
+        purchase.product.tags = attributes[:product][:tags].join CONFIG[:tag_boundary]
+      end
     end
 
     if attributes[:email]
