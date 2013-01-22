@@ -36,6 +36,9 @@ class Product < ActiveRecord::Base
     text :tags, :boost => 3 do
       tags ? tags.split(CONFIG[:tag_boundary]) : ""
     end
+    integer :purchasers, :multiple => true do
+      purchases.map(&:user_id)
+    end
   end
 
   #----------------------------------------------------------------------
@@ -44,6 +47,7 @@ class Product < ActiveRecord::Base
   named_scope :for_store, lambda {|store_id| {:conditions => {
                                       :store_id => store_id}}}
   named_scope :with_store, :include => :store
+  named_scope :with_purchases, :include => :purchases
 
   #----------------------------------------------------------------------
   # Class methods

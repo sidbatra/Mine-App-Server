@@ -11,7 +11,7 @@ module DW
       # Regenerate the search index
       #
       def self.regenerate
-        Product.with_store.reindex(:batch_size => 1000,:batch_commit => false)
+        Product.with_store.with_purchases.reindex(:batch_size => 1000,:batch_commit => false)
         User.with_followings.reindex(:batch_size => 500)
       rescue => ex
         LoggedException.add(__FILE__,__method__,ex)
