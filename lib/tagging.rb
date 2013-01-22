@@ -96,6 +96,7 @@ module DW
         @tagger ||= ITunesProductTagger.matches? url,unique_id
         @tagger ||= BestBuyProductTagger.matches? url,unique_id
         @tagger ||= EbayProductTagger.matches? url,unique_id
+        @tagger ||= ZapposProductTagger.matches? url,unique_id
       end
 
       def available?
@@ -274,6 +275,41 @@ module DW
 
       def symbol
         :ebay
+      end
+    end
+
+    
+
+    class ZapposProductTagger
+
+      def self.matches?(url,unique_id)
+        matches = unique_id =~ /^ZA-/ 
+        matches ? self.new(url,unique_id) : nil
+      end
+
+      def initialize(url,unique_id)
+        @url = url || ""
+        @unique_id = unique_id || ""
+      end
+      
+      def tags
+        tags = nil
+        sku = external_id
+
+        product = Zappos.lookup(sku).first if sku
+        tags = product.tags if product
+
+        tags
+      end
+
+      def external_id
+        sku = nil
+        sku = @unique_id[3..-1] if @unique_id.present?
+        sku
+      end
+
+      def symbol
+        :zappos
       end
     end
 

@@ -10,6 +10,7 @@ module DW
       # url_only - Return url or full set of results.
       #
       def self.lookup(ids,url_only=false)
+        ids = [ids] if ids.is_a? String
         ids = "[\"" + ids.join("\",\"") + "\"]"
 
         params = {
