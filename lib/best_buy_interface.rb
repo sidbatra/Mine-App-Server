@@ -73,6 +73,23 @@ module DW
       def title
         @item["name"]
       end
+
+      def subclass
+        subclass = @item["subclass"] 
+        subclass ? CGI.unescapeHTML(subclass.downcase) : nil
+      end
+
+      def tags
+        tags = []
+        
+        tags << subclass
+
+        @item["categoryPath"][1..-1].each do |category|
+          tags << CGI.unescapeHTML(category["name"].downcase)
+        end if @item["categoryPath"]
+
+        tags.compact
+      end
     end #best buy product
 
   end #best buy interface
