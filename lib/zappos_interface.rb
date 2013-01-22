@@ -14,7 +14,7 @@ module DW
 
         params = {
           'id'        => URI.escape(ids),
-          'includes'  => URI.escape("[\"styles\"]"),
+          'includes'  => URI.escape('["styles","defaultProductType","defaultCategory","defaultSubCategory"]'),
           'key'       => '2d0d97889624d073f8acb868f09381c8adabf454'}
 
         url = build_url("/Product",params)
@@ -85,6 +85,16 @@ module DW
 
       def title
         @item["productName"]
+      end
+
+      def tags
+        tags = []
+
+        tags << @item["defaultProductType"]
+        tags << @item["defaultCategory"]
+        tags << @item["defaultSubCategory"]
+
+        tags.compact.map(&:downcase)
       end
     end
     
