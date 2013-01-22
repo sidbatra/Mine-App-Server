@@ -1,8 +1,46 @@
 module DW
 
   module Tagging
-    
+
+
     class ProductTagger
+
+      def initialize(url,unique_id)
+        @tagger = nil
+        @tagger ||= AmazonProductTagger.matches? url,unique_id
+      end
+
+      def available?
+        @tagger.present?
+      end
+
+      # Extend the method_missing method to enable product tagger
+      # to act as a shell for product tagger classes.
+      #
+      def method_missing(method,*args,&block)
+
+        if available? && @tagger.respond_to?(method)
+          #begin
+            @tagger.send method,*args,&block
+          #rescue => ex
+          #  LoggedException.add(__FILE__,__method__,ex)
+          #end
+        else
+          super
+        end
+      end
+
+    end #product tagger
+
+    
+
+    class AmazonProductTagger
+
+      def self.matches?(url,unique_id)
+        matches = unique_id =~ /^AZ-/ || url =~ /www\.amazon\./ 
+        matches ? self.new(url,unique_id) : nil
+      end
+
 
       def initialize(url,unique_id)
         @url = url || ""
@@ -11,25 +49,15 @@ module DW
       
       def tags
         tags = nil
-        
-        if from_amazon?
-          tags = amazon_tags
-        end
+        asn = external_id
 
-      rescue => ex
-        LoggedException.add(__FILE__,__method__,ex)
-      ensure
-        return tags
+        product = AmazonProductSearch.lookup_products(asn).first if asn
+        tags = product.tags if product
+
+        tags
       end
 
-
-      private
-
-      def from_amazon?
-        @unique_id =~ /^AZ-/ || @url =~ /www\.amazon\./
-      end
-
-      def amazon_id
+      def external_id
         asn = nil
 
         asn = @unique_id[3..-1] if @unique_id.present?
@@ -39,17 +67,10 @@ module DW
         asn
       end
 
-      def amazon_tags
-        tags = nil
-        asn = amazon_id
-
-        product = AmazonProductSearch.lookup_products(asn).first if asn
-        tags = product.tags if product
-
-        tags
+      def symbol
+        :amazon
       end
-
-    end #product tagger
+    end
 
 
   end #tagging
