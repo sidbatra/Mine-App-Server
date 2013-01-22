@@ -30,6 +30,7 @@ module DW
         tag_itunes_products if @mapper[:itunes].present?
         tag_bestbuy_products if @mapper[:bestbuy].present?
         tag_ebay_products if @mapper[:ebay].present?
+        tag_zappos_products if @mapper[:zappos].present?
       end
 
       def tag_amazon_products
@@ -76,6 +77,19 @@ module DW
           Ebay.lookup(group).each do |item|
 
             @mapper[:ebay][item.product_id].each do |product|
+              product.tags = item.tags
+              product.save!
+            end #products
+
+          end #groups
+        end #keys
+      end
+
+      def tag_zappos_products
+        @mapper[:zappos].keys.in_groups_of(10,false).each do |group|
+          Zappos.lookup(group).each do |item|
+
+            @mapper[:zappos][item.product_id].each do |product|
               product.tags = item.tags
               product.save!
             end #products
