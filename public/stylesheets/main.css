@@ -807,6 +807,24 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed.grid.no-user-name .item .panel .title-box .user-name { display: none; }
 .feed.grid.no-user-bought-pronoun .item .panel .title-box .user-bought-pronoun { display: none; }
 
+
+/* M-Search 
+==================================================================== */
+
+input.m-search, 
+input.m-search:focus { 
+	height: 48px; 
+	line-height: auto; 
+	font-size: 18px;
+	padding-left: 82px;
+	background: #f5f5f5; }
+
+input::-webkit-input-placeholder { color: #bbb; }
+input:-moz-placeholder 					 { color: #bbb; }
+input::-moz-placeholder 	       { color: #bbb; }
+input:-ms-input-placeholder      { color: #bbb; }
+
+.m-search.affix { top: 0; left: 0; width: auto; }
 	
 /* Feed Item
 ==================================================================== */
@@ -819,7 +837,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	margin: 0 10px;
 	display: inline-block;
 	vertical-align: top;
-	padding-top: 28px;
+	padding-top: 20px;
 	padding-bottom: 4px;
 	border-bottom: 6px solid #f5f5f5; }
 

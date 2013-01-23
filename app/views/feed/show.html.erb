@@ -9,7 +9,6 @@
   <%=render 'purchases/chooser'%> 
 <%end%> 
 
-
 <!-- email importer box -->
 <div class="well-box border-box rounded-8 rwd-hide unselectable" 
   style="margin: 2px 0 12px;">
@@ -190,6 +189,18 @@
 <%end%>
 
 <div class="feed-container">
+	
+<script type="text/javascript"> 
+	$(window).load(function(){
+		$('#m-search').affix({
+		    offset: $('#m-search').position()
+		});
+	});
+</script>
+
+	<input type="text" id="m-search" class="m-search square border-box no-shadow affix-top"
+	placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
+	
 	<div id="feed" class="feed col-2 relative">
 	</div> 
 	
