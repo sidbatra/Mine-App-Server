@@ -823,17 +823,6 @@ a.feed-intro .highlight { font-weight: bold; }
 	padding-bottom: 4px;
 	border-bottom: 6px solid #f5f5f5; }
 
-.feed .item .user-box {
-	display: none; 
-	height: 44px; 
-	padding: 8px 0 6px 39px; 
-	font-size: 14px;
-	line-height: 110%; }
-
-.feed .item .user-box .user-photo { width: 32px; height: 32px; top: 6px; left: 0; }
-.feed .item .user-box .user-name  { font-size: 14px; font-weight: bold; }
-.feed .item .user-box .time  { font-size: 11px; color: #999; }
-
 .feed .item .photo-box { 
 	font-size: 11px; color: #999;
 	width: 100%;
@@ -856,19 +845,22 @@ a.feed-intro .highlight { font-weight: bold; }
   border-left: 1px solid rgba(0,0,0,0.12); }
 
 .feed .item .photo-box .item-photo { max-height: 250px; }
-
 .feed .item .photo-box .actions.top-left { top: 6px; left: 6px; }
-
+.feed .item .photo-box .actions.top-right { top: 6px; right: 6px; }
 .feed .item .photo-box .actions.bottom-right { bottom: 6px; right: 6px;  }
 
 .feed .item .panel { background: none; padding: 0; min-height: 68px; /* max-height: 48px; */ }
 .feed .item .panel .panel-contents { background: none; padding: 0; }
 
-.feed .item .panel .user-photo {
+.feed .item .panel a.user-photo {
 	top: 16px;
 	left: 0;
 	width: 42px; 
 	height: 42px; }
+
+.feed .item .panel a.user-photo img {
+	width: 42px; 
+	height: 42px;}
 
 .feed .item .panel .title-box {
 	font-weight: normal;
@@ -885,7 +877,6 @@ a.feed-intro .highlight { font-weight: bold; }
 .feed .item .panel .title-box .time { padding-left: 2px; font-size: 10px; }
 .feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #666; }
 
-.feed .item .corner-buy,
 .feed .item .likes-box,
 .feed .item .endorsement-box,
 .feed .item .comments-box { display: none !important; }
@@ -918,8 +909,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	top: 0;
 	right: 0;
 	display: block;
-	width: 60px;
-	height: 60px; }
+	width: 48px;
+	height: 48px; }
 	
 .item a.corner-buy img.top:hover {
 	opacity: 0;

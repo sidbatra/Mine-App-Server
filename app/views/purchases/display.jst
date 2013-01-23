@@ -1,35 +1,17 @@
 <div id="purchase-<%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item">
-  
-	<div class="user-box border-box relative">
-	
-		<a href="<%=purchase.get('user').path('purchase_photo')%>">
-	    <img class="user-photo rounded-3 absolute" alt="<%=purchase.get('user').fullName()%>"
-	      src="<%=purchase.get('user').get('square_image_url')%>" />
-	  </a>
-			    		
-	  <a class="em light user-name" 
-	    href="<%=purchase.get('user').path('purchase_name')%>">
-	    <%=purchase.get('user').escape('first_name')%>   
-	    <%=purchase.get('user').escape('last_name')%>
-	  </a> 
-	  
-    <span class="time h-light">
-    	<br>
-			<%=purchase.displayTimestamp()%>
-		</span>
-	  
-  </div>
-  
+    
   <div class="photo-box relative">
   
 		<!-- buy button -->
     <%if(interaction || !Denwen.H.isLoggedIn()){%>
-			<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
-				<img alt="Buy" class="absolute bottom " style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
-				<img alt="Buy" class="absolute top transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
-			</a>
+    	<div class="actions top-right absolute hover-appear">
+				<a href="<%=purchase.get('source_url')%>" target="_blank"
+				  	class="like btn btn-silver light shaded-light border-box rounded-3">
+						<i class="icon-cart"></i>
+				</a>
+			</div>
     <%}%>
   
   	<!-- edit button -->
@@ -82,8 +64,10 @@
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
       class="panel-contents border-box relative">
       
-      <img class="user-photo absolute rounded-2" alt="<%=purchase.get('user').fullName()%>"
-	      src="<%=purchase.get('user').get('square_image_url')%>" />
+      <a class="user-photo absolute" href="<%=purchase.get('user').path('purchase_name')%>">
+	      <img class="rounded-2" alt="<%=purchase.get('user').fullName()%>"
+		      src="<%=purchase.get('user').get('square_image_url')%>" />
+		  </a>
       				
 			<div class="title-box txt l relative rounded-3 overflow-hidden">
 			
