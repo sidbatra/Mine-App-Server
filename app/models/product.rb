@@ -36,9 +36,6 @@ class Product < ActiveRecord::Base
     text :tags, :boost => 3 do
       tags 
     end
-    integer :purchasers, :multiple => true do
-      purchases.map(&:user_id)
-    end
   end
 
   #----------------------------------------------------------------------
