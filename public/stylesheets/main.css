@@ -821,7 +821,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	vertical-align: top;
 	padding-top: 28px;
 	padding-bottom: 4px;
-	border-bottom: 2px solid #eee; }
+	border-bottom: 6px solid #f5f5f5; }
 
 .feed .item .user-box {
 	display: none; 
@@ -842,7 +842,24 @@ a.feed-intro .highlight { font-weight: bold; }
 	text-align: center;
 	line-height: 250px; }
 
+.feed .item .photo-box .like.btn,
+.feed .item .photo-box .comment.btn {
+	width: 48px;
+	height: 28px;
+	line-height: 28px; }
+	
+.feed .item .photo-box .like.btn [class^="icon-"],
+.feed .item .photo-box .comment.btn [class^="icon-"] { margin-top: -1px; }
+
+.feed .item .photo-box .comment.btn {
+	border-left: 1px solid #ababab; 
+  border-left: 1px solid rgba(0,0,0,0.12); }
+
 .feed .item .photo-box .item-photo { max-height: 250px; }
+
+.feed .item .photo-box .actions.top-left { top: 6px; left: 6px; }
+
+.feed .item .photo-box .actions.bottom-right { bottom: 6px; right: 6px;  }
 
 .feed .item .panel { background: none; padding: 0; min-height: 68px; /* max-height: 48px; */ }
 .feed .item .panel .panel-contents { background: none; padding: 0; }
@@ -855,7 +872,6 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .feed .item .panel .title-box {
 	font-weight: normal;
-/* 	text-align: center; */
 	min-height: 0;
 	font-size: 12px;
 	color: #555;
@@ -866,11 +882,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	margin: 0; }
 	
 .feed .item .panel .title-box .user-name { font-weight: bold; }
-	
-.feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #555; }
+.feed .item .panel .title-box .time { padding-left: 2px; font-size: 10px; }
+.feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #666; }
 
-.feed .item .actions,
-.feed .item .like,
 .feed .item .corner-buy,
 .feed .item .likes-box,
 .feed .item .endorsement-box,
@@ -915,9 +929,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	opacity: 0;
 	filter: alpha(opacity=0); }
 
-.item .photo-box:hover .actions .hover-appear { 	
-	opacity: 0.8;
-	filter: alpha(opacity=80);
+.item .photo-box:hover .hover-appear { 	
+	opacity: 1;
+	filter: alpha(opacity=100);
 	-webkit-transition: opacity .25s ease-in;
 	-moz-transition: opacity .25s ease-in;
 	-o-transition: opacity .25s ease-in;
@@ -925,9 +939,7 @@ a.feed-intro .highlight { font-weight: bold; }
 	
 .item .photo-box .like.btn {
 	width: 64px;
-	height: 32px;
-	top: 40px;
-	left: 40px; }
+	height: 32px; }
 	
 .like.btn.pushed .icon-heart { 
 	display: inline-block;

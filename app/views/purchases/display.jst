@@ -34,7 +34,7 @@
   
   	<!-- edit button -->
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-			<div class="actions bottom-right absolute">
+			<div class="actions bottom-right hover-appear absolute">
 				<a href="<%=purchase.editPath('feed')%>" 
           class="btn btn-small btn-white rounded-3 transition-opacity opacity-60-100">
 					<i class="icon-pencil"></i>
@@ -55,13 +55,19 @@
     <%}%>
 
 		
-		<!-- like button -->
+		<!-- like. comment button -->
 		<%if(interaction){%> 
-			<a href="javascript:void(0)"
-		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn btn-silver light absolute shaded-light border-box rounded-3">
-				<i class="icon-heart"></i>
-			</a>		
+			<div class="actions top-left absolute hover-appear">
+				<a href="javascript:void(0)"
+			  		id="purchase_create_like_<%=purchase.get('id')%>"
+			  		class="like btn btn-silver light shaded-light border-box rounded-3-left">
+					<i class="icon-heart"></i>
+				</a><a href="javascript:void(0)"
+			  		id="purchase_create_like_<%=purchase.get('id')%>"
+			  		class="comment btn btn-silver light shaded-light border-box rounded-3-right">
+					<i class="icon-comment"></i>
+				</a>	
+			</div>
 		<%}%>
         
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
@@ -86,6 +92,11 @@
 			    <%=purchase.get('user').escape('first_name')%>   
 			    <%=purchase.get('user').escape('last_name')%>
 			  </a> 
+			  
+			  <span class="time">
+					<%=purchase.displayTimestamp()%>
+				</span>
+	  
 			
 		    <a id="purchase_title_<%=purchase.get('id')%>"
             href="<%=purchase.get('source_url')%>" 
