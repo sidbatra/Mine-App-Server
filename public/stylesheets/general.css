@@ -39,6 +39,7 @@ span.separator:before { content: "•"; }
 
 .opacity-40 { opacity: 0.4; filter: alpha(opacity=40); }
 .opacity-50 { opacity: 0.5; filter: alpha(opacity=50); }
+.opacity-60 { opacity: 0.6; filter: alpha(opacity=60); }
 .opacity-80,
 .opacity-80-100 { opacity: 0.8; filter: alpha(opacity=80); }
 .opacity-90-100 { opacity: 0.9; filter: alpha(opacity=90); }
