@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121231117) do
+ActiveRecord::Schema.define(:version => 20130124024418) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20130121231117) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "tags"
+    t.integer  "purchases_count",     :default => 0
   end
 
   add_index "products", ["is_processed"], :name => "index_products_on_is_processed"

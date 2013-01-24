@@ -14,7 +14,7 @@ class Purchase < ActiveRecord::Base
   has_many :notifications, :as => :resource, :dependent => :destroy
   belongs_to :user, :touch => true, :counter_cache => true
   belongs_to :store, :counter_cache => true
-  belongs_to :product
+  belongs_to :product, :counter_cache => true
   belongs_to :suggestion
 
   #----------------------------------------------------------------------
