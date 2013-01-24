@@ -190,14 +190,7 @@
 
 <div class="feed-container">
 	
-<script type="text/javascript"> 
-	$(window).load(function(){
-		$('#m-wrapper').height($("#m-search").height());
-		$('#m-search').affix({
-		    offset: $('#m-search').position()
-		});
-	});
-</script>
+
 	
 	<div id="m-wrapper" class="m-wrapper relative">
 	
@@ -230,5 +223,10 @@
     new Denwen.Views.Feed.Show({
       successEmailConnectURL: "<%=unapproved_purchases_path(:mode => 'live')%>",
       source: "<%=h @source%>"});
+      
+		//$('#m-wrapper').height($("#m-search").height());
+		//$('#m-search').affix({
+		//    offset: $('#m-search').position()
+		//});
   </script>
 <%end%>
