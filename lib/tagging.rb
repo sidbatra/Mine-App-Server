@@ -43,6 +43,8 @@ module DW
             end #products
 
           end #groups
+
+          sleep 0.2
         end #keys
       end
 
@@ -56,6 +58,8 @@ module DW
             end #products
 
           end #groups
+
+          sleep 0.2
         end #keys
       end
 
@@ -69,6 +73,8 @@ module DW
             end #products
 
           end #groups
+
+          sleep 0.25
         end #keys
       end
 
@@ -82,6 +88,8 @@ module DW
             end #products
 
           end #groups
+
+          sleep 0.25
         end #keys
       end
 
@@ -95,6 +103,8 @@ module DW
             end #products
 
           end #groups
+
+          sleep 0.25
         end #keys
       end
 
