@@ -128,9 +128,9 @@ li { line-height: 1; }
 	border-style: solid;
 	border-color: rgba(0, 0, 0, 0.2);
 	padding-bottom: 0;
-	-webkit-border-radius: 4px 4px 6px 6px !important; 
-	-moz-border-radius: 4px 4px 6px 6px !important; 
-	border-radius: 4px 4px 6px 6px !important;  }
+	-webkit-border-radius: 0px 0px 6px 6px !important; 
+	-moz-border-radius: 0px 0px 6px 6px !important; 
+	border-radius: 0px 0px 6px 6px !important;  }
 
 .search.typeahead.dropdown-menu li a { 
   width: auto;
@@ -812,15 +812,15 @@ a.feed-intro .highlight { font-weight: bold; }
 ==================================================================== */
 
 .m-wrapper .q {
-	width: 16px;
+	width: 15px;
 	left: 8.506944444%;
-	top: 16px;
+	top: 15px;
 	opacity: 0.24; 
 	filter: alpha(opacity=24); }
 
 .m-wrapper .close {
 	font-size: 28px; 
-	top: 12px; 
+	top: 9px; 
 	right: 8.1597222222%; }
 	
 .m-search:hover .q {
@@ -830,11 +830,14 @@ a.feed-intro .highlight { font-weight: bold; }
 input.m-search, 
 input.m-search:focus { 
 	display: block;
-	height: 48px; 
+	height: 44px; 
 	line-height: auto;
-	font-size: 18px;
-	padding: 2px 14.2361111% 0;
-	background: #f5f5f5; }
+	font-size: 16px;
+	padding: 0 14.2361111%;
+	background: #f1f1f1; }
+
+input.m-search:focus { 
+/* 	background: #f5f5f5;  */}
 
 input::-webkit-input-placeholder { color: #bbb; }
 input:-moz-placeholder 					 { color: #bbb; }
@@ -901,7 +904,6 @@ input:-ms-input-placeholder      { color: #bbb; }
 	font-weight: normal;
 	min-height: 0;
 	font-size: 12px;
-	color: #555;
 	color: #999;
 	line-height: 140%;
 	padding: 8px 4.8%;
@@ -910,11 +912,153 @@ input:-ms-input-placeholder      { color: #bbb; }
 	
 .feed .item .panel .title-box .user-name { font-weight: bold; }
 .feed .item .panel .title-box .time { padding-left: 2px; font-size: 10px; }
-.feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #666; }
+.feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #444; }
 
-.feed .item .likes-box,
-.feed .item .endorsement-box,
-.feed .item .comments-box { display: none !important; }
+
+/* Item-Modal
+==================================================================== */
+
+.item-modal { 
+	width: 520px;
+	margin-left: -260px;
+	border: none;
+	top: 9%; }
+
+.item-modal .modal-body { 
+	padding: 0; 
+	max-height: 610px; }
+
+.item-modal .close {
+	right: -26px;
+	top: -34px; 
+	height: 30px;
+	color: white;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	text-shadow: none;
+	font-size: 36px;
+	z-index: 10000; }
+
+.item-modal .close:hover {
+	opacity: 0.8;
+	filter: alpha(opacity=80); }
+	
+.modal-backdrop, .modal-backdrop.fade.in {
+	opacity: 0.9;
+	filter: alpha(opacity=90); }
+
+.item-modal .photo-box {
+	width: auto;
+	min-height: 150px;
+	padding: 3.461538461538% 4.615384615% 2.69230%;
+	text-align: center;
+	line-height: 1; }
+
+.item-modal .photo-box .item-photo { max-height: 360px; }
+	
+.item-modal .panel { padding: 0 4.615384615%; }
+.item-modal .panel .panel-contents { padding: 0; }
+
+/* -- title -- */
+
+.item-modal .panel .title-box {
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+	min-height: 48px;
+	line-height: 130%;
+	padding: 0 0 2.307692307692% 60px; }
+
+.item-modal .panel a.user-photo {
+	top: 2px;
+	left: 0;
+	width: 50px; 
+	height: 50px; }
+	
+.item-modal .panel .title-box .user-name { font-weight: bold; font-size: 12px; }
+.item-modal .panel .title-box .time { padding-left: 2px; font-size: 10px; }
+.item-modal .panel .title-box .item-name { display: block; font-weight: bold; color: #444; }
+.item-modal .panel .title-box .store-name { font-size: 12px; }
+	
+.item-modal .interactions { 
+	border-top: 6px solid #eee;
+	background: #f8f8f8; 
+	margin-bottom: 3.461538461538%;
+	padding: 0.76923% 3.461538461538% 4.615384615%; }
+
+/* -- endorsement -- */
+
+.item-modal .panel .endorsement-box {
+	line-height: 140%;
+	padding-top: 4px;
+	color: #555; }
+
+/* -- likes -- */
+
+.item-modal .panel .likes-box {
+	height: 32px;
+	line-height: 1;
+	color: #555;
+	padding: 4px 0 0;
+	overflow-y: hidden;
+	white-space: nowrap; }
+
+.item-modal .panel .likes-box .fader {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 28px;
+	z-index: 500;
+	background: url("/images/fade-right.png") 0 -300px; }
+	
+.item-modal .panel .likes-box .text {
+	padding-right: 6px; } 
+
+.item-modal .panel .likes-box .num {
+	-webkit-font-smoothing: antialiased;
+	font-weight: bold; 
+	font-size: 32px; }
+
+.item-modal .panel .likes-box .user-photo-box {
+	width: 24px;
+	height: 24px; 
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 4px; }
+
+/* -- comments -- */
+
+.item-modal .panel .comments-box { padding-top: 10px; }
+
+.item-modal .panel .comment-box {
+	min-height: 28px; 
+	margin-bottom: 8px;
+	padding-left: 36px; 
+	line-height: 140%;
+	clear: both;
+	color: #666; }
+	
+.item-modal .panel .comment-box .user-photo { left: 0; top: 0; }
+.item-modal .panel .comment-box .user-name,
+.item-modal .panel .comment-box .user-name a {
+	color: #333;
+	line-height: 1;
+	font-weight: bold;
+	margin-bottom: 3px; }
+	
+.item-modal .panel input,
+.item-modal .panel textarea { 
+	background: white;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px inset; }
+	
+.item-modal .panel .add-comment-box input {
+	width: 100%;
+	height: 28px;
+	border: none;
+	background: white;
+	padding-left: 35px;
+	margin-bottom: 0; }
+
 
 /* Item
 ==================================================================== */
@@ -938,18 +1082,6 @@ input:-ms-input-placeholder      { color: #bbb; }
 .item .photo-box .actions.top-right    { top: 24px; right: 24px;    }
 .item .photo-box .actions.bottom-right { bottom: 28px; right: 28px; }
 .item .photo-box .actions.bottom-left  { bottom: 24px; left: 24px;  }
-
-.item a.corner-buy {
-	z-index: 10;
-	top: 0;
-	right: 0;
-	display: block;
-	width: 48px;
-	height: 48px; }
-	
-.item a.corner-buy img.top:hover {
-	opacity: 0;
-	filter: alpha(opacity=0); }
 
 .hover-appear { 
 	opacity: 0;
@@ -1002,10 +1134,6 @@ input:-ms-input-placeholder      { color: #bbb; }
 	line-height: 140%;
 	padding: 0 34px 0 50px;
 	margin-top: -3px; }
-
-.item .panel .title-box a.link-out { 
-	padding-right: 13px;
-	background: url('/images/arrow-out-177DBE-l.png') center right no-repeat; }
 
 .item .panel .title-box .user-photo { left:0; top: 3px; }
 .item .panel .title-box .em { /* font-weight: bold; */ }

@@ -769,6 +769,9 @@ input.error:focus, textarea.error:focus {
 	-webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none; }
+          
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover 
 
 .dropdown-menu li > a:hover,
 .dropdown-menu li > a:focus,
@@ -776,7 +779,8 @@ input.error:focus, textarea.error:focus {
 .dropdown-menu .active > a:hover {
   text-decoration: none;
   color: white !important;
-  background-color: #666; }
+  background-color: #666;
+  background-image: none !important; }
 
 .typeahead.dropdown-menu li { 
 	overflow: hidden;
