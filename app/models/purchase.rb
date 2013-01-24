@@ -189,7 +189,7 @@ class Purchase < ActiveRecord::Base
       next unless purchase
 
       bought_count = group.total
-      buyers = group.results.map(&:user).map(&:full_name)
+      buyers = group.results.map(&:user).uniq.map(&:full_name)
       message = ""
 
       if bought_count <= 2
