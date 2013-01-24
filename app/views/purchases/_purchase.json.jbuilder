@@ -1,4 +1,4 @@
-json.extract! purchase,:id,:bought_at,:title,:handle,:endorsement,:source_url,:giant_url,:fb_object_id
+json.extract! purchase,:id,:bought_at,:title,:handle,:endorsement,:source_url,:giant_url,:fb_object_id,:buyers_count,:message
 json.created_at purchase.bought_at
 
 json.user do |j|

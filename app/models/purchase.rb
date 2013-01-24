@@ -187,7 +187,7 @@ class Purchase < ActiveRecord::Base
 
               paginate :per_page => opts[:per_page], :page => opts[:page]
               with(:user_id,opts[:friend_ids]) if opts[:scope] == :friends
-              with(:user_id,opts[:connection_ids]) if opts[:scope] == :connections
+              with(:user_id,opts[:friend_ids] + opts[:connection_ids]) if opts[:scope] == :connections
               with(:is_approved,true)
              end.group(:product_id)
 
