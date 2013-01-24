@@ -80,6 +80,41 @@ class PurchasesController < ApplicationController
                     limit(@per_page).
                     for_users([self.current_user]).
                     all 
+
+    when :search
+      per_page = params[:per_page] ? params[:per_page].to_i : 10
+      page = params[:page] ? params[:page].to_i : 1
+      query = params[:q]
+      scope = :friends
+      order = :popular
+      friend_ids = self.current_user.ifollower_ids
+      connection_ids = []
+
+      if query =~ /friends of friends/
+        scope = :connections
+        query = query.gsub /friends of friends/,""
+      elsif query =~ /everyone/
+        scope = :everyone
+      elsif query =~ /my friends/
+        query = query.gsub /my friends/,""
+      end
+
+      if query =~ /latest|recent/
+        order = :latest
+      end
+
+      if scope == :connections || scope == :everyone
+        connection_ids = self.current_user.ifollowers_of_ifollowers_ids 
+      end
+
+
+      @purchases = Purchase.fulltext_search(query,{
+                    :scope => scope,
+                    :order => order,
+                    :friend_ids => friend_ids,
+                    :connection_ids => connection_ids,
+                    :per_page => per_page,
+                    :page => page})
     end
   rescue => ex
     handle_exception(ex)

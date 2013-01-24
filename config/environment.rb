@@ -84,12 +84,12 @@ Rails::Initializer.run do |config|
               :version => '0.8.8',
               :lib => false)
   config.gem('sunspot',
-              :version => '1.3.1')
+              :version => '2.0.0.pre.130115')
   config.gem('sunspot_solr',
-              :version => '1.3.1',
+              :version => '2.0.0.pre.130115',
               :lib => false)
   config.gem('sunspot_rails',
-              :version => '1.3.1')
+              :version => '2.0.0.pre.130115')
   config.gem('typhoeus',
               :version => '0.3.3')
   config.gem('twilio-ruby',

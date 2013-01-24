@@ -148,6 +148,18 @@ class User < ActiveRecord::Base
   # Instance methods
   #----------------------------------------------------------------------
 
+  # IDs of the users being followed by the users the user follows.
+  # ifollowers of ifollowers.
+  #
+  def ifollowers_of_ifollowers_ids
+    Following.all(
+      :select => "user_id",
+      :conditions => {
+        :follower_id => self.ifollower_ids,
+        :is_active => true},
+      :group => :user_id).map(&:user_id)
+  end
+
   def purchases_count
     purchases.approved.count
   end

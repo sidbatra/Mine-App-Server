@@ -1,6 +1,9 @@
 <%-if @aspect == :unapproved-%>
 <%=render :partial => "purchases/purchases",
     :locals => {:purchases => @purchases}%>
+<%-elsif @aspect == :search-%>
+  <%=render :partial => "purchases/purchases",
+      :locals => {:purchases => @purchases,:extra => {:without_store => true,:without_interactions => true}}%>
 <%-else-%>
 <%-cache @key,@cache_options do-%>
 <%=render :partial => "purchases/purchases",
