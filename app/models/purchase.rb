@@ -29,6 +29,8 @@ class Purchase < ActiveRecord::Base
   # Indexing
   #----------------------------------------------------------------------
   searchable do
+    boolean :is_approved
+
     integer :store_id
     integer :user_id
     integer :buyers_count do
@@ -186,6 +188,7 @@ class Purchase < ActiveRecord::Base
               paginate :per_page => opts[:per_page], :page => opts[:page]
               with(:user_id,opts[:friend_ids]) if opts[:scope] == :friends
               with(:user_id,opts[:connection_ids]) if opts[:scope] == :connections
+              with(:is_approved,true)
              end.group(:product_id)
 
     search.populate_all_hits
