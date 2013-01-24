@@ -140,6 +140,73 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def self.fulltext_search(query,opts={})
+    opts[:per_page] ||= 10
+    opts[:page] ||= 1
+    opts[:scope] ||= :friends
+    opts[:order] ||= :popular
+
+    search = search(:include => :user) do
+
+              fulltext query do
+                if opts[:scope] == :everyone
+                  boost(10) do
+                    with(:user_id,opts[:friend_ids])
+                  end if opts[:friend_ids].present?
+
+                  boost(5) do
+                    with(:user_id,opts[:connection_ids])
+                  end  if opts[:connection_ids].present?
+
+                  [1,3,5,6,9,13,17,19,23,29,31,37,41,43].each do |count|
+                    boost(1){with(:bought_count).greater_than(count)}
+                  end if opts[:order] == :popular
+                end #scope everyone
+
+                if opts[:order] == :latest
+                  [1.month.ago,3.weeks.ago,2.weeks.ago,1.week.ago,5.days.ago,
+                    3.days.ago,1.day.ago,12.hours.ago,1.hour.ago,
+                    30.minutes.ago].each do |time|
+                    boost(1){with(:bought_at).greater_than(time)}
+                  end
+                end  #order latest
+              end #fulltext
+
+              group :product_id do
+                limit 2
+                order_by(:bought_at,:desc)
+              end
+
+              paginate :per_page => opts[:per_page], :page => opts[:page]
+              with(:user_id,opts[:friend_ids]) if opts[:scope] == :friends
+              with(:user_id,opts[:connection_ids]) if opts[:scope] == :connections
+             end.group(:product_id)
+
+    search.populate_all_hits
+
+    search.groups.each do |group|
+      purchase = group.results.first
+      next unless purchase
+
+      bought_count = group.total
+      buyers = group.results.map(&:user).map(&:full_name)
+      message = ""
+
+      if bought_count <= 2
+        message << buyers[0..1].join(" and ")
+      elsif bought_count == 3
+        message << buyers[0..1].join(", ") + " and 1 other"   
+      else
+        message << buyers[0..1].join(", ") + " and #{bought_count - 2} others"   
+      end
+
+      purchase[:bought_count] = bought_count
+      purchase[:message] = message
+    end
+
+    search.groups.map{|group| group.results.first}.compact
+  end
+
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
