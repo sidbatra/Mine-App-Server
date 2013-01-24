@@ -31,6 +31,10 @@ class Purchase < ActiveRecord::Base
   searchable do
     integer :store_id
     integer :user_id
+    integer :bought_count do
+      product ? product.purchases_count : 0
+    end
+
     string :product_id
 
     time :bought_at
