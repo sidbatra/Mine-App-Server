@@ -98,7 +98,4 @@
 		line-height: 130%;
 		max-height: 45px;
 		min-height: 0; }
-	
-	.feed.grid .item .panel .title-box .user-name,
-	.feed.grid .item .panel .title-box .store-name { display: none; }
 }

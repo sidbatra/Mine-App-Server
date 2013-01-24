@@ -719,7 +719,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	display: inline-block;
 	font-size: 0;
 	margin: 18px 18px 0px 0px;
-	vertical-align: top; }
+	vertical-align: top;
+	border-bottom: none;
+	padding-top: 0; }
 	
 .feed.grid .item .photo-box {
 	height: 200px;
@@ -728,8 +730,9 @@ a.feed-intro .highlight { font-weight: bold; }
 	background-image: none; }
 
 .feed.grid .item .panel { 
-	padding: 12px 0 0; 
-	border: none; }
+	padding: 10px 0 0;
+	border: none;
+	min-height: 52px; }
 
 .feed.grid .item .panel .caret {
 	width: 0;
@@ -786,11 +789,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	line-height: 140% !important;
 	padding: 0 !important;
 	text-overflow: ellipsis; }
-	
-.feed.grid .item .panel .title-box .user-photo.xl {
-	width: 28px;
-	height: auto; }
 
+.feed.grid .item .panel .user-photo,
 .feed.grid .item .panel .endorsement-box, 
 .feed.grid span.time { display: none; }
 
