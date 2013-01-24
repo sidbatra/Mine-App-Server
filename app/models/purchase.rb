@@ -26,6 +26,34 @@ class Purchase < ActiveRecord::Base
   validates_inclusion_of :source, :in => PurchaseSource.values
 
   #----------------------------------------------------------------------
+  # Indexing
+  #----------------------------------------------------------------------
+  searchable do
+    integer :store_id
+    integer :user_id
+    string :product_id
+
+    time :bought_at
+    
+    text :title, :boost => 4
+    text :product_title, :boost => 5 do
+      product ? product.title : ""
+    end
+    text :product_description do
+      product ? product.description : ""
+    end
+    text :store, :boost => 2 do
+      store ? store.name : ""
+    end
+    text :user, :boost => 4 do
+      user ? user.full_name : ""
+    end
+    text :product_tags, :boost => 3 do
+      product ? product.tags : ""
+    end
+  end
+
+  #----------------------------------------------------------------------
   # Named scopes
   #----------------------------------------------------------------------
   named_scope :for_users, lambda {|users| {:conditions => {
