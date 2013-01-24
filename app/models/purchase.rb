@@ -31,8 +31,11 @@ class Purchase < ActiveRecord::Base
   searchable do
     integer :store_id
     integer :user_id
-    integer :bought_count do
-      product ? product.purchases_count : 0
+    integer :buyers_count do
+      product ? product.purchases.length : 0
+    end
+    integer :buyers, :multiple => true do
+      product ? product.purchases.map(&:user_id) : []
     end
 
     string :product_id
@@ -69,6 +72,7 @@ class Purchase < ActiveRecord::Base
   named_scope :with_user,  :include => :user
   named_scope :with_store, :include => :store
   named_scope :with_product,  :include => :product
+  named_scope :with_product_and_purchases,  :include => {:product => :purchases}
   named_scope :with_likes, :include => {:likes => [:user]}
   named_scope :with_comments, :include => {:comments => [:user]}
   named_scope :special, :conditions => {:is_special => true}
@@ -149,27 +153,29 @@ class Purchase < ActiveRecord::Base
     search = search(:include => :user) do
 
               fulltext query do
-                if opts[:scope] == :everyone
-                  boost(10) do
-                    with(:user_id,opts[:friend_ids])
+                if opts[:order] == :popular
+
+                  [1,3,5,6,9,13,17,19,23,29,31,37,41,43].each do |count|
+                    boost(1){with(:buyers_count).greater_than(count)}
+                  end if opts[:scope]== :everyone 
+
+                  boost(7) do
+                    with(:buyers,opts[:friend_ids])
                   end if opts[:friend_ids].present?
 
                   boost(5) do
-                    with(:user_id,opts[:connection_ids])
+                    with(:buyers,opts[:connection_ids])
                   end  if opts[:connection_ids].present?
 
-                  [1,3,5,6,9,13,17,19,23,29,31,37,41,43].each do |count|
-                    boost(1){with(:bought_count).greater_than(count)}
-                  end if opts[:order] == :popular
-                end #scope everyone
+                elsif opts[:order] == :latest
 
-                if opts[:order] == :latest
                   [1.month.ago,3.weeks.ago,2.weeks.ago,1.week.ago,5.days.ago,
                     3.days.ago,1.day.ago,12.hours.ago,1.hour.ago,
                     30.minutes.ago].each do |time|
                     boost(1){with(:bought_at).greater_than(time)}
-                  end
-                end  #order latest
+                  end 
+
+                end #opts[:order]
               end #fulltext
 
               group :product_id do
@@ -188,19 +194,19 @@ class Purchase < ActiveRecord::Base
       purchase = group.results.first
       next unless purchase
 
-      bought_count = group.total
+      buyers_count = group.total
       buyers = group.results.map(&:user).uniq.map(&:full_name)
       message = ""
 
-      if bought_count <= 2
+      if buyers_count <= 2
         message << buyers[0..1].join(" and ")
-      elsif bought_count == 3
+      elsif buyers_count == 3
         message << buyers[0..1].join(", ") + " and 1 other"   
       else
-        message << buyers[0..1].join(", ") + " and #{bought_count - 2} others"   
+        message << buyers[0..1].join(", ") + " and #{buyers_count - 2} others"   
       end
 
-      purchase[:bought_count] = bought_count
+      purchase[:buyers_count] = buyers_count
       purchase[:message] = message
     end
 
