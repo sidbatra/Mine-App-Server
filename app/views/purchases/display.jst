@@ -1,12 +1,22 @@
 <div id="purchase-<%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item">
-  
+    
   <div class="photo-box relative">
+  
+		<!-- buy button -->
+    <%if(interaction || !Denwen.H.isLoggedIn()){%>
+    	<div class="actions top-right absolute hover-appear">
+				<a href="<%=purchase.get('source_url')%>" target="_blank"
+				  	class="like btn btn-silver light shaded-light border-box rounded-3">
+						<i class="icon-cart"></i>
+				</a>
+			</div>
+    <%}%>
   
   	<!-- edit button -->
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-			<div class="actions bottom-right absolute">
+			<div class="actions bottom-right hover-appear absolute">
 				<a href="<%=purchase.editPath('feed')%>" 
           class="btn btn-small btn-white rounded-3 transition-opacity opacity-60-100">
 					<i class="icon-pencil"></i>
@@ -27,134 +37,196 @@
     <%}%>
 
 		
-		<!-- like button -->
+		<!-- like. comment button -->
 		<%if(interaction){%> 
-			<a href="javascript:void(0)"
-		  		id="purchase_create_like_<%=purchase.get('id')%>"
-		  		class="like btn btn-silver light absolute shaded-light border-box rounded-3">
-				<i class="icon-heart"></i>
-			</a>		
+			<div class="actions top-left absolute hover-appear">
+				<a href="javascript:void(0)"
+			  		id="purchase_create_like_<%=purchase.get('id')%>"
+			  		class="like btn btn-silver light shaded-light border-box rounded-3-left">
+					<i class="icon-heart"></i>
+				</a><a href="#item-modal-<%=purchase.get('id')%>" data-toggle="modal"
+			  		id="purchase_create_like_<%=purchase.get('id')%>"
+			  		class="comment btn btn-silver light shaded-light border-box rounded-3-right">
+					<i class="icon-comment"></i>
+				</a>	
+			</div>
 		<%}%>
         
 		<a id="purchase_photo_<%=purchase.get('id')%>" 
-        href="<%=purchase.get('source_url')%>" 
-        target="_blank" style="display: block;" rel="nofollow">
+        href="#item-modal-<%=purchase.get('id')%>" data-toggle="modal"
+        style="display: block;" rel="nofollow">
     	<img class="item-photo" src="<%=purchase.get('giant_url')%>" alt="<%=purchase.escape('title')%>" />
     </a>
     
-  </div>
+  </div> <!-- photo-box -->
   
   <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
 		<div id="purchase_panel_content_<%=purchase.get('id')%>" 
-      class="panel-contents border-box rounded-5 relative">
+      class="panel-contents border-box relative">
       
-	    <!-- buy button -->
-	    <%if(interaction || !Denwen.H.isLoggedIn()){%>
-				<a href="<%=purchase.get('source_url')%>" target="_blank" class="corner-buy absolute">
-					<img alt="Buy" class="absolute bottom rounded-7-top-right" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-on-2x.png")%>" />
-					<img alt="Buy" class="absolute top rounded-5-top-right transition-opacity" style="top: 0; right: 0;" src="<%=Denwen.H.imagePath("corner-buy-off-2x.png")%>" />
-				</a>
-	    <%}%>
-      	
-			<b class="caret absolute opaque"></b>
+      <a class="user-photo absolute" href="<%=purchase.get('user').path('purchase_name')%>">
+	      <img class="rounded-2" alt="<%=purchase.get('user').fullName()%>"
+		      src="<%=purchase.get('user').get('square_image_url')%>" />
+		  </a>
+      				
+			<div class="title-box relative rounded-3">
 			
-			<div class="title-box txt l relative rounded-3 overflow-hidden">
-					
-				<a href="<%=purchase.get('user').path('purchase_photo')%>">
-		      <img class="user-photo xl rounded-3 absolute" alt="<%=purchase.get('user').fullName()%>"
-            src="<%=purchase.get('user').get('square_image_url')%>" />
-		    </a>
-		    
-		    <span style="padding-right: 3px;">
-		
-			    <a class="em light user-name" 
-	          href="<%=purchase.get('user').path('purchase_name')%>">
-	          <%=purchase.get('user').escape('first_name')%>   
-	          <%=purchase.get('user').escape('last_name')%></a> 
-			
-          <span class="user-bought-pronoun">
-            bought 
-        
-            <%if(purchase.get('store')){%>
-              <%=purchase.get('user').get('gender') == 'male' ? 'his' : 'her'%>
-            <%}%>
-          </span>
-			
-			    <a id="purchase_title_<%=purchase.get('id')%>"
-	            href="<%=purchase.get('source_url')%>" 
-	            class="em light link-out grid-nowrap" 
-	            target="_blank"><%=purchase.escape('title')%></a> 
-	        
-	        <br class="grid-only" style="display: none;">
-			
-			    <%if(purchase.get('store')){%>
-			      <span class="store-name grid-nowrap grid-normal-weight">
-			      	from <%=purchase.get('store').escape('name')%>
-			      </span>
-			    <%}%>
-		    
-		    </span>
-		    
-        <span class="time">
-  				<%=purchase.displayTimestamp()%>
+				<a class="user-name light ellipsis" 
+			    href="<%=purchase.get('user').path('purchase_name')%>">
+			    <%=purchase.get('user').escape('first_name')%>   
+			    <%=purchase.get('user').escape('last_name')%>
+			  </a> 
+			  
+			  <span class="time">
+					<%=purchase.displayTimestamp()%>
 				</span>
+	  
+			
+		    <a id="purchase_title_<%=purchase.get('id')%>"
+            href="<%=purchase.get('source_url')%>" 
+            class="item-name grid-nowrap ellipsis" 
+            target="_blank"><%=purchase.escape('title')%>
+        </a> 
+
+		    <%if(purchase.get('store')){%>
+		      <div class="store-name grid-nowrap grid-normal-weight ellipsis">
+		      	<%=purchase.get('store').escape('name')%>
+		      </div>
+		    <%}%>
 		   
 	    </div> <!-- /title-box -->
-
-
-      <%if(purchase.get('endorsement')){%>
-        <div class="endorsement-box txt m">
-          <%=purchase.escape('endorsement')%>
-        </div>
-      <%}%> <!-- /endorsement-box -->
-      
-      
-	    <div class="likes-box txt m relative" 
-	            id="purchase_likes_box_<%=purchase.get('id')%>"
-	         style="display:none;">
-	
-	      <!--div class="fader absolute">
-	      </div-->
-	
-	      <span class="num"
-	        id="purchase_likes_<%=purchase.get('id')%>_aggregate">
-	      </span>
-	
-	      <span class="text"
-	        id="purchase_likes_<%=purchase.get('id')%>_aggregate_text">
-	      </span>
-	
-	      <span id="purchase_likes_<%=purchase.get('id')%>">
-	      </span>
-	    </div> <!-- /likes-box -->
-	    
-	    
-	    <div class="comments-box"
-	            id="purchase_comments_box_<%=purchase.get('id')%>">
-	    
-	      <div id="purchase_comments_<%=purchase.get('id')%>">
-	      </div>
-	      
-	      <%if(interaction) {%>
-	        <div class="add-comment-box relative">
-	          <img class="user-photo m absolute rounded-3-left" alt=""
-	            src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
-	          <input type="text" 
-	            id="purchase_comment_data_<%=purchase.get('id')%>"
-	            class="txt m border-box"
-	            placeholder="Add a comment...">
-	        </div>
-	      <%}%>
-	      
-	    </div> <!-- /comments-box -->
 	    
 	  </div> <!-- /panel-contents -->
 
-    <!--a href="http://pinterest.com/pin/create/button/?url=<#=encodeURIComponent(purchase.absoluteURL('pinterest'))%>&media=<#=encodeURIComponent(purchase.get('giant_url'))%>&description=<#=encodeURIComponent(purchase.sharingMessage())%>" 
-      class="pin-it-button" 
-      count-layout="none"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a-->
-
-
   </div> <!-- /panel -->
-
+   
 </div> <!-- /item -->	
+
+
+<!-- item-modal -->
+<div id="item-modal-<%=purchase.get('id')%>" 
+	class="modal item-modal border-box square hide">
+	
+	<button type="button" class="close absolute transition-opacity" data-dismiss="modal">
+		×
+  </button>
+	
+	<div class="modal-body">
+	
+		<div class="photo-box relative">
+		
+			<a id="purchase_photo_<%=purchase.get('id')%>" 
+	      href="<%=purchase.get('source_url')%>" 
+	      target="_blank" style="display: block;" rel="nofollow">
+	  		<img class="item-photo" src="<%=purchase.get('giant_url')%>" alt="<%=purchase.escape('title')%>" />
+	  	</a>
+	  	
+	  </div> <!-- photo-box -->
+	  
+	  <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
+			<div id="purchase_panel_content_<%=purchase.get('id')%>" 
+	      class="panel-contents border-box relative">
+	      
+	      <a class="user-photo absolute" href="<%=purchase.get('user').path('purchase_name')%>">
+		      <img class="rounded-2" alt="<%=purchase.get('user').fullName()%>"
+			      src="<%=purchase.get('user').get('square_image_url')%>" />
+			  </a>
+	      				
+				<div class="title-box relative rounded-3 overflow-hidden">
+				
+					<a class="user-name light ellipsis" 
+				    href="<%=purchase.get('user').path('purchase_name')%>">
+				    <%=purchase.get('user').escape('first_name')%>   
+				    <%=purchase.get('user').escape('last_name')%>
+				  </a> 
+				  
+				  <span class="time">
+						<%=purchase.displayTimestamp()%>
+					</span>
+		  
+				
+			    <a id="purchase_title_<%=purchase.get('id')%>"
+	            href="<%=purchase.get('source_url')%>" 
+	            class="item-name grid-nowrap ellipsis" 
+	            target="_blank"><%=purchase.escape('title')%>
+	        </a> 
+	
+			    <%if(purchase.get('store')){%>
+			      <div class="store-name grid-nowrap grid-normal-weight ellipsis">
+			      	<%=purchase.get('store').escape('name')%>
+			      </div>
+			    <%}%>
+			    
+			    <!-- like. buy button -->
+					<%if(interaction){%> 
+						<div class="actions absolute" style="top: 11px; right: 0;">
+							<a href="javascript:void(0)"
+						  		id="purchase_create_like_<%=purchase.get('id')%>"
+						  		style="width: 64px;"
+						  		class="like btn btn-silver light shaded-light border-box rounded-3">
+								<i class="icon-heart"></i>
+							</a>
+							<a href="<%=purchase.get('source_url')%>" target="_blank"
+									style="width: 64px;"
+							  	class="like btn btn-silver light shaded-light border-box rounded-3">
+									<i class="icon-cart"></i>
+							</a>
+						</div>
+					<%}%>
+			   
+		    </div> <!-- /title-box -->
+		    
+		    <div class="interactions">
+		    
+					<%if(purchase.get('endorsement')){%>
+				    <div class="endorsement-box txt m">
+				      <%=purchase.escape('endorsement')%>
+				    </div>
+				  <%}%> <!-- /endorsement-box -->
+				  
+				  <div class="likes-box txt m relative" 
+				          id="purchase_likes_box_<%=purchase.get('id')%>"
+				       style="display:none;">
+				
+				    <span class="num"
+				      id="purchase_likes_<%=purchase.get('id')%>_aggregate">
+				    </span>
+				
+				    <span class="text"
+				      id="purchase_likes_<%=purchase.get('id')%>_aggregate_text">
+				    </span>
+				
+				    <span id="purchase_likes_<%=purchase.get('id')%>">
+				    </span>
+				  </div> <!-- /likes-box -->
+				  
+				  
+				  <div class="comments-box"
+				          id="purchase_comments_box_<%=purchase.get('id')%>">
+				  
+				    <div id="purchase_comments_<%=purchase.get('id')%>">
+				    </div>
+				    
+				    <%if(interaction) {%>
+				      <div class="add-comment-box relative">
+				        <img class="user-photo m absolute rounded-3-left" alt=""
+				          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+				        <input type="text" 
+				          id="purchase_comment_data_<%=purchase.get('id')%>"
+				          class="txt m border-box"
+				          placeholder="Add a comment...">
+				      </div>
+				    <%}%>
+				    
+				  </div> <!-- /comments-box -->
+			  
+			  </div> <!-- /interactions -->
+		  
+			</div> <!-- /panel-contents -->
+	
+		</div> <!-- /panel -->
+		
+	</div> <!-- /modal-body-->
+
+</div> <!--/modal-->
+
