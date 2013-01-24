@@ -145,9 +145,9 @@ module DW
         if is_software?
           tags += %w"apps"
         elsif is_album?
-          tags += %w"music album song track"
+          tags += %w"music album song"
         elsif is_movie?
-          tags += %w"film movie picture cinema flick"
+          tags += %w"film movie"
         elsif is_tv?
           tags += %w"tv season episode television show"
         end
