@@ -811,12 +811,29 @@ a.feed-intro .highlight { font-weight: bold; }
 /* M-Search 
 ==================================================================== */
 
+.m-wrapper .q {
+	width: 16px;
+	left: 8.506944444%;
+	top: 16px;
+	opacity: 0.24; 
+	filter: alpha(opacity=24); }
+
+.m-wrapper .close {
+	font-size: 28px; 
+	top: 12px; 
+	right: 8.1597222222%; }
+	
+.m-search:hover .q {
+	opacity: 0.6; 
+	filter: alpha(opacity=55); }
+
 input.m-search, 
 input.m-search:focus { 
+	display: block;
 	height: 48px; 
-	line-height: auto; 
+	line-height: auto;
 	font-size: 18px;
-	padding-left: 82px;
+	padding: 2px 14.2361111% 0;
 	background: #f5f5f5; }
 
 input::-webkit-input-placeholder { color: #bbb; }

@@ -192,14 +192,29 @@
 	
 <script type="text/javascript"> 
 	$(window).load(function(){
+		$('#m-wrapper').height($("#m-search").height());
 		$('#m-search').affix({
 		    offset: $('#m-search').position()
 		});
 	});
 </script>
+	
+	<div id="m-wrapper" class="m-wrapper relative">
+	
+		 <%=image_tag "m-search-q-2x.png",
+              :style => "",
+              :class => "q absolute"%>
+     
+     <%=link_to  '&times;',
+          'javascript:void(0)',
+          :id    => 'x_button',
+          :class => 'close absolute',
+          :style => ''%>
 
-	<input type="text" id="m-search" class="m-search square border-box no-shadow affix-top"
-	placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
+		<input type="text" id="m-search" class="m-search square border-box no-shadow affix-top"
+		placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
+		
+	</div>
 	
 	<div id="feed" class="feed col-2 relative">
 	</div> 
