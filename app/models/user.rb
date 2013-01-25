@@ -157,7 +157,7 @@ class User < ActiveRecord::Base
       :conditions => {
         :follower_id => self.ifollower_ids,
         :is_active => true},
-      :group => :user_id).map(&:user_id)
+      :group => :user_id).map(&:user_id) - [self.id]
   end
 
   def purchases_count

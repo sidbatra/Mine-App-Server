@@ -87,19 +87,22 @@ class PurchasesController < ApplicationController
       query = params[:q]
       scope = :friends
       order = :popular
-      friend_ids = self.current_user.ifollower_ids
+      friend_ids = self.current_user.ifollower_ids 
       connection_ids = []
 
-      if query =~ /friends of friends/
+      if query =~ /friends of friends/i
         scope = :connections
-        query = query.gsub /friends of friends/,""
-      elsif query =~ /everyone/
+        query = query.gsub /friends of friends/i,""
+      elsif query =~ /everyone/i
         scope = :everyone
-      elsif query =~ /my friends/
-        query = query.gsub /my friends/,""
+      elsif query =~ /my friends/i
+        query = query.gsub /my friends/i,""
+      elsif query =~ /(my|I)(\s|\z)/i && query !~ /friend/i
+        query += " " + self.current_user.full_name 
+        friend_ids = [self.current_user.id]
       end
 
-      if query =~ /latest|recent/
+      if query =~ /latest|recent/i
         order = :latest
       end
 
