@@ -46,7 +46,6 @@
 					<i class="icon-ok in"></i>
 				</a>
 				<a href="#item-modal-<%=purchase.get('id')%>" 
-			  		id="purchase_create_comment_<%=purchase.get('id')%>"
             data-toggle="modal"
 			  		style="margin-left: 4px;"
 			  		class="comment btn btn-silver light shaded-light border-box rounded-3">
@@ -69,8 +68,7 @@
   
 
 
-  <div id="details_box<%=purchase.get('id')%>" 
-    class="details-box relative border-box">
+  <div class="details-box relative border-box">
       
     <!-- user-photo --> 
     <a href="<%=purchase.get('user').path('purchase_name')%>">
