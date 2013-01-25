@@ -22,22 +22,14 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     if (typeof this.crossButton  === "undefined")
       this.crossButton = false;
 
+
     this.purchaseEl = '#purchase-' + this.model.get('id');
-    this.photoEl = '#purchase_photo_'  + this.model.get('id');
-    this.titleEl = '#purchase_title_' + this.model.get('id');
-    this.crossEl = '#purchase_cross_' + this.model.get('id');
-    this.panelEl = '#purchase_panel_' + this.model.get('id');
-    this.likesEl = '#purchase_likes_' + this.model.get('id');
-    this.likesBoxEl  = '#purchase_likes_box_' + this.model.get('id');
-    this.aggregateEl = '#purchase_likes_' + this.model.get('id') + '_aggregate';
-    this.aggregateTextEl = '#purchase_likes_' + this.model.get('id') + '_aggregate_text';
-    this.commentsEl = '#purchase_comments_' + this.model.get('id');
-    this.commentsBoxEl = '#purchase_comments_box_' + this.model.get('id');
 
     this.render();
 
+
     if(Denwen.H.isLoggedIn()) {
-      $(this.crossEl).click(function(){self.crossButtonClicked();});
+      this.crossEl.click(function(){self.crossButtonClicked();});
 
       this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
       this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
@@ -58,8 +50,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       });
     }
 
-    $(this.photoEl).click(function(){self.photoClicked();});
-    $(this.titleEl).click(function(){self.titleClicked();});
+    
+    this.photoEl.click(function(){self.photoClicked();});
+    this.titleEl.click(function(){self.titleClicked();});
   },
 
   // Render the contents of the model.
@@ -82,13 +75,27 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     else
       this.el.append(html);
 
+
+    this.photoEl = $(this.purchaseEl).find(".sel-purchase-photo");
+    this.titleEl = $(this.purchaseEl).find(".sel-purchase-title");
+    this.crossEl = $(this.purchaseEl).find(".sel-purchase-cross");
+    //this.panelEl = $(this.purchaseEl).find(".sel-purchase-panel");
+    this.likesEl = $(this.purchaseEl).find(".sel-purchase-likes");
+    this.likesBoxEl  = $(this.purchaseEl).find(".sel-purchase-likes-box");
+    this.aggregateEl = $(this.purchaseEl).find(".sel-purchase-likes-agg"); 
+    this.aggregateTextEl = $(this.purchaseEl).find(".sel-purchase-likes-agg-text");
+    this.commentsEl = $(this.purchaseEl).find(".sel-purchase-comments");
+    this.commentsBoxEl = $(this.purchaseEl).find(".sel-purchase-comments-box"); 
+
+
+
     
     var self = this;
 
     // Render likes
     if(!this.model.get('likes').isEmpty()) {
 
-      $(this.likesBoxEl).show();
+      this.likesBoxEl.show();
 
       this.model.get('likes').each(function(like){
         self.renderLike(like,false);
@@ -103,10 +110,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     });
 
     if(!this.interaction && this.model.get('comments').isEmpty()) {
-      $(this.commentsBoxEl).hide();
+      this.commentsBoxEl.hide();
     }
 
-    $(this.likesBoxEl).find("a[rel='tooltip']").tooltip();
+    this.likesBoxEl.find("a[rel='tooltip']").tooltip();
 
     this.testOverflow();
   },
@@ -116,7 +123,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   renderComment: function(comment) {
     new Denwen.Partials.Comments.Comment({
           comment : comment,
-          el      : $(this.commentsEl)});
+          el      : this.commentsEl});
   },
 
   // Render an individual like for the purchase
@@ -124,24 +131,24 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   renderLike: function(like,onTop) {
     new Denwen.Partials.Likes.Like({
           like  : like,
-          el    : $(this.likesEl),
+          el    : this.likesEl,
           onTop : onTop});
   },
 
   // Render likes aggregation for the purchase
   //
   renderLikeAggregation: function() {
-    $(this.aggregateEl).html(this.model.get('likes').length);
-    $(this.aggregateTextEl).html(this.model.get('likes').length == 1 ? 'like' : 'likes');
+    this.aggregateEl.html(this.model.get('likes').length);
+    this.aggregateTextEl.html(this.model.get('likes').length == 1 ? 'like' : 'likes');
   },
 
   // Test if the comments have overflown the outer div and correct with
   // css scorlling magic if this have.
   //
   testOverflow: function() {
-    if($(this.commentsEl).offset().top + $(this.commentsEl).height() +  75 > 
-          $(this.purchaseEl).offset().top + $(this.purchaseEl).height())
-      $(this.panelEl).addClass('overflowing');
+    //if(this.commentsEl.offset().top + this.commentsEl.height() +  75 > 
+    //      $(this.purchaseEl).offset().top + $(this.purchaseEl).height())
+    //  $(this.panelEl).addClass('overflowing');
   },
 
   // Fired when a comment is created for the purchase 
@@ -162,7 +169,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.renderLike(like,true);
     this.renderLikeAggregation();
 
-    $(this.likesBoxEl).show(); 
+    this.likesBoxEl.show(); 
   },
 
   crossButtonClicked: function() {
