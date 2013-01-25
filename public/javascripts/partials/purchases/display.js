@@ -31,8 +31,13 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     if(Denwen.H.isLoggedIn()) {
       this.crossEl.click(function(){self.crossButtonClicked();});
 
-      this.newLike    = new Denwen.Partials.Likes.New({purchase:this.model});
-      this.newComment = new Denwen.Partials.Comments.New({purchase:this.model});
+      this.newLike = new Denwen.Partials.Likes.New({
+                            purchase:this.model,
+                            el: $(this.purchaseEl)});
+
+      this.newComment = new Denwen.Partials.Comments.New({
+                              purchase:this.model,
+                              el: $(this.purchaseEl)});
 
       this.newLike.bind(
         Denwen.Partials.Likes.New.Callback.LikeCreated,

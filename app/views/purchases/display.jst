@@ -40,8 +40,8 @@
 		<%if(interaction){%> 
 			<div class="actions top left absolute appear transition-opacity">
 				<a href="javascript:void(0)"
-			  		id="purchase_create_like_<%=purchase.get('id')%>"
-			  		class="like btn btn-silver light shaded-light border-box rounded-3">
+			  		class="sel-purchase-create-like like btn btn-silver 
+                    light shaded-light border-box rounded-3">
 					<i class="icon-heart out"></i>
 					<i class="icon-ok in"></i>
 				</a>
@@ -138,8 +138,7 @@
 	        <img class="user-photo m absolute" alt=""
 	          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
 	        <input type="text" 
-	          id="purchase_comment_data_<%=purchase.get('id')%>"
-	          class="txt m border-box square"
+	          class="sel-purchase-comment-data txt m border-box square"
 	          placeholder="Add a comment...">
 	      </div>
 	    <%}%>

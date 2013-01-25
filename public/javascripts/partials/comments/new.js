@@ -8,7 +8,7 @@ Denwen.Partials.Comments.New = Backbone.View.extend({
     var self          = this;
 
     this.purchase     = this.options.purchase;
-    this.inputEl      = '#purchase_comment_data_' + this.purchase.get('id');
+    this.inputEl      = this.el.find(".sel-purchase-comment-data");
 
     $(this.inputEl).keypress(function(e){self.commentKeystroke(e)});
     $(this.inputEl).placeholder();

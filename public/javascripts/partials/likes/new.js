@@ -10,7 +10,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
     this.purchase     = this.options.purchase;
     this.posting      = false;
 
-    this.buttonEl     = '#purchase_create_like_' + this.purchase.get('id');
+    this.buttonEl     = this.el.find('.sel-purchase-create-like');
 
     $(this.buttonEl).click(function(){self.post(true);});
   },
