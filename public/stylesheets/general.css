@@ -11,6 +11,8 @@
 	
 .arial { font-family: Arial, sans-serif !important; }
 
+.message-drawer { width: 576px; margin: 0 auto; }
+
 .alias-subpixel { -webkit-font-smoothing: subpixel-antialiased; }
 .alias-smooth   { -webkit-font-smoothing: antialiased; }
 

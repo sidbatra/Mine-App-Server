@@ -465,7 +465,6 @@ ul.notifications li.user-action-box {
 	display: block; 
 	width: 77.41935483871%; }
 
-
 /* -- header notifications dropdown -- */
 
 .user-action-box .dot { display: none; }
@@ -496,7 +495,8 @@ ul.notifications li.user-action-box {
 	height: 86px; 
 	line-height: 86px; 
 	font-size: 16px;
-	font-weight: bold; }
+	font-weight: bold; 
+	z-index: 1; }
 
 .onboarding h1, h2 {
 	font-family: "HelveticaNeue-Light","Helvetica Neue Light",
@@ -508,6 +508,8 @@ ul.notifications li.user-action-box {
 	font-size: 50px;
 	line-height: 120%;
 	letter-spacing: -1px; }
+
+.onboarding h2 { font-size: 24px; }
 	
 .onboarding img.star {
 	width: 25%; 

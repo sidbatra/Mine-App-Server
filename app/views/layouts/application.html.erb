@@ -28,17 +28,17 @@
     
 	    <div id="fb-root">
       </div> 
+      
+    	<div id="message-drawer" 
+	          class="message-drawer border-box alert square txt m"
+	          style="display: none;">
+			</div>
 	    
 	    <div id="container" 
         class="container border-box 
                 relative <%=is_fullscreen_page? ? 'fullscreen' : ''%>">   
 	
 		    <%=render "headers/default" unless hide_header?%>
-		    
-		    <div id="message-drawer" 
-		          class="message-drawer border-box alert rounded-3 txt m"
-		          style="display: none; margin: 6px 0 12px;">
-				</div>
 		 
 		    <%=yield%>
 		   
