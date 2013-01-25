@@ -42,11 +42,12 @@
 			<div class="actions top-left absolute hover-appear">
 				<a href="javascript:void(0)"
 			  		id="purchase_create_like_<%=purchase.get('id')%>"
-			  		class="like btn btn-silver light shaded-light border-box rounded-3-left">
+			  		class="like btn btn-silver light shaded-light border-box rounded-3">
 					<i class="icon-heart"></i>
 				</a><a href="#item-modal-<%=purchase.get('id')%>" data-toggle="modal"
 			  		id="purchase_create_like_<%=purchase.get('id')%>"
-			  		class="comment btn btn-silver light shaded-light border-box rounded-3-right">
+			  		style="margin-left: 4px;"
+			  		class="comment btn btn-silver light shaded-light border-box rounded-3">
 					<i class="icon-comment"></i>
 				</a>	
 			</div>
@@ -96,6 +97,52 @@
 		   
 	    </div> <!-- /title-box -->
 	    
+	    <div class="interactions">
+		    
+					<%if(purchase.get('endorsement')){%>
+				    <div class="endorsement-box txt m">
+				      <%=purchase.escape('endorsement')%>
+				    </div>
+				  <%}%> <!-- /endorsement-box -->
+				  
+				  <div class="likes-box txt m relative" 
+				          id="purchase_likes_box_<%=purchase.get('id')%>"
+				       style="display:none;">
+				
+				    <span class="num"
+				      id="purchase_likes_<%=purchase.get('id')%>_aggregate">
+				    </span>
+				
+				    <span class="text"
+				      id="purchase_likes_<%=purchase.get('id')%>_aggregate_text">
+				    </span>
+				
+				    <span id="purchase_likes_<%=purchase.get('id')%>">
+				    </span>
+				  </div> <!-- /likes-box -->
+				  
+				  
+				  <div class="comments-box"
+				          id="purchase_comments_box_<%=purchase.get('id')%>">
+				  
+				    <div id="purchase_comments_<%=purchase.get('id')%>">
+				    </div>
+				    
+				    <%if(interaction) {%>
+				      <div class="add-comment-box relative">
+				        <img class="user-photo m absolute rounded-3-left" alt=""
+				          src="<%=Denwen.H.currentUser.get('square_image_url')%>" />
+				        <input type="text" 
+				          id="purchase_comment_data_<%=purchase.get('id')%>"
+				          class="txt m border-box"
+				          placeholder="Add a comment...">
+				      </div>
+				    <%}%>
+				    
+				  </div> <!-- /comments-box -->
+			  
+			  </div> <!-- /interactions -->
+	    
 	  </div> <!-- /panel-contents -->
 
   </div> <!-- /panel -->
@@ -111,7 +158,7 @@
 		×
   </button>
 	
-	<div class="modal-body">
+	<div class="modal-body border-box">
 	
 		<div class="photo-box relative">
 		

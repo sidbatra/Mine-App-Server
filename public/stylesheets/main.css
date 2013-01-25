@@ -801,6 +801,7 @@ a.feed-intro .highlight { font-weight: bold; }
 
 .feed.grid .item .panel .user-photo,
 .feed.grid .item .panel .endorsement-box, 
+.feed.grid .item .interactions,
 .feed.grid span.time { display: none; }
 
 .feed.grid .grid-only { display: block !important; }
@@ -854,13 +855,14 @@ input::-moz-placeholder 	       { color: #b7b7b7; }
 input:-ms-input-placeholder      { color: #b7b7b7; }
 
 .m-search.affix { top: 0; left: 0; width: auto; }
+
 	
-/* Feed Item
+/* Feed-Item-Col-2
 ==================================================================== */
 
 .feed.col-2 { padding: 0 18px; }
 
-.feed .item {
+.feed.col-2 .item {
 	width: 43.4027777777777%;
 	width: 46.296296296296%;
 	margin: 0 10px;
@@ -870,7 +872,7 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	padding-bottom: 4px;
 	border-bottom: 6px solid #f5f5f5; }
 
-.feed .item .photo-box { 
+.feed.col-2 .item .photo-box { 
 	font-size: 11px; color: #999;
 	width: 100%;
 	height: 250px;
@@ -878,38 +880,40 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	text-align: center;
 	line-height: 250px; }
 
-.feed .item .photo-box .like.btn,
-.feed .item .photo-box .comment.btn {
+.feed.col-2 .item .photo-box .like.btn,
+.feed.col-2 .item .photo-box .comment.btn {
 	width: 48px;
 	height: 28px;
 	line-height: 28px; }
 	
-.feed .item .photo-box .like.btn [class^="icon-"],
-.feed .item .photo-box .comment.btn [class^="icon-"] { margin-top: -1px; }
+.feed.col-2 .item .photo-box .like.btn [class^="icon-"],
+.feed.col-2 .item .photo-box .comment.btn [class^="icon-"] { margin-top: -1px; }
 
-.feed .item .photo-box .comment.btn {
+/*
+.feed.col-2 .item .photo-box .comment.btn {
 	border-left: 1px solid #ababab; 
   border-left: 1px solid rgba(0,0,0,0.12); }
+*/
 
-.feed .item .photo-box .item-photo { max-height: 250px; }
-.feed .item .photo-box .actions.top-left { top: 6px; left: 6px; }
-.feed .item .photo-box .actions.top-right { top: 6px; right: 6px; }
-.feed .item .photo-box .actions.bottom-right { bottom: 6px; right: 6px;  }
+.feed.col-2 .item .photo-box .item-photo { max-height: 250px; }
+.feed.col-2 .item .photo-box .actions.top-left { top: 6px; left: 6px; }
+.feed.col-2 .item .photo-box .actions.top-right { top: 6px; right: 6px; }
+.feed.col-2 .item .photo-box .actions.bottom-right { bottom: 6px; right: 6px;  }
 
-.feed .item .panel { background: none; padding: 0; min-height: 68px; /* max-height: 48px; */ }
-.feed .item .panel .panel-contents { background: none; padding: 0; }
+.feed.col-2 .item .panel { background: none; padding: 0; min-height: 68px; /* max-height: 48px; */ }
+.feed.col-2 .item .panel .panel-contents { background: none; padding: 0; }
 
-.feed .item .panel a.user-photo {
+.feed.col-2 .item .panel a.user-photo {
 	top: 16px;
 	left: 0;
 	width: 42px; 
 	height: 42px; }
 
-.feed .item .panel a.user-photo img {
+.feed.col-2 .item .panel a.user-photo img {
 	width: 42px; 
 	height: 42px;}
 
-.feed .item .panel .title-box {
+.feed.col-2 .item .panel .title-box {
 	font-weight: normal;
 	min-height: 0;
 	font-size: 12px;
@@ -919,9 +923,11 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	padding: 14px 0 8px 50px;
 	margin: 0; }
 	
-.feed .item .panel .title-box .user-name { font-weight: bold; }
-.feed .item .panel .title-box .time { padding-left: 2px; font-size: 10px; }
-.feed .item .panel .title-box .item-name { display: block; font-weight: bold; color: #444; }
+.feed.col-2 .item .panel .title-box .user-name { font-weight: bold; }
+.feed.col-2 .item .panel .title-box .time { padding-left: 2px; font-size: 10px; }
+.feed.col-2 .item .panel .title-box .item-name { display: block; font-weight: bold; color: #444; }
+
+.feed.col-2 .item .interactions { display: none; }
 
 
 /* Item-Modal
@@ -1072,7 +1078,134 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	background: white;
 	padding-left: 35px;
 	margin-bottom: 0; }
+	
 
+/* Feed-Item-Col-1
+==================================================================== */
+
+
+.feed.col-1 { /* padding: 0 18px; */ }
+
+.feed.col-1 .item { padding-bottom: 2.69230%; }
+
+.feed.col-1 .photo-box {
+	width: auto;
+	min-height: 150px;
+	padding: 3.461538461538% 4.615384615% 2.69230%;
+	text-align: center;
+	line-height: 1; }
+
+.feed.col-1 .photo-box .item-photo { max-height: 360px; }
+
+.feed.col-1 .photo-box .actions.top-left     { top: 24px; left: 30px; }
+.feed.col-1 .photo-box .actions.top-right    { top: 24px; right: 30px; } 
+.feed.col-1 .photo-box .actions.bottom-right { bottom: 22px; right: 30px;  }
+
+.feed.col-1 .photo-box .btn.comment { display: none; }
+	
+.feed.col-1 .panel { padding: 0 4.615384615%; }
+.feed.col-1 .panel .panel-contents { padding: 0; background: none; }
+
+/* -- title -- */
+
+.feed.col-1 .panel .title-box {
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+	min-height: 48px;
+	line-height: 130%;
+	padding: 0 0 2.307692307692% 60px; }
+
+.feed.col-1 .panel a.user-photo {
+	top: 2px;
+	left: 0;
+	width: 50px; 
+	height: 50px; }
+	
+.feed.col-1 .panel .title-box .user-name { font-weight: bold; font-size: 12px; }
+.feed.col-1 .panel .title-box .time { padding-left: 2px; font-size: 10px; }
+.feed.col-1 .panel .title-box .item-name { display: block; font-weight: bold; color: #444; }
+.feed.col-1 .panel .title-box .store-name { font-size: 12px; }
+	
+.feed.col-1 .interactions { 
+	border-top: 6px solid #eee;
+	background: #f8f8f8; 
+	margin-bottom: 3.461538461538%;
+	padding: 0.76923% 3.461538461538% 4.615384615%; }
+
+/* -- endorsement -- */
+
+.feed.col-1 .panel .endorsement-box {
+	line-height: 140%;
+	padding-top: 4px;
+	color: #555; }
+
+/* -- likes -- */
+
+.feed.col-1 .panel .likes-box {
+	height: 32px;
+	line-height: 1;
+	color: #555;
+	padding: 4px 0 0;
+	overflow-y: hidden;
+	white-space: nowrap; }
+
+.feed.col-1 .panel .likes-box .fader {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 28px;
+	z-index: 500;
+	background: url("/images/fade-right.png") 0 -300px; }
+	
+.feed.col-1 .panel .likes-box .text {
+	padding-right: 6px; } 
+
+.feed.col-1 .panel .likes-box .num {
+	-webkit-font-smoothing: antialiased;
+	font-weight: bold; 
+	font-size: 32px; }
+
+.feed.col-1 .panel .likes-box .user-photo-box {
+	width: 24px;
+	height: 24px; 
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 4px; }
+
+/* -- comments -- */
+
+.feed.col-1 .panel .comments-box { padding-top: 10px; }
+
+.feed.col-1 .panel .comment-box {
+	min-height: 28px; 
+	margin-bottom: 8px;
+	padding-left: 36px; 
+	line-height: 140%;
+	clear: both;
+	color: #666; }
+	
+.feed.col-1 .panel .comment-box .user-photo { left: 0; top: 0; }
+.feed.col-1 .panel .comment-box .user-name,
+.feed.col-1 .panel .comment-box .user-name a {
+	color: #333;
+	line-height: 1;
+	font-weight: bold;
+	margin-bottom: 3px; }
+	
+.feed.col-1 .panel input,
+.feed.col-1 .panel textarea { 
+	background: white;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px inset; }
+	
+.feed.col-1 .panel .add-comment-box input {
+	width: 100%;
+	height: 28px;
+	border: none;
+	background: white;
+	padding-left: 35px;
+	margin-bottom: 0; }
+	
 
 /* Item
 ==================================================================== */
