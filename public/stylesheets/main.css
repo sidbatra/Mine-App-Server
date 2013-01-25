@@ -1097,6 +1097,8 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 
 .feed.col-1 .photo-box .item-photo { max-height: 360px; }
 
+.feed.col-1.logged-out .photo-box .actions { display: none; }
+
 .feed.col-1 .photo-box .actions.top-left     { top: 24px; left: 30px; }
 .feed.col-1 .photo-box .actions.top-right    { top: 24px; right: 30px; } 
 .feed.col-1 .photo-box .actions.bottom-right { bottom: 22px; right: 30px;  }
