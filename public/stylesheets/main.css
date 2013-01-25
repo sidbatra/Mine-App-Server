@@ -965,6 +965,10 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	line-height: 1; }
 
 .item-modal .photo-box .item-photo { max-height: 360px; }
+
+.item-modal .photo-box .actions.top-left     { top: 24px; left: 30px; }
+.item-modal .photo-box .actions.top-right    { top: 24px; right: 30px; } 
+.item-modal .photo-box .actions.bottom-right { bottom: 6px; right: 6px;  }
 	
 .item-modal .panel { padding: 0 4.615384615%; }
 .item-modal .panel .panel-contents { padding: 0; }
@@ -1097,7 +1101,7 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	opacity: 0;
 	filter: alpha(opacity=0); }
 
-.item .photo-box:hover .hover-appear { 	
+.photo-box:hover .hover-appear { 	
 	opacity: 1;
 	filter: alpha(opacity=100);
 	-webkit-transition: opacity .25s ease-in;

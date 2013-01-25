@@ -121,6 +121,29 @@
 	  		<img class="item-photo" src="<%=purchase.get('giant_url')%>" alt="<%=purchase.escape('title')%>" />
 	  	</a>
 	  	
+		  <!-- like button -->
+			<%if(interaction){%> 
+				<div class="actions top-left absolute hover-appear">
+					<a href="javascript:void(0)"
+				  		id="purchase_create_like_<%=purchase.get('id')%>"
+				  		class="like btn btn-silver light shaded-light border-box rounded-3"
+				  		style="width: 64px;">
+						<i class="icon-heart"></i>
+					</a>
+				</div>
+			<%}%>
+	  	
+		 	<!-- buy button -->
+	    <%if(interaction || !Denwen.H.isLoggedIn()){%>
+	    	<div class="actions top-right absolute hover-appear">
+					<a href="<%=purchase.get('source_url')%>" target="_blank"
+					  	class="like btn btn-silver light shaded-light border-box rounded-3"
+					  	style="width: 64px;">
+							<i class="icon-cart"></i>
+					</a>
+				</div>
+	    <%}%>
+	  	
 	  </div> <!-- photo-box -->
 	  
 	  <div id="purchase_panel_<%=purchase.get('id')%>" class="panel">
@@ -156,23 +179,6 @@
 			      	<%=purchase.get('store').escape('name')%>
 			      </div>
 			    <%}%>
-			    
-			    <!-- like. buy button -->
-					<%if(interaction){%> 
-						<div class="actions absolute" style="top: 11px; right: 0;">
-							<a href="javascript:void(0)"
-						  		id="purchase_create_like_<%=purchase.get('id')%>"
-						  		style="width: 64px;"
-						  		class="like btn btn-silver light shaded-light border-box rounded-3">
-								<i class="icon-heart"></i>
-							</a>
-							<a href="<%=purchase.get('source_url')%>" target="_blank"
-									style="width: 64px;"
-							  	class="like btn btn-silver light shaded-light border-box rounded-3">
-									<i class="icon-cart"></i>
-							</a>
-						</div>
-					<%}%>
 			   
 		    </div> <!-- /title-box -->
 		    

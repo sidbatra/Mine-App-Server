@@ -13,6 +13,8 @@
 	.txt.l  { font-size: 14px; }
 		
 	.wrapper { background: none; }
+	
+	.message-drawer { width: 100%; }
 						
 	.container, footer .inner {
 		width: 100%;
