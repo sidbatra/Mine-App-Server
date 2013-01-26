@@ -47,8 +47,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                               purchase:this.model,
                               el: $(this.purchaseEl)});
 
-      this.newLike.bind(
-        Denwen.Partials.Likes.New.Callback.LikeCreated,
+      Denwen.NM.bind(
+        Denwen.NotificationManager.Callback.LikeCreated,
         this.likeCreated,
         this);
 
@@ -188,14 +188,21 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Fired when a like is created for the purchase 
   //
   likeCreated: function(like) {
+    if(like.get('purchase_id') != this.model.get('id'))
+      return;
+
+
     like.set({user: Denwen.H.currentUser});
 
-    this.model.get('likes').add(like);
+    if(!this.model.get('likes').getByCid(like.cid))
+      this.model.get('likes').add(like);
 
     this.renderLike(like,true);
     this.renderLikeAggregation();
 
     this.likesBoxEl.show(); 
+
+    this.newLike.disable();
   },
 
   crossButtonClicked: function() {

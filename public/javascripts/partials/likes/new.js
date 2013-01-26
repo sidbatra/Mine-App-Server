@@ -40,7 +40,7 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   // Render the like before sending the request to the server 
   //
   render: function(like) {
-    this.trigger(Denwen.Partials.Likes.New.Callback.LikeCreated,like);
+    Denwen.NM.trigger(Denwen.NotificationManager.Callback.LikeCreated,like);
   },
 
   // Called when the like is successfully created
@@ -74,9 +74,3 @@ Denwen.Partials.Likes.New = Backbone.View.extend({
   }
 
 });
-
-// Define callbacks.
-//
-Denwen.Partials.Likes.New.Callback = {
-  LikeCreated: "likeCreated"
-};
