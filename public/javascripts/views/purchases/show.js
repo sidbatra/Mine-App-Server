@@ -14,7 +14,8 @@ Denwen.Views.Purchases.Show = Backbone.View.extend({
     
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el : $('#feed'),
-                              model : this.purchase});
+                              model : this.purchase,
+                              full : true});
 
     $('#purchase_thumb_' + this.purchase.get('id')).addClass('selected');
 
