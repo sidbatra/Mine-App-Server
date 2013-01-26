@@ -844,6 +844,11 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 .medium .interactions-box { display: none; }
 
 
+/* Feed + Profile Item (1 Column)
+==================================================================== */
+.col-1 .close {display :none}
+
+
 /* Item (Small)
 ==================================================================== */
 
