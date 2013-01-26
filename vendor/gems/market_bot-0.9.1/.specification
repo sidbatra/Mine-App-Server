@@ -1,0 +1,263 @@
+--- !ruby/object:Gem::Specification 
+name: market_bot
+version: !ruby/object:Gem::Version 
+  hash: 57
+  prerelease: 
+  segments: 
+  - 0
+  - 9
+  - 1
+  version: 0.9.1
+platform: ruby
+authors: 
+- Chad Remesch
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2012-10-10 00:00:00 +00:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: typhoeus
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: nokogiri
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: rspec
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 47
+        segments: 
+        - 2
+        - 8
+        - 0
+        version: 2.8.0
+  type: :development
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: bundler
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 19
+        segments: 
+        - 1
+        - 1
+        - 0
+        version: 1.1.0
+  type: :development
+  version_requirements: *id004
+- !ruby/object:Gem::Dependency 
+  name: jeweler
+  prerelease: false
+  requirement: &id005 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 7
+        segments: 
+        - 1
+        - 6
+        - 4
+        version: 1.6.4
+  type: :development
+  version_requirements: *id005
+- !ruby/object:Gem::Dependency 
+  name: simplecov
+  prerelease: false
+  requirement: &id006 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id006
+- !ruby/object:Gem::Dependency 
+  name: rdoc
+  prerelease: false
+  requirement: &id007 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 43
+        segments: 
+        - 3
+        - 9
+        - 4
+        version: 3.9.4
+  type: :development
+  version_requirements: *id007
+- !ruby/object:Gem::Dependency 
+  name: guard
+  prerelease: false
+  requirement: &id008 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 25
+        segments: 
+        - 1
+        - 2
+        - 3
+        version: 1.2.3
+  type: :development
+  version_requirements: *id008
+- !ruby/object:Gem::Dependency 
+  name: guard-rspec
+  prerelease: false
+  requirement: &id009 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        hash: 19
+        segments: 
+        - 1
+        - 1
+        - 0
+        version: 1.1.0
+  type: :development
+  version_requirements: *id009
+- !ruby/object:Gem::Dependency 
+  name: growl
+  prerelease: false
+  requirement: &id010 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id010
+- !ruby/object:Gem::Dependency 
+  name: debugger
+  prerelease: false
+  requirement: &id011 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id011
+description: Market Bot is a high performance Ruby scraper for Google's Android Market with a simple to use API.  It is built on top of Nokogiri and Typhoeus.
+email: chad@remesch.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE.txt
+- README.markdown
+files: 
+- .document
+- .rspec
+- Gemfile
+- Gemfile.lock
+- Guardfile
+- LICENSE.txt
+- NOTES.txt
+- README.markdown
+- Rakefile
+- VERSION
+- lib/market_bot.rb
+- lib/market_bot/android/app.rb
+- lib/market_bot/android/developer.rb
+- lib/market_bot/android/leaderboard.rb
+- lib/market_bot/android/leaderboard/constants.rb
+- lib/market_bot/android/search_query.rb
+- market_bot.gemspec
+- spec/market_bot/android/app_spec.rb
+- spec/market_bot/android/data/app_1.txt
+- spec/market_bot/android/data/app_2.txt
+- spec/market_bot/android/data/app_3.txt
+- spec/market_bot/android/data/leaderboard-apps_editors_choice.txt
+- spec/market_bot/android/data/leaderboard-apps_topselling_paid-page1.txt
+- spec/market_bot/android/data/leaderboard-apps_topselling_paid-page2.txt
+- spec/market_bot/android/data/leaderboard-apps_topselling_paid-page3.txt
+- spec/market_bot/android/data/leaderboard-apps_topselling_paid-page4.txt
+- spec/market_bot/android/leaderboard_spec.rb
+- spec/market_bot/android/search_query_spec.rb
+- spec/market_bot_spec.rb
+- spec/spec_helper.rb
+has_rdoc: true
+homepage: http://github.com/chadrem/market_bot
+licenses: 
+- MIT
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.5.2
+signing_key: 
+specification_version: 3
+summary: "Market Bot: High performance Ruby scraper for Google's Android Market"
+test_files: []
+
+
