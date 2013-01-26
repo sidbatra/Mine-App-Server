@@ -190,22 +190,25 @@
 
 <div class="feed-container">
 	
-	<div id="m-wrapper" class="m-wrapper relative">
-	
-		 <%=image_tag "m-search-q-2x.png",
-              :style => "",
-              :class => "q absolute"%>
-     
-     <%=link_to  '&times;',
-          'javascript:void(0)',
-          :id    => 'x_button',
-          :class => 'close absolute',
-          :style => 'display: block;'%>
+  <%if self.current_user.is_admin%>
+    <div id="m-wrapper" class="m-wrapper relative">
+       <%=image_tag "m-search-q-2x.png",
+                :style => "",
+                :class => "q absolute"%>
+       
+       <%=link_to  '&times;',
+            'javascript:void(0)',
+            :id    => 'x_button',
+            :class => 'close absolute',
+            :style => 'display: block;'%>
 
-		<input type="text" id="m-search" class="m-search h-medium square border-box no-shadow affix-top"
-		placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
-		
-	</div>
+      <input type="text" 
+        id="purchase_search_data"
+        class="m-search h-medium square border-box no-shadow affix-top"
+        placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
+    </div>
+  <%end%>
+
 	
 	<div id="feed" class="feed cols-2 relative">
 	</div> 

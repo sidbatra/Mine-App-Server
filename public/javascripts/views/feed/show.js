@@ -17,7 +17,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     this.feedEl             = '#feed';
     this.userSuggestionsEl  = '#user_suggestions_box';
+    this.purchaseSearchInputEl = '#purchase_search_data';
     //this.suggestionsEl    = '#suggestions';
+
+    $(this.purchaseSearchInputEl).placeholder();
 
     this.content  = new Denwen.Partials.Feed.Content({
                           aspect: 'user',
