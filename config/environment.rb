@@ -58,6 +58,8 @@ Rails::Initializer.run do |config|
               :version => '0.6.3')
   config.gem('jbuilder',
               :version => '0.4.0')
+  config.gem('market_bot',
+              :version => '0.9.1')
   config.gem('mechanize', 
               :version => '2.1.1',
               :lib => false)

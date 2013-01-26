@@ -39,6 +39,7 @@ include ImageProcessing
 include ItunesInterface
 include EtsyInterface
 include ZapposInterface
+include GooglePlayInterface
 include EbayInterface
 include MailmanInterface
 include NotificationManagement
