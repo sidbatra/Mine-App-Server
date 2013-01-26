@@ -66,6 +66,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     
     this.photoEl.click(function(){self.photoClicked();});
     this.titleEl.click(function(){self.titleClicked();});
+    this.commentInitEl.click(function(){self.commentInitClicked();});
   },
 
   // Render the contents of the model.
@@ -98,6 +99,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     this.likesBoxEl  = $(this.purchaseEl).find(".sel-purchase-likes-box");
     this.aggregateEl = $(this.purchaseEl).find(".sel-purchase-likes-agg"); 
     this.aggregateTextEl = $(this.purchaseEl).find(".sel-purchase-likes-agg-text");
+    this.commentInitEl = $(this.purchaseEl).find(".sel-purchase-comment-init");
     this.commentsEl = $(this.purchaseEl).find(".sel-purchase-comments");
     this.commentsBoxEl = $(this.purchaseEl).find(".sel-purchase-comments-box"); 
 
@@ -147,6 +149,16 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
           like  : like,
           el    : this.likesEl,
           onTop : onTop});
+  },
+
+  renderModal: function() {
+    $(this.purchaseModalEl).html('');
+
+    var purchaseDisplay = new Denwen.Partials.Purchases.Display({
+                              el: $(this.purchaseModalEl),
+                              model: this.model,
+                              interaction: this.interactive,
+                              full: true});
   },
 
   // Render likes aggregation for the purchase
@@ -204,13 +216,7 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       Denwen.Track.purchaseURLVisit('photo');
     }
     else {
-      $(this.purchaseModalEl).html('');
-
-      var purchaseDisplay = new Denwen.Partials.Purchases.Display({
-                                el: $(this.purchaseModalEl),
-                                model: this.model,
-                                interaction: this.interactive,
-                                full: true});
+      this.renderModal();
     }
 
   },
@@ -219,6 +225,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   titleClicked: function() {
     Denwen.Track.purchaseURLVisit('title');
+  },
+
+  commentInitClicked: function() {
+    this.renderModal();
   }
 
 });

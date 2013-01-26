@@ -10,7 +10,7 @@
 
 <div id="purchase-<%=full ? 'full-' : ''%><%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
-  class="item">
+  class="item <%=!full ? 'cols-2' : ''%>">
     
   <div class="photo-box relative">
   
@@ -61,8 +61,8 @@
               data-toggle="modal"
               data-target="#item-modal-<%=purchase.get('id')%>"
               style="margin-left: 4px;"
-              class="comment btn btn-silver light shaded-light 
-                      border-box rounded-3">
+              class="sel-purchase-comment-init comment btn btn-silver light 
+                      shaded-light border-box rounded-3">
             <i class="icon-comment"></i>
           </a>	
         <%}%>
