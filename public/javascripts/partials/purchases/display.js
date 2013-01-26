@@ -17,13 +17,21 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     if (typeof this.interaction  === "undefined")
       this.interaction = Denwen.H.isLoggedIn();
 
+
+    this.full = this.options.full;
+
+    if (typeof this.full  === "undefined")
+      this.full = false;
+
+
     this.crossButton = this.options.crossButton;
 
     if (typeof this.crossButton  === "undefined")
       this.crossButton = false;
 
 
-    this.purchaseEl = '#purchase-' + this.model.get('id');
+    this.purchaseEl = '#purchase-' + (this.full ? 'full-' : '') + this.model.get('id');
+    this.purchaseModalEl = '#item-modal-' + this.model.get('id');
 
     this.render();
 
@@ -66,7 +74,8 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
     var html = Denwen.JST['purchases/display']({
                 purchase    : this.model,
                 interaction : this.interaction,
-                crossButton : this.crossButton});
+                crossButton : this.crossButton,
+                full       : this.full});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
@@ -188,7 +197,22 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   // Purchase photo is clicked.
   //
   photoClicked: function() {
-    Denwen.Track.purchaseURLVisit('photo');
+
+    if(this.full) {
+      window.open(this.model.get('source_url'), '_blank');
+      window.focus();
+      Denwen.Track.purchaseURLVisit('photo');
+    }
+    else {
+      $(this.purchaseModalEl).html('');
+
+      var purchaseDisplay = new Denwen.Partials.Purchases.Display({
+                                el: $(this.purchaseModalEl),
+                                model: this.model,
+                                interaction: this.interactive,
+                                full: true});
+    }
+
   },
 
   // Purchase title is clicked.

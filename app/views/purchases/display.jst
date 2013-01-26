@@ -1,4 +1,14 @@
-<div id="purchase-<%=purchase.get('id')%>" 
+<%if(full){%>
+<button type="button" 
+    class="close absolute transition-opacity" 
+    data-dismiss="modal">
+  ×
+</button>
+<%}%>
+  
+
+
+<div id="purchase-<%=full ? 'full-' : ''%><%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item">
     
@@ -45,19 +55,28 @@
 					<i class="icon-heart out"></i>
 					<i class="icon-ok in"></i>
 				</a>
-				<a href="#item-modal-<%=purchase.get('id')%>" 
-            data-toggle="modal"
-			  		style="margin-left: 4px;"
-			  		class="comment btn btn-silver light shaded-light border-box rounded-3">
-					<i class="icon-comment"></i>
-				</a>	
+
+        <%if(!full){%>
+          <a href="javascript:void(0)"
+              data-toggle="modal"
+              data-target="#item-modal-<%=purchase.get('id')%>"
+              style="margin-left: 4px;"
+              class="comment btn btn-silver light shaded-light 
+                      border-box rounded-3">
+            <i class="icon-comment"></i>
+          </a>	
+        <%}%>
+
 			</div>
 		<%}%>
      
     <!-- item-photo -->   
-		<a href="#item-modal-<%=purchase.get('id')%>" 
+		<a href="javascript:void(0)"
         class="sel-purchase-photo"
+        <%if(!full){%>
         data-toggle="modal"
+        data-target="#item-modal-<%=purchase.get('id')%>"
+        <%}%>
 				rel="nofollow">
     	<img class="item-photo" 
         src="<%=purchase.get('giant_url')%>" 
@@ -148,12 +167,9 @@
 </div> <!-- /item -->	
 
 
-<!-- item-modal -->
-<div id="item-modal-<%=purchase.get('id')%>" class="modal item-modal border-box square hide">
-	
-	<button type="button" class="close absolute transition-opacity" data-dismiss="modal">
-		×
-  </button>
-
-</div> <!--/item-modal-->
+<%if(!full){%>
+<div id="item-modal-<%=purchase.get('id')%>" 
+  class="modal item-modal border-box square hide">
+</div>
+<%}%>
 
