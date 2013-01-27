@@ -759,7 +759,7 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	vertical-align: top;
 	background: white; }
 
-.photo-box { text-align: center; min-height: 200px; }
+.photo-box { text-align: center; min-height: 100px; }
 .photo-box .item-photo { max-height: 360px; }
 
 .actions { line-height: 0; }
