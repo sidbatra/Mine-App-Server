@@ -44,20 +44,20 @@ class Purchase < ActiveRecord::Base
 
     time :bought_at
     
-    text :title, :boost => 4
-    text :product_title, :boost => 5 do
+    text :title, :boost => 1
+    text :product_title, :boost => 1 do
       product ? product.title : ""
     end
     text :product_description do
       product ? product.description : ""
     end
-    text :store, :boost => 2 do
+    text :store do
       store ? store.name : ""
     end
-    text :user, :boost => 4 do
+    text :user do
       user ? user.full_name : ""
     end
-    text :product_tags, :boost => 3 do
+    text :product_tags do
       product ? product.tags : ""
     end
   end
@@ -152,7 +152,7 @@ class Purchase < ActiveRecord::Base
     opts[:scope] ||= :friends
     opts[:order] ||= :popular
 
-    search = search(:include => :user) do
+    search = search(:include => [:store,:user]) do
 
               fulltext query do
                 if opts[:order] == :popular
