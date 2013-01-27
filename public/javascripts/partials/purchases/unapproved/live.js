@@ -89,6 +89,8 @@ Denwen.Partials.Purchases.Unapproved.Live = Backbone.View.extend({
     this.retry();
 
     $('#' + this.el.attr('id') + ' a[href]').click(function(e){e.preventDefault();});
+
+    $('[data-toggle="modal"]').removeAttr('data-toggle');
   },
 
   purchasesLoadingFailed: function() {
