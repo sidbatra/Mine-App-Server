@@ -405,7 +405,7 @@ input.error:focus, textarea.error:focus {
   vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
-  cursor: pointer;
+  cursor: pointer !important;
   background: #006FB1 url("/images/alert-overlay.png") repeat-x;
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
@@ -469,7 +469,7 @@ input.error:focus, textarea.error:focus {
           border-radius: 3px; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
-.btn-large [class^="icon-"] { margin-top: 3px; }
+.btn-large [class^="icon-"] { margin-top: 2px; }
 .btn-mini [class^="icon-"] { margin-top: -1px; }
 
 .btn-small {
@@ -486,7 +486,7 @@ input.error:focus, textarea.error:focus {
   padding: 0 6px;
   height: 18px;
   font-size: 11px;
-  line-height: 18px; }
+  line-height: 18px !important; }
   
 .btn.btn-silver { 
 	background: #888 url("/images/alert-overlay-strong.png") repeat-x !important;
@@ -514,11 +514,6 @@ input.error:focus, textarea.error:focus {
 	border-bottom: 0px !important; 
 	box-shadow: none !important; }
 
-/*
-.btn.btn-silver.btn-large { background-color: #a0a0a0; }
-.btn.btn-silver.btn-large:hover { background-color: #777; }
-*/
-	
 .btn.btn-red { background-color: #d64026; }
 .btn.btn-red:hover { background-color: #a6321d; }
 
@@ -537,11 +532,12 @@ input.error:focus, textarea.error:focus {
 	border: 0;
 	text-shadow: none;
   box-shadow: none; }
-	
-.btn.btn-white [class^="icon-"],
-.btn.btn-white [class*=" icon-"] {
-	opacity: 0.75;
-  filter: alpha(opacity=75); }
+ 
+.btn-small.btn-white .icon-white { display: none; }
+.btn-small.btn-white:hover  { background: #555 !important; }
+.btn-small.btn-white:active { background: #333 !important; }
+.btn-small.btn-white:hover .icon-white { display: inline-block; }
+.btn-small.btn-white:hover .icon-black { display: none; }
 
 .btn.btn-twitter { background-color: #1286D6; }
 .btn.btn-twitter:hover { background-color: #0078ca; }
@@ -651,7 +647,7 @@ input.error:focus, textarea.error:focus {
 .btn.load, .btn.load:hover,
 .load .btn, .load .btn:hover { 
 	background: #004a72; 
-	cursor: default; 
+	cursor: default !important; 
 	box-shadow: none;
 	border-bottom: none;
 	-moz-box-shadow: none;

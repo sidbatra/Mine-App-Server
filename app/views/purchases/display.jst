@@ -27,17 +27,18 @@
   	<%if(interaction && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
 			<div class="actions bottom right absolute appear transition-opacity">
 				<a href="<%=purchase.editPath('feed')%>" 
-          class="btn btn-small btn-white rounded-3 transition-opacity opacity-60-100">
-					<i class="icon-pencil"></i>
+          class="btn btn-small btn-white rounded-2 no-transition opacity-80">
+          <i class="icon-pencil icon-black"></i>
+					<i class="icon-pencil icon-white"></i>
 				</a>
 			</div>
 		<%}%>
 		
 		<!-- x-out -->
   	<%if(crossButton && Denwen.H.isCurrentUser(purchase.get('user').get('id'))){%>
-      <div class="actions top right absolute appear transition-opacity">
+      <div class="actions top right absolute">
         <a href="javascript:void(0)"
-            class="btn btn-small square btn-white opacity-60-80 sel-purchase-cross">
+            class="btn btn-small btn-white rounded-2 no-transition opacity-80 sel-purchase-cross">
           <i class="icon-remove icon-black"></i>
           <i class="icon-remove icon-white"></i>
         </a>
