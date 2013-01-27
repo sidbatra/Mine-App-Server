@@ -33,6 +33,9 @@ class Product < ActiveRecord::Base
     text :store, :boost => 2 do
       store ? store.name : ""
     end
+    text :tags, :boost => 3 do
+      tags 
+    end
   end
 
   #----------------------------------------------------------------------
@@ -41,6 +44,7 @@ class Product < ActiveRecord::Base
   named_scope :for_store, lambda {|store_id| {:conditions => {
                                       :store_id => store_id}}}
   named_scope :with_store, :include => :store
+  named_scope :with_purchases, :include => :purchases
 
   #----------------------------------------------------------------------
   # Class methods
@@ -133,6 +137,15 @@ class Product < ActiveRecord::Base
   #----------------------------------------------------------------------
   # Instance methods
   #----------------------------------------------------------------------
+
+  def tags
+    self[:tags].present? ? self[:tags].split(CONFIG[:tag_boundary]) : ""
+  end
+
+  def tags=(new_tags)
+    self[:tags] = new_tags.join(CONFIG[:tag_boundary]) if new_tags
+  end
+
 
   # Public. Relative path of the thumbnail image on the filesystem.
   #

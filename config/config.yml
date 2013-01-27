@@ -69,6 +69,7 @@ common: &common
   :admin_salt: 97f8336b05921eeb11ddb1300f454d380f315a43918fb61c046897394f04e0b2
   :admin_password: 43d9b895a65ceaead13a6bc7cb47fe0cd395382a
   :age_bucket_size: 5
+  :tag_boundary: @@
   :user_agent:  Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4
   :mobile_user_agents: palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile
   :tablet_user_agents: ipad|tablet

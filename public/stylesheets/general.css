@@ -11,6 +11,8 @@
 	
 .arial { font-family: Arial, sans-serif !important; }
 
+.message-drawer { width: 576px; margin: 0 auto; }
+
 .alias-subpixel { -webkit-font-smoothing: subpixel-antialiased; }
 .alias-smooth   { -webkit-font-smoothing: antialiased; }
 
@@ -39,6 +41,7 @@ span.separator:before { content: "•"; }
 
 .opacity-40 { opacity: 0.4; filter: alpha(opacity=40); }
 .opacity-50 { opacity: 0.5; filter: alpha(opacity=50); }
+.opacity-60 { opacity: 0.6; filter: alpha(opacity=60); }
 .opacity-80,
 .opacity-80-100 { opacity: 0.8; filter: alpha(opacity=80); }
 .opacity-90-100 { opacity: 0.9; filter: alpha(opacity=90); }
@@ -48,6 +51,9 @@ span.separator:before { content: "•"; }
 .opacity-60-80:hover  { opacity: 0.8; filter: alpha(opacity=80); }
 .opacity-60-100:hover, .opacity-80-100:hover, 
 .opacity-90-100:hover { opacity: 1; filter: alpha(opacity=100); }
+
+.appear { opacity: 0; filter: alpha(opacity=0); }
+div:hover > .appear { opacity: 1; filter: alpha(opacity=100); }
 
 .pointer { cursor: pointer; }
 
@@ -362,6 +368,11 @@ input.error:focus, textarea.error:focus {
 	-o-transition: border-color .15s ease-in;
 	transition: border-color .15s ease-in; }
 	
+.no-shadow {
+  -webkit-box-shadow: none !important;
+     -moz-box-shadow: none !important;
+          box-shadow: none !important; }
+	
 .no-transition {
 	-webkit-transition: none !important;
 	-moz-transition: none !important;
@@ -394,7 +405,7 @@ input.error:focus, textarea.error:focus {
   vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
-  cursor: pointer;
+  cursor: pointer !important;
   background: #006FB1 url("/images/alert-overlay.png") repeat-x;
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
@@ -458,7 +469,7 @@ input.error:focus, textarea.error:focus {
           border-radius: 3px; }
 
 .btn [class^="icon-"] { margin-top: 1px; }
-.btn-large [class^="icon-"] { margin-top: 3px; }
+.btn-large [class^="icon-"] { margin-top: 2px; }
 .btn-mini [class^="icon-"] { margin-top: -1px; }
 
 .btn-small {
@@ -475,7 +486,7 @@ input.error:focus, textarea.error:focus {
   padding: 0 6px;
   height: 18px;
   font-size: 11px;
-  line-height: 18px; }
+  line-height: 18px !important; }
   
 .btn.btn-silver { 
 	background: #888 url("/images/alert-overlay-strong.png") repeat-x !important;
@@ -503,11 +514,6 @@ input.error:focus, textarea.error:focus {
 	border-bottom: 0px !important; 
 	box-shadow: none !important; }
 
-/*
-.btn.btn-silver.btn-large { background-color: #a0a0a0; }
-.btn.btn-silver.btn-large:hover { background-color: #777; }
-*/
-	
 .btn.btn-red { background-color: #d64026; }
 .btn.btn-red:hover { background-color: #a6321d; }
 
@@ -526,11 +532,12 @@ input.error:focus, textarea.error:focus {
 	border: 0;
 	text-shadow: none;
   box-shadow: none; }
-	
-.btn.btn-white [class^="icon-"],
-.btn.btn-white [class*=" icon-"] {
-	opacity: 0.75;
-  filter: alpha(opacity=75); }
+ 
+.btn-small.btn-white .icon-white { display: none; }
+.btn-small.btn-white:hover  { color: white; background: #555 !important; }
+.btn-small.btn-white:active { background: #333 !important; }
+.btn-small.btn-white:hover .icon-white { display: inline-block; }
+.btn-small.btn-white:hover .icon-black { display: none; }
 
 .btn.btn-twitter { background-color: #1286D6; }
 .btn.btn-twitter:hover { background-color: #0078ca; }
@@ -640,7 +647,7 @@ input.error:focus, textarea.error:focus {
 .btn.load, .btn.load:hover,
 .load .btn, .load .btn:hover { 
 	background: #004a72; 
-	cursor: default; 
+	cursor: default !important; 
 	box-shadow: none;
 	border-bottom: none;
 	-moz-box-shadow: none;
@@ -678,8 +685,8 @@ input.error:focus, textarea.error:focus {
 .btn-gray.pushed, .btn-gray.pushed:hover,
 .btn-gray.load, .btn-gray.load:hover { background: #888; color: white; }	
 
-.btn span.in { display: none; }
-.btn.pushed .in { display: inline; }
+.btn .in         { display: none; }
+.btn.pushed .in  { display: inline-block; }
 .btn.pushed .out { display: none; }
   
 .icon-loading {
@@ -763,6 +770,9 @@ input.error:focus, textarea.error:focus {
 	-webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none; }
+          
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover 
 
 .dropdown-menu li > a:hover,
 .dropdown-menu li > a:focus,
@@ -770,7 +780,8 @@ input.error:focus, textarea.error:focus {
 .dropdown-menu .active > a:hover {
   text-decoration: none;
   color: white !important;
-  background-color: #666; }
+  background-color: #666;
+  background-image: none !important; }
 
 .typeahead.dropdown-menu li { 
 	overflow: hidden;
@@ -782,7 +793,12 @@ input.error:focus, textarea.error:focus {
 /* Text Field Bootstrap Overrides
 ==================================================================== */
 
-input[type=text], input[type=password], textarea {
+input[type="search"] {
+    -moz-appearance:    textfield;
+    -webkit-appearance: textfield;
+    appearance:         textfield; }
+
+input[type=text], input[type=password], input[type=search], textarea {
 	width: 100%; 
 	-webkit-appearance: none; 
 	margin-bottom: 0;
@@ -791,21 +807,24 @@ input[type=text], input[type=password], textarea {
 	background: #eee;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset; }
 
-input[type=text]:focus, input[type=password]:focus, textarea:focus { 
+input[type=text]:focus, input[type=password]:focus, 
+input[type=search]:focus, textarea:focus { 
 	background: white; 
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px inset; }
 
-input[type=text], input[type=password] { height: 40px; }
+input[type=text], input[type=password], input[type=search] { height: 40px; }
 textarea { 
 	padding-top: 7px;
 	padding-bottom: 7px; }
 
-input[type=text].m, input[type=password].m { 
+input[type=text].m, input[type=password].m, input[type=search].m { 
 	height: 28px;
+	font-size: 13px;
 	padding: 0 8px;
-	box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 1px 0px inset; }
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px inset; }
 	
-input[type=text].m.load, input[type=password].m.load {
+input[type=text].m.load, input[type=password].m.load,
+ input[type=search].m.load {
 	background: white url('/images/loading/loading-snake-555-right-loading.gif') center right no-repeat; }
 
 

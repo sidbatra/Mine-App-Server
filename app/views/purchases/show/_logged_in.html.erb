@@ -8,7 +8,7 @@
 
   </div>
   
-	<div class="feed-container" style="border-bottom: 2px solid #EEE;">
+	<div class="feed-container">
 	  <div class="item-row-box border-box" style="">
 	    <%cache ["v6",@purchase.user,"purchases","preview"] do%>
 	      <%@purchase.user.purchases.approved.with_user.
@@ -28,10 +28,10 @@
 	    <%end%>
 	
 	  </div> <!-- /item-row-box -->
-	 </div> <!- /feed-container -->
+	 </div> <!-- /feed-container -->
 
   <div class="feed-container">
-	  <div id="feed" class="feed relative">
+	  <div id="feed" class="feed no-close relative">
 		</div>
 	</div>
 	

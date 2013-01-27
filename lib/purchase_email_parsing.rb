@@ -178,7 +178,8 @@ module DW
             :source_url => product.page_url,
             :orig_image_url => product.large_image_url,
             :orig_thumb_url => product.medium_image_url,
-            :external_id => product.custom_product_id})
+            :external_id => product.custom_product_id,
+            :tags => product.tags})
         end.compact
       end
     end
@@ -229,7 +230,8 @@ module DW
             :source_url => product.page_url,
             :orig_image_url => product.large_image_url,
             :orig_thumb_url => product.large_image_url,
-            :external_id => product.custom_product_id})
+            :external_id => product.custom_product_id,
+            :tags => product.tags})
         end.compact
       end
     end
@@ -742,6 +744,60 @@ module DW
             :source_url => product.page_url,
             :orig_image_url => product.large_image_url,
             :orig_thumb_url => product.medium_image_url,
+            :external_id => product.custom_product_id})
+        end.compact
+      end
+    end
+
+
+    class GooglePlayEmailParser
+      
+      def initialize(store)
+      end
+      
+      def find_products_on_google_play(product_names)
+        products = {}
+
+        product_names.each do |product_name|
+        begin
+          product = GooglePlay.lookup("\"#{product_name}\"").first
+          products[product_name] = product if product
+
+        rescue => ex
+          puts ex.message
+        ensure
+          sleep 0.25
+        end
+        end
+
+        products
+      end
+
+      def parse(emails)
+        purchases = []
+
+        emails.each do |email|
+          text          = email.text
+          product_names = text.scan(/<tr><tr><td.*>(.*\w)<\/td><td/).flatten.uniq
+
+          product_names.each do |product_name|
+            purchases << {:gp_name => product_name,
+                          :bought_at => email.date,
+                          :text => text,
+                          :message_id => email.message_id}
+          end
+        end
+
+        gp_products = find_products_on_google_play purchases.map{|p| p[:gp_name]}
+
+        purchases.map do |purchase|
+          next unless product = gp_products[purchase[:gp_name]]
+
+          purchase.merge!({
+            :title => product.title,
+            :source_url => product.page_url,
+            :orig_image_url => product.large_image_url,
+            :orig_thumb_url => product.large_image_url,
             :external_id => product.custom_product_id})
         end.compact
       end

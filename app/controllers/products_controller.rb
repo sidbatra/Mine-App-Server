@@ -452,11 +452,11 @@ class ProductsController < ApplicationController
   end
 
   def sanitize_itunes_query(query)
-    query.gsub(/(app|iphone|ipad|ipod|ios|for)(\s|\z)/,"")
+    query.gsub(/(app|iphone|ipad|ipod|ios|for)(\s|\z)/i,"")
   end
 
   def is_searching_for_apps(query)
-    query.match(/app(\s|\z)/) || query.match(/for (iphone|ipad|ios|ipod)/)
+    query.match(/app(\s|\z)/i) || query.match(/for (iphone|ipad|ios|ipod)/i)
   end
 
 end

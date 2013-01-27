@@ -39,6 +39,7 @@ include ImageProcessing
 include ItunesInterface
 include EtsyInterface
 include ZapposInterface
+include GooglePlayInterface
 include EbayInterface
 include MailmanInterface
 include NotificationManagement
@@ -46,6 +47,7 @@ include Storage
 include DistributionManagement
 include PurchaseEmailParsing
 include PurchaseExtraction
+include Tagging
 include WebSearchInterface
 include YahooAPIInterface
 

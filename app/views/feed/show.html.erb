@@ -9,7 +9,6 @@
   <%=render 'purchases/chooser'%> 
 <%end%> 
 
-
 <!-- email importer box -->
 <div class="well-box border-box rounded-8 rwd-hide unselectable" 
   style="margin: 2px 0 12px;">
@@ -18,15 +17,15 @@
                   "import-star-check-ccc-32-2x.png" :
                   "import-star-ccc-32-2x.png",
           :style => "width: 32px; top: 0; left: 0;",
-          :class => "absolute"%>
-    <div class="txt m top-line unselectable">
+          :class => "absolute opacity-80"%>
+    <div class="txt m top-line opacity-80 unselectable">
       <%if self.current_user.email_authorized?%>
         You're connected
       <%else%>
         <%=h self.current_user.first_name%>, start your Mine
       <%end%>
     </div>
-    <span class="txt s bottom-line unselectable" href="javascript:void(0)">
+    <span class="txt s bottom-line opacity-80 unselectable" href="javascript:void(0)">
       <%if self.current_user.email_authorized?%>
         Checking for new purchases in: <%=pluralize days_to_email_import,"day"%>
       <%else%>
@@ -50,9 +49,7 @@
               :class => "hide-when-loading"%>
           <i class="icon-loading icon-white"></i>
         </span>
-        <%=image_tag "logos/import-gmail-connected-2x.png",
-            :style => "width: 50px; padding-right: 2px; margin-top: -4px;",
-            :class => "connected inline"%>
+        <i class="icon-ok icon-white connected inline opacity-60" style="margin-top: -1px;"></i>
       </a>
       
       <a id="hotmail_connect_button"
@@ -71,9 +68,7 @@
               :class => "hide-when-loading"%>
           <i class="icon-loading icon-white"></i>
         </span>
-        <%=image_tag "logos/import-hotmail-connected-2x.png",
-            :style => "width: 55px; padding-right: 4px; margin-top: -2px;",
-            :class => "connected"%>
+        <i class="icon-ok icon-white connected inline opacity-60" style="margin-top: -1px;"></i>
       </a>
       
       <a id="yahoo_connect_button" 
@@ -92,9 +87,7 @@
               :class => "hide-when-loading"%>
           <i class="icon-loading icon-white"></i>
         </span>
-        <%=image_tag "logos/import-yahoo-connected-2x.png",
-            :style => "width: 55px; padding-right: 4px; margin-top: -2px;",
-            :class => "connected"%>
+        <i class="icon-ok icon-white connected inline opacity-60" style="margin-top: -1px;"></i>
       </a>
     
     </div> <!-- /import email buttons -->
@@ -196,9 +189,30 @@
 <%end%>
 
 <div class="feed-container">
+	
+  <%if self.current_user.is_admin%>
+    <div id="m-wrapper" class="m-wrapper relative">
+       <%=image_tag "m-search-q-2x.png",
+                :style => "",
+                :class => "q absolute"%>
+       
+       <%=link_to  '&times;',
+            'javascript:void(0)',
+            :id    => 'purchase_search_cross',
+            :class => 'close absolute',
+            :style => 'display: none;'%>
+
+      <input type="text" 
+        id="purchase_search_data"
+        class="m-search h-medium square border-box no-shadow affix-top"
+        placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
+    </div>
+  <%end%>
+
+	
 	<div id="feed" class="feed relative">
 	</div> 
-	
+
 	<div id="feed-spinner" class="feed-loading dark">
 	</div> 
 </div> <!-- feed container -->
@@ -210,5 +224,10 @@
     new Denwen.Views.Feed.Show({
       successEmailConnectURL: "<%=unapproved_purchases_path(:mode => 'live')%>",
       source: "<%=h @source%>"});
+      
+		//$('#m-wrapper').height($("#m-search").height());
+		//$('#m-search').affix({
+		//    offset: $('#m-search').position()
+		//});
   </script>
 <%end%>

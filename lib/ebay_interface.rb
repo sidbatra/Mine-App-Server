@@ -87,6 +87,15 @@ module DW
       def title
         @item["Title"] 
       end
+
+      def tags
+        tags = []
+
+        categories = @item["PrimaryCategoryName"]
+        tags = categories.split(":").map(&:downcase) if categories
+
+        tags
+      end
     end
     
   end #ebay interface

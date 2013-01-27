@@ -96,6 +96,8 @@ Denwen.Partials.Purchases.Unapproved.Stale = Backbone.View.extend({
     }
 
     $('#' + this.el.attr('id') + ' a[href]').click(function(e){e.preventDefault();});
+
+    $('[data-toggle="modal"]').removeAttr('data-toggle');
     //this.emptySpaceTest();
   },
 

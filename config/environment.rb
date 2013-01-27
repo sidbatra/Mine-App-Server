@@ -58,6 +58,8 @@ Rails::Initializer.run do |config|
               :version => '0.6.3')
   config.gem('jbuilder',
               :version => '0.4.0')
+  config.gem('market_bot',
+              :version => '0.9.1')
   config.gem('mechanize', 
               :version => '2.1.1',
               :lib => false)
@@ -84,12 +86,12 @@ Rails::Initializer.run do |config|
               :version => '0.8.8',
               :lib => false)
   config.gem('sunspot',
-              :version => '1.3.1')
+              :version => '2.0.0.pre.130115')
   config.gem('sunspot_solr',
-              :version => '1.3.1',
+              :version => '2.0.0.pre.130115',
               :lib => false)
   config.gem('sunspot_rails',
-              :version => '1.3.1')
+              :version => '2.0.0.pre.130115')
   config.gem('typhoeus',
               :version => '0.3.3')
   config.gem('twilio-ruby',
