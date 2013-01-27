@@ -534,7 +534,7 @@ input.error:focus, textarea.error:focus {
   box-shadow: none; }
  
 .btn-small.btn-white .icon-white { display: none; }
-.btn-small.btn-white:hover  { background: #555 !important; }
+.btn-small.btn-white:hover  { color: white; background: #555 !important; }
 .btn-small.btn-white:active { background: #333 !important; }
 .btn-small.btn-white:hover .icon-white { display: inline-block; }
 .btn-small.btn-white:hover .icon-black { display: none; }

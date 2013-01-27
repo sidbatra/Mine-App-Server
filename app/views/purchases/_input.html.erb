@@ -36,19 +36,19 @@
 	
     <div class="photo-box relative">
 
-			<div class="actions top-left absolute">
+			<div class="actions top left absolute">
         <a href="javascript:void(0)" 
-            class="btn btn-small btn-white rounded-3"
+            class="btn btn-small btn-white rounded-2 no-transition opacity-80"
             id="purchase_change_photo">
           Change image
         </a>
       </div>
       
-      <div class="actions bottom-right absolute">
-		    <%=link_to "<i class='icon-trash'></i>",
+      <div class="actions bottom right absolute">
+		    <%=link_to "<i class='icon-trash icon-black'></i><i class='icon-trash icon-white'></i>",
 		        {:action => 'destroy',:id => f.object.id},
 		        :method  => :delete,
-		        :class   => 'btn btn-small btn-white rounded-3 transition-opacity opacity-60-100',
+		        :class   => 'btn btn-small btn-white rounded-2 no-transition opacity-80',
 		        :confirm => "Are you sure you want "\
 		                    "to delete this item?" if show_delete_button%>
 	    </div>                
@@ -58,11 +58,7 @@
       
     </div> <!-- /photo-box -->
   
-  	<div class="panel">
-  		
-  		<div class="panel-contents rounded-5 relative">
-  		
-  			<b class="caret absolute opaque"></b>
+  	<div class="interactions-box" style="padding-top: 14px; margin-top: 24px;">
   			
   			<div class="box-title" style="padding-top: 4px;">
 					Item name
@@ -201,9 +197,8 @@
 		    <%=link_to "Cancel", :back, 
 		        :class => "btn btn-large btn-gray rounded-5 border-box",
 		        :style => "width: 100%; margin-top: 12px;" if show_cancel_button%>
-		                          
-			</div> <!-- /panel-contents -->                          
+		                                                 
 	                          
-		</div> <!-- /panel -->
+		</div> <!-- /interactions-box -->
 		
 	</div> <!-- /extra_steps.item -->

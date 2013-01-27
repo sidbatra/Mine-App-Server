@@ -753,9 +753,10 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 .item { 
 	padding: 24px 28px; 
 	text-align: left;
-	vertical-align: top; }
+	vertical-align: top;
+	background: white; }
 
-.photo-box { text-align: center; }
+.photo-box { text-align: center; min-height: 200px; }
 .photo-box .item-photo { max-height: 360px; }
 
 .actions { line-height: 0; }
@@ -1249,7 +1250,7 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 /* Switch Toggle
 ==================================================================== */
 
-.create-box .panel a.toggle-switch {
+.create-box a.toggle-switch {
 	position: relative;
 	float: right;
 	display: block;	
@@ -1269,11 +1270,11 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
 
-.create-box .panel a.toggle-switch div.on,
-.create-box .panel a.toggle-switch div.off {
+.create-box a.toggle-switch div.on,
+.create-box a.toggle-switch div.off {
 	height: 30px; }
   
-.create-box .panel a.toggle-switch div.on { 
+.create-box a.toggle-switch div.on { 
 	display: block;
 	background: #177DBE;
 	color: white;
@@ -1283,21 +1284,21 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	-moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
 	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15); }
 
-.create-box .panel a.toggle-switch div.off {
+.create-box a.toggle-switch div.off {
 	display: none;
 	background: #f5f5f5;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
 
-.create-box .panel a.toggle-switch.off div.off { display: block; }
-.create-box .panel a.toggle-switch.off div.on { display: none; }   
+.create-box a.toggle-switch.off div.off { display: block; }
+.create-box a.toggle-switch.off div.on { display: none; }   
 
-.create-box .panel a.toggle-switch .text { 
+.create-box a.toggle-switch .text { 
 	width: 42px;
 	text-align: center; }
     
-.create-box .panel a.toggle-switch .knob { 
+.create-box a.toggle-switch .knob { 
 	border: 1px solid #ccc;
 	border-bottom: 1px solid #bbb;
 	margin-top: -1px;
@@ -1306,20 +1307,20 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	box-sizing: border-box; 
 	width: 32px; }
 	
-.create-box .panel a.toggle-switch .knob .border {
+.create-box a.toggle-switch .knob .border {
 	width: 100%;
 	height: 100%;
 	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
 	
-.create-box .panel a.toggle-switch .on .text { float: left; }
-.create-box .panel a.toggle-switch .off .text { float: right; }
+.create-box a.toggle-switch .on .text { float: left; }
+.create-box a.toggle-switch .off .text { float: right; }
 
-.create-box .panel a.toggle-switch .on .knob {
+.create-box a.toggle-switch .on .knob {
 	float: right;
 	margin-right: -1px; }
 	
-.create-box .panel a.toggle-switch .off .knob { 
+.create-box a.toggle-switch .off .knob { 
 	float: left;
 	margin-left: -1px; }
 	
@@ -1338,13 +1339,13 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	width: 15%;
 	vertical-align: top; }
 	
-.create-box .panel .store-name { 
+.create-box .store-name { 
 	width: 170px;
 	float: left; }
 	
 .create-box .item .photo-box .item-photo { max-height: 264px !important; }
 
-.create-box .panel label {
+.create-box label {
 	line-height: 1; 
 	height: 13px;
 	float: left;
@@ -1356,11 +1357,11 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	opacity: 0.6;
   filter: alpha(opacity=60); }
 
-.create-box .panel label:hover {
+.create-box label:hover {
 	opacity: 1;
   filter: alpha(opacity=100); }
 	
-.create-box .panel input.check {
+.create-box input.check {
 	top: 1px;
 	left: 0;
   width: 13px;
@@ -1372,9 +1373,9 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	width: 250px;
 	font-size: 14px; }
  
-.create-box .panel .review-box { margin: 20px 0 8px; }
+.create-box .review-box { margin: 20px 0 8px; }
  
-.create-box .panel .btn.add-review {
+.create-box .btn.add-review {
 	text-align: left;
 	padding-left: 12px;
 	background: #e2e2e2; 
@@ -1384,18 +1385,18 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	color: #999;
 	display: block; }
 
-.create-box .panel .btn.add-review .icon-pencil {
+.create-box .btn.add-review .icon-pencil {
 	opacity: 0.4;
   filter: alpha(opacity=40); }
   
-.create-box .panel .btn.add-review:hover { color: #666; }
-.create-box .panel .btn.add-review:hover .icon-pencil {
+.create-box .btn.add-review:hover { color: #666; }
+.create-box .btn.add-review:hover .icon-pencil {
 	opacity: 0.8;
   filter: alpha(opacity=80); }
 
-.create-box .panel .share-switches { font-size: 0; }
+.create-box .share-switches { font-size: 0; }
   
-.create-box .panel .post-to {
+.create-box .post-to {
 	font-weight: bold;
 	color: #666;
 	font-size: 15px;
