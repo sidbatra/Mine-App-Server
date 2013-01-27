@@ -171,10 +171,16 @@ class Purchase < ActiveRecord::Base
 
                 elsif opts[:order] == :latest
 
-                  [1.month.ago,3.weeks.ago,2.weeks.ago,1.week.ago,5.days.ago,
-                    3.days.ago,1.day.ago,12.hours.ago,1.hour.ago,
-                    30.minutes.ago].each do |time|
-                    boost(1){with(:bought_at).greater_than(time)}
+                  [[3.month.ago,1],
+                   [2.month.ago,1],
+                   [1.month.ago,1],
+                   [2.weeks.ago,2],
+                   [1.week.ago,2],
+                   [5.days.ago,1],
+                   [1.day.ago,1],
+                   [12.hours.ago,1],
+                   [30.minutes.ago,1]].each do |time,boost|
+                    boost(boost){with(:bought_at).greater_than(time)}
                   end 
 
                 end #opts[:order]
