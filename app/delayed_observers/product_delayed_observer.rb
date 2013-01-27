@@ -7,8 +7,12 @@ class ProductDelayedObserver < DelayedObserver
     product.host
 
     unless product.tags.present?
-      product.tags = ProductTagger.new(product.source_url,product.external_id).tags
-      product.save!
+      tagger = ProductTagger.new(product.source_url,product.external_id)
+
+      if tagger.available?
+        product.tags = tagger.tags
+        product.save!
+      end
     end
   end
 

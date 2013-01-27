@@ -20,6 +20,7 @@ module DW
 
       def tag
         @products.each do |product|
+        begin
           next if product.tags.present?
 
           tagger = ProductTagger.new product.source_url,product.external_id
@@ -33,6 +34,10 @@ module DW
 
           @mapper[symbol][external_id] = [] unless @mapper[symbol].include?(external_id)
           @mapper[symbol][external_id] << product
+
+        rescue => ex
+          LoggedException.add(__FILE__,__method__,ex)
+        end
         end
 
         tag_amazon_products if @mapper[:amazon].present?
@@ -142,11 +147,11 @@ module DW
       def method_missing(method,*args,&block)
 
         if available? && @tagger.respond_to?(method)
-          #begin
+          begin
             @tagger.send method,*args,&block
-          #rescue => ex
-          #  LoggedException.add(__FILE__,__method__,ex)
-          #end
+          rescue => ex
+            LoggedException.add(__FILE__,__method__,ex)
+          end
         else
           super
         end
