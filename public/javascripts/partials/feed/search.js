@@ -31,6 +31,7 @@ Denwen.Partials.Feed.Search = Backbone.View.extend({
     this.query = query;
     this.disabled = false;
     this.el.html('');
+    this.el.show();
     $(this.spinnerEl).show();
 
     this.fetch();
@@ -38,6 +39,7 @@ Denwen.Partials.Feed.Search = Backbone.View.extend({
 
   disappear: function() {
     this.disabled = true;
+    this.el.hide();
   },
 
   // Load and display the next set of feed items.
