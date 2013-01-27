@@ -1,7 +1,7 @@
 json.extract! purchase,:id,:bought_at,:title,:handle,:endorsement,:source_url,:giant_url,:fb_object_id
 json.created_at purchase.bought_at
-json.buyers_count if purchase[:buyers_count]
-json.message if purchase[:message]
+json.buyers_count purchase[:buyers_count] if purchase[:buyers_count]
+json.message purchase[:message] if purchase[:message]
 
 json.user do |j|
   j.partial! purchase.user 
