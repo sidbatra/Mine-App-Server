@@ -823,6 +823,7 @@ textarea {
 
 input[type=text].m, input[type=password].m, input[type=search].m { 
 	height: 28px;
+	font-size: 13px;
 	padding: 0 8px;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px inset; }
 	

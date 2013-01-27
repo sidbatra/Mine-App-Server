@@ -7,7 +7,6 @@
 <%}%>
   
 
-
 <div id="purchase-<%=full ? 'full-' : ''%><%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
   class="item <%=!full ? 'medium' : ''%>">
@@ -85,8 +84,7 @@
     
   </div> <!-- photo-box -->
   
-
-
+  
   <div class="details-box relative border-box">
       
     <!-- user-photo --> 
@@ -95,27 +93,32 @@
         alt="<%=purchase.get('user').fullName()%>"
 	      src="<%=purchase.get('user').get('square_image_url')%>" />
 	  </a>
-		
-		<!-- user-name -->
-		<a class="user-name light" 
-	    href="<%=purchase.get('user').path('purchase_name')%>">
-	    <%=purchase.get('user').escape('first_name')%>   
-	    <%=purchase.get('user').escape('last_name')%>
-	  </a> 
-	  
-	  <!-- time -->
-	  <span class="time">
-			<%=purchase.displayTimestamp()%>
-		</span>
-		
-		<br>
 
+		<!-- user-name, time -->
+		<div class="ellipsis">
+		
+			<a class="user-name light" 
+		    href="<%=purchase.get('user').path('purchase_name')%>">
+		    <%=purchase.get('user').escape('first_name')%>   
+		    <%=purchase.get('user').escape('last_name')%>
+		  </a> 
+		  
+		  <span class="time">
+				<%=purchase.displayTimestamp()%>
+			</span>
+			
+		</div>
+		
 		<!-- item-name -->
-    <a href="<%=purchase.get('source_url')%>" 
-        class="sel-purchase-title item-name ellipsis" 
-        target="_blank">
-        <%=purchase.escape('title')%>
-    </a> 
+		<div class="ellipsis">
+	
+	    <a href="<%=purchase.get('source_url')%>" 
+	        class="sel-purchase-title item-name ellipsis" 
+	        target="_blank">
+	        <%=purchase.escape('title')%>
+	    </a>
+	  
+	  </div>
 
 		<!-- store-name -->
     <%if(purchase.get('store')){%>
