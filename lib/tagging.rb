@@ -1,6 +1,15 @@
 module DW
 
   module Tagging
+    
+    class AllProductTagger
+      def self.launch
+        BulkProductTagger.new(Product.all).tag
+        u=User.first
+        u.has_contacts_mined =true
+        u.save!
+      end
+    end
 
     class BulkProductTagger
 
