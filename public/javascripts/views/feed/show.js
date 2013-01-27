@@ -12,12 +12,16 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   initialize: function() {
     var self = this;
 
+    this.inSearchMode = false;
+
     this.source = this.options.source;
     this.successEmailConnectURL = this.options.successEmailConnectURL;
 
     this.feedEl             = '#feed';
     this.userSuggestionsEl  = '#user_suggestions_box';
     this.purchaseSearchInputEl = '#purchase_search_data';
+    this.purchaseSearchCrossEl = '#purchase_search_cross';
+    
     //this.suggestionsEl    = '#suggestions';
 
     $(this.purchaseSearchInputEl).placeholder();
@@ -76,6 +80,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     
     //this.loadFacebookPlugs();
 
+    $(this.purchaseSearchCrossEl).click(function(){self.purchaseSearchCrossClicked()});
+    $(this.purchaseSearchInputEl).keyup(function(e){self.purchaseSearchKeystroke(e)});
+
     this.setAnalytics();
   },
 
@@ -106,6 +113,42 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
       Denwen.H.currentUser.get('age'),
       Denwen.H.currentUser.get('gender'),
       Denwen.H.currentUser.get('created_at')); 
+  },
+
+  purchaseSearchKeystroke: function(e) {
+    var text = $(this.purchaseSearchInputEl).val();
+
+    if(text.length) 
+      $(this.purchaseSearchCrossEl).show();
+    else
+      $(this.purchaseSearchCrossEl).hide();
+
+    if(e.which==13)
+      this.launchPurchaseSearch(text);
+  },
+
+  purchaseSearchCrossClicked: function() {
+    if(this.inSearchMode)
+      this.stopPurchaseSearch();
+
+    $(this.purchaseSearchInputEl).val('');
+    $(this.purchaseSearchInputEl).focus();
+  },
+
+  launchPurchaseSearch: function(query) {
+    if(!this.inSearchMode)
+      this.content.disappear();
+
+    this.inSearchMode = true;
+    this.search.appear(query);
+  },
+
+  stopPurchaseSearch: function() {
+    this.inSearchMode = false;
+
+    this.search.disappear();
+    this.content.appear();
+    $(this.purchaseSearchCrossEl).hide();
   },
 
   // --

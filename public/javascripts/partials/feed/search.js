@@ -1,6 +1,7 @@
 Denwen.Partials.Feed.Search = Backbone.View.extend({
 
   initialize: function() {
+    this.oldPurchasesLength = 0;
     this.page = 1;
     this.perPage = 10;
     this.query = "";
@@ -25,6 +26,8 @@ Denwen.Partials.Feed.Search = Backbone.View.extend({
   },
 
   appear: function(query) {
+    this.oldPurchasesLength = 0;
+    this.page = 1;
     this.query = query;
     this.disabled = false;
     this.el.html('');
@@ -69,12 +72,13 @@ Denwen.Partials.Feed.Search = Backbone.View.extend({
   purchasesLoaded: function() {
     this.loading = false;
 
-    if(this.purchases.isEmpty()) {
+    if(this.purchases.isEmpty() || this.oldPurchasesLength == this.purchases.length) {
       this.disabled = true;
       $(this.spinnerEl).hide();
     }
 
     this.page++;
+    this.oldPurchasesLength = this.purchases.length;
     this.infiniteScroller.emptySpaceTest();
   },
 
