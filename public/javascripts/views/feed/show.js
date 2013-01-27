@@ -18,7 +18,6 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.successEmailConnectURL = this.options.successEmailConnectURL;
 
     this.feedEl             = '#feed';
-    this.purchasesEl        = '#purchases';
     this.userSuggestionsEl  = '#user_suggestions_box';
     this.purchaseSearchInputEl = '#purchase_search_data';
     this.purchaseSearchCrossEl = '#purchase_search_cross';
@@ -32,7 +31,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
                           el:$(this.feedEl)});
 
     this.search  = new Denwen.Partials.Feed.Search({
-                          el:$(this.purchasesEl)});
+                          el:$(this.feedEl)});
   
 
     this.input    = new Denwen.Partials.Purchases.Input({

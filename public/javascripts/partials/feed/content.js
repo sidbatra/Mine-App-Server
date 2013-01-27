@@ -35,12 +35,16 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
   disappear: function() {
     this.wasDisabled = this.disabled;
     this.disabled = true;
-    this.el.hide();
+    this.el.html('');
   },
 
   appear: function() {
     this.disabled = this.wasDisabled;
-    this.el.show();
+
+    var self = this;
+    this.feed.each(function(purchase){
+      self.feedItemAdded(purchase);
+    });
 
     if(!this.disabled)
       $(this.spinnerEl).show();
