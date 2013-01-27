@@ -167,6 +167,12 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   // Display the freshly created purchase in the feed.
   //
   purchaseCreated: function(purchase) {
+
+    if(this.inSearchMode) {
+      $(this.purchaseSearchInputEl).val('');
+      this.stopPurchaseSearch();
+    }
+
     this.content.insert(purchase);
 
     //if(this.suggestions.areActive()) {
