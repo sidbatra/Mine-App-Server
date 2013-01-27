@@ -34,9 +34,10 @@ module DW
         response = Typhoeus::Request.get(url.to_s).body
 
         if response.present?
-          products = JSON.parse(response)["products"].map do |product| 
+          output = JSON.parse(response)["products"]
+          products = output.map do |product| 
                       BestBuyProduct.new product
-                     end
+                     end if output.present?
         end
         
         products
@@ -84,9 +85,11 @@ module DW
         
         tags << subclass
 
-        @item["categoryPath"][1..-1].each do |category|
+        categories = @item["categoryPath"]
+
+        categories[1..-1].each do |category|
           tags << CGI.unescapeHTML(category["name"].downcase)
-        end if @item["categoryPath"]
+        end if categories.present?
 
         tags.compact
       end
