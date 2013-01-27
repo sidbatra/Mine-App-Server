@@ -3,7 +3,6 @@
 Denwen.Partials.Feed.Content = Backbone.View.extend({
 
   initialize: function() {
-    this.content = "";
     this.oldestItemTimestamp = 0;
     this.perPage = 10;
     this.loading = false;

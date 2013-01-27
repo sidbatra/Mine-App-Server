@@ -120,20 +120,23 @@
 	<%=is_current_user(@user) ? "Your" : "#{@user.first_name}'s"%> Mine
 </div>
 
-<div class="feed-container" style>
-	<div class="profile-feed relative" style="padding-top: 12px;">
+
+<div class="feed-container">
+	<div id="feed" class="feed relative">
+
 	  <%unless @user.purchases_count.zero?%>
-	    <%cache ["v7",@user,"purchases"] do%>
-	      <%=render :partial => "purchases/card",
-	          :collection => @user.purchases.approved.with_store.with_user.by_bought_at,
-	          :as => :purchase%>
-	    <%end%>
 	  <%else%>
-	  	<div class="txt m" style="color: #777; padding: 16px 10px 0;">
+	  	<div class="txt m" style="color: #777; padding: 16px 10px 16px 10px;">
 	    	<%=@user.first_name%> hasn't added any purchases yet.
 	    </div>
 	  <%end%>
+
 	</div> 
+
+  <%unless @user.purchases_count.zero?%>
+    <div id="feed-spinner" class="feed-loading dark">
+    </div> 
+  <%end%>
 </div> <!-- /feed-container -->
 
 <%content_for :javascript do%>
