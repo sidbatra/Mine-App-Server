@@ -105,11 +105,16 @@ module DW
       end
 
       def tags
+        tags = []
+
         @item.elem.search('.//Children').remove
-        @item.get_element('BrowseNodes').
-          get_array('BrowseNode/Name').
-          map{|name| CGI.unescapeHTML name.downcase}.
-          uniq
+        nodes = @item.get_element('BrowseNodes')
+
+        tags = nodes.get_array('BrowseNode/Name').
+                map{|name| CGI.unescapeHTML name.downcase}.
+                uniq if nodes.present?
+
+        tags
       end
     end
 
