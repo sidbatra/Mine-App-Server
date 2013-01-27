@@ -844,11 +844,6 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 .medium .interactions-box { display: none; }
 
 
-/* Feed + Profile Item (1 Column)
-==================================================================== */
-.col-1 .close {display :none}
-
-
 /* Item (Small)
 ==================================================================== */
 
@@ -869,6 +864,11 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 .no-user .details-box .user-photo,
 .no-user .details-box .user-name,
 .no-user .details-box .time  { display: none; }
+
+
+/* Item (No Close)
+==================================================================== */
+.no-close .close {display :none}
 
 
 /* Item Modal
