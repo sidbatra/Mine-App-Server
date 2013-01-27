@@ -111,8 +111,7 @@ Denwen.Views.Users.Show = Backbone.View.extend({
   purchaseAdded: function(purchase) {
     var purchaseDisplay = new Denwen.Partials.Purchases.Display({
                               el: $(this.feedEl),
-                              model: purchase,
-                              interaction: true});
+                              model: purchase});
   },
 
   purchasesLoaded: function() {

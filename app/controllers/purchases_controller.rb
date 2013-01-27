@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_filter :login_required, :except => :show
+  before_filter :login_required, :except => [:show,:index]
 
   # Fetch a set of purchases for a particular user.
   #
