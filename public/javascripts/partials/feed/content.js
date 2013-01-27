@@ -2,18 +2,13 @@
 //
 Denwen.Partials.Feed.Content = Backbone.View.extend({
 
-  // Event listeners
-  //
-  events: {
-  },
-
-  // Constructor logic
-  //
   initialize: function() {
+    this.content = "";
     this.oldestItemTimestamp = 0;
     this.perPage = 10;
     this.loading = false;
     this.disabled = false;
+    this.wasDisabled = false;
     this.spinnerEl = '#feed-spinner';
     this.aspect = this.options.aspect;
     this.interactive = this.options.interactive;
@@ -36,6 +31,23 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
       Denwen.InfiniteScroller.Callback.EmptySpaceFound,
       this.emptySpaceFound,
       this);
+  },
+
+  disappear: function() {
+    this.wasDisabled = this.disabled;
+    this.disabled = true;
+    this.content = this.el.html();
+    this.el.html('');
+  },
+
+  appear: function() {
+    this.disabled = this.wasDisabled;
+    this.el.html(this.content);
+
+    if(!this.disabled)
+      $(this.spinnerEl).show();
+    else
+      $(this.spinnerEl).hide();
   },
 
   // Load and display the next set of feed items.
