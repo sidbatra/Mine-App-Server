@@ -34,10 +34,10 @@ class Purchase < ActiveRecord::Base
     integer :store_id
     integer :user_id
     integer :buyers_count do
-      product ? product.purchases.length : 0
+      product ? product.purchases.select{|p| p.is_approved}.length : 0
     end
     integer :buyers, :multiple => true do
-      product ? product.purchases.map(&:user_id) : []
+      product ? product.purchases.select{|p| p.is_approved}.map(&:user_id) : []
     end
 
     string :product_id
@@ -157,17 +157,17 @@ class Purchase < ActiveRecord::Base
               fulltext query do
                 if opts[:order] == :popular
 
-                  [1,3,5,6,9,13,17,19,23,29,31,37,41,43].each do |count|
-                    boost(1){with(:buyers_count).greater_than(count)}
-                  end if opts[:scope]== :everyone 
+                  if opts[:scope] == :everyone
+                    boost(function{product(:buyers_count,20)}) 
+                  else
+                    boost(20) do
+                      with(:buyers,opts[:friend_ids])
+                    end if opts[:friend_ids].present?
 
-                  boost(7) do
-                    with(:buyers,opts[:friend_ids])
-                  end if opts[:friend_ids].present?
-
-                  boost(5) do
-                    with(:buyers,opts[:connection_ids])
-                  end  if opts[:connection_ids].present?
+                    boost(10) do
+                      with(:buyers,opts[:connection_ids])
+                    end  if opts[:connection_ids].present?
+                  end
 
                 elsif opts[:order] == :latest
 
