@@ -33,6 +33,9 @@ class Purchase < ActiveRecord::Base
 
     integer :store_id
     integer :user_id
+    integer :bought_at_sec do
+      bought_at.to_i
+    end
     integer :buyers_count do
       product ? product.purchases.select{|p| p.is_approved}.length : 0
     end
@@ -170,19 +173,7 @@ class Purchase < ActiveRecord::Base
                   end
 
                 elsif opts[:order] == :latest
-
-                  [[3.month.ago,1],
-                   [2.month.ago,1],
-                   [1.month.ago,1],
-                   [2.weeks.ago,2],
-                   [1.week.ago,2],
-                   [5.days.ago,1],
-                   [1.day.ago,1],
-                   [12.hours.ago,1],
-                   [30.minutes.ago,1]].each do |time,boost|
-                    boost(boost){with(:bought_at).greater_than(time)}
-                  end 
-
+                  boost(function{div(10000,sum(1,product(sub(Time.now.to_i,:bought_at_sec),1.1574e-05)))})
                 end #opts[:order]
               end #fulltext
 
