@@ -123,8 +123,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     else
       $(this.purchaseSearchCrossEl).hide();
 
-    if(e.which==13)
+    if(e.which==13 && text.length > 2) {
       this.launchPurchaseSearch(text);
+    }
   },
 
   purchaseSearchCrossClicked: function() {
