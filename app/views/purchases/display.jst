@@ -9,7 +9,7 @@
 
 <div id="purchase-<%=full ? 'full-' : ''%><%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
-  class="item <%=!full ? 'medium' : ''%>">
+  class="item <%=!full ? 'medium' : ''%> <%=isCombo ? 'combo' : ''%>">
     
   <div class="photo-box relative">
   
@@ -94,6 +94,11 @@
         alt="<%=purchase.get('user').fullName()%>"
 	      src="<%=purchase.get('user').get('square_image_url')%>" />
 	  </a>
+	  
+	  <!-- combo-count --> 
+    <div class="combo-count absolute">
+    	<%=purchase.get('buyers_count')%>
+   	</div>
 
 		<!-- user-name, time -->
 		<div class="ellipsis">
@@ -122,9 +127,13 @@
 	  </div>
 
 		<!-- store-name -->
-    <%if(purchase.get('store')){%>
+    <%if(purchase.get('store') || isCombo){%>
       <div class="store-name ellipsis">
-      	<%=purchase.get('store').escape('name')%>
+        <%if(isCombo){%>
+          <%=purchase.get('buyers_count') - 1%> others also have this
+        <%}else{%>
+          <%=purchase.get('store').escape('name')%>
+        <%}%>
       </div>
     <%}%>
 	   

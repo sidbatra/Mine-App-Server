@@ -76,7 +76,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                 purchase    : this.model,
                 interaction : this.interaction,
                 crossButton : this.crossButton,
-                full       : this.full});
+                full        : this.full,
+                isCombo     : this.model.get('buyers_count') && 
+                                this.model.get('buyers_count') > 2});
 
     if(this.model.get('fresh')) {
       this.el.prepend(html);
