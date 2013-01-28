@@ -33,31 +33,34 @@ class Purchase < ActiveRecord::Base
 
     integer :store_id
     integer :user_id
+    integer :bought_at_sec do
+      bought_at.to_i
+    end
     integer :buyers_count do
-      product ? product.purchases.length : 0
+      product ? product.purchases.select{|p| p.is_approved}.length : 0
     end
     integer :buyers, :multiple => true do
-      product ? product.purchases.map(&:user_id) : []
+      product ? product.purchases.select{|p| p.is_approved}.map(&:user_id) : []
     end
 
     string :product_id
 
     time :bought_at
     
-    text :title, :boost => 4
-    text :product_title, :boost => 5 do
+    text :title, :boost => 1
+    text :product_title, :boost => 1 do
       product ? product.title : ""
     end
     text :product_description do
       product ? product.description : ""
     end
-    text :store, :boost => 2 do
+    text :store do
       store ? store.name : ""
     end
-    text :user, :boost => 4 do
+    text :user do
       user ? user.full_name : ""
     end
-    text :product_tags, :boost => 3 do
+    text :product_tags do
       product ? product.tags : ""
     end
   end
@@ -152,37 +155,25 @@ class Purchase < ActiveRecord::Base
     opts[:scope] ||= :friends
     opts[:order] ||= :popular
 
-    search = search(:include => :user) do
+    search = search(:include => [:store,:user]) do
 
               fulltext query do
                 if opts[:order] == :popular
 
-                  [1,3,5,6,9,13,17,19,23,29,31,37,41,43].each do |count|
-                    boost(1){with(:buyers_count).greater_than(count)}
-                  end if opts[:scope]== :everyone 
+                  if opts[:scope] == :everyone
+                    boost(function{product(:buyers_count,20)}) 
+                  else
+                    boost(20) do
+                      with(:buyers,opts[:friend_ids])
+                    end if opts[:friend_ids].present?
 
-                  boost(7) do
-                    with(:buyers,opts[:friend_ids])
-                  end if opts[:friend_ids].present?
-
-                  boost(5) do
-                    with(:buyers,opts[:connection_ids])
-                  end  if opts[:connection_ids].present?
+                    boost(10) do
+                      with(:buyers,opts[:connection_ids])
+                    end  if opts[:connection_ids].present?
+                  end
 
                 elsif opts[:order] == :latest
-
-                  [[3.month.ago,1],
-                   [2.month.ago,1],
-                   [1.month.ago,1],
-                   [2.weeks.ago,2],
-                   [1.week.ago,2],
-                   [5.days.ago,1],
-                   [1.day.ago,1],
-                   [12.hours.ago,1],
-                   [30.minutes.ago,1]].each do |time,boost|
-                    boost(boost){with(:bought_at).greater_than(time)}
-                  end 
-
+                  boost(function{div(10000,sum(1,product(sub(Time.now.to_i,:bought_at_sec),1.1574e-05)))})
                 end #opts[:order]
               end #fulltext
 
