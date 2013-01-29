@@ -13,7 +13,7 @@ module DW
     def self.included(base)
       base.send :helper_method, :is_tablet_device?, :is_mobile_device?, 
                 :is_android_tablet_device?, :is_device?, :is_phone_device?, 
-                :is_device_ipad?, :is_ie?
+                :is_device_ipad?, :is_ie?, :is_device_iphone?
     end
 
     # Tests if the request has an JSON mime type
@@ -107,7 +107,7 @@ module DW
     # Test if the current device is an iphone
     #
     def is_device_iphone?
-      @is_device_ihone ||= is_device?('iphone')
+      @is_device_iphone ||= is_device?('iphone')
     end
 
     # Test if the current device is an ipad

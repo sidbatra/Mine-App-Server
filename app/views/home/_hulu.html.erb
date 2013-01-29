@@ -26,19 +26,28 @@
 		</h1>
 		
 		<div class="start">
-		
-			<span class="join">
-				<a style="background-color: #FF6600;" 
-	        class="btn btn-large btn-join wiggle rounded-5 shaded-strong relative unselectable" 
-					href="javascript:void(0)" 
-	        id="join" 
-	        onclick="mixpanel.track('Sign Up Clicked');">
-					<span class='hide-when-loading'>
-				    Join Now for Free
-				  </span>
-				</a>
-			</span> <!-- /join -->
+				<span class="join">
+					<%if is_device_iphone?%>
+						<a style="background-color: #FF6600;" 
+			        class="btn btn-large btn-join wiggle rounded-5 shaded-strong relative unselectable" 
+							href="http://itunes.apple.com/us/app/mine./id567558757?mt=8" 
+			        onclick="mixpanel.track('Get the App Clicked');">
+						  Get the App
+						</a>
+					<%else%>
+						<a style="background-color: #FF6600;" 
+			        class="btn btn-large btn-join wiggle rounded-5 shaded-strong relative unselectable" 
+							href="javascript:void(0)" 
+			        id="join" 
+			        onclick="mixpanel.track('Sign Up Clicked');">
+						  Join Now for Free
+						</a>
+					<%end%>
+				</span> <!-- /join -->
+
 			
+			
+
 			<span class="or rwd-hide">OR</span>
 			
 			<span class="sms rwd-hide">
