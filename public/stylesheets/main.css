@@ -592,7 +592,7 @@ a.feed-intro:hover { color: #ccc; }
 a.feed-intro .highlight { font-weight: bold; }
 
 .feed-loading.white { 
-	background: url('/images/loading/loading-snake-333-FFF.gif') center no-repeat;
+	background: white url('/images/loading/loading-snake-333-FFF.gif') center no-repeat;
 	height: 80px; }
 
 .feed-loading.whitesmoke { 
