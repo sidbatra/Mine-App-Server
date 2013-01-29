@@ -192,8 +192,9 @@
 	
   <%if self.current_user.is_admin%>
   	<div id="m-box" class="m-box">
-	    <div id="m-wrapper" class="m-wrapper relative">
+	    <div id="purchase_search_wrapper" class="m-wrapper relative">
 	       <%=image_tag "m-search-q-2x.png",
+                  :id => "purchase_search_mag_glass",
 	                :style => "",
 	                :class => "q absolute"%>
 	       

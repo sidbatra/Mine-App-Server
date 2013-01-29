@@ -17,14 +17,18 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.source = this.options.source;
     this.successEmailConnectURL = this.options.successEmailConnectURL;
 
-    this.feedEl             = '#feed';
-    this.userSuggestionsEl  = '#user_suggestions_box';
-    this.purchaseSearchInputEl = '#purchase_search_data';
-    this.purchaseSearchCrossEl = '#purchase_search_cross';
+    this.feedEl                   = '#feed';
+    this.userSuggestionsEl        = '#user_suggestions_box';
+    this.purchaseSearchInputEl    = '#purchase_search_data';
+    this.purchaseSearchCrossEl    = '#purchase_search_cross';
+    this.purchaseSearchMagGlassEl = '#purchase_search_mag_glass';
+    this.purchaseSearchWrapperEl  = '#purchase_search_wrapper';
     
     //this.suggestionsEl    = '#suggestions';
 
     $(this.purchaseSearchInputEl).placeholder();
+    $(this.purchaseSearchInputEl).focus();
+
 
     this.content  = new Denwen.Partials.Feed.Content({
                           aspect: 'user',
@@ -83,6 +87,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     $(this.purchaseSearchCrossEl).click(function(){self.purchaseSearchCrossClicked()});
     $(this.purchaseSearchInputEl).keyup(function(e){self.purchaseSearchKeystroke(e)});
 
+
     this.setAnalytics();
   },
 
@@ -118,10 +123,14 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
   purchaseSearchKeystroke: function(e) {
     var text = $(this.purchaseSearchInputEl).val();
 
-    if(text.length) 
+    if(text.length) { 
       $(this.purchaseSearchCrossEl).show();
-    else
+      $(this.purchaseSearchMagGlassEl).addClass('active');
+    }
+    else {
       $(this.purchaseSearchCrossEl).hide();
+      $(this.purchaseSearchMagGlassEl).removeClass('active');
+    }
 
     if(e.which==13 && text.length > 2) {
       this.launchPurchaseSearch(text);
@@ -134,6 +143,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     $(this.purchaseSearchInputEl).val('');
     $(this.purchaseSearchInputEl).focus();
+    window.scrollTo(0,0)
 
     $(this.purchaseSearchCrossEl).hide();
   },
@@ -144,6 +154,10 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
 
     this.inSearchMode = true;
     this.search.appear(query);
+
+    $(this.purchaseSearchWrapperEl).affix({
+      offset: $(this.purchaseSearchWrapperEl).position()
+    });
   },
 
   stopPurchaseSearch: function() {
@@ -152,6 +166,9 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.search.disappear();
     this.content.appear();
     $(this.purchaseSearchCrossEl).hide();
+
+    // not working
+    $(this.purchaseSearchWrapperEl).unbind('affix');
   },
 
   // --

@@ -720,7 +720,7 @@ a.feed-intro .highlight { font-weight: bold; }
 .m-box { height: 44px; background: white;} /* same as m-search */
 .m-wrapper { background: #f1f1f1; }
 	
-.m-wrapper.fixed {
+.m-wrapper.affix{
 	position: fixed !important;
 	background: -webkit-linear-gradient(top, #ffffff 0%,#dddddd 100%);
 	opacity: 0.98;
