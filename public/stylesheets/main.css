@@ -592,11 +592,11 @@ a.feed-intro:hover { color: #ccc; }
 a.feed-intro .highlight { font-weight: bold; }
 
 .feed-loading.white { 
-	background: white url('/images/loading/loading-snake-333-FFF.gif') center no-repeat;
+	background: white url('/images/loading/loading-snake-C5C5C5-FFF.gif') center no-repeat;
 	height: 80px; }
 
 .feed-loading.whitesmoke { 
-	background: url('/images/loading/loading-snake-333-F5F5F5.gif') center no-repeat;
+	background: white url('/images/loading/loading-snake-333-F5F5F5.gif') center no-repeat;
 	height: 80px; }
 
 .feed-loading.ccc { 
@@ -721,8 +721,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	width: 15px;
 	left: 8.506944444%;
 	top: 15px;
-	opacity: 0.24; 
-	filter: alpha(opacity=24); }
+	opacity: 0.4; 
+	filter: alpha(opacity=40); }
 
 .m-wrapper .close {
 	font-size: 28px; 
@@ -730,8 +730,8 @@ a.feed-intro .highlight { font-weight: bold; }
 	right: 8.1597222222%; }
 	
 .m-search:hover .q {
-	opacity: 0.6; 
-	filter: alpha(opacity=55); }
+	opacity: 0.66; 
+	filter: alpha(opacity=66); }
 
 input.m-search, 
 input.m-search:focus { 
@@ -742,10 +742,10 @@ input.m-search:focus {
 	padding: 0 14.2361111%;
 	background: #f1f1f1; }
 
-input::-webkit-input-placeholder { color: #b7b7b7; }
-input:-moz-placeholder 					 { color: #b7b7b7; }
-input::-moz-placeholder 	       { color: #b7b7b7; }
-input:-ms-input-placeholder      { color: #b7b7b7; }
+input::-webkit-input-placeholder { color: #999; }
+input:-moz-placeholder 					 { color: #999; }
+input::-moz-placeholder 	       { color: #999; }
+input:-ms-input-placeholder      { color: #999; }
 
 .m-search.affix { top: 0; left: 0; width: auto; }
 
@@ -792,8 +792,8 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 	left: 0;
 	font-weight: bold;
 	text-align: center;
-	color: #eee;
-	background: #666; }
+	color: #666;
+	background: #eee; }
 .details-box .combo-count { display: none; }
 .details-box .user-name   { font-size: 12px; font-weight: bold; }
 .details-box .time        { font-size: 10px; color: #999; padding-left: 3px; }
@@ -1360,7 +1360,7 @@ input:-ms-input-placeholder      { color: #b7b7b7; }
 .create-box .btn.add-review {
 	text-align: left;
 	padding-left: 12px;
-	background: #e2e2e2; 
+	background: #f0f0f0; 
 	font-weight: normal;
 	border: 0;
 	box-shadow: none;
