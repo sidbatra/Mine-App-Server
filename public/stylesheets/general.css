@@ -679,6 +679,9 @@ input.error:focus, textarea.error:focus {
 .btn-green.pushed, .btn-green.pushed:hover,
 .btn-green.load, .btn-green.load:hover  { background-color: #248949; }
 
+.btn-black.pushed, .btn-black:pushed:hover,
+.btn-black.load, .btn-black.load:hover { background: #888 !important; color: white; }	
+
 .btn-white.pushed, .btn-white.pushed:hover,
 .btn-white.load, .btn-white.load:hover { background: #555; color: white; }	
 
@@ -701,6 +704,7 @@ input.error:focus, textarea.error:focus {
 .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-004A72.gif"); }
 	
 .btn-gray      .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-888.gif"); }
+.btn-black     .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-333.gif"); }
 .btn-silver    .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-555.gif") !important; }
 .btn-red 	     .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-A6321D.gif"); }
 .btn-green     .icon-loading.icon-white { background: url("/images/loading/loading-snake-FFF-248949.gif"); }

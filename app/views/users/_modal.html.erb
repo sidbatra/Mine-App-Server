@@ -6,32 +6,45 @@
 		    <h4>Follow <%=h user.full_name%>'s<span class="rwd-hide"> latest</span> purchases</h4>
 		  </div>
 		  <div class="modal-body" style="text-align: center;">
-		  	
-		  	<a href="<%=tw_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
-	          onclick="this.className += ' load';"
-	          class="btn btn-twitter rounded-3-left relative shaded"
-	          style="width: 172px;">
-	        <span class='hide-when-loading'>
-	          <%=image_tag "social/t-box.png",
-	              :class => "t-box",
-	              :alt => ""%>
-	          Sign in<span class="rwd-hide"> with Twitter</span>
-	        </span>
-	        <i class='icon-loading icon-white'></i>
-	      </a> 	
 		  
-		    <a href="<%=fb_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
-	          onclick="this.className += ' load';"
-	          class="btn btn-facebook rounded-3-right relative shaded"
-	          style="width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
-	        <span class='hide-when-loading'>
-	          <%=image_tag "social/f-box.png",
-	              :class => "f-box",
-	              :alt => ""%>
-	          Sign in<span class="rwd-hide"> with Facebook</span>
-	        </span>
-	        <i class='icon-loading icon-white'></i>
-	      </a> 	
+		  	<%if is_device_iphone?%>
+	    	
+    			<a style="background-color: #FF6600; width: 160px;" 
+		        class="btn rounded-3 relative shaded" 
+						href="http://itunes.apple.com/us/app/mine./id567558757?mt=8" 
+		        onclick="mixpanel.track('Get the App Clicked');">
+					  Get Mine for iPhone
+					</a>	
+	      
+	      <%else%>
+		  	
+			  	<a href="<%=tw_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
+		          onclick="this.className += ' load';"
+		          class="btn btn-twitter rounded-3-left relative shaded"
+		          style="width: 172px;">
+		        <span class='hide-when-loading'>
+		          <%=image_tag "social/t-box.png",
+		              :class => "t-box",
+		              :alt => ""%>
+		          Sign in<span class="rwd-hide"> with Twitter</span>
+		        </span>
+		        <i class='icon-loading icon-white'></i>
+		      </a> 	
+			  
+			    <a href="<%=fb_auth_path(:src => @origin,:follow_user_id => user.id)%>" 
+		          onclick="this.className += ' load';"
+		          class="btn btn-facebook rounded-3-right relative shaded"
+		          style="width: 172px; border-left: 1px solid rgba(0,0,0,0.1);">
+		        <span class='hide-when-loading'>
+		          <%=image_tag "social/f-box.png",
+		              :class => "f-box",
+		              :alt => ""%>
+		          Sign in<span class="rwd-hide"> with Facebook</span>
+		        </span>
+		        <i class='icon-loading icon-white'></i>
+		      </a> 	
+		      
+		    <%end%>
 	      
 	      <div class="txt xs" style="margin-top: 8px; color: #999;">
           Quick sign up. Mine never auto-shares.
