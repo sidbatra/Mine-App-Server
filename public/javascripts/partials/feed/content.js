@@ -19,7 +19,8 @@ Denwen.Partials.Feed.Content = Backbone.View.extend({
     this.feed.bind('add',this.feedItemAdded,this);
     this.fetch();
 
-    this.infiniteScroller = new Denwen.InfiniteScroller();
+    this.infiniteScroller = new Denwen.InfiniteScroller({
+                                  fixedTestElement: Denwen.H.containerEl});
 
     this.infiniteScroller.bind(
       Denwen.InfiniteScroller.Callback.EndReached,

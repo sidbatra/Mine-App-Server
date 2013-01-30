@@ -27,7 +27,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     //this.suggestionsEl    = '#suggestions';
 
     $(this.purchaseSearchInputEl).placeholder();
-    $(this.purchaseSearchInputEl).focus();
+    $(this.purchaseSearchInputEl).phocus();
 
 
     this.content  = new Denwen.Partials.Feed.Content({

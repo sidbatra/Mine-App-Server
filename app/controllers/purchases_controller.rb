@@ -118,6 +118,10 @@ class PurchasesController < ApplicationController
                     :connection_ids => connection_ids,
                     :per_page => per_page,
                     :page => page})
+
+      Search.add(
+        {:query => query,:source => SearchSource::Purchase},
+        self.current_user.id) if page == 1
     end
   rescue => ex
     handle_exception(ex)

@@ -26,6 +26,7 @@
     New: 0
     Edit: 1
     User: 2
+    Purchase: 3
 
 # Enumerations for ruby. 
 #

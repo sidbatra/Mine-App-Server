@@ -18,6 +18,7 @@ Denwen.InfiniteScroller = Backbone.View.extend({
     this.pageMode = true;
     this.element = document;
     this.resizeTimer = null;
+    this.fixedTestElement = this.options.fixedTestElement;
     this.scrollMargin = this.options.scrollMargin ? 
                           this.options.scrollMargin : 
                           400;
@@ -42,7 +43,7 @@ Denwen.InfiniteScroller = Backbone.View.extend({
   // if the end of the page has been reached.
   //
   pageScroll: function() {
-   if ($(window).scrollTop() >= $(document).height() -
+   if (!this.isFixed() && $(window).scrollTop() >= $(document).height() -
                                   $(window).height() - this.scrollMargin)
       this.trigger(Denwen.InfiniteScroller.Callback.EndReached);
   },
@@ -57,7 +58,7 @@ Denwen.InfiniteScroller = Backbone.View.extend({
   // if the end of the element has been reached.
   //
   elementScroll: function() {
-   if ($(this.element).scrollTop() >= $(this.element)[0].scrollHeight -
+   if (!this.isFixed() && $(this.element).scrollTop() >= $(this.element)[0].scrollHeight -
                                   $(this.element).height() - this.scrollMargin)
       this.trigger(Denwen.InfiniteScroller.Callback.EndReached);
   },
@@ -84,8 +85,16 @@ Denwen.InfiniteScroller = Backbone.View.extend({
   // Tests if the scrollable element has empty space left.
   //
   emptySpaceTest: function() {
-    if(this.pageMode ? this.isPageEmpty() : this.isElementEmpty())
+    if(!this.isFixed() && (this.pageMode ? this.isPageEmpty() : this.isElementEmpty()))
       this.trigger(Denwen.InfiniteScroller.Callback.EmptySpaceFound);
+  },
+
+  // Avoid firing triggers if the page has gone into
+  // a fixed mode i.e. when a primary div on the page has been
+  // fixed and pagination is to cease.
+  //
+  isFixed: function() {
+    return this.fixedTestElement && this.fixedTestElement.css('position') == 'fixed';
   }
 
 });

@@ -22,7 +22,8 @@ Denwen.Views.Users.Show = Backbone.View.extend({
     this.purchases.bind('add',this.purchaseAdded,this);
     this.fetch();
 
-    this.infiniteScroller = new Denwen.InfiniteScroller();
+    this.infiniteScroller = new Denwen.InfiniteScroller({
+                                  fixedTestElement: Denwen.H.containerEl});
 
     this.infiniteScroller.bind(
       Denwen.InfiniteScroller.Callback.EndReached,

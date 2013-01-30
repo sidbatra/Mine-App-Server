@@ -32,6 +32,7 @@ Edit: "edit"
 
 Denwen.SearchSource = {
 New: 0,
+Purchase: 3,
 Edit: 1,
 User: 2
 }
