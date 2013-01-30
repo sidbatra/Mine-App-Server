@@ -2078,6 +2078,7 @@
   }
 
   Affix.prototype.checkPosition = function () {
+    if(this.$element.attr('is_disabled') == 'true') return
     if (!this.$element.is(':visible')) return
 
     var scrollHeight = $(document).height()

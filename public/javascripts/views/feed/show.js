@@ -155,6 +155,7 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.inSearchMode = true;
     this.search.appear(query);
 
+    $(this.purchaseSearchWrapperEl).attr("is_disabled",false);
     $(this.purchaseSearchWrapperEl).affix({
       offset: $(this.purchaseSearchWrapperEl).position()
     });
@@ -167,8 +168,8 @@ Denwen.Views.Feed.Show = Backbone.View.extend({
     this.content.appear();
     $(this.purchaseSearchCrossEl).hide();
 
-    // not working
-    $(this.purchaseSearchWrapperEl).unbind('affix');
+    $(this.purchaseSearchWrapperEl).attr("is_disabled",true);
+    $(this.purchaseSearchWrapperEl).removeClass('affix affix-top affix-bottom');
   },
 
   // --
