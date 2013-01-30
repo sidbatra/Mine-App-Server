@@ -120,10 +120,12 @@ Denwen.Helpers = Backbone.Model.extend({
 
   fixContainer: function() {
     this.containerEl.addClass('fixed');
+    this.containerEl.removeClass('relative');
   },
 
   unfixContainer: function() {
     this.containerEl.removeClass('fixed');
+    this.containerEl.addClass('relative');
   },
 
   // Display a popup to the given URL in the center
