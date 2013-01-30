@@ -960,7 +960,7 @@ input:-ms-input-placeholder      { color: #999; }
 	height: 300px;
 	margin-left: -260px;
 	border: none;
-/* 	top: 90px; */ }
+	top: 90px; }
 
 .item-modal .close {
 	right: -26px;
