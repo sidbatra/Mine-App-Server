@@ -24,6 +24,11 @@ class Admin::SearchesController < ApplicationController
       @searches = Search.for(SearchSource::User).with_user.by_id.limit(500)
 
       @view = "user"
+
+    when :purchase
+      @searches = Search.for(SearchSource::Purchase).with_user.by_id.limit(500)
+
+      @view = "purchase"
     end
 
     render @view
