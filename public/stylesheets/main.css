@@ -829,8 +829,9 @@ input:-ms-input-placeholder      { color: #999; }
 	left: 0;
 	font-weight: bold;
 	text-align: center;
-	color: #666;
-	background: #eee; }
+	color: white;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	background: url('/images/colors/black-30.png'); }
 .details-box .combo-count { display: none; }
 .details-box .user-name   { font-size: 12px; font-weight: bold; }
 .details-box .time        { font-size: 10px; color: #999; padding-left: 3px; }
@@ -937,9 +938,7 @@ input:-ms-input-placeholder      { color: #999; }
 
 /* Item (Combo)
 ==================================================================== */
-.combo .details-box .user-photo  { display: none;  }
 .combo .details-box .combo-count { display: block; }
-
 
 /* Item (No Links)
 ==================================================================== */
