@@ -93,6 +93,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       this.el.append(html);
 
 
+    if(!this.full && !$(this.purchaseModalEl).length) {
+      html = Denwen.JST['purchases/modal']({id: this.model.get('id')});
+      Denwen.H.relativeEl.append(html);
+    }
+
+
     this.photoEl = $(this.purchaseEl).find(".sel-purchase-photo");
     this.titleEl = $(this.purchaseEl).find(".sel-purchase-title");
     this.crossEl = $(this.purchaseEl).find(".sel-purchase-cross");

@@ -11,6 +11,7 @@ Denwen.Helpers = Backbone.Model.extend({
     this.currentUserGender  = $('meta[name=current_user_gender]').attr('content');
     this.isOnboarding       = $('meta[name=is_onboarding]').attr('content') == 'true'; 
     this.version            = $('meta[name=version]').attr('content'); 
+    this.relativeEl         = $('#relative_global');
   },
 
   // Truncate str to length using omissions
