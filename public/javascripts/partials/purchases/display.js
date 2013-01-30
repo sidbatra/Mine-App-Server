@@ -192,6 +192,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   commentCreated: function(comment) {
     comment.set({user: Denwen.H.currentUser});
+
+    if(!this.model.get('comments').getByCid(comment.cid))
+      this.model.get('comments').add(comment);
+      
     this.renderComment(comment);
     this.testOverflow();
   },
