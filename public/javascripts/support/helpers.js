@@ -11,6 +11,8 @@ Denwen.Helpers = Backbone.Model.extend({
     this.currentUserGender  = $('meta[name=current_user_gender]').attr('content');
     this.isOnboarding       = $('meta[name=is_onboarding]').attr('content') == 'true'; 
     this.version            = $('meta[name=version]').attr('content'); 
+    this.relativeEl         = $('#relative_global');
+    this.containerEl        = $('#container');
   },
 
   // Truncate str to length using omissions
@@ -114,6 +116,14 @@ Denwen.Helpers = Backbone.Model.extend({
                                           "Jun", "Jul", "Aug", "Sep", "Oct", 
                                           "Nov", "Dec"];
     return this.monthNames[dateObject.getMonth()];
+  },
+
+  fixContainer: function() {
+    this.containerEl.addClass('fixed');
+  },
+
+  unfixContainer: function() {
+    this.containerEl.removeClass('fixed');
   },
 
   // Display a popup to the given URL in the center

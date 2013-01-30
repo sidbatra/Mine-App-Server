@@ -93,6 +93,12 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
       this.el.append(html);
 
 
+    if(!this.full && !$(this.purchaseModalEl).length) {
+      html = Denwen.JST['purchases/modal']({id: this.model.get('id')});
+      Denwen.H.relativeEl.append(html);
+    }
+
+
     this.photoEl = $(this.purchaseEl).find(".sel-purchase-photo");
     this.titleEl = $(this.purchaseEl).find(".sel-purchase-title");
     this.crossEl = $(this.purchaseEl).find(".sel-purchase-cross");
@@ -161,6 +167,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                               model: this.model,
                               interaction: this.interactive,
                               full: true});
+
+    $(this.purchaseModalEl).on('show',function(){Denwen.H.fixContainer();});
+    $(this.purchaseModalEl).on('hide',function(){Denwen.H.unfixContainer();});
   },
 
   // Render likes aggregation for the purchase
@@ -183,6 +192,10 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
   //
   commentCreated: function(comment) {
     comment.set({user: Denwen.H.currentUser});
+
+    if(!this.model.get('comments').getByCid(comment.cid))
+      this.model.get('comments').add(comment);
+      
     this.renderComment(comment);
     this.testOverflow();
   },

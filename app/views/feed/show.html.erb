@@ -191,24 +191,26 @@
 <div class="feed-container">
 	
   <%if self.current_user.is_admin%>
-    <div id="m-wrapper" class="m-wrapper relative">
-       <%=image_tag "m-search-q-2x.png",
-                :style => "",
-                :class => "q absolute"%>
-       
-       <%=link_to  '&times;',
-            'javascript:void(0)',
-            :id    => 'purchase_search_cross',
-            :class => 'close absolute',
-            :style => 'display: none;'%>
-
-      <input type="text" 
-        id="purchase_search_data"
-        class="m-search h-medium square border-box no-shadow affix-top"
-        placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
-    </div>
+  	<div id="m-box" class="m-box">
+	    <div id="purchase_search_wrapper" class="m-wrapper relative">
+	       <%=image_tag "m-search-q-2x.png",
+                  :id => "purchase_search_mag_glass",
+	                :style => "",
+	                :class => "q absolute"%>
+	       
+	       <%=link_to  '&times;',
+	            'javascript:void(0)',
+	            :id    => 'purchase_search_cross',
+	            :class => 'close absolute',
+	            :style => 'display: none;'%>
+	
+	      <input type="text" 
+	        id="purchase_search_data"
+	        class="m-search h-medium square border-box no-shadow affix-top"
+	        placeholder="Search your network, e.g. 'Apps' or 'Fiction'">
+	    </div> <!-- /m-wrapper -->
+    </div> <!-- /m-box-->
   <%end%>
-
 	
 	<div id="feed" class="feed relative">
 	</div> 
@@ -224,10 +226,5 @@
     new Denwen.Views.Feed.Show({
       successEmailConnectURL: "<%=unapproved_purchases_path(:mode => 'live')%>",
       source: "<%=h @source%>"});
-      
-		//$('#m-wrapper').height($("#m-search").height());
-		//$('#m-search').affix({
-		//    offset: $('#m-search').position()
-		//});
   </script>
 <%end%>
