@@ -167,6 +167,9 @@ Denwen.Partials.Purchases.Display = Backbone.View.extend({
                               model: this.model,
                               interaction: this.interactive,
                               full: true});
+
+    $(this.purchaseModalEl).on('show',function(){Denwen.H.fixContainer();});
+    $(this.purchaseModalEl).on('hide',function(){Denwen.H.unfixContainer();});
   },
 
   // Render likes aggregation for the purchase
