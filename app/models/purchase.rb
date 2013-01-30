@@ -125,7 +125,7 @@ class Purchase < ActiveRecord::Base
         :orig_image_url => attributes[:orig_image_url],
         :external_id => attributes[:product][:external_id]})
 
-      purchase.product.title ||= purchase.title
+      purchase.product.title = purchase.title unless purchase.product.title.present?
 
       if attributes[:product][:tags]
         purchase.product.tags = attributes[:product][:tags]
