@@ -14,7 +14,7 @@
   <div class="photo-box relative">
   
 		<!-- buy -->
-    <%if(interaction || !Denwen.H.isLoggedIn()){%>
+    <%if(interaction){%>
     	<div class="actions top right absolute appear transition-opacity">
 				<a href="<%=purchase.get('source_url')%>" target="_blank"
 				  	class="like btn btn-silver light shaded-light border-box rounded-3">
