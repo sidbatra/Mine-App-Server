@@ -67,7 +67,7 @@
   
   /* -- item -- */
   
-  .item .panel { padding: 0 4.615384615% 4.615384615%; }
+	.appear { opacity: 1; filter: alpha(opacity=100); }
   
   /* -- onboarding -- */
   
