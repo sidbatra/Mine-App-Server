@@ -909,6 +909,31 @@ input:-ms-input-placeholder      { color: #999; }
 .medium .interactions-box { display: none; }
 
 
+/* Item (Slab)
+==================================================================== */
+
+.item.slab,
+.slab .item { width: auto; display: block; padding: 0; }
+.slab .photo-box { 	display: inline-block; width: 128px; height: 128px; line-height: 128px; }
+.slab .photo-box .item-photo { max-height: 128px; }
+.slab .actions .btn { width: 48px; }
+.slab .details-box { 
+	display: inline-block; 
+	margin-top: 12px; 
+	min-height: 65px; 
+	padding: 0 0 12px 50px; 
+	font-size: 12px; 
+	border-bottom: 6px solid #eee; }
+.slab .details-box .user-photo,
+.slab .details-box .combo-count { 
+	width: 42px; 
+	height: 42px;
+	line-height: 42px;
+	font-size: 22px; }
+.slab .details-box .item-name  { font-size: 12px; }
+.slab .interactions-box { display: none; }
+
+
 /* Item (Small)
 ==================================================================== */
 
