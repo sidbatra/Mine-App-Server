@@ -7,9 +7,9 @@
 <%}%>
   
 
-<div id="purchase-<%=full ? 'full-' : ''%><%=purchase.get('id')%>" 
+<li id="purchase-<%=full ? 'full-' : ''%><%=purchase.get('id')%>" 
   style="<%=purchase.get('fresh') ? 'display:none' : ''%>"
-  class="item <%=!full ? 'slab' : ''%> <%=isCombo ? 'combo' : ''%>">
+  class="item <%=!full ? 'medium' : ''%> <%=isCombo ? 'combo' : ''%>">
     
   <div class="photo-box relative">
   
@@ -177,4 +177,4 @@
 	  
   </div> <!-- /interactions-box -->
 	   
-</div> <!-- /item -->	
+</li> <!-- /item -->	
