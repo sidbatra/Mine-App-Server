@@ -797,7 +797,7 @@ input:-ms-input-placeholder      { color: #999; }
 .photo-box { text-align: center; min-height: 100px; background: white; }
 .photo-box .item-photo { max-height: 360px; }
 
-.actions { line-height: 0; }
+.actions { line-height: 0; font-size: 0; }
 .actions.top    { top: 6px;    }
 .actions.right  { right: 6px;  }
 .actions.bottom { bottom: 6px; }
@@ -910,25 +910,88 @@ input:-ms-input-placeholder      { color: #999; }
 /* Item (Slab)
 ==================================================================== */
 
-.item.slab, .slab .item { width: auto; display: block; height: 188px; padding: 0; }
-.slab li:nth-child(odd), li.slab:nth-child(even) { background: #f9f9f9; }
-.slab .photo-box { 	float: left; width: 188px; height: 188px; line-height: 188px; }
+.item.slab, .slab .item { width: auto; display: block; height: 188px; padding: 0; border-bottom: 1px solid #eee; }
+.slab li:nth-child(even), li.slab:nth-child(even) { background: #f9f9f9; }
+.slab .photo-box { 
+	display: inline-block; 
+	width: 188px; 
+	height: 188px; 
+	line-height: 188px;
+	-webkit-box-shadow: 1px 0 1px -1px rgba(0,0,0,0.6); 
+     -moz-box-shadow: 1px 0 1px -1px rgba(0,0,0,0.6); 
+          box-shadow: 1px 0 1px -1px rgba(0,0,0,0.6); }
 .slab .photo-box .item-photo { max-height: 188px; }
-.slab .actions .btn { width: 48px; }
+.slab .photo-box .actions { display: none; }
+.slab .photo-box .caret { 
+	display: inline-block !important;
+	right: -1px;
+	top: 35px;
+  border-top: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-bottom: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  z-index: 1; }
+.slab .photo-box .caret.shade { 
+	display: inline-block !important;
+	right: 0;
+	top: 35px;
+  border-top: 10px solid transparent;
+  border-right: 10px solid rgba(0,0,0,0.2) !important;
+  border-bottom: 10px solid transparent; 
+  z-index: 0; }
+.slab li:nth-child(even) .photo-box .caret, li.slab:nth-child(even) .photo-box .caret {
+	border-right: 10px solid #f9f9f9; }
+
+.slab .actions .btn { 
+	width: 48px; 
+	height: 24px; 
+	line-height: 24px !important; 
+	border-bottom: 1px solid rgba(0,0,0,0.1); }
+
 .slab .details-box { 
-	float: left;
-	width: 387px;
-/* 	height: 188px; */
+	vertical-align: top;
+	display: inline-block;
+	width: 388px;
+	height: 188px;
 	margin-top: 0; 
 	min-height: none; 
-	padding: 12px 16px; 
+	padding: 15px 16px 0 0; 
 	font-size: 16px; 
-	line-height: 130%;
+	line-height: 120%;
 	border-bottom: none; }
 .slab .details-box .user-photo,
-.slab .details-box .combo-count { display: none; }
-.slab .details-box .item-name  { font-size: 20px; }
+.slab .details-box .combo-count { 
+	top: 20px; 
+	left: 20px; }
+.slab .details-box .user-name,
+.slab .details-box .item-name,
+.slab .details-box .store-name { padding-left: 80px; }
+.slab .details-box .item-name  { font-size: 16px; line-height: 120%; }
+
 .slab .interactions-box { display: none; }
+.slab .slab-only { display: inline !important; }
+
+.slab .endorsement { 
+	max-height: 40px;
+	overflow: hidden;
+	color: #999;
+	padding: 8px 0 0 20px; }
+	
+.slab .actions.bottom { bottom: 18px; }
+.slab .actions.left   { left: 20px;   }
+	
+.slab .likes-box {
+	overflow: visible;
+	right: 20px;
+	bottom: 16px;
+	height: 26px;
+	font-size: 14px;
+	padding: 0; }
+	
+.slab .likes-box .num { font-size: 24px; font-weight: bold; }
+.slab .likes-box .user-photo-box,
+.slab .likes-box .user-photo-box .user-photo { 
+	width: 18px; height: 18px;  }
 
 
 /* Item (Small)
