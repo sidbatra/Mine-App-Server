@@ -910,7 +910,7 @@ input:-ms-input-placeholder      { color: #999; }
 /* Item (Slab)
 ==================================================================== */
 
-.item.slab, .slab .item { width: auto; display: block; height: 188px; padding: 0; border-bottom: 1px solid #eee; }
+.item.slab, .slab .item { width: auto; display: block; height: 188px; padding: 0; }
 .slab li:nth-child(even), li.slab:nth-child(even) { background: #f9f9f9; }
 .slab .photo-box { 
 	display: inline-block; 
@@ -944,8 +944,8 @@ input:-ms-input-placeholder      { color: #999; }
 
 .slab .actions .btn { 
 	width: 48px; 
-	height: 24px; 
-	line-height: 24px !important; 
+	height: 26px; 
+	line-height: 26px !important; 
 	border-bottom: 1px solid rgba(0,0,0,0.1); }
 
 .slab .details-box { 
@@ -966,7 +966,7 @@ input:-ms-input-placeholder      { color: #999; }
 .slab .details-box .user-name,
 .slab .details-box .item-name,
 .slab .details-box .store-name { padding-left: 80px; }
-.slab .details-box .item-name  { font-size: 16px; line-height: 120%; }
+.slab .details-box .item-name  { font-size: 18px; }
 
 .slab .interactions-box { display: none; }
 .slab .slab-only { display: inline !important; }
@@ -974,7 +974,7 @@ input:-ms-input-placeholder      { color: #999; }
 .slab .endorsement { 
 	max-height: 40px;
 	overflow: hidden;
-	color: #999;
+	color: #888;
 	padding: 8px 0 0 20px; }
 	
 .slab .actions.bottom { bottom: 18px; }

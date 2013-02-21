@@ -161,7 +161,7 @@
 				<div class="actions bottom left absolute">
 					<a href="javascript:void(0)"
 				  		class="sel-purchase-create-like like btn btn-silver 
-	                    light border-box rounded-2">
+	                    light border-box rounded-3-left">
 						<i class="icon-heart out"></i>
 						<i class="icon-ok in"></i>
 					</a>
@@ -169,15 +169,14 @@
 						<a href="javascript:void(0)"
 	              data-toggle="modal"
 	              data-target="#item-modal-<%=purchase.get('id')%>"
-	              style="margin-left: 4px;"
-	              class="sel-purchase-comment-init comment btn btn-silver light 
-	                      border-box rounded-2">
+	              class="sel-purchase-comment-init comment btn btn-silver light border-box square"
+	              style="border-left: 1px solid #ababab; border-left: 1px solid rgba(0,0,0,0.08);">
 	            <i class="icon-comment"></i>
 	          </a>
 	        <%}%>
         	<a href="<%=purchase.get('source_url')%>" target="_blank"
-					  class="like btn btn-silver light border-box rounded-2"
-					  style="margin-left: 4px;">
+					  class="like btn btn-silver light border-box rounded-3-right"
+					  style="border-left: 1px solid #ababab; border-left: 1px solid rgba(0,0,0,0.08);">
 						<i class="icon-cart"></i>
 					</a>
 				</div>
