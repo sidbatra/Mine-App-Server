@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_filter :login_required, :except => [:show,:index]
+  before_filter :custom_login_required, :except => [:show]
 
   # Fetch a set of purchases for a particular user.
   #
@@ -368,6 +368,10 @@ class PurchasesController < ApplicationController
 
 
   protected
+
+  def custom_login_required
+    params[:aspect] && params[:aspect] == "user" ? true : login_required
+  end
 
   # Populate params from the given purchase's source id
   #
