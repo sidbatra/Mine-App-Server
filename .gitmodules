@@ -1,3 +1,3 @@
 [submodule "vendor/plugins/fifo"]
 	path = vendor/plugins/fifo
-	url = git@github.com:Denwen/FIFO.git
+	url = git@github.com:sidbatra/FIFO.git
