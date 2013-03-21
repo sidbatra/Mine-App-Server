@@ -15,7 +15,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     
     # Total processing queue worker instances on proc servers
     #
-    set :total_workers, 2
+    set :total_workers, 4
     set :environment, "production"
     set :branch, "master"
   end

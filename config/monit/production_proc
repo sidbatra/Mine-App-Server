@@ -1,5 +1,5 @@
 
   # Processor
   #check process processor with pidfile /vol/mine/current/log/processor.rb_monitor.pid
-  #  start program = "/bin/bash -c 'cd /vol/mine/current && /bin/bash script/workers start 2 production'" with timeout 30 seconds
-  #  stop program = "/bin/bash -c 'cd /vol/mine/current && /bin/bash script/workers stop 2 production'" 
+  #  start program = "/bin/bash -c 'cd /vol/mine/current && /bin/bash script/workers start 4 production'" with timeout 30 seconds
+  #  stop program = "/bin/bash -c 'cd /vol/mine/current && /bin/bash script/workers stop 4 production'" 
