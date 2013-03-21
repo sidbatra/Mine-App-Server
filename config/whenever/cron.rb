@@ -17,8 +17,14 @@ end
 every :monday, :at => '9:00am' do
   runner "ProcessingQueue.push(CronWorker,:mine_purchase_emails)"
 end
-
 every :wednesday, :at => '9:00am' do
+  runner "ProcessingQueue.push(CronWorker,:purchases_imported_reminder)"
+end
+
+every :thursday, :at => '9:00am' do
+  runner "ProcessingQueue.push(CronWorker,:mine_purchase_emails)"
+end
+every :saturday, :at => '9:00am' do
   runner "ProcessingQueue.push(CronWorker,:purchases_imported_reminder)"
 end
 
