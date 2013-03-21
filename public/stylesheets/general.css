@@ -23,11 +23,6 @@
 	white-space: nowrap;
 	text-overflow: ellipsis; }
 
-.tooltip-inner {
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px; }
-
 span.separator { padding: 0 3px; }
 span.separator:before { content: "•"; }
 
