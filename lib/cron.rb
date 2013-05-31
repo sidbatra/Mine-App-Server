@@ -178,6 +178,35 @@ module DW
         LoggedException.add(__FILE__,__method__,ex)
       end
 
+      def self.unsubscribe_angry_users
+        @user = User.find_by_email "sidbatra@ai.stanford.edu"
+        @connection = GmailConnection.new(
+                              @user.go_email,
+                              {
+                                :token => @user.go_token,
+                                :secret => @user.go_secret,
+                                :consumer_key => CONFIG[:google_client_id],
+                                :consumer_secret => CONFIG[:google_client_secret]})
+        
+        @connection.inbox(:unread,:after => 7.days.ago) do |emails|
+          emails.each do |email|
+            if email.subject.match /Out of Office|Automatic Reply/i
+              email.archive!
+            else
+              user = User.find_by_email email.from
+
+              if user
+                user.setting.unsubscribe
+              else
+                email.read!
+              end
+            end
+          end #emails
+        end
+      rescue => ex
+        LoggedException.add(__FILE__,__method__,ex)
+      end
+
     end #cron worker
 
   end # Cron

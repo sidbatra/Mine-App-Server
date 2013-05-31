@@ -2,6 +2,17 @@ module DW
 
   module EmailConnectionInterface
     
+    class Gmail::Message
+      def subject
+        envelope.subject
+      end
+
+      def from
+        sender = envelope.sender.first
+        "#{sender.mailbox}@#{sender.host}"
+      end
+    end
+    
     class EmailConnection
 
       # Create a new email connection based on
@@ -34,6 +45,7 @@ module DW
       
       def initialize(email,options={})
         @imap_key_body = "RFC822"
+        @imap_key_envelope = "ENVELOPE"
 
         @gmail = Gmail.connect! :xoauth, email,
                       :token           => options[:token],
@@ -44,6 +56,17 @@ module DW
         @mailboxes = ["[Gmail]/All Mail","[Gmail]/Trash"].map do |name| 
                        Gmail::Mailbox.new @gmail,name
                       end
+      end
+
+      def inbox(*options)
+        mailbox = Gmail::Mailbox.new @gmail,"inbox"
+
+        begin
+          emails = mailbox.find *options
+          yield emails if block_given?
+
+        rescue Net::IMAP::NoResponseError 
+        end
       end
       
       # Return Mail objects from all emails matching the given criterea.
