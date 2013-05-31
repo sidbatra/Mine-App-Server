@@ -37,6 +37,10 @@ every 1.day, :at => '10:00pm' do
   runner "ProcessingQueue.push(CronWorker,:maintain_email_list)"
 end
 
+every 1.day, :at => '10:30pm' do
+  runner "ProcessingQueue.push(CronWorker,:unsubscribe_angry_users)"
+end
+
 
 every 1.day, :at => '8:00am' do
   runner "ProcessingQueue.push(CronWorker,:email_users_after_joining_to_run_importer)"

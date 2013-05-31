@@ -28,6 +28,9 @@ class Admin::HealthController < ApplicationController
         :time => 1.day.ago},
       {
         :id => HealthReportService::AfterJoinDownloadApp,
+        :time => 1.day.ago},
+      {
+        :id => HealthReportService::Unsubscribe,
         :time => 1.day.ago}]
 
     @services.each{|s| s[:report] = HealthReport.for_service(s[:id]).last}

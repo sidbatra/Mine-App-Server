@@ -78,6 +78,7 @@
     PurchasesImportedReminder: 14
     AfterJoinRunImporter: 15
     AfterJoinDownloadApp: 16
+    Unsubscribe: 17
   HomeShowSource:
     UserCreateError: 'user_create_error'
     LoginError: 'login_error'
