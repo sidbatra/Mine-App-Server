@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+# pismo
+#
+# get metadata about a page from the command line
+#
+# Usage: 
+#     ./bin/pismo http://www.rubyinside.com/cramp-asychronous-event-driven-ruby-web-app-framework-2928.html title description author
+# Output:
+#     --- 
+#     :url: http://www.rubyinside.com/cramp-asychronous-event-driven-ruby-web-app-framework-2928.html
+#     :title: "Cramp: Asychronous Event-Driven Ruby Web App Framework"
+#     :description: The ideal book for beginners or developers merely new to Ruby. Goes from installation to OOP, webapps, SQL, and GUI apps.
+#     :author: Peter Cooper
+
+
+require 'yaml'
+require 'rubygems'
+$:.unshift(File.dirname(__FILE__) + "/../lib")
+require 'pismo'
+require 'irb'
+
+url = ARGV.shift
+
+unless url =~ /^http/
+  url = File.read(url)
+end
+
+doc = Pismo.document(url)
+
+if ARGV.empty?
+  P = doc
+  @p = doc
+  puts "Pismo has loaded #{url} into @p and P"
+  #puts "Note: There have been several reports of Nokogiri segfaulting while using Pismo from irb. If this happens, try the same code as a standalone Ruby app."
+  IRB.start
+else
+  output = { :url => doc.url }
+  
+  ARGV.each do |cmd|
+    output[cmd.to_sym] = doc.send(cmd)
+  end
+  
+  puts output.to_yaml
+end

@@ -25,7 +25,8 @@ Rails::Initializer.run do |config|
     CONFIG.merge!(YAML.load_file(local_config)[RAILS_ENV]) 
   end
 
-  CONFIG[:machine_id] = `ec2-metadata -i`.chomp.split(" ").last
+  CONFIG[:machine_id] = `ec2-metadata -i 2>&1`.chomp.split(" ").last 
+  CONFIG[:machine_id] = "localhost" if CONFIG[:machine_id] == "found"
   CONFIG[:revision]   = `cd #{ENV['RAILS_PATH']} && git rev-parse HEAD`.chomp
 
   config.gem('amazon-ecs',
@@ -97,7 +98,7 @@ Rails::Initializer.run do |config|
   config.gem('twilio-ruby',
               :version => '3.9.0')
   config.gem('twitter',
-              :version => '2.5.0',
+              :version => '4.8.1',
               :lib => false)
   config.gem('twitter_oauth',
               :version => '0.4.3')

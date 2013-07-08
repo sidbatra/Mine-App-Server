@@ -1,0 +1,208 @@
+--- !ruby/object:Gem::Specification 
+name: pismo
+version: !ruby/object:Gem::Version 
+  hash: 7
+  prerelease: 
+  segments: 
+  - 0
+  - 7
+  - 2
+  version: 0.7.2
+platform: ruby
+authors: 
+- Peter Cooper
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-07-26 00:00:00 +00:00
+default_executable: pismo
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: shoulda
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: awesome_print
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: nokogiri
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: sanitize
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id004
+- !ruby/object:Gem::Dependency 
+  name: fast-stemmer
+  prerelease: false
+  requirement: &id005 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id005
+- !ruby/object:Gem::Dependency 
+  name: chronic
+  prerelease: false
+  requirement: &id006 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id006
+description: Pismo extracts and retrieves content-related metadata from HTML pages - you can use the resulting data in an organized way, such as a summary/first paragraph, body text, keywords, RSS feed URL, favicon, etc.
+email: 
+- git@peterc.org
+executables: 
+- pismo
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- .document
+- .gitignore
+- Gemfile
+- LICENSE
+- NOTICE
+- README.markdown
+- Rakefile
+- bin/pismo
+- lib/pismo.rb
+- lib/pismo/document.rb
+- lib/pismo/external_attributes.rb
+- lib/pismo/internal_attributes.rb
+- lib/pismo/reader.rb
+- lib/pismo/stopwords.txt
+- lib/pismo/version.rb
+- pismo.gemspec
+- test/corpus/bbcnews.html
+- test/corpus/bbcnews2.html
+- test/corpus/briancray.html
+- test/corpus/cant_read.html
+- test/corpus/factor.html
+- test/corpus/gmane.html
+- test/corpus/huffington.html
+- test/corpus/metadata_expected.yaml
+- test/corpus/metadata_expected.yaml.old
+- test/corpus/queness.html
+- test/corpus/reader_expected.yaml
+- test/corpus/rubyinside.html
+- test/corpus/rww.html
+- test/corpus/spolsky.html
+- test/corpus/techcrunch.html
+- test/corpus/tweet.html
+- test/corpus/youtube.html
+- test/corpus/zefrank.html
+- test/helper.rb
+- test/test_corpus.rb
+- test/test_pismo_document.rb
+has_rdoc: true
+homepage: http://github.com/peterc/pismo
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: pismo
+rubygems_version: 1.5.2
+signing_key: 
+specification_version: 3
+summary: Extracts or retrieves content-related metadata from HTML pages
+test_files: 
+- test/corpus/bbcnews.html
+- test/corpus/bbcnews2.html
+- test/corpus/briancray.html
+- test/corpus/cant_read.html
+- test/corpus/factor.html
+- test/corpus/gmane.html
+- test/corpus/huffington.html
+- test/corpus/metadata_expected.yaml
+- test/corpus/metadata_expected.yaml.old
+- test/corpus/queness.html
+- test/corpus/reader_expected.yaml
+- test/corpus/rubyinside.html
+- test/corpus/rww.html
+- test/corpus/spolsky.html
+- test/corpus/techcrunch.html
+- test/corpus/tweet.html
+- test/corpus/youtube.html
+- test/corpus/zefrank.html
+- test/helper.rb
+- test/test_corpus.rb
+- test/test_pismo_document.rb
+
