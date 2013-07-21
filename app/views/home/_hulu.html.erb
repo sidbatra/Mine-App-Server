@@ -1,6 +1,6 @@
 <div class="wrapper unselectable">
 
-	<div class="nav login absolute border-box relative unselectable">
+	<!--div class="nav login absolute border-box relative unselectable">
 		Already on Mine?
 		
 			<a class="dark"
@@ -10,7 +10,7 @@
 	  			id="login">
 					<b class="opacity-80-100 transition-opacity">Log In</b>
 			</a>
-	</div>
+	</div-->
 
 	
 	<div class="home-container absolute">
@@ -29,18 +29,17 @@
 				<span class="join">
 					<%if is_device_iphone?%>
 						<a style="background-color: #FF6600;" 
-			        class="btn btn-large btn-join wiggle rounded-5 shaded-strong relative unselectable" 
+			        class="btn btn-large disabled btn-join rounded-5 shaded-strong" 
 							href="http://itunes.apple.com/us/app/mine./id567558757?mt=8" 
 			        onclick="mixpanel.track('Get the App Clicked');">
-						  Get the App
+						  Sign Ups Closed
 						</a>
 					<%else%>
-						<a style="background-color: #FF6600;" 
-			        class="btn btn-large btn-join wiggle rounded-5 shaded-strong relative unselectable" 
+						<a style="background-color: #FF6600;cursor: default" 
+			        class="btn btn-large disabled btn-join rounded-5 shaded-strong" 
 							href="javascript:void(0)" 
-			        id="join" 
 			        onclick="mixpanel.track('Sign Up Clicked');">
-						  Join Now for Free
+						  Sign Ups Closed
 						</a>
 					<%end%>
 				</span> <!-- /join -->
@@ -48,7 +47,7 @@
 			
 			
 
-			<span class="or rwd-hide">OR</span>
+			<!--span class="or rwd-hide">OR</span>
 			
 			<span class="sms rwd-hide">
 				<a class="btn-sms white border-box inline-block pointer opacity-80-100 transition-opacity"
@@ -62,7 +61,7 @@
 						TXT me the app
 					</span>
 				</a>
-			</span> <!-- /sms -->
+			</span--> <!-- /sms -->
 		
 		</div>
 				
